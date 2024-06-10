@@ -1,8 +1,13 @@
-import { useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { RegistrationSection } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_SECTIONS_QUERY_KEY } from "./useGetEventSections";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_SECTION_QUERY_KEY = (eventId: string, sectionId: string) => [
   ...EVENT_SECTIONS_QUERY_KEY(eventId),
@@ -17,7 +22,7 @@ export const SET_EVENT_SECTION_QUERY_DATA = (
   client.setQueryData(EVENT_SECTION_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventSectionProps {
+interface GetEventSectionProps extends SingleQueryParams {
   eventId: string;
   sectionId: string;
 }
@@ -25,6 +30,7 @@ interface GetEventSectionProps {
 export const GetEventSection = async ({
   eventId,
   sectionId,
+  adminApiParams,
 }: GetEventSectionProps): Promise<ConnectedXMResponse<RegistrationSection>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -33,11 +39,16 @@ export const GetEventSection = async ({
   return data;
 };
 
-const useGetEventSection = (eventId: string, sectionId: string) => {
+const useGetEventSection = (
+  eventId: string,
+  sectionId: string,
+  options: SingleQueryOptions<ReturnType<typeof GetEventSection>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEventSection>>(
     EVENT_SECTION_QUERY_KEY(eventId, sectionId),
-    () => GetEventSection({ eventId, sectionId }),
+    (params) => GetEventSection({ eventId, sectionId, ...params }),
     {
+      ...options,
       enabled: !!eventId && !!sectionId,
     }
   );

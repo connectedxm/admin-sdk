@@ -1,8 +1,13 @@
-import { useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { RegistrationQuestionChoice } from "@src/interfaces";
 import { EVENT_QUESTION_CHOICES_QUERY_KEY } from "./useGetEventQuestionChoices";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_QUESTION_CHOICE_QUERY_KEY = (
   eventId: string,
@@ -18,7 +23,7 @@ export const SET_EVENT_QUESTION_CHOICE_QUERY_DATA = (
   client.setQueryData(EVENT_QUESTION_CHOICE_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventQuestionChoiceProps {
+interface GetEventQuestionChoiceProps extends SingleQueryParams {
   eventId: string;
   questionId: string;
   choiceId: string;
@@ -28,6 +33,7 @@ export const GetEventQuestionChoice = async ({
   eventId,
   questionId,
   choiceId,
+  adminApiParams,
 }: GetEventQuestionChoiceProps): Promise<
   ConnectedXMResponse<RegistrationQuestionChoice>
 > => {
@@ -41,13 +47,17 @@ export const GetEventQuestionChoice = async ({
 const useGetEventQuestionChoice = (
   eventId: string,
   questionId: string,
-  choiceId: string
+  choiceId: string,
+  options: SingleQueryOptions<ReturnType<typeof GetEventQuestionChoice>> = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventQuestionChoice>>((
+  return useConnectedSingleQuery<ReturnType<typeof GetEventQuestionChoice>>(
     EVENT_QUESTION_CHOICE_QUERY_KEY(eventId, questionId, choiceId),
-    () => GetEventQuestionChoice({ eventId, questionId, choiceId }),
+    (params: SingleQueryParams) =>
+      GetEventQuestionChoice({ eventId, questionId, choiceId, ...params }),
     {
-      enabled: !!eventId && !!questionId && !!choiceId,
+      ...options,
+      enabled:
+        !!eventId && !!questionId && !!choiceId && (options?.enabled ?? true),
     }
   );
 };

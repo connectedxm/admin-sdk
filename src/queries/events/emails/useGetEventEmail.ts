@@ -1,8 +1,13 @@
-import useConnectedSingleQuery from "@src/queries/useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EventEmail, EventEmailType } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_EMAIL_QUERY_KEY = (
   eventId: string,
@@ -17,7 +22,7 @@ export const SET_EVENT_EMAIL_QUERY_DATA = (
   client.setQueryData(EVENT_EMAIL_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventEmailProps {
+interface GetEventEmailProps extends SingleQueryParams {
   eventId: string;
   type: EventEmailType;
 }
@@ -25,18 +30,24 @@ interface GetEventEmailProps {
 export const GetEventEmail = async ({
   eventId,
   type,
+  adminApiParams,
 }: GetEventEmailProps): Promise<ConnectedXMResponse<EventEmail>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/emails/${type}`);
   return data;
 };
 
-const useGetEventEmail = (eventId: string, type: EventEmailType) => {
+const useGetEventEmail = (
+  eventId: string = "",
+  type: EventEmailType,
+  options: SingleQueryOptions<ReturnType<typeof GetEventEmail>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEventEmail>>(
     EVENT_EMAIL_QUERY_KEY(eventId, type),
-    () => GetEventEmail({ type, eventId }),
+    (params: SingleQueryParams) => GetEventEmail({ type, eventId, ...params }),
     {
-      enabled: !!type,
+      ...options,
+      enabled: !!type && (options?.enabled ?? true),
     }
   );
 };

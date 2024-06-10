@@ -1,7 +1,11 @@
-import useConnectedSingleQuery from "@/context/queries/useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { BenefitTranslation } from "@src/interfaces";
 import { BENEFIT_TRANSLATIONS_QUERY_KEY } from "./useGetBenefitTranslations";
+import { GetAdminAPI } from "@src/AdminAPI";
+import useConnectedSingleQuery, {
+  SingleQueryOptions,
+  SingleQueryParams,
+} from "@src/queries/useConnectedSingleQuery";
 
 export const BENEFIT_TRANSLATION_QUERY_KEY = (
   benefitId: string,
@@ -16,7 +20,7 @@ export const SET_BENEFIT_TRANSLATION_QUERY_DATA = (
   client.setQueryData(BENEFIT_TRANSLATION_QUERY_KEY(...keyParams), response);
 };
 
-interface GetBenefitTranslationProps {
+interface GetBenefitTranslationProps extends SingleQueryParams {
   benefitId: string;
   locale: string;
 }
@@ -24,6 +28,7 @@ interface GetBenefitTranslationProps {
 export const GetBenefitTranslation = async ({
   benefitId,
   locale,
+  adminApiParams,
 }: GetBenefitTranslationProps): Promise<
   ConnectedXMResponse<BenefitTranslation>
 > => {
@@ -34,16 +39,22 @@ export const GetBenefitTranslation = async ({
   return data;
 };
 
-const useGetBenefitTranslation = (benefitId: string, locale: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetBenefitTranslation>>((
+const useGetBenefitTranslation = (
+  benefitId: string,
+  locale: string,
+  options: SingleQueryOptions<ReturnType<typeof GetBenefitTranslation>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetBenefitTranslation>>(
     BENEFIT_TRANSLATION_QUERY_KEY(benefitId, locale),
-    () =>
+    (params: SingleQueryParams) =>
       GetBenefitTranslation({
         benefitId,
         locale,
+        ...params,
       }),
     {
-      enabled: !!benefitId && !!locale,
+      ...options,
+      enabled: !!benefitId && !!locale && (options?.enabled ?? true),
     }
   );
 };

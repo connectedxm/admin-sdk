@@ -6,23 +6,21 @@ import {
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
-import { CONTENT_TYPE_CONTENT_QUERY_KEY } from "./useGetContentTypeContent";
+import { CHANNEL_CONTENT_QUERY_KEY } from "./useGetChannelContent";
+import { GetAdminAPI } from "@src/AdminAPI";
 
-export const CONTENT_TYPE_CONTENT_ACTIVITIES_QUERY_KEY = (
-  contentTypeId: string,
+export const CHANNEL_CONTENT_ACTIVITIES_QUERY_KEY = (
+  channelId: string,
   contentId: string
-) => [
-  ...CONTENT_TYPE_CONTENT_QUERY_KEY(contentTypeId, contentId),
-  "ACTIVITIES",
-];
+) => [...CHANNEL_CONTENT_QUERY_KEY(channelId, contentId), "ACTIVITIES"];
 
-export const SET_CONTENT_TYPE_CONTENT_ACTIVITIES_QUERY_DATA = (
+export const SET_CHANNEL_CONTENT_ACTIVITIES_QUERY_DATA = (
   client: QueryClient,
-  keyParams: Parameters<typeof CONTENT_TYPE_CONTENT_ACTIVITIES_QUERY_KEY>,
+  keyParams: Parameters<typeof CHANNEL_CONTENT_ACTIVITIES_QUERY_KEY>,
   response: Awaited<ReturnType<typeof GetContentActivities>>
 ) => {
   client.setQueryData(
-    CONTENT_TYPE_CONTENT_ACTIVITIES_QUERY_KEY(...keyParams),
+    CHANNEL_CONTENT_ACTIVITIES_QUERY_KEY(...keyParams),
     response
   );
 };
@@ -37,6 +35,7 @@ export const GetContentActivities = async ({
   orderBy,
   search,
   contentId,
+  adminApiParams,
 }: GetContentActivitiesProps): Promise<ConnectedXMResponse<Activity[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/contents/${contentId}/activities`, {
@@ -50,11 +49,11 @@ export const GetContentActivities = async ({
   return data;
 };
 
-const useGetContentActivities = (contentTypeId: string, contentId: string) => {
+const useGetContentActivities = (channelId: string, contentId: string) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetContentActivities>>
   >(
-    CONTENT_TYPE_CONTENT_ACTIVITIES_QUERY_KEY(contentTypeId, contentId),
+    CHANNEL_CONTENT_ACTIVITIES_QUERY_KEY(channelId, contentId),
     (params: any) => GetContentActivities(params),
     {
       contentId,

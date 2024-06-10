@@ -1,5 +1,9 @@
-import { GetAdminAPI } from '@src/AdminAPI';
-import { useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { FAQSection } from "@src/interfaces";
 import { EVENT_FAQ_SECTIONS_QUERY_KEY } from "./useGetEventFAQSections";
@@ -18,7 +22,7 @@ export const SET_EVENT_FAQ_SECTION_QUERY_DATA = (
   client.setQueryData(EVENT_FAQ_SECTION_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventFAQSectionProps {
+interface GetEventFAQSectionProps extends SingleQueryParams {
   eventId: string;
   sectionId: string;
 }
@@ -26,22 +30,29 @@ interface GetEventFAQSectionProps {
 export const GetEventFAQSection = async ({
   eventId,
   sectionId,
+  adminApiParams,
 }: GetEventFAQSectionProps): Promise<ConnectedXMResponse<FAQSection>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/faqs/${sectionId}`);
   return data;
 };
 
-const useGetEventFAQSection = (eventId: string, sectionId: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventFAQSection>>((
+const useGetEventFAQSection = (
+  eventId: string = "",
+  sectionId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEventFAQSection>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetEventFAQSection>>(
     EVENT_FAQ_SECTION_QUERY_KEY(eventId, sectionId),
-    () =>
+    (params: SingleQueryParams) =>
       GetEventFAQSection({
         eventId: eventId,
         sectionId: sectionId,
+        ...params,
       }),
     {
-      enabled: !!eventId && !!sectionId,
+      ...options,
+      enabled: !!eventId && !!sectionId && (options?.enabled ?? true),
     }
   );
 };

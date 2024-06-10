@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Invoice } from "@src/interfaces";
 import { INVOICES_QUERY_KEY } from "./useGetInvoices";
@@ -18,23 +22,28 @@ export const SET_INVOICE_QUERY_DATA = (
   client.setQueryData(INVOICE_QUERY_KEY(...keyParams), response);
 };
 
-interface GetInvoiceProps {
+interface GetInvoiceProps extends SingleQueryParams {
   invoiceId: string;
 }
 
 export const GetInvoice = async ({
   invoiceId,
+  adminApiParams,
 }: GetInvoiceProps): Promise<ConnectedXMResponse<Invoice>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/invoices/${invoiceId}`);
   return data;
 };
 
-const useGetInvoice = (invoiceId: string) => {
+const useGetInvoice = (
+  invoiceId: string,
+  options: SingleQueryOptions<ReturnType<typeof GetInvoice>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetInvoice>>(
     INVOICE_QUERY_KEY(invoiceId),
-    () => GetInvoice({ invoiceId }),
+    (params) => GetInvoice({ invoiceId, ...params }),
     {
+      ...options,
       enabled: !!invoiceId,
     }
   );

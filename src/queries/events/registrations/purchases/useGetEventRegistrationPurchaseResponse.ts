@@ -1,7 +1,12 @@
 import { ConnectedXMResponse } from "@src/interfaces";
-import useConnectedSingleQuery from "@src/queries/useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../../useConnectedSingleQuery";
 import { RegistrationQuestionResponse } from "@src/interfaces";
 import { EVENT_REGISTRATION_PURCHASE_RESPONSES_QUERY_KEY } from "./useGetEventRegistrationPurchaseResponses";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_REGISTRATION_PURCHASE_RESPONSE_QUERY_KEY = (
   eventId: string,
@@ -28,7 +33,7 @@ export const SET_EVENT_REGISTRATION_PURCHASE_RESPONSE_QUERY_DATA = (
   );
 };
 
-interface GetEventRegistrationPurchaseResponseProps {
+interface GetEventRegistrationPurchaseResponseProps extends SingleQueryParams {
   eventId: string;
   registrationId: string;
   purchaseId: string;
@@ -40,6 +45,7 @@ export const GetEventRegistrationPurchaseResponse = async ({
   registrationId,
   purchaseId,
   questionId,
+  adminApiParams,
 }: GetEventRegistrationPurchaseResponseProps): Promise<
   ConnectedXMResponse<RegistrationQuestionResponse>
 > => {
@@ -51,26 +57,33 @@ export const GetEventRegistrationPurchaseResponse = async ({
 };
 
 const useGetEventRegistrationPurchaseResponse = (
-  eventId: string,
+  eventId: string = "",
   registrationId: string = "",
-  purchaseId: string,
-  questionId: string
+  purchaseId: string = "",
+  questionId: string = "",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetEventRegistrationPurchaseResponse>
+  > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventRegistrationPurchaseResponse>>((
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetEventRegistrationPurchaseResponse>
+  >(
     EVENT_REGISTRATION_PURCHASE_RESPONSE_QUERY_KEY(
       eventId,
       registrationId,
       purchaseId,
       questionId
     ),
-    () =>
+    (params: SingleQueryParams) =>
       GetEventRegistrationPurchaseResponse({
         eventId,
         registrationId,
         purchaseId,
         questionId,
+        ...params,
       }),
     {
+      ...options,
       enabled: !!eventId && !!registrationId && !!questionId && !!purchaseId,
     }
   );

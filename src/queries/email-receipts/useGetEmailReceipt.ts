@@ -1,8 +1,13 @@
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EmailReceipt } from "@src/interfaces";
 import { EMAIL_RECEIPTS_QUERY_KEY } from "./useGetEmailReceipts";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EMAIL_RECEIPT_QUERY_KEY = (emailReceiptId: string) => [
   ...EMAIL_RECEIPTS_QUERY_KEY(),
@@ -17,12 +22,13 @@ export const SET_EMAIL_RECEIPT_QUERY_DATA = (
   client.setQueryData(EMAIL_RECEIPT_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEmailReceiptParams {
+interface GetEmailReceiptParams extends SingleQueryParams {
   emailReceiptId: string;
 }
 
 export const GetEmailReceipt = async ({
   emailReceiptId,
+  adminApiParams,
 }: GetEmailReceiptParams): Promise<ConnectedXMResponse<EmailReceipt>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/logs/email-receipts/${emailReceiptId}`);
@@ -30,11 +36,16 @@ export const GetEmailReceipt = async ({
   return data;
 };
 
-const useGetEmailReceipt = (emailReceiptId: string) => {
+const useGetEmailReceipt = (
+  emailReceiptId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEmailReceipt>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEmailReceipt>>(
     EMAIL_RECEIPT_QUERY_KEY(emailReceiptId),
-    () => GetEmailReceipt({ emailReceiptId }),
+    (params: SingleQueryParams) =>
+      GetEmailReceipt({ emailReceiptId, ...params }),
     {
+      ...options,
       enabled: !!emailReceiptId,
     }
   );

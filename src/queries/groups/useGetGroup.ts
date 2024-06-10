@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Group } from "@src/interfaces";
 import { GROUPS_QUERY_KEY } from "./useGetGroups";
@@ -18,24 +22,29 @@ export const SET_GROUP_QUERY_DATA = (
   client.setQueryData(GROUP_QUERY_KEY(...keyParams), response);
 };
 
-interface GetGroupProps {
+interface GetGroupProps extends SingleQueryParams {
   groupId: string;
 }
 
 export const GetGroup = async ({
   groupId,
+  adminApiParams,
 }: GetGroupProps): Promise<ConnectedXMResponse<Group>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/groups/${groupId}`);
   return data;
 };
 
-const useGetGroup = (groupId: string) => {
+const useGetGroup = (
+  groupId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetGroup>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetGroup>>(
     GROUP_QUERY_KEY(groupId),
-    () => GetGroup({ groupId }),
+    (params: SingleQueryParams) => GetGroup({ groupId, ...params }),
     {
-      enabled: !!groupId,
+      ...options,
+      enabled: !!groupId && (options?.enabled ?? true),
     }
   );
 };

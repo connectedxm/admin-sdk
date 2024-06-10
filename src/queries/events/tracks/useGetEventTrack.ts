@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Track } from "@src/interfaces";
 import { EVENT_TRACKS_QUERY_KEY } from "./useGetEventTracks";
@@ -18,7 +22,7 @@ export const SET_EVENT_TRACK_QUERY_DATA = (
   client.setQueryData(EVENT_TRACK_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventTrackProps {
+interface GetEventTrackProps extends SingleQueryParams {
   eventId: string;
   trackId: string;
 }
@@ -26,18 +30,25 @@ interface GetEventTrackProps {
 export const GetEventTrack = async ({
   eventId,
   trackId,
+  adminApiParams,
 }: GetEventTrackProps): Promise<ConnectedXMResponse<Track>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/tracks/${trackId}`);
   return data;
 };
 
-const useGetEventTrack = (eventId: string, trackId: string) => {
+const useGetEventTrack = (
+  eventId: string = "",
+  trackId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEventTrack>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEventTrack>>(
     EVENT_TRACK_QUERY_KEY(eventId, trackId),
-    () => GetEventTrack({ eventId, trackId: trackId || "unknown" }),
+    (params: SingleQueryParams) =>
+      GetEventTrack({ eventId, trackId, ...params }),
     {
-      enabled: !!eventId && !!trackId,
+      ...options,
+      enabled: !!eventId && !!trackId && (options?.enabled ?? true),
     }
   );
 };

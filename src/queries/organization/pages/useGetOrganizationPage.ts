@@ -1,4 +1,4 @@
-import { useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Page } from "@src/interfaces";
 import { PageType } from "@/context/mutations/organization/pages/useUpdateOrganizationPage";

@@ -1,8 +1,13 @@
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { Payment } from "@src/interfaces";
 import { INVOICE_PAYMENTS_QUERY_KEY } from "./useGetInvoicePayments";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const INVOICE_PAYMENT_QUERY_KEY = (
   invoiceId: string,
@@ -17,7 +22,7 @@ export const SET_INVOICE_PAYMENT_QUERY_DATA = (
   client.setQueryData(INVOICE_PAYMENT_QUERY_KEY(...keyParams), response);
 };
 
-interface GetInvoicePaymentProps {
+interface GetInvoicePaymentProps extends SingleQueryParams {
   invoiceId: string;
   paymentId: string;
 }
@@ -25,6 +30,7 @@ interface GetInvoicePaymentProps {
 export const GetInvoicePayment = async ({
   invoiceId,
   paymentId,
+  adminApiParams,
 }: GetInvoicePaymentProps): Promise<ConnectedXMResponse<Payment>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -33,11 +39,17 @@ export const GetInvoicePayment = async ({
   return data;
 };
 
-const useGetInvoicePayment = (invoiceId: string, paymentId: string) => {
+const useGetInvoicePayment = (
+  invoiceId: string = "",
+  paymentId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetInvoicePayment>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetInvoicePayment>>(
     INVOICE_PAYMENT_QUERY_KEY(invoiceId, paymentId),
-    () => GetInvoicePayment({ invoiceId, paymentId }),
+    (params: SingleQueryParams) =>
+      GetInvoicePayment({ invoiceId, paymentId, ...params }),
     {
+      ...options,
       enabled: !!invoiceId && !!paymentId,
     }
   );

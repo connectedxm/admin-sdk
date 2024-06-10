@@ -1,8 +1,13 @@
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Benefit } from "@src/interfaces";
 import { BENEFITS_QUERY_KEY } from "./useGetBenefits";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const BENEFIT_QUERY_KEY = (benefitId: string) => [
   ...BENEFITS_QUERY_KEY(),
@@ -17,24 +22,29 @@ export const SET_BENEFIT_QUERY_DATA = (
   client.setQueryData(BENEFIT_QUERY_KEY(...keyParams), response);
 };
 
-interface GetBenefitProps {
+interface GetBenefitProps extends SingleQueryParams {
   benefitId: string;
 }
 
 export const GetBenefit = async ({
   benefitId,
+  adminApiParams,
 }: GetBenefitProps): Promise<ConnectedXMResponse<Benefit>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/benefits/${benefitId}`);
   return data;
 };
 
-const useGetBenefit = (benefitId: string) => {
+const useGetBenefit = (
+  benefitId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetBenefit>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetBenefit>>(
     BENEFIT_QUERY_KEY(benefitId),
-    () => GetBenefit({ benefitId }),
+    (params: SingleQueryParams) => GetBenefit({ benefitId, ...params }),
     {
-      enabled: !!benefitId,
+      ...options,
+      enabled: !!benefitId && (options?.enabled ?? true),
     }
   );
 };

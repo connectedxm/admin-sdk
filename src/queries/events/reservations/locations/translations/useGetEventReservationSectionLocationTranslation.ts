@@ -1,7 +1,12 @@
-import useConnectedSingleQuery from "@src/queries/useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EventReservationSectionLocationTranslation } from "@src/interfaces";
 import { EVENT_RESERVATION_SECTION_LOCATION_TRANSLATIONS_QUERY_KEY } from "./useGetEventReservationSectionLocationTranslations";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_RESERVATION_SECTION_LOCATION_TRANSLATION_QUERY_KEY = (
   eventId: string,
@@ -30,7 +35,7 @@ export const SET_EVENT_RESERVATION_SECTION_LOCATION_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetEventReservationSectionTranslationProps {
+interface GetEventReservationSectionTranslationProps extends SingleQueryParams {
   eventId: string;
   reservationSectionId: string;
   locationId: string;
@@ -42,6 +47,7 @@ export const GetEventReservationSectionTranslation = async ({
   reservationSectionId,
   locationId,
   locale,
+  adminApiParams,
 }: GetEventReservationSectionTranslationProps): Promise<
   ConnectedXMResponse<EventReservationSectionLocationTranslation>
 > => {
@@ -53,27 +59,39 @@ export const GetEventReservationSectionTranslation = async ({
 };
 
 const useGetEventReservationSectionTranslation = (
-  eventId: string,
-  reservationSectionId: string,
-  locationId: string,
-  locale: string
+  eventId: string = "",
+  reservationSectionId: string = "",
+  locationId: string = "",
+  locale: string = "",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetEventReservationSectionTranslation>
+  > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventReservationSectionTranslation>>((
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetEventReservationSectionTranslation>
+  >(
     EVENT_RESERVATION_SECTION_LOCATION_TRANSLATION_QUERY_KEY(
       eventId,
       reservationSectionId,
       locationId,
       locale
     ),
-    () =>
+    (params: SingleQueryParams) =>
       GetEventReservationSectionTranslation({
         eventId,
         reservationSectionId,
         locationId,
         locale,
+        ...params,
       }),
     {
-      enabled: !!eventId && !!reservationSectionId && !!locationId && !!locale,
+      ...options,
+      enabled:
+        !!eventId &&
+        !!reservationSectionId &&
+        !!locationId &&
+        !!locale &&
+        (options.enabled ?? true),
     }
   );
 };

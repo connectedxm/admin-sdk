@@ -1,8 +1,13 @@
-import { useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EventPage } from "@src/interfaces";
 import { EVENT_PAGES_QUERY_KEY } from "./useGetEventPages";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_PAGE_QUERY_KEY = (eventId: string, pageId: string) => [
   ...EVENT_PAGES_QUERY_KEY(eventId),
@@ -17,7 +22,7 @@ export const SET_EVENT_PAGE_QUERY_DATA = (
   client.setQueryData(EVENT_PAGE_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventPageProps {
+interface GetEventPageProps extends SingleQueryParams {
   eventId: string;
   pageId: string;
 }
@@ -25,18 +30,24 @@ interface GetEventPageProps {
 export const GetEventPage = async ({
   eventId,
   pageId,
+  adminApiParams,
 }: GetEventPageProps): Promise<ConnectedXMResponse<EventPage>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/pages/${pageId}`);
   return data;
 };
 
-const useGetEventPage = (eventId: string, pageId: string) => {
+const useGetEventPage = (
+  eventId: string = "",
+  pageId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEventPage>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEventPage>>(
     EVENT_PAGE_QUERY_KEY(eventId, pageId),
-    () => GetEventPage({ eventId, pageId: pageId || "unknown" }),
+    (params: SingleQueryParams) => GetEventPage({ eventId, pageId, ...params }),
     {
-      enabled: !!eventId && !!pageId,
+      ...options,
+      enabled: !!eventId && !!pageId && (options?.enabled ?? true),
     }
   );
 };

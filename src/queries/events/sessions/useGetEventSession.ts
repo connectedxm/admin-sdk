@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Session } from "@src/interfaces";
 import { EVENT_SESSIONS_QUERY_KEY } from "./useGetEventSessions";
@@ -17,7 +21,7 @@ export const SET_EVENT_SESSION_QUERY_DATA = (
   client.setQueryData(EVENT_SESSION_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventSessionProps {
+interface GetEventSessionProps extends SingleQueryParams {
   eventId: string;
   sessionId: string;
 }
@@ -25,6 +29,7 @@ interface GetEventSessionProps {
 export const GetEventSession = async ({
   eventId,
   sessionId,
+  adminApiParams,
 }: GetEventSessionProps): Promise<ConnectedXMResponse<Session>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -33,11 +38,16 @@ export const GetEventSession = async ({
   return data;
 };
 
-const useGetEventSession = (eventId: string, sessionId: string) => {
+const useGetEventSession = (
+  eventId: string = "",
+  sessionId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEventSession>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEventSession>>(
     EVENT_SESSION_QUERY_KEY(eventId, sessionId),
-    () => GetEventSession({ eventId, sessionId }),
+    (params) => GetEventSession({ eventId, sessionId, ...params }),
     {
+      ...options,
       enabled: !!eventId && !!sessionId,
     }
   );

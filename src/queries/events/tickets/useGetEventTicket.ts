@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Ticket } from "@src/interfaces";
 import { EVENT_TICKETS_QUERY_KEY } from "./useGetEventTickets";
@@ -18,7 +22,7 @@ export const SET_EVENT_TICKET_QUERY_DATA = (
   client.setQueryData(EVENT_TICKET_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventTicketProps {
+interface GetEventTicketProps extends SingleQueryParams {
   eventId: string;
   ticketId: string;
 }
@@ -26,18 +30,25 @@ interface GetEventTicketProps {
 export const GetEventTicket = async ({
   eventId,
   ticketId,
+  adminApiParams,
 }: GetEventTicketProps): Promise<ConnectedXMResponse<Ticket>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/tickets/${ticketId}`);
   return data;
 };
 
-const useGetEventTicket = (eventId: string, ticketId: string) => {
+const useGetEventTicket = (
+  eventId: string = "",
+  ticketId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEventTicket>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEventTicket>>(
     EVENT_TICKET_QUERY_KEY(eventId, ticketId),
-    () => GetEventTicket({ eventId, ticketId: ticketId || "unknown" }),
+    (params: SingleQueryParams) =>
+      GetEventTicket({ eventId, ticketId, ...params }),
     {
-      enabled: !!eventId && !!ticketId,
+      ...options,
+      enabled: !!eventId && !!ticketId && (options?.enabled ?? true),
     }
   );
 };

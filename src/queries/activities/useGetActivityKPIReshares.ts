@@ -1,5 +1,5 @@
 import { GetAdminAPI } from '@src/AdminAPI';
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { ACTIVITY_QUERY_KEY } from "./useGetActivity";
 import { QueryClient } from "@tanstack/react-query";

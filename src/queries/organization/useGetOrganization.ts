@@ -1,4 +1,9 @@
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Organization } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
@@ -13,21 +18,23 @@ export const SET_ORGANIZATION_QUERY_DATA = (
   client.setQueryData(ORGANIZATION_QUERY_KEY(...keyParams), response);
 };
 
-interface GetOrganizationProps {}
+interface GetOrganizationProps extends SingleQueryParams {}
 
-export const GetOrganization = async ({}: GetOrganizationProps): Promise<
-  ConnectedXMResponse<Organization>
-> => {
+export const GetOrganization = async ({
+  adminApiParams,
+}: GetOrganizationProps): Promise<ConnectedXMResponse<Organization>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/organization`);
   return data;
 };
 
-const useGetOrganization = () => {
+const useGetOrganization = (
+  options: SingleQueryOptions<ReturnType<typeof GetOrganization>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetOrganization>>(
     ORGANIZATION_QUERY_KEY(),
-    () => GetOrganization({}),
-    {}
+    (params: SingleQueryParams) => GetOrganization(params),
+    options
   );
 };
 

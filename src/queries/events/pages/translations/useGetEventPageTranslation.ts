@@ -1,7 +1,12 @@
-import useConnectedSingleQuery from "@src/queries/useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EventPageTranslation } from "@src/interfaces";
 import { EVENT_PAGE_TRANSLATIONS_QUERY_KEY } from "./useGetEventPageTranslations";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_PAGE_TRANSLATION_QUERY_KEY = (
   eventId: string,
@@ -17,7 +22,7 @@ export const SET_EVENT_PAGE_TRANSLATION_QUERY_DATA = (
   client.setQueryData(EVENT_PAGE_TRANSLATION_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventPageTranslationProps {
+interface GetEventPageTranslationProps extends SingleQueryParams {
   eventId: string;
   pageId: string;
   locale: string;
@@ -27,6 +32,7 @@ export const GetEventPageTranslation = async ({
   eventId,
   pageId,
   locale,
+  adminApiParams,
 }: GetEventPageTranslationProps): Promise<
   ConnectedXMResponse<EventPageTranslation>
 > => {
@@ -38,19 +44,22 @@ export const GetEventPageTranslation = async ({
 };
 
 const useGetEventPageTranslation = (
-  eventId: string,
-  pageId: string,
-  locale: string
+  eventId: string = "",
+  pageId: string = "",
+  locale: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEventPageTranslation>> = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventPageTranslation>>((
+  return useConnectedSingleQuery<ReturnType<typeof GetEventPageTranslation>>(
     EVENT_PAGE_TRANSLATION_QUERY_KEY(eventId, pageId, locale),
-    () =>
+    (params: SingleQueryParams) =>
       GetEventPageTranslation({
         eventId,
         pageId,
         locale,
+        ...params,
       }),
     {
+      ...options,
       enabled: !!eventId && !!pageId && !!locale,
     }
   );

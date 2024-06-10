@@ -1,5 +1,9 @@
-import { GetAdminAPI } from '@src/AdminAPI';
-import useConnectedSingleQuery from "@src/queries/useConnectedSingleQuery";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { RegistrationQuestionTranslation } from "@src/interfaces";
 import { EVENT_QUESTION_TRANSLATIONS_QUERY_KEY } from "./useGetEventQuestionTranslations";
@@ -21,7 +25,7 @@ export const SET_EVENT_QUESTION_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetEventQuestionTranslationProps {
+interface GetEventQuestionTranslationProps extends SingleQueryParams {
   eventId: string;
   questionId: string;
   locale: string;
@@ -31,6 +35,7 @@ export const GetEventQuestionTranslation = async ({
   eventId,
   questionId,
   locale,
+  adminApiParams,
 }: GetEventQuestionTranslationProps): Promise<
   ConnectedXMResponse<RegistrationQuestionTranslation>
 > => {
@@ -42,20 +47,28 @@ export const GetEventQuestionTranslation = async ({
 };
 
 const useGetEventQuestionTranslation = (
-  eventId: string,
-  questionId: string,
-  locale: string
+  eventId: string = "",
+  questionId: string = "",
+  locale: string = "",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetEventQuestionTranslation>
+  > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventQuestionTranslation>>((
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetEventQuestionTranslation>
+  >(
     EVENT_QUESTION_TRANSLATION_QUERY_KEY(eventId, questionId, locale),
-    () =>
+    (params: SingleQueryParams) =>
       GetEventQuestionTranslation({
         eventId,
         questionId,
         locale,
+        ...params,
       }),
     {
-      enabled: !!eventId && !!questionId && !!locale,
+      ...options,
+      enabled:
+        !!eventId && !!questionId && !!locale && (options?.enabled ?? true),
     }
   );
 };

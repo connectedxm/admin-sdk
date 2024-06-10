@@ -4,38 +4,35 @@ import { ContentTranslation } from "@src/interfaces";
 import useConnectedInfiniteQuery, {
   InfiniteQueryParams,
 } from "@/context/queries/useConnectedInfiniteQuery";
-import { CONTENT_TYPE_CONTENT_QUERY_KEY } from "../useGetContentTypeContent";
+import { CHANNEL_CONTENT_QUERY_KEY } from "../useGetChannelContent";
 
-export const CONTENT_TYPE_CONTENT_TRANSLATIONS_QUERY_KEY = (
-  contentTypeId: string,
+export const CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY = (
+  channelId: string,
   contentId: string
-) => [
-  ...CONTENT_TYPE_CONTENT_QUERY_KEY(contentTypeId, contentId),
-  "TRANSLATIONS",
-];
+) => [...CHANNEL_CONTENT_QUERY_KEY(channelId, contentId), "TRANSLATIONS"];
 
-export const SET_CONTENT_TYPE_TRANSLATIONS_QUERY_DATA = (
+export const SET_CHANNEL_TRANSLATIONS_QUERY_DATA = (
   client: any,
-  keyParams: Parameters<typeof CONTENT_TYPE_CONTENT_TRANSLATIONS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetContentTypeContentTranslations>>
+  keyParams: Parameters<typeof CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetChannelContentTranslations>>
 ) => {
   client.setQueryData(
-    CONTENT_TYPE_CONTENT_TRANSLATIONS_QUERY_KEY(...keyParams),
+    CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY(...keyParams),
     response
   );
 };
 
-interface GetContentTypeContentTranslationsProps extends InfiniteQueryParams {
+interface GetChannelContentTranslationsProps extends InfiniteQueryParams {
   contentId: string;
 }
 
-export const GetContentTypeContentTranslations = async ({
+export const GetChannelContentTranslations = async ({
   pageParam,
   pageSize,
   orderBy,
   search,
   contentId,
-}: GetContentTypeContentTranslationsProps): Promise<
+}: GetChannelContentTranslationsProps): Promise<
   ConnectedXMResponse<ContentTranslation[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -50,15 +47,15 @@ export const GetContentTypeContentTranslations = async ({
   return data;
 };
 
-const useGetContentTypeContentTranslations = (
-  contentTypeId: string,
+const useGetChannelContentTranslations = (
+  channelId: string,
   contentId: string
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetContentTypeContentTranslations>>
+    Awaited<ReturnType<typeof GetChannelContentTranslations>>
   >(
-    CONTENT_TYPE_CONTENT_TRANSLATIONS_QUERY_KEY(contentTypeId, contentId),
-    (params: any) => GetContentTypeContentTranslations(params),
+    CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY(channelId, contentId),
+    (params: any) => GetChannelContentTranslations(params),
     {
       contentId,
     },
@@ -68,4 +65,4 @@ const useGetContentTypeContentTranslations = (
   );
 };
 
-export default useGetContentTypeContentTranslations;
+export default useGetChannelContentTranslations;

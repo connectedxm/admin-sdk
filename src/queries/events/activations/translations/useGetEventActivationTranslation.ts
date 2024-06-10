@@ -1,7 +1,12 @@
-import useConnectedSingleQuery from "@src/queries/useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EventActivationTranslation } from "@src/interfaces";
 import { EVENT_ACTIVATION_TRANSLATIONS_QUERY_KEY } from "./useGetEventActivationTranslations";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_ACTIVATION_TRANSLATION_QUERY_KEY = (
   eventId: string,
@@ -23,7 +28,7 @@ export const SET_EVENT_ACTIVATION_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetEventActivationTranslationProps {
+interface GetEventActivationTranslationProps extends SingleQueryParams {
   eventId: string;
   activationId: string;
   locale: string;
@@ -33,6 +38,7 @@ export const GetEventActivationTranslation = async ({
   eventId,
   activationId,
   locale,
+  adminApiParams,
 }: GetEventActivationTranslationProps): Promise<
   ConnectedXMResponse<EventActivationTranslation>
 > => {
@@ -44,20 +50,28 @@ export const GetEventActivationTranslation = async ({
 };
 
 const useGetEventActivationTranslation = (
-  eventId: string,
-  activationId: string,
-  locale: string
+  eventId: string = "",
+  activationId: string = "",
+  locale: string = "",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetEventActivationTranslation>
+  > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventActivationTranslation>>((
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetEventActivationTranslation>
+  >(
     EVENT_ACTIVATION_TRANSLATION_QUERY_KEY(eventId, activationId, locale),
-    () =>
+    (params: SingleQueryParams) =>
       GetEventActivationTranslation({
         eventId,
         activationId,
         locale: locale,
+        ...params,
       }),
     {
-      enabled: !!eventId && !!activationId && !!locale,
+      ...options,
+      enabled:
+        !!eventId && !!activationId && !!locale && (options?.enabled ?? true),
     }
   );
 };

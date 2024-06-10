@@ -1,8 +1,13 @@
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { SubscriptionProduct } from "@src/interfaces";
 import { SUBSCRIPTION_PRODUCTS_QUERY_KEY } from "./useGetSubscriptionProducts";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const SUBSCRIPTION_PRODUCT_QUERY_KEY = (
   subscriptionProductId: string
@@ -16,12 +21,13 @@ export const SET_SUBSCRIPTION_PRODUCT_QUERY_DATA = (
   client.setQueryData(SUBSCRIPTION_PRODUCT_QUERY_KEY(...keyParams), response);
 };
 
-interface GetSubscriptionProductProps {
+interface GetSubscriptionProductProps extends SingleQueryParams {
   subscriptionProductId: string;
 }
 
 export const GetSubscriptionProduct = async ({
   subscriptionProductId,
+  adminApiParams,
 }: GetSubscriptionProductProps): Promise<
   ConnectedXMResponse<SubscriptionProduct>
 > => {
@@ -32,12 +38,17 @@ export const GetSubscriptionProduct = async ({
   return data;
 };
 
-const useGetSubscriptionProduct = (subscriptionProductId: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetSubscriptionProduct>>((
+const useGetSubscriptionProduct = (
+  subscriptionProductId: string,
+  options: SingleQueryOptions<ReturnType<typeof GetSubscriptionProduct>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetSubscriptionProduct>>(
     SUBSCRIPTION_PRODUCT_QUERY_KEY(subscriptionProductId),
-    () => GetSubscriptionProduct({ subscriptionProductId }),
+    (params: SingleQueryParams) =>
+      GetSubscriptionProduct({ subscriptionProductId, ...params }),
     {
-      enabled: !!subscriptionProductId,
+      ...options,
+      enabled: !!subscriptionProductId && (options?.enabled ?? true),
     }
   );
 };

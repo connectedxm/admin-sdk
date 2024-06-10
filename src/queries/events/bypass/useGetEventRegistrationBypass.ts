@@ -1,5 +1,9 @@
-import { GetAdminAPI } from '@src/AdminAPI';
-import { useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EventRegistrationBypass } from "@src/interfaces";
 import { EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY } from "./useGetEventRegistrationBypassList";
@@ -7,7 +11,7 @@ import { QueryClient } from "@tanstack/react-query";
 
 export const EVENT_REGISTRATION_BYPASS_QUERY_KEY = (
   eventId: string,
-  bypassId: number
+  bypassId: string
 ) => [
   ...EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY(eventId),
   bypassId.toString(),
@@ -24,14 +28,15 @@ export const SET_EVENT_REGISTRATION_BYPASS_QUERY_DATA = (
   );
 };
 
-interface GetEventRegistrationBypassProps {
+interface GetEventRegistrationBypassProps extends SingleQueryParams {
   eventId: string;
-  bypassId: number;
+  bypassId: string;
 }
 
 export const GetEventRegistrationBypass = async ({
   eventId,
   bypassId,
+  adminApiParams,
 }: GetEventRegistrationBypassProps): Promise<
   ConnectedXMResponse<EventRegistrationBypass>
 > => {
@@ -40,12 +45,19 @@ export const GetEventRegistrationBypass = async ({
   return data;
 };
 
-const useGetEventRegistrationBypass = (eventId: string, bypassId: number) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventRegistrationBypass>>((
+const useGetEventRegistrationBypass = (
+  eventId: string = "",
+  bypassId: string = "",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetEventRegistrationBypass>
+  > = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetEventRegistrationBypass>>(
     EVENT_REGISTRATION_BYPASS_QUERY_KEY(eventId, bypassId),
-    () => GetEventRegistrationBypass({ eventId, bypassId }),
+    (params) => GetEventRegistrationBypass({ eventId, bypassId, ...params }),
     {
-      enabled: !!eventId && !!bypassId,
+      ...options,
+      enabled: !!eventId && !!bypassId && (options?.enabled ?? true),
     }
   );
 };

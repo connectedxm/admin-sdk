@@ -1,5 +1,9 @@
-import { GetAdminAPI } from '@src/AdminAPI';
-import { useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 
@@ -8,7 +12,7 @@ export const EVENT_QUERY_KPI_TICKETS_KEY = (eventId: string) => [
   "KPI_TICKETS",
 ];
 
-interface GetEventKPITicketsProps {
+interface GetEventKPITicketsProps extends SingleQueryParams {
   eventId?: string;
 }
 
@@ -19,18 +23,23 @@ interface TicketCount {
 
 export const GetEventKPITickets = async ({
   eventId,
+  adminApiParams,
 }: GetEventKPITicketsProps): Promise<ConnectedXMResponse<TicketCount[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/kpi/tickets`);
   return data;
 };
 
-const useGetEventKPITickets = (eventId: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventKPITickets>>((
+const useGetEventKPITickets = (
+  eventId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEventKPITickets>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetEventKPITickets>>(
     EVENT_QUERY_KPI_TICKETS_KEY(eventId),
-    () => GetEventKPITickets({ eventId }),
+    (params: SingleQueryParams) => GetEventKPITickets({ eventId, ...params }),
     {
-      enabled: !!eventId,
+      ...options,
+      enabled: !!eventId && (options?.enabled ?? true),
     }
   );
 };

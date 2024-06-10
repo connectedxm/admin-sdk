@@ -1,7 +1,11 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { Report, ReportParent, ReportType } from "@src/interfaces";
+import { ReportParent } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { REPORT_PARENTS_QUERY_KEY } from "./useGetReportParents";
 
@@ -18,23 +22,28 @@ export const SET_REPORT_PARENT_QUERY_DATA = (
   client.setQueryData(REPORT_PARENT_QUERY_KEY(...keyParams), response);
 };
 
-interface GetReportParentProps {
+interface GetReportParentProps extends SingleQueryParams {
   parentId: string;
 }
 
 export const GetReportParent = async ({
   parentId,
+  adminApiParams,
 }: GetReportParentProps): Promise<ConnectedXMResponse<ReportParent>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/reports/parents/${parentId}`);
   return data;
 };
 
-const useGetReportParent = (parentId: string) => {
+const useGetReportParent = (
+  parentId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetReportParent>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetReportParent>>(
     REPORT_PARENT_QUERY_KEY(parentId),
-    () => GetReportParent({ parentId }),
+    (params: SingleQueryParams) => GetReportParent({ parentId, ...params }),
     {
+      ...options,
       enabled: !!parentId,
     }
   );

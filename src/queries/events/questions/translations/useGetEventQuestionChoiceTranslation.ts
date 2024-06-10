@@ -1,7 +1,12 @@
-import useConnectedSingleQuery from "@src/queries/useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { RegistrationQuestionChoiceTranslation } from "@src/interfaces";
 import { EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_KEY } from "./useGetEventQuestionChoiceTranslations";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_QUESTION_CHOICE_TRANSLATION_QUERY_KEY = (
   eventId: string,
@@ -14,7 +19,6 @@ export const EVENT_QUESTION_CHOICE_TRANSLATION_QUERY_KEY = (
     questionId,
     choiceId
   ),
-  ,
   locale,
 ];
 
@@ -29,7 +33,7 @@ export const SET_EVENT_QUESTION_CHOICE_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetEventQuestionChoiceTranslationProps {
+interface GetEventQuestionChoiceTranslationProps extends SingleQueryParams {
   eventId: string;
   questionId: string;
   choiceId: string;
@@ -41,6 +45,7 @@ export const GetEventQuestionChoiceTranslation = async ({
   questionId,
   choiceId,
   locale,
+  adminApiParams,
 }: GetEventQuestionChoiceTranslationProps): Promise<
   ConnectedXMResponse<RegistrationQuestionChoiceTranslation>
 > => {
@@ -52,26 +57,33 @@ export const GetEventQuestionChoiceTranslation = async ({
 };
 
 const useGetEventQuestionChoiceTranslation = (
-  eventId: string,
-  questionId: string,
-  choiceId: string,
-  locale: string
+  eventId: string = "",
+  questionId: string = "",
+  choiceId: string = "",
+  locale: string = "",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetEventQuestionChoiceTranslation>
+  > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventQuestionChoiceTranslation>>((
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetEventQuestionChoiceTranslation>
+  >(
     EVENT_QUESTION_CHOICE_TRANSLATION_QUERY_KEY(
       eventId,
       questionId,
       choiceId,
       locale
     ),
-    () =>
+    (params: SingleQueryParams) =>
       GetEventQuestionChoiceTranslation({
         eventId,
         questionId,
         choiceId,
         locale,
+        ...params,
       }),
     {
+      ...options,
       enabled: !!eventId && !!questionId && !!choiceId && !!locale,
     }
   );

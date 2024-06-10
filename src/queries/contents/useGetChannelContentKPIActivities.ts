@@ -1,23 +1,23 @@
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { CONTENT_TYPE_CONTENT_QUERY_KEY } from "./useGetContentTypeContent";
+import { CHANNEL_CONTENT_QUERY_KEY } from "./useGetChannelContent";
 import { QueryClient } from "@tanstack/react-query";
 
-export const CONTENT_TYPE_CONTENT_KPI_ACTIVITIES_QUERY_KEY = (
-  contentTypeId: string,
+export const CHANNEL_CONTENT_KPI_ACTIVITIES_QUERY_KEY = (
+  channelId: string,
   contentId: string
 ) => [
-  ...CONTENT_TYPE_CONTENT_QUERY_KEY(contentTypeId, contentId),
+  ...CHANNEL_CONTENT_QUERY_KEY(channelId, contentId),
   "KPI_ACTIVITIES",
 ];
 
-export const SET_CONTENT_TYPE_CONTENT_KPI_ACTIVITIES_QUERY_DATA = (
+export const SET_CHANNEL_CONTENT_KPI_ACTIVITIES_QUERY_DATA = (
   client: QueryClient,
-  keyParams: Parameters<typeof CONTENT_TYPE_CONTENT_KPI_ACTIVITIES_QUERY_KEY>,
+  keyParams: Parameters<typeof CHANNEL_CONTENT_KPI_ACTIVITIES_QUERY_KEY>,
   response: Awaited<ReturnType<typeof GetContentKPIActivities>>
 ) => {
   client.setQueryData(
-    CONTENT_TYPE_CONTENT_KPI_ACTIVITIES_QUERY_KEY(...keyParams),
+    CHANNEL_CONTENT_KPI_ACTIVITIES_QUERY_KEY(...keyParams),
     response
   );
 };
@@ -42,11 +42,11 @@ export const GetContentKPIActivities = async ({
 };
 
 const useGetContentKPIActivities = (
-  contentTypeId: string,
+  channelId: string,
   contentId: string
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetContentKPIActivities>>((
-    CONTENT_TYPE_CONTENT_KPI_ACTIVITIES_QUERY_KEY(contentTypeId, contentId),
+    CHANNEL_CONTENT_KPI_ACTIVITIES_QUERY_KEY(channelId, contentId),
     () => GetContentKPIActivities({ contentId }),
     {
       enabled: !!contentId,

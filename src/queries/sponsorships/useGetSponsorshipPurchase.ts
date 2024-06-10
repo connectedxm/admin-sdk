@@ -1,4 +1,4 @@
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { SponsorshipPurchase } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";

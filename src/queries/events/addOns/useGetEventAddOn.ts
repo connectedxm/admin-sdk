@@ -1,8 +1,13 @@
-import { useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EventAddOn } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_ADD_ONS_QUERY_KEY } from "./useGetEventAddOns";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_ADD_ON_QUERY_KEY = (eventId: string, addOnId: string) => [
   ...EVENT_ADD_ONS_QUERY_KEY(eventId),
@@ -17,7 +22,7 @@ export const SET_EVENT_ADD_ON_QUERY_DATA = (
   client.setQueryData(EVENT_ADD_ON_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventAddOnProps {
+interface GetEventAddOnProps extends SingleQueryParams {
   eventId: string;
   addOnId: string;
 }
@@ -25,18 +30,25 @@ interface GetEventAddOnProps {
 export const GetEventAddOn = async ({
   eventId,
   addOnId,
+  adminApiParams,
 }: GetEventAddOnProps): Promise<ConnectedXMResponse<EventAddOn>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/addOns/${addOnId}`);
   return data;
 };
 
-const useGetEventAddOn = (eventId: string, addOnId: string) => {
+const useGetEventAddOn = (
+  eventId: string = "",
+  addOnId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEventAddOn>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEventAddOn>>(
     EVENT_ADD_ON_QUERY_KEY(eventId, addOnId),
-    () => GetEventAddOn({ eventId, addOnId: addOnId || "unknown" }),
+    (params: SingleQueryParams) =>
+      GetEventAddOn({ eventId, addOnId, ...params }),
     {
-      enabled: !!eventId && !!addOnId,
+      ...options,
+      enabled: !!eventId && !!addOnId && (options?.enabled ?? true),
     }
   );
 };

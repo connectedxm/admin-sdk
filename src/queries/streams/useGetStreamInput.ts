@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { StreamInput } from "@src/interfaces";
 import { STREAM_INPUTS_QUERY_KEY } from "./useGetStreamInputs";
@@ -18,12 +22,13 @@ export const SET_STREAM_INPUT_QUERY_DATA = (
   client.setQueryData(STREAM_QUERY_KEY(...keyParams), response);
 };
 
-interface GetStreamInputParams {
+interface GetStreamInputParams extends SingleQueryParams {
   streamId: string;
 }
 
 export const GetStreamInput = async ({
   streamId,
+  adminApiParams,
 }: GetStreamInputParams): Promise<ConnectedXMResponse<StreamInput>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/streams/${streamId}`);
@@ -31,12 +36,16 @@ export const GetStreamInput = async ({
   return data;
 };
 
-const useGetStreamInput = (streamId: string) => {
+const useGetStreamInput = (
+  streamId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetStreamInput>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetStreamInput>>(
     STREAM_QUERY_KEY(streamId),
-    () => GetStreamInput({ streamId }),
+    (params) => GetStreamInput({ streamId, ...params }),
     {
-      enabled: !!streamId,
+      ...options,
+      enabled: !!streamId && (options?.enabled ?? true),
     }
   );
 };

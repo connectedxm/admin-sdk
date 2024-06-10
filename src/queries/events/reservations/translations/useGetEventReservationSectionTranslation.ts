@@ -1,7 +1,12 @@
-import useConnectedSingleQuery from "@src/queries/useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EventReservationSectionTranslation } from "@src/interfaces";
 import { EVENT_RESERVATION_SECTION_TRANSLATIONS_QUERY_KEY } from "./useGetEventReservationSectionTranslations";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_RESERVATION_SECTION_TRANSLATION_QUERY_KEY = (
   eventId: string,
@@ -26,7 +31,7 @@ export const SET_EVENT_RESERVATION_SECTION_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetEventReservationSectionTranslationProps {
+interface GetEventReservationSectionTranslationProps extends SingleQueryParams {
   eventId: string;
   reservationSectionId: string;
   locale: string;
@@ -36,6 +41,7 @@ export const GetEventReservationSectionTranslation = async ({
   eventId,
   reservationSectionId,
   locale,
+  adminApiParams,
 }: GetEventReservationSectionTranslationProps): Promise<
   ConnectedXMResponse<EventReservationSectionTranslation>
 > => {
@@ -47,24 +53,35 @@ export const GetEventReservationSectionTranslation = async ({
 };
 
 const useGetEventReservationSectionTranslation = (
-  eventId: string,
-  reservationSectionId: string,
-  locale: string
+  eventId: string = "",
+  reservationSectionId: string = "",
+  locale: string = "",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetEventReservationSectionTranslation>
+  > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventReservationSectionTranslation>>((
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetEventReservationSectionTranslation>
+  >(
     EVENT_RESERVATION_SECTION_TRANSLATION_QUERY_KEY(
       eventId,
       reservationSectionId,
       locale
     ),
-    () =>
+    (params: SingleQueryParams) =>
       GetEventReservationSectionTranslation({
         eventId,
         reservationSectionId,
         locale,
+        ...params,
       }),
     {
-      enabled: !!eventId && !!reservationSectionId && !!locale,
+      ...options,
+      enabled:
+        !!eventId &&
+        !!reservationSectionId &&
+        !!locale &&
+        (options?.enabled ?? true),
     }
   );
 };

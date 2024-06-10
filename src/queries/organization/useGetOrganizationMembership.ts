@@ -1,8 +1,13 @@
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { OrgMembership } from "@src/interfaces";
 import { ORGANIZATION_QUERY_KEY } from "./useGetOrganization";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const ORGANIZATION_MEMBERSHIP_QUERY_KEY = (userId: string) => [
   ...ORGANIZATION_QUERY_KEY(),
@@ -21,12 +26,13 @@ export const SET_ORGANIZATION_MEMBERSHIP_QUERY_DATA = (
   );
 };
 
-interface GetOrganizationMembershipProps {
+interface GetOrganizationMembershipProps extends SingleQueryParams {
   userId: string;
 }
 
 export const GetOrganizationMembership = async ({
   userId,
+  adminApiParams,
 }: GetOrganizationMembershipProps): Promise<
   ConnectedXMResponse<OrgMembership>
 > => {
@@ -35,12 +41,17 @@ export const GetOrganizationMembership = async ({
   return data;
 };
 
-const useGetOrganizationMembership = (userId: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetOrganizationMembership>>((
+const useGetOrganizationMembership = (
+  userId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetOrganizationMembership>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetOrganizationMembership>>(
     ORGANIZATION_MEMBERSHIP_QUERY_KEY(userId),
-    () => GetOrganizationMembership({ userId }),
+    (params: SingleQueryParams) =>
+      GetOrganizationMembership({ userId, ...params }),
     {
-      enabled: !!userId,
+      ...options,
+      enabled: !!userId && (options?.enabled ?? true),
     }
   );
 };

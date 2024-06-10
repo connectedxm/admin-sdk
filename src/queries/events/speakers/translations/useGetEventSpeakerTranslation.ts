@@ -1,4 +1,4 @@
-import useConnectedSingleQuery from "@src/queries/useConnectedSingleQuery";
+import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { SpeakerTranslation } from "@src/interfaces";
 import { EVENT_SPEAKER_TRANSLATIONS_QUERY_KEY } from "./useGetEventSpeakerTranslations";

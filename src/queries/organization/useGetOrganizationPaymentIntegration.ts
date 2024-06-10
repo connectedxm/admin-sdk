@@ -1,5 +1,9 @@
-import { GetAdminAPI } from '@src/AdminAPI';
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { PaymentIntegration } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
@@ -21,12 +25,13 @@ export const SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA = (
   );
 };
 
-interface GetOrganizationPaymentIntegrationProps {
+interface GetOrganizationPaymentIntegrationProps extends SingleQueryParams {
   type: string;
 }
 
 export const GetOrganizationPaymentIntegration = async ({
   type,
+  adminApiParams,
 }: GetOrganizationPaymentIntegrationProps): Promise<
   ConnectedXMResponse<PaymentIntegration>
 > => {
@@ -35,11 +40,21 @@ export const GetOrganizationPaymentIntegration = async ({
   return data;
 };
 
-const useGetOrganizationPaymentIntegration = (type: "stripe" | "paypal") => {
-  return useConnectedSingleQuery<ReturnType<typeof GetOrganizationPaymentIntegration>>((
+const useGetOrganizationPaymentIntegration = (
+  type: "stripe" | "paypal",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetOrganizationPaymentIntegration>
+  > = {}
+) => {
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetOrganizationPaymentIntegration>
+  >(
     ORGANIZATION_PAYMENT_INTEGRATION_QUERY_KEY(type),
-    () => GetOrganizationPaymentIntegration({ type }),
+    (params: SingleQueryParams) =>
+      GetOrganizationPaymentIntegration({ type, ...params }),
     {
+      ...options,
+      enabled: !!type && (options?.enabled ?? true),
       retry: false,
     }
   );

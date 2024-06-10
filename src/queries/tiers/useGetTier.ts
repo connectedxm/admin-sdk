@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 
 import { Tier } from "@src/interfaces";
@@ -19,24 +23,29 @@ export const SET_TIER_QUERY_DATA = (
   client.setQueryData(TIER_QUERY_KEY(...keyParams), response);
 };
 
-interface GetTierProps {
+interface GetTierProps extends SingleQueryParams {
   tierId: string;
 }
 
 export const GetTier = async ({
   tierId,
+  adminApiParams,
 }: GetTierProps): Promise<ConnectedXMResponse<Tier>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/tiers/${tierId}`);
   return data;
 };
 
-const useGetTier = (tierId: string) => {
+const useGetTier = (
+  tierId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetTier>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetTier>>(
     TIER_QUERY_KEY(tierId),
-    () => GetTier({ tierId: tierId || "unkown" }),
+    (params: SingleQueryParams) => GetTier({ tierId, ...params }),
     {
-      enabled: !!tierId,
+      ...options,
+      enabled: !!tierId && (options?.enabled ?? true),
     }
   );
 };

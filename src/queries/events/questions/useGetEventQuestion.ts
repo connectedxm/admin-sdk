@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { RegistrationQuestion } from "@src/interfaces";
 import { EVENT_QUESTIONS_QUERY_KEY } from "./useGetEventQuestions";
@@ -18,7 +22,7 @@ export const SET_EVENT_QUESTION_QUERY_DATA = (
   client.setQueryData(EVENT_QUESTION_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventQuestionProps {
+interface GetEventQuestionProps extends SingleQueryParams {
   eventId: string;
   questionId: string;
 }
@@ -26,6 +30,7 @@ interface GetEventQuestionProps {
 export const GetEventQuestion = async ({
   eventId,
   questionId,
+  adminApiParams,
 }: GetEventQuestionProps): Promise<
   ConnectedXMResponse<RegistrationQuestion>
 > => {
@@ -36,12 +41,18 @@ export const GetEventQuestion = async ({
   return data;
 };
 
-const useGetEventQuestion = (eventId: string, questionId: string) => {
+const useGetEventQuestion = (
+  eventId: string = "",
+  questionId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEventQuestion>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEventQuestion>>(
     EVENT_QUESTION_QUERY_KEY(eventId, questionId),
-    () => GetEventQuestion({ eventId, questionId }),
+    (params: SingleQueryParams) =>
+      GetEventQuestion({ eventId, questionId, ...params }),
     {
-      enabled: !!eventId && !!questionId,
+      ...options,
+      enabled: !!eventId && !!questionId && (options?.enabled ?? true),
     }
   );
 };

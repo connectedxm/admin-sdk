@@ -2,7 +2,12 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { EventOnSiteBadgeField } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_ZPL_TEMPLATE_BADGE_FIELDS_QUERY_KEY } from "./useGetEventZplTemplateBadgeFields";
-import useConnectedSingleQuery from "@src/queries/useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_ZPL_TEMPLATE_BADGE_FIELD_QUERY_KEY = (
   eventId: string,
@@ -20,7 +25,7 @@ export const SET_EVENT_ZPL_TEMPLATE_BADGE_FIELD_QUERY_DATA = (
   );
 };
 
-interface GetEventZplTemplateBadgeFieldProps {
+interface GetEventZplTemplateBadgeFieldProps extends SingleQueryParams {
   fieldId: string;
   eventId: string;
 }
@@ -28,6 +33,7 @@ interface GetEventZplTemplateBadgeFieldProps {
 export const GetEventZplTemplateBadgeField = async ({
   fieldId,
   eventId,
+  adminApiParams,
 }: GetEventZplTemplateBadgeFieldProps): Promise<
   ConnectedXMResponse<EventOnSiteBadgeField>
 > => {
@@ -38,12 +44,21 @@ export const GetEventZplTemplateBadgeField = async ({
   return data;
 };
 
-const useGetEventZplTemplateBadgeField = (eventId: string, fieldId: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventZplTemplateBadgeField>>((
+const useGetEventZplTemplateBadgeField = (
+  eventId: string = "",
+  fieldId: string = "",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetEventZplTemplateBadgeField>
+  > = {}
+) => {
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetEventZplTemplateBadgeField>
+  >(
     EVENT_ZPL_TEMPLATE_BADGE_FIELD_QUERY_KEY(eventId, fieldId),
-    (params: any) =>
+    (params: SingleQueryParams) =>
       GetEventZplTemplateBadgeField({ ...params, eventId, fieldId }),
     {
+      ...options,
       enabled: !!eventId && !!fieldId,
     }
   );

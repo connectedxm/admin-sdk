@@ -1,7 +1,12 @@
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Registration } from "@src/interfaces";
-import useConnectedSingleQuery from "@src/queries/useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { EVENT_REGISTRATIONS_QUERY_KEY } from "./useGetEventRegistrations";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_REGISTRATION_QUERY_KEY = (
   eventId: string,
@@ -16,7 +21,7 @@ export const SET_EVENT_REGISTRATION_QUERY_DATA = (
   client.setQueryData(EVENT_REGISTRATION_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventRegistrationProps {
+interface GetEventRegistrationProps extends SingleQueryParams {
   eventId: string;
   registrationId: string;
 }
@@ -24,6 +29,7 @@ interface GetEventRegistrationProps {
 export const GetEventRegistration = async ({
   eventId,
   registrationId,
+  adminApiParams,
 }: GetEventRegistrationProps): Promise<ConnectedXMResponse<Registration>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -34,13 +40,16 @@ export const GetEventRegistration = async ({
 
 const useGetEventRegistration = (
   eventId: string,
-  registrationId: string = ""
+  registrationId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEventRegistration>> = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventRegistration>>((
+  return useConnectedSingleQuery<ReturnType<typeof GetEventRegistration>>(
     EVENT_REGISTRATION_QUERY_KEY(eventId, registrationId),
-    () => GetEventRegistration({ eventId, registrationId }),
+    (params: SingleQueryParams) =>
+      GetEventRegistration({ eventId, registrationId, ...params }),
     {
-      enabled: !!eventId && !!registrationId,
+      ...options,
+      enabled: !!eventId && !!registrationId && (options?.enabled ?? true),
     }
   );
 };

@@ -114,7 +114,7 @@ export enum SupportTicketType {
   inquiry = "inquiry",
 }
 
-export enum ContentTypeFormat {
+export enum ChannelFormat {
   article = "article",
   podcast = "podcast",
   video = "video",
@@ -264,7 +264,7 @@ export interface OrgMembership {
   advertisements: Permissions;
   announcements: Permissions;
   groups: Permissions;
-  contentTypes: Permissions;
+  channels: Permissions;
   contents: Permissions;
   coupons: Permissions;
   events: Permissions;
@@ -1149,14 +1149,14 @@ export interface SupportTicketNote {
   updatedAt: string;
 }
 
-export interface ContentType {
+export interface Channel {
   id: string;
   slug: string;
   name: string;
   description: string | null;
   priority: number;
   visible: boolean;
-  format: ContentTypeFormat;
+  format: ChannelFormat;
   imageId: string;
   image: Image;
   externalUrl: string | null;
@@ -1173,7 +1173,7 @@ export interface ContentType {
   };
 }
 
-export interface ContentTypeTranslation {
+export interface ChannelTranslation {
   locale: string;
   name: string;
   description: string | null;
@@ -1182,8 +1182,8 @@ export interface ContentTypeTranslation {
 export interface Content {
   id: string;
   slug: string;
-  contentTypeId: string;
-  contentType: ContentType;
+  channelId: string;
+  channel: Channel;
   status: ContentStatus;
   featured: boolean;
   visible: boolean;

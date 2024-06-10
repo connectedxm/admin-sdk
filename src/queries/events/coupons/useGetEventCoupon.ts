@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Coupon } from "@src/interfaces";
 import { EVENT_COUPONS_QUERY_KEY } from "./useGetEventCoupons";
@@ -18,7 +22,7 @@ export const SET_EVENT_COUPON_QUERY_DATA = (
   client.setQueryData(EVENT_COUPON_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventCouponProps {
+interface GetEventCouponProps extends SingleQueryParams {
   eventId: string;
   couponId: string;
 }
@@ -26,18 +30,25 @@ interface GetEventCouponProps {
 export const GetEventCoupon = async ({
   eventId,
   couponId,
+  adminApiParams,
 }: GetEventCouponProps): Promise<ConnectedXMResponse<Coupon>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/coupons/${couponId}`);
   return data;
 };
 
-const useGetEventCoupon = (eventId: string, couponId: string) => {
+const useGetEventCoupon = (
+  eventId: string = "",
+  couponId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEventCoupon>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEventCoupon>>(
     EVENT_COUPON_QUERY_KEY(eventId, couponId),
-    () => GetEventCoupon({ eventId, couponId: couponId || "unknown" }),
+    (params: SingleQueryParams) =>
+      GetEventCoupon({ eventId, couponId, ...params }),
     {
-      enabled: !!eventId && !!couponId,
+      ...options,
+      enabled: !!eventId && !!couponId && (options?.enabled ?? true),
     }
   );
 };

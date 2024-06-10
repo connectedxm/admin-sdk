@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 
@@ -8,7 +12,7 @@ export const EVENT_QUERY_KPI_SALES_KEY = (eventId: string) => [
   "KPI_TIERS",
 ];
 
-interface GetEventKPITiersProps {
+interface GetEventKPITiersProps extends SingleQueryParams {
   eventId?: string;
 }
 
@@ -19,18 +23,23 @@ interface DateSumCount {
 
 export const GetEventKPITiers = async ({
   eventId,
+  adminApiParams,
 }: GetEventKPITiersProps): Promise<ConnectedXMResponse<DateSumCount[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/kpi/tiers`);
   return data;
 };
 
-const useGetEventKPITiers = (eventId: string) => {
+const useGetEventKPITiers = (
+  eventId: string,
+  options: SingleQueryOptions<ReturnType<typeof GetEventKPITiers>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEventKPITiers>>(
     EVENT_QUERY_KPI_SALES_KEY(eventId),
-    () => GetEventKPITiers({ eventId }),
+    (params: SingleQueryParams) => GetEventKPITiers({ eventId, ...params }),
     {
-      enabled: !!eventId,
+      ...options,
+      enabled: !!eventId && (options?.enabled ?? true),
     }
   );
 };

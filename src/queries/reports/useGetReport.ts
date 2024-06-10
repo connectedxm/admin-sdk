@@ -1,8 +1,13 @@
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Report, ReportType } from "@src/interfaces";
 import { REPORTS_QUERY_KEY } from "../reports/useGetReports";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const REPORT_QUERY_KEY = (
   type: keyof typeof ReportType,
@@ -17,7 +22,7 @@ export const SET_REPORT_QUERY_DATA = (
   client.setQueryData(REPORT_QUERY_KEY(...keyParams), response);
 };
 
-interface GetReportProps {
+interface GetReportProps extends SingleQueryParams {
   reportId: string;
   eventId?: string;
 }
@@ -25,6 +30,7 @@ interface GetReportProps {
 export const GetReport = async ({
   reportId,
   eventId,
+  adminApiParams,
 }: GetReportProps): Promise<ConnectedXMResponse<Report>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/reports/${reportId}`, {
@@ -35,12 +41,17 @@ export const GetReport = async ({
   return data;
 };
 
-const useGetReport = (reportId: string, eventId?: string) => {
+const useGetReport = (
+  reportId: string = "",
+  eventId?: string,
+  options: SingleQueryOptions<ReturnType<typeof GetReport>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetReport>>(
     REPORT_QUERY_KEY(eventId ? "event" : "organization", reportId),
-    () => GetReport({ reportId, eventId }),
+    (params: SingleQueryParams) => GetReport({ reportId, eventId, ...params }),
     {
-      enabled: !!reportId,
+      ...options,
+      enabled: !!reportId && (options?.enabled ?? true),
       refetchOnWindowFocus: false,
       refetchOnMount: false,
       refetchOnReconnect: false,

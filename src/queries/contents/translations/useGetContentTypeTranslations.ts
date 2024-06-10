@@ -1,68 +1,62 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { ContentTypeTranslation } from "@src/interfaces";
+import { ChannelTranslation } from "@src/interfaces";
 import useConnectedInfiniteQuery, {
   InfiniteQueryParams,
 } from "@/context/queries/useConnectedInfiniteQuery";
-import { CONTENT_TYPE_QUERY_KEY } from "../useGetContentType";
+import { CHANNEL_QUERY_KEY } from "../useGetChannel";
 
-export const CONTENT_TYPE_TRANSLATIONS_QUERY_KEY = (contentTypeId: string) => [
-  ...CONTENT_TYPE_QUERY_KEY(contentTypeId),
+export const CHANNEL_TRANSLATIONS_QUERY_KEY = (channelId: string) => [
+  ...CHANNEL_QUERY_KEY(channelId),
   "TRANSLATIONS",
 ];
 
-export const SET_CONTENT_TYPE_TRANSLATIONS_QUERY_DATA = (
+export const SET_CHANNEL_TRANSLATIONS_QUERY_DATA = (
   client: any,
-  keyParams: Parameters<typeof CONTENT_TYPE_TRANSLATIONS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetContentTypeTranslations>>
+  keyParams: Parameters<typeof CHANNEL_TRANSLATIONS_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetChannelTranslations>>
 ) => {
-  client.setQueryData(
-    CONTENT_TYPE_TRANSLATIONS_QUERY_KEY(...keyParams),
-    response
-  );
+  client.setQueryData(CHANNEL_TRANSLATIONS_QUERY_KEY(...keyParams), response);
 };
 
-interface GetContentTypeTranslationsProps extends InfiniteQueryParams {
-  contentTypeId: string;
+interface GetChannelTranslationsProps extends InfiniteQueryParams {
+  channelId: string;
 }
 
-export const GetContentTypeTranslations = async ({
+export const GetChannelTranslations = async ({
   pageParam,
   pageSize,
   orderBy,
   search,
-  contentTypeId,
-}: GetContentTypeTranslationsProps): Promise<
-  ConnectedXMResponse<ContentTypeTranslation[]>
+  channelId,
+}: GetChannelTranslationsProps): Promise<
+  ConnectedXMResponse<ChannelTranslation[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(
-    `/contentTypes/${contentTypeId}/translations`,
-    {
-      params: {
-        page: pageParam || undefined,
-        pageSize: pageSize || undefined,
-        orderBy: orderBy || undefined,
-        search: search || undefined,
-      },
-    }
-  );
+  const { data } = await adminApi.get(`/channels/${channelId}/translations`, {
+    params: {
+      page: pageParam || undefined,
+      pageSize: pageSize || undefined,
+      orderBy: orderBy || undefined,
+      search: search || undefined,
+    },
+  });
   return data;
 };
 
-const useGetContentTypeTranslations = (contentTypeId: string) => {
+const useGetChannelTranslations = (channelId: string) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetContentTypeTranslations>>
+    Awaited<ReturnType<typeof GetChannelTranslations>>
   >(
-    CONTENT_TYPE_TRANSLATIONS_QUERY_KEY(contentTypeId),
-    (params: any) => GetContentTypeTranslations(params),
+    CHANNEL_TRANSLATIONS_QUERY_KEY(channelId),
+    (params: any) => GetChannelTranslations(params),
     {
-      contentTypeId,
+      channelId,
     },
     {
-      enabled: !!contentTypeId,
+      enabled: !!channelId,
     }
   );
 };
 
-export default useGetContentTypeTranslations;
+export default useGetChannelTranslations;

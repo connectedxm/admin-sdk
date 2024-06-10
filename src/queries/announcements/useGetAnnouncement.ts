@@ -1,8 +1,13 @@
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Announcement } from "@src/interfaces";
 import { ANNOUNCEMENTS_QUERY_KEY } from "./useGetAnnouncements";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const ANNOUNCEMENT_QUERY_KEY = (announcementId: string) => [
   ...ANNOUNCEMENTS_QUERY_KEY(),
@@ -17,24 +22,30 @@ export const SET_ANNOUNCEMENT_QUERY_DATA = (
   client.setQueryData(ANNOUNCEMENT_QUERY_KEY(...keyParams), response);
 };
 
-interface GetAnnouncementProps {
+interface GetAnnouncementProps extends SingleQueryParams {
   announcementId: string;
 }
 
 export const GetAnnouncement = async ({
   announcementId,
-}: GetAnnouncementProps) => {
+  adminApiParams,
+}: GetAnnouncementProps): Promise<ConnectedXMResponse<Announcement>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/announcements/${announcementId}`);
   return data;
 };
 
-const useGetAnnouncement = (announcementId: string) => {
-  return useConnectedSingleQuery<ConnectedXMResponse<Announcement>>(
+const useGetAnnouncement = (
+  announcementId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetAnnouncement>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetAnnouncement>>(
     ANNOUNCEMENT_QUERY_KEY(announcementId),
-    () => GetAnnouncement({ announcementId: announcementId || "unknown" }),
+    (params: SingleQueryParams) =>
+      GetAnnouncement({ announcementId, ...params }),
     {
-      enabled: !!announcementId,
+      ...options,
+      enabled: !!announcementId && (options?.enabled ?? true),
     }
   );
 };

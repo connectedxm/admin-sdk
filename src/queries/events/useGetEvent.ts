@@ -1,8 +1,13 @@
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Event } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENTS_QUERY_KEY } from "./useGetEvents";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_QUERY_KEY = (eventId: string) => [
   ...EVENTS_QUERY_KEY(),
@@ -17,24 +22,29 @@ export const SET_EVENT_QUERY_DATA = (
   client.setQueryData(EVENT_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventProps {
+interface GetEventProps extends SingleQueryParams {
   eventId: string;
 }
 
 export const GetEvent = async ({
   eventId,
+  adminApiParams,
 }: GetEventProps): Promise<ConnectedXMResponse<Event>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}`);
   return data;
 };
 
-const useGetEvent = (eventId: string) => {
+const useGetEvent = (
+  eventId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEvent>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEvent>>(
     EVENT_QUERY_KEY(eventId),
-    () => GetEvent({ eventId }),
+    (params: SingleQueryParams) => GetEvent({ eventId, ...params }),
     {
-      enabled: !!eventId,
+      ...options,
+      enabled: !!eventId && (options?.enabled ?? true),
     }
   );
 };

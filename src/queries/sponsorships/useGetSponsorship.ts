@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Sponsorship } from "@src/interfaces";
 import { SPONSORSHIPS_QUERY_KEY } from "./useGetSponsorships";
@@ -18,12 +22,13 @@ export const SET_SPONSORSHIP_QUERY_DATA = (
   client.setQueryData(SPONSORSHIP_QUERY_KEY(...keyParams), response);
 };
 
-interface GetSponsorshipParams {
+interface GetSponsorshipParams extends SingleQueryParams {
   sponsorshipId: string;
 }
 
 export const GetSponsorship = async ({
   sponsorshipId,
+  adminApiParams,
 }: GetSponsorshipParams): Promise<ConnectedXMResponse<Sponsorship>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/sponsorships/${sponsorshipId}`);
@@ -31,11 +36,15 @@ export const GetSponsorship = async ({
   return data;
 };
 
-const useGetSponsorship = (sponsorshipId: string) => {
+const useGetSponsorship = (
+  sponsorshipId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetSponsorship>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetSponsorship>>(
     SPONSORSHIP_QUERY_KEY(sponsorshipId),
-    () => GetSponsorship({ sponsorshipId }),
+    (params: SingleQueryParams) => GetSponsorship({ sponsorshipId, ...params }),
     {
+      ...options,
       enabled: !!sponsorshipId,
     }
   );

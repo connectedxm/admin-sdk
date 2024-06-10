@@ -1,5 +1,9 @@
-import { GetAdminAPI } from '@src/AdminAPI';
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { SubscriptionProductPrice } from "@src/interfaces";
 import { SUBSCRIPTION_PRODUCT_PRICES_QUERY_KEY } from "./useGetSubscriptionProductPrices";
@@ -24,7 +28,7 @@ export const SET_SUBSCRIPTION_PRODUCT_PRICE_QUERY_DATA = (
   );
 };
 
-interface GetSubscriptionProductPriceProps {
+interface GetSubscriptionProductPriceProps extends SingleQueryParams {
   subscriptionProductId: string;
   subscriptionProductPriceId: string;
 }
@@ -32,6 +36,7 @@ interface GetSubscriptionProductPriceProps {
 export const GetSubscriptionProductPrice = async ({
   subscriptionProductId,
   subscriptionProductPriceId,
+  adminApiParams,
 }: GetSubscriptionProductPriceProps): Promise<
   ConnectedXMResponse<SubscriptionProductPrice>
 > => {
@@ -43,20 +48,27 @@ export const GetSubscriptionProductPrice = async ({
 };
 
 const useGetSubscriptionProductPrice = (
-  subscriptionProductId: string,
-  subscriptionProductPriceId: string
+  subscriptionProductId: string = "",
+  subscriptionProductPriceId: string = "",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetSubscriptionProductPrice>
+  > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetSubscriptionProductPrice>>((
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetSubscriptionProductPrice>
+  >(
     SUBSCRIPTION_PRODUCT_PRICE_QUERY_KEY(
       subscriptionProductId,
       subscriptionProductPriceId
     ),
-    () =>
+    (params: SingleQueryParams) =>
       GetSubscriptionProductPrice({
         subscriptionProductId,
         subscriptionProductPriceId,
+        ...params,
       }),
     {
+      ...options,
       enabled: !!subscriptionProductId && !!subscriptionProductPriceId,
     }
   );

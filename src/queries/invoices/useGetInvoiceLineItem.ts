@@ -1,9 +1,13 @@
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
-import { INVOICE_QUERY_KEY } from "./useGetInvoice";
 import { InvoiceLineItem } from "@src/interfaces";
 import { INVOICE_LINE_ITEMS_QUERY_KEY } from "./useGetInvoiceLineItems";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const INVOICE_LINE_ITEM_QUERY_KEY = (
   invoiceId: string,
@@ -18,7 +22,7 @@ export const SET_INVOICE_LINE_ITEM_QUERY_DATA = (
   client.setQueryData(INVOICE_LINE_ITEM_QUERY_KEY(...keyParams), response);
 };
 
-interface GetInvoiceLineItemProps {
+interface GetInvoiceLineItemProps extends SingleQueryParams {
   invoiceId: string;
   lineItemId: string;
 }
@@ -26,6 +30,7 @@ interface GetInvoiceLineItemProps {
 export const GetInvoiceLineItem = async ({
   invoiceId,
   lineItemId,
+  adminApiParams,
 }: GetInvoiceLineItemProps): Promise<ConnectedXMResponse<InvoiceLineItem>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -34,12 +39,18 @@ export const GetInvoiceLineItem = async ({
   return data;
 };
 
-const useGetInvoiceLineItem = (invoiceId: string, lineItemId: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetInvoiceLineItem>>((
+const useGetInvoiceLineItem = (
+  invoiceId: string = "",
+  lineItemId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetInvoiceLineItem>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetInvoiceLineItem>>(
     INVOICE_LINE_ITEM_QUERY_KEY(invoiceId, lineItemId),
-    () => GetInvoiceLineItem({ invoiceId, lineItemId }),
+    (params: SingleQueryParams) =>
+      GetInvoiceLineItem({ invoiceId, lineItemId, ...params }),
     {
-      enabled: !!invoiceId && !!lineItemId,
+      ...options,
+      enabled: !!invoiceId && !!lineItemId && (options?.enabled ?? true),
     }
   );
 };

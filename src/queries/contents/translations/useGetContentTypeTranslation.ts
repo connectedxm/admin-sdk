@@ -1,57 +1,57 @@
 import useConnectedSingleQuery from "@/context/queries/useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { GroupTranslation, ContentTypeTranslation } from "@src/interfaces";
-import { CONTENT_TYPE_TRANSLATIONS_QUERY_KEY } from "./useGetContentTypeTranslations";
+import { GroupTranslation, ChannelTranslation } from "@src/interfaces";
+import { CHANNEL_TRANSLATIONS_QUERY_KEY } from "./useGetChannelTranslations";
 
-export const CONTENT_TYPE_TRANSLATION_QUERY_KEY = (
-  contentTypeId: string,
+export const CHANNEL_TRANSLATION_QUERY_KEY = (
+  channelId: string,
   locale: string
-) => [...CONTENT_TYPE_TRANSLATIONS_QUERY_KEY(contentTypeId), locale];
+) => [...CHANNEL_TRANSLATIONS_QUERY_KEY(channelId), locale];
 
-export const SET_CONTENT_TYPE_TRANSLATION_QUERY_DATA = (
+export const SET_CHANNEL_TRANSLATION_QUERY_DATA = (
   client: any,
-  keyParams: Parameters<typeof CONTENT_TYPE_TRANSLATION_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetContentTypeTranslation>>
+  keyParams: Parameters<typeof CHANNEL_TRANSLATION_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetChannelTranslation>>
 ) => {
   client.setQueryData(
-    CONTENT_TYPE_TRANSLATION_QUERY_KEY(...keyParams),
+    CHANNEL_TRANSLATION_QUERY_KEY(...keyParams),
     response
   );
 };
 
-interface GetContentTypeTranslationProps {
-  contentTypeId: string;
+interface GetChannelTranslationProps {
+  channelId: string;
   locale: string;
 }
 
-export const GetContentTypeTranslation = async ({
-  contentTypeId,
+export const GetChannelTranslation = async ({
+  channelId,
   locale,
-}: GetContentTypeTranslationProps): Promise<
-  ConnectedXMResponse<ContentTypeTranslation>
+}: GetChannelTranslationProps): Promise<
+  ConnectedXMResponse<ChannelTranslation>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/contentTypes/${contentTypeId}/translations/${locale}`
+    `/channels/${channelId}/translations/${locale}`
   );
   return data;
 };
 
-const useGetContentTypeTranslation = (
-  contentTypeId: string,
+const useGetChannelTranslation = (
+  channelId: string,
   locale: string
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetContentTypeTranslation>>((
-    CONTENT_TYPE_TRANSLATION_QUERY_KEY(contentTypeId, locale),
+  return useConnectedSingleQuery<ReturnType<typeof GetChannelTranslation>>((
+    CHANNEL_TRANSLATION_QUERY_KEY(channelId, locale),
     () =>
-      GetContentTypeTranslation({
-        contentTypeId,
+      GetChannelTranslation({
+        channelId,
         locale,
       }),
     {
-      enabled: !!contentTypeId && !!locale,
+      enabled: !!channelId && !!locale,
     }
   );
 };
 
-export default useGetContentTypeTranslation;
+export default useGetChannelTranslation;

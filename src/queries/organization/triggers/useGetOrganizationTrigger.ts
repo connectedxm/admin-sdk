@@ -1,5 +1,5 @@
 import { GetAdminAPI } from '@src/AdminAPI';
-import { useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { OrganizationTrigger } from "@src/interfaces";
 import { TriggerType } from "@/context/mutations/organization/triggers/useUpdateOrganizationTrigger";

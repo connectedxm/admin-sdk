@@ -1,13 +1,18 @@
-import { useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_QUERY_KPI_REGISTRATIONS_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "KPI_REGISTRATIONS",
 ];
 
-interface GetEventKPIRegistrationsProps {
+interface GetEventKPIRegistrationsProps extends SingleQueryParams {
   eventId?: string;
 }
 
@@ -18,6 +23,7 @@ interface DateCount {
 
 export const GetEventKPIRegistrations = async ({
   eventId,
+  adminApiParams,
 }: GetEventKPIRegistrationsProps): Promise<
   ConnectedXMResponse<DateCount[]>
 > => {
@@ -26,12 +32,17 @@ export const GetEventKPIRegistrations = async ({
   return data;
 };
 
-const useGetEventKPIRegistrations = (eventId: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventKPIRegistrations>>((
+const useGetEventKPIRegistrations = (
+  eventId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEventKPIRegistrations>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetEventKPIRegistrations>>(
     EVENT_QUERY_KPI_REGISTRATIONS_KEY(eventId),
-    () => GetEventKPIRegistrations({ eventId }),
+    (params: SingleQueryParams) =>
+      GetEventKPIRegistrations({ eventId, ...params }),
     {
-      enabled: !!eventId,
+      ...options,
+      enabled: !!eventId && (options?.enabled ?? true),
     }
   );
 };

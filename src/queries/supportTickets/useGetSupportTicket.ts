@@ -1,8 +1,13 @@
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { SupportTicket } from "@src/interfaces";
 import { SUPPORT_TICKETS_QUERY_KEY } from "./useGetSupportTickets";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const SUPPORT_TICKET_QUERY_KEY = (supportTicketId: string) => [
   ...SUPPORT_TICKETS_QUERY_KEY(),
@@ -17,24 +22,30 @@ export const SET_SUPPORT_TICKET_QUERY_DATA = (
   client.setQueryData(SUPPORT_TICKET_QUERY_KEY(...keyParams), response);
 };
 
-interface GetSupportTicketProps {
+interface GetSupportTicketProps extends SingleQueryParams {
   supportTicketId: string;
 }
 
 export const GetSupportTicket = async ({
   supportTicketId,
+  adminApiParams,
 }: GetSupportTicketProps): Promise<ConnectedXMResponse<SupportTicket>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/supportTickets/${supportTicketId}`);
   return data;
 };
 
-const useGetSupportTicket = (supportTicketId: string) => {
+const useGetSupportTicket = (
+  supportTicketId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetSupportTicket>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetSupportTicket>>(
     SUPPORT_TICKET_QUERY_KEY(supportTicketId),
-    () => GetSupportTicket({ supportTicketId }),
+    (params: SingleQueryParams) =>
+      GetSupportTicket({ supportTicketId, ...params }),
     {
-      enabled: !!supportTicketId,
+      ...options,
+      enabled: !!supportTicketId && (options?.enabled ?? true),
     }
   );
 };

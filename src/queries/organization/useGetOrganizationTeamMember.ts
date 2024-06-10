@@ -1,8 +1,11 @@
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
-import { ConnectedXMResponse } from "@src/interfaces";
-import { TeamMember } from "@src/interfaces";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ORGANIZATION_TEAM_MEMBERS_QUERY_KEY } from "./useGetOrganizationTeamMembers";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const ORGANIZATION_TEAM_MEMBER_QUERY_KEY = (teamMemberId: string) => [
   ...ORGANIZATION_TEAM_MEMBERS_QUERY_KEY(),
@@ -20,12 +23,13 @@ export const SET_ORGANIZATION_TEAM_MEMBER_QUERY_DATA = (
   );
 };
 
-interface GetOrganizationTeamMemberProps {
+interface GetOrganizationTeamMemberProps extends SingleQueryParams {
   teamMemberId: string;
 }
 
 export const GetOrganizationTeamMember = async ({
   teamMemberId,
+  adminApiParams,
 }: GetOrganizationTeamMemberProps) => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -34,11 +38,18 @@ export const GetOrganizationTeamMember = async ({
   return data;
 };
 
-const useGetOrganizationTeamMember = (teamMemberId: string) => {
-  return useConnectedSingleQuery<ConnectedXMResponse<TeamMember>>(
+const useGetOrganizationTeamMember = (
+  teamMemberId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetOrganizationTeamMember>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetOrganizationTeamMember>>(
     ORGANIZATION_TEAM_MEMBER_QUERY_KEY(teamMemberId),
-    () => GetOrganizationTeamMember({ teamMemberId }),
-    {}
+    (params: SingleQueryParams) =>
+      GetOrganizationTeamMember({ teamMemberId, ...params }),
+    {
+      ...options,
+      enabled: !!teamMemberId && (options?.enabled ?? true),
+    }
   );
 };
 

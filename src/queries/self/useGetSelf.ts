@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { User } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
@@ -14,21 +18,26 @@ export const SET_SELF_QUERY_DATA = (
   client.setQueryData(SELF_QUERY_KEY(...keyParams), response);
 };
 
-interface GetSelfProps {}
+interface GetSelfProps extends SingleQueryParams {}
 
-export const GetSelf = async ({}: GetSelfProps): Promise<
-  ConnectedXMResponse<User>
-> => {
+export const GetSelf = async ({
+  adminApiParams,
+}: GetSelfProps): Promise<ConnectedXMResponse<User>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/self`);
   return data;
 };
 
-const useGetSelf = () => {
+const useGetSelf = (
+  options: SingleQueryOptions<ReturnType<typeof GetSelf>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetSelf>>(
     SELF_QUERY_KEY(),
-    () => GetSelf({}),
-    {}
+    (params: SingleQueryParams) =>
+      GetSelf({
+        ...params,
+      }),
+    options
   );
 };
 

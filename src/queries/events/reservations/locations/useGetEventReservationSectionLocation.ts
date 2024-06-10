@@ -1,8 +1,13 @@
-import { useConnectedSingleQuery } from "../../../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_RESERVATION_SECTION_LOCATIONS_QUERY_KEY } from "./useGetEventReservationSectionLocations";
 import { EventReservationSectionLocation } from "@src/interfaces";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_RESERVATION_SECTION_LOCATION_QUERY_KEY = (
   eventId: string,
@@ -27,7 +32,7 @@ export const SET_EVENT_RESERVATION_SECTION_LOCATION_QUERY_DATA = (
   );
 };
 
-interface GetEventReservationSectionProps {
+interface GetEventReservationSectionProps extends SingleQueryParams {
   eventId: string;
   reservationSectionId: string;
   locationId: string;
@@ -37,6 +42,7 @@ export const GetEventReservationSection = async ({
   eventId,
   reservationSectionId,
   locationId,
+  adminApiParams,
 }: GetEventReservationSectionProps): Promise<
   ConnectedXMResponse<EventReservationSectionLocation>
 > => {
@@ -48,24 +54,33 @@ export const GetEventReservationSection = async ({
 };
 
 const useGetEventReservationSection = (
-  eventId: string,
-  reservationSectionId: string,
-  locationId: string
+  eventId: string = "",
+  reservationSectionId: string = "",
+  locationId: string = "",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetEventReservationSection>
+  > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventReservationSection>>((
+  return useConnectedSingleQuery<ReturnType<typeof GetEventReservationSection>>(
     EVENT_RESERVATION_SECTION_LOCATION_QUERY_KEY(
       eventId,
       reservationSectionId,
       locationId
     ),
-    () =>
+    (params: SingleQueryParams) =>
       GetEventReservationSection({
         eventId,
-        reservationSectionId: reservationSectionId || "unknown",
+        reservationSectionId,
         locationId,
+        ...params,
       }),
     {
-      enabled: !!eventId && !!reservationSectionId && !!locationId,
+      ...options,
+      enabled:
+        !!eventId &&
+        !!reservationSectionId &&
+        !!locationId &&
+        (options.enabled ?? true),
     }
   );
 };

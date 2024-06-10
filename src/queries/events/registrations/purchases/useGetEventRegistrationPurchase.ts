@@ -1,7 +1,12 @@
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Purchase } from "@src/interfaces";
-import useConnectedSingleQuery from "@src/queries/useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../../useConnectedSingleQuery";
 import { EVENT_REGISTRATION_PURCHASES_QUERY_KEY } from "./useGetEventRegistrationPurchases";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_REGISTRATION_PURCHASE_QUERY_KEY = (
   eventId: string,
@@ -23,7 +28,7 @@ export const SET_EVENT_REGISTRATION_PURCHASE_QUERY_DATA = (
   );
 };
 
-interface GetEventRegistrationPurchaseProps {
+interface GetEventRegistrationPurchaseProps extends SingleQueryParams {
   eventId: string;
   registrationId: string;
   purchaseId: string;
@@ -33,6 +38,7 @@ export const GetEventRegistrationPurchase = async ({
   eventId,
   registrationId,
   purchaseId,
+  adminApiParams,
 }: GetEventRegistrationPurchaseProps): Promise<
   ConnectedXMResponse<Purchase>
 > => {
@@ -44,15 +50,31 @@ export const GetEventRegistrationPurchase = async ({
 };
 
 const useGetEventRegistrationPurchase = (
-  eventId: string,
-  registrationId: string,
-  purchaseId: string
+  eventId: string = "",
+  registrationId: string = "",
+  purchaseId: string = "",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetEventRegistrationPurchase>
+  > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventRegistrationPurchase>>((
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetEventRegistrationPurchase>
+  >(
     EVENT_REGISTRATION_PURCHASE_QUERY_KEY(eventId, registrationId, purchaseId),
-    () => GetEventRegistrationPurchase({ eventId, registrationId, purchaseId }),
+    (params: SingleQueryParams) =>
+      GetEventRegistrationPurchase({
+        eventId,
+        registrationId,
+        purchaseId,
+        ...params,
+      }),
     {
-      enabled: !!eventId && !!registrationId && !!purchaseId,
+      ...options,
+      enabled:
+        !!eventId &&
+        !!registrationId &&
+        !!purchaseId &&
+        (options?.enabled ?? true),
     }
   );
 };

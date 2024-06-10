@@ -1,10 +1,12 @@
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Activity } from "@src/interfaces";
 import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const ACTIVITIES_QUERY_KEY = () => ["ACTIVITIES"];
 
@@ -23,6 +25,7 @@ export const GetActivities = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetActivitiesProps): Promise<ConnectedXMResponse<Activity[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/activities`, {
@@ -36,12 +39,18 @@ export const GetActivities = async ({
   return data;
 };
 
-const useGetActivities = () => {
+const useGetActivities = (
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetActivities>>> = {}
+) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetActivities>>>(
     ACTIVITIES_QUERY_KEY(),
-    (params: any) => GetActivities(params),
-    {},
-    {}
+    (params: InfiniteQueryParams) => GetActivities({ ...params }),
+    params,
+    options
   );
 };
 

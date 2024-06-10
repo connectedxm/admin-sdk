@@ -1,7 +1,11 @@
-import useConnectedSingleQuery from "@/context/queries/useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { SponsorshipTranslation } from "@src/interfaces";
 import { SPONSORSHIP_TRANSLATIONS_QUERY_KEY } from "./useGetSponsorshipTranslations";
+import { GetAdminAPI } from "@src/AdminAPI";
+import useConnectedSingleQuery, {
+  SingleQueryOptions,
+  SingleQueryParams,
+} from "@src/queries/useConnectedSingleQuery";
 
 export const SPONSORSHIP_TRANSLATION_QUERY_KEY = (
   sponsorshipId: string,
@@ -19,7 +23,7 @@ export const SET_SPONSORSHIP_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetSponsorshipTranslationProps {
+interface GetSponsorshipTranslationProps extends SingleQueryParams {
   sponsorshipId: string;
   locale: string;
 }
@@ -27,6 +31,7 @@ interface GetSponsorshipTranslationProps {
 export const GetSponsorshipTranslation = async ({
   sponsorshipId,
   locale,
+  adminApiParams,
 }: GetSponsorshipTranslationProps): Promise<
   ConnectedXMResponse<SponsorshipTranslation>
 > => {
@@ -38,18 +43,21 @@ export const GetSponsorshipTranslation = async ({
 };
 
 const useGetSponsorshipTranslation = (
-  sponsorshipId: string,
-  locale: string
+  sponsorshipId: string = "",
+  locale: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetSponsorshipTranslation>> = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetSponsorshipTranslation>>((
+  return useConnectedSingleQuery<ReturnType<typeof GetSponsorshipTranslation>>(
     SPONSORSHIP_TRANSLATION_QUERY_KEY(sponsorshipId, locale),
-    () =>
+    (params: SingleQueryParams) =>
       GetSponsorshipTranslation({
         sponsorshipId,
         locale,
+        ...params,
       }),
     {
-      enabled: !!sponsorshipId && !!locale,
+      ...options,
+      enabled: !!sponsorshipId && !!locale && (options?.enabled ?? true),
     }
   );
 };

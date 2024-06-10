@@ -1,11 +1,12 @@
-import { GetAdminAPI } from '@src/AdminAPI';
+import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { RegistrationQuestionSearchValue } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY } from "./useGetEventQuestionSearchValues";
 import useConnectedSingleQuery, {
   SingleQueryParams,
-} from "@/context/queries/useConnectedSingleQuery";
+  SingleQueryOptions,
+} from "../../useConnectedSingleQuery";
 
 export const EVENT_QUESTION_SEARCH_VALUE_QUERY_KEY = (
   eventId: string,
@@ -37,6 +38,7 @@ export const GetEventQuestionSearchValue = async ({
   eventId,
   questionId,
   searchValueId,
+  adminApiParams,
 }: GetEventQuestionSearchValueProps): Promise<
   ConnectedXMResponse<RegistrationQuestionSearchValue>
 > => {
@@ -48,16 +50,31 @@ export const GetEventQuestionSearchValue = async ({
 };
 
 const useGetEventQuestionSearchValue = (
-  eventId: string,
-  questionId: string,
-  searchValueId: string
+  eventId: string = "",
+  questionId: string = "",
+  searchValueId: string = "",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetEventQuestionSearchValue>
+  > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventQuestionSearchValue>>((
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetEventQuestionSearchValue>
+  >(
     EVENT_QUESTION_SEARCH_VALUE_QUERY_KEY(eventId, questionId, searchValueId),
-    () => GetEventQuestionSearchValue({ eventId, questionId, searchValueId }),
-
+    (params: SingleQueryParams) =>
+      GetEventQuestionSearchValue({
+        eventId,
+        questionId,
+        searchValueId,
+        ...params,
+      }),
     {
-      enabled: !!eventId && !!questionId && !!searchValueId,
+      ...options,
+      enabled:
+        !!eventId &&
+        !!questionId &&
+        !!searchValueId &&
+        (options?.enabled ?? true),
     }
   );
 };

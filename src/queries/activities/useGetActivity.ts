@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Activity } from "@src/interfaces";
 import { ACTIVITIES_QUERY_KEY } from "./useGetActivities";
@@ -18,24 +22,29 @@ export const SET_ACTIVITY_QUERY_DATA = (
   client.setQueryData(ACTIVITY_QUERY_KEY(...keyParams), response);
 };
 
-interface GetActivityProps {
+interface GetActivityProps extends SingleQueryParams {
   activityId: string;
 }
 
 export const GetActivity = async ({
   activityId,
+  adminApiParams,
 }: GetActivityProps): Promise<ConnectedXMResponse<Activity>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/activities/${activityId}`);
   return data;
 };
 
-const useGetActivity = (activityId: string) => {
+const useGetActivity = (
+  activityId: string,
+  options: SingleQueryOptions<ReturnType<typeof GetActivity>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetActivity>>(
     ACTIVITY_QUERY_KEY(activityId),
-    () => GetActivity({ activityId }),
+    (params: SingleQueryParams) => GetActivity({ activityId, ...params }),
     {
-      enabled: !!activityId,
+      ...options,
+      enabled: !!activityId && (options?.enabled ?? true),
     }
   );
 };

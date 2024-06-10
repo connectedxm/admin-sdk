@@ -1,7 +1,12 @@
-import { useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Speaker } from "@src/interfaces";
 import { EVENT_SPEAKERS_QUERY_KEY } from "./useGetEventSpeakers";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_SPEAKER_QUERY_KEY = (eventId: string, speakerId: string) => [
   ...EVENT_SPEAKERS_QUERY_KEY(eventId),
@@ -16,7 +21,7 @@ export const SET_EVENT_SPEAKER_QUERY_DATA = (
   client.setQueryData(EVENT_SPEAKER_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventSpeakerProps {
+interface GetEventSpeakerProps extends SingleQueryParams {
   eventId: string;
   speakerId: string;
 }
@@ -24,6 +29,7 @@ interface GetEventSpeakerProps {
 export const GetEventSpeaker = async ({
   eventId,
   speakerId,
+  adminApiParams,
 }: GetEventSpeakerProps): Promise<ConnectedXMResponse<Speaker>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -32,11 +38,17 @@ export const GetEventSpeaker = async ({
   return data;
 };
 
-const useGetEventSpeaker = (eventId: string, speakerId: string) => {
+const useGetEventSpeaker = (
+  eventId: string = "",
+  speakerId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEventSpeaker>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEventSpeaker>>(
     EVENT_SPEAKER_QUERY_KEY(eventId, speakerId),
-    () => GetEventSpeaker({ eventId, speakerId: speakerId || "unknown" }),
+    (params: SingleQueryParams) =>
+      GetEventSpeaker({ eventId, speakerId, ...params }),
     {
+      ...options,
       enabled: !!eventId && !!speakerId,
     }
   );

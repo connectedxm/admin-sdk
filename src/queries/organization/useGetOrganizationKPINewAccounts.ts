@@ -1,4 +1,8 @@
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { ORGANIZATION_QUERY_KEY } from "./useGetOrganization";
 import { QueryClient } from "@tanstack/react-query";

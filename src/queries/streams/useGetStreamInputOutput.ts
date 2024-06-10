@@ -1,8 +1,13 @@
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { StreamInput, StreamInputOutput } from "@src/interfaces";
+import { StreamInputOutput } from "@src/interfaces";
 import { STREAM_INPUT_OUTPUTS_QUERY_KEY } from "./useGetStreamInputOutputs";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const STREAM_INPUT_OUTPUT_QUERY_KEY = (
   streamId: string,
@@ -17,7 +22,7 @@ export const SET_STREAM_INPUT_OUTPUT_QUERY_DATA = (
   client.setQueryData(STREAM_INPUT_OUTPUT_QUERY_KEY(...keyParams), response);
 };
 
-interface GetStreamInputOutputParams {
+interface GetStreamInputOutputParams extends SingleQueryParams {
   streamId: string;
   output: string;
 }
@@ -25,6 +30,7 @@ interface GetStreamInputOutputParams {
 export const GetStreamInputOutput = async ({
   streamId,
   output,
+  adminApiParams,
 }: GetStreamInputOutputParams): Promise<
   ConnectedXMResponse<StreamInputOutput>
 > => {
@@ -34,11 +40,17 @@ export const GetStreamInputOutput = async ({
   return data;
 };
 
-const useGetStreamInputOutput = (streamId: string, output: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetStreamInputOutput>>((
+const useGetStreamInputOutput = (
+  streamId: string = "",
+  output: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetStreamInputOutput>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetStreamInputOutput>>(
     STREAM_INPUT_OUTPUT_QUERY_KEY(streamId, output),
-    () => GetStreamInputOutput({ streamId, output }),
+    (params: SingleQueryParams) =>
+      GetStreamInputOutput({ streamId, output, ...params }),
     {
+      ...options,
       enabled: !!streamId,
     }
   );

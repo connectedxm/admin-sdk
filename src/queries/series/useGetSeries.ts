@@ -1,8 +1,13 @@
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Series } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { SERIES_LIST_QUERY_KEY } from "./useGetSeriesList";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const SERIES_QUERY_KEY = (seriesId: string) => [
   ...SERIES_LIST_QUERY_KEY(),
@@ -17,24 +22,29 @@ export const SET_SERIES_QUERY_DATA = (
   client.setQueryData(SERIES_QUERY_KEY(...keyParams), response);
 };
 
-interface GetSeriesProps {
+interface GetSeriesProps extends SingleQueryParams {
   seriesId: string;
 }
 
 export const GetSeries = async ({
   seriesId,
+  adminApiParams,
 }: GetSeriesProps): Promise<ConnectedXMResponse<Series>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/series/${seriesId}`);
   return data;
 };
 
-const useGetSeries = (seriesId: string) => {
+const useGetSeries = (
+  seriesId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetSeries>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetSeries>>(
     SERIES_QUERY_KEY(seriesId),
-    () => GetSeries({ seriesId }),
+    (params: SingleQueryParams) => GetSeries({ seriesId, ...params }),
     {
-      enabled: !!seriesId,
+      ...options,
+      enabled: !!seriesId && (options?.enabled ?? true),
     }
   );
 };

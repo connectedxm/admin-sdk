@@ -1,7 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
-import { ConnectedXMResponse } from "@src/interfaces";
-import { SponsorshipLevel } from "@src/interfaces";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { LEVELS_QUERY_KEY } from "./useGetLevels";
 import { QueryClient } from "@tanstack/react-query";
 
@@ -18,24 +20,32 @@ export const SET_LEVEL_QUERY_DATA = (
   client.setQueryData(LEVEL_QUERY_KEY(...keyParams), response);
 };
 
-interface GetLevelProps {
+interface GetLevelProps extends SingleQueryParams {
   sponsorshipLevelId: string;
 }
 
-export const GetLevel = async ({ sponsorshipLevelId }: GetLevelProps) => {
+export const GetLevel = async ({
+  sponsorshipLevelId,
+  adminApiParams,
+}: GetLevelProps) => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/levels/${sponsorshipLevelId}`);
   return data;
 };
 
-const useGetLevel = (sponsorshipLevelId: string) => {
-  return useConnectedSingleQuery<ConnectedXMResponse<SponsorshipLevel>>(
+const useGetLevel = (
+  sponsorshipLevelId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetLevel>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetLevel>>(
     LEVEL_QUERY_KEY(sponsorshipLevelId),
-    () =>
+    (params: SingleQueryParams) =>
       GetLevel({
         sponsorshipLevelId,
+        ...params,
       }),
     {
+      ...options,
       enabled: !!sponsorshipLevelId,
     }
   );

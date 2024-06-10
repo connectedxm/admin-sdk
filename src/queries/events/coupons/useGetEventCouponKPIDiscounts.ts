@@ -1,7 +1,12 @@
-import { useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EVENT_COUPON_QUERY_KEY } from "./useGetEventCoupon";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_COUPON_KPI_DISCOUNTS_QUERY_KEY = (
   eventId: string,
@@ -19,7 +24,7 @@ export const SET_EVENT_COUPON_KPI_DISCOUNTS_QUERY_DATA = (
   );
 };
 
-interface GetEventCouponKPIDiscountsProps {
+interface GetEventCouponKPIDiscountsProps extends SingleQueryParams {
   eventId: string;
   couponId: string;
 }
@@ -37,6 +42,7 @@ interface DiscountResponse {
 export const GetEventCouponKPIDiscounts = async ({
   eventId,
   couponId,
+  adminApiParams,
 }: GetEventCouponKPIDiscountsProps): Promise<
   ConnectedXMResponse<DiscountResponse>
 > => {
@@ -47,12 +53,20 @@ export const GetEventCouponKPIDiscounts = async ({
   return data;
 };
 
-const useGetEventCouponKPIDiscounts = (eventId: string, couponId: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventCouponKPIDiscounts>>((
+const useGetEventCouponKPIDiscounts = (
+  eventId: string = "",
+  couponId: string = "",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetEventCouponKPIDiscounts>
+  > = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetEventCouponKPIDiscounts>>(
     EVENT_COUPON_KPI_DISCOUNTS_QUERY_KEY(eventId, couponId),
-    () => GetEventCouponKPIDiscounts({ eventId, couponId }),
+    (params: SingleQueryParams) =>
+      GetEventCouponKPIDiscounts({ eventId, couponId, ...params }),
     {
-      enabled: !!eventId && !!couponId,
+      ...options,
+      enabled: !!eventId && !!couponId && (options?.enabled ?? true),
     }
   );
 };

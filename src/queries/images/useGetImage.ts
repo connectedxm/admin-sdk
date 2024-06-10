@@ -1,8 +1,13 @@
-import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Image } from "@src/interfaces";
 import { IMAGES_QUERY_KEY } from "./useGetImages";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const IMAGE_QUERY_KEY = (imageId: string) => [
   ...IMAGES_QUERY_KEY(),
@@ -17,12 +22,13 @@ export const SET_IMAGE_QUERY_DATA = (
   client.setQueryData(IMAGE_QUERY_KEY(...keyParams), response);
 };
 
-interface GetImageParams {
+interface GetImageParams extends SingleQueryParams {
   imageId: string | undefined;
 }
 
 export const GetImage = async ({
   imageId,
+  adminApiParams,
 }: GetImageParams): Promise<ConnectedXMResponse<Image>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/images/${imageId}`);
@@ -30,11 +36,15 @@ export const GetImage = async ({
   return data;
 };
 
-const useGetImage = (imageId: string) => {
+const useGetImage = (
+  imageId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetImage>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetImage>>(
     IMAGE_QUERY_KEY(imageId),
-    () => GetImage({ imageId }),
+    (params: SingleQueryParams) => GetImage({ imageId, ...params }),
     {
+      ...options,
       enabled: !!imageId,
     }
   );

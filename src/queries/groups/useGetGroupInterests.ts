@@ -1,0 +1,63 @@
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
+
+import { Interest } from "@src/interfaces";
+import {
+  InfiniteQueryParams,
+  useConnectedInfiniteQuery,
+} from "../useConnectedInfiniteQuery";
+import { GROUP_QUERY_KEY } from "./useGetGroup";
+import { QueryClient } from "@tanstack/react-query";
+
+export const GROUP_INTERESTS_QUERY_KEY = (groupId: string) => [
+  ...GROUP_QUERY_KEY(groupId),
+  "INTERESTS",
+];
+
+export const SET_GROUP_INTERESTS_QUERY_DATA = (
+  client: QueryClient,
+  keyParams: Parameters<typeof GROUP_INTERESTS_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetGroupInterests>>
+) => {
+  client.setQueryData(GROUP_INTERESTS_QUERY_KEY(...keyParams), response);
+};
+
+interface GetGroupInterestsProps extends InfiniteQueryParams {
+  groupId: string;
+}
+
+export const GetGroupInterests = async ({
+  groupId,
+  pageParam,
+  pageSize,
+  orderBy,
+  search,
+}: GetGroupInterestsProps): Promise<ConnectedXMResponse<Interest[]>> => {
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.get(`/groups/${groupId}/interests`, {
+    params: {
+      page: pageParam || undefined,
+      pageSize: pageSize || undefined,
+      orderBy: orderBy || undefined,
+      search: search || undefined,
+    },
+  });
+  return data;
+};
+
+const useGetGroupInterests = (groupId: string) => {
+  return useConnectedInfiniteQuery<
+    Awaited<ReturnType<typeof GetGroupInterests>>
+  >(
+    GROUP_INTERESTS_QUERY_KEY(groupId),
+    (params: any) => GetGroupInterests(params),
+    {
+      groupId,
+    },
+    {
+      enabled: !!groupId,
+    }
+  );
+};
+
+export default useGetGroupInterests;

@@ -1,0 +1,66 @@
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
+import { Tier } from "@src/interfaces";
+import useConnectedInfiniteQuery, {
+  InfiniteQueryParams,
+} from "../../useConnectedInfiniteQuery";
+import { EVENT_ADD_ON_QUERY_KEY } from "./useGetEventAddOn";
+
+export const EVENT_ADD_ON_TIERS_QUERY_KEY = (
+  eventId: string,
+  addOnId: string
+) => [...EVENT_ADD_ON_QUERY_KEY(eventId, addOnId), "TIERS"];
+
+export const SET_EVENT_ADD_ON_TIERS_QUERY_DATA = (
+  client: any,
+  keyParams: Parameters<typeof EVENT_ADD_ON_TIERS_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetEventAddOnTiers>>
+) => {
+  client.setQueryData(EVENT_ADD_ON_TIERS_QUERY_KEY(...keyParams), response);
+};
+
+interface GetEventAddOnTiersProps extends InfiniteQueryParams {
+  eventId: string;
+  addOnId: string;
+}
+
+export const GetEventAddOnTiers = async ({
+  eventId,
+  addOnId,
+  pageParam,
+  pageSize,
+  orderBy,
+  search,
+}: GetEventAddOnTiersProps): Promise<ConnectedXMResponse<Tier[]>> => {
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.get(
+    `/events/${eventId}/addOns/${addOnId}/tiers`,
+    {
+      params: {
+        page: pageParam || undefined,
+        pageSize: pageSize || undefined,
+        orderBy: orderBy || undefined,
+        search: search || undefined,
+      },
+    }
+  );
+  return data;
+};
+
+const useGetEventAddOnTiers = (eventId: string, addOnId: string) => {
+  return useConnectedInfiniteQuery<
+    Awaited<ReturnType<typeof GetEventAddOnTiers>>
+  >(
+    EVENT_ADD_ON_TIERS_QUERY_KEY(eventId, addOnId),
+    (params: any) => GetEventAddOnTiers(params),
+    {
+      eventId,
+      addOnId,
+    },
+    {
+      enabled: !!eventId && !!addOnId,
+    }
+  );
+};
+
+export default useGetEventAddOnTiers;

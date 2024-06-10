@@ -1,0 +1,44 @@
+import { GetAdminAPI } from "@src/AdminAPI";
+import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import { ConnectedXMResponse } from "@src/interfaces";
+
+import { Tier } from "@src/interfaces";
+import { TIERS_QUERY_KEY } from "./useGetTiers";
+import { QueryClient } from "@tanstack/react-query";
+
+export const TIER_QUERY_KEY = (tierId: string) => [
+  ...TIERS_QUERY_KEY(),
+  tierId,
+];
+
+export const SET_TIER_QUERY_DATA = (
+  client: QueryClient,
+  keyParams: Parameters<typeof TIER_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetTier>>
+) => {
+  client.setQueryData(TIER_QUERY_KEY(...keyParams), response);
+};
+
+interface GetTierProps {
+  tierId: string;
+}
+
+export const GetTier = async ({
+  tierId,
+}: GetTierProps): Promise<ConnectedXMResponse<Tier>> => {
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.get(`/tiers/${tierId}`);
+  return data;
+};
+
+const useGetTier = (tierId: string) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetTier>>(
+    TIER_QUERY_KEY(tierId),
+    () => GetTier({ tierId: tierId || "unkown" }),
+    {
+      enabled: !!tierId,
+    }
+  );
+};
+
+export default useGetTier;

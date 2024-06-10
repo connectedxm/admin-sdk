@@ -1,0 +1,43 @@
+import { GetAdminAPI } from "@src/AdminAPI";
+import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import { ConnectedXMResponse } from "@src/interfaces";
+import { Group } from "@src/interfaces";
+import { GROUPS_QUERY_KEY } from "./useGetGroups";
+import { QueryClient } from "@tanstack/react-query";
+
+export const GROUP_QUERY_KEY = (groupId: string) => [
+  ...GROUPS_QUERY_KEY(),
+  groupId,
+];
+
+export const SET_GROUP_QUERY_DATA = (
+  client: QueryClient,
+  keyParams: Parameters<typeof GROUP_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetGroup>>
+) => {
+  client.setQueryData(GROUP_QUERY_KEY(...keyParams), response);
+};
+
+interface GetGroupProps {
+  groupId: string;
+}
+
+export const GetGroup = async ({
+  groupId,
+}: GetGroupProps): Promise<ConnectedXMResponse<Group>> => {
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.get(`/groups/${groupId}`);
+  return data;
+};
+
+const useGetGroup = (groupId: string) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetGroup>>(
+    GROUP_QUERY_KEY(groupId),
+    () => GetGroup({ groupId }),
+    {
+      enabled: !!groupId,
+    }
+  );
+};
+
+export default useGetGroup;

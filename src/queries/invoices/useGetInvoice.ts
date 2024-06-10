@@ -1,0 +1,43 @@
+import { GetAdminAPI } from "@src/AdminAPI";
+import { useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import { ConnectedXMResponse } from "@src/interfaces";
+import { Invoice } from "@src/interfaces";
+import { INVOICES_QUERY_KEY } from "./useGetInvoices";
+import { QueryClient } from "@tanstack/react-query";
+
+export const INVOICE_QUERY_KEY = (invoiceId: string) => [
+  ...INVOICES_QUERY_KEY(),
+  invoiceId,
+];
+
+export const SET_INVOICE_QUERY_DATA = (
+  client: QueryClient,
+  keyParams: Parameters<typeof INVOICE_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetInvoice>>
+) => {
+  client.setQueryData(INVOICE_QUERY_KEY(...keyParams), response);
+};
+
+interface GetInvoiceProps {
+  invoiceId: string;
+}
+
+export const GetInvoice = async ({
+  invoiceId,
+}: GetInvoiceProps): Promise<ConnectedXMResponse<Invoice>> => {
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.get(`/invoices/${invoiceId}`);
+  return data;
+};
+
+const useGetInvoice = (invoiceId: string) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetInvoice>>(
+    INVOICE_QUERY_KEY(invoiceId),
+    () => GetInvoice({ invoiceId }),
+    {
+      enabled: !!invoiceId,
+    }
+  );
+};
+
+export default useGetInvoice;

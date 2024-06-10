@@ -1,0 +1,63 @@
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
+
+import { BenefitClick } from "@src/interfaces";
+import {
+  InfiniteQueryParams,
+  useConnectedInfiniteQuery,
+} from "../useConnectedInfiniteQuery";
+import { BENEFIT_QUERY_KEY } from "./useGetBenefit";
+import { QueryClient } from "@tanstack/react-query";
+
+export const BENEFIT_CLICKS_QUERY_KEY = (benefitId: string) => [
+  ...BENEFIT_QUERY_KEY(benefitId),
+  "CLICKS",
+];
+
+export const SET_BENEFIT_CLICKS_QUERY_DATA = (
+  client: QueryClient,
+  keyParams: Parameters<typeof BENEFIT_CLICKS_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetBenefitClicks>>
+) => {
+  client.setQueryData(BENEFIT_CLICKS_QUERY_KEY(...keyParams), response);
+};
+
+interface GetBenefitClicksProps extends InfiniteQueryParams {
+  benefitId: string;
+}
+
+export const GetBenefitClicks = async ({
+  benefitId,
+  pageParam,
+  pageSize,
+  orderBy,
+  search,
+}: GetBenefitClicksProps): Promise<ConnectedXMResponse<BenefitClick[]>> => {
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.get(`/benefits/${benefitId}/clicks`, {
+    params: {
+      page: pageParam || undefined,
+      pageSize: pageSize || undefined,
+      orderBy: orderBy || undefined,
+      search: search || undefined,
+    },
+  });
+  return data;
+};
+
+const useGetBenefitClicks = (benefitId: string) => {
+  return useConnectedInfiniteQuery<
+    Awaited<ReturnType<typeof GetBenefitClicks>>
+  >(
+    BENEFIT_CLICKS_QUERY_KEY(benefitId),
+    (params: any) => GetBenefitClicks(params),
+    {
+      benefitId,
+    },
+    {
+      enabled: !!benefitId,
+    }
+  );
+};
+
+export default useGetBenefitClicks;

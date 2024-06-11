@@ -24,7 +24,7 @@
     "axios": "^1.6.5",
     "immer": "^10.0.3"
   },
-  "peerDependencies": {
+  "optionalDependencies": {
     "@tanstack/react-query": "^5.0.0",
     "react": "^18.0.0"
   },

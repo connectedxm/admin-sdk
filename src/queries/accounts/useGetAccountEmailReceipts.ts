@@ -22,7 +22,7 @@ export const ACCOUNT_EMAILS_QUERY_KEY = (
   return queryKey;
 };
 
-export const SET_ANNOUNCEMENT_EMAILS_QUERY_DATA = (
+export const SET_ACCOUNT_EMAILS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_EMAILS_QUERY_KEY>,
   response: Awaited<ReturnType<typeof GetAcccountEmailReceipts>>

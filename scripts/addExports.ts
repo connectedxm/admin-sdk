@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import glob from "glob";
+import { glob } from "glob";
 
 // Function to generate index.ts file
 async function generateIndexFile(dir: string) {
@@ -39,6 +39,7 @@ async function generateIndexFile(dir: string) {
   // Write the exports to the index.ts file
   if (exports) {
     fs.appendFileSync(indexPath, exports);
+    console.log(`    Generated index.ts file for ${dir}`);
   }
 }
 
@@ -47,6 +48,7 @@ const createIndexFiles = async () => {
 
   for (const page of pages) {
     if (fs.statSync(page).isDirectory()) {
+      console.log(page);
       await generateIndexFile(page);
     }
   }

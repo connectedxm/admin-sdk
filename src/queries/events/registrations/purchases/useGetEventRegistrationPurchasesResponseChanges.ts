@@ -87,7 +87,8 @@ const useGetEventRegistrationPurchaseResponseChanges = (
       purchaseId,
       questionId
     ),
-    (params: any) => GetEventRegistrationPurchaseResponseChanges(params),
+    (params: InfiniteQueryParams) =>
+      GetEventRegistrationPurchaseResponseChanges(params),
     {
       eventId,
       registrationId,

@@ -52,7 +52,7 @@ const useGetEventTicketTiers = (eventId: string, ticketId: string) => {
     Awaited<ReturnType<typeof GetEventTicketTiers>>
   >(
     EVENT_TICKET_TIERS_QUERY_KEY(eventId, ticketId),
-    (params: any) => GetEventTicketTiers(params),
+    (params: InfiniteQueryParams) => GetEventTicketTiers(params),
     {
       eventId,
       ticketId,

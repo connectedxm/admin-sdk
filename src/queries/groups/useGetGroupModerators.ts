@@ -4,6 +4,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { GroupMembership } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { GROUP_QUERY_KEY } from "./useGetGroup";
@@ -32,6 +33,7 @@ export const GetGroupModerators = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetGroupModeratorsProps): Promise<
   ConnectedXMResponse<GroupMembership[]>
 > => {
@@ -47,17 +49,25 @@ export const GetGroupModerators = async ({
   return data;
 };
 
-const useGetGroupModerators = (groupId: string) => {
+const useGetGroupModerators = (
+  groupId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetGroupModerators>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetGroupModerators>>
   >(
     GROUP_MODERATORS_QUERY_KEY(groupId),
-    (params: any) => GetGroupModerators(params),
+    (params: InfiniteQueryParams) => GetGroupModerators({ ...params, groupId }),
+    params,
     {
-      groupId,
-    },
-    {
-      enabled: !!groupId,
+      ...options,
+      enabled: !!groupId && (options.enabled ?? true),
     }
   );
 };

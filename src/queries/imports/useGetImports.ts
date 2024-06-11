@@ -3,8 +3,10 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Import } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const IMPORTS_QUERY_KEY = () => ["IMPORTS"];
 
@@ -15,6 +17,7 @@ export const GetImports = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetImportsProps): Promise<ConnectedXMResponse<Import[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/imports`, {
@@ -28,12 +31,18 @@ export const GetImports = async ({
   return data;
 };
 
-const useGetImports = () => {
+const useGetImports = (
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetImports>>> = {}
+) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetImports>>>(
     IMPORTS_QUERY_KEY(),
-    (params: any) => GetImports({ ...params }),
-    {},
-    {}
+    (params: InfiniteQueryParams) => GetImports({ ...params }),
+    params,
+    options
   );
 };
 

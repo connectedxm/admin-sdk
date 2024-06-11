@@ -46,7 +46,7 @@ export const GetEventTracks = async ({
 const useGetEventTracks = (eventId: string) => {
   return useConnectedInfiniteQuery<ReturnType<typeof GetEventTracks>>(
     EVENT_TRACKS_QUERY_KEY(eventId),
-    (params: any) => GetEventTracks(params),
+    (params: InfiniteQueryParams) => GetEventTracks(params),
     {
       eventId,
     },

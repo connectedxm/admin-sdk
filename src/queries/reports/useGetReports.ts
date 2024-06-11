@@ -3,6 +3,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Report, ReportType } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
@@ -36,6 +37,7 @@ export const GetReports = async ({
   search,
   type,
   eventId,
+  adminApiParams,
 }: GetReportsProps): Promise<ConnectedXMResponse<Report[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/reports`, {
@@ -51,14 +53,23 @@ export const GetReports = async ({
   return data;
 };
 
-const useGetReports = (type: keyof typeof ReportType, eventId?: string) => {
+const useGetReports = (
+  type: keyof typeof ReportType,
+  eventId?: string,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetReports>>> = {}
+) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetReports>>>(
     REPORTS_QUERY_KEY(type, eventId),
-    (params: any) => GetReports({ ...params, type, eventId }),
+    (params: InfiniteQueryParams) => GetReports({ ...params, type, eventId }),
+    params,
     {
-      enabled: type === "event" ? !!eventId : true,
-    },
-    {}
+      ...options,
+      enabled: type === "event" ? !!eventId : true && (options.enabled ?? true),
+    }
   );
 };
 

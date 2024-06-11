@@ -45,7 +45,7 @@ export const GetUnapprovedEvents = async ({
 const useGetUnapprovedEvents = () => {
   return useConnectedInfiniteQuery<ConnectedXMResponse<Event[]>>(
     UNAPPROVED_EVENTS_QUERY_KEY(),
-    (params: any) => GetUnapprovedEvents(params),
+    (params: InfiniteQueryParams) => GetUnapprovedEvents(params),
     {},
     {}
   );

@@ -72,7 +72,7 @@ const useGetEventRegistrationPurchaseAddOns = (
       registrationId,
       purchaseId
     ),
-    (params: any) => GetEventRegistrationPurchaseAddOns(params),
+    (params: InfiniteQueryParams) => GetEventRegistrationPurchaseAddOns(params),
     {
       eventId,
       registrationId,

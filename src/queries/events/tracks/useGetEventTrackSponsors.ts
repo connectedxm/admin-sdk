@@ -52,7 +52,7 @@ const useGetEventTrackSponsors = (eventId: string, trackId: string) => {
     Awaited<ReturnType<typeof GetEventTrackSponsors>>
   >(
     EVENT_TRACK_SPONSORS_QUERY_KEY(eventId, trackId),
-    (params: any) => GetEventTrackSponsors(params),
+    (params: InfiniteQueryParams) => GetEventTrackSponsors(params),
     {
       eventId,
       trackId,

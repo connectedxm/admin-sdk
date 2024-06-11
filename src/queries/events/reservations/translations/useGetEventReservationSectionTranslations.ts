@@ -69,7 +69,8 @@ const useGetEventReservationSectionTranslations = (
       eventId,
       reservationSectionId
     ),
-    (params: any) => GetEventReservationSectionTranslations(params),
+    (params: InfiniteQueryParams) =>
+      GetEventReservationSectionTranslations(params),
     {
       eventId,
       reservationSectionId,

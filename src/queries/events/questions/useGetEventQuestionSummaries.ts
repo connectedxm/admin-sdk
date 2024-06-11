@@ -49,7 +49,8 @@ const useGetEventQuestionSummaries = (eventId: string) => {
     Awaited<ReturnType<typeof GetEventQuestionSummaries>>
   >(
     EVENT_QUESTION_SUMMARIES_QUERY_KEY(eventId),
-    (params: any) => GetEventQuestionSummaries({ ...params, eventId }),
+    (params: InfiniteQueryParams) =>
+      GetEventQuestionSummaries({ ...params, eventId }),
     {
       enabled: !!eventId,
     }

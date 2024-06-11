@@ -52,7 +52,7 @@ const useGetEventAddOnTiers = (eventId: string, addOnId: string) => {
     Awaited<ReturnType<typeof GetEventAddOnTiers>>
   >(
     EVENT_ADD_ON_TIERS_QUERY_KEY(eventId, addOnId),
-    (params: any) => GetEventAddOnTiers(params),
+    (params: InfiniteQueryParams) => GetEventAddOnTiers(params),
     {
       eventId,
       addOnId,

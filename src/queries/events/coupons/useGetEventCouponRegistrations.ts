@@ -58,7 +58,7 @@ const useGetEventCouponRegistrations = (eventId: string, couponId: string) => {
     Awaited<ReturnType<typeof GetEventCouponRegistrations>>
   >(
     EVENT_COUPON_REGISTRATIONS_QUERY_KEY(eventId, couponId),
-    (params: any) => GetEventCouponRegistrations(params),
+    (params: InfiniteQueryParams) => GetEventCouponRegistrations(params),
     {
       eventId,
       couponId,

@@ -70,7 +70,7 @@ const useGetEventQuestionChoiceTranslations = (
     Awaited<ReturnType<typeof GetEventQuestionChoiceTranslations>>
   >(
     EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_KEY(eventId, questionId, choiceId),
-    (params: any) => GetEventQuestionChoiceTranslations(params),
+    (params: InfiniteQueryParams) => GetEventQuestionChoiceTranslations(params),
     {
       eventId,
       questionId,

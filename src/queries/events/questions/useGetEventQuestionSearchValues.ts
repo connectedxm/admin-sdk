@@ -61,7 +61,7 @@ const useGetEventQuestionSearchValues = (
     Awaited<ReturnType<typeof GetEventQuestionSearchValues>>
   >(
     EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY(eventId, questionId),
-    (params: any) => GetEventQuestionSearchValues(params),
+    (params: InfiniteQueryParams) => GetEventQuestionSearchValues(params),
     {
       eventId,
       questionId,

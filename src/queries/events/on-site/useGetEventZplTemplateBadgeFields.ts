@@ -57,7 +57,8 @@ const useGetEventZplTemplateBadgeFields = (eventId: string) => {
     Awaited<ReturnType<typeof GetEventZplTemplateBadgeFields>>
   >(
     EVENT_ZPL_TEMPLATE_BADGE_FIELDS_QUERY_KEY(eventId),
-    (params: any) => GetEventZplTemplateBadgeFields({ ...params, eventId }),
+    (params: InfiniteQueryParams) =>
+      GetEventZplTemplateBadgeFields({ ...params, eventId }),
     {
       enabled: !!eventId,
     }

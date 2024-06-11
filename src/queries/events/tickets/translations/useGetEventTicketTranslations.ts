@@ -57,7 +57,7 @@ const useGetEventTicketTranslations = (eventId: string, ticketId: string) => {
     Awaited<ReturnType<typeof GetEventTicketTranslations>>
   >(
     EVENT_TICKET_TRANSLATIONS_QUERY_KEY(eventId, ticketId),
-    (params: any) => GetEventTicketTranslations(params),
+    (params: InfiniteQueryParams) => GetEventTicketTranslations(params),
     {
       eventId,
       ticketId,

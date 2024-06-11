@@ -50,7 +50,7 @@ const useGetEventQuestions = (eventId: string) => {
     Awaited<ReturnType<typeof GetEventQuestions>>
   >(
     EVENT_QUESTIONS_QUERY_KEY(eventId),
-    (params: any) => GetEventQuestions(params),
+    (params: InfiniteQueryParams) => GetEventQuestions(params),
     {
       eventId,
     },

@@ -55,7 +55,7 @@ const useGetSponsorshipTranslations = (sponsorhipId: string) => {
     Awaited<ReturnType<typeof GetSponsorshipTranslations>>
   >(
     SPONSORSHIP_TRANSLATIONS_QUERY_KEY(sponsorhipId),
-    (params: any) => GetSponsorshipTranslations(params),
+    (params: InfiniteQueryParams) => GetSponsorshipTranslations(params),
     {
       sponsorhipId,
     },

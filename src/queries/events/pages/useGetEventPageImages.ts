@@ -52,7 +52,7 @@ const useGetEventPageImages = (eventId: string, pageId: string) => {
     Awaited<ReturnType<typeof GetEventPageImages>>
   >(
     EVENT_PAGE_IMAGES_QUERY_KEY(eventId, pageId),
-    (params: any) => GetEventPageImages(params),
+    (params: InfiniteQueryParams) => GetEventPageImages(params),
     {
       eventId,
       pageId,

@@ -1,6 +1,11 @@
-import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { ADVERTISEMENT_QUERY_KEY } from "./useGetAdvertisement";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const ADVERTISEMENT_KPI_VIEWS_QUERY_KEY = (advertisementId: string) => [
   ...ADVERTISEMENT_QUERY_KEY(advertisementId),
@@ -18,7 +23,7 @@ export const SET_ADVERTISEMENT_KPI_VIEWS_QUERY_DATA = (
   );
 };
 
-interface GetAdvertisementKPIViewsProps {
+interface GetAdvertisementKPIViewsProps extends SingleQueryParams {
   advertisementId?: string;
 }
 
@@ -29,6 +34,7 @@ interface DateSumCount {
 
 export const GetAdvertisementKPIViews = async ({
   advertisementId,
+  adminApiParams,
 }: GetAdvertisementKPIViewsProps): Promise<
   ConnectedXMResponse<DateSumCount[]>
 > => {
@@ -39,11 +45,16 @@ export const GetAdvertisementKPIViews = async ({
   return data;
 };
 
-const useGetAdvertisementKPIViews = (advertisementId: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetAdvertisementKPIViews>>((
+const useGetAdvertisementKPIViews = (
+  advertisementId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetAdvertisementKPIViews>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetAdvertisementKPIViews>>(
     ADVERTISEMENT_KPI_VIEWS_QUERY_KEY(advertisementId),
-    () => GetAdvertisementKPIViews({ advertisementId }),
+    (params: SingleQueryParams) =>
+      GetAdvertisementKPIViews({ advertisementId, ...params }),
     {
+      ...options,
       enabled: !!advertisementId,
     }
   );

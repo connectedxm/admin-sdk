@@ -3,6 +3,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { OrgMembership } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { ORGANIZATION_QUERY_KEY } from "./useGetOrganization";
@@ -28,6 +29,7 @@ export const GetOrganizationUsers = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetOrganizationUsersProps): Promise<
   ConnectedXMResponse<OrgMembership[]>
 > => {
@@ -43,14 +45,22 @@ export const GetOrganizationUsers = async ({
   return data;
 };
 
-const useGetOrganizationUsers = () => {
+const useGetOrganizationUsers = (
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetOrganizationUsers>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetOrganizationUsers>>
   >(
     ORGANIZATION_USERS_QUERY_KEY(),
-    (params: any) => GetOrganizationUsers(params),
-    {},
-    {}
+    (params: InfiniteQueryParams) => GetOrganizationUsers(params),
+    params,
+    options
   );
 };
 

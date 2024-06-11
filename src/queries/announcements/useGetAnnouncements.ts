@@ -4,12 +4,13 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Announcement } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 
 export const ANNOUNCEMENTS_QUERY_KEY = (filters?: string) => {
-  let keys = ["ANNOUNCEMENTS"];
+  const keys = ["ANNOUNCEMENTS"];
   if (filters) keys.push(filters);
   return keys;
 };
@@ -32,6 +33,7 @@ export const GetAnnouncements = async ({
   orderBy,
   search,
   filters,
+  adminApiParams,
 }: GetAnnouncementsProps): Promise<ConnectedXMResponse<Announcement[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/announcements`, {
@@ -46,16 +48,23 @@ export const GetAnnouncements = async ({
   return data;
 };
 
-const useGetAnnouncements = (filters?: string) => {
+const useGetAnnouncements = (
+  filters?: string,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetAnnouncements>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetAnnouncements>>
   >(
     ANNOUNCEMENTS_QUERY_KEY(filters),
-    (params: any) => GetAnnouncements(params),
-    {
-      filters,
-    },
-    {}
+    (params: InfiniteQueryParams) => GetAnnouncements({ filters, ...params }),
+    params,
+    options
   );
 };
 

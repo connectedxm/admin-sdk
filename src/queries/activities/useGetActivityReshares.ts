@@ -3,6 +3,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Activity } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { ACTIVITY_QUERY_KEY } from "./useGetActivity";
@@ -31,6 +32,7 @@ export const GetActivityReshares = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetActivityResharesProps): Promise<ConnectedXMResponse<Activity[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/activities/${activityId}/reshares`, {
@@ -46,17 +48,26 @@ export const GetActivityReshares = async ({
 
 export const QUERY_KEY = "ACTIVITY_RESHARES";
 
-const useGetActivityReshares = (activityId: string) => {
+const useGetActivityReshares = (
+  activityId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetActivityReshares>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetActivityReshares>>
   >(
     [QUERY_KEY, activityId],
-    (params: any) => GetActivityReshares(params),
+    (params: InfiniteQueryParams) =>
+      GetActivityReshares({ activityId, ...params }),
+    params,
     {
-      activityId,
-    },
-    {
-      enabled: !!activityId,
+      ...options,
+      enabled: !!activityId && (options.enabled ?? true),
     }
   );
 };

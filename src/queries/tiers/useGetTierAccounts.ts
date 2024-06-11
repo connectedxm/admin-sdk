@@ -1,11 +1,12 @@
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Account } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { TIER_QUERY_KEY } from "./useGetTier";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 // export const QUERY_KEY = "ACCOUNT_TIER_ACCOUNTS";
 export const TIER_ACCOUNTS_QUERY_KEY = (tierId: string) => [
@@ -31,6 +32,7 @@ export const GetTierAccounts = async ({
   orderBy,
   search,
   tierId,
+  adminApiParams,
 }: GetTierAccountsProps): Promise<ConnectedXMResponse<Account[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/tiers/${tierId}/accounts`, {
@@ -45,13 +47,23 @@ export const GetTierAccounts = async ({
   return data;
 };
 
-const useGetTierAccounts = (tierId: string) => {
+const useGetTierAccounts = (
+  tierId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetTierAccounts>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetTierAccounts>>>(
     TIER_ACCOUNTS_QUERY_KEY(tierId),
-    (params: any) => GetTierAccounts({ ...params, tierId }),
-    {},
+    (params: InfiniteQueryParams) => GetTierAccounts({ ...params, tierId }),
+    params,
     {
-      enabled: !!tierId,
+      ...options,
+      enabled: !!tierId && (options.enabled ?? true),
     }
   );
 };

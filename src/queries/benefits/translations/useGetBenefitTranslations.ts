@@ -1,9 +1,11 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { BenefitTranslation } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  useConnectedInfiniteQuery,
   InfiniteQueryParams,
-} from "@/context/queries/useConnectedInfiniteQuery";
+  InfiniteQueryOptions,
+} from "../../useConnectedInfiniteQuery";
 import { BENEFIT_QUERY_KEY } from "../useGetBenefit";
 
 export const BENEFIT_TRANSLATIONS_QUERY_KEY = (benefitId: string) => [
@@ -29,6 +31,7 @@ export const GetBenefitTranslations = async ({
   orderBy,
   search,
   benefitId,
+  adminApiParams,
 }: GetBenefitTranslationsProps): Promise<
   ConnectedXMResponse<BenefitTranslation[]>
 > => {
@@ -44,17 +47,26 @@ export const GetBenefitTranslations = async ({
   return data;
 };
 
-const useGetBenefitTranslations = (benefitId: string) => {
+const useGetBenefitTranslations = (
+  benefitId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetBenefitTranslations>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetBenefitTranslations>>
   >(
     BENEFIT_TRANSLATIONS_QUERY_KEY(benefitId),
-    (params: any) => GetBenefitTranslations(params),
+    (params: InfiniteQueryParams) =>
+      GetBenefitTranslations({ benefitId, ...params }),
+    params,
     {
-      benefitId,
-    },
-    {
-      enabled: !!benefitId,
+      ...options,
+      enabled: !!benefitId && (options.enabled ?? true),
     }
   );
 };

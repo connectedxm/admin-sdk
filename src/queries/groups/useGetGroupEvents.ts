@@ -2,6 +2,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { Event } from "@src/interfaces";
@@ -24,7 +25,7 @@ export const SET_GROUP_EVENTS_QUERY_DATA = (
 
 interface GetGroupEventsProps extends InfiniteQueryParams {
   groupId: string;
-  past: boolean;
+  past?: boolean;
 }
 
 export const GetGroupEvents = async ({
@@ -34,6 +35,7 @@ export const GetGroupEvents = async ({
   orderBy,
   past,
   search,
+  adminApiParams,
 }: GetGroupEventsProps): Promise<ConnectedXMResponse<Event[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/groups/${groupId}/events`, {
@@ -48,16 +50,27 @@ export const GetGroupEvents = async ({
   return data;
 };
 
-const useGetGroupEvents = (groupId: string, past?: boolean) => {
+const useGetGroupEvents = (
+  groupId: string,
+  past?: boolean,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetGroupEvents>>> = {}
+) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetGroupEvents>>>(
     GROUP_EVENTS_QUERY_KEY(groupId, past),
-    (params: any) => GetGroupEvents(params),
+    (params: InfiniteQueryParams) =>
+      GetGroupEvents({
+        ...params,
+        groupId,
+        past,
+      }),
+    params,
     {
-      groupId,
-      past,
-    },
-    {
-      enabled: !!groupId,
+      ...options,
+      enabled: !!groupId && (options.enabled ?? true),
     }
   );
 };

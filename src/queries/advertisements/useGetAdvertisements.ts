@@ -4,6 +4,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Advertisement } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
@@ -25,6 +26,7 @@ export const GetAdvertisements = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetAdvertisementsProps): Promise<ConnectedXMResponse<Advertisement[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/advertisements`, {
@@ -38,14 +40,22 @@ export const GetAdvertisements = async ({
   return data;
 };
 
-const useGetAdvertisements = () => {
+const useGetAdvertisements = (
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetAdvertisements>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetAdvertisements>>
   >(
     ADVERTISEMENTS_QUERY_KEY(),
-    (params: any) => GetAdvertisements(params),
-    {},
-    {}
+    (params: InfiniteQueryParams) => GetAdvertisements(params),
+    params,
+    options
   );
 };
 

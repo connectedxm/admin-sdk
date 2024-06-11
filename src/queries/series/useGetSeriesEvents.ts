@@ -3,6 +3,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Event } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { EVENT_QUERY_KEY } from "../events/useGetEvent";
@@ -30,6 +31,7 @@ export const GetSeriesEvents = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetSeriesEventsProps): Promise<ConnectedXMResponse<Event[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/series/${seriesId}/events`, {
@@ -43,15 +45,27 @@ export const GetSeriesEvents = async ({
   return data;
 };
 
-const useGetSeriesEvents = (seriesId: string) => {
+const useGetSeriesEvents = (
+  seriesId: string,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetSeriesEvents>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetSeriesEvents>>>(
     SERIES_EVENTS_QUERY_KEY(seriesId),
-    (params: any) => GetSeriesEvents(params),
+    (params: InfiniteQueryParams) =>
+      GetSeriesEvents({
+        seriesId,
+        ...params,
+      }),
+    params,
     {
-      seriesId,
-    },
-    {
-      enabled: !!seriesId,
+      ...options,
+      enabled: !!seriesId && (options.enabled ?? true),
     }
   );
 };

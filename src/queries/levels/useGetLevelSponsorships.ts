@@ -4,6 +4,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Sponsorship } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { LEVEL_QUERY_KEY } from "./useGetLevel";
@@ -30,6 +31,7 @@ export const GetLevelSponsorships = async ({
   pageParam,
   pageSize,
   search,
+  adminApiParams,
 }: GetLevelSponsorshipsProps): Promise<ConnectedXMResponse<Sponsorship[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/levels/${levelId}/sponsorships`, {
@@ -42,16 +44,28 @@ export const GetLevelSponsorships = async ({
   return data;
 };
 
-const useGetLevelSponsorships = (levelId: string) => {
+const useGetLevelSponsorships = (
+  levelId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetLevelSponsorships>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetLevelSponsorships>>
   >(
     LEVEL_SPONSORSHIPS_QUERY_KEY(levelId),
-    (params: any) => GetLevelSponsorships(params),
+    (params: InfiniteQueryParams) =>
+      GetLevelSponsorships({
+        ...params,
+        levelId,
+      }),
+    params,
     {
-      levelId,
-    },
-    {
+      ...options,
       enabled: !!levelId,
     }
   );

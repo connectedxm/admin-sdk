@@ -1,14 +1,16 @@
-import { GetAdminAPI } from '@src/AdminAPI';
-import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../../useConnectedSingleQuery";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
+import { ConnectedXMResponse, OrganizationTriggerType } from "@src/interfaces";
 import { OrganizationTrigger } from "@src/interfaces";
-import { TriggerType } from "@/context/mutations/organization/triggers/useUpdateOrganizationTrigger";
 import { QueryClient } from "@tanstack/react-query";
 
-export const ORGANIZATION_TRIGGER_QUERY_KEY = (type: TriggerType) => [
-  "TRIGGER",
-  type,
-];
+export const ORGANIZATION_TRIGGER_QUERY_KEY = (
+  type: OrganizationTriggerType
+) => ["TRIGGER", type];
 
 export const SET_ORGANIZATION_TRIGGER_QUERY_DATA = (
   client: QueryClient,
@@ -18,12 +20,13 @@ export const SET_ORGANIZATION_TRIGGER_QUERY_DATA = (
   client.setQueryData(ORGANIZATION_TRIGGER_QUERY_KEY(...keyParams), response);
 };
 
-interface GetOrganizationTriggerProps {
-  type: TriggerType;
+interface GetOrganizationTriggerProps extends SingleQueryParams {
+  type: OrganizationTriggerType;
 }
 
 export const GetOrganizationTrigger = async ({
   type,
+  adminApiParams,
 }: GetOrganizationTriggerProps): Promise<
   ConnectedXMResponse<OrganizationTrigger>
 > => {
@@ -32,12 +35,16 @@ export const GetOrganizationTrigger = async ({
   return data;
 };
 
-const useGetOrganizationTrigger = (type: TriggerType) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetOrganizationTrigger>>((
+const useGetOrganizationTrigger = (
+  type: OrganizationTriggerType,
+  options: SingleQueryOptions<ReturnType<typeof GetOrganizationTrigger>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetOrganizationTrigger>>(
     ORGANIZATION_TRIGGER_QUERY_KEY(type),
-    () => GetOrganizationTrigger({ type }),
+    (params: SingleQueryParams) => GetOrganizationTrigger({ type, ...params }),
     {
-      enabled: !!type,
+      ...options,
+      enabled: !!type && (options?.enabled ?? true),
     }
   );
 };

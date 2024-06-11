@@ -45,7 +45,7 @@ export const GetEventTickets = async ({
 const useGetEventTickets = (eventId: string) => {
   return useConnectedInfiniteQuery<ReturnType<typeof GetEventTickets>>(
     EVENT_TICKETS_QUERY_KEY(eventId),
-    (params: any) => GetEventTickets(params),
+    (params: InfiniteQueryParams) => GetEventTickets(params),
     {
       eventId,
     },

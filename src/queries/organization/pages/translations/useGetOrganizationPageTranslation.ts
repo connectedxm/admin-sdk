@@ -1,7 +1,11 @@
-import useConnectedSingleQuery from "@/context/queries/useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { PageTranslation, PageType } from "@src/interfaces";
 import { ORGANIZATION_PAGE_QUERY_KEY } from "../useGetOrganizationPage";
+import { GetAdminAPI } from "@src/AdminAPI";
+import useConnectedSingleQuery, {
+  SingleQueryOptions,
+  SingleQueryParams,
+} from "@src/queries/useConnectedSingleQuery";
 
 export const ORGANIZATION_PAGE_TRANSLATION_QUERY_KEY = (
   type: PageType,
@@ -19,7 +23,7 @@ export const SET_ORGANIZATION_PAGE_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetOrganizationPageTranslationProps {
+interface GetOrganizationPageTranslationProps extends SingleQueryParams {
   type: PageType;
   locale: string;
 }
@@ -27,6 +31,7 @@ interface GetOrganizationPageTranslationProps {
 export const GetOrganizationPageTranslation = async ({
   type,
   locale,
+  adminApiParams,
 }: GetOrganizationPageTranslationProps): Promise<
   ConnectedXMResponse<PageTranslation>
 > => {
@@ -37,15 +42,25 @@ export const GetOrganizationPageTranslation = async ({
   return data;
 };
 
-const useGetOrganizationPageTranslation = (type: PageType, locale: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetOrganizationPageTranslation>>((
+const useGetOrganizationPageTranslation = (
+  type: PageType,
+  locale: string,
+  options: SingleQueryOptions<
+    ReturnType<typeof GetOrganizationPageTranslation>
+  > = {}
+) => {
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetOrganizationPageTranslation>
+  >(
     ORGANIZATION_PAGE_TRANSLATION_QUERY_KEY(type, locale),
-    () =>
+    (params: SingleQueryParams) =>
       GetOrganizationPageTranslation({
         type,
         locale,
+        ...params,
       }),
     {
+      ...options,
       enabled: !!type && !!locale,
     }
   );

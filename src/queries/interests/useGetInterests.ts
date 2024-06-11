@@ -2,9 +2,11 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Interest } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const INTERESTS_QUERY_KEY = () => ["INTERESTS"];
 
@@ -23,6 +25,7 @@ export const GetInterests = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetInterestsProps): Promise<ConnectedXMResponse<Interest[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/interests`, {
@@ -36,12 +39,18 @@ export const GetInterests = async ({
   return data;
 };
 
-const useGetInterests = () => {
+const useGetInterests = (
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetInterests>>> = {}
+) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetInterests>>>(
     INTERESTS_QUERY_KEY(),
-    (params: any) => GetInterests(params),
-    {},
-    {}
+    (params: InfiniteQueryParams) => GetInterests(params),
+    params,
+    options
   );
 };
 

@@ -2,9 +2,11 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { ReportParent, ReportType } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const REPORT_PARENTS_QUERY_KEY = (type?: keyof typeof ReportType) => {
   const queryKey = ["REPORT_PARENTS"];
@@ -33,6 +35,7 @@ export const GetReportParents = async ({
   orderBy,
   search,
   type,
+  adminApiParams,
 }: GetReportParentsProps): Promise<ConnectedXMResponse<ReportParent[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/reports/parents`, {
@@ -47,16 +50,24 @@ export const GetReportParents = async ({
   return data;
 };
 
-const useGetReportParents = (type: keyof typeof ReportType) => {
+const useGetReportParents = (
+  type: keyof typeof ReportType,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetReportParents>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetReportParents>>
   >(
     REPORT_PARENTS_QUERY_KEY(type),
-    (params: any) => GetReportParents(params),
+    (params: InfiniteQueryParams) => GetReportParents({ type, ...params }),
+    params,
     {
-      type,
-    },
-    {
+      ...options,
       enabled: !!type,
     }
   );

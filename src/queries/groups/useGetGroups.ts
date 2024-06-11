@@ -4,6 +4,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Group } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
@@ -25,6 +26,7 @@ export const GetGroups = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetGroupsProps): Promise<ConnectedXMResponse<Group[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/groups`, {
@@ -38,12 +40,18 @@ export const GetGroups = async ({
   return data;
 };
 
-const useGetGroups = () => {
+const useGetGroups = (
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetGroups>>> = {}
+) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetGroups>>>(
     GROUPS_QUERY_KEY(),
-    (params: any) => GetGroups(params),
-    {},
-    {}
+    (params: InfiniteQueryParams) => GetGroups(params),
+    params,
+    options
   );
 };
 

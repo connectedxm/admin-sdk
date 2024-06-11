@@ -75,7 +75,8 @@ const useGetEventRegistrationPurchaseTransferLogs = (
       registrationId,
       purchaseId
     ),
-    (params: any) => GetEventRegistrationPurchaseTransferLogs(params),
+    (params: InfiniteQueryParams) =>
+      GetEventRegistrationPurchaseTransferLogs(params),
     {
       eventId,
       registrationId,

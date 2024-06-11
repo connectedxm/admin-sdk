@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { useConnectedInfiniteQuery } from "../useConnectedInfiniteQuery";
+import {
+  InfiniteQueryOptions,
+  InfiniteQueryParams,
+  useConnectedInfiniteQuery,
+} from "../useConnectedInfiniteQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { BaseEmailReceipt, EmailReceiptStatus } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
@@ -18,7 +22,7 @@ export const SET_EMAIL_RECEIPTS_QUERY_DATA = (
 };
 
 interface GetEmailReceiptsParams extends InfiniteQueryParams {
-  status: EmailReceiptStatus;
+  status?: EmailReceiptStatus;
 }
 
 export const GetEmailReceipts = async ({
@@ -27,6 +31,7 @@ export const GetEmailReceipts = async ({
   orderBy,
   search,
   status,
+  adminApiParams,
 }: GetEmailReceiptsParams): Promise<
   ConnectedXMResponse<BaseEmailReceipt[]>
 > => {
@@ -44,14 +49,23 @@ export const GetEmailReceipts = async ({
   return data;
 };
 
-const useGetEmailReceipts = (status?: EmailReceiptStatus) => {
+const useGetEmailReceipts = (
+  status?: EmailReceiptStatus,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEmailReceipts>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEmailReceipts>>
   >(
     EMAIL_RECEIPTS_QUERY_KEY(status),
-    (params: any) => GetEmailReceipts({ ...params, status }),
-    {},
-    {}
+    (params: InfiniteQueryParams) => GetEmailReceipts({ ...params, status }),
+    params,
+    options
   );
 };
 

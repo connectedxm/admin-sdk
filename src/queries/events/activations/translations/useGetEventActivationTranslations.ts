@@ -60,7 +60,7 @@ const useGetEventActivationTranslations = (
     Awaited<ReturnType<typeof GetEventActivationTranslations>>
   >(
     EVENT_ACTIVATION_TRANSLATIONS_QUERY_KEY(eventId, activationId),
-    (params: any) => GetEventActivationTranslations(params),
+    (params: InfiniteQueryParams) => GetEventActivationTranslations(params),
     {
       eventId,
       activationId,

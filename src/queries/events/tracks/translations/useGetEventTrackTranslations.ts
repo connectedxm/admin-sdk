@@ -57,7 +57,7 @@ const useGetEventTrackTranslations = (eventId: string, trackId: string) => {
     Awaited<ReturnType<typeof GetEventTrackTranslations>>
   >(
     EVENT_TRACK_TRANSLATIONS_QUERY_KEY(eventId, trackId),
-    (params: any) => GetEventTrackTranslations(params),
+    (params: InfiniteQueryParams) => GetEventTrackTranslations(params),
     {
       eventId,
       trackId,

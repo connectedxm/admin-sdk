@@ -1,5 +1,9 @@
-import { GetAdminAPI } from '@src/AdminAPI';
-import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { BENEFIT_QUERY_KEY } from "./useGetBenefit";
 import { QueryClient } from "@tanstack/react-query";
@@ -17,7 +21,7 @@ export const SET_BENEFIT_KPI_CLICKS_QUERY_DATA = (
   client.setQueryData(BENEFIT_KPI_CLICKS_QUERY_KEY(...keyParams), response);
 };
 
-interface GetBenefitKPIClicksProps {
+interface GetBenefitKPIClicksProps extends SingleQueryParams {
   benefitId?: string;
 }
 
@@ -28,18 +32,24 @@ interface DateSumCount {
 
 export const GetBenefitKPIClicks = async ({
   benefitId,
+  adminApiParams,
 }: GetBenefitKPIClicksProps): Promise<ConnectedXMResponse<DateSumCount[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/benefits/${benefitId}/kpi/clicks`);
   return data;
 };
 
-const useGetBenefitKPIClicks = (benefitId: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetBenefitKPIClicks>>((
+const useGetBenefitKPIClicks = (
+  benefitId: string,
+  options: SingleQueryOptions<ReturnType<typeof GetBenefitKPIClicks>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetBenefitKPIClicks>>(
     BENEFIT_KPI_CLICKS_QUERY_KEY(benefitId),
-    () => GetBenefitKPIClicks({ benefitId }),
+    (params: SingleQueryParams) =>
+      GetBenefitKPIClicks({ benefitId, ...params }),
     {
-      enabled: !!benefitId,
+      ...options,
+      enabled: !!benefitId && (options?.enabled ?? true),
     }
   );
 };

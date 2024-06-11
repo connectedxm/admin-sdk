@@ -60,7 +60,7 @@ const useGetEventRegistrations = (
     Awaited<ReturnType<typeof GetEventRegistrations>>
   >(
     EVENT_REGISTRATIONS_QUERY_KEY(eventId, status),
-    (params: any) => GetEventRegistrations(params),
+    (params: InfiniteQueryParams) => GetEventRegistrations(params),
     {
       eventId,
       status,

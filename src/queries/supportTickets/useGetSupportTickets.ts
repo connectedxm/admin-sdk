@@ -3,6 +3,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { SupportTicket } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
@@ -21,7 +22,7 @@ export const SET_SUPPORT_TICKETS_QUERY_DATA = (
 };
 
 interface GetSupportTicketsProps extends InfiniteQueryParams {
-  status: String;
+  status: string;
 }
 
 export const GetSupportTickets = async ({
@@ -30,6 +31,7 @@ export const GetSupportTickets = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetSupportTicketsProps): Promise<ConnectedXMResponse<SupportTicket[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/supportTickets`, {
@@ -44,16 +46,27 @@ export const GetSupportTickets = async ({
   return data;
 };
 
-const useGetSupportTickets = (status?: string) => {
+const useGetSupportTickets = (
+  status: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetSupportTickets>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetSupportTickets>>
   >(
     SUPPORT_TICKETS_QUERY_KEY(status),
-    (params: any) => GetSupportTickets(params),
-    {
-      status,
-    },
-    {}
+    (params: InfiniteQueryParams) =>
+      GetSupportTickets({
+        status,
+        ...params,
+      }),
+    params,
+    options
   );
 };
 

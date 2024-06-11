@@ -1,5 +1,9 @@
-import { GetAdminAPI } from '@src/AdminAPI';
-import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { ACTIVITY_QUERY_KEY } from "./useGetActivity";
 import { QueryClient } from "@tanstack/react-query";
@@ -17,7 +21,7 @@ export const SET_ACTIVITY_KPI_RESHARES_QUERY_DATA = (
   client.setQueryData(ACTIVITY_KPI_RESHARES_QUERY_KEY(...keyParams), response);
 };
 
-interface GetActivityKPIResharesProps {
+interface GetActivityKPIResharesProps extends SingleQueryParams {
   activityId?: string;
 }
 
@@ -28,18 +32,24 @@ interface DateCount {
 
 export const GetActivityKPIReshares = async ({
   activityId,
+  adminApiParams,
 }: GetActivityKPIResharesProps): Promise<ConnectedXMResponse<DateCount[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/activities/${activityId}/kpi/reshares`);
   return data;
 };
 
-const useGetActivityKPIReshares = (activityId: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetActivityKPIReshares>>((
+const useGetActivityKPIReshares = (
+  activityId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetActivityKPIReshares>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetActivityKPIReshares>>(
     ACTIVITY_KPI_RESHARES_QUERY_KEY(activityId),
-    () => GetActivityKPIReshares({ activityId }),
+    (params: SingleQueryParams) =>
+      GetActivityKPIReshares({ activityId, ...params }),
     {
-      enabled: !!activityId,
+      ...options,
+      enabled: !!activityId && (options?.enabled ?? true),
     }
   );
 };

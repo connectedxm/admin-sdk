@@ -41,7 +41,7 @@ const useGetEventRegistrationBypassList = (eventId: string) => {
     Awaited<ReturnType<typeof GetEventRegistrationBypassList>>
   >(
     EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY(eventId),
-    (params: any) => GetEventRegistrationBypassList(params),
+    (params: InfiniteQueryParams) => GetEventRegistrationBypassList(params),
     {
       eventId,
     },

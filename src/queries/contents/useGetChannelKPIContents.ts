@@ -1,5 +1,9 @@
-import { GetAdminAPI } from '@src/AdminAPI';
-import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { CHANNEL_QUERY_KEY } from "./useGetChannel";
 import { QueryClient } from "@tanstack/react-query";
@@ -14,13 +18,10 @@ export const SET_CHANNEL_KPI_CONTENTS_QUERY_DATA = (
   keyParams: Parameters<typeof CHANNEL_KPI_CONTENTS_QUERY_KEY>,
   response: Awaited<ReturnType<typeof GetChannelKPIContents>>
 ) => {
-  client.setQueryData(
-    CHANNEL_KPI_CONTENTS_QUERY_KEY(...keyParams),
-    response
-  );
+  client.setQueryData(CHANNEL_KPI_CONTENTS_QUERY_KEY(...keyParams), response);
 };
 
-interface GetChannelKPIContentsProps {
+interface GetChannelKPIContentsProps extends SingleQueryParams {
   channelId?: string;
 }
 
@@ -31,22 +32,26 @@ interface DateSumCount {
 
 export const GetChannelKPIContents = async ({
   channelId,
+  adminApiParams,
 }: GetChannelKPIContentsProps): Promise<
   ConnectedXMResponse<DateSumCount[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(
-    `/channels/${channelId}/kpi/contents`
-  );
+  const { data } = await adminApi.get(`/channels/${channelId}/kpi/contents`);
   return data;
 };
 
-const useGetChannelKPIContents = (channelId: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetChannelKPIContents>>((
+const useGetChannelKPIContents = (
+  channelId: string,
+  options: SingleQueryOptions<ReturnType<typeof GetChannelKPIContents>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetChannelKPIContents>>(
     CHANNEL_KPI_CONTENTS_QUERY_KEY(channelId),
-    () => GetChannelKPIContents({ channelId }),
+    (params: SingleQueryParams) =>
+      GetChannelKPIContents({ channelId, ...params }),
     {
-      enabled: !!channelId,
+      ...options,
+      enabled: !!channelId && (options?.enabled ?? true),
     }
   );
 };

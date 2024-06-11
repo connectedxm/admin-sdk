@@ -51,7 +51,7 @@ const useGetEventSessionAccounts = (eventId: string, sessionId: string) => {
     Awaited<ReturnType<typeof GetEventSessionAccounts>>
   >(
     EVENT_SESSION_ACCOUNTS_QUERY_KEY(eventId, sessionId),
-    (params: any) => GetEventSessionAccounts(params),
+    (params: InfiniteQueryParams) => GetEventSessionAccounts(params),
     {
       eventId,
       sessionId,

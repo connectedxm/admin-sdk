@@ -1,10 +1,12 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { SponsorshipLevelTranslation } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
-  InfiniteQueryParams,
-} from "@/context/queries/useConnectedInfiniteQuery";
 import { LEVEL_QUERY_KEY } from "../useGetLevel";
+import {
+  InfiniteQueryOptions,
+  InfiniteQueryParams,
+  useConnectedInfiniteQuery,
+} from "@src/queries/useConnectedInfiniteQuery";
 
 export const LEVEL_TRANSLATIONS_QUERY_KEY = (levelId: string) => [
   ...LEVEL_QUERY_KEY(levelId),
@@ -29,6 +31,7 @@ export const GetLevelTranslations = async ({
   orderBy,
   search,
   levelId,
+  adminApiParams,
 }: GetLevelTranslationsProps): Promise<
   ConnectedXMResponse<SponsorshipLevelTranslation[]>
 > => {
@@ -44,17 +47,26 @@ export const GetLevelTranslations = async ({
   return data;
 };
 
-const useGetLevelTranslations = (levelId: string) => {
+const useGetLevelTranslations = (
+  levelId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetLevelTranslations>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetLevelTranslations>>
   >(
     LEVEL_TRANSLATIONS_QUERY_KEY(levelId),
-    (params: any) => GetLevelTranslations(params),
+    (params: InfiniteQueryParams) =>
+      GetLevelTranslations({ levelId, ...params }),
+    params,
     {
-      levelId,
-    },
-    {
-      enabled: !!levelId,
+      ...options,
+      enabled: !!levelId && (options.enabled ?? true),
     }
   );
 };

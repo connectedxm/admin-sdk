@@ -57,7 +57,7 @@ const useGetEventPageTranslations = (eventId: string, pageId: string) => {
     Awaited<ReturnType<typeof GetEventPageTranslations>>
   >(
     EVENT_PAGE_TRANSLATIONS_QUERY_KEY(eventId, pageId),
-    (params: any) => GetEventPageTranslations(params),
+    (params: InfiniteQueryParams) => GetEventPageTranslations(params),
     {
       eventId,
       pageId,

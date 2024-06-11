@@ -49,7 +49,7 @@ const useGetGroupTranslations = (groupId: string) => {
     Awaited<ReturnType<typeof GetGroupTranslations>>
   >(
     GROUP_TRANSLATIONS_QUERY_KEY(groupId),
-    (params: any) => GetGroupTranslations(params),
+    (params: InfiniteQueryParams) => GetGroupTranslations(params),
     {
       groupId,
     },

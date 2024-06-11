@@ -1,7 +1,12 @@
-import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { ACTIVITY_QUERY_KEY } from "./useGetActivity";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const ACTIVITY_KPI_LIKES_QUERY_KEY = (activityId: string) => [
   ...ACTIVITY_QUERY_KEY(activityId),
@@ -16,7 +21,7 @@ export const SET_ACTIVITY_KPI_LIKES_QUERY_DATA = (
   client.setQueryData(ACTIVITY_KPI_LIKES_QUERY_KEY(...keyParams), response);
 };
 
-interface GetActivityKPILikesProps {
+interface GetActivityKPILikesProps extends SingleQueryParams {
   activityId?: string;
 }
 
@@ -27,17 +32,23 @@ interface DateCount {
 
 export const GetActivityKPILikes = async ({
   activityId,
+  adminApiParams,
 }: GetActivityKPILikesProps): Promise<ConnectedXMResponse<DateCount[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/activities/${activityId}/kpi/likes`);
   return data;
 };
 
-const useGetActivityKPILikes = (activityId: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetActivityKPILikes>>((
+const useGetActivityKPILikes = (
+  activityId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetActivityKPILikes>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetActivityKPILikes>>(
     ACTIVITY_KPI_LIKES_QUERY_KEY(activityId),
-    () => GetActivityKPILikes({ activityId }),
+    (params: SingleQueryParams) =>
+      GetActivityKPILikes({ activityId, ...params }),
     {
+      ...options,
       enabled: !!activityId,
     }
   );

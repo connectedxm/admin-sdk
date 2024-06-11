@@ -46,7 +46,7 @@ export const GetEventPages = async ({
 const useGetEventPages = (eventId: string) => {
   return useConnectedInfiniteQuery<ReturnType<typeof GetEventPages>>(
     EVENT_PAGES_QUERY_KEY(eventId),
-    (params: any) => GetEventPages(params),
+    (params: InfiniteQueryParams) => GetEventPages(params),
     {
       eventId,
     },

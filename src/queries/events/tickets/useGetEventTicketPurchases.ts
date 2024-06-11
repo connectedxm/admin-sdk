@@ -52,7 +52,7 @@ const useGetEventTicketPurchases = (eventId: string, ticketId: string) => {
     Awaited<ReturnType<typeof GetEventTicketPurchases>>
   >(
     EVENT_TICKET_PURCHASES_QUERY_KEY(eventId, ticketId),
-    (params: any) => GetEventTicketPurchases(params),
+    (params: InfiniteQueryParams) => GetEventTicketPurchases(params),
     {
       eventId,
       ticketId,

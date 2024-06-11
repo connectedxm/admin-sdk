@@ -4,6 +4,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Channel } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
@@ -25,6 +26,7 @@ export const GetChannels = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetChannelsProps): Promise<ConnectedXMResponse<Channel[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/channels`, {
@@ -38,12 +40,18 @@ export const GetChannels = async ({
   return data;
 };
 
-const useGetChannels = () => {
+const useGetChannels = (
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetChannels>>> = {}
+) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetChannels>>>(
     CHANNELS_QUERY_KEY(),
-    (params: any) => GetChannels(params),
-    {},
-    {}
+    (params: InfiniteQueryParams) => GetChannels(params),
+    params,
+    options
   );
 };
 

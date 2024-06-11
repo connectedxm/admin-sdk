@@ -2,10 +2,12 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { SubscriptionProductPrice } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 import { SUBSCRIPTION_PRODUCT_QUERY_KEY } from "./useGetSubscriptionProduct";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const SUBSCRIPTION_PRODUCT_PRICES_QUERY_KEY = (
   subscriptionProductId: string
@@ -35,6 +37,7 @@ export const GetSubscriptionProductPrices = async ({
   orderBy,
   search,
   subscriptionProductId,
+  adminApiParams,
 }: GetSubscriptionProductPricesProps): Promise<
   ConnectedXMResponse<SubscriptionProductPrice[]>
 > => {
@@ -53,15 +56,27 @@ export const GetSubscriptionProductPrices = async ({
   return data;
 };
 
-const useGetSubscriptionProductPrices = (subscriptionProductId: string) => {
+const useGetSubscriptionProductPrices = (
+  subscriptionProductId: string,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetSubscriptionProductPrices>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetSubscriptionProductPrices>>
   >(
     SUBSCRIPTION_PRODUCT_PRICES_QUERY_KEY(subscriptionProductId),
-    (params: any) =>
+    (params: InfiniteQueryParams) =>
       GetSubscriptionProductPrices({ ...params, subscriptionProductId }),
-    {},
-    {}
+    params,
+    {
+      ...options,
+      enabled: !!subscriptionProductId && (options.enabled ?? true),
+    }
   );
 };
 

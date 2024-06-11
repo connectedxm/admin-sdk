@@ -1,7 +1,11 @@
-import useConnectedSingleQuery from "@/context/queries/useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { GroupTranslation, ChannelTranslation } from "@src/interfaces";
+import { ChannelTranslation } from "@src/interfaces";
 import { CHANNEL_TRANSLATIONS_QUERY_KEY } from "./useGetChannelTranslations";
+import { GetAdminAPI } from "@src/AdminAPI";
+import useConnectedSingleQuery, {
+  SingleQueryOptions,
+  SingleQueryParams,
+} from "@src/queries/useConnectedSingleQuery";
 
 export const CHANNEL_TRANSLATION_QUERY_KEY = (
   channelId: string,
@@ -13,13 +17,10 @@ export const SET_CHANNEL_TRANSLATION_QUERY_DATA = (
   keyParams: Parameters<typeof CHANNEL_TRANSLATION_QUERY_KEY>,
   response: Awaited<ReturnType<typeof GetChannelTranslation>>
 ) => {
-  client.setQueryData(
-    CHANNEL_TRANSLATION_QUERY_KEY(...keyParams),
-    response
-  );
+  client.setQueryData(CHANNEL_TRANSLATION_QUERY_KEY(...keyParams), response);
 };
 
-interface GetChannelTranslationProps {
+interface GetChannelTranslationProps extends SingleQueryParams {
   channelId: string;
   locale: string;
 }
@@ -27,6 +28,7 @@ interface GetChannelTranslationProps {
 export const GetChannelTranslation = async ({
   channelId,
   locale,
+  adminApiParams,
 }: GetChannelTranslationProps): Promise<
   ConnectedXMResponse<ChannelTranslation>
 > => {
@@ -39,16 +41,19 @@ export const GetChannelTranslation = async ({
 
 const useGetChannelTranslation = (
   channelId: string,
-  locale: string
+  locale: string,
+  options: SingleQueryOptions<ReturnType<typeof GetChannelTranslation>> = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetChannelTranslation>>((
+  return useConnectedSingleQuery<ReturnType<typeof GetChannelTranslation>>(
     CHANNEL_TRANSLATION_QUERY_KEY(channelId, locale),
-    () =>
+    (params: SingleQueryParams) =>
       GetChannelTranslation({
         channelId,
         locale,
+        ...params,
       }),
     {
+      ...options,
       enabled: !!channelId && !!locale,
     }
   );

@@ -47,7 +47,7 @@ export const GetEventCoupons = async ({
 const useGetEventCoupons = (eventId: string) => {
   return useConnectedInfiniteQuery<ReturnType<typeof GetEventCoupons>>(
     EVENT_COUPONS_QUERY_KEY(eventId),
-    (params: any) => GetEventCoupons(params),
+    (params: InfiniteQueryParams) => GetEventCoupons(params),
     {
       eventId,
     },

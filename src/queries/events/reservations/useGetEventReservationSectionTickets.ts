@@ -62,7 +62,7 @@ const useGetEventReservationSectionTickets = (
     Awaited<ReturnType<typeof GetEventReservationSectionTickets>>
   >(
     EVENT_RESERVATION_SECTION_TICKETS_QUERY_KEY(eventId, reservationSectionId),
-    (params: any) => GetEventReservationSectionTickets(params),
+    (params: InfiniteQueryParams) => GetEventReservationSectionTickets(params),
     {
       eventId,
       reservationSectionId,

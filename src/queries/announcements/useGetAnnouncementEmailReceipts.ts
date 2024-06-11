@@ -4,6 +4,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { BaseEmailReceipt, EmailReceiptStatus } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
@@ -35,7 +36,7 @@ export const SET_ANNOUNCEMENT_EMAILS_QUERY_DATA = (
 
 interface GetAnnouncementEmailReceiptsProps extends InfiniteQueryParams {
   announcementId: string;
-  status: keyof typeof EmailReceiptStatus;
+  status?: keyof typeof EmailReceiptStatus;
 }
 
 export const GetAnnouncementEmailReceipts = async ({
@@ -45,6 +46,7 @@ export const GetAnnouncementEmailReceipts = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetAnnouncementEmailReceiptsProps): Promise<
   ConnectedXMResponse<BaseEmailReceipt[]>
 > => {
@@ -65,20 +67,26 @@ export const GetAnnouncementEmailReceipts = async ({
 };
 
 const useGetAnnouncementEmailReceipts = (
-  announcementId: string,
-  status?: keyof typeof EmailReceiptStatus
+  announcementId: string = "",
+  status?: keyof typeof EmailReceiptStatus,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetAnnouncementEmailReceipts>>
+  > = {}
 ) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetAnnouncementEmailReceipts>>
   >(
     ANNOUNCEMENT_EMAILS_QUERY_KEY(announcementId, status),
-    (params: any) => GetAnnouncementEmailReceipts(params),
+    (params: InfiniteQueryParams) =>
+      GetAnnouncementEmailReceipts({ announcementId, status, ...params }),
+    params,
     {
-      announcementId,
-      status,
-    },
-    {
-      enabled: !!announcementId,
+      ...options,
+      enabled: !!announcementId && (options.enabled ?? true),
     }
   );
 };

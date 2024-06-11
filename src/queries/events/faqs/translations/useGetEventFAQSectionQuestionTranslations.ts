@@ -74,7 +74,8 @@ const useGetEventFAQSectionQuestionTranslations = (
       sectionId,
       questionId
     ),
-    (params: any) => GetEventFAQSectionQuestionTranslations(params),
+    (params: InfiniteQueryParams) =>
+      GetEventFAQSectionQuestionTranslations(params),
     {
       eventId,
       sectionId,

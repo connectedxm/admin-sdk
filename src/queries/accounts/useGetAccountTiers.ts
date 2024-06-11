@@ -59,7 +59,7 @@ const useGetAccountTiers = (
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetAccountTiers>>>(
     ACCOUNT_TIERS_QUERY_KEY(accountId),
-    (params: any) => GetAccountTiers(params),
+    (params: InfiniteQueryParams) => GetAccountTiers(params),
     params,
     {
       ...options,

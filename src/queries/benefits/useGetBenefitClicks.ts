@@ -4,6 +4,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { BenefitClick } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { BENEFIT_QUERY_KEY } from "./useGetBenefit";
@@ -32,6 +33,7 @@ export const GetBenefitClicks = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetBenefitClicksProps): Promise<ConnectedXMResponse<BenefitClick[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/benefits/${benefitId}/clicks`, {
@@ -45,17 +47,25 @@ export const GetBenefitClicks = async ({
   return data;
 };
 
-const useGetBenefitClicks = (benefitId: string) => {
+const useGetBenefitClicks = (
+  benefitId: string,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetBenefitClicks>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetBenefitClicks>>
   >(
     BENEFIT_CLICKS_QUERY_KEY(benefitId),
-    (params: any) => GetBenefitClicks(params),
+    (params: InfiniteQueryParams) => GetBenefitClicks({ benefitId, ...params }),
+    params,
     {
-      benefitId,
-    },
-    {
-      enabled: !!benefitId,
+      ...options,
+      enabled: !!benefitId && (options.enabled ?? true),
     }
   );
 };

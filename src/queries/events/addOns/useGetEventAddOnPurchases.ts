@@ -52,7 +52,7 @@ const useGetEventAddOnPurchases = (eventId: string, addOnId: string) => {
     Awaited<ReturnType<typeof GetEventAddOnPurchases>>
   >(
     EVENT_ADD_ON_PURCHASES_QUERY_KEY(eventId, addOnId),
-    (params: any) => GetEventAddOnPurchases(params),
+    (params: InfiniteQueryParams) => GetEventAddOnPurchases(params),
     {
       eventId,
       addOnId,

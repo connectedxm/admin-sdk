@@ -4,6 +4,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Tier } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 
@@ -26,6 +27,7 @@ export const GetTiers = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetTiersProps): Promise<ConnectedXMResponse<Tier[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/tiers`, {
@@ -39,12 +41,18 @@ export const GetTiers = async ({
   return data;
 };
 
-const useGetTiers = () => {
+const useGetTiers = (
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetTiers>>> = {}
+) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetTiers>>>(
     TIERS_QUERY_KEY(),
-    (params: any) => GetTiers({ ...params }),
-    {},
-    {}
+    (params: InfiniteQueryParams) => GetTiers({ ...params }),
+    params,
+    options
   );
 };
 

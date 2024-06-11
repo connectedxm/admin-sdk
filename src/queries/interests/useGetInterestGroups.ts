@@ -3,6 +3,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Group } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { INTEREST_QUERY_KEY } from "./useGetInterest";
@@ -31,6 +32,7 @@ export const GetInterestGroups = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetInterestGroupsProps): Promise<ConnectedXMResponse<Group[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/interests/${interestId}/groups`, {
@@ -44,17 +46,29 @@ export const GetInterestGroups = async ({
   return data;
 };
 
-const useGetInterestGroups = (interestId: string) => {
+const useGetInterestGroups = (
+  interestId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetInterestGroups>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetInterestGroups>>
   >(
     INTEREST_GROUPS_QUERY_KEY(interestId),
-    (params: any) => GetInterestGroups(params),
+    (params: InfiniteQueryParams) =>
+      GetInterestGroups({
+        ...params,
+        interestId,
+      }),
+    params,
     {
-      interestId,
-    },
-    {
-      enabled: !!interestId,
+      ...options,
+      enabled: !!interestId && (options.enabled ?? true),
     }
   );
 };

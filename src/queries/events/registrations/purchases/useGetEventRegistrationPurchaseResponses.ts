@@ -80,7 +80,8 @@ const useGetEventRegistrationPurchaseResponses = (
       registrationId,
       purchaseId
     ),
-    (params: any) => GetEventRegistrationPurchaseResponses(params),
+    (params: InfiniteQueryParams) =>
+      GetEventRegistrationPurchaseResponses(params),
     {
       eventId,
       registrationId,

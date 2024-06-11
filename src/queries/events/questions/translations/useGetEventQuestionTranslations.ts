@@ -59,7 +59,7 @@ const useGetEventQuestionTranslations = (
     Awaited<ReturnType<typeof GetEventQuestionTranslations>>
   >(
     EVENT_QUESTION_TRANSLATIONS_QUERY_KEY(eventId, questionId),
-    (params: any) => GetEventQuestionTranslations(params),
+    (params: InfiniteQueryParams) => GetEventQuestionTranslations(params),
     {
       eventId,
       questionId,

@@ -24,6 +24,7 @@ export const GetStreamInputs = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetStreamInputsParams): Promise<ConnectedXMResponse<StreamInput[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/streams`, {
@@ -41,7 +42,7 @@ export const GetStreamInputs = async ({
 const useGetStreamInputs = () => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetStreamInputs>>>(
     STREAM_INPUTS_QUERY_KEY(),
-    (params: any) => GetStreamInputs(params),
+    (params: InfiniteQueryParams) => GetStreamInputs(params),
     {},
     {}
   );

@@ -1,11 +1,12 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, PageType } from "@src/interfaces";
 import { PageTranslation } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
-  InfiniteQueryParams,
-} from "@/context/queries/useConnectedInfiniteQuery";
-import { PageType } from "@/context/mutations/organization/pages/useUpdateOrganizationPage";
 import { ORGANIZATION_PAGE_QUERY_KEY } from "../useGetOrganizationPage";
+import {
+  InfiniteQueryOptions,
+  InfiniteQueryParams,
+  useConnectedInfiniteQuery,
+} from "@src/queries/useConnectedInfiniteQuery";
 
 export const ORGANIZATION_PAGE_TRANSLATIONS_QUERY_KEY = (type: PageType) => [
   ...ORGANIZATION_PAGE_QUERY_KEY(type),
@@ -33,6 +34,7 @@ export const GetOrganizationPageTranslations = async ({
   orderBy,
   search,
   type,
+  adminApiParams,
 }: GetOrganizationPageTranslationsProps): Promise<
   ConnectedXMResponse<PageTranslation[]>
 > => {
@@ -51,17 +53,29 @@ export const GetOrganizationPageTranslations = async ({
   return data;
 };
 
-const useGetOrganizationPageTranslations = (type: PageType) => {
+const useGetOrganizationPageTranslations = (
+  type: PageType,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetOrganizationPageTranslations>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetOrganizationPageTranslations>>
   >(
     ORGANIZATION_PAGE_TRANSLATIONS_QUERY_KEY(type),
-    (params: any) => GetOrganizationPageTranslations(params),
+    (params: InfiniteQueryParams) =>
+      GetOrganizationPageTranslations({
+        type,
+        ...params,
+      }),
+    params,
     {
-      type,
-    },
-    {
-      enabled: !!type,
+      ...options,
+      enabled: !!type && (options.enabled ?? true),
     }
   );
 };

@@ -2,6 +2,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import {
   useConnectedInfiniteQuery,
   InfiniteQueryParams,
+  InfiniteQueryOptions,
 } from "../useConnectedInfiniteQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { StreamInputOutput } from "@src/interfaces";
@@ -31,6 +32,7 @@ export const GetStreamInputOutputs = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetStreamInputOutputsParams): Promise<
   ConnectedXMResponse<StreamInputOutput[]>
 > => {
@@ -47,14 +49,27 @@ export const GetStreamInputOutputs = async ({
   return data;
 };
 
-const useGetStreamInputOutputs = (streamId: string) => {
+const useGetStreamInputOutputs = (
+  streamId: string,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetStreamInputOutputs>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetStreamInputOutputs>>
   >(
     STREAM_INPUT_OUTPUTS_QUERY_KEY(streamId),
-    (params: any) => GetStreamInputOutputs({ ...params, streamId }),
-    {},
-    {}
+    (params: InfiniteQueryParams) =>
+      GetStreamInputOutputs({ ...params, streamId }),
+    params,
+    {
+      ...options,
+      enabled: !!streamId && (options.enabled ?? true),
+    }
   );
 };
 

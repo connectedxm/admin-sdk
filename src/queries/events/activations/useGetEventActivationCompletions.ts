@@ -61,7 +61,7 @@ const useGetEventActivationCompletions = (
     Awaited<ReturnType<typeof GetEventActivationCompletions>>
   >(
     EVENT_ACTIVATION_COMPLETIONS_QUERY_KEY(eventId, activationId),
-    (params: any) => GetEventActivationCompletions(params),
+    (params: InfiniteQueryParams) => GetEventActivationCompletions(params),
     {
       eventId,
       activationId,

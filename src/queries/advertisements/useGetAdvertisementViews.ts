@@ -4,6 +4,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { AdvertisementView } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { ADVERTISEMENT_QUERY_KEY } from "./useGetAdvertisement";
@@ -30,6 +31,7 @@ export const GetAdvertisementViews = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetAdvertisementViewsProps): Promise<
   ConnectedXMResponse<AdvertisementView[]>
 > => {
@@ -48,19 +50,26 @@ export const GetAdvertisementViews = async ({
   return data;
 };
 
-export const QUERY_KEY = "ADVERTISEMENT_VIEWS";
-
-const useGetAdvertisementViews = (advertisementId: string) => {
+const useGetAdvertisementViews = (
+  advertisementId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetAdvertisementViews>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetAdvertisementViews>>
   >(
-    [QUERY_KEY, advertisementId],
-    (params: any) => GetAdvertisementViews(params),
+    ADVERTISEMENT_VIEWS_QUERY_KEY(advertisementId),
+    (params: InfiniteQueryParams) =>
+      GetAdvertisementViews({ advertisementId, ...params }),
+    params,
     {
-      advertisementId,
-    },
-    {
-      enabled: !!advertisementId,
+      ...options,
+      enabled: !!advertisementId && (options.enabled ?? true),
     }
   );
 };

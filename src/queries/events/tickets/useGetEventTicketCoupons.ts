@@ -52,7 +52,7 @@ const useGetEventTicketCoupons = (eventId: string, ticketId: string) => {
     Awaited<ReturnType<typeof GetEventTicketCoupons>>
   >(
     EVENT_TICKET_COUPONS_QUERY_KEY(eventId, ticketId),
-    (params: any) => GetEventTicketCoupons(params),
+    (params: InfiniteQueryParams) => GetEventTicketCoupons(params),
     {
       eventId,
       ticketId,

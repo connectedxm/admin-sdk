@@ -1,14 +1,12 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import {
-  SingleQueryOptions,
-  SingleQueryParams,
-  useConnectedSingleQuery,
-} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Video } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
-
-import { useConnectedInfiniteQuery } from "../useConnectedInfiniteQuery";
+import {
+  InfiniteQueryOptions,
+  InfiniteQueryParams,
+  useConnectedInfiniteQuery,
+} from "../useConnectedInfiniteQuery";
 
 export const VIDEOS_QUERY_KEY = (source: string) => ["VIDEOS", source];
 
@@ -21,7 +19,7 @@ export const SET_VIDEOS_QUERY_DATA = (
 };
 
 interface GetVideosParams extends InfiniteQueryParams {
-  source: string;
+  source?: string;
 }
 
 export const GetVideos = async ({
@@ -30,6 +28,7 @@ export const GetVideos = async ({
   orderBy,
   search,
   source,
+  adminApiParams,
 }: GetVideosParams): Promise<ConnectedXMResponse<Video[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/videos`, {
@@ -45,11 +44,19 @@ export const GetVideos = async ({
   return data;
 };
 
-const useGetVideos = (source?: string) => {
-  return useConnectedInfiniteQuery<ReturnType<typeof GetVideos>>(
+const useGetVideos = (
+  source?: string,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetVideos>>> = {}
+) => {
+  return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetVideos>>>(
     VIDEOS_QUERY_KEY(source || "all"),
-    (params: any) => GetVideos({ ...params, source }),
-    {}
+    (params: InfiniteQueryParams) => GetVideos({ ...params, source }),
+    params,
+    options
   );
 };
 

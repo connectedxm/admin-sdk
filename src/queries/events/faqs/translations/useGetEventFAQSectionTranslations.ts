@@ -60,7 +60,7 @@ const useGetEventFAQSectionTranslations = (
     Awaited<ReturnType<typeof GetEventFAQSectionTranslations>>
   >(
     EVENT_FAQ_SECTION_TRANSLATIONS_QUERY_KEY(eventId, sectionId),
-    (params: any) => GetEventFAQSectionTranslations(params),
+    (params: InfiniteQueryParams) => GetEventFAQSectionTranslations(params),
     {
       eventId,
       sectionId,

@@ -4,6 +4,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { SponsorshipLevel } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
@@ -25,6 +26,7 @@ export const GetLevels = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetLevelsProps): Promise<ConnectedXMResponse<SponsorshipLevel[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/levels`, {
@@ -38,12 +40,18 @@ export const GetLevels = async ({
   return data;
 };
 
-const useGetLevels = () => {
+const useGetLevels = (
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetLevels>>> = {}
+) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetLevels>>>(
     LEVELS_QUERY_KEY(),
-    (params: any) => GetLevels(params),
-    {},
-    {}
+    (params: InfiniteQueryParams) => GetLevels(params),
+    params,
+    options
   );
 };
 

@@ -3,6 +3,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Tier } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
@@ -36,6 +37,7 @@ export const GetSubscriptionProductTiers = async ({
   orderBy,
   search,
   subscriptionProductId,
+  adminApiParams,
 }: GetSubscriptionProductTiersProps): Promise<ConnectedXMResponse<Tier[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -52,15 +54,27 @@ export const GetSubscriptionProductTiers = async ({
   return data;
 };
 
-const useGetSubscriptionProductTiers = (subscriptionProductId: string) => {
+const useGetSubscriptionProductTiers = (
+  subscriptionProductId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetSubscriptionProductTiers>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetSubscriptionProductTiers>>
   >(
     SUBSCRIPTION_PRODUCT_TIERS_QUERY_KEY(subscriptionProductId),
-    (params: any) =>
+    (params: InfiniteQueryParams) =>
       GetSubscriptionProductTiers({ ...params, subscriptionProductId }),
-    {},
-    {}
+    params,
+    {
+      ...options,
+      enabled: !!subscriptionProductId && (options.enabled ?? true),
+    }
   );
 };
 

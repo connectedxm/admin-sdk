@@ -1,9 +1,10 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 
-import { Interest, Like } from "@src/interfaces";
+import { Interest } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { ACTIVITY_QUERY_KEY } from "./useGetActivity";
@@ -32,6 +33,7 @@ export const GetActivityInterests = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetActivityInterestsProps): Promise<ConnectedXMResponse<Interest[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/activities/${activityId}/interests`, {
@@ -45,17 +47,26 @@ export const GetActivityInterests = async ({
   return data;
 };
 
-const useGetActivityInterests = (activityId: string) => {
+const useGetActivityInterests = (
+  activityId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetActivityInterests>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetActivityInterests>>
   >(
     ACTIVITY_INTERESTS_QUERY_KEY(activityId),
-    (params: any) => GetActivityInterests(params),
+    (params: InfiniteQueryParams) =>
+      GetActivityInterests({ activityId, ...params }),
+    params,
     {
-      activityId,
-    },
-    {
-      enabled: !!activityId,
+      ...options,
+      enabled: !!activityId && (options.enabled ?? true),
     }
   );
 };

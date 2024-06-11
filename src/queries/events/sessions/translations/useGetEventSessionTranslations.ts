@@ -57,7 +57,7 @@ const useGetEventSessionTranslations = (eventId: string, sessionId: string) => {
     Awaited<ReturnType<typeof GetEventSessionTranslations>>
   >(
     EVENT_SESSION_TRANSLATIONS_QUERY_KEY(eventId, sessionId),
-    (params: any) => GetEventSessionTranslations(params),
+    (params: InfiniteQueryParams) => GetEventSessionTranslations(params),
     {
       eventId,
       sessionId,

@@ -47,7 +47,7 @@ const useGetEventSessions = (eventId: string) => {
     Awaited<ReturnType<typeof GetEventSessions>>
   >(
     EVENT_SESSIONS_QUERY_KEY(eventId),
-    (params: any) => GetEventSessions(params),
+    (params: InfiniteQueryParams) => GetEventSessions(params),
     {
       eventId,
     },

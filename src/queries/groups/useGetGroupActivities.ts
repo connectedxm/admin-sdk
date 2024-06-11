@@ -3,10 +3,12 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Activity } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { GROUP_QUERY_KEY } from "./useGetGroup";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const GROUP_ACTIVITIES_QUERY_KEY = (groupId: string) => [
   ...GROUP_QUERY_KEY(groupId),
@@ -31,6 +33,7 @@ export const GetGroupActivities = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetGroupActivitiesProps): Promise<ConnectedXMResponse<Activity[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/groups/${groupId}/activities`, {
@@ -44,17 +47,29 @@ export const GetGroupActivities = async ({
   return data;
 };
 
-const useGetGroupActivities = (groupId: string) => {
+const useGetGroupActivities = (
+  groupId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetGroupActivities>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetGroupActivities>>
   >(
     GROUP_ACTIVITIES_QUERY_KEY(groupId),
-    (params: any) => GetGroupActivities(params),
+    (params: InfiniteQueryParams) =>
+      GetGroupActivities({
+        groupId,
+        ...params,
+      }),
+    params,
     {
-      groupId,
-    },
-    {
-      enabled: !!groupId,
+      ...options,
+      enabled: !!groupId && (options.enabled ?? true),
     }
   );
 };

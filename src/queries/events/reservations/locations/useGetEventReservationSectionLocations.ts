@@ -66,7 +66,7 @@ const useGetEventReservationSections = (
       eventId,
       reservationSectionId
     ),
-    (params: any) => GetEventReservationSections(params),
+    (params: InfiniteQueryParams) => GetEventReservationSections(params),
     {
       eventId,
       reservationSectionId,

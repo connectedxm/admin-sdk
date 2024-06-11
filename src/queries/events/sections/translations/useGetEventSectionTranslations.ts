@@ -60,7 +60,7 @@ const useGetEventSectionTranslations = (eventId: string, sectionId: string) => {
     Awaited<ReturnType<typeof GetEventSectionTranslations>>
   >(
     EVENT_SECTION_TRANSLATIONS_QUERY_KEY(eventId, sectionId),
-    (params: any) => GetEventSectionTranslations(params),
+    (params: InfiniteQueryParams) => GetEventSectionTranslations(params),
     {
       eventId,
       sectionId,

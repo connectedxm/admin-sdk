@@ -76,7 +76,7 @@ const useGetEventRegistrationPurchases = (
     Awaited<ReturnType<typeof GetEventRegistrationPurchases>>
   >(
     EVENT_REGISTRATION_PURCHASES_QUERY_KEY(eventId, registrationId, paid),
-    (params: any) => GetEventRegistrationPurchases(params),
+    (params: InfiniteQueryParams) => GetEventRegistrationPurchases(params),
     {
       eventId,
       registrationId,

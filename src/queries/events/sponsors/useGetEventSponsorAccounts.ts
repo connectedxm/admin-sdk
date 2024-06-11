@@ -47,7 +47,7 @@ const useGetEventSponsorAccounts = (eventId: string) => {
     Awaited<ReturnType<typeof GetEventSponsorAccounts>>
   >(
     EVENT_SPONSOR_ACCOUNTS_QUERY_KEY(eventId),
-    (params: any) => GetEventSponsorAccounts(params),
+    (params: InfiniteQueryParams) => GetEventSponsorAccounts(params),
     {
       eventId,
     },

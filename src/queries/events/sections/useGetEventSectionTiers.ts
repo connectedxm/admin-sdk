@@ -52,7 +52,7 @@ const useGetEventSectionTiers = (eventId: string, sectionId: string) => {
     Awaited<ReturnType<typeof GetEventSectionTiers>>
   >(
     EVENT_SECTION_TIERS_QUERY_KEY(eventId, sectionId),
-    (params: any) => GetEventSectionTiers(params),
+    (params: InfiniteQueryParams) => GetEventSectionTiers(params),
     {
       eventId,
       sectionId,

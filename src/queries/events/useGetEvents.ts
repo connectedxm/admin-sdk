@@ -46,7 +46,7 @@ export const GetEvents = async ({
 const useGetEvents = (past?: string) => {
   return useConnectedInfiniteQuery<ReturnType<typeof GetEvents>>(
     EVENTS_QUERY_KEY(past),
-    (params: any) => GetEvents(params),
+    (params: InfiniteQueryParams) => GetEvents(params),
     {
       past,
     },

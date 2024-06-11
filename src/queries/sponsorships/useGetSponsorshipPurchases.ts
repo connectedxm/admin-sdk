@@ -2,6 +2,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import {
   useConnectedInfiniteQuery,
   InfiniteQueryParams,
+  InfiniteQueryOptions,
 } from "../useConnectedInfiniteQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { SponsorshipPurchase } from "@src/interfaces";
@@ -28,6 +29,7 @@ interface GetSponsorshipPurchasesParams extends InfiniteQueryParams {
 export const GetSponsorshipPurchases = async ({
   sponsorshipId,
   search,
+  adminApiParams,
 }: GetSponsorshipPurchasesParams): Promise<
   ConnectedXMResponse<SponsorshipPurchase[]>
 > => {
@@ -42,14 +44,25 @@ export const GetSponsorshipPurchases = async ({
   return data;
 };
 
-const useGetSponsorshipPurchases = (sponsorshipId: string) => {
+const useGetSponsorshipPurchases = (
+  sponsorshipId: string,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetSponsorshipPurchases>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetSponsorshipPurchases>>
   >(
     SPONSORSHIP_PURCHASES_QUERY_KEY(sponsorshipId),
-    (params: any) => GetSponsorshipPurchases({ ...params, sponsorshipId }),
-    {},
+    (params: InfiniteQueryParams) =>
+      GetSponsorshipPurchases({ ...params, sponsorshipId }),
+    params,
     {
+      ...options,
       enabled: !!sponsorshipId,
     }
   );

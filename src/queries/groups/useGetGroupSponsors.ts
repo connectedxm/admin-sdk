@@ -4,6 +4,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Account } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { GROUP_QUERY_KEY } from "./useGetGroup";
@@ -32,6 +33,7 @@ export const GetGroupSponsors = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetGroupSponsorsProps): Promise<ConnectedXMResponse<Account[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/groups/${groupId}/sponsors`, {
@@ -45,17 +47,25 @@ export const GetGroupSponsors = async ({
   return data;
 };
 
-const useGetGroupSponsors = (groupId: string) => {
+const useGetGroupSponsors = (
+  groupId: string,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetGroupSponsors>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetGroupSponsors>>
   >(
     GROUP_SPONSORS_QUERY_KEY(groupId),
-    (params: any) => GetGroupSponsors(params),
+    (params: InfiniteQueryParams) => GetGroupSponsors({ ...params, groupId }),
+    params,
     {
-      groupId,
-    },
-    {
-      enabled: !!groupId,
+      ...options,
+      enabled: !!groupId && (options.enabled ?? true),
     }
   );
 };

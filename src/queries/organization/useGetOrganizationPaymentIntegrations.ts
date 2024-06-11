@@ -3,6 +3,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { PaymentIntegration } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { ORGANIZATION_QUERY_KEY } from "./useGetOrganization";
@@ -31,6 +32,7 @@ export const GetOrganizationPaymentIntegrations = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetOrganizationPaymentIntegrationsProps): Promise<
   ConnectedXMResponse<PaymentIntegration[]>
 > => {
@@ -46,14 +48,22 @@ export const GetOrganizationPaymentIntegrations = async ({
   return data;
 };
 
-const useGetOrganizationPaymentIntegrations = () => {
+const useGetOrganizationPaymentIntegrations = (
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetOrganizationPaymentIntegrations>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetOrganizationPaymentIntegrations>>
   >(
     ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY(),
-    (params: any) => GetOrganizationPaymentIntegrations(params),
-    {},
-    {}
+    (params: InfiniteQueryParams) => GetOrganizationPaymentIntegrations(params),
+    params,
+    options
   );
 };
 

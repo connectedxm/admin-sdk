@@ -57,7 +57,7 @@ const useGetEventSpeakerTranslations = (eventId: string, speakerId: string) => {
     Awaited<ReturnType<typeof GetEventSpeakerTranslations>>
   >(
     EVENT_SPEAKER_TRANSLATIONS_QUERY_KEY(eventId, speakerId),
-    (params: any) => GetEventSpeakerTranslations(params),
+    (params: InfiniteQueryParams) => GetEventSpeakerTranslations(params),
     {
       eventId,
       speakerId,

@@ -2,9 +2,11 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { SubscriptionProduct } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const SUBSCRIPTION_PRODUCTS_QUERY_KEY = () => ["SUBSCRIPTION_PRODUCTS"];
 
@@ -23,6 +25,7 @@ export const GetSubscriptionProducts = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetSubscriptionProductsProps): Promise<
   ConnectedXMResponse<SubscriptionProduct[]>
 > => {
@@ -38,14 +41,22 @@ export const GetSubscriptionProducts = async ({
   return data;
 };
 
-const useGetSubscriptionProducts = () => {
+const useGetSubscriptionProducts = (
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetSubscriptionProducts>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetSubscriptionProducts>>
   >(
     SUBSCRIPTION_PRODUCTS_QUERY_KEY(),
-    (params: any) => GetSubscriptionProducts(params),
-    {},
-    {}
+    (params: InfiniteQueryParams) => GetSubscriptionProducts(params),
+    params,
+    options
   );
 };
 

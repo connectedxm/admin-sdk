@@ -1,5 +1,9 @@
-import { GetAdminAPI } from '@src/AdminAPI';
-import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { GROUP_QUERY_KEY } from "./useGetGroup";
 import { QueryClient } from "@tanstack/react-query";
@@ -17,7 +21,7 @@ export const SET_GROUP_KPI_MEMBERS_QUERY_DATA = (
   client.setQueryData(GROUP_KPI_MEMBERS_QUERY_KEY(...keyParams), response);
 };
 
-interface GetGroupKPIMembersProps {
+interface GetGroupKPIMembersProps extends SingleQueryParams {
   groupId?: string;
 }
 
@@ -28,17 +32,22 @@ interface DateSumCount {
 
 export const GetGroupKPIMembers = async ({
   groupId,
+  adminApiParams,
 }: GetGroupKPIMembersProps): Promise<ConnectedXMResponse<DateSumCount[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/groups/${groupId}/kpi/members`);
   return data;
 };
 
-const useGetGroupKPIMembers = (groupId: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetGroupKPIMembers>>((
+const useGetGroupKPIMembers = (
+  groupId: string,
+  options: SingleQueryOptions<ReturnType<typeof GetGroupKPIMembers>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetGroupKPIMembers>>(
     GROUP_KPI_MEMBERS_QUERY_KEY(groupId),
-    () => GetGroupKPIMembers({ groupId }),
+    (params: SingleQueryParams) => GetGroupKPIMembers({ groupId, ...params }),
     {
+      ...options,
       enabled: !!groupId,
     }
   );

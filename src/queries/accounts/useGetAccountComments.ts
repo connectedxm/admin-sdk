@@ -60,7 +60,8 @@ const useGetAccountComments = (
     Awaited<ReturnType<typeof GetAccountComments>>
   >(
     ACCOUNT_COMMENTS_QUERY_KEY(accountId),
-    (params: any) => GetAccountComments({ accountId, ...params }),
+    (params: InfiniteQueryParams) =>
+      GetAccountComments({ accountId, ...params }),
     params,
     {
       ...options,

@@ -3,6 +3,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Organization } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { SELF_QUERY_KEY } from "./useGetSelf";
@@ -28,6 +29,7 @@ export const GetSelfOrganizations = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetSelfOrganizationsProps): Promise<ConnectedXMResponse<Organization[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/self/organizations`, {
@@ -41,14 +43,22 @@ export const GetSelfOrganizations = async ({
   return data;
 };
 
-const useGetSelfOrganizations = () => {
+const useGetSelfOrganizations = (
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetSelfOrganizations>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetSelfOrganizations>>
   >(
     SELF_ORGANIZATIONS_QUERY_KEY(),
-    (params: any) => GetSelfOrganizations(params),
-    {},
-    {}
+    (params: InfiniteQueryParams) => GetSelfOrganizations(params),
+    params,
+    options
   );
 };
 

@@ -52,7 +52,7 @@ const useGetEventSessionTracks = (eventId: string, sessionId: string) => {
     Awaited<ReturnType<typeof GetEventSessionTracks>>
   >(
     EVENT_SESSION_TRACKS_QUERY_KEY(eventId, sessionId),
-    (params: any) => GetEventSessionTracks(params),
+    (params: InfiniteQueryParams) => GetEventSessionTracks(params),
     {
       eventId,
       sessionId,

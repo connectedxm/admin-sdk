@@ -52,7 +52,7 @@ const useGetEventSessionSpeakers = (eventId: string, sessionId: string) => {
     Awaited<ReturnType<typeof GetEventSessionSpeakers>>
   >(
     EVENT_SESSION_SPEAKERS_QUERY_KEY(eventId, sessionId),
-    (params: any) => GetEventSessionSpeakers(params),
+    (params: InfiniteQueryParams) => GetEventSessionSpeakers(params),
     {
       eventId,
       sessionId,

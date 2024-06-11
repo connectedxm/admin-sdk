@@ -51,7 +51,7 @@ const useGetEventSessionSponsors = (eventId: string, sessionId: string) => {
     Awaited<ReturnType<typeof GetEventSessionSponsors>>
   >(
     EVENT_SESSION_SPONSORS_QUERY_KEY(eventId, sessionId),
-    (params: any) => GetEventSessionSponsors(params),
+    (params: InfiniteQueryParams) => GetEventSessionSponsors(params),
     {
       eventId,
       sessionId,

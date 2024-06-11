@@ -40,7 +40,7 @@ export const GetFeaturedEvents = async ({
 const useGetFeaturedEvents = () => {
   return useConnectedInfiniteQuery<ConnectedXMResponse<Event[]>>(
     FEATURED_EVENTS_QUERY_KEY(),
-    (params: any) => GetFeaturedEvents(params),
+    (params: InfiniteQueryParams) => GetFeaturedEvents(params),
     {},
     {}
   );

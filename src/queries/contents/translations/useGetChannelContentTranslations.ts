@@ -55,7 +55,7 @@ const useGetChannelContentTranslations = (
     Awaited<ReturnType<typeof GetChannelContentTranslations>>
   >(
     CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY(channelId, contentId),
-    (params: any) => GetChannelContentTranslations(params),
+    (params: InfiniteQueryParams) => GetChannelContentTranslations(params),
     {
       contentId,
     },

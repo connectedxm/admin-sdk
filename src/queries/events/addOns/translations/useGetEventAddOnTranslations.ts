@@ -57,7 +57,7 @@ const useGetEventAddOnTranslations = (eventId: string, addOnId: string) => {
     Awaited<ReturnType<typeof GetEventAddOnTranslations>>
   >(
     EVENT_ADD_ON_TRANSLATIONS_QUERY_KEY(eventId, addOnId),
-    (params: any) => GetEventAddOnTranslations(params),
+    (params: InfiniteQueryParams) => GetEventAddOnTranslations(params),
     {
       eventId,
       addOnId,

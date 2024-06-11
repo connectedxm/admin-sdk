@@ -44,7 +44,7 @@ export const GetEventAddOns = async ({
 const useGetEventAddOns = (eventId: string) => {
   return useConnectedInfiniteQuery<ReturnType<typeof GetEventAddOns>>(
     EVENT_ADD_ONS_QUERY_KEY(eventId),
-    (params: any) => GetEventAddOns(params),
+    (params: InfiniteQueryParams) => GetEventAddOns(params),
     {
       eventId,
     },

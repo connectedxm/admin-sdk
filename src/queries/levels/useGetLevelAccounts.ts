@@ -3,10 +3,12 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Account } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 import { LEVEL_QUERY_KEY } from "./useGetLevel";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const LEVEL_ACCOUNTS_QUERY_KEY = (levelId: string) => [
   ...LEVEL_QUERY_KEY(levelId),
@@ -30,6 +32,7 @@ export const GetLevelAccounts = async ({
   pageParam,
   pageSize,
   search,
+  adminApiParams,
 }: GetLevelAccountsProps): Promise<ConnectedXMResponse<Account[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/levels/${levelId}/accounts`, {
@@ -42,17 +45,29 @@ export const GetLevelAccounts = async ({
   return data;
 };
 
-const useGetLevelAccounts = (levelId: string) => {
+const useGetLevelAccounts = (
+  levelId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetLevelAccounts>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetLevelAccounts>>
   >(
     LEVEL_ACCOUNTS_QUERY_KEY(levelId),
-    (params: any) => GetLevelAccounts(params),
+    (params: InfiniteQueryParams) =>
+      GetLevelAccounts({
+        ...params,
+        levelId,
+      }),
+    params,
     {
-      levelId,
-    },
-    {
-      enabled: !!levelId,
+      ...options,
+      enabled: !!levelId && (options.enabled ?? true),
     }
   );
 };

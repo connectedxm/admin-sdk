@@ -50,7 +50,7 @@ const useGetEventActivations = (eventId: string) => {
     Awaited<ReturnType<typeof GetEventActivations>>
   >(
     EVENT_ACTIVATIONS_QUERY_KEY(eventId),
-    (params: any) => GetEventActivations(params),
+    (params: InfiniteQueryParams) => GetEventActivations(params),
     {
       eventId,
     },

@@ -3,6 +3,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Activity } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
@@ -26,6 +27,7 @@ export const SET_CHANNEL_CONTENT_ACTIVITIES_QUERY_DATA = (
 };
 
 interface GetContentActivitiesProps extends InfiniteQueryParams {
+  channelId: string;
   contentId: string;
 }
 
@@ -49,17 +51,31 @@ export const GetContentActivities = async ({
   return data;
 };
 
-const useGetContentActivities = (channelId: string, contentId: string) => {
+const useGetContentActivities = (
+  channelId: string = "",
+  contentId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetContentActivities>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetContentActivities>>
   >(
     CHANNEL_CONTENT_ACTIVITIES_QUERY_KEY(channelId, contentId),
-    (params: any) => GetContentActivities(params),
+    (params: InfiniteQueryParams) =>
+      GetContentActivities({
+        channelId,
+        contentId,
+        ...params,
+      }),
+    params,
     {
-      contentId,
-    },
-    {
-      enabled: !!contentId,
+      ...options,
+      enabled: !!contentId && !!contentId && (options.enabled ?? true),
     }
   );
 };

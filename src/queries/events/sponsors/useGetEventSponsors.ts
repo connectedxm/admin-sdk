@@ -49,7 +49,7 @@ const useGetEventSponsors = (eventId: string) => {
     Awaited<ReturnType<typeof GetEventSponsors>>
   >(
     EVENT_SPONSORS_QUERY_KEY(eventId),
-    (params: any) => GetEventSponsors(params),
+    (params: InfiniteQueryParams) => GetEventSponsors(params),
     {
       eventId,
     },

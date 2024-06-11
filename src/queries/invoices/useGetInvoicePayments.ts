@@ -3,6 +3,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
@@ -32,6 +33,7 @@ export const GetInvoicePayments = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetInvoicePaymentsProps): Promise<ConnectedXMResponse<Payment[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/invoices/${invoiceId}/payments`, {
@@ -45,17 +47,29 @@ export const GetInvoicePayments = async ({
   return data;
 };
 
-const useGetInvoicePayments = (invoiceId: string) => {
+const useGetInvoicePayments = (
+  invoiceId: string,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetInvoicePayments>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetInvoicePayments>>
   >(
     INVOICE_PAYMENTS_QUERY_KEY(invoiceId),
-    (params: any) => GetInvoicePayments(params),
+    (params: InfiniteQueryParams) =>
+      GetInvoicePayments({
+        ...params,
+        invoiceId,
+      }),
+    params,
     {
-      invoiceId,
-    },
-    {
-      enabled: !!invoiceId,
+      ...options,
+      enabled: !!invoiceId && (options.enabled ?? true),
     }
   );
 };

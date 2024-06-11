@@ -51,7 +51,7 @@ const useGetEventTicketAddOns = (eventId: string, ticketId: string) => {
     Awaited<ReturnType<typeof GetEventTicketAddOns>>
   >(
     EVENT_TICKET_ADD_ONS_QUERY_KEY(eventId, ticketId),
-    (params: any) => GetEventTicketAddOns(params),
+    (params: InfiniteQueryParams) => GetEventTicketAddOns(params),
     {
       eventId,
       ticketId,

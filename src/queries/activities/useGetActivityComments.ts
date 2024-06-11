@@ -3,10 +3,12 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Activity } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { ACTIVITY_QUERY_KEY } from "./useGetActivity";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const ACTIVITY_COMMENTS_QUERY_KEY = (activityId: string) => [
   ...ACTIVITY_QUERY_KEY(activityId),
@@ -31,6 +33,7 @@ export const GetActivityComments = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetActivityCommentsProps): Promise<ConnectedXMResponse<Activity[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/activities/${activityId}/comments`, {
@@ -44,16 +47,25 @@ export const GetActivityComments = async ({
   return data;
 };
 
-const useGetActivityComments = (activityId: string) => {
+const useGetActivityComments = (
+  activityId: string,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetActivityComments>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetActivityComments>>
   >(
     ACTIVITY_COMMENTS_QUERY_KEY(activityId),
-    (params: any) => GetActivityComments(params),
+    (params: InfiniteQueryParams) =>
+      GetActivityComments({ activityId, ...params }),
+    params,
     {
-      activityId,
-    },
-    {
+      ...options,
       enabled: !!activityId,
     }
   );

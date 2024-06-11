@@ -47,7 +47,7 @@ const useGetEventSpeakers = (eventId: string) => {
     Awaited<ReturnType<typeof GetEventSpeakers>>
   >(
     EVENT_SPEAKERS_QUERY_KEY(eventId),
-    (params: any) => GetEventSpeakers(params),
+    (params: InfiniteQueryParams) => GetEventSpeakers(params),
     {
       eventId,
     },

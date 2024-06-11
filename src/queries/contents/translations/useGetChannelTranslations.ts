@@ -1,10 +1,12 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { ChannelTranslation } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
-  InfiniteQueryParams,
-} from "@/context/queries/useConnectedInfiniteQuery";
 import { CHANNEL_QUERY_KEY } from "../useGetChannel";
+import {
+  InfiniteQueryOptions,
+  InfiniteQueryParams,
+  useConnectedInfiniteQuery,
+} from "@src/queries/useConnectedInfiniteQuery";
 
 export const CHANNEL_TRANSLATIONS_QUERY_KEY = (channelId: string) => [
   ...CHANNEL_QUERY_KEY(channelId),
@@ -29,6 +31,7 @@ export const GetChannelTranslations = async ({
   orderBy,
   search,
   channelId,
+  adminApiParams,
 }: GetChannelTranslationsProps): Promise<
   ConnectedXMResponse<ChannelTranslation[]>
 > => {
@@ -44,16 +47,28 @@ export const GetChannelTranslations = async ({
   return data;
 };
 
-const useGetChannelTranslations = (channelId: string) => {
+const useGetChannelTranslations = (
+  channelId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetChannelTranslations>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetChannelTranslations>>
   >(
     CHANNEL_TRANSLATIONS_QUERY_KEY(channelId),
-    (params: any) => GetChannelTranslations(params),
+    (params: InfiniteQueryParams) =>
+      GetChannelTranslations({
+        channelId,
+        ...params,
+      }),
+    params,
     {
-      channelId,
-    },
-    {
+      ...options,
       enabled: !!channelId,
     }
   );

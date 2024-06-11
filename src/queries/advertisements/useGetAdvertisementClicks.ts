@@ -4,6 +4,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { AdvertisementClick } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { ADVERTISEMENT_QUERY_KEY } from "./useGetAdvertisement";
@@ -31,6 +32,7 @@ export const GetAdvertisementClicks = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetAdvertisementClicksProps): Promise<
   ConnectedXMResponse<AdvertisementClick[]>
 > => {
@@ -49,16 +51,25 @@ export const GetAdvertisementClicks = async ({
   return data;
 };
 
-const useGetAdvertisementClicks = (advertisementId: string) => {
+const useGetAdvertisementClicks = (
+  advertisementId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetAdvertisementClicks>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetAdvertisementClicks>>
   >(
     ADVERTISEMENT_CLICKS_QUERY_KEY(advertisementId),
-    (params: any) => GetAdvertisementClicks(params),
+    (params: InfiniteQueryParams) =>
+      GetAdvertisementClicks({ advertisementId, ...params }),
+    params,
     {
-      advertisementId,
-    },
-    {
+      ...options,
       enabled: !!advertisementId,
     }
   );

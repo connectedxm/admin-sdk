@@ -1,5 +1,9 @@
-import { GetAdminAPI } from '@src/AdminAPI';
-import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { ORGANIZATION_QUERY_KEY } from "./useGetOrganization";
 import { QueryClient } from "@tanstack/react-query";
@@ -20,27 +24,34 @@ export const SET_ORGANIZATION_KPI_ACTIVITIES_QUERY_DATA = (
   );
 };
 
-interface GetOrganizationKPIActivitiesProps {}
+interface GetOrganizationKPIActivitiesProps extends SingleQueryParams {}
 
 interface DateCount {
   day: string;
   count: number;
 }
 
-export const GetOrganizationKPIActivities =
-  async ({}: GetOrganizationKPIActivitiesProps): Promise<
-    ConnectedXMResponse<DateCount[]>
-  > => {
-    const adminApi = await GetAdminAPI(adminApiParams);
-    const { data } = await adminApi.get(`/organization/kpi/activities`);
-    return data;
-  };
+export const GetOrganizationKPIActivities = async ({
+  adminApiParams,
+}: GetOrganizationKPIActivitiesProps): Promise<
+  ConnectedXMResponse<DateCount[]>
+> => {
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.get(`/organization/kpi/activities`);
+  return data;
+};
 
-const useGetOrganizationKPIActivities = () => {
-  return useConnectedSingleQuery<ReturnType<typeof GetOrganizationKPIActivities>>((
+const useGetOrganizationKPIActivities = (
+  options: SingleQueryOptions<
+    ReturnType<typeof GetOrganizationKPIActivities>
+  > = {}
+) => {
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetOrganizationKPIActivities>
+  >(
     ORGANIZATION_KPI_ACTIVITIES_QUERY_KEY(),
-    () => GetOrganizationKPIActivities({}),
-    {}
+    (params: SingleQueryParams) => GetOrganizationKPIActivities(params),
+    options
   );
 };
 

@@ -3,10 +3,12 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Like } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { ACTIVITY_QUERY_KEY } from "./useGetActivity";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const ACTIVITY_LIKES_QUERY_KEY = (activityId: string) => [
   ...ACTIVITY_QUERY_KEY(activityId),
@@ -31,6 +33,7 @@ export const GetActivityLikes = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetActivityLikesProps): Promise<ConnectedXMResponse<Like[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/activities/${activityId}/likes`, {
@@ -44,17 +47,26 @@ export const GetActivityLikes = async ({
   return data;
 };
 
-const useGetActivityLikes = (activityId: string) => {
+const useGetActivityLikes = (
+  activityId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetActivityLikes>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetActivityLikes>>
   >(
     ACTIVITY_LIKES_QUERY_KEY(activityId),
-    (params: any) => GetActivityLikes(params),
+    (params: InfiniteQueryParams) =>
+      GetActivityLikes({ activityId, ...params }),
+    params,
     {
-      activityId,
-    },
-    {
-      enabled: !!activityId,
+      ...options,
+      enabled: !!activityId && (options.enabled ?? true),
     }
   );
 };

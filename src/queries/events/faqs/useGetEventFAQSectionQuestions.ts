@@ -59,7 +59,7 @@ const useGetEventFAQSectionQuestionsectionQuestions = (
     Awaited<ReturnType<typeof GetEventFAQSectionQuestions>>
   >(
     EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY(eventId, sectionId),
-    (params: any) => GetEventFAQSectionQuestions(params),
+    (params: InfiniteQueryParams) => GetEventFAQSectionQuestions(params),
     {
       eventId,
       sectionId,

@@ -2,13 +2,14 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Image, ImageType } from "@src/interfaces";
 import {
-  InfiniteParams,
+  InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 
 export const IMAGES_QUERY_KEY = (type?: ImageType) => {
-  let keys = ["IMAGES"];
+  const keys = ["IMAGES"];
   if (type) keys.push(type);
   return keys;
 };
@@ -25,7 +26,7 @@ export interface ImageWCopyUri extends Image {
   copyUri: string;
 }
 
-interface GetImagePrams extends InfiniteParams {
+interface GetImagePrams extends InfiniteQueryParams {
   type?: ImageType;
 }
 
@@ -35,6 +36,7 @@ export const GetImages = async ({
   orderBy,
   type,
   search,
+  adminApiParams,
 }: GetImagePrams): Promise<ConnectedXMResponse<ImageWCopyUri[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/images`, {
@@ -50,11 +52,19 @@ export const GetImages = async ({
   return data;
 };
 
-const useGetImages = (type?: ImageType) => {
-  return useConnectedInfiniteQuery<ReturnType<typeof GetImages>>(
+const useGetImages = (
+  type?: ImageType,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetImages>>> = {}
+) => {
+  return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetImages>>>(
     IMAGES_QUERY_KEY(type),
-    (params: InfiniteParams) => GetImages({ ...params, type }),
-    {}
+    (params: InfiniteQueryParams) => GetImages({ ...params, type }),
+    params,
+    options
   );
 };
 

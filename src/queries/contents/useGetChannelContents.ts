@@ -4,6 +4,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Content } from "@src/interfaces";
 import {
   InfiniteQueryParams,
+  InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { CHANNEL_QUERY_KEY } from "./useGetChannel";
@@ -13,7 +14,7 @@ export const CHANNEL_CONTENTS_QUERY_KEY = (
   channelId: string,
   status?: string
 ) => {
-  let keys = [...CHANNEL_QUERY_KEY(channelId), "CONTENTS"];
+  const keys = [...CHANNEL_QUERY_KEY(channelId), "CONTENTS"];
   if (status) keys.push(status);
   return keys;
 };
@@ -38,6 +39,7 @@ export const GetChannelContents = async ({
   search,
   channelId,
   status,
+  adminApiParams,
 }: GetChannelContentsProps): Promise<ConnectedXMResponse<Content[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/channels/${channelId}/contents`, {
@@ -52,18 +54,31 @@ export const GetChannelContents = async ({
   return data;
 };
 
-const useGetChannelContents = (channelId: string, status?: string) => {
+const useGetChannelContents = (
+  channelId: string = "",
+  status?: string,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetChannelContents>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetChannelContents>>
   >(
     CHANNEL_CONTENTS_QUERY_KEY(channelId, status),
-    (params: any) => GetChannelContents(params),
+    (params: InfiniteQueryParams) =>
+      GetChannelContents({
+        channelId,
+        status,
+        ...params,
+      }),
+    params,
     {
-      channelId,
-      status,
-    },
-    {
-      enabled: !!channelId,
+      ...options,
+      enabled: !!channelId && (options.enabled ?? true),
     }
   );
 };

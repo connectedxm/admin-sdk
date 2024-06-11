@@ -22,7 +22,7 @@ export const SET_IMAGE_USAGE_QUERY_DATA = (
   client.setQueryData(IMAGE_USAGE_QUERY_KEY(...keyParams), response);
 };
 
-interface GetImageUsageParams {
+interface GetImageUsageParams extends SingleQueryParams {
   imageId: string;
 }
 
@@ -40,6 +40,7 @@ interface ImageUsage extends Image {
 
 export const GetImageUsage = async ({
   imageId,
+  adminApiParams,
 }: GetImageUsageParams): Promise<ConnectedXMResponse<ImageUsage>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/images/${imageId}/usage`);
@@ -47,12 +48,16 @@ export const GetImageUsage = async ({
   return data;
 };
 
-const useGetImageUsage = (imageId: string) => {
+const useGetImageUsage = (
+  imageId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetImageUsage>> = {}
+) => {
   return useConnectedSingleQuery<ReturnType<typeof GetImageUsage>>(
     IMAGE_USAGE_QUERY_KEY(imageId),
-    () => GetImageUsage({ imageId }),
+    (params) => GetImageUsage({ imageId, ...params }),
     {
-      enabled: !!imageId,
+      ...options,
+      enabled: !!imageId && (options?.enabled ?? true),
     }
   );
 };

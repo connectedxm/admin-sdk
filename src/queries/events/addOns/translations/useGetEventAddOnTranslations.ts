@@ -8,11 +8,19 @@ import {
 } from "../../../useConnectedInfiniteQuery";
 import { EVENT_ADD_ON_QUERY_KEY } from "../useGetEventAddOn";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_ADD_ON_TRANSLATIONS_QUERY_KEY = (
   eventId: string,
   addOnId: string
 ) => [...EVENT_ADD_ON_QUERY_KEY(eventId, addOnId), "TRANSLATIONS"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_ADD_ON_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_ADD_ON_TRANSLATIONS_QUERY_KEY>,
@@ -29,6 +37,10 @@ interface GetEventAddOnTranslationsProps extends InfiniteQueryParams {
   addOnId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventAddOnTranslations = async ({
   pageParam,
   pageSize,
@@ -54,6 +66,10 @@ export const GetEventAddOnTranslations = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventAddOnTranslations = (
   eventId: string = "",
   addOnId: string = "",

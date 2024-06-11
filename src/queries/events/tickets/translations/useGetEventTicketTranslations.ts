@@ -8,11 +8,19 @@ import {
 } from "../../../useConnectedInfiniteQuery";
 import { EVENT_TICKET_QUERY_KEY } from "../useGetEventTicket";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_TICKET_TRANSLATIONS_QUERY_KEY = (
   eventId: string,
   ticketId: string
 ) => [...EVENT_TICKET_QUERY_KEY(eventId, ticketId), "TRANSLATIONS"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_TICKET_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_TICKET_TRANSLATIONS_QUERY_KEY>,
@@ -29,6 +37,10 @@ interface GetEventTicketTranslationsProps extends InfiniteQueryParams {
   ticketId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventTicketTranslations = async ({
   pageParam,
   pageSize,
@@ -54,6 +66,10 @@ export const GetEventTicketTranslations = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventTicketTranslations = (
   eventId: string = "",
   ticketId: string = "",

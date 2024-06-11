@@ -8,11 +8,19 @@ import {
 } from "../../../useConnectedInfiniteQuery";
 import { EVENT_ACTIVATION_QUERY_KEY } from "../useGetEventActivation";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_ACTIVATION_TRANSLATIONS_QUERY_KEY = (
   eventId: string,
   activationId: string
 ) => [...EVENT_ACTIVATION_QUERY_KEY(eventId, activationId), "TRANSLATIONS"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_ACTIVATION_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_ACTIVATION_TRANSLATIONS_QUERY_KEY>,
@@ -29,6 +37,10 @@ interface GetEventActivationTranslationsProps extends InfiniteQueryParams {
   activationId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventActivationTranslations = async ({
   pageParam,
   pageSize,
@@ -54,6 +66,10 @@ export const GetEventActivationTranslations = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventActivationTranslations = (
   eventId: string = "",
   activationId: string = "",

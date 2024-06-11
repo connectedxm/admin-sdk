@@ -8,11 +8,19 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { BaseEmailReceipt, EmailReceiptStatus } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Key
+ * @group Emails
+ */
 export const EMAIL_RECEIPTS_QUERY_KEY = (status?: string) => [
   "EMAIL_RECEIPTS",
   status || "all",
 ];
 
+/**
+ * @category Setters
+ * @group Emails
+ */
 export const SET_EMAIL_RECEIPTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EMAIL_RECEIPTS_QUERY_KEY>,
@@ -25,6 +33,10 @@ interface GetEmailReceiptsParams extends InfiniteQueryParams {
   status?: EmailReceiptStatus;
 }
 
+/**
+ * @category Query
+ * @group Emails
+ */
 export const GetEmailReceipts = async ({
   pageParam,
   pageSize,
@@ -48,6 +60,11 @@ export const GetEmailReceipts = async ({
 
   return data;
 };
+
+/**
+ * @category Hooks
+ * @group Emails
+ */
 export const useGetEmailReceipts = (
   status?: EmailReceiptStatus,
   params: Omit<

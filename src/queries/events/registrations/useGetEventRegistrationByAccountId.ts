@@ -8,11 +8,19 @@ import {
 } from "../../useConnectedSingleQuery";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_ACCOUNT_REGISTRATION_QUERY_KEY = (
   eventId: string,
   accountId: string
 ) => [...EVENT_QUERY_KEY(eventId), "REGISTRATION", accountId];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_ACCOUNT_REGISTRATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_ACCOUNT_REGISTRATION_QUERY_KEY>,
@@ -29,6 +37,10 @@ interface GetEventAccountRegistrationProps extends SingleQueryParams {
   accountId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventAccountRegistration = async ({
   eventId,
   accountId,
@@ -43,6 +55,10 @@ export const GetEventAccountRegistration = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventAccountRegistration = (
   eventId: string = "",
   accountId: string = "",

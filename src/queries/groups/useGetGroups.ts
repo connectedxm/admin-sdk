@@ -9,8 +9,16 @@ import {
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Groups
+ */
 export const GROUPS_QUERY_KEY = () => ["GROUPS"];
 
+/**
+ * @category Setters
+ * @group Groups
+ */
 export const SET_GROUPS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof GROUPS_QUERY_KEY>,
@@ -21,6 +29,10 @@ export const SET_GROUPS_QUERY_DATA = (
 
 interface GetGroupsProps extends InfiniteQueryParams {}
 
+/**
+ * @category Queries
+ * @group Groups
+ */
 export const GetGroups = async ({
   pageParam,
   pageSize,
@@ -39,6 +51,10 @@ export const GetGroups = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Groups
+ */
 export const useGetGroups = (
   params: Omit<
     InfiniteQueryParams,

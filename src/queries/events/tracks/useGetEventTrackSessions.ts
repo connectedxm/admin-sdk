@@ -8,11 +8,19 @@ import {
 import { EVENT_TRACK_QUERY_KEY } from "./useGetEventTrack";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_TRACK_SESSIONS_QUERY_KEY = (
   eventId: string,
   trackId: string
 ) => [...EVENT_TRACK_QUERY_KEY(eventId, trackId), "SESSIONS"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_TRACK_SESSIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_TRACK_SESSIONS_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetEventTrackSessionsProps extends InfiniteQueryParams {
   trackId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventTrackSessions = async ({
   eventId,
   trackId,
@@ -49,6 +61,10 @@ export const GetEventTrackSessions = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventTrackSessions = (
   eventId: string = "",
   trackId: string = "",

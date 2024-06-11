@@ -10,11 +10,19 @@ import { Account } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { ACCOUNTS_QUERY_KEY } from "./useGetAccounts";
 
+/**
+ * @category Keys
+ * @group Accounts
+ */
 export const ACCOUNT_QUERY_KEY = (accountId: string) => [
   ...ACCOUNTS_QUERY_KEY(),
   accountId,
 ];
 
+/**
+ * @category Setters
+ * @group Accounts
+ */
 export const SET_ACCOUNT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetAccountProps extends SingleQueryParams {
   accountId: string;
 }
 
+/**
+ * @category Queries
+ * @group Accounts
+ */
 export const GetAccount = async ({
   accountId = "",
   adminApiParams,
@@ -35,6 +47,10 @@ export const GetAccount = async ({
   const { data } = await adminApi.get(`/accounts/${accountId}`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Accounts
+ */
 export const useGetAccount = (
   accountId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetAccount>> = {}

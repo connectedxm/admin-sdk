@@ -9,11 +9,19 @@ import { SPONSORSHIP_QUERY_KEY } from "./useGetSponsorship";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Sponsorships
+ */
 export const SPONSORSHIP_EVENTS_QUERY_KEY = (sponsorshipId: string) => [
   ...SPONSORSHIP_QUERY_KEY(sponsorshipId),
   "EVENTS",
 ];
 
+/**
+ * @category Setters
+ * @group Sponsorships
+ */
 export const SET_SPONSORSHIP_EVENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SPONSORSHIP_EVENTS_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetSponsorshipEventsParams extends InfiniteQueryParams {
   sponsorshipId: string;
 }
 
+/**
+ * @category Queries
+ * @group Sponsorships
+ */
 export const GetSponsorshipEvents = async ({
   sponsorshipId,
   pageParam,
@@ -46,6 +58,10 @@ export const GetSponsorshipEvents = async ({
 
   return data;
 };
+/**
+ * @category Hooks
+ * @group Sponsorships
+ */
 export const useGetSponsorshipEvents = (
   sponsorshipId: string = "",
   params: Omit<

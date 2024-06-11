@@ -9,6 +9,10 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_REGISTRATION_PURCHASE_QUERY_KEY } from "./useGetEventRegistrationPurchase";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_REGISTRATION_PURCHASE_ADD_ONS_QUERY_KEY = (
   eventId: string,
   registrationId: string,
@@ -18,6 +22,10 @@ export const EVENT_REGISTRATION_PURCHASE_ADD_ONS_QUERY_KEY = (
   "ADD_ONS",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_REGISTRATION_PURCHASE_ADD_ONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_REGISTRATION_PURCHASE_ADD_ONS_QUERY_KEY>,
@@ -35,6 +43,10 @@ interface GetEventRegistrationPurchaseAddOnsProps extends InfiniteQueryParams {
   purchaseId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventRegistrationPurchaseAddOns = async ({
   eventId,
   registrationId,
@@ -61,6 +73,10 @@ export const GetEventRegistrationPurchaseAddOns = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventRegistrationPurchaseAddOns = (
   eventId: string = "",
   registrationId: string = "",

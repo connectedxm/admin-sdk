@@ -9,11 +9,19 @@ import { Coupon } from "@src/interfaces";
 import { EVENT_COUPONS_QUERY_KEY } from "./useGetEventCoupons";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_COUPON_QUERY_KEY = (eventId: string, couponId: string) => [
   ...EVENT_COUPONS_QUERY_KEY(eventId),
   couponId,
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_COUPON_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_COUPON_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetEventCouponProps extends SingleQueryParams {
   couponId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventCoupon = async ({
   eventId,
   couponId,
@@ -36,6 +48,10 @@ export const GetEventCoupon = async ({
   const { data } = await adminApi.get(`/events/${eventId}/coupons/${couponId}`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventCoupon = (
   eventId: string = "",
   couponId: string = "",

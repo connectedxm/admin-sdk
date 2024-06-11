@@ -9,12 +9,20 @@ import { EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY } from "./useGetEventFAQSectionQu
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_FAQ_SECTION_QUESTION_QUERY_KEY = (
   eventId: string,
   sectionId: string,
   questionId: string
 ) => [...EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY(eventId, sectionId), questionId];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_FAQ_SECTION_QUESTION_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_FAQ_SECTION_QUESTION_QUERY_KEY>,
@@ -32,6 +40,10 @@ interface GetEventFAQSectionQuestionProps extends SingleQueryParams {
   questionId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventFAQSectionQuestion = async ({
   eventId,
   sectionId,
@@ -44,6 +56,10 @@ export const GetEventFAQSectionQuestion = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventFAQSectionQuestion = (
   eventId: string = "",
   sectionId: string = "",

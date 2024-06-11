@@ -9,11 +9,19 @@ import { SponsorshipLevel } from "@src/interfaces";
 import { SPONSORSHIP_QUERY_KEY } from "./useGetSponsorship";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Sponsorships
+ */
 export const SPONSORSHIP_LEVELS_QUERY_KEY = (sponsorshipId: string) => [
   ...SPONSORSHIP_QUERY_KEY(sponsorshipId),
   "LEVELS",
 ];
 
+/**
+ * @category Setters
+ * @group Sponsorships
+ */
 export const SET_SPONSORSHIP_LEVELS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SPONSORSHIP_LEVELS_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetSponsorshipLevelsParams extends InfiniteQueryParams {
   sponsorshipId: string;
 }
 
+/**
+ * @category Queries
+ * @group Sponsorships
+ */
 export const GetSponsorshipLevels = async ({
   sponsorshipId,
   pageParam,
@@ -48,6 +60,10 @@ export const GetSponsorshipLevels = async ({
 
   return data;
 };
+/**
+ * @category Hooks
+ * @group Sponsorships
+ */
 export const useGetSponsorshipLevels = (
   sponsorshipId: string = "",
   params: Omit<

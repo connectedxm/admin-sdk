@@ -9,11 +9,19 @@ import {
 import { INTEREST_QUERY_KEY } from "./useGetInterest";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Interests
+ */
 export const INTEREST_GROUPS_QUERY_KEY = (interestId: string) => [
   ...INTEREST_QUERY_KEY(interestId),
   "GROUPS",
 ];
 
+/**
+ * @category Setters
+ * @group Interests
+ */
 export const SET_INTEREST_GROUPS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INTEREST_GROUPS_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetInterestGroupsProps extends InfiniteQueryParams {
   interestId: string;
 }
 
+/**
+ * @category Queries
+ * @group Interests
+ */
 export const GetInterestGroups = async ({
   interestId,
   pageParam,
@@ -45,6 +57,10 @@ export const GetInterestGroups = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Interests
+ */
 export const useGetInterestGroups = (
   interestId: string = "",
   params: Omit<

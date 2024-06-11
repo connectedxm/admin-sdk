@@ -8,6 +8,10 @@ import {
 import { EVENT_RESERVATION_SECTION_QUERY_KEY } from "./useGetEventReservationSection";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_RESERVATION_SECTION_TICKETS_QUERY_KEY = (
   eventId: string,
   reservationSectionId: string
@@ -16,6 +20,10 @@ export const EVENT_RESERVATION_SECTION_TICKETS_QUERY_KEY = (
   "TICKETS",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_RESERVATION_SECTION_TICKETS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_RESERVATION_SECTION_TICKETS_QUERY_KEY>,
@@ -32,6 +40,10 @@ interface GetEventReservationSectionTicketsProps extends InfiniteQueryParams {
   reservationSectionId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventReservationSectionTickets = async ({
   eventId,
   reservationSectionId,
@@ -57,6 +69,10 @@ export const GetEventReservationSectionTickets = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventReservationSectionTickets = (
   eventId: string = "",
   reservationSectionId: string = "",

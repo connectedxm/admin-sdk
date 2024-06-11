@@ -8,6 +8,10 @@ import { EventActivationTranslation } from "@src/interfaces";
 import { EVENT_ACTIVATION_TRANSLATIONS_QUERY_KEY } from "./useGetEventActivationTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_ACTIVATION_TRANSLATION_QUERY_KEY = (
   eventId: string,
   activationId: string,
@@ -17,6 +21,10 @@ export const EVENT_ACTIVATION_TRANSLATION_QUERY_KEY = (
   locale,
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_ACTIVATION_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_ACTIVATION_TRANSLATION_QUERY_KEY>,
@@ -34,6 +42,10 @@ interface GetEventActivationTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventActivationTranslation = async ({
   eventId,
   activationId,
@@ -48,6 +60,10 @@ export const GetEventActivationTranslation = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventActivationTranslation = (
   eventId: string = "",
   activationId: string = "",

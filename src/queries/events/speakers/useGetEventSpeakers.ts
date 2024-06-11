@@ -9,11 +9,19 @@ import {
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_SPEAKERS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "SPEAKERS",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_SPEAKERS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SPEAKERS_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetEventSpeakersProps extends InfiniteQueryParams {
   eventId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventSpeakers = async ({
   eventId,
   pageParam,
@@ -45,6 +57,10 @@ export const GetEventSpeakers = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventSpeakers = (
   eventId: string = "",
   params: Omit<

@@ -8,6 +8,10 @@ import {
 } from "../../../useConnectedInfiniteQuery";
 import { EVENT_FAQ_SECTION_QUESTION_QUERY_KEY } from "../useGetEventFAQSectionQuestion";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_FAQ_SECTION_QUESTION_TRANSLATIONS_QUERY_KEY = (
   eventId: string,
   sectionId: string,
@@ -17,6 +21,10 @@ export const EVENT_FAQ_SECTION_QUESTION_TRANSLATIONS_QUERY_KEY = (
   "TRANSLATIONS",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_FAQ_SECTION_QUESTION_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<
@@ -37,6 +45,10 @@ interface GetEventFAQSectionQuestionTranslationsProps
   questionId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventFAQSectionQuestionTranslations = async ({
   pageParam,
   pageSize,
@@ -63,6 +75,10 @@ export const GetEventFAQSectionQuestionTranslations = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventFAQSectionQuestionTranslations = (
   eventId: string = "",
   sectionId: string = "",

@@ -8,12 +8,20 @@ import { EventAddOnTranslation } from "@src/interfaces";
 import { EVENT_ADD_ON_TRANSLATIONS_QUERY_KEY } from "./useGetEventAddOnTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_ADD_ON_TRANSLATION_QUERY_KEY = (
   eventId: string,
   addOnId: string,
   locale: string
 ) => [...EVENT_ADD_ON_TRANSLATIONS_QUERY_KEY(eventId, addOnId), locale];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_ADD_ON_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_ADD_ON_TRANSLATION_QUERY_KEY>,
@@ -31,6 +39,10 @@ interface GetEventAddOnTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventAddOnTranslation = async ({
   eventId,
   addOnId,
@@ -45,6 +57,10 @@ export const GetEventAddOnTranslation = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventAddOnTranslation = (
   eventId: string = "",
   addOnId: string = "",

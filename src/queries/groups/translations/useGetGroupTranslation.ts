@@ -8,11 +8,19 @@ import {
   SingleQueryParams,
 } from "@src/queries/useConnectedSingleQuery";
 
+/**
+ * @category Keys
+ * @group Groups
+ */
 export const GROUP_TRANSLATION_QUERY_KEY = (
   groupId: string,
   locale: string
 ) => [...GROUP_TRANSLATIONS_QUERY_KEY(groupId), locale];
 
+/**
+ * @category Setters
+ * @group Groups
+ */
 export const SET_GROUP_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof GROUP_TRANSLATION_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetGroupTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
+/**
+ * @category Queries
+ * @group Groups
+ */
 export const GetGroupTranslation = async ({
   groupId,
   locale,
@@ -39,6 +51,10 @@ export const GetGroupTranslation = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Groups
+ */
 export const useGetGroupTranslation = (
   groupId: string = "",
   locale: string = "",

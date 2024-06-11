@@ -8,11 +8,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { EVENT_ACTIVATIONS_QUERY_KEY } from "./useGetEventActivations";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_ACTIVATION_QUERY_KEY = (
   eventId: string,
   activationId: string
 ) => [...EVENT_ACTIVATIONS_QUERY_KEY(eventId), activationId];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_ACTIVATION_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_ACTIVATION_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetEventActivationProps extends SingleQueryParams {
   activationId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventActivation = async ({
   eventId,
   activationId,
@@ -39,6 +51,10 @@ export const GetEventActivation = async ({
 
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventActivation = (
   eventId: string,
   activationId: string,

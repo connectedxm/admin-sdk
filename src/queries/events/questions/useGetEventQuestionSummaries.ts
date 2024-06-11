@@ -9,11 +9,19 @@ import {
   useConnectedInfiniteQuery,
 } from "@src/queries/useConnectedInfiniteQuery";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_QUESTION_SUMMARIES_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "QUESTION_SUMMARIES",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_QUESTION_SUMMARIES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_QUESTION_SUMMARIES_QUERY_KEY>,
@@ -29,6 +37,10 @@ interface GetEventQuestionSummariesProps extends InfiniteQueryParams {
   eventId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventQuestionSummaries = async ({
   eventId,
   pageParam,
@@ -46,6 +58,10 @@ export const GetEventQuestionSummaries = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventQuestionSummaries = (
   eventId: string = "",
   params: Omit<

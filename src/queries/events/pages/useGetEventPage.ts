@@ -9,11 +9,19 @@ import { EVENT_PAGES_QUERY_KEY } from "./useGetEventPages";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_PAGE_QUERY_KEY = (eventId: string, pageId: string) => [
   ...EVENT_PAGES_QUERY_KEY(eventId),
   pageId,
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_PAGE_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_PAGE_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetEventPageProps extends SingleQueryParams {
   pageId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventPage = async ({
   eventId,
   pageId,
@@ -36,6 +48,10 @@ export const GetEventPage = async ({
   const { data } = await adminApi.get(`/events/${eventId}/pages/${pageId}`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventPage = (
   eventId: string = "",
   pageId: string = "",

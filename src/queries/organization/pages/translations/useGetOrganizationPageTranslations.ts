@@ -8,11 +8,19 @@ import {
   useConnectedInfiniteQuery,
 } from "@src/queries/useConnectedInfiniteQuery";
 
+/**
+ * @category Keys
+ * @group Organization
+ */
 export const ORGANIZATION_PAGE_TRANSLATIONS_QUERY_KEY = (type: PageType) => [
   ...ORGANIZATION_PAGE_QUERY_KEY(type),
   "TRANSLATIONS",
 ];
 
+/**
+ * @category Setters
+ * @group Organization
+ */
 export const SET_ORGANIZATION_PAGE_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof ORGANIZATION_PAGE_TRANSLATIONS_QUERY_KEY>,
@@ -28,6 +36,10 @@ interface GetOrganizationPageTranslationsProps extends InfiniteQueryParams {
   type: PageType;
 }
 
+/**
+ * @category Queries
+ * @group Organization
+ */
 export const GetOrganizationPageTranslations = async ({
   pageParam,
   pageSize,
@@ -52,6 +64,10 @@ export const GetOrganizationPageTranslations = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Organization
+ */
 export const useGetOrganizationPageTranslations = (
   type: PageType,
   params: Omit<

@@ -8,11 +8,19 @@ import {
   SingleQueryParams,
 } from "@src/queries/useConnectedSingleQuery";
 
+/**
+ * @category Keys
+ * @group Benefits
+ */
 export const BENEFIT_TRANSLATION_QUERY_KEY = (
   benefitId: string,
   locale: string
 ) => [...BENEFIT_TRANSLATIONS_QUERY_KEY(benefitId), locale];
 
+/**
+ * @category Setters
+ * @group Benefits
+ */
 export const SET_BENEFIT_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof BENEFIT_TRANSLATION_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetBenefitTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
+/**
+ * @category Queries
+ * @group Benefits
+ */
 export const GetBenefitTranslation = async ({
   benefitId,
   locale,
@@ -40,6 +52,10 @@ export const GetBenefitTranslation = async ({
   return data;
 };
 
+/**
+ * @category Hooks
+ * @group Benefits
+ */
 export const useGetBenefitTranslation = (
   benefitId: string = "",
   locale: string = "",

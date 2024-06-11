@@ -9,11 +9,19 @@ import {
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_TRACKS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "TRACKS",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_TRACKS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_TRACKS_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetEventTracksProps extends InfiniteQueryParams {
   eventId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventTracks = async ({
   eventId,
   pageParam,
@@ -45,6 +57,10 @@ export const GetEventTracks = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventTracks = (
   eventId: string = "",
   params: Omit<

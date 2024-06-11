@@ -8,11 +8,19 @@ import {
 import { EVENT_REGISTRATIONS_QUERY_KEY } from "./useGetEventRegistrations";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_REGISTRATION_QUERY_KEY = (
   eventId: string,
   registrationId: string
 ) => [...EVENT_REGISTRATIONS_QUERY_KEY(eventId), registrationId];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_REGISTRATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_REGISTRATION_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetEventRegistrationProps extends SingleQueryParams {
   registrationId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventRegistration = async ({
   eventId,
   registrationId,
@@ -37,6 +49,10 @@ export const GetEventRegistration = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventRegistration = (
   eventId: string,
   registrationId: string = "",

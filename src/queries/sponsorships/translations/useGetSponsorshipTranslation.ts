@@ -8,11 +8,19 @@ import {
   SingleQueryParams,
 } from "@src/queries/useConnectedSingleQuery";
 
+/**
+ * @category Keys
+ * @group Sponsorships
+ */
 export const SPONSORSHIP_TRANSLATION_QUERY_KEY = (
   sponsorshipId: string,
   locale: string
 ) => [...SPONSORSHIP_TRANSLATIONS_QUERY_KEY(sponsorshipId), locale];
 
+/**
+ * @category Setters
+ * @group Sponsorships
+ */
 export const SET_SPONSORSHIP_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof SPONSORSHIP_TRANSLATION_QUERY_KEY>,
@@ -29,6 +37,10 @@ interface GetSponsorshipTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
+/**
+ * @category Queries
+ * @group Sponsorships
+ */
 export const GetSponsorshipTranslation = async ({
   sponsorshipId,
   locale,
@@ -42,6 +54,10 @@ export const GetSponsorshipTranslation = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Sponsorships
+ */
 export const useGetSponsorshipTranslation = (
   sponsorshipId: string = "",
   locale: string = "",

@@ -8,6 +8,10 @@ import { RegistrationQuestionChoiceTranslation } from "@src/interfaces";
 import { EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_KEY } from "./useGetEventQuestionChoiceTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_QUESTION_CHOICE_TRANSLATION_QUERY_KEY = (
   eventId: string,
   questionId: string,
@@ -22,6 +26,10 @@ export const EVENT_QUESTION_CHOICE_TRANSLATION_QUERY_KEY = (
   locale,
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_QUESTION_CHOICE_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_QUESTION_CHOICE_TRANSLATION_QUERY_KEY>,
@@ -40,6 +48,10 @@ interface GetEventQuestionChoiceTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventQuestionChoiceTranslation = async ({
   eventId,
   questionId,
@@ -55,6 +67,10 @@ export const GetEventQuestionChoiceTranslation = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventQuestionChoiceTranslation = (
   eventId: string = "",
   questionId: string = "",

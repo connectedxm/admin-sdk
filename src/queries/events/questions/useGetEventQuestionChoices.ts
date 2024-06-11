@@ -9,11 +9,19 @@ import {
 import { EVENT_QUESTION_QUERY_KEY } from "./useGetEventQuestion";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_QUESTION_CHOICES_QUERY_KEY = (
   eventId: string,
   questionId: string
 ) => [...EVENT_QUESTION_QUERY_KEY(eventId, questionId), "CHOICES"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_QUESTION_CHOICES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_QUESTION_CHOICES_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetEventQuestionChoicesProps extends InfiniteQueryParams {
   questionId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventQuestionChoices = async ({
   eventId,
   questionId,
@@ -52,6 +64,10 @@ export const GetEventQuestionChoices = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventQuestionChoices = (
   eventId: string = "",
   questionId: string = "",

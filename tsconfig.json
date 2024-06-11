@@ -15,10 +15,5 @@
       "@src/*": ["./src/*"],
       "@interfaces": ["./src/interfaces"]
     }
-  },
-  "typedocOptions": {
-    "entryPoints": ["src/index.ts"],
-    "out": "docs",
-    "name": "ConnectedXM Admin SDK"
   }
 }

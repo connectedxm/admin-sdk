@@ -8,8 +8,16 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Invoices
+ */
 export const INVOICES_QUERY_KEY = () => ["INVOICES"];
 
+/**
+ * @category Setters
+ * @group Invoices
+ */
 export const SET_INVOICES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INVOICES_QUERY_KEY>,
@@ -20,6 +28,10 @@ export const SET_INVOICES_QUERY_DATA = (
 
 interface GetInvoicesProps extends InfiniteQueryParams {}
 
+/**
+ * @category Queries
+ * @group Invoices
+ */
 export const GetInvoices = async ({
   pageParam,
   pageSize,
@@ -38,6 +50,10 @@ export const GetInvoices = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Invoices
+ */
 export const useGetInvoices = (
   params: Omit<
     InfiniteQueryParams,

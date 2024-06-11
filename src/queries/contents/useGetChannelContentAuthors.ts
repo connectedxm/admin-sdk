@@ -10,11 +10,19 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 import { CHANNEL_CONTENT_QUERY_KEY } from "./useGetChannelContent";
 
+/**
+ * @category Keys
+ * @group Contents
+ */
 export const CHANNEL_CONTENT_AUTHORS_QUERY_KEY = (
   channelId: string,
   contentId: string
 ) => [...CHANNEL_CONTENT_QUERY_KEY(channelId, contentId), "AUTHORS"];
 
+/**
+ * @category Setters
+ * @group Contents
+ */
 export const SET_CHANNEL_CONTENT_AUTHORS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof CHANNEL_CONTENT_AUTHORS_QUERY_KEY>,
@@ -32,6 +40,10 @@ interface GetChannelContentAuthorsProps extends InfiniteQueryParams {
   status?: string;
 }
 
+/**
+ * @category Queries
+ * @group Contents
+ */
 export const GetChannelContentAuthors = async ({
   contentId,
   pageParam,
@@ -51,6 +63,10 @@ export const GetChannelContentAuthors = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Contents
+ */
 export const useGetChannelContentAuthors = (
   channelId: string = "",
   contentId: string = "",

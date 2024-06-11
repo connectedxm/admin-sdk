@@ -9,6 +9,10 @@ import { EventRegistrationBypass } from "@src/interfaces";
 import { EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY } from "./useGetEventRegistrationBypassList";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_REGISTRATION_BYPASS_QUERY_KEY = (
   eventId: string,
   bypassId: string
@@ -17,6 +21,10 @@ export const EVENT_REGISTRATION_BYPASS_QUERY_KEY = (
   bypassId.toString(),
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_REGISTRATION_BYPASS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_REGISTRATION_BYPASS_QUERY_KEY>,
@@ -33,6 +41,10 @@ interface GetEventRegistrationBypassProps extends SingleQueryParams {
   bypassId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventRegistrationBypass = async ({
   eventId,
   bypassId,
@@ -44,6 +56,10 @@ export const GetEventRegistrationBypass = async ({
   const { data } = await adminApi.get(`/events/${eventId}/bypass/${bypassId}`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventRegistrationBypass = (
   eventId: string = "",
   bypassId: string = "",

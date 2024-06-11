@@ -9,11 +9,19 @@ import { Payment } from "@src/interfaces";
 import { INVOICE_PAYMENTS_QUERY_KEY } from "./useGetInvoicePayments";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Invoices
+ */
 export const INVOICE_PAYMENT_QUERY_KEY = (
   invoiceId: string,
   paymentId: string
 ) => [...INVOICE_PAYMENTS_QUERY_KEY(invoiceId), paymentId];
 
+/**
+ * @category Setters
+ * @group Invoices
+ */
 export const SET_INVOICE_PAYMENT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INVOICE_PAYMENT_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetInvoicePaymentProps extends SingleQueryParams {
   paymentId: string;
 }
 
+/**
+ * @category Queries
+ * @group Invoices
+ */
 export const GetInvoicePayment = async ({
   invoiceId,
   paymentId,
@@ -38,6 +50,10 @@ export const GetInvoicePayment = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Invoices
+ */
 export const useGetInvoicePayment = (
   invoiceId: string = "",
   paymentId: string = "",

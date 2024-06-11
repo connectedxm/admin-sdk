@@ -8,6 +8,10 @@ import { EventReservationSectionTranslation } from "@src/interfaces";
 import { EVENT_RESERVATION_SECTION_TRANSLATIONS_QUERY_KEY } from "./useGetEventReservationSectionTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_RESERVATION_SECTION_TRANSLATION_QUERY_KEY = (
   eventId: string,
   reservationSectionId: string,
@@ -20,6 +24,10 @@ export const EVENT_RESERVATION_SECTION_TRANSLATION_QUERY_KEY = (
   locale,
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_RESERVATION_SECTION_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_RESERVATION_SECTION_TRANSLATION_QUERY_KEY>,
@@ -37,6 +45,10 @@ interface GetEventReservationSectionTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventReservationSectionTranslation = async ({
   eventId,
   reservationSectionId,
@@ -51,6 +63,10 @@ export const GetEventReservationSectionTranslation = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventReservationSectionTranslation = (
   eventId: string = "",
   reservationSectionId: string = "",

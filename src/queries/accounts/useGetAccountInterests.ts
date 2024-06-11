@@ -11,11 +11,19 @@ import {
 import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Accounts
+ */
 export const ACCOUNT_INTERESTS_QUERY_KEY = (accountId: string) => [
   ...ACCOUNT_QUERY_KEY(accountId),
   "INTERESTS",
 ];
 
+/**
+ * @category Setters
+ * @group Accounts
+ */
 export const SET_ACCOUNT_INTERESTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_INTERESTS_QUERY_KEY>,
@@ -28,6 +36,10 @@ interface GetAccountInterestsProps extends InfiniteQueryParams {
   accountId: string;
 }
 
+/**
+ * @category Queries
+ * @group Accounts
+ */
 export const GetAccountInterests = async ({
   accountId,
   pageParam,
@@ -47,6 +59,10 @@ export const GetAccountInterests = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Accounts
+ */
 export const useGetAccountInterests = (
   accountId: string = "",
   params: Omit<

@@ -10,11 +10,19 @@ import {
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_SPONSORS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "SPONSORS",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_SPONSORS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_SPONSORS_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetEventSponsorsProps extends InfiniteQueryParams {
   eventId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventSponsors = async ({
   eventId,
   pageParam,
@@ -46,6 +58,10 @@ export const GetEventSponsors = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventSponsors = (
   eventId: string = "",
   params: Omit<

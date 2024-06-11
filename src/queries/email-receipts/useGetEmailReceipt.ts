@@ -9,11 +9,19 @@ import { EMAIL_RECEIPTS_QUERY_KEY } from "./useGetEmailReceipts";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Key
+ * @group Emails
+ */
 export const EMAIL_RECEIPT_QUERY_KEY = (emailReceiptId: string) => [
   ...EMAIL_RECEIPTS_QUERY_KEY(),
   emailReceiptId,
 ];
 
+/**
+ * @category Setters
+ * @group Emails
+ */
 export const SET_EMAIL_RECEIPT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EMAIL_RECEIPT_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetEmailReceiptParams extends SingleQueryParams {
   emailReceiptId: string;
 }
 
+/**
+ * @category Query
+ * @group Emails
+ */
 export const GetEmailReceipt = async ({
   emailReceiptId,
   adminApiParams,
@@ -35,6 +47,11 @@ export const GetEmailReceipt = async ({
 
   return data;
 };
+
+/**
+ * @category Hooks
+ * @group Emails
+ */
 export const useGetEmailReceipt = (
   emailReceiptId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEmailReceipt>> = {}

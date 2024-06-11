@@ -8,11 +8,19 @@ import {
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_TRACK_QUERY_KEY } from "./useGetEventTrack";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_TRACK_SPONSORS_QUERY_KEY = (
   eventId: string,
   trackId: string
 ) => [...EVENT_TRACK_QUERY_KEY(eventId, trackId), "SPONSORS"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_TRACK_SPONSORS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_TRACK_SPONSORS_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetEventTrackSponsorsProps extends InfiniteQueryParams {
   trackId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventTrackSponsors = async ({
   eventId,
   trackId,
@@ -49,6 +61,10 @@ export const GetEventTrackSponsors = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventTrackSponsors = (
   eventId: string = "",
   trackId: string = "",

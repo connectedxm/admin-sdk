@@ -10,11 +10,19 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Accounts
+ */
 export const ACCOUNT_FOLLOWERS_QUERY_KEY = (accountId: string) => [
   ...ACCOUNT_QUERY_KEY(accountId),
   "FOLLOWERS",
 ];
 
+/**
+ * @category Setters
+ * @group Accounts
+ */
 export const SET_ACCOUNT_FOLLOWERS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_FOLLOWERS_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetAccountFollowersProps extends InfiniteQueryParams {
   accountId: string;
 }
 
+/**
+ * @category Queries
+ * @group Accounts
+ */
 export const GetAccountFollowers = async ({
   accountId,
   pageParam,
@@ -46,6 +58,10 @@ export const GetAccountFollowers = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Accounts
+ */
 export const useGetAccountFollowers = (
   accountId: string = "",
   params: Omit<

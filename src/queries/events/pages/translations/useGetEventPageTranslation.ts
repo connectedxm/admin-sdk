@@ -8,12 +8,20 @@ import { EventPageTranslation } from "@src/interfaces";
 import { EVENT_PAGE_TRANSLATIONS_QUERY_KEY } from "./useGetEventPageTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_PAGE_TRANSLATION_QUERY_KEY = (
   eventId: string,
   pageId: string,
   locale: string
 ) => [...EVENT_PAGE_TRANSLATIONS_QUERY_KEY(eventId, pageId), locale];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_PAGE_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_PAGE_TRANSLATION_QUERY_KEY>,
@@ -28,6 +36,10 @@ interface GetEventPageTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventPageTranslation = async ({
   eventId,
   pageId,
@@ -42,6 +54,10 @@ export const GetEventPageTranslation = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventPageTranslation = (
   eventId: string = "",
   pageId: string = "",

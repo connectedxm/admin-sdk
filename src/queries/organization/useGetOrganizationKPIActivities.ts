@@ -8,11 +8,19 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { ORGANIZATION_QUERY_KEY } from "./useGetOrganization";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Organization
+ */
 export const ORGANIZATION_KPI_ACTIVITIES_QUERY_KEY = () => [
   ...ORGANIZATION_QUERY_KEY(),
   "KPI_ACTIVITIES",
 ];
 
+/**
+ * @category Setters
+ * @group Organization
+ */
 export const SET_ORGANIZATION_KPI_ACTIVITIES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ORGANIZATION_KPI_ACTIVITIES_QUERY_KEY>,
@@ -31,6 +39,10 @@ interface DateCount {
   count: number;
 }
 
+/**
+ * @category Queries
+ * @group Organization
+ */
 export const GetOrganizationKPIActivities = async ({
   adminApiParams,
 }: GetOrganizationKPIActivitiesProps): Promise<
@@ -40,6 +52,10 @@ export const GetOrganizationKPIActivities = async ({
   const { data } = await adminApi.get(`/organization/kpi/activities`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Organization
+ */
 export const useGetOrganizationKPIActivities = (
   options: SingleQueryOptions<
     ReturnType<typeof GetOrganizationKPIActivities>

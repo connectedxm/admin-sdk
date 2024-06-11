@@ -4,6 +4,9 @@ import {
 } from "@src/ConnectedXMProvider";
 import React from "react";
 
+/**
+ * @category Hooks
+ */
 export const useConnectedXM = () => {
   const context = React.useContext<ConnectedXMClientContextState>(
     ConnectedXMClientContext

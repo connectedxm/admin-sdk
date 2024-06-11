@@ -8,11 +8,19 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { BENEFIT_QUERY_KEY } from "./useGetBenefit";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Benefits
+ */
 export const BENEFIT_KPI_CLICKS_QUERY_KEY = (benefitId: string) => [
   ...BENEFIT_QUERY_KEY(benefitId),
   "KPI_CLICKS",
 ];
 
+/**
+ * @category Setters
+ * @group Benefits
+ */
 export const SET_BENEFIT_KPI_CLICKS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof BENEFIT_KPI_CLICKS_QUERY_KEY>,
@@ -30,6 +38,10 @@ interface DateSumCount {
   clicks: number;
 }
 
+/**
+ * @category Queries
+ * @group Benefits
+ */
 export const GetBenefitKPIClicks = async ({
   benefitId,
   adminApiParams,
@@ -38,6 +50,10 @@ export const GetBenefitKPIClicks = async ({
   const { data } = await adminApi.get(`/benefits/${benefitId}/kpi/clicks`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Benefits
+ */
 export const useGetBenefitKPIClicks = (
   benefitId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetBenefitKPIClicks>> = {}

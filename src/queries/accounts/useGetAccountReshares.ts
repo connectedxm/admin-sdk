@@ -10,11 +10,19 @@ import {
 import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Accounts
+ */
 export const ACCOUNT_RESHARES_QUERY_KEY = (accountId: string) => [
   ...ACCOUNT_QUERY_KEY(accountId),
   "RESHARES",
 ];
 
+/**
+ * @category Setters
+ * @group Accounts
+ */
 export const SET_ACCOUNT_RESHARES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_RESHARES_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetAccountResharesProps extends InfiniteQueryParams {
   accountId: string;
 }
 
+/**
+ * @category Queries
+ * @group Accounts
+ */
 export const GetAccountReshares = async ({
   accountId,
   pageParam,
@@ -45,6 +57,10 @@ export const GetAccountReshares = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Accounts
+ */
 export const useGetAccountReshares = (
   accountId: string = "",
   params: Omit<

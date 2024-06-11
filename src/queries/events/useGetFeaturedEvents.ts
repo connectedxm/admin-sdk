@@ -9,11 +9,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { EVENTS_QUERY_KEY } from "./useGetEvents";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const FEATURED_EVENTS_QUERY_KEY = () => [
   ...EVENTS_QUERY_KEY(),
   "FEATURED",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_FEATURED_EVENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof FEATURED_EVENTS_QUERY_KEY>,
@@ -24,6 +32,10 @@ export const SET_FEATURED_EVENTS_QUERY_DATA = (
 
 interface GetFeaturedEventsProps extends InfiniteQueryParams {}
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetFeaturedEvents = async ({
   pageParam,
   pageSize,
@@ -42,6 +54,10 @@ export const GetFeaturedEvents = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetFeaturedEvents = (
   params: Omit<
     InfiniteQueryParams,

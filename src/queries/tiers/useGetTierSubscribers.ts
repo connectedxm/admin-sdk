@@ -9,11 +9,19 @@ import {
 import { TIER_QUERY_KEY } from "./useGetTier";
 
 // export const QUERY_KEY = "SUBSCRIBER_TIER_ACCOUNTS";
+/**
+ * @category Keys
+ * @group Tiers
+ */
 export const TIER_SUBSCRIBERS_QUERY_KEY = (tierId: string) => [
   ...TIER_QUERY_KEY(tierId),
   "SUBSCRIBERS",
 ];
 
+/**
+ * @category Setters
+ * @group Tiers
+ */
 export const SET_TIER_SUBSCRIBERS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof TIER_SUBSCRIBERS_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetTierSubscribersProps extends InfiniteQueryParams {
   tierId?: string;
 }
 
+/**
+ * @category Queries
+ * @group Tiers
+ */
 export const GetTierSubscribers = async ({
   pageParam,
   pageSize,
@@ -46,6 +58,10 @@ export const GetTierSubscribers = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Tiers
+ */
 export const useGetTierSubscribers = (
   tierId: string = "",
   params: Omit<

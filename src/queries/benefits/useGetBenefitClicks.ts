@@ -10,11 +10,19 @@ import {
 import { BENEFIT_QUERY_KEY } from "./useGetBenefit";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Benefits
+ */
 export const BENEFIT_CLICKS_QUERY_KEY = (benefitId: string) => [
   ...BENEFIT_QUERY_KEY(benefitId),
   "CLICKS",
 ];
 
+/**
+ * @category Setters
+ * @group Benefits
+ */
 export const SET_BENEFIT_CLICKS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof BENEFIT_CLICKS_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetBenefitClicksProps extends InfiniteQueryParams {
   benefitId: string;
 }
 
+/**
+ * @category Queries
+ * @group Benefits
+ */
 export const GetBenefitClicks = async ({
   benefitId,
   pageParam,
@@ -46,6 +58,10 @@ export const GetBenefitClicks = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Benefits
+ */
 export const useGetBenefitClicks = (
   benefitId: string = "",
   params: Omit<

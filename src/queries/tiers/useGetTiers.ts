@@ -10,8 +10,16 @@ import {
 
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Tiers
+ */
 export const TIERS_QUERY_KEY = () => ["TIERS"];
 
+/**
+ * @category Setters
+ * @group Tiers
+ */
 export const SET_TIERS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof TIERS_QUERY_KEY>,
@@ -22,6 +30,10 @@ export const SET_TIERS_QUERY_DATA = (
 
 interface GetTiersProps extends InfiniteQueryParams {}
 
+/**
+ * @category Queries
+ * @group Tiers
+ */
 export const GetTiers = async ({
   pageParam,
   pageSize,
@@ -40,6 +52,10 @@ export const GetTiers = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Tiers
+ */
 export const useGetTiers = (
   params: Omit<
     InfiniteQueryParams,

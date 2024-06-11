@@ -22,6 +22,10 @@ interface DateSumCount {
   revenue: number;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventKPISales = async ({
   eventId,
   adminApiParams,
@@ -30,6 +34,10 @@ export const GetEventKPISales = async ({
   const { data } = await adminApi.get(`/events/${eventId}/kpi/sales`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventKPISales = (
   eventId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventKPISales>> = {}

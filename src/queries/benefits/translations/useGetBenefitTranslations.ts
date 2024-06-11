@@ -8,11 +8,19 @@ import {
 } from "../../useConnectedInfiniteQuery";
 import { BENEFIT_QUERY_KEY } from "../useGetBenefit";
 
+/**
+ * @category Keys
+ * @group Benefits
+ */
 export const BENEFIT_TRANSLATIONS_QUERY_KEY = (benefitId: string) => [
   ...BENEFIT_QUERY_KEY(benefitId),
   "TRANSLATIONS",
 ];
 
+/**
+ * @category Setters
+ * @group Benefits
+ */
 export const SET_BENEFIT_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof BENEFIT_TRANSLATIONS_QUERY_KEY>,
@@ -25,6 +33,10 @@ interface GetBenefitTranslationsProps extends InfiniteQueryParams {
   benefitId: string;
 }
 
+/**
+ * @category Queries
+ * @group Benefits
+ */
 export const GetBenefitTranslations = async ({
   pageParam,
   pageSize,
@@ -46,6 +58,10 @@ export const GetBenefitTranslations = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Benefits
+ */
 export const useGetBenefitTranslations = (
   benefitId: string = "",
   params: Omit<

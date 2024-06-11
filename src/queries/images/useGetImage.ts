@@ -9,11 +9,19 @@ import { IMAGES_QUERY_KEY } from "./useGetImages";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Images
+ */
 export const IMAGE_QUERY_KEY = (imageId: string) => [
   ...IMAGES_QUERY_KEY(),
   imageId,
 ];
 
+/**
+ * @category Setters
+ * @group Images
+ */
 export const SET_IMAGE_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof IMAGE_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetImageParams extends SingleQueryParams {
   imageId: string | undefined;
 }
 
+/**
+ * @category Queries
+ * @group Images
+ */
 export const GetImage = async ({
   imageId,
   adminApiParams,
@@ -35,6 +47,10 @@ export const GetImage = async ({
 
   return data;
 };
+/**
+ * @category Hooks
+ * @group Images
+ */
 export const useGetImage = (
   imageId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetImage>> = {}

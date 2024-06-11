@@ -9,8 +9,16 @@ import {
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Advertisements
+ */
 export const ADVERTISEMENTS_QUERY_KEY = () => ["ADVERTISEMENTS"];
 
+/**
+ * @category Setters
+ * @group Advertisements
+ */
 export const SET_ADVERTISEMENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ADVERTISEMENTS_QUERY_KEY>,
@@ -21,6 +29,10 @@ export const SET_ADVERTISEMENTS_QUERY_DATA = (
 
 interface GetAdvertisementsProps extends InfiniteQueryParams {}
 
+/**
+ * @category Queries
+ * @group Advertisements
+ */
 export const GetAdvertisements = async ({
   pageParam,
   pageSize,
@@ -39,6 +51,10 @@ export const GetAdvertisements = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Advertisements
+ */
 export const useGetAdvertisements = (
   params: Omit<
     InfiniteQueryParams,

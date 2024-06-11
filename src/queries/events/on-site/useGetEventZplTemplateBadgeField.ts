@@ -9,11 +9,19 @@ import {
 } from "../../useConnectedSingleQuery";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_ZPL_TEMPLATE_BADGE_FIELD_QUERY_KEY = (
   eventId: string,
   fieldId: string
 ) => [...EVENT_ZPL_TEMPLATE_BADGE_FIELDS_QUERY_KEY(eventId), fieldId];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_ZPL_TEMPLATE_BADGE_FIELD_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_ZPL_TEMPLATE_BADGE_FIELDS_QUERY_KEY>,
@@ -30,6 +38,10 @@ interface GetEventZplTemplateBadgeFieldProps extends SingleQueryParams {
   eventId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventZplTemplateBadgeField = async ({
   fieldId,
   eventId,
@@ -43,6 +55,10 @@ export const GetEventZplTemplateBadgeField = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventZplTemplateBadgeField = (
   eventId: string = "",
   fieldId: string = "",

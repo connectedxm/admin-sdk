@@ -9,11 +9,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { SERIES_LIST_QUERY_KEY } from "./useGetSeriesList";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Series
+ */
 export const SERIES_QUERY_KEY = (seriesId: string) => [
   ...SERIES_LIST_QUERY_KEY(),
   seriesId,
 ];
 
+/**
+ * @category Setters
+ * @group Series
+ */
 export const SET_SERIES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SERIES_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetSeriesProps extends SingleQueryParams {
   seriesId: string;
 }
 
+/**
+ * @category Queries
+ * @group Series
+ */
 export const GetSeries = async ({
   seriesId,
   adminApiParams,
@@ -34,6 +46,10 @@ export const GetSeries = async ({
   const { data } = await adminApi.get(`/series/${seriesId}`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Series
+ */
 export const useGetSeries = (
   seriesId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetSeries>> = {}

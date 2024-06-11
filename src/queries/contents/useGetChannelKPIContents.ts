@@ -8,11 +8,19 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { CHANNEL_QUERY_KEY } from "./useGetChannel";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Contents
+ */
 export const CHANNEL_KPI_CONTENTS_QUERY_KEY = (channelId: string) => [
   ...CHANNEL_QUERY_KEY(channelId),
   "KPI_CONTENTS",
 ];
 
+/**
+ * @category Setters
+ * @group Contents
+ */
 export const SET_CHANNEL_KPI_CONTENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof CHANNEL_KPI_CONTENTS_QUERY_KEY>,
@@ -30,6 +38,10 @@ interface DateSumCount {
   count: number;
 }
 
+/**
+ * @category Queries
+ * @group Contents
+ */
 export const GetChannelKPIContents = async ({
   channelId,
   adminApiParams,
@@ -40,6 +52,10 @@ export const GetChannelKPIContents = async ({
   const { data } = await adminApi.get(`/channels/${channelId}/kpi/contents`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Contents
+ */
 export const useGetChannelKPIContents = (
   channelId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetChannelKPIContents>> = {}

@@ -8,11 +8,19 @@ import {
 } from "../useConnectedInfiniteQuery";
 import { EVENT_QUERY_KEY } from "../events/useGetEvent";
 
+/**
+ * @category Keys
+ * @group Series
+ */
 export const SERIES_EVENTS_QUERY_KEY = (seriesId: string) => [
   ...EVENT_QUERY_KEY(seriesId),
   "EVENTS",
 ];
 
+/**
+ * @category Setters
+ * @group Series
+ */
 export const SET_SERIES_EVENTS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof SERIES_EVENTS_QUERY_KEY>,
@@ -25,6 +33,10 @@ interface GetSeriesEventsProps extends InfiniteQueryParams {
   seriesId: string;
 }
 
+/**
+ * @category Queries
+ * @group Series
+ */
 export const GetSeriesEvents = async ({
   seriesId,
   pageParam,
@@ -44,6 +56,10 @@ export const GetSeriesEvents = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Series
+ */
 export const useGetSeriesEvents = (
   seriesId: string = "",
   params: Omit<

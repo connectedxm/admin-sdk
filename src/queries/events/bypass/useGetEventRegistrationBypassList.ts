@@ -8,6 +8,10 @@ import {
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "BYPASS_LIST",
@@ -17,6 +21,10 @@ interface GetEventRegistrationBypassListProps extends InfiniteQueryParams {
   eventId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventRegistrationBypassList = async ({
   eventId,
   pageParam,
@@ -38,6 +46,10 @@ export const GetEventRegistrationBypassList = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventRegistrationBypassList = (
   eventId: string = "",
   params: Omit<

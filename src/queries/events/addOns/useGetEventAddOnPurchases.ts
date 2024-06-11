@@ -8,11 +8,19 @@ import {
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_ADD_ON_QUERY_KEY } from "./useGetEventAddOn";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_ADD_ON_PURCHASES_QUERY_KEY = (
   eventId: string,
   addOnId: string
 ) => [...EVENT_ADD_ON_QUERY_KEY(eventId, addOnId), "PURCHASES"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_ADD_ON_PURCHASES_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_ADD_ON_PURCHASES_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetEventAddOnPurchasesProps extends InfiniteQueryParams {
   addOnId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventAddOnPurchases = async ({
   eventId,
   addOnId,
@@ -49,6 +61,10 @@ export const GetEventAddOnPurchases = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventAddOnPurchases = (
   eventId: string = "",
   addOnId: string = "",

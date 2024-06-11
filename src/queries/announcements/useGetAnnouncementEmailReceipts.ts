@@ -10,6 +10,10 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 import { ANNOUNCEMENT_QUERY_KEY } from "./useGetAnnouncement";
 
+/**
+ * @category Keys
+ * @group Announcements
+ */
 export const ANNOUNCEMENT_EMAILS_QUERY_KEY = (
   announcementId: string,
   status?: keyof typeof EmailReceiptStatus
@@ -26,6 +30,10 @@ export const ANNOUNCEMENT_EMAILS_QUERY_KEY = (
   return queryKey;
 };
 
+/**
+ * @category Setters
+ * @group Announcements
+ */
 export const SET_ANNOUNCEMENT_EMAILS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ANNOUNCEMENT_EMAILS_QUERY_KEY>,
@@ -39,6 +47,10 @@ interface GetAnnouncementEmailReceiptsProps extends InfiniteQueryParams {
   status?: keyof typeof EmailReceiptStatus;
 }
 
+/**
+ * @category Queries
+ * @group Announcements
+ */
 export const GetAnnouncementEmailReceipts = async ({
   announcementId,
   status,
@@ -65,6 +77,10 @@ export const GetAnnouncementEmailReceipts = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Announcements
+ */
 export const useGetAnnouncementEmailReceipts = (
   announcementId: string = "",
   status?: keyof typeof EmailReceiptStatus,

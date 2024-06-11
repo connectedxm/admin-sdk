@@ -8,8 +8,16 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Sponsorship } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Sponsorships
+ */
 export const SPONSORSHIPS_QUERY_KEY = () => ["SPONSORSHIPS"];
 
+/**
+ * @category Setters
+ * @group Sponsorships
+ */
 export const SET_SPONSORSHIPS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SPONSORSHIPS_QUERY_KEY>,
@@ -20,6 +28,10 @@ export const SET_SPONSORSHIPS_QUERY_DATA = (
 
 interface GetSponsorshipsParams extends InfiniteQueryParams {}
 
+/**
+ * @category Queries
+ * @group Sponsorships
+ */
 export const GetSponsorships = async ({
   pageParam,
   pageSize,
@@ -39,6 +51,10 @@ export const GetSponsorships = async ({
 
   return data;
 };
+/**
+ * @category Hooks
+ * @group Sponsorships
+ */
 export const useGetSponsorships = (
   params: Omit<
     InfiniteQueryParams,

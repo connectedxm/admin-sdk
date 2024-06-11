@@ -8,12 +8,20 @@ import { TrackTranslation } from "@src/interfaces";
 import { EVENT_TRACK_TRANSLATIONS_QUERY_KEY } from "./useGetEventTrackTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_TRACK_TRANSLATION_QUERY_KEY = (
   eventId: string,
   trackId: string,
   locale: string
 ) => [...EVENT_TRACK_TRANSLATIONS_QUERY_KEY(eventId, trackId), locale];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_TRACK_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_TRACK_TRANSLATION_QUERY_KEY>,
@@ -31,6 +39,10 @@ interface GetEventTrackTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventTrackTranslation = async ({
   eventId,
   trackId,
@@ -45,6 +57,10 @@ export const GetEventTrackTranslation = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventTrackTranslation = (
   eventId: string = "",
   trackId: string = "",

@@ -8,6 +8,10 @@ import {
 import { EVENT_REGISTRATION_PAYMENTS_QUERY_KEY } from "./useGetEventRegistrationPayments";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_REGISTRATION_PAYMENT_QUERY_KEY = (
   eventId: string,
   registrationId: string,
@@ -17,6 +21,10 @@ export const EVENT_REGISTRATION_PAYMENT_QUERY_KEY = (
   paymentId,
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_REGISTRATION_PAYMENT_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_REGISTRATION_PAYMENT_QUERY_KEY>,
@@ -34,6 +42,10 @@ interface GetEventRegistrationPaymentProps extends SingleQueryParams {
   paymentId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventRegistrationPayment = async ({
   eventId,
   registrationId,
@@ -46,6 +58,10 @@ export const GetEventRegistrationPayment = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventRegistrationPayment = (
   eventId: string = "",
   registrationId: string = "",

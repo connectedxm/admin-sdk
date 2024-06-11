@@ -16,6 +16,10 @@ export interface RegistrationQuestionWithResponse extends RegistrationQuestion {
   responses: RegistrationQuestionResponse[];
 }
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_REGISTRATION_PURCHASE_RESPONSES_QUERY_KEY = (
   eventId: string,
   registrationId: string,
@@ -25,6 +29,10 @@ export const EVENT_REGISTRATION_PURCHASE_RESPONSES_QUERY_KEY = (
   "RESPONSES",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_REGISTRATION_PURCHASE_RESPONSES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_REGISTRATION_PURCHASE_RESPONSES_QUERY_KEY>,
@@ -43,6 +51,10 @@ interface GetEventRegistrationPurchaseResponsesProps
   purchaseId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventRegistrationPurchaseResponses = async ({
   eventId,
   registrationId,
@@ -69,6 +81,10 @@ export const GetEventRegistrationPurchaseResponses = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventRegistrationPurchaseResponses = (
   eventId: string = "",
   registrationId: string = "",

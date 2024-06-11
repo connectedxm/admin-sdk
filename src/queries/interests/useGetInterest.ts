@@ -9,11 +9,19 @@ import { Interest } from "@src/interfaces";
 import { INTERESTS_QUERY_KEY } from "../interests/useGetInterests";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Interests
+ */
 export const INTEREST_QUERY_KEY = (interestId: string) => [
   ...INTERESTS_QUERY_KEY(),
   interestId,
 ];
 
+/**
+ * @category Setters
+ * @group Interests
+ */
 export const SET_INTEREST_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INTEREST_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetInterestProps extends SingleQueryParams {
   interestId: string;
 }
 
+/**
+ * @category Queries
+ * @group Interests
+ */
 export const GetInterest = async ({
   interestId,
   adminApiParams,
@@ -34,6 +46,10 @@ export const GetInterest = async ({
   const { data } = await adminApi.get(`/interests/${interestId}`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Interests
+ */
 export const useGetInterest = (
   interestId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetInterest>> = {}

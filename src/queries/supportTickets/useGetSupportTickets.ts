@@ -8,11 +8,19 @@ import {
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Support Tickets
+ */
 export const SUPPORT_TICKETS_QUERY_KEY = (status?: string) => [
   "SUPPORT_TICKETS",
   status,
 ];
 
+/**
+ * @category Setters
+ * @group Support Tickets
+ */
 export const SET_SUPPORT_TICKETS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SUPPORT_TICKETS_QUERY_KEY>,
@@ -25,6 +33,10 @@ interface GetSupportTicketsProps extends InfiniteQueryParams {
   status: string;
 }
 
+/**
+ * @category Queries
+ * @group Support Tickets
+ */
 export const GetSupportTickets = async ({
   status,
   pageParam,
@@ -45,6 +57,10 @@ export const GetSupportTickets = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Support Tickets
+ */
 export const useGetSupportTickets = (
   status: string = "",
   params: Omit<

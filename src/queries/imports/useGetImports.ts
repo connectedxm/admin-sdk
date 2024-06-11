@@ -8,10 +8,18 @@ import {
 } from "../useConnectedInfiniteQuery";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Imports
+ */
 export const IMPORTS_QUERY_KEY = () => ["IMPORTS"];
 
 interface GetImportsProps extends InfiniteQueryParams {}
 
+/**
+ * @category Queries
+ * @group Imports
+ */
 export const GetImports = async ({
   pageParam,
   pageSize,
@@ -30,6 +38,10 @@ export const GetImports = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Imports
+ */
 export const useGetImports = (
   params: Omit<
     InfiniteQueryParams,

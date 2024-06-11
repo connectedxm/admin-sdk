@@ -8,11 +8,19 @@ import {
   SingleQueryParams,
 } from "@src/queries/useConnectedSingleQuery";
 
+/**
+ * @category Keys
+ * @group Organization
+ */
 export const ORGANIZATION_PAGE_TRANSLATION_QUERY_KEY = (
   type: PageType,
   locale: string
 ) => [...ORGANIZATION_PAGE_QUERY_KEY(type), locale];
 
+/**
+ * @category Setters
+ * @group Organization
+ */
 export const SET_ORGANIZATION_PAGE_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof ORGANIZATION_PAGE_TRANSLATION_QUERY_KEY>,
@@ -29,6 +37,10 @@ interface GetOrganizationPageTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
+/**
+ * @category Queries
+ * @group Organization
+ */
 export const GetOrganizationPageTranslation = async ({
   type,
   locale,
@@ -42,6 +54,10 @@ export const GetOrganizationPageTranslation = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Organization
+ */
 export const useGetOrganizationPageTranslation = (
   type: PageType,
   locale: string = "",

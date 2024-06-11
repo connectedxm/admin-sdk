@@ -8,11 +8,19 @@ import {
 } from "../../../useConnectedInfiniteQuery";
 import { EVENT_SPEAKER_QUERY_KEY } from "../useGetEventSpeaker";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_SPEAKER_TRANSLATIONS_QUERY_KEY = (
   eventId: string,
   speakerId: string
 ) => [...EVENT_SPEAKER_QUERY_KEY(eventId, speakerId), "TRANSLATIONS"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_SPEAKER_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SPEAKER_TRANSLATIONS_QUERY_KEY>,
@@ -29,6 +37,10 @@ interface GetEventSpeakerTranslationsProps extends InfiniteQueryParams {
   speakerId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventSpeakerTranslations = async ({
   pageParam,
   pageSize,
@@ -54,6 +66,10 @@ export const GetEventSpeakerTranslations = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventSpeakerTranslations = (
   eventId: string = "",
   speakerId: string = "",

@@ -7,11 +7,19 @@ import {
 } from "../../useConnectedSingleQuery";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_REGISTRATION_COUNTS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "REGISTRATION_COUNTS",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_REGISTRATION_COUNTS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_REGISTRATION_COUNTS_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetEventRegistrationCountsProps extends SingleQueryParams {
   eventId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventRegistrationCounts = async ({
   eventId,
   adminApiParams,
@@ -37,6 +49,10 @@ export const GetEventRegistrationCounts = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventRegistrationCounts = (
   eventId: string = "",
   options: SingleQueryOptions<

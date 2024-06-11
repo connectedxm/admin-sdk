@@ -8,11 +8,19 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { ORGANIZATION_QUERY_KEY } from "./useGetOrganization";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Organization
+ */
 export const ORGANIZATION_KPI_SALES_QUERY_KEY = () => [
   ...ORGANIZATION_QUERY_KEY(),
   "KPI_SALES",
 ];
 
+/**
+ * @category Setters
+ * @group Organization
+ */
 export const SET_ORGANIZATION_KPI_SALES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ORGANIZATION_KPI_SALES_QUERY_KEY>,
@@ -29,6 +37,10 @@ interface DateSumCount {
   revenue: number;
 }
 
+/**
+ * @category Queries
+ * @group Organization
+ */
 export const GetOrganizationKPISales = async ({
   adminApiParams,
 }: GetOrganizationKPISalesProps): Promise<
@@ -38,6 +50,10 @@ export const GetOrganizationKPISales = async ({
   const { data } = await adminApi.get(`/organization/kpi/sales`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Organization
+ */
 export const useGetOrganizationKPISales = (
   options: SingleQueryOptions<ReturnType<typeof GetOrganizationKPISales>> = {}
 ) => {

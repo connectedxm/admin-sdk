@@ -8,11 +8,19 @@ import {
 import { EVENT_SESSION_QUERY_KEY } from "./useGetEventSession";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_SESSION_ACCOUNTS_QUERY_KEY = (
   eventId: string,
   sessionId: string
 ) => [...EVENT_SESSION_QUERY_KEY(eventId, sessionId), "ACCOUNTS"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_SESSION_ACCOUNTS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SESSION_ACCOUNTS_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetEventSessionAccountsProps extends InfiniteQueryParams {
   sessionId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventSessionAccounts = async ({
   eventId,
   sessionId,
@@ -49,6 +61,10 @@ export const GetEventSessionAccounts = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventSessionAccounts = (
   eventId: string = "",
   sessionId: string = "",

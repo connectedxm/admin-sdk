@@ -9,11 +9,19 @@ import { VIDEOS_QUERY_KEY } from "./useGetVideos";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Videos
+ */
 export const VIDEO_QUERY_KEY = (videoId: string) => [
   ...VIDEOS_QUERY_KEY(""),
   videoId,
 ];
 
+/**
+ * @category Setters
+ * @group Videos
+ */
 export const SET_VIDEO_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof VIDEO_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetVideoParams extends SingleQueryParams {
   videoId: string;
 }
 
+/**
+ * @category Queries
+ * @group Videos
+ */
 export const GetVideo = async ({
   videoId,
   adminApiParams,
@@ -35,6 +47,10 @@ export const GetVideo = async ({
 
   return data;
 };
+/**
+ * @category Hooks
+ * @group Videos
+ */
 export const useGetVideo = (
   videoId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetVideo>> = {}

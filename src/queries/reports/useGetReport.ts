@@ -9,11 +9,19 @@ import { REPORTS_QUERY_KEY } from "../reports/useGetReports";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Reports
+ */
 export const REPORT_QUERY_KEY = (
   type: keyof typeof ReportType,
   reportId: string
 ) => [...REPORTS_QUERY_KEY(type), reportId];
 
+/**
+ * @category Setters
+ * @group Reports
+ */
 export const SET_REPORT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof REPORT_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetReportProps extends SingleQueryParams {
   eventId?: string;
 }
 
+/**
+ * @category Queries
+ * @group Reports
+ */
 export const GetReport = async ({
   reportId,
   eventId,
@@ -40,6 +52,10 @@ export const GetReport = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Reports
+ */
 export const useGetReport = (
   reportId: string = "",
   eventId?: string,

@@ -9,11 +9,19 @@ import {
 } from "../useConnectedInfiniteQuery";
 import { ADVERTISEMENT_QUERY_KEY } from "./useGetAdvertisement";
 
+/**
+ * @category Keys
+ * @group Advertisements
+ */
 export const ADVERTISEMENT_CLICKS_QUERY_KEY = (advertisementId: string) => [
   ...ADVERTISEMENT_QUERY_KEY(advertisementId),
   "CLICKS",
 ];
 
+/**
+ * @category Setters
+ * @group Advertisements
+ */
 export const SET_ADVERTISEMENT_CLICKS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof ADVERTISEMENT_CLICKS_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetAdvertisementClicksProps extends InfiniteQueryParams {
   advertisementId: string;
 }
 
+/**
+ * @category Queries
+ * @group Advertisements
+ */
 export const GetAdvertisementClicks = async ({
   advertisementId,
   pageParam,
@@ -50,6 +62,10 @@ export const GetAdvertisementClicks = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Advertisements
+ */
 export const useGetAdvertisementClicks = (
   advertisementId: string = "",
   params: Omit<

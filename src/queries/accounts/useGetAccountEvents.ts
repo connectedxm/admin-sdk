@@ -10,6 +10,10 @@ import { Event } from "@src/interfaces";
 import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Accounts
+ */
 export const ACCOUNT_EVENTS_QUERY_KEY = (accountId: string, past?: boolean) => {
   const keys = [...ACCOUNT_QUERY_KEY(accountId), "EVENTS"];
 
@@ -20,6 +24,10 @@ export const ACCOUNT_EVENTS_QUERY_KEY = (accountId: string, past?: boolean) => {
   return keys;
 };
 
+/**
+ * @category Setters
+ * @group Accounts
+ */
 export const SET_ACCOUNT_EVENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_EVENTS_QUERY_KEY>,
@@ -33,6 +41,10 @@ interface GetAccountEventsProps extends InfiniteQueryParams {
   past?: boolean;
 }
 
+/**
+ * @category Queries
+ * @group Accounts
+ */
 export const GetAccountEvents = async ({
   accountId,
   pageParam,
@@ -54,6 +66,10 @@ export const GetAccountEvents = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Accounts
+ */
 export const useGetAccountEvents = (
   accountId: string = "",
   past?: boolean,

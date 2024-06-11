@@ -9,11 +9,19 @@ import {
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_SPONSORSHIPS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "SPONSORSHIPS",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_SPONSORSHIPS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SPONSORSHIPS_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetEventSponsorshipsProps extends InfiniteQueryParams {
   eventId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventSponsorships = async ({
   eventId,
   pageParam,
@@ -48,6 +60,10 @@ export const GetEventSponsorships = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventSponsorships = (
   eventId: string = "",
   params: Omit<

@@ -9,11 +9,19 @@ import {
 import { EVENT_ACTIVATION_QUERY_KEY } from "./useGetEventActivation";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_ACTIVATION_COMPLETIONS_QUERY_KEY = (
   eventId: string,
   activationId: string
 ) => [...EVENT_ACTIVATION_QUERY_KEY(eventId, activationId), "COMPLETIONS"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_ACTIVATION_COMPLETIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_ACTIVATION_COMPLETIONS_QUERY_KEY>,
@@ -30,6 +38,10 @@ interface GetEventActivationCompletionsProps extends InfiniteQueryParams {
   activationId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventActivationCompletions = async ({
   eventId,
   activationId,
@@ -55,6 +67,10 @@ export const GetEventActivationCompletions = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventActivationCompletions = (
   eventId: string = "",
   activationId: string = "",

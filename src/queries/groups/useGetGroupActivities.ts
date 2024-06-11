@@ -10,11 +10,19 @@ import { GROUP_QUERY_KEY } from "./useGetGroup";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Groups
+ */
 export const GROUP_ACTIVITIES_QUERY_KEY = (groupId: string) => [
   ...GROUP_QUERY_KEY(groupId),
   "ACTIVITIES",
 ];
 
+/**
+ * @category Setters
+ * @group Groups
+ */
 export const SET_GROUP_ACTIVITIES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof GROUP_ACTIVITIES_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetGroupActivitiesProps extends InfiniteQueryParams {
   groupId: string;
 }
 
+/**
+ * @category Queries
+ * @group Groups
+ */
 export const GetGroupActivities = async ({
   groupId,
   pageParam,
@@ -46,6 +58,10 @@ export const GetGroupActivities = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Groups
+ */
 export const useGetGroupActivities = (
   groupId: string = "",
   params: Omit<

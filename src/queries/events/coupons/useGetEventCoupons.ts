@@ -10,11 +10,19 @@ import {
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_COUPONS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "COUPONS",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_COUPONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_COUPONS_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetEventCouponsProps extends InfiniteQueryParams {
   eventId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventCoupons = async ({
   eventId,
   pageParam,
@@ -46,6 +58,10 @@ export const GetEventCoupons = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventCoupons = (
   eventId: string = "",
   params: Omit<

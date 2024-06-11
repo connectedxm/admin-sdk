@@ -9,11 +9,19 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_FAQ_SECTION_QUERY_KEY } from "./useGetEventFAQSection";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY = (
   eventId: string,
   sectionId: string
 ) => [...EVENT_FAQ_SECTION_QUERY_KEY(eventId, sectionId), "QUESTIONS"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_FAQ_SECTION_QUESTIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY>,
@@ -30,6 +38,10 @@ interface GetEventFAQSectionQuestionsProps extends InfiniteQueryParams {
   eventId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventFAQSectionQuestions = async ({
   sectionId,
   eventId,
@@ -53,6 +65,10 @@ export const GetEventFAQSectionQuestions = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventFAQSectionQuestionsectionQuestions = (
   eventId: string = "",
   sectionId: string = "",

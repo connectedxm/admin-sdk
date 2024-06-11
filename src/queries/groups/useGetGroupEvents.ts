@@ -9,12 +9,20 @@ import { Event } from "@src/interfaces";
 import { GROUP_QUERY_KEY } from "./useGetGroup";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Groups
+ */
 export const GROUP_EVENTS_QUERY_KEY = (groupId: string, past?: boolean) => [
   ...GROUP_QUERY_KEY(groupId),
   "EVENTS",
   past ? (past ? "past" : "upcoming") : "all",
 ];
 
+/**
+ * @category Setters
+ * @group Groups
+ */
 export const SET_GROUP_EVENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof GROUP_EVENTS_QUERY_KEY>,
@@ -28,6 +36,10 @@ interface GetGroupEventsProps extends InfiniteQueryParams {
   past?: boolean;
 }
 
+/**
+ * @category Queries
+ * @group Groups
+ */
 export const GetGroupEvents = async ({
   groupId,
   pageParam,
@@ -49,6 +61,10 @@ export const GetGroupEvents = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Groups
+ */
 export const useGetGroupEvents = (
   groupId: string,
   past?: boolean,

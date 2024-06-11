@@ -9,11 +9,19 @@ import { Invoice } from "@src/interfaces";
 import { INVOICES_QUERY_KEY } from "./useGetInvoices";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Invoices
+ */
 export const INVOICE_QUERY_KEY = (invoiceId: string) => [
   ...INVOICES_QUERY_KEY(),
   invoiceId,
 ];
 
+/**
+ * @category Setters
+ * @group Invoices
+ */
 export const SET_INVOICE_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INVOICE_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetInvoiceProps extends SingleQueryParams {
   invoiceId: string;
 }
 
+/**
+ * @category Queries
+ * @group Invoices
+ */
 export const GetInvoice = async ({
   invoiceId,
   adminApiParams,
@@ -34,6 +46,10 @@ export const GetInvoice = async ({
   const { data } = await adminApi.get(`/invoices/${invoiceId}`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Invoices
+ */
 export const useGetInvoice = (
   invoiceId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetInvoice>> = {}

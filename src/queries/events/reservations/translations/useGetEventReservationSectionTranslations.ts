@@ -8,6 +8,10 @@ import {
 import { EVENT_RESERVATION_SECTION_QUERY_KEY } from "../useGetEventReservationSection";
 import { EventReservationSectionTranslation } from "@src/interfaces";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_RESERVATION_SECTION_TRANSLATIONS_QUERY_KEY = (
   eventId: string,
   reservationSectionId: string
@@ -16,6 +20,10 @@ export const EVENT_RESERVATION_SECTION_TRANSLATIONS_QUERY_KEY = (
   "TRANSLATIONS",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_RESERVATION_SECTION_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<
@@ -35,6 +43,10 @@ interface GetEventReservationSectionTranslationsProps
   reservationSectionId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventReservationSectionTranslations = async ({
   pageParam,
   pageSize,
@@ -60,6 +72,10 @@ export const GetEventReservationSectionTranslations = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventReservationSectionTranslations = (
   eventId: string = "",
   reservationSectionId: string = "",

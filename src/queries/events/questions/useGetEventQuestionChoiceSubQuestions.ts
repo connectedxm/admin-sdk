@@ -9,6 +9,10 @@ import {
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_QUESTION_CHOICE_QUERY_KEY } from "./useGetEventQuestionChoice";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_QUESTION_CHOICE_QUESTIONS_QUERY_KEY = (
   eventId: string,
   questionId: string,
@@ -18,6 +22,10 @@ export const EVENT_QUESTION_CHOICE_QUESTIONS_QUERY_KEY = (
   "QUESTIONS",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_QUESTION_CHOICE_QUESTIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_QUESTION_CHOICE_QUESTIONS_QUERY_KEY>,
@@ -35,6 +43,10 @@ interface GetEventQuestionChoiceSubQuestionsProps extends InfiniteQueryParams {
   choiceId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventQuestionChoiceSubQuestions = async ({
   eventId,
   questionId,
@@ -61,6 +73,10 @@ export const GetEventQuestionChoiceSubQuestions = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventQuestionChoiceSubQuestions = (
   eventId: string = "",
   questionId: string = "",

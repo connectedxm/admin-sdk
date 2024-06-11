@@ -10,11 +10,19 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Accounts
+ */
 export const ACCOUNT_LIKES_QUERY_KEY = (accountId: string) => [
   ...ACCOUNT_QUERY_KEY(accountId),
   "LIKES",
 ];
 
+/**
+ * @category Setters
+ * @group Accounts
+ */
 export const SET_ACCOUNT_LIKES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_LIKES_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetAccountLikesProps extends InfiniteQueryParams {
   accountId: string;
 }
 
+/**
+ * @category Queries
+ * @group Accounts
+ */
 export const GetAccountLikes = async ({
   accountId,
   pageParam,
@@ -46,6 +58,10 @@ export const GetAccountLikes = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Accounts
+ */
 export const useGetAccountLikes = (
   accountId: string = "",
   params: Omit<

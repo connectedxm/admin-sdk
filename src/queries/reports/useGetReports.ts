@@ -8,6 +8,10 @@ import {
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Reports
+ */
 export const REPORTS_QUERY_KEY = (
   type: keyof typeof ReportType,
   eventId?: string
@@ -17,6 +21,10 @@ export const REPORTS_QUERY_KEY = (
   return keys;
 };
 
+/**
+ * @category Setters
+ * @group Reports
+ */
 export const SET_REPORTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof REPORTS_QUERY_KEY>,
@@ -30,6 +38,10 @@ interface GetReportsProps extends InfiniteQueryParams {
   eventId?: string;
 }
 
+/**
+ * @category Queries
+ * @group Reports
+ */
 export const GetReports = async ({
   pageParam,
   pageSize,
@@ -52,6 +64,10 @@ export const GetReports = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Reports
+ */
 export const useGetReports = (
   type: keyof typeof ReportType,
   eventId?: string,

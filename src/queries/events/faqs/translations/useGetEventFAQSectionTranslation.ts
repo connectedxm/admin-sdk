@@ -8,12 +8,20 @@ import { FAQSectionTranslation } from "@src/interfaces";
 import { EVENT_FAQ_SECTION_TRANSLATIONS_QUERY_KEY } from "./useGetEventFAQSectionTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_FAQ_SECTION_TRANSLATION_QUERY_KEY = (
   eventId: string,
   sectionId: string,
   locale: string
 ) => [...EVENT_FAQ_SECTION_TRANSLATIONS_QUERY_KEY(eventId, sectionId), locale];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_FAQ_SECTION_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_FAQ_SECTION_TRANSLATION_QUERY_KEY>,
@@ -31,6 +39,10 @@ interface GetEventFAQSectionTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventFAQSectionTranslation = async ({
   eventId,
   sectionId,
@@ -45,6 +57,10 @@ export const GetEventFAQSectionTranslation = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventFAQSectionTranslation = (
   eventId: string = "",
   sectionId: string = "",

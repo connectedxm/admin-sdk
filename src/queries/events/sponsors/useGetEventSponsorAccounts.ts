@@ -9,11 +9,19 @@ import {
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_SPONSOR_ACCOUNTS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "SPONSOR_ACCOUNTS",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_SPONSOR_ACCOUNTS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SPONSOR_ACCOUNTS_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetEventSponsorAccountsProps extends InfiniteQueryParams {
   eventId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventSponsorAccounts = async ({
   eventId,
   pageParam,
@@ -45,6 +57,10 @@ export const GetEventSponsorAccounts = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventSponsorAccounts = (
   eventId: string = "",
   params: Omit<

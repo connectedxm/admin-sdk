@@ -9,8 +9,16 @@ import {
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Levels
+ */
 export const LEVELS_QUERY_KEY = () => ["LEVELS"];
 
+/**
+ * @category Setters
+ * @group Levels
+ */
 export const SET_LEVELS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof LEVELS_QUERY_KEY>,
@@ -21,6 +29,10 @@ export const SET_LEVELS_QUERY_DATA = (
 
 interface GetLevelsProps extends InfiniteQueryParams {}
 
+/**
+ * @category Queries
+ * @group Levels
+ */
 export const GetLevels = async ({
   pageParam,
   pageSize,
@@ -39,6 +51,10 @@ export const GetLevels = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Levels
+ */
 export const useGetLevels = (
   params: Omit<
     InfiniteQueryParams,

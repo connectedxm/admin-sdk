@@ -9,6 +9,10 @@ import { QueryClient } from "@tanstack/react-query";
 import { EVENT_REGISTRATION_QUERY_KEY } from "../useGetEventRegistration";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_REGISTRATION_PURCHASES_QUERY_KEY = (
   eventId: string,
   registrationId: string,
@@ -26,6 +30,10 @@ export const EVENT_REGISTRATION_PURCHASES_QUERY_KEY = (
   return key;
 };
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_REGISTRATION_PURCHASES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_REGISTRATION_PURCHASES_QUERY_KEY>,
@@ -43,6 +51,10 @@ interface GetEventRegistrationPurchasesProps extends InfiniteQueryParams {
   paid?: boolean;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventRegistrationPurchases = async ({
   eventId,
   registrationId,
@@ -70,6 +82,10 @@ export const GetEventRegistrationPurchases = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventRegistrationPurchases = (
   eventId: string = "",
   registrationId: string = "",

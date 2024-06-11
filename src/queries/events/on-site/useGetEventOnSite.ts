@@ -9,12 +9,20 @@ import { EventOnSite } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENTS_QUERY_KEY } from "../useGetEvents";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_ON_SITE_QUERY_KEY = (eventId: string) => [
   ...EVENTS_QUERY_KEY(),
   eventId,
   "ON_SITE",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_ON_SITE_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_ON_SITE_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetEventOnSiteProps extends SingleQueryParams {
   eventId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventOnSite = async ({
   eventId,
   adminApiParams,
@@ -35,6 +47,10 @@ export const GetEventOnSite = async ({
   const { data } = await adminApi.get(`/events/${eventId}/on-site`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventOnSite = (
   eventId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventOnSite>> = {}

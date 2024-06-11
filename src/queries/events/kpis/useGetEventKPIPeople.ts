@@ -22,6 +22,10 @@ interface PeopleCounts {
   guests: number;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventKPIPeople = async ({
   eventId,
   adminApiParams,
@@ -30,6 +34,10 @@ export const GetEventKPIPeople = async ({
   const { data } = await adminApi.get(`/events/${eventId}/kpi/people`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventKPIPeople = (
   eventId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventKPIPeople>> = {}

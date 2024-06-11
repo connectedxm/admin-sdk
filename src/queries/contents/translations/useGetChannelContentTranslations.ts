@@ -8,11 +8,19 @@ import {
 } from "../../useConnectedInfiniteQuery";
 import { CHANNEL_CONTENT_QUERY_KEY } from "../useGetChannelContent";
 
+/**
+ * @category Keys
+ * @group Contents
+ */
 export const CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY = (
   channelId: string,
   contentId: string
 ) => [...CHANNEL_CONTENT_QUERY_KEY(channelId, contentId), "TRANSLATIONS"];
 
+/**
+ * @category Setters
+ * @group Contents
+ */
 export const SET_CHANNEL_CONTENT_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY>,
@@ -28,6 +36,10 @@ interface GetChannelContentTranslationsProps extends InfiniteQueryParams {
   contentId: string;
 }
 
+/**
+ * @category Queries
+ * @group Contents
+ */
 export const GetChannelContentTranslations = async ({
   pageParam,
   pageSize,
@@ -49,6 +61,10 @@ export const GetChannelContentTranslations = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Contents
+ */
 export const useGetChannelContentTranslations = (
   channelId: string = "",
   contentId: string = "",

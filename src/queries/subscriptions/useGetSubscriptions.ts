@@ -8,8 +8,16 @@ import {
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Subscriptions
+ */
 export const SUBSCRIPTIONS_QUERY_KEY = () => ["SUBSCRIPTIONS"];
 
+/**
+ * @category Setters
+ * @group Subscriptions
+ */
 export const SET_SUBSCRIPTIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SUBSCRIPTIONS_QUERY_KEY>,
@@ -23,6 +31,10 @@ interface GetSubscriptionsProps extends InfiniteQueryParams {
   subscriptionProductId?: string;
 }
 
+/**
+ * @category Queries
+ * @group Subscriptions
+ */
 export const GetSubscriptions = async ({
   pageParam,
   pageSize,
@@ -45,6 +57,10 @@ export const GetSubscriptions = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Subscriptions
+ */
 export const useGetSubscriptions = (
   status?: SubscriptionStatus,
   subscriptionProductId?: string,

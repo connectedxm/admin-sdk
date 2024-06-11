@@ -8,11 +8,19 @@ import {
 import { EVENT_SESSION_QUERY_KEY } from "./useGetEventSession";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_SESSION_SPONSORS_QUERY_KEY = (
   eventId: string,
   sessionId: string
 ) => [...EVENT_SESSION_QUERY_KEY(eventId, sessionId), "SPONSORS"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_SESSION_SPONSORS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SESSION_SPONSORS_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetEventSessionSponsorsProps extends InfiniteQueryParams {
   sessionId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventSessionSponsors = async ({
   eventId,
   sessionId,
@@ -49,6 +61,10 @@ export const GetEventSessionSponsors = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventSessionSponsors = (
   eventId: string = "",
   sessionId: string = "",

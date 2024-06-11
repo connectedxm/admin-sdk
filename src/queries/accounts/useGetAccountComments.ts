@@ -10,11 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Accounts
+ */
 export const ACCOUNT_COMMENTS_QUERY_KEY = (accountId: string) => [
   ...ACCOUNT_QUERY_KEY(accountId),
   "COMMENTS",
 ];
 
+/**
+ * @category Setters
+ * @group Accounts
+ */
 export const SET_ACCOUNT_COMMENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_COMMENTS_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetAccountCommentsProps extends InfiniteQueryParams {
   accountId: string;
 }
 
+/**
+ * @category Queries
+ * @group Accounts
+ */
 export const GetAccountComments = async ({
   accountId,
   pageParam,
@@ -45,6 +57,10 @@ export const GetAccountComments = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Accounts
+ */
 export const useGetAccountComments = (
   accountId: string = "",
   params: Omit<

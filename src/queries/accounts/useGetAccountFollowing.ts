@@ -10,11 +10,19 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 
+/**
+ * @category Keys
+ * @group Accounts
+ */
 export const ACCOUNT_FOLLOWING_QUERY_KEY = (accountId: string) => [
   ...ACCOUNT_QUERY_KEY(accountId),
   "FOLLOWING",
 ];
 
+/**
+ * @category Setters
+ * @group Accounts
+ */
 export const SET_ACCOUNT_FOLLOWING_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_FOLLOWING_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetAccountFollowingProps extends InfiniteQueryParams {
   accountId: string;
 }
 
+/**
+ * @category Queries
+ * @group Accounts
+ */
 export const GetAccountFollowing = async ({
   accountId,
   pageParam,
@@ -46,6 +58,10 @@ export const GetAccountFollowing = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Accounts
+ */
 export const useGetAccountFollowing = (
   accountId: string = "",
   params: Omit<

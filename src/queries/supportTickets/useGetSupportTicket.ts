@@ -9,11 +9,19 @@ import { SUPPORT_TICKETS_QUERY_KEY } from "./useGetSupportTickets";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Support Tickets
+ */
 export const SUPPORT_TICKET_QUERY_KEY = (supportTicketId: string) => [
   ...SUPPORT_TICKETS_QUERY_KEY(),
   supportTicketId,
 ];
 
+/**
+ * @category Setters
+ * @group Support Tickets
+ */
 export const SET_SUPPORT_TICKET_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SUPPORT_TICKET_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetSupportTicketProps extends SingleQueryParams {
   supportTicketId: string;
 }
 
+/**
+ * @category Queries
+ * @group Support Tickets
+ */
 export const GetSupportTicket = async ({
   supportTicketId,
   adminApiParams,
@@ -34,6 +46,10 @@ export const GetSupportTicket = async ({
   const { data } = await adminApi.get(`/supportTickets/${supportTicketId}`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Support Tickets
+ */
 export const useGetSupportTicket = (
   supportTicketId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetSupportTicket>> = {}

@@ -8,8 +8,16 @@ import {
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 
+/**
+ * @category Keys
+ * @group Videos
+ */
 export const VIDEOS_QUERY_KEY = (source: string) => ["VIDEOS", source];
 
+/**
+ * @category Setters
+ * @group Videos
+ */
 export const SET_VIDEOS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof VIDEOS_QUERY_KEY>,
@@ -22,6 +30,10 @@ interface GetVideosParams extends InfiniteQueryParams {
   source?: string;
 }
 
+/**
+ * @category Queries
+ * @group Videos
+ */
 export const GetVideos = async ({
   pageParam,
   pageSize,
@@ -43,6 +55,10 @@ export const GetVideos = async ({
 
   return data;
 };
+/**
+ * @category Hooks
+ * @group Videos
+ */
 export const useGetVideos = (
   source?: string,
   params: Omit<

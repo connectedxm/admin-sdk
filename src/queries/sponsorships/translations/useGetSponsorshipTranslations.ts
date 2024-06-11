@@ -8,11 +8,19 @@ import {
 } from "../../useConnectedInfiniteQuery";
 import { SPONSORSHIP_QUERY_KEY } from "../useGetSponsorship";
 
+/**
+ * @category Keys
+ * @group Sponsorships
+ */
 export const SPONSORSHIP_TRANSLATIONS_QUERY_KEY = (sponsorhipId: string) => [
   ...SPONSORSHIP_QUERY_KEY(sponsorhipId),
   "TRANSLATIONS",
 ];
 
+/**
+ * @category Setters
+ * @group Sponsorships
+ */
 export const SET_SPONSORSHIP_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof SPONSORSHIP_TRANSLATIONS_QUERY_KEY>,
@@ -28,6 +36,10 @@ interface GetSponsorshipTranslationsProps extends InfiniteQueryParams {
   sponsorhipId: string;
 }
 
+/**
+ * @category Queries
+ * @group Sponsorships
+ */
 export const GetSponsorshipTranslations = async ({
   pageParam,
   pageSize,
@@ -52,6 +64,10 @@ export const GetSponsorshipTranslations = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Sponsorships
+ */
 export const useGetSponsorshipTranslations = (
   sponsorhipId: string = "",
   params: Omit<

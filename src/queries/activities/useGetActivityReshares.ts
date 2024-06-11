@@ -9,11 +9,19 @@ import {
 import { ACTIVITY_QUERY_KEY } from "./useGetActivity";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Activities
+ */
 export const ACTIVITY_RESHARES_QUERY_KEY = (activityId: string) => [
   ...ACTIVITY_QUERY_KEY(activityId),
   "RESHARES",
 ];
 
+/**
+ * @category Setters
+ * @group Activities
+ */
 export const SET_ACTIVITY_RESHARES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACTIVITY_RESHARES_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetActivityResharesProps extends InfiniteQueryParams {
   activityId: string;
 }
 
+/**
+ * @category Queries
+ * @group Activities
+ */
 export const GetActivityReshares = async ({
   activityId,
   pageParam,
@@ -46,7 +58,10 @@ export const GetActivityReshares = async ({
   return data;
 };
 
-export const QUERY_KEY = "ACTIVITY_RESHARES";
+/**
+ * @category Hooks
+ * @group Activities
+ */
 export const useGetActivityReshares = (
   activityId: string = "",
   params: Omit<
@@ -60,7 +75,7 @@ export const useGetActivityReshares = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetActivityReshares>>
   >(
-    [QUERY_KEY, activityId],
+    ACTIVITY_RESHARES_QUERY_KEY(activityId),
     (params: InfiniteQueryParams) =>
       GetActivityReshares({ activityId, ...params }),
     params,

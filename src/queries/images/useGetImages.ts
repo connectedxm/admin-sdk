@@ -8,12 +8,20 @@ import {
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Images
+ */
 export const IMAGES_QUERY_KEY = (type?: ImageType) => {
   const keys = ["IMAGES"];
   if (type) keys.push(type);
   return keys;
 };
 
+/**
+ * @category Setters
+ * @group Images
+ */
 export const SET_IMAGES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof IMAGES_QUERY_KEY>,
@@ -30,6 +38,10 @@ interface GetImagePrams extends InfiniteQueryParams {
   type?: ImageType;
 }
 
+/**
+ * @category Queries
+ * @group Images
+ */
 export const GetImages = async ({
   pageParam,
   pageSize,
@@ -51,6 +63,10 @@ export const GetImages = async ({
 
   return data;
 };
+/**
+ * @category Hooks
+ * @group Images
+ */
 export const useGetImages = (
   type?: ImageType,
   params: Omit<

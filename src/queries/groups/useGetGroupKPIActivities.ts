@@ -8,11 +8,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { GROUP_QUERY_KEY } from "./useGetGroup";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Groups
+ */
 export const GROUP_KPI_ACTIVITIES_QUERY_KEY = (groupId: string) => [
   ...GROUP_QUERY_KEY(groupId),
   "KPI_ACTIVITIES",
 ];
 
+/**
+ * @category Setters
+ * @group Groups
+ */
 export const SET_GROUP_KPI_ACTIVITIES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof GROUP_KPI_ACTIVITIES_QUERY_KEY>,
@@ -30,6 +38,10 @@ interface DateSumCount {
   count: number;
 }
 
+/**
+ * @category Queries
+ * @group Groups
+ */
 export const GetGroupKPIActivities = async ({
   groupId,
   adminApiParams,
@@ -40,6 +52,10 @@ export const GetGroupKPIActivities = async ({
   const { data } = await adminApi.get(`/groups/${groupId}/kpi/activities`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Groups
+ */
 export const useGetGroupKPIActivities = (
   groupId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetGroupKPIActivities>> = {}

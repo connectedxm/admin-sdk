@@ -9,11 +9,19 @@ import { StreamInputOutput } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { STREAM_QUERY_KEY } from "./useGetStreamInput";
 
+/**
+ * @category Keys
+ * @group Streams
+ */
 export const STREAM_INPUT_OUTPUTS_QUERY_KEY = (streamId: string) => [
   ...STREAM_QUERY_KEY(streamId),
   "OUTPUTS",
 ];
 
+/**
+ * @category Setters
+ * @group Streams
+ */
 export const SET_STREAM_INPUT_OUTPUTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof STREAM_INPUT_OUTPUTS_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetStreamInputOutputsParams extends InfiniteQueryParams {
   streamId: string;
 }
 
+/**
+ * @category Queries
+ * @group Streams
+ */
 export const GetStreamInputOutputs = async ({
   streamId,
   pageParam,
@@ -48,6 +60,10 @@ export const GetStreamInputOutputs = async ({
 
   return data;
 };
+/**
+ * @category Hooks
+ * @group Streams
+ */
 export const useGetStreamInputOutputs = (
   streamId: string = "",
   params: Omit<

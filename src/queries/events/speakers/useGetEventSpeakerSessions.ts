@@ -9,11 +9,19 @@ import {
 import { EVENT_SPEAKER_QUERY_KEY } from "./useGetEventSpeaker";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_SPEAKER_SESSIONS_QUERY_KEY = (
   eventId: string,
   speakerId: string
 ) => [...EVENT_SPEAKER_QUERY_KEY(eventId, speakerId), "SESSIONS"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_SPEAKER_SESSIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_SPEAKER_SESSIONS_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetEventSpeakerSessionsProps extends InfiniteQueryParams {
   speakerId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventSpeakerSessions = async ({
   eventId,
   speakerId,
@@ -50,6 +62,10 @@ export const GetEventSpeakerSessions = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventSpeakerSessions = (
   eventId: string = "",
   speakerId: string = "",

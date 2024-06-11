@@ -8,12 +8,20 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { RegistrationQuestionTranslation } from "@src/interfaces";
 import { EVENT_QUESTION_TRANSLATIONS_QUERY_KEY } from "./useGetEventQuestionTranslations";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_QUESTION_TRANSLATION_QUERY_KEY = (
   eventId: string,
   questionId: string,
   locale: string
 ) => [...EVENT_QUESTION_TRANSLATIONS_QUERY_KEY(eventId, questionId), locale];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_QUESTION_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_QUESTION_TRANSLATION_QUERY_KEY>,
@@ -31,6 +39,10 @@ interface GetEventQuestionTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventQuestionTranslation = async ({
   eventId,
   questionId,
@@ -45,6 +57,10 @@ export const GetEventQuestionTranslation = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventQuestionTranslation = (
   eventId: string = "",
   questionId: string = "",

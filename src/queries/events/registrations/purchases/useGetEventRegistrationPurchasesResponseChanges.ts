@@ -9,6 +9,10 @@ import {
 } from "../../../useConnectedInfiniteQuery";
 import { EVENT_REGISTRATION_PURCHASE_RESPONSE_QUERY_KEY } from "./useGetEventRegistrationPurchaseResponse";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_REGISTRATION_PURCHASE_RESPONSE_CHANGES_QUERY_KEY = (
   eventId: string,
   registrationId: string,
@@ -24,6 +28,10 @@ export const EVENT_REGISTRATION_PURCHASE_RESPONSE_CHANGES_QUERY_KEY = (
   "CHANGES",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_REGISTRATION_PURCHASE_RESPONSE_CHANGES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<
@@ -47,6 +55,10 @@ interface GetEventRegistrationPurchaseResponseChangesProps
   questionId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventRegistrationPurchaseResponseChanges = async ({
   eventId,
   registrationId,
@@ -74,6 +86,10 @@ export const GetEventRegistrationPurchaseResponseChanges = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventRegistrationPurchaseResponseChanges = (
   eventId: string = "",
   registrationId: string = "",

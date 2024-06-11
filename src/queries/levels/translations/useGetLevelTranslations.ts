@@ -8,11 +8,19 @@ import {
   useConnectedInfiniteQuery,
 } from "@src/queries/useConnectedInfiniteQuery";
 
+/**
+ * @category Keys
+ * @group Levels
+ */
 export const LEVEL_TRANSLATIONS_QUERY_KEY = (levelId: string) => [
   ...LEVEL_QUERY_KEY(levelId),
   "TRANSLATIONS",
 ];
 
+/**
+ * @category Setters
+ * @group Levels
+ */
 export const SET_LEVEL_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof LEVEL_TRANSLATIONS_QUERY_KEY>,
@@ -25,6 +33,10 @@ interface GetLevelTranslationsProps extends InfiniteQueryParams {
   levelId: string;
 }
 
+/**
+ * @category Queries
+ * @group Levels
+ */
 export const GetLevelTranslations = async ({
   pageParam,
   pageSize,
@@ -46,6 +58,10 @@ export const GetLevelTranslations = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Levels
+ */
 export const useGetLevelTranslations = (
   levelId: string = "",
   params: Omit<

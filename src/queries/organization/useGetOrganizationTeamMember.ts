@@ -7,11 +7,19 @@ import { ORGANIZATION_TEAM_MEMBERS_QUERY_KEY } from "./useGetOrganizationTeamMem
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Organization
+ */
 export const ORGANIZATION_TEAM_MEMBER_QUERY_KEY = (teamMemberId: string) => [
   ...ORGANIZATION_TEAM_MEMBERS_QUERY_KEY(),
   teamMemberId,
 ];
 
+/**
+ * @category Setters
+ * @group Organization
+ */
 export const SET_ORGANIZATION_TEAM_MEMBER_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ORGANIZATION_TEAM_MEMBER_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetOrganizationTeamMemberProps extends SingleQueryParams {
   teamMemberId: string;
 }
 
+/**
+ * @category Queries
+ * @group Organization
+ */
 export const GetOrganizationTeamMember = async ({
   teamMemberId,
   adminApiParams,
@@ -37,6 +49,10 @@ export const GetOrganizationTeamMember = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Organization
+ */
 export const useGetOrganizationTeamMember = (
   teamMemberId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetOrganizationTeamMember>> = {}

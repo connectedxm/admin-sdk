@@ -9,11 +9,19 @@ import { Content } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { CHANNEL_CONTENTS_QUERY_KEY } from "./useGetChannelContents";
 
+/**
+ * @category Keys
+ * @group Contents
+ */
 export const CHANNEL_CONTENT_QUERY_KEY = (
   channelId: string,
   contentId: string
 ) => [...CHANNEL_CONTENTS_QUERY_KEY(channelId), contentId];
 
+/**
+ * @category Setters
+ * @group Contents
+ */
 export const SET_CHANNEL_CONTENT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof CHANNEL_CONTENT_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetChannelContentProps extends SingleQueryParams {
   contentId: string;
 }
 
+/**
+ * @category Queries
+ * @group Contents
+ */
 export const GetChannelContent = async ({
   contentId,
   adminApiParams,
@@ -34,6 +46,10 @@ export const GetChannelContent = async ({
   const { data } = await adminApi.get(`/contents/${contentId}`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Contents
+ */
 export const useGetChannelContent = (
   channelId: string = "",
   contentId: string = "",

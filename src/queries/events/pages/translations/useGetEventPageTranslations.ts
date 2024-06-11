@@ -8,11 +8,19 @@ import {
 } from "../../../useConnectedInfiniteQuery";
 import { EVENT_PAGE_QUERY_KEY } from "../useGetEventPage";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_PAGE_TRANSLATIONS_QUERY_KEY = (
   eventId: string,
   pageId: string
 ) => [...EVENT_PAGE_QUERY_KEY(eventId, pageId), "TRANSLATIONS"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_PAGE_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_PAGE_TRANSLATIONS_QUERY_KEY>,
@@ -29,6 +37,10 @@ interface GetEventPageTranslationsProps extends InfiniteQueryParams {
   pageId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventPageTranslations = async ({
   pageParam,
   pageSize,
@@ -54,6 +66,10 @@ export const GetEventPageTranslations = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventPageTranslations = (
   eventId: string = "",
   pageId: string = "",

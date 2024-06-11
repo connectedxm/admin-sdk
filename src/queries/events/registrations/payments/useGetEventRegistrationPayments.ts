@@ -9,11 +9,19 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_REGISTRATION_QUERY_KEY } from "../useGetEventRegistration";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_REGISTRATION_PAYMENTS_QUERY_KEY = (
   eventId: string,
   registrationId: string
 ) => [...EVENT_REGISTRATION_QUERY_KEY(eventId, registrationId), "PAYMENTS"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_REGISTRATION_PAYMENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_REGISTRATION_PAYMENTS_QUERY_KEY>,
@@ -30,6 +38,10 @@ interface GetEventRegistrationPaymentsProps extends InfiniteQueryParams {
   registrationId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventRegistrationPayments = async ({
   eventId,
   registrationId,
@@ -55,6 +67,10 @@ export const GetEventRegistrationPayments = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventRegistrationPayments = (
   eventId: string = "",
   registrationId: string = "",

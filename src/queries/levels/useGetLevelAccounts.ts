@@ -10,11 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { LEVEL_QUERY_KEY } from "./useGetLevel";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Levels
+ */
 export const LEVEL_ACCOUNTS_QUERY_KEY = (levelId: string) => [
   ...LEVEL_QUERY_KEY(levelId),
   "ACCOUNTS",
 ];
 
+/**
+ * @category Setters
+ * @group Levels
+ */
 export const SET_LEVEL_ACCOUNTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof LEVEL_ACCOUNTS_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetLevelAccountsProps extends InfiniteQueryParams {
   levelId: string;
 }
 
+/**
+ * @category Queries
+ * @group Levels
+ */
 export const GetLevelAccounts = async ({
   levelId,
   pageParam,
@@ -44,6 +56,10 @@ export const GetLevelAccounts = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Levels
+ */
 export const useGetLevelAccounts = (
   levelId: string = "",
   params: Omit<

@@ -8,11 +8,19 @@ import {
 } from "../../../useConnectedInfiniteQuery";
 import { EVENT_TRACK_QUERY_KEY } from "../useGetEventTrack";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_TRACK_TRANSLATIONS_QUERY_KEY = (
   eventId: string,
   trackId: string
 ) => [...EVENT_TRACK_QUERY_KEY(eventId, trackId), "TRANSLATIONS"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_TRACK_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_TRACK_TRANSLATIONS_QUERY_KEY>,
@@ -29,6 +37,10 @@ interface GetEventTrackTranslationsProps extends InfiniteQueryParams {
   trackId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventTrackTranslations = async ({
   pageParam,
   pageSize,
@@ -54,6 +66,10 @@ export const GetEventTrackTranslations = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventTrackTranslations = (
   eventId: string = "",
   trackId: string = "",

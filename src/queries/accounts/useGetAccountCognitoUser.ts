@@ -9,6 +9,10 @@ import { CognitoUser } from "@src/interfaces";
 import { ACCOUNT_COGNITO_USERS_QUERY_KEY } from "./useGetAccountCognitoUsers";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Accounts
+ */
 export const ACCOUNT_COGNITO_USER_QUERY_KEY = (
   accountId: string,
   username: string
@@ -19,6 +23,10 @@ interface GetAccountCognitoUserProps extends SingleQueryParams {
   username: string;
 }
 
+/**
+ * @category Queries
+ * @group Accounts
+ */
 export const GetAccountCognitoUser = async ({
   accountId,
   username,
@@ -30,6 +38,10 @@ export const GetAccountCognitoUser = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Accounts
+ */
 export const useGetAccountCognitoUser = (
   accountId: string = "",
   username: string = "",

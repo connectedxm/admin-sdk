@@ -8,11 +8,19 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Series
+ */
 export const SERIES_LIST_QUERY_KEY = () => {
   const keys = ["SERIES"];
   return keys;
 };
 
+/**
+ * @category Setters
+ * @group Series
+ */
 export const SET_SERIES_LIST_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SERIES_LIST_QUERY_KEY>,
@@ -25,6 +33,10 @@ interface GetSeriesListProps extends InfiniteQueryParams {
   past?: boolean;
 }
 
+/**
+ * @category Queries
+ * @group Series
+ */
 export const GetSeriesList = async ({
   pageParam,
   pageSize,
@@ -46,6 +58,10 @@ export const GetSeriesList = async ({
 
   return data;
 };
+/**
+ * @category Hooks
+ * @group Series
+ */
 export const useGetSeriesList = (
   past?: boolean,
   params: Omit<

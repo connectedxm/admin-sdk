@@ -9,6 +9,10 @@ import { EVENT_RESERVATION_SECTION_LOCATIONS_QUERY_KEY } from "./useGetEventRese
 import { EventReservationSectionLocation } from "@src/interfaces";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_RESERVATION_SECTION_LOCATION_QUERY_KEY = (
   eventId: string,
   reservationSectionId: string,
@@ -21,6 +25,10 @@ export const EVENT_RESERVATION_SECTION_LOCATION_QUERY_KEY = (
   locationId,
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_RESERVATION_SECTION_LOCATION_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_RESERVATION_SECTION_LOCATION_QUERY_KEY>,
@@ -38,6 +46,10 @@ interface GetEventReservationSectionProps extends SingleQueryParams {
   locationId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventReservationSectionLocation = async ({
   eventId,
   reservationSectionId,
@@ -53,6 +65,10 @@ export const GetEventReservationSectionLocation = async ({
   return data;
 };
 
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventReservationSectionLocation = (
   eventId: string = "",
   reservationSectionId: string = "",

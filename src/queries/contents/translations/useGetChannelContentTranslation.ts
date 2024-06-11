@@ -8,12 +8,20 @@ import {
   SingleQueryParams,
 } from "@src/queries/useConnectedSingleQuery";
 
+/**
+ * @category Keys
+ * @group Contents
+ */
 export const CHANNEL_CONTENT_TRANSLATION_QUERY_KEY = (
   channelId: string,
   contentId: string,
   locale: string
 ) => [...CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY(channelId, contentId), locale];
 
+/**
+ * @category Setters
+ * @group Contents
+ */
 export const SET_CHANNEL_CONTENT_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof CHANNEL_CONTENT_TRANSLATION_QUERY_KEY>,
@@ -30,6 +38,10 @@ interface GetChannelContentTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
+/**
+ * @category Queries
+ * @group Contents
+ */
 export const GetChannelContentTranslation = async ({
   contentId,
   locale,
@@ -43,6 +55,10 @@ export const GetChannelContentTranslation = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Contents
+ */
 export const useGetChannelContentTranslation = (
   channelId: string = "",
   contentId: string = "",

@@ -8,6 +8,10 @@ import { RegistrationQuestionResponse } from "@src/interfaces";
 import { EVENT_REGISTRATION_PURCHASE_RESPONSES_QUERY_KEY } from "./useGetEventRegistrationPurchaseResponses";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_REGISTRATION_PURCHASE_RESPONSE_QUERY_KEY = (
   eventId: string,
   registrationId: string,
@@ -22,6 +26,10 @@ export const EVENT_REGISTRATION_PURCHASE_RESPONSE_QUERY_KEY = (
   questionId,
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_REGISTRATION_PURCHASE_RESPONSE_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_REGISTRATION_PURCHASE_RESPONSE_QUERY_KEY>,
@@ -40,6 +48,10 @@ interface GetEventRegistrationPurchaseResponseProps extends SingleQueryParams {
   questionId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventRegistrationPurchaseResponse = async ({
   eventId,
   registrationId,
@@ -55,6 +67,10 @@ export const GetEventRegistrationPurchaseResponse = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventRegistrationPurchaseResponse = (
   eventId: string = "",
   registrationId: string = "",

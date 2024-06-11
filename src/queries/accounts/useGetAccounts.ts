@@ -10,12 +10,20 @@ import {
 
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Accounts
+ */
 export const ACCOUNTS_QUERY_KEY = (accountType?: "account" | "team") => {
   const keys = ["ACCOUNTS"];
   if (accountType) keys.push(accountType);
   return keys;
 };
 
+/**
+ * @category Setters
+ * @group Accounts
+ */
 export const SET_ACCOUNTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNTS_QUERY_KEY>,
@@ -28,6 +36,10 @@ interface GetAccountsProps extends InfiniteQueryParams {
   accountType?: "account" | "team";
 }
 
+/**
+ * @category Queries
+ * @group Accounts
+ */
 export const GetAccounts = async ({
   pageParam,
   pageSize,
@@ -48,6 +60,10 @@ export const GetAccounts = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Accounts
+ */
 export const useGetAccounts = (
   accountType?: "account" | "team",
   params: Omit<

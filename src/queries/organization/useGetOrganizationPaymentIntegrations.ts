@@ -9,11 +9,19 @@ import {
 import { ORGANIZATION_QUERY_KEY } from "./useGetOrganization";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Organization
+ */
 export const ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY = () => [
   ...ORGANIZATION_QUERY_KEY(),
   "PAYMENT_INTEGRATIONS",
 ];
 
+/**
+ * @category Setters
+ * @group Organization
+ */
 export const SET_ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY>,
@@ -27,6 +35,10 @@ export const SET_ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_DATA = (
 
 interface GetOrganizationPaymentIntegrationsProps extends InfiniteQueryParams {}
 
+/**
+ * @category Queries
+ * @group Organization
+ */
 export const GetOrganizationPaymentIntegrations = async ({
   pageParam,
   pageSize,
@@ -47,6 +59,10 @@ export const GetOrganizationPaymentIntegrations = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Organization
+ */
 export const useGetOrganizationPaymentIntegrations = (
   params: Omit<
     InfiniteQueryParams,

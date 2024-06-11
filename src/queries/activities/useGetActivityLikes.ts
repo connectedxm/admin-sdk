@@ -10,11 +10,19 @@ import { ACTIVITY_QUERY_KEY } from "./useGetActivity";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Activities
+ */
 export const ACTIVITY_LIKES_QUERY_KEY = (activityId: string) => [
   ...ACTIVITY_QUERY_KEY(activityId),
   "LIKES",
 ];
 
+/**
+ * @category Setters
+ * @group Activities
+ */
 export const SET_ACTIVITY_LIKES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACTIVITY_LIKES_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetActivityLikesProps extends InfiniteQueryParams {
   activityId: string;
 }
 
+/**
+ * @category Queries
+ * @group Activities
+ */
 export const GetActivityLikes = async ({
   activityId,
   pageParam,
@@ -46,6 +58,10 @@ export const GetActivityLikes = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Activities
+ */
 export const useGetActivityLikes = (
   activityId: string = "",
   params: Omit<

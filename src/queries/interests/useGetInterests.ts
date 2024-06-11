@@ -8,8 +8,16 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Interests
+ */
 export const INTERESTS_QUERY_KEY = () => ["INTERESTS"];
 
+/**
+ * @category Setters
+ * @group Interests
+ */
 export const SET_INTERESTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INTERESTS_QUERY_KEY>,
@@ -20,6 +28,10 @@ export const SET_INTERESTS_QUERY_DATA = (
 
 interface GetInterestsProps extends InfiniteQueryParams {}
 
+/**
+ * @category Queries
+ * @group Interests
+ */
 export const GetInterests = async ({
   pageParam,
   pageSize,
@@ -38,6 +50,10 @@ export const GetInterests = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Interests
+ */
 export const useGetInterests = (
   params: Omit<
     InfiniteQueryParams,

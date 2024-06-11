@@ -10,6 +10,10 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 
+/**
+ * @category Keys
+ * @group Accounts
+ */
 export const ACCOUNT_EMAILS_QUERY_KEY = (
   accountId: string,
   status?: keyof typeof EmailReceiptStatus
@@ -22,6 +26,10 @@ export const ACCOUNT_EMAILS_QUERY_KEY = (
   return queryKey;
 };
 
+/**
+ * @category Setters
+ * @group Accounts
+ */
 export const SET_ACCOUNT_EMAILS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_EMAILS_QUERY_KEY>,
@@ -35,6 +43,10 @@ interface GetAcccountEmailReceiptsProps extends InfiniteQueryParams {
   status?: keyof typeof EmailReceiptStatus;
 }
 
+/**
+ * @category Queries
+ * @group Accounts
+ */
 export const GetAcccountEmailReceipts = async ({
   accountId,
   status,
@@ -58,6 +70,10 @@ export const GetAcccountEmailReceipts = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Accounts
+ */
 export const useGetAcccountEmailReceipts = (
   accountId: string = "",
   status?: keyof typeof EmailReceiptStatus,

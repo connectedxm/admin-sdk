@@ -8,11 +8,19 @@ import {
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_ADD_ONS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "ADD_ONS",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_ADD_ONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_ADD_ONS_QUERY_KEY>,
@@ -25,6 +33,10 @@ interface GetEventAddOnsProps extends InfiniteQueryParams {
   eventId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventAddOns = async ({
   eventId,
   pageParam,
@@ -44,6 +56,10 @@ export const GetEventAddOns = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventAddOns = (
   eventId: string = "",
   params: Omit<

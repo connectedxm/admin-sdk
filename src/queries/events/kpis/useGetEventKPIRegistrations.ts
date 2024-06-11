@@ -21,6 +21,10 @@ interface DateCount {
   count: number;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventKPIRegistrations = async ({
   eventId,
   adminApiParams,
@@ -31,6 +35,10 @@ export const GetEventKPIRegistrations = async ({
   const { data } = await adminApi.get(`/events/${eventId}/kpi/registrations`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventKPIRegistrations = (
   eventId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventKPIRegistrations>> = {}

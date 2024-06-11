@@ -7,11 +7,19 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { ADVERTISEMENT_QUERY_KEY } from "./useGetAdvertisement";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Advertisements
+ */
 export const ADVERTISEMENT_KPI_VIEWS_QUERY_KEY = (advertisementId: string) => [
   ...ADVERTISEMENT_QUERY_KEY(advertisementId),
   "KPI_VIEWS",
 ];
 
+/**
+ * @category Setters
+ * @group Advertisements
+ */
 export const SET_ADVERTISEMENT_KPI_VIEWS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof ADVERTISEMENT_KPI_VIEWS_QUERY_KEY>,
@@ -32,6 +40,10 @@ interface DateSumCount {
   count: number;
 }
 
+/**
+ * @category Queries
+ * @group Advertisements
+ */
 export const GetAdvertisementKPIViews = async ({
   advertisementId,
   adminApiParams,
@@ -44,6 +56,10 @@ export const GetAdvertisementKPIViews = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Advertisements
+ */
 export const useGetAdvertisementKPIViews = (
   advertisementId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetAdvertisementKPIViews>> = {}

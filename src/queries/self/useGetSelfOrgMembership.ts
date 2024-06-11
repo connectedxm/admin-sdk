@@ -7,11 +7,19 @@ import { SELF_QUERY_KEY } from "./useGetSelf";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Self
+ */
 export const SELF_MEMBERSHIP_QUERY_KEY = () => [
   ...SELF_QUERY_KEY(),
   "MEMBERSHIP",
 ];
 
+/**
+ * @category Setters
+ * @group Self
+ */
 export const SET_SELF_MEMBERSHIP_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SELF_MEMBERSHIP_QUERY_KEY>,
@@ -22,6 +30,10 @@ export const SET_SELF_MEMBERSHIP_QUERY_DATA = (
 
 interface GetSelfOrgMembershipProps extends SingleQueryParams {}
 
+/**
+ * @category Queries
+ * @group Self
+ */
 export const GetSelfOrgMembership = async ({
   adminApiParams,
 }: GetSelfOrgMembershipProps) => {
@@ -29,6 +41,10 @@ export const GetSelfOrgMembership = async ({
   const { data } = await adminApi.get(`/self/organization-membership`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Self
+ */
 export const useGetSelfOrgMembership = (
   options: SingleQueryOptions<ReturnType<typeof GetSelfOrgMembership>> = {}
 ) => {

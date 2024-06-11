@@ -11,6 +11,9 @@ export interface AdminApiParams {
   locale: string;
 }
 
+/**
+ * @category Queries
+ */
 export const GetAdminAPI = async (
   params: AdminApiParams
 ): Promise<AxiosInstance> => {

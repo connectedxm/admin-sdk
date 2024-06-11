@@ -9,6 +9,10 @@ import {
   useConnectedInfiniteQuery,
 } from "@src/queries/useConnectedInfiniteQuery";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_REGISTRATION_PURCHASE_TRANSFER_LOGS_QUERY_KEY = (
   eventId: string,
   registrationId: string,
@@ -18,6 +22,10 @@ export const EVENT_REGISTRATION_PURCHASE_TRANSFER_LOGS_QUERY_KEY = (
   "TRANSFER_LOGS",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_REGISTRATION_PURCHASE_TRANSFER_LOGS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<
@@ -38,6 +46,10 @@ interface GetEventRegistrationPurchaseTransferLogsProps
   purchaseId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventRegistrationPurchaseTransferLogs = async ({
   eventId,
   registrationId,
@@ -64,6 +76,10 @@ export const GetEventRegistrationPurchaseTransferLogs = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventRegistrationPurchaseTransferLogs = (
   eventId: string = "",
   registrationId: string = "",

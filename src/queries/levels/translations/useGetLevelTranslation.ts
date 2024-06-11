@@ -8,11 +8,19 @@ import {
   SingleQueryParams,
 } from "@src/queries/useConnectedSingleQuery";
 
+/**
+ * @category Keys
+ * @group Levels
+ */
 export const LEVEL_TRANSLATION_QUERY_KEY = (
   levelId: string,
   locale: string
 ) => [...LEVEL_TRANSLATIONS_QUERY_KEY(levelId), locale];
 
+/**
+ * @category Setters
+ * @group Levels
+ */
 export const SET_LEVEL_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof LEVEL_TRANSLATION_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetLevelTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
+/**
+ * @category Queries
+ * @group Levels
+ */
 export const GetLevelTranslation = async ({
   levelId,
   locale,
@@ -39,6 +51,10 @@ export const GetLevelTranslation = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Levels
+ */
 export const useGetLevelTranslation = (
   levelId: string = "",
   locale: string = "",

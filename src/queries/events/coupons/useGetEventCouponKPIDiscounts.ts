@@ -8,11 +8,19 @@ import { EVENT_COUPON_QUERY_KEY } from "./useGetEventCoupon";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_COUPON_KPI_DISCOUNTS_QUERY_KEY = (
   eventId: string,
   couponId: string
 ) => [...EVENT_COUPON_QUERY_KEY(eventId, couponId), "KPI_DISCOUNTS"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_COUPON_KPI_DISCOUNTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_COUPON_KPI_DISCOUNTS_QUERY_KEY>,
@@ -39,6 +47,10 @@ interface DiscountResponse {
   }[];
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventCouponKPIDiscounts = async ({
   eventId,
   couponId,
@@ -52,6 +64,10 @@ export const GetEventCouponKPIDiscounts = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventCouponKPIDiscounts = (
   eventId: string = "",
   couponId: string = "",

@@ -8,8 +8,16 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Activities
+ */
 export const ACTIVITIES_QUERY_KEY = () => ["ACTIVITIES"];
 
+/**
+ * @category Setters
+ * @group Activities
+ */
 export const SET_ACTIVITIES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACTIVITIES_QUERY_KEY>,
@@ -20,6 +28,10 @@ export const SET_ACTIVITIES_QUERY_DATA = (
 
 interface GetActivitiesProps extends InfiniteQueryParams {}
 
+/**
+ * @category Queries
+ * @group Activities
+ */
 export const GetActivities = async ({
   pageParam,
   pageSize,
@@ -38,6 +50,10 @@ export const GetActivities = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Activities
+ */
 export const useGetActivities = (
   params: Omit<
     InfiniteQueryParams,

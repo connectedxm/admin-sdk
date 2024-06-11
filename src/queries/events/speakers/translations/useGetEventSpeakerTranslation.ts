@@ -8,12 +8,20 @@ import { SpeakerTranslation } from "@src/interfaces";
 import { EVENT_SPEAKER_TRANSLATIONS_QUERY_KEY } from "./useGetEventSpeakerTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_SPEAKER_TRANSLATION_QUERY_KEY = (
   eventId: string,
   speakerId: string,
   locale: string
 ) => [...EVENT_SPEAKER_TRANSLATIONS_QUERY_KEY(eventId, speakerId), locale];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_SPEAKER_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SPEAKER_TRANSLATION_QUERY_KEY>,
@@ -31,6 +39,10 @@ interface GetEventSpeakerTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventSpeakerTranslation = async ({
   eventId,
   speakerId,
@@ -45,6 +57,10 @@ export const GetEventSpeakerTranslation = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventSpeakerTranslation = (
   eventId: string = "",
   speakerId: string = "",

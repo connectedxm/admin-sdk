@@ -9,8 +9,16 @@ import {
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Contents
+ */
 export const CHANNELS_QUERY_KEY = () => ["CHANNELS"];
 
+/**
+ * @category Setters
+ * @group Contents
+ */
 export const SET_CHANNELS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof CHANNELS_QUERY_KEY>,
@@ -21,6 +29,10 @@ export const SET_CHANNELS_QUERY_DATA = (
 
 interface GetChannelsProps extends InfiniteQueryParams {}
 
+/**
+ * @category Queries
+ * @group Contents
+ */
 export const GetChannels = async ({
   pageParam,
   pageSize,
@@ -39,6 +51,10 @@ export const GetChannels = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Contents
+ */
 export const useGetChannels = (
   params: Omit<
     InfiniteQueryParams,

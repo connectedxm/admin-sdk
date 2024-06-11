@@ -8,11 +8,19 @@ import {
 import { EVENT_QUESTION_QUERY_KEY } from "./useGetEventQuestion";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_QUESTION_RESPONSES_QUERY_KEY = (
   eventId: string,
   questionId: string
 ) => [...EVENT_QUESTION_QUERY_KEY(eventId, questionId), "RESPONSES"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_QUESTION_RESPONSES_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_QUESTION_RESPONSES_QUERY_KEY>,
@@ -29,6 +37,10 @@ interface GetEventQuestionResponsesProps extends InfiniteQueryParams {
   questionId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventQuestionResponses = async ({
   eventId,
   questionId,
@@ -54,6 +66,10 @@ export const GetEventQuestionResponses = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventQuestionResponses = (
   eventId: string = "",
   questionId: string = "",

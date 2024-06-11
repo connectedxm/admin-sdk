@@ -9,12 +9,20 @@ import {
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Announcements
+ */
 export const ANNOUNCEMENTS_QUERY_KEY = (filters?: string) => {
   const keys = ["ANNOUNCEMENTS"];
   if (filters) keys.push(filters);
   return keys;
 };
 
+/**
+ * @category Setters
+ * @group Announcements
+ */
 export const SET_ANNOUNCEMENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ANNOUNCEMENTS_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetAnnouncementsProps extends InfiniteQueryParams {
   filters?: string;
 }
 
+/**
+ * @category Queries
+ * @group Announcements
+ */
 export const GetAnnouncements = async ({
   pageParam,
   pageSize,
@@ -47,6 +59,10 @@ export const GetAnnouncements = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Announcements
+ */
 export const useGetAnnouncements = (
   filters?: string,
   params: Omit<

@@ -8,11 +8,19 @@ import {
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_RESERVATION_SECTIONS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "RESERVATION_SECTIONS",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_RESERVATION_SECTIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_RESERVATION_SECTIONS_QUERY_KEY>,
@@ -28,6 +36,10 @@ interface GetEventReservationSectionsProps extends InfiniteQueryParams {
   eventId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventReservationSections = async ({
   eventId,
   pageParam,
@@ -52,6 +64,10 @@ export const GetEventReservationSections = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventReservationSections = (
   eventId: string = "",
   params: Omit<

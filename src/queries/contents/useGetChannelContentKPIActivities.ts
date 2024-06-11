@@ -8,11 +8,19 @@ import { CHANNEL_CONTENT_QUERY_KEY } from "./useGetChannelContent";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Contents
+ */
 export const CHANNEL_CONTENT_KPI_ACTIVITIES_QUERY_KEY = (
   channelId: string,
   contentId: string
 ) => [...CHANNEL_CONTENT_QUERY_KEY(channelId, contentId), "KPI_ACTIVITIES"];
 
+/**
+ * @category Setters
+ * @group Contents
+ */
 export const SET_CHANNEL_CONTENT_KPI_ACTIVITIES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof CHANNEL_CONTENT_KPI_ACTIVITIES_QUERY_KEY>,
@@ -33,6 +41,10 @@ interface DateSumCount {
   count: number;
 }
 
+/**
+ * @category Queries
+ * @group Contents
+ */
 export const GetContentKPIActivities = async ({
   contentId,
   adminApiParams,
@@ -43,6 +55,10 @@ export const GetContentKPIActivities = async ({
   const { data } = await adminApi.get(`/contents/${contentId}/kpi/activities`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Contents
+ */
 export const useGetContentKPIActivities = (
   channelId: string = "",
   contentId: string = "",

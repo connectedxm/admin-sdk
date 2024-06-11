@@ -9,6 +9,10 @@ import {
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_REGISTRATIONS_QUERY_KEY = (
   eventId: string,
   status?: RegistrationStatus
@@ -18,6 +22,10 @@ export const EVENT_REGISTRATIONS_QUERY_KEY = (
   return keys;
 };
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_REGISTRATIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_REGISTRATIONS_QUERY_KEY>,
@@ -31,6 +39,10 @@ interface GetEventRegistrationsProps extends InfiniteQueryParams {
   status?: RegistrationStatus;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventRegistrations = async ({
   eventId,
   pageParam,
@@ -54,6 +66,10 @@ export const GetEventRegistrations = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventRegistrations = (
   eventId: string,
   status?: RegistrationStatus,

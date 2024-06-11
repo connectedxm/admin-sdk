@@ -8,11 +8,19 @@ import { ORGANIZATION_QUERY_KEY } from "./useGetOrganization";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Organization
+ */
 export const ORGANIZATION_KPI_ACCOUNTS_QUERY_KEY = () => [
   ...ORGANIZATION_QUERY_KEY(),
   "KPI_ACCOUNTS",
 ];
 
+/**
+ * @category Setters
+ * @group Organization
+ */
 export const SET_ORGANIZATION_KPI_ACCOUNTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ORGANIZATION_KPI_ACCOUNTS_QUERY_KEY>,
@@ -31,6 +39,10 @@ interface DateCount {
   count: number;
 }
 
+/**
+ * @category Queries
+ * @group Organization
+ */
 export const GetOrganizationKPIAccounts = async ({
   adminApiParams,
 }: GetOrganizationKPIAccountsProps): Promise<
@@ -40,6 +52,10 @@ export const GetOrganizationKPIAccounts = async ({
   const { data } = await adminApi.get(`/organization/kpi/new-accounts`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Organization
+ */
 export const useGetOrganizationKPIAccounts = (
   options: SingleQueryOptions<
     ReturnType<typeof GetOrganizationKPIAccounts>

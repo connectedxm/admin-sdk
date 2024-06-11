@@ -8,6 +8,10 @@ import {
 } from "../../../useConnectedInfiniteQuery";
 import { EVENT_QUESTION_CHOICE_QUERY_KEY } from "../useGetEventQuestionChoice";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_KEY = (
   eventId: string,
   questionId: string,
@@ -17,6 +21,10 @@ export const EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_KEY = (
   "TRANSLATIONS",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_KEY>,
@@ -34,6 +42,10 @@ interface GetEventQuestionChoiceTranslationsProps extends InfiniteQueryParams {
   choiceId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventQuestionChoiceTranslations = async ({
   pageParam,
   pageSize,
@@ -60,6 +72,10 @@ export const GetEventQuestionChoiceTranslations = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventQuestionChoiceTranslations = (
   eventId: string = "",
   questionId: string = "",

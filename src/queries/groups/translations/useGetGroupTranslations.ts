@@ -8,11 +8,19 @@ import {
 } from "../../useConnectedInfiniteQuery";
 import { GROUP_QUERY_KEY } from "../useGetGroup";
 
+/**
+ * @category Keys
+ * @group Groups
+ */
 export const GROUP_TRANSLATIONS_QUERY_KEY = (groupId: string) => [
   ...GROUP_QUERY_KEY(groupId),
   "TRANSLATIONS",
 ];
 
+/**
+ * @category Setters
+ * @group Groups
+ */
 export const SET_GROUP_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof GROUP_TRANSLATIONS_QUERY_KEY>,
@@ -25,6 +33,10 @@ interface GetGroupTranslationsProps extends InfiniteQueryParams {
   groupId: string;
 }
 
+/**
+ * @category Queries
+ * @group Groups
+ */
 export const GetGroupTranslations = async ({
   pageParam,
   pageSize,
@@ -46,6 +58,10 @@ export const GetGroupTranslations = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Groups
+ */
 export const useGetGroupTranslations = (
   groupId: string = "",
   params: Omit<

@@ -50,11 +50,19 @@ export type SummaryData =
   | TableChartSummaryData
   | CountChartSummaryData;
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_QUESTION_SUMMARY_QUERY_KEY = (
   eventId: string,
   questionId: string
 ) => [...EVENT_QUESTION_SUMMARIES_QUERY_KEY(eventId), questionId];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_QUESTION_SUMMARY_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_QUESTION_SUMMARY_QUERY_KEY>,
@@ -68,6 +76,10 @@ interface GetEventQuestionSummaryProps extends SingleQueryParams {
   questionId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventQuestionSummary = async ({
   adminApiParams,
   eventId,
@@ -79,6 +91,10 @@ export const GetEventQuestionSummary = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventQuestionSummary = (
   eventId: string = "",
   questionId: string = "",

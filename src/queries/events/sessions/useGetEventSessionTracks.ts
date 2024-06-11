@@ -8,11 +8,19 @@ import {
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_SESSION_QUERY_KEY } from "./useGetEventSession";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_SESSION_TRACKS_QUERY_KEY = (
   eventId: string,
   sessionId: string
 ) => [...EVENT_SESSION_QUERY_KEY(eventId, sessionId), "TRACKS"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_SESSION_TRACKS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SESSION_TRACKS_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetEventSessionTracksProps extends InfiniteQueryParams {
   sessionId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventSessionTracks = async ({
   eventId,
   sessionId,
@@ -49,6 +61,10 @@ export const GetEventSessionTracks = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventSessionTracks = (
   eventId: string = "",
   sessionId: string = "",

@@ -8,11 +8,19 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { Session } from "@src/interfaces";
 import { EVENT_SESSIONS_QUERY_KEY } from "./useGetEventSessions";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_SESSION_QUERY_KEY = (eventId: string, sessionId: string) => [
   ...EVENT_SESSIONS_QUERY_KEY(eventId),
   sessionId,
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_SESSION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SESSION_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetEventSessionProps extends SingleQueryParams {
   sessionId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventSession = async ({
   eventId,
   sessionId,
@@ -37,6 +49,10 @@ export const GetEventSession = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventSession = (
   eventId: string = "",
   sessionId: string = "",

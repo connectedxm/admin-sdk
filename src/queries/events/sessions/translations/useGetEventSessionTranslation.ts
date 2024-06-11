@@ -8,12 +8,20 @@ import { SessionTranslation } from "@src/interfaces";
 import { EVENT_SESSION_TRANSLATIONS_QUERY_KEY } from "./useGetEventSessionTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_SESSION_TRANSLATION_QUERY_KEY = (
   eventId: string,
   sessionId: string,
   locale: string
 ) => [...EVENT_SESSION_TRANSLATIONS_QUERY_KEY(eventId, sessionId), locale];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_SESSION_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SESSION_TRANSLATION_QUERY_KEY>,
@@ -31,6 +39,10 @@ interface GetEventSessionTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventSessionTranslation = async ({
   eventId,
   sessionId,
@@ -45,6 +57,10 @@ export const GetEventSessionTranslation = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventSessionTranslation = (
   eventId: string = "",
   sessionId: string = "",

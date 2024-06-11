@@ -21,6 +21,10 @@ interface TicketCount {
   count: number;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventKPITickets = async ({
   eventId,
   adminApiParams,
@@ -29,6 +33,10 @@ export const GetEventKPITickets = async ({
   const { data } = await adminApi.get(`/events/${eventId}/kpi/tickets`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventKPITickets = (
   eventId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventKPITickets>> = {}

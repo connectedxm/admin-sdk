@@ -8,6 +8,10 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Reports
+ */
 export const REPORT_PARENTS_QUERY_KEY = (type?: keyof typeof ReportType) => {
   const queryKey = ["REPORT_PARENTS"];
 
@@ -17,6 +21,10 @@ export const REPORT_PARENTS_QUERY_KEY = (type?: keyof typeof ReportType) => {
   return queryKey;
 };
 
+/**
+ * @category Setters
+ * @group Reports
+ */
 export const SET_REPORT_PARENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof REPORT_PARENTS_QUERY_KEY>,
@@ -29,6 +37,10 @@ interface GetReportParentsProps extends InfiniteQueryParams {
   type: keyof typeof ReportType;
 }
 
+/**
+ * @category Queries
+ * @group Reports
+ */
 export const GetReportParents = async ({
   pageParam,
   pageSize,
@@ -49,6 +61,10 @@ export const GetReportParents = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Reports
+ */
 export const useGetReportParents = (
   type: keyof typeof ReportType,
   params: Omit<

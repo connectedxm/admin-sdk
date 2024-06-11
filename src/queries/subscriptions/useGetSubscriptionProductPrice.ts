@@ -9,6 +9,10 @@ import { SubscriptionProductPrice } from "@src/interfaces";
 import { SUBSCRIPTION_PRODUCT_PRICES_QUERY_KEY } from "./useGetSubscriptionProductPrices";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Subscriptions
+ */
 export const SUBSCRIPTION_PRODUCT_PRICE_QUERY_KEY = (
   subscriptionProductId: string,
   subscriptionProductPriceId: string
@@ -17,6 +21,10 @@ export const SUBSCRIPTION_PRODUCT_PRICE_QUERY_KEY = (
   subscriptionProductPriceId,
 ];
 
+/**
+ * @category Setters
+ * @group Subscriptions
+ */
 export const SET_SUBSCRIPTION_PRODUCT_PRICE_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SUBSCRIPTION_PRODUCT_PRICE_QUERY_KEY>,
@@ -33,6 +41,10 @@ interface GetSubscriptionProductPriceProps extends SingleQueryParams {
   subscriptionProductPriceId: string;
 }
 
+/**
+ * @category Queries
+ * @group Subscriptions
+ */
 export const GetSubscriptionProductPrice = async ({
   subscriptionProductId,
   subscriptionProductPriceId,
@@ -46,6 +58,10 @@ export const GetSubscriptionProductPrice = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Subscriptions
+ */
 export const useGetSubscriptionProductPrice = (
   subscriptionProductId: string = "",
   subscriptionProductPriceId: string = "",

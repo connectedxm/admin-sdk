@@ -10,11 +10,19 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 import { INVOICE_QUERY_KEY } from "./useGetInvoice";
 
+/**
+ * @category Keys
+ * @group Invoices
+ */
 export const INVOICE_LINE_ITEMS_QUERY_KEY = (invoiceId: string) => [
   ...INVOICE_QUERY_KEY(invoiceId),
   "LINE_ITEMS",
 ];
 
+/**
+ * @category Setters
+ * @group Invoices
+ */
 export const SET_INVOICE_LINE_ITEMS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INVOICE_LINE_ITEMS_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetInvoiceLineItemsProps extends InfiniteQueryParams {
   invoiceId: string;
 }
 
+/**
+ * @category Queries
+ * @group Invoices
+ */
 export const GetInvoiceLineItems = async ({
   invoiceId,
   pageParam,
@@ -48,6 +60,10 @@ export const GetInvoiceLineItems = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Invoices
+ */
 export const useGetInvoiceLineItems = (
   invoiceId: string = "",
   params: Omit<

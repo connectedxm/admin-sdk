@@ -8,12 +8,20 @@ import {
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENTS_QUERY_KEY = (past?: boolean) => {
   let keys = ["EVENTS"];
   if (typeof past !== "undefined") keys = [...keys, past ? "PAST" : "UPCOMING"];
   return keys;
 };
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENTS_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetEventsProps extends InfiniteQueryParams {
   past?: boolean;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEvents = async ({
   pageParam,
   pageSize,
@@ -47,6 +59,10 @@ export const GetEvents = async ({
 
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEvents = (
   past?: boolean,
   params: Omit<

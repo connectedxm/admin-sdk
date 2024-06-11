@@ -9,6 +9,10 @@ import {
 } from "../useConnectedInfiniteQuery";
 import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 
+/**
+ * @category Keys
+ * @group Accounts
+ */
 export const ACCOUNT_COGNITO_USERS_QUERY_KEY = (accountId: string) => [
   ...ACCOUNT_QUERY_KEY(accountId),
   "COGNITO_USERS",
@@ -18,6 +22,10 @@ interface GetAccountCognitoUsersProps extends InfiniteQueryParams {
   accountId: string;
 }
 
+/**
+ * @category Queries
+ * @group Accounts
+ */
 export const GetAccountCognitoUsers = async ({
   accountId,
   pageParam,
@@ -39,6 +47,10 @@ export const GetAccountCognitoUsers = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Accounts
+ */
 export const useGetAccountCognitoUsers = (
   accountId: string = "",
   params: Omit<

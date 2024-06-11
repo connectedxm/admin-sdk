@@ -8,12 +8,20 @@ import { RegistrationSectionTranslation } from "@src/interfaces";
 import { EVENT_SECTION_TRANSLATIONS_QUERY_KEY } from "./useGetEventSectionTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_SECTION_TRANSLATION_QUERY_KEY = (
   eventId: string,
   sectionId: string,
   locale: string
 ) => [...EVENT_SECTION_TRANSLATIONS_QUERY_KEY(eventId, sectionId), locale];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_SECTION_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SECTION_TRANSLATION_QUERY_KEY>,
@@ -31,6 +39,10 @@ interface GetEventSectionTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventSectionTranslation = async ({
   eventId,
   sectionId,
@@ -45,6 +57,10 @@ export const GetEventSectionTranslation = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventSectionTranslation = (
   eventId: string = "",
   sectionId: string = "",

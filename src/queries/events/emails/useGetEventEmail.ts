@@ -9,11 +9,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_EMAIL_QUERY_KEY = (
   eventId: string,
   type: EventEmailType
 ) => [...EVENT_QUERY_KEY(eventId), "EVENT_EMAIL", type];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_EMAIL_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_EMAIL_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetEventEmailProps extends SingleQueryParams {
   type: EventEmailType;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventEmail = async ({
   eventId,
   type,
@@ -36,6 +48,10 @@ export const GetEventEmail = async ({
   const { data } = await adminApi.get(`/events/${eventId}/emails/${type}`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventEmail = (
   eventId: string = "",
   type: EventEmailType,

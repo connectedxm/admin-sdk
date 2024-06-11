@@ -8,11 +8,19 @@ import { ACTIVITY_QUERY_KEY } from "./useGetActivity";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Activities
+ */
 export const ACTIVITY_KPI_LIKES_QUERY_KEY = (activityId: string) => [
   ...ACTIVITY_QUERY_KEY(activityId),
   "KPI_LIKES",
 ];
 
+/**
+ * @category Setters
+ * @group Activities
+ */
 export const SET_ACTIVITY_KPI_LIKES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACTIVITY_KPI_LIKES_QUERY_KEY>,
@@ -30,6 +38,10 @@ interface DateCount {
   count: number;
 }
 
+/**
+ * @category Queries
+ * @group Activities
+ */
 export const GetActivityKPILikes = async ({
   activityId,
   adminApiParams,
@@ -38,6 +50,10 @@ export const GetActivityKPILikes = async ({
   const { data } = await adminApi.get(`/activities/${activityId}/kpi/likes`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Activities
+ */
 export const useGetActivityKPILikes = (
   activityId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetActivityKPILikes>> = {}

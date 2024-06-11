@@ -9,11 +9,19 @@ import { InvoiceLineItem } from "@src/interfaces";
 import { INVOICE_LINE_ITEMS_QUERY_KEY } from "./useGetInvoiceLineItems";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Invoices
+ */
 export const INVOICE_LINE_ITEM_QUERY_KEY = (
   invoiceId: string,
   lineItemId: string
 ) => [...INVOICE_LINE_ITEMS_QUERY_KEY(invoiceId), lineItemId];
 
+/**
+ * @category Setters
+ * @group Invoices
+ */
 export const SET_INVOICE_LINE_ITEM_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INVOICE_LINE_ITEM_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetInvoiceLineItemProps extends SingleQueryParams {
   lineItemId: string;
 }
 
+/**
+ * @category Queries
+ * @group Invoices
+ */
 export const GetInvoiceLineItem = async ({
   invoiceId,
   lineItemId,
@@ -38,6 +50,10 @@ export const GetInvoiceLineItem = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Invoices
+ */
 export const useGetInvoiceLineItem = (
   invoiceId: string = "",
   lineItemId: string = "",

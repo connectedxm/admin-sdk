@@ -8,12 +8,20 @@ import {
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 
+/**
+ * @category Keys
+ * @group Benefits
+ */
 export const BENEFITS_QUERY_KEY = (eventId?: string) => {
   const keys = ["BENEFITS"];
   if (eventId) keys.push(eventId);
   return keys;
 };
 
+/**
+ * @category Setters
+ * @group Benefits
+ */
 export const SET_BENEFITS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof BENEFITS_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetBenefitsProps extends InfiniteQueryParams {
   eventId?: string;
 }
 
+/**
+ * @category Queries
+ * @group Benefits
+ */
 export const GetBenefits = async ({
   pageParam,
   pageSize,
@@ -46,6 +58,10 @@ export const GetBenefits = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Benefits
+ */
 export const useGetBenefits = (
   eventId: string = "",
   params: Omit<

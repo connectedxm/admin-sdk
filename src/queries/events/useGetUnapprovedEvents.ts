@@ -10,11 +10,19 @@ import {
 import { EVENTS_QUERY_KEY } from "./useGetEvents";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const UNAPPROVED_EVENTS_QUERY_KEY = () => [
   ...EVENTS_QUERY_KEY(),
   "UNAPPROVED",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_UNAPPROVED_EVENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof UNAPPROVED_EVENTS_QUERY_KEY>,
@@ -25,6 +33,10 @@ export const SET_UNAPPROVED_EVENTS_QUERY_DATA = (
 
 interface GetUnapprovedEventsProps extends InfiniteQueryParams {}
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetUnapprovedEvents = async ({
   pageParam,
   pageSize,
@@ -43,6 +55,10 @@ export const GetUnapprovedEvents = async ({
   });
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetUnapprovedEvents = (
   params: Omit<
     InfiniteQueryParams,

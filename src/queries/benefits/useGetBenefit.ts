@@ -9,11 +9,19 @@ import { BENEFITS_QUERY_KEY } from "./useGetBenefits";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Benefits
+ */
 export const BENEFIT_QUERY_KEY = (benefitId: string) => [
   ...BENEFITS_QUERY_KEY(),
   benefitId,
 ];
 
+/**
+ * @category Setters
+ * @group Benefits
+ */
 export const SET_BENEFIT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof BENEFIT_QUERY_KEY>,
@@ -26,6 +34,10 @@ interface GetBenefitProps extends SingleQueryParams {
   benefitId: string;
 }
 
+/**
+ * @category Queries
+ * @group Benefits
+ */
 export const GetBenefit = async ({
   benefitId,
   adminApiParams,
@@ -34,6 +46,10 @@ export const GetBenefit = async ({
   const { data } = await adminApi.get(`/benefits/${benefitId}`);
   return data;
 };
+/**
+ * @category Hooks
+ * @group Benefits
+ */
 export const useGetBenefit = (
   benefitId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetBenefit>> = {}

@@ -9,11 +9,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { EVENT_SECTIONS_QUERY_KEY } from "./useGetEventSections";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_SECTION_QUERY_KEY = (eventId: string, sectionId: string) => [
   ...EVENT_SECTIONS_QUERY_KEY(eventId),
   sectionId,
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_SECTION_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_SECTION_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetEventSectionProps extends SingleQueryParams {
   sectionId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventSection = async ({
   eventId,
   sectionId,
@@ -38,6 +50,10 @@ export const GetEventSection = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventSection = (
   eventId: string,
   sectionId: string,

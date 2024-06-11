@@ -8,11 +8,19 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { EVENT_TICKET_QUERY_KEY } from "./useGetEventTicket";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_TICKET_KPI_HOLDERS_QUERY_KEY = (
   eventId: string,
   ticketId: string
 ) => [...EVENT_TICKET_QUERY_KEY(eventId, ticketId), "KPI_HOLDERS"];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_TICKET_KPI_HOLDERS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_TICKET_KPI_HOLDERS_QUERY_KEY>,
@@ -34,6 +42,10 @@ interface UniqueHoldersKPIData {
   uniqueHolders: number;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ */
 export const GetEventTicketKPIHolders = async ({
   eventId,
   ticketId,
@@ -47,6 +59,10 @@ export const GetEventTicketKPIHolders = async ({
   );
   return data;
 };
+/**
+ * @category Hooks
+ * @group Events
+ */
 export const useGetEventTicketKPIHolders = (
   eventId: string = "",
   ticketId: string = "",

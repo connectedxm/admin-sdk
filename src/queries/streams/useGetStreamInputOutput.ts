@@ -9,11 +9,19 @@ import { STREAM_INPUT_OUTPUTS_QUERY_KEY } from "./useGetStreamInputOutputs";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * @category Keys
+ * @group Streams
+ */
 export const STREAM_INPUT_OUTPUT_QUERY_KEY = (
   streamId: string,
   output: string
 ) => [...STREAM_INPUT_OUTPUTS_QUERY_KEY(streamId), output];
 
+/**
+ * @category Setters
+ * @group Streams
+ */
 export const SET_STREAM_INPUT_OUTPUT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof STREAM_INPUT_OUTPUT_QUERY_KEY>,
@@ -27,6 +35,10 @@ interface GetStreamInputOutputParams extends SingleQueryParams {
   output: string;
 }
 
+/**
+ * @category Queries
+ * @group Streams
+ */
 export const GetStreamInputOutput = async ({
   streamId,
   output,
@@ -39,6 +51,10 @@ export const GetStreamInputOutput = async ({
 
   return data;
 };
+/**
+ * @category Hooks
+ * @group Streams
+ */
 export const useGetStreamInputOutput = (
   streamId: string = "",
   output: string = "",

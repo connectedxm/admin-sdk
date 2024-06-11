@@ -1,3 +1,3 @@
-export * from './translations';
-export * from './useGetEventReservationSectionLocation';
-export * from './useGetEventReservationSectionLocations';
+export * from "./translations";
+export * from "./useGetEventReservationSectionLocation";
+export * from "./useGetEventReservationSectionLocations";

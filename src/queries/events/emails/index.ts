@@ -1,1 +1,1 @@
-export * from './useGetEventEmail';
+export * from "./useGetEventEmail";

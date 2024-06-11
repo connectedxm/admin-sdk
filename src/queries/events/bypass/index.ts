@@ -1,2 +1,2 @@
-export * from './useGetEventRegistrationBypass';
-export * from './useGetEventRegistrationBypassList';
+export * from "./useGetEventRegistrationBypass";
+export * from "./useGetEventRegistrationBypassList";

@@ -55,7 +55,7 @@ export const EVENT_QUESTION_SUMMARY_QUERY_KEY = (
   questionId: string
 ) => [...EVENT_QUESTION_SUMMARIES_QUERY_KEY(eventId), questionId];
 
-export const SET_EVENT_QUESTION_QUERY_DATA = (
+export const SET_EVENT_QUESTION_SUMMARY_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_QUESTION_SUMMARY_QUERY_KEY>,
   response: Awaited<ReturnType<typeof GetEventQuestionSummary>>

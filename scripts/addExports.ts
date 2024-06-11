@@ -8,9 +8,8 @@ async function generateIndexFile(dir: string) {
   let exports = "";
 
   const indexPath = path.join(dir, "index.ts");
-  let existingExports = "";
   if (fs.existsSync(indexPath)) {
-    existingExports = fs.readFileSync(indexPath, "utf-8");
+    fs.writeFileSync(indexPath, "");
   }
 
   for (const file of files) {
@@ -22,24 +21,19 @@ async function generateIndexFile(dir: string) {
       await generateIndexFile(filePath);
 
       // Export the subdirectory in the index.ts file
-      const exportStatement = `export * from './${file}';\n`;
-      if (!existingExports.includes(exportStatement)) {
-        exports += exportStatement;
-      }
+      const exportStatement = `export * from "./${file}";\n`;
+      exports += exportStatement;
     } else if (file !== "index.ts" && path.extname(file) === ".ts") {
       // Export the file in the index.ts file
       const baseName = path.basename(file, ".ts");
-      const exportStatement = `export * from './${baseName}';\n`;
-      if (!existingExports.includes(exportStatement)) {
-        exports += exportStatement;
-      }
+      const exportStatement = `export * from "./${baseName}";\n`;
+      exports += exportStatement;
     }
   }
 
   // Write the exports to the index.ts file
   if (exports) {
     fs.appendFileSync(indexPath, exports);
-    console.log(`    Generated index.ts file for ${dir}`);
   }
 }
 
@@ -48,7 +42,6 @@ const createIndexFiles = async () => {
 
   for (const page of pages) {
     if (fs.statSync(page).isDirectory()) {
-      console.log(page);
       await generateIndexFile(page);
     }
   }

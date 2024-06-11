@@ -1,2 +1,2 @@
-export * from './useGetEventRegistrationPayment';
-export * from './useGetEventRegistrationPayments';
+export * from "./useGetEventRegistrationPayment";
+export * from "./useGetEventRegistrationPayments";

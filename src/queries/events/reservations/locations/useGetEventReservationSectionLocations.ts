@@ -19,7 +19,7 @@ export const EVENT_RESERVATION_SECTION_LOCATIONS_QUERY_KEY = (
 export const SET_EVENT_RESERVATION_SECTION_LOCATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_RESERVATION_SECTION_LOCATIONS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventReservationSections>>
+  response: Awaited<ReturnType<typeof GetEventReservationSectionLocations>>
 ) => {
   client.setQueryData(
     EVENT_RESERVATION_SECTION_LOCATIONS_QUERY_KEY(...keyParams),
@@ -32,7 +32,7 @@ interface GetEventReservationSectionsProps extends InfiniteQueryParams {
   reservationSectionId: string;
 }
 
-export const GetEventReservationSections = async ({
+export const GetEventReservationSectionLocations = async ({
   eventId,
   reservationSectionId,
   pageParam,
@@ -66,18 +66,18 @@ const useGetEventReservationSections = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventReservationSections>>
+    Awaited<ReturnType<typeof GetEventReservationSectionLocations>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventReservationSections>>
+    Awaited<ReturnType<typeof GetEventReservationSectionLocations>>
   >(
     EVENT_RESERVATION_SECTION_LOCATIONS_QUERY_KEY(
       eventId,
       reservationSectionId
     ),
     (params: InfiniteQueryParams) =>
-      GetEventReservationSections({
+      GetEventReservationSectionLocations({
         ...params,
         eventId,
         reservationSectionId,

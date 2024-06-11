@@ -1,2 +1,2 @@
-export * from './translations';
-export * from './useGetOrganizationPage';
+export * from "./translations";
+export * from "./useGetOrganizationPage";

@@ -1,2 +1,2 @@
-export * from './useGetEventSpeakerTranslation';
-export * from './useGetEventSpeakerTranslations';
+export * from "./useGetEventSpeakerTranslation";
+export * from "./useGetEventSpeakerTranslations";

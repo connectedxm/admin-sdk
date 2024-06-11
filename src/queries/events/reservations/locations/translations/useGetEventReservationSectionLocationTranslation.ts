@@ -27,7 +27,9 @@ export const SET_EVENT_RESERVATION_SECTION_LOCATION_TRANSLATION_QUERY_DATA = (
   keyParams: Parameters<
     typeof EVENT_RESERVATION_SECTION_LOCATION_TRANSLATION_QUERY_KEY
   >,
-  response: Awaited<ReturnType<typeof GetEventReservationSectionTranslation>>
+  response: Awaited<
+    ReturnType<typeof GetEventReservationSectionLocationTranslation>
+  >
 ) => {
   client.setQueryData(
     EVENT_RESERVATION_SECTION_LOCATION_TRANSLATION_QUERY_KEY(...keyParams),
@@ -35,20 +37,21 @@ export const SET_EVENT_RESERVATION_SECTION_LOCATION_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetEventReservationSectionTranslationProps extends SingleQueryParams {
+interface GetEventReservationSectionLocationTranslationProps
+  extends SingleQueryParams {
   eventId: string;
   reservationSectionId: string;
   locationId: string;
   locale: string;
 }
 
-export const GetEventReservationSectionTranslation = async ({
+export const GetEventReservationSectionLocationTranslation = async ({
   eventId,
   reservationSectionId,
   locationId,
   locale,
   adminApiParams,
-}: GetEventReservationSectionTranslationProps): Promise<
+}: GetEventReservationSectionLocationTranslationProps): Promise<
   ConnectedXMResponse<EventReservationSectionLocationTranslation>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -58,17 +61,17 @@ export const GetEventReservationSectionTranslation = async ({
   return data;
 };
 
-const useGetEventReservationSectionTranslation = (
+const useGetEventReservationSectionLocationTranslation = (
   eventId: string = "",
   reservationSectionId: string = "",
   locationId: string = "",
   locale: string = "",
   options: SingleQueryOptions<
-    ReturnType<typeof GetEventReservationSectionTranslation>
+    ReturnType<typeof GetEventReservationSectionLocationTranslation>
   > = {}
 ) => {
   return useConnectedSingleQuery<
-    ReturnType<typeof GetEventReservationSectionTranslation>
+    ReturnType<typeof GetEventReservationSectionLocationTranslation>
   >(
     EVENT_RESERVATION_SECTION_LOCATION_TRANSLATION_QUERY_KEY(
       eventId,
@@ -77,7 +80,7 @@ const useGetEventReservationSectionTranslation = (
       locale
     ),
     (params: SingleQueryParams) =>
-      GetEventReservationSectionTranslation({
+      GetEventReservationSectionLocationTranslation({
         eventId,
         reservationSectionId,
         locationId,
@@ -96,4 +99,4 @@ const useGetEventReservationSectionTranslation = (
   );
 };
 
-export default useGetEventReservationSectionTranslation;
+export default useGetEventReservationSectionLocationTranslation;

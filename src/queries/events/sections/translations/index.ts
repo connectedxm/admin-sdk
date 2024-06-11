@@ -1,2 +1,2 @@
-export * from './useGetEventSectionTranslation';
-export * from './useGetEventSectionTranslations';
+export * from "./useGetEventSectionTranslation";
+export * from "./useGetEventSectionTranslations";

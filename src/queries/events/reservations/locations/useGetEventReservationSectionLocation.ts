@@ -24,7 +24,7 @@ export const EVENT_RESERVATION_SECTION_LOCATION_QUERY_KEY = (
 export const SET_EVENT_RESERVATION_SECTION_LOCATION_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_RESERVATION_SECTION_LOCATION_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventReservationSection>>
+  response: Awaited<ReturnType<typeof GetEventReservationSectionLocation>>
 ) => {
   client.setQueryData(
     EVENT_RESERVATION_SECTION_LOCATION_QUERY_KEY(...keyParams),
@@ -38,7 +38,7 @@ interface GetEventReservationSectionProps extends SingleQueryParams {
   locationId: string;
 }
 
-export const GetEventReservationSection = async ({
+export const GetEventReservationSectionLocation = async ({
   eventId,
   reservationSectionId,
   locationId,
@@ -58,17 +58,19 @@ const useGetEventReservationSection = (
   reservationSectionId: string = "",
   locationId: string = "",
   options: SingleQueryOptions<
-    ReturnType<typeof GetEventReservationSection>
+    ReturnType<typeof GetEventReservationSectionLocation>
   > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventReservationSection>>(
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetEventReservationSectionLocation>
+  >(
     EVENT_RESERVATION_SECTION_LOCATION_QUERY_KEY(
       eventId,
       reservationSectionId,
       locationId
     ),
     (params: SingleQueryParams) =>
-      GetEventReservationSection({
+      GetEventReservationSectionLocation({
         eventId,
         reservationSectionId,
         locationId,

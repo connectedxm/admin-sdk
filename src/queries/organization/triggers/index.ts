@@ -1,1 +1,1 @@
-export * from './useGetOrganizationTrigger';
+export * from "./useGetOrganizationTrigger";

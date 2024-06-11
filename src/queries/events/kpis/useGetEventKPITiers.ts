@@ -7,7 +7,7 @@ import {
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 
-export const EVENT_QUERY_KPI_SALES_KEY = (eventId: string) => [
+export const EVENT_QUERY_KPI_TIERS_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "KPI_TIERS",
 ];
@@ -35,7 +35,7 @@ const useGetEventKPITiers = (
   options: SingleQueryOptions<ReturnType<typeof GetEventKPITiers>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEventKPITiers>>(
-    EVENT_QUERY_KPI_SALES_KEY(eventId),
+    EVENT_QUERY_KPI_TIERS_KEY(eventId),
     (params: SingleQueryParams) => GetEventKPITiers({ eventId, ...params }),
     {
       ...options,

@@ -1,2 +1,2 @@
-export * from './useGetSponsorshipTranslation';
-export * from './useGetSponsorshipTranslations';
+export * from "./useGetSponsorshipTranslation";
+export * from "./useGetSponsorshipTranslations";

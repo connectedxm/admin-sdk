@@ -1,2 +1,2 @@
-export * from './useGetGroupTranslation';
-export * from './useGetGroupTranslations';
+export * from "./useGetGroupTranslation";
+export * from "./useGetGroupTranslations";

@@ -1,2 +1,2 @@
-export * from './useGetEventReservationSectionTranslation';
-export * from './useGetEventReservationSectionTranslations';
+export * from "./useGetEventReservationSectionTranslation";
+export * from "./useGetEventReservationSectionTranslations";

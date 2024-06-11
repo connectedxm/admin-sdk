@@ -1,2 +1,2 @@
-export * from './useGetVideo';
-export * from './useGetVideos';
+export * from "./useGetVideo";
+export * from "./useGetVideos";

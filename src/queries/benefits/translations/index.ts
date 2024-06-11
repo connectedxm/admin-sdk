@@ -1,2 +1,2 @@
-export * from './useGetBenefitTranslation';
-export * from './useGetBenefitTranslations';
+export * from "./useGetBenefitTranslation";
+export * from "./useGetBenefitTranslations";

@@ -1,2 +1,2 @@
-export * from './useGetLevelTranslation';
-export * from './useGetLevelTranslations';
+export * from "./useGetLevelTranslation";
+export * from "./useGetLevelTranslations";

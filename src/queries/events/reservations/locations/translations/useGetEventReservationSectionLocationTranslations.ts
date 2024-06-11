@@ -26,7 +26,9 @@ export const SET_EVENT_RESERVATION_SECTION_LOCATION_TRANSLATIONS_QUERY_DATA = (
   keyParams: Parameters<
     typeof EVENT_RESERVATION_SECTION_LOCATION_TRANSLATIONS_QUERY_KEY
   >,
-  response: Awaited<ReturnType<typeof GetEventReservationSectionTranslations>>
+  response: Awaited<
+    ReturnType<typeof GetEventReservationSectionLocationTranslations>
+  >
 ) => {
   client.setQueryData(
     EVENT_RESERVATION_SECTION_LOCATION_TRANSLATIONS_QUERY_KEY(...keyParams),
@@ -34,14 +36,14 @@ export const SET_EVENT_RESERVATION_SECTION_LOCATION_TRANSLATIONS_QUERY_DATA = (
   );
 };
 
-interface GetEventReservationSectionTranslationsProps
+interface GetEventReservationSectionLocationTranslationsProps
   extends InfiniteQueryParams {
   eventId: string;
   reservationSectionId: string;
   locationId: string;
 }
 
-export const GetEventReservationSectionTranslations = async ({
+export const GetEventReservationSectionLocationTranslations = async ({
   pageParam,
   pageSize,
   orderBy,
@@ -50,7 +52,7 @@ export const GetEventReservationSectionTranslations = async ({
   reservationSectionId,
   locationId,
   adminApiParams,
-}: GetEventReservationSectionTranslationsProps): Promise<
+}: GetEventReservationSectionLocationTranslationsProps): Promise<
   ConnectedXMResponse<EventReservationSectionLocationTranslation[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -68,7 +70,7 @@ export const GetEventReservationSectionTranslations = async ({
   return data;
 };
 
-const useGetEventReservationSectionTranslations = (
+const useGetEventReservationSectionLocationTranslations = (
   eventId: string = "",
   reservationSectionId: string = "",
   locationId: string = "",
@@ -77,11 +79,11 @@ const useGetEventReservationSectionTranslations = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventReservationSectionTranslations>>
+    Awaited<ReturnType<typeof GetEventReservationSectionLocationTranslations>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventReservationSectionTranslations>>
+    Awaited<ReturnType<typeof GetEventReservationSectionLocationTranslations>>
   >(
     EVENT_RESERVATION_SECTION_LOCATION_TRANSLATIONS_QUERY_KEY(
       eventId,
@@ -89,7 +91,7 @@ const useGetEventReservationSectionTranslations = (
       locationId
     ),
     (params: InfiniteQueryParams) =>
-      GetEventReservationSectionTranslations({
+      GetEventReservationSectionLocationTranslations({
         ...params,
         eventId,
         reservationSectionId,
@@ -107,4 +109,4 @@ const useGetEventReservationSectionTranslations = (
   );
 };
 
-export default useGetEventReservationSectionTranslations;
+export default useGetEventReservationSectionLocationTranslations;

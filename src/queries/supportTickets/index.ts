@@ -1,2 +1,2 @@
-export * from './useGetSupportTicket';
-export * from './useGetSupportTickets';
+export * from "./useGetSupportTicket";
+export * from "./useGetSupportTickets";

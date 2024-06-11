@@ -1,5 +1,3 @@
-export * from "./useConnectedInfiniteQuery";
-export * from "./useConnectedSingleQuery";
 export * from "./accounts";
 export * from "./activities";
 export * from "./advertisements";

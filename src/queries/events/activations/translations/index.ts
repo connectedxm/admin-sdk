@@ -1,2 +1,2 @@
-export * from './useGetEventActivationTranslation';
-export * from './useGetEventActivationTranslations';
+export * from "./useGetEventActivationTranslation";
+export * from "./useGetEventActivationTranslations";

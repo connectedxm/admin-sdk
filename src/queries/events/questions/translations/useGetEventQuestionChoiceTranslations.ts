@@ -17,7 +17,7 @@ export const EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_KEY = (
   "TRANSLATIONS",
 ];
 
-export const SET_EVENT_PAGE_TRANSLATIONS_QUERY_DATA = (
+export const SET_EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_KEY>,
   response: Awaited<ReturnType<typeof GetEventQuestionChoiceTranslations>>

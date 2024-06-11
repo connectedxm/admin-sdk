@@ -5,6 +5,7 @@ import { Event } from "@src/interfaces";
 import {
   useConnectedInfiniteQuery,
   InfiniteQueryParams,
+  InfiniteQueryOptions,
 } from "../useConnectedInfiniteQuery";
 import { EVENTS_QUERY_KEY } from "./useGetEvents";
 import { QueryClient } from "@tanstack/react-query";
@@ -29,6 +30,7 @@ export const GetUnapprovedEvents = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetUnapprovedEventsProps) => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/unapproved`, {
@@ -42,12 +44,20 @@ export const GetUnapprovedEvents = async ({
   return data;
 };
 
-const useGetUnapprovedEvents = () => {
+const useGetUnapprovedEvents = (
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetUnapprovedEvents>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<ConnectedXMResponse<Event[]>>(
     UNAPPROVED_EVENTS_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetUnapprovedEvents(params),
-    {},
-    {}
+    params,
+    options
   );
 };
 

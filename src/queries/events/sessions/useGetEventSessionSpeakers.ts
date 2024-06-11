@@ -1,8 +1,10 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Speaker } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
+  useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_SESSION_QUERY_KEY } from "./useGetEventSession";
 
@@ -31,6 +33,7 @@ export const GetEventSessionSpeakers = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventSessionSpeakersProps): Promise<ConnectedXMResponse<Speaker[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -47,17 +50,30 @@ export const GetEventSessionSpeakers = async ({
   return data;
 };
 
-const useGetEventSessionSpeakers = (eventId: string, sessionId: string) => {
+const useGetEventSessionSpeakers = (
+  eventId: string = "",
+  sessionId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventSessionSpeakers>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventSessionSpeakers>>
   >(
     EVENT_SESSION_SPEAKERS_QUERY_KEY(eventId, sessionId),
-    (params: InfiniteQueryParams) => GetEventSessionSpeakers(params),
+    (params: InfiniteQueryParams) =>
+      GetEventSessionSpeakers({
+        ...params,
+        eventId,
+        sessionId,
+      }),
+    params,
     {
-      eventId,
-      sessionId,
-    },
-    {
+      ...options,
       enabled: !!eventId && !!sessionId,
     }
   );

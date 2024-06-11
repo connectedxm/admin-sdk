@@ -1,8 +1,10 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Purchase } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
+  useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_ADD_ON_QUERY_KEY } from "./useGetEventAddOn";
 
@@ -31,6 +33,7 @@ export const GetEventAddOnPurchases = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventAddOnPurchasesProps): Promise<ConnectedXMResponse<Purchase[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -47,18 +50,27 @@ export const GetEventAddOnPurchases = async ({
   return data;
 };
 
-const useGetEventAddOnPurchases = (eventId: string, addOnId: string) => {
+const useGetEventAddOnPurchases = (
+  eventId: string = "",
+  addOnId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventAddOnPurchases>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventAddOnPurchases>>
   >(
     EVENT_ADD_ON_PURCHASES_QUERY_KEY(eventId, addOnId),
-    (params: InfiniteQueryParams) => GetEventAddOnPurchases(params),
+    (params: InfiniteQueryParams) =>
+      GetEventAddOnPurchases({ ...params, eventId, addOnId }),
+    params,
     {
-      eventId,
-      addOnId,
-    },
-    {
-      enabled: !!addOnId,
+      ...options,
+      enabled: !!addOnId && (options.enabled ?? true),
     }
   );
 };

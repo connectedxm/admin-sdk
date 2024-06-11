@@ -1,9 +1,11 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { SponsorshipTranslation } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
-} from "@/context/queries/useConnectedInfiniteQuery";
+  useConnectedInfiniteQuery,
+} from "../../useConnectedInfiniteQuery";
 import { SPONSORSHIP_QUERY_KEY } from "../useGetSponsorship";
 
 export const SPONSORSHIP_TRANSLATIONS_QUERY_KEY = (sponsorhipId: string) => [
@@ -32,6 +34,7 @@ export const GetSponsorshipTranslations = async ({
   orderBy,
   search,
   sponsorhipId,
+  adminApiParams,
 }: GetSponsorshipTranslationsProps): Promise<
   ConnectedXMResponse<SponsorshipTranslation[]>
 > => {
@@ -50,17 +53,29 @@ export const GetSponsorshipTranslations = async ({
   return data;
 };
 
-const useGetSponsorshipTranslations = (sponsorhipId: string) => {
+const useGetSponsorshipTranslations = (
+  sponsorhipId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetSponsorshipTranslations>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetSponsorshipTranslations>>
   >(
     SPONSORSHIP_TRANSLATIONS_QUERY_KEY(sponsorhipId),
-    (params: InfiniteQueryParams) => GetSponsorshipTranslations(params),
+    (params: InfiniteQueryParams) =>
+      GetSponsorshipTranslations({
+        ...params,
+        sponsorhipId,
+      }),
+    params,
     {
-      sponsorhipId,
-    },
-    {
-      enabled: !!sponsorhipId,
+      ...options,
+      enabled: !!sponsorhipId && (options.enabled ?? true),
     }
   );
 };

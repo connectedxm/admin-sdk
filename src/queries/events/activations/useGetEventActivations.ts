@@ -1,8 +1,10 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EventActivation } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
+  useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { QueryClient } from "@tanstack/react-query";
@@ -30,6 +32,7 @@ export const GetEventActivations = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventActivationsProps): Promise<
   ConnectedXMResponse<EventActivation[]>
 > => {
@@ -45,17 +48,29 @@ export const GetEventActivations = async ({
   return data;
 };
 
-const useGetEventActivations = (eventId: string) => {
+const useGetEventActivations = (
+  eventId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventActivations>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventActivations>>
   >(
     EVENT_ACTIVATIONS_QUERY_KEY(eventId),
-    (params: InfiniteQueryParams) => GetEventActivations(params),
+    (params: InfiniteQueryParams) =>
+      GetEventActivations({
+        ...params,
+        eventId,
+      }),
+    params,
     {
-      eventId,
-    },
-    {
-      enabled: !!eventId,
+      ...options,
+      enabled: !!eventId && (options.enabled ?? true),
     }
   );
 };

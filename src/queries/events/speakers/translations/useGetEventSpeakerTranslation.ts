@@ -1,7 +1,12 @@
-import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { SpeakerTranslation } from "@src/interfaces";
 import { EVENT_SPEAKER_TRANSLATIONS_QUERY_KEY } from "./useGetEventSpeakerTranslations";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_SPEAKER_TRANSLATION_QUERY_KEY = (
   eventId: string,
@@ -20,7 +25,7 @@ export const SET_EVENT_SPEAKER_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetEventSpeakerTranslationProps {
+interface GetEventSpeakerTranslationProps extends SingleQueryParams {
   eventId: string;
   speakerId: string;
   locale: string;
@@ -30,6 +35,7 @@ export const GetEventSpeakerTranslation = async ({
   eventId,
   speakerId,
   locale,
+  adminApiParams,
 }: GetEventSpeakerTranslationProps): Promise<
   ConnectedXMResponse<SpeakerTranslation>
 > => {
@@ -41,20 +47,26 @@ export const GetEventSpeakerTranslation = async ({
 };
 
 const useGetEventSpeakerTranslation = (
-  eventId: string,
-  speakerId: string,
-  locale: string
+  eventId: string = "",
+  speakerId: string = "",
+  locale: string = "",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetEventSpeakerTranslation>
+  > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventSpeakerTranslation>>((
+  return useConnectedSingleQuery<ReturnType<typeof GetEventSpeakerTranslation>>(
     EVENT_SPEAKER_TRANSLATION_QUERY_KEY(eventId, speakerId, locale),
-    () =>
+    (params) =>
       GetEventSpeakerTranslation({
+        ...params,
         eventId,
         speakerId,
         locale,
       }),
     {
-      enabled: !!eventId && !!locale,
+      ...options,
+      enabled:
+        !!eventId && !!speakerId && !!locale && (options.enabled ?? true),
     }
   );
 };

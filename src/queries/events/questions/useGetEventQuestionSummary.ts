@@ -1,10 +1,11 @@
-import { GetAdminAPI } from '@src/AdminAPI';
-import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../../useConnectedSingleQuery";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { GetAdminAPI } from "@src/AdminAPI";
 import {
-  RegistrationQuestion,
-  RegistrationQuestionType,
-} from "@src/interfaces";
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
+import { ConnectedXMResponse } from "@src/interfaces";
+import { RegistrationQuestion } from "@src/interfaces";
 import { EVENT_QUESTION_SUMMARIES_QUERY_KEY } from "./useGetEventQuestionSummaries";
 import { QueryClient } from "@tanstack/react-query";
 
@@ -62,12 +63,13 @@ export const SET_EVENT_QUESTION_QUERY_DATA = (
   client.setQueryData(EVENT_QUESTION_SUMMARY_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventQuestionSummaryProps {
+interface GetEventQuestionSummaryProps extends SingleQueryParams {
   eventId: string;
   questionId: string;
 }
 
 export const GetEventQuestionSummary = async ({
+  adminApiParams,
   eventId,
   questionId,
 }: GetEventQuestionSummaryProps): Promise<ConnectedXMResponse<SummaryData>> => {
@@ -78,11 +80,16 @@ export const GetEventQuestionSummary = async ({
   return data;
 };
 
-const useGetEventQuestionSummary = (eventId: string, questionId: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventQuestionSummary>>((
+const useGetEventQuestionSummary = (
+  eventId: string = "",
+  questionId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEventQuestionSummary>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetEventQuestionSummary>>(
     EVENT_QUESTION_SUMMARY_QUERY_KEY(eventId, questionId),
-    () => GetEventQuestionSummary({ eventId, questionId }),
+    (params) => GetEventQuestionSummary({ eventId, questionId, ...params }),
     {
+      ...options,
       enabled: !!eventId && !!questionId,
     }
   );

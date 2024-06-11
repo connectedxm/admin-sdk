@@ -1,9 +1,11 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { TrackTranslation } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
-} from "@/context/queries/useConnectedInfiniteQuery";
+  useConnectedInfiniteQuery,
+} from "../../../useConnectedInfiniteQuery";
 import { EVENT_TRACK_QUERY_KEY } from "../useGetEventTrack";
 
 export const EVENT_TRACK_TRANSLATIONS_QUERY_KEY = (
@@ -34,6 +36,7 @@ export const GetEventTrackTranslations = async ({
   search,
   eventId,
   trackId,
+  adminApiParams,
 }: GetEventTrackTranslationsProps): Promise<
   ConnectedXMResponse<TrackTranslation[]>
 > => {
@@ -52,18 +55,31 @@ export const GetEventTrackTranslations = async ({
   return data;
 };
 
-const useGetEventTrackTranslations = (eventId: string, trackId: string) => {
+const useGetEventTrackTranslations = (
+  eventId: string = "",
+  trackId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventTrackTranslations>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventTrackTranslations>>
   >(
     EVENT_TRACK_TRANSLATIONS_QUERY_KEY(eventId, trackId),
-    (params: InfiniteQueryParams) => GetEventTrackTranslations(params),
+    (params: InfiniteQueryParams) =>
+      GetEventTrackTranslations({
+        ...params,
+        eventId,
+        trackId,
+      }),
+    params,
     {
-      eventId,
-      trackId,
-    },
-    {
-      enabled: !!eventId && !!trackId,
+      ...options,
+      enabled: !!eventId && !!trackId && (options.enabled ?? true),
     }
   );
 };

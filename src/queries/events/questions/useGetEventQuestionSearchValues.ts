@@ -1,8 +1,10 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { RegistrationQuestionSearchValue } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
+  useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_QUESTION_QUERY_KEY } from "./useGetEventQuestion";
 import { QueryClient } from "@tanstack/react-query";
@@ -35,6 +37,7 @@ export const GetEventQuestionSearchValues = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventQuestionSearchValuesProps): Promise<
   ConnectedXMResponse<RegistrationQuestionSearchValue[]>
 > => {
@@ -54,20 +57,30 @@ export const GetEventQuestionSearchValues = async ({
 };
 
 const useGetEventQuestionSearchValues = (
-  eventId: string,
-  questionId: string
+  eventId: string = "",
+  questionId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventQuestionSearchValues>>
+  > = {}
 ) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventQuestionSearchValues>>
   >(
     EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY(eventId, questionId),
-    (params: InfiniteQueryParams) => GetEventQuestionSearchValues(params),
+    (params: InfiniteQueryParams) =>
+      GetEventQuestionSearchValues({
+        ...params,
+        eventId,
+        questionId,
+      }),
+    params,
     {
-      eventId,
-      questionId,
-    },
-    {
-      enabled: !!eventId && !!questionId,
+      ...options,
+      enabled: !!eventId && !!questionId && (options.enabled ?? true),
     }
   );
 };

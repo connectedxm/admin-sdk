@@ -1,8 +1,10 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { RegistrationSection } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
+  useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 
@@ -29,6 +31,7 @@ export const GetEventSections = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventSectionsProps): Promise<
   ConnectedXMResponse<RegistrationSection[]>
 > => {
@@ -44,17 +47,29 @@ export const GetEventSections = async ({
   return data;
 };
 
-const useGetEventSections = (eventId: string) => {
+const useGetEventSections = (
+  eventId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventSections>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventSections>>
   >(
     EVENT_SECTIONS_QUERY_KEY(eventId),
-    (params: InfiniteQueryParams) => GetEventSections(params),
+    (params: InfiniteQueryParams) =>
+      GetEventSections({
+        ...params,
+        eventId,
+      }),
+    params,
     {
-      eventId,
-    },
-    {
-      enabled: !!eventId,
+      ...options,
+      enabled: !!eventId && (options.enabled ?? true),
     }
   );
 };

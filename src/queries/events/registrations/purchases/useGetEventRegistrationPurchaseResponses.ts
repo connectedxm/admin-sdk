@@ -5,9 +5,11 @@ import {
   RegistrationQuestionResponse,
 } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
-} from "@/context/queries/useConnectedInfiniteQuery";
+  useConnectedInfiniteQuery,
+} from "../../../useConnectedInfiniteQuery";
 import { EVENT_REGISTRATION_PURCHASE_QUERY_KEY } from "./useGetEventRegistrationPurchase";
 
 export interface RegistrationQuestionWithResponse extends RegistrationQuestion {
@@ -49,6 +51,7 @@ export const GetEventRegistrationPurchaseResponses = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventRegistrationPurchaseResponsesProps): Promise<
   ConnectedXMResponse<RegistrationQuestionResponse[]>
 > => {
@@ -68,9 +71,16 @@ export const GetEventRegistrationPurchaseResponses = async ({
 };
 
 const useGetEventRegistrationPurchaseResponses = (
-  eventId: string,
-  registrationId: string,
-  purchaseId: string
+  eventId: string = "",
+  registrationId: string = "",
+  purchaseId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventRegistrationPurchaseResponses>>
+  > = {}
 ) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventRegistrationPurchaseResponses>>
@@ -81,14 +91,20 @@ const useGetEventRegistrationPurchaseResponses = (
       purchaseId
     ),
     (params: InfiniteQueryParams) =>
-      GetEventRegistrationPurchaseResponses(params),
+      GetEventRegistrationPurchaseResponses({
+        ...params,
+        eventId,
+        registrationId,
+        purchaseId,
+      }),
+    params,
     {
-      eventId,
-      registrationId,
-      purchaseId,
-    },
-    {
-      enabled: !!eventId && !!registrationId && !!purchaseId,
+      ...options,
+      enabled:
+        !!eventId &&
+        !!registrationId &&
+        !!purchaseId &&
+        (options.enabled ?? true),
     }
   );
 };

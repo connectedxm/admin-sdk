@@ -1,5 +1,4 @@
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Tier } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
@@ -59,7 +58,11 @@ const useGetAccountTiers = (
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetAccountTiers>>>(
     ACCOUNT_TIERS_QUERY_KEY(accountId),
-    (params: InfiniteQueryParams) => GetAccountTiers(params),
+    (params: InfiniteQueryParams) =>
+      GetAccountTiers({
+        ...params,
+        accountId,
+      }),
     params,
     {
       ...options,

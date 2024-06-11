@@ -1,16 +1,17 @@
-import useConnectedSingleQuery from "@/context/queries/useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { GroupTranslation, ContentTranslation } from "@src/interfaces";
+import { ContentTranslation } from "@src/interfaces";
 import { CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY } from "./useGetChannelContentTranslations";
+import { GetAdminAPI } from "@src/AdminAPI";
+import useConnectedSingleQuery, {
+  SingleQueryOptions,
+  SingleQueryParams,
+} from "@src/queries/useConnectedSingleQuery";
 
 export const CHANNEL_CONTENT_TRANSLATION_QUERY_KEY = (
   channelId: string,
   contentId: string,
   locale: string
-) => [
-  ...CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY(channelId, contentId),
-  locale,
-];
+) => [...CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY(channelId, contentId), locale];
 
 export const SET_CHANNEL_CONTENT_TRANSLATION_QUERY_DATA = (
   client: any,
@@ -23,7 +24,7 @@ export const SET_CHANNEL_CONTENT_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetChannelContentTranslationProps {
+interface GetChannelContentTranslationProps extends SingleQueryParams {
   contentId: string;
   locale: string;
 }
@@ -31,6 +32,7 @@ interface GetChannelContentTranslationProps {
 export const GetChannelContentTranslation = async ({
   contentId,
   locale,
+  adminApiParams,
 }: GetChannelContentTranslationProps): Promise<
   ConnectedXMResponse<ContentTranslation>
 > => {
@@ -42,22 +44,25 @@ export const GetChannelContentTranslation = async ({
 };
 
 const useGetChannelContentTranslation = (
-  channelId: string,
-  contentId: string,
-  locale: string
+  channelId: string = "",
+  contentId: string = "",
+  locale: string = "",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetChannelContentTranslation>
+  > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetChannelContentTranslation>>((
-    CHANNEL_CONTENT_TRANSLATION_QUERY_KEY(
-      channelId,
-      contentId,
-      locale
-    ),
-    () =>
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetChannelContentTranslation>
+  >(
+    CHANNEL_CONTENT_TRANSLATION_QUERY_KEY(channelId, contentId, locale),
+    (params: SingleQueryParams) =>
       GetChannelContentTranslation({
+        ...params,
         contentId,
         locale,
       }),
     {
+      ...options,
       enabled: !!channelId && !!contentId && !!locale,
     }
   );

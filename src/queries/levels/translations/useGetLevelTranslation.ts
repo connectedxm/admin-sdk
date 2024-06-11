@@ -1,7 +1,11 @@
-import useConnectedSingleQuery from "@/context/queries/useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { GroupTranslation, SponsorshipLevelTranslation } from "@src/interfaces";
+import { SponsorshipLevelTranslation } from "@src/interfaces";
 import { LEVEL_TRANSLATIONS_QUERY_KEY } from "./useGetLevelTranslations";
+import { GetAdminAPI } from "@src/AdminAPI";
+import useConnectedSingleQuery, {
+  SingleQueryOptions,
+  SingleQueryParams,
+} from "@src/queries/useConnectedSingleQuery";
 
 export const LEVEL_TRANSLATION_QUERY_KEY = (
   levelId: string,
@@ -16,7 +20,7 @@ export const SET_LEVEL_TRANSLATION_QUERY_DATA = (
   client.setQueryData(LEVEL_TRANSLATION_QUERY_KEY(...keyParams), response);
 };
 
-interface GetLevelTranslationProps {
+interface GetLevelTranslationProps extends SingleQueryParams {
   levelId: string;
   locale: string;
 }
@@ -24,6 +28,7 @@ interface GetLevelTranslationProps {
 export const GetLevelTranslation = async ({
   levelId,
   locale,
+  adminApiParams,
 }: GetLevelTranslationProps): Promise<
   ConnectedXMResponse<SponsorshipLevelTranslation>
 > => {
@@ -34,16 +39,22 @@ export const GetLevelTranslation = async ({
   return data;
 };
 
-const useGetLevelTranslation = (levelId: string, locale: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetLevelTranslation>>((
+const useGetLevelTranslation = (
+  levelId: string = "",
+  locale: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetLevelTranslation>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetLevelTranslation>>(
     LEVEL_TRANSLATION_QUERY_KEY(levelId, locale),
-    () =>
+    (params) =>
       GetLevelTranslation({
+        ...params,
         levelId,
         locale,
       }),
     {
-      enabled: !!levelId && !!locale,
+      ...options,
+      enabled: !!levelId && !!locale && (options.enabled ?? true),
     }
   );
 };

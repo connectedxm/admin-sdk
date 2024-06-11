@@ -1,12 +1,16 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Event } from "@src/interfaces";
-import { useConnectedInfiniteQuery } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
+import {
+  InfiniteQueryOptions,
+  InfiniteQueryParams,
+  useConnectedInfiniteQuery,
+} from "../useConnectedInfiniteQuery";
 
-export const EVENTS_QUERY_KEY = (past?: string) => {
+export const EVENTS_QUERY_KEY = (past?: boolean) => {
   let keys = ["EVENTS"];
-  if (past) keys = [...keys, past];
+  if (typeof past !== "undefined") keys = [...keys, past ? "PAST" : "UPCOMING"];
   return keys;
 };
 
@@ -19,7 +23,7 @@ export const SET_EVENTS_QUERY_DATA = (
 };
 
 interface GetEventsProps extends InfiniteQueryParams {
-  past: boolean;
+  past?: boolean;
 }
 
 export const GetEvents = async ({
@@ -28,6 +32,7 @@ export const GetEvents = async ({
   orderBy,
   past,
   search,
+  adminApiParams,
 }: GetEventsProps): Promise<ConnectedXMResponse<Event[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events`, {
@@ -43,14 +48,23 @@ export const GetEvents = async ({
   return data;
 };
 
-const useGetEvents = (past?: string) => {
-  return useConnectedInfiniteQuery<ReturnType<typeof GetEvents>>(
+const useGetEvents = (
+  past?: boolean,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetEvents>>> = {}
+) => {
+  return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetEvents>>>(
     EVENTS_QUERY_KEY(past),
-    (params: InfiniteQueryParams) => GetEvents(params),
-    {
-      past,
-    },
-    {}
+    (params: InfiniteQueryParams) =>
+      GetEvents({
+        ...params,
+        past,
+      }),
+    params,
+    options
   );
 };
 

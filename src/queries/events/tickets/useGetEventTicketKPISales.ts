@@ -1,7 +1,12 @@
-import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EVENT_TICKET_QUERY_KEY } from "./useGetEventTicket";
 import { QueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_TICKET_KPI_SALES_QUERY_KEY = (
   eventId: string,
@@ -16,7 +21,7 @@ export const SET_EVENT_TICKET_KPI_SALES_QUERY_DATA = (
   client.setQueryData(EVENT_TICKET_KPI_SALES_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventTicketKPISalesProps {
+interface GetEventTicketKPISalesProps extends SingleQueryParams {
   eventId: string;
   ticketId?: string;
 }
@@ -29,6 +34,7 @@ interface DateSumCount {
 export const GetEventTicketKPISales = async ({
   eventId,
   ticketId,
+  adminApiParams,
 }: GetEventTicketKPISalesProps): Promise<
   ConnectedXMResponse<DateSumCount[]>
 > => {
@@ -39,12 +45,18 @@ export const GetEventTicketKPISales = async ({
   return data;
 };
 
-const useGetEventTicketKPISales = (eventId: string, ticketId: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventTicketKPISales>>((
+const useGetEventTicketKPISales = (
+  eventId: string = "",
+  ticketId: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEventTicketKPISales>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetEventTicketKPISales>>(
     EVENT_TICKET_KPI_SALES_QUERY_KEY(eventId, ticketId),
-    () => GetEventTicketKPISales({ eventId, ticketId }),
+    (params: SingleQueryParams) =>
+      GetEventTicketKPISales({ eventId, ticketId, ...params }),
     {
-      enabled: !!eventId && !!ticketId,
+      ...options,
+      enabled: !!eventId && !!ticketId && (options?.enabled ?? true),
     }
   );
 };

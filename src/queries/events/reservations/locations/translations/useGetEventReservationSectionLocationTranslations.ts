@@ -1,8 +1,10 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
-} from "@/context/queries/useConnectedInfiniteQuery";
+  useConnectedInfiniteQuery,
+} from "../../../../useConnectedInfiniteQuery";
 import { EVENT_RESERVATION_SECTION_LOCATION_QUERY_KEY } from "../useGetEventReservationSectionLocation";
 import { EventReservationSectionLocationTranslation } from "@src/interfaces";
 
@@ -47,6 +49,7 @@ export const GetEventReservationSectionTranslations = async ({
   eventId,
   reservationSectionId,
   locationId,
+  adminApiParams,
 }: GetEventReservationSectionTranslationsProps): Promise<
   ConnectedXMResponse<EventReservationSectionLocationTranslation[]>
 > => {
@@ -66,9 +69,16 @@ export const GetEventReservationSectionTranslations = async ({
 };
 
 const useGetEventReservationSectionTranslations = (
-  eventId: string,
-  reservationSectionId: string,
-  locationId: string
+  eventId: string = "",
+  reservationSectionId: string = "",
+  locationId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventReservationSectionTranslations>>
+  > = {}
 ) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventReservationSectionTranslations>>
@@ -79,14 +89,20 @@ const useGetEventReservationSectionTranslations = (
       locationId
     ),
     (params: InfiniteQueryParams) =>
-      GetEventReservationSectionTranslations(params),
+      GetEventReservationSectionTranslations({
+        ...params,
+        eventId,
+        reservationSectionId,
+        locationId,
+      }),
+    params,
     {
-      eventId,
-      reservationSectionId,
-      locationId,
-    },
-    {
-      enabled: !!eventId && !!reservationSectionId && !!locationId,
+      ...options,
+      enabled:
+        !!eventId &&
+        !!reservationSectionId &&
+        !!locationId &&
+        (options.enabled ?? true),
     }
   );
 };

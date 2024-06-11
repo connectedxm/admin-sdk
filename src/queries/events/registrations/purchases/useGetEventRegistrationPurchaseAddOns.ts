@@ -1,7 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EventAddOn } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  useConnectedInfiniteQuery,
+  InfiniteQueryOptions,
   InfiniteQueryParams,
 } from "../../../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
@@ -41,6 +43,7 @@ export const GetEventRegistrationPurchaseAddOns = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventRegistrationPurchaseAddOnsProps): Promise<
   ConnectedXMResponse<EventAddOn[]>
 > => {
@@ -60,9 +63,16 @@ export const GetEventRegistrationPurchaseAddOns = async ({
 };
 
 const useGetEventRegistrationPurchaseAddOns = (
-  eventId: string,
-  registrationId: string,
-  purchaseId: string
+  eventId: string = "",
+  registrationId: string = "",
+  purchaseId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventRegistrationPurchaseAddOns>>
+  > = {}
 ) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventRegistrationPurchaseAddOns>>
@@ -72,14 +82,21 @@ const useGetEventRegistrationPurchaseAddOns = (
       registrationId,
       purchaseId
     ),
-    (params: InfiniteQueryParams) => GetEventRegistrationPurchaseAddOns(params),
+    (params: InfiniteQueryParams) =>
+      GetEventRegistrationPurchaseAddOns({
+        ...params,
+        eventId,
+        registrationId,
+        purchaseId,
+      }),
+    params,
     {
-      eventId,
-      registrationId,
-      purchaseId,
-    },
-    {
-      enabled: !!eventId && !!registrationId && !!purchaseId,
+      ...options,
+      enabled:
+        !!eventId &&
+        !!registrationId &&
+        !!purchaseId &&
+        (options.enabled ?? true),
     }
   );
 };

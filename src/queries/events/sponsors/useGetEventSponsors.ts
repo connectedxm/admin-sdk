@@ -2,8 +2,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 
 import { Account } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
+  useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { QueryClient } from "@tanstack/react-query";
@@ -31,6 +33,7 @@ export const GetEventSponsors = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventSponsorsProps): Promise<ConnectedXMResponse<Account[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/sponsors`, {
@@ -44,17 +47,29 @@ export const GetEventSponsors = async ({
   return data;
 };
 
-const useGetEventSponsors = (eventId: string) => {
+const useGetEventSponsors = (
+  eventId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventSponsors>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventSponsors>>
   >(
     EVENT_SPONSORS_QUERY_KEY(eventId),
-    (params: InfiniteQueryParams) => GetEventSponsors(params),
+    (params: InfiniteQueryParams) =>
+      GetEventSponsors({
+        ...params,
+        eventId,
+      }),
+    params,
     {
-      eventId,
-    },
-    {
-      enabled: !!eventId,
+      ...options,
+      enabled: !!eventId && (options.enabled ?? true),
     }
   );
 };

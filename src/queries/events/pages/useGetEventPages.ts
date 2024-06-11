@@ -1,14 +1,16 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EventPage } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
+  useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
-import { EVENTS_QUERY_KEY } from "../useGetEvents";
+import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { QueryClient } from "@tanstack/react-query";
 
 export const EVENT_PAGES_QUERY_KEY = (eventId: string) => [
-  ...EVENTS_QUERY_KEY(eventId),
+  ...EVENT_QUERY_KEY(eventId),
   "PAGES",
 ];
 
@@ -30,6 +32,7 @@ export const GetEventPages = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventPagesProps): Promise<ConnectedXMResponse<EventPage[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/pages`, {
@@ -43,15 +46,25 @@ export const GetEventPages = async ({
   return data;
 };
 
-const useGetEventPages = (eventId: string) => {
-  return useConnectedInfiniteQuery<ReturnType<typeof GetEventPages>>(
+const useGetEventPages = (
+  eventId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetEventPages>>> = {}
+) => {
+  return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetEventPages>>>(
     EVENT_PAGES_QUERY_KEY(eventId),
-    (params: InfiniteQueryParams) => GetEventPages(params),
+    (params: InfiniteQueryParams) =>
+      GetEventPages({
+        ...params,
+        eventId,
+      }),
+    params,
     {
-      eventId,
-    },
-    {
-      enabled: !!eventId,
+      ...options,
+      enabled: !!eventId && (options.enabled ?? true),
     }
   );
 };

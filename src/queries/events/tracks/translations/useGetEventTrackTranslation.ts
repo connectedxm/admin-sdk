@@ -1,7 +1,12 @@
-import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { TrackTranslation } from "@src/interfaces";
 import { EVENT_TRACK_TRANSLATIONS_QUERY_KEY } from "./useGetEventTrackTranslations";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_TRACK_TRANSLATION_QUERY_KEY = (
   eventId: string,
@@ -20,7 +25,7 @@ export const SET_EVENT_TRACK_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetEventTrackTranslationProps {
+interface GetEventTrackTranslationProps extends SingleQueryParams {
   eventId: string;
   trackId: string;
   locale: string;
@@ -30,6 +35,7 @@ export const GetEventTrackTranslation = async ({
   eventId,
   trackId,
   locale,
+  adminApiParams,
 }: GetEventTrackTranslationProps): Promise<
   ConnectedXMResponse<TrackTranslation>
 > => {
@@ -41,20 +47,23 @@ export const GetEventTrackTranslation = async ({
 };
 
 const useGetEventTrackTranslation = (
-  eventId: string,
-  trackId: string,
-  locale: string
+  eventId: string = "",
+  trackId: string = "",
+  locale: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEventTrackTranslation>> = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventTrackTranslation>>((
+  return useConnectedSingleQuery<ReturnType<typeof GetEventTrackTranslation>>(
     EVENT_TRACK_TRANSLATION_QUERY_KEY(eventId, trackId, locale),
-    () =>
+    (params) =>
       GetEventTrackTranslation({
+        ...params,
         eventId,
         trackId,
         locale,
       }),
     {
-      enabled: !!eventId && !!trackId && !!locale,
+      ...options,
+      enabled: !!eventId && !!trackId && !!locale && (options.enabled ?? true),
     }
   );
 };

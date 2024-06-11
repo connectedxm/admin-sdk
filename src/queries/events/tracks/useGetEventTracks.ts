@@ -1,14 +1,16 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Track } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
+  useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
-import { EVENTS_QUERY_KEY } from "../useGetEvents";
+import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { QueryClient } from "@tanstack/react-query";
 
 export const EVENT_TRACKS_QUERY_KEY = (eventId: string) => [
-  ...EVENTS_QUERY_KEY(eventId),
+  ...EVENT_QUERY_KEY(eventId),
   "TRACKS",
 ];
 
@@ -30,6 +32,7 @@ export const GetEventTracks = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventTracksProps): Promise<ConnectedXMResponse<Track[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/tracks`, {
@@ -43,15 +46,25 @@ export const GetEventTracks = async ({
   return data;
 };
 
-const useGetEventTracks = (eventId: string) => {
-  return useConnectedInfiniteQuery<ReturnType<typeof GetEventTracks>>(
+const useGetEventTracks = (
+  eventId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetEventTracks>>> = {}
+) => {
+  return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetEventTracks>>>(
     EVENT_TRACKS_QUERY_KEY(eventId),
-    (params: InfiniteQueryParams) => GetEventTracks(params),
+    (params: InfiniteQueryParams) =>
+      GetEventTracks({
+        ...params,
+        eventId,
+      }),
+    params,
     {
-      eventId,
-    },
-    {
-      enabled: !!eventId,
+      ...options,
+      enabled: !!eventId && (options.enabled ?? true),
     }
   );
 };

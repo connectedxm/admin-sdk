@@ -1,10 +1,13 @@
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Purchase } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
+  useConnectedInfiniteQuery,
 } from "../../../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_REGISTRATION_QUERY_KEY } from "../useGetEventRegistration";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_REGISTRATION_PURCHASES_QUERY_KEY = (
   eventId: string,
@@ -48,6 +51,7 @@ export const GetEventRegistrationPurchases = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventRegistrationPurchasesProps): Promise<
   ConnectedXMResponse<Purchase[]>
 > => {
@@ -68,22 +72,32 @@ export const GetEventRegistrationPurchases = async ({
 };
 
 const useGetEventRegistrationPurchases = (
-  eventId: string,
-  registrationId: string,
-  paid?: boolean
+  eventId: string = "",
+  registrationId: string = "",
+  paid?: boolean,
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventRegistrationPurchases>>
+  > = {}
 ) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventRegistrationPurchases>>
   >(
     EVENT_REGISTRATION_PURCHASES_QUERY_KEY(eventId, registrationId, paid),
-    (params: InfiniteQueryParams) => GetEventRegistrationPurchases(params),
+    (params: InfiniteQueryParams) =>
+      GetEventRegistrationPurchases({
+        ...params,
+        eventId,
+        registrationId,
+        paid,
+      }),
+    params,
     {
-      eventId,
-      registrationId,
-      paid,
-    },
-    {
-      enabled: !!eventId && !!registrationId,
+      ...options,
+      enabled: !!eventId && !!registrationId && (options.enabled ?? true),
     }
   );
 };

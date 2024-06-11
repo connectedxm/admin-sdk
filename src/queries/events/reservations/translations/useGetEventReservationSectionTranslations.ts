@@ -1,8 +1,10 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
-} from "@/context/queries/useConnectedInfiniteQuery";
+  useConnectedInfiniteQuery,
+} from "../../../useConnectedInfiniteQuery";
 import { EVENT_RESERVATION_SECTION_QUERY_KEY } from "../useGetEventReservationSection";
 import { EventReservationSectionTranslation } from "@src/interfaces";
 
@@ -40,6 +42,7 @@ export const GetEventReservationSectionTranslations = async ({
   search,
   eventId,
   reservationSectionId,
+  adminApiParams,
 }: GetEventReservationSectionTranslationsProps): Promise<
   ConnectedXMResponse<EventReservationSectionTranslation[]>
 > => {
@@ -59,8 +62,15 @@ export const GetEventReservationSectionTranslations = async ({
 };
 
 const useGetEventReservationSectionTranslations = (
-  eventId: string,
-  reservationSectionId: string
+  eventId: string = "",
+  reservationSectionId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventReservationSectionTranslations>>
+  > = {}
 ) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventReservationSectionTranslations>>
@@ -70,13 +80,15 @@ const useGetEventReservationSectionTranslations = (
       reservationSectionId
     ),
     (params: InfiniteQueryParams) =>
-      GetEventReservationSectionTranslations(params),
+      GetEventReservationSectionTranslations({
+        ...params,
+        eventId,
+        reservationSectionId,
+      }),
+    params,
     {
-      eventId,
-      reservationSectionId,
-    },
-    {
-      enabled: !!eventId && !!reservationSectionId,
+      ...options,
+      enabled: !!eventId && !!reservationSectionId && (options.enabled ?? true),
     }
   );
 };

@@ -1,8 +1,10 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Session } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
+  useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_SPEAKER_QUERY_KEY } from "./useGetEventSpeaker";
 import { QueryClient } from "@tanstack/react-query";
@@ -32,6 +34,7 @@ export const GetEventSpeakerSessions = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventSpeakerSessionsProps): Promise<ConnectedXMResponse<Session[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -48,18 +51,31 @@ export const GetEventSpeakerSessions = async ({
   return data;
 };
 
-const useGetEventSpeakerSessions = (eventId: string, speakerId: string) => {
+const useGetEventSpeakerSessions = (
+  eventId: string = "",
+  speakerId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventSpeakerSessions>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventSpeakerSessions>>
   >(
     EVENT_SPEAKER_SESSIONS_QUERY_KEY(eventId, speakerId),
-    (params: InfiniteQueryParams) => GetEventSpeakerSessions(params),
+    (params: InfiniteQueryParams) =>
+      GetEventSpeakerSessions({
+        ...params,
+        eventId,
+        speakerId,
+      }),
+    params,
     {
-      eventId,
-      speakerId,
-    },
-    {
-      enabled: !!eventId && !!speakerId,
+      ...options,
+      enabled: !!eventId && !!speakerId && (options.enabled ?? true),
     }
   );
 };

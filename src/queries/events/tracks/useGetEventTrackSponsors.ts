@@ -1,8 +1,10 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Account } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
+  useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_TRACK_QUERY_KEY } from "./useGetEventTrack";
 
@@ -31,6 +33,7 @@ export const GetEventTrackSponsors = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventTrackSponsorsProps): Promise<ConnectedXMResponse<Account[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -47,18 +50,31 @@ export const GetEventTrackSponsors = async ({
   return data;
 };
 
-const useGetEventTrackSponsors = (eventId: string, trackId: string) => {
+const useGetEventTrackSponsors = (
+  eventId: string = "",
+  trackId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventTrackSponsors>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventTrackSponsors>>
   >(
     EVENT_TRACK_SPONSORS_QUERY_KEY(eventId, trackId),
-    (params: InfiniteQueryParams) => GetEventTrackSponsors(params),
+    (params: InfiniteQueryParams) =>
+      GetEventTrackSponsors({
+        ...params,
+        eventId,
+        trackId,
+      }),
+    params,
     {
-      eventId,
-      trackId,
-    },
-    {
-      enabled: !!eventId && !!trackId,
+      ...options,
+      enabled: !!eventId && !!trackId && (options.enabled ?? true),
     }
   );
 };

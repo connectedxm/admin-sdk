@@ -1,7 +1,12 @@
-import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { TicketTranslation } from "@src/interfaces";
 import { EVENT_TICKET_TRANSLATIONS_QUERY_KEY } from "./useGetEventTicketTranslations";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_TICKET_TRANSLATION_QUERY_KEY = (
   eventId: string,
@@ -20,7 +25,7 @@ export const SET_EVENT_TICKET_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetEventTicketTranslationProps {
+interface GetEventTicketTranslationProps extends SingleQueryParams {
   eventId: string;
   ticketId: string;
   locale: string;
@@ -30,6 +35,7 @@ export const GetEventTicketTranslation = async ({
   eventId,
   ticketId,
   locale,
+  adminApiParams,
 }: GetEventTicketTranslationProps): Promise<
   ConnectedXMResponse<TicketTranslation>
 > => {
@@ -41,19 +47,22 @@ export const GetEventTicketTranslation = async ({
 };
 
 const useGetEventTicketTranslation = (
-  eventId: string,
-  ticketId: string,
-  locale: string
+  eventId: string = "",
+  ticketId: string = "",
+  locale: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetEventTicketTranslation>> = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventTicketTranslation>>((
+  return useConnectedSingleQuery<ReturnType<typeof GetEventTicketTranslation>>(
     EVENT_TICKET_TRANSLATION_QUERY_KEY(eventId, ticketId, locale),
-    () =>
+    (params) =>
       GetEventTicketTranslation({
+        ...params,
         eventId,
         ticketId,
         locale,
       }),
     {
+      ...options,
       enabled: !!eventId && !!ticketId && !!locale,
     }
   );

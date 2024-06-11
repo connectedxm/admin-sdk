@@ -1,9 +1,12 @@
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EventAddOn } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
+  useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_TICKET_QUERY_KEY } from "./useGetEventTicket";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_TICKET_ADD_ONS_QUERY_KEY = (
   eventId: string,
@@ -30,6 +33,7 @@ export const GetEventTicketAddOns = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventTicketAddOnsProps): Promise<ConnectedXMResponse<EventAddOn[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -46,18 +50,31 @@ export const GetEventTicketAddOns = async ({
   return data;
 };
 
-const useGetEventTicketAddOns = (eventId: string, ticketId: string) => {
+const useGetEventTicketAddOns = (
+  eventId: string = "",
+  ticketId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventTicketAddOns>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventTicketAddOns>>
   >(
     EVENT_TICKET_ADD_ONS_QUERY_KEY(eventId, ticketId),
-    (params: InfiniteQueryParams) => GetEventTicketAddOns(params),
+    (params: InfiniteQueryParams) =>
+      GetEventTicketAddOns({
+        ...params,
+        eventId,
+        ticketId,
+      }),
+    params,
     {
-      eventId,
-      ticketId,
-    },
-    {
-      enabled: !!eventId && !!ticketId,
+      ...options,
+      enabled: !!eventId && !!ticketId && (options.enabled ?? true),
     }
   );
 };

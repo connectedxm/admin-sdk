@@ -2,9 +2,11 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 
 import { RegistrationChoiceSubQuestion } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
-} from "@/context/queries/useConnectedInfiniteQuery";
+  useConnectedInfiniteQuery,
+} from "../../useConnectedInfiniteQuery";
 import { EVENT_QUESTION_CHOICE_QUERY_KEY } from "./useGetEventQuestionChoice";
 
 export const EVENT_QUESTION_CHOICE_QUESTIONS_QUERY_KEY = (
@@ -41,6 +43,7 @@ export const GetEventQuestionChoiceSubQuestions = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventQuestionChoiceSubQuestionsProps): Promise<
   ConnectedXMResponse<RegistrationChoiceSubQuestion[]>
 > => {
@@ -60,9 +63,16 @@ export const GetEventQuestionChoiceSubQuestions = async ({
 };
 
 const useGetEventQuestionChoiceSubQuestions = (
-  eventId: string,
-  questionId: string,
-  choiceId: string
+  eventId: string = "",
+  questionId: string = "",
+  choiceId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventQuestionChoiceSubQuestions>>
+  > = {}
 ) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventQuestionChoiceSubQuestions>>
@@ -75,13 +85,11 @@ const useGetEventQuestionChoiceSubQuestions = (
         choiceId,
         ...params,
       }),
+    params,
     {
-      eventId,
-      questionId,
-      choiceId,
-    },
-    {
-      enabled: !!eventId && !!questionId && !!choiceId,
+      ...options,
+      enabled:
+        !!eventId && !!questionId && !!choiceId && (options.enabled ?? true),
     }
   );
 };

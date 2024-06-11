@@ -1,7 +1,12 @@
-import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { EventTranslation, FAQTranslation } from "@src/interfaces";
+import { FAQTranslation } from "@src/interfaces";
 import { EVENT_FAQ_SECTION_QUESTION_TRANSLATIONS_QUERY_KEY } from "./useGetEventFAQSectionQuestionTranslations";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_FAQ_SECTION_QUESTION_TRANSLATION_QUERY_KEY = (
   eventId: string,
@@ -30,7 +35,7 @@ export const SET_EVENT_FAQ_SECTION_QUESTION_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetEventFAQSectionQuestionTranslationProps {
+interface GetEventFAQSectionQuestionTranslationProps extends SingleQueryParams {
   eventId: string;
   sectionId: string;
   questionId: string;
@@ -42,6 +47,7 @@ export const GetEventFAQSectionQuestionTranslation = async ({
   sectionId,
   questionId,
   locale,
+  adminApiParams,
 }: GetEventFAQSectionQuestionTranslationProps): Promise<
   ConnectedXMResponse<FAQTranslation>
 > => {
@@ -53,27 +59,39 @@ export const GetEventFAQSectionQuestionTranslation = async ({
 };
 
 const useGetEventFAQSectionQuestionTranslation = (
-  eventId: string,
-  sectionId: string,
-  questionId: string,
-  locale: string
+  eventId: string = "",
+  sectionId: string = "",
+  questionId: string = "",
+  locale: string = "",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetEventFAQSectionQuestionTranslation>
+  > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventFAQSectionQuestionTranslation>>((
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetEventFAQSectionQuestionTranslation>
+  >(
     EVENT_FAQ_SECTION_QUESTION_TRANSLATION_QUERY_KEY(
       eventId,
       sectionId,
       questionId,
       locale
     ),
-    () =>
+    (params) =>
       GetEventFAQSectionQuestionTranslation({
+        ...params,
         eventId,
         sectionId,
         questionId,
         locale,
       }),
     {
-      enabled: !!eventId && !!sectionId && !!questionId && !!locale,
+      ...options,
+      enabled:
+        !!eventId &&
+        !!sectionId &&
+        !!questionId &&
+        !!locale &&
+        (options?.enabled ?? true),
     }
   );
 };

@@ -1,12 +1,11 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
+import { RegistrationQuestionChoiceTranslation } from "@src/interfaces";
 import {
-  RegistrationQuestion,
-  RegistrationQuestionChoiceTranslation,
-} from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
-} from "@/context/queries/useConnectedInfiniteQuery";
+  useConnectedInfiniteQuery,
+} from "../../../useConnectedInfiniteQuery";
 import { EVENT_QUESTION_CHOICE_QUERY_KEY } from "../useGetEventQuestionChoice";
 
 export const EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_KEY = (
@@ -43,6 +42,7 @@ export const GetEventQuestionChoiceTranslations = async ({
   eventId,
   questionId,
   choiceId,
+  adminApiParams,
 }: GetEventQuestionChoiceTranslationsProps): Promise<
   ConnectedXMResponse<RegistrationQuestionChoiceTranslation[]>
 > => {
@@ -62,22 +62,33 @@ export const GetEventQuestionChoiceTranslations = async ({
 };
 
 const useGetEventQuestionChoiceTranslations = (
-  eventId: string,
-  questionId: string,
-  choiceId: string
+  eventId: string = "",
+  questionId: string = "",
+  choiceId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventQuestionChoiceTranslations>>
+  > = {}
 ) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventQuestionChoiceTranslations>>
   >(
     EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_KEY(eventId, questionId, choiceId),
-    (params: InfiniteQueryParams) => GetEventQuestionChoiceTranslations(params),
+    (params: InfiniteQueryParams) =>
+      GetEventQuestionChoiceTranslations({
+        ...params,
+        eventId,
+        questionId,
+        choiceId,
+      }),
+    params,
     {
-      eventId,
-      questionId,
-      choiceId,
-    },
-    {
-      enabled: !!eventId && !!questionId && !!choiceId,
+      ...options,
+      enabled:
+        !!eventId && !!questionId && !!choiceId && (options.enabled ?? true),
     }
   );
 };

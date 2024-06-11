@@ -1,7 +1,11 @@
-import useConnectedSingleQuery from "@/context/queries/useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { GroupTranslation } from "@src/interfaces";
 import { GROUP_TRANSLATIONS_QUERY_KEY } from "./useGetGroupTranslations";
+import { GetAdminAPI } from "@src/AdminAPI";
+import useConnectedSingleQuery, {
+  SingleQueryOptions,
+  SingleQueryParams,
+} from "@src/queries/useConnectedSingleQuery";
 
 export const GROUP_TRANSLATION_QUERY_KEY = (
   groupId: string,
@@ -16,7 +20,7 @@ export const SET_GROUP_TRANSLATION_QUERY_DATA = (
   client.setQueryData(GROUP_TRANSLATION_QUERY_KEY(...keyParams), response);
 };
 
-interface GetGroupTranslationProps {
+interface GetGroupTranslationProps extends SingleQueryParams {
   groupId: string;
   locale: string;
 }
@@ -24,6 +28,7 @@ interface GetGroupTranslationProps {
 export const GetGroupTranslation = async ({
   groupId,
   locale,
+  adminApiParams,
 }: GetGroupTranslationProps): Promise<
   ConnectedXMResponse<GroupTranslation>
 > => {
@@ -34,16 +39,22 @@ export const GetGroupTranslation = async ({
   return data;
 };
 
-const useGetGroupTranslation = (groupId: string, locale: string) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetGroupTranslation>>((
+const useGetGroupTranslation = (
+  groupId: string = "",
+  locale: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetGroupTranslation>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetGroupTranslation>>(
     GROUP_TRANSLATION_QUERY_KEY(groupId, locale),
-    () =>
+    (params) =>
       GetGroupTranslation({
+        ...params,
         groupId,
         locale,
       }),
     {
-      enabled: !!groupId && !!locale,
+      ...options,
+      enabled: !!groupId && !!locale && (options.enabled ?? true),
     }
   );
 };

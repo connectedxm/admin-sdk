@@ -1,8 +1,10 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Tier } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
+  useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_ADD_ON_QUERY_KEY } from "./useGetEventAddOn";
 
@@ -31,6 +33,7 @@ export const GetEventAddOnTiers = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventAddOnTiersProps): Promise<ConnectedXMResponse<Tier[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -47,18 +50,31 @@ export const GetEventAddOnTiers = async ({
   return data;
 };
 
-const useGetEventAddOnTiers = (eventId: string, addOnId: string) => {
+const useGetEventAddOnTiers = (
+  eventId: string = "",
+  addOnId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventAddOnTiers>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventAddOnTiers>>
   >(
     EVENT_ADD_ON_TIERS_QUERY_KEY(eventId, addOnId),
-    (params: InfiniteQueryParams) => GetEventAddOnTiers(params),
+    (params: InfiniteQueryParams) =>
+      GetEventAddOnTiers({
+        ...params,
+        eventId,
+        addOnId,
+      }),
+    params,
     {
-      eventId,
-      addOnId,
-    },
-    {
-      enabled: !!eventId && !!addOnId,
+      ...options,
+      enabled: !!eventId && !!addOnId && (options.enabled ?? true),
     }
   );
 };

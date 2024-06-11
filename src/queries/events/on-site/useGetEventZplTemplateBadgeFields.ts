@@ -3,9 +3,11 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { EventOnSiteBadgeField } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENTS_QUERY_KEY } from "../useGetEvents";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
-} from "@/context/queries/useConnectedInfiniteQuery";
+  useConnectedInfiniteQuery,
+} from "../../useConnectedInfiniteQuery";
 
 export const EVENT_ZPL_TEMPLATE_BADGE_FIELDS_QUERY_KEY = (eventId: string) => [
   ...EVENTS_QUERY_KEY(),
@@ -34,6 +36,7 @@ export const GetEventZplTemplateBadgeFields = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventZplTemplateBadgeFieldsProps): Promise<
   ConnectedXMResponse<EventOnSiteBadgeField[]>
 > => {
@@ -52,15 +55,26 @@ export const GetEventZplTemplateBadgeFields = async ({
   return data;
 };
 
-const useGetEventZplTemplateBadgeFields = (eventId: string) => {
+const useGetEventZplTemplateBadgeFields = (
+  eventId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventZplTemplateBadgeFields>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventZplTemplateBadgeFields>>
   >(
     EVENT_ZPL_TEMPLATE_BADGE_FIELDS_QUERY_KEY(eventId),
     (params: InfiniteQueryParams) =>
       GetEventZplTemplateBadgeFields({ ...params, eventId }),
+    params,
     {
-      enabled: !!eventId,
+      ...options,
+      enabled: !!eventId && (options.enabled ?? true),
     }
   );
 };

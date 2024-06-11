@@ -1,11 +1,13 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { PurchaseTransferLog } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
-  InfiniteQueryParams,
-} from "../../../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_REGISTRATION_PURCHASE_QUERY_KEY } from "./useGetEventRegistrationPurchase";
+import {
+  InfiniteQueryOptions,
+  InfiniteQueryParams,
+  useConnectedInfiniteQuery,
+} from "@src/queries/useConnectedInfiniteQuery";
 
 export const EVENT_REGISTRATION_PURCHASE_TRANSFER_LOGS_QUERY_KEY = (
   eventId: string,
@@ -44,6 +46,7 @@ export const GetEventRegistrationPurchaseTransferLogs = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventRegistrationPurchaseTransferLogsProps): Promise<
   ConnectedXMResponse<PurchaseTransferLog[]>
 > => {
@@ -63,9 +66,16 @@ export const GetEventRegistrationPurchaseTransferLogs = async ({
 };
 
 const useGetEventRegistrationPurchaseTransferLogs = (
-  eventId: string,
-  registrationId: string,
-  purchaseId: string
+  eventId: string = "",
+  registrationId: string = "",
+  purchaseId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventRegistrationPurchaseTransferLogs>>
+  > = {}
 ) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventRegistrationPurchaseTransferLogs>>
@@ -76,14 +86,20 @@ const useGetEventRegistrationPurchaseTransferLogs = (
       purchaseId
     ),
     (params: InfiniteQueryParams) =>
-      GetEventRegistrationPurchaseTransferLogs(params),
+      GetEventRegistrationPurchaseTransferLogs({
+        ...params,
+        eventId,
+        registrationId,
+        purchaseId,
+      }),
+    params,
     {
-      eventId,
-      registrationId,
-      purchaseId,
-    },
-    {
-      enabled: !!eventId && !!registrationId && !!purchaseId,
+      ...options,
+      enabled:
+        !!eventId &&
+        !!registrationId &&
+        !!purchaseId &&
+        (options.enabled ?? true),
     }
   );
 };

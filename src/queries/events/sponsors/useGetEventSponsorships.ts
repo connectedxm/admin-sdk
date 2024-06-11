@@ -2,8 +2,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 
 import { Sponsorship } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
+  useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 
@@ -30,6 +32,7 @@ export const GetEventSponsorships = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventSponsorshipsProps): Promise<ConnectedXMResponse<Sponsorship[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -46,17 +49,29 @@ export const GetEventSponsorships = async ({
   return data;
 };
 
-const useGetEventSponsorships = (eventId: string) => {
+const useGetEventSponsorships = (
+  eventId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventSponsorships>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventSponsorships>>
   >(
     EVENT_SPONSORSHIPS_QUERY_KEY(eventId),
-    (params: InfiniteQueryParams) => GetEventSponsorships(params),
+    (params: InfiniteQueryParams) =>
+      GetEventSponsorships({
+        ...params,
+        eventId,
+      }),
+    params,
     {
-      eventId,
-    },
-    {
-      enabled: !!eventId,
+      ...options,
+      enabled: !!eventId && (options.enabled ?? true),
     }
   );
 };

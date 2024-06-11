@@ -1,8 +1,10 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Registration } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
+  useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_COUPON_QUERY_KEY } from "./useGetEventCoupon";
 import { QueryClient } from "@tanstack/react-query";
@@ -35,6 +37,7 @@ export const GetEventCouponRegistrations = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventCouponRegistrationsProps): Promise<
   ConnectedXMResponse<Registration[]>
 > => {
@@ -53,17 +56,32 @@ export const GetEventCouponRegistrations = async ({
   return data;
 };
 
-const useGetEventCouponRegistrations = (eventId: string, couponId: string) => {
+const useGetEventCouponRegistrations = (
+  eventId: string = "",
+  couponId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventCouponRegistrations>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventCouponRegistrations>>
   >(
     EVENT_COUPON_REGISTRATIONS_QUERY_KEY(eventId, couponId),
-    (params: InfiniteQueryParams) => GetEventCouponRegistrations(params),
+    (params: InfiniteQueryParams) =>
+      GetEventCouponRegistrations({
+        ...params,
+        eventId,
+        couponId,
+      }),
+    params,
     {
-      eventId,
-      couponId,
-    },
-    {}
+      ...options,
+      enabled: !!eventId && !!couponId && (options.enabled ?? true),
+    }
   );
 };
 

@@ -1,13 +1,15 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EventRegistrationBypass } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
+  useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
-import { EVENTS_QUERY_KEY } from "../useGetEvents";
+import { EVENT_QUERY_KEY } from "../useGetEvent";
 
 export const EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY = (eventId: string) => [
-  ...EVENTS_QUERY_KEY(eventId),
+  ...EVENT_QUERY_KEY(eventId),
   "BYPASS_LIST",
 ];
 
@@ -21,6 +23,7 @@ export const GetEventRegistrationBypassList = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventRegistrationBypassListProps): Promise<
   ConnectedXMResponse<EventRegistrationBypass[]>
 > => {
@@ -36,17 +39,29 @@ export const GetEventRegistrationBypassList = async ({
   return data;
 };
 
-const useGetEventRegistrationBypassList = (eventId: string) => {
+const useGetEventRegistrationBypassList = (
+  eventId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventRegistrationBypassList>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventRegistrationBypassList>>
   >(
     EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY(eventId),
-    (params: InfiniteQueryParams) => GetEventRegistrationBypassList(params),
+    (params: InfiniteQueryParams) =>
+      GetEventRegistrationBypassList({
+        ...params,
+        eventId,
+      }),
+    params,
     {
-      eventId,
-    },
-    {
-      enabled: !!eventId,
+      ...options,
+      enabled: !!eventId && (options.enabled ?? true),
     }
   );
 };

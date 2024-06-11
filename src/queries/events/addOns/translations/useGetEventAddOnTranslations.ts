@@ -1,9 +1,11 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EventAddOnTranslation } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
-} from "@/context/queries/useConnectedInfiniteQuery";
+  useConnectedInfiniteQuery,
+} from "../../../useConnectedInfiniteQuery";
 import { EVENT_ADD_ON_QUERY_KEY } from "../useGetEventAddOn";
 
 export const EVENT_ADD_ON_TRANSLATIONS_QUERY_KEY = (
@@ -34,6 +36,7 @@ export const GetEventAddOnTranslations = async ({
   search,
   eventId,
   addOnId,
+  adminApiParams,
 }: GetEventAddOnTranslationsProps): Promise<
   ConnectedXMResponse<EventAddOnTranslation[]>
 > => {
@@ -52,18 +55,31 @@ export const GetEventAddOnTranslations = async ({
   return data;
 };
 
-const useGetEventAddOnTranslations = (eventId: string, addOnId: string) => {
+const useGetEventAddOnTranslations = (
+  eventId: string = "",
+  addOnId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventAddOnTranslations>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventAddOnTranslations>>
   >(
     EVENT_ADD_ON_TRANSLATIONS_QUERY_KEY(eventId, addOnId),
-    (params: InfiniteQueryParams) => GetEventAddOnTranslations(params),
+    (params: InfiniteQueryParams) =>
+      GetEventAddOnTranslations({
+        ...params,
+        eventId,
+        addOnId,
+      }),
+    params,
     {
-      eventId,
-      addOnId,
-    },
-    {
-      enabled: !!eventId && !!addOnId,
+      ...options,
+      enabled: !!eventId && !!addOnId && (options.enabled ?? true),
     }
   );
 };

@@ -1,8 +1,10 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { FAQ } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
+  useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_FAQ_SECTION_QUERY_KEY } from "./useGetEventFAQSection";
@@ -35,6 +37,7 @@ export const GetEventFAQSectionQuestions = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventFAQSectionQuestionsProps): Promise<ConnectedXMResponse<FAQ[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -52,20 +55,30 @@ export const GetEventFAQSectionQuestions = async ({
 };
 
 const useGetEventFAQSectionQuestionsectionQuestions = (
-  eventId: string,
-  sectionId: string
+  eventId: string = "",
+  sectionId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventFAQSectionQuestions>>
+  > = {}
 ) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventFAQSectionQuestions>>
   >(
     EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY(eventId, sectionId),
-    (params: InfiniteQueryParams) => GetEventFAQSectionQuestions(params),
+    (params: InfiniteQueryParams) =>
+      GetEventFAQSectionQuestions({
+        ...params,
+        eventId,
+        sectionId,
+      }),
+    params,
     {
-      eventId,
-      sectionId,
-    },
-    {
-      enabled: !!eventId && !!sectionId,
+      ...options,
+      enabled: !!eventId && !!sectionId && (options.enabled ?? true),
     }
   );
 };

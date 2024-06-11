@@ -1,8 +1,10 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Image } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
+  useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_PAGE_QUERY_KEY } from "./useGetEventPage";
 
@@ -31,6 +33,7 @@ export const GetEventPageImages = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetEventPageImagesProps): Promise<ConnectedXMResponse<Image[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -47,18 +50,27 @@ export const GetEventPageImages = async ({
   return data;
 };
 
-const useGetEventPageImages = (eventId: string, pageId: string) => {
+const useGetEventPageImages = (
+  eventId: string = "",
+  pageId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventPageImages>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventPageImages>>
   >(
     EVENT_PAGE_IMAGES_QUERY_KEY(eventId, pageId),
-    (params: InfiniteQueryParams) => GetEventPageImages(params),
+    (params: InfiniteQueryParams) =>
+      GetEventPageImages({ ...params, eventId, pageId }),
+    params,
     {
-      eventId,
-      pageId,
-    },
-    {
-      enabled: !!eventId && !!pageId,
+      ...options,
+      enabled: !!eventId && !!pageId && (options.enabled ?? true),
     }
   );
 };

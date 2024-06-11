@@ -1,8 +1,13 @@
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Event } from "@src/interfaces";
-import { useConnectedInfiniteQuery } from "../useConnectedInfiniteQuery";
+import {
+  InfiniteQueryOptions,
+  InfiniteQueryParams,
+  useConnectedInfiniteQuery,
+} from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENTS_QUERY_KEY } from "./useGetEvents";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const FEATURED_EVENTS_QUERY_KEY = () => [
   ...EVENTS_QUERY_KEY(),
@@ -24,6 +29,7 @@ export const GetFeaturedEvents = async ({
   pageSize,
   orderBy,
   search,
+  adminApiParams,
 }: GetFeaturedEventsProps) => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/featured`, {
@@ -37,12 +43,20 @@ export const GetFeaturedEvents = async ({
   return data;
 };
 
-const useGetFeaturedEvents = () => {
+const useGetFeaturedEvents = (
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetFeaturedEvents>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<ConnectedXMResponse<Event[]>>(
     FEATURED_EVENTS_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetFeaturedEvents(params),
-    {},
-    {}
+    params,
+    options
   );
 };
 

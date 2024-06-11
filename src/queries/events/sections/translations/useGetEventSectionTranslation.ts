@@ -1,11 +1,12 @@
-import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../useConnectedSingleQuery";
-import { ConnectedXMResponse } from "@src/interfaces";
-import { EVENT_SECTION_QUERY_KEY } from "../useGetEventSection";
 import {
-  RegistrationSection,
-  RegistrationSectionTranslation,
-} from "@src/interfaces";
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../../useConnectedSingleQuery";
+import { ConnectedXMResponse } from "@src/interfaces";
+import { RegistrationSectionTranslation } from "@src/interfaces";
 import { EVENT_SECTION_TRANSLATIONS_QUERY_KEY } from "./useGetEventSectionTranslations";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_SECTION_TRANSLATION_QUERY_KEY = (
   eventId: string,
@@ -24,7 +25,7 @@ export const SET_EVENT_SECTION_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetEventSectionTranslationProps {
+interface GetEventSectionTranslationProps extends SingleQueryParams {
   eventId: string;
   sectionId: string;
   locale: string;
@@ -34,6 +35,7 @@ export const GetEventSectionTranslation = async ({
   eventId,
   sectionId,
   locale,
+  adminApiParams,
 }: GetEventSectionTranslationProps): Promise<
   ConnectedXMResponse<RegistrationSectionTranslation>
 > => {
@@ -45,19 +47,24 @@ export const GetEventSectionTranslation = async ({
 };
 
 const useGetEventSectionTranslation = (
-  eventId: string,
-  sectionId: string,
-  locale: string
+  eventId: string = "",
+  sectionId: string = "",
+  locale: string = "",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetEventSectionTranslation>
+  > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventSectionTranslation>>((
+  return useConnectedSingleQuery<ReturnType<typeof GetEventSectionTranslation>>(
     EVENT_SECTION_TRANSLATION_QUERY_KEY(eventId, sectionId, locale),
-    () =>
+    (params: SingleQueryParams) =>
       GetEventSectionTranslation({
+        ...params,
         eventId,
         sectionId,
         locale,
       }),
     {
+      ...options,
       enabled: !!eventId && !!sectionId && !!locale,
     }
   );

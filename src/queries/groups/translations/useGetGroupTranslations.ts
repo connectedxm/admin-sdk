@@ -1,9 +1,11 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { GroupTranslation } from "@src/interfaces";
-import useConnectedInfiniteQuery, {
+import {
+  InfiniteQueryOptions,
   InfiniteQueryParams,
-} from "@/context/queries/useConnectedInfiniteQuery";
+  useConnectedInfiniteQuery,
+} from "../../useConnectedInfiniteQuery";
 import { GROUP_QUERY_KEY } from "../useGetGroup";
 
 export const GROUP_TRANSLATIONS_QUERY_KEY = (groupId: string) => [
@@ -29,6 +31,7 @@ export const GetGroupTranslations = async ({
   orderBy,
   search,
   groupId,
+  adminApiParams,
 }: GetGroupTranslationsProps): Promise<
   ConnectedXMResponse<GroupTranslation[]>
 > => {
@@ -44,17 +47,29 @@ export const GetGroupTranslations = async ({
   return data;
 };
 
-const useGetGroupTranslations = (groupId: string) => {
+const useGetGroupTranslations = (
+  groupId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetGroupTranslations>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetGroupTranslations>>
   >(
     GROUP_TRANSLATIONS_QUERY_KEY(groupId),
-    (params: InfiniteQueryParams) => GetGroupTranslations(params),
+    (params: InfiniteQueryParams) =>
+      GetGroupTranslations({
+        ...params,
+        groupId,
+      }),
+    params,
     {
-      groupId,
-    },
-    {
-      enabled: !!groupId,
+      ...options,
+      enabled: !!groupId && (options.enabled ?? true),
     }
   );
 };

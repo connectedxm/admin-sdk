@@ -1,7 +1,12 @@
-import { SingleQueryOptions, SingleQueryParams, useConnectedSingleQuery } from "../useConnectedSingleQuery";
+import {
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { EventTranslation, FAQSectionTranslation } from "@src/interfaces";
+import { FAQSectionTranslation } from "@src/interfaces";
 import { EVENT_FAQ_SECTION_TRANSLATIONS_QUERY_KEY } from "./useGetEventFAQSectionTranslations";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 export const EVENT_FAQ_SECTION_TRANSLATION_QUERY_KEY = (
   eventId: string,
@@ -20,7 +25,7 @@ export const SET_EVENT_FAQ_SECTION_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetEventFAQSectionTranslationProps {
+interface GetEventFAQSectionTranslationProps extends SingleQueryParams {
   eventId: string;
   sectionId: string;
   locale: string;
@@ -30,6 +35,7 @@ export const GetEventFAQSectionTranslation = async ({
   eventId,
   sectionId,
   locale,
+  adminApiParams,
 }: GetEventFAQSectionTranslationProps): Promise<
   ConnectedXMResponse<FAQSectionTranslation>
 > => {
@@ -41,20 +47,28 @@ export const GetEventFAQSectionTranslation = async ({
 };
 
 const useGetEventFAQSectionTranslation = (
-  eventId: string,
-  sectionId: string,
-  locale: string
+  eventId: string = "",
+  sectionId: string = "",
+  locale: string = "",
+  options: SingleQueryOptions<
+    ReturnType<typeof GetEventFAQSectionTranslation>
+  > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventFAQSectionTranslation>>((
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetEventFAQSectionTranslation>
+  >(
     EVENT_FAQ_SECTION_TRANSLATION_QUERY_KEY(eventId, sectionId, locale),
-    () =>
+    (params) =>
       GetEventFAQSectionTranslation({
+        ...params,
         eventId,
         sectionId,
         locale,
       }),
     {
-      enabled: !!eventId && !!sectionId && !!locale,
+      ...options,
+      enabled:
+        !!eventId && !!sectionId && !!locale && (options.enabled ?? true),
     }
   );
 };

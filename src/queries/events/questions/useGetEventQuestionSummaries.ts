@@ -2,10 +2,12 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { QueryClient } from "@tanstack/react-query";
 import { SummaryData } from "./useGetEventQuestionSummary";
+import { GetAdminAPI } from "@src/AdminAPI";
 import {
-  InfiniteParams,
+  InfiniteQueryOptions,
+  InfiniteQueryParams,
   useConnectedInfiniteQuery,
-} from "@/context/queries/useConnectedInfiniteQuery";
+} from "@src/queries/useConnectedInfiniteQuery";
 
 export const EVENT_QUESTION_SUMMARIES_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
@@ -23,7 +25,7 @@ export const SET_EVENT_QUESTION_SUMMARIES_QUERY_DATA = (
   );
 };
 
-interface GetEventQuestionSummariesProps extends InfiniteParams {
+interface GetEventQuestionSummariesProps extends InfiniteQueryParams {
   eventId: string;
 }
 
@@ -31,6 +33,7 @@ export const GetEventQuestionSummaries = async ({
   eventId,
   pageParam,
   pageSize,
+  adminApiParams,
 }: GetEventQuestionSummariesProps): Promise<
   ConnectedXMResponse<SummaryData[]>
 > => {
@@ -44,15 +47,26 @@ export const GetEventQuestionSummaries = async ({
   return data;
 };
 
-const useGetEventQuestionSummaries = (eventId: string) => {
+const useGetEventQuestionSummaries = (
+  eventId: string = "",
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventQuestionSummaries>>
+  > = {}
+) => {
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventQuestionSummaries>>
   >(
     EVENT_QUESTION_SUMMARIES_QUERY_KEY(eventId),
     (params: InfiniteQueryParams) =>
       GetEventQuestionSummaries({ ...params, eventId }),
+    params,
     {
-      enabled: !!eventId,
+      ...options,
+      enabled: !!eventId && (options.enabled ?? true),
     }
   );
 };

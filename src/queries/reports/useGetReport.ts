@@ -40,8 +40,7 @@ export const GetReport = async ({
   });
   return data;
 };
-
-const useGetReport = (
+export const useGetReport = (
   reportId: string = "",
   eventId?: string,
   options: SingleQueryOptions<ReturnType<typeof GetReport>> = {}
@@ -59,5 +58,3 @@ const useGetReport = (
     }
   );
 };
-
-export default useGetReport;

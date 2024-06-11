@@ -49,8 +49,7 @@ export const GetEventSessionSpeakers = async ({
   );
   return data;
 };
-
-const useGetEventSessionSpeakers = (
+export const useGetEventSessionSpeakers = (
   eventId: string = "",
   sessionId: string = "",
   params: Omit<
@@ -78,5 +77,3 @@ const useGetEventSessionSpeakers = (
     }
   );
 };
-
-export default useGetEventSessionSpeakers;

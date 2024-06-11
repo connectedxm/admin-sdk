@@ -44,8 +44,7 @@ export const GetAdvertisementKPIViews = async ({
   );
   return data;
 };
-
-const useGetAdvertisementKPIViews = (
+export const useGetAdvertisementKPIViews = (
   advertisementId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetAdvertisementKPIViews>> = {}
 ) => {
@@ -59,5 +58,3 @@ const useGetAdvertisementKPIViews = (
     }
   );
 };
-
-export default useGetAdvertisementKPIViews;

@@ -39,8 +39,7 @@ export const GetOrganizationPaymentIntegration = async ({
   const { data } = await adminApi.get(`/organization/payment/${type}`);
   return data;
 };
-
-const useGetOrganizationPaymentIntegration = (
+export const useGetOrganizationPaymentIntegration = (
   type: "stripe" | "paypal",
   options: SingleQueryOptions<
     ReturnType<typeof GetOrganizationPaymentIntegration>
@@ -59,5 +58,3 @@ const useGetOrganizationPaymentIntegration = (
     }
   );
 };
-
-export default useGetOrganizationPaymentIntegration;

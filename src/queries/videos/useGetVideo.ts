@@ -35,8 +35,7 @@ export const GetVideo = async ({
 
   return data;
 };
-
-const useGetVideo = (
+export const useGetVideo = (
   videoId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetVideo>> = {}
 ) => {
@@ -49,5 +48,3 @@ const useGetVideo = (
     }
   );
 };
-
-export default useGetVideo;

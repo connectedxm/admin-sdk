@@ -45,8 +45,7 @@ export const GetAccountReshares = async ({
   });
   return data;
 };
-
-const useGetAccountReshares = (
+export const useGetAccountReshares = (
   accountId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -69,5 +68,3 @@ const useGetAccountReshares = (
     }
   );
 };
-
-export default useGetAccountReshares;

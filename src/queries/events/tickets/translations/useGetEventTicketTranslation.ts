@@ -45,8 +45,7 @@ export const GetEventTicketTranslation = async ({
   );
   return data;
 };
-
-const useGetEventTicketTranslation = (
+export const useGetEventTicketTranslation = (
   eventId: string = "",
   ticketId: string = "",
   locale: string = "",
@@ -67,5 +66,3 @@ const useGetEventTicketTranslation = (
     }
   );
 };
-
-export default useGetEventTicketTranslation;

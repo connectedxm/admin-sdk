@@ -27,8 +27,7 @@ export const GetOrganization = async ({
   const { data } = await adminApi.get(`/organization`);
   return data;
 };
-
-const useGetOrganization = (
+export const useGetOrganization = (
   options: SingleQueryOptions<ReturnType<typeof GetOrganization>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetOrganization>>(
@@ -37,5 +36,3 @@ const useGetOrganization = (
     options
   );
 };
-
-export default useGetOrganization;

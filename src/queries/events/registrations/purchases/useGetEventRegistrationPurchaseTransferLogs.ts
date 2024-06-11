@@ -64,8 +64,7 @@ export const GetEventRegistrationPurchaseTransferLogs = async ({
   );
   return data;
 };
-
-const useGetEventRegistrationPurchaseTransferLogs = (
+export const useGetEventRegistrationPurchaseTransferLogs = (
   eventId: string = "",
   registrationId: string = "",
   purchaseId: string = "",
@@ -103,5 +102,3 @@ const useGetEventRegistrationPurchaseTransferLogs = (
     }
   );
 };
-
-export default useGetEventRegistrationPurchaseTransferLogs;

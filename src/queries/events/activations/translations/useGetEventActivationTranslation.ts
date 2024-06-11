@@ -48,8 +48,7 @@ export const GetEventActivationTranslation = async ({
   );
   return data;
 };
-
-const useGetEventActivationTranslation = (
+export const useGetEventActivationTranslation = (
   eventId: string = "",
   activationId: string = "",
   locale: string = "",
@@ -75,5 +74,3 @@ const useGetEventActivationTranslation = (
     }
   );
 };
-
-export default useGetEventActivationTranslation;

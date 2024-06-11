@@ -52,8 +52,7 @@ export const GetEventCouponKPIDiscounts = async ({
   );
   return data;
 };
-
-const useGetEventCouponKPIDiscounts = (
+export const useGetEventCouponKPIDiscounts = (
   eventId: string = "",
   couponId: string = "",
   options: SingleQueryOptions<
@@ -70,5 +69,3 @@ const useGetEventCouponKPIDiscounts = (
     }
   );
 };
-
-export default useGetEventCouponKPIDiscounts;

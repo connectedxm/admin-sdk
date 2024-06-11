@@ -43,8 +43,7 @@ export const GetContentKPIActivities = async ({
   const { data } = await adminApi.get(`/contents/${contentId}/kpi/activities`);
   return data;
 };
-
-const useGetContentKPIActivities = (
+export const useGetContentKPIActivities = (
   channelId: string = "",
   contentId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetContentKPIActivities>> = {}
@@ -59,5 +58,3 @@ const useGetContentKPIActivities = (
     }
   );
 };
-
-export default useGetContentKPIActivities;

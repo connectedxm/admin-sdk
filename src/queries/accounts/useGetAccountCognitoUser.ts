@@ -30,8 +30,7 @@ export const GetAccountCognitoUser = async ({
   );
   return data;
 };
-
-const useGetAccountCognitoUser = (
+export const useGetAccountCognitoUser = (
   accountId: string = "",
   username: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetAccountCognitoUser>> = {}
@@ -46,5 +45,3 @@ const useGetAccountCognitoUser = (
     }
   );
 };
-
-export default useGetAccountCognitoUser;

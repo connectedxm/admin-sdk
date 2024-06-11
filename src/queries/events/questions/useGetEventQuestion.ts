@@ -40,8 +40,7 @@ export const GetEventQuestion = async ({
   );
   return data;
 };
-
-const useGetEventQuestion = (
+export const useGetEventQuestion = (
   eventId: string = "",
   questionId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventQuestion>> = {}
@@ -56,5 +55,3 @@ const useGetEventQuestion = (
     }
   );
 };
-
-export default useGetEventQuestion;

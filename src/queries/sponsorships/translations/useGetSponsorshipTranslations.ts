@@ -52,8 +52,7 @@ export const GetSponsorshipTranslations = async ({
   );
   return data;
 };
-
-const useGetSponsorshipTranslations = (
+export const useGetSponsorshipTranslations = (
   sponsorhipId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -79,5 +78,3 @@ const useGetSponsorshipTranslations = (
     }
   );
 };
-
-export default useGetSponsorshipTranslations;

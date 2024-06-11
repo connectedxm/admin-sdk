@@ -42,8 +42,7 @@ export const GetFeaturedEvents = async ({
   });
   return data;
 };
-
-const useGetFeaturedEvents = (
+export const useGetFeaturedEvents = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -59,5 +58,3 @@ const useGetFeaturedEvents = (
     options
   );
 };
-
-export default useGetFeaturedEvents;

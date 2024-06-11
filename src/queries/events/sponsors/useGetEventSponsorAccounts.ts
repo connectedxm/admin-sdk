@@ -45,8 +45,7 @@ export const GetEventSponsorAccounts = async ({
   });
   return data;
 };
-
-const useGetEventSponsorAccounts = (
+export const useGetEventSponsorAccounts = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -72,5 +71,3 @@ const useGetEventSponsorAccounts = (
     }
   );
 };
-
-export default useGetEventSponsorAccounts;

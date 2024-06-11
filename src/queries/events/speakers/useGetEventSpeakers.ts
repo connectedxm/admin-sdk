@@ -45,8 +45,7 @@ export const GetEventSpeakers = async ({
   });
   return data;
 };
-
-const useGetEventSpeakers = (
+export const useGetEventSpeakers = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -72,5 +71,3 @@ const useGetEventSpeakers = (
     }
   );
 };
-
-export default useGetEventSpeakers;

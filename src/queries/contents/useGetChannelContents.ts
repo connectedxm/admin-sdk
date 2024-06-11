@@ -53,8 +53,7 @@ export const GetChannelContents = async ({
   });
   return data;
 };
-
-const useGetChannelContents = (
+export const useGetChannelContents = (
   channelId: string = "",
   status?: string,
   params: Omit<
@@ -82,5 +81,3 @@ const useGetChannelContents = (
     }
   );
 };
-
-export default useGetChannelContents;

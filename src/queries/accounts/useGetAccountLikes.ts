@@ -46,8 +46,7 @@ export const GetAccountLikes = async ({
   });
   return data;
 };
-
-const useGetAccountLikes = (
+export const useGetAccountLikes = (
   accountId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -67,5 +66,3 @@ const useGetAccountLikes = (
     }
   );
 };
-
-export default useGetAccountLikes;

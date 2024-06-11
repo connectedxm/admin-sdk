@@ -46,8 +46,7 @@ export const GetGroupSponsors = async ({
   });
   return data;
 };
-
-const useGetGroupSponsors = (
+export const useGetGroupSponsors = (
   groupId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -69,5 +68,3 @@ const useGetGroupSponsors = (
     }
   );
 };
-
-export default useGetGroupSponsors;

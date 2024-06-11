@@ -49,8 +49,7 @@ export const GetEventAddOnPurchases = async ({
   );
   return data;
 };
-
-const useGetEventAddOnPurchases = (
+export const useGetEventAddOnPurchases = (
   eventId: string = "",
   addOnId: string = "",
   params: Omit<
@@ -74,5 +73,3 @@ const useGetEventAddOnPurchases = (
     }
   );
 };
-
-export default useGetEventAddOnPurchases;

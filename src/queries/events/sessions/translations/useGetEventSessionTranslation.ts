@@ -45,8 +45,7 @@ export const GetEventSessionTranslation = async ({
   );
   return data;
 };
-
-const useGetEventSessionTranslation = (
+export const useGetEventSessionTranslation = (
   eventId: string = "",
   sessionId: string = "",
   locale: string = "",
@@ -69,5 +68,3 @@ const useGetEventSessionTranslation = (
     }
   );
 };
-
-export default useGetEventSessionTranslation;

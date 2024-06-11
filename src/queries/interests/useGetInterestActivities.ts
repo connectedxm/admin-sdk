@@ -46,8 +46,7 @@ export const GetInterestActivities = async ({
   });
   return data;
 };
-
-const useGetInterestActivities = (
+export const useGetInterestActivities = (
   interestId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -70,5 +69,3 @@ const useGetInterestActivities = (
     }
   );
 };
-
-export default useGetInterestActivities;

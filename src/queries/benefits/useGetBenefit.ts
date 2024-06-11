@@ -34,8 +34,7 @@ export const GetBenefit = async ({
   const { data } = await adminApi.get(`/benefits/${benefitId}`);
   return data;
 };
-
-const useGetBenefit = (
+export const useGetBenefit = (
   benefitId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetBenefit>> = {}
 ) => {
@@ -48,5 +47,3 @@ const useGetBenefit = (
     }
   );
 };
-
-export default useGetBenefit;

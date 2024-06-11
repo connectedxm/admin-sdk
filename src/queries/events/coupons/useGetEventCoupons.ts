@@ -46,8 +46,7 @@ export const GetEventCoupons = async ({
   });
   return data;
 };
-
-const useGetEventCoupons = (
+export const useGetEventCoupons = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -71,5 +70,3 @@ const useGetEventCoupons = (
     }
   );
 };
-
-export default useGetEventCoupons;

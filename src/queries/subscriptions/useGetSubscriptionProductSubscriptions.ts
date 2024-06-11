@@ -67,8 +67,7 @@ export const GetSubscriptionProductSubscriptions = async ({
   );
   return data;
 };
-
-const useGetSubscriptionProductSubscriptions = (
+export const useGetSubscriptionProductSubscriptions = (
   subscriptionProductId: string,
   status?: SubscriptionStatus,
   params: Omit<
@@ -96,5 +95,3 @@ const useGetSubscriptionProductSubscriptions = (
     }
   );
 };
-
-export default useGetSubscriptionProductSubscriptions;

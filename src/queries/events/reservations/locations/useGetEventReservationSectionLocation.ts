@@ -53,7 +53,7 @@ export const GetEventReservationSectionLocation = async ({
   return data;
 };
 
-const useGetEventReservationSection = (
+export const useGetEventReservationSectionLocation = (
   eventId: string = "",
   reservationSectionId: string = "",
   locationId: string = "",
@@ -86,5 +86,3 @@ const useGetEventReservationSection = (
     }
   );
 };
-
-export default useGetEventReservationSection;

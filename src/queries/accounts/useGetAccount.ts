@@ -35,8 +35,7 @@ export const GetAccount = async ({
   const { data } = await adminApi.get(`/accounts/${accountId}`);
   return data;
 };
-
-const useGetAccount = (
+export const useGetAccount = (
   accountId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetAccount>> = {}
 ) => {
@@ -50,5 +49,3 @@ const useGetAccount = (
     }
   );
 };
-
-export default useGetAccount;

@@ -46,8 +46,7 @@ export const GetGroupActivities = async ({
   });
   return data;
 };
-
-const useGetGroupActivities = (
+export const useGetGroupActivities = (
   groupId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -73,5 +72,3 @@ const useGetGroupActivities = (
     }
   );
 };
-
-export default useGetGroupActivities;

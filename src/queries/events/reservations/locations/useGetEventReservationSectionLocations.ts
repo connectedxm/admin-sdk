@@ -57,8 +57,7 @@ export const GetEventReservationSectionLocations = async ({
   );
   return data;
 };
-
-const useGetEventReservationSections = (
+export const useGetEventReservationSectionLocations = (
   eventId: string = "",
   reservationSectionId: string = "",
   params: Omit<
@@ -89,5 +88,3 @@ const useGetEventReservationSections = (
     }
   );
 };
-
-export default useGetEventReservationSections;

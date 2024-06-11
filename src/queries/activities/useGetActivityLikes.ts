@@ -46,8 +46,7 @@ export const GetActivityLikes = async ({
   });
   return data;
 };
-
-const useGetActivityLikes = (
+export const useGetActivityLikes = (
   activityId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -70,5 +69,3 @@ const useGetActivityLikes = (
     }
   );
 };
-
-export default useGetActivityLikes;

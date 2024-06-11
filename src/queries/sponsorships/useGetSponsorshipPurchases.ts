@@ -43,8 +43,7 @@ export const GetSponsorshipPurchases = async ({
 
   return data;
 };
-
-const useGetSponsorshipPurchases = (
+export const useGetSponsorshipPurchases = (
   sponsorshipId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -67,5 +66,3 @@ const useGetSponsorshipPurchases = (
     }
   );
 };
-
-export default useGetSponsorshipPurchases;

@@ -36,8 +36,7 @@ export const GetEventTrack = async ({
   const { data } = await adminApi.get(`/events/${eventId}/tracks/${trackId}`);
   return data;
 };
-
-const useGetEventTrack = (
+export const useGetEventTrack = (
   eventId: string = "",
   trackId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventTrack>> = {}
@@ -52,5 +51,3 @@ const useGetEventTrack = (
     }
   );
 };
-
-export default useGetEventTrack;

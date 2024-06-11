@@ -50,8 +50,7 @@ export const GetContentActivities = async ({
   });
   return data;
 };
-
-const useGetContentActivities = (
+export const useGetContentActivities = (
   channelId: string = "",
   contentId: string = "",
   params: Omit<
@@ -79,5 +78,3 @@ const useGetContentActivities = (
     }
   );
 };
-
-export default useGetContentActivities;

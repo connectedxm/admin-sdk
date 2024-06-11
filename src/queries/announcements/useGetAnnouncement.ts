@@ -34,8 +34,7 @@ export const GetAnnouncement = async ({
   const { data } = await adminApi.get(`/announcements/${announcementId}`);
   return data;
 };
-
-const useGetAnnouncement = (
+export const useGetAnnouncement = (
   announcementId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetAnnouncement>> = {}
 ) => {
@@ -49,5 +48,3 @@ const useGetAnnouncement = (
     }
   );
 };
-
-export default useGetAnnouncement;

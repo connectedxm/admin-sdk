@@ -51,8 +51,7 @@ export const GetChannelContentAuthors = async ({
   });
   return data;
 };
-
-const useGetChannelContentAuthors = (
+export const useGetChannelContentAuthors = (
   channelId: string = "",
   contentId: string = "",
   params: Omit<
@@ -80,5 +79,3 @@ const useGetChannelContentAuthors = (
     }
   );
 };
-
-export default useGetChannelContentAuthors;

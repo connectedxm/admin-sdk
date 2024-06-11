@@ -35,8 +35,7 @@ export const GetImage = async ({
 
   return data;
 };
-
-const useGetImage = (
+export const useGetImage = (
   imageId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetImage>> = {}
 ) => {
@@ -49,5 +48,3 @@ const useGetImage = (
     }
   );
 };
-
-export default useGetImage;

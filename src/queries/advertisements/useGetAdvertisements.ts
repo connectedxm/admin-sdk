@@ -39,8 +39,7 @@ export const GetAdvertisements = async ({
   });
   return data;
 };
-
-const useGetAdvertisements = (
+export const useGetAdvertisements = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -58,5 +57,3 @@ const useGetAdvertisements = (
     options
   );
 };
-
-export default useGetAdvertisements;

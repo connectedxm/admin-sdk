@@ -46,8 +46,7 @@ export const GetBenefitClicks = async ({
   });
   return data;
 };
-
-const useGetBenefitClicks = (
+export const useGetBenefitClicks = (
   benefitId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -69,5 +68,3 @@ const useGetBenefitClicks = (
     }
   );
 };
-
-export default useGetBenefitClicks;

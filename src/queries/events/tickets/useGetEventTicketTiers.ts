@@ -49,8 +49,7 @@ export const GetEventTicketTiers = async ({
   );
   return data;
 };
-
-const useGetEventTicketTiers = (
+export const useGetEventTicketTiers = (
   eventId: string = "",
   ticketId: string = "",
   params: Omit<
@@ -78,5 +77,3 @@ const useGetEventTicketTiers = (
     }
   );
 };
-
-export default useGetEventTicketTiers;

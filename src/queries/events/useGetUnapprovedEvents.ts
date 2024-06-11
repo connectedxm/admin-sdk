@@ -43,8 +43,7 @@ export const GetUnapprovedEvents = async ({
   });
   return data;
 };
-
-const useGetUnapprovedEvents = (
+export const useGetUnapprovedEvents = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -60,5 +59,3 @@ const useGetUnapprovedEvents = (
     options
   );
 };
-
-export default useGetUnapprovedEvents;

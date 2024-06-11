@@ -46,8 +46,7 @@ export const GetEventTranslations = async ({
   });
   return data;
 };
-
-const useGetEventTranslations = (
+export const useGetEventTranslations = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -73,5 +72,3 @@ const useGetEventTranslations = (
     }
   );
 };
-
-export default useGetEventTranslations;

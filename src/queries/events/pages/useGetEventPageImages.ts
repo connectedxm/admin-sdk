@@ -49,8 +49,7 @@ export const GetEventPageImages = async ({
   );
   return data;
 };
-
-const useGetEventPageImages = (
+export const useGetEventPageImages = (
   eventId: string = "",
   pageId: string = "",
   params: Omit<
@@ -74,5 +73,3 @@ const useGetEventPageImages = (
     }
   );
 };
-
-export default useGetEventPageImages;

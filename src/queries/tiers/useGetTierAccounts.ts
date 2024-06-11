@@ -46,8 +46,7 @@ export const GetTierAccounts = async ({
   });
   return data;
 };
-
-const useGetTierAccounts = (
+export const useGetTierAccounts = (
   tierId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -67,5 +66,3 @@ const useGetTierAccounts = (
     }
   );
 };
-
-export default useGetTierAccounts;

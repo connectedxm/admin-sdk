@@ -39,8 +39,7 @@ export const GetAccountCognitoUsers = async ({
   });
   return data;
 };
-
-const useGetAccountCognitoUsers = (
+export const useGetAccountCognitoUsers = (
   accountId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -63,5 +62,3 @@ const useGetAccountCognitoUsers = (
     }
   );
 };
-
-export default useGetAccountCognitoUsers;

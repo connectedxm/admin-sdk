@@ -38,8 +38,7 @@ export const GetEventRegistrationBypassList = async ({
   });
   return data;
 };
-
-const useGetEventRegistrationBypassList = (
+export const useGetEventRegistrationBypassList = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -65,5 +64,3 @@ const useGetEventRegistrationBypassList = (
     }
   );
 };
-
-export default useGetEventRegistrationBypassList;

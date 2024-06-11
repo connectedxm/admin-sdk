@@ -40,8 +40,7 @@ export const GetGroupKPIActivities = async ({
   const { data } = await adminApi.get(`/groups/${groupId}/kpi/activities`);
   return data;
 };
-
-const useGetGroupKPIActivities = (
+export const useGetGroupKPIActivities = (
   groupId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetGroupKPIActivities>> = {}
 ) => {
@@ -55,5 +54,3 @@ const useGetGroupKPIActivities = (
     }
   );
 };
-
-export default useGetGroupKPIActivities;

@@ -49,8 +49,7 @@ export const GetEventAddOnTickets = async ({
   );
   return data;
 };
-
-const useGetEventAddOnTickets = (
+export const useGetEventAddOnTickets = (
   eventId: string = "",
   addOnId: string = "",
   params: Omit<
@@ -78,5 +77,3 @@ const useGetEventAddOnTickets = (
     }
   );
 };
-
-export default useGetEventAddOnTickets;

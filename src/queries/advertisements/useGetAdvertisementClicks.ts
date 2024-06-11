@@ -50,8 +50,7 @@ export const GetAdvertisementClicks = async ({
   );
   return data;
 };
-
-const useGetAdvertisementClicks = (
+export const useGetAdvertisementClicks = (
   advertisementId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -74,5 +73,3 @@ const useGetAdvertisementClicks = (
     }
   );
 };
-
-export default useGetAdvertisementClicks;

@@ -48,8 +48,7 @@ export const GetStreamInputOutputs = async ({
 
   return data;
 };
-
-const useGetStreamInputOutputs = (
+export const useGetStreamInputOutputs = (
   streamId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -72,5 +71,3 @@ const useGetStreamInputOutputs = (
     }
   );
 };
-
-export default useGetStreamInputOutputs;

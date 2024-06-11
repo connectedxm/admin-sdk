@@ -36,8 +36,7 @@ export const GetEventAddOn = async ({
   const { data } = await adminApi.get(`/events/${eventId}/addOns/${addOnId}`);
   return data;
 };
-
-const useGetEventAddOn = (
+export const useGetEventAddOn = (
   eventId: string = "",
   addOnId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventAddOn>> = {}
@@ -52,5 +51,3 @@ const useGetEventAddOn = (
     }
   );
 };
-
-export default useGetEventAddOn;

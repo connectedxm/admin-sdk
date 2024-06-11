@@ -2,7 +2,8 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { BenefitTranslation } from "@src/interfaces";
 import { BENEFIT_TRANSLATIONS_QUERY_KEY } from "./useGetBenefitTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
-import useConnectedSingleQuery, {
+import {
+  useConnectedSingleQuery,
   SingleQueryOptions,
   SingleQueryParams,
 } from "@src/queries/useConnectedSingleQuery";
@@ -39,7 +40,7 @@ export const GetBenefitTranslation = async ({
   return data;
 };
 
-const useGetBenefitTranslation = (
+export const useGetBenefitTranslation = (
   benefitId: string = "",
   locale: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetBenefitTranslation>> = {}
@@ -58,5 +59,3 @@ const useGetBenefitTranslation = (
     }
   );
 };
-
-export default useGetBenefitTranslation;

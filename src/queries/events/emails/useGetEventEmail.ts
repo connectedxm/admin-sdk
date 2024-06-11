@@ -36,8 +36,7 @@ export const GetEventEmail = async ({
   const { data } = await adminApi.get(`/events/${eventId}/emails/${type}`);
   return data;
 };
-
-const useGetEventEmail = (
+export const useGetEventEmail = (
   eventId: string = "",
   type: EventEmailType,
   options: SingleQueryOptions<ReturnType<typeof GetEventEmail>> = {}
@@ -51,5 +50,3 @@ const useGetEventEmail = (
     }
   );
 };
-
-export default useGetEventEmail;

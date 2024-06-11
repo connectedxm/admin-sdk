@@ -40,8 +40,7 @@ export const GetOrganizationKPIAccounts = async ({
   const { data } = await adminApi.get(`/organization/kpi/new-accounts`);
   return data;
 };
-
-const useGetOrganizationKPIAccounts = (
+export const useGetOrganizationKPIAccounts = (
   options: SingleQueryOptions<
     ReturnType<typeof GetOrganizationKPIAccounts>
   > = {}
@@ -52,5 +51,3 @@ const useGetOrganizationKPIAccounts = (
     options
   );
 };
-
-export default useGetOrganizationKPIAccounts;

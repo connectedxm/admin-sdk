@@ -46,8 +46,7 @@ export const GetEventQuestionSummaries = async ({
   });
   return data;
 };
-
-const useGetEventQuestionSummaries = (
+export const useGetEventQuestionSummaries = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -70,5 +69,3 @@ const useGetEventQuestionSummaries = (
     }
   );
 };
-
-export default useGetEventQuestionSummaries;

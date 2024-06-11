@@ -38,8 +38,7 @@ export const GetEventSection = async ({
   );
   return data;
 };
-
-const useGetEventSection = (
+export const useGetEventSection = (
   eventId: string,
   sectionId: string,
   options: SingleQueryOptions<ReturnType<typeof GetEventSection>> = {}
@@ -53,5 +52,3 @@ const useGetEventSection = (
     }
   );
 };
-
-export default useGetEventSection;

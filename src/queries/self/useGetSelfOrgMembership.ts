@@ -29,8 +29,7 @@ export const GetSelfOrgMembership = async ({
   const { data } = await adminApi.get(`/self/organization-membership`);
   return data;
 };
-
-const useGetSelfOrgMembership = (
+export const useGetSelfOrgMembership = (
   options: SingleQueryOptions<ReturnType<typeof GetSelfOrgMembership>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetSelfOrgMembership>>(
@@ -42,5 +41,3 @@ const useGetSelfOrgMembership = (
     options
   );
 };
-
-export default useGetSelfOrgMembership;

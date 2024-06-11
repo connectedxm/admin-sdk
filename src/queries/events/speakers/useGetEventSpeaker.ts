@@ -37,8 +37,7 @@ export const GetEventSpeaker = async ({
   );
   return data;
 };
-
-const useGetEventSpeaker = (
+export const useGetEventSpeaker = (
   eventId: string = "",
   speakerId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventSpeaker>> = {}
@@ -53,5 +52,3 @@ const useGetEventSpeaker = (
     }
   );
 };
-
-export default useGetEventSpeaker;

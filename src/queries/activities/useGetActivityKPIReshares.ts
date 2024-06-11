@@ -38,8 +38,7 @@ export const GetActivityKPIReshares = async ({
   const { data } = await adminApi.get(`/activities/${activityId}/kpi/reshares`);
   return data;
 };
-
-const useGetActivityKPIReshares = (
+export const useGetActivityKPIReshares = (
   activityId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetActivityKPIReshares>> = {}
 ) => {
@@ -53,5 +52,3 @@ const useGetActivityKPIReshares = (
     }
   );
 };
-
-export default useGetActivityKPIReshares;

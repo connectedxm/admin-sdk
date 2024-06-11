@@ -35,8 +35,7 @@ export const GetSponsorship = async ({
 
   return data;
 };
-
-const useGetSponsorship = (
+export const useGetSponsorship = (
   sponsorshipId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetSponsorship>> = {}
 ) => {
@@ -49,5 +48,3 @@ const useGetSponsorship = (
     }
   );
 };
-
-export default useGetSponsorship;

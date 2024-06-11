@@ -49,8 +49,7 @@ export const GetEventTicketCoupons = async ({
   );
   return data;
 };
-
-const useGetEventTicketCoupons = (
+export const useGetEventTicketCoupons = (
   eventId: string = "",
   ticketId: string = "",
   params: Omit<
@@ -78,5 +77,3 @@ const useGetEventTicketCoupons = (
     }
   );
 };
-
-export default useGetEventTicketCoupons;

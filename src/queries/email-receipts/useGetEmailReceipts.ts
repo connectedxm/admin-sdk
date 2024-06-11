@@ -48,8 +48,7 @@ export const GetEmailReceipts = async ({
 
   return data;
 };
-
-const useGetEmailReceipts = (
+export const useGetEmailReceipts = (
   status?: EmailReceiptStatus,
   params: Omit<
     InfiniteQueryParams,
@@ -68,5 +67,3 @@ const useGetEmailReceipts = (
     options
   );
 };
-
-export default useGetEmailReceipts;

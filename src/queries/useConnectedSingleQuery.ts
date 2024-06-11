@@ -86,5 +86,3 @@ export const useConnectedSingleQuery = <TQueryData = unknown>(
       }),
   });
 };
-
-export default useConnectedSingleQuery;

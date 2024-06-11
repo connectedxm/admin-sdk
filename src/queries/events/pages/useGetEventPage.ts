@@ -36,8 +36,7 @@ export const GetEventPage = async ({
   const { data } = await adminApi.get(`/events/${eventId}/pages/${pageId}`);
   return data;
 };
-
-const useGetEventPage = (
+export const useGetEventPage = (
   eventId: string = "",
   pageId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventPage>> = {}
@@ -51,5 +50,3 @@ const useGetEventPage = (
     }
   );
 };
-
-export default useGetEventPage;

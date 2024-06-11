@@ -58,8 +58,7 @@ export const GetAcccountEmailReceipts = async ({
   });
   return data;
 };
-
-const useGetAcccountEmailReceipts = (
+export const useGetAcccountEmailReceipts = (
   accountId: string = "",
   status?: keyof typeof EmailReceiptStatus,
   params: Omit<
@@ -83,5 +82,3 @@ const useGetAcccountEmailReceipts = (
     }
   );
 };
-
-export default useGetAcccountEmailReceipts;

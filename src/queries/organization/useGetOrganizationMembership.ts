@@ -40,8 +40,7 @@ export const GetOrganizationMembership = async ({
   const { data } = await adminApi.get(`/organization/users/${userId}`);
   return data;
 };
-
-const useGetOrganizationMembership = (
+export const useGetOrganizationMembership = (
   userId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetOrganizationMembership>> = {}
 ) => {
@@ -55,5 +54,3 @@ const useGetOrganizationMembership = (
     }
   );
 };
-
-export default useGetOrganizationMembership;

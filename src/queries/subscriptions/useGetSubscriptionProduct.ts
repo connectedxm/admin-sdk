@@ -37,8 +37,7 @@ export const GetSubscriptionProduct = async ({
   );
   return data;
 };
-
-const useGetSubscriptionProduct = (
+export const useGetSubscriptionProduct = (
   subscriptionProductId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetSubscriptionProduct>> = {}
 ) => {
@@ -52,5 +51,3 @@ const useGetSubscriptionProduct = (
     }
   );
 };
-
-export default useGetSubscriptionProduct;

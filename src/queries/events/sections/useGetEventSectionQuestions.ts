@@ -54,8 +54,7 @@ export const GetEventSectionQuestions = async ({
   );
   return data;
 };
-
-const useGetEventSectionQuestions = (
+export const useGetEventSectionQuestions = (
   eventId: string = "",
   sectionId: string = "",
   params: Omit<
@@ -83,5 +82,3 @@ const useGetEventSectionQuestions = (
     }
   );
 };
-
-export default useGetEventSectionQuestions;

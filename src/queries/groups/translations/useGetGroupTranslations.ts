@@ -46,8 +46,7 @@ export const GetGroupTranslations = async ({
   });
   return data;
 };
-
-const useGetGroupTranslations = (
+export const useGetGroupTranslations = (
   groupId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -73,5 +72,3 @@ const useGetGroupTranslations = (
     }
   );
 };
-
-export default useGetGroupTranslations;

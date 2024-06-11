@@ -54,8 +54,7 @@ export const GetEventSessionTranslations = async ({
   );
   return data;
 };
-
-const useGetEventSessionTranslations = (
+export const useGetEventSessionTranslations = (
   eventId: string = "",
   sessionId: string = "",
   params: Omit<
@@ -83,5 +82,3 @@ const useGetEventSessionTranslations = (
     }
   );
 };
-
-export default useGetEventSessionTranslations;

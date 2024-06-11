@@ -49,8 +49,7 @@ export const GetEventSectionTiers = async ({
   );
   return data;
 };
-
-const useGetEventSectionTiers = (
+export const useGetEventSectionTiers = (
   eventId: string = "",
   sectionId: string = "",
   params: Omit<
@@ -78,5 +77,3 @@ const useGetEventSectionTiers = (
     }
   );
 };
-
-export default useGetEventSectionTiers;

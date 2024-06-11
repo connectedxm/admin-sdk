@@ -55,8 +55,7 @@ export const GetEventActivationCompletions = async ({
   );
   return data;
 };
-
-const useGetEventActivationCompletions = (
+export const useGetEventActivationCompletions = (
   eventId: string = "",
   activationId: string = "",
   params: Omit<
@@ -84,5 +83,3 @@ const useGetEventActivationCompletions = (
     }
   );
 };
-
-export default useGetEventActivationCompletions;

@@ -39,8 +39,7 @@ export const GetLevels = async ({
   });
   return data;
 };
-
-const useGetLevels = (
+export const useGetLevels = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -54,5 +53,3 @@ const useGetLevels = (
     options
   );
 };
-
-export default useGetLevels;

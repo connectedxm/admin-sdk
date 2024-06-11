@@ -48,8 +48,7 @@ export const GetAccountRegistrations = async ({
   });
   return data;
 };
-
-const useGetAccountRegistrations = (
+export const useGetAccountRegistrations = (
   accountId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -72,5 +71,3 @@ const useGetAccountRegistrations = (
     }
   );
 };
-
-export default useGetAccountRegistrations;

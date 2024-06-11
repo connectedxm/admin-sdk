@@ -38,8 +38,7 @@ export const GetInvoicePayment = async ({
   );
   return data;
 };
-
-const useGetInvoicePayment = (
+export const useGetInvoicePayment = (
   invoiceId: string = "",
   paymentId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetInvoicePayment>> = {}
@@ -54,5 +53,3 @@ const useGetInvoicePayment = (
     }
   );
 };
-
-export default useGetInvoicePayment;

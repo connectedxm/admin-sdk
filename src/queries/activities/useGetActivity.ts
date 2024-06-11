@@ -34,8 +34,7 @@ export const GetActivity = async ({
   const { data } = await adminApi.get(`/activities/${activityId}`);
   return data;
 };
-
-const useGetActivity = (
+export const useGetActivity = (
   activityId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetActivity>> = {}
 ) => {
@@ -48,5 +47,3 @@ const useGetActivity = (
     }
   );
 };
-
-export default useGetActivity;

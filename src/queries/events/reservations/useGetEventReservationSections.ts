@@ -52,8 +52,7 @@ export const GetEventReservationSections = async ({
   );
   return data;
 };
-
-const useGetEventReservationSections = (
+export const useGetEventReservationSections = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -79,5 +78,3 @@ const useGetEventReservationSections = (
     }
   );
 };
-
-export default useGetEventReservationSections;

@@ -45,8 +45,7 @@ export const GetInterestGroups = async ({
   });
   return data;
 };
-
-const useGetInterestGroups = (
+export const useGetInterestGroups = (
   interestId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -72,5 +71,3 @@ const useGetInterestGroups = (
     }
   );
 };
-
-export default useGetInterestGroups;

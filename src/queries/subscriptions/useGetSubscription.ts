@@ -34,8 +34,7 @@ export const GetSubscription = async ({
   const { data } = await adminApi.get(`/subscriptions/${subscriptionId}`);
   return data;
 };
-
-const useGetSubscription = (
+export const useGetSubscription = (
   subscriptionId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetSubscription>> = {}
 ) => {
@@ -53,5 +52,3 @@ const useGetSubscription = (
     }
   );
 };
-
-export default useGetSubscription;

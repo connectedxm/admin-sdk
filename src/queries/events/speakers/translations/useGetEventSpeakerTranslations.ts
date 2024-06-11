@@ -54,8 +54,7 @@ export const GetEventSpeakerTranslations = async ({
   );
   return data;
 };
-
-const useGetEventSpeakerTranslations = (
+export const useGetEventSpeakerTranslations = (
   eventId: string = "",
   speakerId: string = "",
   params: Omit<
@@ -83,5 +82,3 @@ const useGetEventSpeakerTranslations = (
     }
   );
 };
-
-export default useGetEventSpeakerTranslations;

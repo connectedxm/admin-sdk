@@ -44,8 +44,7 @@ export const GetOrganizationUsers = async ({
   });
   return data;
 };
-
-const useGetOrganizationUsers = (
+export const useGetOrganizationUsers = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -63,5 +62,3 @@ const useGetOrganizationUsers = (
     options
   );
 };
-
-export default useGetOrganizationUsers;

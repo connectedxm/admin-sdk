@@ -44,8 +44,7 @@ export const GetSeriesEvents = async ({
   });
   return data;
 };
-
-const useGetSeriesEvents = (
+export const useGetSeriesEvents = (
   seriesId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -69,5 +68,3 @@ const useGetSeriesEvents = (
     }
   );
 };
-
-export default useGetSeriesEvents;

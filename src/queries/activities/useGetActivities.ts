@@ -38,8 +38,7 @@ export const GetActivities = async ({
   });
   return data;
 };
-
-const useGetActivities = (
+export const useGetActivities = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -53,5 +52,3 @@ const useGetActivities = (
     options
   );
 };
-
-export default useGetActivities;

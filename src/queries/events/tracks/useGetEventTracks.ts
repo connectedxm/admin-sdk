@@ -45,8 +45,7 @@ export const GetEventTracks = async ({
   });
   return data;
 };
-
-const useGetEventTracks = (
+export const useGetEventTracks = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -68,5 +67,3 @@ const useGetEventTracks = (
     }
   );
 };
-
-export default useGetEventTracks;

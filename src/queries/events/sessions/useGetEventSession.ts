@@ -37,8 +37,7 @@ export const GetEventSession = async ({
   );
   return data;
 };
-
-const useGetEventSession = (
+export const useGetEventSession = (
   eventId: string = "",
   sessionId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventSession>> = {}
@@ -52,5 +51,3 @@ const useGetEventSession = (
     }
   );
 };
-
-export default useGetEventSession;

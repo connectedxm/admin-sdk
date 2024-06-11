@@ -2,7 +2,8 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { PageTranslation, PageType } from "@src/interfaces";
 import { ORGANIZATION_PAGE_QUERY_KEY } from "../useGetOrganizationPage";
 import { GetAdminAPI } from "@src/AdminAPI";
-import useConnectedSingleQuery, {
+import {
+  useConnectedSingleQuery,
   SingleQueryOptions,
   SingleQueryParams,
 } from "@src/queries/useConnectedSingleQuery";
@@ -41,8 +42,7 @@ export const GetOrganizationPageTranslation = async ({
   );
   return data;
 };
-
-const useGetOrganizationPageTranslation = (
+export const useGetOrganizationPageTranslation = (
   type: PageType,
   locale: string = "",
   options: SingleQueryOptions<
@@ -65,5 +65,3 @@ const useGetOrganizationPageTranslation = (
     }
   );
 };
-
-export default useGetOrganizationPageTranslation;

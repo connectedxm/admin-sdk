@@ -50,8 +50,7 @@ export const GetEventSpeakerSessions = async ({
   );
   return data;
 };
-
-const useGetEventSpeakerSessions = (
+export const useGetEventSpeakerSessions = (
   eventId: string = "",
   speakerId: string = "",
   params: Omit<
@@ -79,5 +78,3 @@ const useGetEventSpeakerSessions = (
     }
   );
 };
-
-export default useGetEventSpeakerSessions;

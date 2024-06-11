@@ -38,8 +38,7 @@ export const GetImportItems = async ({
   });
   return data;
 };
-
-const useGetImportItems = (
+export const useGetImportItems = (
   importId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -57,5 +56,3 @@ const useGetImportItems = (
     }
   );
 };
-
-export default useGetImportItems;

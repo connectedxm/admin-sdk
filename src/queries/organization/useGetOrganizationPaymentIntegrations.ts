@@ -47,8 +47,7 @@ export const GetOrganizationPaymentIntegrations = async ({
   });
   return data;
 };
-
-const useGetOrganizationPaymentIntegrations = (
+export const useGetOrganizationPaymentIntegrations = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -66,5 +65,3 @@ const useGetOrganizationPaymentIntegrations = (
     options
   );
 };
-
-export default useGetOrganizationPaymentIntegrations;

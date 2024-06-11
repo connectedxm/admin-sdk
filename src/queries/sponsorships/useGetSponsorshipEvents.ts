@@ -46,8 +46,7 @@ export const GetSponsorshipEvents = async ({
 
   return data;
 };
-
-const useGetSponsorshipEvents = (
+export const useGetSponsorshipEvents = (
   sponsorshipId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -70,5 +69,3 @@ const useGetSponsorshipEvents = (
     }
   );
 };
-
-export default useGetSponsorshipEvents;

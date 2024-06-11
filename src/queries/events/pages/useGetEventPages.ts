@@ -45,8 +45,7 @@ export const GetEventPages = async ({
   });
   return data;
 };
-
-const useGetEventPages = (
+export const useGetEventPages = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -68,5 +67,3 @@ const useGetEventPages = (
     }
   );
 };
-
-export default useGetEventPages;

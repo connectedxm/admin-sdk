@@ -39,8 +39,7 @@ export const GetEventActivation = async ({
 
   return data;
 };
-
-const useGetEventActivation = (
+export const useGetEventActivation = (
   eventId: string,
   activationId: string,
   options: SingleQueryOptions<ReturnType<typeof GetEventActivation>> = {}
@@ -59,5 +58,3 @@ const useGetEventActivation = (
     }
   );
 };
-
-export default useGetEventActivation;

@@ -46,8 +46,7 @@ export const GetActivityComments = async ({
   });
   return data;
 };
-
-const useGetActivityComments = (
+export const useGetActivityComments = (
   activityId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -70,5 +69,3 @@ const useGetActivityComments = (
     }
   );
 };
-
-export default useGetActivityComments;

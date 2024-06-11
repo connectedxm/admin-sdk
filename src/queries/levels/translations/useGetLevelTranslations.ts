@@ -46,8 +46,7 @@ export const GetLevelTranslations = async ({
   });
   return data;
 };
-
-const useGetLevelTranslations = (
+export const useGetLevelTranslations = (
   levelId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -70,5 +69,3 @@ const useGetLevelTranslations = (
     }
   );
 };
-
-export default useGetLevelTranslations;

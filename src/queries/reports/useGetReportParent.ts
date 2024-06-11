@@ -34,8 +34,7 @@ export const GetReportParent = async ({
   const { data } = await adminApi.get(`/reports/parents/${parentId}`);
   return data;
 };
-
-const useGetReportParent = (
+export const useGetReportParent = (
   parentId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetReportParent>> = {}
 ) => {
@@ -48,5 +47,3 @@ const useGetReportParent = (
     }
   );
 };
-
-export default useGetReportParent;

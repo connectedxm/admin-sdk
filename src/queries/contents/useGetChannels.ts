@@ -39,8 +39,7 @@ export const GetChannels = async ({
   });
   return data;
 };
-
-const useGetChannels = (
+export const useGetChannels = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -54,5 +53,3 @@ const useGetChannels = (
     options
   );
 };
-
-export default useGetChannels;

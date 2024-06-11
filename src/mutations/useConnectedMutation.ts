@@ -68,5 +68,3 @@ export const useConnectedMutation = <
     },
   });
 };
-
-export default useConnectedMutation;

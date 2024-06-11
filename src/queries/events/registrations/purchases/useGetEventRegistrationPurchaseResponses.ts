@@ -69,8 +69,7 @@ export const GetEventRegistrationPurchaseResponses = async ({
   );
   return data;
 };
-
-const useGetEventRegistrationPurchaseResponses = (
+export const useGetEventRegistrationPurchaseResponses = (
   eventId: string = "",
   registrationId: string = "",
   purchaseId: string = "",
@@ -108,5 +107,3 @@ const useGetEventRegistrationPurchaseResponses = (
     }
   );
 };
-
-export default useGetEventRegistrationPurchaseResponses;

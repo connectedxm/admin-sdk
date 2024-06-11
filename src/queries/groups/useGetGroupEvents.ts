@@ -49,8 +49,7 @@ export const GetGroupEvents = async ({
   });
   return data;
 };
-
-const useGetGroupEvents = (
+export const useGetGroupEvents = (
   groupId: string,
   past?: boolean,
   params: Omit<
@@ -74,5 +73,3 @@ const useGetGroupEvents = (
     }
   );
 };
-
-export default useGetGroupEvents;

@@ -54,8 +54,7 @@ export const GetEventPageTranslations = async ({
   );
   return data;
 };
-
-const useGetEventPageTranslations = (
+export const useGetEventPageTranslations = (
   eventId: string = "",
   pageId: string = "",
   params: Omit<
@@ -79,5 +78,3 @@ const useGetEventPageTranslations = (
     }
   );
 };
-
-export default useGetEventPageTranslations;

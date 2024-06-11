@@ -47,8 +47,7 @@ export const GetEvents = async ({
 
   return data;
 };
-
-const useGetEvents = (
+export const useGetEvents = (
   past?: boolean,
   params: Omit<
     InfiniteQueryParams,
@@ -67,5 +66,3 @@ const useGetEvents = (
     options
   );
 };
-
-export default useGetEvents;

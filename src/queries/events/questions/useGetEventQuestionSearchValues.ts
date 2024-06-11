@@ -55,8 +55,7 @@ export const GetEventQuestionSearchValues = async ({
   );
   return data;
 };
-
-const useGetEventQuestionSearchValues = (
+export const useGetEventQuestionSearchValues = (
   eventId: string = "",
   questionId: string = "",
   params: Omit<
@@ -84,5 +83,3 @@ const useGetEventQuestionSearchValues = (
     }
   );
 };
-
-export default useGetEventQuestionSearchValues;

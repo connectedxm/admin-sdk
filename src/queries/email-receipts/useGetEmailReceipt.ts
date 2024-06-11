@@ -35,8 +35,7 @@ export const GetEmailReceipt = async ({
 
   return data;
 };
-
-const useGetEmailReceipt = (
+export const useGetEmailReceipt = (
   emailReceiptId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEmailReceipt>> = {}
 ) => {
@@ -50,5 +49,3 @@ const useGetEmailReceipt = (
     }
   );
 };
-
-export default useGetEmailReceipt;

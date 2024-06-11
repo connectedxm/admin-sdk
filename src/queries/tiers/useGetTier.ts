@@ -35,8 +35,7 @@ export const GetTier = async ({
   const { data } = await adminApi.get(`/tiers/${tierId}`);
   return data;
 };
-
-const useGetTier = (
+export const useGetTier = (
   tierId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetTier>> = {}
 ) => {
@@ -49,5 +48,3 @@ const useGetTier = (
     }
   );
 };
-
-export default useGetTier;

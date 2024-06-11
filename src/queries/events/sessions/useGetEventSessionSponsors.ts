@@ -49,8 +49,7 @@ export const GetEventSessionSponsors = async ({
   );
   return data;
 };
-
-const useGetEventSessionSponsors = (
+export const useGetEventSessionSponsors = (
   eventId: string = "",
   sessionId: string = "",
   params: Omit<
@@ -78,5 +77,3 @@ const useGetEventSessionSponsors = (
     }
   );
 };
-
-export default useGetEventSessionSponsors;

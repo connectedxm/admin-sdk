@@ -46,8 +46,7 @@ export const GetBenefitTranslations = async ({
   });
   return data;
 };
-
-const useGetBenefitTranslations = (
+export const useGetBenefitTranslations = (
   benefitId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -70,5 +69,3 @@ const useGetBenefitTranslations = (
     }
   );
 };
-
-export default useGetBenefitTranslations;

@@ -43,8 +43,7 @@ export const GetEventZplTemplateBadgeField = async ({
   );
   return data;
 };
-
-const useGetEventZplTemplateBadgeField = (
+export const useGetEventZplTemplateBadgeField = (
   eventId: string = "",
   fieldId: string = "",
   options: SingleQueryOptions<
@@ -63,5 +62,3 @@ const useGetEventZplTemplateBadgeField = (
     }
   );
 };
-
-export default useGetEventZplTemplateBadgeField;

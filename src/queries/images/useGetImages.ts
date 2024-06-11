@@ -51,8 +51,7 @@ export const GetImages = async ({
 
   return data;
 };
-
-const useGetImages = (
+export const useGetImages = (
   type?: ImageType,
   params: Omit<
     InfiniteQueryParams,
@@ -67,5 +66,3 @@ const useGetImages = (
     options
   );
 };
-
-export default useGetImages;

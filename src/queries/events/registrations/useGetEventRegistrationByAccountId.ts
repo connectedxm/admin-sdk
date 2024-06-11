@@ -43,8 +43,7 @@ export const GetEventAccountRegistration = async ({
   );
   return data;
 };
-
-const useGetEventAccountRegistration = (
+export const useGetEventAccountRegistration = (
   eventId: string = "",
   accountId: string = "",
   options: SingleQueryOptions<
@@ -64,5 +63,3 @@ const useGetEventAccountRegistration = (
     }
   );
 };
-
-export default useGetEventAccountRegistration;

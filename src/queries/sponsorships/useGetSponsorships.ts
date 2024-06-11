@@ -39,8 +39,7 @@ export const GetSponsorships = async ({
 
   return data;
 };
-
-const useGetSponsorships = (
+export const useGetSponsorships = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -56,5 +55,3 @@ const useGetSponsorships = (
     options
   );
 };
-
-export default useGetSponsorships;

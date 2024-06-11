@@ -40,8 +40,7 @@ export const GetSubscriptionProducts = async ({
   });
   return data;
 };
-
-const useGetSubscriptionProducts = (
+export const useGetSubscriptionProducts = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -59,5 +58,3 @@ const useGetSubscriptionProducts = (
     options
   );
 };
-
-export default useGetSubscriptionProducts;

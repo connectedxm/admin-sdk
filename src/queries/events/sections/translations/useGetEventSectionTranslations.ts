@@ -54,8 +54,7 @@ export const GetEventSectionTranslations = async ({
   );
   return data;
 };
-
-const useGetEventSectionTranslations = (
+export const useGetEventSectionTranslations = (
   eventId: string = "",
   sectionId: string = "",
   params: Omit<
@@ -83,5 +82,3 @@ const useGetEventSectionTranslations = (
     }
   );
 };
-
-export default useGetEventSectionTranslations;

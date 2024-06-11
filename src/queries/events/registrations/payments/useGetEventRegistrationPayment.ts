@@ -46,8 +46,7 @@ export const GetEventRegistrationPayment = async ({
   );
   return data;
 };
-
-const useGetEventRegistrationPayment = (
+export const useGetEventRegistrationPayment = (
   eventId: string = "",
   registrationId: string = "",
   paymentId: string = "",
@@ -72,5 +71,3 @@ const useGetEventRegistrationPayment = (
     }
   );
 };
-
-export default useGetEventRegistrationPayment;

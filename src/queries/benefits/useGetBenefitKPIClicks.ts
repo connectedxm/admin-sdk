@@ -38,8 +38,7 @@ export const GetBenefitKPIClicks = async ({
   const { data } = await adminApi.get(`/benefits/${benefitId}/kpi/clicks`);
   return data;
 };
-
-const useGetBenefitKPIClicks = (
+export const useGetBenefitKPIClicks = (
   benefitId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetBenefitKPIClicks>> = {}
 ) => {
@@ -53,5 +52,3 @@ const useGetBenefitKPIClicks = (
     }
   );
 };
-
-export default useGetBenefitKPIClicks;

@@ -27,8 +27,7 @@ export const GetSelf = async ({
   const { data } = await adminApi.get(`/self`);
   return data;
 };
-
-const useGetSelf = (
+export const useGetSelf = (
   options: SingleQueryOptions<ReturnType<typeof GetSelf>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetSelf>>(
@@ -40,5 +39,3 @@ const useGetSelf = (
     options
   );
 };
-
-export default useGetSelf;

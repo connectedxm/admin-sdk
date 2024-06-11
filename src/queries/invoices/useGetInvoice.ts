@@ -34,8 +34,7 @@ export const GetInvoice = async ({
   const { data } = await adminApi.get(`/invoices/${invoiceId}`);
   return data;
 };
-
-const useGetInvoice = (
+export const useGetInvoice = (
   invoiceId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetInvoice>> = {}
 ) => {
@@ -48,5 +47,3 @@ const useGetInvoice = (
     }
   );
 };
-
-export default useGetInvoice;

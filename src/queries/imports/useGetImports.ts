@@ -30,8 +30,7 @@ export const GetImports = async ({
   });
   return data;
 };
-
-const useGetImports = (
+export const useGetImports = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -45,5 +44,3 @@ const useGetImports = (
     options
   );
 };
-
-export default useGetImports;

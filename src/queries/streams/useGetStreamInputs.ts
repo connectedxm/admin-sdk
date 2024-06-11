@@ -38,8 +38,7 @@ export const GetStreamInputs = async ({
 
   return data;
 };
-
-const useGetStreamInputs = () => {
+export const useGetStreamInputs = () => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetStreamInputs>>>(
     STREAM_INPUTS_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetStreamInputs(params),
@@ -47,5 +46,3 @@ const useGetStreamInputs = () => {
     {}
   );
 };
-
-export default useGetStreamInputs;

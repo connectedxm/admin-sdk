@@ -34,8 +34,7 @@ export const GetChannelContent = async ({
   const { data } = await adminApi.get(`/contents/${contentId}`);
   return data;
 };
-
-const useGetChannelContent = (
+export const useGetChannelContent = (
   channelId: string = "",
   contentId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetChannelContent>> = {}
@@ -49,5 +48,3 @@ const useGetChannelContent = (
     }
   );
 };
-
-export default useGetChannelContent;

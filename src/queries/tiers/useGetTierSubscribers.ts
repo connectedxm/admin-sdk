@@ -46,8 +46,7 @@ export const GetTierSubscribers = async ({
   });
   return data;
 };
-
-const useGetTierSubscribers = (
+export const useGetTierSubscribers = (
   tierId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -69,5 +68,3 @@ const useGetTierSubscribers = (
     }
   );
 };
-
-export default useGetTierSubscribers;

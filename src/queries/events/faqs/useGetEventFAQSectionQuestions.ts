@@ -53,8 +53,7 @@ export const GetEventFAQSectionQuestions = async ({
   );
   return data;
 };
-
-const useGetEventFAQSectionQuestionsectionQuestions = (
+export const useGetEventFAQSectionQuestionsectionQuestions = (
   eventId: string = "",
   sectionId: string = "",
   params: Omit<
@@ -82,5 +81,3 @@ const useGetEventFAQSectionQuestionsectionQuestions = (
     }
   );
 };
-
-export default useGetEventFAQSectionQuestionsectionQuestions;

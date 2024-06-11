@@ -45,8 +45,7 @@ export const GetEventFAQSections = async ({
   });
   return data;
 };
-
-const useGetEventFAQSections = (
+export const useGetEventFAQSections = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -72,5 +71,3 @@ const useGetEventFAQSections = (
     }
   );
 };
-
-export default useGetEventFAQSections;

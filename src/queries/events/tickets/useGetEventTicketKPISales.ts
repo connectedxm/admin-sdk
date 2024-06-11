@@ -44,8 +44,7 @@ export const GetEventTicketKPISales = async ({
   );
   return data;
 };
-
-const useGetEventTicketKPISales = (
+export const useGetEventTicketKPISales = (
   eventId: string = "",
   ticketId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventTicketKPISales>> = {}
@@ -60,5 +59,3 @@ const useGetEventTicketKPISales = (
     }
   );
 };
-
-export default useGetEventTicketKPISales;

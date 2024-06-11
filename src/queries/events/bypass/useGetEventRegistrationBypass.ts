@@ -44,8 +44,7 @@ export const GetEventRegistrationBypass = async ({
   const { data } = await adminApi.get(`/events/${eventId}/bypass/${bypassId}`);
   return data;
 };
-
-const useGetEventRegistrationBypass = (
+export const useGetEventRegistrationBypass = (
   eventId: string = "",
   bypassId: string = "",
   options: SingleQueryOptions<
@@ -61,5 +60,3 @@ const useGetEventRegistrationBypass = (
     }
   );
 };
-
-export default useGetEventRegistrationBypass;

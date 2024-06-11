@@ -49,8 +49,7 @@ export const GetEventSessionTracks = async ({
   );
   return data;
 };
-
-const useGetEventSessionTracks = (
+export const useGetEventSessionTracks = (
   eventId: string = "",
   sessionId: string = "",
   params: Omit<
@@ -78,5 +77,3 @@ const useGetEventSessionTracks = (
     }
   );
 };
-
-export default useGetEventSessionTracks;

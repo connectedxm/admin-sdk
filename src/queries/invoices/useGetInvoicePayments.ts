@@ -46,8 +46,7 @@ export const GetInvoicePayments = async ({
   });
   return data;
 };
-
-const useGetInvoicePayments = (
+export const useGetInvoicePayments = (
   invoiceId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -73,5 +72,3 @@ const useGetInvoicePayments = (
     }
   );
 };
-
-export default useGetInvoicePayments;

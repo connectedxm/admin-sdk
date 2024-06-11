@@ -35,8 +35,7 @@ export const GetStreamInput = async ({
 
   return data;
 };
-
-const useGetStreamInput = (
+export const useGetStreamInput = (
   streamId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetStreamInput>> = {}
 ) => {
@@ -49,5 +48,3 @@ const useGetStreamInput = (
     }
   );
 };
-
-export default useGetStreamInput;

@@ -60,8 +60,7 @@ export const GetEventQuestionChoiceTranslations = async ({
   );
   return data;
 };
-
-const useGetEventQuestionChoiceTranslations = (
+export const useGetEventQuestionChoiceTranslations = (
   eventId: string = "",
   questionId: string = "",
   choiceId: string = "",
@@ -92,5 +91,3 @@ const useGetEventQuestionChoiceTranslations = (
     }
   );
 };
-
-export default useGetEventQuestionChoiceTranslations;

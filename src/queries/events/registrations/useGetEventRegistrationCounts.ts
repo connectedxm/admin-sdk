@@ -37,8 +37,7 @@ export const GetEventRegistrationCounts = async ({
   );
   return data;
 };
-
-const useGetEventRegistrationCounts = (
+export const useGetEventRegistrationCounts = (
   eventId: string = "",
   options: SingleQueryOptions<
     ReturnType<typeof GetEventRegistrationCounts>
@@ -54,5 +53,3 @@ const useGetEventRegistrationCounts = (
     }
   );
 };
-
-export default useGetEventRegistrationCounts;

@@ -35,8 +35,7 @@ export const GetOrganizationPaymentLink = async ({
   const { data } = await adminApi.get(`/organization/payment/${type}/link`);
   return data;
 };
-
-const useGetOrganizationPaymentLink = (
+export const useGetOrganizationPaymentLink = (
   type: "stripe" | "paypal",
   options: SingleQueryOptions<
     ReturnType<typeof GetOrganizationPaymentLink>
@@ -56,5 +55,3 @@ const useGetOrganizationPaymentLink = (
     }
   );
 };
-
-export default useGetOrganizationPaymentLink;

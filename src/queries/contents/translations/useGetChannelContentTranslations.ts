@@ -49,8 +49,7 @@ export const GetChannelContentTranslations = async ({
   });
   return data;
 };
-
-const useGetChannelContentTranslations = (
+export const useGetChannelContentTranslations = (
   channelId: string = "",
   contentId: string = "",
   params: Omit<
@@ -77,5 +76,3 @@ const useGetChannelContentTranslations = (
     }
   );
 };
-
-export default useGetChannelContentTranslations;

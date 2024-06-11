@@ -54,8 +54,7 @@ export const GetEventActivationTranslations = async ({
   );
   return data;
 };
-
-const useGetEventActivationTranslations = (
+export const useGetEventActivationTranslations = (
   eventId: string = "",
   activationId: string = "",
   params: Omit<
@@ -83,5 +82,3 @@ const useGetEventActivationTranslations = (
     }
   );
 };
-
-export default useGetEventActivationTranslations;

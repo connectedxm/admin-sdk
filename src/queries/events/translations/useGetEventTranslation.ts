@@ -39,8 +39,7 @@ export const GetEventTranslation = async ({
   );
   return data;
 };
-
-const useGetEventTranslation = (
+export const useGetEventTranslation = (
   eventId: string = "",
   locale: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventTranslation>> = {}
@@ -59,5 +58,3 @@ const useGetEventTranslation = (
     }
   );
 };
-
-export default useGetEventTranslation;

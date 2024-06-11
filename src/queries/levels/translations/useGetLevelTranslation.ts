@@ -2,7 +2,8 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { SponsorshipLevelTranslation } from "@src/interfaces";
 import { LEVEL_TRANSLATIONS_QUERY_KEY } from "./useGetLevelTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
-import useConnectedSingleQuery, {
+import {
+  useConnectedSingleQuery,
   SingleQueryOptions,
   SingleQueryParams,
 } from "@src/queries/useConnectedSingleQuery";
@@ -38,8 +39,7 @@ export const GetLevelTranslation = async ({
   );
   return data;
 };
-
-const useGetLevelTranslation = (
+export const useGetLevelTranslation = (
   levelId: string = "",
   locale: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetLevelTranslation>> = {}
@@ -58,5 +58,3 @@ const useGetLevelTranslation = (
     }
   );
 };
-
-export default useGetLevelTranslation;

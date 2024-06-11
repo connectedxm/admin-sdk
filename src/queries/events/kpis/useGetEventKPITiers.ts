@@ -29,8 +29,7 @@ export const GetEventKPITiers = async ({
   const { data } = await adminApi.get(`/events/${eventId}/kpi/tiers`);
   return data;
 };
-
-const useGetEventKPITiers = (
+export const useGetEventKPITiers = (
   eventId: string,
   options: SingleQueryOptions<ReturnType<typeof GetEventKPITiers>> = {}
 ) => {
@@ -43,5 +42,3 @@ const useGetEventKPITiers = (
     }
   );
 };
-
-export default useGetEventKPITiers;

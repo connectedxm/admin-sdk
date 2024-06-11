@@ -44,8 +44,7 @@ export const GetEventTickets = async ({
   });
   return data;
 };
-
-const useGetEventTickets = (
+export const useGetEventTickets = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -69,5 +68,3 @@ const useGetEventTickets = (
     }
   );
 };
-
-export default useGetEventTickets;

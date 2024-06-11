@@ -35,8 +35,7 @@ export const GetEventOnSite = async ({
   const { data } = await adminApi.get(`/events/${eventId}/on-site`);
   return data;
 };
-
-const useGetEventOnSite = (
+export const useGetEventOnSite = (
   eventId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventOnSite>> = {}
 ) => {
@@ -49,5 +48,3 @@ const useGetEventOnSite = (
     }
   );
 };
-
-export default useGetEventOnSite;

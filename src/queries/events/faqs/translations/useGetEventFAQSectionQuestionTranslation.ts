@@ -57,8 +57,7 @@ export const GetEventFAQSectionQuestionTranslation = async ({
   );
   return data;
 };
-
-const useGetEventFAQSectionQuestionTranslation = (
+export const useGetEventFAQSectionQuestionTranslation = (
   eventId: string = "",
   sectionId: string = "",
   questionId: string = "",
@@ -95,5 +94,3 @@ const useGetEventFAQSectionQuestionTranslation = (
     }
   );
 };
-
-export default useGetEventFAQSectionQuestionTranslation;

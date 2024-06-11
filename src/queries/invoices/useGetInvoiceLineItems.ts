@@ -48,8 +48,7 @@ export const GetInvoiceLineItems = async ({
   });
   return data;
 };
-
-const useGetInvoiceLineItems = (
+export const useGetInvoiceLineItems = (
   invoiceId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -75,5 +74,3 @@ const useGetInvoiceLineItems = (
     }
   );
 };
-
-export default useGetInvoiceLineItems;

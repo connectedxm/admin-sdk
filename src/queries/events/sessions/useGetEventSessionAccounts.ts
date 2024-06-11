@@ -49,8 +49,7 @@ export const GetEventSessionAccounts = async ({
   );
   return data;
 };
-
-const useGetEventSessionAccounts = (
+export const useGetEventSessionAccounts = (
   eventId: string = "",
   sessionId: string = "",
   params: Omit<
@@ -78,5 +77,3 @@ const useGetEventSessionAccounts = (
     }
   );
 };
-
-export default useGetEventSessionAccounts;

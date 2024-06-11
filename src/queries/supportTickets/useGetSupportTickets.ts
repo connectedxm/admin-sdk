@@ -45,8 +45,7 @@ export const GetSupportTickets = async ({
   });
   return data;
 };
-
-const useGetSupportTickets = (
+export const useGetSupportTickets = (
   status: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -69,5 +68,3 @@ const useGetSupportTickets = (
     options
   );
 };
-
-export default useGetSupportTickets;

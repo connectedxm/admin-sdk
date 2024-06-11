@@ -46,8 +46,7 @@ export const GetGroupMembers = async ({
   });
   return data;
 };
-
-const useGetGroupMembers = (
+export const useGetGroupMembers = (
   groupId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -67,5 +66,3 @@ const useGetGroupMembers = (
     }
   );
 };
-
-export default useGetGroupMembers;

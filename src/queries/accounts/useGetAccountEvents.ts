@@ -54,8 +54,7 @@ export const GetAccountEvents = async ({
   });
   return data;
 };
-
-const useGetAccountEvents = (
+export const useGetAccountEvents = (
   accountId: string = "",
   past?: boolean,
   params: Omit<
@@ -79,5 +78,3 @@ const useGetAccountEvents = (
     }
   );
 };
-
-export default useGetAccountEvents;

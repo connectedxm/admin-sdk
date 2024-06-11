@@ -70,8 +70,7 @@ export const GetEventRegistrationPurchases = async ({
   );
   return data;
 };
-
-const useGetEventRegistrationPurchases = (
+export const useGetEventRegistrationPurchases = (
   eventId: string = "",
   registrationId: string = "",
   paid?: boolean,
@@ -101,5 +100,3 @@ const useGetEventRegistrationPurchases = (
     }
   );
 };
-
-export default useGetEventRegistrationPurchases;

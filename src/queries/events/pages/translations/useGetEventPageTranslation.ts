@@ -42,8 +42,7 @@ export const GetEventPageTranslation = async ({
   );
   return data;
 };
-
-const useGetEventPageTranslation = (
+export const useGetEventPageTranslation = (
   eventId: string = "",
   pageId: string = "",
   locale: string = "",
@@ -64,5 +63,3 @@ const useGetEventPageTranslation = (
     }
   );
 };
-
-export default useGetEventPageTranslation;

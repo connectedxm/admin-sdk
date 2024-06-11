@@ -47,8 +47,7 @@ export const GetEventActivations = async ({
   });
   return data;
 };
-
-const useGetEventActivations = (
+export const useGetEventActivations = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -74,5 +73,3 @@ const useGetEventActivations = (
     }
   );
 };
-
-export default useGetEventActivations;

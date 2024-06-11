@@ -55,8 +55,7 @@ export const GetEventCouponRegistrations = async ({
   );
   return data;
 };
-
-const useGetEventCouponRegistrations = (
+export const useGetEventCouponRegistrations = (
   eventId: string = "",
   couponId: string = "",
   params: Omit<
@@ -84,5 +83,3 @@ const useGetEventCouponRegistrations = (
     }
   );
 };
-
-export default useGetEventCouponRegistrations;

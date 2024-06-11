@@ -49,8 +49,7 @@ export const GetEventAddOnTiers = async ({
   );
   return data;
 };
-
-const useGetEventAddOnTiers = (
+export const useGetEventAddOnTiers = (
   eventId: string = "",
   addOnId: string = "",
   params: Omit<
@@ -78,5 +77,3 @@ const useGetEventAddOnTiers = (
     }
   );
 };
-
-export default useGetEventAddOnTiers;

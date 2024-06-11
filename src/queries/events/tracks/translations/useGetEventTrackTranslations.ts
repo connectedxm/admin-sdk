@@ -54,8 +54,7 @@ export const GetEventTrackTranslations = async ({
   );
   return data;
 };
-
-const useGetEventTrackTranslations = (
+export const useGetEventTrackTranslations = (
   eventId: string = "",
   trackId: string = "",
   params: Omit<
@@ -83,5 +82,3 @@ const useGetEventTrackTranslations = (
     }
   );
 };
-
-export default useGetEventTrackTranslations;

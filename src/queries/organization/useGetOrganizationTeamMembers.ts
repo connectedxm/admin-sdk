@@ -47,8 +47,7 @@ export const GetOrganizationTeamMembers = async ({
   });
   return data;
 };
-
-const useGetOrganizationTeamMembers = (
+export const useGetOrganizationTeamMembers = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -66,5 +65,3 @@ const useGetOrganizationTeamMembers = (
     options
   );
 };
-
-export default useGetOrganizationTeamMembers;

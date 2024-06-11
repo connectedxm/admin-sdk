@@ -57,8 +57,7 @@ export const GetEventReservationSectionTiers = async ({
   );
   return data;
 };
-
-const useGetEventReservationSectionTiers = (
+export const useGetEventReservationSectionTiers = (
   eventId: string = "",
   reservationSectionId: string = "",
   params: Omit<
@@ -86,5 +85,3 @@ const useGetEventReservationSectionTiers = (
     }
   );
 };
-
-export default useGetEventReservationSectionTiers;

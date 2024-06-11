@@ -55,8 +55,7 @@ export const GetSubscriptionProductPrices = async ({
   );
   return data;
 };
-
-const useGetSubscriptionProductPrices = (
+export const useGetSubscriptionProductPrices = (
   subscriptionProductId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -79,5 +78,3 @@ const useGetSubscriptionProductPrices = (
     }
   );
 };
-
-export default useGetSubscriptionProductPrices;

@@ -34,8 +34,7 @@ export const GetSupportTicket = async ({
   const { data } = await adminApi.get(`/supportTickets/${supportTicketId}`);
   return data;
 };
-
-const useGetSupportTicket = (
+export const useGetSupportTicket = (
   supportTicketId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetSupportTicket>> = {}
 ) => {
@@ -49,5 +48,3 @@ const useGetSupportTicket = (
     }
   );
 };
-
-export default useGetSupportTicket;

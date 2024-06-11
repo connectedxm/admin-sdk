@@ -44,8 +44,7 @@ export const GetEventAddOns = async ({
   });
   return data;
 };
-
-const useGetEventAddOns = (
+export const useGetEventAddOns = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -67,5 +66,3 @@ const useGetEventAddOns = (
     }
   );
 };
-
-export default useGetEventAddOns;

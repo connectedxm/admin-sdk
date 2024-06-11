@@ -2,7 +2,8 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { ChannelTranslation } from "@src/interfaces";
 import { CHANNEL_TRANSLATIONS_QUERY_KEY } from "./useGetChannelTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
-import useConnectedSingleQuery, {
+import {
+  useConnectedSingleQuery,
   SingleQueryOptions,
   SingleQueryParams,
 } from "@src/queries/useConnectedSingleQuery";
@@ -38,8 +39,7 @@ export const GetChannelTranslation = async ({
   );
   return data;
 };
-
-const useGetChannelTranslation = (
+export const useGetChannelTranslation = (
   channelId: string = "",
   locale: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetChannelTranslation>> = {}
@@ -58,5 +58,3 @@ const useGetChannelTranslation = (
     }
   );
 };
-
-export default useGetChannelTranslation;

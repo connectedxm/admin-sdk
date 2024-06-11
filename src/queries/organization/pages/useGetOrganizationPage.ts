@@ -30,8 +30,7 @@ export const GetOrganizationPage = async ({
   const { data } = await adminApi.get(`/organization/pages/${type}`);
   return data;
 };
-
-const useGetOrganizationPage = (
+export const useGetOrganizationPage = (
   type: PageType,
   options: SingleQueryOptions<ReturnType<typeof GetOrganizationPage>> = {}
 ) => {
@@ -44,5 +43,3 @@ const useGetOrganizationPage = (
     }
   );
 };
-
-export default useGetOrganizationPage;

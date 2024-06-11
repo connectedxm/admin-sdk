@@ -49,8 +49,7 @@ export const GetReportParents = async ({
   });
   return data;
 };
-
-const useGetReportParents = (
+export const useGetReportParents = (
   type: keyof typeof ReportType,
   params: Omit<
     InfiniteQueryParams,
@@ -72,5 +71,3 @@ const useGetReportParents = (
     }
   );
 };
-
-export default useGetReportParents;

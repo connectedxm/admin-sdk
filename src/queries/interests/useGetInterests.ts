@@ -38,8 +38,7 @@ export const GetInterests = async ({
   });
   return data;
 };
-
-const useGetInterests = (
+export const useGetInterests = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -53,5 +52,3 @@ const useGetInterests = (
     options
   );
 };
-
-export default useGetInterests;

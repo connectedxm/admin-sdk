@@ -54,8 +54,7 @@ export const GetEventRegistrations = async ({
   });
   return data;
 };
-
-const useGetEventRegistrations = (
+export const useGetEventRegistrations = (
   eventId: string,
   status?: RegistrationStatus,
   params: Omit<
@@ -83,5 +82,3 @@ const useGetEventRegistrations = (
     }
   );
 };
-
-export default useGetEventRegistrations;

@@ -45,8 +45,7 @@ export const GetAccountTiers = async ({
   });
   return data;
 };
-
-const useGetAccountTiers = (
+export const useGetAccountTiers = (
   accountId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -70,5 +69,3 @@ const useGetAccountTiers = (
     }
   );
 };
-
-export default useGetAccountTiers;

@@ -34,8 +34,7 @@ export const GetInterest = async ({
   const { data } = await adminApi.get(`/interests/${interestId}`);
   return data;
 };
-
-const useGetInterest = (
+export const useGetInterest = (
   interestId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetInterest>> = {}
 ) => {
@@ -48,5 +47,3 @@ const useGetInterest = (
     }
   );
 };
-
-export default useGetInterest;

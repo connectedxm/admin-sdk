@@ -54,8 +54,7 @@ export const GetEventTicketTranslations = async ({
   );
   return data;
 };
-
-const useGetEventTicketTranslations = (
+export const useGetEventTicketTranslations = (
   eventId: string = "",
   ticketId: string = "",
   params: Omit<
@@ -83,5 +82,3 @@ const useGetEventTicketTranslations = (
     }
   );
 };
-
-export default useGetEventTicketTranslations;

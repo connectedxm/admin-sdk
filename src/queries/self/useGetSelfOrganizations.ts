@@ -42,8 +42,7 @@ export const GetSelfOrganizations = async ({
   });
   return data;
 };
-
-const useGetSelfOrganizations = (
+export const useGetSelfOrganizations = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -61,5 +60,3 @@ const useGetSelfOrganizations = (
     options
   );
 };
-
-export default useGetSelfOrganizations;

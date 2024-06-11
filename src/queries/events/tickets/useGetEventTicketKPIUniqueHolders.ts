@@ -47,8 +47,7 @@ export const GetEventTicketKPIHolders = async ({
   );
   return data;
 };
-
-const useGetEventTicketKPIHolders = (
+export const useGetEventTicketKPIHolders = (
   eventId: string = "",
   ticketId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventTicketKPIHolders>> = {}
@@ -63,5 +62,3 @@ const useGetEventTicketKPIHolders = (
     }
   );
 };
-
-export default useGetEventTicketKPIHolders;

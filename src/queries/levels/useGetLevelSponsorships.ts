@@ -43,8 +43,7 @@ export const GetLevelSponsorships = async ({
   });
   return data;
 };
-
-const useGetLevelSponsorships = (
+export const useGetLevelSponsorships = (
   levelId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -70,5 +69,3 @@ const useGetLevelSponsorships = (
     }
   );
 };
-
-export default useGetLevelSponsorships;

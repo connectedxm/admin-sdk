@@ -44,8 +44,7 @@ export const GetEventSessions = async ({
   });
   return data;
 };
-
-const useGetEventSessions = (
+export const useGetEventSessions = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -71,5 +70,3 @@ const useGetEventSessions = (
     }
   );
 };
-
-export default useGetEventSessions;

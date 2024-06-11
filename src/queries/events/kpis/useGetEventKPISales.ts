@@ -30,8 +30,7 @@ export const GetEventKPISales = async ({
   const { data } = await adminApi.get(`/events/${eventId}/kpi/sales`);
   return data;
 };
-
-const useGetEventKPISales = (
+export const useGetEventKPISales = (
   eventId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventKPISales>> = {}
 ) => {
@@ -44,5 +43,3 @@ const useGetEventKPISales = (
     }
   );
 };
-
-export default useGetEventKPISales;

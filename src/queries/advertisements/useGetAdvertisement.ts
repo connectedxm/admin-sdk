@@ -34,8 +34,7 @@ export const GetAdvertisement = async ({
   const { data } = await adminApi.get(`/advertisements/${advertisementId}`);
   return data;
 };
-
-const useGetAdvertisement = (
+export const useGetAdvertisement = (
   advertisementId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetAdvertisement>> = {}
 ) => {
@@ -49,5 +48,3 @@ const useGetAdvertisement = (
     }
   );
 };
-
-export default useGetAdvertisement;

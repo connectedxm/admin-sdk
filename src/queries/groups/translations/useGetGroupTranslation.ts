@@ -2,7 +2,8 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { GroupTranslation } from "@src/interfaces";
 import { GROUP_TRANSLATIONS_QUERY_KEY } from "./useGetGroupTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
-import useConnectedSingleQuery, {
+import {
+  useConnectedSingleQuery,
   SingleQueryOptions,
   SingleQueryParams,
 } from "@src/queries/useConnectedSingleQuery";
@@ -38,8 +39,7 @@ export const GetGroupTranslation = async ({
   );
   return data;
 };
-
-const useGetGroupTranslation = (
+export const useGetGroupTranslation = (
   groupId: string = "",
   locale: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetGroupTranslation>> = {}
@@ -58,5 +58,3 @@ const useGetGroupTranslation = (
     }
   );
 };
-
-export default useGetGroupTranslation;

@@ -79,8 +79,7 @@ export const GetEventQuestionSummary = async ({
   );
   return data;
 };
-
-const useGetEventQuestionSummary = (
+export const useGetEventQuestionSummary = (
   eventId: string = "",
   questionId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventQuestionSummary>> = {}
@@ -94,5 +93,3 @@ const useGetEventQuestionSummary = (
     }
   );
 };
-
-export default useGetEventQuestionSummary;

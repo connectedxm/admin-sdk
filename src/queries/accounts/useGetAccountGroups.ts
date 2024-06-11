@@ -45,8 +45,7 @@ export const GetAccountGroups = async ({
   });
   return data;
 };
-
-const useGetAccountGroups = (
+export const useGetAccountGroups = (
   accountId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -68,5 +67,3 @@ const useGetAccountGroups = (
     }
   );
 };
-
-export default useGetAccountGroups;

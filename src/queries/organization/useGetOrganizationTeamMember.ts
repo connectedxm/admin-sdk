@@ -37,8 +37,7 @@ export const GetOrganizationTeamMember = async ({
   );
   return data;
 };
-
-const useGetOrganizationTeamMember = (
+export const useGetOrganizationTeamMember = (
   teamMemberId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetOrganizationTeamMember>> = {}
 ) => {
@@ -52,5 +51,3 @@ const useGetOrganizationTeamMember = (
     }
   );
 };
-
-export default useGetOrganizationTeamMember;

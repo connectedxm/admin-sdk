@@ -46,8 +46,7 @@ export const GetChannelTranslations = async ({
   });
   return data;
 };
-
-const useGetChannelTranslations = (
+export const useGetChannelTranslations = (
   channelId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -73,5 +72,3 @@ const useGetChannelTranslations = (
     }
   );
 };
-
-export default useGetChannelTranslations;

@@ -38,8 +38,7 @@ export const GetActivityKPILikes = async ({
   const { data } = await adminApi.get(`/activities/${activityId}/kpi/likes`);
   return data;
 };
-
-const useGetActivityKPILikes = (
+export const useGetActivityKPILikes = (
   activityId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetActivityKPILikes>> = {}
 ) => {
@@ -53,5 +52,3 @@ const useGetActivityKPILikes = (
     }
   );
 };
-
-export default useGetActivityKPILikes;

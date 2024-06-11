@@ -46,8 +46,7 @@ export const GetSubscriptionProductPrice = async ({
   );
   return data;
 };
-
-const useGetSubscriptionProductPrice = (
+export const useGetSubscriptionProductPrice = (
   subscriptionProductId: string = "",
   subscriptionProductPriceId: string = "",
   options: SingleQueryOptions<
@@ -76,5 +75,3 @@ const useGetSubscriptionProductPrice = (
     }
   );
 };
-
-export default useGetSubscriptionProductPrice;

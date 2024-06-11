@@ -49,8 +49,7 @@ export const GetEventTrackSponsors = async ({
   );
   return data;
 };
-
-const useGetEventTrackSponsors = (
+export const useGetEventTrackSponsors = (
   eventId: string = "",
   trackId: string = "",
   params: Omit<
@@ -78,5 +77,3 @@ const useGetEventTrackSponsors = (
     }
   );
 };
-
-export default useGetEventTrackSponsors;

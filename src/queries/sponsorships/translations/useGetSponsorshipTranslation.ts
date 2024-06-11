@@ -2,7 +2,8 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { SponsorshipTranslation } from "@src/interfaces";
 import { SPONSORSHIP_TRANSLATIONS_QUERY_KEY } from "./useGetSponsorshipTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
-import useConnectedSingleQuery, {
+import {
+  useConnectedSingleQuery,
   SingleQueryOptions,
   SingleQueryParams,
 } from "@src/queries/useConnectedSingleQuery";
@@ -41,8 +42,7 @@ export const GetSponsorshipTranslation = async ({
   );
   return data;
 };
-
-const useGetSponsorshipTranslation = (
+export const useGetSponsorshipTranslation = (
   sponsorshipId: string = "",
   locale: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetSponsorshipTranslation>> = {}
@@ -61,5 +61,3 @@ const useGetSponsorshipTranslation = (
     }
   );
 };
-
-export default useGetSponsorshipTranslation;

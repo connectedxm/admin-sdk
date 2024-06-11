@@ -60,8 +60,7 @@ export const GetEventReservationSectionLocationTranslation = async ({
   );
   return data;
 };
-
-const useGetEventReservationSectionLocationTranslation = (
+export const useGetEventReservationSectionLocationTranslation = (
   eventId: string = "",
   reservationSectionId: string = "",
   locationId: string = "",
@@ -98,5 +97,3 @@ const useGetEventReservationSectionLocationTranslation = (
     }
   );
 };
-
-export default useGetEventReservationSectionLocationTranslation;

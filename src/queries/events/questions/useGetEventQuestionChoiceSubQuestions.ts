@@ -61,8 +61,7 @@ export const GetEventQuestionChoiceSubQuestions = async ({
   );
   return data;
 };
-
-const useGetEventQuestionChoiceSubQuestions = (
+export const useGetEventQuestionChoiceSubQuestions = (
   eventId: string = "",
   questionId: string = "",
   choiceId: string = "",
@@ -93,5 +92,3 @@ const useGetEventQuestionChoiceSubQuestions = (
     }
   );
 };
-
-export default useGetEventQuestionChoiceSubQuestions;

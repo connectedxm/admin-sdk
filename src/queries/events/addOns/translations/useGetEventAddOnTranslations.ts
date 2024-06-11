@@ -54,8 +54,7 @@ export const GetEventAddOnTranslations = async ({
   );
   return data;
 };
-
-const useGetEventAddOnTranslations = (
+export const useGetEventAddOnTranslations = (
   eventId: string = "",
   addOnId: string = "",
   params: Omit<
@@ -83,5 +82,3 @@ const useGetEventAddOnTranslations = (
     }
   );
 };
-
-export default useGetEventAddOnTranslations;

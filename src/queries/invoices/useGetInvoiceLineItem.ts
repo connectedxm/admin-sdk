@@ -38,8 +38,7 @@ export const GetInvoiceLineItem = async ({
   );
   return data;
 };
-
-const useGetInvoiceLineItem = (
+export const useGetInvoiceLineItem = (
   invoiceId: string = "",
   lineItemId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetInvoiceLineItem>> = {}
@@ -54,5 +53,3 @@ const useGetInvoiceLineItem = (
     }
   );
 };
-
-export default useGetInvoiceLineItem;

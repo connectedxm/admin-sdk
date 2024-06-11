@@ -46,8 +46,7 @@ export const GetAccountDelegateOf = async ({
   });
   return data;
 };
-
-const useGetAccountDelegateOf = (
+export const useGetAccountDelegateOf = (
   accountId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -70,5 +69,3 @@ const useGetAccountDelegateOf = (
     }
   );
 };
-
-export default useGetAccountDelegateOf;

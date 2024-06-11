@@ -34,8 +34,7 @@ export const GetOrganizationTrigger = async ({
   const { data } = await adminApi.get(`/organization/triggers/${type}`);
   return data;
 };
-
-const useGetOrganizationTrigger = (
+export const useGetOrganizationTrigger = (
   type: OrganizationTriggerType,
   options: SingleQueryOptions<ReturnType<typeof GetOrganizationTrigger>> = {}
 ) => {
@@ -48,5 +47,3 @@ const useGetOrganizationTrigger = (
     }
   );
 };
-
-export default useGetOrganizationTrigger;

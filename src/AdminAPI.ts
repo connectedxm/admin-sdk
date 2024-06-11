@@ -23,7 +23,7 @@ export const GetAdminAPI = async (
     baseURL: params.apiUrl,
     headers: {
       organization: params.organizationId,
-      locale: params.locale,
+      // locale: params.locale,
       authorization: token,
       executeAs: executeAs,
     },

@@ -43,8 +43,7 @@ export const GetEventReservationSection = async ({
   );
   return data;
 };
-
-const useGetEventReservationSection = (
+export const useGetEventReservationSection = (
   eventId: string = "",
   reservationSectionId: string = "",
   options: SingleQueryOptions<
@@ -65,5 +64,3 @@ const useGetEventReservationSection = (
     }
   );
 };
-
-export default useGetEventReservationSection;

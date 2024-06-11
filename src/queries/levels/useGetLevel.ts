@@ -32,8 +32,7 @@ export const GetLevel = async ({
   const { data } = await adminApi.get(`/levels/${sponsorshipLevelId}`);
   return data;
 };
-
-const useGetLevel = (
+export const useGetLevel = (
   sponsorshipLevelId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetLevel>> = {}
 ) => {
@@ -50,5 +49,3 @@ const useGetLevel = (
     }
   );
 };
-
-export default useGetLevel;

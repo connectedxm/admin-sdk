@@ -53,8 +53,7 @@ export const GetSubscriptionProductTiers = async ({
   );
   return data;
 };
-
-const useGetSubscriptionProductTiers = (
+export const useGetSubscriptionProductTiers = (
   subscriptionProductId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -77,5 +76,3 @@ const useGetSubscriptionProductTiers = (
     }
   );
 };
-
-export default useGetSubscriptionProductTiers;

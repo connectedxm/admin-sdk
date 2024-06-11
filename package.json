@@ -1,6 +1,6 @@
 {
   "name": "@connectedxm/admin",
-  "version": "0.0.1",
+  "version": "0.0.2-beta-3",
   "description": "Admin API javascript SDK",
   "author": "ConnectedXM Inc.",
   "repository": {
@@ -24,7 +24,7 @@
     "axios": "^1.6.5",
     "immer": "^10.0.3"
   },
-  "optionalDependencies": {
+  "peerDependencies": {
     "@tanstack/react-query": "^5.0.0",
     "react": "^18.0.0"
   },

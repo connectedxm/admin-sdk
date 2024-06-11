@@ -54,8 +54,7 @@ export const GetEventZplTemplateBadgeFields = async ({
   );
   return data;
 };
-
-const useGetEventZplTemplateBadgeFields = (
+export const useGetEventZplTemplateBadgeFields = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -78,5 +77,3 @@ const useGetEventZplTemplateBadgeFields = (
     }
   );
 };
-
-export default useGetEventZplTemplateBadgeFields;

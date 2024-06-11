@@ -52,8 +52,7 @@ export const GetReports = async ({
   });
   return data;
 };
-
-const useGetReports = (
+export const useGetReports = (
   type: keyof typeof ReportType,
   eventId?: string,
   params: Omit<
@@ -72,5 +71,3 @@ const useGetReports = (
     }
   );
 };
-
-export default useGetReports;

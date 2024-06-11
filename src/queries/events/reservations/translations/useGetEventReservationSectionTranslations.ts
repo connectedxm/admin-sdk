@@ -60,8 +60,7 @@ export const GetEventReservationSectionTranslations = async ({
   );
   return data;
 };
-
-const useGetEventReservationSectionTranslations = (
+export const useGetEventReservationSectionTranslations = (
   eventId: string = "",
   reservationSectionId: string = "",
   params: Omit<
@@ -92,5 +91,3 @@ const useGetEventReservationSectionTranslations = (
     }
   );
 };
-
-export default useGetEventReservationSectionTranslations;

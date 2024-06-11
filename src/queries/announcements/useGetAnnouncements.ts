@@ -47,8 +47,7 @@ export const GetAnnouncements = async ({
   });
   return data;
 };
-
-const useGetAnnouncements = (
+export const useGetAnnouncements = (
   filters?: string,
   params: Omit<
     InfiniteQueryParams,
@@ -67,5 +66,3 @@ const useGetAnnouncements = (
     options
   );
 };
-
-export default useGetAnnouncements;

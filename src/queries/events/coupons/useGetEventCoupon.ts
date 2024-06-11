@@ -36,8 +36,7 @@ export const GetEventCoupon = async ({
   const { data } = await adminApi.get(`/events/${eventId}/coupons/${couponId}`);
   return data;
 };
-
-const useGetEventCoupon = (
+export const useGetEventCoupon = (
   eventId: string = "",
   couponId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventCoupon>> = {}
@@ -52,5 +51,3 @@ const useGetEventCoupon = (
     }
   );
 };
-
-export default useGetEventCoupon;

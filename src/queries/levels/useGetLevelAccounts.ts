@@ -44,8 +44,7 @@ export const GetLevelAccounts = async ({
   });
   return data;
 };
-
-const useGetLevelAccounts = (
+export const useGetLevelAccounts = (
   levelId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -71,5 +70,3 @@ const useGetLevelAccounts = (
     }
   );
 };
-
-export default useGetLevelAccounts;

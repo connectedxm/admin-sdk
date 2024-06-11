@@ -37,8 +37,7 @@ export const GetEventRegistration = async ({
   );
   return data;
 };
-
-const useGetEventRegistration = (
+export const useGetEventRegistration = (
   eventId: string,
   registrationId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventRegistration>> = {}
@@ -53,5 +52,3 @@ const useGetEventRegistration = (
     }
   );
 };
-
-export default useGetEventRegistration;

@@ -40,8 +40,7 @@ export const GetTiers = async ({
   });
   return data;
 };
-
-const useGetTiers = (
+export const useGetTiers = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -55,5 +54,3 @@ const useGetTiers = (
     options
   );
 };
-
-export default useGetTiers;

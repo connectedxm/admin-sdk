@@ -47,8 +47,7 @@ export const GetActivityReshares = async ({
 };
 
 export const QUERY_KEY = "ACTIVITY_RESHARES";
-
-const useGetActivityReshares = (
+export const useGetActivityReshares = (
   activityId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -71,5 +70,3 @@ const useGetActivityReshares = (
     }
   );
 };
-
-export default useGetActivityReshares;

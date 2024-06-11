@@ -45,8 +45,7 @@ export const GetAccountComments = async ({
   });
   return data;
 };
-
-const useGetAccountComments = (
+export const useGetAccountComments = (
   accountId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -69,5 +68,3 @@ const useGetAccountComments = (
     }
   );
 };
-
-export default useGetAccountComments;

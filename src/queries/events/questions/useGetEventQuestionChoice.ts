@@ -43,8 +43,7 @@ export const GetEventQuestionChoice = async ({
   );
   return data;
 };
-
-const useGetEventQuestionChoice = (
+export const useGetEventQuestionChoice = (
   eventId: string,
   questionId: string,
   choiceId: string,
@@ -61,5 +60,3 @@ const useGetEventQuestionChoice = (
     }
   );
 };
-
-export default useGetEventQuestionChoice;

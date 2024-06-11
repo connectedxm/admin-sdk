@@ -38,8 +38,7 @@ export const GetInvoices = async ({
   });
   return data;
 };
-
-const useGetInvoices = (
+export const useGetInvoices = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -53,5 +52,3 @@ const useGetInvoices = (
     options
   );
 };
-
-export default useGetInvoices;

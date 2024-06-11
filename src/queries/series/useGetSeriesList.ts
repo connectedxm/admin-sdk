@@ -46,8 +46,7 @@ export const GetSeriesList = async ({
 
   return data;
 };
-
-const useGetSeriesList = (
+export const useGetSeriesList = (
   past?: boolean,
   params: Omit<
     InfiniteQueryParams,
@@ -62,5 +61,3 @@ const useGetSeriesList = (
     options
   );
 };
-
-export default useGetSeriesList;

@@ -36,8 +36,7 @@ export const GetEventFAQSection = async ({
   const { data } = await adminApi.get(`/events/${eventId}/faqs/${sectionId}`);
   return data;
 };
-
-const useGetEventFAQSection = (
+export const useGetEventFAQSection = (
   eventId: string = "",
   sectionId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventFAQSection>> = {}
@@ -56,5 +55,3 @@ const useGetEventFAQSection = (
     }
   );
 };
-
-export default useGetEventFAQSection;

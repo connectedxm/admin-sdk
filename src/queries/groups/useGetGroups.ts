@@ -39,8 +39,7 @@ export const GetGroups = async ({
   });
   return data;
 };
-
-const useGetGroups = (
+export const useGetGroups = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -54,5 +53,3 @@ const useGetGroups = (
     options
   );
 };
-
-export default useGetGroups;

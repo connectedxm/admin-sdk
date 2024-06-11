@@ -34,8 +34,7 @@ export const GetGroup = async ({
   const { data } = await adminApi.get(`/groups/${groupId}`);
   return data;
 };
-
-const useGetGroup = (
+export const useGetGroup = (
   groupId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetGroup>> = {}
 ) => {
@@ -48,5 +47,3 @@ const useGetGroup = (
     }
   );
 };
-
-export default useGetGroup;

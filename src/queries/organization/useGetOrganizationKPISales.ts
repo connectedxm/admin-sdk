@@ -38,8 +38,7 @@ export const GetOrganizationKPISales = async ({
   const { data } = await adminApi.get(`/organization/kpi/sales`);
   return data;
 };
-
-const useGetOrganizationKPISales = (
+export const useGetOrganizationKPISales = (
   options: SingleQueryOptions<ReturnType<typeof GetOrganizationKPISales>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetOrganizationKPISales>>(
@@ -48,5 +47,3 @@ const useGetOrganizationKPISales = (
     options
   );
 };
-
-export default useGetOrganizationKPISales;

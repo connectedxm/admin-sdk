@@ -46,8 +46,7 @@ export const GetSubscriptionPayments = async ({
   );
   return data;
 };
-
-const useGetSubscriptionPayments = (
+export const useGetSubscriptionPayments = (
   subscriptionId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -70,5 +69,3 @@ const useGetSubscriptionPayments = (
     }
   );
 };
-
-export default useGetSubscriptionPayments;

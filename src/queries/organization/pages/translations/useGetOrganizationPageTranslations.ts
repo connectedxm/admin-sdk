@@ -52,8 +52,7 @@ export const GetOrganizationPageTranslations = async ({
   );
   return data;
 };
-
-const useGetOrganizationPageTranslations = (
+export const useGetOrganizationPageTranslations = (
   type: PageType,
   params: Omit<
     InfiniteQueryParams,
@@ -79,5 +78,3 @@ const useGetOrganizationPageTranslations = (
     }
   );
 };
-
-export default useGetOrganizationPageTranslations;

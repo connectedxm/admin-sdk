@@ -43,8 +43,7 @@ export const GetVideos = async ({
 
   return data;
 };
-
-const useGetVideos = (
+export const useGetVideos = (
   source?: string,
   params: Omit<
     InfiniteQueryParams,
@@ -59,5 +58,3 @@ const useGetVideos = (
     options
   );
 };
-
-export default useGetVideos;

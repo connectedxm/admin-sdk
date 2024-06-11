@@ -65,8 +65,7 @@ export const GetAnnouncementEmailReceipts = async ({
   );
   return data;
 };
-
-const useGetAnnouncementEmailReceipts = (
+export const useGetAnnouncementEmailReceipts = (
   announcementId: string = "",
   status?: keyof typeof EmailReceiptStatus,
   params: Omit<
@@ -90,5 +89,3 @@ const useGetAnnouncementEmailReceipts = (
     }
   );
 };
-
-export default useGetAnnouncementEmailReceipts;

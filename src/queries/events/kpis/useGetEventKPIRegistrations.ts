@@ -31,8 +31,7 @@ export const GetEventKPIRegistrations = async ({
   const { data } = await adminApi.get(`/events/${eventId}/kpi/registrations`);
   return data;
 };
-
-const useGetEventKPIRegistrations = (
+export const useGetEventKPIRegistrations = (
   eventId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventKPIRegistrations>> = {}
 ) => {
@@ -46,5 +45,3 @@ const useGetEventKPIRegistrations = (
     }
   );
 };
-
-export default useGetEventKPIRegistrations;

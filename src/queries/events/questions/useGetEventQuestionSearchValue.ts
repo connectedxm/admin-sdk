@@ -3,7 +3,8 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { RegistrationQuestionSearchValue } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY } from "./useGetEventQuestionSearchValues";
-import useConnectedSingleQuery, {
+import {
+  useConnectedSingleQuery,
   SingleQueryParams,
   SingleQueryOptions,
 } from "../../useConnectedSingleQuery";
@@ -48,8 +49,7 @@ export const GetEventQuestionSearchValue = async ({
   );
   return data;
 };
-
-const useGetEventQuestionSearchValue = (
+export const useGetEventQuestionSearchValue = (
   eventId: string = "",
   questionId: string = "",
   searchValueId: string = "",
@@ -78,5 +78,3 @@ const useGetEventQuestionSearchValue = (
     }
   );
 };
-
-export default useGetEventQuestionSearchValue;

@@ -46,8 +46,7 @@ export const GetBenefits = async ({
   });
   return data;
 };
-
-const useGetBenefits = (
+export const useGetBenefits = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -62,5 +61,3 @@ const useGetBenefits = (
     options
   );
 };
-
-export default useGetBenefits;

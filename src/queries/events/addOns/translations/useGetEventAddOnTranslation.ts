@@ -45,8 +45,7 @@ export const GetEventAddOnTranslation = async ({
   );
   return data;
 };
-
-const useGetEventAddOnTranslation = (
+export const useGetEventAddOnTranslation = (
   eventId: string = "",
   addOnId: string = "",
   locale: string = "",
@@ -67,5 +66,3 @@ const useGetEventAddOnTranslation = (
     }
   );
 };
-
-export default useGetEventAddOnTranslation;

@@ -48,8 +48,7 @@ export const GetGroupModerators = async ({
   });
   return data;
 };
-
-const useGetGroupModerators = (
+export const useGetGroupModerators = (
   groupId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -71,5 +70,3 @@ const useGetGroupModerators = (
     }
   );
 };
-
-export default useGetGroupModerators;

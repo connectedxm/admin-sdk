@@ -46,8 +46,7 @@ export const GetAccountFollowers = async ({
   });
   return data;
 };
-
-const useGetAccountFollowers = (
+export const useGetAccountFollowers = (
   accountId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -70,5 +69,3 @@ const useGetAccountFollowers = (
     }
   );
 };
-
-export default useGetAccountFollowers;

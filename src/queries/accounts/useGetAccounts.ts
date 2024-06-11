@@ -48,8 +48,7 @@ export const GetAccounts = async ({
   });
   return data;
 };
-
-const useGetAccounts = (
+export const useGetAccounts = (
   accountType?: "account" | "team",
   params: Omit<
     InfiniteQueryParams,
@@ -64,5 +63,3 @@ const useGetAccounts = (
     options
   );
 };
-
-export default useGetAccounts;

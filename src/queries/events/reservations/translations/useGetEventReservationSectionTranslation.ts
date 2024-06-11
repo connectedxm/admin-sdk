@@ -51,8 +51,7 @@ export const GetEventReservationSectionTranslation = async ({
   );
   return data;
 };
-
-const useGetEventReservationSectionTranslation = (
+export const useGetEventReservationSectionTranslation = (
   eventId: string = "",
   reservationSectionId: string = "",
   locale: string = "",
@@ -85,5 +84,3 @@ const useGetEventReservationSectionTranslation = (
     }
   );
 };
-
-export default useGetEventReservationSectionTranslation;

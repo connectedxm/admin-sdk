@@ -47,8 +47,7 @@ export const GetAccountInterests = async ({
   });
   return data;
 };
-
-const useGetAccountInterests = (
+export const useGetAccountInterests = (
   accountId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -71,5 +70,3 @@ const useGetAccountInterests = (
     }
   );
 };
-
-export default useGetAccountInterests;

@@ -38,8 +38,7 @@ export const GetActivityKPIComments = async ({
   const { data } = await adminApi.get(`/activities/${activityId}/kpi/comments`);
   return data;
 };
-
-const useGetActivityKPIComments = (
+export const useGetActivityKPIComments = (
   activityId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetActivityKPIComments>> = {}
 ) => {
@@ -53,5 +52,3 @@ const useGetActivityKPIComments = (
     }
   );
 };
-
-export default useGetActivityKPIComments;

@@ -49,8 +49,7 @@ export const GetAdvertisementViews = async ({
   );
   return data;
 };
-
-const useGetAdvertisementViews = (
+export const useGetAdvertisementViews = (
   advertisementId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -73,5 +72,3 @@ const useGetAdvertisementViews = (
     }
   );
 };
-
-export default useGetAdvertisementViews;

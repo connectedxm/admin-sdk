@@ -48,7 +48,7 @@ export const GetBenefitClicks = async ({
 };
 
 const useGetBenefitClicks = (
-  benefitId: string,
+  benefitId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"

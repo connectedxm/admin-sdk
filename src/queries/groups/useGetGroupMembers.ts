@@ -48,7 +48,7 @@ export const GetGroupMembers = async ({
 };
 
 const useGetGroupMembers = (
-  groupId: string,
+  groupId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"

@@ -40,8 +40,8 @@ export const GetBenefitTranslation = async ({
 };
 
 const useGetBenefitTranslation = (
-  benefitId: string,
-  locale: string,
+  benefitId: string = "",
+  locale: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetBenefitTranslation>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetBenefitTranslation>>(

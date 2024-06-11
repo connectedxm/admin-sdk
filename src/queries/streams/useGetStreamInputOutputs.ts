@@ -50,7 +50,7 @@ export const GetStreamInputOutputs = async ({
 };
 
 const useGetStreamInputOutputs = (
-  streamId: string,
+  streamId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"

@@ -46,7 +46,7 @@ const useGetLevel = (
       }),
     {
       ...options,
-      enabled: !!sponsorshipLevelId,
+      enabled: !!sponsorshipLevelId && (options.enabled ?? true),
     }
   );
 };

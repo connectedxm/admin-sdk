@@ -68,7 +68,7 @@ const useGetSponsorshipLevels = (
     params,
     {
       ...options,
-      enabled: !!sponsorshipId,
+      enabled: !!sponsorshipId && (options.enabled ?? true),
     }
   );
 };

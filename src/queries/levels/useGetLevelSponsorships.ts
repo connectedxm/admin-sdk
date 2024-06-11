@@ -66,7 +66,7 @@ const useGetLevelSponsorships = (
     params,
     {
       ...options,
-      enabled: !!levelId,
+      enabled: !!levelId && (options.enabled ?? true),
     }
   );
 };

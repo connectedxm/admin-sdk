@@ -10,13 +10,13 @@ import { Event } from "@src/interfaces";
 import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 import { QueryClient } from "@tanstack/react-query";
 
-export const ACCOUNT_EVENTS_QUERY_KEY = (accountId: string, past: boolean) => {
+export const ACCOUNT_EVENTS_QUERY_KEY = (accountId: string, past?: boolean) => {
   const keys = [...ACCOUNT_QUERY_KEY(accountId), "EVENTS"];
-  if (past) {
-    keys.push("PAST");
-  } else {
-    keys.push("UPCOMING");
+
+  if (typeof past !== "undefined") {
+    keys.push(past ? "PAST" : "UPCOMING");
   }
+
   return keys;
 };
 
@@ -30,7 +30,7 @@ export const SET_ACCOUNT_EVENTS_QUERY_DATA = (
 
 interface GetAccountEventsProps extends InfiniteQueryParams {
   accountId: string;
-  past: boolean;
+  past?: boolean;
 }
 
 export const GetAccountEvents = async ({
@@ -57,7 +57,7 @@ export const GetAccountEvents = async ({
 
 const useGetAccountEvents = (
   accountId: string = "",
-  past: boolean,
+  past?: boolean,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"

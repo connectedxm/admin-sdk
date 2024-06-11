@@ -40,8 +40,8 @@ export const GetChannelTranslation = async ({
 };
 
 const useGetChannelTranslation = (
-  channelId: string,
-  locale: string,
+  channelId: string = "",
+  locale: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetChannelTranslation>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetChannelTranslation>>(

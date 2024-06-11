@@ -48,7 +48,7 @@ export const GetGroupSponsors = async ({
 };
 
 const useGetGroupSponsors = (
-  groupId: string,
+  groupId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"

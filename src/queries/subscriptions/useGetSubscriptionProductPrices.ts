@@ -57,7 +57,7 @@ export const GetSubscriptionProductPrices = async ({
 };
 
 const useGetSubscriptionProductPrices = (
-  subscriptionProductId: string,
+  subscriptionProductId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"

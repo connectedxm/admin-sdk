@@ -36,7 +36,7 @@ export const GetInterest = async ({
 };
 
 const useGetInterest = (
-  interestId: string,
+  interestId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetInterest>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetInterest>>(

@@ -39,7 +39,7 @@ export const GetSubscriptionProduct = async ({
 };
 
 const useGetSubscriptionProduct = (
-  subscriptionProductId: string,
+  subscriptionProductId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetSubscriptionProduct>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetSubscriptionProduct>>(

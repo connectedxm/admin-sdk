@@ -42,7 +42,7 @@ export const GetChannelKPIContents = async ({
 };
 
 const useGetChannelKPIContents = (
-  channelId: string,
+  channelId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetChannelKPIContents>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetChannelKPIContents>>(

@@ -42,7 +42,7 @@ export const GetGroupKPIActivities = async ({
 };
 
 const useGetGroupKPIActivities = (
-  groupId: string,
+  groupId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetGroupKPIActivities>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetGroupKPIActivities>>(

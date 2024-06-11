@@ -40,7 +40,7 @@ export const GetBenefitKPIClicks = async ({
 };
 
 const useGetBenefitKPIClicks = (
-  benefitId: string,
+  benefitId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetBenefitKPIClicks>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetBenefitKPIClicks>>(

@@ -46,7 +46,7 @@ export const GetSeriesEvents = async ({
 };
 
 const useGetSeriesEvents = (
-  seriesId: string,
+  seriesId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"

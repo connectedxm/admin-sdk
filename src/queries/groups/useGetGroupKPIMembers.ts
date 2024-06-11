@@ -40,7 +40,7 @@ export const GetGroupKPIMembers = async ({
 };
 
 const useGetGroupKPIMembers = (
-  groupId: string,
+  groupId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetGroupKPIMembers>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetGroupKPIMembers>>(
@@ -48,7 +48,7 @@ const useGetGroupKPIMembers = (
     (params: SingleQueryParams) => GetGroupKPIMembers({ groupId, ...params }),
     {
       ...options,
-      enabled: !!groupId,
+      enabled: !!groupId && (options?.enabled ?? true),
     }
   );
 };

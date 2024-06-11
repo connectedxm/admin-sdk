@@ -51,7 +51,7 @@ const useGetStreamInputOutput = (
       GetStreamInputOutput({ streamId, output, ...params }),
     {
       ...options,
-      enabled: !!streamId,
+      enabled: !!streamId && (options?.enabled ?? true),
     }
   );
 };

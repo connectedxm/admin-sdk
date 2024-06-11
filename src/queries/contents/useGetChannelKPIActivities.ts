@@ -42,7 +42,7 @@ export const GetChannelKPIActivities = async ({
 };
 
 const useGetChannelKPIActivities = (
-  channelId: string,
+  channelId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetChannelKPIActivities>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetChannelKPIActivities>>(

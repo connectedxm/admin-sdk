@@ -47,7 +47,7 @@ export const GetAccountTiers = async ({
 };
 
 const useGetAccountTiers = (
-  accountId: string,
+  accountId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"

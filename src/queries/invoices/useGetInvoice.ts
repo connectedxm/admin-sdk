@@ -36,7 +36,7 @@ export const GetInvoice = async ({
 };
 
 const useGetInvoice = (
-  invoiceId: string,
+  invoiceId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetInvoice>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetInvoice>>(

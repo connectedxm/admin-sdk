@@ -44,7 +44,7 @@ export const GetOrganizationPageTranslation = async ({
 
 const useGetOrganizationPageTranslation = (
   type: PageType,
-  locale: string,
+  locale: string = "",
   options: SingleQueryOptions<
     ReturnType<typeof GetOrganizationPageTranslation>
   > = {}
@@ -61,7 +61,7 @@ const useGetOrganizationPageTranslation = (
       }),
     {
       ...options,
-      enabled: !!type && !!locale,
+      enabled: !!type && !!locale && (options.enabled ?? true),
     }
   );
 };

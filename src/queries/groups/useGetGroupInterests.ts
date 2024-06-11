@@ -48,7 +48,7 @@ export const GetGroupInterests = async ({
 };
 
 const useGetGroupInterests = (
-  groupId: string,
+  groupId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -69,7 +69,7 @@ const useGetGroupInterests = (
     params,
     {
       ...options,
-      enabled: !!groupId,
+      enabled: !!groupId && (options.enabled ?? true),
     }
   );
 };

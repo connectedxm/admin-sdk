@@ -48,7 +48,7 @@ export const GetSponsorshipEvents = async ({
 };
 
 const useGetSponsorshipEvents = (
-  sponsorshipId: string,
+  sponsorshipId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -66,7 +66,7 @@ const useGetSponsorshipEvents = (
     params,
     {
       ...options,
-      enabled: !!sponsorshipId,
+      enabled: !!sponsorshipId && (options.enabled ?? true),
     }
   );
 };

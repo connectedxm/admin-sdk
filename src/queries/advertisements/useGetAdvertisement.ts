@@ -36,7 +36,7 @@ export const GetAdvertisement = async ({
 };
 
 const useGetAdvertisement = (
-  advertisementId: string,
+  advertisementId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetAdvertisement>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetAdvertisement>>(

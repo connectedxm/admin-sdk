@@ -69,7 +69,10 @@ const useGetSubscriptionProductPrice = (
       }),
     {
       ...options,
-      enabled: !!subscriptionProductId && !!subscriptionProductPriceId,
+      enabled:
+        !!subscriptionProductId &&
+        !!subscriptionProductPriceId &&
+        (options?.enabled ?? true),
     }
   );
 };

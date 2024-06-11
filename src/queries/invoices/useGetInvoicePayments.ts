@@ -48,7 +48,7 @@ export const GetInvoicePayments = async ({
 };
 
 const useGetInvoicePayments = (
-  invoiceId: string,
+  invoiceId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"

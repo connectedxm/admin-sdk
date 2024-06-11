@@ -1,8 +1,3 @@
-/**
- * @groupDescription Accounts
- * This group of queries is used to fetch data related to accounts.
- */
-
 export * from "./useGetAccount";
 export * from "./useGetAccountActivities";
 export * from "./useGetAccountCognitoUser";

@@ -19,7 +19,8 @@
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "release": "yarn run lint && yarn run test && yarn run build",
     "local": "yarn run release && yarn pack",
-    "document": "typedoc --plugin typedoc-material-theme"
+    "document": "typedoc --plugin typedoc-material-theme",
+    "exports": "tsx scripts/addExports.ts"
   },
   "dependencies": {
     "axios": "^1.6.5",

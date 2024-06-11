@@ -13,7 +13,7 @@ export const CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY = (
   contentId: string
 ) => [...CHANNEL_CONTENT_QUERY_KEY(channelId, contentId), "TRANSLATIONS"];
 
-export const SET_CHANNEL_TRANSLATIONS_QUERY_DATA = (
+export const SET_CHANNEL_CONTENT_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY>,
   response: Awaited<ReturnType<typeof GetChannelContentTranslations>>

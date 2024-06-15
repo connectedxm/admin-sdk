@@ -14,7 +14,11 @@ import { QueryClient } from "@tanstack/react-query";
  * @category Keys
  * @group Tiers
  */
-export const TIERS_QUERY_KEY = () => ["TIERS"];
+export const TIERS_QUERY_KEY = (type?: "external" | "internal") => {
+  const keys = ["TIERS"];
+  if (type) keys.push(type);
+  return keys;
+};
 
 /**
  * @category Setters
@@ -28,13 +32,16 @@ export const SET_TIERS_QUERY_DATA = (
   client.setQueryData(TIERS_QUERY_KEY(...keyParams), response);
 };
 
-interface GetTiersProps extends InfiniteQueryParams {}
+interface GetTiersProps extends InfiniteQueryParams {
+  type?: "external" | "internal";
+}
 
 /**
  * @category Queries
  * @group Tiers
  */
 export const GetTiers = async ({
+  type,
   pageParam,
   pageSize,
   orderBy,
@@ -44,6 +51,7 @@ export const GetTiers = async ({
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/tiers`, {
     params: {
+      type: type || undefined,
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
@@ -57,6 +65,7 @@ export const GetTiers = async ({
  * @group Tiers
  */
 export const useGetTiers = (
+  type?: "external" | "internal",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -64,8 +73,8 @@ export const useGetTiers = (
   options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetTiers>>> = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetTiers>>>(
-    TIERS_QUERY_KEY(),
-    (params: InfiniteQueryParams) => GetTiers({ ...params }),
+    TIERS_QUERY_KEY(type),
+    (params: InfiniteQueryParams) => GetTiers({ type, ...params }),
     params,
     options
   );

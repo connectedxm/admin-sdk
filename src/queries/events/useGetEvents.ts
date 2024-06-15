@@ -49,7 +49,7 @@ export const GetEvents = async ({
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events`, {
     params: {
-      past: past || undefined,
+      past: typeof past !== "undefined" ? (past ? "true" : "false") : undefined,
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,

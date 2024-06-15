@@ -13,7 +13,15 @@ import { QueryClient } from "@tanstack/react-query";
  * @category Keys
  * @group Groups
  */
-export const GROUPS_QUERY_KEY = () => ["GROUPS"];
+export const GROUPS_QUERY_KEY = (
+  access?: "public" | "private",
+  featured?: boolean
+) => {
+  const keys = ["GROUPS"];
+  if (access) keys.push(access);
+  if (featured) keys.push("FEATURED");
+  return keys;
+};
 
 /**
  * @category Setters
@@ -27,13 +35,18 @@ export const SET_GROUPS_QUERY_DATA = (
   client.setQueryData(GROUPS_QUERY_KEY(...keyParams), response);
 };
 
-interface GetGroupsProps extends InfiniteQueryParams {}
+interface GetGroupsProps extends InfiniteQueryParams {
+  access?: "public" | "private";
+  featured?: boolean;
+}
 
 /**
  * @category Queries
  * @group Groups
  */
 export const GetGroups = async ({
+  access,
+  featured,
   pageParam,
   pageSize,
   orderBy,
@@ -43,6 +56,8 @@ export const GetGroups = async ({
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/groups`, {
     params: {
+      access: access || undefined,
+      featured: featured || undefined,
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
@@ -56,6 +71,8 @@ export const GetGroups = async ({
  * @group Groups
  */
 export const useGetGroups = (
+  access?: "public" | "private",
+  featured?: boolean,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -63,8 +80,13 @@ export const useGetGroups = (
   options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetGroups>>> = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetGroups>>>(
-    GROUPS_QUERY_KEY(),
-    (params: InfiniteQueryParams) => GetGroups(params),
+    GROUPS_QUERY_KEY(access, featured),
+    (params: InfiniteQueryParams) =>
+      GetGroups({
+        ...params,
+        access,
+        featured,
+      }),
     params,
     options
   );

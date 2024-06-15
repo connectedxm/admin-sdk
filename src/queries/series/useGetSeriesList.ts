@@ -29,9 +29,7 @@ export const SET_SERIES_LIST_QUERY_DATA = (
   client.setQueryData(SERIES_LIST_QUERY_KEY(...keyParams), response);
 };
 
-interface GetSeriesListProps extends InfiniteQueryParams {
-  past?: boolean;
-}
+interface GetSeriesListProps extends InfiniteQueryParams {}
 
 /**
  * @category Queries
@@ -41,14 +39,12 @@ export const GetSeriesList = async ({
   pageParam,
   pageSize,
   orderBy,
-  past,
   search,
   adminApiParams,
 }: GetSeriesListProps): Promise<ConnectedXMResponse<Series[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/series`, {
     params: {
-      past: past || undefined,
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
@@ -63,7 +59,6 @@ export const GetSeriesList = async ({
  * @group Series
  */
 export const useGetSeriesList = (
-  past?: boolean,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -72,7 +67,7 @@ export const useGetSeriesList = (
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetSeriesList>>>(
     SERIES_LIST_QUERY_KEY(),
-    (params: InfiniteQueryParams) => GetSeriesList({ past, ...params }),
+    (params: InfiniteQueryParams) => GetSeriesList({ ...params }),
     params,
     options
   );

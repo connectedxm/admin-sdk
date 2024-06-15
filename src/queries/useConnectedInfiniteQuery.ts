@@ -65,7 +65,7 @@ export const useConnectedInfiniteQuery = <
     shouldRedirect: false,
   }
 ) => {
-  if (typeof params.pageSize === "undefined") params.pageSize = 10;
+  if (typeof params.pageSize === "undefined") params.pageSize = 25;
 
   const {
     locale,

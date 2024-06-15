@@ -6,7 +6,10 @@ export type ImageVariant =
   | "square"
   | "opengraph";
 
-const GetImageVariant = (url: string, variant: ImageVariant = "public") => {
+export const GetImageVariant = (
+  url: string,
+  variant: ImageVariant = "public"
+) => {
   if (url.endsWith("/public")) {
     const regex = /\/public$/;
     return url.replace(regex, `/${variant}`);
@@ -14,5 +17,3 @@ const GetImageVariant = (url: string, variant: ImageVariant = "public") => {
     return url;
   }
 };
-
-export default GetImageVariant;

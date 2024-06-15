@@ -4,3 +4,4 @@ export * from "./GetErrorMessage";
 export * from "./GetImageVariant";
 export * from "./IsUUID";
 export * from "./MergeInfinitePages";
+export * from "./TransformPrice";

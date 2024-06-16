@@ -16,7 +16,6 @@ export * from "./organization";
 export * from "./reports";
 export * from "./self";
 export * from "./series";
-export * from "./sponsorships";
 export * from "./streams";
 export * from "./subscriptions";
 export * from "./supportTickets";

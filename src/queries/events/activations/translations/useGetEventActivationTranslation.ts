@@ -4,7 +4,7 @@ import {
   useConnectedSingleQuery,
 } from "../../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { EventActivationTranslation } from "@src/interfaces";
+import { ActivationTranslation } from "@src/interfaces";
 import { EVENT_ACTIVATION_TRANSLATIONS_QUERY_KEY } from "./useGetEventActivationTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
 
@@ -52,7 +52,7 @@ export const GetEventActivationTranslation = async ({
   locale,
   adminApiParams,
 }: GetEventActivationTranslationProps): Promise<
-  ConnectedXMResponse<EventActivationTranslation>
+  ConnectedXMResponse<ActivationTranslation>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(

@@ -3,7 +3,7 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
-import { ConnectedXMResponse, EventActivation } from "@src/interfaces";
+import { ConnectedXMResponse, Activation } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_ACTIVATIONS_QUERY_KEY } from "./useGetEventActivations";
 import { GetAdminAPI } from "@src/AdminAPI";
@@ -42,7 +42,7 @@ export const GetEventActivation = async ({
   eventId,
   activationId,
   adminApiParams,
-}: GetEventActivationProps): Promise<ConnectedXMResponse<EventActivation>> => {
+}: GetEventActivationProps): Promise<ConnectedXMResponse<Activation>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
 
   const { data } = await adminApi.get(

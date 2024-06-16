@@ -1,6 +1,6 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { FAQSection } from "@src/interfaces";
+import { FaqSection } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -25,12 +25,12 @@ export const EVENT_FAQ_SECTIONS_QUERY_KEY = (eventId: string) => [
 export const SET_EVENT_FAQ_SECTIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_FAQ_SECTIONS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventFAQSections>>
+  response: Awaited<ReturnType<typeof GetEventFaqSections>>
 ) => {
   client.setQueryData(EVENT_FAQ_SECTIONS_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventFAQSectionsProps extends InfiniteQueryParams {
+interface GetEventFaqSectionsProps extends InfiniteQueryParams {
   eventId: string;
 }
 
@@ -38,14 +38,14 @@ interface GetEventFAQSectionsProps extends InfiniteQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetEventFAQSections = async ({
+export const GetEventFaqSections = async ({
   eventId,
   pageParam,
   pageSize,
   orderBy,
   search,
   adminApiParams,
-}: GetEventFAQSectionsProps): Promise<ConnectedXMResponse<FAQSection[]>> => {
+}: GetEventFaqSectionsProps): Promise<ConnectedXMResponse<FaqSection[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/faqs`, {
     params: {
@@ -61,22 +61,22 @@ export const GetEventFAQSections = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventFAQSections = (
+export const useGetEventFaqSections = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventFAQSections>>
+    Awaited<ReturnType<typeof GetEventFaqSections>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventFAQSections>>
+    Awaited<ReturnType<typeof GetEventFaqSections>>
   >(
     EVENT_FAQ_SECTIONS_QUERY_KEY(eventId),
     (params: InfiniteQueryParams) =>
-      GetEventFAQSections({
+      GetEventFaqSections({
         ...params,
         eventId,
       }),

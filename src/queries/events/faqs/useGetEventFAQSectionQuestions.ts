@@ -1,13 +1,13 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { FAQ } from "@src/interfaces";
+import { Faq } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
-import { EVENT_FAQ_SECTION_QUERY_KEY } from "./useGetEventFAQSection";
+import { EVENT_FAQ_SECTION_QUERY_KEY } from "./useGetEventFaqSection";
 
 /**
  * @category Keys
@@ -25,7 +25,7 @@ export const EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY = (
 export const SET_EVENT_FAQ_SECTION_QUESTIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventFAQSectionQuestions>>
+  response: Awaited<ReturnType<typeof GetEventFaqSectionQuestions>>
 ) => {
   client.setQueryData(
     EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY(...keyParams),
@@ -33,7 +33,7 @@ export const SET_EVENT_FAQ_SECTION_QUESTIONS_QUERY_DATA = (
   );
 };
 
-interface GetEventFAQSectionQuestionsProps extends InfiniteQueryParams {
+interface GetEventFaqSectionQuestionsProps extends InfiniteQueryParams {
   sectionId: string;
   eventId: string;
 }
@@ -42,7 +42,7 @@ interface GetEventFAQSectionQuestionsProps extends InfiniteQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetEventFAQSectionQuestions = async ({
+export const GetEventFaqSectionQuestions = async ({
   sectionId,
   eventId,
   pageParam,
@@ -50,7 +50,7 @@ export const GetEventFAQSectionQuestions = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetEventFAQSectionQuestionsProps): Promise<ConnectedXMResponse<FAQ[]>> => {
+}: GetEventFaqSectionQuestionsProps): Promise<ConnectedXMResponse<Faq[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
     `/events/${eventId}/faqs/${sectionId}/questions`,
@@ -69,7 +69,7 @@ export const GetEventFAQSectionQuestions = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventFAQSectionQuestionsectionQuestions = (
+export const useGetEventFaqSectionQuestionsectionQuestions = (
   eventId: string = "",
   sectionId: string = "",
   params: Omit<
@@ -77,15 +77,15 @@ export const useGetEventFAQSectionQuestionsectionQuestions = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventFAQSectionQuestions>>
+    Awaited<ReturnType<typeof GetEventFaqSectionQuestions>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventFAQSectionQuestions>>
+    Awaited<ReturnType<typeof GetEventFaqSectionQuestions>>
   >(
     EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY(eventId, sectionId),
     (params: InfiniteQueryParams) =>
-      GetEventFAQSectionQuestions({
+      GetEventFaqSectionQuestions({
         ...params,
         eventId,
         sectionId,

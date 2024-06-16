@@ -4,8 +4,8 @@ import {
   useConnectedSingleQuery,
 } from "../../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { FAQTranslation } from "@src/interfaces";
-import { EVENT_FAQ_SECTION_QUESTION_TRANSLATIONS_QUERY_KEY } from "./useGetEventFAQSectionQuestionTranslations";
+import { FaqTranslation } from "@src/interfaces";
+import { EVENT_FAQ_SECTION_QUESTION_TRANSLATIONS_QUERY_KEY } from "./useGetEventFaqSectionQuestionTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
@@ -35,7 +35,7 @@ export const SET_EVENT_FAQ_SECTION_QUESTION_TRANSLATION_QUERY_DATA = (
   keyParams: Parameters<
     typeof EVENT_FAQ_SECTION_QUESTION_TRANSLATION_QUERY_KEY
   >,
-  response: Awaited<ReturnType<typeof GetEventFAQSectionQuestionTranslation>>
+  response: Awaited<ReturnType<typeof GetEventFaqSectionQuestionTranslation>>
 ) => {
   client.setQueryData(
     EVENT_FAQ_SECTION_QUESTION_TRANSLATION_QUERY_KEY(...keyParams),
@@ -43,7 +43,7 @@ export const SET_EVENT_FAQ_SECTION_QUESTION_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetEventFAQSectionQuestionTranslationProps extends SingleQueryParams {
+interface GetEventFaqSectionQuestionTranslationProps extends SingleQueryParams {
   eventId: string;
   sectionId: string;
   questionId: string;
@@ -54,14 +54,14 @@ interface GetEventFAQSectionQuestionTranslationProps extends SingleQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetEventFAQSectionQuestionTranslation = async ({
+export const GetEventFaqSectionQuestionTranslation = async ({
   eventId,
   sectionId,
   questionId,
   locale,
   adminApiParams,
-}: GetEventFAQSectionQuestionTranslationProps): Promise<
-  ConnectedXMResponse<FAQTranslation>
+}: GetEventFaqSectionQuestionTranslationProps): Promise<
+  ConnectedXMResponse<FaqTranslation>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -73,17 +73,17 @@ export const GetEventFAQSectionQuestionTranslation = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventFAQSectionQuestionTranslation = (
+export const useGetEventFaqSectionQuestionTranslation = (
   eventId: string = "",
   sectionId: string = "",
   questionId: string = "",
   locale: string = "",
   options: SingleQueryOptions<
-    ReturnType<typeof GetEventFAQSectionQuestionTranslation>
+    ReturnType<typeof GetEventFaqSectionQuestionTranslation>
   > = {}
 ) => {
   return useConnectedSingleQuery<
-    ReturnType<typeof GetEventFAQSectionQuestionTranslation>
+    ReturnType<typeof GetEventFaqSectionQuestionTranslation>
   >(
     EVENT_FAQ_SECTION_QUESTION_TRANSLATION_QUERY_KEY(
       eventId,
@@ -92,7 +92,7 @@ export const useGetEventFAQSectionQuestionTranslation = (
       locale
     ),
     (params) =>
-      GetEventFAQSectionQuestionTranslation({
+      GetEventFaqSectionQuestionTranslation({
         ...params,
         eventId,
         sectionId,

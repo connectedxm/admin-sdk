@@ -1,6 +1,6 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { EventRegistrationBypass } from "@src/interfaces";
+import { RegistrationBypass } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -33,7 +33,7 @@ export const GetEventRegistrationBypassList = async ({
   search,
   adminApiParams,
 }: GetEventRegistrationBypassListProps): Promise<
-  ConnectedXMResponse<EventRegistrationBypass[]>
+  ConnectedXMResponse<RegistrationBypass[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/bypass`, {

@@ -5,7 +5,7 @@ import {
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { EventRegistrationBypass } from "@src/interfaces";
+import { RegistrationBypass } from "@src/interfaces";
 import { EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY } from "./useGetEventRegistrationBypassList";
 import { QueryClient } from "@tanstack/react-query";
 
@@ -50,7 +50,7 @@ export const GetEventRegistrationBypass = async ({
   bypassId,
   adminApiParams,
 }: GetEventRegistrationBypassProps): Promise<
-  ConnectedXMResponse<EventRegistrationBypass>
+  ConnectedXMResponse<RegistrationBypass>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/bypass/${bypassId}`);

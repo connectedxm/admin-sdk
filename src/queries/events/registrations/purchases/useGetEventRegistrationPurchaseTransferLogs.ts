@@ -1,6 +1,6 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { PurchaseTransferLog } from "@src/interfaces";
+import { TransferLog } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_REGISTRATION_PURCHASE_QUERY_KEY } from "./useGetEventRegistrationPurchase";
 import {
@@ -31,7 +31,7 @@ export const SET_EVENT_REGISTRATION_PURCHASE_TRANSFER_LOGS_QUERY_DATA = (
   keyParams: Parameters<
     typeof EVENT_REGISTRATION_PURCHASE_TRANSFER_LOGS_QUERY_KEY
   >,
-  response: Awaited<ReturnType<typeof GetEventRegistrationPurchaseTransferLogs>>
+  response: Awaited<ReturnType<typeof GetEventRegistrationTransferLogs>>
 ) => {
   client.setQueryData(
     EVENT_REGISTRATION_PURCHASE_TRANSFER_LOGS_QUERY_KEY(...keyParams),
@@ -39,8 +39,7 @@ export const SET_EVENT_REGISTRATION_PURCHASE_TRANSFER_LOGS_QUERY_DATA = (
   );
 };
 
-interface GetEventRegistrationPurchaseTransferLogsProps
-  extends InfiniteQueryParams {
+interface GetEventRegistrationTransferLogsProps extends InfiniteQueryParams {
   eventId: string;
   registrationId: string;
   purchaseId: string;
@@ -50,7 +49,7 @@ interface GetEventRegistrationPurchaseTransferLogsProps
  * @category Queries
  * @group Events
  */
-export const GetEventRegistrationPurchaseTransferLogs = async ({
+export const GetEventRegistrationTransferLogs = async ({
   eventId,
   registrationId,
   purchaseId,
@@ -59,8 +58,8 @@ export const GetEventRegistrationPurchaseTransferLogs = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetEventRegistrationPurchaseTransferLogsProps): Promise<
-  ConnectedXMResponse<PurchaseTransferLog[]>
+}: GetEventRegistrationTransferLogsProps): Promise<
+  ConnectedXMResponse<TransferLog[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
@@ -80,7 +79,7 @@ export const GetEventRegistrationPurchaseTransferLogs = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventRegistrationPurchaseTransferLogs = (
+export const useGetEventRegistrationTransferLogs = (
   eventId: string = "",
   registrationId: string = "",
   purchaseId: string = "",
@@ -89,11 +88,11 @@ export const useGetEventRegistrationPurchaseTransferLogs = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventRegistrationPurchaseTransferLogs>>
+    Awaited<ReturnType<typeof GetEventRegistrationTransferLogs>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventRegistrationPurchaseTransferLogs>>
+    Awaited<ReturnType<typeof GetEventRegistrationTransferLogs>>
   >(
     EVENT_REGISTRATION_PURCHASE_TRANSFER_LOGS_QUERY_KEY(
       eventId,
@@ -101,7 +100,7 @@ export const useGetEventRegistrationPurchaseTransferLogs = (
       purchaseId
     ),
     (params: InfiniteQueryParams) =>
-      GetEventRegistrationPurchaseTransferLogs({
+      GetEventRegistrationTransferLogs({
         ...params,
         eventId,
         registrationId,

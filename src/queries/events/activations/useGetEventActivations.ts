@@ -1,6 +1,6 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { EventActivation } from "@src/interfaces";
+import { Activation } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -45,9 +45,7 @@ export const GetEventActivations = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetEventActivationsProps): Promise<
-  ConnectedXMResponse<EventActivation[]>
-> => {
+}: GetEventActivationsProps): Promise<ConnectedXMResponse<Activation[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/activations`, {
     params: {

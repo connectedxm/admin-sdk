@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 
-import { RegistrationChoiceSubQuestion } from "@src/interfaces";
+import { RegistrationQuestionChoiceSubQuestion } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -57,7 +57,7 @@ export const GetEventQuestionChoiceSubQuestions = async ({
   search,
   adminApiParams,
 }: GetEventQuestionChoiceSubQuestionsProps): Promise<
-  ConnectedXMResponse<RegistrationChoiceSubQuestion[]>
+  ConnectedXMResponse<RegistrationQuestionChoiceSubQuestion[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(

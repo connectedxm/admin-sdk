@@ -5,8 +5,8 @@ import {
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { FAQSection } from "@src/interfaces";
-import { EVENT_FAQ_SECTIONS_QUERY_KEY } from "./useGetEventFAQSections";
+import { FaqSection } from "@src/interfaces";
+import { EVENT_FAQ_SECTIONS_QUERY_KEY } from "./useGetEventFaqSections";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
@@ -25,12 +25,12 @@ export const EVENT_FAQ_SECTION_QUERY_KEY = (
 export const SET_EVENT_FAQ_SECTION_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_FAQ_SECTION_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventFAQSection>>
+  response: Awaited<ReturnType<typeof GetEventFaqSection>>
 ) => {
   client.setQueryData(EVENT_FAQ_SECTION_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventFAQSectionProps extends SingleQueryParams {
+interface GetEventFaqSectionProps extends SingleQueryParams {
   eventId: string;
   sectionId: string;
 }
@@ -39,11 +39,11 @@ interface GetEventFAQSectionProps extends SingleQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetEventFAQSection = async ({
+export const GetEventFaqSection = async ({
   eventId,
   sectionId,
   adminApiParams,
-}: GetEventFAQSectionProps): Promise<ConnectedXMResponse<FAQSection>> => {
+}: GetEventFaqSectionProps): Promise<ConnectedXMResponse<FaqSection>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/faqs/${sectionId}`);
   return data;
@@ -52,15 +52,15 @@ export const GetEventFAQSection = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventFAQSection = (
+export const useGetEventFaqSection = (
   eventId: string = "",
   sectionId: string = "",
-  options: SingleQueryOptions<ReturnType<typeof GetEventFAQSection>> = {}
+  options: SingleQueryOptions<ReturnType<typeof GetEventFaqSection>> = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventFAQSection>>(
+  return useConnectedSingleQuery<ReturnType<typeof GetEventFaqSection>>(
     EVENT_FAQ_SECTION_QUERY_KEY(eventId, sectionId),
     (params: SingleQueryParams) =>
-      GetEventFAQSection({
+      GetEventFaqSection({
         eventId: eventId,
         sectionId: sectionId,
         ...params,

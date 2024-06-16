@@ -1,3 +1,10 @@
+export interface ConnectedXMResponse<TData> {
+  status: string;
+  message: string;
+  count?: number;
+  data: TData;
+}
+
 export enum Currency {
   USD = "USD",
 }
@@ -106,7 +113,7 @@ export enum SupportTicketType {
   inquiry = "inquiry",
 }
 
-export enum ContentTypeFormat {
+export enum ChannelFormat {
   article = "article",
   podcast = "podcast",
   video = "video",
@@ -186,12 +193,12 @@ export interface Account extends BaseAccount {
   state: string | null;
   country: string | null;
   zip: string | null;
-  accountTiers: BaseAccountTier[];
+  accountTiers: BaseTier[];
   createdAt: string;
   updatedAt: string;
 }
 
-export interface BaseAccountTier {
+export interface BaseTier {
   id: string;
   slug: string;
   name: string;
@@ -200,7 +207,7 @@ export interface BaseAccountTier {
   internal: boolean;
 }
 
-export interface AccountTier extends BaseAccountTier {
+export interface Tier extends BaseTier {
   iconName: string;
   imageId: string;
   image: BaseImage;
@@ -421,6 +428,24 @@ export interface BenefitTranslation {
   updatedAt: string;
 }
 
+export type CognitoUserStatus =
+  | "UNCONFIRMED"
+  | "CONFIRMED"
+  | "ARCHIVED"
+  | "COMPROMISED"
+  | "RESET_REQUIRED"
+  | "FORCE_CHANGE_PASSWORD"
+  | "DISABLED"
+  | "UNKNOWN";
+
+export interface CognitoUser {
+  username: string;
+  status: CognitoUserStatus;
+  enabled: boolean;
+  email: string;
+  emailVerified: boolean;
+}
+
 export interface BaseContent {
   id: string;
   slug: string;
@@ -432,7 +457,7 @@ export interface BaseContent {
   description: string | null;
   duration: string | null;
   contentTypeId: string;
-  contentType: BaseContentType;
+  contentType: BaseChannel;
 }
 
 export interface Content extends BaseContent {
@@ -461,19 +486,19 @@ export interface ContentTranslation {
   updatedAt: string;
 }
 
-export interface BaseContentType {
+export interface BaseChannel {
   id: string;
   slug: string;
   name: string;
   description: string | null;
   priority: number;
   visible: boolean;
-  format: ContentTypeFormat;
+  format: ChannelFormat;
   imageId: string;
   image: BaseImage;
 }
 
-export interface ContentType extends BaseContentType {
+export interface Channel extends BaseChannel {
   externalUrl: string | null;
   appleUrl: string | null;
   spotifyUrl: string | null;
@@ -488,7 +513,7 @@ export interface ContentType extends BaseContentType {
   };
 }
 
-export interface ContentTypeTranslation {
+export interface ChannelTranslation {
   id: string;
   locale: string;
   name: string;
@@ -588,6 +613,12 @@ export interface EventAddOnTranslation {
   shortDescription: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export enum EventEmailType {
+  confirmation = "confirmation",
+  cancellation = "cancellation",
+  reminder = "reminder",
 }
 
 export interface BaseEventEmail {
@@ -1257,6 +1288,17 @@ export interface Payment extends BasePayment {
   subscription: BaseSubscription;
 }
 
+export interface PaymentIntegration {
+  id: string;
+  type: "stripe" | "paypal";
+  connectionId: string;
+  enabled: boolean | null;
+  stripe?: any | null;
+  paypal?: any | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface BaseRegistrationQuestionChoice {
   id: number;
   value: string;
@@ -1407,7 +1449,7 @@ export interface BaseRegistrationSection {
 export interface RegistrationSection extends BaseRegistrationSection {
   questions: BaseRegistrationSectionQuestion[];
   eventTickets: BaseTicket[];
-  accountTiers: AccountTier[];
+  accountTiers: BaseTier[];
   createdAt: string;
   updatedAt: string;
 }
@@ -1584,7 +1626,7 @@ export interface Session extends BaseSession {
   streamInput: BaseStreamInput | null;
 }
 
-export interface SesionTranslation {
+export interface SessionTranslation {
   id: number;
   locale: string;
   name: string;
@@ -1679,6 +1721,14 @@ export interface StreamInput extends BaseStreamInput {
   createdAt: string;
 }
 
+export interface StreamInputOutput {
+  status: string;
+  enabled: boolean;
+  url: string;
+  streamKey: string;
+  uid: string;
+}
+
 export enum SubscriptionProductPriceType {
   flat = "flat",
   payWhatYouWant = "payWhatYouWant",
@@ -1723,9 +1773,18 @@ export interface SubscriptionProduct extends BaseSubscriptionProduct {
   updatedAt: string;
 }
 
+export enum SubscriptionStatus {
+  active = "active",
+  canceled = "canceled",
+  paused = "paused",
+  trialing = "trialing",
+  past_due = "past_due",
+  unpaid = "unpaid",
+}
+
 export interface BaseSubscription {
   id: string;
-  status: string;
+  status: SubscriptionStatus;
   expiresAt: string;
   cancelAtEnd: boolean;
   integrationId: string | null;
@@ -1738,6 +1797,18 @@ export interface Subscription extends BaseSubscription {
   account: BaseAccount;
   priceId: string;
   price: BaseSubscriptionProductPrice;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSubscriptionPayment {
+  id: string;
+  amount: number;
+  currency: string;
+}
+
+export interface SubscriptionPayment extends BaseSubscriptionPayment {
+  subscription: BaseSubscription;
   createdAt: string;
   updatedAt: string;
 }
@@ -1818,7 +1889,7 @@ export interface BaseTicket {
   minQuantityPerSale: number;
   maxQuantityPerSale: number;
   emailDomains: string | null;
-  allowedTiers: BaseAccountTier[];
+  allowedTiers: BaseTier[];
   minReservationStart: string | null;
   reservationStart: string | null;
   maxReservationStart: string | null;

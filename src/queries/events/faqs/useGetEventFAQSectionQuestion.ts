@@ -4,8 +4,8 @@ import {
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { FAQ } from "@src/interfaces";
-import { EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY } from "./useGetEventFAQSectionQuestions";
+import { Faq } from "@src/interfaces";
+import { EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY } from "./useGetEventFaqSectionQuestions";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
@@ -26,7 +26,7 @@ export const EVENT_FAQ_SECTION_QUESTION_QUERY_KEY = (
 export const SET_EVENT_FAQ_SECTION_QUESTION_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_FAQ_SECTION_QUESTION_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventFAQSectionQuestion>>
+  response: Awaited<ReturnType<typeof GetEventFaqSectionQuestion>>
 ) => {
   client.setQueryData(
     EVENT_FAQ_SECTION_QUESTION_QUERY_KEY(...keyParams),
@@ -34,7 +34,7 @@ export const SET_EVENT_FAQ_SECTION_QUESTION_QUERY_DATA = (
   );
 };
 
-interface GetEventFAQSectionQuestionProps extends SingleQueryParams {
+interface GetEventFaqSectionQuestionProps extends SingleQueryParams {
   eventId: string;
   sectionId: string;
   questionId: string;
@@ -44,12 +44,12 @@ interface GetEventFAQSectionQuestionProps extends SingleQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetEventFAQSectionQuestion = async ({
+export const GetEventFaqSectionQuestion = async ({
   eventId,
   sectionId,
   questionId,
   adminApiParams,
-}: GetEventFAQSectionQuestionProps): Promise<ConnectedXMResponse<FAQ>> => {
+}: GetEventFaqSectionQuestionProps): Promise<ConnectedXMResponse<Faq>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
     `/events/${eventId}/faqs/${sectionId}/questions/${questionId}`
@@ -60,18 +60,18 @@ export const GetEventFAQSectionQuestion = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventFAQSectionQuestion = (
+export const useGetEventFaqSectionQuestion = (
   eventId: string = "",
   sectionId: string = "",
   questionId: string = "",
   options: SingleQueryOptions<
-    ReturnType<typeof GetEventFAQSectionQuestion>
+    ReturnType<typeof GetEventFaqSectionQuestion>
   > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventFAQSectionQuestion>>(
+  return useConnectedSingleQuery<ReturnType<typeof GetEventFaqSectionQuestion>>(
     EVENT_FAQ_SECTION_QUESTION_QUERY_KEY(eventId, sectionId, questionId),
     (params: SingleQueryParams) =>
-      GetEventFAQSectionQuestion({
+      GetEventFaqSectionQuestion({
         sectionId,
         eventId: eventId,
         questionId: questionId,

@@ -1,136 +1,284 @@
+export enum Currency {
+  USD = "USD",
+}
+
+export enum PageType {
+  about = "about",
+  privacy = "privacy",
+  terms = "terms",
+  team = "team",
+}
+
+export enum UserRole {
+  manager = "manager",
+  staff = "staff",
+}
+
+export enum AccountType {
+  account = "account",
+  team = "team",
+}
+
+export enum PushDeviceAppType {
+  EVENTXM = "EVENTXM",
+  COMMUNITYXM = "COMMUNITYXM",
+}
+
+export enum PushService {
+  apn = "apn",
+  firebase = "firebase",
+  huawei = "huawei",
+  xiaomi = "xiaomi",
+}
+
+export enum DelegateRole {
+  manager = "manager",
+  member = "member",
+}
+
+export enum EventType {
+  physical = "physical",
+  virtual = "virtual",
+  hybrid = "hybrid",
+}
+
+export enum EventSource {
+  admin = "admin",
+  moderator = "moderator",
+  account = "account",
+}
+
+export enum RegistrationStatus {
+  registered = "registered",
+  checkedIn = "checkedIn",
+  checkedOut = "checkedOut",
+  cancelled = "cancelled",
+  draft = "draft",
+}
+
+export enum TicketVisibility {
+  public = "public",
+  private = "private",
+}
+
+export enum TicketEventAccessLevel {
+  regular = "regular",
+  virtual = "virtual",
+  vip = "vip",
+}
+
+export enum GroupAccess {
+  public = "public",
+  private = "private",
+}
+
+export enum GroupMembershipRole {
+  member = "member",
+  moderator = "moderator",
+}
+
+export enum NotificationType {
+  ANNOUNCEMENT = "ANNOUNCEMENT",
+  FOLLOW = "FOLLOW",
+  INVITATION = "INVITATION",
+  TRANSFER = "TRANSFER",
+  LIKE = "LIKE",
+  COMMENT = "COMMENT",
+  RESHARE = "RESHARE",
+  EVENT = "EVENT",
+  ACTIVITY = "ACTIVITY",
+}
+
+export enum AdvertisementType {
+  square = "square",
+  rectangle = "rectangle",
+}
+
+export enum ImageType {
+  admin = "admin",
+  people = "people",
+  activity = "activity",
+  banner = "banner",
+}
+
+export enum SupportTicketType {
+  support = "support",
+  inquiry = "inquiry",
+}
+
+export enum ContentTypeFormat {
+  article = "article",
+  podcast = "podcast",
+  video = "video",
+}
+
+export enum ContentStatus {
+  draft = "draft",
+  published = "published",
+}
+
+export enum VideoStatus {
+  pendingupload = "pendingupload",
+  downloading = "downloading",
+  queued = "queued",
+  inprogress = "inprogress",
+  ready = "ready",
+  error = "error",
+}
+
+export enum RegistrationQuestionType {
+  text = "text",
+  textarea = "textarea",
+  number = "number",
+  time = "time",
+  date = "date",
+  toggle = "toggle",
+  select = "select",
+  radio = "radio",
+  checkbox = "checkbox",
+  search = "search",
+  file = "file",
+}
+
+export enum ReportType {
+  organization = "organization",
+  event = "event",
+}
+
+export enum OrganizationTriggerType {
+  postAuth = "postAuth",
+}
+
 export interface BaseAccount {
-  organizationId: true;
-  id: true;
+  organizationId: string;
+  id: string;
   accountType: true;
-  firstName: true;
-  lastName: true;
-  email: true;
-  verified: true;
-  username: true;
-  imageId: true;
-  image: Image;
-  featured: true;
-  timezone: true;
-  internalRefId: true;
+  firstName: string | null;
+  lastName: string | null;
+  email: string;
+  verified: boolean;
+  username: string;
+  imageId: string;
+  image: BaseImage;
+  featured: boolean;
+  timezone: string | null;
+  internalRefId: string | null;
 }
 
 export interface Account extends BaseAccount {
-  phone: true;
-  interests: BaseInterest;
-  title: true;
-  company: true;
-  bio: true;
-  website: true;
-  facebook: true;
-  twitter: true;
-  instagram: true;
-  linkedIn: true;
-  tikTok: true;
-  video: true;
-  youtube: true;
-  dietaryRestrictions: true;
-  address1: true;
-  address2: true;
-  city: true;
-  state: true;
-  country: true;
-  zip: true;
-  accountTiers: BaseAccountTier;
-  createdAt: true;
-  updatedAt: true;
-}
-
-export interface AccountShare extends Account {
-  _count: undefined;
+  phone: string | null;
+  interests: BaseInterest[];
+  title: string | null;
+  company: string | null;
+  bio: string | null;
+  website: string | null;
+  facebook: string | null;
+  twitter: string | null;
+  instagram: string | null;
+  linkedIn: string | null;
+  tikTok: string | null;
+  video: string | null;
+  youtube: string | null;
+  dietaryRestrictions: string | null;
+  address1: string | null;
+  address2: string | null;
+  city: string | null;
+  state: string | null;
+  country: string | null;
+  zip: string | null;
+  accountTiers: BaseAccountTier[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseAccountTier {
-  id: true;
-  slug: true;
-  name: true;
-  color: true;
-  priority: true;
-  internal: true;
+  id: string;
+  slug: string;
+  name: string;
+  color: string | null;
+  priority: number;
+  internal: boolean;
 }
 
 export interface AccountTier extends BaseAccountTier {
-  iconName: true;
-  imageId: true;
+  iconName: string;
+  imageId: string;
   image: BaseImage;
-  description: true;
-  createdAt: true;
-  updatedAt: true;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
   _count: {
     accounts: number;
   };
 }
 
 export interface BaseActivationCompletion {
-  id: true;
-  eventId: true;
-  eventActivationId: true;
+  id: string;
+  eventId: string;
+  eventActivationId: string;
   eventActivation: BaseActivation;
-  earnedPoints: true;
+  earnedPoints: number;
+  accountId: string;
 }
 
 export interface ActivationCompletion extends BaseActivationCompletion {
-  accountId: true;
   account: BaseAccount;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseActivation {
-  id: true;
-  slug: true;
-  name: true;
-  shortDescription: true;
-  maxPoints: true;
-  startAfter: true;
-  protected: true;
+  id: string;
+  slug: string;
+  name: string;
+  shortDescription: string;
+  maxPoints: number;
+  startAfter: string | null;
+  protected: false;
 }
 
 export interface Activation extends BaseActivation {
-  eventId: true;
+  eventId: string;
   event: BaseEvent;
-  managerId: true;
-  manager: BaseAccount;
-  imageId: true;
-  image: BaseImage;
-  protectionCode: true;
-  longDescription: true;
-  createdAt: true;
-  updatedAt: true;
+  managerId: string | null;
+  manager: BaseAccount | null;
+  imageId: string | null;
+  image: BaseImage | null;
+  protectionCode: number | null;
+  longDescription: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface ActivationTranslation {
-  id: true;
-  locale: true;
-  name: true;
-  shortDescription: true;
-  longDescription: true;
-  createdAt: true;
-  updatedAt: true;
+  id: number;
+  locale: string;
+  name: string;
+  shortDescription: string;
+  longDescription: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseActivity {
-  id: true;
-  message: true;
-  html: true;
-  text: true;
-  readMore: true;
+  id: string;
+  message: string;
+  readMore: boolean;
   linkPreview: BaseLinkPreview;
-  giphyId: true;
+  giphyId: string | null;
+  imageId: string;
   image: BaseImage;
-  imageId: true;
+  accountId: string;
   account: BaseAccount;
-  group: BaseGroup;
-  event: BaseEvent;
-  content: BaseContent;
-  interests: BaseInterest;
-  interestsId: true;
-  createdAt: true;
-  updatedAt: true;
+  groupId: string | null;
+  group: BaseGroup | null;
+  eventId: string | null;
+  event: BaseEvent | null;
+  contentId: string | null;
+  content: BaseContent | null;
+  interests: BaseInterest[];
+  createdAt: string;
+  updatedAt: string;
   _count: {
     likes: number;
     comments: number;
@@ -140,43 +288,43 @@ export interface BaseActivity {
 }
 
 export interface Activity extends BaseActivity {
-  html: true;
-  text: true;
-  messageExtended: true;
+  html: string | null;
+  text: string | null;
+  messageExtended: boolean;
 }
 
-export interface Advertisement {
-  id: true;
-  organizationId: true;
-  advertisementId: true;
+export interface AdvertisementClick {
+  id: string;
+  organizationId: string;
+  advertisementId: string;
   advertisement: BaseAdvertisement;
-  accountId: true;
-  account: BaseAccount;
-  createdAt: true;
-  updatedAt: true;
+  accountId: string | null;
+  account: BaseAccount | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseAdvertisement {
-  id: true;
-  type: true;
-  link: true;
-  title: true;
-  description: true;
-  imageId: true;
-  image: BaseImage;
-  startDate: true;
-  endDate: true;
-  weight: true;
+  id: string;
+  type: AdvertisementType;
+  link: string;
+  title: string;
+  description: string | null;
+  imageId: string | null;
+  image: BaseImage | null;
+  startDate: string;
+  endDate: string | null;
+  weight: number;
+  accountId: string | null;
+  eventId: string | null;
 }
 
 export interface Advertisement extends BaseAdvertisement {
-  accountId: true;
-  account: BaseAccount;
-  eventId: true;
-  event: BaseEvent;
-  eventOnly: true;
-  createdAt: true;
-  updatedAt: true;
+  account: BaseAccount | null;
+  event: BaseEvent | null;
+  eventOnly: boolean;
+  createdAt: string;
+  updatedAt: string;
   _count: {
     views: number;
     clicks: number;
@@ -184,253 +332,262 @@ export interface Advertisement extends BaseAdvertisement {
 }
 
 export interface AdvertisementView {
-  id: true;
-  organizationId: true;
-  advertisementId: true;
+  id: string;
+  organizationId: string;
+  advertisementId: string;
   advertisement: Advertisement;
-  accountId: true;
-  account: Account;
-  createdAt: true;
-  updatedAt: true;
+  accountId: string | null;
+  account: Account | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseAnnouncement {
   id: true;
-  slug: true;
+  slug: string;
   title: true;
   email: true;
   push: true;
   sms: true;
+  accountId: string | null;
+  creatorId: string | null;
+  eventId: string | null;
+  groupId: string | null;
+  ticketId: string | null;
+  userId: string | null;
 }
 
 export interface Announcement extends BaseAnnouncement {
   _count: {
     notifications: number;
   };
-  verifiedAccounts: true;
-  account: BaseAccount;
-  accountId: true;
-  creator: BaseAccount;
-  creatorId: true;
-  event: BaseEvent;
-  eventId: true;
-  group: BaseGroup;
-  groupId: true;
-  sponsorshipLevelId: true;
-  sponsorshipLevel: BaseSponsorship;
-  ticketId: true;
-  ticket: BaseTicket;
-  userId: true;
-  user: BaseUser;
-  html: true;
-  message: true;
-  updatedAt: true;
-  createdAt: true;
+  verifiedAccounts: boolean;
+  account: BaseAccount | null;
+  creator: BaseAccount | null;
+  event: BaseEvent | null;
+  group: BaseGroup | null;
+  sponsorshipLevelId: string | null;
+  sponsorshipLevel: BaseSponsorship | null;
+  ticket: BaseTicket | null;
+  user: BaseUser | null;
+  html: string | null;
+  message: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 
 export interface BenefitClick {
-  id: true;
-  benefitId: true;
+  id: string;
+  benefitId: string;
   benefit: BaseBenefit;
-  accountId: true;
-  account: BaseAccount;
-  createdAt: true;
-  updatedAt: true;
+  accountId: string | null;
+  account: BaseAccount | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseBenefit {
-  id: true;
-  slug: true;
-  link: true;
-  imageId: true;
-  image: BaseImage;
-  title: true;
-  description: true;
-  startDate: true;
-  endDate: true;
-  priority: true;
+  id: string;
+  slug: string;
+  link: string;
+  imageId: string | null;
+  image: BaseImage | null;
+  title: string;
+  description: string | null;
+  startDate: string;
+  endDate: string | null;
+  priority: number;
 }
 
 export interface Benefit extends BaseBenefit {
-  managerId: true;
-  manager: BaseAccount;
-  eventId: true;
-  event: BaseEvent;
-  eventOnly: true;
-  createdAt: true;
-  updatedAt: true;
+  managerId: string | null;
+  manager: BaseAccount | null;
+  eventId: string | null;
+  event: BaseEvent | null;
+  eventOnly: boolean;
+  createdAt: string;
+  updatedAt: string;
   _count: {
     clicks: number;
   };
 }
 
 export interface BenefitTranslation {
-  id: true;
-  locale: true;
-  title: true;
-  description: true;
-  createdAt: true;
-  updatedAt: true;
+  id: number;
+  locale: string;
+  title: string;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseContent {
-  id: true;
-  slug: true;
-  featured: true;
-  status: true;
-  published: true;
-  visible: true;
-  title: true;
-  description: true;
-  duration: true;
-  contentTypeId: true;
+  id: string;
+  slug: string;
+  featured: boolean;
+  status: ContentStatus;
+  published: string | null;
+  visible: boolean;
+  title: string | null;
+  description: string | null;
+  duration: string | null;
+  contentTypeId: string;
   contentType: BaseContentType;
 }
 
 export interface Content extends BaseContent {
-  body: true;
-  imageUrl: true;
-  audioUrl: true;
-  videoUrl: true;
-  externalUrl: true;
-  appleUrl: true;
-  spotifyUrl: true;
-  googleUrl: true;
-  youtubeUrl: true;
-  authors: BaseAccount;
-  mentions: BaseAccount;
-  createdAt: true;
-  updatedAt: true;
+  body: string | null;
+  imageUrl: string | null;
+  audioUrl: string | null;
+  videoUrl: string | null;
+  externalUrl: string | null;
+  appleUrl: string | null;
+  spotifyUrl: string | null;
+  googleUrl: string | null;
+  youtubeUrl: string | null;
+  authors: BaseAccount[];
+  mentions: BaseAccount[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface ContentTranslation {
-  id: true;
-  locale: true;
-  title: true;
-  description: true;
-  body: true;
-  createdAt: true;
-  updatedAt: true;
+  id: number;
+  locale: string;
+  title: string;
+  description: string | null;
+  body: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseContentType {
-  id: true;
-  slug: true;
-  name: true;
-  description: true;
-  priority: true;
-  visible: true;
-  format: true;
-  imageId: true;
+  id: string;
+  slug: string;
+  name: string;
+  description: string | null;
+  priority: number;
+  visible: boolean;
+  format: ContentTypeFormat;
+  imageId: string;
   image: BaseImage;
 }
 
 export interface ContentType extends BaseContentType {
-  externalUrl: true;
-  appleUrl: true;
-  spotifyUrl: true;
-  googleUrl: true;
-  youtubeUrl: true;
-  createdAt: true;
-  updatedAt: true;
-  hosts: BaseAccount;
+  externalUrl: string | null;
+  appleUrl: string | null;
+  spotifyUrl: string | null;
+  googleUrl: string | null;
+  youtubeUrl: string | null;
+  createdAt: string;
+  updatedAt: string;
+  hosts: BaseAccount[];
   _count: {
-    subscribers: true;
-    contents: true;
+    subscribers: number;
+    contents: number;
   };
 }
 
 export interface ContentTypeTranslation {
-  id: true;
-  locale: true;
-  name: true;
-  description: true;
-  createdAt: true;
-  updatedAt: true;
+  id: string;
+  locale: string;
+  name: string;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseCoupon {
-  id: true;
-  code: true;
-  description: true;
-  active: true;
-  startDate: true;
-  endDate: true;
-  discountAmount: true;
-  discountPercent: true;
-  quantityMin: true;
-  quantityMax: true;
-  amountMin: true;
-  amountMax: true;
-  useLimit: true;
-  emailDomains: true;
+  id: string;
+  code: string;
+  description: string | null;
+  active: boolean;
+  startDate: string | null;
+  endDate: string | null;
+  discountAmount: number;
+  discountPercent: number;
+  quantityMin: number;
+  quantityMax: number | null;
+  amountMin: number;
+  amountMax: number | null;
+  useLimit: number | null;
+  emailDomains: string | null;
+  ticketId: string | null;
+  managerId: string | null;
 }
 
 export interface Coupon extends BaseCoupon {
-  ticketId: true;
-  ticket: BaseTicket;
-  managerId: true;
-  manager: BaseAccount;
-  createdAt: true;
-  updatedAt: true;
+  ticket: BaseTicket | null;
+  manager: BaseAccount | null;
+  createdAt: string;
+  updatedAt: string;
   _count: {
-    registrations: true;
+    registrations: number;
   };
 }
 
+export enum EmailReceiptStatus {
+  pending = "pending",
+  delivered = "delivered",
+  bounced = "bounced",
+  complaint = "complaint",
+  opened = "opened",
+}
+
 export interface BaseEmailReceipt {
-  id: true;
-  status: true;
-  from: true;
-  to: true;
-  replyTo: true;
-  subject: true;
-  account: BaseAccount;
-  createdAt: true;
-  updatedAt: true;
+  id: string;
+  status: EmailReceiptStatus;
+  from: string;
+  to: string;
+  replyTo: string | null;
+  subject: string;
+  accountId: string | null;
+  account: BaseAccount | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface EmailReceipt extends BaseEmailReceipt {
-  html: true;
-  text: true;
-  debug: true;
+  html: string;
+  text: string;
+  debug: string | null;
 }
 
 export interface BaseEventAddOn {
-  id: true;
-  name: true;
-  shortDescription: true;
-  supply: true;
-  price: true;
-  sortOrder: true;
-  minReservationStart: true;
-  reservationStart: true;
-  maxReservationStart: true;
-  minReservationEnd: true;
-  reservationEnd: true;
-  maxReservationEnd: true;
-  imageId: true;
-  image: BaseImage;
-  eventId: true;
-  createdAt: true;
-  updatedAt: true;
+  id: string;
+  name: string;
+  shortDescription: string;
+  supply: number | null;
+  price: number;
+  sortOrder: number;
+  minReservationStart: string | null;
+  reservationStart: string | null;
+  maxReservationStart: string | null;
+  minReservationEnd: string | null;
+  reservationEnd: string | null;
+  maxReservationEnd: string | null;
+  imageId: string | null;
+  image: BaseImage | null;
+  eventId: string | null;
+  createdAt: string;
+  updatedAt: string;
   _count: {
-    purchases: true;
+    purchases: number;
   };
 }
 
 export interface EventAddOn extends BaseEventAddOn {
-  longDescription: true;
-  event: BaseEvent;
+  longDescription: string | null;
+  event: BaseEvent | null;
 }
 
 export interface EventAddOnTranslation {
-  id: true;
-  locale: true;
-  name: true;
-  shortDescription: true;
-  createdAt: true;
-  updatedAt: true;
+  id: number;
+  locale: string;
+  name: string;
+  shortDescription: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseEventEmail {
@@ -442,24 +599,36 @@ export interface BaseEventEmail {
 }
 
 export interface EventEmail extends BaseEventEmail {
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface EventListing {}
 
+enum BadgeFieldType {
+  attribute = "attribute",
+  question = "question",
+  tier = "tier",
+  ticket = "ticket",
+}
+
+enum BadgeFieldTransformation {
+  uppercase = "uppercase",
+  lowercase = "lowercase",
+}
+
 export interface BaseEventOnSiteBadgeField {
-  id: true;
-  eventId: true;
-  name: true;
-  type: true;
-  lookup: true;
-  maxLength: true;
-  defaultValue: true;
-  transformation: true;
-  sortOrder: true;
-  createdAt: true;
-  updatedAt: true;
+  id: number;
+  eventId: string;
+  name: string;
+  type: BadgeFieldType;
+  lookup: string | null;
+  maxLength: number | null;
+  defaultValue: string | null;
+  transformation: BadgeFieldTransformation | null;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface EventOnSiteBadgeField extends BaseEventOnSiteBadgeField {
@@ -470,8 +639,8 @@ export interface BaseEventOnSite {
   eventId: true;
   authenticationCode: true;
   zplTemplate: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface EventOnSite extends BaseEventOnSite {
@@ -479,213 +648,223 @@ export interface EventOnSite extends BaseEventOnSite {
 }
 
 export interface BaseEventPage {
-  id: true;
-  slug: true;
-  title: true;
-  subtitle: true;
-  sortOrder: true;
+  id: string;
+  slug: string;
+  title: string;
+  subtitle: string | null;
+  sortOrder: number;
 }
 
 export interface EventPage extends BaseEventPage {
-  html: true;
-  createdAt: true;
-  updatedAt: true;
+  html: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface EventPageTranslation {
-  id: true;
-  locale: true;
-  title: true;
-  subtitle: true;
-  html: true;
-  createdAt: true;
-  updatedAt: true;
+  id: number;
+  locale: string;
+  title: string | null;
+  subtitle: string | null;
+  html: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseEvent {
-  id: true;
-  slug: true;
-  internalRefId: true;
-  featured: true;
-  visible: true;
-  approved: true;
-  source: true;
-  eventType: true;
-  name: true;
-  shortDescription: true;
-  eventStart: true;
-  eventEnd: true;
-  timezone: true;
-  externalUrl: true;
-  location: true;
-  address1: true;
-  address2: true;
-  city: true;
-  state: true;
-  country: true;
-  zip: true;
-  imageId: true;
-  registration: true;
-  registrationStart: true;
-  registrationEnd: true;
-  image: BaseImage;
+  id: string;
+  slug: string;
+  internalRefId: string | null;
+  featured: boolean;
+  visible: boolean;
+  approved: boolean;
+  source: EventSource;
+  eventType: EventType;
+  name: string;
+  shortDescription: string;
+  eventStart: string;
+  eventEnd: string;
+  timezone: string | null;
+  externalUrl: string | null;
+  location: string | null;
+  venue: string | null;
+  address1: string | null;
+  address2: string | null;
+  city: string | null;
+  state: string | null;
+  country: string | null;
+  zip: string | null;
+  imageId: string | null;
+  image: BaseImage | null;
+  registration: boolean;
+  registrationStart: string | null;
+  registrationEnd: string | null;
 }
 
 export interface Event extends BaseEvent {
-  longDescription: true;
-  meetingUrl: true;
-  venue: true;
-  venueMap: BaseImage;
-  venueMapId: true;
-  creatorId: true;
-  creator: BaseAccount;
-  registrationLimit: true;
-  publicRegistrants: true;
-  inviteOnly: true;
-  sessionsVisible: true;
-  speakersVisible: true;
-  checkinCode: true;
-  iosAppLink: true;
-  androidAppLink: true;
-  newActivityCreatorEmailNotification: true;
-  newActivityCreatorPushNotification: true;
-  seriesId: true;
-  series: BaseSeries;
-  streamInput: BaseStreamInput;
-  streamReplayId: true;
-  streamReplay: BaseVideo;
-  groupId: true;
-  group: BaseGroup;
-  groupOnly: true;
-  createdAt: true;
-  updatedAt: true;
+  longDescription: string | null;
+  meetingUrl: string | null;
+  venueMapId: string | null;
+  venueMap: BaseImage | null;
+  creatorId: string | null;
+  creator: BaseAccount | null;
+  registrationLimit: number | null;
+  publicRegistrants: boolean;
+  sessionsVisible: boolean;
+  speakersVisible: boolean;
+  checkinCode: number | null;
+  iosAppLink: string | null;
+  androidAppLink: string | null;
+  newActivityCreatorEmailNotification: boolean;
+  newActivityCreatorPushNotification: boolean;
+  seriesId: string | null;
+  series: BaseSeries | null;
+  streamInput: BaseStreamInput | null;
+  streamReplayId: string | null;
+  streamReplay: BaseVideo | null;
+  groupId: string | null;
+  group: BaseGroup | null;
+  groupOnly: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface EventTranslation {
-  id: true;
-  locale: true;
-  name: true;
-  shortDescription: true;
-  longDescription: true;
-  createdAt: true;
-  updatedAt: true;
+  id: number;
+  locale: string;
+  name: string;
+  shortDescription: string;
+  longDescription: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseFaqSection {
-  id: true;
-  slug: true;
-  name: true;
-  priority: true;
+  id: string;
+  slug: string;
+  name: string;
+  priority: number;
 }
 
 export interface FaqSection extends BaseFaqSection {
-  faqs: BaseFaqSection;
-  eventId: true;
+  faqs: BaseFaq[];
+  eventId: string;
   event: BaseEvent;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface FaqSectionTranslation {
-  id: true;
-  locale: true;
-  name: true;
-  createdAt: true;
-  updatedAt: true;
+  id: number;
+  locale: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
-export interface BaseFaqSection {
-  id: true;
-  slug: true;
-  visible: true;
-  question: true;
-  answer: true;
+export interface BaseFaq {
+  id: string;
+  slug: string;
+  visible: boolean;
+  question: string;
+  answer: string;
 }
 
-export interface FaqSection extends BaseFaqSection {
-  priority: true;
-  organizationId: true;
-  eventId: true;
-  sectionId: true;
+export interface Faq extends BaseFaq {
+  priority: number;
+  organizationId: string;
+  eventId: string;
+  sectionId: string;
   section: BaseFaqSection;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface FaqTranslation {
   id: true;
-  locale: true;
-  question: true;
-  answer: true;
-  createdAt: true;
-  updatedAt: true;
+  locale: string;
+  question: string;
+  answer: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export enum GroupInvitationStatus {
+  invited = "invited",
+  rejected = "rejected",
+  canceled = "canceled",
 }
 
 export interface BaseGroupInvitation {
-  id: true;
-  status: true;
-  groupId: true;
-  accountId: true;
-  inviterId: true;
-  createdAt: true;
-  updatedAt: true;
+  id: number;
+  status: GroupInvitationStatus;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface GroupInvitation extends BaseGroupInvitation {
   group: BaseGroup;
+  groupId: string;
+  accountId: string;
   account: BaseAccount;
+  inviterId: string;
   inviter: BaseAccount;
 }
 
 export interface BaseGroupMembership {
-  accountId: true;
+  accountId: string;
   account: BaseAccount;
-  groupId: true;
+  groupId: string;
   group: BaseGroup;
-  role: true;
+  role: GroupMembershipRole;
 }
 
 export interface GroupMembership extends BaseGroupMembership {
-  announcementEmailNotification: true;
-  announcementPushNotification: true;
-  activityEmailNotification: true;
-  activityPushNotification: true;
-  eventEmailNotification: true;
-  eventPushNotification: true;
-  createdAt: true;
-  updatedAt: true;
+  announcementEmailNotification: boolean;
+  announcementPushNotification: boolean;
+  activityEmailNotification: boolean;
+  activityPushNotification: boolean;
+  eventEmailNotification: boolean;
+  eventPushNotification: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export enum GroupRequestStatus {
+  requested = "requested",
+  rejected = "rejected",
 }
 
 export interface BaseGroupRequest {
-  id: true;
-  status: true;
-  groupId: true;
-  accountId: true;
-  createdAt: true;
-  updatedAt: true;
+  id: string;
+  status: GroupRequestStatus;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface GroupRequest extends BaseGroupRequest {
+  groupId: string;
   group: BaseGroup;
+  accountId: string;
   account: BaseAccount;
 }
 
 export interface BaseGroup {
-  id: true;
-  slug: true;
-  name: true;
-  active: true;
-  access: true;
-  description: true;
-  featured: true;
-  imageId: true;
-  image: BaseImage;
+  id: string;
+  slug: string;
+  name: string;
+  active: boolean;
+  access: GroupAccess;
+  description: string;
+  featured: boolean;
+  imageId: string | null;
+  image: BaseImage | null;
 }
 
 export interface Group extends BaseGroup {
-  externalUrl: true;
-  createdAt: true;
-  updatedAt: true;
+  externalUrl: string | null;
+  createdAt: string;
+  updatedAt: string;
   _count: {
     members: number;
     interests: number;
@@ -694,12 +873,17 @@ export interface Group extends BaseGroup {
 }
 
 export interface GroupTranslation {
-  id: true;
-  locale: true;
-  name: true;
-  description: true;
-  createdAt: true;
-  updatedAt: true;
+  id: number;
+  locale: string;
+  name: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+enum ImageModerationLevel {
+  safe = "safe",
+  warning = "warning",
 }
 
 export interface BaseImage {
@@ -710,23 +894,29 @@ export interface BaseImage {
 }
 
 export interface Image extends BaseImage {
-  name: true;
-  type: true;
-  description: true;
-  moderation: true;
-  createdAt: true;
-  updatedAt: true;
+  name: string | null;
+  type: ImageType;
+  description: string | null;
+  moderation: ImageModerationLevel;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export enum ImportItemStatus {
+  pending = "pending",
+  resolved = "resolved",
+  failed = "failed",
 }
 
 export interface BaseImportItem {
-  id: true;
-  importId: true;
-  values: true;
-  status: true;
-  message: true;
-  debug: true;
-  createdAt: true;
-  updatedAt: true;
+  id: string;
+  importId: string;
+  values: string;
+  status: ImportItemStatus;
+  message: string | null;
+  debug: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface ImportItem extends BaseImportItem {
@@ -734,12 +924,12 @@ export interface ImportItem extends BaseImportItem {
 }
 
 export interface BaseImport {
-  id: true;
-  type: true;
-  overwrite: true;
-  userId: true;
-  createdAt: true;
-  updatedAt: true;
+  id: string;
+  type: string;
+  overwrite: boolean;
+  userId: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Import extends BaseImport {
@@ -750,25 +940,25 @@ export interface Import extends BaseImport {
 }
 
 export interface BaseIntegrations {
-  chat42: true;
-  evolve: true;
-  ghost: true;
-  ghostUrl: true;
+  chat42: boolean;
+  evolve: boolean;
+  ghost: boolean;
+  ghostUrl: string | null;
 }
 
 export interface Integrations extends BaseIntegrations {}
 
 export interface BaseInterest {
-  id: true;
-  featured: true;
-  name: true;
-  image: BaseImage;
-  imageId: true;
+  id: string;
+  featured: boolean;
+  name: string;
+  imageId: string | null;
+  image: BaseImage | null;
 }
 
 export interface Interest extends BaseInterest {
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
   _count: {
     accounts: number;
     groups: number;
@@ -777,37 +967,44 @@ export interface Interest extends BaseInterest {
 }
 
 export interface BaseInvoiceLineItem {
-  id: true;
-  name: true;
-  description: true;
-  quantity: true;
-  amount: true;
-  createdAt: true;
-  updatedAt: true;
+  id: string;
+  name: string;
+  description: string;
+  quantity: number;
+  amount: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface InvoiceLineItem extends BaseInvoiceLineItem {
-  invoiceId: true;
+  invoiceId: string;
   invoice: BaseInvoice;
 }
 
+enum InvoiceStatus {
+  draft = "draft",
+  sent = "sent",
+  paid = "paid",
+  void = "void",
+}
+
 export interface BaseInvoice {
-  alternateId: true;
-  dueDate: true;
-  id: true;
-  sentDate: true;
-  status: true;
-  title: true;
+  id: string;
+  alternateId: string;
+  dueDate: string;
+  sentDate: string | null;
+  status: InvoiceStatus;
+  title: string;
 }
 
 export interface Invoice extends BaseInvoice {
   lineItems: BaseInvoiceLineItem;
-  payments: BaseRegistrationPayment;
-  notes: true;
-  accountId: true;
-  account: BaseAccount;
-  createdAt: true;
-  updatedAt: true;
+  payments: BasePayment;
+  notes: string | null;
+  accountId: string | null;
+  account: BaseAccount | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseLike {
@@ -816,287 +1013,301 @@ export interface BaseLike {
 }
 
 export interface Like extends BaseLike {
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseLinkPreview {
-  url: true;
-  siteName: true;
-  title: true;
-  description: true;
-  image: true;
-  imageWidth: true;
-  imageHeight: true;
-  imageType: true;
-  favicon: true;
+  url: string;
+  siteName: string | null;
+  title: string | null;
+  description: string | null;
+  image: string | null;
+  imageWidth: number | null;
+  imageHeight: number | null;
+  imageType: string | null;
+  favicon: string | null;
 }
 
 export interface LinkPreview extends BaseLinkPreview {}
 
 export interface NotificationPreferences {
-  newFollowerPush: true;
-  newFollowerEmail: true;
-  likePush: true;
-  resharePush: true;
-  commentPush: true;
-  commentEmail: true;
-  transferPush: true;
-  transferEmail: true;
-  supportTicketConfirmationEmail: true;
-  eventAnnouncementEmail: true;
-  eventAnnouncementPush: true;
+  newFollowerPush: boolean;
+  newFollowerEmail: boolean;
+  likePush: boolean;
+  resharePush: boolean;
+  commentPush: boolean;
+  commentEmail: boolean;
+  transferPush: boolean;
+  transferEmail: boolean;
+  supportTicketConfirmationEmail: boolean;
+  eventAnnouncementEmail: boolean;
+  eventAnnouncementPush: boolean;
 }
 
 export interface BaseNotification {
-  id: true;
-  type: true;
-  read: true;
-  receiverId: true;
+  id: string;
+  type: NotificationType;
+  read: boolean;
+  receiverId: string;
   receiver: BaseAccount;
-  senderId: true;
-  sender: BaseAccount;
+  senderId: string | null;
+  sender: BaseAccount | null;
 }
 
 export interface Notification extends BaseNotification {
-  transfer: BaseTransfer;
-  like: BaseLike;
-  activity: BaseActivity;
-  event: BaseEvent;
-  announcement: BaseAnnouncement;
-  createdAt: true;
-  updatedAt: true;
+  transfer: BaseTransfer | null;
+  like: BaseLike | null;
+  activity: BaseActivity | null;
+  event: BaseEvent | null;
+  announcement: BaseAnnouncement | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Permissions {
+  read: boolean;
+  create: boolean;
+  update: boolean;
+  del: boolean;
 }
 
 export interface OrgMembership {
-  organizationId: true;
-  userId: true;
+  organizationId: string;
+  org: BaseOrganization;
+  userId: string;
   user: BaseUser;
-  org: true;
-  users: true;
-  accounts: true;
-  activities: true;
-  advertisements: true;
-  announcements: true;
-  // channels: true,
-  groups: true;
-  contentTypes: true;
-  contents: true;
-  coupons: true;
-  events: true;
-  registrations: true;
-  storage: true;
-  interests: true;
-  levels: true;
-  purchases: true;
-  sponsorships: true;
-  supportTickets: true;
-  benefits: true;
-  streams: true;
-  reports: true;
-  subscriptions: true;
-  invoices: true;
-  createdAt: true;
-  updatedAt: true;
+  users: Permissions;
+  accounts: Permissions;
+  activities: Permissions;
+  advertisements: Permissions;
+  announcements: Permissions;
+  channels: Permissions;
+  groups: Permissions;
+  contentTypes: Permissions;
+  contents: Permissions;
+  coupons: Permissions;
+  events: Permissions;
+  registrations: Permissions;
+  storage: Permissions;
+  interests: Permissions;
+  levels: Permissions;
+  purchases: Permissions;
+  sponsorships: Permissions;
+  supportTickets: Permissions;
+  benefits: Permissions;
+  streams: Permissions;
+  reports: Permissions;
+  subscriptions: Permissions;
+  invoices: Permissions;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseOrganization {
-  id: true;
-  slug: true;
-  name: true;
-  logo: BaseImage;
-  logoId: true;
-  website: true;
+  id: string;
+  slug: string;
+  name: string;
+  logoId: string | null;
+  logo: BaseImage | null;
+  website: string | null;
 }
 
 export interface Organization {
-  email: true;
-  phone: true;
-  address1: true;
-  address2: true;
-  city: true;
-  state: true;
-  country: true;
-  zip: true;
-  primaryColor: true;
-  secondaryColor: true;
-  currency: true;
-  facebook: true;
-  twitter: true;
-  instagram: true;
-  linkedIn: true;
-  tikTok: true;
-  youtube: true;
-  discord: true;
-  timezone: true;
-  iosAppLink: true;
-  androidAppLink: true;
-  createdAt: true;
-  updatedAt: true;
+  email: string | null;
+  phone: string | null;
+  address1: string | null;
+  address2: string | null;
+  city: string | null;
+  state: string | null;
+  country: string | null;
+  zip: string | null;
+  primaryColor: string | null;
+  secondaryColor: string | null;
+  currency: string | null;
+  facebook: string | null;
+  twitter: string | null;
+  instagram: string | null;
+  linkedIn: string | null;
+  tikTok: string | null;
+  youtube: string | null;
+  discord: string | null;
+  timezone: string | null;
+  iosAppLink: string | null;
+  androidAppLink: string | null;
+  createdAt: string;
+  updatedAt: string;
   integrations: Integrations;
 }
 
 export interface OrganizationTrigger {
-  code: true;
-  type: true;
-  enabled: true;
-  createdAt: true;
-  updatedAt: true;
+  id: number;
+  code: string;
+  type: OrganizationTriggerType;
+  enabled: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BasePage {
-  title: true;
-  subtitle: true;
+  title: string | null;
+  subtitle: string | null;
 }
 
 export interface Page {
-  html: true;
-  createdAt: true;
-  updatedAt: true;
+  html: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface PageTranslation {
-  id: true;
-  locale: true;
-  title: true;
-  html: true;
-  createdAt: true;
-  updatedAt: true;
+  id: number;
+  locale: string;
+  title: string | null;
+  subtitle: string | null;
+  html: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BasePurchase {
-  id: true;
-  alternateId: true;
-  ticketId: true;
-  ticket: BaseTicket;
-  location: true;
-  usedAt: true;
-  firstName: true;
-  lastName: true;
-  email: true;
-  transfer: { id: true; email: true; createdAt: true };
-  responses: BaseRegistrationQuestionResponse;
-  paid: true;
-  reservationStart: true;
-  reservationEnd: true;
+  id: string;
+  alternateId: number;
+  ticketId: string | null;
+  ticket: BaseTicket | null;
+  location: string | null;
+  usedAt: string | null;
+  transfer: { id: string; email: string; createdAt: string };
+  responses: BaseRegistrationQuestionResponse[];
+  paid: boolean;
+  reservationStart: string | null;
+  reservationEnd: string | null;
   reservationSectionLocation: BaseReservationSectionLocation;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Purchase extends BasePurchase {
-  addOns: BaseEventAddOn;
-  registrationId: true;
-  registration: BaseRegistration;
+  addOns: BaseEventAddOn[];
+  registrationId: string | null;
+  registration: BaseRegistration | null;
 }
 
+// here
+
 export interface PushDevice {
-  id: true;
-  accountId: true;
+  id: string;
+  accountId: string;
   account: BaseAccount;
-  name: true;
-  model: true;
-  brand: true;
-  osName: true;
-  osVersion: true;
-  deviceYearClass: true;
-  manufacturer: true;
-  supportedCpuArchitectures: true;
-  totalMemory: true;
-  appType: true;
-  pushService: true;
-  createdAt: true;
-  updatedAt: true;
+  name: string | null;
+  model: string | null;
+  brand: string | null;
+  osName: string | null;
+  osVersion: string | null;
+  deviceYearClass: number | null;
+  manufacturer: string | null;
+  supportedCpuArchitectures: string | null;
+  totalMemory: number | null;
+  appType: PushDeviceAppType;
+  pushService: PushService;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseRegistrationBypass {
-  id: true;
-  accountId: true;
+  id: number;
   closed: true;
   preRegister: true;
   postRegister: true;
-  createdAt: true;
-  updatedAt: true;
-}
-
-export interface RegistrationBypass {
+  accountId: string;
   account: BaseAccount;
+  createdAt: string;
+  updatedAt: string;
 }
 
-export interface BaseRegistrationPayment {
-  id: true;
-  type: true;
-  chargedAmt: true;
-  ticketId: true;
-  ticket: BaseTicket;
-  stripeId: true;
-  last4: true;
-  debugId: true;
-  createdAt: true;
+export interface RegistrationBypass extends BaseRegistrationBypass {}
+
+export enum PaymentType {
+  charge = "charge",
+  refund = "refund",
 }
 
-export interface RegistrationPayment extends BaseRegistrationPayment {
+export interface BasePayment {
+  id: number;
+  type: PaymentType;
+  chargedAmt: number;
+  ticketId: string | null;
+  ticket: BaseTicket | null;
+  stripeId: string | null;
+  last4: string | null;
+  debugId: string | null;
+  createdAt: string;
+}
+
+enum PaymentIntegrationType {
+  stripe = "stripe",
+  paypal = "paypal",
+}
+
+export interface Payment extends BasePayment {
   bypassedBy: BaseUser;
   integration: {
-    type: true;
+    type: PaymentIntegrationType;
   };
   subscription: BaseSubscription;
 }
 
 export interface BaseRegistrationQuestionChoice {
-  id: true;
-  value: true;
-  text: true;
-  description: true;
-  supply: true;
-  sortOrder: true;
-  subQuestions: {
-    questionId: true;
-  };
+  id: number;
+  value: string;
+  text: string | null;
+  description: string | null;
+  supply: number | null;
+  sortOrder: number;
 }
 
 export interface RegistrationQuestionChoice
   extends BaseRegistrationQuestionChoice {
-  questionId: true;
+  questionId: number;
   question: BaseRegistrationQuestion;
-  subQuestions: BaseRegistrationQuestionChoiceSubQuestion;
-  createdAt: true;
-  updatedAt: true;
+  subQuestions: BaseRegistrationQuestionChoiceSubQuestion[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseRegistrationQuestionChoiceSubQuestion {
-  choiceId: true;
+  choiceId: number;
   choice: BaseRegistrationQuestionChoice;
-  questionId: true;
+  questionId: number;
   question: BaseRegistrationQuestion;
 }
 
 export interface RegistrationQuestionChoiceSubQuestion
   extends BaseRegistrationQuestionChoiceSubQuestion {
-  sortOrder: true;
-  createdAt: true;
-  updatedAt: true;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface RegistrationQuestionChoiceTranslation {
-  id: true;
-  locale: true;
-  value: true;
-  text: true;
-  description: true;
-  createdAt: true;
-  updatedAt: true;
+  id: number;
+  locale: string;
+  value: string;
+  text: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseRegistrationQuestionResponseChange {
-  id: true;
-  newValue: true;
-  oldValue: true;
-  eventId: true;
-  questionId: true;
-  responseId: true;
-  userId: true;
-  createdAt: true;
+  id: number;
+  newValue: string;
+  oldValue: string;
+  eventId: string;
+  questionId: string;
+  responseId: string;
+  userId: string | null;
+  createdAt: string;
 }
 
 export interface RegistrationQuestionResponseChange
@@ -1114,20 +1325,22 @@ export interface BaseRegistrationQuestionResponse {
 
 export interface RegistrationQuestionResponse
   extends BaseRegistrationQuestionResponse {
-  changeLogs: true;
-  createdAt: true;
-  updatedAt: true;
+  changeLogs: BaseRegistrationQuestionResponseChange[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseRegistrationQuestionSearchValue {
-  id: true;
-  value: true;
+  id: number;
+  value: string;
 }
 
 export interface RegistrationQuestionSearchValue
   extends BaseRegistrationQuestionSearchValue {
-  createdAt: true;
+  createdAt: string;
 }
+
+// here
 
 export interface BaseRegistrationQuestion {
   id: true;
@@ -1146,7 +1359,7 @@ export interface BaseRegistrationQuestion {
   validation: true;
   validationMessage: true;
   sortOrder: true;
-  featured: true;
+  featured: boolean;
   choices: BaseRegistrationQuestionChoice;
 }
 
@@ -1154,18 +1367,18 @@ export interface RegistrationQuestion extends BaseRegistrationQuestion {
   _count: {
     sections: true;
   };
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface RegistrationQuestionTranslation {
   id: true;
-  locale: true;
+  locale: string;
   label: true;
   placeholder: true;
   description: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseRegistrationSectionQuestion {
@@ -1178,8 +1391,8 @@ export interface BaseRegistrationSectionQuestion {
 
 export interface RegistrationSectionQuestion
   extends BaseRegistrationSectionQuestion {
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseRegistrationSection {
@@ -1197,17 +1410,17 @@ export interface RegistrationSection extends BaseRegistrationSection {
   questions: RegistrationSectionQuestion;
   eventTickets: BaseTicket;
   accountTiers: AccountTier;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface RegistrationSectionTranslation {
   id: true;
-  locale: true;
+  locale: string;
   name: true;
   description: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseRegistration {
@@ -1224,12 +1437,12 @@ export interface Registration extends BaseRegistration {
   statusChanges: {
     orderBy: { createdAt: "desc" };
   };
-  payments: BaseRegistrationPayment;
+  payments: BasePayment;
   co2uponId: true;
   coupon: BaseCoupon;
   purchases: BasePurchase;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface ReportParent {
@@ -1237,8 +1450,8 @@ export interface ReportParent {
   name: true;
   description: true;
   type: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Report {
@@ -1254,8 +1467,8 @@ export interface Report {
   eventId: true;
   event: BaseEvent;
   user: BaseUser;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseReservationSectionLocation {
@@ -1268,8 +1481,8 @@ export interface BaseReservationSectionLocation {
   sortOrder: true;
   premium: true;
   reservationSection: BaseReservationSection;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface ReservationSectionLocation
@@ -1281,11 +1494,11 @@ export interface ReservationSectionLocation
 
 export interface ReservationSectionLocationTranslation {
   id: true;
-  locale: true;
+  locale: string;
   name: true;
   shortDescription: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseReservationSection {
@@ -1296,8 +1509,8 @@ export interface BaseReservationSection {
   shortDescription: true;
   pricePerDay: true;
   sortOrder: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface ResercationSection extends BaseReservationSection {
@@ -1312,18 +1525,18 @@ export interface ResercationSection extends BaseReservationSection {
 
 export interface ResercationSectionTranslation {
   id: true;
-  locale: true;
+  locale: string;
   name: true;
   shortDescription: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Self extends Account {}
 
 export interface BaseSeries {
   id: true;
-  slug: true;
+  slug: string;
   name: true;
   description: true;
   imageId: true;
@@ -1332,13 +1545,13 @@ export interface BaseSeries {
 
 export interface Series extends BaseSeries {
   sortOrder: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseSession {
   id: true;
-  slug: true;
+  slug: string;
   name: true;
   description: true;
   longDescription: true;
@@ -1351,8 +1564,8 @@ export interface BaseSession {
   tracks: BaseTrack;
   nonSession: true;
   visible: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Session extends BaseSession {
@@ -1364,17 +1577,17 @@ export interface Session extends BaseSession {
 
 export interface SesionTranslation {
   id: true;
-  locale: true;
+  locale: string;
   name: true;
   description: true;
   longDescription: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseSpeaker {
   id: true;
-  slug: true;
+  slug: string;
   firstName: true;
   lastName: true;
   fullName: true;
@@ -1393,29 +1606,29 @@ export interface Speaker {
   eventId: true;
   event: BaseEvent;
   isHost: true;
-  priority: true;
+  priority: number;
   website: true;
   facebook: true;
   twitter: true;
   instagram: true;
   linkedIn: true;
   tikTok: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface SpeakerTranslation {
   id: true;
-  locale: true;
+  locale: string;
   title: true;
   bio: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseSponsorship {
   id: true;
-  slug: true;
+  slug: string;
   name: true;
   subtitle: true;
   description: true;
@@ -1427,18 +1640,18 @@ export interface BaseSponsorship {
 
 export interface SponsorshipLevel extends BaseSponsorship {
   sortOrder: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface SponsorshipLevelTranslation {
   id: true;
-  locale: true;
+  locale: string;
   name: true;
   subtitle: true;
   description: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseStreamInput {
@@ -1454,7 +1667,7 @@ export interface StreamInput extends BaseStreamInput {
   event: BaseEvent;
   sessionId: true;
   session: BaseSession;
-  createdAt: true;
+  createdAt: string;
 }
 
 export interface BaseSubscriptionProductPrice {
@@ -1471,8 +1684,8 @@ export interface BaseSubscriptionProductPrice {
 
 export interface SubscriptionProductPrice extends BaseSubscriptionProductPrice {
   subscriptionProduct: BaseSubscriptionProduct;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseSubscriptionProduct {
@@ -1485,8 +1698,8 @@ export interface BaseSubscriptionProduct {
 export interface SubscriptionProduct extends BaseSubscriptionProduct {
   statementDescriptor: true;
   features: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseSubscription {
@@ -1503,8 +1716,8 @@ export interface Subscription extends BaseSubscription {
   account: BaseAccount;
   priceId: true;
   price: BaseSubscriptionProductPrice;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseSupportTicketNote {
@@ -1516,8 +1729,8 @@ export interface BaseSupportTicketNote {
 
 export interface SupportTicketNote extends BaseSupportTicketNote {
   supportTicketId: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseSupportTicket {
@@ -1534,14 +1747,14 @@ export interface SupportTicket extends BaseSupportTicket {
   eventId: true;
   event: BaseEvent;
   notes: BaseSupportTicketNote;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseTeamMember {
   id: true;
-  slug: true;
-  priority: true;
+  slug: string;
+  priority: number;
   firstName: true;
   lastName: true;
   nickName: true;
@@ -1561,13 +1774,13 @@ export interface TeamMember extends BaseTeamMember {
   twitter: true;
   tikTok: true;
   discord: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseTicket {
   id: true;
-  slug: true;
+  slug: string;
   active: true;
   transferable: true;
   visibility: true;
@@ -1591,8 +1804,8 @@ export interface BaseTicket {
   minReservationEnd: true;
   reservationEnd: true;
   maxReservationEnd: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Ticket extends BaseTicket {
@@ -1604,25 +1817,25 @@ export interface Ticket extends BaseTicket {
 
 export interface TicketTranslation {
   id: true;
-  locale: true;
+  locale: string;
   name: true;
   shortDescription: true;
   longDescription: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseTrack {
   id: true;
-  slug: true;
+  slug: string;
   name: true;
   description: true;
   color: true;
 }
 
 export interface Track extends BaseTrack {
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
   _count: {
     sessions: number;
   };
@@ -1630,11 +1843,11 @@ export interface Track extends BaseTrack {
 
 export interface TrackTranslation {
   id: true;
-  locale: true;
+  locale: string;
   name: true;
   description: true;
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseTransferLog {
@@ -1650,7 +1863,7 @@ export interface TransferLog extends BaseTransferLog {
   purchase: BasePurchase;
   userId: true;
   user: BaseUser;
-  createdAt: true;
+  createdAt: string;
 }
 
 export interface BaseTransfer {
@@ -1661,8 +1874,8 @@ export interface BaseTransfer {
 }
 
 export interface Transfer extends BaseTransfer {
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseUser {
@@ -1675,8 +1888,8 @@ export interface BaseUser {
 }
 
 export interface User extends BaseUser {
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseVideo {
@@ -1696,5 +1909,5 @@ export interface Video extends BaseVideo {
   dashUrl: true;
   thumbnailPct: true;
   duration: true;
-  createdAt: true;
+  createdAt: string;
 }

@@ -1,35 +1,56 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import { ACTIVITIES_QUERY_KEY } from "@queries/activities/useGetActivities";
-import { ACTIVITY_QUERY_KEY } from "@context/queries/activities/useGetActivity";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "../useConnectedMutation";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@interfaces";
+import { ACTIVITIES_QUERY_KEY, ACTIVITY_QUERY_KEY } from "@src/queries";
 
-interface DeleteActivityParams {
+/**
+ * @category Params
+ * @group Activities
+ */
+export interface DeleteActivityParams extends MutationParams {
   activityId: string;
 }
 
+/**
+ * @category Methods
+ * @group Activities
+ */
 export const DeleteActivity = async ({
   activityId,
+  adminApiParams,
+  queryClient,
 }: DeleteActivityParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.delete(`/activities/${activityId}`);
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+    `/activities/${activityId}`
+  );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({ queryKey: ACTIVITIES_QUERY_KEY() });
+    queryClient.removeQueries({ queryKey: ACTIVITY_QUERY_KEY(activityId) });
+  }
   return data;
 };
 
-export const useDeleteActivity = (activityId: string) => {
-  const queryClient = useQueryClient();
-  const router = useRouter();
-
-  return useConnectedMutation(() => DeleteActivity({ activityId }), {
-    onSuccess: async (
-      _response: Awaited<ReturnType<typeof DeleteActivity>>
-    ) => {
-      await router.push("/activities");
-      queryClient.invalidateQueries(ACTIVITIES_QUERY_KEY());
-      queryClient.removeQueries(ACTIVITY_QUERY_KEY(activityId));
-    },
-  });
+/**
+ * @category Mutations
+ * @group Activities
+ */
+export const useDeleteActivity = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof DeleteActivity>>,
+      Omit<DeleteActivityParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    DeleteActivityParams,
+    Awaited<ReturnType<typeof DeleteActivity>>
+  >(DeleteActivity, options);
 };
-
-export default useDeleteActivity;

@@ -7,5 +7,5 @@ export * from "./useGetGroupKPIActivities";
 export * from "./useGetGroupKPIMembers";
 export * from "./useGetGroupMembers";
 export * from "./useGetGroupModerators";
-export * from "./useGetGroupSponsors";
 export * from "./useGetGroups";
+export * from "./useGetGroupSponsors";

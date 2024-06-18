@@ -14,5 +14,5 @@ export * from "./useGetAccountInterests";
 export * from "./useGetAccountLikes";
 export * from "./useGetAccountRegistrations";
 export * from "./useGetAccountReshares";
-export * from "./useGetAccountTiers";
 export * from "./useGetAccounts";
+export * from "./useGetAccountTiers";

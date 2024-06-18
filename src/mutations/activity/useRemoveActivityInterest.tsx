@@ -1,44 +1,65 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { Account, Activity } from "@interfaces";
-import { SET_ACCOUNT_QUERY_DATA } from "@context/queries/accounts/useGetAccount";
-import { ACCOUNT_INTERESTS_QUERY_KEY } from "@context/queries/accounts/useGetAccountInterests";
-import { SET_ACTIVITY_QUERY_DATA } from "@context/queries/activities/useGetActivity";
-import { ACTIVITY_INTERESTS_QUERY_KEY } from "@context/queries/activities/useGetActivityInterests";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "../useConnectedMutation";
 
-interface RemoveActivityInterestParams {
+import { Activity, ConnectedXMResponse } from "@interfaces";
+
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  SET_ACTIVITY_QUERY_DATA,
+  ACTIVITY_INTERESTS_QUERY_KEY,
+} from "@src/queries";
+
+/**
+ * @category Params
+ * @group Activities
+ */
+export interface RemoveActivityInterestParams extends MutationParams {
   activityId: string;
   interestId: string;
 }
 
+/**
+ * @category Methods
+ * @group Activities
+ */
 export const RemoveActivityInterest = async ({
   activityId,
   interestId,
+  adminApiParams,
+  queryClient,
 }: RemoveActivityInterestParams): Promise<ConnectedXMResponse<Activity>> => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete(
     `/activities/${activityId}/interests/${interestId}`
   );
+  if (queryClient && data.status === "ok") {
+    SET_ACTIVITY_QUERY_DATA(queryClient, [activityId], data);
+    queryClient.invalidateQueries({
+      queryKey: ACTIVITY_INTERESTS_QUERY_KEY(activityId),
+    });
+  }
+
   return data;
 };
 
-export const useRemoveActivityInterest = (activityId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (interestId: string) => RemoveActivityInterest({ activityId, interestId }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof RemoveActivityInterest>>
-      ) => {
-        SET_ACTIVITY_QUERY_DATA(queryClient, [activityId], response);
-        queryClient.invalidateQueries(ACTIVITY_INTERESTS_QUERY_KEY(activityId));
-      },
-    },
-    undefined,
-    true
-  );
+/**
+ * @category Mutations
+ * @group Activities
+ */
+export const useRemoveActivityInterest = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof RemoveActivityInterest>>,
+      Omit<RemoveActivityInterestParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    RemoveActivityInterestParams,
+    Awaited<ReturnType<typeof RemoveActivityInterest>>
+  >(RemoveActivityInterest, options);
 };
-
-export default useRemoveActivityInterest;

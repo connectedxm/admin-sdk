@@ -159,7 +159,7 @@ export enum OrganizationTriggerType {
 export interface BaseAccount {
   organizationId: string;
   id: string;
-  accountType: true;
+  accountType: AccountType;
   firstName: string | null;
   lastName: string | null;
   email: string;
@@ -170,6 +170,7 @@ export interface BaseAccount {
   featured: boolean;
   timezone: string | null;
   internalRefId: string | null;
+  createdAt: string;
 }
 
 export interface Account extends BaseAccount {
@@ -194,7 +195,6 @@ export interface Account extends BaseAccount {
   country: string | null;
   zip: string | null;
   accountTiers: BaseTier[];
-  createdAt: string;
   updatedAt: string;
 }
 
@@ -350,12 +350,12 @@ export interface AdvertisementView {
 }
 
 export interface BaseAnnouncement {
-  id: true;
+  id: string;
   slug: string;
-  title: true;
-  email: true;
-  push: true;
-  sms: true;
+  title: string;
+  email: boolean;
+  push: boolean;
+  sms: boolean;
   accountId: string | null;
   creatorId: string | null;
   eventId: string | null;
@@ -622,11 +622,11 @@ export enum EventEmailType {
 }
 
 export interface BaseEventEmail {
-  type: true;
-  eventId: true;
-  body: true;
-  replyTo: true;
-  enabled: true;
+  type: EventEmailType;
+  eventId: string;
+  body: string;
+  replyTo: string | null;
+  enabled: boolean;
 }
 
 export interface EventEmail extends BaseEventEmail {
@@ -667,9 +667,9 @@ export interface EventOnSiteBadgeField extends BaseEventOnSiteBadgeField {
 }
 
 export interface BaseEventOnSite {
-  eventId: true;
-  authenticationCode: true;
-  zplTemplate: true;
+  eventId: string;
+  authenticationCode: number;
+  zplTemplate: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -812,7 +812,7 @@ export interface Faq extends BaseFaq {
 }
 
 export interface FaqTranslation {
-  id: true;
+  id: number;
   locale: string;
   question: string;
   answer: string;
@@ -918,10 +918,10 @@ enum ImageModerationLevel {
 }
 
 export interface BaseImage {
-  id: true;
-  uri: true;
-  width: true;
-  height: true;
+  id: string;
+  uri: string;
+  width: number;
+  height: number;
 }
 
 export interface Image extends BaseImage {
@@ -1096,6 +1096,13 @@ export interface Notification extends BaseNotification {
   updatedAt: string;
 }
 
+export type PermissionDomain = keyof Omit<
+  OrgMembership,
+  "organizationId" | "userId" | "user" | "createdAt" | "updatedAt"
+>;
+
+export type PermissionType = "read" | "create" | "update" | "del";
+
 export interface Permissions {
   read: boolean;
   create: boolean;
@@ -1144,7 +1151,7 @@ export interface BaseOrganization {
   website: string | null;
 }
 
-export interface Organization {
+export interface Organization extends BaseOrganization {
   email: string | null;
   phone: string | null;
   address1: string | null;
@@ -1181,11 +1188,13 @@ export interface OrganizationTrigger {
 }
 
 export interface BasePage {
+  id: string;
+  slug: string;
   title: string | null;
   subtitle: string | null;
 }
 
-export interface Page {
+export interface Page extends BasePage {
   html: string | null;
   createdAt: string;
   updatedAt: string;
@@ -1247,9 +1256,9 @@ export interface PushDevice {
 
 export interface BaseRegistrationBypass {
   id: number;
-  closed: true;
-  preRegister: true;
-  postRegister: true;
+  closed: boolean;
+  preRegister: boolean;
+  postRegister: boolean;
   accountId: string;
   account: BaseAccount;
   createdAt: string;
@@ -1281,7 +1290,10 @@ enum PaymentIntegrationType {
 }
 
 export interface Payment extends BasePayment {
-  bypassedBy: BaseUser;
+  accountId: string;
+  account: BaseAccount;
+  bypassedId: string | null;
+  bypassedBy: BaseUser | null;
   integration: {
     type: PaymentIntegrationType;
   };
@@ -1359,9 +1371,9 @@ export interface RegistrationQuestionResponseChange
 }
 
 export interface BaseRegistrationQuestionResponse {
-  id: true;
-  value: true;
-  questionId: true;
+  id: number;
+  value: string;
+  questionId: number;
   question: BaseRegistrationQuestion;
 }
 
@@ -1400,7 +1412,7 @@ export interface BaseRegistrationQuestion {
   validationMessage: string | null;
   sortOrder: number;
   featured: boolean;
-  choices: BaseRegistrationQuestionChoice;
+  choices: BaseRegistrationQuestionChoice[];
 }
 
 export interface RegistrationQuestion extends BaseRegistrationQuestion {
@@ -1519,6 +1531,8 @@ export interface Report {
   eventId: string | null;
   event: BaseEvent | null;
   user: BaseUser | null;
+  colDefs: any;
+  rowData: any[];
   createdAt: string;
   updatedAt: string;
 }
@@ -1557,9 +1571,11 @@ export interface BaseReservationSection {
   id: string;
   eventId: string;
   name: string;
-  price: number;
   shortDescription: string | null;
+  price: number;
   pricePerDay: boolean;
+  imageId: string | null;
+  image: BaseImage | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -1567,8 +1583,6 @@ export interface BaseReservationSection {
 export interface ReservationSection extends BaseReservationSection {
   sortOrder: number;
   event: BaseEvent;
-  imageId: string | null;
-  image: BaseImage | null;
   _count: {
     locations: number;
   };
@@ -1884,7 +1898,7 @@ export interface BaseTicket {
   price: number;
   accessLevel: TicketEventAccessLevel;
   featuredImageId: string | null;
-  featuredimage: BaseImage | null;
+  featuredImage: BaseImage | null;
   supply: number | null;
   minQuantityPerSale: number;
   maxQuantityPerSale: number;
@@ -1944,10 +1958,10 @@ export interface TrackTranslation {
 }
 
 export interface BaseTransferLog {
-  id: true;
-  fromRegistrationId: true;
+  id: number;
+  fromRegistrationId: string;
   fromRegistration: BaseRegistration;
-  toRegistrationId: true;
+  toRegistrationId: string;
   toRegistration: BaseRegistration;
 }
 

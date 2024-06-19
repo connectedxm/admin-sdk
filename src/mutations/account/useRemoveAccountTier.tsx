@@ -1,41 +1,60 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../useConnectedMutation";
-import { Account } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { SET_ACCOUNT_QUERY_DATA } from "@context/queries/accounts/useGetAccount";
-import { ACCOUNT_TIERS_QUERY_KEY } from "@context/queries/accounts/useGetAccountTiers";
+import { Account, ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "../useConnectedMutation";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ACCOUNT_TIERS_QUERY_KEY, SET_ACCOUNT_QUERY_DATA } from "@src/queries";
 
-interface RemoveAccountTierParams {
+/**
+ * @category Params
+ * @group Account
+ */
+export interface RemoveAccountTierParams extends MutationParams {
   accountId: string;
   tierId: string;
 }
 
+/**
+ * @category Methods
+ * @group Account
+ */
 export const RemoveAccountTier = async ({
   accountId,
   tierId,
+  adminApiParams,
+  queryClient,
 }: RemoveAccountTierParams): Promise<ConnectedXMResponse<Account>> => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete(
     `/accounts/${accountId}/tiers/${tierId}`
   );
+
+  if (queryClient && data.status === "ok") {
+    SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], data);
+    queryClient.invalidateQueries({
+      queryKey: ACCOUNT_TIERS_QUERY_KEY(accountId),
+    });
+  }
   return data;
 };
 
-export const useRemoveAccountTier = (accountId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<Omit<RemoveAccountTierParams, "accountId">>(
-    ({ tierId }: Omit<RemoveAccountTierParams, "accountId">) =>
-      RemoveAccountTier({ accountId, tierId }),
-    {
-      onSuccess: (response: Awaited<ReturnType<typeof RemoveAccountTier>>) => {
-        SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], response);
-        queryClient.invalidateQueries(ACCOUNT_TIERS_QUERY_KEY(accountId));
-      },
-    },
-    undefined,
-    true
-  );
+/**
+ * @category Mutations
+ * @group Account
+ */
+export const useRemoveAccountTier = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof RemoveAccountTier>>,
+      Omit<RemoveAccountTierParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    RemoveAccountTierParams,
+    Awaited<ReturnType<typeof RemoveAccountTier>>
+  >(RemoveAccountTier, options);
 };
-
-export default useRemoveAccountTier;

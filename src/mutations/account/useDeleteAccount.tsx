@@ -1,33 +1,54 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { ACCOUNT_QUERY_KEY } from "@queries/accounts/useGetAccount";
-import { ACCOUNTS_QUERY_KEY } from "@queries/accounts/useGetAccounts";
-import { useRouter } from "next/router";
+import { ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "../useConnectedMutation";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ACCOUNTS_QUERY_KEY, ACCOUNT_QUERY_KEY } from "@src/queries";
 
-interface DeleteAccountParams {
+/**
+ * @category Params
+ * @group Account
+ */
+export interface DeleteAccountParams extends MutationParams {
   accountId: string;
 }
 
+/**
+ * @category Methods
+ * @group Account
+ */
 export const DeleteAccount = async ({
   accountId,
+  adminApiParams,
+  queryClient,
 }: DeleteAccountParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete(`/accounts/${accountId}`);
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({ queryKey: ACCOUNTS_QUERY_KEY() });
+    queryClient.removeQueries({ queryKey: ACCOUNT_QUERY_KEY(accountId) });
+  }
   return data;
 };
 
-export const useDeleteAccount = (accountId: string) => {
-  const queryClient = useQueryClient();
-  const router = useRouter();
-
-  return useConnectedMutation(() => DeleteAccount({ accountId }), {
-    onSuccess: async (_response: Awaited<ReturnType<typeof DeleteAccount>>) => {
-      await router.push("/accounts");
-      queryClient.invalidateQueries(ACCOUNTS_QUERY_KEY());
-      queryClient.removeQueries(ACCOUNT_QUERY_KEY(accountId));
-    },
-  });
+/**
+ * @category Mutations
+ * @group Account
+ */
+export const useDeleteAccount = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof DeleteAccount>>,
+      Omit<DeleteAccountParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    DeleteAccountParams,
+    Awaited<ReturnType<typeof DeleteAccount>>
+  >(DeleteAccount, options);
 };
-
-export default useDeleteAccount;

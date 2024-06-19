@@ -1,41 +1,61 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../useConnectedMutation";
-import { Account } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { SET_ACCOUNT_QUERY_DATA } from "@context/queries/accounts/useGetAccount";
-import { ACCOUNT_TIERS_QUERY_KEY } from "@context/queries/accounts/useGetAccountTiers";
+import { Account, ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "../useConnectedMutation";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ACCOUNT_TIERS_QUERY_KEY, SET_ACCOUNT_QUERY_DATA } from "@src/queries";
 
-interface AddAccountTierParams {
+/**
+ * @category Params
+ * @group Account
+ */
+export interface AddAccountTierParams extends MutationParams {
   accountId: string;
   tierId: string;
 }
 
+/**
+ * @category Methods
+ * @group Account
+ */
 export const AddAccountTier = async ({
   accountId,
   tierId,
+  adminApiParams,
+  queryClient,
 }: AddAccountTierParams): Promise<ConnectedXMResponse<Account>> => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post(
     `/accounts/${accountId}/tiers/${tierId}`
   );
+  if (queryClient && data.status === "ok") {
+    SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], data);
+    queryClient.invalidateQueries({
+      queryKey: ACCOUNT_TIERS_QUERY_KEY(accountId),
+    });
+  }
   return data;
 };
 
-export const useAddAccountTier = (accountId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<Omit<AddAccountTierParams, "accountId">>(
-    ({ tierId }: Omit<AddAccountTierParams, "accountId">) =>
-      AddAccountTier({ accountId, tierId }),
-    {
-      onSuccess: (response: Awaited<ReturnType<typeof AddAccountTier>>) => {
-        SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], response);
-        queryClient.invalidateQueries(ACCOUNT_TIERS_QUERY_KEY(accountId));
-      },
-    },
-    undefined,
-    true
-  );
+/**
+ * @category Mutations
+ * @group Account
+ */
+export const useAddAccountTier = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof AddAccountTier>>,
+      Omit<AddAccountTierParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    AddAccountTierParams,
+    Awaited<ReturnType<typeof AddAccountTier>>
+  >(AddAccountTier, options);
 };
 
 export default useAddAccountTier;

@@ -1,38 +1,63 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { Account } from "@interfaces";
-import { SET_ACCOUNT_QUERY_DATA } from "@context/queries/accounts/useGetAccount";
-import { ACCOUNT_INTERESTS_QUERY_KEY } from "@context/queries/accounts/useGetAccountInterests";
+import { Account, ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "../useConnectedMutation";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  ACCOUNT_INTERESTS_QUERY_KEY,
+  SET_ACCOUNT_QUERY_DATA,
+} from "@src/queries";
 
-interface AddAccountInterestParams {
+/**
+ * @category Params
+ * @group Account
+ */
+export interface AddAccountInterestParams extends MutationParams {
   accountId: string;
   interestId: string;
 }
 
+/**
+ * @category Methods
+ * @group Account
+ */
 export const AddAccountInterest = async ({
   accountId,
   interestId,
+  adminApiParams,
+  queryClient,
 }: AddAccountInterestParams): Promise<ConnectedXMResponse<Account>> => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post(
     `/accounts/${accountId}/interests/${interestId}`
   );
+
+  if (queryClient && data.status === "ok") {
+    SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], data);
+    queryClient.invalidateQueries({
+      queryKey: ACCOUNT_INTERESTS_QUERY_KEY(accountId),
+    });
+  }
   return data;
 };
 
-export const useAddAccountInterest = (accountId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (interestId: string) => AddAccountInterest({ accountId, interestId }),
-    {
-      onSuccess: (response: Awaited<ReturnType<typeof AddAccountInterest>>) => {
-        SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], response);
-        queryClient.invalidateQueries(ACCOUNT_INTERESTS_QUERY_KEY(accountId));
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Account
+ */
+export const useAddAccountInterest = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof AddAccountInterest>>,
+      Omit<AddAccountInterestParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    AddAccountInterestParams,
+    Awaited<ReturnType<typeof AddAccountInterest>>
+  >(AddAccountInterest, options);
 };
-
-export default useAddAccountInterest;

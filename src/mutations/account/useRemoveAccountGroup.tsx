@@ -1,41 +1,59 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../useConnectedMutation";
-import { Account } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { ACCOUNT_GROUPS_QUERY_KEY } from "@context/queries/accounts/useGetAccountGroups";
+import { ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "../useConnectedMutation";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ACCOUNT_GROUPS_QUERY_KEY } from "@src/queries";
 
-interface RemoveAccountGroupParams {
+/**
+ * @category Params
+ * @group Account
+ */
+export interface RemoveAccountGroupParams extends MutationParams {
   accountId: string;
   groupId: string;
 }
 
+/**
+ * @category Methods
+ * @group Account
+ */
 export const RemoveAccountGroup = async ({
   accountId,
   groupId,
+  adminApiParams,
+  queryClient,
 }: RemoveAccountGroupParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete(
     `/accounts/${accountId}/groups/${groupId}`
   );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: ACCOUNT_GROUPS_QUERY_KEY(accountId),
+    });
+  }
   return data;
 };
 
-export const useRemoveAccountGroup = (accountId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (groupId: string) => RemoveAccountGroup({ accountId, groupId }),
-    {
-      // NOTE: this doesnt return account like the rest of them. Kinda weird. - ROB
-      onSuccess: (
-        _response: Awaited<ReturnType<typeof RemoveAccountGroup>>
-      ) => {
-        queryClient.invalidateQueries(ACCOUNT_GROUPS_QUERY_KEY(accountId));
-      },
-    },
-    undefined,
-    true
-  );
+/**
+ * @category Mutations
+ * @group Account
+ */
+export const useRemoveAccountGroup = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof RemoveAccountGroup>>,
+      Omit<RemoveAccountGroupParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    RemoveAccountGroupParams,
+    Awaited<ReturnType<typeof RemoveAccountGroup>>
+  >(RemoveAccountGroup, options);
 };
-
-export default useRemoveAccountGroup;

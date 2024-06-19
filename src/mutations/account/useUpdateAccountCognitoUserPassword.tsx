@@ -1,40 +1,67 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../useConnectedMutation";
-import { Account } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-
-interface UpdateAccountCognitoUserPasswordParams {
+import { Account, ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "../useConnectedMutation";
+import { GetAdminAPI } from "@src/AdminAPI";
+/**
+ * @category Params
+ * @group Account
+ */
+export interface UpdateAccountCognitoUserPasswordParams extends MutationParams {
   accountId: string;
   username: string;
   password: string;
 }
 
+/**
+ * @category Methods
+ * @group Account
+ */
 export const UpdateAccountCognitoUserPassword = async ({
   accountId,
   username,
   password,
+  adminApiParams,
+  queryClient,
 }: UpdateAccountCognitoUserPasswordParams): Promise<
   ConnectedXMResponse<Account>
 > => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put(
     `/accounts/${accountId}/cognito/${username}/password`,
     { password }
   );
+  if (queryClient && data.status === "ok") {
+    UpdateAccountCognitoUserPassword({
+      accountId,
+      username,
+      password,
+      adminApiParams,
+    });
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Account
+ */
 export const useUpdateAccountCognitoUserPassword = (
-  accountId: string,
-  username: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateAccountCognitoUserPassword>>,
+      Omit<
+        UpdateAccountCognitoUserPasswordParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (password) =>
-      UpdateAccountCognitoUserPassword({ accountId, username, password }),
-    {}
-  );
+  return useConnectedMutation<
+    UpdateAccountCognitoUserPasswordParams,
+    Awaited<ReturnType<typeof UpdateAccountCognitoUserPassword>>
+  >(UpdateAccountCognitoUserPassword, options);
 };
-
-export default useUpdateAccountCognitoUserPassword;

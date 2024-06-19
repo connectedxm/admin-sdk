@@ -1,42 +1,63 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { Account } from "@interfaces";
-import { ACCOUNT_FOLLOWERS_QUERY_KEY } from "@context/queries/accounts/useGetAccountFollowers";
-import { SET_ACCOUNT_QUERY_DATA } from "@context/queries/accounts/useGetAccount";
+import { Account, ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "../useConnectedMutation";
+import {
+  ACCOUNT_FOLLOWERS_QUERY_KEY,
+  SET_ACCOUNT_QUERY_DATA,
+} from "@src/queries";
+import { GetAdminAPI } from "@src/AdminAPI";
 
-interface RemoveAccountFollowerParams {
+/**
+ * @category Params
+ * @group Account
+ */
+export interface RemoveAccountFollowerParams extends MutationParams {
   accountId: string;
   followerId: string;
 }
 
+/**
+ * @category Methods
+ * @group Account
+ */
 export const RemoveAccountFollower = async ({
   accountId,
   followerId,
+  adminApiParams,
+  queryClient,
 }: RemoveAccountFollowerParams): Promise<ConnectedXMResponse<Account>> => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete(
     `/accounts/${accountId}/followers/${followerId}`
   );
+
+  if (queryClient && data.status === "ok") {
+    SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], data);
+    queryClient.invalidateQueries({
+      queryKey: ACCOUNT_FOLLOWERS_QUERY_KEY(accountId),
+    });
+  }
   return data;
 };
 
-export const useRemoveAccountFollower = (accountId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (followerId: string) => RemoveAccountFollower({ accountId, followerId }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof RemoveAccountFollower>>
-      ) => {
-        SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], response);
-        queryClient.invalidateQueries(ACCOUNT_FOLLOWERS_QUERY_KEY(accountId));
-      },
-    },
-    undefined,
-    true
-  );
+/**
+ * @category Mutations
+ * @group Account
+ */
+export const useRemoveAccountFollower = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof RemoveAccountFollower>>,
+      Omit<RemoveAccountFollowerParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    RemoveAccountFollowerParams,
+    Awaited<ReturnType<typeof RemoveAccountFollower>>
+  >(RemoveAccountFollower, options);
 };
-
-export default useRemoveAccountFollower;

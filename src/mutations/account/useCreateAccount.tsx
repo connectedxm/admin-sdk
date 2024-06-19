@@ -1,34 +1,53 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../useConnectedMutation";
-import { Account } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { SET_ACCOUNT_QUERY_DATA } from "@context/queries/accounts/useGetAccount";
-import { ACCOUNTS_QUERY_KEY } from "@context/queries/accounts/useGetAccounts";
+import { Account, ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "../useConnectedMutation";
+import { ACCOUNTS_QUERY_KEY, SET_ACCOUNT_QUERY_DATA } from "@src/queries";
+import { GetAdminAPI } from "@src/AdminAPI";
 
-interface CreateAccountParams {
+/**
+ * @category Params
+ * @group Account
+ */
+export interface CreateAccountParams extends MutationParams {
   account: Account;
 }
 
+/**
+ * @category Methods
+ * @group Account
+ */
 export const CreateAccount = async ({
   account,
+  adminApiParams,
+  queryClient,
 }: CreateAccountParams): Promise<ConnectedXMResponse<Account>> => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post(`/accounts`, account);
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({ queryKey: ACCOUNTS_QUERY_KEY() });
+    SET_ACCOUNT_QUERY_DATA(queryClient, [data.id], data);
+  }
   return data;
 };
 
-export const useCreateAccount = () => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<Account>(
-    (account: Account) => CreateAccount({ account }),
-    {
-      onSuccess: (response: Awaited<ReturnType<typeof CreateAccount>>) => {
-        queryClient.invalidateQueries(ACCOUNTS_QUERY_KEY());
-        SET_ACCOUNT_QUERY_DATA(queryClient, [response.data.id], response);
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Account
+ */
+export const useCreateAccount = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof CreateAccount>>,
+      Omit<CreateAccountParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    CreateAccountParams,
+    Awaited<ReturnType<typeof CreateAccount>>
+  >(CreateAccount, options);
 };
-
-export default useCreateAccount;

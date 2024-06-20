@@ -486,7 +486,7 @@ export interface ContentTranslation {
   updatedAt: string;
 }
 
-export interface ContentTypeTranslation {
+export interface ChannelTranslation {
   locale: string;
   name: string;
   description: string | null;

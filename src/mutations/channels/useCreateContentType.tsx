@@ -1,19 +1,19 @@
 import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
 import useConnectedMutation from "../useConnectedMutation";
-import { ContentType } from "@interfaces";
+import { Channel, ContentType } from "@interfaces";
 import { useQueryClient } from "@tanstack/react-query";
 import { CONTENT_TYPES_QUERY_KEY } from "@queries/contents/useGetContentTypes";
 import { SET_CONTENT_TYPE_QUERY_DATA } from "@context/queries/contents/useGetContentType";
 
 interface CreateContentTypeParams {
-  contentType: ContentType;
+  channel: Channel;
 }
 
 export const CreateContentType = async ({
-  contentType,
-}: CreateContentTypeParams): Promise<ConnectedXMResponse<ContentType>> => {
+  channel: channel,
+}: CreateContentTypeParams): Promise<ConnectedXMResponse<Channel>> => {
   const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(`/contentTypes`, contentType);
+  const { data } = await connectedXM.post(`/contentTypes`, channel);
   return data;
 };
 
@@ -21,7 +21,7 @@ export const useCreateContentType = () => {
   const queryClient = useQueryClient();
 
   return useConnectedMutation<ContentType>(
-    (contentType: ContentType) => CreateContentType({ contentType }),
+    (channel: ContentType) => CreateContentType({ channel: channel }),
     {
       onSuccess: (response: Awaited<ReturnType<typeof CreateContentType>>) => {
         queryClient.invalidateQueries(CONTENT_TYPES_QUERY_KEY());

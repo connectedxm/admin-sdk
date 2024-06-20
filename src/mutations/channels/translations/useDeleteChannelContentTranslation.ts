@@ -4,6 +4,10 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import {
+  CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY,
+  CHANNEL_CONTENT_TRANSLATION_QUERY_KEY,
+} from "@src/queries/channels";
 
 /**
  * @category Params
@@ -35,13 +39,13 @@ export const DeleteContentTypeContentTranslation = async ({
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: CONTENT_TYPE_CONTENT_TRANSLATIONS_QUERY_KEY(
+      queryKey: CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY(
         contentTypeId,
         contentId
       ),
     });
     queryClient.invalidateQueries({
-      queryKey: CONTENT_TYPE_CONTENT_TRANSLATION_QUERY_KEY(
+      queryKey: CHANNEL_CONTENT_TRANSLATION_QUERY_KEY(
         contentTypeId,
         contentId,
         locale

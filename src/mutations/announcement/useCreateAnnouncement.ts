@@ -28,9 +28,12 @@ export const CreateAnnouncement = async ({
   queryClient,
 }: CreateAnnouncementParams): Promise<ConnectedXMResponse<Announcement>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post(`/announcements`, announcement);
+  const { data } = await connectedXM.post<ConnectedXMResponse<Announcement>>(
+    `/announcements`,
+    announcement
+  );
   if (queryClient && data.status === "ok") {
-    SET_ANNOUNCEMENT_QUERY_DATA(queryClient, [data.id], data);
+    SET_ANNOUNCEMENT_QUERY_DATA(queryClient, [data?.data.id], data);
     queryClient.invalidateQueries({ queryKey: ANNOUNCEMENTS_QUERY_KEY() });
   }
   return data;

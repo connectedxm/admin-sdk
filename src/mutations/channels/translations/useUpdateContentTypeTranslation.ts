@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ContentTypeTranslation } from "@src/interfaces";
+import { ChannelTranslation } from "@src/interfaces";
 import {
   MutationOptions,
   MutationParams,
@@ -12,7 +12,7 @@ import {
  */
 export interface UpdateContentTypeTranslationParams extends MutationParams {
   contentTypeId: string;
-  contentTypeTranslation: ContentTypeTranslation;
+  contentTypeTranslation: ChannelTranslation;
 }
 
 /**

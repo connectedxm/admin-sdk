@@ -5,6 +5,10 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import {
+  CHANNEL_CONTENT_TRANSLATION_QUERY_KEY,
+  SET_CHANNEL_CONTENT_TRANSLATION_QUERY_DATA,
+} from "@src/queries/channels";
 
 /**
  * @category Params
@@ -34,27 +38,27 @@ export const CreateContentTypeContentTranslation = async ({
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post(
-    `/contents/${contentId}/translations`,
-    {
-      locale,
-      autoTranslate,
-    }
-  );
+  const { data } = await connectedXM.post<
+    ConnectedXMResponse<ContentTranslation>
+  >(`/contents/${contentId}/translations`, {
+    locale,
+    autoTranslate,
+  });
 
   if (queryClient && data.status === "ok") {
     //BOTH OF THESE FUNCTIONS ARE NOT DEFINED
     queryClient.invalidateQueries({
-      queryKey: CONTENT_TYPE_CONTENT_TRANSLATIONS_QUERY_KEY(
+      queryKey: CHANNEL_CONTENT_TRANSLATION_QUERY_KEY(
         contentTypeId,
-        contentId
+        contentId,
+        data?.data.locale
       ),
     });
-    SET_CONTENT_TYPE_CONTENT_TRANSLATION_QUERY_DATA(queryClient, [
-      contentTypeId,
-      contentId,
-      data?.locale,
-    ]);
+    SET_CHANNEL_CONTENT_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [contentTypeId, contentId, data?.data.locale],
+      data
+    );
   }
   return data;
 };

@@ -25,10 +25,13 @@ export const CreateBenefit = async ({
   queryClient,
 }: CreateBenefitParams): Promise<ConnectedXMResponse<Benefit>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post(`/benefits`, benefit);
+  const { data } = await connectedXM.post<ConnectedXMResponse<Benefit>>(
+    `/benefits`,
+    benefit
+  );
 
   if (queryClient && data.status === "ok") {
-    SET_BENEFIT_QUERY_DATA(queryClient, [data.id], data);
+    SET_BENEFIT_QUERY_DATA(queryClient, [data?.data.id], data);
     queryClient.invalidateQueries({ queryKey: BENEFITS_QUERY_KEY() });
   }
   return data;

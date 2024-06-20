@@ -28,19 +28,22 @@ export const UpdateBenefit = async ({
 }: UpdateBenefitParams): Promise<ConnectedXMResponse<Benefit>> => {
   if (!benefitId) throw new Error("Benefit ID Undefined");
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put(`/benefits/${benefitId}`, {
-    ...benefit,
-    id: undefined,
-    image: undefined,
-    manager: undefined,
-    event: undefined,
-    _count: undefined,
-    createdAt: undefined,
-    updatedAt: undefined,
-  });
+  const { data } = await connectedXM.put<ConnectedXMResponse<Benefit>>(
+    `/benefits/${benefitId}`,
+    {
+      ...benefit,
+      id: undefined,
+      image: undefined,
+      manager: undefined,
+      event: undefined,
+      _count: undefined,
+      createdAt: undefined,
+      updatedAt: undefined,
+    }
+  );
 
   if (queryClient && data.status === "ok") {
-    SET_BENEFIT_QUERY_DATA(queryClient, [benefitId || data?.id], data);
+    SET_BENEFIT_QUERY_DATA(queryClient, [benefitId || data?.data.id], data);
     queryClient.invalidateQueries({ queryKey: BENEFITS_QUERY_KEY() });
   }
   return data;

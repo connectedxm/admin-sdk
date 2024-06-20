@@ -7,7 +7,7 @@ import {
 
 /**
  * @category Params
- * @group Content-Translation
+ * @group Channel-Translation
  */
 export interface DeleteContentTypeTranslationParams extends MutationParams {
   contentTypeId: string;
@@ -16,7 +16,7 @@ export interface DeleteContentTypeTranslationParams extends MutationParams {
 
 /**
  * @category Methods
- * @group Content-Translation
+ * @group Channel-Translation
  */
 export const DeleteContentTypeTranslation = async ({
   contentTypeId,
@@ -43,7 +43,7 @@ export const DeleteContentTypeTranslation = async ({
 
 /**
  * @category Mutations
- * @group Content-Translation
+ * @group Channel-Translation
  */
 export const useDeleteContentTypeTranslation = (
   options: Omit<

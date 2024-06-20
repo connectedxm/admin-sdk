@@ -10,7 +10,7 @@ import {
 
 /**
  * @category Keys
- * @group Contents
+ * @group Channels
  */
 export const CHANNEL_TRANSLATIONS_QUERY_KEY = (channelId: string) => [
   ...CHANNEL_QUERY_KEY(channelId),
@@ -19,7 +19,7 @@ export const CHANNEL_TRANSLATIONS_QUERY_KEY = (channelId: string) => [
 
 /**
  * @category Setters
- * @group Contents
+ * @group Channels
  */
 export const SET_CHANNEL_TRANSLATIONS_QUERY_DATA = (
   client: any,
@@ -35,7 +35,7 @@ interface GetChannelTranslationsProps extends InfiniteQueryParams {
 
 /**
  * @category Queries
- * @group Contents
+ * @group Channels
  */
 export const GetChannelTranslations = async ({
   pageParam,
@@ -60,7 +60,7 @@ export const GetChannelTranslations = async ({
 };
 /**
  * @category Hooks
- * @group Contents
+ * @group Channels
  */
 export const useGetChannelTranslations = (
   channelId: string = "",

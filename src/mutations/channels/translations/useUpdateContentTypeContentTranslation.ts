@@ -8,7 +8,7 @@ import {
 
 /**
  * @category Params
- * @group Content-Translation
+ * @group Channel-Translation
  */
 export interface UpdateContentTypeContentTranslationParams
   extends MutationParams {
@@ -19,7 +19,7 @@ export interface UpdateContentTypeContentTranslationParams
 
 /**
  * @category Methods
- * @group Content-Translation
+ * @group Channel-Translation
  */
 export const UpdateContentTypeContentTranslation = async ({
   contentId,
@@ -55,7 +55,7 @@ export const UpdateContentTypeContentTranslation = async ({
 
 /**
  * @category Mutations
- * @group Content-Translation
+ * @group Channel-Translation
  */
 export const useUpdateContentTypeContentTranslation = (
   options: Omit<

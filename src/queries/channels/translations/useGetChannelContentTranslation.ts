@@ -10,7 +10,7 @@ import {
 
 /**
  * @category Keys
- * @group Contents
+ * @group Channels
  */
 export const CHANNEL_CONTENT_TRANSLATION_QUERY_KEY = (
   channelId: string,
@@ -20,7 +20,7 @@ export const CHANNEL_CONTENT_TRANSLATION_QUERY_KEY = (
 
 /**
  * @category Setters
- * @group Contents
+ * @group Channels
  */
 export const SET_CHANNEL_CONTENT_TRANSLATION_QUERY_DATA = (
   client: any,
@@ -40,7 +40,7 @@ interface GetChannelContentTranslationProps extends SingleQueryParams {
 
 /**
  * @category Queries
- * @group Contents
+ * @group Channels
  */
 export const GetChannelContentTranslation = async ({
   contentId,
@@ -57,7 +57,7 @@ export const GetChannelContentTranslation = async ({
 };
 /**
  * @category Hooks
- * @group Contents
+ * @group Channels
  */
 export const useGetChannelContentTranslation = (
   channelId: string = "",

@@ -11,10 +11,9 @@ import {
 
 /**
  * @category Params
- * @group Content-Translation
+ * @group Channel-Translation
  */
-export interface DeleteContentTypeContentTranslationParams
-  extends MutationParams {
+export interface DeleteChannelContentTranslationParams extends MutationParams {
   contentId: string;
   contentTypeId: string;
   locale: string;
@@ -22,7 +21,7 @@ export interface DeleteContentTypeContentTranslationParams
 
 /**
  * @category Methods
- * @group Content-Translation
+ * @group Channel-Translation
  */
 export const DeleteContentTypeContentTranslation = async ({
   contentId,
@@ -30,7 +29,7 @@ export const DeleteContentTypeContentTranslation = async ({
   locale,
   adminApiParams,
   queryClient,
-}: DeleteContentTypeContentTranslationParams) => {
+}: DeleteChannelContentTranslationParams) => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.delete(
@@ -57,14 +56,14 @@ export const DeleteContentTypeContentTranslation = async ({
 
 /**
  * @category Mutations
- * @group Content-Translation
+ * @group Channel-Translation
  */
 export const useDeleteContentTypeContentTranslation = (
   options: Omit<
     MutationOptions<
       Awaited<ReturnType<typeof DeleteContentTypeContentTranslation>>,
       Omit<
-        DeleteContentTypeContentTranslationParams,
+        DeleteChannelContentTranslationParams,
         "queryClient" | "adminApiParams"
       >
     >,
@@ -72,7 +71,7 @@ export const useDeleteContentTypeContentTranslation = (
   > = {}
 ) => {
   return useConnectedMutation<
-    DeleteContentTypeContentTranslationParams,
+    DeleteChannelContentTranslationParams,
     Awaited<ReturnType<typeof DeleteContentTypeContentTranslation>>
   >(DeleteContentTypeContentTranslation, options);
 };

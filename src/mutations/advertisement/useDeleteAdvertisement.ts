@@ -28,7 +28,7 @@ export const DeleteAdvertisement = async ({
   queryClient,
 }: DeleteAdvertisementParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete(
+  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/advertisements/${advertisementId}`
   );
   if (queryClient && data.status === "ok") {

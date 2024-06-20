@@ -25,10 +25,13 @@ export const CreateAccount = async ({
   queryClient,
 }: CreateAccountParams): Promise<ConnectedXMResponse<Account>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post(`/accounts`, account);
+  const { data } = await connectedXM.post<ConnectedXMResponse<Account>>(
+    `/accounts`,
+    account
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: ACCOUNTS_QUERY_KEY() });
-    SET_ACCOUNT_QUERY_DATA(queryClient, [data.id], data);
+    SET_ACCOUNT_QUERY_DATA(queryClient, [data?.data.id], data);
   }
   return data;
 };

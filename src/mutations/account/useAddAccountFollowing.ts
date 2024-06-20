@@ -30,7 +30,7 @@ export const AddAccountFollowing = async ({
   queryClient,
 }: AddAccountFollowingParams): Promise<ConnectedXMResponse<Account>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post(
+  const { data } = await connectedXM.post<ConnectedXMResponse<Account>>(
     `/accounts/${accountId}/following/${followingId}`
   );
 

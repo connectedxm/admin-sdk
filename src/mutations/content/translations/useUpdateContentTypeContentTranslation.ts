@@ -1,56 +1,78 @@
-import ConnectedXM from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { SET_CONTENT_TYPE_CONTENT_TRANSLATION_QUERY_DATA } from "@context/queries/contents/translations/useGetContentTypeContentTranslation";
-import { CONTENT_TYPE_CONTENT_TRANSLATIONS_QUERY_KEY } from "@context/queries/contents/translations/useGetContentTypeContentTranslations";
-import { ContentTranslation } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ContentTranslation } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
 
-interface UpdateContentTypeContentTranslationProps {
+/**
+ * @category Params
+ * @group Content-Translation
+ */
+export interface UpdateContentTypeContentTranslationParams
+  extends MutationParams {
+  contentTypeId: string;
   contentId: string;
   contentTranslation: ContentTranslation;
 }
 
+/**
+ * @category Methods
+ * @group Content-Translation
+ */
 export const UpdateContentTypeContentTranslation = async ({
   contentId,
+  contentTypeId,
   contentTranslation,
-}: UpdateContentTypeContentTranslationProps) => {
-  const connectedXM = await ConnectedXM();
+  adminApiParams,
+  queryClient,
+}: UpdateContentTypeContentTranslationParams) => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { locale, ...body } = contentTranslation;
 
   const { data } = await connectedXM.put(
-    `/contents/${contentId}/translations/${contentTranslation.locale}`,
+    `/contents/${contentId}/translations/${locale}`,
     body
   );
 
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: CONTENT_TYPE_CONTENT_TRANSLATIONS_QUERY_KEY(
+        contentTypeId,
+        contentId
+      ),
+    });
+    SET_CONTENT_TYPE_CONTENT_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [contentTypeId, contentId, data?.locale],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Content-Translation
+ */
 export const useUpdateContentTypeContentTranslation = (
-  contentTypeId: string,
-  contentId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateContentTypeContentTranslation>>,
+      Omit<
+        UpdateContentTypeContentTranslationParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-  return useConnectedMutation<ContentTranslation>(
-    (contentTranslation: ContentTranslation) =>
-      UpdateContentTypeContentTranslation({ contentId, contentTranslation }),
-    {
-      onSuccess: (
-        response: Awaited<
-          ReturnType<typeof UpdateContentTypeContentTranslation>
-        >
-      ) => {
-        queryClient.invalidateQueries(
-          CONTENT_TYPE_CONTENT_TRANSLATIONS_QUERY_KEY(contentTypeId, contentId)
-        );
-        SET_CONTENT_TYPE_CONTENT_TRANSLATION_QUERY_DATA(
-          queryClient,
-          [contentTypeId, contentId, response.data?.locale],
-          response
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    UpdateContentTypeContentTranslationParams,
+    Awaited<ReturnType<typeof UpdateContentTypeContentTranslation>>
+  >(UpdateContentTypeContentTranslation, options);
 };
 
 export default useUpdateContentTypeContentTranslation;

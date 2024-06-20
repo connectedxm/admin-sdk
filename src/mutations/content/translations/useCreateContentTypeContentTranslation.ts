@@ -26,9 +26,9 @@ export const CreateContentTypeContentTranslation = async ({
   contentId,
   locale,
   autoTranslate,
+  contentTypeId,
   adminApiParams,
   queryClient,
-  contentTypeId,
 }: CreateContentTypeContentTranslationParams): Promise<
   ConnectedXMResponse<ContentTranslation>
 > => {

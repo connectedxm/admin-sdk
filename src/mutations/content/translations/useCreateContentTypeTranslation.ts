@@ -1,24 +1,35 @@
-import ConnectedXM, { ConnectedXMResponse } from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { SET_CONTENT_TYPE_TRANSLATION_QUERY_DATA } from "@context/queries/contents/translations/useGetContentTypeTranslation";
-import { CONTENT_TYPE_TRANSLATIONS_QUERY_KEY } from "@context/queries/contents/translations/useGetContentTypeTranslations";
-import { ContentTypeTranslation } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, ContentTypeTranslation } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
 
-interface CreateContentTypeTranslationProps {
+/**
+ * @category Params
+ * @group Content-Translation
+ */
+export interface CreateContentTypeTranslationParams extends MutationParams {
   contentTypeId: string;
   locale: string;
   autoTranslate?: boolean;
 }
 
+/**
+ * @category Methods
+ * @group Content-Translation
+ */
 export const CreateContentTypeTranslation = async ({
   contentTypeId,
   locale,
   autoTranslate,
-}: CreateContentTypeTranslationProps): Promise<
+  adminApiParams,
+  queryClient,
+}: CreateContentTypeTranslationParams): Promise<
   ConnectedXMResponse<ContentTypeTranslation>
 > => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.post(
     `/contentTypes/${contentTypeId}/translations`,
@@ -27,33 +38,35 @@ export const CreateContentTypeTranslation = async ({
       autoTranslate,
     }
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: CONTENT_TYPE_TRANSLATIONS_QUERY_KEY(contentTypeId),
+    });
+    SET_CONTENT_TYPE_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [contentTypeId, data.locale],
+      data
+    );
+  }
 
   return data;
 };
 
-export const useCreateContentTypeTranslation = (contentTypeId: string) => {
-  const queryClient = useQueryClient();
-
+/**
+ * @category Mutations
+ * @group Content-Translation
+ */
+export const useCreateContentTypeTranslation = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof CreateContentTypeTranslation>>,
+      Omit<CreateContentTypeTranslationParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
   return useConnectedMutation<
-    Omit<CreateContentTypeTranslationProps, "contentTypeId">
-  >(
-    (props) => CreateContentTypeTranslation({ contentTypeId, ...props }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof CreateContentTypeTranslation>>
-      ) => {
-        queryClient.invalidateQueries(
-          CONTENT_TYPE_TRANSLATIONS_QUERY_KEY(contentTypeId)
-        );
-        SET_CONTENT_TYPE_TRANSLATION_QUERY_DATA(
-          queryClient,
-          [contentTypeId, response.data.locale],
-          response
-        );
-      },
-    },
-    "Hold on while we create a translation"
-  );
+    CreateContentTypeTranslationParams,
+    Awaited<ReturnType<typeof CreateContentTypeTranslation>>
+  >(CreateContentTypeTranslation, options);
 };
-
-export default useCreateContentTypeTranslation;

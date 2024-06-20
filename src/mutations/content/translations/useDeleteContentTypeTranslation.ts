@@ -1,42 +1,58 @@
-import ConnectedXM from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { CONTENT_TYPE_TRANSLATION_QUERY_KEY } from "@context/queries/contents/translations/useGetContentTypeTranslation";
-import { CONTENT_TYPE_TRANSLATIONS_QUERY_KEY } from "@context/queries/contents/translations/useGetContentTypeTranslations";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
 
-interface DeleteContentTypeTranslationProps {
+/**
+ * @category Params
+ * @group Content-Translation
+ */
+export interface DeleteContentTypeTranslationParams extends MutationParams {
   contentTypeId: string;
   locale: string;
 }
 
+/**
+ * @category Methods
+ * @group Content-Translation
+ */
 export const DeleteContentTypeTranslation = async ({
   contentTypeId,
   locale,
-}: DeleteContentTypeTranslationProps) => {
-  const connectedXM = await ConnectedXM();
+  adminApiParams,
+  queryClient,
+}: DeleteContentTypeTranslationParams) => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.delete(
     `/contentTypes/${contentTypeId}/translations/${locale}`
   );
 
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: CONTENT_TYPE_TRANSLATIONS_QUERY_KEY(contentTypeId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: CONTENT_TYPE_TRANSLATION_QUERY_KEY(contentTypeId, locale),
+    });
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Content-Translation
+ */
 export const useDeleteContentTypeTranslation = (
-  contentTypeId: string,
-  locale: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof DeleteContentTypeTranslation>>,
+      Omit<DeleteContentTypeTranslationParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-  return useConnectedMutation(DeleteContentTypeTranslation, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(
-        CONTENT_TYPE_TRANSLATIONS_QUERY_KEY(contentTypeId)
-      );
-      queryClient.invalidateQueries(
-        CONTENT_TYPE_TRANSLATION_QUERY_KEY(contentTypeId, locale)
-      );
-    },
-  });
+  return useConnectedMutation(DeleteContentTypeTranslation, options);
 };
-
-export default useDeleteContentTypeTranslation;

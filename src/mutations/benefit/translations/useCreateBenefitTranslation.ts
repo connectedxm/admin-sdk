@@ -34,20 +34,19 @@ export const CreateBenefitTranslation = async ({
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post(
-    `/benefits/${benefitId}/translations`,
-    {
-      locale,
-      autoTranslate,
-    }
-  );
+  const { data } = await connectedXM.post<
+    ConnectedXMResponse<BenefitTranslation>
+  >(`/benefits/${benefitId}/translations`, {
+    locale,
+    autoTranslate,
+  });
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: BENEFIT_TRANSLATIONS_QUERY_KEY(benefitId),
     });
     SET_BENEFIT_TRANSLATION_QUERY_DATA(
       queryClient,
-      [benefitId, data.locale],
+      [benefitId, data.data.locale],
       data
     );
   }

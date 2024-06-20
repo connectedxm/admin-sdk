@@ -25,7 +25,9 @@ export const DeleteBenefit = async ({
   queryClient,
 }: DeleteBenefitParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete(`/benefits/${benefitId}`);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+    `/benefits/${benefitId}`
+  );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: BENEFITS_QUERY_KEY() });

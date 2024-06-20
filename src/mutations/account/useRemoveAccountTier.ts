@@ -27,7 +27,7 @@ export const RemoveAccountTier = async ({
   queryClient,
 }: RemoveAccountTierParams): Promise<ConnectedXMResponse<Account>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete(
+  const { data } = await connectedXM.delete<ConnectedXMResponse<Account>>(
     `/accounts/${accountId}/tiers/${tierId}`
   );
 

@@ -27,7 +27,10 @@ export const UpdateAccount = async ({
   queryClient,
 }: UpdateAccountParams): Promise<ConnectedXMResponse<Account>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put(`/accounts/${accountId}`, account);
+  const { data } = await connectedXM.put<ConnectedXMResponse<Account>>(
+    `/accounts/${accountId}`,
+    account
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: ACCOUNTS_QUERY_KEY() });
     SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], data);

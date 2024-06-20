@@ -25,7 +25,9 @@ export const DeleteAccount = async ({
   queryClient,
 }: DeleteAccountParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete(`/accounts/${accountId}`);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+    `/accounts/${accountId}`
+  );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: ACCOUNTS_QUERY_KEY() });

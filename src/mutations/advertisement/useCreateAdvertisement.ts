@@ -27,11 +27,14 @@ export const CreateAdvertisement = async ({
   queryClient,
 }: CreateAdvertisementParams): Promise<ConnectedXMResponse<Advertisement>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post(`/advertisements`, advertisement);
+  const { data } = await connectedXM.post<ConnectedXMResponse<Advertisement>>(
+    `/advertisements`,
+    advertisement
+  );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: ADVERTISEMENTS_QUERY_KEY() });
-    SET_ADVERTISEMENT_QUERY_DATA(queryClient, [data.id], data);
+    SET_ADVERTISEMENT_QUERY_DATA(queryClient, [data?.data.id], data);
   }
   return data;
 };

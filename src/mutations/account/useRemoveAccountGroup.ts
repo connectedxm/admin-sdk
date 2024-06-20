@@ -27,7 +27,7 @@ export const RemoveAccountGroup = async ({
   queryClient,
 }: RemoveAccountGroupParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete(
+  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/accounts/${accountId}/groups/${groupId}`
   );
 

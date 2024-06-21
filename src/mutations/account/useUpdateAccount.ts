@@ -1,0 +1,58 @@
+import { Account, ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "../useConnectedMutation";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ACCOUNTS_QUERY_KEY, SET_ACCOUNT_QUERY_DATA } from "@src/queries";
+
+/**
+ * @category Params
+ * @group Account
+ */
+export interface UpdateAccountParams extends MutationParams {
+  accountId: string;
+  account: Account;
+}
+
+/**
+ * @category Methods
+ * @group Account
+ */
+export const UpdateAccount = async ({
+  accountId,
+  account,
+  adminApiParams,
+  queryClient,
+}: UpdateAccountParams): Promise<ConnectedXMResponse<Account>> => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.put<ConnectedXMResponse<Account>>(
+    `/accounts/${accountId}`,
+    account
+  );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({ queryKey: ACCOUNTS_QUERY_KEY() });
+    SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], data);
+  }
+  return data;
+};
+
+/**
+ * @category Mutations
+ * @group Account
+ */
+export const useUpdateAccount = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateAccount>>,
+      Omit<UpdateAccountParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    UpdateAccountParams,
+    Awaited<ReturnType<typeof UpdateAccount>>
+  >(UpdateAccount, options);
+};

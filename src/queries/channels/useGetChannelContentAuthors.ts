@@ -12,7 +12,7 @@ import { CHANNEL_CONTENT_QUERY_KEY } from "./useGetChannelContent";
 
 /**
  * @category Keys
- * @group Contents
+ * @group Channels
  */
 export const CHANNEL_CONTENT_AUTHORS_QUERY_KEY = (
   channelId: string,
@@ -21,7 +21,7 @@ export const CHANNEL_CONTENT_AUTHORS_QUERY_KEY = (
 
 /**
  * @category Setters
- * @group Contents
+ * @group Channels
  */
 export const SET_CHANNEL_CONTENT_AUTHORS_QUERY_DATA = (
   client: QueryClient,
@@ -42,7 +42,7 @@ interface GetChannelContentAuthorsProps extends InfiniteQueryParams {
 
 /**
  * @category Queries
- * @group Contents
+ * @group Channels
  */
 export const GetChannelContentAuthors = async ({
   contentId,
@@ -65,7 +65,7 @@ export const GetChannelContentAuthors = async ({
 };
 /**
  * @category Hooks
- * @group Contents
+ * @group Channels
  */
 export const useGetChannelContentAuthors = (
   channelId: string = "",

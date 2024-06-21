@@ -11,7 +11,7 @@ import { CHANNEL_CONTENTS_QUERY_KEY } from "./useGetChannelContents";
 
 /**
  * @category Keys
- * @group Contents
+ * @group Channels
  */
 export const CHANNEL_CONTENT_QUERY_KEY = (
   channelId: string,
@@ -20,7 +20,7 @@ export const CHANNEL_CONTENT_QUERY_KEY = (
 
 /**
  * @category Setters
- * @group Contents
+ * @group Channels
  */
 export const SET_CHANNEL_CONTENT_QUERY_DATA = (
   client: QueryClient,
@@ -36,7 +36,7 @@ interface GetChannelContentProps extends SingleQueryParams {
 
 /**
  * @category Queries
- * @group Contents
+ * @group Channels
  */
 export const GetChannelContent = async ({
   contentId,
@@ -48,7 +48,7 @@ export const GetChannelContent = async ({
 };
 /**
  * @category Hooks
- * @group Contents
+ * @group Channels
  */
 export const useGetChannelContent = (
   channelId: string = "",

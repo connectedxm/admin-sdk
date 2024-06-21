@@ -30,7 +30,7 @@ export const UpdateAdvertisement = async ({
   queryClient,
 }: UpdateAdvertisementParams): Promise<ConnectedXMResponse<Advertisement>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put(
+  const { data } = await connectedXM.put<ConnectedXMResponse<Advertisement>>(
     `/advertisements/${advertisementId}`,
     advertisement
   );

@@ -10,7 +10,7 @@ import { QueryClient } from "@tanstack/react-query";
 
 /**
  * @category Keys
- * @group Contents
+ * @group Channels
  */
 export const CHANNEL_KPI_CONTENTS_QUERY_KEY = (channelId: string) => [
   ...CHANNEL_QUERY_KEY(channelId),
@@ -19,7 +19,7 @@ export const CHANNEL_KPI_CONTENTS_QUERY_KEY = (channelId: string) => [
 
 /**
  * @category Setters
- * @group Contents
+ * @group Channels
  */
 export const SET_CHANNEL_KPI_CONTENTS_QUERY_DATA = (
   client: QueryClient,
@@ -40,7 +40,7 @@ interface DateSumCount {
 
 /**
  * @category Queries
- * @group Contents
+ * @group Channels
  */
 export const GetChannelKPIContents = async ({
   channelId,
@@ -54,7 +54,7 @@ export const GetChannelKPIContents = async ({
 };
 /**
  * @category Hooks
- * @group Contents
+ * @group Channels
  */
 export const useGetChannelKPIContents = (
   channelId: string = "",

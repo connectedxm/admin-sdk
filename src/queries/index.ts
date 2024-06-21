@@ -3,7 +3,7 @@ export * from "./activities";
 export * from "./advertisements";
 export * from "./announcements";
 export * from "./benefits";
-export * from "./contents";
+export * from "./channels";
 export * from "./email-receipts";
 export * from "./events";
 export * from "./groups";

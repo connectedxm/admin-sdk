@@ -12,7 +12,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * @category Keys
- * @group Contents
+ * @group Channels
  */
 export const CHANNEL_QUERY_KEY = (channelId: string) => [
   ...CHANNELS_QUERY_KEY(),
@@ -21,7 +21,7 @@ export const CHANNEL_QUERY_KEY = (channelId: string) => [
 
 /**
  * @category Setters
- * @group Contents
+ * @group Channels
  */
 export const SET_CHANNEL_QUERY_DATA = (
   client: QueryClient,
@@ -37,7 +37,7 @@ interface GetChannelProps extends SingleQueryParams {
 
 /**
  * @category Queries
- * @group Contents
+ * @group Channels
  */
 export const GetChannel = async ({
   channelId,
@@ -49,7 +49,7 @@ export const GetChannel = async ({
 };
 /**
  * @category Hooks
- * @group Contents
+ * @group Channels
  */
 export const useGetChannel = (
   channelId: string = "",

@@ -10,7 +10,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * @category Keys
- * @group Contents
+ * @group Channels
  */
 export const CHANNEL_CONTENT_KPI_ACTIVITIES_QUERY_KEY = (
   channelId: string,
@@ -19,7 +19,7 @@ export const CHANNEL_CONTENT_KPI_ACTIVITIES_QUERY_KEY = (
 
 /**
  * @category Setters
- * @group Contents
+ * @group Channels
  */
 export const SET_CHANNEL_CONTENT_KPI_ACTIVITIES_QUERY_DATA = (
   client: QueryClient,
@@ -43,7 +43,7 @@ interface DateSumCount {
 
 /**
  * @category Queries
- * @group Contents
+ * @group Channels
  */
 export const GetContentKPIActivities = async ({
   contentId,
@@ -57,7 +57,7 @@ export const GetContentKPIActivities = async ({
 };
 /**
  * @category Hooks
- * @group Contents
+ * @group Channels
  */
 export const useGetContentKPIActivities = (
   channelId: string = "",

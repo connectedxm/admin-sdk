@@ -12,7 +12,7 @@ import { QueryClient } from "@tanstack/react-query";
 
 /**
  * @category Keys
- * @group Contents
+ * @group Channels
  */
 export const CHANNEL_CONTENTS_QUERY_KEY = (
   channelId: string,
@@ -25,7 +25,7 @@ export const CHANNEL_CONTENTS_QUERY_KEY = (
 
 /**
  * @category Setters
- * @group Contents
+ * @group Channels
  */
 export const SET_CHANNEL_CONTENTS_QUERY_DATA = (
   client: QueryClient,
@@ -42,7 +42,7 @@ interface GetChannelContentsProps extends InfiniteQueryParams {
 
 /**
  * @category Queries
- * @group Contents
+ * @group Channels
  */
 export const GetChannelContents = async ({
   pageParam,
@@ -67,7 +67,7 @@ export const GetChannelContents = async ({
 };
 /**
  * @category Hooks
- * @group Contents
+ * @group Channels
  */
 export const useGetChannelContents = (
   channelId: string = "",

@@ -23,7 +23,7 @@ export interface DeleteChannelContentTranslationParams extends MutationParams {
  * @category Methods
  * @group Channel-Translation
  */
-export const DeleteContentTypeContentTranslation = async ({
+export const DeleteChannelContentTranslation = async ({
   contentId,
   contentTypeId,
   locale,
@@ -58,10 +58,10 @@ export const DeleteContentTypeContentTranslation = async ({
  * @category Mutations
  * @group Channel-Translation
  */
-export const useDeleteContentTypeContentTranslation = (
+export const useDeleteChannelContentTranslation = (
   options: Omit<
     MutationOptions<
-      Awaited<ReturnType<typeof DeleteContentTypeContentTranslation>>,
+      Awaited<ReturnType<typeof DeleteChannelContentTranslation>>,
       Omit<
         DeleteChannelContentTranslationParams,
         "queryClient" | "adminApiParams"
@@ -72,6 +72,6 @@ export const useDeleteContentTypeContentTranslation = (
 ) => {
   return useConnectedMutation<
     DeleteChannelContentTranslationParams,
-    Awaited<ReturnType<typeof DeleteContentTypeContentTranslation>>
-  >(DeleteContentTypeContentTranslation, options);
+    Awaited<ReturnType<typeof DeleteChannelContentTranslation>>
+  >(DeleteChannelContentTranslation, options);
 };

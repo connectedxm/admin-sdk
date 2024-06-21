@@ -4,12 +4,16 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import {
+  CHANNEL_TRANSLATIONS_QUERY_KEY,
+  CHANNEL_TRANSLATION_QUERY_KEY,
+} from "@src/queries/channels";
 
 /**
  * @category Params
  * @group Channel-Translation
  */
-export interface DeleteContentTypeTranslationParams extends MutationParams {
+export interface DeleteChannelTranslationParams extends MutationParams {
   contentTypeId: string;
   locale: string;
 }
@@ -18,12 +22,12 @@ export interface DeleteContentTypeTranslationParams extends MutationParams {
  * @category Methods
  * @group Channel-Translation
  */
-export const DeleteContentTypeTranslation = async ({
+export const DeleteChannelTranslation = async ({
   contentTypeId,
   locale,
   adminApiParams,
   queryClient,
-}: DeleteContentTypeTranslationParams) => {
+}: DeleteChannelTranslationParams) => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.delete(
@@ -32,10 +36,10 @@ export const DeleteContentTypeTranslation = async ({
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: CONTENT_TYPE_TRANSLATIONS_QUERY_KEY(contentTypeId),
+      queryKey: CHANNEL_TRANSLATIONS_QUERY_KEY(contentTypeId),
     });
     queryClient.invalidateQueries({
-      queryKey: CONTENT_TYPE_TRANSLATION_QUERY_KEY(contentTypeId, locale),
+      queryKey: CHANNEL_TRANSLATION_QUERY_KEY(contentTypeId, locale),
     });
   }
   return data;
@@ -45,14 +49,14 @@ export const DeleteContentTypeTranslation = async ({
  * @category Mutations
  * @group Channel-Translation
  */
-export const useDeleteContentTypeTranslation = (
+export const useDeleteChannelTranslation = (
   options: Omit<
     MutationOptions<
-      Awaited<ReturnType<typeof DeleteContentTypeTranslation>>,
-      Omit<DeleteContentTypeTranslationParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof DeleteChannelTranslation>>,
+      Omit<DeleteChannelTranslationParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
-  return useConnectedMutation(DeleteContentTypeTranslation, options);
+  return useConnectedMutation(DeleteChannelTranslation, options);
 };

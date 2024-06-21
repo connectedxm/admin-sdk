@@ -14,8 +14,7 @@ import {
  * @category Params
  * @group Channel-Translation
  */
-export interface CreateContentTypeContentTranslationParams
-  extends MutationParams {
+export interface CreateChannelContentTranslationParams extends MutationParams {
   contentTypeId: string;
   contentId: string;
   locale: string;
@@ -26,14 +25,14 @@ export interface CreateContentTypeContentTranslationParams
  * @category Methods
  * @group Channel-Translation
  */
-export const CreateContentTypeContentTranslation = async ({
+export const CreateChannelContentTranslation = async ({
   contentId,
   locale,
   autoTranslate,
   contentTypeId,
   adminApiParams,
   queryClient,
-}: CreateContentTypeContentTranslationParams): Promise<
+}: CreateChannelContentTranslationParams): Promise<
   ConnectedXMResponse<ContentTranslation>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
@@ -67,12 +66,12 @@ export const CreateContentTypeContentTranslation = async ({
  * @category Mutations
  * @group Channel-Translation
  */
-export const useCreateContentTypeContentTranslation = (
+export const useCreateChannelContentTranslation = (
   options: Omit<
     MutationOptions<
-      Awaited<ReturnType<typeof CreateContentTypeContentTranslation>>,
+      Awaited<ReturnType<typeof CreateChannelContentTranslation>>,
       Omit<
-        CreateContentTypeContentTranslationParams,
+        CreateChannelContentTranslationParams,
         "queryClient" | "adminApiParams"
       >
     >,
@@ -80,7 +79,7 @@ export const useCreateContentTypeContentTranslation = (
   > = {}
 ) => {
   return useConnectedMutation<
-    CreateContentTypeContentTranslationParams,
-    Awaited<ReturnType<typeof CreateContentTypeContentTranslation>>
-  >(CreateContentTypeContentTranslation, options);
+    CreateChannelContentTranslationParams,
+    Awaited<ReturnType<typeof CreateChannelContentTranslation>>
+  >(CreateChannelContentTranslation, options);
 };

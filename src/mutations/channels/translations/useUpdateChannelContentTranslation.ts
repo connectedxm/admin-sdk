@@ -5,13 +5,16 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import {
+  CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY,
+  SET_CHANNEL_CONTENT_TRANSLATION_QUERY_DATA,
+} from "@src/queries/channels";
 
 /**
  * @category Params
  * @group Channel-Translation
  */
-export interface UpdateContentTypeContentTranslationParams
-  extends MutationParams {
+export interface UpdateChannelContentTranslationParams extends MutationParams {
   contentTypeId: string;
   contentId: string;
   contentTranslation: ContentTranslation;
@@ -21,13 +24,13 @@ export interface UpdateContentTypeContentTranslationParams
  * @category Methods
  * @group Channel-Translation
  */
-export const UpdateContentTypeContentTranslation = async ({
+export const UpdateChannelContentTranslation = async ({
   contentId,
   contentTypeId,
   contentTranslation,
   adminApiParams,
   queryClient,
-}: UpdateContentTypeContentTranslationParams) => {
+}: UpdateChannelContentTranslationParams) => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { locale, ...body } = contentTranslation;
@@ -39,12 +42,12 @@ export const UpdateContentTypeContentTranslation = async ({
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: CONTENT_TYPE_CONTENT_TRANSLATIONS_QUERY_KEY(
+      queryKey: CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY(
         contentTypeId,
         contentId
       ),
     });
-    SET_CONTENT_TYPE_CONTENT_TRANSLATION_QUERY_DATA(
+    SET_CHANNEL_CONTENT_TRANSLATION_QUERY_DATA(
       queryClient,
       [contentTypeId, contentId, data?.locale],
       data
@@ -57,12 +60,12 @@ export const UpdateContentTypeContentTranslation = async ({
  * @category Mutations
  * @group Channel-Translation
  */
-export const useUpdateContentTypeContentTranslation = (
+export const useUpdateChannelContentTranslation = (
   options: Omit<
     MutationOptions<
-      Awaited<ReturnType<typeof UpdateContentTypeContentTranslation>>,
+      Awaited<ReturnType<typeof UpdateChannelContentTranslation>>,
       Omit<
-        UpdateContentTypeContentTranslationParams,
+        UpdateChannelContentTranslationParams,
         "queryClient" | "adminApiParams"
       >
     >,
@@ -70,9 +73,9 @@ export const useUpdateContentTypeContentTranslation = (
   > = {}
 ) => {
   return useConnectedMutation<
-    UpdateContentTypeContentTranslationParams,
-    Awaited<ReturnType<typeof UpdateContentTypeContentTranslation>>
-  >(UpdateContentTypeContentTranslation, options);
+    UpdateChannelContentTranslationParams,
+    Awaited<ReturnType<typeof UpdateChannelContentTranslation>>
+  >(UpdateChannelContentTranslation, options);
 };
 
-export default useUpdateContentTypeContentTranslation;
+export default useUpdateChannelContentTranslation;

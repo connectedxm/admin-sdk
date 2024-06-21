@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, ChannelTranslation } from "@src/interfaces";
+import { ChannelTranslation, ConnectedXMResponse } from "@src/interfaces";
 import {
   MutationOptions,
   MutationParams,
@@ -14,40 +14,38 @@ import {
  * @category Params
  * @group Channel-Translation
  */
-export interface CreateChannelTranslationParams extends MutationParams {
+export interface UpdateChannelTranslationParams extends MutationParams {
   contentTypeId: string;
-  locale: string;
-  autoTranslate?: boolean;
+  contentTypeTranslation: ChannelTranslation;
 }
 
 /**
  * @category Methods
  * @group Channel-Translation
  */
-export const CreateChannelTranslation = async ({
+export const UpdateChannelTranslation = async ({
   contentTypeId,
-  locale,
-  autoTranslate,
+  contentTypeTranslation,
   adminApiParams,
   queryClient,
-}: CreateChannelTranslationParams): Promise<
+}: UpdateChannelTranslationParams): Promise<
   ConnectedXMResponse<ChannelTranslation>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<
+  const { locale, ...body } = contentTypeTranslation;
+
+  const { data } = await connectedXM.put<
     ConnectedXMResponse<ChannelTranslation>
-  >(`/contentTypes/${contentTypeId}/translations`, {
-    locale,
-    autoTranslate,
-  });
+  >(`/contentTypes/${contentTypeId}/translations/${locale}`, body);
+
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: CHANNEL_TRANSLATION_QUERY_KEY(contentTypeId, data?.data.locale),
     });
     SET_CHANNEL_TRANSLATION_QUERY_DATA(
       queryClient,
-      [contentTypeId, data?.data.locale],
+      [contentTypeId, data?.data.id],
       data
     );
   }
@@ -59,17 +57,17 @@ export const CreateChannelTranslation = async ({
  * @category Mutations
  * @group Channel-Translation
  */
-export const useCreateChannelTranslation = (
+export const useUpdateChannelTranslation = (
   options: Omit<
     MutationOptions<
-      Awaited<ReturnType<typeof CreateChannelTranslation>>,
-      Omit<CreateChannelTranslationParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof UpdateChannelTranslation>>,
+      Omit<UpdateChannelTranslationParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    CreateChannelTranslationParams,
-    Awaited<ReturnType<typeof CreateChannelTranslation>>
-  >(CreateChannelTranslation, options);
+    UpdateChannelTranslationParams,
+    Awaited<ReturnType<typeof UpdateChannelTranslation>>
+  >(UpdateChannelTranslation, options);
 };

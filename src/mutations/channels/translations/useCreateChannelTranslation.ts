@@ -15,7 +15,7 @@ import {
  * @group Channel-Translation
  */
 export interface CreateChannelTranslationParams extends MutationParams {
-  contentTypeId: string;
+  channelId: string;
   locale: string;
   autoTranslate?: boolean;
 }
@@ -25,7 +25,7 @@ export interface CreateChannelTranslationParams extends MutationParams {
  * @group Channel-Translation
  */
 export const CreateChannelTranslation = async ({
-  contentTypeId,
+  channelId,
   locale,
   autoTranslate,
   adminApiParams,
@@ -37,17 +37,17 @@ export const CreateChannelTranslation = async ({
 
   const { data } = await connectedXM.post<
     ConnectedXMResponse<ChannelTranslation>
-  >(`/contentTypes/${contentTypeId}/translations`, {
+  >(`/channels/${channelId}/translations`, {
     locale,
     autoTranslate,
   });
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: CHANNEL_TRANSLATION_QUERY_KEY(contentTypeId, data?.data.locale),
+      queryKey: CHANNEL_TRANSLATION_QUERY_KEY(channelId, data?.data.locale),
     });
     SET_CHANNEL_TRANSLATION_QUERY_DATA(
       queryClient,
-      [contentTypeId, data?.data.locale],
+      [channelId, data?.data.locale],
       data
     );
   }

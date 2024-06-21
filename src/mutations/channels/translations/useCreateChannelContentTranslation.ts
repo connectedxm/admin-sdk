@@ -15,7 +15,7 @@ import {
  * @group Channel-Translation
  */
 export interface CreateChannelContentTranslationParams extends MutationParams {
-  contentTypeId: string;
+  channelId: string;
   contentId: string;
   locale: string;
   autoTranslate?: boolean;
@@ -29,7 +29,7 @@ export const CreateChannelContentTranslation = async ({
   contentId,
   locale,
   autoTranslate,
-  contentTypeId,
+  channelId,
   adminApiParams,
   queryClient,
 }: CreateChannelContentTranslationParams): Promise<
@@ -48,14 +48,14 @@ export const CreateChannelContentTranslation = async ({
     //BOTH OF THESE FUNCTIONS ARE NOT DEFINED
     queryClient.invalidateQueries({
       queryKey: CHANNEL_CONTENT_TRANSLATION_QUERY_KEY(
-        contentTypeId,
+        channelId,
         contentId,
         data?.data.locale
       ),
     });
     SET_CHANNEL_CONTENT_TRANSLATION_QUERY_DATA(
       queryClient,
-      [contentTypeId, contentId, data?.data.locale],
+      [channelId, contentId, data?.data.locale],
       data
     );
   }

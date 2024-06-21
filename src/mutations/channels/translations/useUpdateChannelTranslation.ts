@@ -15,8 +15,8 @@ import {
  * @group Channel-Translation
  */
 export interface UpdateChannelTranslationParams extends MutationParams {
-  contentTypeId: string;
-  contentTypeTranslation: ChannelTranslation;
+  channelId: string;
+  channelTranslation: ChannelTranslation;
 }
 
 /**
@@ -24,8 +24,8 @@ export interface UpdateChannelTranslationParams extends MutationParams {
  * @group Channel-Translation
  */
 export const UpdateChannelTranslation = async ({
-  contentTypeId,
-  contentTypeTranslation,
+  channelId,
+  channelTranslation,
   adminApiParams,
   queryClient,
 }: UpdateChannelTranslationParams): Promise<
@@ -33,19 +33,19 @@ export const UpdateChannelTranslation = async ({
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { locale, ...body } = contentTypeTranslation;
+  const { locale, ...body } = channelTranslation;
 
   const { data } = await connectedXM.put<
     ConnectedXMResponse<ChannelTranslation>
-  >(`/contentTypes/${contentTypeId}/translations/${locale}`, body);
+  >(`/channels/${channelId}/translations/${locale}`, body);
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: CHANNEL_TRANSLATION_QUERY_KEY(contentTypeId, data?.data.locale),
+      queryKey: CHANNEL_TRANSLATION_QUERY_KEY(channelId, data?.data.locale),
     });
     SET_CHANNEL_TRANSLATION_QUERY_DATA(
       queryClient,
-      [contentTypeId, data?.data.id],
+      [channelId, data?.data.id],
       data
     );
   }

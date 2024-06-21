@@ -15,7 +15,7 @@ import {
  */
 export interface DeleteChannelContentTranslationParams extends MutationParams {
   contentId: string;
-  contentTypeId: string;
+  channelId: string;
   locale: string;
 }
 
@@ -25,7 +25,7 @@ export interface DeleteChannelContentTranslationParams extends MutationParams {
  */
 export const DeleteChannelContentTranslation = async ({
   contentId,
-  contentTypeId,
+  channelId,
   locale,
   adminApiParams,
   queryClient,
@@ -38,14 +38,11 @@ export const DeleteChannelContentTranslation = async ({
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY(
-        contentTypeId,
-        contentId
-      ),
+      queryKey: CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY(channelId, contentId),
     });
     queryClient.invalidateQueries({
       queryKey: CHANNEL_CONTENT_TRANSLATION_QUERY_KEY(
-        contentTypeId,
+        channelId,
         contentId,
         locale
       ),

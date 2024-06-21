@@ -14,7 +14,7 @@ import {
  * @group Channel-Translation
  */
 export interface DeleteChannelTranslationParams extends MutationParams {
-  contentTypeId: string;
+  channelId: string;
   locale: string;
 }
 
@@ -23,7 +23,7 @@ export interface DeleteChannelTranslationParams extends MutationParams {
  * @group Channel-Translation
  */
 export const DeleteChannelTranslation = async ({
-  contentTypeId,
+  channelId,
   locale,
   adminApiParams,
   queryClient,
@@ -31,15 +31,15 @@ export const DeleteChannelTranslation = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.delete(
-    `/contentTypes/${contentTypeId}/translations/${locale}`
+    `/channels/${channelId}/translations/${locale}`
   );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: CHANNEL_TRANSLATIONS_QUERY_KEY(contentTypeId),
+      queryKey: CHANNEL_TRANSLATIONS_QUERY_KEY(channelId),
     });
     queryClient.invalidateQueries({
-      queryKey: CHANNEL_TRANSLATION_QUERY_KEY(contentTypeId, locale),
+      queryKey: CHANNEL_TRANSLATION_QUERY_KEY(channelId, locale),
     });
   }
   return data;

@@ -30,7 +30,7 @@ export const CreateChannel = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.post<ConnectedXMResponse<Channel>>(
-    `/contentTypes`,
+    `/channels`,
     channel
   );
 

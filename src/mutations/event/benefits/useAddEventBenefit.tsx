@@ -1,38 +1,58 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { BENEFITS_QUERY_KEY } from "@context/queries/benefits/useGetBenefits";
-import { SET_BENEFIT_QUERY_DATA } from "@context/queries/benefits/useGetBenefit";
-import { Benefit } from "@interfaces";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { Benefit, ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import { BENEFITS_QUERY_KEY, SET_BENEFIT_QUERY_DATA } from "@src/queries";
 
-interface AddEventBenefitParams {
+/**
+ * @category Params
+ * @group Event-Benefits
+ */
+export interface AddEventBenefitParams extends MutationParams {
   benefitId: string;
   eventId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Benefits
+ */
 export const AddEventBenefit = async ({
   benefitId,
   eventId,
+  adminApiParams,
+  queryClient,
 }: AddEventBenefitParams): Promise<ConnectedXMResponse<Benefit>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.post<ConnectedXMResponse<Benefit>>(
     `/events/${eventId}/benefits/${benefitId}`
   );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({ queryKey: BENEFITS_QUERY_KEY() });
+    SET_BENEFIT_QUERY_DATA(queryClient, [data.data.id], data);
+  }
   return data;
 };
 
-export const useAddEventBenefit = (eventId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation(
-    (benefitId: string) => AddEventBenefit({ benefitId, eventId }),
-    {
-      onSuccess: (response: Awaited<ReturnType<typeof AddEventBenefit>>) => {
-        queryClient.invalidateQueries(BENEFITS_QUERY_KEY());
-        SET_BENEFIT_QUERY_DATA(queryClient, [response.data.id], response);
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Benefits
+ */
+export const useAddEventBenefit = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof AddEventBenefit>>,
+      Omit<AddEventBenefitParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    AddEventBenefitParams,
+    Awaited<ReturnType<typeof AddEventBenefit>>
+  >(AddEventBenefit, options);
 };
-
-export default useAddEventBenefit;

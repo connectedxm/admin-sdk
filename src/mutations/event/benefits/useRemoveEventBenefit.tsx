@@ -1,40 +1,58 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { Benefit } from "@interfaces";
-import { BENEFITS_QUERY_KEY } from "@context/queries/benefits/useGetBenefits";
-import { SET_BENEFIT_QUERY_DATA } from "@context/queries/benefits/useGetBenefit";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { Benefit, ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import { BENEFITS_QUERY_KEY, SET_BENEFIT_QUERY_DATA } from "@src/queries";
 
-interface RemoveEventBenefitParams {
+/**
+ * @category Params
+ * @group Event-Benefits
+ */
+export interface RemoveEventBenefitParams extends MutationParams {
   benefitId: string;
   eventId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Benefits
+ */
 export const RemoveEventBenefit = async ({
   benefitId,
   eventId,
+  adminApiParams,
+  queryClient,
 }: RemoveEventBenefitParams): Promise<ConnectedXMResponse<Benefit>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.delete(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<Benefit>>(
     `/events/${eventId}/benefits/${benefitId}`
   );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({ queryKey: BENEFITS_QUERY_KEY() });
+    SET_BENEFIT_QUERY_DATA(queryClient, [data.data.id], data);
+  }
   return data;
 };
 
-export const useRemoveEventBenefit = (eventId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation(
-    (benefitId: string) => RemoveEventBenefit({ benefitId, eventId }),
-    {
-      onSuccess: (response: Awaited<ReturnType<typeof RemoveEventBenefit>>) => {
-        queryClient.invalidateQueries(BENEFITS_QUERY_KEY());
-        SET_BENEFIT_QUERY_DATA(queryClient, [response.data.id], response);
-      },
-    },
-    undefined,
-    true
-  );
+/**
+ * @category Mutations
+ * @group Event-Benefits
+ */
+export const useRemoveEventBenefit = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof RemoveEventBenefit>>,
+      Omit<RemoveEventBenefitParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    RemoveEventBenefitParams,
+    Awaited<ReturnType<typeof RemoveEventBenefit>>
+  >(RemoveEventBenefit, options);
 };
-
-export default useRemoveEventBenefit;

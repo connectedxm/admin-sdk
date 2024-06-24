@@ -362,11 +362,13 @@ export interface BaseAnnouncement {
   groupId: string | null;
   ticketId: string | null;
   userId: string | null;
+  createdAt: string;
 }
 
 export interface Announcement extends BaseAnnouncement {
   _count: {
     notifications: number;
+    emailReceipt: number;
   };
   verifiedAccounts: boolean;
   account: BaseAccount | null;
@@ -380,7 +382,6 @@ export interface Announcement extends BaseAnnouncement {
   html: string | null;
   message: string | null;
   updatedAt: string;
-  createdAt: string;
 }
 
 export interface BenefitClick {
@@ -861,6 +862,7 @@ export interface BaseGroupMembership {
   groupId: string;
   group: BaseGroup;
   role: GroupMembershipRole;
+  createdAt: string;
 }
 
 export interface GroupMembership extends BaseGroupMembership {
@@ -870,7 +872,6 @@ export interface GroupMembership extends BaseGroupMembership {
   activityPushNotification: boolean;
   eventEmailNotification: boolean;
   eventPushNotification: boolean;
-  createdAt: string;
   updatedAt: string;
 }
 
@@ -903,6 +904,9 @@ export interface BaseGroup {
   featured: boolean;
   imageId: string | null;
   image: BaseImage | null;
+  _count: {
+    members: number;
+  };
 }
 
 export interface Group extends BaseGroup {
@@ -1331,6 +1335,9 @@ export interface BaseRegistrationQuestionChoice {
   description: string | null;
   supply: number | null;
   sortOrder: number;
+  _count: {
+    subQuestions: number;
+  };
 }
 
 export interface RegistrationQuestionChoice
@@ -1679,7 +1686,7 @@ export interface BaseSpeaker {
   visible: boolean;
 }
 
-export interface Speaker {
+export interface Speaker extends BaseSpeaker {
   sessions: BaseSession[];
   eventId: string;
   event: BaseEvent;
@@ -1737,14 +1744,18 @@ export interface BaseStreamInput {
   name: string;
   cloudflareId: string | null;
   connected: boolean;
+  eventId: string | null;
+  event: {
+    name: string;
+  } | null;
 }
 
 export interface StreamInput extends BaseStreamInput {
   sortOrder: number;
-  eventId: string | null;
   event: BaseEvent | null;
   sessionId: string | null;
   session: BaseSession | null;
+  details?: StreamInputDetails;
   createdAt: string;
 }
 
@@ -1754,6 +1765,52 @@ export interface StreamInputOutput {
   url: string;
   streamKey: string;
   uid: string;
+}
+
+export interface StreamInputConfig {
+  mode: "automatic" | "off";
+  requireSignedURLs: boolean;
+  allowedOrigins: string[];
+  deleteRecordingAfterDays: null | number;
+}
+
+export interface StreamInputDetails {
+  uid: string;
+  rtmps: {
+    url: string;
+    streamKey: string;
+  };
+  rtmpsPlayback: {
+    url: string;
+    streamKey: string;
+  };
+  srt: {
+    url: string;
+    streamId: string;
+    passphrase: string;
+  };
+  srtPlayback: {
+    url: string;
+    streamId: string;
+    passphrase: string;
+  };
+  webRTC: {
+    url: string;
+  };
+  webRTCPlayback: {
+    url: string;
+  };
+  created: string;
+  modified: string;
+  meta: Record<string, any>;
+  defaultCreator: string;
+  status: any;
+  recording: {
+    mode: "automatic" | "off";
+    requireSignedURLs: boolean;
+    allowedOrigins: string[];
+  };
+  deleteRecordingAfterDays: null | number;
 }
 
 export enum SubscriptionProductPriceType {
@@ -1904,6 +1961,7 @@ export interface BaseTicket {
   slug: string;
   active: boolean;
   transferable: boolean;
+  featured: boolean;
   visibility: boolean;
   name: string;
   shortDescription: string;

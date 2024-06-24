@@ -78,7 +78,7 @@ export const useGetGroupMembers = (
     params,
     {
       ...options,
-      enabled: !!groupId && !!params.pageSize,
+      enabled: !!groupId && (options.enabled ?? true),
     }
   );
 };

@@ -13,9 +13,10 @@ import { QueryClient } from "@tanstack/react-query";
  * @category Keys
  * @group Announcements
  */
-export const ANNOUNCEMENTS_QUERY_KEY = (filters?: string) => {
+export const ANNOUNCEMENTS_QUERY_KEY = (eventId?: string, groupId?: string) => {
   const keys = ["ANNOUNCEMENTS"];
-  if (filters) keys.push(filters);
+  if (eventId) keys.push(eventId);
+  if (groupId) keys.push(groupId);
   return keys;
 };
 
@@ -32,7 +33,8 @@ export const SET_ANNOUNCEMENTS_QUERY_DATA = (
 };
 
 interface GetAnnouncementsProps extends InfiniteQueryParams {
-  filters?: string;
+  eventId?: string;
+  groupId?: string;
 }
 
 /**
@@ -44,7 +46,8 @@ export const GetAnnouncements = async ({
   pageSize,
   orderBy,
   search,
-  filters,
+  eventId,
+  groupId,
   adminApiParams,
 }: GetAnnouncementsProps): Promise<ConnectedXMResponse<Announcement[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -54,7 +57,8 @@ export const GetAnnouncements = async ({
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
-      filters: filters || undefined,
+      eventId: eventId || undefined,
+      groupId: groupId || undefined,
     },
   });
   return data;
@@ -64,7 +68,8 @@ export const GetAnnouncements = async ({
  * @group Announcements
  */
 export const useGetAnnouncements = (
-  filters?: string,
+  eventId?: string,
+  groupId?: string,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -76,8 +81,9 @@ export const useGetAnnouncements = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetAnnouncements>>
   >(
-    ANNOUNCEMENTS_QUERY_KEY(filters),
-    (params: InfiniteQueryParams) => GetAnnouncements({ filters, ...params }),
+    ANNOUNCEMENTS_QUERY_KEY(eventId, groupId),
+    (params: InfiniteQueryParams) =>
+      GetAnnouncements({ eventId, groupId, ...params }),
     params,
     options
   );

@@ -1,6 +1,7 @@
 export * from "./activations";
 export * from "./addOns";
 export * from "./bypass";
+export * from "./coHosts";
 export * from "./coupons";
 export * from "./emails";
 export * from "./faqs";

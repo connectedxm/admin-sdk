@@ -1,38 +1,57 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { EventOnSite } from "@interfaces";
-import { SET_EVENT_ON_SITE_QUERY_DATA } from "@context/queries/events/on-site/useGetEventOnSite";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventOnSite } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import { SET_EVENT_ON_SITE_QUERY_DATA } from "@src/queries";
 
-interface UpdateEventZplTemplateParams {
+/**
+ * @category Params
+ * @group Event-OnSite
+ */
+export interface UpdateEventZplTemplateParams extends MutationParams {
   eventId: string;
   zplTemplate: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-OnSite
+ */
 export const UpdateEventZplTemplate = async ({
   eventId,
   zplTemplate,
+  adminApiParams,
+  queryClient,
 }: UpdateEventZplTemplateParams): Promise<ConnectedXMResponse<EventOnSite>> => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put(`/events/${eventId}/zpl-template`, {
     zplTemplate,
   });
+
+  if (queryClient && data.status === "ok") {
+    SET_EVENT_ON_SITE_QUERY_DATA(queryClient, [eventId], data);
+  }
   return data;
 };
 
-export const useUpdateEventZplTemplate = (eventId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation(
-    (zplTemplate: string) => UpdateEventZplTemplate({ zplTemplate, eventId }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof UpdateEventZplTemplate>>
-      ) => {
-        SET_EVENT_ON_SITE_QUERY_DATA(queryClient, [eventId], response);
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-OnSite
+ */
+export const useUpdateEventZplTemplate = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateEventZplTemplate>>,
+      Omit<UpdateEventZplTemplateParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    UpdateEventZplTemplateParams,
+    Awaited<ReturnType<typeof UpdateEventZplTemplate>>
+  >(UpdateEventZplTemplate, options);
 };
-
-export default useUpdateEventZplTemplate;

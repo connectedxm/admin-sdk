@@ -1,31 +1,54 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { EventOnSite } from "@interfaces";
-import { SET_EVENT_ON_SITE_QUERY_DATA } from "@context/queries/events/on-site/useGetEventOnSite";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventOnSite } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import { SET_EVENT_ON_SITE_QUERY_DATA } from "@src/queries";
 
-interface UpdateEventCheckinCodeParams {
+/**
+ * @category Params
+ * @group Event-OnSite
+ */
+export interface UpdateEventCheckinCodeParams extends MutationParams {
   eventId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-OnSite
+ */
 export const UpdateEventCheckinCode = async ({
   eventId,
+  adminApiParams,
+  queryClient,
 }: UpdateEventCheckinCodeParams): Promise<ConnectedXMResponse<EventOnSite>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(`/events/${eventId}/on-site`);
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.post<ConnectedXMResponse<EventOnSite>>(
+    `/events/${eventId}/on-site`
+  );
+  if (queryClient && data.status === "ok") {
+    SET_EVENT_ON_SITE_QUERY_DATA(queryClient, [eventId], data);
+  }
   return data;
 };
 
-export const useUpdateEventCheckinCode = (eventId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation(() => UpdateEventCheckinCode({ eventId }), {
-    onSuccess: (
-      response: Awaited<ReturnType<typeof UpdateEventCheckinCode>>
-    ) => {
-      SET_EVENT_ON_SITE_QUERY_DATA(queryClient, [eventId], response);
-    },
-  });
+/**
+ * @category Mutations
+ * @group Event-OnSite
+ */
+export const useUpdateEventCheckinCode = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateEventCheckinCode>>,
+      Omit<UpdateEventCheckinCodeParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    UpdateEventCheckinCodeParams,
+    Awaited<ReturnType<typeof UpdateEventCheckinCode>>
+  >(UpdateEventCheckinCode, options);
 };
-
-export default useUpdateEventCheckinCode;

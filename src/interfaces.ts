@@ -223,7 +223,7 @@ export interface BaseActivationCompletion {
   id: string;
   eventId: string;
   eventActivationId: string;
-  eventActivation: BaseActivation;
+  eventActivation: BaseEventActivation;
   earnedPoints: number;
   accountId: string;
 }
@@ -234,7 +234,7 @@ export interface ActivationCompletion extends BaseActivationCompletion {
   updatedAt: string;
 }
 
-export interface BaseActivation {
+export interface BaseEventActivation {
   id: string;
   slug: string;
   name: string;
@@ -244,7 +244,7 @@ export interface BaseActivation {
   protected: false;
 }
 
-export interface Activation extends BaseActivation {
+export interface EventActivation extends BaseEventActivation {
   eventId: string;
   event: BaseEvent;
   managerId: string | null;

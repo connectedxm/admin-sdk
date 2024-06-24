@@ -1,24 +1,37 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { EventOnSiteBadgeField } from "@interfaces";
-import { EVENT_ZPL_TEMPLATE_BADGE_FIELDS_QUERY_KEY } from "@context/queries/events/on-site/useGetEventZplTemplateBadgeFields";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventOnSiteBadgeField } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import { EVENT_ZPL_TEMPLATE_BADGE_FIELDS_QUERY_KEY } from "@src/queries";
 
-interface UpdateEventZplTemplateBadgeFieldParams {
+/**
+ * @category Params
+ * @group Event-OnSite
+ */
+export interface UpdateEventZplTemplateBadgeFieldParams extends MutationParams {
   eventId: string;
   fieldId: string;
   field: EventOnSiteBadgeField;
 }
 
+/**
+ * @category Methods
+ * @group Event-OnSite
+ */
 export const UpdateEventZplTemplateBadgeField = async ({
   eventId,
   fieldId,
   field,
+  adminApiParams,
+  queryClient,
 }: UpdateEventZplTemplateBadgeFieldParams): Promise<
   ConnectedXMResponse<EventOnSiteBadgeField>
 > => {
   if (!fieldId) throw new Error("Field ID Undefined");
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put(
     `/events/${eventId}/zpl-template/fields/${fieldId}`,
     {
@@ -31,37 +44,38 @@ export const UpdateEventZplTemplateBadgeField = async ({
       onSite: undefined,
     }
   );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_ZPL_TEMPLATE_BADGE_FIELDS_QUERY_KEY(eventId),
+    });
+    // SET_EVENT_ZPL_TEMPLATE_BADGE_FIELD_QUERY_DATA(
+    //   queryClient,
+    //   [eventId],
+    //   response
+    // );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-OnSite
+ */
 export const useUpdateEventZplTemplateBadgeField = (
-  eventId: string,
-  fieldId?: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateEventZplTemplateBadgeField>>,
+      Omit<
+        UpdateEventZplTemplateBadgeFieldParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation(
-    (field: EventOnSiteBadgeField) =>
-      UpdateEventZplTemplateBadgeField({
-        eventId,
-        fieldId: fieldId || field?.id?.toString(),
-        field,
-      }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof UpdateEventZplTemplateBadgeField>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_ZPL_TEMPLATE_BADGE_FIELDS_QUERY_KEY(eventId)
-        );
-        // SET_EVENT_ZPL_TEMPLATE_BADGE_FIELD_QUERY_DATA(
-        //   queryClient,
-        //   [eventId],
-        //   response
-        // );
-      },
-    }
-  );
+  return useConnectedMutation<
+    UpdateEventZplTemplateBadgeFieldParams,
+    Awaited<ReturnType<typeof UpdateEventZplTemplateBadgeField>>
+  >(UpdateEventZplTemplateBadgeField, options);
 };
-
-export default useUpdateEventZplTemplateBadgeField;

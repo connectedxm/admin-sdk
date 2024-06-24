@@ -62,5 +62,3 @@ export const useDeleteEventFAQSection = (
     Awaited<ReturnType<typeof DeleteEventFAQSection>>
   >(DeleteEventFAQSection, options);
 };
-
-export default useDeleteEventFAQSection;

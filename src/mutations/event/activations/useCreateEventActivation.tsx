@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { Activation, ConnectedXMResponse } from "@src/interfaces";
+import { EventActivation, ConnectedXMResponse } from "@src/interfaces";
 import {
   MutationOptions,
   MutationParams,
@@ -16,7 +16,7 @@ import {
  */
 export interface CreateEventActivationParams extends MutationParams {
   eventId: string;
-  activation: Activation;
+  activation: EventActivation;
 }
 
 /**
@@ -28,9 +28,11 @@ export const CreateEventActivation = async ({
   activation,
   adminApiParams,
   queryClient,
-}: CreateEventActivationParams): Promise<ConnectedXMResponse<Activation>> => {
+}: CreateEventActivationParams): Promise<
+  ConnectedXMResponse<EventActivation>
+> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Activation>>(
+  const { data } = await connectedXM.post<ConnectedXMResponse<EventActivation>>(
     `/events/${eventId}/activations`,
     activation
   );

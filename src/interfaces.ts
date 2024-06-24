@@ -621,6 +621,13 @@ export interface EventAddOnTranslation {
   updatedAt: string;
 }
 
+export interface EventActivationTranslation {
+  locale: string;
+  name: string;
+  shortDescription: string;
+  longDescription: string | null;
+}
+
 export enum EventEmailType {
   confirmation = "confirmation",
   cancellation = "cancellation",

@@ -1,60 +1,80 @@
-import ConnectedXM from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { SET_EVENT_ACTIVATION_TRANSLATION_QUERY_DATA } from "@context/queries/events/activations/translations/useGetEventActivationTranslation";
-import { EVENT_ACTIVATION_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/activations/translations/useGetEventActivationTranslations";
-import { EventActivationTranslation } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ActivationTranslation, ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_ACTIVATION_TRANSLATIONS_QUERY_KEY,
+  SET_EVENT_ACTIVATION_TRANSLATION_QUERY_DATA,
+} from "@src/queries";
 
-interface UpdateEventActivationTranslationProps {
+/**
+ * @category Params
+ * @group Event-Activations-Translations
+ */
+export interface UpdateEventActivationTranslationParams extends MutationParams {
   eventId: string;
   activationId: string;
-  eventActivationTranslation: EventActivationTranslation;
+  eventActivationTranslation: ActivationTranslation;
 }
 
+/**
+ * @category Methods
+ * @group Event-Activations-Translations
+ */
 export const UpdateEventActivationTranslation = async ({
   eventId,
   activationId,
   eventActivationTranslation,
-}: UpdateEventActivationTranslationProps) => {
-  const connectedXM = await ConnectedXM();
+  adminApiParams,
+  queryClient,
+}: UpdateEventActivationTranslationParams): Promise<
+  ConnectedXMResponse<ActivationTranslation>
+> => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { locale, ...body } = eventActivationTranslation;
 
-  const { data } = await connectedXM.put(
-    `/events/${eventId}/activations/${activationId}/translations/${eventActivationTranslation.locale}`,
+  const { data } = await connectedXM.put<
+    ConnectedXMResponse<ActivationTranslation>
+  >(
+    `/events/${eventId}/activations/${activationId}/translations/${locale}`,
     body
   );
 
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_ACTIVATION_TRANSLATIONS_QUERY_KEY(eventId, activationId),
+    });
+    SET_EVENT_ACTIVATION_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [eventId, activationId, data.data?.locale],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Activations-Translations
+ */
 export const useUpdateEventActivationTranslation = (
-  eventId: string,
-  activationId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateEventActivationTranslation>>,
+      Omit<
+        UpdateEventActivationTranslationParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-  return useConnectedMutation<EventActivationTranslation>(
-    (eventActivationTranslation: EventActivationTranslation) =>
-      UpdateEventActivationTranslation({
-        eventId,
-        activationId,
-        eventActivationTranslation,
-      }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof UpdateEventActivationTranslation>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_ACTIVATION_TRANSLATIONS_QUERY_KEY(eventId, activationId)
-        );
-        SET_EVENT_ACTIVATION_TRANSLATION_QUERY_DATA(
-          queryClient,
-          [eventId, activationId, response.data?.locale],
-          response
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    UpdateEventActivationTranslationParams,
+    Awaited<ReturnType<typeof UpdateEventActivationTranslation>>
+  >(UpdateEventActivationTranslation, options);
 };
-
-export default useUpdateEventActivationTranslation;

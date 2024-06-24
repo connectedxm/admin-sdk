@@ -1,47 +1,65 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import { EVENT_ACTIVATIONS_QUERY_KEY } from "@context/queries/events/activations/useGetEventActivations";
-import { EVENT_ACTIVATION_QUERY_KEY } from "@context/queries/events/activations/useGetEventActivation";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_ACTIVATIONS_QUERY_KEY,
+  EVENT_ACTIVATION_QUERY_KEY,
+} from "@src/queries";
 
-interface DeleteEventActivationParams {
+/**
+ * @category Params
+ * @group Event-Activations
+ */
+export interface DeleteEventActivationParams extends MutationParams {
   eventId: string;
   activationId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Activations
+ */
 export const DeleteEventActivation = async ({
   eventId,
   activationId,
+  adminApiParams,
+  queryClient,
 }: DeleteEventActivationParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.delete(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/activations/${activationId}`
   );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_ACTIVATIONS_QUERY_KEY(eventId),
+    });
+    queryClient.removeQueries({
+      queryKey: EVENT_ACTIVATION_QUERY_KEY(eventId, activationId),
+    });
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Activations
+ */
 export const useDeleteEventActivation = (
-  eventId: string,
-  activationId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof DeleteEventActivation>>,
+      Omit<DeleteEventActivationParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-  const router = useRouter();
-
-  return useConnectedMutation(
-    () => DeleteEventActivation({ eventId, activationId }),
-    {
-      onSuccess: async (
-        _response: Awaited<ReturnType<typeof DeleteEventActivation>>
-      ) => {
-        await router.push(`/events/${eventId}/activations`);
-        queryClient.invalidateQueries(EVENT_ACTIVATIONS_QUERY_KEY(eventId));
-        queryClient.removeQueries(
-          EVENT_ACTIVATION_QUERY_KEY(eventId, activationId)
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    DeleteEventActivationParams,
+    Awaited<ReturnType<typeof DeleteEventActivation>>
+  >(DeleteEventActivation, options);
 };
-
-export default useDeleteEventActivation;

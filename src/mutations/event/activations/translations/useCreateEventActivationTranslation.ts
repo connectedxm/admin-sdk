@@ -1,13 +1,30 @@
-import { ConnectedXMResponse } from "@src/interfaces";
-import { MutationParams } from "@src/mutations/useConnectedMutation";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ActivationTranslation, ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_ACTIVATION_TRANSLATIONS_QUERY_KEY,
+  SET_EVENT_ACTIVATION_TRANSLATION_QUERY_DATA,
+} from "@src/queries";
 
-export interface CreateEventActivationTranslationProps extends MutationParams {
+/**
+ * @category Params
+ * @group Event-Activations-Translations
+ */
+export interface CreateEventActivationTranslationParams extends MutationParams {
   eventId: string;
   activationId: string;
   locale: string;
   autoTranslate?: boolean;
 }
 
+/**
+ * @category Methods
+ * @group Event-Activations-Translations
+ */
 export const CreateEventActivationTranslation = async ({
   eventId,
   activationId,
@@ -15,49 +32,53 @@ export const CreateEventActivationTranslation = async ({
   autoTranslate,
   adminApiParams,
   queryClient,
-}: CreateEventActivationTranslationProps): Promise<
-  ConnectedXMResponse<EventActivationTranslation>
+}: //EventActivationTranslation was renamed to ActivationTranslation?
+CreateEventActivationTranslationParams): Promise<
+  ConnectedXMResponse<ActivationTranslation>
 > => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post(
-    `/events/${eventId}/activations/${activationId}/translations`,
-    {
-      locale,
-      autoTranslate,
-    }
-  );
+  const { data } = await connectedXM.post<
+    ConnectedXMResponse<ActivationTranslation>
+  >(`/events/${eventId}/activations/${activationId}/translations`, {
+    locale,
+    autoTranslate,
+  });
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_ACTIVATION_TRANSLATIONS_QUERY_KEY(eventId, activationId),
+    });
+    SET_EVENT_ACTIVATION_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [eventId, activationId, data?.data.locale],
+      data
+    );
+  }
 
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Activations-Translations
+ */
 export const useCreateEventActivationTranslation = (
-  eventId: string,
-  activationId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof CreateEventActivationTranslation>>,
+      Omit<
+        CreateEventActivationTranslationParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
   return useConnectedMutation<
-    Omit<CreateEventActivationTranslationProps, "eventId" | "activationId">
-  >(
-    (props) =>
-      CreateEventActivationTranslation({ eventId, activationId, ...props }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof CreateEventActivationTranslation>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_ACTIVATION_TRANSLATIONS_QUERY_KEY(eventId, activationId)
-        );
-        SET_EVENT_ACTIVATION_TRANSLATION_QUERY_DATA(
-          queryClient,
-          [eventId, activationId, response.data?.locale],
-          response
-        );
-      },
-    },
-    "Hold on while we create a translation..."
-  );
+    CreateEventActivationTranslationParams,
+    Awaited<ReturnType<typeof CreateEventActivationTranslation>>
+  >(CreateEventActivationTranslation, options);
 };
 
 export default useCreateEventActivationTranslation;

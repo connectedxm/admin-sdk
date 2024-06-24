@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 
-import { BaseEmailReceipt, EmailReceiptStatus } from "@src/interfaces";
+import { EmailReceipt, EmailReceiptStatus } from "@src/interfaces";
 import {
   InfiniteQueryParams,
   InfiniteQueryOptions,
@@ -60,7 +60,7 @@ export const GetAnnouncementEmailReceipts = async ({
   search,
   adminApiParams,
 }: GetAnnouncementEmailReceiptsProps): Promise<
-  ConnectedXMResponse<BaseEmailReceipt[]>
+  ConnectedXMResponse<EmailReceipt[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(

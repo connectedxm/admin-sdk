@@ -1,52 +1,74 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import { EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY } from "@context/queries/events/faqs/useGetEventFAQSectionQuestions";
-import { EVENT_FAQ_SECTION_QUESTION_QUERY_KEY } from "@context/queries/events/faqs/useGetEventFAQSectionQuestion";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY,
+  EVENT_FAQ_SECTION_QUESTION_QUERY_KEY,
+} from "@src/queries";
 
-interface DeleteEventFAQSectionQuestionParams {
+/**
+ * @category Params
+ * @group Event-Faqs
+ */
+export interface DeleteEventFAQSectionQuestionParams extends MutationParams {
   eventId: string;
   sectionId: string;
   questionId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Faqs
+ */
 export const DeleteEventFAQSectionQuestion = async ({
   eventId,
   sectionId,
   questionId,
+  adminApiParams,
+  queryClient,
 }: DeleteEventFAQSectionQuestionParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.delete(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/faqs/${sectionId}/questions/${questionId}`
   );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY(eventId, sectionId),
+    });
+    queryClient.removeQueries({
+      queryKey: EVENT_FAQ_SECTION_QUESTION_QUERY_KEY(
+        eventId,
+        sectionId,
+        questionId
+      ),
+    });
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Faqs
+ */
 export const useDeleteEventFAQSectionQuestion = (
-  eventId: string,
-  sectionId: string,
-  questionId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof DeleteEventFAQSectionQuestion>>,
+      Omit<
+        DeleteEventFAQSectionQuestionParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const router = useRouter();
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<any>(
-    () => DeleteEventFAQSectionQuestion({ eventId, sectionId, questionId }),
-    {
-      onSuccess: async (
-        _response: Awaited<ReturnType<typeof DeleteEventFAQSectionQuestion>>
-      ) => {
-        await router.push(`/events/${eventId}/faqs/${sectionId}/questions`);
-        queryClient.invalidateQueries(
-          EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY(eventId, sectionId)
-        );
-        queryClient.removeQueries(
-          EVENT_FAQ_SECTION_QUESTION_QUERY_KEY(eventId, sectionId, questionId)
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    DeleteEventFAQSectionQuestionParams,
+    Awaited<ReturnType<typeof DeleteEventFAQSectionQuestion>>
+  >(DeleteEventFAQSectionQuestion, options);
 };
-
-export default useDeleteEventFAQSectionQuestion;

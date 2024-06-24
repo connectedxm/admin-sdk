@@ -1,45 +1,75 @@
-import ConnectedXM from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { EVENT_FAQ_SECTION_TRANSLATION_QUERY_KEY } from "@context/queries/events/faqs/translations/useGetEventFAQSectionTranslation";
-import { EVENT_FAQ_SECTION_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/faqs/translations/useGetEventFAQSectionTranslations";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_FAQ_SECTION_TRANSLATIONS_QUERY_KEY,
+  EVENT_FAQ_SECTION_TRANSLATION_QUERY_KEY,
+} from "@src/queries";
 
-interface DeleteEventFAQSectionTranslationProps {
+/**
+ * @category Params
+ * @group Event-Faqs-Translations
+ */
+export interface DeleteEventFAQSectionTranslationParams extends MutationParams {
   eventId: string;
   sectionId: string;
   locale: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Faqs-Translations
+ */
 export const DeleteEventFAQSectionTranslation = async ({
   eventId,
   sectionId,
   locale,
-}: DeleteEventFAQSectionTranslationProps) => {
-  const connectedXM = await ConnectedXM();
+  adminApiParams,
+  queryClient,
+}: DeleteEventFAQSectionTranslationParams) => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.delete(
     `/events/${eventId}/faqs/${sectionId}/translations/${locale}`
   );
 
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_FAQ_SECTION_TRANSLATIONS_QUERY_KEY(eventId, sectionId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_FAQ_SECTION_TRANSLATION_QUERY_KEY(
+        eventId,
+        sectionId,
+        locale
+      ),
+    });
+  }
+
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Faqs-Translations
+ */
 export const useDeleteEventFAQSectionTranslation = (
-  eventId: string,
-  sectionId: string,
-  locale: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof DeleteEventFAQSectionTranslation>>,
+      Omit<
+        DeleteEventFAQSectionTranslationParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-  return useConnectedMutation(DeleteEventFAQSectionTranslation, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(
-        EVENT_FAQ_SECTION_TRANSLATIONS_QUERY_KEY(eventId, sectionId)
-      );
-      queryClient.invalidateQueries(
-        EVENT_FAQ_SECTION_TRANSLATION_QUERY_KEY(eventId, sectionId, locale)
-      );
-    },
-  });
+  return useConnectedMutation<
+    DeleteEventFAQSectionTranslationParams,
+    Awaited<ReturnType<typeof DeleteEventFAQSectionTranslation>>
+  >(DeleteEventFAQSectionTranslation, options);
 };
-
-export default useDeleteEventFAQSectionTranslation;

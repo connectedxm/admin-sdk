@@ -1,45 +1,68 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { FAQSection } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { EVENT_FAQ_SECTIONS_QUERY_KEY } from "@context/queries/events/faqs/useGetEventFAQSections";
-import { SET_EVENT_FAQ_SECTION_QUERY_DATA } from "@context/queries/events/faqs/useGetEventFAQSection";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, FaqSection } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_FAQ_SECTIONS_QUERY_KEY,
+  SET_EVENT_FAQ_SECTION_QUERY_DATA,
+} from "@src/queries";
 
-interface CreateEventFAQSectionParams {
+/**
+ * @category Params
+ * @group Event-Faqs
+ */
+export interface CreateEventFAQSectionParams extends MutationParams {
   eventId: string;
-  faqSection: FAQSection;
+  faqSection: FaqSection;
 }
 
+/**
+ * @category Methods
+ * @group Event-Faqs
+ */
 export const CreateEventFAQSection = async ({
   eventId,
   faqSection,
-}: CreateEventFAQSectionParams): Promise<ConnectedXMResponse<FAQSection>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(
+  adminApiParams,
+  queryClient,
+}: CreateEventFAQSectionParams): Promise<ConnectedXMResponse<FaqSection>> => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.post<ConnectedXMResponse<FaqSection>>(
     `/events/${eventId}/faqs`,
     faqSection
   );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_FAQ_SECTIONS_QUERY_KEY(eventId),
+    });
+    SET_EVENT_FAQ_SECTION_QUERY_DATA(
+      queryClient,
+      [eventId, data.data.id],
+      data
+    );
+  }
   return data;
 };
 
-export const useCreateEventFAQSection = (eventId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<FAQSection>(
-    (faqSection: FAQSection) => CreateEventFAQSection({ eventId, faqSection }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof CreateEventFAQSection>>
-      ) => {
-        queryClient.invalidateQueries(EVENT_FAQ_SECTIONS_QUERY_KEY(eventId));
-        SET_EVENT_FAQ_SECTION_QUERY_DATA(
-          queryClient,
-          [eventId, response.data.id],
-          response
-        );
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Faqs
+ */
+export const useCreateEventFAQSection = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof CreateEventFAQSection>>,
+      Omit<CreateEventFAQSectionParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    CreateEventFAQSectionParams,
+    Awaited<ReturnType<typeof CreateEventFAQSection>>
+  >(CreateEventFAQSection, options);
 };
-
-export default useCreateEventFAQSection;

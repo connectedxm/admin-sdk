@@ -1,52 +1,74 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { FAQ } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY } from "@context/queries/events/faqs/useGetEventFAQSectionQuestions";
-import { SET_EVENT_FAQ_SECTION_QUESTION_QUERY_DATA } from "@context/queries/events/faqs/useGetEventFAQSectionQuestion";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, Faq } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY,
+  SET_EVENT_FAQ_SECTION_QUESTION_QUERY_DATA,
+} from "@src/queries";
 
-interface CreateEventFAQSectionQuestionParams {
+/**
+ * @category Params
+ * @group Event-Faqs
+ */
+export interface CreateEventFAQSectionQuestionParams extends MutationParams {
   sectionId: string;
   eventId: string;
-  faq: FAQ;
+  faq: Faq;
 }
 
+/**
+ * @category Methods
+ * @group Event-Faqs
+ */
 export const CreateEventFAQSectionQuestion = async ({
   sectionId,
   eventId,
   faq,
-}: CreateEventFAQSectionQuestionParams): Promise<ConnectedXMResponse<FAQ>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(
+  adminApiParams,
+  queryClient,
+}: CreateEventFAQSectionQuestionParams): Promise<ConnectedXMResponse<Faq>> => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
+
+  const { data } = await connectedXM.post<ConnectedXMResponse<Faq>>(
     `/events/${eventId}/faqs/${sectionId}/questions`,
     faq
   );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY(eventId, sectionId),
+    });
+    SET_EVENT_FAQ_SECTION_QUESTION_QUERY_DATA(
+      queryClient,
+      [eventId, sectionId, data.data.id],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Faqs
+ */
 export const useCreateEventFAQSectionQuestion = (
-  sectionId: string,
-  eventId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof CreateEventFAQSectionQuestion>>,
+      Omit<
+        CreateEventFAQSectionQuestionParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<FAQ>(
-    (faq: FAQ) => CreateEventFAQSectionQuestion({ sectionId, eventId, faq }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof CreateEventFAQSectionQuestion>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY(eventId, sectionId)
-        );
-        SET_EVENT_FAQ_SECTION_QUESTION_QUERY_DATA(
-          queryClient,
-          [eventId, sectionId, response.data.id],
-          response
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    CreateEventFAQSectionQuestionParams,
+    Awaited<ReturnType<typeof CreateEventFAQSectionQuestion>>
+  >(CreateEventFAQSectionQuestion, options);
 };
-
-export default useCreateEventFAQSectionQuestion;

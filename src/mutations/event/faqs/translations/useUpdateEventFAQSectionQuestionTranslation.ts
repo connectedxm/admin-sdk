@@ -1,72 +1,83 @@
-import ConnectedXM from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { SET_EVENT_FAQ_SECTION_QUESTION_TRANSLATION_QUERY_DATA } from "@context/queries/events/faqs/translations/useGetEventFAQSectionQuestionTranslation";
-import { EVENT_FAQ_SECTION_QUESTION_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/faqs/translations/useGetEventFAQSectionQuestionTranslations";
-import { SET_EVENT_FAQ_SECTION_TRANSLATION_QUERY_DATA } from "@context/queries/events/faqs/translations/useGetEventFAQSectionTranslation";
-import { EVENT_FAQ_SECTION_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/faqs/translations/useGetEventFAQSectionTranslations";
-import { FAQSectionTranslation, FAQTranslation } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { FaqTranslation } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_FAQ_SECTION_QUESTION_TRANSLATIONS_QUERY_KEY,
+  SET_EVENT_FAQ_SECTION_QUESTION_TRANSLATION_QUERY_DATA,
+} from "@src/queries";
 
-interface UpdateEventFAQSectionQuestionTranslationProps {
+/**
+ * @category Params
+ * @group Event-Faqs-Translations
+ */
+export interface UpdateEventFAQSectionQuestionTranslationParams
+  extends MutationParams {
   eventId: string;
   sectionId: string;
   questionId: string;
-  faqSectionQuestionTranslation: FAQTranslation;
+  faqSectionQuestionTranslation: FaqTranslation;
 }
 
+/**
+ * @category Methods
+ * @group Event-Faqs-Translations
+ */
 export const UpdateEventFAQSectionQuestionTranslation = async ({
   eventId,
   sectionId,
   questionId,
   faqSectionQuestionTranslation,
-}: UpdateEventFAQSectionQuestionTranslationProps) => {
-  const connectedXM = await ConnectedXM();
+  adminApiParams,
+  queryClient,
+}: UpdateEventFAQSectionQuestionTranslationParams) => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { locale, ...body } = faqSectionQuestionTranslation;
 
   const { data } = await connectedXM.put(
-    `/events/${eventId}/faqs/${sectionId}/questions/${questionId}/translations/${faqSectionQuestionTranslation.locale}`,
+    `/events/${eventId}/faqs/${sectionId}/questions/${questionId}/translations/${locale}`,
     body
   );
 
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_FAQ_SECTION_QUESTION_TRANSLATIONS_QUERY_KEY(
+        eventId,
+        sectionId,
+        questionId
+      ),
+    });
+    SET_EVENT_FAQ_SECTION_QUESTION_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [eventId, sectionId, questionId, data.data?.locale],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Faqs-Translations
+ */
 export const useUpdateEventFAQSectionQuestionTranslation = (
-  eventId: string,
-  sectionId: string,
-  questionId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateEventFAQSectionQuestionTranslation>>,
+      Omit<
+        UpdateEventFAQSectionQuestionTranslationParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-  return useConnectedMutation<FAQTranslation>(
-    (faqSectionQuestionTranslation: FAQTranslation) =>
-      UpdateEventFAQSectionQuestionTranslation({
-        eventId,
-        sectionId,
-        questionId,
-        faqSectionQuestionTranslation,
-      }),
-    {
-      onSuccess: (
-        response: Awaited<
-          ReturnType<typeof UpdateEventFAQSectionQuestionTranslation>
-        >
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_FAQ_SECTION_QUESTION_TRANSLATIONS_QUERY_KEY(
-            eventId,
-            sectionId,
-            questionId
-          )
-        );
-        SET_EVENT_FAQ_SECTION_QUESTION_TRANSLATION_QUERY_DATA(
-          queryClient,
-          [eventId, sectionId, questionId, response.data?.locale],
-          response
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    UpdateEventFAQSectionQuestionTranslationParams,
+    Awaited<ReturnType<typeof UpdateEventFAQSectionQuestionTranslation>>
+  >(UpdateEventFAQSectionQuestionTranslation, options);
 };
-
-export default useUpdateEventFAQSectionQuestionTranslation;

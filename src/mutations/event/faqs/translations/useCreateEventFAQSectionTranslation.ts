@@ -1,66 +1,81 @@
-import ConnectedXM, { ConnectedXMResponse } from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { SET_EVENT_FAQ_SECTION_TRANSLATION_QUERY_DATA } from "@context/queries/events/faqs/translations/useGetEventFAQSectionTranslation";
-import { EVENT_FAQ_SECTION_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/faqs/translations/useGetEventFAQSectionTranslations";
-import { FAQSectionTranslation } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, FaqSectionTranslation } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_FAQ_SECTION_TRANSLATIONS_QUERY_KEY,
+  SET_EVENT_FAQ_SECTION_TRANSLATION_QUERY_DATA,
+} from "@src/queries";
 
-interface CreateEventFAQSectionTranslationProps {
+/**
+ * @category Params
+ * @group Event-Faqs-Translations
+ */
+export interface CreateEventFAQSectionTranslationParams extends MutationParams {
   eventId: string;
   sectionId: string;
   locale: string;
   autoTranslate?: boolean;
 }
 
+/**
+ * @category Methods
+ * @group Event-Faqs-Translations
+ */
 export const CreateEventFAQSectionTranslation = async ({
   eventId,
   sectionId,
   locale,
   autoTranslate,
-}: CreateEventFAQSectionTranslationProps): Promise<
-  ConnectedXMResponse<FAQSectionTranslation>
+  adminApiParams,
+  queryClient,
+}: CreateEventFAQSectionTranslationParams): Promise<
+  ConnectedXMResponse<FaqSectionTranslation>
 > => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post(
-    `/events/${eventId}/faqs/${sectionId}/translations`,
-    {
-      locale,
-      autoTranslate,
-    }
-  );
+  const { data } = await connectedXM.post<
+    ConnectedXMResponse<FaqSectionTranslation>
+  >(`/events/${eventId}/faqs/${sectionId}/translations`, {
+    locale,
+    autoTranslate,
+  });
 
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_FAQ_SECTION_TRANSLATIONS_QUERY_KEY(eventId, sectionId),
+    });
+
+    SET_EVENT_FAQ_SECTION_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [eventId, sectionId, data.data?.locale],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Faqs-Translations
+ */
 export const useCreateEventFAQSectionTranslation = (
-  eventId: string,
-  sectionId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof CreateEventFAQSectionTranslation>>,
+      Omit<
+        CreateEventFAQSectionTranslationParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
   return useConnectedMutation<
-    Omit<CreateEventFAQSectionTranslationProps, "eventId" | "sectionId">
-  >(
-    (props) =>
-      CreateEventFAQSectionTranslation({ eventId, sectionId, ...props }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof CreateEventFAQSectionTranslation>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_FAQ_SECTION_TRANSLATIONS_QUERY_KEY(eventId, sectionId)
-        );
-
-        SET_EVENT_FAQ_SECTION_TRANSLATION_QUERY_DATA(
-          queryClient,
-          [eventId, sectionId, response.data?.locale],
-          response
-        );
-      },
-    },
-    "Hold on while we create a translation..."
-  );
+    CreateEventFAQSectionTranslationParams,
+    Awaited<ReturnType<typeof CreateEventFAQSectionTranslation>>
+  >(CreateEventFAQSectionTranslation, options);
 };
-
-export default useCreateEventFAQSectionTranslation;

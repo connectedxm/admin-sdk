@@ -1,49 +1,69 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import { EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY } from "@context/queries/events/bypass/useGetEventRegistrationBypassList";
-import { EVENT_REGISTRATION_BYPASS_QUERY_KEY } from "@context/queries/events/bypass/useGetEventRegistrationBypass";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY,
+  EVENT_REGISTRATION_BYPASS_QUERY_KEY,
+} from "@src/queries";
 
-interface DeleteEventRegistrationBypassParams {
+/**
+ * @category Params
+ * @group Event-Bypass
+ */
+export interface DeleteEventRegistrationBypassParams extends MutationParams {
   eventId: string;
-  bypassId: number;
+  bypassId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Bypass
+ */
 export const DeleteEventRegistrationBypass = async ({
   eventId,
   bypassId,
+  adminApiParams,
+  queryClient,
 }: DeleteEventRegistrationBypassParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.delete(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+
+  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/bypass/${bypassId}`
   );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY(eventId),
+    });
+    queryClient.removeQueries({
+      queryKey: EVENT_REGISTRATION_BYPASS_QUERY_KEY(eventId, bypassId),
+    });
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Bypass
+ */
 export const useDeleteEventRegistrationBypass = (
-  eventId: string,
-  bypassId: number
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof DeleteEventRegistrationBypass>>,
+      Omit<
+        DeleteEventRegistrationBypassParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-  const router = useRouter();
-
-  return useConnectedMutation(
-    () => DeleteEventRegistrationBypass({ eventId, bypassId }),
-    {
-      onSuccess: async (
-        _response: Awaited<ReturnType<typeof DeleteEventRegistrationBypass>>
-      ) => {
-        await router.push(`/events/${eventId}/bypass`);
-        queryClient.invalidateQueries(
-          EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY(eventId)
-        );
-        queryClient.removeQueries(
-          EVENT_REGISTRATION_BYPASS_QUERY_KEY(eventId, bypassId)
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    DeleteEventRegistrationBypassParams,
+    Awaited<ReturnType<typeof DeleteEventRegistrationBypass>>
+  >(DeleteEventRegistrationBypass, options);
 };
-
-export default useDeleteEventRegistrationBypass;

@@ -1,65 +1,80 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { EventRegistrationBypass } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY } from "@context/queries/events/bypass/useGetEventRegistrationBypassList";
-import { SET_EVENT_REGISTRATION_BYPASS_QUERY_DATA } from "@context/queries/events/bypass/useGetEventRegistrationBypass";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, RegistrationBypass } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY,
+  SET_EVENT_REGISTRATION_BYPASS_QUERY_DATA,
+} from "@src/queries";
 
-interface UpdateEventRegistrationBypassParams {
+/**
+ * @category Params
+ * @group Event-Bypass
+ */
+export interface UpdateEventRegistrationBypassParams extends MutationParams {
   eventId: string;
-  bypassId: number;
-  page: EventRegistrationBypass;
+  bypassId: string;
+  page: RegistrationBypass;
 }
 
+/**
+ * @category Methods
+ * @group Event-Bypass
+ */
 export const UpdateEventRegistrationBypass = async ({
   eventId,
   bypassId,
   page,
+  adminApiParams,
+  queryClient,
 }: UpdateEventRegistrationBypassParams): Promise<
-  ConnectedXMResponse<EventRegistrationBypass>
+  ConnectedXMResponse<RegistrationBypass>
 > => {
   if (!bypassId) throw new Error("Page ID Undefined");
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.put(
-    `/events/${eventId}/bypass/${bypassId}`,
-    {
-      ...page,
-      id: undefined,
-      createdAt: undefined,
-      updatedAt: undefined,
-    }
-  );
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.put<
+    ConnectedXMResponse<RegistrationBypass>
+  >(`/events/${eventId}/bypass/${bypassId}`, {
+    ...page,
+    id: undefined,
+    createdAt: undefined,
+    updatedAt: undefined,
+  });
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY(eventId),
+    });
+    SET_EVENT_REGISTRATION_BYPASS_QUERY_DATA(
+      queryClient,
+      [eventId, bypassId || data.data?.id.toString()],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Bypass
+ */
 export const useUpdateEventRegistrationBypass = (
-  eventId: string,
-  bypassId: number
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateEventRegistrationBypass>>,
+      Omit<
+        UpdateEventRegistrationBypassParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<EventRegistrationBypass>(
-    (page: EventRegistrationBypass) =>
-      UpdateEventRegistrationBypass({
-        eventId,
-        bypassId,
-        page,
-      }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof UpdateEventRegistrationBypass>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY(eventId)
-        );
-        SET_EVENT_REGISTRATION_BYPASS_QUERY_DATA(
-          queryClient,
-          [eventId, bypassId || response.data?.id],
-          response
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    UpdateEventRegistrationBypassParams,
+    Awaited<ReturnType<typeof UpdateEventRegistrationBypass>>
+  >(UpdateEventRegistrationBypass, options);
 };
-
-export default useUpdateEventRegistrationBypass;

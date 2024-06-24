@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { EVENT_CO_HOSTS_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params

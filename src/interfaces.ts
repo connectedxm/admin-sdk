@@ -487,6 +487,12 @@ export interface ContentTranslation {
   updatedAt: string;
 }
 
+export interface ChannelTranslation {
+  locale: string;
+  name: string;
+  description: string | null;
+}
+
 export interface BaseChannel {
   id: string;
   slug: string;

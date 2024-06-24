@@ -1,24 +1,39 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { EventAddOn } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { SET_EVENT_ADD_ON_QUERY_DATA } from "@context/queries/events/addOns/useGetEventAddOn";
-import { EVENT_ADD_ONS_QUERY_KEY } from "@context/queries/events/addOns/useGetEventAddOns";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventAddOn } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_ADD_ONS_QUERY_KEY,
+  SET_EVENT_ADD_ON_QUERY_DATA,
+} from "@src/queries";
 
-interface UpdateAddOnParams {
+/**
+ * @category Params
+ * @group Event-AddOns
+ */
+export interface UpdateAddOnParams extends MutationParams {
   eventId: string;
   addOnId: string;
   addOn: EventAddOn;
 }
 
+/**
+ * @category Methods
+ * @group Event-AddOns
+ */
 export const UpdateAddOn = async ({
   eventId,
   addOnId,
   addOn,
+  adminApiParams,
+  queryClient,
 }: UpdateAddOnParams): Promise<ConnectedXMResponse<EventAddOn>> => {
   if (!addOnId) throw new Error("Add On ID Undefined");
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.put(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.put<ConnectedXMResponse<EventAddOn>>(
     `/events/${eventId}/addOns/${addOnId}`,
     {
       ...addOn,
@@ -33,26 +48,35 @@ export const UpdateAddOn = async ({
       image: undefined,
     }
   );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_ADD_ONS_QUERY_KEY(eventId),
+    });
+    SET_EVENT_ADD_ON_QUERY_DATA(
+      queryClient,
+      [eventId, addOnId || data.data?.id],
+      data
+    );
+  }
   return data;
 };
 
-export const useUpdateAddOn = (eventId: string, addOnId?: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<EventAddOn>(
-    (addOn: EventAddOn) =>
-      UpdateAddOn({ eventId, addOnId: addOnId || addOn?.id, addOn }),
-    {
-      onSuccess: (response: Awaited<ReturnType<typeof UpdateAddOn>>) => {
-        queryClient.invalidateQueries(EVENT_ADD_ONS_QUERY_KEY(eventId));
-        SET_EVENT_ADD_ON_QUERY_DATA(
-          queryClient,
-          [eventId, addOnId || response.data?.id],
-          response
-        );
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-AddOns
+ */
+export const useUpdateAddOn = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateAddOn>>,
+      Omit<UpdateAddOnParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    UpdateAddOnParams,
+    Awaited<ReturnType<typeof UpdateAddOn>>
+  >(UpdateAddOn, options);
 };
-
-export default useUpdateAddOn;

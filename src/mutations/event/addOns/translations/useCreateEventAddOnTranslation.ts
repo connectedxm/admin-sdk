@@ -1,64 +1,77 @@
-import ConnectedXM, { ConnectedXMResponse } from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { SET_EVENT_ADD_ON_TRANSLATION_QUERY_DATA } from "@context/queries/events/addOns/translations/useGetEventAddOnTranslation";
-import { EVENT_ADD_ON_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/addOns/translations/useGetEventAddOnTranslations";
-import { EventAddOnTranslation } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventAddOnTranslation } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_ADD_ON_TRANSLATIONS_QUERY_KEY,
+  SET_EVENT_ADD_ON_TRANSLATION_QUERY_DATA,
+} from "@src/queries";
 
-interface CreateEventAddOnTranslationProps {
+/**
+ * @category Params
+ * @group Event-AddOns-Translations
+ */
+export interface CreateEventAddOnTranslationParams extends MutationParams {
   eventId: string;
   addOnId: string;
   locale: string;
   autoTranslate?: boolean;
 }
 
+/**
+ * @category Methods
+ * @group Event-AddOns-Translations
+ */
 export const CreateEventAddOnTranslation = async ({
   eventId,
   addOnId,
   locale,
   autoTranslate,
-}: CreateEventAddOnTranslationProps): Promise<
+  adminApiParams,
+  queryClient,
+}: CreateEventAddOnTranslationParams): Promise<
   ConnectedXMResponse<EventAddOnTranslation>
 > => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post(
-    `/events/${eventId}/addOns/${addOnId}/translations`,
-    {
-      locale,
-      autoTranslate,
-    }
-  );
+  const { data } = await connectedXM.post<
+    ConnectedXMResponse<EventAddOnTranslation>
+  >(`/events/${eventId}/addOns/${addOnId}/translations`, {
+    locale,
+    autoTranslate,
+  });
 
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_ADD_ON_TRANSLATIONS_QUERY_KEY(eventId, addOnId),
+    });
+    SET_EVENT_ADD_ON_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [eventId, addOnId, data.data?.locale],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-AddOns-Translations
+ */
 export const useCreateEventAddOnTranslation = (
-  eventId: string,
-  addOnId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof CreateEventAddOnTranslation>>,
+      Omit<CreateEventAddOnTranslationParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
   return useConnectedMutation<
-    Omit<CreateEventAddOnTranslationProps, "eventId" | "addOnId">
-  >(
-    (props) => CreateEventAddOnTranslation({ eventId, addOnId, ...props }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof CreateEventAddOnTranslation>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_ADD_ON_TRANSLATIONS_QUERY_KEY(eventId, addOnId)
-        );
-        SET_EVENT_ADD_ON_TRANSLATION_QUERY_DATA(
-          queryClient,
-          [eventId, addOnId, response.data?.locale],
-          response
-        );
-      },
-    },
-    "Hold on while we create a translation..."
-  );
+    CreateEventAddOnTranslationParams,
+    Awaited<ReturnType<typeof CreateEventAddOnTranslation>>
+  >(CreateEventAddOnTranslation, options);
 };
-
-export default useCreateEventAddOnTranslation;

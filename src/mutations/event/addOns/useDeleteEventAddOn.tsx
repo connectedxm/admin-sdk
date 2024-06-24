@@ -1,37 +1,62 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import { EVENT_ADD_ONS_QUERY_KEY } from "@context/queries/events/addOns/useGetEventAddOns";
-import { EVENT_ADD_ON_QUERY_KEY } from "@context/queries/events/addOns/useGetEventAddOn";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import { EVENT_ADD_ONS_QUERY_KEY, EVENT_ADD_ON_QUERY_KEY } from "@src/queries";
 
-interface DeleteAddOnParams {
+/**
+ * @category Params
+ * @group Event-AddOns
+ */
+export interface DeleteAddOnParams extends MutationParams {
   eventId: string;
   addOnId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-AddOns
+ */
 export const DeleteAddOn = async ({
   eventId,
   addOnId,
+  adminApiParams,
+  queryClient,
 }: DeleteAddOnParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.delete(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/addOns/${addOnId}`
   );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_ADD_ONS_QUERY_KEY(eventId),
+    });
+    queryClient.removeQueries({
+      queryKey: EVENT_ADD_ON_QUERY_KEY(eventId, addOnId),
+    });
+  }
   return data;
 };
 
-export const useDeleteAddOn = (eventId: string, addOnId: string) => {
-  const queryClient = useQueryClient();
-  const router = useRouter();
-
-  return useConnectedMutation(() => DeleteAddOn({ eventId, addOnId }), {
-    onSuccess: async (_response: Awaited<ReturnType<typeof DeleteAddOn>>) => {
-      await router.push(`/events/${eventId}/addOns`);
-      queryClient.invalidateQueries(EVENT_ADD_ONS_QUERY_KEY(eventId));
-      queryClient.removeQueries(EVENT_ADD_ON_QUERY_KEY(eventId, addOnId));
-    },
-  });
+/**
+ * @category Mutations
+ * @group Event-AddOns
+ */
+export const useDeleteAddOn = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof DeleteAddOn>>,
+      Omit<DeleteAddOnParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    DeleteAddOnParams,
+    Awaited<ReturnType<typeof DeleteAddOn>>
+  >(DeleteAddOn, options);
 };
-
-export default useDeleteAddOn;

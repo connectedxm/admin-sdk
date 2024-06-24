@@ -1,46 +1,65 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { EventAddOn } from "@interfaces";
-import { EVENT_ADD_ON_TIERS_QUERY_KEY } from "@context/queries/events/addOns/useGetEventAddOnTiers";
-import { SET_EVENT_ADD_ON_QUERY_DATA } from "@context/queries/events/addOns/useGetEventAddOn";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventAddOn } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_ADD_ON_TIERS_QUERY_KEY,
+  SET_EVENT_ADD_ON_QUERY_DATA,
+} from "@src/queries";
 
-interface RemoveEventAddOnTierParams {
+/**
+ * @category Params
+ * @group Event-AddOns
+ */
+export interface RemoveEventAddOnTierParams extends MutationParams {
   eventId: string;
   addOnId: string;
   tierId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-AddOns
+ */
 export const RemoveEventAddOnTier = async ({
   eventId,
   addOnId,
   tierId,
+  adminApiParams,
+  queryClient,
 }: RemoveEventAddOnTierParams): Promise<ConnectedXMResponse<EventAddOn>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.delete(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<EventAddOn>>(
     `/events/${eventId}/addOns/${addOnId}/tiers/${tierId}`
   );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_ADD_ON_TIERS_QUERY_KEY(eventId, addOnId),
+    });
+    SET_EVENT_ADD_ON_QUERY_DATA(queryClient, [eventId, addOnId], data);
+  }
   return data;
 };
 
-export const useRemoveEventAddOnTier = (eventId: string, addOnId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (tierId: string) => RemoveEventAddOnTier({ eventId, addOnId, tierId }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof RemoveEventAddOnTier>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_ADD_ON_TIERS_QUERY_KEY(eventId, addOnId)
-        );
-        SET_EVENT_ADD_ON_QUERY_DATA(queryClient, [eventId, addOnId], response);
-      },
-    },
-    undefined,
-    true
-  );
+/**
+ * @category Mutations
+ * @group Event-AddOns
+ */
+export const useRemoveEventAddOnTier = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof RemoveEventAddOnTier>>,
+      Omit<RemoveEventAddOnTierParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    RemoveEventAddOnTierParams,
+    Awaited<ReturnType<typeof RemoveEventAddOnTier>>
+  >(RemoveEventAddOnTier, options);
 };
-
-export default useRemoveEventAddOnTier;

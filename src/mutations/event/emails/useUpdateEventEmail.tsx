@@ -1,39 +1,64 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { EventEmail, EventEmailType } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { SET_EVENT_EMAIL_QUERY_DATA } from "@context/queries/events/emails/useGetEventEmail";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  ConnectedXMResponse,
+  EventEmail,
+  EventEmailType,
+} from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import { SET_EVENT_EMAIL_QUERY_DATA } from "@src/queries";
 
-interface UpdateEventEmailParams {
+/**
+ * @category Params
+ * @group Event-Emails
+ */
+export interface UpdateEventEmailParams extends MutationParams {
   eventId: string;
   type: EventEmailType;
   eventEmail: EventEmail;
 }
 
+/**
+ * @category Methods
+ * @group Event-Emails
+ */
 export const UpdateEventEmail = async ({
   eventId,
   type,
   eventEmail,
+  adminApiParams,
+  queryClient,
 }: UpdateEventEmailParams): Promise<ConnectedXMResponse<EventEmail>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.put(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.put<ConnectedXMResponse<EventEmail>>(
     `/events/${eventId}/emails/${type}`,
     eventEmail
   );
+
+  if (queryClient && data.status === "ok") {
+    SET_EVENT_EMAIL_QUERY_DATA(queryClient, [eventId, type], data);
+  }
   return data;
 };
 
-export const useUpdateEventEmail = (eventId: string, type: EventEmailType) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<EventEmail>(
-    (eventEmail: EventEmail) => UpdateEventEmail({ eventId, type, eventEmail }),
-    {
-      onSuccess: (response: Awaited<ReturnType<typeof UpdateEventEmail>>) => {
-        SET_EVENT_EMAIL_QUERY_DATA(queryClient, [eventId, type], response);
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Emails
+ */
+export const useUpdateEventEmail = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateEventEmail>>,
+      Omit<UpdateEventEmailParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    UpdateEventEmailParams,
+    Awaited<ReturnType<typeof UpdateEventEmail>>
+  >(UpdateEventEmail, options);
 };
-
-export default useUpdateEventEmail;

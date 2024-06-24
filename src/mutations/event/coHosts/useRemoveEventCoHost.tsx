@@ -1,38 +1,58 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { Account } from "@interfaces";
-import { EVENT_CO_HOSTS_QUERY_KEY } from "@context/queries/events/coHosts/useGetEventCoHosts";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { Account, ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
 
-interface RemoveEventCoHostParams {
+/**
+ * @category Params
+ * @group Event-CoHosts
+ */
+export interface RemoveEventCoHostParams extends MutationParams {
   eventId: string;
   accountId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-CoHosts
+ */
 export const RemoveEventCoHost = async ({
   eventId,
   accountId,
+  adminApiParams,
+  queryClient,
 }: RemoveEventCoHostParams): Promise<ConnectedXMResponse<Account>> => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete(
     `/events/${eventId}/coHosts/${accountId}`
   );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_CO_HOSTS_QUERY_KEY(eventId),
+    });
+  }
   return data;
 };
 
-export const useRemoveEventCoHost = (eventId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (accountId: string) => RemoveEventCoHost({ eventId, accountId }),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(EVENT_CO_HOSTS_QUERY_KEY(eventId));
-      },
-    },
-    undefined,
-    true
-  );
+/**
+ * @category Mutations
+ * @group Event-CoHosts
+ */
+export const useRemoveEventCoHost = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof RemoveEventCoHost>>,
+      Omit<RemoveEventCoHostParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    RemoveEventCoHostParams,
+    Awaited<ReturnType<typeof RemoveEventCoHost>>
+  >(RemoveEventCoHost, options);
 };
-
-export default useRemoveEventCoHost;

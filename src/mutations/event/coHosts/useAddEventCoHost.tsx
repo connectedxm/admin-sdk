@@ -1,36 +1,58 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { Account } from "@interfaces";
-import { EVENT_CO_HOSTS_QUERY_KEY } from "@context/queries/events/coHosts/useGetEventCoHosts";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { Account, ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
 
-interface AddEventCoHostParams {
+/**
+ * @category Params
+ * @group Event-CoHosts
+ */
+export interface AddEventCoHostParams extends MutationParams {
   eventId: string;
   accountId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-CoHosts
+ */
 export const AddEventCoHost = async ({
   eventId,
   accountId,
+  adminApiParams,
+  queryClient,
 }: AddEventCoHostParams): Promise<ConnectedXMResponse<Account>> => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post(
     `/events/${eventId}/coHosts/${accountId}`
   );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_CO_HOSTS_QUERY_KEY(eventId),
+    });
+  }
   return data;
 };
 
-export const useAddEventCoHost = (eventId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (accountId: string) => AddEventCoHost({ eventId, accountId }),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(EVENT_CO_HOSTS_QUERY_KEY(eventId));
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-CoHosts
+ */
+export const useAddEventCoHost = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof AddEventCoHost>>,
+      Omit<AddEventCoHostParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    AddEventCoHostParams,
+    Awaited<ReturnType<typeof AddEventCoHost>>
+  >(AddEventCoHost, options);
 };
-
-export default useAddEventCoHost;

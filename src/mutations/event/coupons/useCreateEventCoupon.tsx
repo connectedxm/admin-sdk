@@ -1,40 +1,64 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { Coupon } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { SET_EVENT_COUPON_QUERY_DATA } from "@context/queries/events/coupons/useGetEventCoupon";
-import { EVENT_COUPONS_QUERY_KEY } from "@context/queries/events/coupons/useGetEventCoupons";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, Coupon } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_COUPONS_QUERY_KEY,
+  SET_EVENT_COUPON_QUERY_DATA,
+} from "@src/queries";
 
-interface CreateEventCouponParams {
+/**
+ * @category Params
+ * @group Event-Coupons
+ */
+export interface CreateEventCouponParams extends MutationParams {
   eventId: string;
   coupon: Coupon;
 }
 
+/**
+ * @category Methods
+ * @group Event-Coupons
+ */
 export const CreateEventCoupon = async ({
   eventId,
   coupon,
+  adminApiParams,
+  queryClient,
 }: CreateEventCouponParams): Promise<ConnectedXMResponse<Coupon>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(`/events/${eventId}/coupons`, coupon);
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.post<ConnectedXMResponse<Coupon>>(
+    `/events/${eventId}/coupons`,
+    coupon
+  );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_COUPONS_QUERY_KEY(eventId),
+    });
+    SET_EVENT_COUPON_QUERY_DATA(queryClient, [eventId, data.data.id], data);
+  }
   return data;
 };
 
-export const useCreateEventCoupon = (eventId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<Coupon>(
-    (coupon: Coupon) => CreateEventCoupon({ eventId, coupon }),
-    {
-      onSuccess: (response: Awaited<ReturnType<typeof CreateEventCoupon>>) => {
-        queryClient.invalidateQueries(EVENT_COUPONS_QUERY_KEY(eventId));
-        SET_EVENT_COUPON_QUERY_DATA(
-          queryClient,
-          [eventId, response.data.id],
-          response
-        );
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Coupons
+ */
+export const useCreateEventCoupon = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof CreateEventCoupon>>,
+      Omit<CreateEventCouponParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    CreateEventCouponParams,
+    Awaited<ReturnType<typeof CreateEventCoupon>>
+  >(CreateEventCoupon, options);
 };
-
-export default useCreateEventCoupon;

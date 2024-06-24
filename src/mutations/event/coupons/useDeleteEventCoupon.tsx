@@ -1,40 +1,62 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import { Event } from "@interfaces";
-import { EVENT_COUPONS_QUERY_KEY } from "@context/queries/events/coupons/useGetEventCoupons";
-import { EVENT_COUPON_QUERY_KEY } from "@context/queries/events/coupons/useGetEventCoupon";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import { EVENT_COUPONS_QUERY_KEY, EVENT_COUPON_QUERY_KEY } from "@src/queries";
 
-interface DeleteEventCouponParams {
+/**
+ * @category Params
+ * @group Event-Coupons
+ */
+export interface DeleteEventCouponParams extends MutationParams {
   eventId: string;
   couponId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Coupons
+ */
 export const DeleteEventCoupon = async ({
   eventId,
   couponId,
+  adminApiParams,
+  queryClient,
 }: DeleteEventCouponParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.delete(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/coupons/${couponId}`
   );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_COUPONS_QUERY_KEY(eventId),
+    });
+    queryClient.removeQueries({
+      queryKey: EVENT_COUPON_QUERY_KEY(eventId, couponId),
+    });
+  }
   return data;
 };
 
-export const useDeleteEventCoupon = (eventId: string, couponId: string) => {
-  const queryClient = useQueryClient();
-  const router = useRouter();
-
-  return useConnectedMutation(() => DeleteEventCoupon({ eventId, couponId }), {
-    onSuccess: async (
-      _response: Awaited<ReturnType<typeof DeleteEventCoupon>>
-    ) => {
-      await router.push(`/events/${eventId}/coupons`);
-      queryClient.invalidateQueries(EVENT_COUPONS_QUERY_KEY(eventId));
-      queryClient.removeQueries(EVENT_COUPON_QUERY_KEY(eventId, couponId));
-    },
-  });
+/**
+ * @category Mutations
+ * @group Event-Coupons
+ */
+export const useDeleteEventCoupon = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof DeleteEventCoupon>>,
+      Omit<DeleteEventCouponParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    DeleteEventCouponParams,
+    Awaited<ReturnType<typeof DeleteEventCoupon>>
+  >(DeleteEventCoupon, options);
 };
-
-export default useDeleteEventCoupon;

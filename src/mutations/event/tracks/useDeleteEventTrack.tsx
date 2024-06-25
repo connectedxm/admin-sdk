@@ -1,39 +1,61 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import { EVENT_TRACKS_QUERY_KEY } from "@context/queries/events/tracks/useGetEventTracks";
-import { EVENT_TRACK_QUERY_KEY } from "@context/queries/events/tracks/useGetEventTrack";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import { EVENT_TRACKS_QUERY_KEY, EVENT_TRACK_QUERY_KEY } from "@src/queries";
 
-interface DeleteEventTrackParams {
+/**
+ * @category Params
+ * @group Event-Tracks
+ */
+export interface DeleteEventTrackParams extends MutationParams {
   eventId: string;
   trackId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Tracks
+ */
 export const DeleteEventTrack = async ({
   eventId,
   trackId,
+  adminApiParams,
+  queryClient,
 }: DeleteEventTrackParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.delete(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/tracks/${trackId}`
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_TRACKS_QUERY_KEY(eventId),
+    });
+    queryClient.removeQueries({
+      queryKey: EVENT_TRACK_QUERY_KEY(eventId, trackId),
+    });
+  }
   return data;
 };
 
-export const useDeleteEventTrack = (eventId: string, trackId: string) => {
-  const queryClient = useQueryClient();
-  const router = useRouter();
-
-  return useConnectedMutation(() => DeleteEventTrack({ eventId, trackId }), {
-    onSuccess: async (
-      _response: Awaited<ReturnType<typeof DeleteEventTrack>>
-    ) => {
-      await router.push(`/events/${eventId}/agenda/tracks`);
-      queryClient.invalidateQueries(EVENT_TRACKS_QUERY_KEY(eventId));
-      queryClient.removeQueries(EVENT_TRACK_QUERY_KEY(eventId, trackId));
-    },
-  });
+/**
+ * @category Mutations
+ * @group Event-Tracks
+ */
+export const useDeleteEventTrack = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof DeleteEventTrack>>,
+      Omit<DeleteEventTrackParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    DeleteEventTrackParams,
+    Awaited<ReturnType<typeof DeleteEventTrack>>
+  >(DeleteEventTrack, options);
 };
-
-export default useDeleteEventTrack;

@@ -1,45 +1,66 @@
-import ConnectedXM from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { EVENT_TRACK_TRANSLATION_QUERY_KEY } from "@context/queries/events/tracks/translations/useGetEventTrackTranslation";
-import { EVENT_TRACK_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/tracks/translations/useGetEventTrackTranslations";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  MutationParams,
+  ConnectedXMMutationOptions,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_TRACK_TRANSLATIONS_QUERY_KEY,
+  EVENT_TRACK_TRANSLATION_QUERY_KEY,
+} from "@src/queries";
 
-interface DeleteEventTrackTranslationProps {
+/**
+ * @category Params
+ * @group Event-Tracks-Translations
+ */
+export interface DeleteEventTrackTranslationParams extends MutationParams {
   eventId: string;
   trackId: string;
   locale: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Tracks-Translations
+ */
 export const DeleteEventTrackTranslation = async ({
   eventId,
   trackId,
   locale,
-}: DeleteEventTrackTranslationProps) => {
-  const connectedXM = await ConnectedXM();
+  adminApiParams,
+  queryClient,
+}: DeleteEventTrackTranslationParams) => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.delete(
     `/events/${eventId}/tracks/${trackId}/translations/${locale}`
   );
-
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_TRACK_TRANSLATIONS_QUERY_KEY(eventId, trackId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_TRACK_TRANSLATION_QUERY_KEY(eventId, trackId, locale),
+    });
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Tracks-Translations
+ */
 export const useDeleteEventTrackTranslation = (
-  eventId: string,
-  trackId: string,
-  locale: string
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof DeleteEventTrackTranslation>>,
+      Omit<DeleteEventTrackTranslationParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-  return useConnectedMutation(DeleteEventTrackTranslation, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(
-        EVENT_TRACK_TRANSLATIONS_QUERY_KEY(eventId, trackId)
-      );
-      queryClient.invalidateQueries(
-        EVENT_TRACK_TRANSLATION_QUERY_KEY(eventId, trackId, locale)
-      );
-    },
-  });
+  return useConnectedMutation<
+    DeleteEventTrackTranslationParams,
+    Awaited<ReturnType<typeof DeleteEventTrackTranslation>>
+  >(DeleteEventTrackTranslation, options);
 };
-
-export default useDeleteEventTrackTranslation;

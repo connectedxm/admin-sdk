@@ -1,50 +1,64 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { EVENT_TRACK_SESSIONS_QUERY_KEY } from "@context/queries/events/tracks/useGetEventTrackSessions";
-import { Track } from "@interfaces";
-import { SET_EVENT_TRACK_QUERY_DATA } from "@context/queries/events/tracks/useGetEventTrack";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventTrack } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_TRACK_SESSIONS_QUERY_KEY,
+  SET_EVENT_TRACK_QUERY_DATA,
+} from "@src/queries";
 
-interface RemoveEventTrackSessionParams {
+/**
+ * @category Params
+ * @group Event-Tracks
+ */
+export interface RemoveEventTrackSessionParams extends MutationParams {
   eventId: string;
   trackId: string;
   sessionId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Tracks
+ */
 export const RemoveEventTrackSession = async ({
   eventId,
   trackId,
   sessionId,
-}: RemoveEventTrackSessionParams): Promise<ConnectedXMResponse<Track>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.delete(
+  adminApiParams,
+  queryClient,
+}: RemoveEventTrackSessionParams): Promise<ConnectedXMResponse<EventTrack>> => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<EventTrack>>(
     `/events/${eventId}/tracks/${trackId}/sessions/${sessionId}`
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_TRACK_SESSIONS_QUERY_KEY(eventId, trackId),
+    });
+    SET_EVENT_TRACK_QUERY_DATA(queryClient, [eventId, trackId], data);
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Tracks
+ */
 export const useRemoveEventTrackSession = (
-  eventId: string,
-  trackId: string
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof RemoveEventTrackSession>>,
+      Omit<RemoveEventTrackSessionParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (sessionId: string) =>
-      RemoveEventTrackSession({ eventId, trackId, sessionId }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof RemoveEventTrackSession>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_TRACK_SESSIONS_QUERY_KEY(eventId, trackId)
-        );
-        SET_EVENT_TRACK_QUERY_DATA(queryClient, [eventId, trackId], response);
-      },
-    },
-    undefined,
-    true
-  );
+  return useConnectedMutation<
+    RemoveEventTrackSessionParams,
+    Awaited<ReturnType<typeof RemoveEventTrackSession>>
+  >(RemoveEventTrackSession, options);
 };
-
-export default useRemoveEventTrackSession;

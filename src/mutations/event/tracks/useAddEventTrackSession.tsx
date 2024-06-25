@@ -1,45 +1,64 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { Track } from "@interfaces";
-import { EVENT_TRACK_SESSIONS_QUERY_KEY } from "@context/queries/events/tracks/useGetEventTrackSessions";
-import { SET_EVENT_TRACK_QUERY_DATA } from "@context/queries/events/tracks/useGetEventTrack";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventTrack } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_TRACK_SESSIONS_QUERY_KEY,
+  SET_EVENT_TRACK_QUERY_DATA,
+} from "@src/queries";
 
-interface AddEventTrackSessionParams {
+/**
+ * @category Params
+ * @group Event-Tracks
+ */
+export interface AddEventTrackSessionParams extends MutationParams {
   eventId: string;
   trackId: string;
   sessionId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Tracks
+ */
 export const AddEventTrackSession = async ({
   eventId,
   trackId,
   sessionId,
-}: AddEventTrackSessionParams): Promise<ConnectedXMResponse<Track>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(
+  adminApiParams,
+  queryClient,
+}: AddEventTrackSessionParams): Promise<ConnectedXMResponse<EventTrack>> => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.post<ConnectedXMResponse<EventTrack>>(
     `/events/${eventId}/tracks/${trackId}/sessions/${sessionId}`
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_TRACK_SESSIONS_QUERY_KEY(eventId, trackId),
+    });
+    SET_EVENT_TRACK_QUERY_DATA(queryClient, [eventId, trackId], data);
+  }
   return data;
 };
 
-export const useAddEventTrackSession = (eventId: string, trackId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (sessionId: string) =>
-      AddEventTrackSession({ eventId, trackId, sessionId }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof AddEventTrackSession>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_TRACK_SESSIONS_QUERY_KEY(eventId, trackId)
-        );
-        SET_EVENT_TRACK_QUERY_DATA(queryClient, [eventId, trackId], response);
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Tracks
+ */
+export const useAddEventTrackSession = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof AddEventTrackSession>>,
+      Omit<AddEventTrackSessionParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    AddEventTrackSessionParams,
+    Awaited<ReturnType<typeof AddEventTrackSession>>
+  >(AddEventTrackSession, options);
 };
-
-export default useAddEventTrackSession;

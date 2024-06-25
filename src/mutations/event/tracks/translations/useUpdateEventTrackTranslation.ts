@@ -1,60 +1,71 @@
-import ConnectedXM from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { SET_EVENT_TRACK_TRANSLATION_QUERY_DATA } from "@context/queries/events/tracks/translations/useGetEventTrackTranslation";
-import { EVENT_TRACK_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/tracks/translations/useGetEventTrackTranslations";
-import { TrackTranslation } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { EventTrackTranslation } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_TRACK_TRANSLATIONS_QUERY_KEY,
+  SET_EVENT_TRACK_TRANSLATION_QUERY_DATA,
+} from "@src/queries";
 
-interface UpdateEventTrackTranslationProps {
+/**
+ * @category Params
+ * @group Event-Tracks-Translations
+ */
+export interface UpdateEventTrackTranslationParams extends MutationParams {
   eventId: string;
   trackId: string;
-  trackTranslation: TrackTranslation;
+  trackTranslation: EventTrackTranslation;
 }
 
+/**
+ * @category Methods
+ * @group Event-Tracks-Translations
+ */
 export const UpdateEventTrackTranslation = async ({
   eventId,
   trackId,
   trackTranslation,
-}: UpdateEventTrackTranslationProps) => {
-  const connectedXM = await ConnectedXM();
-
+  adminApiParams,
+  queryClient,
+}: UpdateEventTrackTranslationParams) => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { locale, ...body } = trackTranslation;
 
   const { data } = await connectedXM.put(
-    `/events/${eventId}/tracks/${trackId}/translations/${trackTranslation.locale}`,
+    `/events/${eventId}/tracks/${trackId}/translations/${locale}`,
     body
   );
-
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_TRACK_TRANSLATIONS_QUERY_KEY(eventId, trackId),
+    });
+    SET_EVENT_TRACK_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [eventId, trackId, data.data?.locale],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Tracks-Translations
+ */
 export const useUpdateEventTrackTranslation = (
-  eventId: string,
-  trackId: string
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof UpdateEventTrackTranslation>>,
+      Omit<UpdateEventTrackTranslationParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-  return useConnectedMutation<TrackTranslation>(
-    (trackTranslation: TrackTranslation) =>
-      UpdateEventTrackTranslation({
-        eventId,
-        trackId,
-        trackTranslation,
-      }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof UpdateEventTrackTranslation>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_TRACK_TRANSLATIONS_QUERY_KEY(eventId, trackId)
-        );
-        SET_EVENT_TRACK_TRANSLATION_QUERY_DATA(
-          queryClient,
-          [eventId, trackId, response.data?.locale],
-          response
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    UpdateEventTrackTranslationParams,
+    Awaited<ReturnType<typeof UpdateEventTrackTranslation>>
+  >(UpdateEventTrackTranslation, options);
 };
-
-export default useUpdateEventTrackTranslation;

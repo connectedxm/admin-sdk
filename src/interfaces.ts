@@ -1656,7 +1656,7 @@ export interface BaseEventSession {
   image: BaseImage | null;
   startTime: string;
   endTime: string;
-  tracks: BaseTrack[];
+  tracks: BaseEventTrack[];
   nonSession: boolean;
   visible: boolean;
   createdAt: string;
@@ -2014,7 +2014,7 @@ export interface EventTicketTranslation {
   updatedAt: string;
 }
 
-export interface BaseTrack {
+export interface BaseEventTrack {
   id: string;
   slug: string;
   name: string;
@@ -2022,7 +2022,7 @@ export interface BaseTrack {
   color: string;
 }
 
-export interface Track extends BaseTrack {
+export interface EventTrack extends BaseEventTrack {
   createdAt: string;
   updatedAt: string;
   _count: {
@@ -2030,7 +2030,7 @@ export interface Track extends BaseTrack {
   };
 }
 
-export interface TrackTranslation {
+export interface EventTrackTranslation {
   id: number;
   locale: string;
   name: string;

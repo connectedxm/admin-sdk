@@ -1,45 +1,64 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { SET_EVENT_TRACK_QUERY_DATA } from "@context/queries/events/tracks/useGetEventTrack";
-import { EVENT_TRACK_SPONSORS_QUERY_KEY } from "@context/queries/events/tracks/useGetEventTrackSponsors";
-import { Track } from "@interfaces";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventTrack } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_TRACK_SPONSORS_QUERY_KEY,
+  SET_EVENT_TRACK_QUERY_DATA,
+} from "@src/queries";
 
-interface AddEventTrackSponsorParams {
+/**
+ * @category Params
+ * @group Event-Tracks
+ */
+export interface AddEventTrackSponsorParams extends MutationParams {
   eventId: string;
   trackId: string;
   sponsorId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Tracks
+ */
 export const AddEventTrackSponsor = async ({
   eventId,
   trackId,
   sponsorId,
-}: AddEventTrackSponsorParams): Promise<ConnectedXMResponse<Track>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(
+  adminApiParams,
+  queryClient,
+}: AddEventTrackSponsorParams): Promise<ConnectedXMResponse<EventTrack>> => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.post<ConnectedXMResponse<EventTrack>>(
     `/events/${eventId}/tracks/${trackId}/sponsors/${sponsorId}`
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_TRACK_SPONSORS_QUERY_KEY(eventId, trackId),
+    });
+    SET_EVENT_TRACK_QUERY_DATA(queryClient, [eventId, trackId], data);
+  }
   return data;
 };
 
-export const useAddEventTrackSponsor = (eventId: string, trackId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (sponsorId: string) =>
-      AddEventTrackSponsor({ eventId, trackId, sponsorId }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof AddEventTrackSponsor>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_TRACK_SPONSORS_QUERY_KEY(eventId, trackId)
-        );
-        SET_EVENT_TRACK_QUERY_DATA(queryClient, [eventId, trackId], response);
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Tracks
+ */
+export const useAddEventTrackSponsor = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof AddEventTrackSponsor>>,
+      Omit<AddEventTrackSponsorParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    AddEventTrackSponsorParams,
+    Awaited<ReturnType<typeof AddEventTrackSponsor>>
+  >(AddEventTrackSponsor, options);
 };
-
-export default useAddEventTrackSponsor;

@@ -1,57 +1,74 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { Registration } from "@interfaces";
-import { EVENT_REGISTRATIONS_QUERY_KEY } from "@context/queries/events/registrations/useGetEventRegistrations";
-import { EVENT_REGISTRATION_COUNTS_QUERY_KEY } from "@context/queries/events/registrations/useGetEventRegistrationCounts";
-import { SET_EVENT_REGISTRATION_QUERY_DATA } from "@context/queries/events/registrations/useGetEventRegistration";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_REGISTRATIONS_QUERY_KEY,
+  EVENT_REGISTRATION_COUNTS_QUERY_KEY,
+  SET_EVENT_REGISTRATION_QUERY_DATA,
+} from "@src/queries";
 
-interface ApplyEventRegistrationCouponParams {
+/**
+ * @category Params
+ * @group Event-Registrations-Draft
+ */
+export interface ApplyEventRegistrationCouponParams extends MutationParams {
   eventId: string;
   registrationId: string;
   couponCode: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Registrations-Draft
+ */
 export const ApplyEventRegistrationCoupon = async ({
   eventId,
   registrationId,
   couponCode,
+  adminApiParams,
+  queryClient,
 }: ApplyEventRegistrationCouponParams) => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put(
     `/events/${eventId}/registrations/${registrationId}/draft/coupon`,
     {
       couponCode,
     }
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_REGISTRATIONS_QUERY_KEY(eventId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_REGISTRATION_COUNTS_QUERY_KEY(eventId),
+    });
+    SET_EVENT_REGISTRATION_QUERY_DATA(
+      queryClient,
+      [eventId, data.data.id],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Registrations-Draft
+ */
 export const useApplyEventRegistrationCoupon = (
-  eventId: string,
-  registrationId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof ApplyEventRegistrationCoupon>>,
+      Omit<ApplyEventRegistrationCouponParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
   return useConnectedMutation<
-    Omit<ApplyEventRegistrationCouponParams, "eventId" | "registrationId">
-  >(
-    (params) =>
-      ApplyEventRegistrationCoupon({ eventId, registrationId, ...params }),
-    {
-      onSuccess: (response: ConnectedXMResponse<Registration>) => {
-        queryClient.invalidateQueries(EVENT_REGISTRATIONS_QUERY_KEY(eventId));
-        queryClient.invalidateQueries(
-          EVENT_REGISTRATION_COUNTS_QUERY_KEY(eventId)
-        );
-        SET_EVENT_REGISTRATION_QUERY_DATA(
-          queryClient,
-          [eventId, response.data.id],
-          response
-        );
-      },
-    }
-  );
+    ApplyEventRegistrationCouponParams,
+    Awaited<ReturnType<typeof ApplyEventRegistrationCoupon>>
+  >(ApplyEventRegistrationCoupon, options);
 };
-
-export default useApplyEventRegistrationCoupon;

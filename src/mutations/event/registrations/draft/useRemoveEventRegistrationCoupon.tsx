@@ -1,52 +1,72 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { SET_EVENT_REGISTRATION_QUERY_DATA } from "@context/queries/events/registrations/useGetEventRegistration";
-import { EVENT_REGISTRATIONS_QUERY_KEY } from "@context/queries/events/registrations/useGetEventRegistrations";
-import { EVENT_REGISTRATION_COUNTS_QUERY_KEY } from "@context/queries/events/registrations/useGetEventRegistrationCounts";
-import { Registration } from "@interfaces";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_REGISTRATIONS_QUERY_KEY,
+  EVENT_REGISTRATION_COUNTS_QUERY_KEY,
+  SET_EVENT_REGISTRATION_QUERY_DATA,
+} from "@src/queries";
 
-interface RemoveEventRegistrationCouponParams {
+/**
+ * @category Params
+ * @group Event-Registrations-Draft
+ */
+export interface RemoveEventRegistrationCouponParams extends MutationParams {
   eventId: string;
   registrationId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Registrations-Draft
+ */
 export const RemoveEventRegistrationCoupon = async ({
   eventId,
   registrationId,
+  adminApiParams,
+  queryClient,
 }: RemoveEventRegistrationCouponParams) => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete(
     `/events/${eventId}/registrations/${registrationId}/draft/coupon`
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_REGISTRATIONS_QUERY_KEY(eventId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_REGISTRATION_COUNTS_QUERY_KEY(eventId),
+    });
+    SET_EVENT_REGISTRATION_QUERY_DATA(
+      queryClient,
+      [eventId, data.data.id],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Registrations-Draft
+ */
 export const useRemoveEventRegistrationCoupon = (
-  eventId: string,
-  registrationId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof RemoveEventRegistrationCoupon>>,
+      Omit<
+        RemoveEventRegistrationCouponParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
   return useConnectedMutation<
-    Omit<RemoveEventRegistrationCouponParams, "eventId" | "registrationId">
-  >(
-    (params) =>
-      RemoveEventRegistrationCoupon({ eventId, registrationId, ...params }),
-    {
-      onSuccess: (response: ConnectedXMResponse<Registration>) => {
-        queryClient.invalidateQueries(EVENT_REGISTRATIONS_QUERY_KEY(eventId));
-        queryClient.invalidateQueries(
-          EVENT_REGISTRATION_COUNTS_QUERY_KEY(eventId)
-        );
-        SET_EVENT_REGISTRATION_QUERY_DATA(
-          queryClient,
-          [eventId, response.data.id],
-          response
-        );
-      },
-    }
-  );
+    RemoveEventRegistrationCouponParams,
+    Awaited<ReturnType<typeof RemoveEventRegistrationCoupon>>
+  >(RemoveEventRegistrationCoupon, options);
 };
-
-export default useRemoveEventRegistrationCoupon;

@@ -1,42 +1,64 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { EVENT_SPEAKER_QUERY_KEY } from "@context/queries/events/speakers/useGetEventSpeaker";
-import { EVENT_SPEAKERS_QUERY_KEY } from "@context/queries/events/speakers/useGetEventSpeakers";
-import { useRouter } from "next/router";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_SPEAKERS_QUERY_KEY,
+  EVENT_SPEAKER_QUERY_KEY,
+} from "@src/queries";
 
-interface DeleteEventSpeakerParams {
+/**
+ * @category Params
+ * @group Event-Speakers
+ */
+export interface DeleteEventSpeakerParams extends MutationParams {
   eventId: string;
   speakerId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Speakers
+ */
 export const DeleteEventSpeaker = async ({
   eventId,
   speakerId,
+  adminApiParams,
+  queryClient,
 }: DeleteEventSpeakerParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.delete(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/speakers/${speakerId}`
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SPEAKERS_QUERY_KEY(eventId),
+    });
+    queryClient.removeQueries({
+      queryKey: EVENT_SPEAKER_QUERY_KEY(eventId, speakerId),
+    });
+  }
   return data;
 };
 
-export const useDeleteEventSpeaker = (eventId: string, speakerId: string) => {
-  const queryClient = useQueryClient();
-  const router = useRouter();
-
-  return useConnectedMutation(
-    () => DeleteEventSpeaker({ eventId, speakerId }),
-    {
-      onSuccess: async (
-        _response: Awaited<ReturnType<typeof DeleteEventSpeaker>>
-      ) => {
-        await router.push(`/events/${eventId}/agenda/speakers`);
-        queryClient.invalidateQueries(EVENT_SPEAKERS_QUERY_KEY(eventId));
-        queryClient.removeQueries(EVENT_SPEAKER_QUERY_KEY(eventId, speakerId));
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Speakers
+ */
+export const useDeleteEventSpeaker = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof DeleteEventSpeaker>>,
+      Omit<DeleteEventSpeakerParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    DeleteEventSpeakerParams,
+    Awaited<ReturnType<typeof DeleteEventSpeaker>>
+  >(DeleteEventSpeaker, options);
 };
-
-export default useDeleteEventSpeaker;

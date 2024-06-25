@@ -1,43 +1,63 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { Speaker } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { EVENT_SPEAKERS_QUERY_KEY } from "@context/queries/events/speakers/useGetEventSpeakers";
-import { SET_EVENT_SPEAKER_QUERY_DATA } from "@context/queries/events/speakers/useGetEventSpeaker";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventSpeaker } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_SPEAKERS_QUERY_KEY,
+  SET_EVENT_SPEAKER_QUERY_DATA,
+} from "@src/queries";
 
-interface CreateEventSpeakerParams {
+/**
+ * @category Params
+ * @group Event-Speakers
+ */
+export interface CreateEventSpeakerParams extends MutationParams {
   eventId: string;
-  speaker: Speaker;
+  speaker: EventSpeaker;
 }
 
+/**
+ * @category Methods
+ * @group Event-Speakers
+ */
 export const CreateEventSpeaker = async ({
   eventId,
   speaker,
-}: CreateEventSpeakerParams): Promise<ConnectedXMResponse<Speaker>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(
+  adminApiParams,
+  queryClient,
+}: CreateEventSpeakerParams): Promise<ConnectedXMResponse<EventSpeaker>> => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.post<ConnectedXMResponse<EventSpeaker>>(
     `/events/${eventId}/speakers`,
     speaker
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SPEAKERS_QUERY_KEY(eventId),
+    });
+    SET_EVENT_SPEAKER_QUERY_DATA(queryClient, [eventId, data.data.id], data);
+  }
   return data;
 };
 
-export const useCreateEventSpeaker = (eventId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<Speaker>(
-    (speaker: Speaker) => CreateEventSpeaker({ eventId, speaker }),
-    {
-      onSuccess: (response: Awaited<ReturnType<typeof CreateEventSpeaker>>) => {
-        queryClient.invalidateQueries(EVENT_SPEAKERS_QUERY_KEY(eventId));
-        SET_EVENT_SPEAKER_QUERY_DATA(
-          queryClient,
-          [eventId, response.data.id],
-          response
-        );
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Speakers
+ */
+export const useCreateEventSpeaker = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof CreateEventSpeaker>>,
+      Omit<CreateEventSpeakerParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    CreateEventSpeakerParams,
+    Awaited<ReturnType<typeof CreateEventSpeaker>>
+  >(CreateEventSpeaker, options);
 };
-
-export default useCreateEventSpeaker;

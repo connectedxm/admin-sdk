@@ -1,64 +1,79 @@
-import ConnectedXM, { ConnectedXMResponse } from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { SET_EVENT_SPEAKER_TRANSLATION_QUERY_DATA } from "@context/queries/events/speakers/translations/useGetEventSpeakerTranslation";
-import { EVENT_SPEAKER_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/speakers/translations/useGetEventSpeakerTranslations";
-import { SpeakerTranslation } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventSpeakerTranslation } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_SPEAKER_TRANSLATIONS_QUERY_KEY,
+  SET_EVENT_SPEAKER_TRANSLATION_QUERY_DATA,
+} from "@src/queries";
 
-interface CreateEventSpeakerTranslationProps {
+/**
+ * @category Params
+ * @group Event-Speakers-Translations
+ */
+export interface CreateEventSpeakerTranslationParams extends MutationParams {
   eventId: string;
   speakerId: string;
   locale: string;
   autoTranslate?: boolean;
 }
 
+/**
+ * @category Methods
+ * @group Event-Speakers-Translations
+ */
 export const CreateEventSpeakerTranslation = async ({
   eventId,
   speakerId,
   locale,
   autoTranslate,
-}: CreateEventSpeakerTranslationProps): Promise<
-  ConnectedXMResponse<SpeakerTranslation>
+  adminApiParams,
+  queryClient,
+}: CreateEventSpeakerTranslationParams): Promise<
+  ConnectedXMResponse<EventSpeakerTranslation>
 > => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post(
-    `/events/${eventId}/speakers/${speakerId}/translations`,
-    {
-      locale,
-      autoTranslate,
-    }
-  );
-
+  const { data } = await connectedXM.post<
+    ConnectedXMResponse<EventSpeakerTranslation>
+  >(`/events/${eventId}/speakers/${speakerId}/translations`, {
+    locale,
+    autoTranslate,
+  });
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SPEAKER_TRANSLATIONS_QUERY_KEY(eventId, speakerId),
+    });
+    SET_EVENT_SPEAKER_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [eventId, speakerId, data.data?.locale],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Speakers-Translations
+ */
 export const useCreateEventSpeakerTranslation = (
-  eventId: string,
-  speakerId: string
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof CreateEventSpeakerTranslation>>,
+      Omit<
+        CreateEventSpeakerTranslationParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
   return useConnectedMutation<
-    Omit<CreateEventSpeakerTranslationProps, "eventId" | "speakerId">
-  >(
-    (props) => CreateEventSpeakerTranslation({ eventId, speakerId, ...props }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof CreateEventSpeakerTranslation>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_SPEAKER_TRANSLATIONS_QUERY_KEY(eventId, speakerId)
-        );
-        SET_EVENT_SPEAKER_TRANSLATION_QUERY_DATA(
-          queryClient,
-          [eventId, speakerId, response.data?.locale],
-          response
-        );
-      },
-    },
-    "Hold on while we create a translation..."
-  );
+    CreateEventSpeakerTranslationParams,
+    Awaited<ReturnType<typeof CreateEventSpeakerTranslation>>
+  >(CreateEventSpeakerTranslation, options);
 };
-
-export default useCreateEventSpeakerTranslation;

@@ -1,45 +1,69 @@
-import ConnectedXM from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { EVENT_SPEAKER_TRANSLATION_QUERY_KEY } from "@context/queries/events/speakers/translations/useGetEventSpeakerTranslation";
-import { EVENT_SPEAKER_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/speakers/translations/useGetEventSpeakerTranslations";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_SPEAKER_TRANSLATIONS_QUERY_KEY,
+  EVENT_SPEAKER_TRANSLATION_QUERY_KEY,
+} from "@src/queries";
 
-interface DeleteEventSpeakerTranslationProps {
+/**
+ * @category Params
+ * @group Event-Speakers-Translations
+ */
+export interface DeleteEventSpeakerTranslationParams extends MutationParams {
   eventId: string;
   speakerId: string;
   locale: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Speakers-Translations
+ */
 export const DeleteEventSpeakerTranslation = async ({
   eventId,
   speakerId,
   locale,
-}: DeleteEventSpeakerTranslationProps) => {
-  const connectedXM = await ConnectedXM();
+  adminApiParams,
+  queryClient,
+}: DeleteEventSpeakerTranslationParams) => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.delete(
     `/events/${eventId}/speakers/${speakerId}/translations/${locale}`
   );
-
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SPEAKER_TRANSLATIONS_QUERY_KEY(eventId, speakerId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SPEAKER_TRANSLATION_QUERY_KEY(eventId, speakerId, locale),
+    });
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Speakers-Translations
+ */
 export const useDeleteEventSpeakerTranslation = (
-  eventId: string,
-  speakerId: string,
-  locale: string
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof DeleteEventSpeakerTranslation>>,
+      Omit<
+        DeleteEventSpeakerTranslationParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-  return useConnectedMutation(DeleteEventSpeakerTranslation, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(
-        EVENT_SPEAKER_TRANSLATIONS_QUERY_KEY(eventId, speakerId)
-      );
-      queryClient.invalidateQueries(
-        EVENT_SPEAKER_TRANSLATION_QUERY_KEY(eventId, speakerId, locale)
-      );
-    },
-  });
+  return useConnectedMutation<
+    DeleteEventSpeakerTranslationParams,
+    Awaited<ReturnType<typeof DeleteEventSpeakerTranslation>>
+  >(DeleteEventSpeakerTranslation, options);
 };
-
-export default useDeleteEventSpeakerTranslation;

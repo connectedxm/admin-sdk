@@ -1,49 +1,70 @@
-import ConnectedXM from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { SET_EVENT_TRANSLATION_QUERY_DATA } from "@context/queries/events/translations/useGetEventTranslation";
-import { EVENT_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/translations/useGetEventTranslations";
-import { EventTranslation } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { EventTranslation } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_TRANSLATIONS_QUERY_KEY,
+  SET_EVENT_TRANSLATION_QUERY_DATA,
+} from "@src/queries";
 
-interface UpdateEventTranslationProps {
+/**
+ * @category Params
+ * @group Event-Translations
+ */
+export interface UpdateEventTranslationParams extends MutationParams {
   eventId: string;
   eventTranslation: EventTranslation;
 }
 
+/**
+ * @category Methods
+ * @group Event-Translations
+ */
 export const UpdateEventTranslation = async ({
   eventId,
   eventTranslation,
-}: UpdateEventTranslationProps) => {
-  const connectedXM = await ConnectedXM();
+  adminApiParams,
+  queryClient,
+}: UpdateEventTranslationParams) => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { locale, ...body } = eventTranslation;
 
   const { data } = await connectedXM.put(
-    `/events/${eventId}/translations/${eventTranslation.locale}`,
+    `/events/${eventId}/translations/${locale}`,
     body
   );
-
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_TRANSLATIONS_QUERY_KEY(eventId),
+    });
+    SET_EVENT_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [eventId, data.data?.id],
+      data
+    );
+  }
   return data;
 };
 
-export const useUpdateEventTranslation = (eventId: string) => {
-  const queryClient = useQueryClient();
-  return useConnectedMutation<EventTranslation>(
-    (eventTranslation: EventTranslation) =>
-      UpdateEventTranslation({ eventId, eventTranslation }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof UpdateEventTranslation>>
-      ) => {
-        queryClient.invalidateQueries(EVENT_TRANSLATIONS_QUERY_KEY(eventId));
-        SET_EVENT_TRANSLATION_QUERY_DATA(
-          queryClient,
-          [eventId, response.data?.id],
-          response
-        );
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Translations
+ */
+export const useUpdateEventTranslation = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof UpdateEventTranslation>>,
+      Omit<UpdateEventTranslationParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    UpdateEventTranslationParams,
+    Awaited<ReturnType<typeof UpdateEventTranslation>>
+  >(UpdateEventTranslation, options);
 };
-
-export default useUpdateEventTranslation;

@@ -1,38 +1,60 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../useConnectedMutation";
-import { Event } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { SET_EVENT_QUERY_DATA } from "@queries/events/useGetEvent";
-import { EVENTS_QUERY_KEY } from "@queries/events/useGetEvents";
-import { UNAPPROVED_EVENTS_QUERY_KEY } from "@queries/events/useGetUnapprovedEvents";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "../useConnectedMutation";
+import { ConnectedXMResponse, Event } from "@src/interfaces";
+import {
+  SET_EVENT_QUERY_DATA,
+  EVENTS_QUERY_KEY,
+  UNAPPROVED_EVENTS_QUERY_KEY,
+} from "@src/queries";
 
-interface ApproveEventParams {
+/**
+ * @category Params
+ * @group Event
+ */
+export interface ApproveEventParams extends MutationParams {
   eventId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event
+ */
 export const ApproveEvent = async ({
   eventId,
+  adminApiParams,
+  queryClient,
 }: ApproveEventParams): Promise<ConnectedXMResponse<Event>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(`/events/${eventId}/approve`);
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.post<ConnectedXMResponse<Event>>(
+    `/events/${eventId}/approve`
+  );
+  if (queryClient && data.status === "ok") {
+    SET_EVENT_QUERY_DATA(queryClient, [data.data?.id], data);
+    queryClient.invalidateQueries({ queryKey: EVENTS_QUERY_KEY() });
+    queryClient.invalidateQueries({ queryKey: UNAPPROVED_EVENTS_QUERY_KEY() });
+  }
   return data;
 };
 
-export const useApproveEvent = () => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (eventId: string) => ApproveEvent({ eventId }),
-    {
-      onSuccess: (response: Awaited<ReturnType<typeof ApproveEvent>>) => {
-        SET_EVENT_QUERY_DATA(queryClient, [response.data?.id], response);
-        queryClient.invalidateQueries(EVENTS_QUERY_KEY());
-        queryClient.invalidateQueries(UNAPPROVED_EVENTS_QUERY_KEY());
-      },
-    },
-    "",
-    true
-  );
+/**
+ * @category Mutations
+ * @group Event
+ */
+export const useApproveEvent = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof ApproveEvent>>,
+      Omit<ApproveEventParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    ApproveEventParams,
+    Awaited<ReturnType<typeof ApproveEvent>>
+  >(ApproveEvent, options);
 };
-
-export default useApproveEvent;

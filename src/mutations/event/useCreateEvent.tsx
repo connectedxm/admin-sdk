@@ -1,31 +1,56 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../useConnectedMutation";
-import { Event } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { EVENTS_QUERY_KEY } from "@context/queries/events/useGetEvents";
-import { SET_EVENT_QUERY_DATA } from "@context/queries/events/useGetEvent";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "../useConnectedMutation";
+import { ConnectedXMResponse, Event } from "@src/interfaces";
+import { EVENTS_QUERY_KEY, SET_EVENT_QUERY_DATA } from "@src/queries";
 
-interface CreateEventParams {
+/**
+ * @category Params
+ * @group Event
+ */
+export interface CreateEventParams extends MutationParams {
   event: Event;
 }
 
+/**
+ * @category Methods
+ * @group Event
+ */
 export const CreateEvent = async ({
   event,
+  adminApiParams,
+  queryClient,
 }: CreateEventParams): Promise<ConnectedXMResponse<Event>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(`/events`, event);
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.post<ConnectedXMResponse<Event>>(
+    `/events`,
+    event
+  );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({ queryKey: EVENTS_QUERY_KEY() });
+    SET_EVENT_QUERY_DATA(queryClient, [data.data?.id], data);
+  }
   return data;
 };
 
-export const useCreateEvent = () => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<Event>((event: Event) => CreateEvent({ event }), {
-    onSuccess: (response: Awaited<ReturnType<typeof CreateEvent>>) => {
-      queryClient.invalidateQueries(EVENTS_QUERY_KEY());
-      SET_EVENT_QUERY_DATA(queryClient, [response.data?.id], response);
-    },
-  });
+/**
+ * @category Mutations
+ * @group Event
+ */
+export const useCreateEvent = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof CreateEvent>>,
+      Omit<CreateEventParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    CreateEventParams,
+    Awaited<ReturnType<typeof CreateEvent>>
+  >(CreateEvent, options);
 };
-
-export default useCreateEvent;

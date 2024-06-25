@@ -1,59 +1,66 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY } from "@context/queries/events/questions/useGetEventQuestionSearchValues";
-import { useRouter } from "next/router";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import { EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY } from "@src/queries";
 
-interface DeleteEventQuestionSearchValueParams {
+/**
+ * @category Params
+ * @group Event-Questions
+ */
+export interface DeleteEventQuestionSearchValueParams extends MutationParams {
   eventId: string;
   questionId: string;
   searchValueId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Questions
+ */
 export const DeleteEventQuestionSearchValue = async ({
   eventId,
   questionId,
   searchValueId,
+  adminApiParams,
+  queryClient,
 }: DeleteEventQuestionSearchValueParams): Promise<
   ConnectedXMResponse<null>
 > => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.delete(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/questions/${questionId}/values/${searchValueId}`
   );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY(eventId, questionId),
+    });
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Questions
+ */
 export const useDeleteEventQuestionSearchValue = (
-  eventId: string,
-  questionId: string,
-  searchValueId?: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof DeleteEventQuestionSearchValue>>,
+      Omit<
+        DeleteEventQuestionSearchValueParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-  const router = useRouter();
-
-  return useConnectedMutation<any>(
-    (valueId: string) =>
-      DeleteEventQuestionSearchValue({
-        eventId,
-        questionId,
-        searchValueId: searchValueId || valueId,
-      }),
-    {
-      onSuccess: async (
-        _response: Awaited<ReturnType<typeof DeleteEventQuestionSearchValue>>
-      ) => {
-        await router.push(
-          `/events/${eventId}/sections/questions/${questionId}/values`
-        );
-        queryClient.invalidateQueries(
-          EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY(eventId, questionId)
-        );
-      },
-    },
-    undefined,
-    true
-  );
+  return useConnectedMutation<
+    DeleteEventQuestionSearchValueParams,
+    Awaited<ReturnType<typeof DeleteEventQuestionSearchValue>>
+  >(DeleteEventQuestionSearchValue, options);
 };
-
-export default useDeleteEventQuestionSearchValue;

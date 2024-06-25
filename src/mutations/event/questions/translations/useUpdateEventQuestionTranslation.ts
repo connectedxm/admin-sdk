@@ -1,22 +1,37 @@
-import ConnectedXM from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { SET_EVENT_QUESTION_TRANSLATION_QUERY_DATA } from "@context/queries/events/questions/translations/useGetEventQuestionTranslation";
-import { EVENT_QUESTION_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/questions/translations/useGetEventQuestionTranslations";
-import { RegistrationQuestionTranslation } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { RegistrationQuestionTranslation } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_QUESTION_TRANSLATIONS_QUERY_KEY,
+  SET_EVENT_QUESTION_TRANSLATION_QUERY_DATA,
+} from "@src/queries";
 
-interface UpdateEventQuestionTranslationProps {
+/**
+ * @category Params
+ * @group Event-Question-Translations
+ */
+export interface UpdateEventQuestionTranslationParams extends MutationParams {
   eventId: string;
   questionId: string;
   questionTranslation: RegistrationQuestionTranslation;
 }
 
+/**
+ * @category Methods
+ * @group Event-Question-Translations
+ */
 export const UpdateEventQuestionTranslation = async ({
   eventId,
   questionId,
   questionTranslation,
-}: UpdateEventQuestionTranslationProps) => {
-  const connectedXM = await ConnectedXM();
+  adminApiParams,
+  queryClient,
+}: UpdateEventQuestionTranslationParams) => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { locale, ...body } = questionTranslation;
 
@@ -25,36 +40,37 @@ export const UpdateEventQuestionTranslation = async ({
     body
   );
 
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_QUESTION_TRANSLATIONS_QUERY_KEY(eventId, questionId),
+    });
+    SET_EVENT_QUESTION_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [eventId, questionId, data.data?.locale],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Question-Translations
+ */
 export const useUpdateEventQuestionTranslation = (
-  eventId: string,
-  questionId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateEventQuestionTranslation>>,
+      Omit<
+        UpdateEventQuestionTranslationParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-  return useConnectedMutation<RegistrationQuestionTranslation>(
-    (questionTranslation: RegistrationQuestionTranslation) =>
-      UpdateEventQuestionTranslation({
-        eventId,
-        questionId,
-        questionTranslation,
-      }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof UpdateEventQuestionTranslation>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_QUESTION_TRANSLATIONS_QUERY_KEY(eventId, questionId)
-        );
-        SET_EVENT_QUESTION_TRANSLATION_QUERY_DATA(
-          queryClient,
-          [eventId, questionId, response.data?.locale],
-          response
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    UpdateEventQuestionTranslationParams,
+    Awaited<ReturnType<typeof UpdateEventQuestionTranslation>>
+  >(UpdateEventQuestionTranslation, options);
 };
-
-export default useUpdateEventQuestionTranslation;

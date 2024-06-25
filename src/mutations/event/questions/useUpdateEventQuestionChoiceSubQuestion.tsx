@@ -1,11 +1,24 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { RegistrationQuestionChoice } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { SET_EVENT_QUESTION_CHOICE_QUERY_DATA } from "@context/queries/events/questions/useGetEventQuestionChoice";
-import { EVENT_QUESTION_CHOICES_QUERY_KEY } from "@context/queries/events/questions/useGetEventQuestionChoices";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  ConnectedXMResponse,
+  RegistrationQuestionChoice,
+} from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_QUESTION_CHOICES_QUERY_KEY,
+  SET_EVENT_QUESTION_CHOICE_QUERY_DATA,
+} from "@src/queries";
 
-interface UpdateEventQuestionChoiceSubQuestionParams {
+/**
+ * @category Params
+ * @group Event-Questions
+ */
+export interface UpdateEventQuestionChoiceSubQuestionParams
+  extends MutationParams {
   eventId: string;
   questionId: string;
   choiceId: string;
@@ -13,62 +26,59 @@ interface UpdateEventQuestionChoiceSubQuestionParams {
   sortOrder: number;
 }
 
+/**
+ * @category Methods
+ * @group Event-Questions
+ */
 export const UpdateEventQuestionChoiceSubQuestion = async ({
   eventId,
   questionId,
   choiceId,
   subQuestionId,
   sortOrder,
+  adminApiParams,
+  queryClient,
 }: UpdateEventQuestionChoiceSubQuestionParams): Promise<
   ConnectedXMResponse<RegistrationQuestionChoice>
 > => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.put(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.put<
+    ConnectedXMResponse<RegistrationQuestionChoice>
+  >(
     `/events/${eventId}/questions/${questionId}/choices/${choiceId}/subQuestions/${subQuestionId}`,
     { sortOrder }
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_QUESTION_CHOICES_QUERY_KEY(eventId, questionId),
+    });
+    SET_EVENT_QUESTION_CHOICE_QUERY_DATA(
+      queryClient,
+      [eventId, questionId, choiceId],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Questions
+ */
 export const useUpdateEventQuestionChoiceSubQuestion = (
-  eventId: string,
-  questionId: string,
-  choiceId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateEventQuestionChoiceSubQuestion>>,
+      Omit<
+        UpdateEventQuestionChoiceSubQuestionParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation(
-    ({
-      subQuestionId,
-      sortOrder,
-    }: {
-      subQuestionId: string;
-      sortOrder: number;
-    }) =>
-      UpdateEventQuestionChoiceSubQuestion({
-        eventId,
-        questionId,
-        choiceId,
-        subQuestionId,
-        sortOrder,
-      }),
-    {
-      onSuccess: (
-        response: Awaited<
-          ReturnType<typeof UpdateEventQuestionChoiceSubQuestion>
-        >
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_QUESTION_CHOICES_QUERY_KEY(eventId, questionId)
-        );
-        SET_EVENT_QUESTION_CHOICE_QUERY_DATA(
-          queryClient,
-          [eventId, questionId, choiceId],
-          response
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    UpdateEventQuestionChoiceSubQuestionParams,
+    Awaited<ReturnType<typeof UpdateEventQuestionChoiceSubQuestion>>
+  >(UpdateEventQuestionChoiceSubQuestion, options);
 };
-
-export default useUpdateEventQuestionChoiceSubQuestion;

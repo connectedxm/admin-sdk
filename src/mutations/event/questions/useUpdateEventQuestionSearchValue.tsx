@@ -1,69 +1,82 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { RegistrationQuestionSearchValue } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY } from "@context/queries/events/questions/useGetEventQuestionSearchValues";
-import { SET_EVENT_QUESTION_SEARCH_VALUE_QUERY_DATA } from "@context/queries/events/questions/useGetEventQuestionSearchValue";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  ConnectedXMResponse,
+  RegistrationQuestionSearchValue,
+} from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY,
+  SET_EVENT_QUESTION_SEARCH_VALUE_QUERY_DATA,
+} from "@src/queries";
 
-interface UpdateEventQuestionSearchValueParams {
+/**
+ * @category Params
+ * @group Event-Questions
+ */
+export interface UpdateEventQuestionSearchValueParams extends MutationParams {
   eventId: string;
   questionId: string;
   searchValueId: string;
   searchValue: RegistrationQuestionSearchValue;
 }
 
+/**
+ * @category Methods
+ * @group Event-Questions
+ */
 export const UpdateEventQuestionSearchValue = async ({
   eventId,
   questionId,
   searchValueId,
   searchValue,
+  adminApiParams,
+  queryClient,
 }: UpdateEventQuestionSearchValueParams): Promise<
   ConnectedXMResponse<RegistrationQuestionSearchValue>
 > => {
   if (!questionId) throw new Error("Question ID Undefined");
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.put(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.put<
+    ConnectedXMResponse<RegistrationQuestionSearchValue>
+  >(
     `/events/${eventId}/questions/${questionId}/values/${searchValueId}`,
     searchValue
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY(eventId, questionId),
+    });
+    SET_EVENT_QUESTION_SEARCH_VALUE_QUERY_DATA(
+      queryClient,
+      [eventId, questionId, searchValueId],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Questions
+ */
 export const useUpdateEventQuestionSearchValue = (
-  eventId: string,
-  questionId: string,
-  searchValueId?: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateEventQuestionSearchValue>>,
+      Omit<
+        UpdateEventQuestionSearchValueParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<RegistrationQuestionSearchValue>(
-    (searchValue: RegistrationQuestionSearchValue) =>
-      UpdateEventQuestionSearchValue({
-        eventId,
-        questionId,
-        searchValueId: searchValueId || searchValue?.id?.toString(),
-        searchValue,
-      }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof UpdateEventQuestionSearchValue>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY(eventId, questionId)
-        );
-
-        SET_EVENT_QUESTION_SEARCH_VALUE_QUERY_DATA(
-          queryClient,
-          [
-            eventId,
-            questionId,
-            searchValueId || response?.data?.id?.toString(),
-          ],
-          response
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    UpdateEventQuestionSearchValueParams,
+    Awaited<ReturnType<typeof UpdateEventQuestionSearchValue>>
+  >(UpdateEventQuestionSearchValue, options);
 };
-
-export default useUpdateEventQuestionSearchValue;

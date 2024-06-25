@@ -1,11 +1,24 @@
-import ConnectedXM, { ConnectedXMResponse } from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { SET_EVENT_QUESTION_CHOICE_TRANSLATION_QUERY_DATA } from "@context/queries/events/questions/translations/useGetEventQuestionChoiceTranslation";
-import { EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/questions/translations/useGetEventQuestionChoiceTranslations";
-import { RegistrationQuestionChoiceTranslation } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  ConnectedXMResponse,
+  RegistrationQuestionChoiceTranslation,
+} from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_KEY,
+  SET_EVENT_QUESTION_CHOICE_TRANSLATION_QUERY_DATA,
+} from "@src/queries";
 
-interface CreateEventQuestionChoiceTranslationProps {
+/**
+ * @category Params
+ * @group Event-Question-Translations
+ */
+export interface CreateEventQuestionChoiceTranslationParams
+  extends MutationParams {
   eventId: string;
   questionId: string;
   choiceId: string;
@@ -13,16 +26,22 @@ interface CreateEventQuestionChoiceTranslationProps {
   autoTranslate?: boolean;
 }
 
+/**
+ * @category Methods
+ * @group Event-Question-Translations
+ */
 export const CreateEventQuestionChoiceTranslation = async ({
   eventId,
   questionId,
   choiceId,
   locale,
   autoTranslate,
-}: CreateEventQuestionChoiceTranslationProps): Promise<
+  adminApiParams,
+  queryClient,
+}: CreateEventQuestionChoiceTranslationParams): Promise<
   ConnectedXMResponse<RegistrationQuestionChoiceTranslation>
 > => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.post(
     `/events/${eventId}/questions/${questionId}/choices/${choiceId}/translations`,
@@ -32,51 +51,41 @@ export const CreateEventQuestionChoiceTranslation = async ({
     }
   );
 
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_KEY(
+        eventId,
+        questionId,
+        choiceId
+      ),
+    });
+    SET_EVENT_QUESTION_CHOICE_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [eventId, questionId, choiceId, data?.data.locale],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Question-Translations
+ */
 export const useCreateEventQuestionChoiceTranslation = (
-  eventId: string,
-  questionId: string,
-  choiceId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof CreateEventQuestionChoiceTranslation>>,
+      Omit<
+        CreateEventQuestionChoiceTranslationParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
   return useConnectedMutation<
-    Omit<
-      CreateEventQuestionChoiceTranslationProps,
-      "eventId" | "questionId" | "choiceId"
-    >
-  >(
-    (props) =>
-      CreateEventQuestionChoiceTranslation({
-        eventId,
-        questionId,
-        choiceId,
-        ...props,
-      }),
-    {
-      onSuccess: (
-        response: Awaited<
-          ReturnType<typeof CreateEventQuestionChoiceTranslation>
-        >
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_KEY(
-            eventId,
-            questionId,
-            choiceId
-          )
-        );
-        SET_EVENT_QUESTION_CHOICE_TRANSLATION_QUERY_DATA(
-          queryClient,
-          [eventId, questionId, choiceId, response.data?.locale],
-          response
-        );
-      },
-    },
-    "Hold on while we create a translation..."
-  );
+    CreateEventQuestionChoiceTranslationParams,
+    Awaited<ReturnType<typeof CreateEventQuestionChoiceTranslation>>
+  >(CreateEventQuestionChoiceTranslation, options);
 };
-
-export default useCreateEventQuestionChoiceTranslation;

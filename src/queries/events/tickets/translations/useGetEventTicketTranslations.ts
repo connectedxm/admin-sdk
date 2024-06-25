@@ -1,6 +1,6 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { TicketTranslation } from "@src/interfaces";
+import { EventTicketTranslation } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -50,7 +50,7 @@ export const GetEventTicketTranslations = async ({
   ticketId,
   adminApiParams,
 }: GetEventTicketTranslationsProps): Promise<
-  ConnectedXMResponse<TicketTranslation[]>
+  ConnectedXMResponse<EventTicketTranslation[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(

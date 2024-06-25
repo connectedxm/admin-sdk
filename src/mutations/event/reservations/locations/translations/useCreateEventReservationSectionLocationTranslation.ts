@@ -39,7 +39,6 @@ export const CreateEventReservationSectionLocationTranslation = async ({
   adminApiParams,
   queryClient,
 }: CreateEventReservationSectionLocationTranslationParams): Promise<
-  //TODO: missing reference
   ConnectedXMResponse<EventReservationSectionLocationTranslation>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);

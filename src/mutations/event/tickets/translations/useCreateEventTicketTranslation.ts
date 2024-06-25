@@ -1,64 +1,76 @@
-import ConnectedXM, { ConnectedXMResponse } from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { SET_EVENT_TICKET_TRANSLATION_QUERY_DATA } from "@context/queries/events/tickets/translations/useGetEventTicketTranslation";
-import { EVENT_TICKET_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/tickets/translations/useGetEventTicketTranslations";
-import { TicketTranslation } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventTicketTranslation } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_TICKET_TRANSLATIONS_QUERY_KEY,
+  SET_EVENT_TICKET_TRANSLATION_QUERY_DATA,
+} from "@src/queries";
 
-interface CreateEventTicketTranslationProps {
+/**
+ * @category Params
+ * @group Event-Tickets-Translations
+ */
+export interface CreateEventTicketTranslationParams extends MutationParams {
   eventId: string;
   ticketId: string;
   locale: string;
   autoTranslate?: boolean;
 }
 
+/**
+ * @category Methods
+ * @group Event-Tickets-Translations
+ */
 export const CreateEventTicketTranslation = async ({
   eventId,
   ticketId,
   locale,
   autoTranslate,
-}: CreateEventTicketTranslationProps): Promise<
-  ConnectedXMResponse<TicketTranslation>
+  adminApiParams,
+  queryClient,
+}: CreateEventTicketTranslationParams): Promise<
+  ConnectedXMResponse<EventTicketTranslation>
 > => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post(
-    `/events/${eventId}/tickets/${ticketId}/translations`,
-    {
-      locale,
-      autoTranslate,
-    }
-  );
-
+  const { data } = await connectedXM.post<
+    ConnectedXMResponse<EventTicketTranslation>
+  >(`/events/${eventId}/tickets/${ticketId}/translations`, {
+    locale,
+    autoTranslate,
+  });
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_TICKET_TRANSLATIONS_QUERY_KEY(eventId, ticketId),
+    });
+    SET_EVENT_TICKET_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [eventId, ticketId, data.data?.locale],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Tickets-Translations
+ */
 export const useCreateEventTicketTranslation = (
-  eventId: string,
-  ticketId: string
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof CreateEventTicketTranslation>>,
+      Omit<CreateEventTicketTranslationParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
   return useConnectedMutation<
-    Omit<CreateEventTicketTranslationProps, "eventId" | "ticketId">
-  >(
-    (props) => CreateEventTicketTranslation({ eventId, ticketId, ...props }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof CreateEventTicketTranslation>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_TICKET_TRANSLATIONS_QUERY_KEY(eventId, ticketId)
-        );
-        SET_EVENT_TICKET_TRANSLATION_QUERY_DATA(
-          queryClient,
-          [eventId, ticketId, response.data?.locale],
-          response
-        );
-      },
-    },
-    "Hold on while we create a translation..."
-  );
+    CreateEventTicketTranslationParams,
+    Awaited<ReturnType<typeof CreateEventTicketTranslation>>
+  >(CreateEventTicketTranslation, options);
 };
-
-export default useCreateEventTicketTranslation;

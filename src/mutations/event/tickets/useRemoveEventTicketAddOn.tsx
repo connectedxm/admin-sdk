@@ -1,49 +1,64 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { Ticket } from "@interfaces";
-import { SET_EVENT_TICKET_QUERY_DATA } from "@context/queries/events/tickets/useGetEventTicket";
-import { EVENT_TICKET_ADD_ONS_QUERY_KEY } from "@context/queries/events/tickets/useGetEventTicketAddOns";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventTicket } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_TICKET_ADD_ONS_QUERY_KEY,
+  SET_EVENT_TICKET_QUERY_DATA,
+} from "@src/queries";
 
-interface RemoveEventTicketAddOnParams {
+/**
+ * @category Params
+ * @group Event-Tickets
+ */
+export interface RemoveEventTicketAddOnParams extends MutationParams {
   eventId: string;
   ticketId: string;
   addOnId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Tickets
+ */
 export const RemoveEventTicketAddOn = async ({
   eventId,
   ticketId,
   addOnId,
-}: RemoveEventTicketAddOnParams): Promise<ConnectedXMResponse<Ticket>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.delete(
+  adminApiParams,
+  queryClient,
+}: RemoveEventTicketAddOnParams): Promise<ConnectedXMResponse<EventTicket>> => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<EventTicket>>(
     `/events/${eventId}/tickets/${ticketId}/addOns/${addOnId}`
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_TICKET_ADD_ONS_QUERY_KEY(eventId, ticketId),
+    });
+    SET_EVENT_TICKET_QUERY_DATA(queryClient, [eventId, ticketId], data);
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Tickets
+ */
 export const useRemoveEventTicketAddOn = (
-  eventId: string,
-  ticketId: string
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof RemoveEventTicketAddOn>>,
+      Omit<RemoveEventTicketAddOnParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (addOnId: string) => RemoveEventTicketAddOn({ eventId, ticketId, addOnId }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof RemoveEventTicketAddOn>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_TICKET_ADD_ONS_QUERY_KEY(eventId, ticketId)
-        );
-        SET_EVENT_TICKET_QUERY_DATA(queryClient, [eventId, ticketId], response);
-      },
-    },
-    undefined,
-    true
-  );
+  return useConnectedMutation<
+    RemoveEventTicketAddOnParams,
+    Awaited<ReturnType<typeof RemoveEventTicketAddOn>>
+  >(RemoveEventTicketAddOn, options);
 };
-
-export default useRemoveEventTicketAddOn;

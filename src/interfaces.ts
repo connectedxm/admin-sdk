@@ -377,7 +377,7 @@ export interface Announcement extends BaseAnnouncement {
   group: BaseGroup | null;
   sponsorshipLevelId: string | null;
   sponsorshipLevel: BaseSponsorshipLevel | null;
-  ticket: BaseTicket | null;
+  ticket: BaseEventTicket | null;
   user: BaseUser | null;
   html: string | null;
   message: string | null;
@@ -549,7 +549,7 @@ export interface BaseCoupon {
 }
 
 export interface Coupon extends BaseCoupon {
-  ticket: BaseTicket | null;
+  ticket: BaseEventTicket | null;
   manager: BaseAccount | null;
   createdAt: string;
   updatedAt: string;
@@ -1237,7 +1237,7 @@ export interface BasePurchase {
   id: string;
   alternateId: number;
   ticketId: string | null;
-  ticket: BaseTicket | null;
+  ticket: BaseEventTicket | null;
   location: string | null;
   usedAt: string | null;
   transfer: { id: string; email: string; createdAt: string };
@@ -1300,7 +1300,7 @@ export interface BasePayment {
   type: PaymentType;
   chargedAmt: number;
   ticketId: string | null;
-  ticket: BaseTicket | null;
+  ticket: BaseEventTicket | null;
   stripeId: string | null;
   last4: string | null;
   debugId: string | null;
@@ -1491,7 +1491,7 @@ export interface BaseRegistrationSection {
 
 export interface RegistrationSection extends BaseRegistrationSection {
   questions: BaseRegistrationSectionQuestion[];
-  eventTickets: BaseTicket[];
+  eventTickets: BaseEventTicket[];
   accountTiers: BaseTier[];
   createdAt: string;
   updatedAt: string;
@@ -1967,7 +1967,7 @@ export interface TeamMember extends BaseTeamMember {
   updatedAt: string;
 }
 
-export interface BaseTicket {
+export interface BaseEventTicket {
   id: string;
   slug: string;
   active: boolean;
@@ -1996,7 +1996,7 @@ export interface BaseTicket {
   updatedAt: string;
 }
 
-export interface Ticket extends BaseTicket {
+export interface EventTicket extends BaseEventTicket {
   sortOrder: number;
   event: BaseEvent;
   _count: {
@@ -2004,7 +2004,7 @@ export interface Ticket extends BaseTicket {
   };
 }
 
-export interface TicketTranslation {
+export interface EventTicketTranslation {
   id: number;
   locale: string;
   name: string;

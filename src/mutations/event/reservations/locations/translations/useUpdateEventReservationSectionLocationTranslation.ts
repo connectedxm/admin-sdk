@@ -19,7 +19,6 @@ export interface UpdateEventReservationSectionLocationTranslationParams
   eventId: string;
   reservationSectionId: string;
   locationId: string;
-  //TODO: missing reference
   locationTranslation: EventReservationSectionLocationTranslation;
 }
 

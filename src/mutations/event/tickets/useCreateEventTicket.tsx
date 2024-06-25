@@ -1,40 +1,63 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { Ticket } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { EVENT_TICKETS_QUERY_KEY } from "@context/queries/events/tickets/useGetEventTickets";
-import { SET_EVENT_TICKET_QUERY_DATA } from "@context/queries/events/tickets/useGetEventTicket";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { EventTicket, ConnectedXMResponse } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_TICKETS_QUERY_KEY,
+  SET_EVENT_TICKET_QUERY_DATA,
+} from "@src/queries";
 
-interface CreateTicketParams {
+/**
+ * @category Params
+ * @group Event-Tickets
+ */
+export interface CreateEventTicketParams extends MutationParams {
   eventId: string;
-  ticket: Ticket;
+  ticket: EventTicket;
 }
 
-export const CreateTicket = async ({
+/**
+ * @category Methods
+ * @group Event-Tickets
+ */
+export const CreateEventTicket = async ({
   eventId,
   ticket,
-}: CreateTicketParams): Promise<ConnectedXMResponse<Ticket>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(`/events/${eventId}/tickets`, ticket);
+  adminApiParams,
+  queryClient,
+}: CreateEventTicketParams): Promise<ConnectedXMResponse<EventTicket>> => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.post<ConnectedXMResponse<EventTicket>>(
+    `/events/${eventId}/tickets`,
+    ticket
+  );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_TICKETS_QUERY_KEY(eventId),
+    });
+    SET_EVENT_TICKET_QUERY_DATA(queryClient, [eventId, data.data.id], data);
+  }
   return data;
 };
 
-export const useCreateTicket = (eventId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<Ticket>(
-    (ticket: Ticket) => CreateTicket({ eventId, ticket }),
-    {
-      onSuccess: (response: Awaited<ReturnType<typeof CreateTicket>>) => {
-        queryClient.invalidateQueries(EVENT_TICKETS_QUERY_KEY(eventId));
-        SET_EVENT_TICKET_QUERY_DATA(
-          queryClient,
-          [eventId, response.data.id],
-          response
-        );
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Tickets
+ */
+export const useCreateEventTicket = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof CreateEventTicket>>,
+      Omit<CreateEventTicketParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    CreateEventTicketParams,
+    Awaited<ReturnType<typeof CreateEventTicket>>
+  >(CreateEventTicket, options);
 };
-
-export default useCreateTicket;

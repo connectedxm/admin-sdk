@@ -1,40 +1,59 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { EVENT_SPONSORS_QUERY_KEY } from "@context/queries/events/sponsors/useGetEventSponsors";
-import { Event } from "@interfaces";
-import { SET_EVENT_QUERY_DATA } from "@context/queries/events/useGetEvent";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, Event } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import { EVENT_SPONSORS_QUERY_KEY, SET_EVENT_QUERY_DATA } from "@src/queries";
 
-interface AddEventSponsorAccountParams {
+/**
+ * @category Params
+ * @group Event-Sponsors
+ */
+export interface AddEventSponsorAccountParams extends MutationParams {
   eventId: string;
   accountId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Sponsors
+ */
 export const AddEventSponsorAccount = async ({
   eventId,
   accountId,
+  adminApiParams,
+  queryClient,
 }: AddEventSponsorAccountParams): Promise<ConnectedXMResponse<Event>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.post<ConnectedXMResponse<Event>>(
     `/events/${eventId}/sponsors/accounts/${accountId}`
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SPONSORS_QUERY_KEY(eventId),
+    });
+    SET_EVENT_QUERY_DATA(queryClient, [eventId], data);
+  }
   return data;
 };
 
-export const useAddEventSponsorAccount = (eventId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (accountId: string) => AddEventSponsorAccount({ eventId, accountId }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof AddEventSponsorAccount>>
-      ) => {
-        queryClient.invalidateQueries(EVENT_SPONSORS_QUERY_KEY(eventId));
-        SET_EVENT_QUERY_DATA(queryClient, [eventId], response);
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Sponsors
+ */
+export const useAddEventSponsorAccount = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof AddEventSponsorAccount>>,
+      Omit<AddEventSponsorAccountParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    AddEventSponsorAccountParams,
+    Awaited<ReturnType<typeof AddEventSponsorAccount>>
+  >(AddEventSponsorAccount, options);
 };
-
-export default useAddEventSponsorAccount;

@@ -1,42 +1,59 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { SET_EVENT_QUERY_DATA } from "@queries/events/useGetEvent";
-import { EVENT_SPONSORS_QUERY_KEY } from "@context/queries/events/sponsors/useGetEventSponsors";
-import { Event } from "@interfaces";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, Event } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import { EVENT_SPONSORS_QUERY_KEY, SET_EVENT_QUERY_DATA } from "@src/queries";
 
-interface RemoveEventSponsorAccountParams {
+/**
+ * @category Params
+ * @group Event-Sponsors
+ */
+export interface RemoveEventSponsorAccountParams extends MutationParams {
   eventId: string;
   accountId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Sponsors
+ */
 export const RemoveEventSponsorAccount = async ({
   eventId,
   accountId,
+  adminApiParams,
+  queryClient,
 }: RemoveEventSponsorAccountParams): Promise<ConnectedXMResponse<Event>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.delete(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<Event>>(
     `/events/${eventId}/sponsors/accounts/${accountId}`
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SPONSORS_QUERY_KEY(eventId),
+    });
+    SET_EVENT_QUERY_DATA(queryClient, [eventId], data);
+  }
   return data;
 };
 
-export const useRemoveEventSponsorAccount = (eventId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (accountId: string) => RemoveEventSponsorAccount({ eventId, accountId }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof RemoveEventSponsorAccount>>
-      ) => {
-        queryClient.invalidateQueries(EVENT_SPONSORS_QUERY_KEY(eventId));
-        SET_EVENT_QUERY_DATA(queryClient, [eventId], response);
-      },
-    },
-    undefined,
-    true
-  );
+/**
+ * @category Mutations
+ * @group Event-Sponsors
+ */
+export const useRemoveEventSponsorAccount = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof RemoveEventSponsorAccount>>,
+      Omit<RemoveEventSponsorAccountParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    RemoveEventSponsorAccountParams,
+    Awaited<ReturnType<typeof RemoveEventSponsorAccount>>
+  >(RemoveEventSponsorAccount, options);
 };
-
-export default useRemoveEventSponsorAccount;

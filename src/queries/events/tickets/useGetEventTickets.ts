@@ -1,6 +1,6 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { Ticket } from "@src/interfaces";
+import { EventTicket } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -44,7 +44,7 @@ export const GetEventTickets = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetEventTicketsProps): Promise<ConnectedXMResponse<Ticket[]>> => {
+}: GetEventTicketsProps): Promise<ConnectedXMResponse<EventTicket[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/tickets`, {
     params: {

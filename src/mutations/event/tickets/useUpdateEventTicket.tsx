@@ -1,24 +1,39 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { Ticket } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { SET_EVENT_TICKET_QUERY_DATA } from "@context/queries/events/tickets/useGetEventTicket";
-import { EVENT_TICKETS_QUERY_KEY } from "@context/queries/events/tickets/useGetEventTickets";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { EventTicket, ConnectedXMResponse } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_TICKETS_QUERY_KEY,
+  SET_EVENT_TICKET_QUERY_DATA,
+} from "@src/queries";
 
-interface UpdateTicketParams {
+/**
+ * @category Params
+ * @group Event-Tickets
+ */
+export interface UpdateEventTicketParams extends MutationParams {
   eventId: string;
   ticketId: string;
-  ticket: Ticket;
+  ticket: EventTicket;
 }
 
-export const UpdateTicket = async ({
+/**
+ * @category Methods
+ * @group Event-Tickets
+ */
+export const UpdateEventTicket = async ({
   eventId,
   ticketId,
   ticket,
-}: UpdateTicketParams): Promise<ConnectedXMResponse<Ticket>> => {
+  adminApiParams,
+  queryClient,
+}: UpdateEventTicketParams): Promise<ConnectedXMResponse<EventTicket>> => {
   if (!ticketId) throw new Error("Ticket ID Undefined");
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.put(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.put<ConnectedXMResponse<EventTicket>>(
     `/events/${eventId}/tickets/${ticketId}`,
     {
       ...ticket,
@@ -31,26 +46,34 @@ export const UpdateTicket = async ({
       updatedAt: undefined,
     }
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_TICKETS_QUERY_KEY(eventId),
+    });
+    SET_EVENT_TICKET_QUERY_DATA(
+      queryClient,
+      [eventId, ticketId || data.data?.id],
+      data
+    );
+  }
   return data;
 };
 
-export const useUpdateTicket = (eventId: string, ticketId?: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<Ticket>(
-    (ticket: Ticket) =>
-      UpdateTicket({ eventId, ticketId: ticketId || ticket?.id, ticket }),
-    {
-      onSuccess: (response: Awaited<ReturnType<typeof UpdateTicket>>) => {
-        queryClient.invalidateQueries(EVENT_TICKETS_QUERY_KEY(eventId));
-        SET_EVENT_TICKET_QUERY_DATA(
-          queryClient,
-          [eventId, ticketId || response.data?.id],
-          response
-        );
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Tickets
+ */
+export const useUpdateEventTicket = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof UpdateEventTicket>>,
+      Omit<UpdateEventTicketParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    UpdateEventTicketParams,
+    Awaited<ReturnType<typeof UpdateEventTicket>>
+  >(UpdateEventTicket, options);
 };
-
-export default useUpdateTicket;

@@ -1,56 +1,66 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { RegistrationSection } from "@interfaces";
-import { EVENT_SECTION_TICKETS_QUERY_KEY } from "@context/queries/events/sections/useGetEventSectionTickets";
-import { SET_EVENT_SECTION_QUERY_DATA } from "@context/queries/events/sections/useGetEventSection";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, RegistrationSection } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_SECTION_TICKETS_QUERY_KEY,
+  SET_EVENT_SECTION_QUERY_DATA,
+} from "@src/queries";
 
-interface RemoveEventSectionTicketParams {
+/**
+ * @category Params
+ * @group Event-Sections
+ */
+export interface RemoveEventSectionTicketParams extends MutationParams {
   eventId: string;
   sectionId: string;
   ticketId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Sections
+ */
 export const RemoveEventSectionTicket = async ({
   eventId,
   sectionId,
   ticketId,
+  adminApiParams,
+  queryClient,
 }: RemoveEventSectionTicketParams): Promise<
   ConnectedXMResponse<RegistrationSection>
 > => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.delete(
-    `/events/${eventId}/sections/${sectionId}/tickets/${ticketId}`
-  );
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.delete<
+    ConnectedXMResponse<RegistrationSection>
+  >(`/events/${eventId}/sections/${sectionId}/tickets/${ticketId}`);
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SECTION_TICKETS_QUERY_KEY(eventId, sectionId),
+    });
+    SET_EVENT_SECTION_QUERY_DATA(queryClient, [eventId, sectionId], data);
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Sections
+ */
 export const useRemoveEventSectionTicket = (
-  eventId: string,
-  sectionId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof RemoveEventSectionTicket>>,
+      Omit<RemoveEventSectionTicketParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (ticketId: string) =>
-      RemoveEventSectionTicket({ eventId, sectionId, ticketId }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof RemoveEventSectionTicket>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_SECTION_TICKETS_QUERY_KEY(eventId, sectionId)
-        );
-        SET_EVENT_SECTION_QUERY_DATA(
-          queryClient,
-          [eventId, sectionId],
-          response
-        );
-      },
-    },
-    undefined,
-    true
-  );
+  return useConnectedMutation<
+    RemoveEventSectionTicketParams,
+    Awaited<ReturnType<typeof RemoveEventSectionTicket>>
+  >(RemoveEventSectionTicket, options);
 };
-
-export default useRemoveEventSectionTicket;

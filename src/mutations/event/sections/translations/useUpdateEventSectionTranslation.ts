@@ -1,61 +1,76 @@
-import ConnectedXM from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { SET_EVENT_SECTION_TRANSLATION_QUERY_DATA } from "@context/queries/events/sections/translations/useGetEventSectionTranslation";
-import { EVENT_SECTION_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/sections/translations/useGetEventSectionTranslations";
-import { RegistrationSectionTranslation } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { RegistrationSectionTranslation } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_SECTION_TRANSLATIONS_QUERY_KEY,
+  SET_EVENT_SECTION_TRANSLATION_QUERY_DATA,
+} from "@src/queries";
 
-interface UpdateEventSectionTranslationProps {
+/**
+ * @category Params
+ * @group Event-Sections-Translations
+ */
+export interface UpdateEventSectionTranslationParams extends MutationParams {
   eventId: string;
   sectionId: string;
   sectionTranslation: RegistrationSectionTranslation;
 }
 
+/**
+ * @category Methods
+ * @group Event-Sections-Translations
+ */
 export const UpdateEventSectionTranslation = async ({
   eventId,
   sectionId,
   sectionTranslation,
-}: UpdateEventSectionTranslationProps) => {
-  const connectedXM = await ConnectedXM();
+  adminApiParams,
+  queryClient,
+}: UpdateEventSectionTranslationParams) => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { locale, ...body } = sectionTranslation;
 
   const { data } = await connectedXM.put(
-    `/events/${eventId}/sections/${sectionId}/translations/${sectionTranslation.locale}`,
+    `/events/${eventId}/sections/${sectionId}/translations/${locale}`,
     body
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SECTION_TRANSLATIONS_QUERY_KEY(eventId, sectionId),
+    });
 
+    SET_EVENT_SECTION_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [eventId, sectionId, data.data?.locale],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Sections-Translations
+ */
 export const useUpdateEventSectionTranslation = (
-  eventId: string,
-  sectionId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateEventSectionTranslation>>,
+      Omit<
+        UpdateEventSectionTranslationParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-  return useConnectedMutation<RegistrationSectionTranslation>(
-    (sectionTranslation: RegistrationSectionTranslation) =>
-      UpdateEventSectionTranslation({
-        eventId,
-        sectionId,
-        sectionTranslation,
-      }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof UpdateEventSectionTranslation>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_SECTION_TRANSLATIONS_QUERY_KEY(eventId, sectionId)
-        );
-
-        SET_EVENT_SECTION_TRANSLATION_QUERY_DATA(
-          queryClient,
-          [eventId, sectionId, response.data?.locale],
-          response
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    UpdateEventSectionTranslationParams,
+    Awaited<ReturnType<typeof UpdateEventSectionTranslation>>
+  >(UpdateEventSectionTranslation, options);
 };
-
-export default useUpdateEventSectionTranslation;

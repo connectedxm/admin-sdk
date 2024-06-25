@@ -1,54 +1,66 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { RegistrationSection } from "@interfaces";
-import { EVENT_SECTION_QUESTIONS_QUERY_KEY } from "@context/queries/events/sections/useGetEventSectionQuestions";
-import { SET_EVENT_SECTION_QUERY_DATA } from "@context/queries/events/sections/useGetEventSection";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, RegistrationSection } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_SECTION_QUESTIONS_QUERY_KEY,
+  SET_EVENT_SECTION_QUERY_DATA,
+} from "@src/queries";
 
-interface AddEventSectionQuestionParams {
+/**
+ * @category Params
+ * @group Event-Sections
+ */
+export interface AddEventSectionQuestionParams extends MutationParams {
   eventId: string;
   sectionId: string;
   questionId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Sections
+ */
 export const AddEventSectionQuestion = async ({
   eventId,
   sectionId,
   questionId,
+  adminApiParams,
+  queryClient,
 }: AddEventSectionQuestionParams): Promise<
   ConnectedXMResponse<RegistrationSection>
 > => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(
-    `/events/${eventId}/sections/${sectionId}/questions/${questionId}`
-  );
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.post<
+    ConnectedXMResponse<RegistrationSection>
+  >(`/events/${eventId}/sections/${sectionId}/questions/${questionId}`);
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SECTION_QUESTIONS_QUERY_KEY(eventId, sectionId),
+    });
+    SET_EVENT_SECTION_QUERY_DATA(queryClient, [eventId, sectionId], data);
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Sections
+ */
 export const useAddEventSectionQuestion = (
-  eventId: string,
-  sectionId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof AddEventSectionQuestion>>,
+      Omit<AddEventSectionQuestionParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (questionId: string) =>
-      AddEventSectionQuestion({ eventId, sectionId, questionId }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof AddEventSectionQuestion>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_SECTION_QUESTIONS_QUERY_KEY(eventId, sectionId)
-        );
-        SET_EVENT_SECTION_QUERY_DATA(
-          queryClient,
-          [eventId, sectionId],
-          response
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    AddEventSectionQuestionParams,
+    Awaited<ReturnType<typeof AddEventSectionQuestion>>
+  >(AddEventSectionQuestion, options);
 };
-
-export default useAddEventSectionQuestion;

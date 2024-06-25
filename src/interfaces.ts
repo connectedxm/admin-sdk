@@ -950,6 +950,12 @@ export interface Image extends BaseImage {
   updatedAt: string;
 }
 
+export enum ExportStatus {
+  pending = "pending",
+  resolved = "resolved",
+  failed = "failed",
+}
+
 export enum ImportItemStatus {
   pending = "pending",
   resolved = "resolved",
@@ -1340,6 +1346,11 @@ export interface BaseRegistrationQuestionChoice {
   };
 }
 
+export interface Question {
+  id: number;
+  value: string;
+}
+
 export interface RegistrationQuestionChoice
   extends BaseRegistrationQuestionChoice {
   questionId: number;
@@ -1507,6 +1518,24 @@ export interface BaseRegistrationStatusChange {
 export interface RegistrationStatusChange extends BaseRegistrationStatusChange {
   registrationId: string;
   registration: BaseRegistration;
+}
+
+export interface BaseExport {
+  id: string;
+  status: ExportStatus;
+  type: string;
+  message: string | null;
+  eventId: string | null;
+  userId: string | null;
+  expiration: string | null;
+  downloadUrl: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Export extends BaseExport {
+  event: BaseEvent;
+  user: User;
 }
 
 export interface BaseRegistration {

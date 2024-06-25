@@ -1,31 +1,61 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
 
-interface ResendEventRegistrationConfirmationEmailParams {
+/**
+ * @category Params
+ * @group Event-Registrations
+ */
+export interface ResendEventRegistrationConfirmationEmailParams
+  extends MutationParams {
   eventId: string;
   registrationId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Registrations
+ */
 export const ResendEventRegistrationConfirmationEmail = async ({
   eventId,
   registrationId,
+  adminApiParams,
+  queryClient,
 }: ResendEventRegistrationConfirmationEmailParams): Promise<
   ConnectedXMResponse<null>
 > => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.post<ConnectedXMResponse<null>>(
     `/events/${eventId}/registrations/${registrationId}/resendEmail`
   );
+  if (queryClient && data.status === "ok") {
+    //do nothing currently
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Registrations
+ */
 export const useResendEventRegistrationConfirmationEmail = (
-  eventId: string,
-  registrationId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof ResendEventRegistrationConfirmationEmail>>,
+      Omit<
+        ResendEventRegistrationConfirmationEmailParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  return useConnectedMutation(() =>
-    ResendEventRegistrationConfirmationEmail({ eventId, registrationId })
-  );
+  return useConnectedMutation<
+    ResendEventRegistrationConfirmationEmailParams,
+    Awaited<ReturnType<typeof ResendEventRegistrationConfirmationEmail>>
+  >(ResendEventRegistrationConfirmationEmail, options);
 };
-
-export default useResendEventRegistrationConfirmationEmail;

@@ -1,64 +1,75 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { Purchase } from "@interfaces";
-import { useRouter } from "next/router";
-import { EVENT_REGISTRATION_PURCHASES_QUERY_KEY } from "@context/queries/events/registrations/purchases/useGetEventRegistrationPurchases";
-import { EVENT_REGISTRATION_PURCHASE_QUERY_KEY } from "@context/queries/events/registrations/purchases/useGetEventRegistrationPurchase";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, Purchase } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_REGISTRATION_PURCHASES_QUERY_KEY,
+  EVENT_REGISTRATION_PURCHASE_QUERY_KEY,
+} from "@src/queries";
 
-interface DeleteEventRegistrationPurchaseParams {
+/**
+ * @category Params
+ * @group Event-Registrations-Purchases
+ */
+export interface DeleteEventRegistrationPurchaseParams extends MutationParams {
   eventId: string;
   registrationId: string;
   purchaseId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Registrations-Purchases
+ */
 export const DeleteEventRegistrationPurchase = async ({
   eventId,
   registrationId,
   purchaseId,
+  adminApiParams,
+  queryClient,
 }: DeleteEventRegistrationPurchaseParams): Promise<
   ConnectedXMResponse<Purchase>
 > => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.delete(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<Purchase>>(
     `/events/${eventId}/registrations/${registrationId}/purchases/${purchaseId}`
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_REGISTRATION_PURCHASES_QUERY_KEY(eventId, registrationId),
+    });
+    queryClient.removeQueries({
+      queryKey: EVENT_REGISTRATION_PURCHASE_QUERY_KEY(
+        eventId,
+        registrationId,
+        purchaseId
+      ),
+    });
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Registrations-Purchases
+ */
 export const useDeleteEventRegistrationPurchase = (
-  eventId: string,
-  registrationId: string,
-  purchaseId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof DeleteEventRegistrationPurchase>>,
+      Omit<
+        DeleteEventRegistrationPurchaseParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-  const router = useRouter();
-
-  return useConnectedMutation(
-    () =>
-      DeleteEventRegistrationPurchase({
-        eventId,
-        registrationId,
-        purchaseId,
-      }),
-    {
-      onSuccess: async () => {
-        await router.push(
-          `/events/${eventId}/registrations/${registrationId}/purchases`
-        );
-        queryClient.invalidateQueries(
-          EVENT_REGISTRATION_PURCHASES_QUERY_KEY(eventId, registrationId)
-        );
-        queryClient.removeQueries(
-          EVENT_REGISTRATION_PURCHASE_QUERY_KEY(
-            eventId,
-            registrationId,
-            purchaseId
-          )
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    DeleteEventRegistrationPurchaseParams,
+    Awaited<ReturnType<typeof DeleteEventRegistrationPurchase>>
+  >(DeleteEventRegistrationPurchase, options);
 };
-
-export default useDeleteEventRegistrationPurchase;

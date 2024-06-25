@@ -1,50 +1,75 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { SET_EVENT_REGISTRATION_QUERY_DATA } from "@context/queries/events/registrations/useGetEventRegistration";
-import { EVENT_REGISTRATION_COUNTS_QUERY_KEY } from "@context/queries/events/registrations/useGetEventRegistrationCounts";
-import { EVENT_REGISTRATIONS_QUERY_KEY } from "@context/queries/events/registrations/useGetEventRegistrations";
-import { Registration } from "@interfaces";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, Registration } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_REGISTRATIONS_QUERY_KEY,
+  EVENT_REGISTRATION_COUNTS_QUERY_KEY,
+  SET_EVENT_REGISTRATION_QUERY_DATA,
+} from "@src/queries";
 
-interface CreateEventRegistrationParams {
+/**
+ * @category Params
+ * @group Event-Registrations
+ */
+export interface CreateEventRegistrationParams extends MutationParams {
   eventId: string;
   accountId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Registrations
+ */
 export const CreateEventRegistration = async ({
   eventId,
   accountId,
+  adminApiParams,
+  queryClient,
 }: CreateEventRegistrationParams): Promise<
   ConnectedXMResponse<Registration>
 > => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(`/events/${eventId}/registrations`, {
-    accountId,
-  });
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.post<ConnectedXMResponse<Registration>>(
+    `/events/${eventId}/registrations`,
+    {
+      accountId,
+    }
+  );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_REGISTRATIONS_QUERY_KEY(eventId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_REGISTRATION_COUNTS_QUERY_KEY(eventId),
+    });
+    SET_EVENT_REGISTRATION_QUERY_DATA(
+      queryClient,
+      [eventId, data.data.id],
+      data
+    );
+  }
   return data;
 };
 
-export const useCreateEventRegistration = (eventId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (accountId: string) => CreateEventRegistration({ eventId, accountId }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof CreateEventRegistration>>
-      ) => {
-        queryClient.invalidateQueries(EVENT_REGISTRATIONS_QUERY_KEY(eventId));
-        queryClient.invalidateQueries(
-          EVENT_REGISTRATION_COUNTS_QUERY_KEY(eventId)
-        );
-        SET_EVENT_REGISTRATION_QUERY_DATA(
-          queryClient,
-          [eventId, response.data.id],
-          response
-        );
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Registrations
+ */
+export const useCreateEventRegistration = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof CreateEventRegistration>>,
+      Omit<CreateEventRegistrationParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    CreateEventRegistrationParams,
+    Awaited<ReturnType<typeof CreateEventRegistration>>
+  >(CreateEventRegistration, options);
 };
-
-export default useCreateEventRegistration;

@@ -1,11 +1,24 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { RegistrationQuestionResponse } from "@interfaces";
-import { EVENT_REGISTRATION_PURCHASE_RESPONSES_QUERY_KEY } from "@context/queries/events/registrations/purchases/useGetEventRegistrationPurchaseResponses";
-import { SET_EVENT_REGISTRATION_PURCHASE_RESPONSE_QUERY_DATA } from "@context/queries/events/registrations/purchases/useGetEventRegistrationPurchaseResponse";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  RegistrationQuestionResponse,
+  ConnectedXMResponse,
+} from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_REGISTRATION_PURCHASE_RESPONSES_QUERY_KEY,
+  SET_EVENT_REGISTRATION_PURCHASE_RESPONSE_QUERY_DATA,
+} from "@src/queries";
 
-interface UpdateEventRegistrationPurchaseResponseParams {
+/**
+ * @category Params
+ * @group Event-Registrations
+ */
+export interface UpdateEventRegistrationPurchaseResponseParams
+  extends MutationParams {
   eventId: string;
   registrationId: string;
   purchaseId: string;
@@ -13,61 +26,61 @@ interface UpdateEventRegistrationPurchaseResponseParams {
   response: RegistrationQuestionResponse;
 }
 
+/**
+ * @category Methods
+ * @group Event-Registrations
+ */
 export const UpdateEventRegistrationPurchaseResponse = async ({
   eventId,
   registrationId,
   purchaseId,
   questionId,
   response,
+  adminApiParams,
+  queryClient,
 }: UpdateEventRegistrationPurchaseResponseParams): Promise<
   ConnectedXMResponse<RegistrationQuestionResponse>
 > => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put(
     `/events/${eventId}/registrations/${registrationId}/purchases/${purchaseId}/responses/${questionId}`,
     response
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_REGISTRATION_PURCHASE_RESPONSES_QUERY_KEY(
+        eventId,
+        registrationId,
+        purchaseId
+      ),
+    });
+    SET_EVENT_REGISTRATION_PURCHASE_RESPONSE_QUERY_DATA(
+      queryClient,
+      [eventId, registrationId, purchaseId, questionId],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Registrations
+ */
 export const useUpdateEventRegistrationPurchaseResponse = (
-  eventId: string,
-  registrationId: string,
-  purchaseId: string,
-  questionId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateEventRegistrationPurchaseResponse>>,
+      Omit<
+        UpdateEventRegistrationPurchaseResponseParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<RegistrationQuestionResponse>(
-    (response: RegistrationQuestionResponse) =>
-      UpdateEventRegistrationPurchaseResponse({
-        eventId,
-        registrationId,
-        purchaseId,
-        questionId,
-        response,
-      }),
-    {
-      onSuccess: (
-        response: Awaited<
-          ReturnType<typeof UpdateEventRegistrationPurchaseResponse>
-        >
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_REGISTRATION_PURCHASE_RESPONSES_QUERY_KEY(
-            eventId,
-            registrationId,
-            purchaseId
-          )
-        );
-        SET_EVENT_REGISTRATION_PURCHASE_RESPONSE_QUERY_DATA(
-          queryClient,
-          [eventId, registrationId, purchaseId, questionId],
-          response
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    UpdateEventRegistrationPurchaseResponseParams,
+    Awaited<ReturnType<typeof UpdateEventRegistrationPurchaseResponse>>
+  >(UpdateEventRegistrationPurchaseResponse, options);
 };
-
-export default useUpdateEventRegistrationPurchaseResponse;

@@ -1,57 +1,70 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { Payment } from "@interfaces";
-import { EVENT_REGISTRATION_PAYMENTS_QUERY_KEY } from "@context/queries/events/registrations/payments/useGetEventRegistrationPayments";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, Payment } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import { EVENT_REGISTRATION_PAYMENTS_QUERY_KEY } from "@src/queries";
 
-interface RefundEventRegistrationPaymentParams {
+/**
+ * @category Params
+ * @group Event-Registrations
+ */
+export interface RefundEventRegistrationPaymentParams extends MutationParams {
   eventId: string;
   registrationId: string;
   paymentId: string;
   amount: number;
 }
 
+/**
+ * @category Methods
+ * @group Event-Registrations
+ */
 export const RefundEventRegistrationPayment = async ({
   eventId,
   registrationId,
   paymentId,
   amount,
+  adminApiParams,
+  queryClient,
 }: RefundEventRegistrationPaymentParams): Promise<
   ConnectedXMResponse<Payment>
 > => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.post<ConnectedXMResponse<Payment>>(
     `/events/${eventId}/registrations/${registrationId}/payments/${paymentId}/refunds`,
     {
       amount,
     }
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_REGISTRATION_PAYMENTS_QUERY_KEY(eventId, registrationId),
+    });
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Registrations
+ */
 export const useRefundEventRegistrationPayment = (
-  eventId: string,
-  registrationId: string,
-  paymentId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof RefundEventRegistrationPayment>>,
+      Omit<
+        RefundEventRegistrationPaymentParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation(
-    (amount: number) =>
-      RefundEventRegistrationPayment({
-        eventId,
-        registrationId,
-        paymentId,
-        amount,
-      }),
-    {
-      onSuccess: (r) => {
-        queryClient.invalidateQueries(
-          EVENT_REGISTRATION_PAYMENTS_QUERY_KEY(eventId, registrationId)
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    RefundEventRegistrationPaymentParams,
+    Awaited<ReturnType<typeof RefundEventRegistrationPayment>>
+  >(RefundEventRegistrationPayment, options);
 };
-
-export default useRefundEventRegistrationPayment;

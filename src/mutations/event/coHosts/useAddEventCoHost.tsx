@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { Account, ConnectedXMResponse } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -45,7 +45,7 @@ export const AddEventCoHost = async ({
  */
 export const useAddEventCoHost = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof AddEventCoHost>>,
       Omit<AddEventCoHostParams, "queryClient" | "adminApiParams">
     >,

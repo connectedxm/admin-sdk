@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse, Purchase } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -58,7 +58,7 @@ export const DeleteEventRegistrationPurchase = async ({
  */
 export const useDeleteEventRegistrationPurchase = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof DeleteEventRegistrationPurchase>>,
       Omit<
         DeleteEventRegistrationPurchaseParams,

@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse, Coupon } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -52,7 +52,7 @@ export const UpdateEventCoupon = async ({
  */
 export const useUpdateEventCoupon = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof UpdateEventCoupon>>,
       Omit<UpdateEventCouponParams, "queryClient" | "adminApiParams">
     >,

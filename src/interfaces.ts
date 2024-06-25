@@ -1645,7 +1645,7 @@ export interface Series extends BaseSeries {
   updatedAt: string;
 }
 
-export interface BaseSession {
+export interface BaseEventSession {
   id: string;
   slug: string;
   name: string;
@@ -1663,7 +1663,7 @@ export interface BaseSession {
   updatedAt: string;
 }
 
-export interface Session extends BaseSession {
+export interface EventSession extends BaseEventSession {
   sortOrder: number;
   eventId: string;
   event: BaseEvent;
@@ -1671,7 +1671,7 @@ export interface Session extends BaseSession {
   streamInput: BaseStreamInput | null;
 }
 
-export interface SessionTranslation {
+export interface EventSessionTranslation {
   id: number;
   locale: string;
   name: string;
@@ -1698,7 +1698,7 @@ export interface BaseSpeaker {
 }
 
 export interface Speaker extends BaseSpeaker {
-  sessions: BaseSession[];
+  sessions: BaseEventSession[];
   eventId: string;
   event: BaseEvent;
   isHost: boolean;
@@ -1765,7 +1765,7 @@ export interface StreamInput extends BaseStreamInput {
   sortOrder: number;
   event: BaseEvent | null;
   sessionId: string | null;
-  session: BaseSession | null;
+  session: BaseEventSession | null;
   details?: StreamInputDetails;
   createdAt: string;
 }

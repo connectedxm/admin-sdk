@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse, Purchase } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -64,7 +64,7 @@ export const AddEventRegistrationPurchaseAddOn = async ({
  */
 export const useAddEventRegistrationPurchaseAddOn = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof AddEventRegistrationPurchaseAddOn>>,
       Omit<
         AddEventRegistrationPurchaseAddOnParams,

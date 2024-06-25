@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse, Faq } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -57,7 +57,7 @@ export const CreateEventFAQSectionQuestion = async ({
  */
 export const useCreateEventFAQSectionQuestion = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof CreateEventFAQSectionQuestion>>,
       Omit<
         CreateEventFAQSectionQuestionParams,

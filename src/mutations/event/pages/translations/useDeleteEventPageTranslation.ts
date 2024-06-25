@@ -1,6 +1,6 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -52,7 +52,7 @@ export const DeleteEventPageTranslation = async ({
  */
 export const useDeleteEventPageTranslation = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof DeleteEventPageTranslation>>,
       Omit<DeleteEventPageTranslationParams, "queryClient" | "adminApiParams">
     >,

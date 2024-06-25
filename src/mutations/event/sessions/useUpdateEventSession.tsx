@@ -1,24 +1,39 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { Session } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { EVENT_SESSIONS_QUERY_KEY } from "@context/queries/events/sessions/useGetEventSessions";
-import { SET_EVENT_SESSION_QUERY_DATA } from "@context/queries/events/sessions/useGetEventSession";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { EventSession, ConnectedXMResponse } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_SESSIONS_QUERY_KEY,
+  SET_EVENT_SESSION_QUERY_DATA,
+} from "@src/queries";
 
-interface UpdateEventSessionParams {
+/**
+ * @category Params
+ * @group Event-Sessions
+ */
+export interface UpdateEventSessionParams extends MutationParams {
   eventId: string;
   sessionId: string;
-  session: Session;
+  session: EventSession;
 }
 
+/**
+ * @category Methods
+ * @group Event-Sessions
+ */
 export const UpdateEventSession = async ({
   eventId,
   sessionId,
   session,
-}: UpdateEventSessionParams): Promise<ConnectedXMResponse<Session>> => {
+  adminApiParams,
+  queryClient,
+}: UpdateEventSessionParams): Promise<ConnectedXMResponse<EventSession>> => {
   if (!sessionId) throw new Error("Session ID Undefined");
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.put(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.put<ConnectedXMResponse<EventSession>>(
     `/events/${eventId}/sessions/${sessionId}`,
     {
       ...session,
@@ -32,30 +47,34 @@ export const UpdateEventSession = async ({
       updatedAt: undefined,
     }
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SESSIONS_QUERY_KEY(eventId),
+    });
+    SET_EVENT_SESSION_QUERY_DATA(
+      queryClient,
+      [eventId, sessionId || data.data?.id],
+      data
+    );
+  }
   return data;
 };
 
-export const useUpdateEventSession = (eventId: string, sessionId?: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<Session>(
-    (session: Session) =>
-      UpdateEventSession({
-        eventId,
-        sessionId: sessionId || session.id,
-        session,
-      }),
-    {
-      onSuccess: (response: Awaited<ReturnType<typeof UpdateEventSession>>) => {
-        queryClient.invalidateQueries(EVENT_SESSIONS_QUERY_KEY(eventId));
-        SET_EVENT_SESSION_QUERY_DATA(
-          queryClient,
-          [eventId, sessionId || response.data?.id],
-          response
-        );
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Sessions
+ */
+export const useUpdateEventSession = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof UpdateEventSession>>,
+      Omit<UpdateEventSessionParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    UpdateEventSessionParams,
+    Awaited<ReturnType<typeof UpdateEventSession>>
+  >(UpdateEventSession, options);
 };
-
-export default useUpdateEventSession;

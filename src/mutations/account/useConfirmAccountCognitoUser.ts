@@ -1,6 +1,6 @@
 import { Account, ConnectedXMResponse } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
@@ -51,7 +51,7 @@ export const ConfirmAccountCognitoUser = async ({
  */
 export const useConfirmAccountCognitoUser = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof ConfirmAccountCognitoUser>>,
       Omit<ConfirmAccountCognitoUserParams, "queryClient" | "adminApiParams">
     >,

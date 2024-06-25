@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -52,7 +52,7 @@ export const DeleteEventRegistrationBypass = async ({
  */
 export const useDeleteEventRegistrationBypass = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof DeleteEventRegistrationBypass>>,
       Omit<
         DeleteEventRegistrationBypassParams,

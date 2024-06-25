@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -51,7 +51,7 @@ export const DeleteEventActivation = async ({
  */
 export const useDeleteEventActivation = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof DeleteEventActivation>>,
       Omit<DeleteEventActivationParams, "queryClient" | "adminApiParams">
     >,

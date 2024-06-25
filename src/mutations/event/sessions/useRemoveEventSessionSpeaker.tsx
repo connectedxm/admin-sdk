@@ -1,54 +1,66 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { Session } from "@interfaces";
-import { SET_EVENT_SESSION_QUERY_DATA } from "@context/queries/events/sessions/useGetEventSession";
-import { EVENT_SESSION_SPEAKERS_QUERY_KEY } from "@context/queries/events/sessions/useGetEventSessionSpeakers";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventSession } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_SESSION_SPEAKERS_QUERY_KEY,
+  SET_EVENT_SESSION_QUERY_DATA,
+} from "@src/queries";
 
-interface RemoveEventSessionSpeakerParams {
+/**
+ * @category Params
+ * @group Event-Sessions
+ */
+export interface RemoveEventSessionSpeakerParams extends MutationParams {
   eventId: string;
   sessionId: string;
   speakerId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Sessions
+ */
 export const RemoveEventSessionSpeaker = async ({
   eventId,
   sessionId,
   speakerId,
-}: RemoveEventSessionSpeakerParams): Promise<ConnectedXMResponse<Session>> => {
-  const connectedXM = await ConnectedXM();
+  adminApiParams,
+  queryClient,
+}: RemoveEventSessionSpeakerParams): Promise<
+  ConnectedXMResponse<EventSession>
+> => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete(
     `/events/${eventId}/sessions/${sessionId}/speakers/${speakerId}`
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SESSION_SPEAKERS_QUERY_KEY(eventId, sessionId),
+    });
+    SET_EVENT_SESSION_QUERY_DATA(queryClient, [eventId, sessionId], data);
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Sessions
+ */
 export const useRemoveEventSessionSpeaker = (
-  eventId: string,
-  sessionId: string
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof RemoveEventSessionSpeaker>>,
+      Omit<RemoveEventSessionSpeakerParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (speakerId: string) =>
-      RemoveEventSessionSpeaker({ eventId, sessionId, speakerId }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof RemoveEventSessionSpeaker>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_SESSION_SPEAKERS_QUERY_KEY(eventId, sessionId)
-        );
-        SET_EVENT_SESSION_QUERY_DATA(
-          queryClient,
-          [eventId, sessionId],
-          response
-        );
-      },
-    },
-    undefined,
-    true
-  );
+  return useConnectedMutation<
+    RemoveEventSessionSpeakerParams,
+    Awaited<ReturnType<typeof RemoveEventSessionSpeaker>>
+  >(RemoveEventSessionSpeaker, options);
 };
-
-export default useRemoveEventSessionSpeaker;

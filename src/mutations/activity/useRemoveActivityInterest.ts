@@ -1,5 +1,5 @@
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
@@ -51,7 +51,7 @@ export const RemoveActivityInterest = async ({
  */
 export const useRemoveActivityInterest = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof RemoveActivityInterest>>,
       Omit<RemoveActivityInterestParams, "queryClient" | "adminApiParams">
     >,

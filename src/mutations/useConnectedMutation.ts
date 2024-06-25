@@ -15,7 +15,7 @@ export interface MutationParams {
 }
 
 //TODO: rename to ConnectedXMMutationOptions
-export interface MutationOptions<TResponseData, TMutationParams>
+export interface ConnectedXMMutationOptions<TResponseData, TMutationParams>
   extends UseMutationOptions<
     TResponseData,
     AxiosError<TResponseData>,
@@ -28,7 +28,7 @@ export const useConnectedMutation = <
 >(
   mutation: MutationFunction<TResponseData, TMutationParams>,
   options?: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       TResponseData,
       Omit<TMutationParams, "queryClient" | "adminApiParams">
     >,

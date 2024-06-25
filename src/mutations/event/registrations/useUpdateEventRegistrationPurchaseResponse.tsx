@@ -4,7 +4,7 @@ import {
   ConnectedXMResponse,
 } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -69,7 +69,7 @@ export const UpdateEventRegistrationPurchaseResponse = async ({
  */
 export const useUpdateEventRegistrationPurchaseResponse = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof UpdateEventRegistrationPurchaseResponse>>,
       Omit<
         UpdateEventRegistrationPurchaseResponseParams,

@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse, EventOnSiteBadgeField } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -64,7 +64,7 @@ export const UpdateEventZplTemplateBadgeField = async ({
  */
 export const useUpdateEventZplTemplateBadgeField = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof UpdateEventZplTemplateBadgeField>>,
       Omit<
         UpdateEventZplTemplateBadgeFieldParams,

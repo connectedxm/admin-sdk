@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -44,7 +44,7 @@ export const ResendEventRegistrationConfirmationEmail = async ({
  */
 export const useResendEventRegistrationConfirmationEmail = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof ResendEventRegistrationConfirmationEmail>>,
       Omit<
         ResendEventRegistrationConfirmationEmailParams,

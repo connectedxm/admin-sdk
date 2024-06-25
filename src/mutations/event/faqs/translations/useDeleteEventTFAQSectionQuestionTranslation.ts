@@ -1,6 +1,6 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -66,7 +66,7 @@ export const DeleteEventFAQSectionQuestionTranslation = async ({
  */
 export const useDeleteEventFAQSectionQuestionTranslation = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof DeleteEventFAQSectionQuestionTranslation>>,
       Omit<
         DeleteEventFAQSectionQuestionTranslationParams,

@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { Registration, ConnectedXMResponse } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -57,7 +57,7 @@ export const UpdateEventRegistration = async ({
  */
 export const useUpdateEventRegistration = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof UpdateEventRegistration>>,
       Omit<UpdateEventRegistrationParams, "queryClient" | "adminApiParams">
     >,

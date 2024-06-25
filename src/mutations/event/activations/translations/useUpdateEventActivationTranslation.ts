@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ActivationTranslation, ConnectedXMResponse } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -63,7 +63,7 @@ export const UpdateEventActivationTranslation = async ({
  */
 export const useUpdateEventActivationTranslation = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof UpdateEventActivationTranslation>>,
       Omit<
         UpdateEventActivationTranslationParams,

@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { EventReservationSectionLocationTranslation } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -66,7 +66,7 @@ export const UpdateEventReservationSectionLocationTranslation = async ({
  */
 export const useUpdateEventReservationSectionLocationTranslation = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<
         ReturnType<typeof UpdateEventReservationSectionLocationTranslation>
       >,

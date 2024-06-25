@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse, EventAddOn } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -51,7 +51,7 @@ export const AddEventAddOnTicket = async ({
  */
 export const useAddEventAddOnTicket = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof AddEventAddOnTicket>>,
       Omit<AddEventAddOnTicketParams, "queryClient" | "adminApiParams">
     >,

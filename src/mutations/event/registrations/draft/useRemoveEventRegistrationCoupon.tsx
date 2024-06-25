@@ -1,6 +1,6 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -55,7 +55,7 @@ export const RemoveEventRegistrationCoupon = async ({
  */
 export const useRemoveEventRegistrationCoupon = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof RemoveEventRegistrationCoupon>>,
       Omit<
         RemoveEventRegistrationCouponParams,

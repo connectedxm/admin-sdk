@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse, EventOnSite } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -43,7 +43,7 @@ export const UpdateEventZplTemplate = async ({
  */
 export const useUpdateEventZplTemplate = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof UpdateEventZplTemplate>>,
       Omit<UpdateEventZplTemplateParams, "queryClient" | "adminApiParams">
     >,

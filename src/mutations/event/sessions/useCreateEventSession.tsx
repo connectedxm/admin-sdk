@@ -1,43 +1,63 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { Session } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { EVENT_SESSIONS_QUERY_KEY } from "@context/queries/events/sessions/useGetEventSessions";
-import { SET_EVENT_SESSION_QUERY_DATA } from "@context/queries/events/sessions/useGetEventSession";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { EventSession, ConnectedXMResponse } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_SESSIONS_QUERY_KEY,
+  SET_EVENT_SESSION_QUERY_DATA,
+} from "@src/queries";
 
-interface CreateEventSessionParams {
+/**
+ * @category Params
+ * @group Event-Sessions
+ */
+export interface CreateEventSessionParams extends MutationParams {
   eventId: string;
-  session: Session;
+  session: EventSession;
 }
 
+/**
+ * @category Methods
+ * @group Event-Sessions
+ */
 export const CreateEventSession = async ({
   eventId,
   session,
-}: CreateEventSessionParams): Promise<ConnectedXMResponse<Session>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(
+  adminApiParams,
+  queryClient,
+}: CreateEventSessionParams): Promise<ConnectedXMResponse<EventSession>> => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.post<ConnectedXMResponse<EventSession>>(
     `/events/${eventId}/sessions`,
     session
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SESSIONS_QUERY_KEY(eventId),
+    });
+    SET_EVENT_SESSION_QUERY_DATA(queryClient, [eventId, data.data.id], data);
+  }
   return data;
 };
 
-export const useCreateEventSession = (eventId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<Session>(
-    (session: Session) => CreateEventSession({ eventId, session }),
-    {
-      onSuccess: (response: Awaited<ReturnType<typeof CreateEventSession>>) => {
-        queryClient.invalidateQueries(EVENT_SESSIONS_QUERY_KEY(eventId));
-        SET_EVENT_SESSION_QUERY_DATA(
-          queryClient,
-          [eventId, response.data.id],
-          response
-        );
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Sessions
+ */
+export const useCreateEventSession = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof CreateEventSession>>,
+      Omit<CreateEventSessionParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    CreateEventSessionParams,
+    Awaited<ReturnType<typeof CreateEventSession>>
+  >(CreateEventSession, options);
 };
-
-export default useCreateEventSession;

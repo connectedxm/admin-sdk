@@ -5,7 +5,7 @@ import {
   EventEmailType,
 } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -50,7 +50,7 @@ export const UpdateEventEmail = async ({
  */
 export const useUpdateEventEmail = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof UpdateEventEmail>>,
       Omit<UpdateEventEmailParams, "queryClient" | "adminApiParams">
     >,

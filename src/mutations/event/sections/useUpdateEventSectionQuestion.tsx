@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse, RegistrationSection } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -56,7 +56,7 @@ export const UpdateEventSectionQuestion = async ({
  */
 export const useUpdateEventSectionQuestion = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof UpdateEventSectionQuestion>>,
       Omit<UpdateEventSectionQuestionParams, "queryClient" | "adminApiParams">
     >,

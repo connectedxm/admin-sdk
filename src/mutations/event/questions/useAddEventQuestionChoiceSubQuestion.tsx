@@ -4,7 +4,7 @@ import {
   RegistrationQuestionChoice,
 } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -69,7 +69,7 @@ export const AddEventQuestionChoiceSubQuestion = async ({
  */
 export const useAddEventQuestionChoiceSubQuestion = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof AddEventQuestionChoiceSubQuestion>>,
       Omit<
         AddEventQuestionChoiceSubQuestionParams,

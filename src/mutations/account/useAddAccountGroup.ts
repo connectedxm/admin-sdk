@@ -1,6 +1,6 @@
 import { ConnectedXMResponse, GroupMembership } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
@@ -45,7 +45,7 @@ export const AddAccountGroup = async ({
  */
 export const useAddAccountGroup = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof AddAccountGroup>>,
       Omit<AddAccountGroupParams, "queryClient" | "adminApiParams">
     >,

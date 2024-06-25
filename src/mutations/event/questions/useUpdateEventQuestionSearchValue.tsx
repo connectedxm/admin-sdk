@@ -4,7 +4,7 @@ import {
   RegistrationQuestionSearchValue,
 } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -65,7 +65,7 @@ export const UpdateEventQuestionSearchValue = async ({
  */
 export const useUpdateEventQuestionSearchValue = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof UpdateEventQuestionSearchValue>>,
       Omit<
         UpdateEventQuestionSearchValueParams,

@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse, EventPageTranslation } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -63,7 +63,7 @@ export const CreateEventPageTranslation = async ({
  */
 export const useCreateEventPageTranslation = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof CreateEventPageTranslation>>,
       Omit<CreateEventPageTranslationParams, "queryClient" | "adminApiParams">
     >,

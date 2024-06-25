@@ -1,5 +1,5 @@
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
@@ -42,7 +42,7 @@ export const DeleteActivity = async ({
  */
 export const useDeleteActivity = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof DeleteActivity>>,
       Omit<DeleteActivityParams, "queryClient" | "adminApiParams">
     >,

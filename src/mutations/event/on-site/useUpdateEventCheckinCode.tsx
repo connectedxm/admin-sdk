@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse, EventOnSite } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -40,7 +40,7 @@ export const UpdateEventCheckinCode = async ({
  */
 export const useUpdateEventCheckinCode = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof UpdateEventCheckinCode>>,
       Omit<UpdateEventCheckinCodeParams, "queryClient" | "adminApiParams">
     >,

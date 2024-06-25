@@ -4,7 +4,7 @@ import {
   RegistrationQuestionChoiceTranslation,
 } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -74,7 +74,7 @@ export const CreateEventQuestionChoiceTranslation = async ({
  */
 export const useCreateEventQuestionChoiceTranslation = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof CreateEventQuestionChoiceTranslation>>,
       Omit<
         CreateEventQuestionChoiceTranslationParams,

@@ -1,64 +1,79 @@
-import ConnectedXM, { ConnectedXMResponse } from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { SET_EVENT_SESSION_TRANSLATION_QUERY_DATA } from "@context/queries/events/sessions/translations/useGetEventSessionTranslation";
-import { EVENT_SESSION_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/sessions/translations/useGetEventSessionTranslations";
-import { SessionTranslation } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventSessionTranslation } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_SESSION_TRANSLATIONS_QUERY_KEY,
+  SET_EVENT_SESSION_TRANSLATION_QUERY_DATA,
+} from "@src/queries";
 
-interface CreateEventSessionTranslationProps {
+/**
+ * @category Params
+ * @group Event-Sessions-Translations
+ */
+export interface CreateEventSessionTranslationParams extends MutationParams {
   eventId: string;
   sessionId: string;
   locale: string;
   autoTranslate?: boolean;
 }
 
+/**
+ * @category Methods
+ * @group Event-Sessions-Translations
+ */
 export const CreateEventSessionTranslation = async ({
   eventId,
   sessionId,
   locale,
   autoTranslate,
-}: CreateEventSessionTranslationProps): Promise<
-  ConnectedXMResponse<SessionTranslation>
+  adminApiParams,
+  queryClient,
+}: CreateEventSessionTranslationParams): Promise<
+  ConnectedXMResponse<EventSessionTranslation>
 > => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post(
-    `/events/${eventId}/sessions/${sessionId}/translations`,
-    {
-      locale,
-      autoTranslate,
-    }
-  );
-
+  const { data } = await connectedXM.post<
+    ConnectedXMResponse<EventSessionTranslation>
+  >(`/events/${eventId}/sessions/${sessionId}/translations`, {
+    locale,
+    autoTranslate,
+  });
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SESSION_TRANSLATIONS_QUERY_KEY(eventId, sessionId),
+    });
+    SET_EVENT_SESSION_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [eventId, sessionId, data.data?.locale],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Sessions-Translations
+ */
 export const useCreateEventSessionTranslation = (
-  eventId: string,
-  sessionId: string
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof CreateEventSessionTranslation>>,
+      Omit<
+        CreateEventSessionTranslationParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
   return useConnectedMutation<
-    Omit<CreateEventSessionTranslationProps, "eventId" | "sessionId">
-  >(
-    (props) => CreateEventSessionTranslation({ eventId, sessionId, ...props }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof CreateEventSessionTranslation>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_SESSION_TRANSLATIONS_QUERY_KEY(eventId, sessionId)
-        );
-        SET_EVENT_SESSION_TRANSLATION_QUERY_DATA(
-          queryClient,
-          [eventId, sessionId, response.data?.locale],
-          response
-        );
-      },
-    },
-    "Hold on while we create a translation..."
-  );
+    CreateEventSessionTranslationParams,
+    Awaited<ReturnType<typeof CreateEventSessionTranslation>>
+  >(CreateEventSessionTranslation, options);
 };
-
-export default useCreateEventSessionTranslation;

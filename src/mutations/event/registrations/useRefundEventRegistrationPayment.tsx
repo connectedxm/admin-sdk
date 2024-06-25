@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse, Payment } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -53,7 +53,7 @@ export const RefundEventRegistrationPayment = async ({
  */
 export const useRefundEventRegistrationPayment = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof RefundEventRegistrationPayment>>,
       Omit<
         RefundEventRegistrationPaymentParams,

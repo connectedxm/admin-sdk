@@ -4,7 +4,7 @@ import {
   EventReservationSectionLocationTranslation,
 } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -76,7 +76,7 @@ export const CreateEventReservationSectionLocationTranslation = async ({
  */
 export const useCreateEventReservationSectionLocationTranslation = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<
         ReturnType<typeof CreateEventReservationSectionLocationTranslation>
       >,

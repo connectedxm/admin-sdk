@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { Benefit, ConnectedXMResponse } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -44,7 +44,7 @@ export const AddEventBenefit = async ({
  */
 export const useAddEventBenefit = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof AddEventBenefit>>,
       Omit<AddEventBenefitParams, "queryClient" | "adminApiParams">
     >,

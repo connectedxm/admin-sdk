@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -48,7 +48,7 @@ export const DeleteAddOn = async ({
  */
 export const useDeleteAddOn = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof DeleteAddOn>>,
       Omit<DeleteAddOnParams, "queryClient" | "adminApiParams">
     >,

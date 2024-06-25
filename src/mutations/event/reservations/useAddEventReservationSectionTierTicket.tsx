@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse, EventReservationSection } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -61,7 +61,7 @@ export const AddEventReservationSectionTicket = async ({
  */
 export const useAddEventReservationSectionTicket = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof AddEventReservationSectionTicket>>,
       Omit<
         AddEventReservationSectionTicketParams,

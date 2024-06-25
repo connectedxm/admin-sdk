@@ -1,42 +1,64 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import { EVENT_SESSION_QUERY_KEY } from "@context/queries/events/sessions/useGetEventSession";
-import { EVENT_SESSIONS_QUERY_KEY } from "@context/queries/events/sessions/useGetEventSessions";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_SESSIONS_QUERY_KEY,
+  EVENT_SESSION_QUERY_KEY,
+} from "@src/queries";
 
-interface DeleteEventSessionParams {
+/**
+ * @category Params
+ * @group Event-Sessions
+ */
+export interface DeleteEventSessionParams extends MutationParams {
   eventId: string;
   sessionId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Sessions
+ */
 export const DeleteEventSession = async ({
   eventId,
   sessionId,
+  adminApiParams,
+  queryClient,
 }: DeleteEventSessionParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.delete(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/sessions/${sessionId}`
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SESSIONS_QUERY_KEY(eventId),
+    });
+    queryClient.removeQueries({
+      queryKey: EVENT_SESSION_QUERY_KEY(eventId, sessionId),
+    });
+  }
   return data;
 };
 
-export const useDeleteEventSession = (eventId: string, sessionId: string) => {
-  const queryClient = useQueryClient();
-  const router = useRouter();
-
-  return useConnectedMutation(
-    () => DeleteEventSession({ eventId, sessionId }),
-    {
-      onSuccess: async (
-        _response: Awaited<ReturnType<typeof DeleteEventSession>>
-      ) => {
-        await router.push(`/events/${eventId}/agenda/sessions`);
-        queryClient.invalidateQueries(EVENT_SESSIONS_QUERY_KEY(eventId));
-        queryClient.removeQueries(EVENT_SESSION_QUERY_KEY(eventId, sessionId));
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Sessions
+ */
+export const useDeleteEventSession = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof DeleteEventSession>>,
+      Omit<DeleteEventSessionParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    DeleteEventSessionParams,
+    Awaited<ReturnType<typeof DeleteEventSession>>
+  >(DeleteEventSession, options);
 };
-
-export default useDeleteEventSession;

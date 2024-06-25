@@ -4,7 +4,7 @@ import {
   RegistrationSectionTranslation,
 } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -65,7 +65,7 @@ export const CreateEventSectionTranslation = async ({
  */
 export const useCreateEventSectionTranslation = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof CreateEventSectionTranslation>>,
       Omit<
         CreateEventSectionTranslationParams,

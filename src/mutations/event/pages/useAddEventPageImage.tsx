@@ -1,42 +1,65 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { SET_EVENT_PAGE_QUERY_DATA } from "@context/queries/events/pages/useGetEventPage";
-import { EVENT_PAGE_IMAGES_QUERY_KEY } from "@context/queries/events/pages/useGetEventPageImages";
-import { EventPage } from "@interfaces";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventPage } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_PAGE_IMAGES_QUERY_KEY,
+  SET_EVENT_PAGE_QUERY_DATA,
+} from "@src/queries";
 
-interface AddEventPageImageParams {
+/**
+ * @category Params
+ * @group Event-Page
+ */
+export interface AddEventPageImageParams extends MutationParams {
   eventId: string;
   pageId: string;
   imageId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Page
+ */
 export const AddEventPageImage = async ({
   eventId,
   pageId,
   imageId,
+  adminApiParams,
+  queryClient,
 }: AddEventPageImageParams): Promise<ConnectedXMResponse<EventPage>> => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post(
     `/events/${eventId}/pages/${pageId}/images/${imageId}`
   );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_PAGE_IMAGES_QUERY_KEY(eventId, pageId),
+    });
+    SET_EVENT_PAGE_QUERY_DATA(queryClient, [eventId, pageId], data);
+  }
   return data;
 };
 
-export const useAddEventPageImage = (eventId: string, pageId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (imageId: string) => AddEventPageImage({ eventId, pageId, imageId }),
-    {
-      onSuccess: (response: Awaited<ReturnType<typeof AddEventPageImage>>) => {
-        queryClient.invalidateQueries(
-          EVENT_PAGE_IMAGES_QUERY_KEY(eventId, pageId)
-        );
-        SET_EVENT_PAGE_QUERY_DATA(queryClient, [eventId, pageId], response);
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Page
+ */
+export const useAddEventPageImage = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof AddEventPageImage>>,
+      Omit<AddEventPageImageParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    AddEventPageImageParams,
+    Awaited<ReturnType<typeof AddEventPageImage>>
+  >(AddEventPageImage, options);
 };
-
-export default useAddEventPageImage;

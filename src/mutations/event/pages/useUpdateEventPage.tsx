@@ -1,49 +1,68 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { EventPage } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { EVENT_PAGES_QUERY_KEY } from "@context/queries/events/pages/useGetEventPages";
-import { SET_EVENT_PAGE_QUERY_DATA } from "@context/queries/events/pages/useGetEventPage";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventPage } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import { EVENT_PAGES_QUERY_KEY, SET_EVENT_PAGE_QUERY_DATA } from "@src/queries";
 
-interface UpdateEventPageParams {
+/**
+ * @category Params
+ * @group Event-Page
+ */
+export interface UpdateEventPageParams extends MutationParams {
   eventId: string;
   pageId: string;
   page: EventPage;
 }
 
+/**
+ * @category Methods
+ * @group Event-Page
+ */
 export const UpdateEventPage = async ({
   eventId,
   pageId,
   page,
+  adminApiParams,
+  queryClient,
 }: UpdateEventPageParams): Promise<ConnectedXMResponse<EventPage>> => {
   if (!pageId) throw new Error("Page ID Undefined");
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put(`/events/${eventId}/pages/${pageId}`, {
     ...page,
     id: undefined,
     createdAt: undefined,
     updatedAt: undefined,
   });
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({ queryKey: EVENT_PAGES_QUERY_KEY(eventId) });
+    SET_EVENT_PAGE_QUERY_DATA(
+      queryClient,
+      [eventId, pageId || data.data?.id],
+      data
+    );
+  }
   return data;
 };
 
-export const useUpdateEventPage = (eventId: string, pageId?: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<EventPage>(
-    (page: EventPage) =>
-      UpdateEventPage({ eventId, pageId: pageId || page?.id, page }),
-    {
-      onSuccess: (response: Awaited<ReturnType<typeof UpdateEventPage>>) => {
-        queryClient.invalidateQueries(EVENT_PAGES_QUERY_KEY(eventId));
-        SET_EVENT_PAGE_QUERY_DATA(
-          queryClient,
-          [eventId, pageId || response.data?.id],
-          response
-        );
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Page
+ */
+export const useUpdateEventPage = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateEventPage>>,
+      Omit<UpdateEventPageParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    UpdateEventPageParams,
+    Awaited<ReturnType<typeof UpdateEventPage>>
+  >(UpdateEventPage, options);
 };
-
-export default useUpdateEventPage;

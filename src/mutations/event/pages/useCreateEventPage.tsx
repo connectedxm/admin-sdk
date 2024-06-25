@@ -1,40 +1,59 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { EventPage } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { EVENT_PAGES_QUERY_KEY } from "@context/queries/events/pages/useGetEventPages";
-import { SET_EVENT_PAGE_QUERY_DATA } from "@context/queries/events/pages/useGetEventPage";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventPage } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import { EVENT_PAGES_QUERY_KEY, SET_EVENT_PAGE_QUERY_DATA } from "@src/queries";
 
-interface CreateEventPageParams {
+/**
+ * @category Params
+ * @group Event-Page
+ */
+export interface CreateEventPageParams extends MutationParams {
   eventId: string;
   page: EventPage;
 }
 
+/**
+ * @category Methods
+ * @group Event-Page
+ */
 export const CreateEventPage = async ({
   eventId,
   page,
+  adminApiParams,
+  queryClient,
 }: CreateEventPageParams): Promise<ConnectedXMResponse<EventPage>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.post(`/events/${eventId}/pages`, page);
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.post<ConnectedXMResponse<EventPage>>(
+    `/events/${eventId}/pages`,
+    page
+  );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({ queryKey: EVENT_PAGES_QUERY_KEY(eventId) });
+    SET_EVENT_PAGE_QUERY_DATA(queryClient, [eventId, data.data.id], data);
+  }
   return data;
 };
 
-export const useCreateEventPage = (eventId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<EventPage>(
-    (page: EventPage) => CreateEventPage({ eventId, page }),
-    {
-      onSuccess: (response: Awaited<ReturnType<typeof CreateEventPage>>) => {
-        queryClient.invalidateQueries(EVENT_PAGES_QUERY_KEY(eventId));
-        SET_EVENT_PAGE_QUERY_DATA(
-          queryClient,
-          [eventId, response.data.id],
-          response
-        );
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Page
+ */
+export const useCreateEventPage = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof CreateEventPage>>,
+      Omit<CreateEventPageParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    CreateEventPageParams,
+    Awaited<ReturnType<typeof CreateEventPage>>
+  >(CreateEventPage, options);
 };
-
-export default useCreateEventPage;

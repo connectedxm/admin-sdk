@@ -1,45 +1,66 @@
-import ConnectedXM from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { EVENT_PAGE_TRANSLATION_QUERY_KEY } from "@context/queries/events/pages/translations/useGetEventPageTranslation";
-import { EVENT_PAGE_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/pages/translations/useGetEventPageTranslations";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_PAGE_TRANSLATIONS_QUERY_KEY,
+  EVENT_PAGE_TRANSLATION_QUERY_KEY,
+} from "@src/queries";
 
-interface DeleteEventPageTranslationProps {
+/**
+ * @category Params
+ * @group Event-Page-Translation
+ */
+export interface DeleteEventPageTranslationParams extends MutationParams {
   eventId: string;
   pageId: string;
   locale: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Page-Translation
+ */
 export const DeleteEventPageTranslation = async ({
   eventId,
   pageId,
   locale,
-}: DeleteEventPageTranslationProps) => {
-  const connectedXM = await ConnectedXM();
+  adminApiParams,
+  queryClient,
+}: DeleteEventPageTranslationParams) => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.delete(
     `/events/${eventId}/pages/${pageId}/translations/${locale}`
   );
-
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_PAGE_TRANSLATIONS_QUERY_KEY(eventId, pageId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_PAGE_TRANSLATION_QUERY_KEY(eventId, pageId, locale),
+    });
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Page-Translation
+ */
 export const useDeleteEventPageTranslation = (
-  eventId: string,
-  pageId: string,
-  locale: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof DeleteEventPageTranslation>>,
+      Omit<DeleteEventPageTranslationParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-  return useConnectedMutation(DeleteEventPageTranslation, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(
-        EVENT_PAGE_TRANSLATIONS_QUERY_KEY(eventId, pageId)
-      );
-      queryClient.invalidateQueries(
-        EVENT_PAGE_TRANSLATION_QUERY_KEY(eventId, pageId, locale)
-      );
-    },
-  });
+  return useConnectedMutation<
+    DeleteEventPageTranslationParams,
+    Awaited<ReturnType<typeof DeleteEventPageTranslation>>
+  >(DeleteEventPageTranslation, options);
 };
-
-export default useDeleteEventPageTranslation;

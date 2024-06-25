@@ -1,39 +1,60 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import { EVENT_PAGES_QUERY_KEY } from "@context/queries/events/pages/useGetEventPages";
-import { EVENT_PAGE_QUERY_KEY } from "@context/queries/events/pages/useGetEventPage";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import { EVENT_PAGES_QUERY_KEY, EVENT_PAGE_QUERY_KEY } from "@src/queries";
 
-interface DeleteEventPageParams {
+/**
+ * @category Params
+ * @group Event-Page
+ */
+export interface DeleteEventPageParams extends MutationParams {
   eventId: string;
   pageId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Page
+ */
 export const DeleteEventPage = async ({
   eventId,
   pageId,
+  adminApiParams,
+  queryClient,
 }: DeleteEventPageParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.delete(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/pages/${pageId}`
   );
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({ queryKey: EVENT_PAGES_QUERY_KEY(eventId) });
+    queryClient.removeQueries({
+      queryKey: EVENT_PAGE_QUERY_KEY(eventId, pageId),
+    });
+  }
   return data;
 };
 
-export const useDeleteEventPage = (eventId: string, pageId: string) => {
-  const queryClient = useQueryClient();
-  const router = useRouter();
-
-  return useConnectedMutation(() => DeleteEventPage({ eventId, pageId }), {
-    onSuccess: async (
-      _response: Awaited<ReturnType<typeof DeleteEventPage>>
-    ) => {
-      await router.push(`/events/${eventId}/pages`);
-      queryClient.invalidateQueries(EVENT_PAGES_QUERY_KEY(eventId));
-      queryClient.removeQueries(EVENT_PAGE_QUERY_KEY(eventId, pageId));
-    },
-  });
+/**
+ * @category Mutations
+ * @group Event-Page
+ */
+export const useDeleteEventPage = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof DeleteEventPage>>,
+      Omit<DeleteEventPageParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    DeleteEventPageParams,
+    Awaited<ReturnType<typeof DeleteEventPage>>
+  >(DeleteEventPage, options);
 };
-
-export default useDeleteEventPage;

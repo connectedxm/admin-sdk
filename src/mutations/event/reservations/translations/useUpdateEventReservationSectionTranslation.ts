@@ -1,65 +1,79 @@
-import ConnectedXM from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { SET_EVENT_RESERVATION_SECTION_TRANSLATION_QUERY_DATA } from "@context/queries/events/reservations/translations/useGetEventReservationSectionTranslation";
-import { EVENT_RESERVATION_SECTION_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/reservations/translations/useGetEventReservationSectionTranslations";
-import { EventReservationSectionTranslation } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { EventReservationSectionTranslation } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_RESERVATION_SECTION_TRANSLATIONS_QUERY_KEY,
+  SET_EVENT_RESERVATION_SECTION_TRANSLATION_QUERY_DATA,
+} from "@src/queries";
 
-interface UpdateEventReservationSectionTranslationProps {
+/**
+ * @category Params
+ * @group Event-Reservations-Translations
+ */
+export interface UpdateEventReservationSectionTranslationParams
+  extends MutationParams {
   eventId: string;
   reservationSectionId: string;
   reservationSectionTranslation: EventReservationSectionTranslation;
 }
 
+/**
+ * @category Methods
+ * @group Event-Reservations-Translations
+ */
 export const UpdateEventReservationSectionTranslation = async ({
   eventId,
   reservationSectionId,
   reservationSectionTranslation,
-}: UpdateEventReservationSectionTranslationProps) => {
-  const connectedXM = await ConnectedXM();
+  adminApiParams,
+  queryClient,
+}: UpdateEventReservationSectionTranslationParams) => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { locale, ...body } = reservationSectionTranslation;
 
   const { data } = await connectedXM.put(
-    `/events/${eventId}/reservationSections/${reservationSectionId}/translations/${reservationSectionTranslation.locale}`,
+    `/events/${eventId}/reservationSections/${reservationSectionId}/translations/${locale}`,
     body
   );
-
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_RESERVATION_SECTION_TRANSLATIONS_QUERY_KEY(
+        eventId,
+        reservationSectionId
+      ),
+    });
+    SET_EVENT_RESERVATION_SECTION_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [eventId, reservationSectionId, data.data?.locale],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Reservations-Translations
+ */
 export const useUpdateEventReservationSectionTranslation = (
-  eventId: string,
-  reservationSectionId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateEventReservationSectionTranslation>>,
+      Omit<
+        UpdateEventReservationSectionTranslationParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-  return useConnectedMutation<EventReservationSectionTranslation>(
-    (reservationSectionTranslation: EventReservationSectionTranslation) =>
-      UpdateEventReservationSectionTranslation({
-        eventId,
-        reservationSectionId,
-        reservationSectionTranslation,
-      }),
-    {
-      onSuccess: (
-        response: Awaited<
-          ReturnType<typeof UpdateEventReservationSectionTranslation>
-        >
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_RESERVATION_SECTION_TRANSLATIONS_QUERY_KEY(
-            eventId,
-            reservationSectionId
-          )
-        );
-        SET_EVENT_RESERVATION_SECTION_TRANSLATION_QUERY_DATA(
-          queryClient,
-          [eventId, reservationSectionId, response.data?.locale],
-          response
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    UpdateEventReservationSectionTranslationParams,
+    Awaited<ReturnType<typeof UpdateEventReservationSectionTranslation>>
+  >(UpdateEventReservationSectionTranslation, options);
 };
-
-export default useUpdateEventReservationSectionTranslation;

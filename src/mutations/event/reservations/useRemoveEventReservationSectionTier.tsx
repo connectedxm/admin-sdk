@@ -1,63 +1,77 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { EventReservationSection } from "@interfaces";
-import { EVENT_RESERVATION_SECTION_TIERS_QUERY_KEY } from "@context/queries/events/reservations/useGetEventReservationSectionTiers";
-import { SET_EVENT_RESERVATION_SECTION_QUERY_DATA } from "@context/queries/events/reservations/useGetEventReservationSection";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventReservationSection } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_RESERVATION_SECTION_TIERS_QUERY_KEY,
+  SET_EVENT_RESERVATION_SECTION_QUERY_DATA,
+} from "@src/queries";
 
-interface RemoveEventReservationSectionTierParams {
+/**
+ * @category Params
+ * @group Event-Reservations
+ */
+export interface RemoveEventReservationSectionTierParams
+  extends MutationParams {
   eventId: string;
   reservationSectionId: string;
   tierId: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Reservations
+ */
 export const RemoveEventReservationSectionTier = async ({
   eventId,
   reservationSectionId,
   tierId,
+  adminApiParams,
+  queryClient,
 }: RemoveEventReservationSectionTierParams): Promise<
   ConnectedXMResponse<EventReservationSection>
 > => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete(
     `/events/${eventId}/reservationSections/${reservationSectionId}/tiers/${tierId}`
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_RESERVATION_SECTION_TIERS_QUERY_KEY(
+        eventId,
+        reservationSectionId
+      ),
+    });
+    SET_EVENT_RESERVATION_SECTION_QUERY_DATA(
+      queryClient,
+      [eventId, reservationSectionId],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Reservations
+ */
 export const useRemoveEventReservationSectionTier = (
-  eventId: string,
-  reservationSectionId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof RemoveEventReservationSectionTier>>,
+      Omit<
+        RemoveEventReservationSectionTierParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<string>(
-    (tierId: string) =>
-      RemoveEventReservationSectionTier({
-        eventId,
-        reservationSectionId,
-        tierId,
-      }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof RemoveEventReservationSectionTier>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_RESERVATION_SECTION_TIERS_QUERY_KEY(
-            eventId,
-            reservationSectionId
-          )
-        );
-        SET_EVENT_RESERVATION_SECTION_QUERY_DATA(
-          queryClient,
-          [eventId, reservationSectionId],
-          response
-        );
-      },
-    },
-    undefined,
-    true
-  );
+  return useConnectedMutation<
+    RemoveEventReservationSectionTierParams,
+    Awaited<ReturnType<typeof RemoveEventReservationSectionTier>>
+  >(RemoveEventReservationSectionTier, options);
 };
-
-export default useRemoveEventReservationSectionTier;

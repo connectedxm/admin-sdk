@@ -1,29 +1,50 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../../useConnectedMutation";
-import { EventReservationSectionLocation } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { EVENT_RESERVATION_SECTION_LOCATIONS_QUERY_KEY } from "@context/queries/events/reservations/locations/useGetEventReservationSectionLocations";
-import { SET_EVENT_RESERVATION_SECTION_LOCATION_QUERY_DATA } from "@context/queries/events/reservations/locations/useGetEventReservationSectionLocation";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  ConnectedXMResponse,
+  EventReservationSectionLocation,
+} from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_RESERVATION_SECTION_LOCATIONS_QUERY_KEY,
+  SET_EVENT_RESERVATION_SECTION_LOCATION_QUERY_DATA,
+} from "@src/queries";
 
-interface UpdateReservationSectionLocationParams {
+/**
+ * @category Params
+ * @group Event-Reservations-Locations-Translations
+ */
+export interface UpdateReservationSectionLocationParams extends MutationParams {
   eventId: string;
   reservationSectionId: string;
   locationId: string;
+  //TODOD: missing reference
   location: EventReservationSectionLocation;
 }
 
+/**
+ * @category Methods
+ * @group Event-Reservations-Locations-Translations
+ */
 export const UpdateReservationSectionLocation = async ({
   eventId,
   reservationSectionId,
   locationId,
   location,
+  adminApiParams,
+  queryClient,
 }: UpdateReservationSectionLocationParams): Promise<
   ConnectedXMResponse<EventReservationSectionLocation>
 > => {
   if (!reservationSectionId)
     throw new Error("Reservation Section ID Undefined");
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.put(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.put<
+    ConnectedXMResponse<EventReservationSectionLocation>
+  >(
     `/events/${eventId}/reservationSections/${reservationSectionId}/locations/${locationId}`,
     {
       ...location,
@@ -36,42 +57,40 @@ export const UpdateReservationSectionLocation = async ({
       _count: undefined,
     }
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_RESERVATION_SECTION_LOCATIONS_QUERY_KEY(
+        eventId,
+        reservationSectionId
+      ),
+    });
+    SET_EVENT_RESERVATION_SECTION_LOCATION_QUERY_DATA(
+      queryClient,
+      [eventId, reservationSectionId, locationId || data.data?.id],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Reservations-Locations-Translations
+ */
 export const useUpdateReservationSectionLocation = (
-  eventId: string,
-  reservationSectionId: string,
-  locationId?: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateReservationSectionLocation>>,
+      Omit<
+        UpdateReservationSectionLocationParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<EventReservationSectionLocation>(
-    (location: EventReservationSectionLocation) =>
-      UpdateReservationSectionLocation({
-        eventId,
-        reservationSectionId,
-        locationId: locationId || location?.id,
-        location,
-      }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof UpdateReservationSectionLocation>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_RESERVATION_SECTION_LOCATIONS_QUERY_KEY(
-            eventId,
-            reservationSectionId
-          )
-        );
-        SET_EVENT_RESERVATION_SECTION_LOCATION_QUERY_DATA(
-          queryClient,
-          [eventId, reservationSectionId, locationId || response.data?.id],
-          response
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    UpdateReservationSectionLocationParams,
+    Awaited<ReturnType<typeof UpdateReservationSectionLocation>>
+  >(UpdateReservationSectionLocation, options);
 };
-
-export default useUpdateReservationSectionLocation;

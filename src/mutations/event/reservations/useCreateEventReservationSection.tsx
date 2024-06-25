@@ -1,50 +1,69 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { EventReservationSection } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { EVENT_RESERVATION_SECTIONS_QUERY_KEY } from "@context/queries/events/reservations/useGetEventReservationSections";
-import { SET_EVENT_RESERVATION_SECTION_QUERY_DATA } from "@context/queries/events/reservations/useGetEventReservationSection";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventReservationSection } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_RESERVATION_SECTIONS_QUERY_KEY,
+  SET_EVENT_RESERVATION_SECTION_QUERY_DATA,
+} from "@src/queries";
 
-interface CreateReservationSectionParams {
+/**
+ * @category Params
+ * @group Event-Reservations
+ */
+export interface CreateReservationSectionParams extends MutationParams {
   eventId: string;
   reservationSection: EventReservationSection;
 }
 
+/**
+ * @category Methods
+ * @group Event-Reservations
+ */
 export const CreateReservationSection = async ({
   eventId,
   reservationSection,
+  adminApiParams,
+  queryClient,
 }: CreateReservationSectionParams): Promise<
   ConnectedXMResponse<EventReservationSection>
 > => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post(
     `/events/${eventId}/reservationSections`,
     reservationSection
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_RESERVATION_SECTIONS_QUERY_KEY(eventId),
+    });
+    SET_EVENT_RESERVATION_SECTION_QUERY_DATA(
+      queryClient,
+      [eventId, data.data.id],
+      data
+    );
+  }
   return data;
 };
 
-export const useCreateReservationSection = (eventId: string) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<EventReservationSection>(
-    (reservationSection: EventReservationSection) =>
-      CreateReservationSection({ eventId, reservationSection }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof CreateReservationSection>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_RESERVATION_SECTIONS_QUERY_KEY(eventId)
-        );
-        SET_EVENT_RESERVATION_SECTION_QUERY_DATA(
-          queryClient,
-          [eventId, response.data.id],
-          response
-        );
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Event-Reservations
+ */
+export const useCreateReservationSection = (
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof CreateReservationSection>>,
+      Omit<CreateReservationSectionParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    CreateReservationSectionParams,
+    Awaited<ReturnType<typeof CreateReservationSection>>
+  >(CreateReservationSection, options);
 };
-
-export default useCreateReservationSection;

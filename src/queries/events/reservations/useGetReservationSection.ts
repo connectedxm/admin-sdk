@@ -5,7 +5,7 @@ import {
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { ReservationSection } from "@src/interfaces";
+import { EventReservationSection } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_RESERVATION_SECTIONS_QUERY_KEY } from "./useGetReservationSections";
 
@@ -47,7 +47,7 @@ export const GetReservationSection = async ({
   reservationSectionId,
   adminApiParams,
 }: GetReservationSectionProps): Promise<
-  ConnectedXMResponse<ReservationSection>
+  ConnectedXMResponse<EventReservationSection>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(

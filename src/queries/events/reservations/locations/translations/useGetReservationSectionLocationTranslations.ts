@@ -6,7 +6,7 @@ import {
   useConnectedInfiniteQuery,
 } from "../../../../useConnectedInfiniteQuery";
 import { EVENT_RESERVATION_SECTION_LOCATION_QUERY_KEY } from "../useGetReservationSectionLocation";
-import { ReservationSectionLocationTranslation } from "@src/interfaces";
+import { EventReservationSectionLocationTranslation } from "@src/interfaces";
 
 /**
  * @category Keys
@@ -65,7 +65,7 @@ export const GetReservationSectionLocationTranslations = async ({
   locationId,
   adminApiParams,
 }: GetReservationSectionLocationTranslationsProps): Promise<
-  ConnectedXMResponse<ReservationSectionLocationTranslation[]>
+  ConnectedXMResponse<EventReservationSectionLocationTranslation[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(

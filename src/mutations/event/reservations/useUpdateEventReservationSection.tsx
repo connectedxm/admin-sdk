@@ -1,72 +1,83 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../../useConnectedMutation";
-import { EventReservationSection } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { SET_EVENT_RESERVATION_SECTION_QUERY_DATA } from "@context/queries/events/reservations/useGetEventReservationSection";
-import { EVENT_RESERVATION_SECTIONS_QUERY_KEY } from "@context/queries/events/reservations/useGetEventReservationSections";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { EventReservationSection, ConnectedXMResponse } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_RESERVATION_SECTIONS_QUERY_KEY,
+  SET_EVENT_RESERVATION_SECTION_QUERY_DATA,
+} from "@src/queries";
 
-interface UpdateReservationSectionParams {
+/**
+ * @category Params
+ * @group Event-Reservations
+ */
+export interface UpdateReservationSectionParams extends MutationParams {
   eventId: string;
   reservationSectionId: string;
   reservationSection: EventReservationSection;
 }
 
+/**
+ * @category Methods
+ * @group Event-Reservations
+ */
 export const UpdateReservationSection = async ({
   eventId,
   reservationSectionId,
   reservationSection,
+  adminApiParams,
+  queryClient,
 }: UpdateReservationSectionParams): Promise<
   ConnectedXMResponse<EventReservationSection>
 > => {
   if (!reservationSectionId)
     throw new Error("Reservation Section ID Undefined");
-  const connectedXM = await ConnectedXM();
-  const { data } = await connectedXM.put(
-    `/events/${eventId}/reservationSections/${reservationSectionId}`,
-    {
-      ...reservationSection,
-      id: undefined,
-      event: undefined,
-      eventId: undefined,
-      allowedTickets: undefined,
-      allowedTiers: undefined,
-      _count: undefined,
-      createdAt: undefined,
-      updatedAt: undefined,
-      image: undefined,
-    }
-  );
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.put<
+    ConnectedXMResponse<EventReservationSection>
+  >(`/events/${eventId}/reservationSections/${reservationSectionId}`, {
+    ...reservationSection,
+    id: undefined,
+    event: undefined,
+    eventId: undefined,
+    allowedTickets: undefined,
+    allowedTiers: undefined,
+    _count: undefined,
+    createdAt: undefined,
+    updatedAt: undefined,
+    image: undefined,
+  });
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_RESERVATION_SECTIONS_QUERY_KEY(eventId),
+    });
+    SET_EVENT_RESERVATION_SECTION_QUERY_DATA(
+      queryClient,
+      [eventId, reservationSectionId || data.data?.id],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Reservations
+ */
 export const useUpdateReservationSection = (
-  eventId: string,
-  reservationSectionId?: string
+  options: Omit<
+    MutationOptions<
+      Awaited<ReturnType<typeof UpdateReservationSection>>,
+      Omit<UpdateReservationSectionParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<EventReservationSection>(
-    (reservationSection: EventReservationSection) =>
-      UpdateReservationSection({
-        eventId,
-        reservationSectionId: reservationSectionId || reservationSection?.id,
-        reservationSection,
-      }),
-    {
-      onSuccess: (
-        response: Awaited<ReturnType<typeof UpdateReservationSection>>
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_RESERVATION_SECTIONS_QUERY_KEY(eventId)
-        );
-        SET_EVENT_RESERVATION_SECTION_QUERY_DATA(
-          queryClient,
-          [eventId, reservationSectionId || response.data?.id],
-          response
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    UpdateReservationSectionParams,
+    Awaited<ReturnType<typeof UpdateReservationSection>>
+  >(UpdateReservationSection, options);
 };
-
-export default useUpdateReservationSection;

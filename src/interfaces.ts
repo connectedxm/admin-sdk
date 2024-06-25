@@ -1245,7 +1245,7 @@ export interface BasePurchase {
   paid: boolean;
   reservationStart: string | null;
   reservationEnd: string | null;
-  reservationSectionLocation: BaseReservationSectionLocation;
+  reservationSectionLocation: BaseEventReservationSectionLocation;
   createdAt: string;
   updatedAt: string;
 }
@@ -1520,24 +1520,6 @@ export interface RegistrationStatusChange extends BaseRegistrationStatusChange {
   registration: BaseRegistration;
 }
 
-export interface BaseExport {
-  id: string;
-  status: ExportStatus;
-  type: string;
-  message: string | null;
-  eventId: string | null;
-  userId: string | null;
-  expiration: string | null;
-  downloadUrl: string | null;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface Export extends BaseExport {
-  event: BaseEvent;
-  user: User;
-}
-
 export interface BaseRegistration {
   id: string;
   alternateId: number;
@@ -1586,7 +1568,7 @@ export interface Report {
   updatedAt: string;
 }
 
-export interface BaseReservationSectionLocation {
+export interface BaseEventReservationSectionLocation {
   id: string;
   eventId: string;
   reservationSectionId: string;
@@ -1595,19 +1577,19 @@ export interface BaseReservationSectionLocation {
   supply: number;
   sortOrder: number;
   premium: number | null;
-  reservationSection: BaseReservationSection;
+  reservationSection: EventBaseReservationSection;
   createdAt: string;
   updatedAt: string;
 }
 
-export interface ReservationSectionLocation
-  extends BaseReservationSectionLocation {
+export interface EventReservationSectionLocation
+  extends BaseEventReservationSectionLocation {
   _count: {
     purchases: number;
   };
 }
 
-export interface ReservationSectionLocationTranslation {
+export interface EventReservationSectionLocationTranslation {
   id: string;
   locale: string;
   name: string;
@@ -1616,7 +1598,7 @@ export interface ReservationSectionLocationTranslation {
   updatedAt: string;
 }
 
-export interface BaseReservationSection {
+export interface EventBaseReservationSection {
   id: string;
   eventId: string;
   name: string;
@@ -1629,7 +1611,7 @@ export interface BaseReservationSection {
   updatedAt: string;
 }
 
-export interface ReservationSection extends BaseReservationSection {
+export interface EventReservationSection extends EventBaseReservationSection {
   sortOrder: number;
   event: BaseEvent;
   _count: {
@@ -1637,7 +1619,7 @@ export interface ReservationSection extends BaseReservationSection {
   };
 }
 
-export interface ReservationSectionTranslation {
+export interface EventReservationSectionTranslation {
   id: string;
   locale: string;
   name: string;

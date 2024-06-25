@@ -1,70 +1,85 @@
-import ConnectedXM from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { SET_EVENT_RESERVATION_SECTION_LOCATION_TRANSLATION_QUERY_DATA } from "@context/queries/events/reservations/locations/translations/useGetEventReservationSectionLocationTranslation";
-import { EVENT_RESERVATION_SECTION_LOCATION_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/reservations/locations/translations/useGetEventReservationSectionLocationTranslations";
-import { EventReservationSectionLocationTranslation } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { EventReservationSectionLocationTranslation } from "@src/interfaces";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_RESERVATION_SECTION_LOCATION_TRANSLATIONS_QUERY_KEY,
+  SET_EVENT_RESERVATION_SECTION_LOCATION_TRANSLATION_QUERY_DATA,
+} from "@src/queries";
 
-interface UpdateEventReservationSectionLocationTranslationProps {
+/**
+ * @category Params
+ * @group Event-Reservations-Locations-Translations
+ */
+export interface UpdateEventReservationSectionLocationTranslationParams
+  extends MutationParams {
   eventId: string;
   reservationSectionId: string;
   locationId: string;
+  //TODO: missing reference
   locationTranslation: EventReservationSectionLocationTranslation;
 }
 
+/**
+ * @category Methods
+ * @group Event-Reservations-Locations-Translations
+ */
 export const UpdateEventReservationSectionLocationTranslation = async ({
   eventId,
   reservationSectionId,
   locationId,
   locationTranslation,
-}: UpdateEventReservationSectionLocationTranslationProps) => {
-  const connectedXM = await ConnectedXM();
+  adminApiParams,
+  queryClient,
+}: UpdateEventReservationSectionLocationTranslationParams) => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { locale, ...body } = locationTranslation;
 
   const { data } = await connectedXM.put(
-    `/events/${eventId}/reservationSections/${reservationSectionId}/locations/${locationId}/translations/${locationTranslation.locale}`,
+    `/events/${eventId}/reservationSections/${reservationSectionId}/locations/${locationId}/translations/${locale}`,
     body
   );
-
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_RESERVATION_SECTION_LOCATION_TRANSLATIONS_QUERY_KEY(
+        eventId,
+        reservationSectionId,
+        locationId
+      ),
+    });
+    SET_EVENT_RESERVATION_SECTION_LOCATION_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [eventId, reservationSectionId, locationId, data.data?.locale],
+      data
+    );
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Reservations-Locations-Translations
+ */
 export const useUpdateEventReservationSectionLocationTranslation = (
-  eventId: string,
-  reservationSectionId: string,
-  locationId: string
+  options: Omit<
+    MutationOptions<
+      Awaited<
+        ReturnType<typeof UpdateEventReservationSectionLocationTranslation>
+      >,
+      Omit<
+        UpdateEventReservationSectionLocationTranslationParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-  return useConnectedMutation<EventReservationSectionLocationTranslation>(
-    (locationTranslation: EventReservationSectionLocationTranslation) =>
-      UpdateEventReservationSectionLocationTranslation({
-        eventId,
-        reservationSectionId,
-        locationId,
-        locationTranslation,
-      }),
-    {
-      onSuccess: (
-        response: Awaited<
-          ReturnType<typeof UpdateEventReservationSectionLocationTranslation>
-        >
-      ) => {
-        queryClient.invalidateQueries(
-          EVENT_RESERVATION_SECTION_LOCATION_TRANSLATIONS_QUERY_KEY(
-            eventId,
-            reservationSectionId,
-            locationId
-          )
-        );
-        SET_EVENT_RESERVATION_SECTION_LOCATION_TRANSLATION_QUERY_DATA(
-          queryClient,
-          [eventId, reservationSectionId, locationId, response.data?.locale],
-          response
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    UpdateEventReservationSectionLocationTranslationParams,
+    Awaited<ReturnType<typeof UpdateEventReservationSectionLocationTranslation>>
+  >(UpdateEventReservationSectionLocationTranslation, options);
 };
-
-export default useUpdateEventReservationSectionLocationTranslation;

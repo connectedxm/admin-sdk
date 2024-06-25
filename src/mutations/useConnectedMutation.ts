@@ -14,6 +14,7 @@ export interface MutationParams {
   queryClient?: QueryClient;
 }
 
+//TODO: rename to ConnectedXMMutationOptions
 export interface MutationOptions<TResponseData, TMutationParams>
   extends UseMutationOptions<
     TResponseData,

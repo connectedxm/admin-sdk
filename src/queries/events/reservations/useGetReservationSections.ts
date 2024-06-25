@@ -1,6 +1,6 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { ReservationSection } from "@src/interfaces";
+import { EventReservationSection } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -48,7 +48,7 @@ export const GetReservationSections = async ({
   search,
   adminApiParams,
 }: GetReservationSectionsProps): Promise<
-  ConnectedXMResponse<ReservationSection[]>
+  ConnectedXMResponse<EventReservationSection[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(

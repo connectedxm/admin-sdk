@@ -1,60 +1,83 @@
-import ConnectedXM from "@context/api/ConnectedXM";
-import useConnectedMutation from "@context/mutations/useConnectedMutation";
-import { EVENT_RESERVATION_SECTION_LOCATION_TRANSLATION_QUERY_KEY } from "@context/queries/events/reservations/locations/translations/useGetEventReservationSectionLocationTranslation";
-import { EVENT_RESERVATION_SECTION_LOCATION_TRANSLATIONS_QUERY_KEY } from "@context/queries/events/reservations/locations/translations/useGetEventReservationSectionLocationTranslations";
-import { useQueryClient } from "@tanstack/react-query";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  MutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_RESERVATION_SECTION_LOCATION_TRANSLATIONS_QUERY_KEY,
+  EVENT_RESERVATION_SECTION_LOCATION_TRANSLATION_QUERY_KEY,
+} from "@src/queries";
 
-interface DeleteEventReservationSectionLocationTranslationProps {
+/**
+ * @category Params
+ * @group Event-Reservations-Locations-Translations
+ */
+export interface DeleteEventReservationSectionLocationTranslationParams
+  extends MutationParams {
   eventId: string;
   reservationSectionId: string;
   locationId: string;
   locale: string;
 }
 
+/**
+ * @category Methods
+ * @group Event-Reservations-Locations-Translations
+ */
 export const DeleteEventReservationSectionLocationTranslation = async ({
   eventId,
   reservationSectionId,
   locationId,
   locale,
-}: DeleteEventReservationSectionLocationTranslationProps) => {
-  const connectedXM = await ConnectedXM();
+  adminApiParams,
+  queryClient,
+}: DeleteEventReservationSectionLocationTranslationParams) => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.delete(
     `/events/${eventId}/reservationSections/${reservationSectionId}/locations/${locationId}/translations/${locale}`
   );
-
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_RESERVATION_SECTION_LOCATION_TRANSLATIONS_QUERY_KEY(
+        eventId,
+        reservationSectionId,
+        locationId
+      ),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_RESERVATION_SECTION_LOCATION_TRANSLATION_QUERY_KEY(
+        eventId,
+        reservationSectionId,
+        locationId,
+        locale
+      ),
+    });
+  }
   return data;
 };
 
+/**
+ * @category Mutations
+ * @group Event-Reservations-Locations-Translations
+ */
 export const useDeleteEventReservationSectionLocationTranslation = (
-  eventId: string,
-  reservationSectionId: string,
-  locationId: string,
-  locale: string
+  options: Omit<
+    MutationOptions<
+      Awaited<
+        ReturnType<typeof DeleteEventReservationSectionLocationTranslation>
+      >,
+      Omit<
+        DeleteEventReservationSectionLocationTranslationParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
   return useConnectedMutation(
     DeleteEventReservationSectionLocationTranslation,
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(
-          EVENT_RESERVATION_SECTION_LOCATION_TRANSLATIONS_QUERY_KEY(
-            eventId,
-            reservationSectionId,
-            locationId
-          )
-        );
-        queryClient.invalidateQueries(
-          EVENT_RESERVATION_SECTION_LOCATION_TRANSLATION_QUERY_KEY(
-            eventId,
-            reservationSectionId,
-            locationId,
-            locale
-          )
-        );
-      },
-    }
+    options
   );
 };
-
-export default useDeleteEventReservationSectionLocationTranslation;

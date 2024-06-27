@@ -1568,6 +1568,14 @@ export interface Report {
   updatedAt: string;
 }
 
+export type UpdateReportProps = {
+  name: string;
+  filters: string;
+  columns: string;
+  charts: string;
+  advancedFilter: string;
+};
+
 export interface BaseEventReservationSectionLocation {
   id: string;
   eventId: string;

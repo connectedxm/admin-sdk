@@ -4,7 +4,7 @@ import {
   useConnectedSingleQuery,
 } from "../../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { ReservationSectionTranslation } from "@src/interfaces";
+import { EventReservationSectionTranslation } from "@src/interfaces";
 import { EVENT_RESERVATION_SECTION_TRANSLATIONS_QUERY_KEY } from "./useGetReservationSectionTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
 
@@ -55,7 +55,7 @@ export const GetReservationSectionTranslation = async ({
   locale,
   adminApiParams,
 }: GetReservationSectionTranslationProps): Promise<
-  ConnectedXMResponse<ReservationSectionTranslation>
+  ConnectedXMResponse<EventReservationSectionTranslation>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(

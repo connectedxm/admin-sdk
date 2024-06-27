@@ -223,7 +223,7 @@ export interface BaseActivationCompletion {
   id: string;
   eventId: string;
   eventActivationId: string;
-  eventActivation: BaseActivation;
+  eventActivation: BaseEventActivation;
   earnedPoints: number;
   accountId: string;
 }
@@ -234,7 +234,7 @@ export interface ActivationCompletion extends BaseActivationCompletion {
   updatedAt: string;
 }
 
-export interface BaseActivation {
+export interface BaseEventActivation {
   id: string;
   slug: string;
   name: string;
@@ -244,7 +244,7 @@ export interface BaseActivation {
   protected: false;
 }
 
-export interface Activation extends BaseActivation {
+export interface EventActivation extends BaseEventActivation {
   eventId: string;
   event: BaseEvent;
   managerId: string | null;
@@ -377,7 +377,7 @@ export interface Announcement extends BaseAnnouncement {
   group: BaseGroup | null;
   sponsorshipLevelId: string | null;
   sponsorshipLevel: BaseSponsorshipLevel | null;
-  ticket: BaseTicket | null;
+  ticket: BaseEventTicket | null;
   user: BaseUser | null;
   html: string | null;
   message: string | null;
@@ -549,7 +549,7 @@ export interface BaseCoupon {
 }
 
 export interface Coupon extends BaseCoupon {
-  ticket: BaseTicket | null;
+  ticket: BaseEventTicket | null;
   manager: BaseAccount | null;
   createdAt: string;
   updatedAt: string;
@@ -620,6 +620,13 @@ export interface EventAddOnTranslation {
   shortDescription: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface EventActivationTranslation {
+  locale: string;
+  name: string;
+  shortDescription: string;
+  longDescription: string | null;
 }
 
 export enum EventEmailType {
@@ -943,6 +950,12 @@ export interface Image extends BaseImage {
   updatedAt: string;
 }
 
+export enum ExportStatus {
+  pending = "pending",
+  resolved = "resolved",
+  failed = "failed",
+}
+
 export enum ImportItemStatus {
   pending = "pending",
   resolved = "resolved",
@@ -1224,7 +1237,7 @@ export interface BasePurchase {
   id: string;
   alternateId: number;
   ticketId: string | null;
-  ticket: BaseTicket | null;
+  ticket: BaseEventTicket | null;
   location: string | null;
   usedAt: string | null;
   transfer: { id: string; email: string; createdAt: string };
@@ -1232,7 +1245,7 @@ export interface BasePurchase {
   paid: boolean;
   reservationStart: string | null;
   reservationEnd: string | null;
-  reservationSectionLocation: BaseReservationSectionLocation;
+  reservationSectionLocation: BaseEventReservationSectionLocation;
   createdAt: string;
   updatedAt: string;
 }
@@ -1287,7 +1300,7 @@ export interface BasePayment {
   type: PaymentType;
   chargedAmt: number;
   ticketId: string | null;
-  ticket: BaseTicket | null;
+  ticket: BaseEventTicket | null;
   stripeId: string | null;
   last4: string | null;
   debugId: string | null;
@@ -1331,6 +1344,11 @@ export interface BaseRegistrationQuestionChoice {
   _count: {
     subQuestions: number;
   };
+}
+
+export interface Question {
+  id: number;
+  value: string;
 }
 
 export interface RegistrationQuestionChoice
@@ -1473,7 +1491,7 @@ export interface BaseRegistrationSection {
 
 export interface RegistrationSection extends BaseRegistrationSection {
   questions: BaseRegistrationSectionQuestion[];
-  eventTickets: BaseTicket[];
+  eventTickets: BaseEventTicket[];
   accountTiers: BaseTier[];
   createdAt: string;
   updatedAt: string;
@@ -1550,7 +1568,7 @@ export interface Report {
   updatedAt: string;
 }
 
-export interface BaseReservationSectionLocation {
+export interface BaseEventReservationSectionLocation {
   id: string;
   eventId: string;
   reservationSectionId: string;
@@ -1559,19 +1577,19 @@ export interface BaseReservationSectionLocation {
   supply: number;
   sortOrder: number;
   premium: number | null;
-  reservationSection: BaseReservationSection;
+  reservationSection: EventBaseReservationSection;
   createdAt: string;
   updatedAt: string;
 }
 
-export interface ReservationSectionLocation
-  extends BaseReservationSectionLocation {
+export interface EventReservationSectionLocation
+  extends BaseEventReservationSectionLocation {
   _count: {
     purchases: number;
   };
 }
 
-export interface ReservationSectionLocationTranslation {
+export interface EventReservationSectionLocationTranslation {
   id: string;
   locale: string;
   name: string;
@@ -1580,7 +1598,7 @@ export interface ReservationSectionLocationTranslation {
   updatedAt: string;
 }
 
-export interface BaseReservationSection {
+export interface EventBaseReservationSection {
   id: string;
   eventId: string;
   name: string;
@@ -1593,7 +1611,7 @@ export interface BaseReservationSection {
   updatedAt: string;
 }
 
-export interface ReservationSection extends BaseReservationSection {
+export interface EventReservationSection extends EventBaseReservationSection {
   sortOrder: number;
   event: BaseEvent;
   _count: {
@@ -1601,7 +1619,7 @@ export interface ReservationSection extends BaseReservationSection {
   };
 }
 
-export interface ReservationSectionTranslation {
+export interface EventReservationSectionTranslation {
   id: string;
   locale: string;
   name: string;
@@ -1627,7 +1645,7 @@ export interface Series extends BaseSeries {
   updatedAt: string;
 }
 
-export interface BaseSession {
+export interface BaseEventSession {
   id: string;
   slug: string;
   name: string;
@@ -1638,22 +1656,22 @@ export interface BaseSession {
   image: BaseImage | null;
   startTime: string;
   endTime: string;
-  tracks: BaseTrack[];
+  tracks: BaseEventTrack[];
   nonSession: boolean;
   visible: boolean;
   createdAt: string;
   updatedAt: string;
 }
 
-export interface Session extends BaseSession {
+export interface EventSession extends BaseEventSession {
   sortOrder: number;
   eventId: string;
   event: BaseEvent;
-  speakers: BaseSpeaker[];
+  speakers: BaseEventSpeaker[];
   streamInput: BaseStreamInput | null;
 }
 
-export interface SessionTranslation {
+export interface EventSessionTranslation {
   id: number;
   locale: string;
   name: string;
@@ -1663,7 +1681,7 @@ export interface SessionTranslation {
   updatedAt: string;
 }
 
-export interface BaseSpeaker {
+export interface BaseEventSpeaker {
   id: string;
   slug: string;
   firstName: string;
@@ -1679,8 +1697,8 @@ export interface BaseSpeaker {
   visible: boolean;
 }
 
-export interface Speaker extends BaseSpeaker {
-  sessions: BaseSession[];
+export interface EventSpeaker extends BaseEventSpeaker {
+  sessions: BaseEventSession[];
   eventId: string;
   event: BaseEvent;
   isHost: boolean;
@@ -1695,7 +1713,7 @@ export interface Speaker extends BaseSpeaker {
   updatedAt: string;
 }
 
-export interface SpeakerTranslation {
+export interface EventSpeakerTranslation {
   id: number;
   locale: string;
   title: string | null;
@@ -1747,7 +1765,7 @@ export interface StreamInput extends BaseStreamInput {
   sortOrder: number;
   event: BaseEvent | null;
   sessionId: string | null;
-  session: BaseSession | null;
+  session: BaseEventSession | null;
   details?: StreamInputDetails;
   createdAt: string;
 }
@@ -1949,7 +1967,7 @@ export interface TeamMember extends BaseTeamMember {
   updatedAt: string;
 }
 
-export interface BaseTicket {
+export interface BaseEventTicket {
   id: string;
   slug: string;
   active: boolean;
@@ -1978,7 +1996,7 @@ export interface BaseTicket {
   updatedAt: string;
 }
 
-export interface Ticket extends BaseTicket {
+export interface EventTicket extends BaseEventTicket {
   sortOrder: number;
   event: BaseEvent;
   _count: {
@@ -1986,7 +2004,7 @@ export interface Ticket extends BaseTicket {
   };
 }
 
-export interface TicketTranslation {
+export interface EventTicketTranslation {
   id: number;
   locale: string;
   name: string;
@@ -1996,7 +2014,7 @@ export interface TicketTranslation {
   updatedAt: string;
 }
 
-export interface BaseTrack {
+export interface BaseEventTrack {
   id: string;
   slug: string;
   name: string;
@@ -2004,7 +2022,7 @@ export interface BaseTrack {
   color: string;
 }
 
-export interface Track extends BaseTrack {
+export interface EventTrack extends BaseEventTrack {
   createdAt: string;
   updatedAt: string;
   _count: {
@@ -2012,7 +2030,7 @@ export interface Track extends BaseTrack {
   };
 }
 
-export interface TrackTranslation {
+export interface EventTrackTranslation {
   id: number;
   locale: string;
   name: string;

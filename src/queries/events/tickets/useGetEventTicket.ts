@@ -5,7 +5,7 @@ import {
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { Ticket } from "@src/interfaces";
+import { EventTicket } from "@src/interfaces";
 import { EVENT_TICKETS_QUERY_KEY } from "./useGetEventTickets";
 import { QueryClient } from "@tanstack/react-query";
 
@@ -43,7 +43,7 @@ export const GetEventTicket = async ({
   eventId,
   ticketId,
   adminApiParams,
-}: GetEventTicketProps): Promise<ConnectedXMResponse<Ticket>> => {
+}: GetEventTicketProps): Promise<ConnectedXMResponse<EventTicket>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/tickets/${ticketId}`);
   return data;

@@ -1,6 +1,6 @@
 import { Account, ConnectedXMResponse } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
@@ -48,7 +48,7 @@ export const RemoveAccountInterest = async ({
  */
 export const useRemoveAccountInterest = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof RemoveAccountInterest>>,
       Omit<RemoveAccountInterestParams, "queryClient" | "adminApiParams">
     >,

@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse, ChannelTranslation } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
@@ -61,7 +61,7 @@ export const CreateChannelTranslation = async ({
  */
 export const useCreateChannelTranslation = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof CreateChannelTranslation>>,
       Omit<CreateChannelTranslationParams, "queryClient" | "adminApiParams">
     >,

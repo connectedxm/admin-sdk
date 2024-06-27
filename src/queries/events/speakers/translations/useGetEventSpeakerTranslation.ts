@@ -4,7 +4,7 @@ import {
   useConnectedSingleQuery,
 } from "../../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { SpeakerTranslation } from "@src/interfaces";
+import { EventSpeakerTranslation } from "@src/interfaces";
 import { EVENT_SPEAKER_TRANSLATIONS_QUERY_KEY } from "./useGetEventSpeakerTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
 
@@ -49,7 +49,7 @@ export const GetEventSpeakerTranslation = async ({
   locale,
   adminApiParams,
 }: GetEventSpeakerTranslationProps): Promise<
-  ConnectedXMResponse<SpeakerTranslation>
+  ConnectedXMResponse<EventSpeakerTranslation>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(

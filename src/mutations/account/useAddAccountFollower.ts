@@ -5,7 +5,7 @@ import {
   SET_ACCOUNT_QUERY_DATA,
 } from "@src/queries";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
@@ -48,7 +48,7 @@ export const AddAccountFollower = async ({
  */
 export const useAddAccountFollower = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof AddAccountFollower>>,
       Omit<AddAccountFollowerParams, "queryClient" | "adminApiParams">
     >,

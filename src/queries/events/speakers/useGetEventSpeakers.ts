@@ -1,6 +1,6 @@
 import { ConnectedXMResponse } from "@src/interfaces";
 
-import { Speaker } from "@src/interfaces";
+import { EventSpeaker } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -45,7 +45,7 @@ export const GetEventSpeakers = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetEventSpeakersProps): Promise<ConnectedXMResponse<Speaker[]>> => {
+}: GetEventSpeakersProps): Promise<ConnectedXMResponse<EventSpeaker[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/speakers`, {
     params: {

@@ -1,6 +1,6 @@
 import { ConnectedXMResponse, Content } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
@@ -47,7 +47,7 @@ export const AddChannelContentAuthor = async ({
  */
 export const useAddChannelContentAuthor = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof AddChannelContentAuthor>>,
       Omit<AddChannelContentAuthorParams, "queryClient" | "adminApiParams">
     >,

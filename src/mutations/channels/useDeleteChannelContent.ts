@@ -1,6 +1,6 @@
 import { ConnectedXMResponse } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
@@ -51,7 +51,7 @@ export const DeleteChannelContent = async ({
  */
 export const useDeleteChannelContent = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof DeleteChannelContent>>,
       Omit<DeleteChannelContentParams, "queryClient" | "adminApiParams">
     >,

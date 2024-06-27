@@ -1,0 +1,75 @@
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, EventAddOnTranslation } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import {
+  EVENT_ADD_ON_TRANSLATIONS_QUERY_KEY,
+  SET_EVENT_ADD_ON_TRANSLATION_QUERY_DATA,
+} from "@src/queries";
+
+/**
+ * @category Params
+ * @group Event-AddOns-Translations
+ */
+export interface UpdateEventAddOnTranslationParams extends MutationParams {
+  eventId: string;
+  addOnId: string;
+  addOnTranslation: EventAddOnTranslation;
+}
+
+/**
+ * @category Methods
+ * @group Event-AddOns-Translations
+ */
+export const UpdateEventAddOnTranslation = async ({
+  eventId,
+  addOnId,
+  addOnTranslation,
+  adminApiParams,
+  queryClient,
+}: UpdateEventAddOnTranslationParams): Promise<
+  ConnectedXMResponse<EventAddOnTranslation>
+> => {
+  const connectedXM = await GetAdminAPI(adminApiParams);
+
+  const { locale, ...body } = addOnTranslation;
+
+  const { data } = await connectedXM.put<
+    ConnectedXMResponse<EventAddOnTranslation>
+  >(`/events/${eventId}/addOns/${addOnId}/translations/${locale}`, body);
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_ADD_ON_TRANSLATIONS_QUERY_KEY(eventId, addOnId),
+    });
+    SET_EVENT_ADD_ON_TRANSLATION_QUERY_DATA(
+      queryClient,
+      [eventId, addOnId, data.data?.locale],
+      data
+    );
+  }
+  return data;
+};
+
+/**
+ * @category Mutations
+ * @group Event-AddOns-Translations
+ */
+export const useUpdateEventAddOnTranslation = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof UpdateEventAddOnTranslation>>,
+      Omit<UpdateEventAddOnTranslationParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    UpdateEventAddOnTranslationParams,
+    Awaited<ReturnType<typeof UpdateEventAddOnTranslation>>
+  >(UpdateEventAddOnTranslation, options);
+};
+
+export default useUpdateEventAddOnTranslation;

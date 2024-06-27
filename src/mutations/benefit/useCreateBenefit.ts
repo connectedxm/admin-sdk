@@ -1,6 +1,6 @@
 import { Benefit, ConnectedXMResponse } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
@@ -43,7 +43,7 @@ export const CreateBenefit = async ({
  */
 export const useCreateBenefit = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof CreateBenefit>>,
       Omit<CreateBenefitParams, "queryClient" | "adminApiParams">
     >,

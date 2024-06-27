@@ -6,7 +6,7 @@ import {
 import { ConnectedXMResponse } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_RESERVATION_SECTION_LOCATIONS_QUERY_KEY } from "./useGetReservationSectionLocations";
-import { ReservationSectionLocation } from "@src/interfaces";
+import { EventReservationSectionLocation } from "@src/interfaces";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
@@ -56,7 +56,7 @@ export const GetReservationSectionLocation = async ({
   locationId,
   adminApiParams,
 }: GetReservationSectionProps): Promise<
-  ConnectedXMResponse<ReservationSectionLocation>
+  ConnectedXMResponse<EventReservationSectionLocation>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(

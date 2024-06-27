@@ -5,7 +5,7 @@ import {
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { Session } from "@src/interfaces";
+import { EventSession } from "@src/interfaces";
 import { EVENT_SESSIONS_QUERY_KEY } from "./useGetEventSessions";
 
 /**
@@ -42,7 +42,7 @@ export const GetEventSession = async ({
   eventId,
   sessionId,
   adminApiParams,
-}: GetEventSessionProps): Promise<ConnectedXMResponse<Session>> => {
+}: GetEventSessionProps): Promise<ConnectedXMResponse<EventSession>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
     `/events/${eventId}/sessions/${sessionId}`

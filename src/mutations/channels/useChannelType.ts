@@ -1,6 +1,6 @@
 import { Channel, ConnectedXMResponse } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
@@ -47,7 +47,7 @@ export const CreateChannel = async ({
  */
 export const useCreateChannel = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof CreateChannel>>,
       Omit<CreateChannelParams, "queryClient" | "adminApiParams">
     >,

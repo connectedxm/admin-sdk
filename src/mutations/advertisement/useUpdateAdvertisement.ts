@@ -1,6 +1,6 @@
 import { Advertisement, ConnectedXMResponse } from "@src/interfaces";
 import {
-  MutationOptions,
+  ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
@@ -49,7 +49,7 @@ export const UpdateAdvertisement = async ({
  */
 export const useUpdateAdvertisement = (
   options: Omit<
-    MutationOptions<
+    ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof UpdateAdvertisement>>,
       Omit<UpdateAdvertisementParams, "queryClient" | "adminApiParams">
     >,

@@ -1,49 +1,63 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../useConnectedMutation";
-import { Subscription, SubscriptionProduct } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { SUBSCRIPTION_PRODUCTS_QUERY_KEY } from "@context/queries/subscriptions/useGetSubscriptionProducts";
-import { SET_SUBSCRIPTION_PRODUCT_QUERY_DATA } from "@context/queries/subscriptions/useGetSubscriptionProduct";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { SubscriptionProduct, ConnectedXMResponse } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "../useConnectedMutation";
+import {
+  SUBSCRIPTION_PRODUCTS_QUERY_KEY,
+  SET_SUBSCRIPTION_PRODUCT_QUERY_DATA,
+} from "@src/queries";
 
-interface CreateSubscriptionProductParams {
+/**
+ * @category Params
+ * @group Subscriptions
+ */
+export interface CreateSubscriptionProductParams extends MutationParams {
   subscriptionProduct: SubscriptionProduct;
 }
 
+/**
+ * @category Methods
+ * @group Subscriptions
+ */
 export const CreateSubscriptionProduct = async ({
   subscriptionProduct,
+  adminApiParams,
+  queryClient,
 }: CreateSubscriptionProductParams): Promise<
   ConnectedXMResponse<SubscriptionProduct>
 > => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post(
-    `/subscription-products`,
-    subscriptionProduct
-  );
-
-  return { ...data };
+  const { data } = await connectedXM.post<
+    ConnectedXMResponse<SubscriptionProduct>
+  >(`/subscription-products`, subscriptionProduct);
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: SUBSCRIPTION_PRODUCTS_QUERY_KEY(),
+    });
+    SET_SUBSCRIPTION_PRODUCT_QUERY_DATA(queryClient, [data?.data?.id], data);
+  }
+  return data;
 };
 
-export const useCreateSubscriptionProduct = () => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation<SubscriptionProduct>(
-    (subscriptionProduct) => CreateSubscriptionProduct({ subscriptionProduct }),
-    {
-      onSuccess: (
-        subscriptionProduct: Awaited<
-          ReturnType<typeof CreateSubscriptionProduct>
-        >
-      ) => {
-        queryClient.invalidateQueries(SUBSCRIPTION_PRODUCTS_QUERY_KEY());
-        SET_SUBSCRIPTION_PRODUCT_QUERY_DATA(
-          queryClient,
-          [subscriptionProduct?.data?.id],
-          subscriptionProduct
-        );
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Subscriptions
+ */
+export const useCreateSubscriptionProduct = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof CreateSubscriptionProduct>>,
+      Omit<CreateSubscriptionProductParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    CreateSubscriptionProductParams,
+    Awaited<ReturnType<typeof CreateSubscriptionProduct>>
+  >(CreateSubscriptionProduct, options);
 };
-
-export default useCreateSubscriptionProduct;

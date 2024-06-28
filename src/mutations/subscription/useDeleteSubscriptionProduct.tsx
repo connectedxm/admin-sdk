@@ -1,44 +1,64 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../useConnectedMutation";
-import { useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import { SUBSCRIPTION_PRODUCTS_QUERY_KEY } from "@context/queries/subscriptions/useGetSubscriptionProducts";
-import { SUBSCRIPTION_PRODUCT_QUERY_KEY } from "@context/queries/subscriptions/useGetSubscriptionProduct";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "../useConnectedMutation";
+import { ConnectedXMResponse } from "@src/interfaces";
+import {
+  SUBSCRIPTION_PRODUCTS_QUERY_KEY,
+  SUBSCRIPTION_PRODUCT_QUERY_KEY,
+} from "@src/queries";
 
-interface DeleteSubscriptionProductParams {
+/**
+ * @category Params
+ * @group Subscriptions
+ */
+export interface DeleteSubscriptionProductParams extends MutationParams {
   subscriptionProductId: string;
 }
 
+/**
+ * @category Methods
+ * @group Subscriptions
+ */
 export const DeleteSubscriptionProduct = async ({
   subscriptionProductId,
+  adminApiParams,
+  queryClient,
 }: DeleteSubscriptionProductParams): Promise<ConnectedXMResponse<void>> => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await connectedXM.delete<ConnectedXMResponse<void>>(
     `/subscription-products/${subscriptionProductId}`
   );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: SUBSCRIPTION_PRODUCTS_QUERY_KEY(),
+    });
+    queryClient.removeQueries({
+      queryKey: SUBSCRIPTION_PRODUCT_QUERY_KEY(subscriptionProductId),
+    });
+  }
 
-  return { ...data };
+  return data;
 };
 
-export const useDeleteSubscriptionProduct = (subscriptionProductId: string) => {
-  const queryClient = useQueryClient();
-  const router = useRouter();
-
-  return useConnectedMutation(
-    () => DeleteSubscriptionProduct({ subscriptionProductId }),
-    {
-      onSuccess: (
-        _response: Awaited<ReturnType<typeof DeleteSubscriptionProduct>>
-      ) => {
-        router.replace("/subscriptions/products");
-        queryClient.invalidateQueries(SUBSCRIPTION_PRODUCTS_QUERY_KEY());
-        queryClient.removeQueries(
-          SUBSCRIPTION_PRODUCT_QUERY_KEY(subscriptionProductId)
-        );
-      },
-    }
-  );
+/**
+ * @category Mutations
+ * @group Subscriptions
+ */
+export const useDeleteSubscriptionProduct = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof DeleteSubscriptionProduct>>,
+      Omit<DeleteSubscriptionProductParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    DeleteSubscriptionProductParams,
+    Awaited<ReturnType<typeof DeleteSubscriptionProduct>>
+  >(DeleteSubscriptionProduct, options);
 };
-
-export default useDeleteSubscriptionProduct;

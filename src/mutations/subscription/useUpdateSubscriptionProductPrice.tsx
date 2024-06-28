@@ -1,42 +1,63 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../useConnectedMutation";
-import { SubscriptionProductPrice } from "@interfaces";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "../useConnectedMutation";
+import { SubscriptionProductPrice, ConnectedXMResponse } from "@src/interfaces";
 
-interface UpdateSubscriptionProductPriceParams {
+/**
+ * @category Params
+ * @group Subscriptions
+ */
+export interface UpdateSubscriptionProductPriceParams extends MutationParams {
   subscriptionProductId: string;
   subscriptionProductPriceId: string;
   subscriptionProductPrice: SubscriptionProductPrice;
 }
 
+/**
+ * @category Methods
+ * @group Subscriptions
+ */
 export const UpdateSubscriptionProductPrice = async ({
   subscriptionProductId,
   subscriptionProductPriceId,
   subscriptionProductPrice,
+  // queryClient,
+  adminApiParams,
 }: UpdateSubscriptionProductPriceParams): Promise<
   ConnectedXMResponse<SubscriptionProductPrice>
 > => {
-  const connectedXM = await ConnectedXM();
-
-  const { data } = await connectedXM.put(
+  const connectedXM = await GetAdminAPI(adminApiParams);
+  const { data } = await connectedXM.put<
+    ConnectedXMResponse<SubscriptionProductPrice>
+  >(
     `/subscription-products/${subscriptionProductId}/prices/${subscriptionProductPriceId}`,
     subscriptionProductPrice
   );
-
-  return { ...data };
+  // if(queryClient && data.status === "ok") { }
+  return data;
 };
 
+/**
+ * @category Mutations
+ * @group Subscriptions
+ */
 export const useUpdateSubscriptionProductPrice = (
-  subscriptionProductId: string,
-  subscriptionProductPriceId: string
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof UpdateSubscriptionProductPrice>>,
+      Omit<
+        UpdateSubscriptionProductPriceParams,
+        "queryClient" | "adminApiParams"
+      >
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  return useConnectedMutation<SubscriptionProductPrice>(
-    (subscriptionProductPrice) =>
-      UpdateSubscriptionProductPrice({
-        subscriptionProductId,
-        subscriptionProductPriceId,
-        subscriptionProductPrice,
-      })
-  );
+  return useConnectedMutation<
+    UpdateSubscriptionProductPriceParams,
+    Awaited<ReturnType<typeof UpdateSubscriptionProductPrice>>
+  >(UpdateSubscriptionProductPrice, options);
 };
-
-export default useUpdateSubscriptionProductPrice;

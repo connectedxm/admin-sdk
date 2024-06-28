@@ -1,46 +1,59 @@
-import { ConnectedXM, ConnectedXMResponse } from "src/context/api/ConnectedXM";
-import useConnectedMutation from "../useConnectedMutation";
-import { Tier } from "@interfaces";
-import { useQueryClient } from "@tanstack/react-query";
-import { SUBSCRIPTION_PRODUCT_TIERS_QUERY_KEY } from "@context/queries/subscriptions/useGetSubscriptionProductTiers";
+import { GetAdminAPI } from "@src/AdminAPI";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "../useConnectedMutation";
+import { ConnectedXMResponse, Tier } from "@src/interfaces";
+import { SUBSCRIPTION_PRODUCT_TIERS_QUERY_KEY } from "@src/queries";
 
-interface AddSubscriptionProductTierParams {
+/**
+ * @category Params
+ * @group Subscriptions
+ */
+export interface AddSubscriptionProductTierParams extends MutationParams {
   subscriptionProductId: string;
   tierId: string;
 }
 
+/**
+ * @category Methods
+ * @group Subscriptions
+ */
 export const AddSubscriptionProductTier = async ({
   subscriptionProductId,
   tierId,
+  adminApiParams,
+  queryClient,
 }: AddSubscriptionProductTierParams): Promise<ConnectedXMResponse<Tier>> => {
-  const connectedXM = await ConnectedXM();
+  const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post(
+  const { data } = await connectedXM.post<ConnectedXMResponse<Tier>>(
     `/subscription-products/${subscriptionProductId}/tiers/${tierId}`
   );
-
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: SUBSCRIPTION_PRODUCT_TIERS_QUERY_KEY(subscriptionProductId),
+    });
+  }
   return { ...data };
 };
 
+/**
+ * @category Mutations
+ * @group Subscriptions
+ */
 export const useAddSubscriptionProductTier = (
-  subscriptionProductId: string
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof AddSubscriptionProductTier>>,
+      Omit<AddSubscriptionProductTierParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
 ) => {
-  const queryClient = useQueryClient();
-
-  return useConnectedMutation(
-    (tierId: string) =>
-      AddSubscriptionProductTier({
-        subscriptionProductId,
-        tierId,
-      }),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(
-          SUBSCRIPTION_PRODUCT_TIERS_QUERY_KEY(subscriptionProductId)
-        );
-      },
-    }
-  );
+  return useConnectedMutation<
+    AddSubscriptionProductTierParams,
+    Awaited<ReturnType<typeof AddSubscriptionProductTier>>
+  >(AddSubscriptionProductTier, options);
 };
-
-export default useAddSubscriptionProductTier;

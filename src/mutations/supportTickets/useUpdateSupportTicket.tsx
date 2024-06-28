@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { SupportTicket, ConnectedXMResponse } from "@src/interfaces";
+import {
+  SupportTicket,
+  ConnectedXMResponse,
+  UpdateSupportTicketProps,
+} from "@src/interfaces";
 import {
   SUPPORT_TICKETS_QUERY_KEY,
   SET_SUPPORT_TICKET_QUERY_DATA,
@@ -16,11 +20,7 @@ import {
  */
 export interface UpdateSupportTicketParams extends MutationParams {
   supportTicketId: string;
-  // Not sure if this is how I should have done this, but needed edit
-  supportTicket: UpdateSupportTicket;
-}
-interface UpdateSupportTicket extends Omit<SupportTicket, "request"> {
-  request?: string;
+  supportTicket: UpdateSupportTicketProps;
 }
 
 /**

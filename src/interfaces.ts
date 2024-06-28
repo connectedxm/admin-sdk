@@ -1947,6 +1947,11 @@ export interface SupportTicket extends BaseSupportTicket {
   createdAt: string;
   updatedAt: string;
 }
+// Not sure if this is how I should have done this, but needed edit (@joshuackeller)
+export interface UpdateSupportTicketProps
+  extends Omit<SupportTicket, "request"> {
+  request?: string;
+}
 
 export interface BaseTeamMember {
   id: string;

@@ -1568,6 +1568,14 @@ export interface Report {
   updatedAt: string;
 }
 
+export type UpdateReportProps = {
+  name: string;
+  filters: string;
+  columns: string;
+  charts: string;
+  advancedFilter: string;
+};
+
 export interface BaseEventReservationSectionLocation {
   id: string;
   eventId: string;
@@ -1938,6 +1946,11 @@ export interface SupportTicket extends BaseSupportTicket {
   notes: BaseSupportTicketNote[];
   createdAt: string;
   updatedAt: string;
+}
+// Not sure if this is how I should have done this, but needed edit (@joshuackeller)
+export interface UpdateSupportTicketProps
+  extends Omit<SupportTicket, "request"> {
+  request?: string;
 }
 
 export interface BaseTeamMember {

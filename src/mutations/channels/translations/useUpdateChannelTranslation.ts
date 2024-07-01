@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ChannelTranslation, ConnectedXMResponse } from "@src/interfaces";
+import {
+  ChannelTranslation,
+  ConnectedXMResponse,
+  ISupportedLocale,
+} from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -16,7 +20,11 @@ import {
  */
 export interface UpdateChannelTranslationParams extends MutationParams {
   channelId: string;
-  channelTranslation: ChannelTranslation;
+  locale: ISupportedLocale;
+  channelTranslation: {
+    name: string;
+    description?: string;
+  };
 }
 
 /**
@@ -26,6 +34,7 @@ export interface UpdateChannelTranslationParams extends MutationParams {
 export const UpdateChannelTranslation = async ({
   channelId,
   channelTranslation,
+  locale,
   adminApiParams,
   queryClient,
 }: UpdateChannelTranslationParams): Promise<
@@ -33,11 +42,9 @@ export const UpdateChannelTranslation = async ({
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { locale, ...body } = channelTranslation;
-
   const { data } = await connectedXM.put<
     ConnectedXMResponse<ChannelTranslation>
-  >(`/channels/${channelId}/translations/${locale}`, body);
+  >(`/channels/${channelId}/translations/${locale}`, channelTranslation);
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, EventAddOnTranslation } from "@src/interfaces";
+import {
+  ConnectedXMResponse,
+  EventAddOnTranslation,
+  ISupportedLocale,
+} from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -17,7 +21,11 @@ import {
 export interface UpdateEventAddOnTranslationParams extends MutationParams {
   eventId: string;
   addOnId: string;
-  addOnTranslation: EventAddOnTranslation;
+  locale: ISupportedLocale;
+  addOnTranslation: {
+    name: string;
+    shortDescription: string;
+  };
 }
 
 /**
@@ -28,6 +36,7 @@ export const UpdateEventAddOnTranslation = async ({
   eventId,
   addOnId,
   addOnTranslation,
+  locale,
   adminApiParams,
   queryClient,
 }: UpdateEventAddOnTranslationParams): Promise<
@@ -35,11 +44,12 @@ export const UpdateEventAddOnTranslation = async ({
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { locale, ...body } = addOnTranslation;
-
   const { data } = await connectedXM.put<
     ConnectedXMResponse<EventAddOnTranslation>
-  >(`/events/${eventId}/addOns/${addOnId}/translations/${locale}`, body);
+  >(
+    `/events/${eventId}/addOns/${addOnId}/translations/${locale}`,
+    addOnTranslation
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_ADD_ON_TRANSLATIONS_QUERY_KEY(eventId, addOnId),

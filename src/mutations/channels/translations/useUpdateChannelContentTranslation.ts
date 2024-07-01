@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ContentTranslation } from "@src/interfaces";
+import { ISupportedLocale } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -17,7 +17,12 @@ import {
 export interface UpdateChannelContentTranslationParams extends MutationParams {
   channelId: string;
   contentId: string;
-  contentTranslation: ContentTranslation;
+  locale: ISupportedLocale;
+  contentTranslation: {
+    title: string;
+    description?: string;
+    body?: string;
+  };
 }
 
 /**
@@ -28,16 +33,15 @@ export const UpdateChannelContentTranslation = async ({
   contentId,
   channelId,
   contentTranslation,
+  locale,
   adminApiParams,
   queryClient,
 }: UpdateChannelContentTranslationParams) => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { locale, ...body } = contentTranslation;
-
   const { data } = await connectedXM.put(
     `/contents/${contentId}/translations/${locale}`,
-    body
+    contentTranslation
   );
 
   if (queryClient && data.status === "ok") {

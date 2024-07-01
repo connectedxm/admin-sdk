@@ -834,6 +834,15 @@ export interface FaqTranslation {
   updatedAt: string;
 }
 
+enum SupportedLocale {
+  en = "en",
+  es = "es",
+  fr = "fr",
+  ja = "ja",
+}
+
+export type ISupportedLocale = keyof typeof SupportedLocale;
+
 export enum GroupInvitationStatus {
   invited = "invited",
   rejected = "rejected",

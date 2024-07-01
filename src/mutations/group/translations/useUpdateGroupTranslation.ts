@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { GroupTranslation } from "@src/interfaces";
+import { GroupTranslation, ISupportedLocale } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -16,7 +16,11 @@ import {
  */
 export interface UpdateGroupTranslationParams extends MutationParams {
   groupId: string;
-  groupTranslation: GroupTranslation;
+  locale: ISupportedLocale;
+  groupTranslation: {
+    name: string;
+    description: string;
+  };
 }
 
 /**
@@ -26,16 +30,15 @@ export interface UpdateGroupTranslationParams extends MutationParams {
 export const UpdateGroupTranslation = async ({
   groupId,
   groupTranslation,
+  locale,
   queryClient,
   adminApiParams,
 }: UpdateGroupTranslationParams) => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { locale, ...body } = groupTranslation;
-
   const { data } = await connectedXM.put(
     `/groups/${groupId}/translations/${locale}`,
-    body
+    groupTranslation
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

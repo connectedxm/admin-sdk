@@ -6,6 +6,7 @@ import {
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
 import { EVENT_REGISTRATION_PURCHASE_RESPONSES_QUERY_KEY } from "@src/queries";
+import { EVENT_REGISTRATION_PURCHASE_SECTIONS_QUERY_KEY } from "@src/queries/events/registrations/purchases/useGetEventRegistrationPurchaseSections";
 
 /**
  * @category Params

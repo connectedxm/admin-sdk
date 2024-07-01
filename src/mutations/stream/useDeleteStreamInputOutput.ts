@@ -11,7 +11,7 @@ import { STREAM_INPUTS_QUERY_KEY, STREAM_QUERY_KEY } from "@src/queries";
  * @category Params
  * @group Stream
  */
-export interface DeleteStreamInputParams extends MutationParams {
+export interface DeleteStreamInputOutputParams extends MutationParams {
   streamId: string;
   outputId: string;
 }
@@ -20,12 +20,12 @@ export interface DeleteStreamInputParams extends MutationParams {
  * @category Methods
  * @group Stream
  */
-export const DeleteStreamInput = async ({
+export const DeleteStreamInputOutput = async ({
   streamId,
   outputId,
   adminApiParams,
   queryClient,
-}: DeleteStreamInputParams): Promise<ConnectedXMResponse<null>> => {
+}: DeleteStreamInputOutputParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/streams/${streamId}/outputs/${outputId}`
@@ -41,17 +41,17 @@ export const DeleteStreamInput = async ({
  * @category Mutations
  * @group Stream
  */
-export const useDeleteStreamInput = (
+export const useDeleteStreamInputOutput = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof DeleteStreamInput>>,
-      Omit<DeleteStreamInputParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof DeleteStreamInputOutput>>,
+      Omit<DeleteStreamInputOutputParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    DeleteStreamInputParams,
-    Awaited<ReturnType<typeof DeleteStreamInput>>
-  >(DeleteStreamInput, options);
+    DeleteStreamInputOutputParams,
+    Awaited<ReturnType<typeof DeleteStreamInputOutput>>
+  >(DeleteStreamInputOutput, options);
 };

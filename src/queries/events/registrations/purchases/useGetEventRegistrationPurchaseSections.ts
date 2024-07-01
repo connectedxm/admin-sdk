@@ -17,6 +17,10 @@ export interface RegistrationQuestionWithResponse extends RegistrationQuestion {
   responses: RegistrationQuestionResponse[];
 }
 
+/**
+ * @category Keys
+ * @group Events
+ */
 export const EVENT_REGISTRATION_PURCHASE_SECTIONS_QUERY_KEY = (
   eventId: string,
   registrationId: string,
@@ -26,6 +30,10 @@ export const EVENT_REGISTRATION_PURCHASE_SECTIONS_QUERY_KEY = (
   "SECTIONS",
 ];
 
+/**
+ * @category Setters
+ * @group Events
+ */
 export const SET_EVENT_REGISTRATION_PURCHASE_SECTIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_REGISTRATION_PURCHASE_SECTIONS_QUERY_KEY>,

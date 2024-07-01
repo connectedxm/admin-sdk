@@ -1,4 +1,4 @@
-import { BenefitTranslation } from "@interfaces";
+import { ISupportedLocale } from "@interfaces";
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
   ConnectedXMMutationOptions,
@@ -16,7 +16,11 @@ import {
  */
 export interface UpdateBenefitTranslationParams extends MutationParams {
   benefitId: string;
-  benefitTranslation: BenefitTranslation;
+  locale: ISupportedLocale;
+  benefitTranslation: {
+    title: string;
+    description?: string;
+  };
 }
 
 /**
@@ -26,16 +30,15 @@ export interface UpdateBenefitTranslationParams extends MutationParams {
 export const UpdateBenefitTranslation = async ({
   benefitId,
   benefitTranslation,
+  locale,
   adminApiParams,
   queryClient,
 }: UpdateBenefitTranslationParams) => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { locale, ...body } = benefitTranslation;
-
   const { data } = await connectedXM.put(
     `/benefits/${benefitId}/translations/${locale}`,
-    body
+    benefitTranslation
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

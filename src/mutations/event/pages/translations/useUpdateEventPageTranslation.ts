@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { EventPageTranslation } from "@src/interfaces";
+import { ISupportedLocale } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -17,7 +17,12 @@ import {
 export interface UpdateEventPageTranslationParams extends MutationParams {
   eventId: string;
   pageId: string;
-  pageTranslation: EventPageTranslation;
+  locale: ISupportedLocale;
+  pageTranslation: {
+    title?: string;
+    subtitle?: string;
+    html?: string;
+  };
 }
 
 /**
@@ -27,17 +32,16 @@ export interface UpdateEventPageTranslationParams extends MutationParams {
 export const UpdateEventPageTranslation = async ({
   eventId,
   pageId,
+  locale,
   pageTranslation,
   adminApiParams,
   queryClient,
 }: UpdateEventPageTranslationParams) => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { locale, ...body } = pageTranslation;
-
   const { data } = await connectedXM.put(
     `/events/${eventId}/pages/${pageId}/translations/${locale}`,
-    body
+    pageTranslation
   );
 
   if (queryClient && data.status === "ok") {

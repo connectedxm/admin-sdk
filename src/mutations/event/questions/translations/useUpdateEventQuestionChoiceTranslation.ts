@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { RegistrationQuestionChoiceTranslation } from "@src/interfaces";
+import { ISupportedLocale } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -19,7 +19,12 @@ export interface UpdateEventQuestionChoiceTranslationParams
   eventId: string;
   questionId: string;
   choiceId: string;
-  choiceTranslation: RegistrationQuestionChoiceTranslation;
+  locale: ISupportedLocale;
+  choiceTranslation: {
+    value: string;
+    text?: string;
+    description?: string;
+  };
 }
 
 /**
@@ -30,17 +35,16 @@ export const UpdateEventQuestionChoiceTranslation = async ({
   eventId,
   questionId,
   choiceId,
+  locale,
   choiceTranslation,
   adminApiParams,
   queryClient,
 }: UpdateEventQuestionChoiceTranslationParams) => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { locale, ...body } = choiceTranslation;
-
   const { data } = await connectedXM.put(
     `/events/${eventId}/questions/${questionId}/choices/${choiceId}/translations/${locale}`,
-    body
+    choiceTranslation
   );
 
   if (queryClient && data.status === "ok") {

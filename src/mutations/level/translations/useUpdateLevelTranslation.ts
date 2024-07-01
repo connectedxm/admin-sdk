@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { SponsorshipLevelTranslation } from "@src/interfaces";
+import { ISupportedLocale } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -16,7 +16,12 @@ import {
  */
 export interface UpdateLevelTranslationParams extends MutationParams {
   levelId: string;
-  levelTranslation: SponsorshipLevelTranslation;
+  locale: ISupportedLocale;
+  levelTranslation: {
+    name: string;
+    subtitle?: string;
+    description?: string;
+  };
 }
 
 /**
@@ -26,16 +31,15 @@ export interface UpdateLevelTranslationParams extends MutationParams {
 export const UpdateLevelTranslation = async ({
   levelId,
   levelTranslation,
+  locale,
   adminApiParams,
   queryClient,
 }: UpdateLevelTranslationParams) => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { locale, ...body } = levelTranslation;
-
   const { data } = await connectedXM.put(
     `/levels/${levelId}/translations/${locale}`,
-    body
+    levelTranslation
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

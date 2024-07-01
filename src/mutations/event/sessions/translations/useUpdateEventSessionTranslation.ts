@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { EventSessionTranslation } from "@src/interfaces";
+import { ISupportedLocale } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -17,7 +17,12 @@ import {
 export interface UpdateEventSessionTranslationParams extends MutationParams {
   eventId: string;
   sessionId: string;
-  sessionTranslation: EventSessionTranslation;
+  locale: ISupportedLocale;
+  sessionTranslation: {
+    name: string;
+    description?: string;
+    longDescription?: string;
+  };
 }
 
 /**
@@ -28,16 +33,15 @@ export const UpdateEventSessionTranslation = async ({
   eventId,
   sessionId,
   sessionTranslation,
+  locale,
   adminApiParams,
   queryClient,
 }: UpdateEventSessionTranslationParams) => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { locale, ...body } = sessionTranslation;
-
   const { data } = await connectedXM.put(
     `/events/${eventId}/sessions/${sessionId}/translations/${locale}`,
-    body
+    sessionTranslation
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

@@ -15,9 +15,8 @@ export interface UpdateAccountParams extends MutationParams {
   accountId: string;
   account: {
     accountType?: "account" | "team";
-    featured?: boolean;
-    verified?: boolean;
     email?: string;
+    featured?: boolean;
     firstName?: string | null;
     lastName?: string | null;
     imageId?: string | null;

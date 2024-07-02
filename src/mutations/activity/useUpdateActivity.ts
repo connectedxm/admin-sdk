@@ -13,7 +13,18 @@ import { ACTIVITIES_QUERY_KEY, SET_ACTIVITY_QUERY_DATA } from "@src/queries";
  */
 export interface UpdateActivityParams extends MutationParams {
   activityId: string;
-  activity: Activity;
+  activity: {
+    message: string;
+    html?: string | null;
+    text?: string | null;
+    giphyId?: string | null;
+    imageId?: string | null;
+    eventId?: string | null;
+    groupId?: string | null;
+    contentId?: string | null;
+    commentedId?: string | null;
+    videoId?: string | null;
+  };
 }
 
 /**

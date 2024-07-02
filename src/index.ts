@@ -1,5 +1,6 @@
 export * from "./hooks";
 export * from "./interfaces";
+export * from "./params";
 export * from "./utilities";
 export * from "./queries";
 export * from "./mutations";

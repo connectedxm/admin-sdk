@@ -1,4 +1,4 @@
-export interface AccountCreateValidation {
+export interface AccountCreateParams {
   accountType?: "tod" | "todo" | null;
   featured?: boolean | null;
   email?: string | null;
@@ -29,7 +29,7 @@ export interface AccountCreateValidation {
   internalRefId?: string | null;
 }
 
-export interface AccountUpdateValidation {
+export interface AccountUpdateParams {
   accountType?: "todo" | "todo" | string | null; // Assuming "todo" | "todo" was a placeholder for actual enum values
   featured?: boolean | null;
   email?: string | null;
@@ -60,7 +60,7 @@ export interface AccountUpdateValidation {
   internalRefId?: string | null;
 }
 
-export interface ActivityCreateValidation {
+export interface ActivityCreateParams {
   message?: string | null;
   html?: string | null;
   text?: string | null;
@@ -73,7 +73,7 @@ export interface ActivityCreateValidation {
   videoId?: string | null;
 }
 
-export interface ActivityUpdateValidation {
+export interface ActivityUpdateParams {
   message?: string | null;
   html?: string | null;
   text?: string | null;
@@ -86,7 +86,7 @@ export interface ActivityUpdateValidation {
   videoId?: string | null;
 }
 
-export interface AdvertisementCreateValidation {
+export interface AdvertisementCreateParams {
   type?: "todo" | "todo" | string | null;
   link?: string | null;
   title?: string | null;
@@ -100,7 +100,7 @@ export interface AdvertisementCreateValidation {
   eventOnly?: boolean | null;
 }
 
-export interface AdvertisementUpdateValidation {
+export interface AdvertisementUpdateParams {
   type?: "todo" | "todo" | string | null;
   link?: string | null;
   title?: string | null;
@@ -114,7 +114,7 @@ export interface AdvertisementUpdateValidation {
   eventOnly?: boolean | null;
 }
 
-export interface AnnouncementCreateValidation {
+export interface AnnouncementCreateParams {
   userId?: string | null;
   creatorId?: string | null;
   verifiedAccounts?: boolean | null;
@@ -132,7 +132,7 @@ export interface AnnouncementCreateValidation {
   push?: boolean | null;
 }
 
-export interface BenefitCreateValidation {
+export interface BenefitCreateParams {
   link?: string | null;
   title?: string | null;
   slug?: string | null; // Assuming validSlug is a function for validation and not relevant to TypeScript interface
@@ -146,12 +146,12 @@ export interface BenefitCreateValidation {
   eventOnly?: boolean | null;
 }
 
-export interface BenefitTranslationUpdateValidation {
+export interface BenefitTranslationUpdateParams {
   title?: string | null;
   description?: string | null;
 }
 
-export interface BenefitUpdateValidation {
+export interface BenefitUpdateParams {
   link?: string | null;
   title?: string | null;
   slug?: string | null;
@@ -165,26 +165,26 @@ export interface BenefitUpdateValidation {
   eventOnly?: boolean | null;
 }
 
-export interface ChannelCollectionCreateValidation {
+export interface ChannelCollectionCreateParams {
   name?: string | null;
   description?: string | null;
 }
 
-export interface ChannelCollectionTranslationUpdateValidation {
+export interface ChannelCollectionTranslationUpdateParams {
   name?: string | null;
   description?: string | null;
 }
 
-export interface ChannelCollectionUpdateValidation {
+export interface ChannelCollectionUpdateParams {
   name?: string | null;
   description?: string | null;
 }
 
-export interface ChannelContentInterestCreateValidation {
+export interface ChannelContentInterestCreateParams {
   name?: string | null;
 }
 
-export interface ChannelCreateValidation {
+export interface ChannelCreateParams {
   name?: string | null;
   slug?: string | null; // Assuming validSlug is a function for validation and not relevant to TypeScript interface
   description?: string | null;
@@ -200,21 +200,21 @@ export interface ChannelCreateValidation {
   groupId?: string | null;
 }
 
-export interface ChannelInterestCreateValidation {
+export interface ChannelInterestCreateParams {
   name?: string | null;
 }
 
-export interface ChannelSubscriberUpdateValidation {
+export interface ChannelSubscriberUpdateParams {
   contentEmailNotification?: boolean | null;
   contentPushNotification?: boolean | null;
 }
 
-export interface ChannelTranslationUpdateValidation {
+export interface ChannelTranslationUpdateParams {
   name?: string | null;
   description?: string | null;
 }
 
-export interface ChannelUpdateValidation {
+export interface ChannelUpdateParams {
   name?: string | null;
   slug?: string | null;
   description?: string | null;
@@ -230,7 +230,7 @@ export interface ChannelUpdateValidation {
   groupId?: string | null;
 }
 
-export interface ContentCreateValidation {
+export interface ContentCreateParams {
   type?: "todo" | "todo" | string | null; // Assuming ContentType keys are the valid strings
   published?: string | null;
   channelId?: string | null;
@@ -250,7 +250,7 @@ export interface ContentCreateValidation {
   googleUrl?: string | null;
   youtubeUrl?: string | null;
 }
-export interface ContentGuestCreateValidation {
+export interface ContentGuestCreateParams {
   type?: "todo" | "todo" | string | null;
   slug?: string | null;
   name?: string | null;
@@ -271,13 +271,13 @@ export interface ContentGuestCreateValidation {
   discord?: string | null;
 }
 
-export interface ContentGuestTranslationUpdateValidation {
+export interface ContentGuestTranslationUpdateParams {
   title?: string | null;
   bio?: string | null;
   companyBio?: string | null;
 }
 
-export interface ContentGuestUpdateValidation {
+export interface ContentGuestUpdateParams {
   type?: "todo" | "todo" | string | null;
   slug?: string | null;
   name?: string | null;
@@ -298,13 +298,13 @@ export interface ContentGuestUpdateValidation {
   discord?: string | null;
 }
 
-export interface ContentTranslationUpdateValidation {
+export interface ContentTranslationUpdateParams {
   title?: string | null;
   description?: string | null;
   body?: string | null;
 }
 
-export interface ContentUpdateValidation {
+export interface ContentUpdateParams {
   type?: "todo" | "todo" | string | null;
   published?: string | null;
   channelId?: string | null;
@@ -325,7 +325,7 @@ export interface ContentUpdateValidation {
   youtubeUrl?: string | null;
 }
 
-export interface EventActivationCreateValidation {
+export interface EventActivationCreateParams {
   imageId?: string | null;
   managerId?: string | null;
   name?: string | null;
@@ -338,13 +338,13 @@ export interface EventActivationCreateValidation {
   protectionCode?: number | string | null;
 }
 
-export interface EventActivationUpdateTranslationValidation {
+export interface EventActivationUpdateTranslationParams {
   name?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
 }
 
-export interface EventActivationUpdateValidation {
+export interface EventActivationUpdateParams {
   imageId?: string | null;
   managerId?: string | null;
   name?: string | null;
@@ -357,7 +357,7 @@ export interface EventActivationUpdateValidation {
   protectionCode?: number | string | null;
 }
 
-export interface EventAddOnCreateValidation {
+export interface EventAddOnCreateParams {
   name?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
@@ -372,13 +372,13 @@ export interface EventAddOnCreateValidation {
   minReservationEnd?: string | null;
   maxReservationEnd?: string | null;
 }
-export interface EventAddOnUpdateTranslationValidation {
+export interface EventAddOnUpdateTranslationParams {
   name?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
 }
 
-export interface EventAddOnUpdateValidation {
+export interface EventAddOnUpdateParams {
   name?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
@@ -394,7 +394,7 @@ export interface EventAddOnUpdateValidation {
   maxReservationEnd?: string | null;
 }
 
-export interface EventBadgeFieldUpdateValidation {
+export interface EventBadgeFieldUpdateParams {
   type?: "todo" | "todo" | string | null;
   lookup?: string | null;
   maxLength?: number | string | null;
@@ -403,7 +403,7 @@ export interface EventBadgeFieldUpdateValidation {
   sortOrder?: number | string | null;
 }
 
-export interface EventCreateCouponValidation {
+export interface EventCreateCouponParams {
   code?: string | null;
   description?: string | null;
   active?: boolean | null;
@@ -421,7 +421,7 @@ export interface EventCreateCouponValidation {
   managerId?: string | null;
 }
 
-export interface EventFaqSectionQuestionsValidation {
+export interface EventFaqSectionQuestionsParams {
   question?: string | null;
   slug?: string | null;
   answer?: string | null;
@@ -429,13 +429,13 @@ export interface EventFaqSectionQuestionsValidation {
   visible?: boolean | null;
 }
 
-export interface EventFaqSectionValidation {
+export interface EventFaqSectionParams {
   name?: string | null;
   slug?: string | null;
   priority?: number | string | null;
 }
 
-export interface EventCreateValidation {
+export interface EventCreateParams {
   featured?: boolean | null;
   visible?: boolean | null;
   name?: string | null;
@@ -479,7 +479,7 @@ export interface EventCreateValidation {
   groupOnly?: boolean | null;
 }
 
-export interface EventPageCreateValidation {
+export interface EventPageCreateParams {
   slug?: string | null;
   title?: string | null;
   subtitle?: string | null;
@@ -487,13 +487,13 @@ export interface EventPageCreateValidation {
   sortOrder?: number | string | null;
 }
 
-export interface EventPageTranslationUpdateValidation {
+export interface EventPageTranslationUpdateParams {
   title?: string | null;
   subtitle?: string | null;
   html?: string | null;
 }
 
-export interface EventPageUpdateValidation {
+export interface EventPageUpdateParams {
   slug?: string | null;
   title?: string | null;
   subtitle?: string | null;
@@ -501,7 +501,7 @@ export interface EventPageUpdateValidation {
   sortOrder?: number | string | null;
 }
 
-export interface EventPurchaseCreateValidation {
+export interface EventPurchaseCreateParams {
   location?: string | null;
   usedAt?: string | null;
   ticketId?: string | null;
@@ -510,7 +510,7 @@ export interface EventPurchaseCreateValidation {
   reservationEnd?: string | null;
 }
 
-export interface EventPurchaseUpdateValidation {
+export interface EventPurchaseUpdateParams {
   location?: string | null;
   usedAt?: Date | null;
   ticketId?: string | null;
@@ -519,27 +519,27 @@ export interface EventPurchaseUpdateValidation {
   reservationEnd?: Date | null;
 }
 
-export interface EventRegistrationBypassCreateValidation {
+export interface EventRegistrationBypassCreateParams {
   accountId?: string | null;
   closed?: boolean | null;
   preRegister?: boolean | null;
   postRegister?: boolean | null;
 }
 
-export interface EventRegistrationBypassUpdateValidation {
+export interface EventRegistrationBypassUpdateParams {
   accountId?: string | null;
   closed?: boolean | null;
   preRegister?: boolean | null;
   postRegister?: boolean | null;
 }
 
-export interface EventRegistrationSectionUpdateTranslationValidation {
+export interface EventRegistrationSectionUpdateTranslationParams {
   name?: string | null;
   description?: string | null;
   guestDescription?: string | null;
 }
 
-export interface EventReservationSectionCreateValidation {
+export interface EventReservationSectionCreateParams {
   name?: string | null;
   shortDescription?: string | null;
   price?: number | null;
@@ -549,7 +549,7 @@ export interface EventReservationSectionCreateValidation {
 }
 
 //EVENT RESERVATION SECTION LOCATION
-export interface EventReservationSectionLocationCreateValidation {
+export interface EventReservationSectionLocationCreateParams {
   name?: string | null;
   shortDescription?: string | null;
   premium?: number | null;
@@ -557,7 +557,7 @@ export interface EventReservationSectionLocationCreateValidation {
   sortOrder?: number | null;
 }
 
-export interface EventReservationSectionLocationUpdateValidation {
+export interface EventReservationSectionLocationUpdateParams {
   name?: string | null;
   shortDescription?: string | null;
   premium?: number | null;
@@ -566,12 +566,12 @@ export interface EventReservationSectionLocationUpdateValidation {
 }
 
 //EVENT RESERVATION SECTION TRANSLATION
-export interface EventReservationSectionTranslationUpdateValidation {
+export interface EventReservationSectionTranslationUpdateParams {
   name?: string | null;
   shortDescription?: string | null;
 }
 
-export interface EventReservationSectionUpdateValidation {
+export interface EventReservationSectionUpdateParams {
   name?: string | null;
   shortDescription?: string | null;
   price?: string | null;
@@ -581,7 +581,7 @@ export interface EventReservationSectionUpdateValidation {
 }
 
 //EVENT SESSION
-export interface EventSessionCreateValidation {
+export interface EventSessionCreateParams {
   name?: string | null;
   slug?: string | null;
   startTime?: Date | null;
@@ -596,13 +596,13 @@ export interface EventSessionCreateValidation {
 }
 
 //EVENT SESSION TRANSLATION
-export interface EventSessionTranslationUpdateValidation {
+export interface EventSessionTranslationUpdateParams {
   name?: string | null;
   description?: string | null;
   longDescription?: string | null;
 }
 
-export interface EventSessionUpdateValidation {
+export interface EventSessionUpdateParams {
   name?: string | null;
   slug?: string | null;
   startTime?: Date | null;
@@ -618,7 +618,7 @@ export interface EventSessionUpdateValidation {
 
 //event speaker
 
-export interface EventSpeakerCreateValidation {
+export interface EventSpeakerCreateParams {
   firstName?: string | null;
   lastName?: string | null;
   slug?: string | null;
@@ -642,12 +642,12 @@ export interface EventSpeakerCreateValidation {
 }
 
 //EVENT SPEAKER TRANSLATION
-export interface EventSpeakerTranslationUpdateValidation {
+export interface EventSpeakerTranslationUpdateParams {
   title?: string | null;
   bio?: string | null;
 }
 
-export interface EventSpeakerUpdateValidation {
+export interface EventSpeakerUpdateParams {
   firstName?: string | null;
   lastName?: string | null;
   slug?: string | null;
@@ -670,24 +670,24 @@ export interface EventSpeakerUpdateValidation {
   visible?: boolean | null;
 }
 
-export interface EventTicketTranslationUpdateValidation {
+export interface EventTicketTranslationUpdateParams {
   name?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
 }
 
-export interface EventTrackTranslationUpdateValidation {
+export interface EventTrackTranslationUpdateParams {
   name?: string | null;
   description?: string | null;
 }
 
-export interface EventTranslationUpdateValidation {
+export interface EventTranslationUpdateParams {
   name?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
 }
 
-export interface EventUpdateCouponValidation {
+export interface EventUpdateCouponParams {
   code?: string | null;
   description?: string | null;
   active?: boolean | null;
@@ -705,18 +705,18 @@ export interface EventUpdateCouponValidation {
   managerId?: string | null;
 }
 
-export interface EventUpdateEmailValidation {
+export interface EventUpdateEmailParams {
   body?: string | null;
   replyTo?: string | null;
 }
 
 // EVENT FAQ SECTION QUESTIONS TRANSLATION
-export interface EventUpdateFaqSectionQuestionsTranslationValidation {
+export interface EventUpdateFaqSectionQuestionsTranslationParams {
   question?: string | null;
   answer?: string | null;
 }
 
-export interface EventUpdateFaqSectionQuestionsValidation {
+export interface EventUpdateFaqSectionQuestionsParams {
   question?: string | null;
   slug?: string | null;
   answer?: string | null;
@@ -725,23 +725,23 @@ export interface EventUpdateFaqSectionQuestionsValidation {
 }
 
 //EVENT FAQ SECTIONS TRANSLATIONS
-export interface EventUpdateFaqSectionTranslationValidation {
+export interface EventUpdateFaqSectionTranslationParams {
   name?: string | null;
 }
 
-export interface EventUpdateFaqSectionValidation {
+export interface EventUpdateFaqSectionParams {
   name?: string | null;
   slug?: string | null;
   priority?: number | null;
 }
 
 //EVENT RESERVATION SECTION LOCATION TRANSLATION
-export interface EventUpdateReservationSectionLocationTranslationValidation {
+export interface EventUpdateReservationSectionLocationTranslationParams {
   name?: string | null;
   shortDescription?: string | null;
 }
 
-export interface EventUpdateValidation {
+export interface EventUpdateParams {
   featured?: boolean | null;
   visible?: boolean | null;
   name?: string | null;
@@ -785,7 +785,7 @@ export interface EventUpdateValidation {
   groupOnly?: boolean | null;
 }
 
-export interface GroupCreateValidation {
+export interface GroupCreateParams {
   featured?: boolean | null;
   name?: string | null;
   slug?: string | null;
@@ -796,7 +796,7 @@ export interface GroupCreateValidation {
   externalUrl?: string | null;
 }
 
-export interface GroupMembershipUpdateValidation {
+export interface GroupMembershipUpdateParams {
   announcementEmailNotification?: boolean | null;
   announcementPushNotification?: boolean | null;
   activityEmailNotification?: boolean | null;
@@ -806,12 +806,12 @@ export interface GroupMembershipUpdateValidation {
   chatPushNotification?: boolean | null;
 }
 
-export interface GroupTranslationUpdateValidation {
+export interface GroupTranslationUpdateParams {
   name?: string | null;
   description?: string | null;
 }
 
-export interface GroupUpdateValidation {
+export interface GroupUpdateParams {
   featured?: boolean | null;
   name?: string | null;
   slug?: string | null;
@@ -822,19 +822,19 @@ export interface GroupUpdateValidation {
   externalUrl?: string | null;
 }
 
-export interface InterestCreateValidation {
+export interface InterestCreateParams {
   name?: string | null;
   imageId?: string | null;
   featured?: boolean | null;
 }
 
-export interface InterestUpdateValidation {
+export interface InterestUpdateParams {
   name?: string | null;
   imageId?: string | null;
   featured?: boolean | null;
 }
 
-export interface InvoiceCreateValidation {
+export interface InvoiceCreateParams {
   title?: string | null;
   description?: string | null;
   status?: "todo" | "todo";
@@ -843,21 +843,21 @@ export interface InvoiceCreateValidation {
   accountId?: string | null;
 }
 
-export interface InvoiceLineItemCreateValidation {
+export interface InvoiceLineItemCreateParams {
   name?: string | null;
   description?: string | null;
   quantity?: number | null;
   amount?: number | null;
 }
 
-export interface InvoiceLineItemUpdateValidation {
+export interface InvoiceLineItemUpdateParams {
   name?: string | null;
   description?: string | null;
   quantity?: number | null;
   amount?: number | null;
 }
 
-export interface InvoiceUpdateValidation {
+export interface InvoiceUpdateParams {
   title?: string | null;
   description?: string | null;
   status?: "todo" | "todo";
@@ -866,15 +866,15 @@ export interface InvoiceUpdateValidation {
   accountId?: string | null;
 }
 
-export interface LeadCreateValidation {
+export interface LeadCreateParams {
   note?: string | null;
 }
 
-export interface LeadUpdateValidation {
+export interface LeadUpdateParams {
   note?: string | null;
 }
 
-export interface NotificationPreferencesCreateValidation {
+export interface NotificationPreferencesCreateParams {
   newFollowerPush?: boolean | null;
   newFollowerEmail?: boolean | null;
   likePush?: boolean | null;
@@ -900,7 +900,7 @@ export interface NotificationPreferencesCreateValidation {
   groupRequestAcceptedPush?: boolean | null;
 }
 
-export interface NotificationPreferencesUpdateValidation {
+export interface NotificationPreferencesUpdateParams {
   newFollowerPush?: boolean | null;
   newFollowerEmail?: boolean | null;
   likePush?: boolean | null;
@@ -926,25 +926,25 @@ export interface NotificationPreferencesUpdateValidation {
   groupRequestAcceptedPush?: boolean | null;
 }
 
-export interface OrganizationPageCreateValidation {
+export interface OrganizationPageCreateParams {
   title?: string | null;
   subtitle?: string | null;
   html?: string | null;
 }
 
-export interface OrganizationPageTranslationUpdateValidation {
+export interface OrganizationPageTranslationUpdateParams {
   title?: string | null;
   subtitle?: string | null;
   html?: string | null;
 }
 
-export interface OrganizationPageUpdateValidation {
+export interface OrganizationPageUpdateParams {
   title?: string | null;
   subtitle?: string | null;
   html?: string | null;
 }
 
-export interface OrganizationUpdateValidation {
+export interface OrganizationUpdateParams {
   email?: string;
   name?: string;
   description?: string;
@@ -979,12 +979,12 @@ export interface OrganizationUpdateValidation {
   requireCompany?: boolean | null;
 }
 
-export interface PaymentIntentPurchaseMetadataValidation {
+export interface PaymentIntentPurchaseMetadataParams {
   purchaseId?: string | null;
   addOnIds?: (string | null)[] | null;
 }
 
-export interface PushDeviceCreateValidation {
+export interface PushDeviceCreateParams {
   id?: string | null;
   deviceToken?: string | null;
   eventId?: string | null;
@@ -1003,7 +1003,7 @@ export interface PushDeviceCreateValidation {
   pushServiceName?: string | null;
 }
 
-export interface PushDeviceUpdateValidation {
+export interface PushDeviceUpdateParams {
   id?: string | null;
   deviceToken?: string | null;
   eventId?: string | null;
@@ -1022,7 +1022,7 @@ export interface PushDeviceUpdateValidation {
   pushServiceName?: string | null;
 }
 
-export interface QuestionChoiceCreateValidation {
+export interface QuestionChoiceCreateParams {
   value?: string | null;
   text?: string | null;
   supply?: number | null;
@@ -1030,13 +1030,13 @@ export interface QuestionChoiceCreateValidation {
   sortOrder?: number | null;
 }
 
-export interface QuestionChoiceTranslationUpdateValidation {
+export interface QuestionChoiceTranslationUpdateParams {
   value?: string | null;
   text?: string | null;
   description?: string | null;
 }
 
-export interface QuestionChoiceUpdateValidation {
+export interface QuestionChoiceUpdateParams {
   value?: string | null;
   text?: string | null;
   supply?: number | null;
@@ -1044,7 +1044,7 @@ export interface QuestionChoiceUpdateValidation {
   sortOrder?: number | null;
 }
 
-export interface QuestionCreateValidation {
+export interface QuestionCreateParams {
   name?: string | null;
   type?: "todo" | "todo" | null;
   required?: boolean | null;
@@ -1062,23 +1062,23 @@ export interface QuestionCreateValidation {
   featured?: boolean | null;
 }
 
-export interface QuestionSearchValueCreateValidation {
+export interface QuestionSearchValueCreateParams {
   value?: string | null;
   top?: boolean | null;
 }
 
-export interface QuestionSearchValueUpdateValidation {
+export interface QuestionSearchValueUpdateParams {
   value?: string | null;
   top?: boolean | null;
 }
 
-export interface QuestionTranslationUpdateValidation {
+export interface QuestionTranslationUpdateParams {
   label?: string | null;
   placeholder?: string | null;
   description?: string | null;
 }
 
-export interface QuestionUpdateValidation {
+export interface QuestionUpdateParams {
   name?: string | null;
   type?: "todo" | "todo";
   required?: boolean | null;
@@ -1096,7 +1096,7 @@ export interface QuestionUpdateValidation {
   featured?: boolean | null;
 }
 
-export interface ReportCreateValidation {
+export interface ReportCreateParams {
   name: string;
   parentId: number;
   eventId?: string | null;
@@ -1107,7 +1107,7 @@ export interface ReportCreateValidation {
   advancedFilter?: string | null;
 }
 
-export interface ReportUpdateValidation {
+export interface ReportUpdateParams {
   name?: string | null;
   description?: string | null;
   filters?: string | null;
@@ -1116,21 +1116,21 @@ export interface ReportUpdateValidation {
   advancedFilter?: string | null;
 }
 
-export interface SectionCreateValidation {
+export interface SectionCreateParams {
   name?: string | null;
   description?: string | null;
   guestDescription?: string | null;
   sortOrder?: number | null;
 }
 
-export interface SectionUpdateValidation {
+export interface SectionUpdateParams {
   name?: string | null;
   description?: string | null;
   guestDescription?: string | null;
   sortOrder?: number | null;
 }
 
-export interface SeriesCreateValidation {
+export interface SeriesCreateParams {
   name?: string | null;
   slug?: string | null;
   description?: string | null;
@@ -1138,7 +1138,7 @@ export interface SeriesCreateValidation {
   sortOrder?: number | null;
 }
 
-export interface SeriesUpdateValidation {
+export interface SeriesUpdateParams {
   name?: string | null;
   slug?: string | null;
   description?: string | null;
@@ -1146,7 +1146,7 @@ export interface SeriesUpdateValidation {
   sortOrder?: number | null;
 }
 
-export interface SponsorshipLevelCreateValidation {
+export interface SponsorshipLevelCreateParams {
   name?: string | null;
   slug?: string | null;
   subtitle?: string | null;
@@ -1157,13 +1157,13 @@ export interface SponsorshipLevelCreateValidation {
   sortOrder?: number | null;
 }
 
-export interface SponsorshipLevelTranslationUpdateValidation {
+export interface SponsorshipLevelTranslationUpdateParams {
   name?: string | null;
   subtitle?: string | null;
   description?: string | null;
 }
 
-export interface SponsorshipLevelUpdateValidation {
+export interface SponsorshipLevelUpdateParams {
   name?: string | null;
   slug?: string | null;
   subtitle?: string | null;
@@ -1174,13 +1174,13 @@ export interface SponsorshipLevelUpdateValidation {
   sortOrder?: number | null;
 }
 
-export interface StreamOutputCreateValidation {
+export interface StreamOutputCreateParams {
   enabled: boolean;
   streamKey: string;
   url: string;
 }
 
-export interface SubscriptionProductCreateValidation {
+export interface SubscriptionProductCreateParams {
   active?: boolean | null;
   name?: string | null;
   description?: string | null;
@@ -1188,7 +1188,7 @@ export interface SubscriptionProductCreateValidation {
   features?: (string | null)[] | null;
 }
 
-export interface SubscriptionProductPriceCreateValidation {
+export interface SubscriptionProductPriceCreateParams {
   active?: boolean | null;
   type?: "flat" | null;
   amount: number;
@@ -1197,11 +1197,11 @@ export interface SubscriptionProductPriceCreateValidation {
   intervalCount: number;
 }
 
-export interface SubscriptionProductPriceUpdateValidation {
+export interface SubscriptionProductPriceUpdateParams {
   active?: boolean | null;
 }
 
-export interface SubscriptionProductUpdateValidation {
+export interface SubscriptionProductUpdateParams {
   active?: boolean | null;
   name?: string | null;
   description?: string | null;
@@ -1209,11 +1209,11 @@ export interface SubscriptionProductUpdateValidation {
   features?: (string | null)[] | null;
 }
 
-export interface SubscriptionUpdateValidation {
+export interface SubscriptionUpdateParams {
   accountId?: string | null;
 }
 
-export interface SupportTicketCreateValidation {
+export interface SupportTicketCreateParams {
   type?: "todo" | "todo";
   email?: string | null;
   request?: string | null;
@@ -1222,7 +1222,7 @@ export interface SupportTicketCreateValidation {
   status?: "new" | "inProgress" | "complete" | null;
 }
 
-export interface SupportTicketUpdateValidation {
+export interface SupportTicketUpdateParams {
   type?: "todo" | "todo";
   email?: string | null;
   request?: string | null;
@@ -1231,13 +1231,13 @@ export interface SupportTicketUpdateValidation {
   status?: "new" | "inProgress" | "complete" | null;
 }
 
-export interface TeamCreateValidation {
+export interface TeamCreateParams {
   name: string;
   email?: string | null;
   username?: string | null;
 }
 
-export interface TeamMemberCreateValidation {
+export interface TeamMemberCreateParams {
   firstName?: string | null;
   lastName?: string | null;
   slug?: string | null;
@@ -1257,7 +1257,7 @@ export interface TeamMemberCreateValidation {
   startDate?: Date | null;
 }
 
-export interface TeamMemberUpdateValidation {
+export interface TeamMemberUpdateParams {
   firstName?: string | null;
   lastName?: string | null;
   slug?: string | null;
@@ -1277,13 +1277,13 @@ export interface TeamMemberUpdateValidation {
   startDate?: Date | null;
 }
 
-export interface TeamUpdateValidation {
+export interface TeamUpdateParams {
   name?: string;
   email?: string | null;
   username?: string;
 }
 
-export interface ThreadCreateValidation {
+export interface ThreadCreateParams {
   name?: string;
   description?: string;
   featured?: boolean | null;
@@ -1293,7 +1293,7 @@ export interface ThreadCreateValidation {
   eventId?: string | null;
 }
 
-export interface ThreadUpdateValidation {
+export interface ThreadUpdateParams {
   name?: string;
   description?: string;
   featured?: boolean | null;
@@ -1303,7 +1303,7 @@ export interface ThreadUpdateValidation {
   eventId?: string | null;
 }
 
-export interface TicketCreateValidation {
+export interface TicketCreateParams {
   visibility?: "todo" | "todo";
   featured?: boolean | null;
   active?: boolean | null;
@@ -1331,7 +1331,7 @@ export interface TicketCreateValidation {
   maxReservationEnd?: Date | null;
 }
 
-export interface TicketUpdateValidation {
+export interface TicketUpdateParams {
   visibility?: "todo" | "todo";
   featured?: boolean | null;
   active?: boolean | null;
@@ -1359,7 +1359,7 @@ export interface TicketUpdateValidation {
   maxReservationEnd?: Date | null;
 }
 
-export interface TierCreateValidation {
+export interface TierCreateParams {
   name?: string | null;
   slug?: string | null;
   iconName?: string | null;
@@ -1370,7 +1370,7 @@ export interface TierCreateValidation {
   internal?: boolean | null;
 }
 
-export interface TierUpdateValidation {
+export interface TierUpdateParams {
   name?: string | null;
   slug?: string | null;
   iconName?: string | null;
@@ -1380,34 +1380,34 @@ export interface TierUpdateValidation {
   color?: string | null;
   internal?: boolean | null;
 }
-export interface TrackCreateValidation {
+export interface TrackCreateParams {
   name?: string | null;
   slug?: string | null;
   description?: string | null;
   color?: string | null;
 }
 
-export interface TrackUpdateValidation {
+export interface TrackUpdateParams {
   name?: string | null;
   slug?: string | null;
   description?: string | null;
   color?: string | null;
 }
 
-export interface TriggerCreateValidation {
+export interface TriggerCreateParams {
   code?: string | null;
   enabled?: boolean | null;
 }
 
-export interface TriggerUpdateValidation {
+export interface TriggerUpdateParams {
   code?: string | null;
   enabled?: boolean | null;
 }
 
-export interface UserCreateValidation {
+export interface UserCreateParams {
   title?: string | null;
 }
 
-export interface UserUpdateValidation {
+export interface UserUpdateParams {
   title?: string | null;
 }

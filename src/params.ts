@@ -1,11 +1,13 @@
+import { AccountType, AdvertisementType } from "./interfaces";
+
 export interface AccountCreateParams {
-  accountType?: "tod" | "todo" | null;
-  featured?: boolean | null;
-  email?: string | null;
+  accountType: keyof typeof AccountType;
+  email: string;
+  username: string;
+  featured?: boolean;
   firstName?: string | null;
   lastName?: string | null;
   imageId?: string | null;
-  username?: string | null;
   phone?: string | null;
   title?: string | null;
   company?: string | null;
@@ -30,8 +32,8 @@ export interface AccountCreateParams {
 }
 
 export interface AccountUpdateParams {
-  accountType?: "todo" | "todo" | string | null; // Assuming "todo" | "todo" was a placeholder for actual enum values
-  featured?: boolean | null;
+  accountType?: keyof typeof AccountType;
+  featured?: boolean;
   email?: string | null;
   firstName?: string | null;
   lastName?: string | null;
@@ -61,7 +63,7 @@ export interface AccountUpdateParams {
 }
 
 export interface ActivityCreateParams {
-  message?: string | null;
+  message: string;
   html?: string | null;
   text?: string | null;
   giphyId?: string | null;
@@ -74,7 +76,7 @@ export interface ActivityCreateParams {
 }
 
 export interface ActivityUpdateParams {
-  message?: string | null;
+  message?: string;
   html?: string | null;
   text?: string | null;
   giphyId?: string | null;
@@ -87,13 +89,13 @@ export interface ActivityUpdateParams {
 }
 
 export interface AdvertisementCreateParams {
-  type?: "todo" | "todo" | string | null;
-  link?: string | null;
-  title?: string | null;
+  type: keyof typeof AdvertisementType;
+  link: string;
+  title: string;
+  startDate: string | null;
   description?: string | null;
   imageId?: string | null;
-  startDate?: string | null; // Assuming date is represented as a string
-  endDate?: string | null; // Assuming date is represented as a string
+  endDate?: string | null;
   weight?: number | null;
   accountId?: string | null;
   eventId?: string | null;
@@ -101,9 +103,9 @@ export interface AdvertisementCreateParams {
 }
 
 export interface AdvertisementUpdateParams {
-  type?: "todo" | "todo" | string | null;
-  link?: string | null;
-  title?: string | null;
+  type?: keyof typeof AdvertisementType;
+  link?: string;
+  title?: string;
   description?: string | null;
   imageId?: string | null;
   startDate?: string | null;
@@ -234,7 +236,7 @@ export interface ContentCreateParams {
   type?: "todo" | "todo" | string | null; // Assuming ContentType keys are the valid strings
   published?: string | null;
   channelId?: string | null;
-  featured?: boolean | null;
+  featured?: boolean;
   visible?: boolean | null;
   title?: string | null;
   slug?: string | null;
@@ -308,7 +310,7 @@ export interface ContentUpdateParams {
   type?: "todo" | "todo" | string | null;
   published?: string | null;
   channelId?: string | null;
-  featured?: boolean | null;
+  featured?: boolean;
   visible?: boolean | null;
   title?: string | null;
   slug?: string | null;
@@ -436,7 +438,7 @@ export interface EventFaqSectionParams {
 }
 
 export interface EventCreateParams {
-  featured?: boolean | null;
+  featured?: boolean;
   visible?: boolean | null;
   name?: string | null;
   eventType?: "todo" | "todo" | string | null;
@@ -742,7 +744,7 @@ export interface EventUpdateReservationSectionLocationTranslationParams {
 }
 
 export interface EventUpdateParams {
-  featured?: boolean | null;
+  featured?: boolean;
   visible?: boolean | null;
   name?: string | null;
   eventType?: "todo" | "todo" | null;
@@ -786,7 +788,7 @@ export interface EventUpdateParams {
 }
 
 export interface GroupCreateParams {
-  featured?: boolean | null;
+  featured?: boolean;
   name?: string | null;
   slug?: string | null;
   description?: string | null;
@@ -812,7 +814,7 @@ export interface GroupTranslationUpdateParams {
 }
 
 export interface GroupUpdateParams {
-  featured?: boolean | null;
+  featured?: boolean;
   name?: string | null;
   slug?: string | null;
   description?: string | null;
@@ -825,13 +827,13 @@ export interface GroupUpdateParams {
 export interface InterestCreateParams {
   name?: string | null;
   imageId?: string | null;
-  featured?: boolean | null;
+  featured?: boolean;
 }
 
 export interface InterestUpdateParams {
   name?: string | null;
   imageId?: string | null;
-  featured?: boolean | null;
+  featured?: boolean;
 }
 
 export interface InvoiceCreateParams {
@@ -1059,7 +1061,7 @@ export interface QuestionCreateParams {
   validation?: string | null;
   validationMessage?: string | null;
   sortOrder?: number | null;
-  featured?: boolean | null;
+  featured?: boolean;
 }
 
 export interface QuestionSearchValueCreateParams {
@@ -1093,7 +1095,7 @@ export interface QuestionUpdateParams {
   validation?: string | null;
   validationMessage?: string | null;
   sortOrder?: number | null;
-  featured?: boolean | null;
+  featured?: boolean;
 }
 
 export interface ReportCreateParams {
@@ -1286,7 +1288,7 @@ export interface TeamUpdateParams {
 export interface ThreadCreateParams {
   name?: string;
   description?: string;
-  featured?: boolean | null;
+  featured?: boolean;
   visible?: boolean | null;
   access?: "";
   groupId?: string | null;
@@ -1296,7 +1298,7 @@ export interface ThreadCreateParams {
 export interface ThreadUpdateParams {
   name?: string;
   description?: string;
-  featured?: boolean | null;
+  featured?: boolean;
   visible?: boolean | null;
   access?: "todo" | "todo";
   groupId?: string | null;
@@ -1305,7 +1307,7 @@ export interface ThreadUpdateParams {
 
 export interface TicketCreateParams {
   visibility?: "todo" | "todo";
-  featured?: boolean | null;
+  featured?: boolean;
   active?: boolean | null;
   transferable?: boolean | null;
   name?: string | null;
@@ -1333,7 +1335,7 @@ export interface TicketCreateParams {
 
 export interface TicketUpdateParams {
   visibility?: "todo" | "todo";
-  featured?: boolean | null;
+  featured?: boolean;
   active?: boolean | null;
   transferable?: boolean | null;
   name?: string | null;

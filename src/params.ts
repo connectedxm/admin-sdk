@@ -214,417 +214,301 @@ interface ChannelTranslationUpdateValidation {
   description?: string | null;
 }
 
-export const CHANNEL_UPDATE_VALIDATION = Joi.object({}).keys({
-  name: OPTIONAL_STRING,
-  slug: OPTIONAL_STRING.custom(validSlug),
-  description: OPTIONAL_STRING,
-  priority: OPTIONAL_NUMBER,
-  visible: OPTIONAL_BOOLEAN,
-  imageId: OPTIONAL_STRING,
-  format: OPTIONAL_STRING.valid("article", "podcast", "video"),
-  externalUrl: OPTIONAL_STRING.uri(),
-  appleUrl: OPTIONAL_STRING.uri(),
-  spotifyUrl: OPTIONAL_STRING.uri(),
-  googleUrl: OPTIONAL_STRING.uri(),
-  youtubeUrl: OPTIONAL_STRING.uri(),
-  groupId: OPTIONAL_STRING,
-});
+interface ChannelUpdateValidation {
+  name?: string | null;
+  slug?: string | null;
+  description?: string | null;
+  priority?: number | string | null;
+  visible?: boolean | null;
+  imageId?: string | null;
+  format?: "todo" | "todo" | string | null; // Assuming "article", "podcast", "video" are the only valid strings
+  externalUrl?: string | null;
+  appleUrl?: string | null;
+  spotifyUrl?: string | null;
+  googleUrl?: string | null;
+  youtubeUrl?: string | null;
+  groupId?: string | null;
+}
 
-export const CONTENT_CREATE_VALIDATION = Joi.object({}).keys({
-  type: OPTIONAL_STRING.valid(...Object.keys(ContentType)),
-  published: OPTIONAL_DATE,
-  channelId: OPTIONAL_STRING,
-  featured: OPTIONAL_BOOLEAN,
-  visible: OPTIONAL_BOOLEAN,
-  title: OPTIONAL_STRING,
-  slug: OPTIONAL_STRING.custom(validSlug),
-  description: OPTIONAL_STRING,
-  duration: OPTIONAL_STRING,
-  body: OPTIONAL_STRING,
-  imageUrl: OPTIONAL_STRING,
-  audioUrl: OPTIONAL_STRING,
-  videoUrl: OPTIONAL_STRING,
-  externalUrl: OPTIONAL_STRING.uri(),
-  appleUrl: OPTIONAL_STRING.uri(),
-  spotifyUrl: OPTIONAL_STRING.uri(),
-  googleUrl: OPTIONAL_STRING.uri(),
-  youtubeUrl: OPTIONAL_STRING.uri(),
-});
+interface ContentCreateValidation {
+  type?: "todo" | "todo" | string | null; // Assuming ContentType keys are the valid strings
+  published?: string | null;
+  channelId?: string | null;
+  featured?: boolean | null;
+  visible?: boolean | null;
+  title?: string | null;
+  slug?: string | null;
+  description?: string | null;
+  duration?: string | null;
+  body?: string | null;
+  imageUrl?: string | null;
+  audioUrl?: string | null;
+  videoUrl?: string | null;
+  externalUrl?: string | null;
+  appleUrl?: string | null;
+  spotifyUrl?: string | null;
+  googleUrl?: string | null;
+  youtubeUrl?: string | null;
+}
+interface ContentGuestCreateValidation {
+  type?: "todo" | "todo" | string | null;
+  slug?: string | null;
+  name?: string | null;
+  title?: string | null;
+  bio?: string | null;
+  company?: string | null;
+  companyLink?: string | null;
+  companyBio?: string | null;
+  accountId?: string | null;
+  imageId?: string | null;
+  website?: string | null;
+  facebook?: string | null;
+  twitter?: string | null;
+  instagram?: string | null;
+  linkedIn?: string | null;
+  tikTok?: string | null;
+  youtube?: string | null;
+  discord?: string | null;
+}
 
-export const CONTENT_GUEST_CREATE_VALIDATION = Joi.object().keys({
-  type: OPTIONAL_STRING.valid(...Object.keys(ContentGuestType)),
-  slug: OPTIONAL_STRING.custom(validSlug),
-  name: OPTIONAL_STRING,
-  title: OPTIONAL_STRING,
-  bio: OPTIONAL_STRING,
-  company: OPTIONAL_STRING,
-  companyLink: OPTIONAL_STRING.uri(),
-  companyBio: OPTIONAL_STRING,
-  accountId: OPTIONAL_STRING,
-  imageId: OPTIONAL_STRING,
-  website: OPTIONAL_STRING.uri(),
-  facebook: OPTIONAL_STRING.uri(),
-  twitter: OPTIONAL_STRING.uri(),
-  instagram: OPTIONAL_STRING.uri(),
-  linkedIn: OPTIONAL_STRING.uri(),
-  tikTok: OPTIONAL_STRING.uri(),
-  youtube: OPTIONAL_STRING.uri(),
-  discord: OPTIONAL_STRING.uri(),
-});
+interface ContentGuestTranslationUpdateValidation {
+  title?: string | null;
+  bio?: string | null;
+  companyBio?: string | null;
+}
 
-export const CONTENT_GUEST_TRANSLATION_UPDATE_VALIDATION = Joi.object().keys({
-  title: OPTIONAL_STRING,
-  bio: OPTIONAL_STRING,
-  companyBio: OPTIONAL_STRING,
-});
+interface ContentGuestUpdateValidation {
+  type?: "todo" | "todo" | string | null;
+  slug?: string | null;
+  name?: string | null;
+  title?: string | null;
+  bio?: string | null;
+  company?: string | null;
+  companyLink?: string | null;
+  companyBio?: string | null;
+  accountId?: string | null;
+  imageId?: string | null;
+  website?: string | null;
+  facebook?: string | null;
+  twitter?: string | null;
+  instagram?: string | null;
+  linkedIn?: string | null;
+  tikTok?: string | null;
+  youtube?: string | null;
+  discord?: string | null;
+}
 
-export const CONTENT_GUEST_UPDATE_VALIDATION = Joi.object().keys({
-  type: OPTIONAL_STRING.valid(...Object.keys(ContentGuestType)),
-  slug: OPTIONAL_STRING.custom(validSlug),
-  name: OPTIONAL_STRING,
-  title: OPTIONAL_STRING,
-  bio: OPTIONAL_STRING,
-  company: OPTIONAL_STRING,
-  companyLink: OPTIONAL_STRING.uri(),
-  companyBio: OPTIONAL_STRING,
-  accountId: OPTIONAL_STRING,
-  imageId: OPTIONAL_STRING,
-  website: OPTIONAL_STRING.uri(),
-  facebook: OPTIONAL_STRING.uri(),
-  twitter: OPTIONAL_STRING.uri(),
-  instagram: OPTIONAL_STRING.uri(),
-  linkedIn: OPTIONAL_STRING.uri(),
-  tikTok: OPTIONAL_STRING.uri(),
-  youtube: OPTIONAL_STRING.uri(),
-  discord: OPTIONAL_STRING.uri(),
-});
+interface ContentTranslationUpdateValidation {
+  title?: string | null;
+  description?: string | null;
+  body?: string | null;
+}
 
-export const CONTENT_TRANSLATION_UPDATE_VALIDATION = Joi.object().keys({
-  title: OPTIONAL_STRING,
-  description: OPTIONAL_STRING,
-  body: OPTIONAL_STRING,
-});
+interface ContentUpdateValidation {
+  type?: "todo" | "todo" | string | null;
+  published?: string | null;
+  channelId?: string | null;
+  featured?: boolean | null;
+  visible?: boolean | null;
+  title?: string | null;
+  slug?: string | null;
+  description?: string | null;
+  duration?: string | null;
+  body?: string | null;
+  imageUrl?: string | null;
+  audioUrl?: string | null;
+  videoUrl?: string | null;
+  externalUrl?: string | null;
+  appleUrl?: string | null;
+  spotifyUrl?: string | null;
+  googleUrl?: string | null;
+  youtubeUrl?: string | null;
+}
 
-export const CONTENT_UPDATE_VALIDATION = Joi.object({}).keys({
-  type: OPTIONAL_STRING.valid(...Object.keys(ContentType)),
-  published: OPTIONAL_DATE,
-  channelId: OPTIONAL_STRING,
-  featured: OPTIONAL_BOOLEAN,
-  visible: OPTIONAL_BOOLEAN,
-  title: OPTIONAL_STRING,
-  slug: OPTIONAL_STRING.custom(validSlug),
-  description: OPTIONAL_STRING,
-  duration: OPTIONAL_STRING,
-  body: OPTIONAL_STRING,
-  imageUrl: OPTIONAL_STRING,
-  audioUrl: OPTIONAL_STRING,
-  videoUrl: OPTIONAL_STRING,
-  externalUrl: OPTIONAL_STRING.uri(),
-  appleUrl: OPTIONAL_STRING.uri(),
-  spotifyUrl: OPTIONAL_STRING.uri(),
-  googleUrl: OPTIONAL_STRING.uri(),
-  youtubeUrl: OPTIONAL_STRING.uri(),
-});
+interface EventActivationCreateValidation {
+  imageId?: string | null;
+  managerId?: string | null;
+  name?: string | null;
+  slug?: string | null;
+  shortDescription?: string | null;
+  longDescription?: string | null;
+  maxPoints?: number | string | null;
+  startAfter?: string | null;
+  protected?: boolean | null;
+  protectionCode?: number | string | null;
+}
 
-//EVENT ACTIVATION
-export const EVENT_ACTIVATION_CREATE_VALIDATION = Joi.object().keys({
-  imageId: OPTIONAL_STRING,
-  managerId: OPTIONAL_STRING,
-  name: OPTIONAL_STRING,
-  slug: OPTIONAL_STRING.custom(validSlug),
-  shortDescription: OPTIONAL_STRING,
-  longDescription: OPTIONAL_STRING,
-  maxPoints: OPTIONAL_NUMBER.min(1),
-  startAfter: OPTIONAL_DATE,
-  protected: OPTIONAL_BOOLEAN,
-  protectionCode: OPTIONAL_NUMBER,
-});
+interface EventActivationUpdateTranslationValidation {
+  name?: string | null;
+  shortDescription?: string | null;
+  longDescription?: string | null;
+}
 
-//EVENT ACTIVATION TRANSLATION
-export const EVENT_ACTIVATION_UPDATE_TRANSLATION_VALIDATION = Joi.object().keys(
-  {
-    name: OPTIONAL_STRING,
-    shortDescription: OPTIONAL_STRING,
-    longDescription: OPTIONAL_STRING,
-  }
-);
+interface EventActivationUpdateValidation {
+  imageId?: string | null;
+  managerId?: string | null;
+  name?: string | null;
+  slug?: string | null; // Assuming validSlug is a function for validation and not relevant to TypeScript interface
+  shortDescription?: string | null;
+  longDescription?: string | null;
+  maxPoints?: number | string | null;
+  startAfter?: string | null;
+  protected?: boolean | null;
+  protectionCode?: number | string | null;
+}
 
-export const EVENT_ACTIVATION_UPDATE_VALIDATION = Joi.object().keys({
-  imageId: OPTIONAL_STRING,
-  managerId: OPTIONAL_STRING,
-  name: OPTIONAL_STRING,
-  slug: OPTIONAL_STRING.custom(validSlug),
-  shortDescription: OPTIONAL_STRING,
-  longDescription: OPTIONAL_STRING,
-  maxPoints: OPTIONAL_NUMBER.min(1),
-  startAfter: OPTIONAL_DATE,
-  protected: OPTIONAL_BOOLEAN,
-  protectionCode: OPTIONAL_NUMBER,
-});
+interface EventAddOnCreateValidation {
+  name?: string | null;
+  shortDescription?: string | null;
+  longDescription?: string | null;
+  price?: number | string | null; // Assuming OPTIONAL_PRICE is similar to OPTIONAL_NUMBER but for prices
+  supply?: number | string | null;
+  sortOrder?: number | string | null;
+  imageId?: string | null;
+  reservationStart?: string | null;
+  minReservationStart?: string | null;
+  maxReservationStart?: string | null;
+  reservationEnd?: string | null;
+  minReservationEnd?: string | null;
+  maxReservationEnd?: string | null;
+}
+interface EventAddOnUpdateTranslationValidation {
+  name?: string | null;
+  shortDescription?: string | null;
+  longDescription?: string | null;
+}
 
-//EVENT ADDON
-export const EVENT_ADD_ON_CREATE_VALIDATION = Joi.object().keys({
-  name: OPTIONAL_STRING,
-  shortDescription: OPTIONAL_STRING.max(255),
-  longDescription: OPTIONAL_STRING.allow(""),
-  price: OPTIONAL_PRICE,
-  supply: OPTIONAL_NUMBER,
-  sortOrder: OPTIONAL_NUMBER.min(1),
-  imageId: OPTIONAL_STRING,
-  reservationStart: OPTIONAL_DATE,
-  minReservationStart: OPTIONAL_DATE.max(Joi.ref("reservationStart")).messages({
-    "date.max": '"Min Reservation Start" must be before "reservationStart"',
-  }),
-  maxReservationStart: OPTIONAL_DATE.min(Joi.ref("reservationStart")).messages({
-    "date.min": '"Max Reservation Start" must be after "reservationStart"',
-  }),
-  reservationEnd: OPTIONAL_DATE.greater(Joi.ref("reservationStart")).messages({
-    "date.greater": '"Reservation End" must be after "reservationStart"',
-  }),
-  minReservationEnd: OPTIONAL_DATE.max(Joi.ref("reservationEnd")).messages({
-    "date.max": '"Min Reservation End" must be before "reservationEnd"',
-  }),
-  maxReservationEnd: OPTIONAL_DATE.min(Joi.ref("reservationEnd")).messages({
-    "date.min": '"Max Reservation End" must be after "reservationEnd"',
-  }),
-});
+interface EventAddOnUpdateValidation {
+  name?: string | null;
+  shortDescription?: string | null;
+  longDescription?: string | null;
+  price?: number | string | null;
+  supply?: number | string | null;
+  sortOrder?: number | string | null;
+  imageId?: string | null;
+  reservationStart?: string | null;
+  minReservationStart?: string | null;
+  maxReservationStart?: string | null;
+  reservationEnd?: string | null;
+  minReservationEnd?: string | null;
+  maxReservationEnd?: string | null;
+}
 
-//EVENT ADDON TRANSLATION
-export const EVENT_ADD_ON_UPDATE_TRANSLATION_VALIDATION = Joi.object().keys({
-  name: OPTIONAL_STRING,
-  shortDescription: OPTIONAL_STRING,
-  longDescription: OPTIONAL_STRING,
-});
+interface EventBadgeFieldUpdateValidation {
+  type?: "todo" | "todo" | string | null;
+  lookup?: string | null;
+  maxLength?: number | string | null;
+  defaultValue?: string | null;
+  transformation?: "todo" | "todo" | string | null;
+  sortOrder?: number | string | null;
+}
 
-export const EVENT_ADD_ON_UPDATE_VALIDATION = Joi.object().keys({
-  name: OPTIONAL_STRING,
-  shortDescription: OPTIONAL_STRING.max(255),
-  longDescription: OPTIONAL_STRING.allow(""),
-  price: OPTIONAL_PRICE,
-  supply: OPTIONAL_NUMBER,
-  sortOrder: OPTIONAL_NUMBER.min(1),
-  imageId: OPTIONAL_STRING,
-  reservationStart: OPTIONAL_DATE,
-  minReservationStart: OPTIONAL_DATE.max(Joi.ref("reservationStart")).messages({
-    "date.max": '"Min Reservation Start" must be before "reservationStart"',
-  }),
-  maxReservationStart: OPTIONAL_DATE.min(Joi.ref("reservationStart")).messages({
-    "date.min": '"Max Reservation Start" must be after "reservationStart"',
-  }),
-  reservationEnd: OPTIONAL_DATE.greater(Joi.ref("reservationStart")).messages({
-    "date.greater": '"Reservation End" must be after "reservationStart"',
-  }),
-  minReservationEnd: OPTIONAL_DATE.max(Joi.ref("reservationEnd")).messages({
-    "date.max": '"Min Reservation End" must be before "reservationEnd"',
-  }),
-  maxReservationEnd: OPTIONAL_DATE.min(Joi.ref("reservationEnd")).messages({
-    "date.min": '"Max Reservation End" must be after "reservationEnd"',
-  }),
-});
+interface EventCreateCouponValidation {
+  code?: string | null;
+  description?: string | null;
+  active?: boolean | null;
+  startDate?: string | null;
+  endDate?: string | null;
+  discountAmount?: number | string | null;
+  discountPercent?: number | string | null;
+  quantityMin?: number | string | null;
+  quantityMax?: number | string | null;
+  amountMin?: number | string | null;
+  amountMax?: number | string | null;
+  useLimit?: number | string | null;
+  emailDomains?: string | null;
+  ticketId?: string | null;
+  managerId?: string | null;
+}
 
-//EVENT BADGE FIELD
-export const EVENT_BADGE_FIELD_UPDATE_VALIDATION = Joi.object({
-  type: OPTIONAL_STRING.valid(...Object.values(BadgeFieldType)),
-  lookup: OPTIONAL_STRING,
-  maxLength: OPTIONAL_NUMBER,
-  defaultValue: OPTIONAL_STRING,
-  transformation: OPTIONAL_STRING.valid(
-    ...Object.values(BadgeFieldTransfromation)
-  ),
-  sortOrder: OPTIONAL_NUMBER.min(1),
-});
+interface EventFaqSectionQuestionsValidation {
+  question?: string | null;
+  slug?: string | null;
+  answer?: string | null;
+  priority?: number | string | null;
+  visible?: boolean | null;
+}
 
-//EVENT COUPONS
-export const EVENT_CREATE_COUPON_VALIDATION = Joi.object().keys({
-  code: Joi.string().optional().uppercase().replace(/ /g, "_"),
-  description: Joi.string().optional().max(255).allow("", null),
-  active: OPTIONAL_BOOLEAN,
-  startDate: OPTIONAL_DATE,
-  endDate: OPTIONAL_DATE.min(Joi.ref("startDate")).messages({
-    "date.min": "End date must be after start date",
-  }),
-  discountAmount: Joi.alternatives()
-    .try(
-      Joi.string()
-        .valid("")
-        .custom(() => null),
-      Joi.number().integer()
-    )
-    .optional(),
-  discountPercent: Joi.alternatives()
-    .try(
-      Joi.string()
-        .valid("")
-        .custom(() => null),
-      Joi.number().integer()
-    )
-    .optional(),
-  quantityMin: Joi.alternatives()
-    .try(
-      Joi.string()
-        .valid("")
-        .custom(() => 1),
-      Joi.number().integer()
-    )
-    .optional(),
-  quantityMax: Joi.alternatives()
-    .try(
-      Joi.string()
-        .valid("")
-        .custom(() => null),
-      Joi.number().integer().allow(null)
-    )
-    .optional(),
-  amountMin: Joi.alternatives()
-    .try(
-      Joi.string()
-        .valid("")
-        .custom(() => null),
-      Joi.number().integer()
-    )
-    .optional(),
-  amountMax: Joi.alternatives()
-    .try(
-      Joi.string()
-        .valid("")
-        .custom(() => null),
-      Joi.number().integer().allow(null)
-    )
-    .optional(),
-  useLimit: Joi.alternatives()
-    .try(
-      Joi.string()
-        .valid("")
-        .custom(() => null),
-      Joi.number().integer().allow(null)
-    )
-    .optional(),
-  emailDomains: OPTIONAL_STRING.pattern(
-    /^([a-zA-Z0-9]*\.[a-zA-Z0-9]+)(,[a-zA-Z0-9]*\.[a-zA-Z0-9]+)*$/
-  ).message("emailDomains must be a comma-separated list"),
-  ticketId: OPTIONAL_STRING,
-  managerId: OPTIONAL_STRING,
-});
+interface EventFaqSectionValidation {
+  name?: string | null;
+  slug?: string | null;
+  priority?: number | string | null;
+}
 
-//EVENT FAQ SECTION QUESTIONS
-export const EVENT_CREATE_FAQ_SECTION_QUESTIONS_VALIDATION = Joi.object().keys({
-  question: OPTIONAL_STRING,
-  slug: OPTIONAL_STRING.custom(validSlug),
-  answer: OPTIONAL_STRING,
-  priority: OPTIONAL_NUMBER.min(1),
-  visible: OPTIONAL_BOOLEAN,
-});
+interface EventCreateValidation {
+  featured?: boolean | null;
+  visible?: boolean | null;
+  name?: string | null;
+  eventType?: "todo" | "todo" | string | null;
+  slug?: string | null;
+  internalRefId?: string | null;
+  shortDescription?: string | null;
+  longDescription?: string | null;
+  timezone?: "todo" | "todo" | string | null;
+  eventStart?: string | null;
+  eventEnd?: string | null;
+  externalUrl?: string | null;
+  imageId?: string | null;
+  venueMapId?: string | null;
+  venue?: string | null;
+  location?: string | null;
+  address1?: string | null;
+  address2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  country?: string | null;
+  zip?: string | null;
+  creatorId?: string | null;
+  seriesId?: string | null;
+  approved?: boolean | null;
+  meetingUrl?: string | null;
+  registration?: boolean | null;
+  registrationStart?: string | null;
+  registrationEnd?: string | null;
+  registrationLimit?: number | string | null;
+  publicRegistrants?: boolean | null;
+  sessionsVisible?: boolean | null;
+  speakersVisible?: boolean | null;
+  inviteOnly?: boolean | null;
+  iosAppLink?: string | null;
+  androidAppLink?: string | null;
+  newActivityCreatorEmailNotification?: boolean | null;
+  newActivityCreatorPushNotification?: boolean | null;
+  streamReplayId?: string | null;
+  groupId?: string | null;
+  groupOnly?: boolean | null;
+}
 
-//EVENT FAQ SECTIONS
-export const EVENT_CREATE_FAQ_SECTION_VALIDATION = Joi.object().keys({
-  name: OPTIONAL_STRING,
-  slug: OPTIONAL_STRING.custom(validSlug),
-  priority: OPTIONAL_NUMBER.min(1),
-});
+interface EventPageCreateValidation {
+  slug?: string | null;
+  title?: string | null;
+  subtitle?: string | null;
+  html?: string | null;
+  sortOrder?: number | string | null;
+}
 
-//EVENT
+interface EventPageTranslationUpdateValidation {
+  title?: string | null;
+  subtitle?: string | null;
+  html?: string | null;
+}
 
-export const EVENT_CREATE_VALIDATION = Joi.object().keys({
-  featured: OPTIONAL_BOOLEAN,
-  visible: OPTIONAL_BOOLEAN,
-  name: OPTIONAL_STRING,
-  eventType: OPTIONAL_STRING.valid(...Object.keys(EventType)),
-  slug: OPTIONAL_STRING.custom(validSlug),
-  internalRefId: OPTIONAL_STRING,
-  shortDescription: OPTIONAL_STRING.max(256),
-  longDescription: OPTIONAL_STRING,
-  timezone: OPTIONAL_STRING.valid(...validTimezones()),
-  eventStart: OPTIONAL_DATE,
-  eventEnd: OPTIONAL_DATE.min(Joi.ref("eventStart")).messages({
-    "date.min": "Event end date must be after event start date",
-  }),
-  externalUrl: OPTIONAL_STRING.uri(),
-  imageId: OPTIONAL_STRING,
-  venueMapId: OPTIONAL_STRING,
-  venue: OPTIONAL_STRING,
-  location: OPTIONAL_STRING,
-  address1: OPTIONAL_STRING,
-  address2: OPTIONAL_STRING,
-  city: OPTIONAL_STRING,
-  state: OPTIONAL_STRING.uppercase()
-    .regex(/^[A-Z]{2}$/)
-    .messages({
-      "string.pattern.base":
-        "Invalid state format. It should be a 2 letter code.",
-    }),
-  country: OPTIONAL_STRING.uppercase()
-    .regex(/^[A-Z]{3}$/)
-    .messages({
-      "string.pattern.base":
-        "Invalid country format. It should be a 3 letter code.",
-    }),
-  zip: OPTIONAL_STRING.regex(/^[0-9]{5}$/).messages({
-    "string.pattern.base": "Invalid zip format. It should be a 5 digit number.",
-  }),
-  creatorId: OPTIONAL_STRING,
-  seriesId: OPTIONAL_STRING,
-  approved: OPTIONAL_BOOLEAN,
-  meetingUrl: OPTIONAL_STRING.uri(),
-  registration: OPTIONAL_BOOLEAN,
-  registrationStart: OPTIONAL_DATE.max(Joi.ref("eventStart")).messages({
-    "date.max": "Registration start date must be before event start date",
-  }),
-  registrationEnd: OPTIONAL_DATE.min(Joi.ref("registrationStart"))
-    .max(Joi.ref("eventEnd"))
-    .messages({
-      "date.min": "Registration end date must be after registration start date",
-      "date.max": "Registration end date must be before event end date",
-    }),
-  registrationLimit: Joi.alternatives().try(
-    Joi.string()
-      .valid("")
-      .custom(() => null),
-    Joi.number().integer().allow(null).optional()
-  ),
-  publicRegistrants: OPTIONAL_BOOLEAN,
-  sessionsVisible: OPTIONAL_BOOLEAN,
-  speakersVisible: OPTIONAL_BOOLEAN,
-  inviteOnly: OPTIONAL_BOOLEAN,
-  iosAppLink: OPTIONAL_STRING.uri(),
-  androidAppLink: OPTIONAL_STRING.uri(),
-  newActivityCreatorEmailNotification: OPTIONAL_BOOLEAN,
-  newActivityCreatorPushNotification: OPTIONAL_BOOLEAN,
-  streamReplayId: OPTIONAL_STRING,
-  groupId: OPTIONAL_STRING,
-  groupOnly: OPTIONAL_BOOLEAN,
-});
+interface EventPageUpdateValidation {
+  slug?: string | null;
+  title?: string | null;
+  subtitle?: string | null;
+  html?: string | null;
+  sortOrder?: number | string | null;
+}
 
-export const EVENT_PAGE_CREATE_VALIDATION = Joi.object().keys({
-  slug: OPTIONAL_STRING.custom(validSlug),
-  title: OPTIONAL_STRING,
-  subtitle: OPTIONAL_STRING,
-  html: OPTIONAL_STRING,
-  sortOrder: OPTIONAL_NUMBER.min(1),
-});
-
-export const EVENT_PAGE_TRANSLATION_UPDATE_VALIDATION = Joi.object().keys({
-  title: OPTIONAL_STRING,
-  subtitle: OPTIONAL_STRING,
-  html: OPTIONAL_STRING,
-});
-
-export const EVENT_PAGE_UPDATE_VALIDATION = Joi.object().keys({
-  slug: OPTIONAL_STRING.custom(validSlug),
-  title: OPTIONAL_STRING,
-  subtitle: OPTIONAL_STRING,
-  html: OPTIONAL_STRING,
-  sortOrder: OPTIONAL_NUMBER.min(1),
-});
-
-//RegistreationPurchases
-export const EVENT_PURCHASE_CREATE_VALIDATION = Joi.object({}).keys({
-  location: OPTIONAL_STRING,
-  usedAt: OPTIONAL_DATE,
-  ticketId: OPTIONAL_STRING,
-  paid: OPTIONAL_BOOLEAN,
-  reservationStart: OPTIONAL_DATE,
-  reservationEnd: OPTIONAL_DATE,
-});
+interface EventPurchaseCreateValidation {
+  location?: string | null;
+  usedAt?: string | null;
+  ticketId?: string | null;
+  paid?: boolean | null;
+  reservationStart?: string | null;
+  reservationEnd?: string | null;
+}
 
 export const EVENT_PURCHASE_UPDATE_VALIDATION = Joi.object({}).keys({
   location: OPTIONAL_STRING,

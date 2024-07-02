@@ -6,6 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { Interest, ConnectedXMResponse } from "@src/interfaces";
 import { SET_INTEREST_QUERY_DATA, INTERESTS_QUERY_KEY } from "@src/queries";
+import { InterestUpdateParams } from "@src/params";
 
 /**
  * @category Params
@@ -13,7 +14,7 @@ import { SET_INTEREST_QUERY_DATA, INTERESTS_QUERY_KEY } from "@src/queries";
  */
 export interface UpdateInterestParams extends MutationParams {
   interestId: string;
-  interest: Interest;
+  interest: InterestUpdateParams;
 }
 
 /**

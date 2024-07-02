@@ -16,6 +16,7 @@ import {
  */
 export interface UpdateStreamParams extends MutationParams {
   streamId: string;
+  //TODO: missing interface and validation
   stream: StreamInput;
 }
 

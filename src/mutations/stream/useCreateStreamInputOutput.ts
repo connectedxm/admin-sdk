@@ -16,6 +16,7 @@ import {
  */
 export interface CreateStreamInputOutputParams extends MutationParams {
   streamId: string;
+  //TODO: missing interface and validation
   output: StreamInputOutput;
 }
 

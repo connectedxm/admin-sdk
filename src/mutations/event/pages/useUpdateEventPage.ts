@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { EventPageUpdateParams } from "@src/params";
 import { EVENT_PAGES_QUERY_KEY, SET_EVENT_PAGE_QUERY_DATA } from "@src/queries";
 
 /**
@@ -14,7 +15,7 @@ import { EVENT_PAGES_QUERY_KEY, SET_EVENT_PAGE_QUERY_DATA } from "@src/queries";
 export interface UpdateEventPageParams extends MutationParams {
   eventId: string;
   pageId: string;
-  page: EventPage;
+  page: EventPageUpdateParams;
 }
 
 /**

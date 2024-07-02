@@ -6,13 +6,14 @@ import {
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
 import { BENEFITS_QUERY_KEY, SET_BENEFIT_QUERY_DATA } from "@src/queries";
+import { BenefitCreateParams } from "@src/params";
 
 /**
  * @category Params
  * @group Benefit
  */
 export interface CreateBenefitParams extends MutationParams {
-  benefit: Benefit;
+  benefit: BenefitCreateParams;
 }
 
 /**

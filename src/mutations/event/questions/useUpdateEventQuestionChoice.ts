@@ -1,10 +1,10 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { RegistrationQuestionChoice } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { EventQuestionChoiceUpdateParams } from "@src/params";
 import {
   EVENT_QUESTION_CHOICES_QUERY_KEY,
   SET_EVENT_QUESTION_CHOICE_QUERY_DATA,
@@ -18,7 +18,7 @@ export interface UpdateEventQuestionChoiceParams extends MutationParams {
   eventId: string;
   questionId: string;
   choiceId: string;
-  choice: RegistrationQuestionChoice;
+  choice: EventQuestionChoiceUpdateParams;
 }
 
 /**

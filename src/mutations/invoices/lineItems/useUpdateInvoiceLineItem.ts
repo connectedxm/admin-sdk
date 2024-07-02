@@ -18,6 +18,7 @@ import {
 export interface UpdateInvoiceLineItemParams extends MutationParams {
   invoiceId: string;
   lineItemId: string;
+  //TODO: missing interface and validation
   invoiceLineItem: InvoiceLineItem;
 }
 

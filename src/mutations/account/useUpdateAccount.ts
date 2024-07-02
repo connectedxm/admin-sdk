@@ -6,6 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ACCOUNTS_QUERY_KEY, SET_ACCOUNT_QUERY_DATA } from "@src/queries";
+import { AccountUpdateParams } from "@src/params";
 
 /**
  * @category Params
@@ -13,36 +14,7 @@ import { ACCOUNTS_QUERY_KEY, SET_ACCOUNT_QUERY_DATA } from "@src/queries";
  */
 export interface UpdateAccountParams extends MutationParams {
   accountId: string;
-  account: {
-    accountType?: "account" | "team";
-    email?: string;
-    featured?: boolean;
-    firstName?: string | null;
-    lastName?: string | null;
-    imageId?: string | null;
-    username?: string;
-    phone?: string | null;
-    title?: string | null;
-    company?: string | null;
-    bio?: string | null;
-    website?: string | null;
-    video?: string | null;
-    facebook?: string | null;
-    twitter?: string | null;
-    instagram?: string | null;
-    tikTok?: string | null;
-    linkedIn?: string | null;
-    youtube?: string | null;
-    discord?: string | null;
-    dietaryRestrictions?: string | null;
-    address1?: string | null;
-    address2?: string | null;
-    city?: string | null;
-    state?: string | null;
-    country?: string | null;
-    zip?: string | null;
-    internalRefId?: string | null;
-  };
+  account: AccountUpdateParams;
 }
 
 /**

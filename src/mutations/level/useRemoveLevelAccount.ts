@@ -4,7 +4,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import { ConnectedXMResponse, SponsorshipLevel } from "@src/interfaces";
+import { ConnectedXMResponse, Level } from "@src/interfaces";
 import { SET_LEVEL_QUERY_DATA, LEVEL_ACCOUNTS_QUERY_KEY } from "@src/queries";
 
 /**
@@ -25,13 +25,11 @@ export const RemoveLevelAccount = async ({
   accountId,
   adminApiParams,
   queryClient,
-}: RemoveLevelAccountParams): Promise<
-  ConnectedXMResponse<SponsorshipLevel>
-> => {
+}: RemoveLevelAccountParams): Promise<ConnectedXMResponse<Level>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<
-    ConnectedXMResponse<SponsorshipLevel>
-  >(`/levels/${levelId}/accounts/${accountId}`);
+  const { data } = await connectedXM.delete<ConnectedXMResponse<Level>>(
+    `/levels/${levelId}/accounts/${accountId}`
+  );
   if (queryClient && data.status === "ok") {
     SET_LEVEL_QUERY_DATA(queryClient, [levelId], data);
     queryClient.invalidateQueries({

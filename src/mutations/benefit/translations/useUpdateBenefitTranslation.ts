@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { BenefitTranslationUpdateParams } from "@src/params";
 import {
   BENEFIT_TRANSLATIONS_QUERY_KEY,
   SET_BENEFIT_TRANSLATION_QUERY_DATA,
@@ -17,10 +18,7 @@ import {
 export interface UpdateBenefitTranslationParams extends MutationParams {
   benefitId: string;
   locale: ISupportedLocale;
-  benefitTranslation: {
-    title: string;
-    description?: string;
-  };
+  benefitTranslation: BenefitTranslationUpdateParams;
 }
 
 /**

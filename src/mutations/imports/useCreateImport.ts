@@ -14,6 +14,7 @@ import { IMPORTS_QUERY_KEY } from "@src/queries";
 export interface CreateImportParams extends MutationParams {
   values: any[];
   messageData: Record<string, any>;
+  //TODO: missing interface and validation
   type: ImportItem;
 }
 

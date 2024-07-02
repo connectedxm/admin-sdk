@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { EventReservationSectionCreateParams } from "@src/params";
 import {
   EVENT_RESERVATION_SECTIONS_QUERY_KEY,
   SET_EVENT_RESERVATION_SECTION_QUERY_DATA,
@@ -16,7 +17,7 @@ import {
  */
 export interface CreateReservationSectionParams extends MutationParams {
   eventId: string;
-  reservationSection: EventReservationSection;
+  reservationSection: EventReservationSectionCreateParams;
 }
 
 /**

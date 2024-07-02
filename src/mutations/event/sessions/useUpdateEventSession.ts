@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { EventSessionUpdateParams } from "@src/params";
 import {
   EVENT_SESSIONS_QUERY_KEY,
   SET_EVENT_SESSION_QUERY_DATA,
@@ -17,7 +18,7 @@ import {
 export interface UpdateEventSessionParams extends MutationParams {
   eventId: string;
   sessionId: string;
-  session: EventSession;
+  session: EventSessionUpdateParams;
 }
 
 /**

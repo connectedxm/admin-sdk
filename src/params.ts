@@ -148,11 +148,6 @@ export interface BenefitCreateParams {
   eventOnly?: boolean | null;
 }
 
-export interface BenefitTranslationUpdateParams {
-  title?: string | null;
-  description?: string | null;
-}
-
 export interface BenefitUpdateParams {
   link?: string | null;
   title?: string | null;
@@ -165,6 +160,10 @@ export interface BenefitUpdateParams {
   managerId?: string | null;
   eventId?: string | null;
   eventOnly?: boolean | null;
+}
+export interface BenefitTranslationUpdateParams {
+  title?: string | null;
+  description?: string | null;
 }
 
 export interface ChannelCollectionCreateParams {
@@ -405,7 +404,7 @@ export interface EventBadgeFieldUpdateParams {
   sortOrder?: number | string | null;
 }
 
-export interface EventCreateCouponParams {
+export interface EventCouponCreateParams {
   code?: string | null;
   description?: string | null;
   active?: boolean | null;
@@ -423,18 +422,12 @@ export interface EventCreateCouponParams {
   managerId?: string | null;
 }
 
-export interface EventFaqSectionQuestionsParams {
+export interface EventFaqSectionQuestionCreateParams {
   question?: string | null;
   slug?: string | null;
   answer?: string | null;
   priority?: number | string | null;
   visible?: boolean | null;
-}
-
-export interface EventFaqSectionParams {
-  name?: string | null;
-  slug?: string | null;
-  priority?: number | string | null;
 }
 
 export interface EventCreateParams {
@@ -689,7 +682,7 @@ export interface EventTranslationUpdateParams {
   longDescription?: string | null;
 }
 
-export interface EventUpdateCouponParams {
+export interface EventCouponUpdateParams {
   code?: string | null;
   description?: string | null;
   active?: boolean | null;
@@ -707,18 +700,18 @@ export interface EventUpdateCouponParams {
   managerId?: string | null;
 }
 
-export interface EventUpdateEmailParams {
+export interface EventEmailUpdateParams {
   body?: string | null;
   replyTo?: string | null;
 }
 
 // EVENT FAQ SECTION QUESTIONS TRANSLATION
-export interface EventUpdateFaqSectionQuestionsTranslationParams {
+export interface EventFaqSectionQuestionTranslationUpdateParams {
   question?: string | null;
   answer?: string | null;
 }
 
-export interface EventUpdateFaqSectionQuestionsParams {
+export interface EventFaqSectionQuestionUpdateParams {
   question?: string | null;
   slug?: string | null;
   answer?: string | null;
@@ -727,18 +720,24 @@ export interface EventUpdateFaqSectionQuestionsParams {
 }
 
 //EVENT FAQ SECTIONS TRANSLATIONS
-export interface EventUpdateFaqSectionTranslationParams {
+export interface EventFaqSectionTranslationUpdateParams {
   name?: string | null;
 }
 
-export interface EventUpdateFaqSectionParams {
+//EVENT FAQ SECTIONS
+export interface EventFaqSectionCreateParams {
+  name?: string | null;
+  slug?: string | null;
+  priority?: number | null;
+}
+export interface EventFaqSectionUpdateParams {
   name?: string | null;
   slug?: string | null;
   priority?: number | null;
 }
 
 //EVENT RESERVATION SECTION LOCATION TRANSLATION
-export interface EventUpdateReservationSectionLocationTranslationParams {
+export interface EventReservationSectionLocationTranslationUpdateParams {
   name?: string | null;
   shortDescription?: string | null;
 }
@@ -798,7 +797,7 @@ export interface GroupCreateParams {
   externalUrl?: string | null;
 }
 
-export interface GroupMembershipUpdateParams {
+export interface OrganizationGroupMembershipUpdateParams {
   announcementEmailNotification?: boolean | null;
   announcementPushNotification?: boolean | null;
   activityEmailNotification?: boolean | null;
@@ -1024,7 +1023,7 @@ export interface PushDeviceUpdateParams {
   pushServiceName?: string | null;
 }
 
-export interface QuestionChoiceCreateParams {
+export interface EventQuestionChoiceCreateParams {
   value?: string | null;
   text?: string | null;
   supply?: number | null;
@@ -1032,13 +1031,13 @@ export interface QuestionChoiceCreateParams {
   sortOrder?: number | null;
 }
 
-export interface QuestionChoiceTranslationUpdateParams {
+export interface EventQuestionChoiceTranslationUpdateParams {
   value?: string | null;
   text?: string | null;
   description?: string | null;
 }
 
-export interface QuestionChoiceUpdateParams {
+export interface EventQuestionChoiceUpdateParams {
   value?: string | null;
   text?: string | null;
   supply?: number | null;
@@ -1046,7 +1045,7 @@ export interface QuestionChoiceUpdateParams {
   sortOrder?: number | null;
 }
 
-export interface QuestionCreateParams {
+export interface EventQuestionCreateParams {
   name?: string | null;
   type?: "todo" | "todo" | null;
   required?: boolean | null;
@@ -1064,23 +1063,23 @@ export interface QuestionCreateParams {
   featured?: boolean;
 }
 
-export interface QuestionSearchValueCreateParams {
+export interface EventQuestionSearchValueCreateParams {
   value?: string | null;
   top?: boolean | null;
 }
 
-export interface QuestionSearchValueUpdateParams {
+export interface EventQuestionSearchValueUpdateParams {
   value?: string | null;
   top?: boolean | null;
 }
 
-export interface QuestionTranslationUpdateParams {
+export interface EventQuestionTranslationUpdateParams {
   label?: string | null;
   placeholder?: string | null;
   description?: string | null;
 }
 
-export interface QuestionUpdateParams {
+export interface EventQuestionUpdateParams {
   name?: string | null;
   type?: "todo" | "todo";
   required?: boolean | null;
@@ -1118,14 +1117,14 @@ export interface ReportUpdateParams {
   advancedFilter?: string | null;
 }
 
-export interface SectionCreateParams {
+export interface EventSectionCreateParams {
   name?: string | null;
   description?: string | null;
   guestDescription?: string | null;
   sortOrder?: number | null;
 }
 
-export interface SectionUpdateParams {
+export interface EventSectionUpdateParams {
   name?: string | null;
   description?: string | null;
   guestDescription?: string | null;
@@ -1148,7 +1147,7 @@ export interface SeriesUpdateParams {
   sortOrder?: number | null;
 }
 
-export interface SponsorshipLevelCreateParams {
+export interface LevelCreateParams {
   name?: string | null;
   slug?: string | null;
   subtitle?: string | null;
@@ -1159,13 +1158,13 @@ export interface SponsorshipLevelCreateParams {
   sortOrder?: number | null;
 }
 
-export interface SponsorshipLevelTranslationUpdateParams {
+export interface LevelTranslationUpdateParams {
   name?: string | null;
   subtitle?: string | null;
   description?: string | null;
 }
 
-export interface SponsorshipLevelUpdateParams {
+export interface LevelUpdateParams {
   name?: string | null;
   slug?: string | null;
   subtitle?: string | null;
@@ -1239,7 +1238,7 @@ export interface TeamCreateParams {
   username?: string | null;
 }
 
-export interface TeamMemberCreateParams {
+export interface OrganizationTeamMemberCreateParams {
   firstName?: string | null;
   lastName?: string | null;
   slug?: string | null;
@@ -1259,7 +1258,7 @@ export interface TeamMemberCreateParams {
   startDate?: Date | null;
 }
 
-export interface TeamMemberUpdateParams {
+export interface OrganizationTeamMemberUpdateParams {
   firstName?: string | null;
   lastName?: string | null;
   slug?: string | null;
@@ -1305,7 +1304,7 @@ export interface ThreadUpdateParams {
   eventId?: string | null;
 }
 
-export interface TicketCreateParams {
+export interface EventTicketCreateParams {
   visibility?: "todo" | "todo";
   featured?: boolean;
   active?: boolean | null;
@@ -1333,7 +1332,7 @@ export interface TicketCreateParams {
   maxReservationEnd?: Date | null;
 }
 
-export interface TicketUpdateParams {
+export interface EventTicketUpdateParams {
   visibility?: "todo" | "todo";
   featured?: boolean;
   active?: boolean | null;
@@ -1382,14 +1381,14 @@ export interface TierUpdateParams {
   color?: string | null;
   internal?: boolean | null;
 }
-export interface TrackCreateParams {
+export interface EventTrackCreateParams {
   name?: string | null;
   slug?: string | null;
   description?: string | null;
   color?: string | null;
 }
 
-export interface TrackUpdateParams {
+export interface EventTrackUpdateParams {
   name?: string | null;
   slug?: string | null;
   description?: string | null;

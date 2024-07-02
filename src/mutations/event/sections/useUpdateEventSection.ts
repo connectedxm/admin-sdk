@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { EventSectionUpdateParams } from "@src/params";
 import {
   EVENT_SECTIONS_QUERY_KEY,
   SET_EVENT_SECTION_QUERY_DATA,
@@ -17,7 +18,7 @@ import {
 export interface UpdateEventSectionParams extends MutationParams {
   eventId: string;
   sectionId: string;
-  section: RegistrationSection;
+  section: EventSectionUpdateParams;
 }
 
 /**

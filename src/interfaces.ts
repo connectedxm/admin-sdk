@@ -376,7 +376,7 @@ export interface Announcement extends BaseAnnouncement {
   event: BaseEvent | null;
   group: BaseGroup | null;
   sponsorshipLevelId: string | null;
-  sponsorshipLevel: BaseSponsorshipLevel | null;
+  sponsorshipLevel: BaseLevel | null;
   ticket: BaseEventTicket | null;
   user: BaseUser | null;
   html: string | null;
@@ -1129,7 +1129,7 @@ export interface Notification extends BaseNotification {
 }
 
 export type PermissionDomain = keyof Omit<
-  OrgMembership,
+  OrganizationMembership,
   "organizationId" | "userId" | "user" | "createdAt" | "updatedAt"
 >;
 
@@ -1142,7 +1142,7 @@ export interface Permissions {
   del: boolean;
 }
 
-export interface OrgMembership {
+export interface OrganizationMembership {
   organizationId: string;
   org: BaseOrganization;
   userId: string;
@@ -1578,14 +1578,6 @@ export interface Report {
   updatedAt: string;
 }
 
-export type UpdateReportProps = {
-  name: string;
-  filters: string;
-  columns: string;
-  charts: string;
-  advancedFilter: string;
-};
-
 export interface BaseEventReservationSectionLocation {
   id: string;
   eventId: string;
@@ -1740,7 +1732,7 @@ export interface EventSpeakerTranslation {
   updatedAt: string;
 }
 
-export interface BaseSponsorshipLevel {
+export interface BaseLevel {
   id: string;
   slug: string;
   name: string;
@@ -1752,7 +1744,7 @@ export interface BaseSponsorshipLevel {
   image: BaseImage | null;
 }
 
-export interface SponsorshipLevel extends BaseSponsorshipLevel {
+export interface Level extends BaseLevel {
   sortOrder: number;
   createdAt: string;
   updatedAt: string;
@@ -1956,11 +1948,6 @@ export interface SupportTicket extends BaseSupportTicket {
   notes: BaseSupportTicketNote[];
   createdAt: string;
   updatedAt: string;
-}
-// Not sure if this is how I should have done this, but needed edit (@joshuackeller)
-export interface UpdateSupportTicketProps
-  extends Omit<SupportTicket, "request"> {
-  request?: string;
 }
 
 export interface BaseTeamMember {

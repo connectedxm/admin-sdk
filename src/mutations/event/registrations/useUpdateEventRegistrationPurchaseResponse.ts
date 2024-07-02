@@ -23,6 +23,7 @@ export interface UpdateEventRegistrationPurchaseResponseParams
   registrationId: string;
   purchaseId: string;
   questionId: string;
+  //TODO: missing interface and validation
   response: RegistrationQuestionResponse;
 }
 

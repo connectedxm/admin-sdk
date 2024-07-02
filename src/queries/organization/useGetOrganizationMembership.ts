@@ -4,7 +4,7 @@ import {
   useConnectedSingleQuery,
 } from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { OrgMembership } from "@src/interfaces";
+import { OrganizationMembership } from "@src/interfaces";
 import { ORGANIZATION_QUERY_KEY } from "./useGetOrganization";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
@@ -46,7 +46,7 @@ export const GetOrganizationMembership = async ({
   userId,
   adminApiParams,
 }: GetOrganizationMembershipProps): Promise<
-  ConnectedXMResponse<OrgMembership>
+  ConnectedXMResponse<OrganizationMembership>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/organization/users/${userId}`);

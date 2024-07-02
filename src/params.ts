@@ -1,250 +1,218 @@
-export const ACCOUNT_CREATE_VALIDATION = Joi.object({}).keys({
-  accountType: OPTIONAL_STRING.valid(...Object.keys(AccountType)),
-  featured: OPTIONAL_BOOLEAN,
-  email: OPTIONAL_STRING.email().lowercase(),
-  firstName: OPTIONAL_STRING,
-  lastName: OPTIONAL_STRING,
-  imageId: OPTIONAL_STRING,
-  username: OPTIONAL_STRING.min(5).max(25).custom(validSlug),
-  phone: OPTIONAL_STRING,
-  title: OPTIONAL_STRING,
-  company: OPTIONAL_STRING,
-  bio: OPTIONAL_STRING.max(1000),
-  website: OPTIONAL_STRING.uri(),
-  video: OPTIONAL_STRING.uri(),
-  facebook: OPTIONAL_STRING.uri(),
-  twitter: OPTIONAL_STRING.uri(),
-  instagram: OPTIONAL_STRING.uri(),
-  tikTok: OPTIONAL_STRING.uri(),
-  linkedIn: OPTIONAL_STRING.uri(),
-  youtube: OPTIONAL_STRING.uri(),
-  discord: OPTIONAL_STRING.uri(),
-  dietaryRestrictions: OPTIONAL_STRING,
-  address1: OPTIONAL_STRING,
-  address2: OPTIONAL_STRING,
-  city: OPTIONAL_STRING,
-  state: OPTIONAL_STRING.uppercase()
-    .regex(/^[A-Z]{2}$/)
-    .messages({
-      "string.pattern.base":
-        "Invalid state format. It should be a 2 letter code.",
-    }),
-  country: OPTIONAL_STRING.uppercase()
-    .regex(/^[A-Z]{3}$/)
-    .messages({
-      "string.pattern.base":
-        "Invalid country format. It should be a 3 letter code.",
-    }),
-  zip: OPTIONAL_STRING.regex(/^[0-9]{5}$/).messages({
-    "string.pattern.base": "Invalid zip format. It should be a 5 digit number.",
-  }),
-  internalRefId: OPTIONAL_STRING,
-});
+interface AccountCreateValidation {
+  accountType?: "tod" | "todo" | null;
+  featured?: boolean | null;
+  email?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  imageId?: string | null;
+  username?: string | null;
+  phone?: string | null;
+  title?: string | null;
+  company?: string | null;
+  bio?: string | null;
+  website?: string | null;
+  video?: string | null;
+  facebook?: string | null;
+  twitter?: string | null;
+  instagram?: string | null;
+  tikTok?: string | null;
+  linkedIn?: string | null;
+  youtube?: string | null;
+  discord?: string | null;
+  dietaryRestrictions?: string | null;
+  address1?: string | null;
+  address2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  country?: string | null;
+  zip?: string | null;
+  internalRefId?: string | null;
+}
 
-export const ACCOUNT_UPDATE_VALIDATION = Joi.object({}).keys({
-  accountType: OPTIONAL_STRING.valid(...Object.keys(AccountType)),
-  featured: OPTIONAL_BOOLEAN,
-  email: OPTIONAL_STRING.email().lowercase(),
-  firstName: OPTIONAL_STRING,
-  lastName: OPTIONAL_STRING,
-  imageId: OPTIONAL_STRING,
-  username: OPTIONAL_STRING.min(5).max(25).custom(validSlug),
-  phone: OPTIONAL_STRING,
-  title: OPTIONAL_STRING,
-  company: OPTIONAL_STRING,
-  bio: OPTIONAL_STRING.max(1000),
-  website: OPTIONAL_STRING.uri(),
-  video: OPTIONAL_STRING.uri(),
-  facebook: OPTIONAL_STRING.uri(),
-  twitter: OPTIONAL_STRING.uri(),
-  instagram: OPTIONAL_STRING.uri(),
-  tikTok: OPTIONAL_STRING.uri(),
-  linkedIn: OPTIONAL_STRING.uri(),
-  youtube: OPTIONAL_STRING.uri(),
-  discord: OPTIONAL_STRING.uri(),
-  dietaryRestrictions: OPTIONAL_STRING,
-  address1: OPTIONAL_STRING,
-  address2: OPTIONAL_STRING,
-  city: OPTIONAL_STRING,
-  state: OPTIONAL_STRING.uppercase()
-    .regex(/^[A-Z]{2}$/)
-    .messages({
-      "string.pattern.base":
-        "Invalid state format. It should be a 2 letter code.",
-    }),
-  country: OPTIONAL_STRING.uppercase()
-    .regex(/^[A-Z]{3}$/)
-    .messages({
-      "string.pattern.base":
-        "Invalid country format. It should be a 3 letter code.",
-    }),
-  zip: OPTIONAL_STRING.regex(/^[0-9]{5}$/).messages({
-    "string.pattern.base": "Invalid zip format. It should be a 5 digit number.",
-  }),
-  internalRefId: OPTIONAL_STRING,
-});
+interface AccountUpdateValidation {
+  accountType?: "todo" | "todo" | string | null; // Assuming "todo" | "todo" was a placeholder for actual enum values
+  featured?: boolean | null;
+  email?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  imageId?: string | null;
+  username?: string | null;
+  phone?: string | null;
+  title?: string | null;
+  company?: string | null;
+  bio?: string | null;
+  website?: string | null;
+  video?: string | null;
+  facebook?: string | null;
+  twitter?: string | null;
+  instagram?: string | null;
+  tikTok?: string | null;
+  linkedIn?: string | null;
+  youtube?: string | null;
+  discord?: string | null;
+  dietaryRestrictions?: string | null;
+  address1?: string | null;
+  address2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  country?: string | null;
+  zip?: string | null;
+  internalRefId?: string | null;
+}
 
-export const ACTIVITY_CREATE_VALIDATION = Joi.object().keys({
-  message: OPTIONAL_STRING.min(1).max(20000),
-  html: OPTIONAL_STRING,
-  text: OPTIONAL_STRING,
-  giphyId: OPTIONAL_STRING,
-  imageId: OPTIONAL_STRING,
-  eventId: OPTIONAL_STRING,
-  groupId: OPTIONAL_STRING,
-  contentId: OPTIONAL_STRING,
-  commentedId: OPTIONAL_STRING,
-  videoId: OPTIONAL_STRING,
-});
+interface ActivityCreateValidation {
+  message?: string | null;
+  html?: string | null;
+  text?: string | null;
+  giphyId?: string | null;
+  imageId?: string | null;
+  eventId?: string | null;
+  groupId?: string | null;
+  contentId?: string | null;
+  commentedId?: string | null;
+  videoId?: string | null;
+}
 
-export const ACTIVITY_UPDATE_VALIDATION = Joi.object().keys({
-  message: OPTIONAL_STRING.min(1).max(20000),
-  html: OPTIONAL_STRING,
-  text: OPTIONAL_STRING,
-  giphyId: OPTIONAL_STRING,
-  imageId: OPTIONAL_STRING,
-  eventId: OPTIONAL_STRING,
-  groupId: OPTIONAL_STRING,
-  contentId: OPTIONAL_STRING,
-  commentedId: OPTIONAL_STRING,
-  videoId: OPTIONAL_STRING,
-});
+interface ActivityUpdateValidation {
+  message?: string | null;
+  html?: string | null;
+  text?: string | null;
+  giphyId?: string | null;
+  imageId?: string | null;
+  eventId?: string | null;
+  groupId?: string | null;
+  contentId?: string | null;
+  commentedId?: string | null;
+  videoId?: string | null;
+}
 
-export const ADVERTISEMENT_CREATE_VALIDATION = Joi.object().keys({
-  type: OPTIONAL_STRING.valid(...Object.keys(AdvertisementType)),
-  link: OPTIONAL_STRING.uri(),
-  title: OPTIONAL_STRING,
-  description: OPTIONAL_STRING,
-  imageId: OPTIONAL_STRING,
-  startDate: OPTIONAL_DATE,
-  endDate: OPTIONAL_DATE.min(Joi.ref("startDate")).messages({
-    "date.min": "End date must be after start date",
-  }),
-  weight: OPTIONAL_NUMBER.min(0).max(10),
-  accountId: OPTIONAL_STRING,
-  eventId: OPTIONAL_STRING,
-  eventOnly: OPTIONAL_BOOLEAN,
-});
-export const ADVERTISEMENT_UPDATE_VALIDATION = Joi.object().keys({
-  type: OPTIONAL_STRING.allow(...Object.keys(AdvertisementType)),
-  link: OPTIONAL_STRING.uri(),
-  title: OPTIONAL_STRING,
-  description: OPTIONAL_STRING,
-  imageId: OPTIONAL_STRING,
-  startDate: OPTIONAL_DATE,
-  endDate: OPTIONAL_DATE.min(Joi.ref("startDate")).messages({
-    "date.min": "End date must be after start date",
-  }),
-  weight: OPTIONAL_NUMBER.min(0).max(10),
-  accountId: OPTIONAL_STRING,
-  eventId: OPTIONAL_STRING,
-  eventOnly: OPTIONAL_BOOLEAN,
-});
+interface AdvertisementCreateValidation {
+  type?: "todo" | "todo" | string | null;
+  link?: string | null;
+  title?: string | null;
+  description?: string | null;
+  imageId?: string | null;
+  startDate?: string | null; // Assuming date is represented as a string
+  endDate?: string | null; // Assuming date is represented as a string
+  weight?: number | null;
+  accountId?: string | null;
+  eventId?: string | null;
+  eventOnly?: boolean | null;
+}
 
-export const ANNOUNCEMENT_CREATE_VALIDATION = Joi.object({}).keys({
-  userId: OPTIONAL_STRING,
-  creatorId: OPTIONAL_STRING,
-  verifiedAccounts: OPTIONAL_BOOLEAN,
-  eventId: OPTIONAL_STRING,
-  groupId: OPTIONAL_STRING,
-  accountId: OPTIONAL_STRING,
-  ticketId: OPTIONAL_STRING,
-  sponsorshipLevelId: OPTIONAL_STRING,
-  title: OPTIONAL_STRING,
-  slug: OPTIONAL_STRING.custom(validSlug),
-  message: OPTIONAL_STRING.max(2500),
-  html: OPTIONAL_STRING.max(10000),
-  email: OPTIONAL_BOOLEAN,
-  sms: OPTIONAL_BOOLEAN,
-  push: OPTIONAL_BOOLEAN,
-});
+interface AdvertisementUpdateValidation {
+  type?: "todo" | "todo" | string | null;
+  link?: string | null;
+  title?: string | null;
+  description?: string | null;
+  imageId?: string | null;
+  startDate?: string | null;
+  endDate?: string | null;
+  weight?: number | string | null;
+  accountId?: string | null;
+  eventId?: string | null;
+  eventOnly?: boolean | null;
+}
 
-export const BENEFIT_CREATE_VALIDATION = Joi.object().keys({
-  link: OPTIONAL_STRING.uri(),
-  title: OPTIONAL_STRING,
-  slug: OPTIONAL_STRING.custom(validSlug),
-  description: OPTIONAL_STRING,
-  imageId: OPTIONAL_STRING,
-  startDate: OPTIONAL_DATE,
-  endDate: OPTIONAL_DATE.min(Joi.ref("startDate")).messages({
-    "date.min": "End date must be after start date",
-  }),
-  priority: OPTIONAL_NUMBER.min(1),
-  managerId: OPTIONAL_STRING,
-  eventId: OPTIONAL_STRING,
-  eventOnly: OPTIONAL_BOOLEAN,
-});
+interface AnnouncementCreateValidation {
+  userId?: string | null;
+  creatorId?: string | null;
+  verifiedAccounts?: boolean | null;
+  eventId?: string | null;
+  groupId?: string | null;
+  accountId?: string | null;
+  ticketId?: string | null;
+  sponsorshipLevelId?: string | null;
+  title?: string | null;
+  slug?: string | null; // Assuming validSlug is a function for validation and not relevant to TypeScript interface
+  message?: string | null;
+  html?: string | null;
+  email?: boolean | null;
+  sms?: boolean | null;
+  push?: boolean | null;
+}
 
-export const BENEFIT_TRANSLATION_UPDATE_VALIDATION = Joi.object().keys({
-  title: OPTIONAL_STRING,
-  description: OPTIONAL_STRING,
-});
+interface BenefitCreateValidation {
+  link?: string | null;
+  title?: string | null;
+  slug?: string | null; // Assuming validSlug is a function for validation and not relevant to TypeScript interface
+  description?: string | null;
+  imageId?: string | null;
+  startDate?: string | null; // Assuming dates are represented as strings
+  endDate?: string | null;
+  priority?: number | string | null;
+  managerId?: string | null;
+  eventId?: string | null;
+  eventOnly?: boolean | null;
+}
 
-export const BENEFIT_UPDATE_VALIDATION = Joi.object().keys({
-  link: OPTIONAL_STRING.uri(),
-  title: OPTIONAL_STRING,
-  slug: OPTIONAL_STRING.custom(validSlug),
-  description: OPTIONAL_STRING,
-  imageId: OPTIONAL_STRING,
-  startDate: OPTIONAL_DATE,
-  endDate: OPTIONAL_DATE.min(Joi.ref("startDate")).messages({
-    "date.min": "End date must be after start date",
-  }),
-  priority: OPTIONAL_NUMBER.min(1),
-  managerId: OPTIONAL_STRING,
-  eventId: OPTIONAL_STRING,
-  eventOnly: OPTIONAL_BOOLEAN,
-});
+interface BenefitTranslationUpdateValidation {
+  title?: string | null;
+  description?: string | null;
+}
 
-export const CHANNEL_COLLECTION_CREATE_VALIDATION = Joi.object({}).keys({
-  name: OPTIONAL_STRING,
-  description: OPTIONAL_STRING,
-});
+interface BenefitUpdateValidation {
+  link?: string | null;
+  title?: string | null;
+  slug?: string | null;
+  description?: string | null;
+  imageId?: string | null;
+  startDate?: string | null;
+  endDate?: string | null;
+  priority?: number | string | null;
+  managerId?: string | null;
+  eventId?: string | null;
+  eventOnly?: boolean | null;
+}
 
-export const CHANNEL_COLLECTION_TRANSLATION_UPDATE_VALIDATION =
-  Joi.object().keys({
-    name: OPTIONAL_STRING,
-    description: OPTIONAL_STRING,
-  });
+interface ChannelCollectionCreateValidation {
+  name?: string | null;
+  description?: string | null;
+}
 
-export const CHANNEL_COLLECTION_UPDATE_VALIDATION = Joi.object({}).keys({
-  name: OPTIONAL_STRING,
-  description: OPTIONAL_STRING,
-});
+interface ChannelCollectionTranslationUpdateValidation {
+  name?: string | null;
+  description?: string | null;
+}
 
-export const CHANNEL_CONTENT_INTEREST_CREATE_VALIDATION = Joi.object().keys({
-  name: OPTIONAL_STRING.custom(validSlug),
-});
+interface ChannelCollectionUpdateValidation {
+  name?: string | null;
+  description?: string | null;
+}
 
-export const CHANNEL_CREATE_VALIDATION = Joi.object({}).keys({
-  name: OPTIONAL_STRING,
-  slug: OPTIONAL_STRING.custom(validSlug),
-  description: OPTIONAL_STRING,
-  priority: OPTIONAL_NUMBER,
-  visible: OPTIONAL_BOOLEAN,
-  imageId: OPTIONAL_STRING,
-  format: OPTIONAL_STRING.valid("article", "podcast", "video"),
-  externalUrl: OPTIONAL_STRING.uri(),
-  appleUrl: OPTIONAL_STRING.uri(),
-  spotifyUrl: OPTIONAL_STRING.uri(),
-  googleUrl: OPTIONAL_STRING.uri(),
-  youtubeUrl: OPTIONAL_STRING.uri(),
-  groupId: OPTIONAL_STRING,
-});
+interface ChannelContentInterestCreateValidation {
+  name?: string | null;
+}
 
-export const CHANNEL_INTEREST_CREATE_VALIDATION = Joi.object().keys({
-  name: OPTIONAL_STRING.custom(validSlug),
-});
+interface ChannelCreateValidation {
+  name?: string | null;
+  slug?: string | null; // Assuming validSlug is a function for validation and not relevant to TypeScript interface
+  description?: string | null;
+  priority?: number | string | null;
+  visible?: boolean | null;
+  imageId?: string | null;
+  format?: "todo" | "todo" | string | null; // Placeholder for actual enum values
+  externalUrl?: string | null;
+  appleUrl?: string | null;
+  spotifyUrl?: string | null;
+  googleUrl?: string | null;
+  youtubeUrl?: string | null;
+  groupId?: string | null;
+}
 
-export const CHANNEL_SUBSCRIBER_UPDATE_VALIDATION = Joi.object({}).keys({
-  contentEmailNotification: OPTIONAL_BOOLEAN,
-  contentPushNotification: OPTIONAL_BOOLEAN,
-});
+interface ChannelInterestCreateValidation {
+  name?: string | null;
+}
 
-export const CHANNEL_TRANSLATION_UPDATE_VALIDATION = Joi.object().keys({
-  name: OPTIONAL_STRING,
-  description: OPTIONAL_STRING,
-});
+interface ChannelSubscriberUpdateValidation {
+  contentEmailNotification?: boolean | null;
+  contentPushNotification?: boolean | null;
+}
+
+interface ChannelTranslationUpdateValidation {
+  name?: string | null;
+  description?: string | null;
+}
 
 export const CHANNEL_UPDATE_VALIDATION = Joi.object({}).keys({
   name: OPTIONAL_STRING,

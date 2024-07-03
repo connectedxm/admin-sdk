@@ -17,7 +17,7 @@ import {
  */
 export interface CreateEventRegistrationBypassParams extends MutationParams {
   eventId: string;
-  page: EventRegistrationBypassCreateInputs;
+  bypass: EventRegistrationBypassCreateInputs;
 }
 
 /**
@@ -26,7 +26,7 @@ export interface CreateEventRegistrationBypassParams extends MutationParams {
  */
 export const CreateEventRegistrationBypass = async ({
   eventId,
-  page,
+  bypass,
   adminApiParams,
   queryClient,
 }: CreateEventRegistrationBypassParams): Promise<
@@ -35,7 +35,7 @@ export const CreateEventRegistrationBypass = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<
     ConnectedXMResponse<RegistrationBypass>
-  >(`/events/${eventId}/bypass`, page);
+  >(`/events/${eventId}/bypass`, bypass);
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY(eventId),

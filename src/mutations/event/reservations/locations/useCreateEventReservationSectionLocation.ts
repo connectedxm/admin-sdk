@@ -18,7 +18,8 @@ import {
  * @category Params
  * @group Event-Reservations-Locations
  */
-export interface CreateReservationSectionLocationParams extends MutationParams {
+export interface CreateEventReservationSectionLocationParams
+  extends MutationParams {
   eventId: string;
   reservationSectionId: string;
   location: EventReservationSectionLocationCreateInputs;
@@ -28,13 +29,13 @@ export interface CreateReservationSectionLocationParams extends MutationParams {
  * @category Methods
  * @group Event-Reservations-Locations
  */
-export const CreateReservationSectionLocation = async ({
+export const CreateEventReservationSectionLocation = async ({
   eventId,
   reservationSectionId,
   location,
   adminApiParams,
   queryClient,
-}: CreateReservationSectionLocationParams): Promise<
+}: CreateEventReservationSectionLocationParams): Promise<
   ConnectedXMResponse<EventReservationSectionLocation>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
@@ -62,12 +63,12 @@ export const CreateReservationSectionLocation = async ({
  * @category Mutations
  * @group Event-Reservations-Locations
  */
-export const useCreateReservationSectionLocation = (
+export const useCreateEventReservationSectionLocation = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof CreateReservationSectionLocation>>,
+      Awaited<ReturnType<typeof CreateEventReservationSectionLocation>>,
       Omit<
-        CreateReservationSectionLocationParams,
+        CreateEventReservationSectionLocationParams,
         "queryClient" | "adminApiParams"
       >
     >,
@@ -75,7 +76,7 @@ export const useCreateReservationSectionLocation = (
   > = {}
 ) => {
   return useConnectedMutation<
-    CreateReservationSectionLocationParams,
-    Awaited<ReturnType<typeof CreateReservationSectionLocation>>
-  >(CreateReservationSectionLocation, options);
+    CreateEventReservationSectionLocationParams,
+    Awaited<ReturnType<typeof CreateEventReservationSectionLocation>>
+  >(CreateEventReservationSectionLocation, options);
 };

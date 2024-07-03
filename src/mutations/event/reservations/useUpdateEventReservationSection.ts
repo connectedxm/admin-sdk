@@ -15,7 +15,7 @@ import {
  * @category Params
  * @group Event-Reservations
  */
-export interface UpdateReservationSectionParams extends MutationParams {
+export interface UpdateEventReservationSectionParams extends MutationParams {
   eventId: string;
   reservationSectionId: string;
   reservationSection: EventReservationSectionUpdateInputs;
@@ -25,13 +25,13 @@ export interface UpdateReservationSectionParams extends MutationParams {
  * @category Methods
  * @group Event-Reservations
  */
-export const UpdateReservationSection = async ({
+export const UpdateEventReservationSection = async ({
   eventId,
   reservationSectionId,
   reservationSection,
   adminApiParams,
   queryClient,
-}: UpdateReservationSectionParams): Promise<
+}: UpdateEventReservationSectionParams): Promise<
   ConnectedXMResponse<EventReservationSection>
 > => {
   if (!reservationSectionId)
@@ -68,17 +68,20 @@ export const UpdateReservationSection = async ({
  * @category Mutations
  * @group Event-Reservations
  */
-export const useUpdateReservationSection = (
+export const useUpdateEventReservationSection = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof UpdateReservationSection>>,
-      Omit<UpdateReservationSectionParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof UpdateEventReservationSection>>,
+      Omit<
+        UpdateEventReservationSectionParams,
+        "queryClient" | "adminApiParams"
+      >
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    UpdateReservationSectionParams,
-    Awaited<ReturnType<typeof UpdateReservationSection>>
-  >(UpdateReservationSection, options);
+    UpdateEventReservationSectionParams,
+    Awaited<ReturnType<typeof UpdateEventReservationSection>>
+  >(UpdateEventReservationSection, options);
 };

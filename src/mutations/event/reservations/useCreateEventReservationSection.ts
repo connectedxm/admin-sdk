@@ -15,7 +15,7 @@ import {
  * @category Params
  * @group Event-Reservations
  */
-export interface CreateReservationSectionParams extends MutationParams {
+export interface CreateEventReservationSectionParams extends MutationParams {
   eventId: string;
   reservationSection: EventReservationSectionCreateInputs;
 }
@@ -24,12 +24,12 @@ export interface CreateReservationSectionParams extends MutationParams {
  * @category Methods
  * @group Event-Reservations
  */
-export const CreateReservationSection = async ({
+export const CreateEventReservationSection = async ({
   eventId,
   reservationSection,
   adminApiParams,
   queryClient,
-}: CreateReservationSectionParams): Promise<
+}: CreateEventReservationSectionParams): Promise<
   ConnectedXMResponse<EventReservationSection>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
@@ -54,17 +54,20 @@ export const CreateReservationSection = async ({
  * @category Mutations
  * @group Event-Reservations
  */
-export const useCreateReservationSection = (
+export const useCreateEventReservationSection = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof CreateReservationSection>>,
-      Omit<CreateReservationSectionParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof CreateEventReservationSection>>,
+      Omit<
+        CreateEventReservationSectionParams,
+        "queryClient" | "adminApiParams"
+      >
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    CreateReservationSectionParams,
-    Awaited<ReturnType<typeof CreateReservationSection>>
-  >(CreateReservationSection, options);
+    CreateEventReservationSectionParams,
+    Awaited<ReturnType<typeof CreateEventReservationSection>>
+  >(CreateEventReservationSection, options);
 };

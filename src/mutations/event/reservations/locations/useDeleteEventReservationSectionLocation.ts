@@ -14,7 +14,8 @@ import {
  * @category Params
  * @group Event-Reservations-Locations-Translations
  */
-export interface DeleteReservationSectionLocationParams extends MutationParams {
+export interface DeleteEventReservationSectionLocationParams
+  extends MutationParams {
   eventId: string;
   reservationSectionId: string;
   locationId: string;
@@ -24,13 +25,13 @@ export interface DeleteReservationSectionLocationParams extends MutationParams {
  * @category Methods
  * @group Event-Reservations-Locations-Translations
  */
-export const DeleteReservationSectionLocation = async ({
+export const DeleteEventReservationSectionLocation = async ({
   eventId,
   reservationSectionId,
   locationId,
   adminApiParams,
   queryClient,
-}: DeleteReservationSectionLocationParams): Promise<
+}: DeleteEventReservationSectionLocationParams): Promise<
   ConnectedXMResponse<null>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
@@ -59,12 +60,12 @@ export const DeleteReservationSectionLocation = async ({
  * @category Mutations
  * @group Event-Reservations-Locations-Translations
  */
-export const useDeleteReservationSectionLocation = (
+export const useDeleteEventReservationSectionLocation = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof DeleteReservationSectionLocation>>,
+      Awaited<ReturnType<typeof DeleteEventReservationSectionLocation>>,
       Omit<
-        DeleteReservationSectionLocationParams,
+        DeleteEventReservationSectionLocationParams,
         "queryClient" | "adminApiParams"
       >
     >,
@@ -72,7 +73,7 @@ export const useDeleteReservationSectionLocation = (
   > = {}
 ) => {
   return useConnectedMutation<
-    DeleteReservationSectionLocationParams,
-    Awaited<ReturnType<typeof DeleteReservationSectionLocation>>
-  >(DeleteReservationSectionLocation, options);
+    DeleteEventReservationSectionLocationParams,
+    Awaited<ReturnType<typeof DeleteEventReservationSectionLocation>>
+  >(DeleteEventReservationSectionLocation, options);
 };

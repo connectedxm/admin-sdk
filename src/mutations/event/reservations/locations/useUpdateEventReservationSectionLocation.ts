@@ -18,7 +18,8 @@ import {
  * @category Params
  * @group Event-Reservations-Locations-Translations
  */
-export interface UpdateReservationSectionLocationParams extends MutationParams {
+export interface UpdateEventReservationSectionLocationParams
+  extends MutationParams {
   eventId: string;
   reservationSectionId: string;
   locationId: string;
@@ -30,14 +31,14 @@ export interface UpdateReservationSectionLocationParams extends MutationParams {
  * @category Methods
  * @group Event-Reservations-Locations-Translations
  */
-export const UpdateReservationSectionLocation = async ({
+export const UpdateEventReservationSectionLocation = async ({
   eventId,
   reservationSectionId,
   locationId,
   location,
   adminApiParams,
   queryClient,
-}: UpdateReservationSectionLocationParams): Promise<
+}: UpdateEventReservationSectionLocationParams): Promise<
   ConnectedXMResponse<EventReservationSectionLocation>
 > => {
   if (!reservationSectionId)
@@ -78,12 +79,12 @@ export const UpdateReservationSectionLocation = async ({
  * @category Mutations
  * @group Event-Reservations-Locations-Translations
  */
-export const useUpdateReservationSectionLocation = (
+export const useUpdateEventReservationSectionLocation = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof UpdateReservationSectionLocation>>,
+      Awaited<ReturnType<typeof UpdateEventReservationSectionLocation>>,
       Omit<
-        UpdateReservationSectionLocationParams,
+        UpdateEventReservationSectionLocationParams,
         "queryClient" | "adminApiParams"
       >
     >,
@@ -91,7 +92,7 @@ export const useUpdateReservationSectionLocation = (
   > = {}
 ) => {
   return useConnectedMutation<
-    UpdateReservationSectionLocationParams,
-    Awaited<ReturnType<typeof UpdateReservationSectionLocation>>
-  >(UpdateReservationSectionLocation, options);
+    UpdateEventReservationSectionLocationParams,
+    Awaited<ReturnType<typeof UpdateEventReservationSectionLocation>>
+  >(UpdateEventReservationSectionLocation, options);
 };

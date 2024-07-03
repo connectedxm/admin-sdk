@@ -14,7 +14,7 @@ import {
  * @category Params
  * @group Event-Reservations
  */
-export interface DeleteReservationSectionParams extends MutationParams {
+export interface DeleteEventReservationSectionParams extends MutationParams {
   eventId: string;
   reservationSectionId: string;
 }
@@ -23,12 +23,12 @@ export interface DeleteReservationSectionParams extends MutationParams {
  * @category Methods
  * @group Event-Reservations
  */
-export const DeleteReservationSection = async ({
+export const DeleteEventReservationSection = async ({
   eventId,
   reservationSectionId,
   adminApiParams,
   queryClient,
-}: DeleteReservationSectionParams): Promise<ConnectedXMResponse<null>> => {
+}: DeleteEventReservationSectionParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/reservationSections/${reservationSectionId}`
@@ -51,17 +51,20 @@ export const DeleteReservationSection = async ({
  * @category Mutations
  * @group Event-Reservations
  */
-export const useDeleteReservationSection = (
+export const useDeleteEventReservationSection = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof DeleteReservationSection>>,
-      Omit<DeleteReservationSectionParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof DeleteEventReservationSection>>,
+      Omit<
+        DeleteEventReservationSectionParams,
+        "queryClient" | "adminApiParams"
+      >
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    DeleteReservationSectionParams,
-    Awaited<ReturnType<typeof DeleteReservationSection>>
-  >(DeleteReservationSection, options);
+    DeleteEventReservationSectionParams,
+    Awaited<ReturnType<typeof DeleteEventReservationSection>>
+  >(DeleteEventReservationSection, options);
 };

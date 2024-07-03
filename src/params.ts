@@ -445,13 +445,13 @@ export interface EventCouponUpdateParams {
   managerId?: string | null;
 }
 
-export interface EventCreateFaqSectionValidation {
+export interface EventFaqSectionCreateParams {
   name?: string | null;
   slug?: string | null;
   priority?: number | string | null;
 }
 
-export interface EventCreateValidation {
+export interface EventCreateParams {
   eventType: keyof typeof EventType;
   name: string;
   shortDescription: string;
@@ -934,7 +934,7 @@ export interface PushDeviceCreateParams {}
 
 export interface PushDeviceUpdateParams {}
 
-export interface QuestionChoiceCreateParams {
+export interface EventQuestionChoiceCreateParams {
   value: string;
   text?: string | null;
   supply?: number | string | null;
@@ -942,13 +942,13 @@ export interface QuestionChoiceCreateParams {
   sortOrder?: number | string | null;
 }
 
-export interface QuestionChoiceTranslationUpdateParams {
+export interface EventQuestionChoiceTranslationUpdateParams {
   value?: string | null;
   text?: string | null;
   description?: string | null;
 }
 
-export interface QuestionChoiceUpdateParams {
+export interface EventQuestionChoiceUpdateParams {
   value?: string | null;
   text?: string | null;
   supply?: number | string | null;
@@ -956,7 +956,7 @@ export interface QuestionChoiceUpdateParams {
   sortOrder?: number | string | null;
 }
 
-export interface QuestionCreateParams {
+export interface EventQuestionCreateParams {
   name: string;
   type?: keyof typeof RegistrationQuestionType | null;
   required?: boolean | null;
@@ -974,23 +974,23 @@ export interface QuestionCreateParams {
   featured?: boolean | null;
 }
 
-export interface QuestionSearchParams {
+export interface EventQuestionSearchParams {
   value: string;
   top?: boolean | null;
 }
 
-export interface QuestionSearchValueUpdateParams {
+export interface EventQuestionSearchValueUpdateParams {
   value?: string | null;
   top?: boolean | null;
 }
 
-export interface QuestionTranslationUpdateParams {
+export interface EventQuestionTranslationUpdateParams {
   label?: string | null;
   placeholder?: string | null;
   description?: string | null;
 }
 
-export interface QuestionUpdateParams {
+export interface EventQuestionUpdateParams {
   name?: string | null;
   type?: keyof typeof RegistrationQuestionType | null;
   required?: boolean | null;
@@ -1028,14 +1028,14 @@ export interface ReportUpdateParams {
   advancedFilter?: string | null;
 }
 
-export interface SectionCreateParams {
+export interface EventSectionCreateParams {
   name: string;
   description?: string | null;
   guestDescription?: string | null;
   sortOrder?: number | string | null;
 }
 
-export interface SectionUpdateParams {
+export interface EventSectionUpdateParams {
   name?: string | null;
   description?: string | null;
   guestDescription?: string | null;
@@ -1058,7 +1058,7 @@ export interface SeriesUpdateParams {
   sortOrder?: number | string | null;
 }
 
-export interface SponsorshipLevelCreateParams {
+export interface LevelCreateParams {
   name: string;
   slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
   subtitle?: string | null;
@@ -1069,13 +1069,13 @@ export interface SponsorshipLevelCreateParams {
   sortOrder?: number | string | null;
 }
 
-export interface SponsorshipLevelTranslationUpdateParams {
+export interface LevelTranslationUpdateParams {
   name?: string | null;
   subtitle?: string | null;
   description?: string | null;
 }
 
-export interface SponsorshipLevelUpdateParams {
+export interface LevelUpdateParams {
   name?: string | null;
   slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
   subtitle?: string | null;
@@ -1139,7 +1139,7 @@ export interface TeamCreateParams {
   username?: string | null;
 }
 
-export interface TeamMemberCreateParams {
+export interface OrganizationTeamMemberCreateParams {
   firstName?: string | null;
   lastName?: string | null;
   slug?: string | null;
@@ -1159,7 +1159,7 @@ export interface TeamMemberCreateParams {
   startDate?: string | null;
 }
 
-export interface TeamMemberUpdateParams {
+export interface OrganizationTeamMemberUpdateParams {
   firstName?: string | null;
   lastName?: string | null;
   slug?: string | null;
@@ -1205,7 +1205,7 @@ export interface ThreadUpdateParams {
   eventId?: string | null;
 }
 
-export interface TicketCreateParams {
+export interface EventTicketCreateParams {
   name: string;
   shortDescription: string;
   price: string | number; // Assuming REQUIRED_PRICE can be string or number
@@ -1230,7 +1230,7 @@ export interface TicketCreateParams {
   maxReservationEnd?: string | null;
 }
 
-export interface TicketUpdateParams {
+export interface EventTicketUpdateParams {
   visibility?: keyof typeof TicketVisibility | null;
   featured?: boolean | null;
   active?: boolean | null;
@@ -1277,14 +1277,14 @@ export interface TierUpdateParams {
   internal?: boolean | null;
 }
 
-export interface TrackCreateParams {
+export interface EventTrackCreateParams {
   name: string;
   slug?: string | null;
   description?: string | null;
   color?: string | null;
 }
 
-export interface TrackUpdateParams {
+export interface EventTrackUpdateParams {
   name?: string | null;
   slug?: string | null;
   description?: string | null;

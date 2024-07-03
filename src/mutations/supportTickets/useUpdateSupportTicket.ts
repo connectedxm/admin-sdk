@@ -32,10 +32,6 @@ export const UpdateSupportTicket = async ({
 }: UpdateSupportTicketParams): Promise<ConnectedXMResponse<SupportTicket>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
-  if (supportTicket && supportTicket?.request) {
-    delete supportTicket?.request;
-  }
-
   const { data } = await connectedXM.put<ConnectedXMResponse<SupportTicket>>(
     `/supportTickets/${supportTicketId}`,
     supportTicket

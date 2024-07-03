@@ -18,6 +18,7 @@ export interface UpdateEventTrackTranslationParams extends MutationParams {
   eventId: string;
   trackId: string;
   locale: ISupportedLocale;
+  //TODO: missing interface and validation
   trackTranslation: {
     name: string;
     description?: string;

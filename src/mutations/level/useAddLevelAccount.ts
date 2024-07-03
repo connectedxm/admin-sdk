@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, SponsorshipLevel } from "@src/interfaces";
+import { ConnectedXMResponse, Level } from "@src/interfaces";
 import { LEVEL_ACCOUNTS_QUERY_KEY, SET_LEVEL_QUERY_DATA } from "@src/queries";
 import {
   ConnectedXMMutationOptions,
@@ -25,11 +25,11 @@ export const AddLevelAccount = async ({
   accountId,
   adminApiParams,
   queryClient,
-}: AddLevelAccountParams): Promise<ConnectedXMResponse<SponsorshipLevel>> => {
+}: AddLevelAccountParams): Promise<ConnectedXMResponse<Level>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
-    ConnectedXMResponse<SponsorshipLevel>
-  >(`/levels/${levelId}/accounts/${accountId}`);
+  const { data } = await connectedXM.post<ConnectedXMResponse<Level>>(
+    `/levels/${levelId}/accounts/${accountId}`
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: LEVEL_ACCOUNTS_QUERY_KEY(levelId),

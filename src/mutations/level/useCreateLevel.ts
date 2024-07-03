@@ -4,15 +4,16 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import { SponsorshipLevel, ConnectedXMResponse } from "@src/interfaces";
+import { Level, ConnectedXMResponse } from "@src/interfaces";
 import { LEVELS_QUERY_KEY, SET_LEVEL_QUERY_DATA } from "@src/queries";
+import { LevelCreateParams } from "@src/params";
 
 /**
  * @category Params
  * @group Level
  */
 export interface CreateLevelParams extends MutationParams {
-  level: SponsorshipLevel;
+  level: LevelCreateParams;
 }
 
 /**
@@ -23,11 +24,12 @@ export const CreateLevel = async ({
   level,
   adminApiParams,
   queryClient,
-}: CreateLevelParams): Promise<ConnectedXMResponse<SponsorshipLevel>> => {
+}: CreateLevelParams): Promise<ConnectedXMResponse<Level>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
-    ConnectedXMResponse<SponsorshipLevel>
-  >(`/levels`, level);
+  const { data } = await connectedXM.post<ConnectedXMResponse<Level>>(
+    `/levels`,
+    level
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: LEVELS_QUERY_KEY() });
     SET_LEVEL_QUERY_DATA(queryClient, [data.data?.id], data);

@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { OrganizationPageUpdateParams } from "@src/params";
 import { SET_ORGANIZATION_PAGE_QUERY_DATA } from "@src/queries";
 
 /**
@@ -13,7 +14,7 @@ import { SET_ORGANIZATION_PAGE_QUERY_DATA } from "@src/queries";
  */
 export interface UpdateOrganizationPageParams extends MutationParams {
   type: PageType;
-  page: Page;
+  page: OrganizationPageUpdateParams;
 }
 
 /**

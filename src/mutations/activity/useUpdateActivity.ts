@@ -6,6 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ACTIVITIES_QUERY_KEY, SET_ACTIVITY_QUERY_DATA } from "@src/queries";
+import { ActivityUpdateParams } from "@src/params";
 
 /**
  * @category Params
@@ -13,7 +14,7 @@ import { ACTIVITIES_QUERY_KEY, SET_ACTIVITY_QUERY_DATA } from "@src/queries";
  */
 export interface UpdateActivityParams extends MutationParams {
   activityId: string;
-  activity: Activity;
+  activity: ActivityUpdateParams;
 }
 
 /**

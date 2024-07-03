@@ -1,6 +1,6 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { OrgMembership } from "@src/interfaces";
+import { OrganizationMembership } from "@src/interfaces";
 import {
   InfiniteQueryParams,
   InfiniteQueryOptions,
@@ -43,7 +43,7 @@ export const GetOrganizationUsers = async ({
   search,
   adminApiParams,
 }: GetOrganizationUsersProps): Promise<
-  ConnectedXMResponse<OrgMembership[]>
+  ConnectedXMResponse<OrganizationMembership[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/organization/users`, {

@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { EventSessionTranslationUpdateParams } from "@src/params";
 import {
   EVENT_SESSION_TRANSLATIONS_QUERY_KEY,
   SET_EVENT_SESSION_TRANSLATION_QUERY_DATA,
@@ -18,11 +19,7 @@ export interface UpdateEventSessionTranslationParams extends MutationParams {
   eventId: string;
   sessionId: string;
   locale: ISupportedLocale;
-  sessionTranslation: {
-    name: string;
-    description?: string;
-    longDescription?: string;
-  };
+  sessionTranslation: EventSessionTranslationUpdateParams;
 }
 
 /**

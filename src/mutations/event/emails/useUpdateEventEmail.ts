@@ -9,6 +9,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { EventEmailUpdateParams } from "@src/params";
 import { SET_EVENT_EMAIL_QUERY_DATA } from "@src/queries";
 
 /**
@@ -18,7 +19,7 @@ import { SET_EVENT_EMAIL_QUERY_DATA } from "@src/queries";
 export interface UpdateEventEmailParams extends MutationParams {
   eventId: string;
   type: EventEmailType;
-  eventEmail: EventEmail;
+  eventEmail: EventEmailUpdateParams;
 }
 
 /**

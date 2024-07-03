@@ -9,13 +9,14 @@ import {
   SUPPORT_TICKETS_QUERY_KEY,
   SET_SUPPORT_TICKET_QUERY_DATA,
 } from "@src/queries";
+import { SupportTicketCreateParams } from "@src/params";
 
 /**
  * @category Params
  * @group SupportTickets
  */
 export interface CreateSupportTicketParams extends MutationParams {
-  supportTicket: SupportTicket;
+  supportTicket: SupportTicketCreateParams;
 }
 
 /**

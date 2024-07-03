@@ -4,7 +4,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import { OrgMembership, ConnectedXMResponse } from "@src/interfaces";
+import { OrganizationMembership, ConnectedXMResponse } from "@src/interfaces";
 import {
   ORGANIZATION_USERS_QUERY_KEY,
   SET_ORGANIZATION_MEMBERSHIP_QUERY_DATA,
@@ -16,7 +16,7 @@ import {
  */
 export interface UpdateOrganizationMembershipParams extends MutationParams {
   userId: string;
-  membership: OrgMembership;
+  membership: OrganizationMembership;
 }
 
 /**
@@ -29,13 +29,12 @@ export const UpdateOrganizationMembership = async ({
   adminApiParams,
   queryClient,
 }: UpdateOrganizationMembershipParams): Promise<
-  ConnectedXMResponse<OrgMembership>
+  ConnectedXMResponse<OrganizationMembership>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<OrgMembership>>(
-    `/organization/users/${userId}`,
-    membership
-  );
+  const { data } = await connectedXM.put<
+    ConnectedXMResponse<OrganizationMembership>
+  >(`/organization/users/${userId}`, membership);
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: ORGANIZATION_USERS_QUERY_KEY() });
     SET_ORGANIZATION_MEMBERSHIP_QUERY_DATA(queryClient, [userId], data);

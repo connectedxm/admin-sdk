@@ -8,6 +8,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { EventQuestionSearchValueUpdateParams } from "@src/params";
 import {
   EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY,
   SET_EVENT_QUESTION_SEARCH_VALUE_QUERY_DATA,
@@ -21,7 +22,7 @@ export interface UpdateEventQuestionSearchValueParams extends MutationParams {
   eventId: string;
   questionId: string;
   searchValueId: string;
-  searchValue: RegistrationQuestionSearchValue;
+  searchValue: EventQuestionSearchValueUpdateParams;
 }
 
 /**

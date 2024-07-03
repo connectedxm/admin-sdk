@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 
-import { SponsorshipLevel } from "@src/interfaces";
+import { Level } from "@src/interfaces";
 import {
   InfiniteQueryParams,
   InfiniteQueryOptions,
@@ -39,7 +39,7 @@ export const GetLevels = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetLevelsProps): Promise<ConnectedXMResponse<SponsorshipLevel[]>> => {
+}: GetLevelsProps): Promise<ConnectedXMResponse<Level[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/levels`, {
     params: {

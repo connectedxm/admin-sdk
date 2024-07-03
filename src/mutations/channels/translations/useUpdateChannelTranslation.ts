@@ -9,6 +9,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { ChannelTranslationUpdateParams } from "@src/params";
 import {
   CHANNEL_TRANSLATION_QUERY_KEY,
   SET_CHANNEL_TRANSLATION_QUERY_DATA,
@@ -21,10 +22,7 @@ import {
 export interface UpdateChannelTranslationParams extends MutationParams {
   channelId: string;
   locale: ISupportedLocale;
-  channelTranslation: {
-    name: string;
-    description?: string;
-  };
+  channelTranslation: ChannelTranslationUpdateParams;
 }
 
 /**

@@ -9,6 +9,7 @@ import {
   SUBSCRIPTION_PRODUCT_PRICES_QUERY_KEY,
   SET_SUBSCRIPTION_PRODUCT_PRICE_QUERY_DATA,
 } from "@src/queries";
+import { SubscriptionProductPriceCreateParams } from "@src/params";
 
 /**
  * @category Params
@@ -16,7 +17,7 @@ import {
  */
 export interface CreateSubscriptionProductPriceParams extends MutationParams {
   subscriptionProductId: string;
-  subscriptionProductPrice: SubscriptionProductPrice;
+  subscriptionProductPrice: SubscriptionProductPriceCreateParams;
 }
 
 /**

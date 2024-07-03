@@ -15,6 +15,7 @@ import {
  * @group Stream
  */
 export interface CreateStreamInputParams extends MutationParams {
+  //TODO: missing interface and validation
   stream: StreamInput;
 }
 

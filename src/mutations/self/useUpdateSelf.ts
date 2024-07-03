@@ -6,13 +6,14 @@ import {
 } from "../useConnectedMutation";
 import { User, ConnectedXMResponse } from "@src/interfaces";
 import { SET_SELF_QUERY_DATA } from "@src/queries";
+import { UserUpdateParams } from "@src/params";
 
 /**
  * @category Params
  * @group Self
  */
 export interface UpdateSelfParams extends MutationParams {
-  user: User;
+  user: UserUpdateParams;
 }
 
 /**

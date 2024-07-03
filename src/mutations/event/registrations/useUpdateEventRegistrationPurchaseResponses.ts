@@ -17,6 +17,7 @@ export interface UpdateEventRegistrationPurchaseResponsesParams
   eventId: string;
   registrationId: string;
   purchaseId: string;
+  //TODO: missing interface and validation
   questions: Question[];
 }
 

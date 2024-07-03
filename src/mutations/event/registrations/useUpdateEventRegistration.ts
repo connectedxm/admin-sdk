@@ -17,6 +17,7 @@ import {
 export interface UpdateEventRegistrationParams extends MutationParams {
   eventId: string;
   registrationId: string;
+  //TODO: missing interface and validation
   registration: Registration;
 }
 

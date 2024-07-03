@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { EventPageTranslationUpdateParams } from "@src/params";
 import {
   EVENT_PAGE_TRANSLATIONS_QUERY_KEY,
   SET_EVENT_PAGE_TRANSLATION_QUERY_DATA,
@@ -18,11 +19,7 @@ export interface UpdateEventPageTranslationParams extends MutationParams {
   eventId: string;
   pageId: string;
   locale: ISupportedLocale;
-  pageTranslation: {
-    title?: string;
-    subtitle?: string;
-    html?: string;
-  };
+  pageTranslation: EventPageTranslationUpdateParams;
 }
 
 /**

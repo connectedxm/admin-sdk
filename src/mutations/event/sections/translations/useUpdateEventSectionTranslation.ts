@@ -18,6 +18,7 @@ export interface UpdateEventSectionTranslationParams extends MutationParams {
   eventId: string;
   sectionId: string;
   locale: ISupportedLocale;
+  //TODO: missing interface and validation
   sectionTranslation: {
     name: string;
     description?: string;

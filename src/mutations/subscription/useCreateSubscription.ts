@@ -11,6 +11,7 @@ import {
  * @group Subscriptions
  */
 export interface CreateSubscriptionParams extends MutationParams {
+  //TODO: missing interface and validation
   subscription: Subscription;
 }
 

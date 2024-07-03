@@ -5,6 +5,7 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { SubscriptionProductPrice, ConnectedXMResponse } from "@src/interfaces";
+import { SubscriptionProductPriceUpdateParams } from "@src/params";
 
 /**
  * @category Params
@@ -13,7 +14,7 @@ import { SubscriptionProductPrice, ConnectedXMResponse } from "@src/interfaces";
 export interface UpdateSubscriptionProductPriceParams extends MutationParams {
   subscriptionProductId: string;
   subscriptionProductPriceId: string;
-  subscriptionProductPrice: SubscriptionProductPrice;
+  subscriptionProductPrice: SubscriptionProductPriceUpdateParams;
 }
 
 /**

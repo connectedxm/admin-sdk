@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { EventAddOnUpdateParams } from "@src/params";
 import {
   EVENT_ADD_ONS_QUERY_KEY,
   SET_EVENT_ADD_ON_QUERY_DATA,
@@ -17,7 +18,7 @@ import {
 export interface UpdateAddOnParams extends MutationParams {
   eventId: string;
   addOnId: string;
-  addOn: EventAddOn;
+  addOn: EventAddOnUpdateParams;
 }
 
 /**

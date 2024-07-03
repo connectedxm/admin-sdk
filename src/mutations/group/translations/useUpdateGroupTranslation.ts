@@ -1,10 +1,11 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { GroupTranslation, ISupportedLocale } from "@src/interfaces";
+import { ISupportedLocale } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { GroupTranslationUpdateParams } from "@src/params";
 import {
   GROUP_TRANSLATIONS_QUERY_KEY,
   SET_GROUP_TRANSLATION_QUERY_DATA,
@@ -17,10 +18,7 @@ import {
 export interface UpdateGroupTranslationParams extends MutationParams {
   groupId: string;
   locale: ISupportedLocale;
-  groupTranslation: {
-    name: string;
-    description: string;
-  };
+  groupTranslation: GroupTranslationUpdateParams;
 }
 
 /**

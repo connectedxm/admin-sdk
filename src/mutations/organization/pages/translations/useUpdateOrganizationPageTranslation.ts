@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { OrganizationPageTranslationUpdateParams } from "@src/params";
 import {
   ORGANIZATION_PAGE_TRANSLATIONS_QUERY_KEY,
   SET_ORGANIZATION_PAGE_TRANSLATION_QUERY_DATA,
@@ -18,11 +19,7 @@ export interface UpdateOrganizationPageTranslationParams
   extends MutationParams {
   type: PageType;
   locale: ISupportedLocale;
-  pageTranslation: {
-    title?: string;
-    subtitle?: string;
-    html?: string;
-  };
+  pageTranslation: OrganizationPageTranslationUpdateParams;
 }
 
 /**

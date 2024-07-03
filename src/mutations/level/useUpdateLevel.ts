@@ -4,8 +4,9 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import { SponsorshipLevel, ConnectedXMResponse } from "@src/interfaces";
+import { Level, ConnectedXMResponse } from "@src/interfaces";
 import { LEVELS_QUERY_KEY, SET_LEVEL_QUERY_DATA } from "@src/queries";
+import { LevelUpdateParams } from "@src/params";
 
 /**
  * @category Params
@@ -13,7 +14,7 @@ import { LEVELS_QUERY_KEY, SET_LEVEL_QUERY_DATA } from "@src/queries";
  */
 export interface UpdateLevelParams extends MutationParams {
   levelId: string;
-  level: SponsorshipLevel;
+  level: LevelUpdateParams;
 }
 
 /**
@@ -25,11 +26,11 @@ export const UpdateLevel = async ({
   level,
   adminApiParams,
   queryClient,
-}: UpdateLevelParams): Promise<ConnectedXMResponse<SponsorshipLevel>> => {
+}: UpdateLevelParams): Promise<ConnectedXMResponse<Level>> => {
   if (!levelId) throw new Error("Level ID undefined");
   const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<ConnectedXMResponse<SponsorshipLevel>>(
+  const { data } = await connectedXM.put<ConnectedXMResponse<Level>>(
     `/levels/${levelId}`,
     {
       ...level,

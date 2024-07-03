@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { ContentTranslationUpdateParams } from "@src/params";
 import {
   CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY,
   SET_CHANNEL_CONTENT_TRANSLATION_QUERY_DATA,
@@ -18,11 +19,7 @@ export interface UpdateChannelContentTranslationParams extends MutationParams {
   channelId: string;
   contentId: string;
   locale: ISupportedLocale;
-  contentTranslation: {
-    title: string;
-    description?: string;
-    body?: string;
-  };
+  contentTranslation: ContentTranslationUpdateParams;
 }
 
 /**

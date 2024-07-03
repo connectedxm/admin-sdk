@@ -6,13 +6,14 @@ import {
 } from "../useConnectedMutation";
 import { ACCOUNTS_QUERY_KEY, SET_ACCOUNT_QUERY_DATA } from "@src/queries";
 import { GetAdminAPI } from "@src/AdminAPI";
+import { AccountCreateParams } from "@src/params";
 
 /**
  * @category Params
  * @group Account
  */
 export interface CreateAccountParams extends MutationParams {
-  account: Account;
+  account: AccountCreateParams;
 }
 
 /**

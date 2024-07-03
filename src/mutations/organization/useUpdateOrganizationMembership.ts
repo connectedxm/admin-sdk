@@ -9,7 +9,6 @@ import {
   ORGANIZATION_USERS_QUERY_KEY,
   SET_ORGANIZATION_MEMBERSHIP_QUERY_DATA,
 } from "@src/queries";
-import { OrganizationGroupMembershipUpdateParams } from "@src/params";
 
 /**
  * @category Params
@@ -17,7 +16,7 @@ import { OrganizationGroupMembershipUpdateParams } from "@src/params";
  */
 export interface UpdateOrganizationMembershipParams extends MutationParams {
   userId: string;
-  membership: OrganizationGroupMembershipUpdateParams;
+  membership: OrganizationMembership;
 }
 
 /**

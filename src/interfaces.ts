@@ -2000,7 +2000,7 @@ export interface BaseEventTicket {
   active: boolean;
   transferable: boolean;
   featured: boolean;
-  visibility: boolean;
+  visibility: TicketVisibility;
   name: string;
   shortDescription: string;
   longDescription: string | null;

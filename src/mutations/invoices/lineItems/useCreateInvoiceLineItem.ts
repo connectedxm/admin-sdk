@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { InvoiceLineItemCreateInputs } from "@src/params";
 import {
   SET_INVOICE_LINE_ITEM_QUERY_DATA,
   INVOICE_LINE_ITEMS_QUERY_KEY,
@@ -17,7 +18,7 @@ import {
  */
 export interface CreateInvoiceLineItemParams extends MutationParams {
   invoiceId: string;
-  invoiceLineItem: InvoiceLineItem;
+  invoiceLineItem: InvoiceLineItemCreateInputs;
 }
 
 /**

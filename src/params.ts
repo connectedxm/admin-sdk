@@ -366,7 +366,7 @@ export interface EventAddOnCreateInputs {
   name: string;
   shortDescription: string;
   longDescription?: string | null;
-  price?: number | string | null; // Assuming OPTIONAL_PRICE is similar to OPTIONAL_NUMBER
+  price: number | string | null;
   supply?: number | string | null;
   sortOrder?: number | string | null;
   imageId?: string | null;
@@ -842,14 +842,14 @@ export interface InvoiceLineItemCreateInputs {
   name: string;
   description: string;
   quantity: string | number;
-  amount: string; // Assuming REQUIRED_PRICE is a string format for price
+  amount: string;
 }
 
 export interface InvoiceLineItemUpdateInputs {
   name?: string | null;
   description?: string | null;
   quantity?: string | number | null;
-  amount?: string | null; // Assuming OPTIONAL_PRICE is a string format for price
+  amount?: string | null;
 }
 
 export interface InvoiceUpdateInputs {

@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { InvoiceLineItemUpdateInputs } from "@src/params";
 import {
   SET_INVOICE_LINE_ITEM_QUERY_DATA,
   INVOICE_QUERY_KEY,
@@ -18,8 +19,7 @@ import {
 export interface UpdateInvoiceLineItemParams extends MutationParams {
   invoiceId: string;
   lineItemId: string;
-  //TODO: missing interface and validation
-  invoiceLineItem: InvoiceLineItem;
+  invoiceLineItem: InvoiceLineItemUpdateInputs;
 }
 
 /**

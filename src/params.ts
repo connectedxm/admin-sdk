@@ -1,10 +1,26 @@
-import { AccountType, AdvertisementType } from "./interfaces";
+import {
+  AccountType,
+  AdvertisementType,
+  BadgeFieldTransformation,
+  BadgeFieldType,
+  ContentGuestType,
+  ContentType,
+  InvoiceStatus,
+  EventType,
+  GroupAccess,
+  RegistrationQuestionType,
+  SubscriptionProductPriceType,
+  SubscriptionProductPriceInterval,
+  ThreadAccessLevel,
+  TicketVisibility,
+  TicketEventAccessLevel,
+} from "./interfaces";
 
 export interface AccountCreateParams {
   accountType: keyof typeof AccountType;
   email: string;
   username: string;
-  featured?: boolean;
+  featured?: boolean | null;
   firstName?: string | null;
   lastName?: string | null;
   imageId?: string | null;
@@ -32,8 +48,8 @@ export interface AccountCreateParams {
 }
 
 export interface AccountUpdateParams {
-  accountType?: keyof typeof AccountType;
-  featured?: boolean;
+  accountType?: keyof typeof AccountType | null;
+  featured?: boolean | null;
   email?: string | null;
   firstName?: string | null;
   lastName?: string | null;
@@ -76,7 +92,7 @@ export interface ActivityCreateParams {
 }
 
 export interface ActivityUpdateParams {
-  message?: string;
+  message?: string | null;
   html?: string | null;
   text?: string | null;
   giphyId?: string | null;
@@ -92,20 +108,20 @@ export interface AdvertisementCreateParams {
   type: keyof typeof AdvertisementType;
   link: string;
   title: string;
-  startDate: string | null;
+  startDate: Date;
   description?: string | null;
   imageId?: string | null;
   endDate?: string | null;
-  weight?: number | null;
+  weight?: number | string | null;
   accountId?: string | null;
   eventId?: string | null;
   eventOnly?: boolean | null;
 }
 
 export interface AdvertisementUpdateParams {
-  type?: keyof typeof AdvertisementType;
-  link?: string;
-  title?: string;
+  type?: keyof typeof AdvertisementType | null;
+  link?: string | null;
+  title?: string | null;
   description?: string | null;
   imageId?: string | null;
   startDate?: string | null;
@@ -117,35 +133,36 @@ export interface AdvertisementUpdateParams {
 }
 
 export interface AnnouncementCreateParams {
-  userId?: string | null;
+  title: string;
+  html: string;
+  email: boolean;
+  push: boolean;
+  slug?: string | null;
   creatorId?: string | null;
-  verifiedAccounts?: boolean | null;
+  userId?: string | null;
   eventId?: string | null;
   groupId?: string | null;
   accountId?: string | null;
-  ticketId?: string | null;
   sponsorshipLevelId?: string | null;
-  title?: string | null;
-  slug?: string | null; // Assuming validSlug is a function for validation and not relevant to TypeScript interface
-  message?: string | null;
-  html?: string | null;
-  email?: boolean | null;
-  sms?: boolean | null;
-  push?: boolean | null;
 }
 
 export interface BenefitCreateParams {
-  link?: string | null;
-  title?: string | null;
-  slug?: string | null; // Assuming validSlug is a function for validation and not relevant to TypeScript interface
+  link: string;
+  title: string;
+  startDate: string;
+  slug?: string | null;
   description?: string | null;
   imageId?: string | null;
-  startDate?: string | null; // Assuming dates are represented as strings
   endDate?: string | null;
   priority?: number | string | null;
   managerId?: string | null;
   eventId?: string | null;
   eventOnly?: boolean | null;
+}
+
+export interface BenefitTranslationUpdateParams {
+  title?: string | null;
+  description?: string | null;
 }
 
 export interface BenefitUpdateParams {
@@ -161,13 +178,9 @@ export interface BenefitUpdateParams {
   eventId?: string | null;
   eventOnly?: boolean | null;
 }
-export interface BenefitTranslationUpdateParams {
-  title?: string | null;
-  description?: string | null;
-}
 
 export interface ChannelCollectionCreateParams {
-  name?: string | null;
+  name: string;
   description?: string | null;
 }
 
@@ -181,28 +194,19 @@ export interface ChannelCollectionUpdateParams {
   description?: string | null;
 }
 
-export interface ChannelContentInterestCreateParams {
-  name?: string | null;
-}
-
 export interface ChannelCreateParams {
-  name?: string | null;
-  slug?: string | null; // Assuming validSlug is a function for validation and not relevant to TypeScript interface
+  name: string;
+  imageId: string;
+  slug?: string | null; // Assuming validSlug is a function for validation, not an enum conversion
   description?: string | null;
   priority?: number | string | null;
   visible?: boolean | null;
-  imageId?: string | null;
-  format?: "todo" | "todo" | string | null; // Placeholder for actual enum values
   externalUrl?: string | null;
   appleUrl?: string | null;
   spotifyUrl?: string | null;
   googleUrl?: string | null;
   youtubeUrl?: string | null;
   groupId?: string | null;
-}
-
-export interface ChannelInterestCreateParams {
-  name?: string | null;
 }
 
 export interface ChannelSubscriberUpdateParams {
@@ -217,12 +221,11 @@ export interface ChannelTranslationUpdateParams {
 
 export interface ChannelUpdateParams {
   name?: string | null;
-  slug?: string | null;
+  imageId?: string | null;
+  slug?: string | null; // Assuming validSlug is a function for validation, not an enum conversion
   description?: string | null;
   priority?: number | string | null;
   visible?: boolean | null;
-  imageId?: string | null;
-  format?: "todo" | "todo" | string | null; // Assuming "article", "podcast", "video" are the only valid strings
   externalUrl?: string | null;
   appleUrl?: string | null;
   spotifyUrl?: string | null;
@@ -232,12 +235,12 @@ export interface ChannelUpdateParams {
 }
 
 export interface ContentCreateParams {
-  type?: "todo" | "todo" | string | null; // Assuming ContentType keys are the valid strings
+  title: string;
+  type: keyof typeof ContentType;
   published?: string | null;
   channelId?: string | null;
-  featured?: boolean;
+  featured?: boolean | null;
   visible?: boolean | null;
-  title?: string | null;
   slug?: string | null;
   description?: string | null;
   duration?: string | null;
@@ -251,10 +254,11 @@ export interface ContentCreateParams {
   googleUrl?: string | null;
   youtubeUrl?: string | null;
 }
+
 export interface ContentGuestCreateParams {
-  type?: "todo" | "todo" | string | null;
+  name: string;
+  type?: keyof typeof ContentGuestType | null;
   slug?: string | null;
-  name?: string | null;
   title?: string | null;
   bio?: string | null;
   company?: string | null;
@@ -279,7 +283,7 @@ export interface ContentGuestTranslationUpdateParams {
 }
 
 export interface ContentGuestUpdateParams {
-  type?: "todo" | "todo" | string | null;
+  type?: keyof typeof ContentGuestType | null;
   slug?: string | null;
   name?: string | null;
   title?: string | null;
@@ -306,10 +310,10 @@ export interface ContentTranslationUpdateParams {
 }
 
 export interface ContentUpdateParams {
-  type?: "todo" | "todo" | string | null;
+  type?: keyof typeof ContentType | null;
   published?: string | null;
   channelId?: string | null;
-  featured?: boolean;
+  featured?: boolean | null;
   visible?: boolean | null;
   title?: string | null;
   slug?: string | null;
@@ -327,11 +331,11 @@ export interface ContentUpdateParams {
 }
 
 export interface EventActivationCreateParams {
+  name: string;
+  shortDescription: string;
   imageId?: string | null;
   managerId?: string | null;
-  name?: string | null;
-  slug?: string | null;
-  shortDescription?: string | null;
+  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
   longDescription?: string | null;
   maxPoints?: number | string | null;
   startAfter?: string | null;
@@ -349,7 +353,7 @@ export interface EventActivationUpdateParams {
   imageId?: string | null;
   managerId?: string | null;
   name?: string | null;
-  slug?: string | null; // Assuming validSlug is a function for validation and not relevant to TypeScript interface
+  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
   shortDescription?: string | null;
   longDescription?: string | null;
   maxPoints?: number | string | null;
@@ -359,10 +363,10 @@ export interface EventActivationUpdateParams {
 }
 
 export interface EventAddOnCreateParams {
-  name?: string | null;
-  shortDescription?: string | null;
+  name: string;
+  shortDescription: string;
   longDescription?: string | null;
-  price?: number | string | null; // Assuming OPTIONAL_PRICE is similar to OPTIONAL_NUMBER but for prices
+  price?: number | string | null; // Assuming OPTIONAL_PRICE is similar to OPTIONAL_NUMBER
   supply?: number | string | null;
   sortOrder?: number | string | null;
   imageId?: string | null;
@@ -373,6 +377,7 @@ export interface EventAddOnCreateParams {
   minReservationEnd?: string | null;
   maxReservationEnd?: string | null;
 }
+
 export interface EventAddOnUpdateTranslationParams {
   name?: string | null;
   shortDescription?: string | null;
@@ -383,7 +388,7 @@ export interface EventAddOnUpdateParams {
   name?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
-  price?: number | string | null;
+  price?: number | string | null; // Assuming OPTIONAL_PRICE is similar to OPTIONAL_NUMBER
   supply?: number | string | null;
   sortOrder?: number | string | null;
   imageId?: string | null;
@@ -396,15 +401,33 @@ export interface EventAddOnUpdateParams {
 }
 
 export interface EventBadgeFieldUpdateParams {
-  type?: "todo" | "todo" | string | null;
+  type?: keyof typeof BadgeFieldType | null;
   lookup?: string | null;
   maxLength?: number | string | null;
   defaultValue?: string | null;
-  transformation?: "todo" | "todo" | string | null;
+  transformation?: keyof typeof BadgeFieldTransformation | null;
   sortOrder?: number | string | null;
 }
 
 export interface EventCouponCreateParams {
+  code: string;
+  description?: string | null;
+  active?: boolean | null;
+  startDate?: string | null;
+  endDate?: string | null;
+  discountAmount?: number | string | null;
+  discountPercent?: number | string | null;
+  quantityMin?: number | string | null;
+  quantityMax?: number | string | null;
+  amountMin?: number | string | null;
+  amountMax?: number | string | null;
+  useLimit?: number | string | null;
+  emailDomains?: string | null;
+  ticketId?: string | null;
+  managerId?: string | null;
+}
+
+export interface EventCouponUpdateParams {
   code?: string | null;
   description?: string | null;
   active?: boolean | null;
@@ -422,26 +445,24 @@ export interface EventCouponCreateParams {
   managerId?: string | null;
 }
 
-export interface EventFaqSectionQuestionCreateParams {
-  question?: string | null;
+export interface EventCreateFaqSectionValidation {
+  name?: string | null;
   slug?: string | null;
-  answer?: string | null;
   priority?: number | string | null;
-  visible?: boolean | null;
 }
 
-export interface EventCreateParams {
-  featured?: boolean;
+export interface EventCreateValidation {
+  eventType: keyof typeof EventType;
+  name: string;
+  shortDescription: string;
+  eventStart: Date;
+  eventEnd: Date;
+  featured?: boolean | null;
   visible?: boolean | null;
-  name?: string | null;
-  eventType?: "todo" | "todo" | string | null;
   slug?: string | null;
   internalRefId?: string | null;
-  shortDescription?: string | null;
   longDescription?: string | null;
-  timezone?: "todo" | "todo" | string | null;
-  eventStart?: string | null;
-  eventEnd?: string | null;
+  timezone?: string;
   externalUrl?: string | null;
   imageId?: string | null;
   venueMapId?: string | null;
@@ -464,7 +485,6 @@ export interface EventCreateParams {
   publicRegistrants?: boolean | null;
   sessionsVisible?: boolean | null;
   speakersVisible?: boolean | null;
-  inviteOnly?: boolean | null;
   iosAppLink?: string | null;
   androidAppLink?: string | null;
   newActivityCreatorEmailNotification?: boolean | null;
@@ -474,9 +494,45 @@ export interface EventCreateParams {
   groupOnly?: boolean | null;
 }
 
+export interface EventEmailUpdateParams {
+  body?: string | null;
+  replyTo?: string | null;
+}
+
+export interface EventFaqSectionQuestionCreateParams {
+  question: string;
+  answer: string;
+  slug?: string | null;
+  priority?: number | string | null;
+  visible?: boolean | null;
+}
+
+export interface EventFaqSectionQuestionTranslationUpdateParams {
+  question?: string | null;
+  answer?: string | null;
+}
+
+export interface EventFaqSectionQuestionUpdateParams {
+  question?: string | null;
+  slug?: string | null;
+  answer?: string | null;
+  priority?: number | string | null;
+  visible?: boolean | null;
+}
+
+export interface EventFaqSectionTranslationUpdateParams {
+  name?: string | null;
+}
+
+export interface EventFaqSectionUpdateParams {
+  name?: string | null;
+  slug?: string | null;
+  priority?: number | string | null;
+}
+
 export interface EventPageCreateParams {
   slug?: string | null;
-  title?: string | null;
+  title: string;
   subtitle?: string | null;
   html?: string | null;
   sortOrder?: number | string | null;
@@ -489,7 +545,7 @@ export interface EventPageTranslationUpdateParams {
 }
 
 export interface EventPageUpdateParams {
-  slug?: string | null;
+  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
   title?: string | null;
   subtitle?: string | null;
   html?: string | null;
@@ -507,15 +563,15 @@ export interface EventPurchaseCreateParams {
 
 export interface EventPurchaseUpdateParams {
   location?: string | null;
-  usedAt?: Date | null;
+  usedAt?: string | null;
   ticketId?: string | null;
   paid?: boolean | null;
-  reservationStart?: Date | null;
-  reservationEnd?: Date | null;
+  reservationStart?: string | null;
+  reservationEnd?: string | null;
 }
 
 export interface EventRegistrationBypassCreateParams {
-  accountId?: string | null;
+  accountId: string;
   closed?: boolean | null;
   preRegister?: boolean | null;
   postRegister?: boolean | null;
@@ -535,32 +591,35 @@ export interface EventRegistrationSectionUpdateTranslationParams {
 }
 
 export interface EventReservationSectionCreateParams {
-  name?: string | null;
+  name: string;
   shortDescription?: string | null;
-  price?: number | null;
-  sortOrder?: number | null;
+  price?: number | string | null; // Assuming OPTIONAL_PRICE is similar to OPTIONAL_NUMBER
+  sortOrder?: number | string | null;
   pricePerDay?: boolean | null;
   imageId?: string | null;
 }
 
-//EVENT RESERVATION SECTION LOCATION
 export interface EventReservationSectionLocationCreateParams {
+  name: string;
+  shortDescription?: string | null;
+  premium?: number | string | null;
+  supply?: number | string | null;
+  sortOrder?: number | string | null;
+}
+
+export interface EventReservationSectionLocationTranslationUpdateParams {
   name?: string | null;
   shortDescription?: string | null;
-  premium?: number | null;
-  supply?: number | null;
-  sortOrder?: number | null;
 }
 
 export interface EventReservationSectionLocationUpdateParams {
   name?: string | null;
   shortDescription?: string | null;
-  premium?: number | null;
-  supply?: number | null;
-  sortOrder?: number | null;
+  premium?: number | string | null;
+  supply?: number | string | null;
+  sortOrder?: number | string | null;
 }
 
-//EVENT RESERVATION SECTION TRANSLATION
 export interface EventReservationSectionTranslationUpdateParams {
   name?: string | null;
   shortDescription?: string | null;
@@ -569,28 +628,26 @@ export interface EventReservationSectionTranslationUpdateParams {
 export interface EventReservationSectionUpdateParams {
   name?: string | null;
   shortDescription?: string | null;
-  price?: string | null;
-  sortOrder?: number | null;
+  price?: number | string | null;
+  sortOrder?: number | string | null;
   pricePerDay?: boolean | null;
   imageId?: string | null;
 }
 
-//EVENT SESSION
 export interface EventSessionCreateParams {
-  name?: string | null;
+  name: string;
+  startTime: Date;
+  endTime: Date;
   slug?: string | null;
-  startTime?: Date | null;
-  endTime?: Date | null;
   location?: string | null;
   description?: string | null;
   longDescription?: string | null;
   nonSession?: boolean | null;
   imageId?: string | null;
   visible?: boolean | null;
-  sortOrder?: number | null;
+  sortOrder?: number | string | null;
 }
 
-//EVENT SESSION TRANSLATION
 export interface EventSessionTranslationUpdateParams {
   name?: string | null;
   description?: string | null;
@@ -599,24 +656,22 @@ export interface EventSessionTranslationUpdateParams {
 
 export interface EventSessionUpdateParams {
   name?: string | null;
+  startTime?: string | null;
+  endTime?: string | null;
   slug?: string | null;
-  startTime?: Date | null;
-  endTime?: Date | null;
   location?: string | null;
   description?: string | null;
   longDescription?: string | null;
   nonSession?: boolean | null;
   imageId?: string | null;
   visible?: boolean | null;
-  sortOrder?: number | null;
+  sortOrder?: number | string | null;
 }
 
-//event speaker
-
 export interface EventSpeakerCreateParams {
-  firstName?: string | null;
+  firstName: string;
   lastName?: string | null;
-  slug?: string | null;
+  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
   bio?: string | null;
   title?: string | null;
   company?: string | null;
@@ -632,11 +687,10 @@ export interface EventSpeakerCreateParams {
   label?: string | null;
   isHost?: boolean | null;
   imageId?: string | null;
-  priority?: number | null;
+  priority?: number | string | null;
   visible?: boolean | null;
 }
 
-//EVENT SPEAKER TRANSLATION
 export interface EventSpeakerTranslationUpdateParams {
   title?: string | null;
   bio?: string | null;
@@ -645,7 +699,7 @@ export interface EventSpeakerTranslationUpdateParams {
 export interface EventSpeakerUpdateParams {
   firstName?: string | null;
   lastName?: string | null;
-  slug?: string | null;
+  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
   bio?: string | null;
   title?: string | null;
   company?: string | null;
@@ -661,7 +715,7 @@ export interface EventSpeakerUpdateParams {
   label?: string | null;
   isHost?: boolean | null;
   imageId?: string | null;
-  priority?: number | null;
+  priority?: number | string | null;
   visible?: boolean | null;
 }
 
@@ -682,78 +736,18 @@ export interface EventTranslationUpdateParams {
   longDescription?: string | null;
 }
 
-export interface EventCouponUpdateParams {
-  code?: string | null;
-  description?: string | null;
-  active?: boolean | null;
-  startDate?: Date | null;
-  endDate?: Date | null;
-  discountAmount?: number | null;
-  discountPercent?: number | null;
-  quantityMin?: number | null;
-  quantityMax?: number | null;
-  amountMin?: number | null;
-  amountMax?: number | null;
-  useLimit?: number | null;
-  emailDomains?: string | null;
-  ticketId?: string | null;
-  managerId?: string | null;
-}
-
-export interface EventEmailUpdateParams {
-  body?: string | null;
-  replyTo?: string | null;
-}
-
-// EVENT FAQ SECTION QUESTIONS TRANSLATION
-export interface EventFaqSectionQuestionTranslationUpdateParams {
-  question?: string | null;
-  answer?: string | null;
-}
-
-export interface EventFaqSectionQuestionUpdateParams {
-  question?: string | null;
-  slug?: string | null;
-  answer?: string | null;
-  priority?: number | null;
-  visible?: boolean | null;
-}
-
-//EVENT FAQ SECTIONS TRANSLATIONS
-export interface EventFaqSectionTranslationUpdateParams {
-  name?: string | null;
-}
-
-//EVENT FAQ SECTIONS
-export interface EventFaqSectionCreateParams {
-  name?: string | null;
-  slug?: string | null;
-  priority?: number | null;
-}
-export interface EventFaqSectionUpdateParams {
-  name?: string | null;
-  slug?: string | null;
-  priority?: number | null;
-}
-
-//EVENT RESERVATION SECTION LOCATION TRANSLATION
-export interface EventReservationSectionLocationTranslationUpdateParams {
-  name?: string | null;
-  shortDescription?: string | null;
-}
-
 export interface EventUpdateParams {
-  featured?: boolean;
+  featured?: boolean | null;
   visible?: boolean | null;
   name?: string | null;
-  eventType?: "todo" | "todo" | null;
+  eventType?: keyof typeof EventType | null;
   slug?: string | null;
   internalRefId?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
   timezone?: string | null;
-  eventStart?: Date | null;
-  eventEnd?: Date | null;
+  eventStart?: string | null;
+  eventEnd?: string | null;
   externalUrl?: string | null;
   imageId?: string | null;
   venueMapId?: string | null;
@@ -770,9 +764,9 @@ export interface EventUpdateParams {
   approved?: boolean | null;
   meetingUrl?: string | null;
   registration?: boolean | null;
-  registrationStart?: Date | null;
-  registrationEnd?: Date | null;
-  registrationLimit?: number | null;
+  registrationStart?: string | null;
+  registrationEnd?: string | null;
+  registrationLimit?: number | null | string;
   publicRegistrants?: boolean | null;
   sessionsVisible?: boolean | null;
   speakersVisible?: boolean | null;
@@ -787,17 +781,17 @@ export interface EventUpdateParams {
 }
 
 export interface GroupCreateParams {
-  featured?: boolean;
-  name?: string | null;
+  name: string;
+  description: string;
+  featured?: boolean | null;
   slug?: string | null;
-  description?: string | null;
   active?: boolean | null;
-  access?: "public" | "private" | null;
+  access?: keyof typeof GroupAccess | null;
   imageId?: string | null;
   externalUrl?: string | null;
 }
 
-export interface OrganizationGroupMembershipUpdateParams {
+export interface GroupMembershipUpdateParams {
   announcementEmailNotification?: boolean | null;
   announcementPushNotification?: boolean | null;
   activityEmailNotification?: boolean | null;
@@ -813,56 +807,56 @@ export interface GroupTranslationUpdateParams {
 }
 
 export interface GroupUpdateParams {
-  featured?: boolean;
+  featured?: boolean | null;
   name?: string | null;
-  slug?: string | null;
+  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
   description?: string | null;
   active?: boolean | null;
-  access?: "public" | "private" | null;
+  access?: keyof typeof GroupAccess | null;
   imageId?: string | null;
   externalUrl?: string | null;
 }
 
 export interface InterestCreateParams {
-  name?: string | null;
+  name: string; // Assuming validSlug is a method for validation, not an enum conversion
   imageId?: string | null;
-  featured?: boolean;
+  featured?: boolean | null;
 }
 
 export interface InterestUpdateParams {
-  name?: string | null;
+  name?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
   imageId?: string | null;
-  featured?: boolean;
+  featured?: boolean | null;
 }
 
 export interface InvoiceCreateParams {
-  title?: string | null;
+  title: string;
+  dueDate: string; // Assuming dueDate is a string that represents a date
   description?: string | null;
-  status?: "todo" | "todo";
-  dueDate?: Date | null;
+  status?: keyof typeof InvoiceStatus | null;
   notes?: string | null;
   accountId?: string | null;
 }
 
 export interface InvoiceLineItemCreateParams {
-  name?: string | null;
-  description?: string | null;
-  quantity?: number | null;
-  amount?: number | null;
+  name: string;
+  description: string;
+  quantity: string | number;
+  amount: string; // Assuming REQUIRED_PRICE is a string format for price
 }
 
 export interface InvoiceLineItemUpdateParams {
   name?: string | null;
   description?: string | null;
-  quantity?: number | null;
-  amount?: number | null;
+  quantity?: string | number | null;
+  amount?: string | null; // Assuming OPTIONAL_PRICE is a string format for price
 }
 
 export interface InvoiceUpdateParams {
   title?: string | null;
   description?: string | null;
-  status?: "todo" | "todo";
-  dueDate?: Date | null;
+  status?: keyof typeof InvoiceStatus | null;
+  dueDate?: string | null; // Assuming dueDate is a string that represents a date
   notes?: string | null;
   accountId?: string | null;
 }
@@ -876,59 +870,15 @@ export interface LeadUpdateParams {
 }
 
 export interface NotificationPreferencesCreateParams {
-  newFollowerPush?: boolean | null;
-  newFollowerEmail?: boolean | null;
-  likePush?: boolean | null;
-  resharePush?: boolean | null;
-  commentPush?: boolean | null;
-  commentEmail?: boolean | null;
-  transferPush?: boolean | null;
-  transferEmail?: boolean | null;
-  supportTicketConfirmationEmail?: boolean | null;
-  chatPush?: boolean | null;
-  chatUnreadPush?: boolean | null;
-  chatUnreadEmail?: boolean | null;
-  eventReminderEmail?: boolean | null;
-  eventAnnouncementPush?: boolean | null;
-  eventAnnouncementEmail?: boolean | null;
-  organizationAnnouncementPush?: boolean | null;
-  organizationAnnouncementEmail?: boolean | null;
-  groupAnnouncementPush?: boolean | null;
-  groupAnnouncementEmail?: boolean | null;
-  groupInvitationPush?: boolean | null;
-  groupInvitationEmail?: boolean | null;
-  groupRequestAcceptedEmail?: boolean | null;
-  groupRequestAcceptedPush?: boolean | null;
+  // No fields defined in the provided validation object
 }
 
 export interface NotificationPreferencesUpdateParams {
-  newFollowerPush?: boolean | null;
-  newFollowerEmail?: boolean | null;
-  likePush?: boolean | null;
-  resharePush?: boolean | null;
-  commentPush?: boolean | null;
-  commentEmail?: boolean | null;
-  transferPush?: boolean | null;
-  transferEmail?: boolean | null;
-  supportTicketConfirmationEmail?: boolean | null;
-  chatPush?: boolean | null;
-  chatUnreadPush?: boolean | null;
-  chatUnreadEmail?: boolean | null;
-  eventReminderEmail?: boolean | null;
-  eventAnnouncementPush?: boolean | null;
-  eventAnnouncementEmail?: boolean | null;
-  organizationAnnouncementPush?: boolean | null;
-  organizationAnnouncementEmail?: boolean | null;
-  groupAnnouncementPush?: boolean | null;
-  groupAnnouncementEmail?: boolean | null;
-  groupInvitationPush?: boolean | null;
-  groupInvitationEmail?: boolean | null;
-  groupRequestAcceptedEmail?: boolean | null;
-  groupRequestAcceptedPush?: boolean | null;
+  // No fields defined in the provided validation object
 }
 
 export interface OrganizationPageCreateParams {
-  title?: string | null;
+  title: string;
   subtitle?: string | null;
   html?: string | null;
 }
@@ -946,12 +896,12 @@ export interface OrganizationPageUpdateParams {
 }
 
 export interface OrganizationUpdateParams {
-  email?: string;
-  name?: string;
-  description?: string;
-  slug?: string;
+  email?: string | null;
+  name?: string | null;
+  description?: string | null;
+  slug?: string | null;
   phone?: string | null;
-  timezone?: "todo" | "todo";
+  timezone?: string | null;
   website?: string | null;
   address1?: string | null;
   address2?: string | null;
@@ -973,133 +923,94 @@ export interface OrganizationUpdateParams {
   linkedIn?: string | null;
   youtube?: string | null;
   discord?: string | null;
-  iosAppLink?: string | null;
-  androidAppLink?: string | null;
   requirePhone?: boolean | null;
   requireTitle?: boolean | null;
   requireCompany?: boolean | null;
 }
 
-export interface PaymentIntentPurchaseMetadataParams {
-  purchaseId?: string | null;
-  addOnIds?: (string | null)[] | null;
-}
+export interface PaymentIntentPurchaseMetadataParams {}
 
-export interface PushDeviceCreateParams {
-  id?: string | null;
-  deviceToken?: string | null;
-  eventId?: string | null;
-  bundleId?: string | null;
-  name?: string | null;
-  model?: string | null;
-  brand?: string | null;
-  osName?: string | null;
-  osVersion?: string | null;
-  deviceYearClass?: number | null;
-  manufacturer?: string | null;
-  supportedCpuArchitectures?: string | null;
-  totalMemory?: number | null;
-  appType?: "EVENTXM" | "COMMUNITYXM" | null;
-  pushService?: "apn" | "firebase" | "huawei" | "xiaomi" | null;
-  pushServiceName?: string | null;
-}
+export interface PushDeviceCreateParams {}
 
-export interface PushDeviceUpdateParams {
-  id?: string | null;
-  deviceToken?: string | null;
-  eventId?: string | null;
-  bundleId?: string | null;
-  name?: string | null;
-  model?: string | null;
-  brand?: string | null;
-  osName?: string | null;
-  osVersion?: string | null;
-  deviceYearClass?: number | null;
-  manufacturer?: string | null;
-  supportedCpuArchitectures?: string | null;
-  totalMemory?: number | null;
-  appType?: "EVENTXM" | "COMMUNITYXM" | null;
-  pushService?: "apn" | "firebase" | "huawei" | "xiaomi" | null;
-  pushServiceName?: string | null;
-}
+export interface PushDeviceUpdateParams {}
 
-export interface EventQuestionChoiceCreateParams {
-  value?: string | null;
+export interface QuestionChoiceCreateParams {
+  value: string;
   text?: string | null;
-  supply?: number | null;
+  supply?: number | string | null;
   description?: string | null;
-  sortOrder?: number | null;
+  sortOrder?: number | string | null;
 }
 
-export interface EventQuestionChoiceTranslationUpdateParams {
+export interface QuestionChoiceTranslationUpdateParams {
   value?: string | null;
   text?: string | null;
   description?: string | null;
 }
 
-export interface EventQuestionChoiceUpdateParams {
+export interface QuestionChoiceUpdateParams {
   value?: string | null;
   text?: string | null;
-  supply?: number | null;
+  supply?: number | string | null;
   description?: string | null;
-  sortOrder?: number | null;
+  sortOrder?: number | string | null;
 }
 
-export interface EventQuestionCreateParams {
-  name?: string | null;
-  type?: "todo" | "todo" | null;
+export interface QuestionCreateParams {
+  name: string;
+  type?: keyof typeof RegistrationQuestionType | null;
   required?: boolean | null;
   label?: string | null;
   placeholder?: string | null;
   description?: string | null;
   default?: string | null;
-  span?: number | null;
+  span?: number | string | null;
   mutable?: boolean | null;
   min?: string | null;
   max?: string | null;
   validation?: string | null;
   validationMessage?: string | null;
-  sortOrder?: number | null;
-  featured?: boolean;
+  sortOrder?: number | string | null;
+  featured?: boolean | null;
 }
 
-export interface EventQuestionSearchValueCreateParams {
+export interface QuestionSearchParams {
+  value: string;
+  top?: boolean | null;
+}
+
+export interface QuestionSearchValueUpdateParams {
   value?: string | null;
   top?: boolean | null;
 }
 
-export interface EventQuestionSearchValueUpdateParams {
-  value?: string | null;
-  top?: boolean | null;
-}
-
-export interface EventQuestionTranslationUpdateParams {
+export interface QuestionTranslationUpdateParams {
   label?: string | null;
   placeholder?: string | null;
   description?: string | null;
 }
 
-export interface EventQuestionUpdateParams {
+export interface QuestionUpdateParams {
   name?: string | null;
-  type?: "todo" | "todo";
+  type?: keyof typeof RegistrationQuestionType | null;
   required?: boolean | null;
   label?: string | null;
   placeholder?: string | null;
   description?: string | null;
   default?: string | null;
-  span?: number | null;
+  span?: number | string | null;
   mutable?: boolean | null;
   min?: string | null;
   max?: string | null;
   validation?: string | null;
   validationMessage?: string | null;
-  sortOrder?: number | null;
-  featured?: boolean;
+  sortOrder?: number | string | null;
+  featured?: boolean | null;
 }
 
 export interface ReportCreateParams {
   name: string;
-  parentId: number;
+  parentId: string | number;
   eventId?: string | null;
   description?: string | null;
   filters?: string | null;
@@ -1117,26 +1028,26 @@ export interface ReportUpdateParams {
   advancedFilter?: string | null;
 }
 
-export interface EventSectionCreateParams {
-  name?: string | null;
+export interface SectionCreateParams {
+  name: string;
   description?: string | null;
   guestDescription?: string | null;
-  sortOrder?: number | null;
+  sortOrder?: number | string | null;
 }
 
-export interface EventSectionUpdateParams {
+export interface SectionUpdateParams {
   name?: string | null;
   description?: string | null;
   guestDescription?: string | null;
-  sortOrder?: number | null;
+  sortOrder?: number | string | null;
 }
 
 export interface SeriesCreateParams {
-  name?: string | null;
+  name: string;
   slug?: string | null;
   description?: string | null;
   imageId?: string | null;
-  sortOrder?: number | null;
+  sortOrder?: number | string | null;
 }
 
 export interface SeriesUpdateParams {
@@ -1144,35 +1055,35 @@ export interface SeriesUpdateParams {
   slug?: string | null;
   description?: string | null;
   imageId?: string | null;
-  sortOrder?: number | null;
+  sortOrder?: number | string | null;
 }
 
-export interface LevelCreateParams {
-  name?: string | null;
-  slug?: string | null;
+export interface SponsorshipLevelCreateParams {
+  name: string;
+  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
   subtitle?: string | null;
   description?: string | null;
   color?: string | null;
-  scale?: number | null;
+  scale?: number | string | null;
   imageId?: string | null;
-  sortOrder?: number | null;
+  sortOrder?: number | string | null;
 }
 
-export interface LevelTranslationUpdateParams {
+export interface SponsorshipLevelTranslationUpdateParams {
   name?: string | null;
   subtitle?: string | null;
   description?: string | null;
 }
 
-export interface LevelUpdateParams {
+export interface SponsorshipLevelUpdateParams {
   name?: string | null;
-  slug?: string | null;
+  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
   subtitle?: string | null;
   description?: string | null;
   color?: string | null;
-  scale?: number | null;
+  scale?: number | string | null;
   imageId?: string | null;
-  sortOrder?: number | null;
+  sortOrder?: number | string | null;
 }
 
 export interface StreamOutputCreateParams {
@@ -1182,20 +1093,20 @@ export interface StreamOutputCreateParams {
 }
 
 export interface SubscriptionProductCreateParams {
+  name: string;
   active?: boolean | null;
-  name?: string | null;
   description?: string | null;
   statementDescriptor?: string | null;
-  features?: (string | null)[] | null;
+  features?: string[] | null;
 }
 
 export interface SubscriptionProductPriceCreateParams {
   active?: boolean | null;
-  type?: "flat" | null;
-  amount: number;
-  currency?: "usd" | null;
-  interval: "day" | "week" | "month" | "year";
-  intervalCount: number;
+  type: keyof typeof SubscriptionProductPriceType;
+  amount: string | number; // Assuming REQUIRED_PRICE can be string or number
+  currency: "usd"; // Assuming currency is limited to 'usd'
+  interval: keyof typeof SubscriptionProductPriceInterval;
+  intervalCount: string | number;
 }
 
 export interface SubscriptionProductPriceUpdateParams {
@@ -1207,7 +1118,7 @@ export interface SubscriptionProductUpdateParams {
   name?: string | null;
   description?: string | null;
   statementDescriptor?: string | null;
-  features?: (string | null)[] | null;
+  features?: string[] | null;
 }
 
 export interface SubscriptionUpdateParams {
@@ -1215,156 +1126,140 @@ export interface SubscriptionUpdateParams {
 }
 
 export interface SupportTicketCreateParams {
-  type?: "todo" | "todo";
-  email?: string | null;
-  request?: string | null;
-  accountId?: string | null;
-  eventId?: string | null;
-  status?: "new" | "inProgress" | "complete" | null;
+  // No fields defined in the provided validation object
 }
 
 export interface SupportTicketUpdateParams {
-  type?: "todo" | "todo";
-  email?: string | null;
-  request?: string | null;
-  accountId?: string | null;
-  eventId?: string | null;
-  status?: "new" | "inProgress" | "complete" | null;
+  status?: "new" | "inProgress" | "complete";
 }
 
 export interface TeamCreateParams {
   name: string;
+  email: string;
+  username?: string | null;
+}
+
+export interface TeamMemberCreateParams {
+  firstName?: string | null;
+  lastName?: string | null;
+  slug?: string | null;
+  nickName?: string | null;
+  email?: string | null;
+  phone?: string | null;
+  title?: string | null;
+  bio?: string | null;
+  imageId?: string | null;
+  linkedIn?: string | null;
+  facebook?: string | null;
+  instagram?: string | null;
+  twitter?: string | null;
+  tikTok?: string | null;
+  discord?: string | null;
+  priority?: number | string | null;
+  startDate?: string | null;
+}
+
+export interface TeamMemberUpdateParams {
+  firstName?: string | null;
+  lastName?: string | null;
+  slug?: string | null;
+  nickName?: string | null;
+  email?: string | null;
+  phone?: string | null;
+  title?: string | null;
+  bio?: string | null;
+  imageId?: string | null;
+  linkedIn?: string | null;
+  facebook?: string | null;
+  instagram?: string | null;
+  twitter?: string | null;
+  tikTok?: string | null;
+  discord?: string | null;
+  priority?: number | string | null;
+  startDate?: string | null;
+}
+
+export interface TeamUpdateParams {
+  name?: string | null;
   email?: string | null;
   username?: string | null;
 }
 
-export interface OrganizationTeamMemberCreateParams {
-  firstName?: string | null;
-  lastName?: string | null;
-  slug?: string | null;
-  nickName?: string | null;
-  email?: string | null;
-  phone?: string | null;
-  title?: string | null;
-  bio?: string | null;
-  imageId?: string | null;
-  linkedIn?: string | null;
-  facebook?: string | null;
-  instagram?: string | null;
-  twitter?: string | null;
-  tikTok?: string | null;
-  discord?: string | null;
-  priority?: number | null;
-  startDate?: Date | null;
-}
-
-export interface OrganizationTeamMemberUpdateParams {
-  firstName?: string | null;
-  lastName?: string | null;
-  slug?: string | null;
-  nickName?: string | null;
-  email?: string | null;
-  phone?: string | null;
-  title?: string | null;
-  bio?: string | null;
-  imageId?: string | null;
-  linkedIn?: string | null;
-  facebook?: string | null;
-  instagram?: string | null;
-  twitter?: string | null;
-  tikTok?: string | null;
-  discord?: string | null;
-  priority?: number | null;
-  startDate?: Date | null;
-}
-
-export interface TeamUpdateParams {
-  name?: string;
-  email?: string | null;
-  username?: string;
-}
-
 export interface ThreadCreateParams {
-  name?: string;
-  description?: string;
-  featured?: boolean;
+  access: keyof typeof ThreadAccessLevel;
+  name: string;
+  description?: string | null;
+  featured?: boolean | null;
   visible?: boolean | null;
-  access?: "";
   groupId?: string | null;
   eventId?: string | null;
 }
 
 export interface ThreadUpdateParams {
-  name?: string;
-  description?: string;
-  featured?: boolean;
+  name?: string | null;
+  description?: string | null;
+  featured?: boolean | null;
   visible?: boolean | null;
-  access?: "todo" | "todo";
+  access?: keyof typeof ThreadAccessLevel | null;
   groupId?: string | null;
   eventId?: string | null;
 }
 
-export interface EventTicketCreateParams {
-  visibility?: "todo" | "todo";
-  featured?: boolean;
+export interface TicketCreateParams {
+  name: string;
+  shortDescription: string;
+  price: string | number; // Assuming REQUIRED_PRICE can be string or number
+  visibility?: keyof typeof TicketVisibility | null;
+  featured?: boolean | null;
   active?: boolean | null;
   transferable?: boolean | null;
-  name?: string | null;
-  slug?: string | null;
-  shortDescription?: string | null;
+  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
   longDescription?: string | null;
-  price?: number | null;
-  accessLevel?: "todo" | "todo";
+  accessLevel?: keyof typeof TicketEventAccessLevel | null;
   featuredImageId?: string | null;
-  imageId?: string | null;
-  supply?: number | null;
-  minQuantityPerSale?: number | null;
-  maxQuantityPerSale?: number | null;
-  emailDomains?: string | null;
-  options?: any | null;
-  allowlist?: boolean | null;
-  sortOrder?: number | null;
-  reservationStart?: Date | null;
-  minReservationStart?: Date | null;
-  maxReservationStart?: Date | null;
-  reservationEnd?: Date | null;
-  minReservationEnd?: Date | null;
-  maxReservationEnd?: Date | null;
+  supply?: number | string | null;
+  minQuantityPerSale?: number | string | null;
+  maxQuantityPerSale?: number | string | null;
+  emailDomains?: string | null; // Assuming the pattern validation is not directly translatable to TypeScript
+  sortOrder?: number | string | null;
+  reservationStart?: string | null;
+  minReservationStart?: string | null;
+  maxReservationStart?: string | null;
+  reservationEnd?: string | null;
+  minReservationEnd?: string | null;
+  maxReservationEnd?: string | null;
 }
 
-export interface EventTicketUpdateParams {
-  visibility?: "todo" | "todo";
-  featured?: boolean;
+export interface TicketUpdateParams {
+  visibility?: keyof typeof TicketVisibility | null;
+  featured?: boolean | null;
   active?: boolean | null;
   transferable?: boolean | null;
   name?: string | null;
-  slug?: string | null;
+  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
   shortDescription?: string | null;
   longDescription?: string | null;
-  price?: number | null;
-  accessLevel?: "todo" | "todo";
+  price?: string | number | null; // Assuming OPTIONAL_PRICE can be string, number, or null
+  accessLevel?: keyof typeof TicketEventAccessLevel | null;
   featuredImageId?: string | null;
-  imageId?: string | null;
-  supply?: number | null;
-  minQuantityPerSale?: number | null;
-  maxQuantityPerSale?: number | null;
-  emailDomains?: string | null;
-  options?: any | null;
-  allowlist?: boolean | null;
-  sortOrder?: number | null;
-  reservationStart?: Date | null;
-  minReservationStart?: Date | null;
-  maxReservationStart?: Date | null;
-  reservationEnd?: Date | null;
-  minReservationEnd?: Date | null;
-  maxReservationEnd?: Date | null;
+  supply?: number | string | null;
+  minQuantityPerSale?: number | string | null;
+  maxQuantityPerSale?: number | string | null;
+  emailDomains?: string | null; // Assuming the pattern validation is not directly translatable to TypeScript
+  sortOrder?: number | string | null;
+  reservationStart?: string | null;
+  minReservationStart?: string | null;
+  maxReservationStart?: string | null;
+  reservationEnd?: string | null;
+  minReservationEnd?: string | null;
+  maxReservationEnd?: string | null;
 }
 
 export interface TierCreateParams {
-  name?: string | null;
+  name: string;
   slug?: string | null;
   iconName?: string | null;
-  priority?: number | null;
+  priority?: number | string | null;
   description?: string | null;
   imageId?: string | null;
   color?: string | null;
@@ -1375,20 +1270,21 @@ export interface TierUpdateParams {
   name?: string | null;
   slug?: string | null;
   iconName?: string | null;
-  priority?: number | null;
+  priority?: number | string | null;
   description?: string | null;
   imageId?: string | null;
   color?: string | null;
   internal?: boolean | null;
 }
-export interface EventTrackCreateParams {
-  name?: string | null;
+
+export interface TrackCreateParams {
+  name: string;
   slug?: string | null;
   description?: string | null;
   color?: string | null;
 }
 
-export interface EventTrackUpdateParams {
+export interface TrackUpdateParams {
   name?: string | null;
   slug?: string | null;
   description?: string | null;
@@ -1396,7 +1292,7 @@ export interface EventTrackUpdateParams {
 }
 
 export interface TriggerCreateParams {
-  code?: string | null;
+  code: string;
   enabled?: boolean | null;
 }
 
@@ -1406,7 +1302,7 @@ export interface TriggerUpdateParams {
 }
 
 export interface UserCreateParams {
-  title?: string | null;
+  // No fields defined in the provided validation object
 }
 
 export interface UserUpdateParams {

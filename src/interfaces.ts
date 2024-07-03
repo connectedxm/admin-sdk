@@ -9,6 +9,18 @@ export enum Currency {
   USD = "USD",
 }
 
+export enum ContentType {
+  article = "article",
+  podcast = "podcast",
+  video = "video",
+}
+
+export enum ContentGuestType {
+  guest = "guest",
+  host = "host",
+  author = "author",
+}
+
 export enum PageType {
   about = "about",
   privacy = "privacy",
@@ -72,6 +84,11 @@ export enum TicketEventAccessLevel {
   regular = "regular",
   virtual = "virtual",
   vip = "vip",
+}
+
+export enum ThreadAccessLevel {
+  public = "public",
+  private = "private",
 }
 
 export enum GroupAccess {
@@ -650,14 +667,14 @@ export interface EventEmail extends BaseEventEmail {
 
 export interface EventListing {}
 
-enum BadgeFieldType {
+export enum BadgeFieldType {
   attribute = "attribute",
   question = "question",
   tier = "tier",
   ticket = "ticket",
 }
 
-enum BadgeFieldTransformation {
+export enum BadgeFieldTransformation {
   uppercase = "uppercase",
   lowercase = "lowercase",
 }
@@ -1044,7 +1061,7 @@ export interface InvoiceLineItem extends BaseInvoiceLineItem {
   invoice: BaseInvoice;
 }
 
-enum InvoiceStatus {
+export enum InvoiceStatus {
   draft = "draft",
   sent = "sent",
   paid = "paid",

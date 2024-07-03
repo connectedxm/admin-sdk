@@ -108,7 +108,7 @@ export interface AdvertisementCreateInputs {
   type: keyof typeof AdvertisementType;
   link: string;
   title: string;
-  startDate: Date;
+  startDate: string;
   description?: string | null;
   imageId?: string | null;
   endDate?: string | null;
@@ -335,7 +335,7 @@ export interface EventActivationCreateInputs {
   shortDescription: string;
   imageId?: string | null;
   managerId?: string | null;
-  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
+  slug?: string | null;
   longDescription?: string | null;
   maxPoints?: number | string | null;
   startAfter?: string | null;
@@ -353,7 +353,7 @@ export interface EventActivationUpdateInputs {
   imageId?: string | null;
   managerId?: string | null;
   name?: string | null;
-  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
+  slug?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
   maxPoints?: number | string | null;
@@ -455,8 +455,8 @@ export interface EventCreateInputs {
   eventType: keyof typeof EventType;
   name: string;
   shortDescription: string;
-  eventStart: Date;
-  eventEnd: Date;
+  eventStart: string;
+  eventEnd: string;
   featured?: boolean | null;
   visible?: boolean | null;
   slug?: string | null;
@@ -545,7 +545,7 @@ export interface EventPageTranslationUpdateInputs {
 }
 
 export interface EventPageUpdateInputs {
-  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
+  slug?: string | null;
   title?: string | null;
   subtitle?: string | null;
   html?: string | null;
@@ -636,8 +636,8 @@ export interface EventReservationSectionUpdateInputs {
 
 export interface EventSessionCreateInputs {
   name: string;
-  startTime: Date;
-  endTime: Date;
+  startTime: string;
+  endTime: string;
   slug?: string | null;
   location?: string | null;
   description?: string | null;
@@ -671,7 +671,7 @@ export interface EventSessionUpdateInputs {
 export interface EventSpeakerCreateInputs {
   firstName: string;
   lastName?: string | null;
-  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
+  slug?: string | null;
   bio?: string | null;
   title?: string | null;
   company?: string | null;
@@ -699,7 +699,7 @@ export interface EventSpeakerTranslationUpdateInputs {
 export interface EventSpeakerUpdateInputs {
   firstName?: string | null;
   lastName?: string | null;
-  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
+  slug?: string | null;
   bio?: string | null;
   title?: string | null;
   company?: string | null;
@@ -809,7 +809,7 @@ export interface GroupTranslationUpdateInputs {
 export interface GroupUpdateInputs {
   featured?: boolean | null;
   name?: string | null;
-  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
+  slug?: string | null;
   description?: string | null;
   active?: boolean | null;
   access?: keyof typeof GroupAccess | null;
@@ -818,20 +818,20 @@ export interface GroupUpdateInputs {
 }
 
 export interface InterestCreateInputs {
-  name: string; // Assuming validSlug is a method for validation, not an enum conversion
+  name: string;
   imageId?: string | null;
   featured?: boolean | null;
 }
 
 export interface InterestUpdateInputs {
-  name?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
+  name?: string | null;
   imageId?: string | null;
   featured?: boolean | null;
 }
 
 export interface InvoiceCreateInputs {
   title: string;
-  dueDate: string; // Assuming dueDate is a string that represents a date
+  dueDate: string;
   description?: string | null;
   status?: keyof typeof InvoiceStatus | null;
   notes?: string | null;
@@ -856,7 +856,7 @@ export interface InvoiceUpdateInputs {
   title?: string | null;
   description?: string | null;
   status?: keyof typeof InvoiceStatus | null;
-  dueDate?: string | null; // Assuming dueDate is a string that represents a date
+  dueDate?: string | null;
   notes?: string | null;
   accountId?: string | null;
 }
@@ -1060,7 +1060,7 @@ export interface SeriesUpdateInputs {
 
 export interface LevelCreateInputs {
   name: string;
-  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
+  slug?: string | null;
   subtitle?: string | null;
   description?: string | null;
   color?: string | null;
@@ -1077,7 +1077,7 @@ export interface LevelTranslationUpdateInputs {
 
 export interface LevelUpdateInputs {
   name?: string | null;
-  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
+  slug?: string | null;
   subtitle?: string | null;
   description?: string | null;
   color?: string | null;
@@ -1213,7 +1213,7 @@ export interface EventTicketCreateInputs {
   featured?: boolean | null;
   active?: boolean | null;
   transferable?: boolean | null;
-  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
+  slug?: string | null;
   longDescription?: string | null;
   accessLevel?: keyof typeof TicketEventAccessLevel | null;
   featuredImageId?: string | null;
@@ -1236,7 +1236,7 @@ export interface EventTicketUpdateInputs {
   active?: boolean | null;
   transferable?: boolean | null;
   name?: string | null;
-  slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
+  slug?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
   price?: string | number | null; // Assuming OPTIONAL_PRICE can be string, number, or null

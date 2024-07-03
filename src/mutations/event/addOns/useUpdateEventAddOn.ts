@@ -15,7 +15,7 @@ import {
  * @category Params
  * @group Event-AddOns
  */
-export interface UpdateAddOnParams extends MutationParams {
+export interface UpdateEventAddOnParams extends MutationParams {
   eventId: string;
   addOnId: string;
   addOn: EventAddOnUpdateInputs;
@@ -25,13 +25,13 @@ export interface UpdateAddOnParams extends MutationParams {
  * @category Methods
  * @group Event-AddOns
  */
-export const UpdateAddOn = async ({
+export const UpdateEventAddOn = async ({
   eventId,
   addOnId,
   addOn,
   adminApiParams,
   queryClient,
-}: UpdateAddOnParams): Promise<ConnectedXMResponse<EventAddOn>> => {
+}: UpdateEventAddOnParams): Promise<ConnectedXMResponse<EventAddOn>> => {
   if (!addOnId) throw new Error("Add On ID Undefined");
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<EventAddOn>>(
@@ -67,17 +67,17 @@ export const UpdateAddOn = async ({
  * @category Mutations
  * @group Event-AddOns
  */
-export const useUpdateAddOn = (
+export const useUpdateEventAddOn = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof UpdateAddOn>>,
-      Omit<UpdateAddOnParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof UpdateEventAddOn>>,
+      Omit<UpdateEventAddOnParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    UpdateAddOnParams,
-    Awaited<ReturnType<typeof UpdateAddOn>>
-  >(UpdateAddOn, options);
+    UpdateEventAddOnParams,
+    Awaited<ReturnType<typeof UpdateEventAddOn>>
+  >(UpdateEventAddOn, options);
 };

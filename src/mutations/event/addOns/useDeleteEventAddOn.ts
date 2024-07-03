@@ -11,7 +11,7 @@ import { EVENT_ADD_ONS_QUERY_KEY, EVENT_ADD_ON_QUERY_KEY } from "@src/queries";
  * @category Params
  * @group Event-AddOns
  */
-export interface DeleteAddOnParams extends MutationParams {
+export interface DeleteEventAddOnParams extends MutationParams {
   eventId: string;
   addOnId: string;
 }
@@ -20,12 +20,12 @@ export interface DeleteAddOnParams extends MutationParams {
  * @category Methods
  * @group Event-AddOns
  */
-export const DeleteAddOn = async ({
+export const DeleteEventAddOn = async ({
   eventId,
   addOnId,
   adminApiParams,
   queryClient,
-}: DeleteAddOnParams): Promise<ConnectedXMResponse<null>> => {
+}: DeleteEventAddOnParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/addOns/${addOnId}`
@@ -46,17 +46,17 @@ export const DeleteAddOn = async ({
  * @category Mutations
  * @group Event-AddOns
  */
-export const useDeleteAddOn = (
+export const useDeleteEventAddOn = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof DeleteAddOn>>,
-      Omit<DeleteAddOnParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof DeleteEventAddOn>>,
+      Omit<DeleteEventAddOnParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    DeleteAddOnParams,
-    Awaited<ReturnType<typeof DeleteAddOn>>
-  >(DeleteAddOn, options);
+    DeleteEventAddOnParams,
+    Awaited<ReturnType<typeof DeleteEventAddOn>>
+  >(DeleteEventAddOn, options);
 };

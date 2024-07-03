@@ -9,7 +9,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import { SupportTicketUpdateParams } from "@src/params";
+import { SupportTicketUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -17,7 +17,7 @@ import { SupportTicketUpdateParams } from "@src/params";
  */
 export interface UpdateSupportTicketParams extends MutationParams {
   supportTicketId: string;
-  supportTicket: SupportTicketUpdateParams;
+  supportTicket: SupportTicketUpdateInputs;
 }
 
 /**

@@ -6,7 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ACCOUNTS_QUERY_KEY, SET_ACCOUNT_QUERY_DATA } from "@src/queries";
-import { AccountUpdateParams } from "@src/params";
+import { AccountUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -14,7 +14,7 @@ import { AccountUpdateParams } from "@src/params";
  */
 export interface UpdateAccountParams extends MutationParams {
   accountId: string;
-  account: AccountUpdateParams;
+  account: AccountUpdateInputs;
 }
 
 /**

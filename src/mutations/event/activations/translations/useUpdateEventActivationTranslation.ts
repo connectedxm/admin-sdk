@@ -9,7 +9,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EventActivationUpdateTranslationParams } from "@src/params";
+import { EventActivationTranslationUpdateInputs } from "@src/params";
 import {
   EVENT_ACTIVATION_TRANSLATIONS_QUERY_KEY,
   SET_EVENT_ACTIVATION_TRANSLATION_QUERY_DATA,
@@ -23,7 +23,7 @@ export interface UpdateEventActivationTranslationParams extends MutationParams {
   eventId: string;
   activationId: string;
   locale: ISupportedLocale;
-  eventActivationTranslation: EventActivationUpdateTranslationParams;
+  eventActivationTranslation: EventActivationTranslationUpdateInputs;
 }
 
 /**

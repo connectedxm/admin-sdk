@@ -6,7 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { Series, ConnectedXMResponse } from "@src/interfaces";
 import { SERIES_LIST_QUERY_KEY, SET_SERIES_QUERY_DATA } from "@src/queries";
-import { SeriesUpdateParams } from "@src/params";
+import { SeriesUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -14,7 +14,7 @@ import { SeriesUpdateParams } from "@src/params";
  */
 export interface UpdateSeriesParams extends MutationParams {
   seriesId: string;
-  series: SeriesUpdateParams;
+  series: SeriesUpdateInputs;
 }
 
 /**

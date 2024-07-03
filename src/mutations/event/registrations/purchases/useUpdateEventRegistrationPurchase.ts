@@ -5,7 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EventPurchaseUpdateParams } from "@src/params";
+import { EventPurchaseUpdateInputs } from "@src/params";
 import {
   EVENT_REGISTRATION_PURCHASES_QUERY_KEY,
   SET_EVENT_REGISTRATION_PURCHASE_QUERY_DATA,
@@ -19,7 +19,7 @@ export interface UpdateEventRegistrationPurchaseParams extends MutationParams {
   eventId: string;
   registrationId: string;
   purchaseId: string;
-  purchase: EventPurchaseUpdateParams;
+  purchase: EventPurchaseUpdateInputs;
 }
 
 /**

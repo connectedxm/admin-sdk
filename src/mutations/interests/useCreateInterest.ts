@@ -6,14 +6,14 @@ import {
 } from "../useConnectedMutation";
 import { Interest, ConnectedXMResponse } from "@src/interfaces";
 import { INTERESTS_QUERY_KEY, SET_INTEREST_QUERY_DATA } from "@src/queries";
-import { InterestCreateParams } from "@src/params";
+import { InterestCreateInputs } from "@src/params";
 
 /**
  * @category Params
  * @group Interest
  */
 export interface CreateInterestParams extends MutationParams {
-  interest: InterestCreateParams;
+  interest: InterestCreateInputs;
 }
 
 /**

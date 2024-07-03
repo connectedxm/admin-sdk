@@ -6,7 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { Group, ConnectedXMResponse } from "@src/interfaces";
 import { GROUPS_QUERY_KEY, SET_GROUP_QUERY_DATA } from "@src/queries";
-import { GroupUpdateParams } from "@src/params";
+import { GroupUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -14,7 +14,7 @@ import { GroupUpdateParams } from "@src/params";
  */
 export interface UpdateGroupParams extends MutationParams {
   groupId: string;
-  group: GroupUpdateParams;
+  group: GroupUpdateInputs;
 }
 
 /**

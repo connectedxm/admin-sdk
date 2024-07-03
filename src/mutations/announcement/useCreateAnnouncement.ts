@@ -9,14 +9,14 @@ import {
   ANNOUNCEMENTS_QUERY_KEY,
   SET_ANNOUNCEMENT_QUERY_DATA,
 } from "@src/queries";
-import { AnnouncementCreateParams } from "@src/params";
+import { AnnouncementCreateInputs } from "@src/params";
 
 /**
  * @category Params
  * @group Announcement
  */
 export interface CreateAnnouncementParams extends MutationParams {
-  announcement: AnnouncementCreateParams;
+  announcement: AnnouncementCreateInputs;
 }
 
 /**

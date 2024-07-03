@@ -9,14 +9,14 @@ import {
   ADVERTISEMENTS_QUERY_KEY,
   SET_ADVERTISEMENT_QUERY_DATA,
 } from "@src/queries";
-import { AdvertisementCreateParams } from "@src/params";
+import { AdvertisementCreateInputs } from "@src/params";
 
 /**
  * @category Params
  * @group Advertisement
  */
 export interface CreateAdvertisementParams extends MutationParams {
-  advertisement: AdvertisementCreateParams;
+  advertisement: AdvertisementCreateInputs;
 }
 /**
  * @category Methods

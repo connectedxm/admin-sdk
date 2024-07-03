@@ -5,7 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EventCouponUpdateParams } from "@src/params";
+import { EventCouponUpdateInputs } from "@src/params";
 import {
   EVENT_COUPONS_QUERY_KEY,
   SET_EVENT_COUPON_QUERY_DATA,
@@ -18,7 +18,7 @@ import {
 export interface UpdateEventCouponParams extends MutationParams {
   eventId: string;
   couponId: string;
-  coupon: EventCouponUpdateParams;
+  coupon: EventCouponUpdateInputs;
 }
 
 /**

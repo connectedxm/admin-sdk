@@ -5,7 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EventTicketCreateParams } from "@src/params";
+import { EventTicketCreateInputs } from "@src/params";
 import {
   EVENT_TICKETS_QUERY_KEY,
   SET_EVENT_TICKET_QUERY_DATA,
@@ -17,7 +17,7 @@ import {
  */
 export interface CreateEventTicketParams extends MutationParams {
   eventId: string;
-  ticket: EventTicketCreateParams;
+  ticket: EventTicketCreateInputs;
 }
 
 /**

@@ -6,7 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { EVENTS_QUERY_KEY, SET_EVENT_QUERY_DATA } from "@src/queries";
 import { ConnectedXMResponse, Event } from "@src/interfaces";
-import { EventUpdateParams } from "@src/params";
+import { EventUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -14,7 +14,7 @@ import { EventUpdateParams } from "@src/params";
  */
 export interface UpdateEventParams extends MutationParams {
   eventId: string;
-  event: EventUpdateParams;
+  event: EventUpdateInputs;
 }
 
 /**

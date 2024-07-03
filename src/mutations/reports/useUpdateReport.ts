@@ -6,7 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { ConnectedXMResponse, Report } from "@src/interfaces";
 import { REPORT_QUERY_KEY } from "@src/queries";
-import { ReportUpdateParams } from "@src/params";
+import { ReportUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -14,7 +14,7 @@ import { ReportUpdateParams } from "@src/params";
  */
 export interface UpdateReportParams extends MutationParams {
   reportId: string;
-  report: ReportUpdateParams;
+  report: ReportUpdateInputs;
 }
 
 /**

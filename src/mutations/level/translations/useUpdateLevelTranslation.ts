@@ -5,7 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { LevelTranslationUpdateParams } from "@src/params";
+import { LevelTranslationUpdateInputs } from "@src/params";
 import {
   LEVEL_TRANSLATIONS_QUERY_KEY,
   SET_LEVEL_TRANSLATION_QUERY_DATA,
@@ -18,7 +18,7 @@ import {
 export interface UpdateLevelTranslationParams extends MutationParams {
   levelId: string;
   locale: ISupportedLocale;
-  levelTranslation: LevelTranslationUpdateParams;
+  levelTranslation: LevelTranslationUpdateInputs;
 }
 
 /**

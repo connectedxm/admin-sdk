@@ -9,14 +9,14 @@ import {
   SUBSCRIPTION_PRODUCTS_QUERY_KEY,
   SET_SUBSCRIPTION_PRODUCT_QUERY_DATA,
 } from "@src/queries";
-import { SubscriptionProductCreateParams } from "@src/params";
+import { SubscriptionProductCreateInputs } from "@src/params";
 
 /**
  * @category Params
  * @group Subscriptions
  */
 export interface CreateSubscriptionProductParams extends MutationParams {
-  subscriptionProduct: SubscriptionProductCreateParams;
+  subscriptionProduct: SubscriptionProductCreateInputs;
 }
 
 /**

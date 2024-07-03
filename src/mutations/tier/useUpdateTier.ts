@@ -6,7 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { Tier, ConnectedXMResponse } from "@src/interfaces";
 import { SET_TIER_QUERY_DATA, TIERS_QUERY_KEY } from "@src/queries";
-import { TierUpdateParams } from "@src/params";
+import { TierUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -14,7 +14,7 @@ import { TierUpdateParams } from "@src/params";
  */
 export interface UpdateTierParams extends MutationParams {
   tierId: string;
-  tier: TierUpdateParams;
+  tier: TierUpdateInputs;
 }
 
 /**

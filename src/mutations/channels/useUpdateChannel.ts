@@ -9,7 +9,7 @@ import {
   CHANNELS_QUERY_KEY,
   SET_CHANNEL_QUERY_DATA,
 } from "@src/queries/channels";
-import { ChannelUpdateParams } from "@src/params";
+import { ChannelUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -17,7 +17,7 @@ import { ChannelUpdateParams } from "@src/params";
  */
 export interface UpdateChannelParams extends MutationParams {
   channelId: string;
-  channel: ChannelUpdateParams;
+  channel: ChannelUpdateInputs;
 }
 
 /**

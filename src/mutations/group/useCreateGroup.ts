@@ -6,14 +6,14 @@ import {
   ConnectedXMMutationOptions,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import { GroupCreateParams } from "@src/params";
+import { GroupCreateInputs } from "@src/params";
 
 /**
  * @category Params
  * @group Groups
  */
 export interface CreateGroupParams extends MutationParams {
-  group: GroupCreateParams;
+  group: GroupCreateInputs;
 }
 
 /**

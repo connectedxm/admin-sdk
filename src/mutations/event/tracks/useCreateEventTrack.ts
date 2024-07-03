@@ -5,7 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EventTrackCreateParams } from "@src/params";
+import { EventTrackCreateInputs } from "@src/params";
 import {
   EVENT_TRACKS_QUERY_KEY,
   SET_EVENT_TRACK_QUERY_DATA,
@@ -17,7 +17,7 @@ import {
  */
 export interface CreateEventTrackParams extends MutationParams {
   eventId: string;
-  track: EventTrackCreateParams;
+  track: EventTrackCreateInputs;
 }
 
 /**

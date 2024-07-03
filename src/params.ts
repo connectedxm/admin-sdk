@@ -16,7 +16,7 @@ import {
   TicketEventAccessLevel,
 } from "./interfaces";
 
-export interface AccountCreateParams {
+export interface AccountCreateInputs {
   accountType: keyof typeof AccountType;
   email: string;
   username: string;
@@ -47,7 +47,7 @@ export interface AccountCreateParams {
   internalRefId?: string | null;
 }
 
-export interface AccountUpdateParams {
+export interface AccountUpdateInputs {
   accountType?: keyof typeof AccountType | null;
   featured?: boolean | null;
   email?: string | null;
@@ -78,7 +78,7 @@ export interface AccountUpdateParams {
   internalRefId?: string | null;
 }
 
-export interface ActivityCreateParams {
+export interface ActivityCreateInputs {
   message: string;
   html?: string | null;
   text?: string | null;
@@ -91,7 +91,7 @@ export interface ActivityCreateParams {
   videoId?: string | null;
 }
 
-export interface ActivityUpdateParams {
+export interface ActivityUpdateInputs {
   message?: string | null;
   html?: string | null;
   text?: string | null;
@@ -104,7 +104,7 @@ export interface ActivityUpdateParams {
   videoId?: string | null;
 }
 
-export interface AdvertisementCreateParams {
+export interface AdvertisementCreateInputs {
   type: keyof typeof AdvertisementType;
   link: string;
   title: string;
@@ -118,7 +118,7 @@ export interface AdvertisementCreateParams {
   eventOnly?: boolean | null;
 }
 
-export interface AdvertisementUpdateParams {
+export interface AdvertisementUpdateInputs {
   type?: keyof typeof AdvertisementType | null;
   link?: string | null;
   title?: string | null;
@@ -132,7 +132,7 @@ export interface AdvertisementUpdateParams {
   eventOnly?: boolean | null;
 }
 
-export interface AnnouncementCreateParams {
+export interface AnnouncementCreateInputs {
   title: string;
   html: string;
   email: boolean;
@@ -146,7 +146,7 @@ export interface AnnouncementCreateParams {
   sponsorshipLevelId?: string | null;
 }
 
-export interface BenefitCreateParams {
+export interface BenefitCreateInputs {
   link: string;
   title: string;
   startDate: string;
@@ -160,12 +160,12 @@ export interface BenefitCreateParams {
   eventOnly?: boolean | null;
 }
 
-export interface BenefitTranslationUpdateParams {
+export interface BenefitTranslationUpdateInputs {
   title?: string | null;
   description?: string | null;
 }
 
-export interface BenefitUpdateParams {
+export interface BenefitUpdateInputs {
   link?: string | null;
   title?: string | null;
   slug?: string | null;
@@ -179,22 +179,22 @@ export interface BenefitUpdateParams {
   eventOnly?: boolean | null;
 }
 
-export interface ChannelCollectionCreateParams {
+export interface ChannelCollectionCreateInputs {
   name: string;
   description?: string | null;
 }
 
-export interface ChannelCollectionTranslationUpdateParams {
+export interface ChannelCollectionTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;
 }
 
-export interface ChannelCollectionUpdateParams {
+export interface ChannelCollectionUpdateInputs {
   name?: string | null;
   description?: string | null;
 }
 
-export interface ChannelCreateParams {
+export interface ChannelCreateInputs {
   name: string;
   imageId: string;
   slug?: string | null; // Assuming validSlug is a function for validation, not an enum conversion
@@ -209,17 +209,17 @@ export interface ChannelCreateParams {
   groupId?: string | null;
 }
 
-export interface ChannelSubscriberUpdateParams {
+export interface ChannelSubscriberUpdateInputs {
   contentEmailNotification?: boolean | null;
   contentPushNotification?: boolean | null;
 }
 
-export interface ChannelTranslationUpdateParams {
+export interface ChannelTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;
 }
 
-export interface ChannelUpdateParams {
+export interface ChannelUpdateInputs {
   name?: string | null;
   imageId?: string | null;
   slug?: string | null; // Assuming validSlug is a function for validation, not an enum conversion
@@ -234,7 +234,7 @@ export interface ChannelUpdateParams {
   groupId?: string | null;
 }
 
-export interface ContentCreateParams {
+export interface ContentCreateInputs {
   title: string;
   type: keyof typeof ContentType;
   published?: string | null;
@@ -255,7 +255,7 @@ export interface ContentCreateParams {
   youtubeUrl?: string | null;
 }
 
-export interface ContentGuestCreateParams {
+export interface ContentGuestCreateInputs {
   name: string;
   type?: keyof typeof ContentGuestType | null;
   slug?: string | null;
@@ -276,13 +276,13 @@ export interface ContentGuestCreateParams {
   discord?: string | null;
 }
 
-export interface ContentGuestTranslationUpdateParams {
+export interface ContentGuestTranslationUpdateInputs {
   title?: string | null;
   bio?: string | null;
   companyBio?: string | null;
 }
 
-export interface ContentGuestUpdateParams {
+export interface ContentGuestUpdateInputs {
   type?: keyof typeof ContentGuestType | null;
   slug?: string | null;
   name?: string | null;
@@ -303,13 +303,13 @@ export interface ContentGuestUpdateParams {
   discord?: string | null;
 }
 
-export interface ContentTranslationUpdateParams {
+export interface ContentTranslationUpdateInputs {
   title?: string | null;
   description?: string | null;
   body?: string | null;
 }
 
-export interface ContentUpdateParams {
+export interface ContentUpdateInputs {
   type?: keyof typeof ContentType | null;
   published?: string | null;
   channelId?: string | null;
@@ -330,7 +330,7 @@ export interface ContentUpdateParams {
   youtubeUrl?: string | null;
 }
 
-export interface EventActivationCreateParams {
+export interface EventActivationCreateInputs {
   name: string;
   shortDescription: string;
   imageId?: string | null;
@@ -343,13 +343,13 @@ export interface EventActivationCreateParams {
   protectionCode?: number | string | null;
 }
 
-export interface EventActivationUpdateTranslationParams {
+export interface EventActivationTranslationUpdateInputs {
   name?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
 }
 
-export interface EventActivationUpdateParams {
+export interface EventActivationUpdateInputs {
   imageId?: string | null;
   managerId?: string | null;
   name?: string | null;
@@ -362,7 +362,7 @@ export interface EventActivationUpdateParams {
   protectionCode?: number | string | null;
 }
 
-export interface EventAddOnCreateParams {
+export interface EventAddOnCreateInputs {
   name: string;
   shortDescription: string;
   longDescription?: string | null;
@@ -378,13 +378,13 @@ export interface EventAddOnCreateParams {
   maxReservationEnd?: string | null;
 }
 
-export interface EventAddOnUpdateTranslationParams {
+export interface EventAddOnTranslationUpdateInputs {
   name?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
 }
 
-export interface EventAddOnUpdateParams {
+export interface EventAddOnUpdateInputs {
   name?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
@@ -400,7 +400,7 @@ export interface EventAddOnUpdateParams {
   maxReservationEnd?: string | null;
 }
 
-export interface EventBadgeFieldUpdateParams {
+export interface EventBadgeFieldUpdateInputs {
   type?: keyof typeof BadgeFieldType | null;
   lookup?: string | null;
   maxLength?: number | string | null;
@@ -409,7 +409,7 @@ export interface EventBadgeFieldUpdateParams {
   sortOrder?: number | string | null;
 }
 
-export interface EventCouponCreateParams {
+export interface EventCouponCreateInputs {
   code: string;
   description?: string | null;
   active?: boolean | null;
@@ -427,7 +427,7 @@ export interface EventCouponCreateParams {
   managerId?: string | null;
 }
 
-export interface EventCouponUpdateParams {
+export interface EventCouponUpdateInputs {
   code?: string | null;
   description?: string | null;
   active?: boolean | null;
@@ -445,13 +445,13 @@ export interface EventCouponUpdateParams {
   managerId?: string | null;
 }
 
-export interface EventFaqSectionCreateParams {
+export interface EventFaqSectionCreateInputs {
   name?: string | null;
   slug?: string | null;
   priority?: number | string | null;
 }
 
-export interface EventCreateParams {
+export interface EventCreateInputs {
   eventType: keyof typeof EventType;
   name: string;
   shortDescription: string;
@@ -494,12 +494,12 @@ export interface EventCreateParams {
   groupOnly?: boolean | null;
 }
 
-export interface EventEmailUpdateParams {
+export interface EventEmailUpdateInputs {
   body?: string | null;
   replyTo?: string | null;
 }
 
-export interface EventFaqSectionQuestionCreateParams {
+export interface EventFaqSectionQuestionCreateInputs {
   question: string;
   answer: string;
   slug?: string | null;
@@ -507,12 +507,12 @@ export interface EventFaqSectionQuestionCreateParams {
   visible?: boolean | null;
 }
 
-export interface EventFaqSectionQuestionTranslationUpdateParams {
+export interface EventFaqSectionQuestionTranslationUpdateInputs {
   question?: string | null;
   answer?: string | null;
 }
 
-export interface EventFaqSectionQuestionUpdateParams {
+export interface EventFaqSectionQuestionUpdateInputs {
   question?: string | null;
   slug?: string | null;
   answer?: string | null;
@@ -520,17 +520,17 @@ export interface EventFaqSectionQuestionUpdateParams {
   visible?: boolean | null;
 }
 
-export interface EventFaqSectionTranslationUpdateParams {
+export interface EventFaqSectionTranslationUpdateInputs {
   name?: string | null;
 }
 
-export interface EventFaqSectionUpdateParams {
+export interface EventFaqSectionUpdateInputs {
   name?: string | null;
   slug?: string | null;
   priority?: number | string | null;
 }
 
-export interface EventPageCreateParams {
+export interface EventPageCreateInputs {
   slug?: string | null;
   title: string;
   subtitle?: string | null;
@@ -538,13 +538,13 @@ export interface EventPageCreateParams {
   sortOrder?: number | string | null;
 }
 
-export interface EventPageTranslationUpdateParams {
+export interface EventPageTranslationUpdateInputs {
   title?: string | null;
   subtitle?: string | null;
   html?: string | null;
 }
 
-export interface EventPageUpdateParams {
+export interface EventPageUpdateInputs {
   slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
   title?: string | null;
   subtitle?: string | null;
@@ -552,7 +552,7 @@ export interface EventPageUpdateParams {
   sortOrder?: number | string | null;
 }
 
-export interface EventPurchaseCreateParams {
+export interface EventPurchaseCreateInputs {
   location?: string | null;
   usedAt?: string | null;
   ticketId?: string | null;
@@ -561,7 +561,7 @@ export interface EventPurchaseCreateParams {
   reservationEnd?: string | null;
 }
 
-export interface EventPurchaseUpdateParams {
+export interface EventPurchaseUpdateInputs {
   location?: string | null;
   usedAt?: string | null;
   ticketId?: string | null;
@@ -570,27 +570,27 @@ export interface EventPurchaseUpdateParams {
   reservationEnd?: string | null;
 }
 
-export interface EventRegistrationBypassCreateParams {
+export interface EventRegistrationBypassCreateInputs {
   accountId: string;
   closed?: boolean | null;
   preRegister?: boolean | null;
   postRegister?: boolean | null;
 }
 
-export interface EventRegistrationBypassUpdateParams {
+export interface EventRegistrationBypassUpdateInputs {
   accountId?: string | null;
   closed?: boolean | null;
   preRegister?: boolean | null;
   postRegister?: boolean | null;
 }
 
-export interface EventRegistrationSectionUpdateTranslationParams {
+export interface EventRegistrationSectionUpdateTranslationInputs {
   name?: string | null;
   description?: string | null;
   guestDescription?: string | null;
 }
 
-export interface EventReservationSectionCreateParams {
+export interface EventReservationSectionCreateInputs {
   name: string;
   shortDescription?: string | null;
   price?: number | string | null; // Assuming OPTIONAL_PRICE is similar to OPTIONAL_NUMBER
@@ -599,7 +599,7 @@ export interface EventReservationSectionCreateParams {
   imageId?: string | null;
 }
 
-export interface EventReservationSectionLocationCreateParams {
+export interface EventReservationSectionLocationCreateInputs {
   name: string;
   shortDescription?: string | null;
   premium?: number | string | null;
@@ -607,12 +607,12 @@ export interface EventReservationSectionLocationCreateParams {
   sortOrder?: number | string | null;
 }
 
-export interface EventReservationSectionLocationTranslationUpdateParams {
+export interface EventReservationSectionLocationTranslationUpdateInputs {
   name?: string | null;
   shortDescription?: string | null;
 }
 
-export interface EventReservationSectionLocationUpdateParams {
+export interface EventReservationSectionLocationUpdateInputs {
   name?: string | null;
   shortDescription?: string | null;
   premium?: number | string | null;
@@ -620,12 +620,12 @@ export interface EventReservationSectionLocationUpdateParams {
   sortOrder?: number | string | null;
 }
 
-export interface EventReservationSectionTranslationUpdateParams {
+export interface EventReservationSectionTranslationUpdateInputs {
   name?: string | null;
   shortDescription?: string | null;
 }
 
-export interface EventReservationSectionUpdateParams {
+export interface EventReservationSectionUpdateInputs {
   name?: string | null;
   shortDescription?: string | null;
   price?: number | string | null;
@@ -634,7 +634,7 @@ export interface EventReservationSectionUpdateParams {
   imageId?: string | null;
 }
 
-export interface EventSessionCreateParams {
+export interface EventSessionCreateInputs {
   name: string;
   startTime: Date;
   endTime: Date;
@@ -648,13 +648,13 @@ export interface EventSessionCreateParams {
   sortOrder?: number | string | null;
 }
 
-export interface EventSessionTranslationUpdateParams {
+export interface EventSessionTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;
   longDescription?: string | null;
 }
 
-export interface EventSessionUpdateParams {
+export interface EventSessionUpdateInputs {
   name?: string | null;
   startTime?: string | null;
   endTime?: string | null;
@@ -668,7 +668,7 @@ export interface EventSessionUpdateParams {
   sortOrder?: number | string | null;
 }
 
-export interface EventSpeakerCreateParams {
+export interface EventSpeakerCreateInputs {
   firstName: string;
   lastName?: string | null;
   slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
@@ -691,12 +691,12 @@ export interface EventSpeakerCreateParams {
   visible?: boolean | null;
 }
 
-export interface EventSpeakerTranslationUpdateParams {
+export interface EventSpeakerTranslationUpdateInputs {
   title?: string | null;
   bio?: string | null;
 }
 
-export interface EventSpeakerUpdateParams {
+export interface EventSpeakerUpdateInputs {
   firstName?: string | null;
   lastName?: string | null;
   slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
@@ -719,24 +719,24 @@ export interface EventSpeakerUpdateParams {
   visible?: boolean | null;
 }
 
-export interface EventTicketTranslationUpdateParams {
+export interface EventTicketTranslationUpdateInputs {
   name?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
 }
 
-export interface EventTrackTranslationUpdateParams {
+export interface EventTrackTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;
 }
 
-export interface EventTranslationUpdateParams {
+export interface EventTranslationUpdateInputs {
   name?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
 }
 
-export interface EventUpdateParams {
+export interface EventUpdateInputs {
   featured?: boolean | null;
   visible?: boolean | null;
   name?: string | null;
@@ -780,7 +780,7 @@ export interface EventUpdateParams {
   groupOnly?: boolean | null;
 }
 
-export interface GroupCreateParams {
+export interface GroupCreateInputs {
   name: string;
   description: string;
   featured?: boolean | null;
@@ -791,7 +791,7 @@ export interface GroupCreateParams {
   externalUrl?: string | null;
 }
 
-export interface GroupMembershipUpdateParams {
+export interface GroupMembershipUpdateInputs {
   announcementEmailNotification?: boolean | null;
   announcementPushNotification?: boolean | null;
   activityEmailNotification?: boolean | null;
@@ -801,12 +801,12 @@ export interface GroupMembershipUpdateParams {
   chatPushNotification?: boolean | null;
 }
 
-export interface GroupTranslationUpdateParams {
+export interface GroupTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;
 }
 
-export interface GroupUpdateParams {
+export interface GroupUpdateInputs {
   featured?: boolean | null;
   name?: string | null;
   slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
@@ -817,19 +817,19 @@ export interface GroupUpdateParams {
   externalUrl?: string | null;
 }
 
-export interface InterestCreateParams {
+export interface InterestCreateInputs {
   name: string; // Assuming validSlug is a method for validation, not an enum conversion
   imageId?: string | null;
   featured?: boolean | null;
 }
 
-export interface InterestUpdateParams {
+export interface InterestUpdateInputs {
   name?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
   imageId?: string | null;
   featured?: boolean | null;
 }
 
-export interface InvoiceCreateParams {
+export interface InvoiceCreateInputs {
   title: string;
   dueDate: string; // Assuming dueDate is a string that represents a date
   description?: string | null;
@@ -838,21 +838,21 @@ export interface InvoiceCreateParams {
   accountId?: string | null;
 }
 
-export interface InvoiceLineItemCreateParams {
+export interface InvoiceLineItemCreateInputs {
   name: string;
   description: string;
   quantity: string | number;
   amount: string; // Assuming REQUIRED_PRICE is a string format for price
 }
 
-export interface InvoiceLineItemUpdateParams {
+export interface InvoiceLineItemUpdateInputs {
   name?: string | null;
   description?: string | null;
   quantity?: string | number | null;
   amount?: string | null; // Assuming OPTIONAL_PRICE is a string format for price
 }
 
-export interface InvoiceUpdateParams {
+export interface InvoiceUpdateInputs {
   title?: string | null;
   description?: string | null;
   status?: keyof typeof InvoiceStatus | null;
@@ -861,41 +861,41 @@ export interface InvoiceUpdateParams {
   accountId?: string | null;
 }
 
-export interface LeadCreateParams {
+export interface LeadCreateInputs {
   note?: string | null;
 }
 
-export interface LeadUpdateParams {
+export interface LeadUpdateInputs {
   note?: string | null;
 }
 
-export interface NotificationPreferencesCreateParams {
+export interface NotificationPreferencesCreateInputs {
   // No fields defined in the provided validation object
 }
 
-export interface NotificationPreferencesUpdateParams {
+export interface NotificationPreferencesUpdateInputs {
   // No fields defined in the provided validation object
 }
 
-export interface OrganizationPageCreateParams {
+export interface OrganizationPageCreateInputs {
   title: string;
   subtitle?: string | null;
   html?: string | null;
 }
 
-export interface OrganizationPageTranslationUpdateParams {
+export interface OrganizationPageTranslationUpdateInputs {
   title?: string | null;
   subtitle?: string | null;
   html?: string | null;
 }
 
-export interface OrganizationPageUpdateParams {
+export interface OrganizationPageUpdateInputs {
   title?: string | null;
   subtitle?: string | null;
   html?: string | null;
 }
 
-export interface OrganizationUpdateParams {
+export interface OrganizationUpdateInputs {
   email?: string | null;
   name?: string | null;
   description?: string | null;
@@ -928,13 +928,13 @@ export interface OrganizationUpdateParams {
   requireCompany?: boolean | null;
 }
 
-export interface PaymentIntentPurchaseMetadataParams {}
+export interface PaymentIntentPurchaseMetadataInputs {}
 
-export interface PushDeviceCreateParams {}
+export interface PushDeviceCreateInputs {}
 
-export interface PushDeviceUpdateParams {}
+export interface PushDeviceUpdateInputs {}
 
-export interface EventQuestionChoiceCreateParams {
+export interface EventQuestionChoiceCreateInputs {
   value: string;
   text?: string | null;
   supply?: number | string | null;
@@ -942,13 +942,13 @@ export interface EventQuestionChoiceCreateParams {
   sortOrder?: number | string | null;
 }
 
-export interface EventQuestionChoiceTranslationUpdateParams {
+export interface EventQuestionChoiceTranslationUpdateInputs {
   value?: string | null;
   text?: string | null;
   description?: string | null;
 }
 
-export interface EventQuestionChoiceUpdateParams {
+export interface EventQuestionChoiceUpdateInputs {
   value?: string | null;
   text?: string | null;
   supply?: number | string | null;
@@ -956,7 +956,7 @@ export interface EventQuestionChoiceUpdateParams {
   sortOrder?: number | string | null;
 }
 
-export interface EventQuestionCreateParams {
+export interface EventQuestionCreateInputs {
   name: string;
   type?: keyof typeof RegistrationQuestionType | null;
   required?: boolean | null;
@@ -974,23 +974,23 @@ export interface EventQuestionCreateParams {
   featured?: boolean | null;
 }
 
-export interface EventQuestionSearchParams {
+export interface EventQuestionSearchInputs {
   value: string;
   top?: boolean | null;
 }
 
-export interface EventQuestionSearchValueUpdateParams {
+export interface EventQuestionSearchValueUpdateInputs {
   value?: string | null;
   top?: boolean | null;
 }
 
-export interface EventQuestionTranslationUpdateParams {
+export interface EventQuestionTranslationUpdateInputs {
   label?: string | null;
   placeholder?: string | null;
   description?: string | null;
 }
 
-export interface EventQuestionUpdateParams {
+export interface EventQuestionUpdateInputs {
   name?: string | null;
   type?: keyof typeof RegistrationQuestionType | null;
   required?: boolean | null;
@@ -1008,7 +1008,7 @@ export interface EventQuestionUpdateParams {
   featured?: boolean | null;
 }
 
-export interface ReportCreateParams {
+export interface ReportCreateInputs {
   name: string;
   parentId: string | number;
   eventId?: string | null;
@@ -1019,7 +1019,7 @@ export interface ReportCreateParams {
   advancedFilter?: string | null;
 }
 
-export interface ReportUpdateParams {
+export interface ReportUpdateInputs {
   name?: string | null;
   description?: string | null;
   filters?: string | null;
@@ -1028,21 +1028,21 @@ export interface ReportUpdateParams {
   advancedFilter?: string | null;
 }
 
-export interface EventSectionCreateParams {
+export interface EventSectionCreateInputs {
   name: string;
   description?: string | null;
   guestDescription?: string | null;
   sortOrder?: number | string | null;
 }
 
-export interface EventSectionUpdateParams {
+export interface EventSectionUpdateInputs {
   name?: string | null;
   description?: string | null;
   guestDescription?: string | null;
   sortOrder?: number | string | null;
 }
 
-export interface SeriesCreateParams {
+export interface SeriesCreateInputs {
   name: string;
   slug?: string | null;
   description?: string | null;
@@ -1050,7 +1050,7 @@ export interface SeriesCreateParams {
   sortOrder?: number | string | null;
 }
 
-export interface SeriesUpdateParams {
+export interface SeriesUpdateInputs {
   name?: string | null;
   slug?: string | null;
   description?: string | null;
@@ -1058,7 +1058,7 @@ export interface SeriesUpdateParams {
   sortOrder?: number | string | null;
 }
 
-export interface LevelCreateParams {
+export interface LevelCreateInputs {
   name: string;
   slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
   subtitle?: string | null;
@@ -1069,13 +1069,13 @@ export interface LevelCreateParams {
   sortOrder?: number | string | null;
 }
 
-export interface LevelTranslationUpdateParams {
+export interface LevelTranslationUpdateInputs {
   name?: string | null;
   subtitle?: string | null;
   description?: string | null;
 }
 
-export interface LevelUpdateParams {
+export interface LevelUpdateInputs {
   name?: string | null;
   slug?: string | null; // Assuming validSlug is a method for validation, not an enum conversion
   subtitle?: string | null;
@@ -1086,13 +1086,13 @@ export interface LevelUpdateParams {
   sortOrder?: number | string | null;
 }
 
-export interface StreamOutputCreateParams {
+export interface StreamOutputCreateInputs {
   enabled: boolean;
   streamKey: string;
   url: string;
 }
 
-export interface SubscriptionProductCreateParams {
+export interface SubscriptionProductCreateInputs {
   name: string;
   active?: boolean | null;
   description?: string | null;
@@ -1100,7 +1100,7 @@ export interface SubscriptionProductCreateParams {
   features?: string[] | null;
 }
 
-export interface SubscriptionProductPriceCreateParams {
+export interface SubscriptionProductPriceCreateInputs {
   active?: boolean | null;
   type: keyof typeof SubscriptionProductPriceType;
   amount: string | number; // Assuming REQUIRED_PRICE can be string or number
@@ -1109,11 +1109,11 @@ export interface SubscriptionProductPriceCreateParams {
   intervalCount: string | number;
 }
 
-export interface SubscriptionProductPriceUpdateParams {
+export interface SubscriptionProductPriceUpdateInputs {
   active?: boolean | null;
 }
 
-export interface SubscriptionProductUpdateParams {
+export interface SubscriptionProductUpdateInputs {
   active?: boolean | null;
   name?: string | null;
   description?: string | null;
@@ -1121,25 +1121,25 @@ export interface SubscriptionProductUpdateParams {
   features?: string[] | null;
 }
 
-export interface SubscriptionUpdateParams {
+export interface SubscriptionUpdateInputs {
   accountId?: string | null;
 }
 
-export interface SupportTicketCreateParams {
+export interface SupportTicketCreateInputs {
   // No fields defined in the provided validation object
 }
 
-export interface SupportTicketUpdateParams {
+export interface SupportTicketUpdateInputs {
   status?: "new" | "inProgress" | "complete";
 }
 
-export interface TeamCreateParams {
+export interface TeamCreateInputs {
   name: string;
   email: string;
   username?: string | null;
 }
 
-export interface OrganizationTeamMemberCreateParams {
+export interface OrganizationTeamMemberCreateInputs {
   firstName?: string | null;
   lastName?: string | null;
   slug?: string | null;
@@ -1159,7 +1159,7 @@ export interface OrganizationTeamMemberCreateParams {
   startDate?: string | null;
 }
 
-export interface OrganizationTeamMemberUpdateParams {
+export interface OrganizationTeamMemberUpdateInputs {
   firstName?: string | null;
   lastName?: string | null;
   slug?: string | null;
@@ -1179,13 +1179,13 @@ export interface OrganizationTeamMemberUpdateParams {
   startDate?: string | null;
 }
 
-export interface TeamUpdateParams {
+export interface TeamUpdateInputs {
   name?: string | null;
   email?: string | null;
   username?: string | null;
 }
 
-export interface ThreadCreateParams {
+export interface ThreadCreateInputs {
   access: keyof typeof ThreadAccessLevel;
   name: string;
   description?: string | null;
@@ -1195,7 +1195,7 @@ export interface ThreadCreateParams {
   eventId?: string | null;
 }
 
-export interface ThreadUpdateParams {
+export interface ThreadUpdateInputs {
   name?: string | null;
   description?: string | null;
   featured?: boolean | null;
@@ -1205,7 +1205,7 @@ export interface ThreadUpdateParams {
   eventId?: string | null;
 }
 
-export interface EventTicketCreateParams {
+export interface EventTicketCreateInputs {
   name: string;
   shortDescription: string;
   price: string | number; // Assuming REQUIRED_PRICE can be string or number
@@ -1230,7 +1230,7 @@ export interface EventTicketCreateParams {
   maxReservationEnd?: string | null;
 }
 
-export interface EventTicketUpdateParams {
+export interface EventTicketUpdateInputs {
   visibility?: keyof typeof TicketVisibility | null;
   featured?: boolean | null;
   active?: boolean | null;
@@ -1255,7 +1255,7 @@ export interface EventTicketUpdateParams {
   maxReservationEnd?: string | null;
 }
 
-export interface TierCreateParams {
+export interface TierCreateInputs {
   name: string;
   slug?: string | null;
   iconName?: string | null;
@@ -1266,7 +1266,7 @@ export interface TierCreateParams {
   internal?: boolean | null;
 }
 
-export interface TierUpdateParams {
+export interface TierUpdateInputs {
   name?: string | null;
   slug?: string | null;
   iconName?: string | null;
@@ -1277,34 +1277,34 @@ export interface TierUpdateParams {
   internal?: boolean | null;
 }
 
-export interface EventTrackCreateParams {
+export interface EventTrackCreateInputs {
   name: string;
   slug?: string | null;
   description?: string | null;
   color?: string | null;
 }
 
-export interface EventTrackUpdateParams {
+export interface EventTrackUpdateInputs {
   name?: string | null;
   slug?: string | null;
   description?: string | null;
   color?: string | null;
 }
 
-export interface TriggerCreateParams {
+export interface TriggerCreateInputs {
   code: string;
   enabled?: boolean | null;
 }
 
-export interface TriggerUpdateParams {
+export interface TriggerUpdateInputs {
   code?: string | null;
   enabled?: boolean | null;
 }
 
-export interface UserCreateParams {
+export interface UserCreateInputs {
   // No fields defined in the provided validation object
 }
 
-export interface UserUpdateParams {
+export interface UserUpdateInputs {
   title?: string | null;
 }

@@ -6,14 +6,14 @@ import {
 } from "../useConnectedMutation";
 import { ConnectedXMResponse, Event } from "@src/interfaces";
 import { EVENTS_QUERY_KEY, SET_EVENT_QUERY_DATA } from "@src/queries";
-import { EventCreateParams } from "@src/params";
+import { EventCreateInputs } from "@src/params";
 
 /**
  * @category Params
  * @group Event
  */
 export interface CreateEventParams extends MutationParams {
-  event: EventCreateParams;
+  event: EventCreateInputs;
 }
 
 /**

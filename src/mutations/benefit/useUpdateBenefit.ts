@@ -6,7 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
 import { BENEFITS_QUERY_KEY, SET_BENEFIT_QUERY_DATA } from "@src/queries";
-import { BenefitTranslationUpdateParams } from "@src/params";
+import { BenefitTranslationUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -14,7 +14,7 @@ import { BenefitTranslationUpdateParams } from "@src/params";
  */
 export interface UpdateBenefitParams extends MutationParams {
   benefitId: string;
-  benefit: BenefitTranslationUpdateParams;
+  benefit: BenefitTranslationUpdateInputs;
 }
 
 /**

@@ -5,7 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EventSpeakerTranslationUpdateParams } from "@src/params";
+import { EventSpeakerTranslationUpdateInputs } from "@src/params";
 import {
   EVENT_SPEAKER_TRANSLATIONS_QUERY_KEY,
   SET_EVENT_SPEAKER_TRANSLATION_QUERY_DATA,
@@ -19,7 +19,7 @@ export interface UpdateEventSpeakerTranslationParams extends MutationParams {
   eventId: string;
   speakerId: string;
   locale: ISupportedLocale;
-  speakerTranslation: EventSpeakerTranslationUpdateParams;
+  speakerTranslation: EventSpeakerTranslationUpdateInputs;
 }
 
 /**

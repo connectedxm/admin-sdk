@@ -5,7 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EventActivationUpdateParams } from "@src/params";
+import { EventActivationUpdateInputs } from "@src/params";
 import {
   EVENT_ACTIVATIONS_QUERY_KEY,
   SET_EVENT_ACTIVATION_QUERY_DATA,
@@ -18,7 +18,7 @@ import {
 export interface UpdateEventActivationParams extends MutationParams {
   eventId: string;
   activationId: string;
-  activation: EventActivationUpdateParams;
+  activation: EventActivationUpdateInputs;
 }
 
 /**

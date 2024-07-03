@@ -5,7 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EventFaqSectionQuestionUpdateParams } from "@src/params";
+import { EventFaqSectionQuestionUpdateInputs } from "@src/params";
 import {
   EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY,
   SET_EVENT_FAQ_SECTION_QUESTION_QUERY_DATA,
@@ -19,7 +19,7 @@ export interface UpdateEventFAQSectionQuestionParams extends MutationParams {
   sectionId: string;
   eventId: string;
   questionId: string;
-  faq: EventFaqSectionQuestionUpdateParams;
+  faq: EventFaqSectionQuestionUpdateInputs;
 }
 
 /**

@@ -6,7 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { Invoice, ConnectedXMResponse } from "@src/interfaces";
 import { SET_INVOICE_QUERY_DATA, INVOICES_QUERY_KEY } from "@src/queries";
-import { InvoiceUpdateParams } from "@src/params";
+import { InvoiceUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -14,7 +14,7 @@ import { InvoiceUpdateParams } from "@src/params";
  */
 export interface UpdateInvoiceParams extends MutationParams {
   invoiceId: string;
-  invoice: InvoiceUpdateParams;
+  invoice: InvoiceUpdateInputs;
 }
 
 /**

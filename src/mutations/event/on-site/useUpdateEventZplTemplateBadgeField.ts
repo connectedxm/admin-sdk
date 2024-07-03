@@ -5,7 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EventBadgeFieldUpdateParams } from "@src/params";
+import { EventBadgeFieldUpdateInputs } from "@src/params";
 import { EVENT_ZPL_TEMPLATE_BADGE_FIELDS_QUERY_KEY } from "@src/queries";
 
 /**
@@ -15,7 +15,7 @@ import { EVENT_ZPL_TEMPLATE_BADGE_FIELDS_QUERY_KEY } from "@src/queries";
 export interface UpdateEventZplTemplateBadgeFieldParams extends MutationParams {
   eventId: string;
   fieldId: string;
-  field: EventBadgeFieldUpdateParams;
+  field: EventBadgeFieldUpdateInputs;
 }
 
 /**

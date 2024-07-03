@@ -5,7 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EventRegistrationBypassUpdateParams } from "@src/params";
+import { EventRegistrationBypassUpdateInputs } from "@src/params";
 import {
   EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY,
   SET_EVENT_REGISTRATION_BYPASS_QUERY_DATA,
@@ -18,7 +18,7 @@ import {
 export interface UpdateEventRegistrationBypassParams extends MutationParams {
   eventId: string;
   bypassId: string;
-  page: EventRegistrationBypassUpdateParams;
+  page: EventRegistrationBypassUpdateInputs;
 }
 
 /**

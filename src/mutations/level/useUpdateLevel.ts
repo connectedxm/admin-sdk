@@ -6,7 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { Level, ConnectedXMResponse } from "@src/interfaces";
 import { LEVELS_QUERY_KEY, SET_LEVEL_QUERY_DATA } from "@src/queries";
-import { LevelUpdateParams } from "@src/params";
+import { LevelUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -14,7 +14,7 @@ import { LevelUpdateParams } from "@src/params";
  */
 export interface UpdateLevelParams extends MutationParams {
   levelId: string;
-  level: LevelUpdateParams;
+  level: LevelUpdateInputs;
 }
 
 /**

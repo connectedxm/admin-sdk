@@ -5,7 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EventTicketTranslationUpdateParams } from "@src/params";
+import { EventTicketTranslationUpdateInputs } from "@src/params";
 import {
   EVENT_TICKET_TRANSLATIONS_QUERY_KEY,
   SET_EVENT_TICKET_TRANSLATION_QUERY_DATA,
@@ -19,7 +19,7 @@ export interface UpdateEventTicketTranslationParams extends MutationParams {
   eventId: string;
   ticketId: string;
   locale: ISupportedLocale;
-  ticketTranslation: EventTicketTranslationUpdateParams;
+  ticketTranslation: EventTicketTranslationUpdateInputs;
 }
 
 /**

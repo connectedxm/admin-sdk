@@ -5,7 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EventReservationSectionLocationTranslationUpdateParams } from "@src/params";
+import { EventReservationSectionLocationTranslationUpdateInputs } from "@src/params";
 import {
   EVENT_RESERVATION_SECTION_LOCATION_TRANSLATIONS_QUERY_KEY,
   SET_EVENT_RESERVATION_SECTION_LOCATION_TRANSLATION_QUERY_DATA,
@@ -21,7 +21,7 @@ export interface UpdateEventReservationSectionLocationTranslationParams
   reservationSectionId: string;
   locale: ISupportedLocale;
   locationId: string;
-  locationTranslation: EventReservationSectionLocationTranslationUpdateParams;
+  locationTranslation: EventReservationSectionLocationTranslationUpdateInputs;
 }
 
 /**

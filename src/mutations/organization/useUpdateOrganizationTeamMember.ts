@@ -9,7 +9,7 @@ import {
   ORGANIZATION_TEAM_MEMBERS_QUERY_KEY,
   SET_ORGANIZATION_TEAM_MEMBER_QUERY_DATA,
 } from "@src/queries";
-import { OrganizationTeamMemberUpdateParams } from "@src/params";
+import { OrganizationTeamMemberUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -17,7 +17,7 @@ import { OrganizationTeamMemberUpdateParams } from "@src/params";
  */
 export interface UpdateOrganizationTeamMemberParams extends MutationParams {
   teamMemberId: string;
-  teamMember: OrganizationTeamMemberUpdateParams;
+  teamMember: OrganizationTeamMemberUpdateInputs;
 }
 
 /**

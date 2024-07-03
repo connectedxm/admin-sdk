@@ -12,7 +12,7 @@ import {
   EVENT_QUESTION_CHOICES_QUERY_KEY,
   SET_EVENT_QUESTION_CHOICE_QUERY_DATA,
 } from "@src/queries";
-import { EventQuestionChoiceCreateParams } from "../../../params";
+import { EventQuestionChoiceCreateInputs } from "../../../params";
 
 /**
  * @category Params
@@ -21,7 +21,7 @@ import { EventQuestionChoiceCreateParams } from "../../../params";
 export interface CreateEventQuestionChoiceParams extends MutationParams {
   eventId: string;
   questionId: string;
-  choice: EventQuestionChoiceCreateParams;
+  choice: EventQuestionChoiceCreateInputs;
 }
 
 /**

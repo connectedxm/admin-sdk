@@ -9,7 +9,7 @@ import {
   ADVERTISEMENTS_QUERY_KEY,
   SET_ADVERTISEMENT_QUERY_DATA,
 } from "@src/queries";
-import { AdvertisementUpdateParams } from "@src/params";
+import { AdvertisementUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -17,7 +17,7 @@ import { AdvertisementUpdateParams } from "@src/params";
  */
 export interface UpdateAdvertisementParams extends MutationParams {
   advertisementId: string;
-  advertisement: AdvertisementUpdateParams;
+  advertisement: AdvertisementUpdateInputs;
 }
 
 /**

@@ -5,7 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EventSpeakerCreateParams } from "@src/params";
+import { EventSpeakerCreateInputs } from "@src/params";
 import {
   EVENT_SPEAKERS_QUERY_KEY,
   SET_EVENT_SPEAKER_QUERY_DATA,
@@ -17,7 +17,7 @@ import {
  */
 export interface CreateEventSpeakerParams extends MutationParams {
   eventId: string;
-  speaker: EventSpeakerCreateParams;
+  speaker: EventSpeakerCreateInputs;
 }
 
 /**

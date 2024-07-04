@@ -1954,7 +1954,7 @@ export interface BaseSupportTicket {
   type: SupportTicketType;
   email: string;
   request: string;
-  status: string;
+  status: "new" | "inProgress" | "complete";
 }
 
 export interface SupportTicket extends BaseSupportTicket {

@@ -584,12 +584,6 @@ export interface EventRegistrationBypassUpdateInputs {
   postRegister?: boolean | null;
 }
 
-export interface EventRegistrationSectionUpdateTranslationInputs {
-  name?: string | null;
-  description?: string | null;
-  guestDescription?: string | null;
-}
-
 export interface EventReservationSectionCreateInputs {
   name: string;
   shortDescription?: string | null;
@@ -1033,6 +1027,12 @@ export interface EventSectionCreateInputs {
   description?: string | null;
   guestDescription?: string | null;
   sortOrder?: number | string | null;
+}
+
+export interface EventSectionUpdateTranslationInputs {
+  name?: string | null;
+  description?: string | null;
+  guestDescription?: string | null;
 }
 
 export interface EventSectionUpdateInputs {

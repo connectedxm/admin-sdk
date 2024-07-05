@@ -1086,6 +1086,22 @@ export interface LevelUpdateInputs {
   sortOrder?: number | string | null;
 }
 
+export interface StreamInputCreateInputs {
+  name: string;
+  sortOrder?: number | string | null;
+  eventId?: string | null;
+  sessionId?: string | null;
+  details?: object | null;
+}
+
+export interface StreamInputUpdateInputs {
+  name: string;
+  sortOrder?: number | string | null;
+  eventId?: string | null;
+  sessionId?: string | null;
+  details?: object | null;
+}
+
 export interface StreamOutputCreateInputs {
   enabled: boolean;
   streamKey: string;

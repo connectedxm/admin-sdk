@@ -1,10 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import {
-  ConnectedXMResponse,
-  RegistrationQuestion,
-  RegistrationQuestionResponse,
-  RegistrationSection,
-} from "@src/interfaces";
+import { ConnectedXMResponse, RegistrationSection } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -12,10 +7,6 @@ import {
 } from "@src/queries/useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_REGISTRATION_PURCHASE_QUERY_KEY } from "./useGetEventRegistrationPurchase";
-
-export interface RegistrationQuestionWithResponse extends RegistrationQuestion {
-  responses: RegistrationQuestionResponse[];
-}
 
 /**
  * @category Keys

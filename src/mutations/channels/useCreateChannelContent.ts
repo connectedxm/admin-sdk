@@ -9,13 +9,14 @@ import {
   CHANNEL_CONTENTS_QUERY_KEY,
   SET_CHANNEL_CONTENT_QUERY_DATA,
 } from "@src/queries/channels";
+import { ContentCreateInputs } from "@src/params";
 
 /**
  * @category Params
  * @group Channel
  */
 export interface CreateChannelContentParams extends MutationParams {
-  content: Content;
+  content: ContentCreateInputs;
   channelId: string;
 }
 

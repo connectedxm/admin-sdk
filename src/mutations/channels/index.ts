@@ -1,6 +1,6 @@
 export * from "./translations";
 export * from "./useAddChannelContentAuthor";
-export * from "./useChannelType";
+export * from "./useCreateChannel";
 export * from "./useCreateChannelContent";
 export * from "./useDeleteChannel";
 export * from "./useDeleteChannelContent";

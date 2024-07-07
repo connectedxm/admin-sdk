@@ -6,6 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
+  ACCOUNT_DELEGATE_OF_QUERY_KEY,
   ACCOUNT_DELEGATES_QUERY_KEY,
   SET_ACCOUNT_QUERY_DATA,
 } from "@src/queries";
@@ -38,6 +39,9 @@ export const AddAccountDelegate = async ({
     SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], data);
     queryClient.invalidateQueries({
       queryKey: ACCOUNT_DELEGATES_QUERY_KEY(accountId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: ACCOUNT_DELEGATE_OF_QUERY_KEY(delegateId),
     });
   }
   return data;

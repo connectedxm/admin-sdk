@@ -9,13 +9,14 @@ import {
   CHANNELS_QUERY_KEY,
   SET_CHANNEL_QUERY_DATA,
 } from "@src/queries/channels";
+import { ChannelCreateInputs } from "@src/params";
 
 /**
  * @category Params
  * @group Channel
  */
 export interface CreateChannelParams extends MutationParams {
-  channel: Channel;
+  channel: ChannelCreateInputs;
 }
 
 /**

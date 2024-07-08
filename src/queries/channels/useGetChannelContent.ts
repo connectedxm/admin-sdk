@@ -5,7 +5,7 @@ import {
   useConnectedSingleQuery,
 } from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { Content } from "@src/interfaces";
+import { ChannelContent } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { CHANNEL_CONTENTS_QUERY_KEY } from "./useGetChannelContents";
 
@@ -43,7 +43,7 @@ export const GetChannelContent = async ({
   channelId,
   contentId,
   adminApiParams,
-}: GetChannelContentProps): Promise<ConnectedXMResponse<Content>> => {
+}: GetChannelContentProps): Promise<ConnectedXMResponse<ChannelContent>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
     `/channels/${channelId}/contents/${contentId}`

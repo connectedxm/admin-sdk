@@ -299,7 +299,7 @@ export interface BaseActivity {
   eventId: string | null;
   event: BaseEvent | null;
   contentId: string | null;
-  content: BaseContent | null;
+  content: BaseChannelContent | null;
   interests: BaseInterest[];
   createdAt: string;
   updatedAt: string;
@@ -464,7 +464,7 @@ export interface CognitoUser {
   emailVerified: boolean;
 }
 
-export interface BaseContent {
+export interface BaseChannelContent {
   id: string;
   slug: string;
   featured: boolean;
@@ -478,7 +478,7 @@ export interface BaseContent {
   contentType: BaseChannel;
 }
 
-export interface Content extends BaseContent {
+export interface ChannelContent extends BaseChannelContent {
   body: string | null;
   imageUrl: string | null;
   audioUrl: string | null;
@@ -494,7 +494,7 @@ export interface Content extends BaseContent {
   updatedAt: string;
 }
 
-export interface ContentTranslation {
+export interface ChannelContentTranslation {
   id: number;
   locale: string;
   title: string;
@@ -513,11 +513,11 @@ export interface ChannelTranslation {
 export interface BaseChannel {
   id: string;
   slug: string;
+  featured: boolean;
   name: string;
   description: string | null;
   priority: number;
   visible: boolean;
-  format: ChannelFormat;
   imageId: string;
   image: BaseImage;
 }

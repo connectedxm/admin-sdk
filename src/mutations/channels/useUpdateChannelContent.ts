@@ -1,4 +1,4 @@
-import { ConnectedXMResponse, Content } from "@src/interfaces";
+import { ConnectedXMResponse, ChannelContent } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -16,7 +16,7 @@ import {
  */
 export interface UpdateChannelContentParams extends MutationParams {
   contentId: string;
-  content: Content;
+  content: ChannelContent;
   channelId: string;
 }
 
@@ -30,7 +30,9 @@ export const UpdateChannelContent = async ({
   content,
   adminApiParams,
   queryClient,
-}: UpdateChannelContentParams): Promise<ConnectedXMResponse<Content>> => {
+}: UpdateChannelContentParams): Promise<
+  ConnectedXMResponse<ChannelContent>
+> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put(
     `/channels/${channelId}/contents/${contentId}`,

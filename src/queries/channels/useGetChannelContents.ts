@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 
-import { Content } from "@src/interfaces";
+import { ChannelContent } from "@src/interfaces";
 import {
   InfiniteQueryParams,
   InfiniteQueryOptions,
@@ -52,7 +52,7 @@ export const GetChannelContents = async ({
   channelId,
   status,
   adminApiParams,
-}: GetChannelContentsProps): Promise<ConnectedXMResponse<Content[]>> => {
+}: GetChannelContentsProps): Promise<ConnectedXMResponse<ChannelContent[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/channels/${channelId}/contents`, {
     params: {

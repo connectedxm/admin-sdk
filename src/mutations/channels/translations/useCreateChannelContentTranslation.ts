@@ -1,5 +1,8 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, ContentTranslation } from "@src/interfaces";
+import {
+  ConnectedXMResponse,
+  ChannelContentTranslation,
+} from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -33,12 +36,12 @@ export const CreateChannelContentTranslation = async ({
   adminApiParams,
   queryClient,
 }: CreateChannelContentTranslationParams): Promise<
-  ConnectedXMResponse<ContentTranslation>
+  ConnectedXMResponse<ChannelContentTranslation>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.post<
-    ConnectedXMResponse<ContentTranslation>
+    ConnectedXMResponse<ChannelContentTranslation>
   >(`/channels/${channelId}/contents/${contentId}/translations`, {
     locale,
     autoTranslate,

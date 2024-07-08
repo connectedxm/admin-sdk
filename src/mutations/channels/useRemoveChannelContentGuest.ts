@@ -1,4 +1,4 @@
-import { ConnectedXMResponse, Content } from "@src/interfaces";
+import { ConnectedXMResponse, ChannelContent } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -27,11 +27,13 @@ export const RemoveChannelContentGuest = async ({
   channelId,
   adminApiParams,
   queryClient,
-}: RemoveChannelContentGuestParams): Promise<ConnectedXMResponse<Content>> => {
+}: RemoveChannelContentGuestParams): Promise<
+  ConnectedXMResponse<ChannelContent>
+> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<Content>>(
-    `/channels/${channelId}/contents/${contentId}/guests/${accountId}`
-  );
+  const { data } = await connectedXM.delete<
+    ConnectedXMResponse<ChannelContent>
+  >(`/channels/${channelId}/contents/${contentId}/guests/${accountId}`);
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

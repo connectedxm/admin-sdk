@@ -1,5 +1,5 @@
 import { ConnectedXMResponse } from "@src/interfaces";
-import { ContentTranslation } from "@src/interfaces";
+import { ChannelContentTranslation } from "@src/interfaces";
 import { CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY } from "./useGetChannelContentTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
@@ -47,7 +47,7 @@ export const GetChannelContentTranslation = async ({
   locale,
   adminApiParams,
 }: GetChannelContentTranslationProps): Promise<
-  ConnectedXMResponse<ContentTranslation>
+  ConnectedXMResponse<ChannelContentTranslation>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(

@@ -44,22 +44,26 @@ interface GetContentActivitiesProps extends InfiniteQueryParams {
  * @group Channels
  */
 export const GetContentActivities = async ({
+  channelId,
+  contentId,
   pageParam,
   pageSize,
   orderBy,
   search,
-  contentId,
   adminApiParams,
 }: GetContentActivitiesProps): Promise<ConnectedXMResponse<Activity[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/contents/${contentId}/activities`, {
-    params: {
-      page: pageParam || undefined,
-      pageSize: pageSize || undefined,
-      orderBy: orderBy || undefined,
-      search: search || undefined,
-    },
-  });
+  const { data } = await adminApi.get(
+    `/channels/${channelId}/contents/${contentId}/activities`,
+    {
+      params: {
+        page: pageParam || undefined,
+        pageSize: pageSize || undefined,
+        orderBy: orderBy || undefined,
+        search: search || undefined,
+      },
+    }
+  );
   return data;
 };
 /**
@@ -90,7 +94,7 @@ export const useGetContentActivities = (
     params,
     {
       ...options,
-      enabled: !!contentId && !!contentId && (options.enabled ?? true),
+      enabled: !!channelId && !!contentId && (options.enabled ?? true),
     }
   );
 };

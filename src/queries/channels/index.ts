@@ -2,7 +2,7 @@ export * from "./translations";
 export * from "./useGetChannel";
 export * from "./useGetChannelContent";
 export * from "./useGetChannelContentActivities";
-export * from "./useGetChannelContentAuthors";
+export * from "./useGetChannelContentGuests";
 export * from "./useGetChannelContentKPIActivities";
 export * from "./useGetChannelContents";
 export * from "./useGetChannelKPIActivities";

@@ -234,7 +234,7 @@ export interface ChannelUpdateInputs {
   groupId?: string | null;
 }
 
-export interface ContentCreateInputs {
+export interface ChannelContentCreateInputs {
   title: string;
   type: keyof typeof ContentType;
   published?: string | null;
@@ -255,7 +255,7 @@ export interface ContentCreateInputs {
   youtubeUrl?: string | null;
 }
 
-export interface ContentGuestCreateInputs {
+export interface ChannelContentGuestCreateInputs {
   name: string;
   type?: keyof typeof ContentGuestType | null;
   slug?: string | null;
@@ -276,13 +276,13 @@ export interface ContentGuestCreateInputs {
   discord?: string | null;
 }
 
-export interface ContentGuestTranslationUpdateInputs {
+export interface ChannelContentGuestTranslationUpdateInputs {
   title?: string | null;
   bio?: string | null;
   companyBio?: string | null;
 }
 
-export interface ContentGuestUpdateInputs {
+export interface ChannelContentGuestUpdateInputs {
   type?: keyof typeof ContentGuestType | null;
   slug?: string | null;
   name?: string | null;
@@ -303,13 +303,13 @@ export interface ContentGuestUpdateInputs {
   discord?: string | null;
 }
 
-export interface ContentTranslationUpdateInputs {
+export interface ChannelContentTranslationUpdateInputs {
   title?: string | null;
   description?: string | null;
   body?: string | null;
 }
 
-export interface ContentUpdateInputs {
+export interface ChannelContentUpdateInputs {
   type?: keyof typeof ContentType | null;
   published?: string | null;
   channelId?: string | null;

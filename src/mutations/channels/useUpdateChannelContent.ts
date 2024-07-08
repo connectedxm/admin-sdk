@@ -32,7 +32,10 @@ export const UpdateChannelContent = async ({
   queryClient,
 }: UpdateChannelContentParams): Promise<ConnectedXMResponse<Content>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put(`/contents/${contentId}`, content);
+  const { data } = await connectedXM.put(
+    `/channels/${channelId}/contents/${contentId}`,
+    content
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: CHANNEL_CONTENTS_QUERY_KEY(channelId),

@@ -24,8 +24,8 @@ export interface DeleteChannelContentTranslationParams extends MutationParams {
  * @group Channel-Translation
  */
 export const DeleteChannelContentTranslation = async ({
-  contentId,
   channelId,
+  contentId,
   locale,
   adminApiParams,
   queryClient,
@@ -33,7 +33,7 @@ export const DeleteChannelContentTranslation = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.delete(
-    `/contents/${contentId}/translations/${locale}`
+    `/channels/${channelId}/contents/${contentId}/translations/${locale}`
   );
 
   if (queryClient && data.status === "ok") {

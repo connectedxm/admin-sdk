@@ -9,14 +9,14 @@ import {
   CHANNEL_CONTENTS_QUERY_KEY,
   SET_CHANNEL_CONTENT_QUERY_DATA,
 } from "@src/queries/channels";
-import { ContentCreateInputs } from "@src/params";
+import { ChannelContentCreateInputs } from "@src/params";
 
 /**
  * @category Params
  * @group Channel
  */
 export interface CreateChannelContentParams extends MutationParams {
-  content: ContentCreateInputs;
+  content: ChannelContentCreateInputs;
   channelId: string;
 }
 
@@ -32,7 +32,7 @@ export const CreateChannelContent = async ({
 }: CreateChannelContentParams): Promise<ConnectedXMResponse<Content>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<Content>>(
-    `/contents`,
+    `/channels/${channelId}/contents`,
     content
   );
 

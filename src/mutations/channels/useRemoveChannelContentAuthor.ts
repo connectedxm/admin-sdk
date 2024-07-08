@@ -5,13 +5,13 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
-import { CHANNEL_CONTENT_AUTHORS_QUERY_KEY } from "@src/queries/channels";
+import { CHANNEL_CONTENT_GUESTS_QUERY_KEY } from "@src/queries/channels";
 
 /**
  * @category Params
  * @group Channel
  */
-export interface RemoveChannelContentAuthorParams extends MutationParams {
+export interface RemoveChannelContentGuestParams extends MutationParams {
   contentId: string;
   channelId: string;
   accountId: string;
@@ -21,21 +21,21 @@ export interface RemoveChannelContentAuthorParams extends MutationParams {
  * @category Methods
  * @group Channel
  */
-export const RemoveChannelContentAuthor = async ({
+export const RemoveChannelContentGuest = async ({
   contentId,
   accountId,
   channelId,
   adminApiParams,
   queryClient,
-}: RemoveChannelContentAuthorParams): Promise<ConnectedXMResponse<Content>> => {
+}: RemoveChannelContentGuestParams): Promise<ConnectedXMResponse<Content>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<Content>>(
-    `/contents/${contentId}/authors/${accountId}`
+    `/channels/${channelId}/contents/${contentId}/guests/${accountId}`
   );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: CHANNEL_CONTENT_AUTHORS_QUERY_KEY(channelId, contentId),
+      queryKey: CHANNEL_CONTENT_GUESTS_QUERY_KEY(channelId, contentId),
     });
   }
   return data;
@@ -45,14 +45,14 @@ export const RemoveChannelContentAuthor = async ({
  * @category Mutations
  * @group Channel
  */
-export const useRemoveChannelContentAuthor = (
+export const useRemoveChannelContentGuest = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof RemoveChannelContentAuthor>>,
-      Omit<RemoveChannelContentAuthorParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof RemoveChannelContentGuest>>,
+      Omit<RemoveChannelContentGuestParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
-  return useConnectedMutation(RemoveChannelContentAuthor, options);
+  return useConnectedMutation(RemoveChannelContentGuest, options);
 };

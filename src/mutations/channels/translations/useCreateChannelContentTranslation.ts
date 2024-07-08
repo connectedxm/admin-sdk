@@ -26,10 +26,10 @@ export interface CreateChannelContentTranslationParams extends MutationParams {
  * @group Channel-Translation
  */
 export const CreateChannelContentTranslation = async ({
+  channelId,
   contentId,
   locale,
   autoTranslate,
-  channelId,
   adminApiParams,
   queryClient,
 }: CreateChannelContentTranslationParams): Promise<
@@ -39,7 +39,7 @@ export const CreateChannelContentTranslation = async ({
 
   const { data } = await connectedXM.post<
     ConnectedXMResponse<ContentTranslation>
-  >(`/contents/${contentId}/translations`, {
+  >(`/channels/${channelId}/contents/${contentId}/translations`, {
     locale,
     autoTranslate,
   });

@@ -14,27 +14,24 @@ import { CHANNEL_CONTENT_QUERY_KEY } from "./useGetChannelContent";
  * @category Keys
  * @group Channels
  */
-export const CHANNEL_CONTENT_AUTHORS_QUERY_KEY = (
+export const CHANNEL_CONTENT_GUESTS_QUERY_KEY = (
   channelId: string,
   contentId: string
-) => [...CHANNEL_CONTENT_QUERY_KEY(channelId, contentId), "AUTHORS"];
+) => [...CHANNEL_CONTENT_QUERY_KEY(channelId, contentId), "GUESTS"];
 
 /**
  * @category Setters
  * @group Channels
  */
-export const SET_CHANNEL_CONTENT_AUTHORS_QUERY_DATA = (
+export const SET_CHANNEL_CONTENT_GUESTS_QUERY_DATA = (
   client: QueryClient,
-  keyParams: Parameters<typeof CHANNEL_CONTENT_AUTHORS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetChannelContentAuthors>>
+  keyParams: Parameters<typeof CHANNEL_CONTENT_GUESTS_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetChannelContentGuests>>
 ) => {
-  client.setQueryData(
-    CHANNEL_CONTENT_AUTHORS_QUERY_KEY(...keyParams),
-    response
-  );
+  client.setQueryData(CHANNEL_CONTENT_GUESTS_QUERY_KEY(...keyParams), response);
 };
 
-interface GetChannelContentAuthorsProps extends InfiniteQueryParams {
+interface GetChannelContentGuestsProps extends InfiniteQueryParams {
   channelId: string;
   contentId: string;
   status?: string;
@@ -44,30 +41,34 @@ interface GetChannelContentAuthorsProps extends InfiniteQueryParams {
  * @category Queries
  * @group Channels
  */
-export const GetChannelContentAuthors = async ({
+export const GetChannelContentGuests = async ({
+  channelId,
   contentId,
   pageParam,
   pageSize,
   orderBy,
   search,
   adminApiParams,
-}: GetChannelContentAuthorsProps): Promise<ConnectedXMResponse<Account[]>> => {
+}: GetChannelContentGuestsProps): Promise<ConnectedXMResponse<Account[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/contents/${contentId}/authors`, {
-    params: {
-      page: pageParam || undefined,
-      pageSize: pageSize || undefined,
-      orderBy: orderBy || undefined,
-      search: search || undefined,
-    },
-  });
+  const { data } = await adminApi.get(
+    `/channels/${channelId}/contents/${contentId}/guests`,
+    {
+      params: {
+        page: pageParam || undefined,
+        pageSize: pageSize || undefined,
+        orderBy: orderBy || undefined,
+        search: search || undefined,
+      },
+    }
+  );
   return data;
 };
 /**
  * @category Hooks
  * @group Channels
  */
-export const useGetChannelContentAuthors = (
+export const useGetChannelContentGuests = (
   channelId: string = "",
   contentId: string = "",
   params: Omit<
@@ -75,15 +76,15 @@ export const useGetChannelContentAuthors = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetChannelContentAuthors>>
+    Awaited<ReturnType<typeof GetChannelContentGuests>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetChannelContentAuthors>>
+    Awaited<ReturnType<typeof GetChannelContentGuests>>
   >(
-    CHANNEL_CONTENT_AUTHORS_QUERY_KEY(channelId, contentId),
+    CHANNEL_CONTENT_GUESTS_QUERY_KEY(channelId, contentId),
     (params: InfiniteQueryParams) =>
-      GetChannelContentAuthors({
+      GetChannelContentGuests({
         channelId,
         contentId,
         ...params,

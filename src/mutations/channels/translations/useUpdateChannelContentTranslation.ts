@@ -5,7 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { ContentTranslationUpdateInputs } from "@src/params";
+import { ChannelContentTranslationUpdateInputs } from "@src/params";
 import {
   CHANNEL_CONTENT_TRANSLATIONS_QUERY_KEY,
   SET_CHANNEL_CONTENT_TRANSLATION_QUERY_DATA,
@@ -19,7 +19,7 @@ export interface UpdateChannelContentTranslationParams extends MutationParams {
   channelId: string;
   contentId: string;
   locale: ISupportedLocale;
-  contentTranslation: ContentTranslationUpdateInputs;
+  contentTranslation: ChannelContentTranslationUpdateInputs;
 }
 
 /**
@@ -27,8 +27,8 @@ export interface UpdateChannelContentTranslationParams extends MutationParams {
  * @group Channel-Translation
  */
 export const UpdateChannelContentTranslation = async ({
-  contentId,
   channelId,
+  contentId,
   contentTranslation,
   locale,
   adminApiParams,
@@ -37,7 +37,7 @@ export const UpdateChannelContentTranslation = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.put(
-    `/contents/${contentId}/translations/${locale}`,
+    `/channels/${channelId}/contents/${contentId}/translations/${locale}`,
     contentTranslation
   );
 

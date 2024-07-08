@@ -31,6 +31,7 @@ export const SET_CHANNEL_CONTENT_QUERY_DATA = (
 };
 
 interface GetChannelContentProps extends SingleQueryParams {
+  channelId: string;
   contentId: string;
 }
 
@@ -39,11 +40,14 @@ interface GetChannelContentProps extends SingleQueryParams {
  * @group Channels
  */
 export const GetChannelContent = async ({
+  channelId,
   contentId,
   adminApiParams,
 }: GetChannelContentProps): Promise<ConnectedXMResponse<Content>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/contents/${contentId}`);
+  const { data } = await adminApi.get(
+    `/channels/${channelId}/contents/${contentId}`
+  );
   return data;
 };
 /**
@@ -57,10 +61,11 @@ export const useGetChannelContent = (
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetChannelContent>>(
     CHANNEL_CONTENT_QUERY_KEY(channelId, contentId),
-    (params: SingleQueryParams) => GetChannelContent({ contentId, ...params }),
+    (params: SingleQueryParams) =>
+      GetChannelContent({ channelId, contentId, ...params }),
     {
       ...options,
-      enabled: !!contentId && (options?.enabled ?? true),
+      enabled: !!channelId && !!contentId && (options?.enabled ?? true),
     }
   );
 };

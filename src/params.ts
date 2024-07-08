@@ -197,7 +197,8 @@ export interface ChannelCollectionUpdateInputs {
 export interface ChannelCreateInputs {
   name: string;
   imageId: string;
-  slug?: string | null; // Assuming validSlug is a function for validation, not an enum conversion
+  slug?: string | null;
+  featured?: boolean | null;
   description?: string | null;
   priority?: number | string | null;
   visible?: boolean | null;
@@ -222,7 +223,8 @@ export interface ChannelTranslationUpdateInputs {
 export interface ChannelUpdateInputs {
   name?: string | null;
   imageId?: string | null;
-  slug?: string | null; // Assuming validSlug is a function for validation, not an enum conversion
+  slug?: string | null;
+  featured?: boolean | null;
   description?: string | null;
   priority?: number | string | null;
   visible?: boolean | null;

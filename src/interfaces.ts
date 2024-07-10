@@ -537,6 +537,18 @@ export interface Channel extends BaseChannel {
   };
 }
 
+export interface BaseChannelSubscribers {
+  organizationId: string | null;
+  channelId: string | null;
+  channel: Channel;
+  accountId: string | null;
+  account: Account;
+  contentEmailNotification: boolean | null;
+  contentPushNotification: boolean | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface ChannelTranslation {
   id: string;
   locale: string;

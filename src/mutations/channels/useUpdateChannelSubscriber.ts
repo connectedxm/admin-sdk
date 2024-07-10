@@ -5,38 +5,41 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
-import { CHANNEL_SUBSCRIBERS_QUERY_KEY } from "@src/queries/channels/useGetChannelSubscribers";
+import {
+  CHANNEL_SUBSCRIBERS_QUERY_KEY,
+  SET_CHANNEL_SUBSCRIBERS_QUERY_DATA,
+} from "@src/queries/channels";
 
 /**
  * @category Params
  * @group ChannelSubscribers
  */
-export interface AddChannelsubscriberParams extends MutationParams {
+export interface UpdateChannelSubscriberParams extends MutationParams {
   channelId: string;
-  accountId: string;
+  subscriber: BaseChannelSubscribers;
 }
 
 /**
  * @category Methods
  * @group ChannelSubscribers
  */
-export const AddChannelSubscriber = async ({
+export const UpdateChannelContent = async ({
   channelId,
-  accountId,
+  subscriber,
   adminApiParams,
   queryClient,
-}: AddChannelsubscriberParams): Promise<
+}: UpdateChannelSubscriberParams): Promise<
   ConnectedXMResponse<BaseChannelSubscribers>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
+  const { data } = await connectedXM.put<
     ConnectedXMResponse<BaseChannelSubscribers>
-  >(`/channels/${channelId}/subscribers`, { accountId });
-
+  >(`/channels/${channelId}/subscribers`, subscriber);
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: CHANNEL_SUBSCRIBERS_QUERY_KEY(channelId),
     });
+    SET_CHANNEL_SUBSCRIBERS_QUERY_DATA(queryClient, [channelId], data);
   }
   return data;
 };
@@ -45,17 +48,17 @@ export const AddChannelSubscriber = async ({
  * @category Mutations
  * @group ChannelSubscribers
  */
-export const useAddChannelSubscriber = (
+export const useUpdateChannelSubscriber = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof AddChannelSubscriber>>,
-      Omit<AddChannelsubscriberParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof UpdateChannelContent>>,
+      Omit<UpdateChannelSubscriberParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    AddChannelsubscriberParams,
-    Awaited<ReturnType<typeof AddChannelSubscriber>>
-  >(AddChannelSubscriber, options);
+    UpdateChannelSubscriberParams,
+    Awaited<ReturnType<typeof UpdateChannelContent>>
+  >(UpdateChannelContent, options);
 };

@@ -13,6 +13,7 @@ import { CHANNEL_SUBSCRIBERS_QUERY_KEY } from "@src/queries/channels/useGetChann
  */
 export interface RemoveChannelSubscriberParams extends MutationParams {
   channelId: string;
+  accountId: string;
 }
 
 /**
@@ -21,6 +22,7 @@ export interface RemoveChannelSubscriberParams extends MutationParams {
  */
 export const RemoveChannelSubscriber = async ({
   channelId,
+  accountId,
   adminApiParams,
   queryClient,
 }: RemoveChannelSubscriberParams): Promise<
@@ -29,7 +31,7 @@ export const RemoveChannelSubscriber = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<
     ConnectedXMResponse<BaseChannelSubscribers>
-  >(`/channels/${channelId}/subscribers`);
+  >(`/channels/${channelId}/subscribers/${accountId}`);
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

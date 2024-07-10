@@ -48,6 +48,7 @@ export const GetChannelSubscribers = async ({
   >(`/channels/${channelId}/subscribers`);
   return data;
 };
+
 /**
  * @category Hooks
  * @group Channels

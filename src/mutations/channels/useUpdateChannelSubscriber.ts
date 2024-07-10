@@ -16,6 +16,7 @@ import {
  */
 export interface UpdateChannelSubscriberParams extends MutationParams {
   channelId: string;
+  accountId: string;
   subscriber: BaseChannelSubscribers;
 }
 
@@ -23,8 +24,9 @@ export interface UpdateChannelSubscriberParams extends MutationParams {
  * @category Methods
  * @group ChannelSubscribers
  */
-export const UpdateChannelContent = async ({
+export const UpdateChannelSubscriber = async ({
   channelId,
+  accountId,
   subscriber,
   adminApiParams,
   queryClient,
@@ -34,7 +36,7 @@ export const UpdateChannelContent = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<
     ConnectedXMResponse<BaseChannelSubscribers>
-  >(`/channels/${channelId}/subscribers`, subscriber);
+  >(`/channels/${channelId}/subscribers/${accountId}`, subscriber);
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: CHANNEL_SUBSCRIBERS_QUERY_KEY(channelId),
@@ -51,7 +53,7 @@ export const UpdateChannelContent = async ({
 export const useUpdateChannelSubscriber = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof UpdateChannelContent>>,
+      Awaited<ReturnType<typeof UpdateChannelSubscriber>>,
       Omit<UpdateChannelSubscriberParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
@@ -59,6 +61,6 @@ export const useUpdateChannelSubscriber = (
 ) => {
   return useConnectedMutation<
     UpdateChannelSubscriberParams,
-    Awaited<ReturnType<typeof UpdateChannelContent>>
-  >(UpdateChannelContent, options);
+    Awaited<ReturnType<typeof UpdateChannelSubscriber>>
+  >(UpdateChannelSubscriber, options);
 };

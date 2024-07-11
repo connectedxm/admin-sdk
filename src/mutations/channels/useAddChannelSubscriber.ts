@@ -1,4 +1,4 @@
-import { ConnectedXMResponse, BaseChannelSubscribers } from "@src/interfaces";
+import { ConnectedXMResponse, BaseChannelSubscriber } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -26,11 +26,11 @@ export const AddChannelSubscriber = async ({
   adminApiParams,
   queryClient,
 }: AddChannelsubscriberParams): Promise<
-  ConnectedXMResponse<BaseChannelSubscribers>
+  ConnectedXMResponse<BaseChannelSubscriber>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<
-    ConnectedXMResponse<BaseChannelSubscribers>
+    ConnectedXMResponse<BaseChannelSubscriber>
   >(`/channels/${channelId}/subscribers`, { accountId });
 
   if (queryClient && data.status === "ok") {

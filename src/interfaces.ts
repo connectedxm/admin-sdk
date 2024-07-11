@@ -537,7 +537,7 @@ export interface Channel extends BaseChannel {
   };
 }
 
-export interface BaseChannelSubscribers {
+export interface BaseChannelSubscriber {
   organizationId: string | null;
   channelId: string | null;
   channel: Channel;

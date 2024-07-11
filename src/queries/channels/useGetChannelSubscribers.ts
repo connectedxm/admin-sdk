@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { BaseChannelSubscribers, ConnectedXMResponse } from "@src/interfaces";
+import { BaseChannelSubscriber, ConnectedXMResponse } from "@src/interfaces";
 
 import {
   InfiniteQueryParams,
@@ -52,7 +52,7 @@ export const GetChannelSubscribers = async ({
   status,
   adminApiParams,
 }: GetChannelSubscribersProps): Promise<
-  ConnectedXMResponse<BaseChannelSubscribers[]>
+  ConnectedXMResponse<BaseChannelSubscriber[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/channels/${channelId}/subscribers`, {

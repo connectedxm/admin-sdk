@@ -6,7 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
-  CHANNEL_CONTENTS_QUERY_KEY,
+  CHANNEL_SUBSCRIBERS_QUERY_KEY,
   SET_CHANNEL_CONTENT_QUERY_DATA,
 } from "@src/queries/channels";
 
@@ -40,7 +40,7 @@ export const UpdateChannelContent = async ({
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: CHANNEL_CONTENTS_QUERY_KEY(channelId),
+      queryKey: CHANNEL_SUBSCRIBERS_QUERY_KEY(channelId),
     });
     SET_CHANNEL_CONTENT_QUERY_DATA(queryClient, [channelId, contentId], data);
   }

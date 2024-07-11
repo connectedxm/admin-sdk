@@ -10,7 +10,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * @category Keys
- * @group ChannelSubscriber
+ * @group Channels
  */
 export const CHANNEL_SUBSCRIBER_QUERY_KEY = (
   channelId: string,
@@ -19,7 +19,7 @@ export const CHANNEL_SUBSCRIBER_QUERY_KEY = (
 
 /**
  * @category Setters
- * @group ChannelSubscriber
+ * @group Channels
  */
 export const SET_CHANNEL_SUBSCRIBER_QUERY_DATA = (
   client: QueryClient,
@@ -36,7 +36,7 @@ interface GetChannelSubscriberProps extends SingleQueryParams {
 
 /**
  * @category Queries
- * @group ChannelSubscriber
+ * @group Channels
  */
 export const GetChannelSubscriber = async ({
   channelId,
@@ -47,13 +47,13 @@ export const GetChannelSubscriber = async ({
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/channels/${channelId}/subscriber/${accountId}`
+    `/channels/${channelId}/subscribers/${accountId}`
   );
   return data;
 };
 /**
  * @category Hooks
- * @group ChannelSubscriber
+ * @group Channels
  */
 export const useGetChannelSubscriber = (
   channelId: string = "",

@@ -9,7 +9,7 @@ import { CHANNEL_SUBSCRIBERS_QUERY_KEY } from "@src/queries/channels/useGetChann
 
 /**
  * @category Params
- * @group ChannelSubscribers
+ * @group Channel
  */
 export interface AddChannelsubscriberParams extends MutationParams {
   channelId: string;
@@ -18,7 +18,7 @@ export interface AddChannelsubscriberParams extends MutationParams {
 
 /**
  * @category Methods
- * @group ChannelSubscribers
+ * @group Channel
  */
 export const AddChannelSubscriber = async ({
   channelId,
@@ -43,7 +43,7 @@ export const AddChannelSubscriber = async ({
 
 /**
  * @category Mutations
- * @group ChannelSubscribers
+ * @group Channel
  */
 export const useAddChannelSubscriber = (
   options: Omit<

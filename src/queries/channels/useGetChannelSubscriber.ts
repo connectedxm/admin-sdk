@@ -55,7 +55,7 @@ export const GetChannelSubscriber = async ({
  * @category Hooks
  * @group ChannelSubscriber
  */
-export const useGetChannel = (
+export const useGetChannelSubscriber = (
   channelId: string = "",
   accountId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetChannelSubscriber>> = {}

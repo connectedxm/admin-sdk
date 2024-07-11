@@ -9,4 +9,3 @@ export * from "./useRemoveChannelContentGuest";
 export * from "./useRemoveChannelSubscriber";
 export * from "./useUpdateChannel";
 export * from "./useUpdateChannelContent";
-export * from "./useUpdateChannelSubscriber";

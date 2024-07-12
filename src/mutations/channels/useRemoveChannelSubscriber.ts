@@ -1,4 +1,4 @@
-import { ConnectedXMResponse, BaseChannelSubscribers } from "@src/interfaces";
+import { ConnectedXMResponse, BaseChannelSubscriber } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -9,7 +9,7 @@ import { CHANNEL_SUBSCRIBERS_QUERY_KEY } from "@src/queries/channels/useGetChann
 
 /**
  * @category Params
- * @group ChannelSubscribers
+ * @group Channel
  */
 export interface RemoveChannelSubscriberParams extends MutationParams {
   channelId: string;
@@ -18,7 +18,7 @@ export interface RemoveChannelSubscriberParams extends MutationParams {
 
 /**
  * @category Methods
- * @group ChannelSubscribers
+ * @group Channel
  */
 export const RemoveChannelSubscriber = async ({
   channelId,
@@ -26,11 +26,11 @@ export const RemoveChannelSubscriber = async ({
   adminApiParams,
   queryClient,
 }: RemoveChannelSubscriberParams): Promise<
-  ConnectedXMResponse<BaseChannelSubscribers>
+  ConnectedXMResponse<BaseChannelSubscriber>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<
-    ConnectedXMResponse<BaseChannelSubscribers>
+    ConnectedXMResponse<BaseChannelSubscriber>
   >(`/channels/${channelId}/subscribers/${accountId}`);
 
   if (queryClient && data.status === "ok") {
@@ -43,7 +43,7 @@ export const RemoveChannelSubscriber = async ({
 
 /**
  * @category Mutations
- * @group ChannelSubscribers
+ * @group Channel
  */
 export const useRemoveChannelSubscriber = (
   options: Omit<

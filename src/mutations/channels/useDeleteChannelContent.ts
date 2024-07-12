@@ -6,7 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
-  CHANNEL_CONTENTS_QUERY_KEY,
+  CHANNEL_SUBSCRIBERS_QUERY_KEY,
   CHANNEL_CONTENT_QUERY_KEY,
 } from "@src/queries/channels";
 
@@ -36,7 +36,7 @@ export const DeleteChannelContent = async ({
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: CHANNEL_CONTENTS_QUERY_KEY(channelId),
+      queryKey: CHANNEL_SUBSCRIBERS_QUERY_KEY(channelId),
     });
     queryClient.removeQueries({
       queryKey: CHANNEL_CONTENT_QUERY_KEY(channelId, contentId),

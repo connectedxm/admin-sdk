@@ -1,4 +1,4 @@
-import { ConnectedXMResponse, BaseChannelSubscribers } from "@src/interfaces";
+import { ConnectedXMResponse, BaseChannelSubscriber } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -7,48 +7,53 @@ import {
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
   CHANNEL_SUBSCRIBERS_QUERY_KEY,
-  SET_CHANNEL_SUBSCRIBERS_QUERY_DATA,
+  SET_CHANNEL_SUBSCRIBER_QUERY_DATA,
 } from "@src/queries/channels";
 
 /**
  * @category Params
- * @group ChannelSubscribers
+ * @group Channel
  */
 export interface UpdateChannelSubscriberParams extends MutationParams {
-  channelId: string;
   accountId: string;
-  subscriber: BaseChannelSubscribers;
+  channelSubscriber: BaseChannelSubscriber;
+  channelId: string;
 }
 
 /**
  * @category Methods
- * @group ChannelSubscribers
+ * @group Channel
  */
 export const UpdateChannelSubscriber = async ({
-  channelId,
   accountId,
-  subscriber,
+  channelId,
+  channelSubscriber,
   adminApiParams,
   queryClient,
 }: UpdateChannelSubscriberParams): Promise<
-  ConnectedXMResponse<BaseChannelSubscribers>
+  ConnectedXMResponse<BaseChannelSubscriber>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<
-    ConnectedXMResponse<BaseChannelSubscribers>
-  >(`/channels/${channelId}/subscribers/${accountId}`, subscriber);
+  const { data } = await connectedXM.put(
+    `/channels/${channelId}/subscribers/${accountId}`,
+    channelSubscriber
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: CHANNEL_SUBSCRIBERS_QUERY_KEY(channelId),
     });
-    SET_CHANNEL_SUBSCRIBERS_QUERY_DATA(queryClient, [channelId], data);
+    SET_CHANNEL_SUBSCRIBER_QUERY_DATA(
+      queryClient,
+      [channelId, accountId],
+      data
+    );
   }
   return data;
 };
 
 /**
  * @category Mutations
- * @group ChannelSubscribers
+ * @group Channel
  */
 export const useUpdateChannelSubscriber = (
   options: Omit<

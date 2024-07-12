@@ -1,7 +1,6 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { BaseChannelContentGuest, ConnectedXMResponse } from "@src/interfaces";
 
-import { Account } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { CHANNEL_CONTENT_QUERY_KEY } from "./useGetChannelContent";
 import {
@@ -47,11 +46,13 @@ export const GetChannelContentGuest = async ({
   contentId,
   guestId,
   adminApiParams,
-}: GetChannelContentGuestsProps): Promise<ConnectedXMResponse<Account[]>> => {
+}: GetChannelContentGuestsProps): Promise<
+  ConnectedXMResponse<BaseChannelContentGuest>
+> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(
-    `/channels/${channelId}/contents/${contentId}/guests/${guestId}`
-  );
+  const { data } = await adminApi.get<
+    ConnectedXMResponse<BaseChannelContentGuest>
+  >(`/channels/${channelId}/contents/${contentId}/guests/${guestId}`);
   return data;
 };
 /**

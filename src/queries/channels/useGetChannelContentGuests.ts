@@ -1,7 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
-
-import { Account } from "@src/interfaces";
+import { BaseChannelContentGuest, ConnectedXMResponse } from "@src/interfaces";
 import {
   InfiniteQueryParams,
   InfiniteQueryOptions,
@@ -49,19 +47,20 @@ export const GetChannelContentGuests = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetChannelContentGuestsProps): Promise<ConnectedXMResponse<Account[]>> => {
+}: GetChannelContentGuestsProps): Promise<
+  ConnectedXMResponse<BaseChannelContentGuest[]>
+> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(
-    `/channels/${channelId}/contents/${contentId}/guests`,
-    {
-      params: {
-        page: pageParam || undefined,
-        pageSize: pageSize || undefined,
-        orderBy: orderBy || undefined,
-        search: search || undefined,
-      },
-    }
-  );
+  const { data } = await adminApi.get<
+    ConnectedXMResponse<BaseChannelContentGuest[]>
+  >(`/channels/${channelId}/contents/${contentId}/guests`, {
+    params: {
+      page: pageParam || undefined,
+      pageSize: pageSize || undefined,
+      orderBy: orderBy || undefined,
+      search: search || undefined,
+    },
+  });
   return data;
 };
 /**

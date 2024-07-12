@@ -9,6 +9,7 @@ import {
   CHANNEL_SUBSCRIBERS_QUERY_KEY,
   SET_CHANNEL_SUBSCRIBER_QUERY_DATA,
 } from "@src/queries/channels";
+import { ChannelSubscriberUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -16,8 +17,8 @@ import {
  */
 export interface UpdateChannelSubscriberParams extends MutationParams {
   accountId: string;
-  channelSubscriber: BaseChannelSubscriber;
   channelId: string;
+  channelSubscriber: ChannelSubscriberUpdateInputs;
 }
 
 /**

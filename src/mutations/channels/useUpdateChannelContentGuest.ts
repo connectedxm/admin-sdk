@@ -13,7 +13,7 @@ import { ChannelContentGuestUpdateInputs } from "@src/params";
 
 /**
  * @category Params
- * @group Channel
+ * @group Channels
  */
 export interface UpdateChannelContentGuestParams extends MutationParams {
   contentId: string;
@@ -24,7 +24,7 @@ export interface UpdateChannelContentGuestParams extends MutationParams {
 
 /**
  * @category Methods
- * @group Channel
+ * @group Channels
  */
 export const UpdateChannelContentGuest = async ({
   contentId,
@@ -56,7 +56,7 @@ export const UpdateChannelContentGuest = async ({
 
 /**
  * @category Mutations
- * @group Channel
+ * @group Channels
  */
 export const useUpdateChannelContentGuest = (
   options: Omit<

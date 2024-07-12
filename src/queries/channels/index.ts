@@ -3,6 +3,7 @@ export * from "./useGetChannel";
 export * from "./useGetChannelActivities";
 export * from "./useGetChannelContent";
 export * from "./useGetChannelContentActivities";
+export * from "./useGetChannelContentGuest";
 export * from "./useGetChannelContentGuests";
 export * from "./useGetChannelContentKPIActivities";
 export * from "./useGetChannelContents";

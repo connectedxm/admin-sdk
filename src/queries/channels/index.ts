@@ -1,5 +1,6 @@
 export * from "./translations";
 export * from "./useGetChannel";
+export * from "./useGetChannelActivities";
 export * from "./useGetChannelContent";
 export * from "./useGetChannelContentActivities";
 export * from "./useGetChannelContentGuests";

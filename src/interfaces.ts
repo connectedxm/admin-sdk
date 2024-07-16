@@ -2144,3 +2144,25 @@ export interface Video extends BaseVideo {
   duration: number | null;
   createdAt: string;
 }
+
+export interface BaseChannelContentGuest {
+  id: string;
+  type: keyof typeof ContentGuestType;
+  slug: string;
+  name: string;
+  title: string;
+  bio: string;
+  company: string;
+  companyLink: string;
+  companyBio: string;
+  accountId: string;
+  imageId: string;
+  website: string;
+  facebook: string;
+  twitter: string;
+  instagram: string;
+  linkedIn: string;
+  tikTok: string;
+  youtube: string;
+  discord: string;
+}

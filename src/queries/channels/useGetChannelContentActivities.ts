@@ -26,7 +26,7 @@ export const CHANNEL_CONTENT_ACTIVITIES_QUERY_KEY = (
 export const SET_CHANNEL_CONTENT_ACTIVITIES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof CHANNEL_CONTENT_ACTIVITIES_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetContentActivities>>
+  response: Awaited<ReturnType<typeof GetChannelContentActivities>>
 ) => {
   client.setQueryData(
     CHANNEL_CONTENT_ACTIVITIES_QUERY_KEY(...keyParams),
@@ -43,7 +43,7 @@ interface GetContentActivitiesProps extends InfiniteQueryParams {
  * @category Queries
  * @group Channels
  */
-export const GetContentActivities = async ({
+export const GetChannelContentActivities = async ({
   channelId,
   contentId,
   pageParam,
@@ -70,7 +70,7 @@ export const GetContentActivities = async ({
  * @category Hooks
  * @group Channels
  */
-export const useGetContentActivities = (
+export const useGetChannelContentActivities = (
   channelId: string = "",
   contentId: string = "",
   params: Omit<
@@ -78,15 +78,15 @@ export const useGetContentActivities = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetContentActivities>>
+    Awaited<ReturnType<typeof GetChannelContentActivities>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetContentActivities>>
+    Awaited<ReturnType<typeof GetChannelContentActivities>>
   >(
     CHANNEL_CONTENT_ACTIVITIES_QUERY_KEY(channelId, contentId),
     (params: InfiniteQueryParams) =>
-      GetContentActivities({
+      GetChannelContentActivities({
         channelId,
         contentId,
         ...params,

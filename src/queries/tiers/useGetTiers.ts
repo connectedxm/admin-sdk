@@ -49,7 +49,7 @@ export const GetTiers = async ({
   adminApiParams,
 }: GetTiersProps): Promise<ConnectedXMResponse<Tier[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/tiers`, {
+  const { data } = await adminApi.get<ConnectedXMResponse<Tier[]>>(`/tiers`, {
     params: {
       type: type || undefined,
       page: pageParam || undefined,

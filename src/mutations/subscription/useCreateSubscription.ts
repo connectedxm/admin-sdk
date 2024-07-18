@@ -5,14 +5,14 @@ import {
   ConnectedXMMutationOptions,
   useConnectedMutation,
 } from "../useConnectedMutation";
+import { SubscriptionCreateInputs } from "@src/params";
 
 /**
  * @category Params
  * @group Subscriptions
  */
 export interface CreateSubscriptionParams extends MutationParams {
-  //TODO: missing interface and validation
-  subscription: Subscription;
+  subscription: SubscriptionCreateInputs;
 }
 
 /**

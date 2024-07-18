@@ -14,6 +14,10 @@ import {
   ThreadAccessLevel,
   TicketVisibility,
   TicketEventAccessLevel,
+  SubscriptionStatus,
+  BaseSubscriptionProduct,
+  BaseAccount,
+  BaseSubscriptionProductPrice,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -1137,6 +1141,19 @@ export interface SubscriptionProductUpdateInputs {
   description?: string | null;
   statementDescriptor?: string | null;
   features?: string[] | null;
+}
+
+export interface SubscriptionCreateInputs {
+  status?: SubscriptionStatus;
+  expiresAt?: string | null;
+  cancelAtEnd?: boolean | null;
+  integrationId?: string | null;
+  subscriptionProductId?: string | null;
+  subscriptionProduct?: BaseSubscriptionProduct;
+  accountId?: string | null;
+  account?: BaseAccount;
+  priceId?: string | null;
+  price?: BaseSubscriptionProductPrice;
 }
 
 export interface SubscriptionUpdateInputs {

@@ -6,6 +6,7 @@ import {
 } from "../useConnectedSingleQuery";
 import { LEVELS_QUERY_KEY } from "./useGetLevels";
 import { QueryClient } from "@tanstack/react-query";
+import { ConnectedXMResponse, Level } from "@src/interfaces";
 
 /**
  * @category Keys
@@ -39,9 +40,11 @@ interface GetLevelProps extends SingleQueryParams {
 export const GetLevel = async ({
   sponsorshipLevelId,
   adminApiParams,
-}: GetLevelProps) => {
+}: GetLevelProps): Promise<ConnectedXMResponse<Level>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/levels/${sponsorshipLevelId}`);
+  const { data } = await adminApi.get<ConnectedXMResponse<Level>>(
+    `/levels/${sponsorshipLevelId}`
+  );
   return data;
 };
 /**

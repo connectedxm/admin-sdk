@@ -465,6 +465,7 @@ export interface CognitoUser {
 }
 
 export interface BaseChannelContent {
+  channelId: string;
   id: string;
   slug: string;
   featured: boolean;

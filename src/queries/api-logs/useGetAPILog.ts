@@ -4,7 +4,7 @@ import {
   useConnectedSingleQuery,
 } from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { EmailReceipt } from "@src/interfaces";
+import { APILog } from "@src/interfaces";
 import { API_LOGS_QUERY_KEY } from "./useGetAPILogs";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
@@ -41,7 +41,7 @@ interface GetAPILogParams extends SingleQueryParams {
 export const GetAPILog = async ({
   logId,
   adminApiParams,
-}: GetAPILogParams): Promise<ConnectedXMResponse<EmailReceipt>> => {
+}: GetAPILogParams): Promise<ConnectedXMResponse<APILog>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/logs/api/${logId}`);
 

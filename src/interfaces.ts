@@ -215,6 +215,40 @@ export interface Account extends BaseAccount {
   updatedAt: string;
 }
 
+export interface APILog {
+  id: string;
+  account: BaseAccount | null;
+  user: BaseUser | null;
+  source: "admin" | "client";
+  // RESPONSE
+  status: "success" | "failure";
+  statusCode: number;
+  response: string | null;
+  // REQUEST
+  headers: object | null;
+  method: string;
+  path: string;
+  params: object | null;
+  query: object | null;
+  body: object | null;
+  // TRACKING
+  ipaddress: string;
+  country: string;
+  createdAt: string;
+  updatedAt: string;
+  // User Agent
+  architecture: string | null;
+  browser: string | null;
+  browserVersion: string | null;
+  deviceModel: string | null;
+  deviceType: string | null;
+  deviceVendor: string | null;
+  engine: string | null;
+  engineVersion: string | null;
+  osName: string | null;
+  osVersion: string | null;
+}
+
 export interface BaseTier {
   id: string;
   slug: string;
@@ -561,6 +595,7 @@ export interface ChannelTranslation {
 
 export interface BaseCoupon {
   id: string;
+  prePaid: boolean;
   code: string;
   description: string | null;
   active: boolean;
@@ -570,11 +605,11 @@ export interface BaseCoupon {
   discountPercent: number;
   quantityMin: number;
   quantityMax: number | null;
-  amountMin: number;
-  amountMax: number | null;
   useLimit: number | null;
+  purchaseLimit: number | null;
   emailDomains: string | null;
   ticketId: string | null;
+  ticket: BaseEventTicket | null;
   managerId: string | null;
 }
 
@@ -1573,9 +1608,8 @@ export interface BaseRegistration {
 export interface Registration extends BaseRegistration {
   statusChanges: BaseRegistrationStatusChange[];
   payments: BasePayment[];
-  couponId: string;
-  coupon: BaseCoupon;
   purchases: BasePurchase[];
+  coupons: BaseCoupon[];
   createdAt: string;
   updatedAt: string;
 }

@@ -123,6 +123,8 @@ export enum ImageType {
   people = "people",
   activity = "activity",
   banner = "banner",
+  chat = "chat",
+  content = "content",
 }
 
 export enum SupportTicketType {
@@ -1010,17 +1012,17 @@ enum ImageModerationLevel {
 
 export interface BaseImage {
   id: string;
+  name: string | null;
   uri: string;
   width: number;
   height: number;
+  createdAt: string;
 }
 
 export interface Image extends BaseImage {
-  name: string | null;
   type: ImageType;
   description: string | null;
   moderation: ImageModerationLevel;
-  createdAt: string;
   updatedAt: string;
 }
 

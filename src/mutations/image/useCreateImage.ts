@@ -6,16 +6,14 @@ import {
 } from "../useConnectedMutation";
 import { ConnectedXMResponse, Image } from "@src/interfaces";
 import { IMAGES_QUERY_KEY, SET_IMAGE_QUERY_DATA } from "@src/queries";
+import { ImageCreateInputs } from "@src/params";
 
 /**
  * @category Params
  * @group Images
  */
 export interface CreateImageParams extends MutationParams {
-  image: Blob;
-  name: string;
-  description: string;
-  type: "admin" | "account" | "activity";
+  image: ImageCreateInputs;
 }
 
 /**
@@ -24,33 +22,14 @@ export interface CreateImageParams extends MutationParams {
  */
 export const CreateImage = async ({
   image,
-  name,
-  description,
-  type,
   adminApiParams,
   queryClient,
 }: CreateImageParams): Promise<ConnectedXMResponse<Image>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const buffer = await new Promise((resolve, reject) => {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(image);
-    fileReader.onload = () => {
-      resolve(fileReader.result);
-    };
-    fileReader.onerror = (error) => {
-      reject(error);
-    };
-  });
-
   const { data } = await connectedXM.post<ConnectedXMResponse<Image>>(
     `/images`,
-    {
-      buffer: buffer || undefined,
-      name: name || undefined,
-      description: description || undefined,
-      type: type || undefined,
-    }
+    image
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: IMAGES_QUERY_KEY() });

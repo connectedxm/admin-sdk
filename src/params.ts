@@ -18,6 +18,7 @@ import {
   BaseSubscriptionProduct,
   BaseAccount,
   BaseSubscriptionProductPrice,
+  ImageType,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -815,6 +816,19 @@ export interface GroupUpdateInputs {
   access?: keyof typeof GroupAccess | null;
   imageId?: string | null;
   externalUrl?: string | null;
+}
+
+export interface ImageCreateInputs {
+  imageDataUri: string;
+  name: string;
+  description?: string | null;
+  type: ImageType;
+}
+
+export interface ImageUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+  type?: ImageType;
 }
 
 export interface InterestCreateInputs {

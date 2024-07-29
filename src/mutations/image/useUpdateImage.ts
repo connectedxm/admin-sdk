@@ -6,6 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { ConnectedXMResponse, Image } from "@src/interfaces";
 import { IMAGES_QUERY_KEY, SET_IMAGE_QUERY_DATA } from "@src/queries";
+import { ImageUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -13,9 +14,7 @@ import { IMAGES_QUERY_KEY, SET_IMAGE_QUERY_DATA } from "@src/queries";
  */
 export interface UpdateImageParams extends MutationParams {
   imageId: string;
-  name: string;
-  description: string;
-  type: "admin" | "account" | "activity";
+  image: ImageUpdateInputs;
 }
 
 /**
@@ -24,20 +23,14 @@ export interface UpdateImageParams extends MutationParams {
  */
 export const UpdateImage = async ({
   imageId,
-  name,
-  description,
-  type,
+  image,
   adminApiParams,
   queryClient,
 }: UpdateImageParams): Promise<ConnectedXMResponse<Image>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<Image>>(
     `/images/${imageId}`,
-    {
-      name: name || undefined,
-      description: description || undefined,
-      type: type || undefined,
-    }
+    image
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: IMAGES_QUERY_KEY() });

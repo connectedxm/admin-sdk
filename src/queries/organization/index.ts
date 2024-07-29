@@ -1,4 +1,5 @@
 export * from "./pages";
+export * from "./payments";
 export * from "./purchases";
 export * from "./triggers";
 export * from "./useGetOrganization";

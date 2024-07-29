@@ -3,7 +3,7 @@ export * from "./useGetSubscriptionPayments";
 export * from "./useGetSubscriptionProduct";
 export * from "./useGetSubscriptionProductPrice";
 export * from "./useGetSubscriptionProductPrices";
-export * from "./useGetSubscriptionProducts";
 export * from "./useGetSubscriptionProductSubscriptions";
 export * from "./useGetSubscriptionProductTiers";
+export * from "./useGetSubscriptionProducts";
 export * from "./useGetSubscriptions";

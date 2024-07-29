@@ -9,6 +9,6 @@ export * from "./useGetChannelContentKPIActivities";
 export * from "./useGetChannelContents";
 export * from "./useGetChannelKPIActivities";
 export * from "./useGetChannelKPIContents";
-export * from "./useGetChannels";
 export * from "./useGetChannelSubscriber";
 export * from "./useGetChannelSubscribers";
+export * from "./useGetChannels";

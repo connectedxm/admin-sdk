@@ -1,3 +1,3 @@
 export * from "./useGetSelf";
-export * from "./useGetSelfOrganizations";
 export * from "./useGetSelfOrgMembership";
+export * from "./useGetSelfOrganizations";

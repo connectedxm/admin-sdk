@@ -2,8 +2,6 @@ export * from "./translations";
 export * from "./useGetEventTicket";
 export * from "./useGetEventTicketAddOns";
 export * from "./useGetEventTicketCoupons";
-export * from "./useGetEventTicketKPISales";
-export * from "./useGetEventTicketKPIUniqueHolders";
 export * from "./useGetEventTicketPurchases";
 export * from "./useGetEventTicketTiers";
 export * from "./useGetEventTickets";

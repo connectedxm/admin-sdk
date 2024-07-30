@@ -1247,6 +1247,8 @@ export interface BaseOrganization {
   name: string;
   logoId: string | null;
   logo: BaseImage | null;
+  iconId: string | null;
+  icon: BaseImage | null;
   website: string | null;
 }
 

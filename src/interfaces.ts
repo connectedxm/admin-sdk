@@ -2157,29 +2157,30 @@ export interface User extends BaseUser {
   updatedAt: string;
 }
 
-enum VideoSource {
+export enum VideoSource {
   admin = "admin",
   activity = "activity",
+  content = "content",
 }
 
 export interface BaseVideo {
   id: string;
+  name: string;
+  status: string;
+  source: VideoSource;
   width: number;
   height: number;
   thumbnailUrl: string | null;
   previewUrl: string | null;
   readyToStream: boolean;
+  duration: number | null;
+  createdAt: string;
 }
 
 export interface Video extends BaseVideo {
-  name: string;
-  status: string;
-  source: VideoSource;
   hlsUrl: string | null;
   dashUrl: string | null;
-  thumbnailPct: string | null;
-  duration: number | null;
-  createdAt: string;
+  thumbnailPct: number | null;
 }
 
 export interface BaseChannelContentGuest {

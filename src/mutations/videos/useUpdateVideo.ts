@@ -6,6 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { ConnectedXMResponse, Video } from "@src/interfaces";
 import { VIDEOS_QUERY_KEY, SET_VIDEO_QUERY_DATA } from "@src/queries";
+import { VideoUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -13,8 +14,7 @@ import { VIDEOS_QUERY_KEY, SET_VIDEO_QUERY_DATA } from "@src/queries";
  */
 export interface UpdateVideoParams extends MutationParams {
   videoId: string;
-  name: string;
-  thumbnailTimestampPct: number;
+  video: VideoUpdateInputs;
 }
 
 /**
@@ -23,21 +23,17 @@ export interface UpdateVideoParams extends MutationParams {
  */
 export const UpdateVideo = async ({
   videoId,
-  name,
-  thumbnailTimestampPct,
+  video,
   adminApiParams,
   queryClient,
 }: UpdateVideoParams): Promise<ConnectedXMResponse<Video>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<Video>>(
     `/videos/${videoId}`,
-    {
-      thumbnailTimestampPct,
-      name,
-    }
+    video
   );
   if (queryClient && data.status === "ok") {
-    queryClient.invalidateQueries({ queryKey: VIDEOS_QUERY_KEY("") });
+    queryClient.invalidateQueries({ queryKey: VIDEOS_QUERY_KEY() });
     SET_VIDEO_QUERY_DATA(queryClient, [data?.data?.id], data);
   }
   return data;

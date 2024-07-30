@@ -12,7 +12,11 @@ import {
  * @category Keys
  * @group Videos
  */
-export const VIDEOS_QUERY_KEY = (source: string) => ["VIDEOS", source];
+export const VIDEOS_QUERY_KEY = (source?: string) => {
+  const keys = ["VIDEOS"];
+  if (source) keys.push(source);
+  return keys;
+};
 
 /**
  * @category Setters

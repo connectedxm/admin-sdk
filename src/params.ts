@@ -1357,3 +1357,8 @@ export interface UserCreateInputs {
 export interface UserUpdateInputs {
   title?: string | null;
 }
+
+export interface VideoUpdateInputs {
+  name?: string;
+  thumbnailPct?: number | null;
+}

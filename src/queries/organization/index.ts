@@ -10,3 +10,4 @@ export * from "./useGetOrganizationPaymentIntegrations";
 export * from "./useGetOrganizationTeamMember";
 export * from "./useGetOrganizationTeamMembers";
 export * from "./useGetOrganizationUsers";
+export * from "./useSearchOrganization";

@@ -1706,6 +1706,20 @@ export interface EventReservationSectionTranslation {
   updatedAt: string;
 }
 
+export interface SearchField {
+  id: string;
+  name: string;
+  subtext: string | null;
+  search: string;
+  accountId: string | null;
+  eventId: string | null;
+  groupId: string | null;
+  contentId: string | null;
+  channelId: string | null;
+  threadId: string | null;
+  updatedAt: string;
+}
+
 export interface Self extends Account {}
 
 export interface BaseSeries {

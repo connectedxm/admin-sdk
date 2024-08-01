@@ -5,7 +5,6 @@ export * from "./coHosts";
 export * from "./coupons";
 export * from "./emails";
 export * from "./faqs";
-export * from "./kpis";
 export * from "./on-site";
 export * from "./pages";
 export * from "./questions";

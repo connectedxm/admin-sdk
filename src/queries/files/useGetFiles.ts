@@ -1,6 +1,6 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { Video } from "@src/interfaces";
+import { File } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import {
   InfiniteQueryOptions,
@@ -45,7 +45,7 @@ export const GetFiles = async ({
   search,
   source,
   adminApiParams,
-}: GetFilesParams): Promise<ConnectedXMResponse<Video[]>> => {
+}: GetFilesParams): Promise<ConnectedXMResponse<File[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/files`, {
     params: {

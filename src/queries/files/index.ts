@@ -1,2 +1,2 @@
-export * from "./useGetfile";
+export * from "./useGetFile";
 export * from "./useGetFiles";

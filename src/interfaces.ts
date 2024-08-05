@@ -2200,6 +2200,7 @@ export interface BaseVideo {
 }
 
 export interface Video extends BaseVideo {
+  downloadUrl: string | null;
   hlsUrl: string | null;
   dashUrl: string | null;
   thumbnailPct: number | null;

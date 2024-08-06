@@ -19,6 +19,7 @@ import {
   BaseAccount,
   BaseSubscriptionProductPrice,
   ImageType,
+  FileSource,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -779,6 +780,11 @@ export interface EventUpdateInputs {
   streamReplayId?: string | null;
   groupId?: string | null;
   groupOnly?: boolean | null;
+}
+
+export interface FileUpdateInputs {
+  name?: string;
+  source?: FileSource;
 }
 
 export interface GroupCreateInputs {

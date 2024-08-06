@@ -5,3 +5,4 @@ tests
 .eslintignore
 .eslintrc.json
 tsconfig.json
+docs

@@ -974,6 +974,8 @@ export interface EventQuestionCreateInputs {
   name: string;
   type: keyof typeof RegistrationQuestionType | null;
   sectionId?: number;
+  questionId?: number;
+  choiceId?: number;
   required?: boolean | null;
   label?: string | null;
   placeholder?: string | null;

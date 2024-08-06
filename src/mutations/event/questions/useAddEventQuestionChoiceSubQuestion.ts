@@ -10,6 +10,7 @@ import {
 } from "@src/mutations/useConnectedMutation";
 import {
   EVENT_QUESTION_CHOICE_QUESTIONS_QUERY_KEY,
+  EVENT_QUESTION_CHOICES_QUERY_KEY,
   SET_EVENT_QUESTION_CHOICE_QUERY_DATA,
 } from "@src/queries";
 
@@ -58,6 +59,9 @@ export const AddEventQuestionChoiceSubQuestion = async ({
         questionId,
         choiceId
       ),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_QUESTION_CHOICES_QUERY_KEY(eventId, questionId),
     });
   }
   return data;

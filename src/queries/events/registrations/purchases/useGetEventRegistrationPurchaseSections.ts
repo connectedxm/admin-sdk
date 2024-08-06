@@ -68,7 +68,7 @@ export const GetEventRegistrationPurchaseSections = async ({
  * @category Hooks
  * @group Events
  */
-const useGetEventRegistrationPurchaseSections = (
+export const useGetEventRegistrationPurchaseSections = (
   eventId: string = "",
   registrationId: string = "",
   purchaseId: string = "",
@@ -102,5 +102,3 @@ const useGetEventRegistrationPurchaseSections = (
     }
   );
 };
-
-export default useGetEventRegistrationPurchaseSections;

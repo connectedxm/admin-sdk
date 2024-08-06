@@ -175,6 +175,12 @@ export enum OrganizationTriggerType {
   postAuth = "postAuth",
 }
 
+export enum FileSource {
+  admin = "admin",
+  response = "response",
+  content = "content",
+}
+
 export interface BaseAccount {
   organizationId: string;
   id: string;
@@ -2173,29 +2179,31 @@ export interface User extends BaseUser {
   updatedAt: string;
 }
 
-enum VideoSource {
+export enum VideoSource {
   admin = "admin",
   activity = "activity",
+  content = "content",
 }
 
 export interface BaseVideo {
   id: string;
+  name: string;
+  status: string;
+  source: VideoSource;
   width: number;
   height: number;
   thumbnailUrl: string | null;
   previewUrl: string | null;
   readyToStream: boolean;
+  duration: number | null;
+  createdAt: string;
 }
 
 export interface Video extends BaseVideo {
-  name: string;
-  status: string;
-  source: VideoSource;
+  downloadUrl: string | null;
   hlsUrl: string | null;
   dashUrl: string | null;
-  thumbnailPct: string | null;
-  duration: number | null;
-  createdAt: string;
+  thumbnailPct: number | null;
 }
 
 export interface BaseChannelContentGuest {
@@ -2219,3 +2227,15 @@ export interface BaseChannelContentGuest {
   youtube: string;
   discord: string;
 }
+
+export interface BaseFile {
+  id: number;
+  name: string;
+  r2Path: string;
+  source: FileSource;
+  url?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface File extends BaseFile {}

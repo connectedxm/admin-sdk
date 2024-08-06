@@ -1,6 +1,6 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { Video } from "@src/interfaces";
+import { File } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import {
   InfiniteQueryOptions,
@@ -10,44 +10,44 @@ import {
 
 /**
  * @category Keys
- * @group Videos
+ * @group Files
  */
-export const VIDEOS_QUERY_KEY = (source?: string) => {
-  const keys = ["VIDEOS"];
+export const FILES_QUERY_KEY = (source?: string) => {
+  const keys = ["FILES"];
   if (source) keys.push(source);
   return keys;
 };
 
 /**
  * @category Setters
- * @group Videos
+ * @group Files
  */
-export const SET_VIDEOS_QUERY_DATA = (
+export const SET_FILES_QUERY_DATA = (
   client: QueryClient,
-  keyParams: Parameters<typeof VIDEOS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetVideos>>
+  keyParams: Parameters<typeof FILES_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetFiles>>
 ) => {
-  client.setQueryData(VIDEOS_QUERY_KEY(...keyParams), response);
+  client.setQueryData(FILES_QUERY_KEY(...keyParams), response);
 };
 
-interface GetVideosParams extends InfiniteQueryParams {
+interface GetFilesParams extends InfiniteQueryParams {
   source?: string;
 }
 
 /**
  * @category Queries
- * @group Videos
+ * @group Files
  */
-export const GetVideos = async ({
+export const GetFiles = async ({
   pageParam,
   pageSize,
   orderBy,
   search,
   source,
   adminApiParams,
-}: GetVideosParams): Promise<ConnectedXMResponse<Video[]>> => {
+}: GetFilesParams): Promise<ConnectedXMResponse<File[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/videos`, {
+  const { data } = await adminApi.get(`/files`, {
     params: {
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
@@ -61,19 +61,19 @@ export const GetVideos = async ({
 };
 /**
  * @category Hooks
- * @group Videos
+ * @group Files
  */
-export const useGetVideos = (
+export const useGetFiles = (
   source?: string,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
-  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetVideos>>> = {}
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetFiles>>> = {}
 ) => {
-  return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetVideos>>>(
-    VIDEOS_QUERY_KEY(source || "all"),
-    (params: InfiniteQueryParams) => GetVideos({ ...params, source }),
+  return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetFiles>>>(
+    FILES_QUERY_KEY(source || "all"),
+    (params: InfiniteQueryParams) => GetFiles({ ...params, source }),
     params,
     options
   );

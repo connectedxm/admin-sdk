@@ -1419,6 +1419,11 @@ export interface BaseRegistrationQuestionChoice {
   description: string | null;
   supply: number | null;
   sortOrder: number;
+  subQuestions?:
+    | RegistrationQuestion[]
+    | {
+        questionId: number;
+      }[];
   _count: {
     subQuestions: number;
   };
@@ -1527,6 +1532,7 @@ export interface BaseRegistrationQuestion {
 export interface RegistrationQuestion extends BaseRegistrationQuestion {
   sections: BaseRegistrationSectionQuestion[];
   subQuestionOf: RegistrationQuestionChoiceSubQuestion[];
+  response?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -1567,7 +1573,7 @@ export interface BaseRegistrationSection {
 }
 
 export interface RegistrationSection extends BaseRegistrationSection {
-  questions: BaseRegistrationSectionQuestion[];
+  questions: RegistrationQuestion[];
   eventTickets: BaseEventTicket[];
   eventAddOns: BaseEventAddOn[];
   accountTiers: BaseTier[];

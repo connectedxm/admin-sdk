@@ -608,16 +608,16 @@ export interface BaseCoupon {
   quantityMin: number;
   quantityMax: number | null;
   useLimit: number | null;
+  limitPerAccount: number | null;
   purchaseLimit: number | null;
   emailDomains: string | null;
   ticketId: string | null;
   ticket: BaseEventTicket | null;
-  managerId: string | null;
 }
 
 export interface Coupon extends BaseCoupon {
-  ticket: BaseEventTicket | null;
-  manager: BaseAccount | null;
+  registrationId: string | null;
+  registration: BaseRegistration | null;
   createdAt: string;
   updatedAt: string;
   _count: {
@@ -1525,11 +1525,10 @@ export interface BaseRegistrationQuestion {
 }
 
 export interface RegistrationQuestion extends BaseRegistrationQuestion {
+  sections: BaseRegistrationSectionQuestion[];
+  subQuestionOf: BaseRegistrationQuestion[];
   createdAt: string;
   updatedAt: string;
-  _count: {
-    sections: number;
-  };
 }
 
 export interface RegistrationQuestionTranslation {

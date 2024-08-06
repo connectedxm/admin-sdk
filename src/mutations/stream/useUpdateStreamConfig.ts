@@ -4,15 +4,12 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import {
-  StreamInputDetails,
-  ConnectedXMResponse,
-  StreamInput,
-} from "@src/interfaces";
+import { ConnectedXMResponse, StreamInput } from "@src/interfaces";
 import {
   STREAM_INPUTS_QUERY_KEY,
   SET_STREAM_INPUT_QUERY_DATA,
 } from "@src/queries";
+import { StreamInputUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -20,8 +17,7 @@ import {
  */
 export interface UpdateStreamConfigParams extends MutationParams {
   streamId: string;
-  //TODO: missing interface and validation
-  details: StreamInputDetails;
+  details: StreamInputUpdateInputs;
 }
 
 /**

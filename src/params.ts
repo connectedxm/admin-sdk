@@ -444,12 +444,12 @@ export interface EventCouponUpdateInputs {
   discountPercent?: number | string | null;
   quantityMin?: number | string | null;
   quantityMax?: number | string | null;
-  amountMin?: number | string | null;
-  amountMax?: number | string | null;
   useLimit?: number | string | null;
+  limitPerAccount?: number | string | null;
+  purchaseLimit?: number | string | null;
   emailDomains?: string | null;
   ticketId?: string | null;
-  managerId?: string | null;
+  registrationId?: string | null;
 }
 
 export interface EventFaqSectionCreateInputs {
@@ -972,7 +972,8 @@ export interface EventQuestionChoiceUpdateInputs {
 
 export interface EventQuestionCreateInputs {
   name: string;
-  type?: keyof typeof RegistrationQuestionType | null;
+  type: keyof typeof RegistrationQuestionType | null;
+  sectionId?: number;
   required?: boolean | null;
   label?: string | null;
   placeholder?: string | null;
@@ -986,6 +987,7 @@ export interface EventQuestionCreateInputs {
   validationMessage?: string | null;
   sortOrder?: number | string | null;
   featured?: boolean | null;
+  choices?: string[] | null;
 }
 
 export interface EventQuestionSearchInputs {
@@ -1049,7 +1051,7 @@ export interface EventSectionCreateInputs {
   sortOrder?: number | string | null;
 }
 
-export interface EventSectionUpdateTranslationInputs {
+export interface EventSectionTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;
   guestDescription?: string | null;

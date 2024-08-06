@@ -8,6 +8,7 @@ import {
 import { EventQuestionCreateInputs } from "@src/params";
 import {
   EVENT_QUESTIONS_QUERY_KEY,
+  EVENT_SECTION_QUESTIONS_QUERY_KEY,
   SET_EVENT_QUESTION_QUERY_DATA,
 } from "@src/queries";
 
@@ -46,6 +47,14 @@ export const CreateEventQuestion = async ({
       [eventId, data.data.id.toString()],
       data
     );
+    if (question.sectionId) {
+      queryClient.invalidateQueries({
+        queryKey: EVENT_SECTION_QUESTIONS_QUERY_KEY(
+          eventId,
+          question.sectionId.toString()
+        ),
+      });
+    }
   }
   return data;
 };

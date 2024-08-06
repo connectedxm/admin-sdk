@@ -23,7 +23,6 @@ export interface UpdateEventReservationSectionLocationParams
   eventId: string;
   reservationSectionId: string;
   locationId: string;
-  //TODOD: missing reference
   location: EventReservationSectionLocationUpdateInputs;
 }
 

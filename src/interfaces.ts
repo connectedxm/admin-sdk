@@ -1537,7 +1537,7 @@ export interface BaseRegistrationQuestion {
 
 export interface RegistrationQuestion extends BaseRegistrationQuestion {
   sections: BaseRegistrationSectionQuestion[];
-  subQuestionOf: BaseRegistrationQuestion[];
+  subQuestionOf: RegistrationQuestionChoiceSubQuestion[];
   response?: string;
   createdAt: string;
   updatedAt: string;

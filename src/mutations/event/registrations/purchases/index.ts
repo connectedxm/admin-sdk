@@ -5,3 +5,4 @@ export * from "./useDeleteEventRegistrationPurchase";
 export * from "./useRemoveEventRegistrationPurchaseAddOn";
 export * from "./useTransferEventRegistrationPurchase";
 export * from "./useUpdateEventRegistrationPurchase";
+export * from "./useSelectEventRegistrationPurchaseReservationSectionLocation";

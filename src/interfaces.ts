@@ -1667,6 +1667,9 @@ export interface BaseEventReservationSectionLocation {
   sortOrder: number;
   premium: number | null;
   reservationSection: BaseEventReservationSection;
+  _count: {
+    purchases: number;
+  };
   createdAt: string;
   updatedAt: string;
 }
@@ -1701,7 +1704,7 @@ export interface BaseEventReservationSection {
 }
 
 export interface EventReservationSection extends BaseEventReservationSection {
-  sortOrder: number;
+  locations: BaseEventReservationSectionLocation[];
   event: BaseEvent;
   _count: {
     locations: number;

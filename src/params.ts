@@ -592,6 +592,11 @@ export interface EventRegistrationBypassUpdateInputs {
   postRegister?: boolean | null;
 }
 
+export interface EventReservationSelectInputs {
+  reservationStart?: string;
+  reservationEnd?: string;
+}
+
 export interface EventReservationSectionCreateInputs {
   name: string;
   shortDescription?: string | null;

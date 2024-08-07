@@ -175,6 +175,12 @@ export enum OrganizationTriggerType {
   postAuth = "postAuth",
 }
 
+export enum FileSource {
+  admin = "admin",
+  response = "response",
+  content = "content",
+}
+
 export interface BaseAccount {
   organizationId: string;
   id: string;
@@ -2199,6 +2205,7 @@ export interface BaseVideo {
 }
 
 export interface Video extends BaseVideo {
+  downloadUrl: string | null;
   hlsUrl: string | null;
   dashUrl: string | null;
   thumbnailPct: number | null;
@@ -2225,3 +2232,15 @@ export interface BaseChannelContentGuest {
   youtube: string;
   discord: string;
 }
+
+export interface BaseFile {
+  id: number;
+  name: string;
+  r2Path: string;
+  source: FileSource;
+  url?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface File extends BaseFile {}

@@ -20,6 +20,7 @@ import {
   BaseSubscriptionProductPrice,
   ImageType,
   FileSource,
+  RegistrationStatus,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -580,6 +581,10 @@ export interface EventPurchaseUpdateInputs {
   paid?: boolean | null;
   reservationStart?: string | null;
   reservationEnd?: string | null;
+}
+
+export interface EventRegistrationUpdateInputs {
+  status?: keyof typeof RegistrationStatus;
 }
 
 export interface EventRegistrationBypassCreateInputs {

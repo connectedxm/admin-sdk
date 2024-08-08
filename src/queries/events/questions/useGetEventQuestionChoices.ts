@@ -2,6 +2,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { RegistrationQuestionChoice } from "@src/interfaces";
 import {
+  GetBaseInfiniteQueryKeys,
   InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
@@ -27,7 +28,16 @@ export const SET_EVENT_QUESTION_CHOICES_QUERY_DATA = (
   keyParams: Parameters<typeof EVENT_QUESTION_CHOICES_QUERY_KEY>,
   response: Awaited<ReturnType<typeof GetEventQuestionChoices>>
 ) => {
-  client.setQueryData(EVENT_QUESTION_CHOICES_QUERY_KEY(...keyParams), response);
+  client.setQueryData(
+    [
+      ...EVENT_QUESTION_CHOICES_QUERY_KEY(...keyParams),
+      ...GetBaseInfiniteQueryKeys(""),
+    ],
+    {
+      pages: [response],
+      pageParams: [null],
+    }
+  );
 };
 
 interface GetEventQuestionChoicesProps extends InfiniteQueryParams {

@@ -2,6 +2,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { RegistrationSectionQuestion } from "@src/interfaces";
 import {
+  GetBaseInfiniteQueryKeys,
   InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
@@ -27,8 +28,14 @@ export const SET_EVENT_SECTION_QUESTIONS_QUERY_DATA = (
   response: Awaited<ReturnType<typeof GetEventSectionQuestions>>
 ) => {
   client.setQueryData(
-    EVENT_SECTION_QUESTIONS_QUERY_KEY(...keyParams),
-    response
+    [
+      ...EVENT_SECTION_QUESTIONS_QUERY_KEY(...keyParams),
+      ...GetBaseInfiniteQueryKeys(""),
+    ],
+    {
+      pages: [response],
+      pageParams: [null],
+    }
   );
 };
 

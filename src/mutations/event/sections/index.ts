@@ -9,5 +9,6 @@ export * from "./useRemoveEventSectionAddOn";
 export * from "./useRemoveEventSectionQuestion";
 export * from "./useRemoveEventSectionTicket";
 export * from "./useRemoveEventSectionTier";
+export * from "./useReorderEventSectionQuestions";
 export * from "./useUpdateEventSection";
 export * from "./useUpdateEventSectionQuestion";

@@ -40,15 +40,12 @@ export const ReorderEventFaqSectionQuestions = async ({
     }
   );
 
-  console.log(1, "should set");
   if (queryClient && data.status === "ok") {
-    console.log(2, "setting", data);
     SET_EVENT_FAQ_SECTION_QUESTIONS_QUERY_DATA(
       queryClient,
       [eventId, sectionId],
       data
     );
-    console.log(3, "set");
   }
   return data;
 };

@@ -1139,7 +1139,7 @@ export interface StreamInputCreateInputs {
 }
 
 export interface StreamInputUpdateInputs {
-  name: string;
+  name: string | null;
   sortOrder?: number | string | null;
   eventId?: string | null;
   sessionId?: string | null;

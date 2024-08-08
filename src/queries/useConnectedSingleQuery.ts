@@ -21,17 +21,12 @@ export interface SingleQueryOptions<TQueryData = unknown>
   shouldRedirect?: boolean;
 }
 
-export const GetBaseSingleQueryKeys = (locale: string): QueryKey => {
-  return [locale];
-};
-
 export const useConnectedSingleQuery = <TQueryData = unknown>(
   queryKeys: QueryKey,
   queryFn: (params: SingleQueryParams) => TQueryData,
   options: SingleQueryOptions<TQueryData> = {}
 ) => {
   const {
-    locale,
     onModuleForbidden,
     onNotAuthorized,
     onNotFound,
@@ -73,7 +68,7 @@ export const useConnectedSingleQuery = <TQueryData = unknown>(
       return false;
     },
     ...options,
-    queryKey: [...queryKeys, ...GetBaseSingleQueryKeys(locale)],
+    queryKey: [...queryKeys],
     queryFn: () =>
       queryFn({
         adminApiParams: {
@@ -81,7 +76,6 @@ export const useConnectedSingleQuery = <TQueryData = unknown>(
           organizationId,
           getToken,
           getExecuteAs,
-          locale,
         },
       }),
   });

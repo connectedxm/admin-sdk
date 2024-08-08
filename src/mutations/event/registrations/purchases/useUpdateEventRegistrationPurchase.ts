@@ -8,6 +8,7 @@ import {
 import { EventPurchaseUpdateInputs } from "@src/params";
 import {
   EVENT_REGISTRATION_PURCHASES_QUERY_KEY,
+  SET_EVENT_PURCHASE_QUERY_DATA,
   SET_EVENT_REGISTRATION_PURCHASE_QUERY_DATA,
 } from "@src/queries";
 
@@ -51,6 +52,8 @@ export const UpdateEventRegistrationPurchase = async ({
       [eventId, registrationId, purchaseId],
       data
     );
+
+    SET_EVENT_PURCHASE_QUERY_DATA(queryClient, [eventId, purchaseId], data);
   }
   return data;
 };

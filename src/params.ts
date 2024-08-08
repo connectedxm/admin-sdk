@@ -370,6 +370,10 @@ export interface EventActivationUpdateInputs {
   protectionCode?: number | string | null;
 }
 
+export interface EventActivationCompletionCreateInputs {}
+
+export interface EventActivationCompletionUpdateInputs {}
+
 export interface EventAddOnCreateInputs {
   name: string;
   shortDescription: string;

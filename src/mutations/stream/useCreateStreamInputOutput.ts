@@ -9,6 +9,7 @@ import {
   STREAM_INPUTS_QUERY_KEY,
   SET_STREAM_INPUT_OUTPUT_QUERY_DATA,
 } from "@src/queries";
+import { StreamInputOutputCreateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -16,8 +17,7 @@ import {
  */
 export interface CreateStreamInputOutputParams extends MutationParams {
   streamId: string;
-  //TODO: missing interface and validation
-  output: StreamInputOutput;
+  output: StreamInputOutputCreateInputs;
 }
 
 /**

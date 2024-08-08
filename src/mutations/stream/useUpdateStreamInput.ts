@@ -8,6 +8,7 @@ import { StreamInput, ConnectedXMResponse } from "@src/interfaces";
 import {
   STREAM_INPUTS_QUERY_KEY,
   SET_STREAM_INPUT_QUERY_DATA,
+  EVENT_QUERY_KEY,
 } from "@src/queries";
 import { StreamInputUpdateInputs } from "@src/params";
 
@@ -45,6 +46,13 @@ export const UpdateStream = async ({
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: STREAM_INPUTS_QUERY_KEY() });
+
+    if (stream.eventId) {
+      queryClient.invalidateQueries({
+        queryKey: EVENT_QUERY_KEY(stream.eventId),
+      });
+    }
+
     SET_STREAM_INPUT_QUERY_DATA(
       queryClient,
       [streamId || data.data.id.toString()],

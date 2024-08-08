@@ -1877,7 +1877,6 @@ export interface StreamInput extends BaseStreamInput {
 }
 
 export interface StreamInputOutput {
-  status: string;
   enabled: boolean;
   url: string;
   streamKey: string;

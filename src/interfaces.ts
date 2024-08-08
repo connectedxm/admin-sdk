@@ -1217,7 +1217,7 @@ export interface Permissions {
 
 export interface OrganizationMembership {
   organizationId: string;
-  org: BaseOrganization;
+  org: Permissions;
   userId: string;
   user: BaseUser;
   users: Permissions;

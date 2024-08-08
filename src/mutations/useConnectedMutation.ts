@@ -34,14 +34,8 @@ export const useConnectedMutation = <
     "mutationFn"
   >
 ) => {
-  const {
-    locale,
-    apiUrl,
-    getToken,
-    organizationId,
-    getExecuteAs,
-    onMutationError,
-  } = useConnectedXM();
+  const { apiUrl, getToken, organizationId, getExecuteAs, onMutationError } =
+    useConnectedXM();
   const queryClient = useQueryClient();
 
   return useMutation<
@@ -57,7 +51,6 @@ export const useConnectedMutation = <
           getToken,
           organizationId,
           getExecuteAs,
-          locale,
         },
         ...data,
       } as TMutationParams),

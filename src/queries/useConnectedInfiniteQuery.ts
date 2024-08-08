@@ -16,7 +16,6 @@ export interface InfiniteQueryParams {
   pageSize?: number;
   orderBy?: string;
   search?: string;
-  locale?: string;
   queryClient?: QueryClient;
 }
 
@@ -36,11 +35,8 @@ export interface InfiniteQueryOptions<
   shouldRedirect?: boolean;
 }
 
-export const GetBaseInfiniteQueryKeys = (
-  locale: string,
-  search: string = ""
-) => {
-  return [locale, search];
+export const GetBaseInfiniteQueryKeys = (search: string = "") => {
+  return [search];
 };
 
 export const setFirstPageData = <TData>(
@@ -68,7 +64,6 @@ export const useConnectedInfiniteQuery = <
   if (typeof params.pageSize === "undefined") params.pageSize = 25;
 
   const {
-    locale,
     onModuleForbidden,
     onNotAuthorized,
     onNotFound,
@@ -91,25 +86,33 @@ export const useConnectedInfiniteQuery = <
     return undefined; // Ensure to return undefined if there's no next page
   };
 
-  // prettier-ignore
-  return useInfiniteQuery<TQueryData,AxiosError<ConnectedXMResponse<null>>,InfiniteData<TQueryData, number>,QueryKey,number>({
+  return useInfiniteQuery<
+    TQueryData,
+    AxiosError<ConnectedXMResponse<null>>,
+    InfiniteData<TQueryData, number>,
+    QueryKey,
+    number
+  >({
     staleTime: 60 * 1000, // 60 Seconds
     retry: (failureCount, error) => {
       // RESOURCE NOT FOUND
       if (error.response?.status === 404) {
-        if (onNotFound) onNotFound(error, queryKeys, options.shouldRedirect || false);
+        if (onNotFound)
+          onNotFound(error, queryKeys, options.shouldRedirect || false);
         return false;
       }
 
       // MODULE FORBIDDEN FOR USER
       if (error.response?.status === 403 || error.response?.status === 453) {
-        if (onModuleForbidden) onModuleForbidden(error, queryKeys, options.shouldRedirect || false);
+        if (onModuleForbidden)
+          onModuleForbidden(error, queryKeys, options.shouldRedirect || false);
         return false;
       }
 
       // TOKEN IS POSSIBLY EXPIRED TRIGGER A REFRESH
       if (error.response?.status === 401) {
-        if (onNotAuthorized) onNotAuthorized(error, queryKeys, options.shouldRedirect || false);
+        if (onNotAuthorized)
+          onNotAuthorized(error, queryKeys, options.shouldRedirect || false);
         return false;
       }
 
@@ -118,18 +121,20 @@ export const useConnectedInfiniteQuery = <
       return false;
     },
     ...options,
-    queryKey: [
-      ...queryKeys,
-      ...GetBaseInfiniteQueryKeys(params?.locale || locale, params?.search),
-    ],
+    queryKey: [...queryKeys, ...GetBaseInfiniteQueryKeys(params?.search)],
     queryFn: ({ pageParam }) =>
-      queryFn({ ...params, pageSize: params.pageSize || 25, locale: params.locale || locale, pageParam, queryClient, adminApiParams: {
-        apiUrl,
-        getToken,
-        organizationId,
-        getExecuteAs,
-         locale
-      } }),
+      queryFn({
+        ...params,
+        pageSize: params.pageSize || 25,
+        pageParam,
+        queryClient,
+        adminApiParams: {
+          apiUrl,
+          getToken,
+          organizationId,
+          getExecuteAs,
+        },
+      }),
     initialPageParam: 1,
     getNextPageParam,
   });

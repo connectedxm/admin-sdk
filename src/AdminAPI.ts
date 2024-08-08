@@ -8,7 +8,6 @@ export interface AdminApiParams {
   organizationId: string;
   getToken: () => Promise<string | undefined> | string | undefined;
   getExecuteAs?: () => Promise<string | undefined> | string | undefined;
-  locale: string;
 }
 
 /**
@@ -26,7 +25,6 @@ export const GetAdminAPI = async (
     baseURL: params.apiUrl,
     headers: {
       organization: params.organizationId,
-      // locale: params.locale,
       authorization: token,
       executeAs: executeAs,
     },

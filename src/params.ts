@@ -20,6 +20,7 @@ import {
   BaseSubscriptionProductPrice,
   ImageType,
   FileSource,
+  RegistrationStatus,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -370,6 +371,10 @@ export interface EventActivationUpdateInputs {
   protectionCode?: number | string | null;
 }
 
+export interface EventActivationCompletionCreateInputs {}
+
+export interface EventActivationCompletionUpdateInputs {}
+
 export interface EventAddOnCreateInputs {
   name: string;
   shortDescription: string;
@@ -578,6 +583,10 @@ export interface EventPurchaseUpdateInputs {
   reservationEnd?: string | null;
 }
 
+export interface EventRegistrationUpdateInputs {
+  status?: keyof typeof RegistrationStatus;
+}
+
 export interface EventRegistrationBypassCreateInputs {
   accountId: string;
   closed?: boolean | null;
@@ -590,6 +599,11 @@ export interface EventRegistrationBypassUpdateInputs {
   closed?: boolean | null;
   preRegister?: boolean | null;
   postRegister?: boolean | null;
+}
+
+export interface EventReservationSelectInputs {
+  reservationStart?: string;
+  reservationEnd?: string;
 }
 
 export interface EventReservationSectionCreateInputs {

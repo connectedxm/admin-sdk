@@ -870,9 +870,6 @@ export interface FaqSection extends BaseFaqSection {
   event: BaseEvent;
   createdAt: string;
   updatedAt: string;
-  _count: {
-    faqs: number;
-  };
 }
 
 export interface FaqSectionTranslation {

@@ -2236,10 +2236,6 @@ export interface BaseChannelContentGuest {
   discord: string;
 }
 
-export interface PaypalActivationFormParams {
-  clientId: string;
-  clientSecret: string;
-}
 export interface BaseFile {
   id: number;
   name: string;
@@ -2251,3 +2247,8 @@ export interface BaseFile {
 }
 
 export interface File extends BaseFile {}
+
+export interface PaypalActivationFormParams {
+  clientId: string;
+  clientSecret: string;
+}

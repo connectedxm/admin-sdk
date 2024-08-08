@@ -1139,11 +1139,20 @@ export interface StreamInputCreateInputs {
 }
 
 export interface StreamInputUpdateInputs {
-  name: string;
+  name?: string;
   sortOrder?: number | string | null;
   eventId?: string | null;
   sessionId?: string | null;
   details?: object | null;
+}
+
+export interface StreamInputOutputCreateInputs {
+  enabled: boolean;
+  url: string;
+  streamKey: string;
+}
+export interface StreamInputOutputUpdateInputs {
+  enabled: boolean;
 }
 
 export interface StreamOutputCreateInputs {

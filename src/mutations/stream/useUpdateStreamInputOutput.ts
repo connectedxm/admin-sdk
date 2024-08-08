@@ -9,6 +9,7 @@ import {
   STREAM_INPUTS_QUERY_KEY,
   SET_STREAM_INPUT_OUTPUT_QUERY_DATA,
 } from "@src/queries";
+import { StreamInputOutputUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -17,8 +18,7 @@ import {
 export interface UpdateStreamInputOutputParams extends MutationParams {
   streamId: string;
   outputId: string;
-  //TODO: missing interface and validation
-  output: StreamInputOutput;
+  output: StreamInputOutputUpdateInputs;
 }
 
 /**
@@ -51,7 +51,7 @@ export const UpdateStreamInputOutput = async ({
  * @category Mutations
  * @group Stream
  */
-export const useUpdateStreamInputOutputInput = (
+export const useUpdateStreamInputOutput = (
   options: Omit<
     ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof UpdateStreamInputOutput>>,

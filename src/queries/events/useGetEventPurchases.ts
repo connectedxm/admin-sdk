@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
-import { Event } from "@src/interfaces";
+import { ConnectedXMResponse, Purchase } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -31,7 +30,7 @@ export const GetEventPurchases = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetEventPurchasesProps): Promise<ConnectedXMResponse<Event[]>> => {
+}: GetEventPurchasesProps): Promise<ConnectedXMResponse<Purchase[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/purchases`, {
     params: {
@@ -68,6 +67,9 @@ export const useGetEventPurchases = (
         eventId,
       }),
     params,
-    options
+    {
+      ...options,
+      enabled: !!eventId && (options.enabled ?? true),
+    }
   );
 };

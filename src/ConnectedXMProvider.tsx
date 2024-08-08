@@ -19,7 +19,6 @@ export interface ConnectedXMClientContextState {
   setAuthenticated: (authenticated: boolean) => void;
   getToken: () => Promise<string | undefined>;
   getExecuteAs?: () => Promise<string | undefined> | string | undefined;
-  locale: string;
   onNotAuthorized?: (
     error: AxiosError<ConnectedXMResponse<any>>,
     key: QueryKey,

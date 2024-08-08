@@ -19,6 +19,7 @@ export * from "./tracks";
 export * from "./translations";
 export * from "./useGetEvent";
 export * from "./useGetEventActivities";
+export * from "./useGetEventPurchases";
 export * from "./useGetEvents";
 export * from "./useGetFeaturedEvents";
 export * from "./useGetUnapprovedEvents";

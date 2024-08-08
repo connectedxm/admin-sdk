@@ -55,8 +55,8 @@ export const GetEventSection = async ({
  * @group Events
  */
 export const useGetEventSection = (
-  eventId: string,
-  sectionId: string,
+  eventId: string = "",
+  sectionId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventSection>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEventSection>>(
@@ -64,7 +64,7 @@ export const useGetEventSection = (
     (params) => GetEventSection({ eventId, sectionId, ...params }),
     {
       ...options,
-      enabled: !!eventId && !!sectionId,
+      enabled: !!eventId && !!sectionId && (options?.enabled ?? true),
     }
   );
 };

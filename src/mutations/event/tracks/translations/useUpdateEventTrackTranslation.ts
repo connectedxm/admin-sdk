@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { EventTrackTranslationUpdateInputs } from "@src/params";
 import {
   EVENT_TRACK_TRANSLATIONS_QUERY_KEY,
   SET_EVENT_TRACK_TRANSLATION_QUERY_DATA,
@@ -18,11 +19,7 @@ export interface UpdateEventTrackTranslationParams extends MutationParams {
   eventId: string;
   trackId: string;
   locale: ISupportedLocale;
-  //TODO: missing interface and validation
-  trackTranslation: {
-    name: string;
-    description?: string;
-  };
+  trackTranslation: EventTrackTranslationUpdateInputs;
 }
 
 /**

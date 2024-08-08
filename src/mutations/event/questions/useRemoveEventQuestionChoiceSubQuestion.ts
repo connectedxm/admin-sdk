@@ -44,6 +44,7 @@ export const RemoveEventQuestionChoiceSubQuestion = async ({
       queryKey: EVENT_QUESTION_CHOICES_QUERY_KEY(eventId, questionId),
     });
   }
+
   return data;
 };
 

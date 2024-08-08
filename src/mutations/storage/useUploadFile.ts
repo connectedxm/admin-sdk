@@ -4,7 +4,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, File } from "@src/interfaces";
 
 /**
  * @category Params

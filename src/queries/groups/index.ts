@@ -5,8 +5,6 @@ export * from "./useGetGroupEvents";
 export * from "./useGetGroupInterests";
 export * from "./useGetGroupInvitation";
 export * from "./useGetGroupInvitations";
-export * from "./useGetGroupKPIActivities";
-export * from "./useGetGroupKPIMembers";
 export * from "./useGetGroupMembers";
 export * from "./useGetGroupModerators";
 export * from "./useGetGroupRequest";

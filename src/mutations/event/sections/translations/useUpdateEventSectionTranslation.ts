@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { EventSectionTranslationUpdateInputs } from "@src/params";
 import {
   EVENT_SECTION_TRANSLATIONS_QUERY_KEY,
   SET_EVENT_SECTION_TRANSLATION_QUERY_DATA,
@@ -18,11 +19,7 @@ export interface UpdateEventSectionTranslationParams extends MutationParams {
   eventId: string;
   sectionId: string;
   locale: ISupportedLocale;
-  //TODO: missing interface and validation
-  sectionTranslation: {
-    name: string;
-    description?: string;
-  };
+  sectionTranslation: EventSectionTranslationUpdateInputs;
 }
 
 /**

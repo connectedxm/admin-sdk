@@ -7,6 +7,7 @@ export * from "./benefits";
 export * from "./channels";
 export * from "./email-receipts";
 export * from "./events";
+export * from "./files";
 export * from "./groups";
 export * from "./images";
 export * from "./imports";

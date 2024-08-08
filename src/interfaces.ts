@@ -175,6 +175,12 @@ export enum OrganizationTriggerType {
   postAuth = "postAuth",
 }
 
+export enum FileSource {
+  admin = "admin",
+  response = "response",
+  content = "content",
+}
+
 export interface BaseAccount {
   organizationId: string;
   id: string;
@@ -608,16 +614,16 @@ export interface BaseCoupon {
   quantityMin: number;
   quantityMax: number | null;
   useLimit: number | null;
+  limitPerAccount: number | null;
   purchaseLimit: number | null;
   emailDomains: string | null;
   ticketId: string | null;
   ticket: BaseEventTicket | null;
-  managerId: string | null;
 }
 
 export interface Coupon extends BaseCoupon {
-  ticket: BaseEventTicket | null;
-  manager: BaseAccount | null;
+  registrationId: string | null;
+  registration: BaseRegistration | null;
   createdAt: string;
   updatedAt: string;
   _count: {
@@ -1247,6 +1253,8 @@ export interface BaseOrganization {
   name: string;
   logoId: string | null;
   logo: BaseImage | null;
+  iconId: string | null;
+  icon: BaseImage | null;
   website: string | null;
 }
 
@@ -1417,6 +1425,11 @@ export interface BaseRegistrationQuestionChoice {
   description: string | null;
   supply: number | null;
   sortOrder: number;
+  subQuestions?:
+    | RegistrationQuestion[]
+    | {
+        questionId: number;
+      }[];
   _count: {
     subQuestions: number;
   };
@@ -1523,11 +1536,11 @@ export interface BaseRegistrationQuestion {
 }
 
 export interface RegistrationQuestion extends BaseRegistrationQuestion {
+  sections: BaseRegistrationSectionQuestion[];
+  subQuestionOf: RegistrationQuestionChoiceSubQuestion[];
+  response?: string;
   createdAt: string;
   updatedAt: string;
-  _count: {
-    sections: number;
-  };
 }
 
 export interface RegistrationQuestionTranslation {
@@ -1566,7 +1579,7 @@ export interface BaseRegistrationSection {
 }
 
 export interface RegistrationSection extends BaseRegistrationSection {
-  questions: BaseRegistrationSectionQuestion[];
+  questions: RegistrationQuestion[];
   eventTickets: BaseEventTicket[];
   eventAddOns: BaseEventAddOn[];
   accountTiers: BaseTier[];
@@ -1654,6 +1667,9 @@ export interface BaseEventReservationSectionLocation {
   sortOrder: number;
   premium: number | null;
   reservationSection: BaseEventReservationSection;
+  _count: {
+    purchases: number;
+  };
   createdAt: string;
   updatedAt: string;
 }
@@ -1688,7 +1704,7 @@ export interface BaseEventReservationSection {
 }
 
 export interface EventReservationSection extends BaseEventReservationSection {
-  sortOrder: number;
+  locations: BaseEventReservationSectionLocation[];
   event: BaseEvent;
   _count: {
     locations: number;
@@ -1701,6 +1717,20 @@ export interface EventReservationSectionTranslation {
   name: string;
   shortDescription: string;
   createdAt: string;
+  updatedAt: string;
+}
+
+export interface SearchField {
+  id: string;
+  name: string;
+  subtext: string | null;
+  search: string;
+  accountId: string | null;
+  eventId: string | null;
+  groupId: string | null;
+  contentId: string | null;
+  channelId: string | null;
+  threadId: string | null;
   updatedAt: string;
 }
 
@@ -2157,29 +2187,31 @@ export interface User extends BaseUser {
   updatedAt: string;
 }
 
-enum VideoSource {
+export enum VideoSource {
   admin = "admin",
   activity = "activity",
+  content = "content",
 }
 
 export interface BaseVideo {
   id: string;
+  name: string;
+  status: string;
+  source: VideoSource;
   width: number;
   height: number;
   thumbnailUrl: string | null;
   previewUrl: string | null;
   readyToStream: boolean;
+  duration: number | null;
+  createdAt: string;
 }
 
 export interface Video extends BaseVideo {
-  name: string;
-  status: string;
-  source: VideoSource;
+  downloadUrl: string | null;
   hlsUrl: string | null;
   dashUrl: string | null;
-  thumbnailPct: string | null;
-  duration: number | null;
-  createdAt: string;
+  thumbnailPct: number | null;
 }
 
 export interface BaseChannelContentGuest {
@@ -2208,3 +2240,14 @@ export interface PaypalActivationFormParams {
   clientId: string;
   clientSecret: string;
 }
+export interface BaseFile {
+  id: number;
+  name: string;
+  r2Path: string;
+  source: FileSource;
+  url?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface File extends BaseFile {}

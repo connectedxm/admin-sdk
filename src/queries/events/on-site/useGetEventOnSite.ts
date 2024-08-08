@@ -42,7 +42,7 @@ interface GetEventOnSiteProps extends SingleQueryParams {
 export const GetEventOnSite = async ({
   eventId,
   adminApiParams,
-}: GetEventOnSiteProps): Promise<ConnectedXMResponse<EventOnSite>> => {
+}: GetEventOnSiteProps): Promise<ConnectedXMResponse<EventOnSite | null>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/on-site`);
   return data;

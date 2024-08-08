@@ -19,6 +19,8 @@ import {
   BaseAccount,
   BaseSubscriptionProductPrice,
   ImageType,
+  FileSource,
+  RegistrationStatus,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -369,6 +371,10 @@ export interface EventActivationUpdateInputs {
   protectionCode?: number | string | null;
 }
 
+export interface EventActivationCompletionCreateInputs {}
+
+export interface EventActivationCompletionUpdateInputs {}
+
 export interface EventAddOnCreateInputs {
   name: string;
   shortDescription: string;
@@ -444,12 +450,12 @@ export interface EventCouponUpdateInputs {
   discountPercent?: number | string | null;
   quantityMin?: number | string | null;
   quantityMax?: number | string | null;
-  amountMin?: number | string | null;
-  amountMax?: number | string | null;
   useLimit?: number | string | null;
+  limitPerAccount?: number | string | null;
+  purchaseLimit?: number | string | null;
   emailDomains?: string | null;
   ticketId?: string | null;
-  managerId?: string | null;
+  registrationId?: string | null;
 }
 
 export interface EventFaqSectionCreateInputs {
@@ -577,6 +583,10 @@ export interface EventPurchaseUpdateInputs {
   reservationEnd?: string | null;
 }
 
+export interface EventRegistrationUpdateInputs {
+  status?: keyof typeof RegistrationStatus;
+}
+
 export interface EventRegistrationBypassCreateInputs {
   accountId: string;
   closed?: boolean | null;
@@ -589,6 +599,11 @@ export interface EventRegistrationBypassUpdateInputs {
   closed?: boolean | null;
   preRegister?: boolean | null;
   postRegister?: boolean | null;
+}
+
+export interface EventReservationSelectInputs {
+  reservationStart?: string;
+  reservationEnd?: string;
 }
 
 export interface EventReservationSectionCreateInputs {
@@ -779,6 +794,11 @@ export interface EventUpdateInputs {
   streamReplayId?: string | null;
   groupId?: string | null;
   groupOnly?: boolean | null;
+}
+
+export interface FileUpdateInputs {
+  name?: string;
+  source?: FileSource;
 }
 
 export interface GroupCreateInputs {
@@ -972,7 +992,10 @@ export interface EventQuestionChoiceUpdateInputs {
 
 export interface EventQuestionCreateInputs {
   name: string;
-  type?: keyof typeof RegistrationQuestionType | null;
+  type: keyof typeof RegistrationQuestionType | null;
+  sectionId?: number;
+  questionId?: number;
+  choiceId?: number;
   required?: boolean | null;
   label?: string | null;
   placeholder?: string | null;
@@ -986,6 +1009,7 @@ export interface EventQuestionCreateInputs {
   validationMessage?: string | null;
   sortOrder?: number | string | null;
   featured?: boolean | null;
+  choices?: string[] | null;
 }
 
 export interface EventQuestionSearchInputs {
@@ -1049,7 +1073,7 @@ export interface EventSectionCreateInputs {
   sortOrder?: number | string | null;
 }
 
-export interface EventSectionUpdateTranslationInputs {
+export interface EventSectionTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;
   guestDescription?: string | null;
@@ -1356,4 +1380,9 @@ export interface UserCreateInputs {
 
 export interface UserUpdateInputs {
   title?: string | null;
+}
+
+export interface VideoUpdateInputs {
+  name?: string;
+  thumbnailPct?: number | null;
 }

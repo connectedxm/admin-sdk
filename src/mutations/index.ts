@@ -5,6 +5,7 @@ export * from "./announcement";
 export * from "./benefit";
 export * from "./channels";
 export * from "./event";
+export * from "./files";
 export * from "./group";
 export * from "./image";
 export * from "./imports";

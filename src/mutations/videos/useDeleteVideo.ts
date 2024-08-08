@@ -29,7 +29,7 @@ export const DeleteVideo = async ({
     `/videos/${videoId}`
   );
   if (queryClient && data.status === "ok") {
-    queryClient.invalidateQueries({ queryKey: VIDEOS_QUERY_KEY("") });
+    queryClient.invalidateQueries({ queryKey: VIDEOS_QUERY_KEY() });
     queryClient.removeQueries({ queryKey: VIDEO_QUERY_KEY(videoId) });
   }
   return data;

@@ -6,13 +6,14 @@ import {
 } from "../useConnectedMutation";
 import { Organization, ConnectedXMResponse } from "@src/interfaces";
 import { SET_ORGANIZATION_QUERY_DATA } from "@src/queries";
+import { OrganizationUpdateInputs } from "@src/params";
 
 /**
  * @category Params
  * @group Organization
  */
 export interface UpdateOrganizationParams extends MutationParams {
-  organization: Organization;
+  organization: OrganizationUpdateInputs;
 }
 
 /**

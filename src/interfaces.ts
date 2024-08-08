@@ -2203,3 +2203,8 @@ export interface BaseChannelContentGuest {
   youtube: string;
   discord: string;
 }
+
+export interface PaypalActivationFormParams {
+  clientId: string;
+  clientSecret: string;
+}

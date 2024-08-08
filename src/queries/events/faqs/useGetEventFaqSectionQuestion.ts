@@ -1,13 +1,12 @@
+import { GetAdminAPI } from "@src/AdminAPI";
 import {
   SingleQueryOptions,
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
-import { ConnectedXMResponse } from "@src/interfaces";
-import { Faq } from "@src/interfaces";
-import { EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY } from "./useGetEventFaqSectionQuestions";
+import { ConnectedXMResponse, Faq } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
-import { GetAdminAPI } from "@src/AdminAPI";
+import { EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY } from "./useGetEventFaqSectionQuestions";
 
 /**
  * @category Keys
@@ -72,14 +71,15 @@ export const useGetEventFaqSectionQuestion = (
     EVENT_FAQ_SECTION_QUESTION_QUERY_KEY(eventId, sectionId, questionId),
     (params: SingleQueryParams) =>
       GetEventFaqSectionQuestion({
-        sectionId,
         eventId: eventId,
+        sectionId: sectionId,
         questionId: questionId,
         ...params,
       }),
     {
       ...options,
-      enabled: !!eventId && !!sectionId && !!questionId,
+      enabled:
+        !!eventId && !!sectionId && !!questionId && (options?.enabled ?? true),
     }
   );
 };

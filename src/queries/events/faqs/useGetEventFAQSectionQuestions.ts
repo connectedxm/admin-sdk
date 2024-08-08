@@ -69,7 +69,7 @@ export const GetEventFaqSectionQuestions = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventFaqSectionQuestionsectionQuestions = (
+export const useGetEventFaqSectionQuestions = (
   eventId: string = "",
   sectionId: string = "",
   params: Omit<

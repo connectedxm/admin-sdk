@@ -5,3 +5,4 @@ export * from "./useDeleteEventFaqSection";
 export * from "./useDeleteEventFaqSectionQuestion";
 export * from "./useUpdateEventFaqSection";
 export * from "./useUpdateEventFaqSectionQuestion";
+export * from "./useReorderEventFaqSectionQuestions";

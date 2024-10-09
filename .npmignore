@@ -1,0 +1,13 @@
+.changeset
+.github
+src
+tests
+.eslintignore
+.eslintrc.json
+tsconfig.json
+docs
+connectedxm-admin-*
+scripts
+.vscode
+.nvmrc
+typedoc.config.cjs

@@ -15,7 +15,7 @@ import { EVENT_PASS_TYPE_PRICE_SCHEDULES_QUERY_KEY } from "@src/queries/events/p
  */
 interface CreateEventPassTypePriceScheduleParams extends MutationParams {
   eventId: string;
-  passTypeid: string;
+  passTypeId: string;
   schedule: PassTypePriceScheduleCreateInputs;
 }
 
@@ -25,7 +25,7 @@ interface CreateEventPassTypePriceScheduleParams extends MutationParams {
  */
 export const CreateEventPassTypePriceSchedule = async ({
   eventId,
-  passTypeid,
+  passTypeId,
   schedule,
   adminApiParams,
   queryClient,
@@ -35,16 +35,16 @@ export const CreateEventPassTypePriceSchedule = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.post(
-    `/events/${eventId}/passTypes/${passTypeid}/priceSchedules`,
+    `/events/${eventId}/passTypes/${passTypeId}/priceSchedules`,
     schedule
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_PASS_TYPE_PRICE_SCHEDULES_QUERY_KEY(eventId, passTypeid),
+      queryKey: EVENT_PASS_TYPE_PRICE_SCHEDULES_QUERY_KEY(eventId, passTypeId),
     });
     SET_EVENT_PASS_TYPE_PRICE_SCHEDULE_QUERY_DATA(
       queryClient,
-      [eventId, passTypeid, data.data?.id],
+      [eventId, passTypeId, data.data?.id],
       data
     );
   }

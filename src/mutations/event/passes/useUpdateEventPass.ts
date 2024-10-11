@@ -8,6 +8,7 @@ import {
 import { EventPassUpdateInputs } from "@src/params";
 import {
   EVENT_ATTENDEE_PASSES_QUERY_KEY,
+  EVENT_ATTENDEE_QUERY_KEY,
   EVENT_PASSES_QUERY_KEY,
   EVENT_PASS_TYPE_PASSES_QUERY_KEY,
   SET_EVENT_PASS_QUERY_DATA,
@@ -46,6 +47,9 @@ export const UpdateEventPass = async ({
       });
     }
     if (data.data.registrationId) {
+      queryClient.invalidateQueries({
+        queryKey: EVENT_ATTENDEE_QUERY_KEY(eventId, data.data.registrationId),
+      });
       queryClient.invalidateQueries({
         queryKey: EVENT_ATTENDEE_PASSES_QUERY_KEY(
           eventId,

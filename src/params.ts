@@ -34,7 +34,7 @@ export interface AccountCreateInputs {
   accountType: keyof typeof AccountType;
   email: string;
   username?: string | null;
-  featured?: boolean | null;
+  featured?: boolean;
   firstName?: string | null;
   lastName?: string | null;
   imageId?: string | null;
@@ -59,11 +59,12 @@ export interface AccountCreateInputs {
   country?: string | null;
   zip?: string | null;
   internalRefId?: string | null;
+  verified?: boolean;
 }
 
 export interface AccountUpdateInputs {
   accountType?: keyof typeof AccountType | null;
-  featured?: boolean | null;
+  featured?: boolean;
   email?: string | null;
   firstName?: string | null;
   lastName?: string | null;
@@ -90,6 +91,7 @@ export interface AccountUpdateInputs {
   country?: string | null;
   zip?: string | null;
   internalRefId?: string | null;
+  verified?: boolean;
 }
 
 export interface ImportCreateInputs {
@@ -134,7 +136,7 @@ export interface AdvertisementCreateInputs {
   weight?: number | string | null;
   accountId?: string | null;
   eventId?: string | null;
-  eventOnly?: boolean | null;
+  eventOnly?: boolean;
 }
 
 export interface AdvertisementUpdateInputs {
@@ -148,7 +150,7 @@ export interface AdvertisementUpdateInputs {
   weight?: number | string | null;
   accountId?: string | null;
   eventId?: string | null;
-  eventOnly?: boolean | null;
+  eventOnly?: boolean;
 }
 
 export interface AnnouncementCreateInputs {
@@ -188,7 +190,7 @@ export interface BenefitCreateInputs {
   priority?: number | string | null;
   managerId?: string | null;
   eventId?: string | null;
-  eventOnly?: boolean | null;
+  eventOnly?: boolean;
 }
 
 export interface BenefitTranslationUpdateInputs {
@@ -207,7 +209,7 @@ export interface BenefitUpdateInputs {
   priority?: number | string | null;
   managerId?: string | null;
   eventId?: string | null;
-  eventOnly?: boolean | null;
+  eventOnly?: boolean;
 }
 
 export interface ChannelCollectionCreateInputs {
@@ -230,10 +232,10 @@ export interface ChannelCreateInputs {
   imageId: string;
   bannerId?: string | null;
   slug?: string | null;
-  featured?: boolean | null;
+  featured?: boolean;
   description?: string | null;
   priority?: number | string | null;
-  visible?: boolean | null;
+  visible?: boolean;
   externalUrl?: string | null;
   appleUrl?: string | null;
   spotifyUrl?: string | null;
@@ -243,8 +245,8 @@ export interface ChannelCreateInputs {
 }
 
 export interface ChannelSubscriberUpdateInputs {
-  contentEmailNotification?: boolean | null;
-  contentPushNotification?: boolean | null;
+  contentEmailNotification?: boolean;
+  contentPushNotification?: boolean;
 }
 
 export interface ChannelTranslationUpdateInputs {
@@ -257,10 +259,10 @@ export interface ChannelUpdateInputs {
   imageId?: string | null;
   bannerId?: string | null;
   slug?: string | null;
-  featured?: boolean | null;
+  featured?: boolean;
   description?: string | null;
   priority?: number | string | null;
-  visible?: boolean | null;
+  visible?: boolean;
   externalUrl?: string | null;
   appleUrl?: string | null;
   spotifyUrl?: string | null;
@@ -273,8 +275,8 @@ export interface ChannelContentCreateInputs {
   title: string;
   published?: string | null;
   channelId?: string | null;
-  featured?: boolean | null;
-  visible?: boolean | null;
+  featured?: boolean;
+  visible?: boolean;
   slug?: string | null;
   description?: string | null;
   duration?: string | null;
@@ -347,8 +349,8 @@ export interface ChannelContentTranslationUpdateInputs {
 export interface ChannelContentUpdateInputs {
   published?: string | null;
   channelId?: string | null;
-  featured?: boolean | null;
-  visible?: boolean | null;
+  featured?: boolean;
+  visible?: boolean;
   title?: string | null;
   slug?: string | null;
   description?: string | null;
@@ -376,7 +378,7 @@ export interface EventActivationCreateInputs {
   longDescription?: string | null;
   maxPoints?: number | string | null;
   startAfter?: string | null;
-  protected?: boolean | null;
+  protected?: boolean;
   protectionCode?: number | string | null;
   email?: boolean;
   push?: boolean;
@@ -397,7 +399,7 @@ export interface EventActivationUpdateInputs {
   longDescription?: string | null;
   maxPoints?: number | string | null;
   startAfter?: string | null;
-  protected?: boolean | null;
+  protected?: boolean;
   protectionCode?: number | string | null;
 }
 
@@ -455,7 +457,7 @@ export interface EventBadgeFieldUpdateInputs {
 export interface EventCouponCreateInputs {
   code: string;
   description?: string | null;
-  active?: boolean | null;
+  active?: boolean;
   startDate?: string | null;
   endDate?: string | null;
   discountAmount?: number | string | null;
@@ -473,7 +475,7 @@ export interface EventCouponCreateInputs {
 export interface EventCouponUpdateInputs {
   code?: string | null;
   description?: string | null;
-  active?: boolean | null;
+  active?: boolean;
   startDate?: string | null;
   endDate?: string | null;
   discountAmount?: number | string | null;
@@ -501,8 +503,8 @@ export interface EventCreateInputs {
   timezone: string;
   eventStart: string;
   eventEnd: string;
-  featured?: boolean | null;
-  visible?: boolean | null;
+  featured?: boolean;
+  visible?: boolean;
   slug?: string | null;
   internalRefId?: string | null;
   longDescription?: string | null;
@@ -519,22 +521,22 @@ export interface EventCreateInputs {
   zip?: string | null;
   creatorId?: string | null;
   seriesId?: string | null;
-  approved?: boolean | null;
+  approved?: boolean;
   meetingUrl?: string | null;
-  registration?: boolean | null;
+  registration?: boolean;
   registrationStart?: string | null;
   registrationEnd?: string | null;
   registrationLimit?: number | string | null;
-  publicRegistrants?: boolean | null;
-  sessionsVisible?: boolean | null;
-  speakersVisible?: boolean | null;
+  publicRegistrants?: boolean;
+  sessionsVisible?: boolean;
+  speakersVisible?: boolean;
   iosAppLink?: string | null;
   androidAppLink?: string | null;
-  newActivityCreatorEmailNotification?: boolean | null;
-  newActivityCreatorPushNotification?: boolean | null;
+  newActivityCreatorEmailNotification?: boolean;
+  newActivityCreatorPushNotification?: boolean;
   streamReplayId?: string | null;
   groupId?: string | null;
-  groupOnly?: boolean | null;
+  groupOnly?: boolean;
 }
 
 export interface EventEmailUpdateInputs {
@@ -547,7 +549,7 @@ export interface EventFaqSectionQuestionCreateInputs {
   answer: string;
   slug?: string | null;
   priority?: number | string | null;
-  visible?: boolean | null;
+  visible?: boolean;
 }
 
 export interface EventFaqSectionQuestionTranslationUpdateInputs {
@@ -560,7 +562,7 @@ export interface EventFaqSectionQuestionUpdateInputs {
   slug?: string | null;
   answer?: string | null;
   priority?: number | string | null;
-  visible?: boolean | null;
+  visible?: boolean;
 }
 
 export interface EventFaqSectionTranslationUpdateInputs {
@@ -617,16 +619,16 @@ export interface EventAttendeeUpdateInputs {}
 
 export interface EventRegistrationBypassCreateInputs {
   accountId: string;
-  closed?: boolean | null;
-  preRegister?: boolean | null;
-  postRegister?: boolean | null;
+  closed?: boolean;
+  preRegister?: boolean;
+  postRegister?: boolean;
 }
 
 export interface EventRegistrationBypassUpdateInputs {
   accountId?: string | null;
-  closed?: boolean | null;
-  preRegister?: boolean | null;
-  postRegister?: boolean | null;
+  closed?: boolean;
+  preRegister?: boolean;
+  postRegister?: boolean;
 }
 
 export interface EventReservationSelectInputs {
@@ -639,7 +641,7 @@ export interface EventReservationSectionCreateInputs {
   shortDescription?: string | null;
   price?: number | string | null; // Assuming OPTIONAL_PRICE is similar to OPTIONAL_NUMBER
   sortOrder?: number | string | null;
-  pricePerDay?: boolean | null;
+  pricePerDay?: boolean;
   imageId?: string | null;
 }
 
@@ -674,7 +676,7 @@ export interface EventReservationSectionUpdateInputs {
   shortDescription?: string | null;
   price?: number | string | null;
   sortOrder?: number | string | null;
-  pricePerDay?: boolean | null;
+  pricePerDay?: boolean;
   imageId?: string | null;
 }
 
@@ -686,9 +688,9 @@ export interface EventSessionCreateInputs {
   location?: string | null;
   description?: string | null;
   longDescription?: string | null;
-  nonSession?: boolean | null;
+  nonSession?: boolean;
   imageId?: string | null;
-  visible?: boolean | null;
+  visible?: boolean;
   sortOrder?: number | string | null;
 }
 
@@ -706,9 +708,9 @@ export interface EventSessionUpdateInputs {
   location?: string | null;
   description?: string | null;
   longDescription?: string | null;
-  nonSession?: boolean | null;
+  nonSession?: boolean;
   imageId?: string | null;
-  visible?: boolean | null;
+  visible?: boolean;
   sortOrder?: number | string | null;
 }
 
@@ -729,10 +731,10 @@ export interface EventSpeakerCreateInputs {
   youtube?: string | null;
   discord?: string | null;
   label?: string | null;
-  isHost?: boolean | null;
+  isHost?: boolean;
   imageId?: string | null;
   priority?: number | string | null;
-  visible?: boolean | null;
+  visible?: boolean;
 }
 
 export interface EventSpeakerTranslationUpdateInputs {
@@ -757,10 +759,10 @@ export interface EventSpeakerUpdateInputs {
   youtube?: string | null;
   discord?: string | null;
   label?: string | null;
-  isHost?: boolean | null;
+  isHost?: boolean;
   imageId?: string | null;
   priority?: number | string | null;
-  visible?: boolean | null;
+  visible?: boolean;
 }
 
 export interface PassTypeTranslationUpdateInputs {
@@ -781,8 +783,8 @@ export interface EventTranslationUpdateInputs {
 }
 
 export interface EventUpdateInputs {
-  featured?: boolean | null;
-  visible?: boolean | null;
+  featured?: boolean;
+  visible?: boolean;
   name?: string | null;
   eventType?: keyof typeof EventType | null;
   slug?: string | null;
@@ -805,23 +807,23 @@ export interface EventUpdateInputs {
   zip?: string | null;
   creatorId?: string | null;
   seriesId?: string | null;
-  approved?: boolean | null;
+  approved?: boolean;
   meetingUrl?: string | null;
-  registration?: boolean | null;
+  registration?: boolean;
   registrationStart?: string | null;
   registrationEnd?: string | null;
   registrationLimit?: number | null | string;
-  publicRegistrants?: boolean | null;
-  sessionsVisible?: boolean | null;
-  speakersVisible?: boolean | null;
-  inviteOnly?: boolean | null;
+  publicRegistrants?: boolean;
+  sessionsVisible?: boolean;
+  speakersVisible?: boolean;
+  inviteOnly?: boolean;
   iosAppLink?: string | null;
   androidAppLink?: string | null;
-  newActivityCreatorEmailNotification?: boolean | null;
-  newActivityCreatorPushNotification?: boolean | null;
+  newActivityCreatorEmailNotification?: boolean;
+  newActivityCreatorPushNotification?: boolean;
   streamReplayId?: string | null;
   groupId?: string | null;
-  groupOnly?: boolean | null;
+  groupOnly?: boolean;
 }
 
 export interface FileUpdateInputs {
@@ -832,22 +834,22 @@ export interface FileUpdateInputs {
 export interface GroupCreateInputs {
   name: string;
   description: string;
-  featured?: boolean | null;
+  featured?: boolean;
   slug?: string | null;
-  active?: boolean | null;
+  active?: boolean;
   access?: keyof typeof GroupAccess | null;
   imageId?: string | null;
   externalUrl?: string | null;
 }
 
 export interface GroupMembershipUpdateInputs {
-  announcementEmailNotification?: boolean | null;
-  announcementPushNotification?: boolean | null;
-  activityEmailNotification?: boolean | null;
-  activityPushNotification?: boolean | null;
-  eventEmailNotification?: boolean | null;
-  eventPushNotification?: boolean | null;
-  chatPushNotification?: boolean | null;
+  announcementEmailNotification?: boolean;
+  announcementPushNotification?: boolean;
+  activityEmailNotification?: boolean;
+  activityPushNotification?: boolean;
+  eventEmailNotification?: boolean;
+  eventPushNotification?: boolean;
+  chatPushNotification?: boolean;
 }
 
 export interface OrganizationMembershipUpdateInputs {
@@ -877,11 +879,11 @@ export interface GroupTranslationUpdateInputs {
 }
 
 export interface GroupUpdateInputs {
-  featured?: boolean | null;
+  featured?: boolean;
   name?: string | null;
   slug?: string | null;
   description?: string | null;
-  active?: boolean | null;
+  active?: boolean;
   access?: keyof typeof GroupAccess | null;
   imageId?: string | null;
   externalUrl?: string | null;
@@ -907,13 +909,13 @@ export interface ImageUpdateInputs {
 export interface InterestCreateInputs {
   name: string;
   imageId?: string | null;
-  featured?: boolean | null;
+  featured?: boolean;
 }
 
 export interface InterestUpdateInputs {
   name?: string | null;
   imageId?: string | null;
-  featured?: boolean | null;
+  featured?: boolean;
 }
 
 export interface InvoiceCreateInputs {
@@ -1012,9 +1014,9 @@ export interface OrganizationUpdateInputs {
   discord?: string | null;
   defaultAuthAction?: keyof typeof DefaultAuthAction;
   authLayout?: keyof typeof AuthLayout;
-  requirePhone?: boolean | null;
-  requireTitle?: boolean | null;
-  requireCompany?: boolean | null;
+  requirePhone?: boolean;
+  requireTitle?: boolean;
+  requireCompany?: boolean;
   iosAppLink?: string | null;
   androidAppLink?: string | null;
   appIconId?: string | null;
@@ -1056,30 +1058,30 @@ export interface EventQuestionCreateInputs {
   sectionId?: number;
   questionId?: number;
   choiceId?: number;
-  required?: boolean | null;
+  required?: boolean;
   label?: string | null;
   placeholder?: string | null;
   description?: string | null;
   default?: string | null;
   span?: number | string | null;
-  mutable?: boolean | null;
+  mutable?: boolean;
   min?: string | null;
   max?: string | null;
   validation?: string | null;
   validationMessage?: string | null;
   sortOrder?: number | string | null;
-  featured?: boolean | null;
+  featured?: boolean;
   choices?: string[] | null;
 }
 
 export interface EventQuestionSearchInputs {
   value: string;
-  top?: boolean | null;
+  top?: boolean;
 }
 
 export interface EventQuestionSearchValueUpdateInputs {
   value?: string | null;
-  top?: boolean | null;
+  top?: boolean;
 }
 
 export interface EventQuestionTranslationUpdateInputs {
@@ -1091,19 +1093,19 @@ export interface EventQuestionTranslationUpdateInputs {
 export interface EventQuestionUpdateInputs {
   name?: string | null;
   type?: keyof typeof RegistrationQuestionType | null;
-  required?: boolean | null;
+  required?: boolean;
   label?: string | null;
   placeholder?: string | null;
   description?: string | null;
   default?: string | null;
   span?: number | string | null;
-  mutable?: boolean | null;
+  mutable?: boolean;
   min?: string | null;
   max?: string | null;
   validation?: string | null;
   validationMessage?: string | null;
   sortOrder?: number | string | null;
-  featured?: boolean | null;
+  featured?: boolean;
 }
 
 export interface ReportCreateInputs {
@@ -1223,14 +1225,14 @@ export interface StreamOutputCreateInputs {
 
 export interface SubscriptionProductCreateInputs {
   name: string;
-  active?: boolean | null;
+  active?: boolean;
   description?: string | null;
   statementDescriptor?: string | null;
   features?: string[] | null;
 }
 
 export interface SubscriptionProductPriceCreateInputs {
-  active?: boolean | null;
+  active?: boolean;
   type: keyof typeof SubscriptionProductPriceType;
   amount: string | number; // Assuming REQUIRED_PRICE can be string or number
   currency: "usd"; // Assuming currency is limited to 'usd'
@@ -1239,11 +1241,11 @@ export interface SubscriptionProductPriceCreateInputs {
 }
 
 export interface SubscriptionProductPriceUpdateInputs {
-  active?: boolean | null;
+  active?: boolean;
 }
 
 export interface SubscriptionProductUpdateInputs {
-  active?: boolean | null;
+  active?: boolean;
   name?: string | null;
   description?: string | null;
   statementDescriptor?: string | null;
@@ -1253,7 +1255,7 @@ export interface SubscriptionProductUpdateInputs {
 export interface SubscriptionCreateInputs {
   status?: SubscriptionStatus;
   expiresAt?: string | null;
-  cancelAtEnd?: boolean | null;
+  cancelAtEnd?: boolean;
   integrationId?: string | null;
   subscriptionProductId?: string | null;
   subscriptionProduct?: BaseSubscriptionProduct;
@@ -1345,8 +1347,8 @@ export interface ThreadCreateInputs {
   access: keyof typeof ThreadAccessLevel;
   name: string;
   description?: string | null;
-  featured?: boolean | null;
-  visible?: boolean | null;
+  featured?: boolean;
+  visible?: boolean;
   groupId?: string | null;
   eventId?: string | null;
   imageId?: string | null;
@@ -1358,8 +1360,8 @@ export interface ThreadCreateInputs {
 export interface ThreadUpdateInputs {
   name?: string | null;
   description?: string | null;
-  featured?: boolean | null;
-  visible?: boolean | null;
+  featured?: boolean;
+  visible?: boolean;
   access?: keyof typeof ThreadAccessLevel | null;
   groupId?: string | null;
   eventId?: string | null;
@@ -1374,9 +1376,9 @@ export interface PassTypeCreateInputs {
   shortDescription: string;
   price: string | number; // Assuming REQUIRED_PRICE can be string or number
   visibility?: keyof typeof PassTypeVisibility | null;
-  featured?: boolean | null;
-  active?: boolean | null;
-  transferable?: boolean | null;
+  featured?: boolean;
+  active?: boolean;
+  transferable?: boolean;
   slug?: string | null;
   longDescription?: string | null;
   accessLevel?: keyof typeof PassTypeAccessLevel | null;
@@ -1398,9 +1400,9 @@ export interface PassTypeCreateInputs {
 
 export interface PassTypeUpdateInputs {
   visibility?: keyof typeof PassTypeVisibility | null;
-  featured?: boolean | null;
-  active?: boolean | null;
-  transferable?: boolean | null;
+  featured?: boolean;
+  active?: boolean;
+  transferable?: boolean;
   name?: string | null;
   slug?: string | null;
   shortDescription?: string | null;
@@ -1431,7 +1433,7 @@ export interface TierCreateInputs {
   description?: string | null;
   imageId?: string | null;
   color?: string | null;
-  internal?: boolean | null;
+  internal?: boolean;
 }
 
 export interface TierUpdateInputs {
@@ -1442,7 +1444,7 @@ export interface TierUpdateInputs {
   description?: string | null;
   imageId?: string | null;
   color?: string | null;
-  internal?: boolean | null;
+  internal?: boolean;
 }
 
 export interface EventTrackCreateInputs {
@@ -1461,12 +1463,12 @@ export interface EventTrackUpdateInputs {
 
 export interface TriggerCreateInputs {
   code: string;
-  enabled?: boolean | null;
+  enabled?: boolean;
 }
 
 export interface TriggerUpdateInputs {
   code?: string | null;
-  enabled?: boolean | null;
+  enabled?: boolean;
 }
 
 export interface UserCreateInputs {

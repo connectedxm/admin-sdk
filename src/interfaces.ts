@@ -690,8 +690,8 @@ export interface BaseChannelSubscriber {
   channel: Channel;
   accountId: string | null;
   account: Account;
-  contentEmailNotification: boolean | null;
-  contentPushNotification: boolean | null;
+  contentEmailNotification: boolean;
+  contentPushNotification: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -1398,9 +1398,9 @@ export interface Organization extends BaseOrganization {
   darkIcon: BaseImage | null;
   darkLogoId: string | null;
   darkLogo: BaseImage | null;
-  requireCompany: boolean | null;
-  requirePhone: boolean | null;
-  requireTitle: boolean | null;
+  requireCompany: boolean;
+  requirePhone: boolean;
+  requireTitle: boolean;
   authLayout: AuthLayout;
   defaultAuthAction: DefaultAuthAction;
   userPoolId: string | null;
@@ -1409,10 +1409,10 @@ export interface Organization extends BaseOrganization {
   appBundleIdentifier: string | null;
   expoProjectId: string | null;
   expoSlug: string | null;
-  appleAuthEnabled: boolean | null;
-  facebookAuthEnabled: boolean | null;
-  googleAuthEnabled: boolean | null;
-  oAuth: boolean | null;
+  appleAuthEnabled: boolean;
+  facebookAuthEnabled: boolean;
+  googleAuthEnabled: boolean;
+  oAuth: boolean;
   maxFileGbs: number | null;
   maxImageCount: number | null;
   maxVideoMins: number | null;
@@ -1558,7 +1558,7 @@ export interface PaymentIntegration {
   id: string;
   type: "stripe" | "paypal";
   connectionId: string;
-  enabled: boolean | null;
+  enabled: boolean;
   stripe?: any | null;
   paypal?: any | null;
   createdAt: string;

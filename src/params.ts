@@ -33,7 +33,7 @@ import {
 export interface AccountCreateInputs {
   accountType: keyof typeof AccountType;
   email: string;
-  username: string;
+  username?: string | null;
   featured?: boolean | null;
   firstName?: string | null;
   lastName?: string | null;

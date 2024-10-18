@@ -28,6 +28,7 @@ import {
   ImportType,
   EventAnnouncementFilters,
   EventPassStatus,
+  IntegrationType,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -1515,4 +1516,19 @@ export interface PassTypePriceScheduleUpdateInputs {
   name?: string | null;
   startDate?: string | null;
   endDate?: string | null;
+}
+
+export interface IntegrationCreateInputs {
+  type: keyof typeof IntegrationType;
+  enabled?: boolean;
+  publicUrl?: string;
+  publicKey?: string;
+  secretKey?: string;
+}
+
+export interface IntegrationUpdateInputs {
+  enabled?: boolean;
+  publicUrl?: string | null;
+  publicKey?: string | null;
+  secretKey?: string | null;
 }

@@ -1177,14 +1177,23 @@ export interface Import extends BaseImport {
   };
 }
 
-export interface BaseIntegrations {
-  chat42: boolean;
-  evolve: boolean;
-  ghost: boolean;
-  ghostUrl: string | null;
+export enum IntegrationType {
+  snagtag = "snagtag",
 }
 
-export interface Integrations extends BaseIntegrations {}
+export interface BaseIntegration {
+  id: string;
+  type: IntegrationType;
+  enabled: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Integration extends BaseIntegration {
+  publicUrl: string | null;
+  publicKey: string | null;
+  secretKey: string | null;
+}
 
 export interface BaseInterest {
   id: string;
@@ -1387,7 +1396,7 @@ export interface Organization extends BaseOrganization {
   androidAppLink: string | null;
   createdAt: string;
   updatedAt: string;
-  integrations: Integrations;
+  integrations: Integration[];
   appIconId: string | null;
   appIcon: BaseImage | null;
   appAdaptiveIconId: string | null;

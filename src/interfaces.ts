@@ -1193,6 +1193,12 @@ export interface Integration extends BaseIntegration {
   publicUrl: string | null;
   publicKey: string | null;
   secretKey: string | null;
+  details: {
+    type: keyof typeof IntegrationType;
+    name: string;
+    description: string;
+    logo: string;
+  };
 }
 
 export interface BaseInterest {

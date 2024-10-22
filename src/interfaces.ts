@@ -2089,10 +2089,6 @@ export enum SubscriptionProductPriceType {
   flat = "flat",
   payWhatYouWant = "payWhatYouWant",
 }
-export enum EventQuestionSearchValueFormat {
-  comma = "comma",
-  multiline = "multiline",
-}
 
 export enum SubscriptionProductPriceInterval {
   day = "day",

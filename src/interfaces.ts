@@ -1677,6 +1677,7 @@ export interface BaseRegistrationQuestionSearchValue {
 
 export interface RegistrationQuestionSearchValue
   extends BaseRegistrationQuestionSearchValue {
+  top?: boolean;
   createdAt: string;
 }
 
@@ -2087,6 +2088,10 @@ export interface StreamInputDetails {
 export enum SubscriptionProductPriceType {
   flat = "flat",
   payWhatYouWant = "payWhatYouWant",
+}
+export enum EventQuestionSearchValueFormat {
+  comma = "comma",
+  multiline = "multiline",
 }
 
 export enum SubscriptionProductPriceInterval {

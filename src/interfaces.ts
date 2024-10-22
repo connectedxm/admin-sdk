@@ -1673,11 +1673,11 @@ export interface RegistrationQuestionResponse
 export interface BaseRegistrationQuestionSearchValue {
   id: number;
   value: string;
+  top: boolean;
 }
 
 export interface RegistrationQuestionSearchValue
   extends BaseRegistrationQuestionSearchValue {
-  top?: boolean;
   createdAt: string;
 }
 

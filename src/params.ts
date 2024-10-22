@@ -29,7 +29,6 @@ import {
   EventAnnouncementFilters,
   EventPassStatus,
   IntegrationType,
-  EventQuestionSearchValueFormat,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -1083,7 +1082,6 @@ export interface EventQuestionSearchInputs {
 
 export interface EventQuestionSearchValuesCreateInputs {
   values?: string;
-  format: EventQuestionSearchValueFormat;
 }
 export interface EventQuestionSearchValueUpdateInputs {
   value?: string | null;

@@ -16,7 +16,7 @@ import { QueryClient } from "@tanstack/react-query";
 export const EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY = (
   eventId: string,
   questionId: string
-) => [...EVENT_QUESTION_QUERY_KEY(eventId, questionId), "CHOICES"];
+) => [...EVENT_QUESTION_QUERY_KEY(eventId, questionId), "SEARCH_VALUES"];
 
 /**
  * @category Setters

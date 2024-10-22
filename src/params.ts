@@ -1080,6 +1080,9 @@ export interface EventQuestionSearchInputs {
   top?: boolean;
 }
 
+export interface EventQuestionSearchValuesCreateInputs {
+  values?: string;
+}
 export interface EventQuestionSearchValueUpdateInputs {
   value?: string | null;
   top?: boolean;

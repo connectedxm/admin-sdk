@@ -6,6 +6,10 @@ import {
 } from "../useConnectedMutation";
 import { SubscriptionProduct, ConnectedXMResponse } from "@src/interfaces";
 import { SubscriptionProductUpdateInputs } from "@src/params";
+import {
+  SUBSCRIPTION_PRODUCTS_QUERY_KEY,
+  SUBSCRIPTION_PRODUCT_QUERY_KEY,
+} from "@src/queries";
 
 /**
  * @category Params
@@ -23,7 +27,7 @@ export interface UpdateSubscriptionProductParams extends MutationParams {
 export const UpdateSubscriptionProduct = async ({
   subscriptionProductId,
   subscriptionProduct,
-  // queryClient,
+  queryClient,
   adminApiParams,
 }: UpdateSubscriptionProductParams): Promise<
   ConnectedXMResponse<SubscriptionProduct>
@@ -33,7 +37,15 @@ export const UpdateSubscriptionProduct = async ({
   const { data } = await connectedXM.put<
     ConnectedXMResponse<SubscriptionProduct>
   >(`/subscription-products/${subscriptionProductId}`, subscriptionProduct);
-  // if(queryClient && data.status === "ok") { }
+
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: SUBSCRIPTION_PRODUCTS_QUERY_KEY(),
+    });
+    queryClient.invalidateQueries({
+      queryKey: SUBSCRIPTION_PRODUCT_QUERY_KEY(subscriptionProductId),
+    });
+  }
   return data;
 };
 

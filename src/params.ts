@@ -471,6 +471,9 @@ export interface EventCouponCreateInputs {
   emailDomains?: string | null;
   ticketId?: string | null;
   managerId?: string | null;
+  applyToPassType?: boolean;
+  applyToAddOns?: boolean;
+  applyToReservation?: boolean;
 }
 
 export interface EventCouponUpdateInputs {
@@ -489,6 +492,9 @@ export interface EventCouponUpdateInputs {
   emailDomains?: string | null;
   ticketId?: string | null;
   registrationId?: string | null;
+  applyToPassType?: boolean;
+  applyToAddOns?: boolean;
+  applyToReservation?: boolean;
 }
 
 export interface EventFaqSectionCreateInputs {

@@ -723,6 +723,9 @@ export interface BaseCoupon {
   emailDomains: string | null;
   ticketId: string | null;
   ticket: BaseEventPassType | null;
+  applyToPassType: boolean;
+  applyToAddOns: boolean;
+  applyToReservation: boolean;
 }
 
 export interface Coupon extends BaseCoupon {

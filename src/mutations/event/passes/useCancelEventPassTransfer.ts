@@ -5,7 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EVENT_PASS_QUERY_KEY } from "@src/queries";
+import { EVENT_ATTENDEE_QUERY_KEY, EVENT_PASS_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
@@ -36,6 +36,9 @@ export const CancelEventPassTransfer = async ({
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_PASS_QUERY_KEY(eventId, passId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_ATTENDEE_QUERY_KEY(eventId, transferId),
     });
   }
   return data;

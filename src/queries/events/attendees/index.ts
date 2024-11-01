@@ -4,3 +4,4 @@ export * from "./useGetEventAttendeePasses";
 export * from "./useGetEventAttendeePayments";
 export * from "./useGetEventAttendees";
 export * from "./useGetEventPassAttendeePasses";
+export * from "./useGetEventAttendeeTransfersLogs";

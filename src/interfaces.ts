@@ -528,6 +528,16 @@ export interface Announcement extends BaseAnnouncement {
   updatedAt: string;
 }
 
+export interface AnnouncementTranslation {
+  id: number;
+  locale: string;
+  title: string | null;
+  html: string | null;
+  message: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface BenefitClick {
   id: string;
   benefitId: string;
@@ -821,6 +831,14 @@ export interface BaseEventEmail {
 }
 
 export interface EventEmail extends BaseEventEmail {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventEmailTranslation {
+  id: number;
+  locale: string;
+  body: string | null;
   createdAt: string;
   updatedAt: string;
 }

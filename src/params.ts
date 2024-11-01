@@ -61,6 +61,7 @@ export interface AccountCreateInputs {
   zip?: string | null;
   internalRefId?: string | null;
   verified?: boolean;
+  locale?: string | null;
 }
 
 export interface AccountUpdateInputs {
@@ -93,6 +94,7 @@ export interface AccountUpdateInputs {
   zip?: string | null;
   internalRefId?: string | null;
   verified?: boolean;
+  locale?: string | null;
 }
 
 export interface ImportCreateInputs {

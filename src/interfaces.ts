@@ -256,6 +256,7 @@ export interface BaseAccount {
   timezone: string | null;
   internalRefId: string | null;
   accountTiers: BaseTier[];
+  locale: string;
   subscriptions: {
     subscriptionProduct: {
       tiers: BaseTier[];

@@ -1,6 +1,10 @@
 {
   "name": "@connectedxm/admin",
+<<<<<<< Updated upstream
   "version": "1.0.10",
+=======
+  "version": "1.0.12",
+>>>>>>> Stashed changes
   "description": "Admin API javascript SDK",
   "author": "ConnectedXM Inc.",
   "repository": {

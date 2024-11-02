@@ -256,6 +256,7 @@ export interface BaseAccount {
   timezone: string | null;
   internalRefId: string | null;
   accountTiers: BaseTier[];
+  locale: string;
   subscriptions: {
     subscriptionProduct: {
       tiers: BaseTier[];
@@ -525,6 +526,16 @@ export interface Announcement extends BaseAnnouncement {
   user: BaseUser | null;
   message: string | null;
   filters: EventAnnouncementFilters | null;
+  updatedAt: string;
+}
+
+export interface AnnouncementTranslation {
+  id: number;
+  locale: string;
+  title: string | null;
+  html: string | null;
+  message: string | null;
+  createdAt: string;
   updatedAt: string;
 }
 
@@ -821,6 +832,14 @@ export interface BaseEventEmail {
 }
 
 export interface EventEmail extends BaseEventEmail {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventEmailTranslation {
+  id: number;
+  locale: string;
+  body: string | null;
   createdAt: string;
   updatedAt: string;
 }

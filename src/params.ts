@@ -61,6 +61,7 @@ export interface AccountCreateInputs {
   zip?: string | null;
   internalRefId?: string | null;
   verified?: boolean;
+  locale?: string | null;
 }
 
 export interface AccountUpdateInputs {
@@ -93,6 +94,7 @@ export interface AccountUpdateInputs {
   zip?: string | null;
   internalRefId?: string | null;
   verified?: boolean;
+  locale?: string | null;
 }
 
 export interface ImportCreateInputs {
@@ -178,6 +180,11 @@ export interface AnnouncementUpdateInputs {
   email?: boolean;
   push?: boolean;
   filters?: EventAnnouncementFilters | null;
+}
+
+export interface AnnouncementTranslationUpdateInputs {
+  title?: string | null;
+  html?: string | null;
 }
 
 export interface BenefitCreateInputs {
@@ -549,6 +556,10 @@ export interface EventCreateInputs {
 export interface EventEmailUpdateInputs {
   body?: string | null;
   replyTo?: string | null;
+}
+
+export interface EventEmailTranslationUpdateInputs {
+  body?: string | null;
 }
 
 export interface EventFaqSectionQuestionCreateInputs {

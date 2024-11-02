@@ -182,6 +182,11 @@ export interface AnnouncementUpdateInputs {
   filters?: EventAnnouncementFilters | null;
 }
 
+export interface AnnouncementTranslationUpdateInputs {
+  title?: string | null;
+  html?: string | null;
+}
+
 export interface BenefitCreateInputs {
   link: string;
   title: string;
@@ -551,6 +556,10 @@ export interface EventCreateInputs {
 export interface EventEmailUpdateInputs {
   body?: string | null;
   replyTo?: string | null;
+}
+
+export interface EventEmailTranslationUpdateInputs {
+  body?: string | null;
 }
 
 export interface EventFaqSectionQuestionCreateInputs {

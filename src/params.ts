@@ -616,7 +616,7 @@ export interface EventPageUpdateInputs {
 }
 
 export interface EventPassCreateInputs {
-  status?: Exclude<EventPassStatus, EventPassStatus.canceled> | null;
+  status?: EventPassStatus | null;
   location?: string | null;
   usedAt?: string | null;
   ticketId?: string | null;
@@ -625,7 +625,7 @@ export interface EventPassCreateInputs {
 }
 
 export interface EventPassUpdateInputs {
-  status?: Exclude<EventPassStatus, EventPassStatus.canceled> | null;
+  status?: EventPassStatus | null;
   location?: string | null;
   usedAt?: string | null;
   ticketId?: string | null;

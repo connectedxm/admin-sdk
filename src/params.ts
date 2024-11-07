@@ -564,7 +564,7 @@ export interface EventEmailTranslationUpdateInputs {
 
 export interface EventFaqSectionQuestionCreateInputs {
   question: string;
-  answer: string;
+  answer?: string;
   slug?: string | null;
   priority?: number | string | null;
   visible?: boolean;

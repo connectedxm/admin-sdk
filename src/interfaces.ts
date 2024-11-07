@@ -1008,7 +1008,7 @@ export interface BaseFaq {
   slug: string;
   visible: boolean;
   question: string;
-  answer: string;
+  answer?: string;
 }
 
 export interface Faq extends BaseFaq {

@@ -829,6 +829,7 @@ export interface BaseEventEmail {
   body: string;
   replyTo: string | null;
   enabled: boolean;
+  calendarFile: boolean;
 }
 
 export interface EventEmail extends BaseEventEmail {

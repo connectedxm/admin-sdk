@@ -1138,6 +1138,7 @@ export interface ReportCreateInputs {
   columns?: string | null;
   charts?: string | null;
   advancedFilter?: string | null;
+  shared?: boolean;
 }
 
 export interface ReportUpdateInputs {
@@ -1147,6 +1148,7 @@ export interface ReportUpdateInputs {
   columns?: string | null;
   charts?: string | null;
   advancedFilter?: string | null;
+  shared?: boolean;
 }
 
 export interface EventSectionCreateInputs {

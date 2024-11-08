@@ -1828,6 +1828,7 @@ export interface Report {
   user: BaseUser | null;
   colDefs: any;
   rowData: any[];
+  shared: boolean;
   createdAt: string;
   updatedAt: string;
 }

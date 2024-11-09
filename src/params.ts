@@ -557,6 +557,7 @@ export interface EventEmailUpdateInputs {
   body?: string | null;
   replyTo?: string | null;
   calendarFile?: boolean;
+  enabled?: boolean;
 }
 
 export interface EventEmailTranslationUpdateInputs {

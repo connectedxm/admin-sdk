@@ -829,6 +829,7 @@ export interface BaseEventEmail {
   body: string;
   replyTo: string | null;
   enabled: boolean;
+  calendarFile: boolean;
 }
 
 export interface EventEmail extends BaseEventEmail {
@@ -1828,6 +1829,8 @@ export interface Report {
   user: BaseUser | null;
   colDefs: any;
   rowData: any[];
+  shared: boolean;
+  sharedUsers: BaseUser[];
   createdAt: string;
   updatedAt: string;
 }

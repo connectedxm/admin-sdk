@@ -556,6 +556,7 @@ export interface EventCreateInputs {
 export interface EventEmailUpdateInputs {
   body?: string | null;
   replyTo?: string | null;
+  calendarFile?: boolean;
 }
 
 export interface EventEmailTranslationUpdateInputs {
@@ -1138,6 +1139,7 @@ export interface ReportCreateInputs {
   columns?: string | null;
   charts?: string | null;
   advancedFilter?: string | null;
+  shared?: boolean;
 }
 
 export interface ReportUpdateInputs {
@@ -1147,6 +1149,7 @@ export interface ReportUpdateInputs {
   columns?: string | null;
   charts?: string | null;
   advancedFilter?: string | null;
+  shared?: boolean;
 }
 
 export interface EventSectionCreateInputs {

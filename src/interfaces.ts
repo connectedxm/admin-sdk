@@ -826,7 +826,7 @@ export enum EventEmailType {
 export interface BaseEventEmail {
   type: EventEmailType;
   eventId: string;
-  body: string;
+  body: string | null;
   replyTo: string | null;
   enabled: boolean;
   calendarFile: boolean;

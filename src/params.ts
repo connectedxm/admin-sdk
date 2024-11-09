@@ -556,6 +556,7 @@ export interface EventCreateInputs {
 export interface EventEmailUpdateInputs {
   body?: string | null;
   replyTo?: string | null;
+  calendarFile?: boolean;
 }
 
 export interface EventEmailTranslationUpdateInputs {

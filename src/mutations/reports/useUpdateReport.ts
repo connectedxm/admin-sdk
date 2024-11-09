@@ -44,6 +44,18 @@ export const UpdateReport = async ({
         data.data.id.toString()
       ),
     });
+    queryClient.setQueryData(
+      REPORT_QUERY_KEY(data?.data?.parent?.type, data.data.id.toString()),
+      (originalData: ConnectedXMResponse<Report>) => {
+        if (
+          typeof report.shared === "boolean" &&
+          report.shared !== originalData.data.shared
+        ) {
+          originalData.data.shared = report.shared;
+        }
+        return originalData;
+      }
+    );
   }
 
   return data;

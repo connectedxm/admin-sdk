@@ -256,6 +256,7 @@ export interface BaseAccount {
   timezone: string | null;
   internalRefId: string | null;
   accountTiers: BaseTier[];
+  locale: string;
   subscriptions: {
     subscriptionProduct: {
       tiers: BaseTier[];
@@ -525,6 +526,16 @@ export interface Announcement extends BaseAnnouncement {
   user: BaseUser | null;
   message: string | null;
   filters: EventAnnouncementFilters | null;
+  updatedAt: string;
+}
+
+export interface AnnouncementTranslation {
+  id: number;
+  locale: string;
+  title: string | null;
+  html: string | null;
+  message: string | null;
+  createdAt: string;
   updatedAt: string;
 }
 
@@ -815,12 +826,21 @@ export enum EventEmailType {
 export interface BaseEventEmail {
   type: EventEmailType;
   eventId: string;
-  body: string;
+  body: string | null;
   replyTo: string | null;
   enabled: boolean;
+  calendarFile: boolean;
 }
 
 export interface EventEmail extends BaseEventEmail {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventEmailTranslation {
+  id: number;
+  locale: string;
+  body: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -989,7 +1009,7 @@ export interface BaseFaq {
   slug: string;
   visible: boolean;
   question: string;
-  answer: string;
+  answer?: string;
 }
 
 export interface Faq extends BaseFaq {
@@ -1809,6 +1829,8 @@ export interface Report {
   user: BaseUser | null;
   colDefs: any;
   rowData: any[];
+  shared: boolean;
+  sharedUsers: BaseUser[];
   createdAt: string;
   updatedAt: string;
 }

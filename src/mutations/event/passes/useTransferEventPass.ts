@@ -5,7 +5,12 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EVENT_PASS_QUERY_KEY } from "@src/queries";
+import {
+  EVENT_ATTENDEE_QUERY_KEY,
+  EVENT_ATTENDEE_TRANSFER_LOGS_QUERY_KEY,
+  EVENT_PASS_QUERY_KEY,
+  EVENT_PASS_TRANSFER_LOGS_QUERY_KEY,
+} from "@src/queries";
 
 /**
  * @category Params
@@ -15,6 +20,7 @@ export interface TransferEventPassParams extends MutationParams {
   eventId: string;
   passId: string;
   accountId: string;
+  attendeeId?: string;
 }
 
 /**
@@ -25,6 +31,7 @@ export const TransferEventPass = async ({
   eventId,
   passId,
   accountId,
+  attendeeId,
   adminApiParams,
   queryClient,
 }: TransferEventPassParams): Promise<ConnectedXMResponse<null>> => {
@@ -35,9 +42,20 @@ export const TransferEventPass = async ({
   );
 
   if (queryClient && data.status === "ok") {
-    queryClient.removeQueries({
+    queryClient.invalidateQueries({
       queryKey: EVENT_PASS_QUERY_KEY(eventId, passId),
     });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_PASS_TRANSFER_LOGS_QUERY_KEY(eventId, passId),
+    });
+    if (attendeeId) {
+      queryClient.invalidateQueries({
+        queryKey: EVENT_ATTENDEE_QUERY_KEY(eventId, attendeeId),
+      });
+      queryClient.invalidateQueries({
+        queryKey: EVENT_ATTENDEE_TRANSFER_LOGS_QUERY_KEY(eventId, attendeeId),
+      });
+    }
   }
 
   return data;

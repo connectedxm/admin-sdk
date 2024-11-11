@@ -1,6 +1,5 @@
 export * from "./useAddEventPassAddOn";
 export * from "./useCancelEventPass";
-export * from "./useCancelEventPassTransfer";
 export * from "./useCreateEventPass";
 export * from "./useDeleteEventPass";
 export * from "./useRemoveEventPassAddOn";

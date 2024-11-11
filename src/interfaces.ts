@@ -584,24 +584,6 @@ export interface BenefitTranslation {
   updatedAt: string;
 }
 
-export type CognitoUserStatus =
-  | "UNCONFIRMED"
-  | "CONFIRMED"
-  | "ARCHIVED"
-  | "COMPROMISED"
-  | "RESET_REQUIRED"
-  | "FORCE_CHANGE_PASSWORD"
-  | "DISABLED"
-  | "UNKNOWN";
-
-export interface CognitoUser {
-  username: string;
-  status: CognitoUserStatus;
-  enabled: boolean;
-  email: string;
-  emailVerified: boolean;
-}
-
 export interface BaseChannelContent {
   channelId: string;
   id: string;
@@ -2604,3 +2586,15 @@ export interface BaseSchedule {
 }
 
 export interface Schedule extends BaseSchedule {}
+
+export interface BaseCognitoUser {
+  cognitoUsername: string;
+  provider: string;
+  updatedAt: string;
+  createdAt: string;
+}
+
+export interface CognitoUser extends BaseCognitoUser {
+  sub: string;
+  userPoolId: string;
+}

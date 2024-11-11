@@ -6,6 +6,7 @@ import {
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
 import {
+  EVENT_ATTENDEE_PASSES_QUERY_KEY,
   EVENT_ATTENDEE_QUERY_KEY,
   EVENT_ATTENDEE_TRANSFER_LOGS_QUERY_KEY,
   EVENT_PASS_QUERY_KEY,
@@ -51,6 +52,11 @@ export const TransferEventPass = async ({
     if (attendeeId) {
       queryClient.invalidateQueries({
         queryKey: EVENT_ATTENDEE_QUERY_KEY(eventId, attendeeId),
+      });
+      console.log("SDK", EVENT_ATTENDEE_PASSES_QUERY_KEY(eventId, attendeeId));
+      queryClient.invalidateQueries({
+        queryKey: EVENT_ATTENDEE_PASSES_QUERY_KEY(eventId, attendeeId),
+        exact: false,
       });
       queryClient.invalidateQueries({
         queryKey: EVENT_ATTENDEE_TRANSFER_LOGS_QUERY_KEY(eventId, attendeeId),

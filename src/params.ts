@@ -67,7 +67,6 @@ export interface AccountCreateInputs {
 export interface AccountUpdateInputs {
   accountType?: keyof typeof AccountType | null;
   featured?: boolean;
-  email?: string | null;
   firstName?: string | null;
   lastName?: string | null;
   imageId?: string | null;

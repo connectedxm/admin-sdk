@@ -2597,4 +2597,8 @@ export interface BaseCognitoUser {
 export interface CognitoUser extends BaseCognitoUser {
   sub: string;
   userPoolId: string;
+  enabled: boolean;
+  status: string;
+  email: string;
+  verified: string;
 }

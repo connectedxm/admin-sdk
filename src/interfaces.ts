@@ -2280,6 +2280,20 @@ export interface BaseEventPassTypePriceSchedule {
 export interface EventPassTypePriceSchedule
   extends BaseEventPassTypePriceSchedule {}
 
+export interface BaseEventPassTypeRefundSchedule {
+  id: string;
+  ticketId: string;
+  percentage: number;
+  name: string | null;
+  startDate: string;
+  endDate: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventPassTypeRefundSchedule
+  extends BaseEventPassTypeRefundSchedule {}
+
 export interface EventPassType extends BaseEventPassType {
   sortOrder: number;
   event: BaseEvent;

@@ -2600,5 +2600,5 @@ export interface CognitoUser extends BaseCognitoUser {
   enabled: boolean;
   status: string;
   email: string;
-  verified: string;
+  verified: boolean;
 }

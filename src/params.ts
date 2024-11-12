@@ -1542,18 +1542,16 @@ export interface PassTypePriceScheduleUpdateInputs {
 }
 
 export interface PassTypeRefundScheduleCreateInputs {
-  ticketId?: string | null;
-  percentage?: string | null;
+  percentage: number;
   name?: string | null;
-  startDate?: string | null;
-  endDate?: string | null;
+  startDate: string;
+  endDate: string;
 }
 export interface PassTypeRefundScheduleUpdateInputs {
-  ticketId?: string | null;
-  percentage?: string | null;
+  percentage?: number;
   name?: string | null;
-  startDate?: string | null;
-  endDate?: string | null;
+  startDate?: string;
+  endDate?: string;
 }
 
 export interface IntegrationCreateInputs {

@@ -1541,6 +1541,19 @@ export interface PassTypePriceScheduleUpdateInputs {
   endDate?: string | null;
 }
 
+export interface PassTypeRefundScheduleCreateInputs {
+  percentage: number;
+  name?: string | null;
+  startDate: string;
+  endDate: string;
+}
+export interface PassTypeRefundScheduleUpdateInputs {
+  percentage?: number;
+  name?: string | null;
+  startDate?: string;
+  endDate?: string;
+}
+
 export interface IntegrationCreateInputs {
   type: keyof typeof IntegrationType;
   enabled?: boolean;

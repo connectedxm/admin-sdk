@@ -1499,9 +1499,9 @@ export interface EventPass extends BaseEventPass {
   addOns: BaseEventAddOn[];
   registrationId: string;
   registration: BaseEventAttendee;
+  payerId?: string;
+  payer?: BaseAccount;
 }
-
-// here
 
 export interface PushDevice {
   id: string;

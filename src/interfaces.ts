@@ -1491,6 +1491,8 @@ export interface BaseEventPass {
   reservationStart: string | null;
   reservationEnd: string | null;
   reservationSectionLocation: BaseEventReservationSectionLocation;
+  couponId: string | null;
+  coupon: BaseCoupon | null;
   createdAt: string;
   updatedAt: string;
 }

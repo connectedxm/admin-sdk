@@ -2282,9 +2282,8 @@ export interface EventPassTypePriceSchedule
 
 export interface BaseEventPassTypeRefundSchedule {
   id: string;
-  ticketId: string;
+  passTypeId: string;
   percentage: number;
-  name: string | null;
   startDate: string;
   endDate: string;
   createdAt: string;

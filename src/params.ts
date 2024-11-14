@@ -20,7 +20,6 @@ import {
   ImageType,
   FileSource,
   ModulePermissions,
-  OrganizationActionType,
   AuthLayout,
   DefaultAuthAction,
   BaseSupportTicketNote,
@@ -1518,12 +1517,9 @@ export interface VideoUpdateInputs {
 }
 
 export interface OrganizationModuleUpdateInputs {
-  enabled?: boolean;
   requireAuth?: boolean;
-}
-export interface OrganizationModuleActionUpdateInputs {
   enabled?: boolean;
-  actionType?: OrganizationActionType;
+  editable?: boolean;
 }
 
 export interface PassTypePriceScheduleCreateInputs {

@@ -48,10 +48,7 @@ export const useConnectedMutation = <
     useConnectedXM();
   const queryClient = useQueryClient();
 
-  const { allowed, enabled } = usePermission(
-    permission?.domain,
-    permission?.type
-  );
+  const { allowed } = usePermission(permission?.domain, permission?.type);
 
   return useMutation<
     TResponseData,
@@ -60,13 +57,7 @@ export const useConnectedMutation = <
   >({
     mutationFn: (data) => {
       if (!!permission?.domain && !!permission.type) {
-        if (!enabled) {
-          throw Error(
-            `${capitalize(permission.type.toString())} ${
-              permission.domain
-            } feature not enabled`
-          );
-        } else if (!allowed) {
+        if (!allowed) {
           throw Error(
             `Missing ${permission.type} ${permission.domain} permission`
           );
@@ -90,5 +81,3 @@ export const useConnectedMutation = <
     },
   });
 };
-
-const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);

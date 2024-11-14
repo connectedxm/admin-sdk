@@ -17,9 +17,9 @@ import {
  * @category Params
  * @group Organization
  */
-export interface UpdateOrganizationModulesParams extends MutationParams {
+export interface UpdateOrganizationModuleParams extends MutationParams {
   module: OrganizationModuleUpdateInputs;
-  moduleType: OrganizationModuleType;
+  moduleType: keyof typeof OrganizationModuleType;
 }
 
 /**
@@ -31,7 +31,7 @@ export const UpdateOrganizationModule = async ({
   moduleType,
   adminApiParams,
   queryClient,
-}: UpdateOrganizationModulesParams): Promise<
+}: UpdateOrganizationModuleParams): Promise<
   ConnectedXMResponse<OrganizationModule>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
@@ -52,17 +52,17 @@ export const UpdateOrganizationModule = async ({
  * @category Mutations
  * @group Organization
  */
-export const useUpdateOrganizationModules = (
+export const useUpdateOrganizationModule = (
   options: Omit<
     ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof UpdateOrganizationModule>>,
-      Omit<UpdateOrganizationModulesParams, "queryClient" | "adminApiParams">
+      Omit<UpdateOrganizationModuleParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    UpdateOrganizationModulesParams,
+    UpdateOrganizationModuleParams,
     Awaited<ReturnType<typeof UpdateOrganizationModule>>
   >(UpdateOrganizationModule, options);
 };

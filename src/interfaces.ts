@@ -1315,6 +1315,7 @@ export type PermissionDomain = keyof Omit<
 export type PermissionType = "read" | "create" | "update" | "del";
 
 export interface ModulePermissions {
+  enabled: boolean;
   read: boolean;
   create: boolean;
   update: boolean;
@@ -1325,26 +1326,25 @@ export interface OrganizationMembership {
   organizationId: string;
   userId: string;
   user: BaseUser;
-  // PERMISSIONS
+  // ADMIN
   org: ModulePermissions;
   users: ModulePermissions;
-  accounts: ModulePermissions;
-  activities: ModulePermissions;
-  advertisements: ModulePermissions;
-  announcements: ModulePermissions;
-  groups: ModulePermissions;
-  contents: ModulePermissions;
-  events: ModulePermissions;
-  storage: ModulePermissions;
-  interests: ModulePermissions;
-  levels: ModulePermissions;
-  supportTickets: ModulePermissions;
-  benefits: ModulePermissions;
-  streams: ModulePermissions;
   reports: ModulePermissions;
+  // MODULES
+  activities: ModulePermissions;
+  events: ModulePermissions;
+  groups: ModulePermissions;
+  accounts: ModulePermissions;
+  channels: ModulePermissions;
+  threads: ModulePermissions;
+  storage: ModulePermissions;
+  support: ModulePermissions;
+  sponsors: ModulePermissions;
+  benefits: ModulePermissions;
+  interests: ModulePermissions;
+  advertisements: ModulePermissions;
   subscriptions: ModulePermissions;
   invoices: ModulePermissions;
-  threads: ModulePermissions;
   // LOGS
   createdAt: string;
   updatedAt: string;

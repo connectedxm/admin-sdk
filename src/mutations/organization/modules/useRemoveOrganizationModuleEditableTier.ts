@@ -21,7 +21,7 @@ import {
  */
 export interface RemoveOrganizationModuleEditableTierParams
   extends MutationParams {
-  moduleType: OrganizationModuleType;
+  moduleType: keyof typeof OrganizationModuleType;
   tierId: string;
 }
 

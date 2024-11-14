@@ -20,7 +20,7 @@ import {
  * @group Organization
  */
 export interface AddOrganizationModuleEnabledTierParams extends MutationParams {
-  moduleType: OrganizationModuleType;
+  moduleType: keyof typeof OrganizationModuleType;
   tierId: string;
 }
 

@@ -1486,6 +1486,8 @@ export interface EventPass extends BaseEventPass {
   registration: BaseEventAttendee;
   payerId?: string;
   payer?: BaseAccount;
+  amtPaid: number;
+  amtRefunded: number;
 }
 
 export interface PushDevice {
@@ -2267,9 +2269,8 @@ export interface EventPassTypePriceSchedule
 
 export interface BaseEventPassTypeRefundSchedule {
   id: string;
-  ticketId: string;
+  passTypeId: string;
   percentage: number;
-  name: string | null;
   startDate: string;
   endDate: string;
   createdAt: string;

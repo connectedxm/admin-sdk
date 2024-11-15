@@ -37,9 +37,7 @@ export const UpdateOrganizationModule = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<
     ConnectedXMResponse<OrganizationModule>
-  >(`/organization/modules/${moduleType}`, {
-    module,
-  });
+  >(`/organization/modules/${moduleType}`, module);
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: ORGANIZATION_MODULES_QUERY_KEY(),

@@ -13,13 +13,14 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "vitest",
-    "lint": "yarn tsc && eslint src/**/*.ts",
+    "lint": "npm run tsc && eslint src/**/*.ts",
     "test": "vitest run",
     "build": "tsup src/index.ts --format cjs,esm --dts",
-    "release": "yarn run lint && yarn run test && yarn run build",
-    "local": "yarn run release && yarn pack",
+    "release": "npm run lint && npm run test && npm run build",
+    "local": "npm run release && npm pack",
     "document": "typedoc --plugin typedoc-material-theme",
-    "exports": "tsx scripts/addExports.ts"
+    "exports": "tsx scripts/addExports.ts",
+    "tsc": "tsc"
   },
   "dependencies": {
     "axios": "^1.6.5",

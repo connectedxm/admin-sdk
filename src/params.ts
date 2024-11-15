@@ -1540,13 +1540,11 @@ export interface PassTypePriceScheduleUpdateInputs {
 
 export interface PassTypeRefundScheduleCreateInputs {
   percentage: number;
-  name?: string | null;
   startDate: string;
   endDate: string;
 }
 export interface PassTypeRefundScheduleUpdateInputs {
   percentage?: number;
-  name?: string | null;
   startDate?: string;
   endDate?: string;
 }

@@ -65,7 +65,7 @@ export const useUpdateLevel = (
     UpdateLevelParams,
     Awaited<ReturnType<typeof UpdateLevel>>
   >(UpdateLevel, options, {
-    domain: "levels",
+    domain: "sponsors",
     type: "update",
   });
 };

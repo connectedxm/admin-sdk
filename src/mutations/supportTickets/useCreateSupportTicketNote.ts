@@ -56,7 +56,7 @@ export const useCreateSupportTicketNote = (
     CreateSupportTicketNoteParams,
     Awaited<ReturnType<typeof CreateSupportTicketNote>>
   >(CreateSupportTicketNote, options, {
-    domain: "supportTickets",
+    domain: "support",
     type: "update",
   });
 };

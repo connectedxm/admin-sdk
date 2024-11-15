@@ -53,7 +53,7 @@ export const useDeleteChannel = (
     DeleteChannelParams,
     Awaited<ReturnType<typeof DeleteChannel>>
   >(DeleteChannel, options, {
-    domain: "contents",
+    domain: "channels",
     type: "del",
   });
 };

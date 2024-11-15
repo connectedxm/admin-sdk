@@ -69,7 +69,7 @@ export const useUpdateChannelSubscriber = (
     UpdateChannelSubscriberParams,
     Awaited<ReturnType<typeof UpdateChannelSubscriber>>
   >(UpdateChannelSubscriber, options, {
-    domain: "contents",
+    domain: "channels",
     type: "update",
   });
 };

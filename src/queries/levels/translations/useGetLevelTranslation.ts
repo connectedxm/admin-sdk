@@ -73,6 +73,6 @@ export const useGetLevelTranslation = (
       enabled:
         !!levelId && !!locale && locale !== "en" && (options.enabled ?? true),
     },
-    "levels"
+    "sponsors"
   );
 };

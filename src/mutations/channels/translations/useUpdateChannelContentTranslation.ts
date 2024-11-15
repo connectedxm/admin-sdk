@@ -74,7 +74,7 @@ export const useUpdateChannelContentTranslation = (
     UpdateChannelContentTranslationParams,
     Awaited<ReturnType<typeof UpdateChannelContentTranslation>>
   >(UpdateChannelContentTranslation, options, {
-    domain: "contents",
+    domain: "channels",
     type: "update",
   });
 };

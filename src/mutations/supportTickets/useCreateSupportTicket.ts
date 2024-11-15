@@ -57,7 +57,7 @@ export const useCreateSupportTicket = (
     CreateSupportTicketParams,
     Awaited<ReturnType<typeof CreateSupportTicket>>
   >(CreateSupportTicket, options, {
-    domain: "supportTickets",
+    domain: "support",
     type: "update",
   });
 };

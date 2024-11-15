@@ -75,7 +75,7 @@ export const useCreateLevelTranslation = (
     CreateLevelTranslationParams,
     Awaited<ReturnType<typeof CreateLevelTranslation>>
   >(CreateLevelTranslation, options, {
-    domain: "levels",
+    domain: "sponsors",
     type: "update",
   });
 };

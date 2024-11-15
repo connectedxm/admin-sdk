@@ -51,7 +51,7 @@ const checkEnabled = (permissions: ModulePermissions, type: PermissionType) => {
   let enabled = true;
 
   if (permissions && !permissions[type]) {
-    enabled = permissions[type];
+    enabled = permissions.enabled;
   }
 
   return enabled;

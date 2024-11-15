@@ -75,6 +75,6 @@ export const useGetFeaturedChannels = (
     (params: InfiniteQueryParams) => GetFeaturedChannels(params),
     params,
     options,
-    "contents"
+    "channels"
   );
 };

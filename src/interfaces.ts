@@ -34,6 +34,7 @@ export enum OrganizationModuleType {
 }
 
 export interface BaseOrganizationModule {
+  id: string;
   moduleType: OrganizationModuleType;
   superEnabled: boolean;
   requireAuth: boolean;
@@ -44,6 +45,8 @@ export interface BaseOrganizationModule {
 export interface OrganizationModule extends BaseOrganizationModule {
   enabledTiers: BaseTier[];
   editableTiers: BaseTier[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 export enum Currency {
@@ -1345,6 +1348,7 @@ export interface OrganizationMembership {
   advertisements: ModulePermissions;
   subscriptions: ModulePermissions;
   invoices: ModulePermissions;
+  announcements: ModulePermissions;
   // LOGS
   createdAt: string;
   updatedAt: string;

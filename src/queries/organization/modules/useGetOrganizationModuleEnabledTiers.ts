@@ -1,8 +1,8 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
   ConnectedXMResponse,
-  OrganizationModule,
   OrganizationModuleType,
+  Tier,
 } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import {
@@ -47,7 +47,7 @@ export const GetOrganizationModuleEnabledTiers = async ({
   moduleType,
   adminApiParams,
 }: GetOrganizationModuleEnabledTiersProps): Promise<
-  ConnectedXMResponse<OrganizationModule[]>
+  ConnectedXMResponse<Tier[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(

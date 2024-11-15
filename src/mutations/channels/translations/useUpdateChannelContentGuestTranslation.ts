@@ -87,7 +87,7 @@ export const useUpdateChannelContentGuestTranslation = (
     UpdateChannelContentGuestTranslationParams,
     Awaited<ReturnType<typeof UpdateChannelContentGuestTranslation>>
   >(UpdateChannelContentGuestTranslation, options, {
-    domain: "contents",
+    domain: "channels",
     type: "update",
   });
 };

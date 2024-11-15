@@ -58,7 +58,7 @@ export const useAddChannelSubscriber = (
     AddChannelsubscriberParams,
     Awaited<ReturnType<typeof AddChannelSubscriber>>
   >(AddChannelSubscriber, options, {
-    domain: "contents",
+    domain: "channels",
     type: "update",
   });
 };

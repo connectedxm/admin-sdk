@@ -65,7 +65,7 @@ export const useUpdateChannelContent = (
     UpdateChannelContentParams,
     Awaited<ReturnType<typeof UpdateChannelContent>>
   >(UpdateChannelContent, options, {
-    domain: "contents",
+    domain: "channels",
     type: "update",
   });
 };

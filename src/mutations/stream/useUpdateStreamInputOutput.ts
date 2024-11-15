@@ -64,7 +64,7 @@ export const useUpdateStreamInputOutput = (
     UpdateStreamInputOutputParams,
     Awaited<ReturnType<typeof UpdateStreamInputOutput>>
   >(UpdateStreamInputOutput, options, {
-    domain: "streams",
+    domain: "events",
     type: "update",
   });
 };

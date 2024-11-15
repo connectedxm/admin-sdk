@@ -67,6 +67,6 @@ export const useGetLevels = (
     (params: InfiniteQueryParams) => GetLevels(params),
     params,
     options,
-    "levels"
+    "sponsors"
   );
 };

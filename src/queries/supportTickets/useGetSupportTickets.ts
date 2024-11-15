@@ -88,6 +88,6 @@ export const useGetSupportTickets = (
       }),
     params,
     options,
-    "supportTickets"
+    "support"
   );
 };

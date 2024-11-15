@@ -48,10 +48,11 @@ const checkAllowed = (permissions: ModulePermissions, type: PermissionType) => {
 };
 
 const checkEnabled = (permissions: ModulePermissions, type: PermissionType) => {
-  return (
-    (typeof permissions.superEnabled === "undefined" ||
-      permissions.superEnabled === true) &&
-    (typeof permissions[`${type}SuperEnabled`] === "undefined" ||
-      permissions[`${type}SuperEnabled`] === true)
-  );
+  let enabled = true;
+
+  if (permissions && !permissions[type]) {
+    enabled = permissions.enabled;
+  }
+
+  return enabled;
 };

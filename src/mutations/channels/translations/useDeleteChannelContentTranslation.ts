@@ -71,7 +71,7 @@ export const useDeleteChannelContentTranslation = (
     DeleteChannelContentTranslationParams,
     Awaited<ReturnType<typeof DeleteChannelContentTranslation>>
   >(DeleteChannelContentTranslation, options, {
-    domain: "contents",
+    domain: "channels",
     type: "update",
   });
 };

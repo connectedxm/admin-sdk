@@ -69,6 +69,6 @@ export const useGetStreamInputs = (
     (params: InfiniteQueryParams) => GetStreamInputs(params),
     params,
     options,
-    "streams"
+    "events"
   );
 };

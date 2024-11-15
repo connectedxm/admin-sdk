@@ -68,7 +68,7 @@ export const useUpdateLevelTranslation = (
     UpdateLevelTranslationParams,
     Awaited<ReturnType<typeof UpdateLevelTranslation>>
   >(UpdateLevelTranslation, options, {
-    domain: "levels",
+    domain: "sponsors",
     type: "update",
   });
 };

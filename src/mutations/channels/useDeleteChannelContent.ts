@@ -62,7 +62,7 @@ export const useDeleteChannelContent = (
     DeleteChannelContentParams,
     Awaited<ReturnType<typeof DeleteChannelContent>>
   >(DeleteChannelContent, options, {
-    domain: "contents",
+    domain: "channels",
     type: "update",
   });
 };

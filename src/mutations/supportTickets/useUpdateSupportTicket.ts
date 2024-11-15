@@ -60,7 +60,7 @@ export const useUpdateSupportTicket = (
     UpdateSupportTicketParams,
     Awaited<ReturnType<typeof UpdateSupportTicket>>
   >(UpdateSupportTicket, options, {
-    domain: "supportTickets",
+    domain: "support",
     type: "update",
   });
 };

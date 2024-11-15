@@ -57,7 +57,7 @@ export const useDeleteSupportTicket = (
     DeleteSupportTicketParams,
     Awaited<ReturnType<typeof DeleteSupportTicket>>
   >(DeleteSupportTicket, options, {
-    domain: "supportTickets",
+    domain: "support",
     type: "update",
   });
 };

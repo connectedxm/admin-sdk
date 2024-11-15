@@ -55,7 +55,7 @@ export const useDeleteSupportTicketNote = (
     DeleteSupportTicketNoteParams,
     Awaited<ReturnType<typeof DeleteSupportTicketNote>>
   >(DeleteSupportTicketNote, options, {
-    domain: "supportTickets",
+    domain: "support",
     type: "update",
   });
 };

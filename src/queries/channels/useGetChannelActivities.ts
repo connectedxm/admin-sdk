@@ -86,6 +86,6 @@ export const useGetChannelActivities = (
       ...options,
       enabled: !!groupId && (options.enabled ?? true),
     },
-    "contents"
+    "channels"
   );
 };

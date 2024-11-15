@@ -52,7 +52,7 @@ export const useDeleteStreamInput = (
     DeleteStreamInputParams,
     Awaited<ReturnType<typeof DeleteStreamInput>>
   >(DeleteStreamInput, options, {
-    domain: "streams",
+    domain: "events",
     type: "del",
   });
 };

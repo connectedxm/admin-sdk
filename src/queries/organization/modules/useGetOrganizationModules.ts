@@ -42,10 +42,10 @@ export const GetOrganizationModules = async ({
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/organization/modules`);
-  console.log({ data });
 
   return data;
 };
+
 /**
  * @category Hooks
  * @group Organization

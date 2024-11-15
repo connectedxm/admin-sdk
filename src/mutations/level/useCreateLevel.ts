@@ -54,7 +54,7 @@ export const useCreateLevel = (
     CreateLevelParams,
     Awaited<ReturnType<typeof CreateLevel>>
   >(CreateLevel, options, {
-    domain: "levels",
+    domain: "sponsors",
     type: "create",
   });
 };

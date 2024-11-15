@@ -2,7 +2,6 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 import {
   ConnectedXMResponse,
-  OrganizationActionType,
   OrganizationModule,
   OrganizationModuleType,
 } from "@src/interfaces";
@@ -20,9 +19,8 @@ import {
  * @category Params
  * @group Organization
  */
-export interface AddOrganizationModuleActionTierParams extends MutationParams {
-  moduleType: OrganizationModuleType;
-  actionType: OrganizationActionType;
+export interface AddOrganizationModuleEnabledTierParams extends MutationParams {
+  moduleType: keyof typeof OrganizationModuleType;
   tierId: string;
 }
 
@@ -30,21 +28,18 @@ export interface AddOrganizationModuleActionTierParams extends MutationParams {
  * @category Methods
  * @group Organization
  */
-export const AddOrganizationModuleActionTier = async ({
+export const AddOrganizationModuleEnabledTier = async ({
   moduleType,
-  actionType,
   tierId,
   adminApiParams,
   queryClient,
-}: AddOrganizationModuleActionTierParams): Promise<
+}: AddOrganizationModuleEnabledTierParams): Promise<
   ConnectedXMResponse<OrganizationModule>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<
     ConnectedXMResponse<OrganizationModule>
-  >(
-    `/organization/modules/${moduleType}/actions/${actionType}/tiers/${tierId}`
-  );
+  >(`/organization/modules/${moduleType}/enabledTiers/${tierId}`);
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
@@ -54,6 +49,7 @@ export const AddOrganizationModuleActionTier = async ({
       queryKey: ORGANIZATION_MODULE_QUERY_KEY(moduleType),
     });
   }
+
   return data;
 };
 
@@ -61,12 +57,12 @@ export const AddOrganizationModuleActionTier = async ({
  * @category Mutations
  * @group Organization
  */
-export const useAddOrganizationModuleActionTier = (
+export const useAddOrganizationModuleEnabledTier = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof AddOrganizationModuleActionTier>>,
+      Awaited<ReturnType<typeof AddOrganizationModuleEnabledTier>>,
       Omit<
-        AddOrganizationModuleActionTierParams,
+        AddOrganizationModuleEnabledTierParams,
         "queryClient" | "adminApiParams"
       >
     >,
@@ -74,7 +70,7 @@ export const useAddOrganizationModuleActionTier = (
   > = {}
 ) => {
   return useConnectedMutation<
-    AddOrganizationModuleActionTierParams,
-    Awaited<ReturnType<typeof AddOrganizationModuleActionTier>>
-  >(AddOrganizationModuleActionTier, options);
+    AddOrganizationModuleEnabledTierParams,
+    Awaited<ReturnType<typeof AddOrganizationModuleEnabledTier>>
+  >(AddOrganizationModuleEnabledTier, options);
 };

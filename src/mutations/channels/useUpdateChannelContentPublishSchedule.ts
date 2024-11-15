@@ -73,7 +73,7 @@ export const useUpdateChannelContentPublishSchedule = (
     UpdateChannelContentPublishScheduleParams,
     Awaited<ReturnType<typeof UpdateChannelContentPublishSchedule>>
   >(UpdateChannelContentPublishSchedule, options, {
-    domain: "contents",
+    domain: "channels",
     type: "update",
   });
 };

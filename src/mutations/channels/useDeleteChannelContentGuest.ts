@@ -63,7 +63,7 @@ export const useDeleteChannelContentGuest = (
   > = {}
 ) => {
   return useConnectedMutation(DeleteChannelContentGuest, options, {
-    domain: "contents",
+    domain: "channels",
     type: "update",
   });
 };

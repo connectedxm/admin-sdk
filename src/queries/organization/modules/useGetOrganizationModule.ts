@@ -17,7 +17,7 @@ import { ORGANIZATION_MODULES_QUERY_KEY } from "./useGetOrganizationModules";
  * @group Organization
  */
 export const ORGANIZATION_MODULE_QUERY_KEY = (
-  moduleType: OrganizationModuleType
+  moduleType: keyof typeof OrganizationModuleType
 ) => [...ORGANIZATION_MODULES_QUERY_KEY(), moduleType];
 
 /**
@@ -33,7 +33,7 @@ export const SET_ORGANIZATION_MODULE_QUERY_DATA = (
 };
 
 interface GetOrganizationModuleProps extends SingleQueryParams {
-  moduleType: OrganizationModuleType;
+  moduleType: keyof typeof OrganizationModuleType;
 }
 
 /**
@@ -50,12 +50,13 @@ export const GetOrganizationModule = async ({
   const { data } = await adminApi.get(`/organization/modules/${moduleType}`);
   return data;
 };
+
 /**
  * @category Hooks
  * @group Organization
  */
 export const useGetOrganizationModule = (
-  moduleType: OrganizationModuleType,
+  moduleType: keyof typeof OrganizationModuleType,
   options: SingleQueryOptions<ReturnType<typeof GetOrganizationModule>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetOrganizationModule>>(

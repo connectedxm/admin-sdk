@@ -66,7 +66,7 @@ export const useCancelChannelContentPublishSchedule = (
     CancelChannelContentPublishScheduleParams,
     Awaited<ReturnType<typeof CancelChannelContentPublishSchedule>>
   >(CancelChannelContentPublishSchedule, options, {
-    domain: "contents",
+    domain: "channels",
     type: "update",
   });
 };

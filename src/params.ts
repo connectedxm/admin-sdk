@@ -20,7 +20,6 @@ import {
   ImageType,
   FileSource,
   ModulePermissions,
-  OrganizationActionType,
   AuthLayout,
   DefaultAuthAction,
   BaseSupportTicketNote,
@@ -874,22 +873,23 @@ export interface GroupMembershipUpdateInputs {
 export interface OrganizationMembershipUpdateInputs {
   org: ModulePermissions;
   users: ModulePermissions;
-  accounts: ModulePermissions;
-  activities: ModulePermissions;
-  advertisements: ModulePermissions;
-  announcements: ModulePermissions;
-  groups: ModulePermissions;
-  contents: ModulePermissions;
-  events: ModulePermissions;
-  storage: ModulePermissions;
-  interests: ModulePermissions;
-  levels: ModulePermissions;
-  supportTickets: ModulePermissions;
-  benefits: ModulePermissions;
-  streams: ModulePermissions;
   reports: ModulePermissions;
+  // MODULES
+  activities: ModulePermissions;
+  events: ModulePermissions;
+  groups: ModulePermissions;
+  accounts: ModulePermissions;
+  channels: ModulePermissions;
+  threads: ModulePermissions;
+  storage: ModulePermissions;
+  support: ModulePermissions;
+  sponsors: ModulePermissions;
+  benefits: ModulePermissions;
+  interests: ModulePermissions;
+  advertisements: ModulePermissions;
   subscriptions: ModulePermissions;
   invoices: ModulePermissions;
+  announcements: ModulePermissions;
 }
 
 export interface GroupTranslationUpdateInputs {
@@ -1518,12 +1518,9 @@ export interface VideoUpdateInputs {
 }
 
 export interface OrganizationModuleUpdateInputs {
-  enabled?: boolean;
   requireAuth?: boolean;
-}
-export interface OrganizationModuleActionUpdateInputs {
   enabled?: boolean;
-  actionType?: OrganizationActionType;
+  editable?: boolean;
 }
 
 export interface PassTypePriceScheduleCreateInputs {

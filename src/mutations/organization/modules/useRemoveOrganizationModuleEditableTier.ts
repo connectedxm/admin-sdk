@@ -5,8 +5,10 @@ import {
   OrganizationModule,
   OrganizationModuleType,
 } from "@src/interfaces";
-import { ORGANIZATION_MODULES_QUERY_KEY } from "@src/queries";
-import { OrganizationModuleActionUpdateInputs } from "@src/params";
+import {
+  ORGANIZATION_MODULE_QUERY_KEY,
+  ORGANIZATION_MODULES_QUERY_KEY,
+} from "@src/queries";
 import {
   MutationParams,
   ConnectedXMMutationOptions,
@@ -17,34 +19,38 @@ import {
  * @category Params
  * @group Organization
  */
-export interface UpdateOrganizationModuleActionsParams extends MutationParams {
-  moduleType: OrganizationModuleType;
-  moduleActions: OrganizationModuleActionUpdateInputs[];
+export interface RemoveOrganizationModuleEditableTierParams
+  extends MutationParams {
+  moduleType: keyof typeof OrganizationModuleType;
+  tierId: string;
 }
 
 /**
  * @category Methods
  * @group Organization
  */
-export const UpdateOrganizationModuleActions = async ({
+export const RemoveOrganizationModuleEditableTier = async ({
   moduleType,
-  moduleActions,
+  tierId,
   adminApiParams,
   queryClient,
-}: UpdateOrganizationModuleActionsParams): Promise<
+}: RemoveOrganizationModuleEditableTierParams): Promise<
   ConnectedXMResponse<OrganizationModule>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<
+  const { data } = await connectedXM.delete<
     ConnectedXMResponse<OrganizationModule>
-  >(`/organization/modules/${moduleType}/actions`, {
-    moduleActions,
-  });
+  >(`/organization/modules/${moduleType}/editableTiers/${tierId}`);
+
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: ORGANIZATION_MODULES_QUERY_KEY(),
     });
+    queryClient.invalidateQueries({
+      queryKey: ORGANIZATION_MODULE_QUERY_KEY(moduleType),
+    });
   }
+
   return data;
 };
 
@@ -52,12 +58,12 @@ export const UpdateOrganizationModuleActions = async ({
  * @category Mutations
  * @group Organization
  */
-export const useUpdateOrganizationModuleActions = (
+export const useRemoveOrganizationModuleEditableTier = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof UpdateOrganizationModuleActions>>,
+      Awaited<ReturnType<typeof RemoveOrganizationModuleEditableTier>>,
       Omit<
-        UpdateOrganizationModuleActionsParams,
+        RemoveOrganizationModuleEditableTierParams,
         "queryClient" | "adminApiParams"
       >
     >,
@@ -65,7 +71,7 @@ export const useUpdateOrganizationModuleActions = (
   > = {}
 ) => {
   return useConnectedMutation<
-    UpdateOrganizationModuleActionsParams,
-    Awaited<ReturnType<typeof UpdateOrganizationModuleActions>>
-  >(UpdateOrganizationModuleActions, options);
+    RemoveOrganizationModuleEditableTierParams,
+    Awaited<ReturnType<typeof RemoveOrganizationModuleEditableTier>>
+  >(RemoveOrganizationModuleEditableTier, options);
 };

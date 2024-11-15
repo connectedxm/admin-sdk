@@ -55,7 +55,7 @@ export const useRemoveChannelSubscriber = (
   > = {}
 ) => {
   return useConnectedMutation(RemoveChannelSubscriber, options, {
-    domain: "contents",
+    domain: "channels",
     type: "update",
   });
 };

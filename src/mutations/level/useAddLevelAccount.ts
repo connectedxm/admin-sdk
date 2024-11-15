@@ -63,7 +63,7 @@ export const useAddLevelAccount = (
     AddLevelAccountParams,
     Awaited<ReturnType<typeof AddLevelAccount>>
   >(AddLevelAccount, options, {
-    domain: "levels",
+    domain: "sponsors",
     type: "update",
   });
 };

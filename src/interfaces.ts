@@ -1501,6 +1501,8 @@ export interface EventPass extends BaseEventPass {
   registration: BaseEventAttendee;
   payerId?: string;
   payer?: BaseAccount;
+  amtPaid: number;
+  amtRefunded: number;
 }
 
 export interface PushDevice {

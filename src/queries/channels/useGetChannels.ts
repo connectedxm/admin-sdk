@@ -67,6 +67,6 @@ export const useGetChannels = (
     (params: InfiniteQueryParams) => GetChannels(params),
     params,
     options,
-    "contents"
+    "channels"
   );
 };

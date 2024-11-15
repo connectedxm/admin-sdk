@@ -68,6 +68,6 @@ export const useGetChannelSubscriber = (
       ...options,
       enabled: !!channelId && !!accountId && (options?.enabled ?? true),
     },
-    "contents"
+    "channels"
   );
 };

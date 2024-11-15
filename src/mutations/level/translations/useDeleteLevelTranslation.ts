@@ -61,7 +61,7 @@ export const useDeleteLevelTranslation = (
     DeleteLevelTranslationParams,
     Awaited<ReturnType<typeof DeleteLevelTranslation>>
   >(DeleteLevelTranslation, options, {
-    domain: "levels",
+    domain: "sponsors",
     type: "update",
   });
 };

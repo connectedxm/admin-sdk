@@ -17,49 +17,36 @@ export enum ImportType {
 }
 
 export enum OrganizationModuleType {
-  accounts = "accounts",
-  events = "events",
-  listings = "listings",
   activities = "activities",
+  events = "events",
   groups = "groups",
-  contents = "contents",
-  chat = "chat",
+  accounts = "accounts",
+  channels = "channels",
+  threads = "threads",
+  storage = "storage",
   support = "support",
   sponsors = "sponsors",
   benefits = "benefits",
+  interests = "interests",
   advertisements = "advertisements",
-  announcements = "announcements",
   subscriptions = "subscriptions",
-  threads = "threads",
+  invoices = "invoices",
 }
-
-export interface BaseOrganizationModuleAction {
-  id: number;
-  organizationId: string;
-  organization: Organization;
-  moduleId: number;
-  module: OrganizationModule;
-  actionType: OrganizationActionType;
-  superEnabled: boolean;
-  enabled: boolean;
-  tiers: BaseTier[];
-}
-
-export interface OrganizationModuleAction
-  extends BaseOrganizationModuleAction {}
 
 export interface BaseOrganizationModule {
-  id: number;
-  organizationId: string;
+  id: string;
   moduleType: OrganizationModuleType;
-  organization: Organization;
   superEnabled: boolean;
-  enabled: boolean;
   requireAuth: boolean;
+  enabled: boolean;
+  editable: boolean;
 }
 
 export interface OrganizationModule extends BaseOrganizationModule {
-  actions: BaseOrganizationModuleAction[];
+  enabledTiers: BaseTier[];
+  editableTiers: BaseTier[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 export enum Currency {
@@ -1330,43 +1317,39 @@ export type PermissionDomain = keyof Omit<
 
 export type PermissionType = "read" | "create" | "update" | "del";
 
-export interface BaseModulePermissions {
+export interface ModulePermissions {
+  enabled: boolean;
   read: boolean;
   create: boolean;
   update: boolean;
   del: boolean;
 }
-export interface ModulePermissions extends BaseModulePermissions {
-  superEnabled?: boolean;
-  createSuperEnabled?: boolean;
-  readSuperEnabled?: boolean;
-  updateSuperEnabled?: boolean;
-  delSuperEnabled?: boolean;
-}
 
 export interface OrganizationMembership {
   organizationId: string;
-  org: ModulePermissions;
   userId: string;
   user: BaseUser;
+  // ADMIN
+  org: ModulePermissions;
   users: ModulePermissions;
-  accounts: ModulePermissions;
-  activities: ModulePermissions;
-  advertisements: ModulePermissions;
-  announcements: ModulePermissions;
-  groups: ModulePermissions;
-  contents: ModulePermissions;
-  events: ModulePermissions;
-  storage: ModulePermissions;
-  interests: ModulePermissions;
-  levels: ModulePermissions;
-  supportTickets: ModulePermissions;
-  benefits: ModulePermissions;
-  streams: ModulePermissions;
   reports: ModulePermissions;
+  // MODULES
+  activities: ModulePermissions;
+  events: ModulePermissions;
+  groups: ModulePermissions;
+  accounts: ModulePermissions;
+  channels: ModulePermissions;
+  threads: ModulePermissions;
+  storage: ModulePermissions;
+  support: ModulePermissions;
+  sponsors: ModulePermissions;
+  benefits: ModulePermissions;
+  interests: ModulePermissions;
+  advertisements: ModulePermissions;
   subscriptions: ModulePermissions;
   invoices: ModulePermissions;
-  threads: ModulePermissions;
+  announcements: ModulePermissions;
+  // LOGS
   createdAt: string;
   updatedAt: string;
 }

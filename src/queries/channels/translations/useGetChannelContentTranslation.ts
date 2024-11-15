@@ -81,6 +81,6 @@ export const useGetChannelContentTranslation = (
       ...options,
       enabled: !!channelId && !!contentId && !!locale && locale !== "en",
     },
-    "contents"
+    "channels"
   );
 };

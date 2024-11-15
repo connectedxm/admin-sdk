@@ -63,7 +63,7 @@ export const useRemoveLevelAccount = (
     RemoveLevelAccountParams,
     Awaited<ReturnType<typeof RemoveLevelAccount>>
   >(RemoveLevelAccount, options, {
-    domain: "levels",
+    domain: "sponsors",
     type: "update",
   });
 };

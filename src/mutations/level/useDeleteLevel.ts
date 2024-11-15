@@ -52,7 +52,7 @@ export const useDeleteLevel = (
     DeleteLevelParams,
     Awaited<ReturnType<typeof DeleteLevel>>
   >(DeleteLevel, options, {
-    domain: "levels",
+    domain: "sponsors",
     type: "del",
   });
 };

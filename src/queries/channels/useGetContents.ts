@@ -98,6 +98,6 @@ export const useGetContents = (
       }),
     params,
     options,
-    "contents"
+    "channels"
   );
 };

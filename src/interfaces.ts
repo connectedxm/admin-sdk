@@ -1312,7 +1312,7 @@ export interface Notification extends BaseNotification {
 
 export type PermissionDomain = keyof Omit<
   OrganizationMembership,
-  "organizationId" | "userId" | "user" | "createdAt" | "updatedAt"
+  "organizationId" | "userId" | "user"
 >;
 
 export type PermissionType = "read" | "create" | "update" | "del";
@@ -1349,9 +1349,6 @@ export interface OrganizationMembership {
   subscriptions: ModulePermissions;
   invoices: ModulePermissions;
   announcements: ModulePermissions;
-  // LOGS
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface BaseOrganization {

@@ -711,6 +711,8 @@ export interface BaseCoupon {
 export interface Coupon extends BaseCoupon {
   registrationId: string | null;
   registration: BaseEventAttendee | null;
+  paymentId: number | null;
+  payment: BasePayment;
   createdAt: string;
   updatedAt: string;
 }

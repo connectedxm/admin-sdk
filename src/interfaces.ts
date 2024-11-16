@@ -711,6 +711,8 @@ export interface BaseCoupon {
 export interface Coupon extends BaseCoupon {
   registrationId: string | null;
   registration: BaseEventAttendee | null;
+  paymentId: number | null;
+  payment: BasePayment;
   createdAt: string;
   updatedAt: string;
 }
@@ -1481,8 +1483,8 @@ export interface EventPass extends BaseEventPass {
   addOns: BaseEventAddOn[];
   registrationId: string;
   registration: BaseEventAttendee;
-  payerId?: string;
-  payer?: BaseAccount;
+  payerId: string | null;
+  payer: BaseAccount | null;
   amtPaid: number;
   amtRefunded: number;
 }

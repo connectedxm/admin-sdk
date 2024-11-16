@@ -1486,8 +1486,8 @@ export interface EventPass extends BaseEventPass {
   addOns: BaseEventAddOn[];
   registrationId: string;
   registration: BaseEventAttendee;
-  payerId?: string;
-  payer?: BaseAccount;
+  payerId: string | null;
+  payer: BaseAccount | null;
   amtPaid: number;
   amtRefunded: number;
 }

@@ -248,6 +248,7 @@ export interface ChannelCreateInputs {
   googleUrl?: string | null;
   youtubeUrl?: string | null;
   groupId?: string | null;
+  creatorId?: string | null;
 }
 
 export interface ChannelSubscriberUpdateInputs {
@@ -275,6 +276,7 @@ export interface ChannelUpdateInputs {
   googleUrl?: string | null;
   youtubeUrl?: string | null;
   groupId?: string | null;
+  creatorId?: string | null;
 }
 
 export interface ChannelContentCreateInputs {

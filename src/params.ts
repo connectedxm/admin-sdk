@@ -38,6 +38,7 @@ export interface AccountCreateInputs {
   firstName?: string | null;
   lastName?: string | null;
   imageId?: string | null;
+  bannerId?: string | null;
   phone?: string | null;
   title?: string | null;
   company?: string | null;
@@ -69,6 +70,7 @@ export interface AccountUpdateInputs {
   firstName?: string | null;
   lastName?: string | null;
   imageId?: string | null;
+  bannerId?: string | null;
   username?: string | null;
   phone?: string | null;
   title?: string | null;

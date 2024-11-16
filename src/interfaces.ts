@@ -253,6 +253,8 @@ export interface BaseAccount {
 }
 
 export interface Account extends BaseAccount {
+  bannerId: string | null;
+  banner: BaseImage | null;
   phone: string | null;
   interests: BaseInterest[];
   title: string | null;
@@ -656,9 +658,10 @@ export interface Channel extends BaseChannel {
   spotifyUrl: string | null;
   googleUrl: string | null;
   youtubeUrl: string | null;
+  creatorId: string | null;
+  creator: BaseAccount | null;
   createdAt: string;
   updatedAt: string;
-  hosts: BaseAccount[];
   _count: {
     contents: number;
   };

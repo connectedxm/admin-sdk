@@ -20,7 +20,10 @@ import {
 export interface CancelEventPassParams extends MutationParams {
   eventId: string;
   passId: string;
-  email?: boolean;
+  sendEmail?: boolean;
+  issueRefund?: boolean;
+  adminRefundAmt?: number;
+  removeReservation?: boolean;
 }
 
 /**
@@ -30,14 +33,17 @@ export interface CancelEventPassParams extends MutationParams {
 export const CancelEventPass = async ({
   eventId,
   passId,
-  email,
+  sendEmail,
+  issueRefund,
+  adminRefundAmt,
+  removeReservation,
   adminApiParams,
   queryClient,
 }: CancelEventPassParams): Promise<ConnectedXMResponse<EventPass>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<EventPass>>(
     `/events/${eventId}/passes/${passId}/cancel`,
-    { email }
+    { sendEmail, issueRefund, adminRefundAmt, removeReservation }
   );
   if (queryClient && data.status === "ok") {
     if (data.data.ticketId) {

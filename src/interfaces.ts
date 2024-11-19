@@ -1936,6 +1936,49 @@ export interface EventSessionTranslation {
   updatedAt: string;
 }
 
+export interface BaseEventSessionQuestion {
+  id: string;
+  name: string;
+  label: string | null;
+  description: string | null;
+  sortOrder: number;
+}
+
+export interface EventSessionQuestion extends BaseEventSessionQuestion {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventSessionQuestionTranslation {
+  id: string;
+  locale: string;
+  label: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventSessionQuestionResponse {
+  id: string;
+  value: string;
+}
+
+export interface EventSessionQuestionResponse
+  extends BaseEventSessionQuestionResponse {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventSessionPass {
+  id: true;
+  status: true;
+}
+
+export interface EventSessionPass extends BaseEventSessionPass {
+  createdAt: true;
+  updatedAt: true;
+}
+
 export interface BaseEventSpeaker {
   id: string;
   slug: string;

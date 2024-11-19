@@ -736,6 +736,25 @@ export interface EventSessionUpdateInputs {
   sortOrder?: number | string | null;
 }
 
+export interface EventSessionQuestionCreateInputs {
+  name: string;
+  label?: string | null;
+  description?: string | null;
+  sortOrder?: number;
+}
+
+export interface EventSessionQuestionUpdateInputs {
+  name?: string | null;
+  label?: string | null;
+  description?: string | null;
+}
+
+export interface EventSessionQuestionTranslationUpdateInputs {
+  name?: string | null;
+  label?: string | null;
+  description?: string | null;
+}
+
 export interface EventSpeakerCreateInputs {
   firstName: string;
   lastName?: string | null;

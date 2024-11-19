@@ -8,6 +8,7 @@ export * from "./useDeleteEventQuestionChoice";
 export * from "./useDeleteEventQuestionSearchValue";
 export * from "./useDeleteEventQuestionSearchValues";
 export * from "./useRemoveEventQuestionChoiceSubQuestion";
+export * from "./useReorderEventQuestionChoiceSubQuestions";
 export * from "./useReorderEventQuestionChoices";
 export * from "./useUpdateEventQuestion";
 export * from "./useUpdateEventQuestionChoice";

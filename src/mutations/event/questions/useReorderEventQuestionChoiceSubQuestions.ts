@@ -8,7 +8,11 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { SET_EVENT_QUESTION_CHOICE_QUESTIONS_QUERY_DATA } from "@src/queries";
+import {
+  EVENT_QUESTION_CHOICE_QUERY_KEY,
+  EVENT_QUESTION_CHOICES_QUERY_KEY,
+  SET_EVENT_QUESTION_CHOICE_QUESTIONS_QUERY_DATA,
+} from "@src/queries";
 
 /**
  * @category Params
@@ -50,6 +54,12 @@ export const ReorderEventQuestionChoiceSubQuestions = async ({
   );
 
   if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_QUESTION_CHOICE_QUERY_KEY(eventId, questionId, choiceId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_QUESTION_CHOICES_QUERY_KEY(eventId, questionId),
+    });
     SET_EVENT_QUESTION_CHOICE_QUESTIONS_QUERY_DATA(
       queryClient,
       [eventId, questionId, choiceId],

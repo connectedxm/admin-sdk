@@ -2283,6 +2283,7 @@ export interface EventPassTypeRefundSchedule
   extends BaseEventPassTypeRefundSchedule {}
 
 export interface EventPassType extends BaseEventPassType {
+  overrideStartDate: string | null;
   sortOrder: number;
   event: BaseEvent;
   _count: {

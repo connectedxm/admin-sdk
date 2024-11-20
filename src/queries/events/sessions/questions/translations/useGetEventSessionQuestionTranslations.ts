@@ -30,7 +30,7 @@ export const EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_KEY = (
 export const SET_EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventSessionTranslations>>
+  response: Awaited<ReturnType<typeof GetEventSessionQuestionTranslations>>
 ) => {
   client.setQueryData(
     EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_KEY(...keyParams),
@@ -38,7 +38,7 @@ export const SET_EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_DATA = (
   );
 };
 
-interface GetEventSessionTranslationsProps extends InfiniteQueryParams {
+interface GetEventSessionQuestionTranslationsProps extends InfiniteQueryParams {
   eventId: string;
   sessionId: string;
   questionId: string;
@@ -48,7 +48,7 @@ interface GetEventSessionTranslationsProps extends InfiniteQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetEventSessionTranslations = async ({
+export const GetEventSessionQuestionTranslations = async ({
   pageParam,
   pageSize,
   orderBy,
@@ -57,7 +57,7 @@ export const GetEventSessionTranslations = async ({
   sessionId,
   questionId,
   adminApiParams,
-}: GetEventSessionTranslationsProps): Promise<
+}: GetEventSessionQuestionTranslationsProps): Promise<
   ConnectedXMResponse<EventSessionQuestionTranslation[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -78,7 +78,7 @@ export const GetEventSessionTranslations = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventSessionTranslations = (
+export const useGetEventSessionQuestionTranslations = (
   eventId: string = "",
   sessionId: string = "",
   questionId: string = "",
@@ -87,11 +87,11 @@ export const useGetEventSessionTranslations = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventSessionTranslations>>
+    Awaited<ReturnType<typeof GetEventSessionQuestionTranslations>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventSessionTranslations>>
+    Awaited<ReturnType<typeof GetEventSessionQuestionTranslations>>
   >(
     EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_KEY(
       eventId,
@@ -99,7 +99,7 @@ export const useGetEventSessionTranslations = (
       questionId
     ),
     (params: InfiniteQueryParams) =>
-      GetEventSessionTranslations({
+      GetEventSessionQuestionTranslations({
         ...params,
         eventId,
         sessionId,

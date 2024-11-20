@@ -714,6 +714,9 @@ export interface EventSessionCreateInputs {
   imageId?: string | null;
   visible?: boolean;
   sortOrder?: number | string | null;
+  registrationEnabled?: boolean;
+  limit?: number | string | null;
+  price?: number | string | null;
 }
 
 export interface EventSessionTranslationUpdateInputs {
@@ -734,19 +737,25 @@ export interface EventSessionUpdateInputs {
   imageId?: string | null;
   visible?: boolean;
   sortOrder?: number | string | null;
+  registrationEnabled?: boolean;
+  limit?: number | string | null;
+  price?: number | string | null;
 }
 
 export interface EventSessionQuestionCreateInputs {
   name: string;
   label?: string | null;
   description?: string | null;
-  sortOrder?: number;
+  required?: boolean;
+  sortOrder?: number | string | null;
 }
 
 export interface EventSessionQuestionUpdateInputs {
   name?: string | null;
   label?: string | null;
   description?: string | null;
+  required?: boolean;
+  sortOrder?: number | string | null;
 }
 
 export interface EventSessionQuestionTranslationUpdateInputs {

@@ -35,7 +35,7 @@ export const EVENT_SESSION_QUESTION_TRANSLATION_QUERY_KEY = (
 export const SET_EVENT_SESSION_QUESTION_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SESSION_QUESTION_TRANSLATION_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventSessionTranslation>>
+  response: Awaited<ReturnType<typeof GetEventSessionQuestionTranslation>>
 ) => {
   client.setQueryData(
     EVENT_SESSION_QUESTION_TRANSLATION_QUERY_KEY(...keyParams),
@@ -43,7 +43,7 @@ export const SET_EVENT_SESSION_QUESTION_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetEventSessionTranslationProps extends SingleQueryParams {
+interface GetEventSessionQuestionTranslationProps extends SingleQueryParams {
   eventId: string;
   sessionId: string;
   questionId: string;
@@ -54,13 +54,13 @@ interface GetEventSessionTranslationProps extends SingleQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetEventSessionTranslation = async ({
+export const GetEventSessionQuestionTranslation = async ({
   eventId,
   sessionId,
   questionId,
   locale,
   adminApiParams,
-}: GetEventSessionTranslationProps): Promise<
+}: GetEventSessionQuestionTranslationProps): Promise<
   ConnectedXMResponse<EventSessionQuestionTranslation | null>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -73,16 +73,18 @@ export const GetEventSessionTranslation = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventSessionTranslation = (
+export const useGetEventSessionQuestionTranslation = (
   eventId: string = "",
   sessionId: string = "",
   questionId: string = "",
   locale: string = "",
   options: SingleQueryOptions<
-    ReturnType<typeof GetEventSessionTranslation>
+    ReturnType<typeof GetEventSessionQuestionTranslation>
   > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventSessionTranslation>>(
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetEventSessionQuestionTranslation>
+  >(
     EVENT_SESSION_QUESTION_TRANSLATION_QUERY_KEY(
       eventId,
       sessionId,
@@ -90,7 +92,7 @@ export const useGetEventSessionTranslation = (
       locale
     ),
     (params) =>
-      GetEventSessionTranslation({
+      GetEventSessionQuestionTranslation({
         ...params,
         eventId,
         sessionId,

@@ -1941,6 +1941,7 @@ export interface BaseEventSessionQuestion {
   name: string;
   label: string | null;
   description: string | null;
+  required: boolean;
   sortOrder: number;
 }
 

@@ -13,7 +13,8 @@ import {
  * @category Params
  * @group Event-Sessions-Translations
  */
-export interface DeleteEventSessionTranslationParams extends MutationParams {
+export interface DeleteEventSessionQuestionTranslationParams
+  extends MutationParams {
   eventId: string;
   sessionId: string;
   locale: string;
@@ -23,13 +24,13 @@ export interface DeleteEventSessionTranslationParams extends MutationParams {
  * @category Methods
  * @group Event-Sessions-Translations
  */
-export const DeleteEventSessionTranslation = async ({
+export const DeleteEventSessionQuestionTranslation = async ({
   eventId,
   sessionId,
   locale,
   adminApiParams,
   queryClient,
-}: DeleteEventSessionTranslationParams) => {
+}: DeleteEventSessionQuestionTranslationParams) => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.delete(
@@ -50,12 +51,12 @@ export const DeleteEventSessionTranslation = async ({
  * @category Mutations
  * @group Event-Sessions-Translations
  */
-export const useDeleteEventSessionTranslation = (
+export const useDeleteEventSessionQuestionTranslation = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof DeleteEventSessionTranslation>>,
+      Awaited<ReturnType<typeof DeleteEventSessionQuestionTranslation>>,
       Omit<
-        DeleteEventSessionTranslationParams,
+        DeleteEventSessionQuestionTranslationParams,
         "queryClient" | "adminApiParams"
       >
     >,
@@ -63,9 +64,9 @@ export const useDeleteEventSessionTranslation = (
   > = {}
 ) => {
   return useConnectedMutation<
-    DeleteEventSessionTranslationParams,
-    Awaited<ReturnType<typeof DeleteEventSessionTranslation>>
-  >(DeleteEventSessionTranslation, options, {
+    DeleteEventSessionQuestionTranslationParams,
+    Awaited<ReturnType<typeof DeleteEventSessionQuestionTranslation>>
+  >(DeleteEventSessionQuestionTranslation, options, {
     domain: "events",
     type: "update",
   });

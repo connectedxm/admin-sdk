@@ -5,7 +5,6 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EventSessionLocationUpdateInputs } from "@src/params";
 import { SET_EVENT_SESSION_LOCATION_QUERY_DATA } from "@src/queries/events/sessions/locations/useGetEventSessionLocation";
 import { EVENT_SESSION_LOCATIONS_QUERY_KEY } from "@src/queries/events/sessions/locations/useGetEventSessionLocations";
 
@@ -13,33 +12,31 @@ import { EVENT_SESSION_LOCATIONS_QUERY_KEY } from "@src/queries/events/sessions/
  * @category Params
  * @group Event-Sessions
  */
-export interface UpdateEventSessionLocationParams extends MutationParams {
+export interface RemoveEventSessionLocationSessionParams
+  extends MutationParams {
   eventId: string;
   locationId: string;
-  sessionLocation: EventSessionLocationUpdateInputs;
+  sessionId: string;
 }
 
 /**
  * @category Methods
  * @group Event-Sessions
  */
-export const UpdateEventSessionLocation = async ({
+export const RemoveEventSessionLocationSession = async ({
   eventId,
   locationId,
-  sessionLocation,
+  sessionId,
   adminApiParams,
   queryClient,
-}: UpdateEventSessionLocationParams): Promise<
+}: RemoveEventSessionLocationSessionParams): Promise<
   ConnectedXMResponse<EventSessionLocation>
 > => {
-  if (!locationId) throw new Error("Session ID Undefined");
+  if (!locationId) throw new Error("Location ID Undefined");
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<
+  const { data } = await connectedXM.delete<
     ConnectedXMResponse<EventSessionLocation>
-  >(`/events/${eventId}/sessionLocations/${locationId}`, {
-    ...sessionLocation,
-    id: undefined,
-  });
+  >(`/events/${eventId}/sessionLocations/${locationId}/sessions/${sessionId}`);
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
@@ -58,19 +55,22 @@ export const UpdateEventSessionLocation = async ({
  * @category Mutations
  * @group Event-Sessions
  */
-export const useUpdateEventSessionLocation = (
+export const useRemoveEventSessionLocationSession = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof UpdateEventSessionLocation>>,
-      Omit<UpdateEventSessionLocationParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof RemoveEventSessionLocationSession>>,
+      Omit<
+        RemoveEventSessionLocationSessionParams,
+        "queryClient" | "adminApiParams"
+      >
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    UpdateEventSessionLocationParams,
-    Awaited<ReturnType<typeof UpdateEventSessionLocation>>
-  >(UpdateEventSessionLocation, options, {
+    RemoveEventSessionLocationSessionParams,
+    Awaited<ReturnType<typeof RemoveEventSessionLocationSession>>
+  >(RemoveEventSessionLocationSession, options, {
     domain: "events",
     type: "update",
   });

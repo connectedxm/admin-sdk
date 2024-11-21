@@ -14,7 +14,7 @@ import { EVENT_SESSION_LOCATIONS_QUERY_KEY } from "@src/queries/events/sessions/
  */
 export interface DeleteEventSessionLocationParams extends MutationParams {
   eventId: string;
-  sessionLocationId: string;
+  locationId: string;
 }
 
 /**
@@ -23,20 +23,20 @@ export interface DeleteEventSessionLocationParams extends MutationParams {
  */
 export const DeleteEventSessionLocation = async ({
   eventId,
-  sessionLocationId,
+  locationId,
   adminApiParams,
   queryClient,
 }: DeleteEventSessionLocationParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
-    `/events/${eventId}/sessionLocations/${sessionLocationId}`
+    `/events/${eventId}/sessionLocations/${locationId}`
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_SESSION_LOCATIONS_QUERY_KEY(eventId),
     });
     queryClient.removeQueries({
-      queryKey: EVENT_SESSION_LOCATION_QUERY_KEY(eventId, sessionLocationId),
+      queryKey: EVENT_SESSION_LOCATION_QUERY_KEY(eventId, locationId),
     });
   }
   return data;

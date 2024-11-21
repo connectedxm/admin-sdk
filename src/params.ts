@@ -761,7 +761,7 @@ export interface EventSessionLocationTranslationUpdateInputs {
 }
 
 export interface EventSessionLocationUpdateInputs {
-  name: string;
+  name?: string;
   googlePlaceId?: string | null;
   description?: string | null;
   imageId?: string | null;

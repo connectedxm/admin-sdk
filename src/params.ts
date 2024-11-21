@@ -1452,6 +1452,7 @@ export interface PassTypeCreateInputs {
   minReservationEnd?: string | null;
   maxReservationEnd?: string | null;
   enableCoupons?: boolean;
+  overrideStartDate?: string | null;
 }
 
 export interface PassTypeUpdateInputs {
@@ -1479,6 +1480,7 @@ export interface PassTypeUpdateInputs {
   minReservationEnd?: string | null;
   maxReservationEnd?: string | null;
   enableCoupons?: boolean;
+  overrideStartDate?: string | null;
 }
 
 export interface TierCreateInputs {

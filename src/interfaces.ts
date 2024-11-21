@@ -1936,6 +1936,34 @@ export interface EventSessionTranslation {
   updatedAt: string;
 }
 
+export interface BaseEventSessionLocation {
+  id: string;
+  name: string;
+}
+
+export interface EventSessionLocation extends BaseEventSessionLocation {
+  googlePlaceId: string | null;
+  description: string | null;
+  address1: string | null;
+  address2: string | null;
+  zip: string | null;
+  city: string | null;
+  state: string | null;
+  country: string | null;
+  image: BaseImage | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventSessionLocationTranslation {
+  id: string;
+  locale: string;
+  name: string;
+  description: string | null;
+  createdAt: string | null;
+  updatedAt: string | null;
+}
+
 export interface BaseEventSessionQuestion {
   id: string;
   name: string;

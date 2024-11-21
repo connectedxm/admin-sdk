@@ -742,6 +742,37 @@ export interface EventSessionUpdateInputs {
   price?: number | string | null;
 }
 
+export interface EventSessionLocationCreateInputs {
+  name: string;
+  googlePlaceId?: string | null;
+  description?: string | null;
+  imageId?: string | null;
+  address1?: string | null;
+  address2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  country?: string | null;
+  zip?: string | null;
+}
+
+export interface EventSessionLocationTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+}
+
+export interface EventSessionLocationUpdateInputs {
+  name: string;
+  googlePlaceId?: string | null;
+  description?: string | null;
+  imageId?: string | null;
+  address1?: string | null;
+  address2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  country?: string | null;
+  zip?: string | null;
+}
+
 export interface EventSessionQuestionCreateInputs {
   name: string;
   label?: string | null;

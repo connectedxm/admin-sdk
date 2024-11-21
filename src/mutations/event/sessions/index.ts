@@ -1,3 +1,4 @@
+export * from "./locations";
 export * from "./questions";
 export * from "./translations";
 export * from "./useAddEventSessionAccount";

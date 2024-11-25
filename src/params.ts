@@ -707,7 +707,6 @@ export interface EventSessionCreateInputs {
   startTime: string;
   endTime: string;
   slug?: string | null;
-  location?: string | null;
   description?: string | null;
   longDescription?: string | null;
   nonSession?: boolean;
@@ -730,7 +729,6 @@ export interface EventSessionUpdateInputs {
   startTime?: string | null;
   endTime?: string | null;
   slug?: string | null;
-  location?: string | null;
   description?: string | null;
   longDescription?: string | null;
   nonSession?: boolean;

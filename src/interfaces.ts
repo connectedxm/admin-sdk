@@ -1913,6 +1913,7 @@ export interface BaseEventSession {
   tracks: BaseEventTrack[];
   nonSession: boolean;
   visible: boolean;
+  location: BaseEventSession | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -1923,7 +1924,6 @@ export interface EventSession extends BaseEventSession {
   event: BaseEvent;
   speakers: BaseEventSpeaker[];
   streamInput: BaseStreamInput | null;
-  location: BaseEventSession | null;
 }
 
 export interface EventSessionTranslation {

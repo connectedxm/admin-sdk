@@ -790,7 +790,6 @@ export interface EventSessionQuestionUpdateInputs {
 }
 
 export interface EventSessionQuestionTranslationUpdateInputs {
-  name?: string | null;
   label?: string | null;
   description?: string | null;
 }

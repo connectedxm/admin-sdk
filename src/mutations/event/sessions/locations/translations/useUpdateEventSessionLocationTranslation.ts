@@ -6,8 +6,10 @@ import {
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
 import { EventSessionLocationTranslationUpdateInputs } from "@src/params";
-import { SET_EVENT_SESSION_LOCATION_TRANSLATION_QUERY_DATA } from "@src/queries/events/sessions/locations/translations/useGetEventSessionTranslation";
-import { EVENT_SESSION_LOCATION_TRANSLATIONS_QUERY_KEY } from "@src/queries/events/sessions/locations/translations/useGetEventSessionTranslations";
+import {
+  EVENT_SESSION_LOCATION_TRANSLATIONS_QUERY_KEY,
+  SET_EVENT_SESSION_LOCATION_TRANSLATION_QUERY_DATA,
+} from "@src/queries";
 
 /**
  * @category Params
@@ -18,7 +20,7 @@ export interface UpdateEventSessionLocationTranslationParams
   eventId: string;
   locationId: string;
   locale: ISupportedLocale;
-  sessionTranslation: EventSessionLocationTranslationUpdateInputs;
+  locationTranslation: EventSessionLocationTranslationUpdateInputs;
 }
 
 /**
@@ -28,7 +30,7 @@ export interface UpdateEventSessionLocationTranslationParams
 export const UpdateEventSessionLocationTranslation = async ({
   eventId,
   locationId,
-  sessionTranslation,
+  locationTranslation,
   locale,
   adminApiParams,
   queryClient,
@@ -37,7 +39,7 @@ export const UpdateEventSessionLocationTranslation = async ({
 
   const { data } = await connectedXM.put(
     `/events/${eventId}/sessionLocations/${locationId}/translations/${locale}`,
-    sessionTranslation
+    locationTranslation
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

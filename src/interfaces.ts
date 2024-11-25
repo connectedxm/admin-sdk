@@ -1906,7 +1906,6 @@ export interface BaseEventSession {
   name: string;
   description: string | null;
   longDescription: string | null;
-  location: string | null;
   imageId: string | null;
   image: BaseImage | null;
   startTime: string;
@@ -1924,6 +1923,7 @@ export interface EventSession extends BaseEventSession {
   event: BaseEvent;
   speakers: BaseEventSpeaker[];
   streamInput: BaseStreamInput | null;
+  location: BaseEventSession | null;
 }
 
 export interface EventSessionTranslation {

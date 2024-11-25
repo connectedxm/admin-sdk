@@ -1,5 +1,6 @@
 import { ConnectedXMResponse, EventSessionQuestion } from "@src/interfaces";
 import {
+  GetBaseInfiniteQueryKeys,
   InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
@@ -26,8 +27,14 @@ export const SET_EVENT_SESSION_QUESTIONS_QUERY_DATA = (
   response: Awaited<ReturnType<typeof GetEventSessionQuestions>>
 ) => {
   client.setQueryData(
-    EVENT_SESSION_QUESTIONS_QUERY_KEY(...keyParams),
-    response
+    [
+      ...EVENT_SESSION_QUESTIONS_QUERY_KEY(...keyParams),
+      ...GetBaseInfiniteQueryKeys(""),
+    ],
+    {
+      pages: [response],
+      pageParams: [null],
+    }
   );
 };
 

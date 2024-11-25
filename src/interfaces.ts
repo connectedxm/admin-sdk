@@ -1906,7 +1906,6 @@ export interface BaseEventSession {
   name: string;
   description: string | null;
   longDescription: string | null;
-  location: string | null;
   imageId: string | null;
   image: BaseImage | null;
   startTime: string;
@@ -1924,6 +1923,7 @@ export interface EventSession extends BaseEventSession {
   event: BaseEvent;
   speakers: BaseEventSpeaker[];
   streamInput: BaseStreamInput | null;
+  location: BaseEventSession | null;
 }
 
 export interface EventSessionTranslation {
@@ -1934,6 +1934,78 @@ export interface EventSessionTranslation {
   longDescription: string | null;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface BaseEventSessionLocation {
+  id: string;
+  name: string;
+}
+
+export interface EventSessionLocation extends BaseEventSessionLocation {
+  googlePlaceId: string | null;
+  description: string | null;
+  address1: string | null;
+  address2: string | null;
+  zip: string | null;
+  city: string | null;
+  state: string | null;
+  country: string | null;
+  image: BaseImage | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventSessionLocationTranslation {
+  id: string;
+  locale: string;
+  name: string;
+  description: string | null;
+  createdAt: string | null;
+  updatedAt: string | null;
+}
+
+export interface BaseEventSessionQuestion {
+  id: string;
+  name: string;
+  label: string | null;
+  description: string | null;
+  required: boolean;
+  sortOrder: number;
+}
+
+export interface EventSessionQuestion extends BaseEventSessionQuestion {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventSessionQuestionTranslation {
+  id: string;
+  locale: string;
+  label: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventSessionQuestionResponse {
+  id: string;
+  value: string;
+}
+
+export interface EventSessionQuestionResponse
+  extends BaseEventSessionQuestionResponse {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventSessionPass {
+  id: true;
+  status: true;
+}
+
+export interface EventSessionPass extends BaseEventSessionPass {
+  createdAt: true;
+  updatedAt: true;
 }
 
 export interface BaseEventSpeaker {

@@ -1914,6 +1914,9 @@ export interface BaseEventSession {
   nonSession: boolean;
   visible: boolean;
   location: BaseEventSession | null;
+  registrationEnabled: boolean;
+  price: number | null;
+  limit: number | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -2000,7 +2003,7 @@ export interface EventSessionQuestionResponse
 
 export interface BaseEventSessionPass {
   id: true;
-  status: true;
+  canceled: boolean;
 }
 
 export interface EventSessionPass extends BaseEventSessionPass {

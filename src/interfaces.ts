@@ -1364,7 +1364,7 @@ export interface BaseOrganization {
   logo: BaseImage | null;
   iconId: string | null;
   icon: BaseImage | null;
-  website: string | null;
+  domain: string | null;
 }
 
 export interface Organization extends BaseOrganization {
@@ -2679,4 +2679,8 @@ export interface CognitoUser extends BaseCognitoUser {
   status: string;
   email: string;
   verified: boolean;
+}
+
+export interface DomainDetails {
+  name: string;
 }

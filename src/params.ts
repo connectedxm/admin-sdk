@@ -716,6 +716,7 @@ export interface EventSessionCreateInputs {
   registrationEnabled?: boolean;
   limit?: number | string | null;
   price?: number | string | null;
+  locationId?: string | null;
 }
 
 export interface EventSessionTranslationUpdateInputs {
@@ -738,6 +739,7 @@ export interface EventSessionUpdateInputs {
   registrationEnabled?: boolean;
   limit?: number | string | null;
   price?: number | string | null;
+  locationId?: string | null;
 }
 
 export interface EventSessionLocationCreateInputs {

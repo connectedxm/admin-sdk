@@ -4,6 +4,7 @@ export * from "./pages";
 export * from "./payments";
 export * from "./triggers";
 export * from "./useGetOrganization";
+export * from "./useGetOrganizationDomain";
 export * from "./useGetOrganizationMembership";
 export * from "./useGetOrganizationPaymentIntegration";
 export * from "./useGetOrganizationPaymentIntegrationLink";

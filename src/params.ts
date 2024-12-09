@@ -635,6 +635,7 @@ export interface EventPassUpdateInputs {
   ticketId?: string | null;
   reservationStart?: string | null;
   reservationEnd?: string | null;
+  couponId?: string | null;
 }
 
 export interface EventAttendeeUpdateInputs {}

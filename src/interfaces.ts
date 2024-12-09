@@ -1366,6 +1366,7 @@ export interface BaseOrganization {
   iconId: string | null;
   icon: BaseImage | null;
   domain: string | null;
+  locale: true;
 }
 
 export interface Organization extends BaseOrganization {
@@ -1422,7 +1423,7 @@ export interface Organization extends BaseOrganization {
   maxFileGbs: number | null;
   maxImageCount: number | null;
   maxVideoMins: number | null;
-  locale: string | null;
+  locales: string[];
 }
 
 export interface OrganizationTrigger {

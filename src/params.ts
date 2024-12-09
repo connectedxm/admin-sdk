@@ -1106,6 +1106,7 @@ export interface OrganizationUpdateInputs {
   appIconId?: string | null;
   appAdaptiveIconId?: string | null;
   appSplashScreenId?: string | null;
+  locales?: string[] | null;
 }
 
 export interface PaymentIntentPurchaseMetadataInputs {}

@@ -447,6 +447,7 @@ export interface BaseAdvertisement {
   weight: number;
   accountId: string | null;
   eventId: string | null;
+  enabled: boolean;
 }
 
 export interface Advertisement extends BaseAdvertisement {

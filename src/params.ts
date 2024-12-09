@@ -140,6 +140,7 @@ export interface AdvertisementCreateInputs {
   accountId?: string | null;
   eventId?: string | null;
   eventOnly?: boolean;
+  enabled?: boolean;
 }
 
 export interface AdvertisementUpdateInputs {
@@ -154,6 +155,7 @@ export interface AdvertisementUpdateInputs {
   accountId?: string | null;
   eventId?: string | null;
   eventOnly?: boolean;
+  enabled?: boolean;
 }
 
 export interface AnnouncementCreateInputs {

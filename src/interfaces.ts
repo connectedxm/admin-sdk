@@ -919,6 +919,7 @@ export interface BaseEvent {
 }
 
 export interface Event extends BaseEvent {
+  reservationDescription: string | null;
   longDescription: string | null;
   meetingUrl: string | null;
   venueMapId: string | null;
@@ -952,6 +953,7 @@ export interface EventTranslation {
   name: string;
   shortDescription: string;
   longDescription: string | null;
+  reservationDescription: string | null;
   createdAt: string;
   updatedAt: string;
 }

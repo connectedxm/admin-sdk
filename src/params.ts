@@ -526,6 +526,7 @@ export interface EventCreateInputs {
   slug?: string | null;
   internalRefId?: string | null;
   longDescription?: string | null;
+  reservationDescription?: string | null;
   externalUrl?: string | null;
   imageId?: string | null;
   venueMapId?: string | null;
@@ -863,6 +864,7 @@ export interface EventTranslationUpdateInputs {
   name?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
+  reservationDescription?: string | null;
 }
 
 export interface EventUpdateInputs {
@@ -874,6 +876,7 @@ export interface EventUpdateInputs {
   internalRefId?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
+  reservationDescription?: string | null;
   timezone?: string | null;
   eventStart?: string | null;
   eventEnd?: string | null;

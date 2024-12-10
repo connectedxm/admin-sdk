@@ -53,12 +53,7 @@ export interface AccountCreateInputs {
   youtube?: string | null;
   discord?: string | null;
   dietaryRestrictions?: string | null;
-  address1?: string | null;
-  address2?: string | null;
-  city?: string | null;
-  state?: string | null;
   country?: string | null;
-  zip?: string | null;
   internalRefId?: string | null;
   verified?: boolean;
   locale?: string | null;
@@ -86,15 +81,30 @@ export interface AccountUpdateInputs {
   youtube?: string | null;
   discord?: string | null;
   dietaryRestrictions?: string | null;
-  address1?: string | null;
-  address2?: string | null;
-  city?: string | null;
-  state?: string | null;
   country?: string | null;
-  zip?: string | null;
   internalRefId?: string | null;
   verified?: boolean;
   locale?: string | null;
+}
+
+export interface AddressCreateInputs {
+  name: string;
+  address1: string;
+  address2?: string;
+  city: string;
+  state: string;
+  country: string;
+  zip: string;
+}
+
+export interface AddressUpdateInputs {
+  name?: string;
+  address1: string;
+  address2?: string;
+  city: string;
+  state: string;
+  country: string;
+  zip: string;
 }
 
 export interface ImportCreateInputs {

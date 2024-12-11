@@ -1,4 +1,4 @@
-import { Account, ConnectedXMResponse } from "@src/interfaces";
+import { AccountAddress, ConnectedXMResponse } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -6,7 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ACCOUNT_ADDRESSES_QUERY_KEY } from "@src/queries";
-import { AddressCreateInputs } from "@src/params";
+import { AccountAddressCreateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -14,8 +14,7 @@ import { AddressCreateInputs } from "@src/params";
  */
 export interface CreateAccountAddressParams extends MutationParams {
   accountId: string;
-  addressId: string;
-  address: AddressCreateInputs;
+  address: AccountAddressCreateInputs;
 }
 
 /**
@@ -24,14 +23,15 @@ export interface CreateAccountAddressParams extends MutationParams {
  */
 export const CreateAccountAddress = async ({
   accountId,
-  addressId,
   address,
   adminApiParams,
   queryClient,
-}: CreateAccountAddressParams): Promise<ConnectedXMResponse<Account>> => {
+}: CreateAccountAddressParams): Promise<
+  ConnectedXMResponse<AccountAddress>
+> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Account>>(
-    `/accounts/${accountId}/addresses/${addressId}`,
+  const { data } = await connectedXM.post<ConnectedXMResponse<AccountAddress>>(
+    `/accounts/${accountId}/addresses`,
     address
   );
 

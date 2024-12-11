@@ -273,7 +273,7 @@ export interface Account extends BaseAccount {
   updatedAt: string;
 }
 
-export interface BaseAddress {
+export interface BaseAccountAddress {
   id: string;
   primary: boolean;
   name: string;
@@ -285,7 +285,7 @@ export interface BaseAddress {
   zip: string;
 }
 
-export interface Address extends BaseAddress {
+export interface AccountAddress extends BaseAccountAddress {
   createdAt: string;
   updatedAt: string;
 }

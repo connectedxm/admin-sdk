@@ -87,8 +87,8 @@ export interface AccountUpdateInputs {
   locale?: string | null;
 }
 
-export interface AddressCreateInputs {
-  name: string;
+export interface AccountAddressCreateInputs {
+  name?: string;
   address1: string;
   address2?: string;
   city: string;
@@ -97,14 +97,14 @@ export interface AddressCreateInputs {
   zip: string;
 }
 
-export interface AddressUpdateInputs {
+export interface AccountAddressUpdateInputs {
   name?: string;
-  address1: string;
+  address1?: string;
   address2?: string;
-  city: string;
-  state: string;
-  country: string;
-  zip: string;
+  city?: string;
+  state?: string;
+  country?: string;
+  zip?: string;
 }
 
 export interface ImportCreateInputs {

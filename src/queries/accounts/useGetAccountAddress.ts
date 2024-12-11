@@ -5,7 +5,7 @@ import {
 } from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 
-import { Address } from "@src/interfaces";
+import { AccountAddress } from "@src/interfaces";
 import { ACCOUNT_ADDRESSES_QUERY_KEY } from "./useGetAccountAddresses";
 import { GetAdminAPI } from "@src/AdminAPI";
 
@@ -31,7 +31,7 @@ export const GetAccountAddress = async ({
   accountId,
   addressId,
   adminApiParams,
-}: GetAccountAddressProps): Promise<ConnectedXMResponse<Address>> => {
+}: GetAccountAddressProps): Promise<ConnectedXMResponse<AccountAddress>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
     `/accounts/${accountId}/addresses/${addressId}`

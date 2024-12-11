@@ -1,4 +1,4 @@
-import { Account, ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -25,9 +25,9 @@ export const DeleteAccountAddress = async ({
   addressId,
   adminApiParams,
   queryClient,
-}: DeleteAccountAddressParams): Promise<ConnectedXMResponse<Account>> => {
+}: DeleteAccountAddressParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<Account>>(
+  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/accounts/${accountId}/addresses/${addressId}`
   );
 

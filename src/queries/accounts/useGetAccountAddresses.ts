@@ -1,5 +1,4 @@
-import { ConnectedXMResponse } from "@src/interfaces";
-import { Tier } from "@src/interfaces";
+import { AccountAddress, ConnectedXMResponse } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -45,7 +44,9 @@ export const GetAccountAddresses = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetAccountAddressesProps): Promise<ConnectedXMResponse<Tier[]>> => {
+}: GetAccountAddressesProps): Promise<
+  ConnectedXMResponse<AccountAddress[]>
+> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/accounts/${accountId}/addresses`, {
     params: {

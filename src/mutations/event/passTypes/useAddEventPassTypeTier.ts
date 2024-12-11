@@ -15,6 +15,7 @@ import {
  * @group Event-PassTypes
  */
 export interface AddEventPassTypeTierParams extends MutationParams {
+  allowed: boolean;
   eventId: string;
   passTypeId: string;
   tierId: string;
@@ -25,6 +26,7 @@ export interface AddEventPassTypeTierParams extends MutationParams {
  * @group Event-PassTypes
  */
 export const AddEventPassTypeTier = async ({
+  allowed,
   eventId,
   passTypeId,
   tierId,
@@ -33,11 +35,14 @@ export const AddEventPassTypeTier = async ({
 }: AddEventPassTypeTierParams): Promise<ConnectedXMResponse<EventPassType>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<EventPassType>>(
-    `/events/${eventId}/passTypes/${passTypeId}/tiers/${tierId}`
+    `/events/${eventId}/passTypes/${passTypeId}/tiers/${tierId}`,
+    {
+      allowed,
+    }
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_PASS_TYPE_TIERS_QUERY_KEY(eventId, passTypeId),
+      queryKey: EVENT_PASS_TYPE_TIERS_QUERY_KEY(allowed, eventId, passTypeId),
     });
     SET_EVENT_PASS_TYPE_QUERY_DATA(queryClient, [eventId, passTypeId], data);
   }

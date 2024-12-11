@@ -1812,6 +1812,7 @@ export interface RegistrationSection extends BaseRegistrationSection {
   eventTickets: BaseEventPassType[];
   eventAddOns: BaseEventAddOn[];
   accountTiers: BaseTier[];
+  disallowedTiers: BaseTier[];
   createdAt: string;
   updatedAt: string;
 }
@@ -2385,6 +2386,7 @@ export interface BaseEventPassType {
   maxQuantityPerSale: number;
   emailDomains: string | null;
   allowedTiers: BaseTier[];
+  disallowedTiers: BaseTier[];
   minReservationStart: string | null;
   reservationStart: string | null;
   maxReservationStart: string | null;

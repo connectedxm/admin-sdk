@@ -15,6 +15,7 @@ import {
  * @group Event-Sections
  */
 export interface AddEventSectionTierParams extends MutationParams {
+  allowed: boolean;
   eventId: string;
   sectionId: string;
   tierId: string;
@@ -25,6 +26,7 @@ export interface AddEventSectionTierParams extends MutationParams {
  * @group Event-Sections
  */
 export const AddEventSectionTier = async ({
+  allowed,
   eventId,
   sectionId,
   tierId,
@@ -35,11 +37,14 @@ export const AddEventSectionTier = async ({
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post(
-    `/events/${eventId}/sections/${sectionId}/tiers/${tierId}`
+    `/events/${eventId}/sections/${sectionId}/tiers/${tierId}`,
+    {
+      allowed,
+    }
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_SECTION_TIERS_QUERY_KEY(eventId, sectionId),
+      queryKey: EVENT_SECTION_TIERS_QUERY_KEY(allowed, eventId, sectionId),
     });
     SET_EVENT_SECTION_QUERY_DATA(queryClient, [eventId, sectionId], data);
   }

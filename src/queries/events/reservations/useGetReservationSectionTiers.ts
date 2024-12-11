@@ -13,11 +13,13 @@ import { EVENT_RESERVATION_SECTION_QUERY_KEY } from "./useGetReservationSection"
  * @group Events
  */
 export const EVENT_RESERVATION_SECTION_TIERS_QUERY_KEY = (
+  allowed: boolean,
   eventId: string,
   reservationSectionId: string
 ) => [
   ...EVENT_RESERVATION_SECTION_QUERY_KEY(eventId, reservationSectionId),
   "TIERS",
+  allowed ? "ALLOWED" : "DISALLOWED",
 ];
 
 /**
@@ -36,6 +38,7 @@ export const SET_EVENT_RESERVATION_SECTION_TIERS_QUERY_DATA = (
 };
 
 interface GetReservationSectionTiersProps extends InfiniteQueryParams {
+  allowed: boolean;
   eventId: string;
   reservationSectionId: string;
 }
@@ -45,6 +48,7 @@ interface GetReservationSectionTiersProps extends InfiniteQueryParams {
  * @group Events
  */
 export const GetReservationSectionTiers = async ({
+  allowed,
   eventId,
   reservationSectionId,
   pageParam,
@@ -58,6 +62,7 @@ export const GetReservationSectionTiers = async ({
     `/events/${eventId}/reservationSections/${reservationSectionId}/tiers`,
     {
       params: {
+        allowed,
         page: pageParam || undefined,
         pageSize: pageSize || undefined,
         orderBy: orderBy || undefined,
@@ -72,6 +77,7 @@ export const GetReservationSectionTiers = async ({
  * @group Events
  */
 export const useGetReservationSectionTiers = (
+  allowed: boolean,
   eventId: string = "",
   reservationSectionId: string = "",
   params: Omit<
@@ -85,17 +91,26 @@ export const useGetReservationSectionTiers = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetReservationSectionTiers>>
   >(
-    EVENT_RESERVATION_SECTION_TIERS_QUERY_KEY(eventId, reservationSectionId),
+    EVENT_RESERVATION_SECTION_TIERS_QUERY_KEY(
+      allowed,
+      eventId,
+      reservationSectionId
+    ),
     (params: InfiniteQueryParams) =>
       GetReservationSectionTiers({
         ...params,
+        allowed,
         eventId,
         reservationSectionId,
       }),
     params,
     {
       ...options,
-      enabled: !!eventId && !!reservationSectionId && (options.enabled ?? true),
+      enabled:
+        typeof allowed === "boolean" &&
+        !!eventId &&
+        !!reservationSectionId &&
+        (options.enabled ?? true),
     },
     "events"
   );

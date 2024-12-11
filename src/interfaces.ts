@@ -241,9 +241,10 @@ export interface BaseAccount {
   image: BaseImage;
   featured: boolean;
   timezone: string | null;
+  locale: string;
+  country: string | null;
   internalRefId: string | null;
   accountTiers: BaseTier[];
-  locale: string;
   subscriptions: {
     subscriptionProduct: {
       tiers: BaseTier[];
@@ -269,12 +270,23 @@ export interface Account extends BaseAccount {
   video: string | null;
   youtube: string | null;
   dietaryRestrictions: string | null;
-  address1: string | null;
-  address2: string | null;
-  city: string | null;
-  state: string | null;
-  country: string | null;
-  zip: string | null;
+  updatedAt: string;
+}
+
+export interface BaseAddress {
+  id: string;
+  primary: boolean;
+  name: string;
+  address1: string;
+  address2: string;
+  city: string;
+  state: string;
+  country: string;
+  zip: string;
+}
+
+export interface Address extends BaseAddress {
+  createdAt: string;
   updatedAt: string;
 }
 

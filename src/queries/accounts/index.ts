@@ -1,5 +1,7 @@
 export * from "./useGetAccount";
 export * from "./useGetAccountActivities";
+export * from "./useGetAccountAddress";
+export * from "./useGetAccountAddresses";
 export * from "./useGetAccountAuthSessions";
 export * from "./useGetAccountCognitoUser";
 export * from "./useGetAccountCognitoUsers";

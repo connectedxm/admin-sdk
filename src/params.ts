@@ -98,7 +98,7 @@ export interface AccountAddressCreateInputs {
 }
 
 export interface AccountAddressUpdateInputs {
-  primary?: true;
+  primary?: boolean;
   name?: string;
   address1?: string;
   address2?: string;

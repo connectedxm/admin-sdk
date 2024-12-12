@@ -919,6 +919,8 @@ export interface BaseEvent {
 }
 
 export interface Event extends BaseEvent {
+  passSupply: number | null;
+  passLimitPerAccount: number | null;
   reservationDescription: string | null;
   longDescription: string | null;
   meetingUrl: string | null;
@@ -1882,6 +1884,12 @@ export interface BaseEventReservationSectionLocation {
   sortOrder: number;
   premium: number | null;
   reservationSection: BaseEventReservationSection;
+  minStart: string | null;
+  start: string | null;
+  maxStart: string | null;
+  minEnd: string | null;
+  end: string | null;
+  maxEnd: string | null;
   _count: {
     purchases: number;
   };

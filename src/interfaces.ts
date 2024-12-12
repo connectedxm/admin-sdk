@@ -731,6 +731,10 @@ export interface Coupon extends BaseCoupon {
   payment: BasePayment;
   createdAt: string;
   updatedAt: string;
+  _count: {
+    purchases: number;
+    uses: number;
+  };
 }
 
 export enum EmailReceiptStatus {

@@ -1,6 +1,6 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { Tier } from "@src/interfaces";
+import { EventPass } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -12,33 +12,30 @@ import { EVENT_RESERVATION_SECTION_QUERY_KEY } from "./useGetReservationSection"
  * @category Keys
  * @group Events
  */
-export const EVENT_RESERVATION_SECTION_TIERS_QUERY_KEY = (
-  allowed: boolean,
+export const EVENT_RESERVATION_SECTION_PASSES_QUERY_KEY = (
   eventId: string,
   reservationSectionId: string
 ) => [
   ...EVENT_RESERVATION_SECTION_QUERY_KEY(eventId, reservationSectionId),
-  "TIERS",
-  allowed ? "ALLOWED" : "DISALLOWED",
+  "PASSES",
 ];
 
 /**
  * @category Setters
  * @group Events
  */
-export const SET_EVENT_RESERVATION_SECTION_TIERS_QUERY_DATA = (
+export const SET_EVENT_RESERVATION_SECTION_PASSES_QUERY_DATA = (
   client: any,
-  keyParams: Parameters<typeof EVENT_RESERVATION_SECTION_TIERS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetReservationSectionTiers>>
+  keyParams: Parameters<typeof EVENT_RESERVATION_SECTION_PASSES_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetReservationSectionPasses>>
 ) => {
   client.setQueryData(
-    EVENT_RESERVATION_SECTION_TIERS_QUERY_KEY(...keyParams),
+    EVENT_RESERVATION_SECTION_PASSES_QUERY_KEY(...keyParams),
     response
   );
 };
 
-interface GetReservationSectionTiersProps extends InfiniteQueryParams {
-  allowed: boolean;
+interface GetReservationSectionPassesProps extends InfiniteQueryParams {
   eventId: string;
   reservationSectionId: string;
 }
@@ -47,8 +44,7 @@ interface GetReservationSectionTiersProps extends InfiniteQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetReservationSectionTiers = async ({
-  allowed,
+export const GetReservationSectionPasses = async ({
   eventId,
   reservationSectionId,
   pageParam,
@@ -56,13 +52,14 @@ export const GetReservationSectionTiers = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetReservationSectionTiersProps): Promise<ConnectedXMResponse<Tier[]>> => {
+}: GetReservationSectionPassesProps): Promise<
+  ConnectedXMResponse<EventPass[]>
+> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/events/${eventId}/reservationSections/${reservationSectionId}/tiers`,
+    `/events/${eventId}/reservationSections/${reservationSectionId}/passes`,
     {
       params: {
-        allowed,
         page: pageParam || undefined,
         pageSize: pageSize || undefined,
         orderBy: orderBy || undefined,
@@ -76,8 +73,7 @@ export const GetReservationSectionTiers = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetReservationSectionTiers = (
-  allowed: boolean,
+export const useGetReservationSectionPasses = (
   eventId: string = "",
   reservationSectionId: string = "",
   params: Omit<
@@ -85,32 +81,23 @@ export const useGetReservationSectionTiers = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetReservationSectionTiers>>
+    Awaited<ReturnType<typeof GetReservationSectionPasses>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetReservationSectionTiers>>
+    Awaited<ReturnType<typeof GetReservationSectionPasses>>
   >(
-    EVENT_RESERVATION_SECTION_TIERS_QUERY_KEY(
-      allowed,
-      eventId,
-      reservationSectionId
-    ),
+    EVENT_RESERVATION_SECTION_PASSES_QUERY_KEY(eventId, reservationSectionId),
     (params: InfiniteQueryParams) =>
-      GetReservationSectionTiers({
+      GetReservationSectionPasses({
         ...params,
-        allowed,
         eventId,
         reservationSectionId,
       }),
     params,
     {
       ...options,
-      enabled:
-        typeof allowed === "boolean" &&
-        !!eventId &&
-        !!reservationSectionId &&
-        (options.enabled ?? true),
+      enabled: !!reservationSectionId && (options.enabled ?? true),
     },
     "events"
   );

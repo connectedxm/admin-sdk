@@ -537,6 +537,7 @@ export interface EventCreateInputs {
   slug?: string | null;
   internalRefId?: string | null;
   longDescription?: string | null;
+  reservationDescription?: string | null;
   externalUrl?: string | null;
   imageId?: string | null;
   venueMapId?: string | null;
@@ -566,6 +567,8 @@ export interface EventCreateInputs {
   streamReplayId?: string | null;
   groupId?: string | null;
   groupOnly?: boolean;
+  passSupply?: number | string | null;
+  passLimitPerAccount?: string | number | null;
 }
 
 export interface EventEmailUpdateInputs {
@@ -679,6 +682,12 @@ export interface EventReservationSectionCreateInputs {
   sortOrder?: number | string | null;
   pricePerDay?: boolean;
   imageId?: string | null;
+  minStart?: string | null;
+  start?: string | null;
+  maxStart?: string | null;
+  minEnd?: string | null;
+  end?: string | null;
+  maxEnd?: string | null;
 }
 
 export interface EventReservationSectionLocationCreateInputs {
@@ -714,6 +723,12 @@ export interface EventReservationSectionUpdateInputs {
   sortOrder?: number | string | null;
   pricePerDay?: boolean;
   imageId?: string | null;
+  minStart?: string | null;
+  start?: string | null;
+  maxStart?: string | null;
+  minEnd?: string | null;
+  end?: string | null;
+  maxEnd?: string | null;
 }
 
 export interface EventSessionCreateInputs {
@@ -874,6 +889,7 @@ export interface EventTranslationUpdateInputs {
   name?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
+  reservationDescription?: string | null;
 }
 
 export interface EventUpdateInputs {
@@ -885,6 +901,7 @@ export interface EventUpdateInputs {
   internalRefId?: string | null;
   shortDescription?: string | null;
   longDescription?: string | null;
+  reservationDescription?: string | null;
   timezone?: string | null;
   eventStart?: string | null;
   eventEnd?: string | null;
@@ -918,6 +935,8 @@ export interface EventUpdateInputs {
   streamReplayId?: string | null;
   groupId?: string | null;
   groupOnly?: boolean;
+  passSupply?: number | string | null;
+  passLimitPerAccount?: string | number | null;
 }
 
 export interface FileUpdateInputs {

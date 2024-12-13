@@ -935,6 +935,9 @@ export interface BaseEvent {
 }
 
 export interface Event extends BaseEvent {
+  passSupply: number | null;
+  passLimitPerAccount: number | null;
+  reservationDescription: string | null;
   longDescription: string | null;
   meetingUrl: string | null;
   venueMapId: string | null;
@@ -968,6 +971,7 @@ export interface EventTranslation {
   name: string;
   shortDescription: string;
   longDescription: string | null;
+  reservationDescription: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -1826,6 +1830,7 @@ export interface RegistrationSection extends BaseRegistrationSection {
   eventTickets: BaseEventPassType[];
   eventAddOns: BaseEventAddOn[];
   accountTiers: BaseTier[];
+  disallowedTiers: BaseTier[];
   createdAt: string;
   updatedAt: string;
 }
@@ -1895,6 +1900,12 @@ export interface BaseEventReservationSectionLocation {
   sortOrder: number;
   premium: number | null;
   reservationSection: BaseEventReservationSection;
+  minStart: string | null;
+  start: string | null;
+  maxStart: string | null;
+  minEnd: string | null;
+  end: string | null;
+  maxEnd: string | null;
   _count: {
     purchases: number;
   };
@@ -2399,6 +2410,7 @@ export interface BaseEventPassType {
   maxQuantityPerSale: number;
   emailDomains: string | null;
   allowedTiers: BaseTier[];
+  disallowedTiers: BaseTier[];
   minReservationStart: string | null;
   reservationStart: string | null;
   maxReservationStart: string | null;

@@ -13,9 +13,14 @@ import { EVENT_ADD_ON_QUERY_KEY } from "./useGetEventAddOn";
  * @group Events
  */
 export const EVENT_ADD_ON_TIERS_QUERY_KEY = (
+  allowed: boolean,
   eventId: string,
   addOnId: string
-) => [...EVENT_ADD_ON_QUERY_KEY(eventId, addOnId), "TIERS"];
+) => [
+  ...EVENT_ADD_ON_QUERY_KEY(eventId, addOnId),
+  "TIERS",
+  allowed ? "ALLOWED" : "DISALLOWED",
+];
 
 /**
  * @category Setters
@@ -30,6 +35,7 @@ export const SET_EVENT_ADD_ON_TIERS_QUERY_DATA = (
 };
 
 interface GetEventAddOnTiersProps extends InfiniteQueryParams {
+  allowed: boolean;
   eventId: string;
   addOnId: string;
 }
@@ -39,6 +45,7 @@ interface GetEventAddOnTiersProps extends InfiniteQueryParams {
  * @group Events
  */
 export const GetEventAddOnTiers = async ({
+  allowed,
   eventId,
   addOnId,
   pageParam,
@@ -52,6 +59,7 @@ export const GetEventAddOnTiers = async ({
     `/events/${eventId}/addOns/${addOnId}/tiers`,
     {
       params: {
+        allowed,
         page: pageParam || undefined,
         pageSize: pageSize || undefined,
         orderBy: orderBy || undefined,
@@ -66,6 +74,7 @@ export const GetEventAddOnTiers = async ({
  * @group Events
  */
 export const useGetEventAddOnTiers = (
+  allowed: boolean,
   eventId: string = "",
   addOnId: string = "",
   params: Omit<
@@ -79,17 +88,22 @@ export const useGetEventAddOnTiers = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventAddOnTiers>>
   >(
-    EVENT_ADD_ON_TIERS_QUERY_KEY(eventId, addOnId),
+    EVENT_ADD_ON_TIERS_QUERY_KEY(allowed, eventId, addOnId),
     (params: InfiniteQueryParams) =>
       GetEventAddOnTiers({
         ...params,
+        allowed,
         eventId,
         addOnId,
       }),
     params,
     {
       ...options,
-      enabled: !!eventId && !!addOnId && (options.enabled ?? true),
+      enabled:
+        typeof allowed === "boolean" &&
+        !!eventId &&
+        !!addOnId &&
+        (options.enabled ?? true),
     },
     "events"
   );

@@ -15,6 +15,7 @@ import {
  * @group Event-Sections
  */
 export interface RemoveEventSectionTierParams extends MutationParams {
+  allowed: boolean;
   eventId: string;
   sectionId: string;
   tierId: string;
@@ -25,6 +26,7 @@ export interface RemoveEventSectionTierParams extends MutationParams {
  * @group Event-Sections
  */
 export const RemoveEventSectionTier = async ({
+  allowed,
   eventId,
   sectionId,
   tierId,
@@ -36,10 +38,14 @@ export const RemoveEventSectionTier = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<
     ConnectedXMResponse<RegistrationSection>
-  >(`/events/${eventId}/sections/${sectionId}/tiers/${tierId}`);
+  >(`/events/${eventId}/sections/${sectionId}/tiers/${tierId}`, {
+    params: {
+      allowed,
+    },
+  });
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_SECTION_TIERS_QUERY_KEY(eventId, sectionId),
+      queryKey: EVENT_SECTION_TIERS_QUERY_KEY(allowed, eventId, sectionId),
     });
     SET_EVENT_SECTION_QUERY_DATA(queryClient, [eventId, sectionId], data);
   }

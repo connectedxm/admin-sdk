@@ -13,9 +13,14 @@ import { EVENT_PASS_TYPE_QUERY_KEY } from "./useGetEventPassType";
  * @group Events
  */
 export const EVENT_PASS_TYPE_TIERS_QUERY_KEY = (
+  allowed: boolean,
   eventId: string,
   passTypeId: string
-) => [...EVENT_PASS_TYPE_QUERY_KEY(eventId, passTypeId), "TIERS"];
+) => [
+  ...EVENT_PASS_TYPE_QUERY_KEY(eventId, passTypeId),
+  "TIERS",
+  allowed ? "ALLOWED" : "DISALLOWED",
+];
 
 /**
  * @category Setters
@@ -30,6 +35,7 @@ export const SET_EVENT_PASS_TYPE_TIERS_QUERY_DATA = (
 };
 
 interface GetEventPassTypeTiersProps extends InfiniteQueryParams {
+  allowed: boolean;
   eventId: string;
   passTypeId: string;
 }
@@ -39,6 +45,7 @@ interface GetEventPassTypeTiersProps extends InfiniteQueryParams {
  * @group Events
  */
 export const GetEventPassTypeTiers = async ({
+  allowed,
   eventId,
   passTypeId,
   pageParam,
@@ -52,6 +59,7 @@ export const GetEventPassTypeTiers = async ({
     `/events/${eventId}/passTypes/${passTypeId}/tiers`,
     {
       params: {
+        allowed,
         page: pageParam || undefined,
         pageSize: pageSize || undefined,
         orderBy: orderBy || undefined,
@@ -66,6 +74,7 @@ export const GetEventPassTypeTiers = async ({
  * @group Events
  */
 export const useGetEventPassTypeTiers = (
+  allowed: boolean,
   eventId: string = "",
   passTypeId: string = "",
   params: Omit<
@@ -79,17 +88,22 @@ export const useGetEventPassTypeTiers = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventPassTypeTiers>>
   >(
-    EVENT_PASS_TYPE_TIERS_QUERY_KEY(eventId, passTypeId),
+    EVENT_PASS_TYPE_TIERS_QUERY_KEY(allowed, eventId, passTypeId),
     (params: InfiniteQueryParams) =>
       GetEventPassTypeTiers({
         ...params,
+        allowed,
         eventId,
         passTypeId,
       }),
     params,
     {
       ...options,
-      enabled: !!eventId && !!passTypeId && (options.enabled ?? true),
+      enabled:
+        typeof allowed === "boolean" &&
+        !!eventId &&
+        !!passTypeId &&
+        (options.enabled ?? true),
     },
     "events"
   );

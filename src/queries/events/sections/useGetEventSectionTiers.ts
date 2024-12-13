@@ -13,9 +13,14 @@ import { EVENT_SECTION_QUERY_KEY } from "./useGetEventSection";
  * @group Events
  */
 export const EVENT_SECTION_TIERS_QUERY_KEY = (
+  allowed: boolean,
   eventId: string,
   sectionId: string
-) => [...EVENT_SECTION_QUERY_KEY(eventId, sectionId), "TIERS"];
+) => [
+  ...EVENT_SECTION_QUERY_KEY(eventId, sectionId),
+  "TIERS",
+  allowed ? "ALLOWED" : "DISALLOWED",
+];
 
 /**
  * @category Setters
@@ -30,6 +35,7 @@ export const SET_EVENT_SECTION_TIERS_QUERY_DATA = (
 };
 
 interface GetEventSectionTiersProps extends InfiniteQueryParams {
+  allowed: boolean;
   eventId: string;
   sectionId: string;
 }
@@ -39,6 +45,7 @@ interface GetEventSectionTiersProps extends InfiniteQueryParams {
  * @group Events
  */
 export const GetEventSectionTiers = async ({
+  allowed,
   eventId,
   sectionId,
   pageParam,
@@ -52,6 +59,7 @@ export const GetEventSectionTiers = async ({
     `/events/${eventId}/sections/${sectionId}/tiers`,
     {
       params: {
+        allowed,
         page: pageParam || undefined,
         pageSize: pageSize || undefined,
         orderBy: orderBy || undefined,
@@ -66,6 +74,7 @@ export const GetEventSectionTiers = async ({
  * @group Events
  */
 export const useGetEventSectionTiers = (
+  allowed: boolean,
   eventId: string = "",
   sectionId: string = "",
   params: Omit<
@@ -79,17 +88,22 @@ export const useGetEventSectionTiers = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventSectionTiers>>
   >(
-    EVENT_SECTION_TIERS_QUERY_KEY(eventId, sectionId),
+    EVENT_SECTION_TIERS_QUERY_KEY(allowed, eventId, sectionId),
     (params: InfiniteQueryParams) =>
       GetEventSectionTiers({
         ...params,
+        allowed,
         eventId,
         sectionId,
       }),
     params,
     {
       ...options,
-      enabled: !!eventId && !!sectionId && (options.enabled ?? true),
+      enabled:
+        typeof allowed === "boolean" &&
+        !!eventId &&
+        !!sectionId &&
+        (options.enabled ?? true),
     },
     "events"
   );

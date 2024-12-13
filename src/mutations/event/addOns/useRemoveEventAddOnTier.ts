@@ -15,6 +15,7 @@ import {
  * @group Event-AddOns
  */
 export interface RemoveEventAddOnTierParams extends MutationParams {
+  allowed: boolean;
   eventId: string;
   addOnId: string;
   tierId: string;
@@ -25,6 +26,7 @@ export interface RemoveEventAddOnTierParams extends MutationParams {
  * @group Event-AddOns
  */
 export const RemoveEventAddOnTier = async ({
+  allowed,
   eventId,
   addOnId,
   tierId,
@@ -33,12 +35,17 @@ export const RemoveEventAddOnTier = async ({
 }: RemoveEventAddOnTierParams): Promise<ConnectedXMResponse<EventAddOn>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<EventAddOn>>(
-    `/events/${eventId}/addOns/${addOnId}/tiers/${tierId}`
+    `/events/${eventId}/addOns/${addOnId}/tiers/${tierId}`,
+    {
+      params: {
+        allowed,
+      },
+    }
   );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_ADD_ON_TIERS_QUERY_KEY(eventId, addOnId),
+      queryKey: EVENT_ADD_ON_TIERS_QUERY_KEY(allowed, eventId, addOnId),
     });
     SET_EVENT_ADD_ON_QUERY_DATA(queryClient, [eventId, addOnId], data);
   }

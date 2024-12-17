@@ -53,12 +53,15 @@ export const CancelEventPass = async ({
     }
     if (data.data.registrationId) {
       queryClient.invalidateQueries({
-        queryKey: EVENT_ATTENDEE_QUERY_KEY(eventId, data.data.registrationId),
+        queryKey: EVENT_ATTENDEE_QUERY_KEY(
+          eventId,
+          data.data.registration.accountId
+        ),
       });
       queryClient.invalidateQueries({
         queryKey: EVENT_ATTENDEE_PASSES_QUERY_KEY(
           eventId,
-          data.data.registrationId
+          data.data.registration.accountId
         ),
       });
     }

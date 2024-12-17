@@ -15,6 +15,7 @@ import { EVENT_PASS_SECTIONS_QUERY_KEY } from "@src/queries/events/passes/useGet
 export interface UpdateEventPassResponsesParams extends MutationParams {
   eventId: string;
   passId: string;
+  accountId: string;
   //TODO: missing interface and validation
   questions: Question[];
 }
@@ -25,6 +26,7 @@ export interface UpdateEventPassResponsesParams extends MutationParams {
  */
 export const UpdateEventPassResponses = async ({
   eventId,
+  accountId,
   passId,
   questions,
   adminApiParams,
@@ -32,7 +34,7 @@ export const UpdateEventPassResponses = async ({
 }: UpdateEventPassResponsesParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put(
-    `/events/${eventId}/passes/${passId}/responses`,
+    `/events/${eventId}/attendees/${accountId}/passes/${passId}/responses`,
     { questions }
   );
   if (queryClient && data.status === "ok") {

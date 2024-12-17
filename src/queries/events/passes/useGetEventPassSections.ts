@@ -31,6 +31,7 @@ export const SET_EVENT_PASS_SECTIONS_QUERY_DATA = (
 
 interface GetEventPassSectionsProps extends InfiniteQueryParams {
   eventId: string;
+  accountId: string;
   passId: string;
 }
 
@@ -40,6 +41,7 @@ interface GetEventPassSectionsProps extends InfiniteQueryParams {
  */
 export const GetEventPassSections = async ({
   eventId,
+  accountId,
   passId,
   adminApiParams,
 }: GetEventPassSectionsProps): Promise<
@@ -48,7 +50,7 @@ export const GetEventPassSections = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.get<
     ConnectedXMResponse<RegistrationSection[]>
-  >(`/events/${eventId}/passes/${passId}/sections`);
+  >(`/events/${eventId}/attendees/${accountId}/passes/${passId}/sections`);
   return data;
 };
 
@@ -58,6 +60,7 @@ export const GetEventPassSections = async ({
  */
 export const useGetEventPassSections = (
   eventId: string = "",
+  accountId: string = "",
   passId: string = "",
   params: Omit<
     InfiniteQueryParams,
@@ -75,12 +78,13 @@ export const useGetEventPassSections = (
       GetEventPassSections({
         ...params,
         eventId,
+        accountId,
         passId,
       }),
     params,
     {
       ...options,
-      enabled: !!eventId && !!passId,
+      enabled: !!eventId && !!accountId && !!passId,
     },
     "events"
   );

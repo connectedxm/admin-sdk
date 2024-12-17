@@ -16,6 +16,7 @@ import {
  */
 export interface RemoveEventPassReservationParams extends MutationParams {
   eventId: string;
+  accountId: string;
   passId: string;
 }
 
@@ -25,6 +26,7 @@ export interface RemoveEventPassReservationParams extends MutationParams {
  */
 export const RemoveEventPassReservation = async ({
   eventId,
+  accountId,
   passId,
   adminApiParams,
   queryClient,
@@ -33,7 +35,7 @@ export const RemoveEventPassReservation = async ({
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<EventAttendee>>(
-    `/events/${eventId}/passes/${passId}/reservations`
+    `/events/${eventId}/attendees/${accountId}/passes/${passId}/reservations`
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

@@ -17,7 +17,7 @@ import {
  */
 export interface UpdateEventAttendeeParams extends MutationParams {
   eventId: string;
-  attendeeId: string;
+  accountId: string;
   registration: EventAttendeeUpdateInputs;
 }
 
@@ -27,18 +27,18 @@ export interface UpdateEventAttendeeParams extends MutationParams {
  */
 export const UpdateEventAttendee = async ({
   eventId,
-  attendeeId,
+  accountId,
   registration,
   adminApiParams,
   queryClient,
 }: UpdateEventAttendeeParams): Promise<ConnectedXMResponse<EventAttendee>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put(
-    `/events/${eventId}/attendees/${attendeeId}`,
+    `/events/${eventId}/attendees/${accountId}`,
     registration
   );
   if (queryClient && data.status === "ok") {
-    SET_EVENT_ATTENDEE_QUERY_DATA(queryClient, [eventId, attendeeId], data);
+    SET_EVENT_ATTENDEE_QUERY_DATA(queryClient, [eventId, accountId], data);
     queryClient.invalidateQueries({
       queryKey: EVENT_ATTENDEES_QUERY_KEY(eventId),
     });

@@ -40,7 +40,7 @@ export const CreateEventAttendee = async ({
     queryClient.invalidateQueries({
       queryKey: EVENT_ATTENDEES_QUERY_KEY(eventId),
     });
-    SET_EVENT_ATTENDEE_QUERY_DATA(queryClient, [eventId, data.data.id], data);
+    SET_EVENT_ATTENDEE_QUERY_DATA(queryClient, [eventId, accountId], data);
   }
   return data;
 };

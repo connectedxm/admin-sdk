@@ -5,8 +5,10 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EVENT_PASS_RESPONSES_QUERY_KEY } from "@src/queries";
-import { EVENT_PASS_SECTIONS_QUERY_KEY } from "@src/queries/events/passes/useGetEventPassSections";
+import {
+  EVENT_PASS_QUESTION_SECTIONS_QUERY_KEY,
+  EVENT_PASS_RESPONSES_QUERY_KEY,
+} from "@src/queries";
 
 /**
  * @category Params
@@ -42,7 +44,7 @@ export const UpdateEventPassResponses = async ({
       queryKey: EVENT_PASS_RESPONSES_QUERY_KEY(eventId, passId),
     });
     queryClient.invalidateQueries({
-      queryKey: EVENT_PASS_SECTIONS_QUERY_KEY(eventId, passId),
+      queryKey: EVENT_PASS_QUESTION_SECTIONS_QUERY_KEY(eventId, passId),
     });
   }
   return data;

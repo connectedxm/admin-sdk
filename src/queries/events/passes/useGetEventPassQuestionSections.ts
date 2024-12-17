@@ -12,7 +12,7 @@ import { EVENT_PASS_QUERY_KEY } from "./useGetEventPass";
  * @category Keys
  * @group Events
  */
-export const EVENT_PASS_SECTIONS_QUERY_KEY = (
+export const EVENT_PASS_QUESTION_SECTIONS_QUERY_KEY = (
   eventId: string,
   passId: string
 ) => [...EVENT_PASS_QUERY_KEY(eventId, passId), "SECTIONS"];
@@ -21,15 +21,18 @@ export const EVENT_PASS_SECTIONS_QUERY_KEY = (
  * @category Setters
  * @group Events
  */
-export const SET_EVENT_PASS_SECTIONS_QUERY_DATA = (
+export const SET_EVENT_PASS_QUESTION_SECTIONS_QUERY_DATA = (
   client: QueryClient,
-  keyParams: Parameters<typeof EVENT_PASS_SECTIONS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventPassSections>>
+  keyParams: Parameters<typeof EVENT_PASS_QUESTION_SECTIONS_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetEventPassQuestionSections>>
 ) => {
-  client.setQueryData(EVENT_PASS_SECTIONS_QUERY_KEY(...keyParams), response);
+  client.setQueryData(
+    EVENT_PASS_QUESTION_SECTIONS_QUERY_KEY(...keyParams),
+    response
+  );
 };
 
-interface GetEventPassSectionsProps extends InfiniteQueryParams {
+interface GetEventPassQuestionSectionsProps extends InfiniteQueryParams {
   eventId: string;
   accountId: string;
   passId: string;
@@ -39,18 +42,18 @@ interface GetEventPassSectionsProps extends InfiniteQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetEventPassSections = async ({
+export const GetEventPassQuestionSections = async ({
   eventId,
   accountId,
   passId,
   adminApiParams,
-}: GetEventPassSectionsProps): Promise<
+}: GetEventPassQuestionSectionsProps): Promise<
   ConnectedXMResponse<RegistrationSection[]>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.get<
     ConnectedXMResponse<RegistrationSection[]>
-  >(`/events/${eventId}/attendees/${accountId}/passes/${passId}/sections`);
+  >(`/events/${eventId}/attendees/${accountId}/passes/${passId}/questions`);
   return data;
 };
 
@@ -58,7 +61,7 @@ export const GetEventPassSections = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventPassSections = (
+export const useGetEventPassQuestionSections = (
   eventId: string = "",
   accountId: string = "",
   passId: string = "",
@@ -67,15 +70,15 @@ export const useGetEventPassSections = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventPassSections>>
+    Awaited<ReturnType<typeof GetEventPassQuestionSections>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventPassSections>>
+    Awaited<ReturnType<typeof GetEventPassQuestionSections>>
   >(
-    EVENT_PASS_SECTIONS_QUERY_KEY(eventId, passId),
+    EVENT_PASS_QUESTION_SECTIONS_QUERY_KEY(eventId, passId),
     (params: InfiniteQueryParams) =>
-      GetEventPassSections({
+      GetEventPassQuestionSections({
         ...params,
         eventId,
         accountId,

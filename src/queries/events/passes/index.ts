@@ -3,6 +3,6 @@ export * from "./useGetEventPassAddOns";
 export * from "./useGetEventPassResponse";
 export * from "./useGetEventPassResponseChanges";
 export * from "./useGetEventPassResponses";
-export * from "./useGetEventPassSections";
+export * from "./useGetEventPassQuestionSections";
 export * from "./useGetEventPassTransferLogs";
 export * from "./useGetEventPasses";

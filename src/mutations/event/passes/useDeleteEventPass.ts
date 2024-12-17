@@ -18,7 +18,7 @@ import {
 export interface DeleteEventPassParams extends MutationParams {
   eventId: string;
   passId: string;
-  attendeeId?: string;
+  accountId?: string;
 }
 
 /**
@@ -28,7 +28,7 @@ export interface DeleteEventPassParams extends MutationParams {
 export const DeleteEventPass = async ({
   eventId,
   passId,
-  attendeeId,
+  accountId,
   adminApiParams,
   queryClient,
 }: DeleteEventPassParams): Promise<ConnectedXMResponse<null>> => {
@@ -43,9 +43,9 @@ export const DeleteEventPass = async ({
     queryClient.removeQueries({
       queryKey: EVENT_PASS_QUERY_KEY(eventId, passId),
     });
-    if (attendeeId) {
+    if (accountId) {
       queryClient.invalidateQueries({
-        queryKey: EVENT_ATTENDEE_PASSES_QUERY_KEY(eventId, attendeeId),
+        queryKey: EVENT_ATTENDEE_PASSES_QUERY_KEY(eventId, accountId),
       });
     }
   }

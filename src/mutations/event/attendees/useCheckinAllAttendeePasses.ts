@@ -16,7 +16,7 @@ import {
  */
 export interface CheckinAllAttendeePassesParams extends MutationParams {
   eventId: string;
-  attendeeId: string;
+  accountId: string;
 }
 
 /**
@@ -25,17 +25,17 @@ export interface CheckinAllAttendeePassesParams extends MutationParams {
  */
 export const CheckinAllAttendeePasses = async ({
   eventId,
-  attendeeId,
+  accountId,
   adminApiParams,
   queryClient,
 }: CheckinAllAttendeePassesParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<null>>(
-    `/events/${eventId}/attendees/${attendeeId}/passes/checkin/all`
+    `/events/${eventId}/attendees/${accountId}/passes/checkin/all`
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_ATTENDEE_PASSES_QUERY_KEY(eventId, attendeeId),
+      queryKey: EVENT_ATTENDEE_PASSES_QUERY_KEY(eventId, accountId),
     });
     queryClient.invalidateQueries({
       queryKey: EVENT_PASSES_QUERY_KEY(eventId),

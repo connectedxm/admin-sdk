@@ -19,9 +19,9 @@ import {
  */
 export interface TransferEventPassParams extends MutationParams {
   eventId: string;
-  passId: string;
   accountId: string;
-  attendeeId?: string;
+  passId: string;
+  receiverId: string;
 }
 
 /**
@@ -30,16 +30,16 @@ export interface TransferEventPassParams extends MutationParams {
  */
 export const TransferEventPass = async ({
   eventId,
-  passId,
   accountId,
-  attendeeId,
+  passId,
+  receiverId,
   adminApiParams,
   queryClient,
 }: TransferEventPassParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<null>>(
-    `/events/${eventId}/passes/${passId}/transfers`,
-    { accountId }
+    `/events/${eventId}/attendees/${accountId}/passes/${passId}/transfers`,
+    { accountId: receiverId }
   );
 
   if (queryClient && data.status === "ok") {
@@ -49,19 +49,16 @@ export const TransferEventPass = async ({
     queryClient.invalidateQueries({
       queryKey: EVENT_PASS_TRANSFER_LOGS_QUERY_KEY(eventId, passId),
     });
-    if (attendeeId) {
-      queryClient.invalidateQueries({
-        queryKey: EVENT_ATTENDEE_QUERY_KEY(eventId, attendeeId),
-      });
-      console.log("SDK", EVENT_ATTENDEE_PASSES_QUERY_KEY(eventId, attendeeId));
-      queryClient.invalidateQueries({
-        queryKey: EVENT_ATTENDEE_PASSES_QUERY_KEY(eventId, attendeeId),
-        exact: false,
-      });
-      queryClient.invalidateQueries({
-        queryKey: EVENT_ATTENDEE_TRANSFER_LOGS_QUERY_KEY(eventId, attendeeId),
-      });
-    }
+    queryClient.invalidateQueries({
+      queryKey: EVENT_ATTENDEE_QUERY_KEY(eventId, accountId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_ATTENDEE_PASSES_QUERY_KEY(eventId, accountId),
+      exact: false,
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_ATTENDEE_TRANSFER_LOGS_QUERY_KEY(eventId, accountId),
+    });
   }
 
   return data;

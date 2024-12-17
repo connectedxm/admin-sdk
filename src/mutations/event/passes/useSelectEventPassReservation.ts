@@ -16,6 +16,7 @@ import {
  */
 export interface SelectEventPassReservationParams extends MutationParams {
   eventId: string;
+  accountId: string;
   passId: string;
   locationId: string;
   reservation: {
@@ -30,6 +31,7 @@ export interface SelectEventPassReservationParams extends MutationParams {
  */
 export const SelectEventPassReservation = async ({
   eventId,
+  accountId,
   passId,
   locationId,
   reservation,
@@ -40,7 +42,7 @@ export const SelectEventPassReservation = async ({
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<EventAttendee>>(
-    `/events/${eventId}/passes/${passId}/reservations/${locationId}`,
+    `/events/${eventId}/attendees/${accountId}/passes/${passId}/reservations/${locationId}`,
     reservation
   );
   if (queryClient && data.status === "ok") {

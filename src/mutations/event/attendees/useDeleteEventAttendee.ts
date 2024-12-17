@@ -16,7 +16,7 @@ import {
  */
 export interface DeleteEventAttendeeParams extends MutationParams {
   eventId: string;
-  attendeeId: string;
+  accountId: string;
 }
 
 /**
@@ -25,20 +25,20 @@ export interface DeleteEventAttendeeParams extends MutationParams {
  */
 export const DeleteEventAttendee = async ({
   eventId,
-  attendeeId,
+  accountId,
   adminApiParams,
   queryClient,
 }: DeleteEventAttendeeParams): Promise<ConnectedXMResponse<EventAttendee>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<EventAttendee>>(
-    `/events/${eventId}/attendees/${attendeeId}`
+    `/events/${eventId}/attendees/${accountId}`
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_ATTENDEES_QUERY_KEY(eventId),
     });
     queryClient.removeQueries({
-      queryKey: EVENT_ATTENDEE_QUERY_KEY(eventId, attendeeId),
+      queryKey: EVENT_ATTENDEE_QUERY_KEY(eventId, accountId),
     });
   }
   return data;

@@ -14,8 +14,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  */
 export const EVENT_ATTENDEE_QUERY_KEY = (
   eventId: string,
-  attendeeId: string
-) => [...EVENT_ATTENDEES_QUERY_KEY(eventId), attendeeId];
+  accountId: string
+) => [...EVENT_ATTENDEES_QUERY_KEY(eventId), accountId];
 
 /**
  * @category Setters
@@ -31,7 +31,7 @@ export const SET_EVENT_ATTENDEE_QUERY_DATA = (
 
 interface GetEventAttendeeProps extends SingleQueryParams {
   eventId: string;
-  attendeeId: string;
+  accountId: string;
 }
 
 /**
@@ -40,12 +40,12 @@ interface GetEventAttendeeProps extends SingleQueryParams {
  */
 export const GetEventAttendee = async ({
   eventId,
-  attendeeId,
+  accountId,
   adminApiParams,
 }: GetEventAttendeeProps): Promise<ConnectedXMResponse<EventAttendee>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/events/${eventId}/attendees/${attendeeId}`
+    `/events/${eventId}/attendees/${accountId}`
   );
   return data;
 };
@@ -55,16 +55,16 @@ export const GetEventAttendee = async ({
  */
 export const useGetEventAttendee = (
   eventId: string,
-  attendeeId: string = "",
+  accountId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventAttendee>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEventAttendee>>(
-    EVENT_ATTENDEE_QUERY_KEY(eventId, attendeeId),
+    EVENT_ATTENDEE_QUERY_KEY(eventId, accountId),
     (params: SingleQueryParams) =>
-      GetEventAttendee({ eventId, attendeeId, ...params }),
+      GetEventAttendee({ eventId, accountId, ...params }),
     {
       ...options,
-      enabled: !!eventId && !!attendeeId && (options?.enabled ?? true),
+      enabled: !!eventId && !!accountId && (options?.enabled ?? true),
     },
     "events"
   );

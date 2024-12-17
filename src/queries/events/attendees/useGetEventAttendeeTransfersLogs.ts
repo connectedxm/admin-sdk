@@ -15,12 +15,12 @@ import { QueryClient } from "@tanstack/react-query";
  */
 export const EVENT_ATTENDEE_TRANSFER_LOGS_QUERY_KEY = (
   eventId: string,
-  attendeeId: string
+  accountId: string
 ) => {
   const keys = [
     ...EVENT_QUERY_KEY(eventId),
     "ATTENDEE_TRANSFER_LOGS",
-    attendeeId,
+    accountId,
   ];
   return keys;
 };
@@ -42,7 +42,7 @@ export const SET_EVENT_ATTENDEE_TRANSFER_LOGS_QUERY_DATA = (
 
 interface GetEventAttendeeTransfersLogsProps extends InfiniteQueryParams {
   eventId: string;
-  attendeeId: string;
+  accountId: string;
 }
 
 /**
@@ -51,7 +51,7 @@ interface GetEventAttendeeTransfersLogsProps extends InfiniteQueryParams {
  */
 export const GetEventAttendeeTransfersLogs = async ({
   eventId,
-  attendeeId,
+  accountId,
   pageParam,
   pageSize,
   orderBy,
@@ -62,7 +62,7 @@ export const GetEventAttendeeTransfersLogs = async ({
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/events/${eventId}/attendees/${attendeeId}/transfers/logs`,
+    `/events/${eventId}/attendees/${accountId}/transfers/logs`,
     {
       params: {
         page: pageParam || undefined,
@@ -81,7 +81,7 @@ export const GetEventAttendeeTransfersLogs = async ({
  */
 export const useGetEventAttendeeTransfersLogs = (
   eventId: string,
-  attendeeId: string,
+  accountId: string,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -93,17 +93,17 @@ export const useGetEventAttendeeTransfersLogs = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventAttendeeTransfersLogs>>
   >(
-    EVENT_ATTENDEE_TRANSFER_LOGS_QUERY_KEY(eventId, attendeeId),
+    EVENT_ATTENDEE_TRANSFER_LOGS_QUERY_KEY(eventId, accountId),
     (params: InfiniteQueryParams) =>
       GetEventAttendeeTransfersLogs({
         ...params,
         eventId,
-        attendeeId,
+        accountId,
       }),
     params,
     {
       ...options,
-      enabled: !!eventId && !!attendeeId && (options.enabled ?? true),
+      enabled: !!eventId && !!accountId && (options.enabled ?? true),
     },
     "events"
   );

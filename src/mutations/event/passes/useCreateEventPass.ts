@@ -18,7 +18,7 @@ import {
  */
 export interface CreateEventPassParams extends MutationParams {
   eventId: string;
-  attendeeId: string;
+  accountId: string;
   pass: EventPassCreateInputs;
 }
 
@@ -28,22 +28,22 @@ export interface CreateEventPassParams extends MutationParams {
  */
 export const CreateEventPass = async ({
   eventId,
-  attendeeId,
+  accountId,
   pass,
   adminApiParams,
   queryClient,
 }: CreateEventPassParams): Promise<ConnectedXMResponse<EventPass>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<EventPass>>(
-    `/events/${eventId}/attendees/${attendeeId}/passes`,
+    `/events/${eventId}/attendees/${accountId}/passes`,
     pass
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_ATTENDEE_PASSES_QUERY_KEY(eventId, attendeeId),
+      queryKey: EVENT_ATTENDEE_PASSES_QUERY_KEY(eventId, accountId),
     });
     queryClient.invalidateQueries({
-      queryKey: EVENT_ATTENDEE_QUERY_KEY(eventId, attendeeId),
+      queryKey: EVENT_ATTENDEE_QUERY_KEY(eventId, accountId),
     });
     SET_EVENT_PASS_QUERY_DATA(queryClient, [eventId, data.data.id], data);
   }

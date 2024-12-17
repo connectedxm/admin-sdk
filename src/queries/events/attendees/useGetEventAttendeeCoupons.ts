@@ -15,10 +15,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
  */
 export const EVENT_ATTENDEE_COUPONS_QUERY_KEY = (
   eventId: string,
-  attendeeId: string,
+  accountId: string,
   prePaid?: boolean
 ) => {
-  const key = [...EVENT_ATTENDEE_QUERY_KEY(eventId, attendeeId), "COUPONS"];
+  const key = [...EVENT_ATTENDEE_QUERY_KEY(eventId, accountId), "COUPONS"];
 
   if (typeof prePaid === "boolean") {
     key.push(prePaid.toString());
@@ -41,7 +41,7 @@ export const SET_EVENT_REGISTRATION_COUPONS_QUERY_DATA = (
 
 interface GetEventAttendeeCouponsProps extends InfiniteQueryParams {
   eventId: string;
-  attendeeId: string;
+  accountId: string;
   prePaid?: boolean;
 }
 
@@ -51,7 +51,7 @@ interface GetEventAttendeeCouponsProps extends InfiniteQueryParams {
  */
 export const GetEventAttendeeCoupons = async ({
   eventId,
-  attendeeId,
+  accountId,
   prePaid,
   pageParam,
   pageSize,
@@ -61,7 +61,7 @@ export const GetEventAttendeeCoupons = async ({
 }: GetEventAttendeeCouponsProps): Promise<ConnectedXMResponse<Coupon[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/events/${eventId}/attendees/${attendeeId}/coupons`,
+    `/events/${eventId}/attendees/${accountId}/coupons`,
     {
       params: {
         paid: typeof prePaid === "boolean" ? prePaid : undefined,
@@ -80,7 +80,7 @@ export const GetEventAttendeeCoupons = async ({
  */
 export const useGetEventAttendeeCoupons = (
   eventId: string = "",
-  attendeeId: string = "",
+  accountId: string = "",
   prePaid?: boolean,
   params: Omit<
     InfiniteQueryParams,
@@ -93,18 +93,18 @@ export const useGetEventAttendeeCoupons = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventAttendeeCoupons>>
   >(
-    EVENT_ATTENDEE_COUPONS_QUERY_KEY(eventId, attendeeId, prePaid),
+    EVENT_ATTENDEE_COUPONS_QUERY_KEY(eventId, accountId, prePaid),
     (params: InfiniteQueryParams) =>
       GetEventAttendeeCoupons({
         ...params,
         eventId,
-        attendeeId,
+        accountId,
         prePaid,
       }),
     params,
     {
       ...options,
-      enabled: !!eventId && !!attendeeId && (options.enabled ?? true),
+      enabled: !!eventId && !!accountId && (options.enabled ?? true),
     },
     "events"
   );

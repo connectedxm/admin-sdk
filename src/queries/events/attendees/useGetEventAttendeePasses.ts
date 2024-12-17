@@ -15,10 +15,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
  */
 export const EVENT_ATTENDEE_PASSES_QUERY_KEY = (
   eventId: string,
-  attendeeId: string,
+  accountId: string,
   status?: keyof typeof EventPassStatus
 ) => {
-  const key = [...EVENT_ATTENDEE_QUERY_KEY(eventId, attendeeId), "PASSES"];
+  const key = [...EVENT_ATTENDEE_QUERY_KEY(eventId, accountId), "PASSES"];
 
   if (status) {
     key.push(status);
@@ -41,7 +41,7 @@ export const SET_EVENT_ATTENDEE_PASSES_QUERY_DATA = (
 
 interface GetEventAttendeePassesProps extends InfiniteQueryParams {
   eventId: string;
-  attendeeId: string;
+  accountId: string;
   status?: keyof typeof EventPassStatus;
 }
 
@@ -51,7 +51,7 @@ interface GetEventAttendeePassesProps extends InfiniteQueryParams {
  */
 export const GetEventAttendeePasses = async ({
   eventId,
-  attendeeId,
+  accountId,
   status,
   pageParam,
   pageSize,
@@ -61,7 +61,7 @@ export const GetEventAttendeePasses = async ({
 }: GetEventAttendeePassesProps): Promise<ConnectedXMResponse<EventPass[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/events/${eventId}/attendees/${attendeeId}/passes`,
+    `/events/${eventId}/attendees/${accountId}/passes`,
     {
       params: {
         status: status || undefined,
@@ -80,7 +80,7 @@ export const GetEventAttendeePasses = async ({
  */
 export const useGetEventAttendeePasses = (
   eventId: string = "",
-  attendeeId: string = "",
+  accountId: string = "",
   status?: keyof typeof EventPassStatus,
   params: Omit<
     InfiniteQueryParams,
@@ -93,18 +93,18 @@ export const useGetEventAttendeePasses = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventAttendeePasses>>
   >(
-    EVENT_ATTENDEE_PASSES_QUERY_KEY(eventId, attendeeId, status),
+    EVENT_ATTENDEE_PASSES_QUERY_KEY(eventId, accountId, status),
     (params: InfiniteQueryParams) =>
       GetEventAttendeePasses({
         ...params,
         eventId,
-        attendeeId,
+        accountId,
         status,
       }),
     params,
     {
       ...options,
-      enabled: !!eventId && !!attendeeId && (options.enabled ?? true),
+      enabled: !!eventId && !!accountId && (options.enabled ?? true),
     },
     "events"
   );

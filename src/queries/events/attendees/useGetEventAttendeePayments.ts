@@ -15,8 +15,8 @@ import { EVENT_ATTENDEE_QUERY_KEY } from "./useGetEventAttendee";
  */
 export const EVENT_ATTENDEE_PAYMENTS_QUERY_KEY = (
   eventId: string,
-  attendeeId: string
-) => [...EVENT_ATTENDEE_QUERY_KEY(eventId, attendeeId), "PAYMENTS"];
+  accountId: string
+) => [...EVENT_ATTENDEE_QUERY_KEY(eventId, accountId), "PAYMENTS"];
 
 /**
  * @category Setters
@@ -35,7 +35,7 @@ export const SET_EVENT_ATTENDEE_PAYMENTS_QUERY_DATA = (
 
 interface GetEventAttendeePaymentsProps extends InfiniteQueryParams {
   eventId: string;
-  attendeeId: string;
+  accountId: string;
 }
 
 /**
@@ -44,7 +44,7 @@ interface GetEventAttendeePaymentsProps extends InfiniteQueryParams {
  */
 export const GetEventAttendeePayments = async ({
   eventId,
-  attendeeId,
+  accountId,
   pageParam,
   pageSize,
   orderBy,
@@ -53,7 +53,7 @@ export const GetEventAttendeePayments = async ({
 }: GetEventAttendeePaymentsProps): Promise<ConnectedXMResponse<Payment[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/events/${eventId}/attendees/${attendeeId}/payments`,
+    `/events/${eventId}/attendees/${accountId}/payments`,
     {
       params: {
         page: pageParam || undefined,
@@ -71,7 +71,7 @@ export const GetEventAttendeePayments = async ({
  */
 export const useGetEventAttendeePayments = (
   eventId: string = "",
-  attendeeId: string = "",
+  accountId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -83,13 +83,13 @@ export const useGetEventAttendeePayments = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventAttendeePayments>>
   >(
-    EVENT_ATTENDEE_PAYMENTS_QUERY_KEY(eventId, attendeeId),
+    EVENT_ATTENDEE_PAYMENTS_QUERY_KEY(eventId, accountId),
     (params: InfiniteQueryParams) =>
-      GetEventAttendeePayments({ ...params, eventId, attendeeId }),
+      GetEventAttendeePayments({ ...params, eventId, accountId }),
     params,
     {
       ...options,
-      enabled: !!eventId && !!attendeeId && (options.enabled ?? true),
+      enabled: !!eventId && !!accountId && (options.enabled ?? true),
     },
     "events"
   );

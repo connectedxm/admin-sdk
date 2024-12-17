@@ -13,7 +13,7 @@ import {
 export interface ResendRegistrationConfirmationEmailParams
   extends MutationParams {
   eventId: string;
-  attendeeId: string;
+  accountId: string;
 }
 
 /**
@@ -22,7 +22,7 @@ export interface ResendRegistrationConfirmationEmailParams
  */
 export const ResendRegistrationConfirmationEmail = async ({
   eventId,
-  attendeeId,
+  accountId,
   adminApiParams,
   queryClient,
 }: ResendRegistrationConfirmationEmailParams): Promise<
@@ -30,7 +30,7 @@ export const ResendRegistrationConfirmationEmail = async ({
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<null>>(
-    `/events/${eventId}/attendees/${attendeeId}/resendEmail`
+    `/events/${eventId}/attendees/${accountId}/resendEmail`
   );
   if (queryClient && data.status === "ok") {
     //do nothing currently

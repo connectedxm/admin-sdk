@@ -2775,3 +2775,37 @@ export interface CognitoUser extends BaseCognitoUser {
 export interface DomainDetails {
   name: string;
 }
+
+export interface BaseEventRoomType {
+  id: string;
+  name: string;
+  price: number;
+  image: BaseImage;
+}
+
+export interface EventRoomType extends BaseEventRoomType {
+  sortOrder: number;
+  description: string | null;
+  longDescription: string | null;
+  supply: number | null;
+  minPasses: number | null;
+  maxPasses: number | null;
+  minStart: string | null;
+  defaultStart: string | null;
+  maxStart: string | null;
+  minEnd: string | null;
+  defaultEnd: string | null;
+  maxEnd: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventRoomTypeTranslation {
+  id: number;
+  locale: string;
+  name: string;
+  description: string;
+  longDescription: string | null;
+  createdAt: string;
+  updatedAt: string;
+}

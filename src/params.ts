@@ -1661,3 +1661,45 @@ export interface IntegrationUpdateInputs {
   publicKey?: string | null;
   secretKey?: string | null;
 }
+
+export interface EventRoomTypeCreateInputs {
+  name: string;
+  price: number | string;
+  description?: string | null;
+  longDescription?: string | null;
+  sortOrder?: number | string;
+  supply?: number | string | null;
+  minPasses?: number | string | null;
+  maxPasses?: number | string | null;
+  minStart?: string | null;
+  defaultStart?: string | null;
+  maxStart?: string | null;
+  minEnd?: string | null;
+  defaultEnd?: string | null;
+  maxEnd?: string | null;
+  imageId?: string | null;
+}
+
+export interface EventRoomTypeUpdateInputs {
+  name?: string;
+  price?: number | string;
+  description?: string | null;
+  longDescription?: string | null;
+  sortOrder?: number | string;
+  supply?: number | string | null;
+  minPasses?: number | string | null;
+  maxPasses?: number | string | null;
+  minStart?: string | null;
+  defaultStart?: string | null;
+  maxStart?: string | null;
+  minEnd?: string | null;
+  defaultEnd?: string | null;
+  maxEnd?: string | null;
+  imageId?: string | null;
+}
+
+export interface EventRoomTypeTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+  longDescription?: string | null;
+}

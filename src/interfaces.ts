@@ -1648,11 +1648,27 @@ export interface Payment extends BasePayment {
 
 export interface PaymentIntegration {
   id: string;
-  type: "stripe" | "paypal";
+  type: PaymentIntegrationType;
   connectionId: string;
   enabled: boolean;
   stripe?: any | null;
   paypal?: any | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export enum TaxIntegrationType {
+  stripe = "stripe",
+  taxjar = "taxjar",
+  vertex = "vertex",
+  avalara = "avalara",
+}
+
+export interface TaxIntegration {
+  id: string;
+  type: TaxIntegrationType;
+  connectionId: string;
+  enabled: boolean;
   createdAt: string;
   updatedAt: string;
 }

@@ -2,6 +2,7 @@ export * from "./integrations";
 export * from "./modules";
 export * from "./pages";
 export * from "./payments";
+export * from "./tax";
 export * from "./triggers";
 export * from "./useGetOrganization";
 export * from "./useGetOrganizationDomain";

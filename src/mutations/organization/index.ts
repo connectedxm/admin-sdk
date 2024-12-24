@@ -2,6 +2,7 @@ export * from "./integrations";
 export * from "./modules";
 export * from "./pages";
 export * from "./payment";
+export * from "./tax";
 export * from "./triggers";
 export * from "./useAddOrganizationUser";
 export * from "./useCreateOrganizationTeamMember";

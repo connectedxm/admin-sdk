@@ -1661,3 +1661,11 @@ export interface IntegrationUpdateInputs {
   publicKey?: string | null;
   secretKey?: string | null;
 }
+
+export interface TaxIntegrationCreateInputs {
+  apiKey?: string;
+}
+
+export interface TaxIntegrationUpdateInputs {
+  apiKey?: string | null;
+}

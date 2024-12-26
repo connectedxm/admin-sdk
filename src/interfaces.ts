@@ -1405,6 +1405,7 @@ export type PermissionDomain = keyof Omit<
 export type PermissionType = "read" | "create" | "update" | "del";
 
 export interface ModulePermissions {
+  superEnabled: boolean;
   enabled: boolean;
   read: boolean;
   create: boolean;

@@ -1611,6 +1611,7 @@ export interface EventRoomTypeUpdateInputs {
 export interface EventRoomTypeTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;
+}
 
 export interface TaxIntegrationCreateInputs {
   apiKey?: string;

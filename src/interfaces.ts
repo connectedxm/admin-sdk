@@ -1400,6 +1400,7 @@ export type PermissionDomain = keyof Omit<
 export type PermissionType = "read" | "create" | "update" | "del";
 
 export interface ModulePermissions {
+  superEnabled: boolean;
   enabled: boolean;
   read: boolean;
   create: boolean;
@@ -1615,6 +1616,11 @@ export interface BasePayment {
   stripeId: string | null;
   last4: string | null;
   debugId: string | null;
+  salesTax: number;
+  salesTaxRate: string | null;
+  country: string;
+  state: string;
+  zip: string;
   createdAt: string;
 }
 
@@ -1642,11 +1648,27 @@ export interface Payment extends BasePayment {
 
 export interface PaymentIntegration {
   id: string;
-  type: "stripe" | "paypal";
+  type: PaymentIntegrationType;
   connectionId: string;
   enabled: boolean;
   stripe?: any | null;
   paypal?: any | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export enum TaxIntegrationType {
+  stripe = "stripe",
+  taxjar = "taxjar",
+  vertex = "vertex",
+  avalara = "avalara",
+}
+
+export interface TaxIntegration {
+  id: string;
+  type: TaxIntegrationType;
+  connectionId: string;
+  enabled: boolean;
   createdAt: string;
   updatedAt: string;
 }

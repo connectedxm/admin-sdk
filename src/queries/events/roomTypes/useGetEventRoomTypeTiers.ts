@@ -29,12 +29,12 @@ export const EVENT_ROOM_TYPE_TIERS_QUERY_KEY = (
 export const SET_EVENT_ROOM_TYPE_TIERS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_ROOM_TYPE_TIERS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetRoomTypeTiers>>
+  response: Awaited<ReturnType<typeof GetEventRoomTypeTiers>>
 ) => {
   client.setQueryData(EVENT_ROOM_TYPE_TIERS_QUERY_KEY(...keyParams), response);
 };
 
-interface GetRoomTypeTiersProps extends InfiniteQueryParams {
+interface GetEventRoomTypeTiersProps extends InfiniteQueryParams {
   allowed: boolean;
   eventId: string;
   roomTypeId: string;
@@ -44,7 +44,7 @@ interface GetRoomTypeTiersProps extends InfiniteQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetRoomTypeTiers = async ({
+export const GetEventRoomTypeTiers = async ({
   allowed,
   eventId,
   roomTypeId,
@@ -53,7 +53,7 @@ export const GetRoomTypeTiers = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetRoomTypeTiersProps): Promise<ConnectedXMResponse<Tier[]>> => {
+}: GetEventRoomTypeTiersProps): Promise<ConnectedXMResponse<Tier[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
     `/events/${eventId}/roomTypes/${roomTypeId}/tiers`,
@@ -73,7 +73,7 @@ export const GetRoomTypeTiers = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetRoomTypeTiers = (
+export const useGetEventRoomTypeTiers = (
   allowed: boolean,
   eventId: string = "",
   roomTypeId: string = "",
@@ -82,15 +82,15 @@ export const useGetRoomTypeTiers = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetRoomTypeTiers>>
+    Awaited<ReturnType<typeof GetEventRoomTypeTiers>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetRoomTypeTiers>>
+    Awaited<ReturnType<typeof GetEventRoomTypeTiers>>
   >(
     EVENT_ROOM_TYPE_TIERS_QUERY_KEY(allowed, eventId, roomTypeId),
     (params: InfiniteQueryParams) =>
-      GetRoomTypeTiers({
+      GetEventRoomTypeTiers({
         ...params,
         allowed,
         eventId,

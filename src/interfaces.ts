@@ -508,7 +508,7 @@ export interface EventAnnouncementFilters {
   ticketId?: string;
   questionId?: number;
   choiceId?: number;
-  reservationSectionId?: string;
+  eventRoomTypeId?: string;
   addOnId?: string;
 }
 
@@ -770,13 +770,8 @@ export interface BaseEventAddOn {
   shortDescription: string;
   supply: number | null;
   price: number;
+  pricePerNight: boolean;
   sortOrder: number;
-  minReservationStart: string | null;
-  reservationStart: string | null;
-  maxReservationStart: string | null;
-  minReservationEnd: string | null;
-  reservationEnd: string | null;
-  maxReservationEnd: string | null;
   imageId: string | null;
   image: BaseImage | null;
   eventId: string | null;
@@ -1556,9 +1551,8 @@ export interface BaseEventPass {
   transfer: { id: string; email: string; createdAt: string };
   responses: BaseRegistrationQuestionResponse[];
   status: EventPassStatus;
-  reservationStart: string | null;
-  reservationEnd: string | null;
-  reservationSectionLocation: BaseEventReservationSectionLocation;
+  reservationId: string | null;
+  reservation: BaseEventRoomTypeReservation | null;
   couponId: string | null;
   coupon: BaseCoupon | null;
   createdAt: string;
@@ -1886,75 +1880,6 @@ export interface Report {
   rowData: any[];
   shared: boolean;
   sharedUsers: BaseUser[];
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface BaseEventReservationSectionLocation {
-  id: string;
-  eventId: string;
-  reservationSectionId: string;
-  name: string;
-  shortDescription: string | null;
-  supply: number;
-  sortOrder: number;
-  premium: number | null;
-  reservationSection: BaseEventReservationSection;
-  minStart: string | null;
-  start: string | null;
-  maxStart: string | null;
-  minEnd: string | null;
-  end: string | null;
-  maxEnd: string | null;
-  _count: {
-    purchases: number;
-  };
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface EventReservationSectionLocation
-  extends BaseEventReservationSectionLocation {
-  _count: {
-    purchases: number;
-  };
-}
-
-export interface EventReservationSectionLocationTranslation {
-  id: string;
-  locale: string;
-  name: string;
-  shortDescription: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface BaseEventReservationSection {
-  id: string;
-  eventId: string;
-  name: string;
-  shortDescription: string | null;
-  price: number;
-  pricePerDay: boolean;
-  imageId: string | null;
-  image: BaseImage | null;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface EventReservationSection extends BaseEventReservationSection {
-  locations: BaseEventReservationSectionLocation[];
-  event: BaseEvent;
-  _count: {
-    locations: number;
-  };
-}
-
-export interface EventReservationSectionTranslation {
-  id: string;
-  locale: string;
-  name: string;
-  shortDescription: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -2411,12 +2336,6 @@ export interface BaseEventPassType {
   emailDomains: string | null;
   allowedTiers: BaseTier[];
   disallowedTiers: BaseTier[];
-  minReservationStart: string | null;
-  reservationStart: string | null;
-  maxReservationStart: string | null;
-  minReservationEnd: string | null;
-  reservationEnd: string | null;
-  maxReservationEnd: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -2786,7 +2705,6 @@ export interface BaseEventRoomType {
 export interface EventRoomType extends BaseEventRoomType {
   sortOrder: number;
   description: string | null;
-  longDescription: string | null;
   supply: number | null;
   minPasses: number | null;
   maxPasses: number | null;
@@ -2805,7 +2723,19 @@ export interface EventRoomTypeTranslation {
   locale: string;
   name: string;
   description: string;
-  longDescription: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventRoomTypeReservation {
+  id: string;
+  start: string | null;
+  end: string | null;
+  eventRoomTypeId: string;
+  eventRoomType: BaseEventRoomType;
+}
+
+export interface EventRoomTypeReservation extends BaseEventRoomTypeReservation {
   createdAt: string;
   updatedAt: string;
 }

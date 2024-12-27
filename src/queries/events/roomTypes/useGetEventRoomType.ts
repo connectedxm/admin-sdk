@@ -24,12 +24,12 @@ export const EVENT_ROOM_TYPE_QUERY_KEY = (
 export const SET_EVENT_ROOM_TYPE_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_ROOM_TYPE_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetRoomType>>
+  response: Awaited<ReturnType<typeof GetEventRoomType>>
 ) => {
   client.setQueryData(EVENT_ROOM_TYPE_QUERY_KEY(...keyParams), response);
 };
 
-interface GetRoomTypeProps extends SingleQueryParams {
+interface GetEventRoomTypeProps extends SingleQueryParams {
   eventId: string;
   roomTypeId: string;
 }
@@ -38,11 +38,11 @@ interface GetRoomTypeProps extends SingleQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetRoomType = async ({
+export const GetEventRoomType = async ({
   eventId,
   roomTypeId,
   adminApiParams,
-}: GetRoomTypeProps): Promise<ConnectedXMResponse<EventRoomType>> => {
+}: GetEventRoomTypeProps): Promise<ConnectedXMResponse<EventRoomType>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
     `/events/${eventId}/roomTypes/${roomTypeId}`
@@ -53,15 +53,15 @@ export const GetRoomType = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetRoomType = (
+export const useGetEventRoomType = (
   eventId: string = "",
   roomTypeId: string = "",
-  options: SingleQueryOptions<ReturnType<typeof GetRoomType>> = {}
+  options: SingleQueryOptions<ReturnType<typeof GetEventRoomType>> = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetRoomType>>(
+  return useConnectedSingleQuery<ReturnType<typeof GetEventRoomType>>(
     EVENT_ROOM_TYPE_QUERY_KEY(eventId, roomTypeId),
     (params: SingleQueryParams) =>
-      GetRoomType({
+      GetEventRoomType({
         eventId,
         roomTypeId: roomTypeId || "unknown",
         ...params,

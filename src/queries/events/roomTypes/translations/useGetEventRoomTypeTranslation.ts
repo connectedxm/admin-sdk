@@ -25,7 +25,7 @@ export const EVENT_ROOM_TYPE_TRANSLATION_QUERY_KEY = (
 export const SET_EVENT_ROOM_TYPE_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_ROOM_TYPE_TRANSLATION_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetRoomTypeTranslation>>
+  response: Awaited<ReturnType<typeof GetEventRoomTypeTranslation>>
 ) => {
   client.setQueryData(
     EVENT_ROOM_TYPE_TRANSLATION_QUERY_KEY(...keyParams),
@@ -33,7 +33,7 @@ export const SET_EVENT_ROOM_TYPE_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetRoomTypeTranslationProps extends SingleQueryParams {
+interface GetEventRoomTypeTranslationProps extends SingleQueryParams {
   eventId: string;
   roomTypeId: string;
   locale: string;
@@ -43,12 +43,12 @@ interface GetRoomTypeTranslationProps extends SingleQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetRoomTypeTranslation = async ({
+export const GetEventRoomTypeTranslation = async ({
   eventId,
   roomTypeId,
   locale,
   adminApiParams,
-}: GetRoomTypeTranslationProps): Promise<
+}: GetEventRoomTypeTranslationProps): Promise<
   ConnectedXMResponse<EventRoomTypeTranslation | null>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -61,16 +61,20 @@ export const GetRoomTypeTranslation = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetRoomTypeTranslation = (
+export const useGetEventRoomTypeTranslation = (
   eventId: string = "",
   roomTypeId: string = "",
   locale: string = "",
-  options: SingleQueryOptions<ReturnType<typeof GetRoomTypeTranslation>> = {}
+  options: SingleQueryOptions<
+    ReturnType<typeof GetEventRoomTypeTranslation>
+  > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetRoomTypeTranslation>>(
+  return useConnectedSingleQuery<
+    ReturnType<typeof GetEventRoomTypeTranslation>
+  >(
     EVENT_ROOM_TYPE_TRANSLATION_QUERY_KEY(eventId, roomTypeId, locale),
     (params: SingleQueryParams) =>
-      GetRoomTypeTranslation({
+      GetEventRoomTypeTranslation({
         eventId,
         roomTypeId,
         locale,

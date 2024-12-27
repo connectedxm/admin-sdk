@@ -24,7 +24,7 @@ export const EVENT_ROOM_TYPE_TRANSLATIONS_QUERY_KEY = (
 export const SET_EVENT_ROOM_TYPE_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_ROOM_TYPE_TRANSLATIONS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetRoomTypeTranslations>>
+  response: Awaited<ReturnType<typeof GetEventRoomTypeTranslations>>
 ) => {
   client.setQueryData(
     EVENT_ROOM_TYPE_TRANSLATIONS_QUERY_KEY(...keyParams),
@@ -32,7 +32,7 @@ export const SET_EVENT_ROOM_TYPE_TRANSLATIONS_QUERY_DATA = (
   );
 };
 
-interface GetRoomTypeTranslationsProps extends InfiniteQueryParams {
+interface GetEventRoomTypeTranslationsProps extends InfiniteQueryParams {
   eventId: string;
   roomTypeId: string;
 }
@@ -41,7 +41,7 @@ interface GetRoomTypeTranslationsProps extends InfiniteQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetRoomTypeTranslations = async ({
+export const GetEventRoomTypeTranslations = async ({
   pageParam,
   pageSize,
   orderBy,
@@ -49,7 +49,7 @@ export const GetRoomTypeTranslations = async ({
   eventId,
   roomTypeId,
   adminApiParams,
-}: GetRoomTypeTranslationsProps): Promise<
+}: GetEventRoomTypeTranslationsProps): Promise<
   ConnectedXMResponse<EventRoomTypeTranslation[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -70,7 +70,7 @@ export const GetRoomTypeTranslations = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetRoomTypeTranslations = (
+export const useGetEventRoomTypeTranslations = (
   eventId: string = "",
   roomTypeId: string = "",
   params: Omit<
@@ -78,15 +78,15 @@ export const useGetRoomTypeTranslations = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetRoomTypeTranslations>>
+    Awaited<ReturnType<typeof GetEventRoomTypeTranslations>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetRoomTypeTranslations>>
+    Awaited<ReturnType<typeof GetEventRoomTypeTranslations>>
   >(
     EVENT_ROOM_TYPE_TRANSLATIONS_QUERY_KEY(eventId, roomTypeId),
     (params: InfiniteQueryParams) =>
-      GetRoomTypeTranslations({
+      GetEventRoomTypeTranslations({
         ...params,
         eventId,
         roomTypeId,

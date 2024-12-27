@@ -6,42 +6,39 @@ import {
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
 import {
-  EVENT_RESERVATION_SECTIONS_QUERY_KEY,
-  EVENT_RESERVATION_SECTION_QUERY_KEY,
+  EVENT_ROOM_TYPES_QUERY_KEY,
+  EVENT_ROOM_TYPE_QUERY_KEY,
 } from "@src/queries";
 
 /**
  * @category Params
  * @group Event-Reservations
  */
-export interface DeleteEventReservationSectionParams extends MutationParams {
+export interface DeleteEventRoomTypeParams extends MutationParams {
   eventId: string;
-  reservationSectionId: string;
+  roomTypeId: string;
 }
 
 /**
  * @category Methods
  * @group Event-Reservations
  */
-export const DeleteEventReservationSection = async ({
+export const DeleteEventRoomType = async ({
   eventId,
-  reservationSectionId,
+  roomTypeId,
   adminApiParams,
   queryClient,
-}: DeleteEventReservationSectionParams): Promise<ConnectedXMResponse<null>> => {
+}: DeleteEventRoomTypeParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
-    `/events/${eventId}/reservationSections/${reservationSectionId}`
+    `/events/${eventId}/roomTypes/${roomTypeId}`
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_RESERVATION_SECTIONS_QUERY_KEY(eventId),
+      queryKey: EVENT_ROOM_TYPES_QUERY_KEY(eventId),
     });
     queryClient.removeQueries({
-      queryKey: EVENT_RESERVATION_SECTION_QUERY_KEY(
-        eventId,
-        reservationSectionId
-      ),
+      queryKey: EVENT_ROOM_TYPE_QUERY_KEY(eventId, roomTypeId),
     });
   }
   return data;
@@ -51,22 +48,19 @@ export const DeleteEventReservationSection = async ({
  * @category Mutations
  * @group Event-Reservations
  */
-export const useDeleteEventReservationSection = (
+export const useDeleteEventRoomType = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof DeleteEventReservationSection>>,
-      Omit<
-        DeleteEventReservationSectionParams,
-        "queryClient" | "adminApiParams"
-      >
+      Awaited<ReturnType<typeof DeleteEventRoomType>>,
+      Omit<DeleteEventRoomTypeParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    DeleteEventReservationSectionParams,
-    Awaited<ReturnType<typeof DeleteEventReservationSection>>
-  >(DeleteEventReservationSection, options, {
+    DeleteEventRoomTypeParams,
+    Awaited<ReturnType<typeof DeleteEventRoomType>>
+  >(DeleteEventRoomType, options, {
     domain: "events",
     type: "update",
   });

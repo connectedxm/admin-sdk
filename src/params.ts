@@ -438,12 +438,6 @@ export interface EventAddOnCreateInputs {
   supply?: number | string | null;
   sortOrder?: number | string | null;
   imageId?: string | null;
-  reservationStart?: string | null;
-  minReservationStart?: string | null;
-  maxReservationStart?: string | null;
-  reservationEnd?: string | null;
-  minReservationEnd?: string | null;
-  maxReservationEnd?: string | null;
 }
 
 export interface EventAddOnTranslationUpdateInputs {
@@ -460,12 +454,6 @@ export interface EventAddOnUpdateInputs {
   supply?: number | string | null;
   sortOrder?: number | string | null;
   imageId?: string | null;
-  reservationStart?: string | null;
-  minReservationStart?: string | null;
-  maxReservationStart?: string | null;
-  reservationEnd?: string | null;
-  minReservationEnd?: string | null;
-  maxReservationEnd?: string | null;
 }
 
 export interface EventBadgeFieldUpdateInputs {
@@ -640,8 +628,6 @@ export interface EventPassCreateInputs {
   location?: string | null;
   usedAt?: string | null;
   ticketId?: string | null;
-  reservationStart?: string | null;
-  reservationEnd?: string | null;
 }
 
 export interface EventPassUpdateInputs {
@@ -649,8 +635,6 @@ export interface EventPassUpdateInputs {
   location?: string | null;
   usedAt?: string | null;
   ticketId?: string | null;
-  reservationStart?: string | null;
-  reservationEnd?: string | null;
   couponId?: string | null;
 }
 
@@ -668,67 +652,6 @@ export interface EventRegistrationBypassUpdateInputs {
   closed?: boolean;
   preRegister?: boolean;
   postRegister?: boolean;
-}
-
-export interface EventReservationSelectInputs {
-  reservationStart?: string;
-  reservationEnd?: string;
-}
-
-export interface EventReservationSectionCreateInputs {
-  name: string;
-  shortDescription?: string | null;
-  price?: number | string | null; // Assuming OPTIONAL_PRICE is similar to OPTIONAL_NUMBER
-  sortOrder?: number | string | null;
-  pricePerDay?: boolean;
-  imageId?: string | null;
-  minStart?: string | null;
-  start?: string | null;
-  maxStart?: string | null;
-  minEnd?: string | null;
-  end?: string | null;
-  maxEnd?: string | null;
-}
-
-export interface EventReservationSectionLocationCreateInputs {
-  name: string;
-  shortDescription?: string | null;
-  premium?: number | string | null;
-  supply?: number | string | null;
-  sortOrder?: number | string | null;
-}
-
-export interface EventReservationSectionLocationTranslationUpdateInputs {
-  name?: string | null;
-  shortDescription?: string | null;
-}
-
-export interface EventReservationSectionLocationUpdateInputs {
-  name?: string | null;
-  shortDescription?: string | null;
-  premium?: number | string | null;
-  supply?: number | string | null;
-  sortOrder?: number | string | null;
-}
-
-export interface EventReservationSectionTranslationUpdateInputs {
-  name?: string | null;
-  shortDescription?: string | null;
-}
-
-export interface EventReservationSectionUpdateInputs {
-  name?: string | null;
-  shortDescription?: string | null;
-  price?: number | string | null;
-  sortOrder?: number | string | null;
-  pricePerDay?: boolean;
-  imageId?: string | null;
-  minStart?: string | null;
-  start?: string | null;
-  maxStart?: string | null;
-  minEnd?: string | null;
-  end?: string | null;
-  maxEnd?: string | null;
 }
 
 export interface EventSessionCreateInputs {
@@ -1509,12 +1432,6 @@ export interface PassTypeCreateInputs {
   limitPerAccount?: number | string | null;
   emailDomains?: string | null; // Assuming the pattern validation is not directly translatable to TypeScript
   sortOrder?: number | string | null;
-  reservationStart?: string | null;
-  minReservationStart?: string | null;
-  maxReservationStart?: string | null;
-  reservationEnd?: string | null;
-  minReservationEnd?: string | null;
-  maxReservationEnd?: string | null;
   enableCoupons?: boolean;
   overrideStartDate?: string | null;
 }
@@ -1537,12 +1454,6 @@ export interface PassTypeUpdateInputs {
   limitPerAccount?: number | string | null;
   emailDomains?: string | null; // Assuming the pattern validation is not directly translatable to TypeScript
   sortOrder?: number | string | null;
-  reservationStart?: string | null;
-  minReservationStart?: string | null;
-  maxReservationStart?: string | null;
-  reservationEnd?: string | null;
-  minReservationEnd?: string | null;
-  maxReservationEnd?: string | null;
   enableCoupons?: boolean;
   overrideStartDate?: string | null;
 }
@@ -1684,7 +1595,6 @@ export interface EventRoomTypeUpdateInputs {
   name?: string;
   price?: number | string;
   description?: string | null;
-  longDescription?: string | null;
   sortOrder?: number | string;
   supply?: number | string | null;
   minPasses?: number | string | null;
@@ -1701,5 +1611,4 @@ export interface EventRoomTypeUpdateInputs {
 export interface EventRoomTypeTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;
-  longDescription?: string | null;
 }

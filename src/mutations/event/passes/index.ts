@@ -3,8 +3,6 @@ export * from "./useCancelEventPass";
 export * from "./useCreateEventPass";
 export * from "./useDeleteEventPass";
 export * from "./useRemoveEventPassAddOn";
-export * from "./useRemoveEventPassReservation";
-export * from "./useSelectEventPassReservation";
 export * from "./useTransferEventPass";
 export * from "./useUpdateEventPass";
 export * from "./useUpdateEventPassResponse";

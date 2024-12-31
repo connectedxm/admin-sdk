@@ -4,3 +4,5 @@ export * from "./useCreateEventRoomType";
 export * from "./useDeleteEventRoomType";
 export * from "./useRemoveEventRoomTypeTier";
 export * from "./useUpdateEventRoomType";
+export * from "./useUpdateEventRoomTypeAddOnDetails";
+export * from "./useUpdateEventRoomTypePassTypeDetails";

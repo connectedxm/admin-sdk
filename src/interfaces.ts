@@ -2721,7 +2721,10 @@ export interface BaseEventRoomType {
   id: string;
   name: string;
   price: number;
-  image: BaseImage;
+  pricePerNight: boolean;
+  image: BaseImage | null;
+  passTypes: BaseEventRoomTypePassTypeDetails[];
+  addOns: BaseEventRoomTypePassTypeDetails[];
 }
 
 export interface EventRoomType extends BaseEventRoomType {
@@ -2758,6 +2761,45 @@ export interface BaseEventRoomTypeReservation {
 }
 
 export interface EventRoomTypeReservation extends BaseEventRoomTypeReservation {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventRoomTypePassTypeDetails {
+  id: string;
+  passTypeId: string | null;
+  enabled: boolean;
+  premium: number;
+  includedNights: number;
+  minPasses: number | null;
+  maxPasses: number | null;
+  minStart: string | null;
+  defaultStart: string | null;
+  maxStart: string | null;
+  minEnd: string | null;
+  defaultEnd: string | null;
+  maxEnd: string | null;
+}
+
+export interface EventRoomTypePassTypeDetails
+  extends BaseEventRoomTypePassTypeDetails {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventRoomTypeAddOnDetails {
+  id: string;
+  addOnId: string;
+  minStart: string | null;
+  defaultStart: string | null;
+  maxStart: string | null;
+  minEnd: string | null;
+  defaultEnd: string | null;
+  maxEnd: string | null;
+}
+
+export interface EventRoomTypeAddOnDetails
+  extends BaseEventRoomTypeAddOnDetails {
   createdAt: string;
   updatedAt: string;
 }

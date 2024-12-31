@@ -1,4 +1,5 @@
 export * from "./translations";
+export * from "./useGetAllEventAddOns";
 export * from "./useGetEventAddOn";
 export * from "./useGetEventAddOnPassTypes";
 export * from "./useGetEventAddOnPasses";

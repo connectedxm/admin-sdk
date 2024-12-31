@@ -435,6 +435,7 @@ export interface EventAddOnCreateInputs {
   shortDescription: string;
   longDescription?: string | null;
   price: number | string | null;
+  pricePerNight?: boolean;
   supply?: number | string | null;
   sortOrder?: number | string | null;
   imageId?: string | null;
@@ -451,6 +452,7 @@ export interface EventAddOnUpdateInputs {
   shortDescription?: string | null;
   longDescription?: string | null;
   price?: number | string | null; // Assuming OPTIONAL_PRICE is similar to OPTIONAL_NUMBER
+  pricePerNight?: boolean;
   supply?: number | string | null;
   sortOrder?: number | string | null;
   imageId?: string | null;
@@ -1576,8 +1578,8 @@ export interface IntegrationUpdateInputs {
 export interface EventRoomTypeCreateInputs {
   name: string;
   price: number | string;
+  pricePerNight?: boolean;
   description?: string | null;
-  longDescription?: string | null;
   sortOrder?: number | string;
   supply?: number | string | null;
   minPasses?: number | string | null;
@@ -1594,6 +1596,7 @@ export interface EventRoomTypeCreateInputs {
 export interface EventRoomTypeUpdateInputs {
   name?: string;
   price?: number | string;
+  pricePerNight?: boolean;
   description?: string | null;
   sortOrder?: number | string;
   supply?: number | string | null;
@@ -1611,6 +1614,29 @@ export interface EventRoomTypeUpdateInputs {
 export interface EventRoomTypeTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;
+}
+
+export interface EventRoomTypePassTypeDetailsUpdateInputs {
+  enabled?: boolean;
+  premium?: number | string | null;
+  includedNights?: number | string | null;
+  minPasses?: number | string | null;
+  maxPasses?: number | string | null;
+  minStart?: string | null;
+  defaultStart?: string | null;
+  maxStart?: string | null;
+  minEnd?: string | null;
+  defaultEnd?: string | null;
+  maxEnd?: string | null;
+}
+
+export interface EventRoomTypeAddOnDetailsUpdateInputs {
+  minStart?: string | null;
+  defaultStart?: string | null;
+  maxStart?: string | null;
+  minEnd?: string | null;
+  defaultEnd?: string | null;
+  maxEnd?: string | null;
 }
 
 export interface TaxIntegrationCreateInputs {

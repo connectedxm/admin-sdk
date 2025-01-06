@@ -1,6 +1,7 @@
 export * from "./priceSchedules";
 export * from "./refundSchedules";
 export * from "./translations";
+export * from "./useGetAllEventPassTypes";
 export * from "./useGetEventPassType";
 export * from "./useGetEventPassTypeAddOns";
 export * from "./useGetEventPassTypeCoupons";

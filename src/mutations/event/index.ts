@@ -13,7 +13,7 @@ export * from "./pages";
 export * from "./passTypes";
 export * from "./passes";
 export * from "./questions";
-export * from "./reservations";
+export * from "./roomTypes";
 export * from "./sections";
 export * from "./sessions";
 export * from "./speakers";

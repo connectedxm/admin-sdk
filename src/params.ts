@@ -1646,3 +1646,27 @@ export interface TaxIntegrationCreateInputs {
 export interface TaxIntegrationUpdateInputs {
   apiKey?: string | null;
 }
+
+export interface CloneOptions {
+  name: string;
+  eventStart: string;
+  eventEnd: string;
+  passTypes: boolean;
+  addOns: boolean;
+  roomTypes: boolean;
+  // questions: boolean;
+  bypassList: boolean;
+  coHosts: boolean;
+  emails: boolean;
+  faqSections: boolean;
+  pages: boolean;
+  benefits: boolean;
+  interests: boolean;
+  activations: boolean;
+  onSite: boolean;
+  tracks: boolean;
+  speakers: boolean;
+  sponsors: boolean;
+  locations: boolean;
+  sessions: boolean;
+}

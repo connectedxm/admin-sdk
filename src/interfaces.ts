@@ -785,6 +785,9 @@ export interface BaseEventAddOn {
 export interface EventAddOn extends BaseEventAddOn {
   longDescription: string | null;
   event: BaseEvent | null;
+  allowedTickets: BaseEventPassType[];
+  allowedTiers: BaseTier[];
+  disallowedTiers: BaseTier[];
 }
 
 export interface EventAddOnTranslation {
@@ -2356,8 +2359,7 @@ export interface BaseEventPassType {
   minQuantityPerSale: number;
   maxQuantityPerSale: number;
   emailDomains: string | null;
-  allowedTiers: BaseTier[];
-  disallowedTiers: BaseTier[];
+
   createdAt: string;
   updatedAt: string;
 }
@@ -2393,6 +2395,8 @@ export interface EventPassType extends BaseEventPassType {
   overrideStartDate: string | null;
   sortOrder: number;
   event: BaseEvent;
+  allowedTiers: BaseTier[];
+  disallowedTiers: BaseTier[];
   _count: {
     purchases: number;
   };
@@ -2739,8 +2743,13 @@ export interface EventRoomType extends BaseEventRoomType {
   minEnd: string | null;
   defaultEnd: string | null;
   maxEnd: string | null;
+  allowedTiers: BaseTier[];
+  disallowedTiers: BaseTier[];
   createdAt: string;
   updatedAt: string;
+  _count: {
+    reservations: number;
+  };
 }
 
 export interface EventRoomTypeTranslation {

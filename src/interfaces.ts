@@ -1801,7 +1801,6 @@ export interface BaseRegistrationQuestion {
 export interface RegistrationQuestion extends BaseRegistrationQuestion {
   sections: BaseRegistrationSectionQuestion[];
   subQuestionOf: RegistrationQuestionChoiceSubQuestion[];
-  response?: string; // this sometimes gets appended on when looking at responses to make it easier for editing
   createdAt: string;
   updatedAt: string;
   _count: {

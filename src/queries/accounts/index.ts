@@ -14,6 +14,8 @@ export * from "./useGetAccountFollowers";
 export * from "./useGetAccountFollowing";
 export * from "./useGetAccountGroups";
 export * from "./useGetAccountInterests";
+export * from "./useGetAccountLead";
+export * from "./useGetAccountLeads";
 export * from "./useGetAccountLevels";
 export * from "./useGetAccountLikes";
 export * from "./useGetAccountPayments";

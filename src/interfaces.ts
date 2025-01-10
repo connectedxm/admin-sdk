@@ -777,9 +777,6 @@ export interface BaseEventAddOn {
   eventId: string | null;
   createdAt: string;
   updatedAt: string;
-  _count: {
-    purchases: number;
-  };
 }
 
 export interface EventAddOn extends BaseEventAddOn {
@@ -788,6 +785,9 @@ export interface EventAddOn extends BaseEventAddOn {
   allowedTickets: BaseEventPassType[];
   allowedTiers: BaseTier[];
   disallowedTiers: BaseTier[];
+  _count: {
+    purchases: number;
+  };
 }
 
 export interface EventAddOnTranslation {

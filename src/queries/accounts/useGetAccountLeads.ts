@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, Lead } from "@src/interfaces";
+import { ConnectedXMResponse, Lead, LeadStatus } from "@src/interfaces";
 
 import {
   InfiniteQueryOptions,
@@ -33,6 +33,8 @@ export const SET_ACCOUNT_LEADS_QUERY_DATA = (
 
 interface GetAccountLeadsProps extends InfiniteQueryParams {
   accountId: string;
+  status?: keyof typeof LeadStatus;
+  eventId?: string;
 }
 
 /**
@@ -41,6 +43,8 @@ interface GetAccountLeadsProps extends InfiniteQueryParams {
  */
 export const GetAccountLeads = async ({
   accountId,
+  status,
+  eventId,
   pageParam,
   pageSize,
   orderBy,
@@ -54,6 +58,8 @@ export const GetAccountLeads = async ({
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
+      status: status || undefined,
+      eventId: eventId || undefined,
     },
   });
   return data;
@@ -64,6 +70,8 @@ export const GetAccountLeads = async ({
  */
 export const useGetAccountLeads = (
   accountId: string = "",
+  status?: keyof typeof LeadStatus,
+  eventId?: string,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -74,7 +82,13 @@ export const useGetAccountLeads = (
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetAccountLeads>>>(
     ACCOUNT_LEADS_QUERY_KEY(accountId),
-    (params: InfiniteQueryParams) => GetAccountLeads({ ...params, accountId }),
+    (params: InfiniteQueryParams) =>
+      GetAccountLeads({
+        ...params,
+        accountId,
+        status,
+        eventId,
+      }),
     params,
     options,
     "accounts"

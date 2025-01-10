@@ -891,25 +891,25 @@ export interface GroupMembershipUpdateInputs {
 }
 
 export interface OrganizationMembershipUpdateInputs {
-  org: ModulePermissions;
-  users: ModulePermissions;
-  reports: ModulePermissions;
+  org: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  users: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  reports: Omit<ModulePermissions, "superEnabled" | "enabled">;
   // MODULES
-  activities: ModulePermissions;
-  events: ModulePermissions;
-  groups: ModulePermissions;
-  accounts: ModulePermissions;
-  channels: ModulePermissions;
-  threads: ModulePermissions;
-  storage: ModulePermissions;
-  support: ModulePermissions;
-  sponsors: ModulePermissions;
-  benefits: ModulePermissions;
-  interests: ModulePermissions;
-  advertisements: ModulePermissions;
-  subscriptions: ModulePermissions;
-  invoices: ModulePermissions;
-  announcements: ModulePermissions;
+  activities: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  events: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  groups: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  accounts: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  channels: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  threads: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  storage: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  support: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  sponsors: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  benefits: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  interests: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  advertisements: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  subscriptions: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  invoices: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  announcements: Omit<ModulePermissions, "superEnabled" | "enabled">;
 }
 
 export interface GroupTranslationUpdateInputs {

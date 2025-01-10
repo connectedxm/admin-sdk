@@ -2811,3 +2811,39 @@ export interface EventRoomTypeAddOnDetails
   createdAt: string;
   updatedAt: string;
 }
+
+export enum LeadStatus {
+  new = "new",
+  favorited = "favorited",
+  archived = "archived",
+  deleted = "deleted",
+}
+
+export interface BaseLead {
+  id: string;
+  firstName: string | null;
+  lastName: string | null;
+  company: string | null;
+  title: string | null;
+  shareAccount: {
+    id: string;
+    image: BaseImage;
+  };
+  status: LeadStatus;
+  createdAt: string;
+}
+
+export interface Lead extends BaseLead {
+  eventId: string | null;
+  event: BaseEvent | null;
+  email: string | null;
+  phone: string | null;
+  website: string | null;
+  facebook: string | null;
+  instagram: string | null;
+  linkedIn: string | null;
+  twitter: string | null;
+  tikTok: string | null;
+  note: string | null;
+  updatedAt: string;
+}

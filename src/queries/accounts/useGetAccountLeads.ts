@@ -14,10 +14,16 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
  * @category Keys
  * @group Accounts
  */
-export const ACCOUNT_LEADS_QUERY_KEY = (accountId: string) => [
-  ...ACCOUNT_QUERY_KEY(accountId),
-  "LEADS",
-];
+export const ACCOUNT_LEADS_QUERY_KEY = (
+  accountId: string,
+  status?: keyof typeof LeadStatus,
+  eventId?: string
+) => {
+  const key = [...ACCOUNT_QUERY_KEY(accountId), "LEADS"];
+  if (status) key.push(status);
+  if (eventId) key.push(eventId);
+  return key;
+};
 
 /**
  * @category Setters
@@ -81,7 +87,7 @@ export const useGetAccountLeads = (
   > = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetAccountLeads>>>(
-    ACCOUNT_LEADS_QUERY_KEY(accountId),
+    ACCOUNT_LEADS_QUERY_KEY(accountId, status, eventId),
     (params: InfiniteQueryParams) =>
       GetAccountLeads({
         ...params,
@@ -90,7 +96,10 @@ export const useGetAccountLeads = (
         eventId,
       }),
     params,
-    options,
+    {
+      ...options,
+      enabled: !!accountId && (options?.enabled ?? true),
+    },
     "accounts"
   );
 };

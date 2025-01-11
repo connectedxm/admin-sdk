@@ -8,6 +8,7 @@ export * from "./useConfirmAccountCognitoUser";
 export * from "./useCreateAccount";
 export * from "./useCreateAccountAddress";
 export * from "./useDeleteAccount";
+export * from "./useDeleteAccountAddress";
 export * from "./useDeleteAccountLead";
 export * from "./useExportAccount";
 export * from "./useImpersonateAccount";

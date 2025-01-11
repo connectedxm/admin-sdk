@@ -28,6 +28,7 @@ import {
   EventAnnouncementFilters,
   EventPassStatus,
   IntegrationType,
+  LeadStatus,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -990,10 +991,12 @@ export interface InvoiceUpdateInputs {
 }
 
 export interface LeadCreateInputs {
+  status?: LeadStatus;
   note?: string | null;
 }
 
 export interface LeadUpdateInputs {
+  status?: LeadStatus;
   note?: string | null;
 }
 

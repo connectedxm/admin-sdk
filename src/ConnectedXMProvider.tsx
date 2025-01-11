@@ -13,8 +13,8 @@ export interface ConnectedXMClientContextState {
   queryClient: QueryClient;
   organizationId: string;
   apiUrl:
-    | "https://admin-api.connectedxm.com"
-    | "https://staging-admin-api.connectedxm.com"
+    | "https://admin-api.connected.dev"
+    | "https://staging-admin-api.connected.dev"
     | "http://localhost:4001";
   authenticated: boolean;
   setAuthenticated: (authenticated: boolean) => void;

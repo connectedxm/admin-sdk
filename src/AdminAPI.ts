@@ -2,11 +2,12 @@ import axios, { AxiosInstance } from "axios";
 
 export interface AdminApiParams {
   apiUrl:
-    | "https://admin-api.connectedxm.com"
-    | "https://staging-admin-api.connectedxm.com"
+    | "https://admin-api.connected.dev"
+    | "https://staging-admin-api.connected.dev"
     | "http://localhost:4001";
   organizationId: string;
-  getToken: () => Promise<string | undefined> | string | undefined;
+  getToken?: () => Promise<string | undefined> | string | undefined;
+  apiKey?: string;
   getExecuteAs?: () => Promise<string | undefined> | string | undefined;
 }
 
@@ -16,7 +17,7 @@ export interface AdminApiParams {
 export const GetAdminAPI = async (
   params: AdminApiParams
 ): Promise<AxiosInstance> => {
-  const token = await params.getToken();
+  const token = !!params.getToken && (await params.getToken());
   const executeAs = params.getExecuteAs
     ? await params.getExecuteAs()
     : undefined;
@@ -26,6 +27,7 @@ export const GetAdminAPI = async (
     headers: {
       organization: params.organizationId,
       authorization: token,
+      "api-key": params.apiKey,
       executeAs: executeAs,
     },
   });

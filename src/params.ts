@@ -1065,6 +1065,7 @@ export interface OrganizationUpdateInputs {
   appAdaptiveIconId?: string | null;
   appSplashScreenId?: string | null;
   locales?: string[] | null;
+  googleServices?: string | null;
 }
 
 export interface PaymentIntentPurchaseMetadataInputs {}

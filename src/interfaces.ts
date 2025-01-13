@@ -841,6 +841,7 @@ export enum BadgeFieldType {
   question = "question",
   tier = "tier",
   ticket = "ticket",
+  pass = "pass",
 }
 
 export enum BadgeFieldTransformation {

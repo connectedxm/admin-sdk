@@ -46,17 +46,17 @@ export const UpdateEventPass = async ({
         queryKey: EVENT_PASS_TYPE_PASSES_QUERY_KEY(eventId, data.data.ticketId),
       });
     }
-    if (data.data.registration.accountId) {
+    if (data.data.attendee.accountId) {
       queryClient.invalidateQueries({
         queryKey: EVENT_ATTENDEE_QUERY_KEY(
           eventId,
-          data.data.registration.accountId
+          data.data.attendee.accountId
         ),
       });
       queryClient.invalidateQueries({
         queryKey: EVENT_ATTENDEE_PASSES_QUERY_KEY(
           eventId,
-          data.data.registration.accountId
+          data.data.attendee.accountId
         ),
       });
     }

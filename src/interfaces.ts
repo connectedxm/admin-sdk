@@ -1567,7 +1567,6 @@ export interface BaseEventPass {
 
 export interface EventPass extends BaseEventPass {
   addOns: BaseEventAddOn[];
-  eventId: string;
   attendeeId: string;
   attendee: BaseEventAttendee;
   // registrationId: string;

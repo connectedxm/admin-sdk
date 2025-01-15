@@ -10,9 +10,11 @@ import {
   EVENT_ATTENDEE_PASSES_QUERY_KEY,
   EVENT_ATTENDEE_QUERY_KEY,
   EVENT_PASSES_QUERY_KEY,
+  EVENT_PASS_ATTENDEE_PASSES_QUERY_KEY,
   EVENT_PASS_TYPE_PASSES_QUERY_KEY,
   SET_EVENT_PASS_QUERY_DATA,
 } from "@src/queries";
+import { UpdateInfiniteQueryItem } from "@src/utilities/UpdateInfiniteQueryItem";
 
 /**
  * @category Params
@@ -46,6 +48,7 @@ export const UpdateEventPass = async ({
         queryKey: EVENT_PASS_TYPE_PASSES_QUERY_KEY(eventId, data.data.ticketId),
       });
     }
+
     if (data.data.attendee.accountId) {
       queryClient.invalidateQueries({
         queryKey: EVENT_ATTENDEE_QUERY_KEY(
@@ -60,9 +63,26 @@ export const UpdateEventPass = async ({
         ),
       });
     }
-    queryClient.invalidateQueries({
-      queryKey: EVENT_PASSES_QUERY_KEY(eventId),
-    });
+
+    queryClient.setQueryData(
+      EVENT_PASS_ATTENDEE_PASSES_QUERY_KEY(eventId, passId),
+      (oldData: ConnectedXMResponse<EventPass[]>) => {
+        if (oldData) {
+          oldData.data = oldData.data.map((pass) =>
+            pass.id === passId ? data.data : pass
+          );
+        }
+        return oldData;
+      }
+    );
+
+    UpdateInfiniteQueryItem(
+      queryClient,
+      [...EVENT_PASSES_QUERY_KEY(eventId), ""],
+      data.data,
+      (pass) => pass.id === passId
+    );
+
     SET_EVENT_PASS_QUERY_DATA(queryClient, [eventId, passId], data);
   }
   return data;

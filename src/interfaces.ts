@@ -1567,8 +1567,11 @@ export interface BaseEventPass {
 
 export interface EventPass extends BaseEventPass {
   addOns: BaseEventAddOn[];
-  registrationId: string;
-  registration: BaseEventAttendee;
+  eventId: string;
+  attendeeId: string;
+  attendee: BaseEventAttendee;
+  // registrationId: string;
+  // registration: BaseEventAttendee;
   payerId: string | null;
   payer: BaseAccount | null;
   amtPaid: number;
@@ -1874,7 +1877,7 @@ export interface BaseEventAttendee {
 
 export interface EventAttendee extends BaseEventAttendee {
   payments: BasePayment[];
-  purchases: BaseEventPass[];
+  passes: BaseEventPass[];
   coupons: BaseCoupon[];
   createdAt: string;
   updatedAt: string;

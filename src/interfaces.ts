@@ -954,7 +954,7 @@ export interface Event extends BaseEvent {
   newActivityCreatorPushNotification: boolean;
   seriesId: string | null;
   series: BaseSeries | null;
-  streamInput: BaseStreamInput | null;
+  streamInputs: BaseStreamInput[];
   streamReplayId: string | null;
   streamReplay: BaseVideo | null;
   groupId: string | null;

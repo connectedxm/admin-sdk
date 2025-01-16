@@ -2731,7 +2731,7 @@ export interface BaseEventRoomType {
   pricePerNight: boolean;
   image: BaseImage | null;
   passTypes: BaseEventRoomTypePassTypeDetails[];
-  addOns: BaseEventRoomTypePassTypeDetails[];
+  addOns: BaseEventRoomTypeAddOnDetails[];
 }
 
 export interface EventRoomType extends BaseEventRoomType {

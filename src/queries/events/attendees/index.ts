@@ -1,3 +1,4 @@
+export * from "./reservations";
 export * from "./useGetEventAttendee";
 export * from "./useGetEventAttendeeCoupons";
 export * from "./useGetEventAttendeePasses";

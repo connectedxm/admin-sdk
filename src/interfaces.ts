@@ -2773,6 +2773,7 @@ export interface BaseEventRoomTypeReservation {
 }
 
 export interface EventRoomTypeReservation extends BaseEventRoomTypeReservation {
+  passes: BaseEventPass[];
   createdAt: string;
   updatedAt: string;
 }

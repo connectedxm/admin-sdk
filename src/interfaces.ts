@@ -1904,12 +1904,14 @@ export interface Report {
   eventId: string | null;
   event: BaseEvent | null;
   user: BaseUser | null;
-  colDefs: any;
-  rowData: any[];
   shared: boolean;
   sharedUsers: BaseUser[];
   createdAt: string;
   updatedAt: string;
+  // DYNAMIC
+  colDefs: any;
+  rowData: any[];
+  nextCursor: number | null;
 }
 
 export interface SearchField {

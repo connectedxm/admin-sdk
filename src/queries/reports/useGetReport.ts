@@ -45,12 +45,44 @@ export const GetReport = async ({
   adminApiParams,
 }: GetReportProps): Promise<ConnectedXMResponse<Report>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/reports/${reportId}`, {
-    params: {
-      eventId,
+
+  let nextCursor: number | null = null;
+  const rowData = [];
+
+  const { data } = await adminApi.get<ConnectedXMResponse<Report>>(
+    `/reports/${reportId}`,
+    {
+      params: {
+        eventId,
+      },
+    }
+  );
+
+  rowData.push(...data.data.rowData);
+  nextCursor = data.data.nextCursor;
+
+  while (nextCursor) {
+    const { data: nextData } = await adminApi.get<ConnectedXMResponse<Report>>(
+      `/reports/${reportId}`,
+      {
+        params: {
+          eventId,
+          cursor: nextCursor,
+        },
+      }
+    );
+
+    rowData.push(...nextData.data.rowData);
+    nextCursor = nextData.data.nextCursor;
+  }
+
+  return {
+    ...data,
+    data: {
+      ...data.data,
+      rowData,
     },
-  });
-  return data;
+  };
 };
 /**
  * @category Hooks
@@ -70,6 +102,7 @@ export const useGetReport = (
       refetchOnWindowFocus: false,
       refetchOnMount: false,
       refetchOnReconnect: false,
+      retry: false,
       staleTime: Infinity,
     },
     "reports"

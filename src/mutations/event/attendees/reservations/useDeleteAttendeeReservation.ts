@@ -40,7 +40,7 @@ export const DeleteEventAttendeeReservation = async ({
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_ATTENDEE_RESERVATIONS_QUERY_KEY(eventId, reservationId),
+      queryKey: EVENT_ATTENDEE_RESERVATIONS_QUERY_KEY(eventId, accountId),
     });
     queryClient.removeQueries({
       queryKey: EVENT_ATTENDEE_RESERVATION_QUERY_KEY(

@@ -1620,6 +1620,13 @@ export interface EventRoomTypeTranslationUpdateInputs {
   description?: string | null;
 }
 
+export interface EventRoomTypeReservationCreateInputs {
+  eventRoomTypeId: string;
+  passes: { id: string }[];
+  start?: string | null;
+  end?: string | null;
+}
+
 export interface EventRoomTypeReservationUpdateInputs {
   eventRoomTypeId?: string;
   start?: string | null;

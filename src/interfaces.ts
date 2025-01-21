@@ -2775,6 +2775,22 @@ export interface BaseEventRoomTypeReservation {
 }
 
 export interface EventRoomTypeReservation extends BaseEventRoomTypeReservation {
+  passes: {
+    id: string;
+    ticket?: {
+      id: string;
+      name: string;
+    };
+    attendee: {
+      id: string;
+      account: {
+        id: string;
+        firstName: string | null;
+        lastName: string | null;
+        email: string;
+      };
+    };
+  }[];
   createdAt: string;
   updatedAt: string;
 }

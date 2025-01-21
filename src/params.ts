@@ -1622,7 +1622,7 @@ export interface EventRoomTypeTranslationUpdateInputs {
 
 export interface EventRoomTypeReservationCreateInputs {
   eventRoomTypeId: string;
-  passes: { id: string }[];
+  passes?: { id: string }[];
   start?: string | null;
   end?: string | null;
 }

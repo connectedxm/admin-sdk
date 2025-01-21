@@ -7,49 +7,56 @@ import {
 } from "@src/mutations/useConnectedMutation";
 import { EventRoomTypeReservationUpdateInputs } from "@src/params";
 import {
-  SET_EVENT_ATTENDEE_RESERVATION_QUERY_DATA,
   EVENT_ATTENDEE_RESERVATIONS_QUERY_KEY,
+  EVENT_RESERVATIONS_QUERY_KEY,
+  SET_EVENT_RESERVATION_QUERY_DATA,
 } from "@src/queries";
 
 /**
  * @category Params
  * @group Event-Attendees
  */
-export interface UpdateEventAttendeeReservationParams extends MutationParams {
+export interface UpdateEventReservationParams extends MutationParams {
   eventId: string;
-  accountId: string;
   reservationId: string;
   reservation: EventRoomTypeReservationUpdateInputs;
+  accountId?: string;
 }
 
 /**
  * @category Methods
  * @group Event-Attendees
  */
-export const UpdateEventAttendeeReservation = async ({
+export const UpdateEventReservation = async ({
   eventId,
-  accountId,
   reservationId,
   reservation,
+  accountId,
   adminApiParams,
   queryClient,
-}: UpdateEventAttendeeReservationParams): Promise<
+}: UpdateEventReservationParams): Promise<
   ConnectedXMResponse<EventRoomTypeReservation>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put(
-    `/events/${eventId}/attendees/${accountId}/reservations/${reservationId}`,
+    `/events/${eventId}/reservations/${reservationId}`,
     reservation
   );
   if (queryClient && data.status === "ok") {
-    SET_EVENT_ATTENDEE_RESERVATION_QUERY_DATA(
+    SET_EVENT_RESERVATION_QUERY_DATA(
       queryClient,
-      [eventId, accountId, reservationId],
+      [eventId, reservationId],
       data
     );
     queryClient.invalidateQueries({
-      queryKey: EVENT_ATTENDEE_RESERVATIONS_QUERY_KEY(eventId, accountId),
+      queryKey: EVENT_RESERVATIONS_QUERY_KEY(eventId),
     });
+
+    if (accountId) {
+      queryClient.invalidateQueries({
+        queryKey: EVENT_ATTENDEE_RESERVATIONS_QUERY_KEY(eventId, accountId),
+      });
+    }
   }
   return data;
 };
@@ -58,22 +65,19 @@ export const UpdateEventAttendeeReservation = async ({
  * @category Mutations
  * @group Event-Attendees
  */
-export const useUpdateEventAttendeeReservation = (
+export const useUpdateEventReservation = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof UpdateEventAttendeeReservation>>,
-      Omit<
-        UpdateEventAttendeeReservationParams,
-        "queryClient" | "adminApiParams"
-      >
+      Awaited<ReturnType<typeof UpdateEventReservation>>,
+      Omit<UpdateEventReservationParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    UpdateEventAttendeeReservationParams,
-    Awaited<ReturnType<typeof UpdateEventAttendeeReservation>>
-  >(UpdateEventAttendeeReservation, options, {
+    UpdateEventReservationParams,
+    Awaited<ReturnType<typeof UpdateEventReservation>>
+  >(UpdateEventReservation, options, {
     domain: "events",
     type: "update",
   });

@@ -1,3 +1,4 @@
-export * from "./useGetEventAttendeeReservation";
-export * from "./useGetEventAttendeeReservationPasses";
 export * from "./useGetEventAttendeeReservations";
+export * from "./useGetEventReservation";
+export * from "./useGetEventReservationPasses";
+export * from "./useGetEventReservations";

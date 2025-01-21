@@ -7,39 +7,34 @@ import {
 } from "../../../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
-import { EVENT_ATTENDEE_RESERVATION_QUERY_KEY } from "./useGetEventAttendeeReservation";
+import { EVENT_RESERVATION_QUERY_KEY } from "./useGetEventReservation";
 
 /**
  * @category Keys
  * @group Events
  */
-export const EVENT_ATTENDEE_RESERVATION_PASSES_QUERY_KEY = (
+export const EVENT_RESERVATION_PASSES_QUERY_KEY = (
   eventId: string,
-  accountId: string,
   reservationId: string
-) => [
-  ...EVENT_ATTENDEE_RESERVATION_QUERY_KEY(eventId, accountId, reservationId),
-  "PASSES",
-];
+) => [...EVENT_RESERVATION_QUERY_KEY(eventId, reservationId), "PASSES"];
 
 /**
  * @category Setters
  * @group Events
  */
-export const SET_EVENT_ATTENDEE_RESERVATION_PASSES_QUERY_DATA = (
+export const SET_EVENT_RESERVATION_PASSES_QUERY_DATA = (
   client: QueryClient,
-  keyParams: Parameters<typeof EVENT_ATTENDEE_RESERVATION_PASSES_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventAttendeeReservationPasses>>
+  keyParams: Parameters<typeof EVENT_RESERVATION_PASSES_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetEventReservationPasses>>
 ) => {
   client.setQueryData(
-    EVENT_ATTENDEE_RESERVATION_PASSES_QUERY_KEY(...keyParams),
+    EVENT_RESERVATION_PASSES_QUERY_KEY(...keyParams),
     response
   );
 };
 
-interface GetEventAttendeeReservationPassesProps extends InfiniteQueryParams {
+interface GetEventReservationPassesProps extends InfiniteQueryParams {
   eventId: string;
-  accountId: string;
   reservationId: string;
 }
 
@@ -47,21 +42,20 @@ interface GetEventAttendeeReservationPassesProps extends InfiniteQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetEventAttendeeReservationPasses = async ({
+export const GetEventReservationPasses = async ({
   eventId,
-  accountId,
   reservationId,
   pageParam,
   pageSize,
   orderBy,
   search,
   adminApiParams,
-}: GetEventAttendeeReservationPassesProps): Promise<
+}: GetEventReservationPassesProps): Promise<
   ConnectedXMResponse<EventPass[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/events/${eventId}/attendees/${accountId}/reservations/${reservationId}/passes`,
+    `/events/${eventId}/reservations/${reservationId}/passes`,
     {
       params: {
         page: pageParam || undefined,
@@ -78,41 +72,31 @@ export const GetEventAttendeeReservationPasses = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventAttendeeReservationPasses = (
+export const useGetEventReservationPasses = (
   eventId: string = "",
-  accountId: string = "",
   reservationId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventAttendeeReservationPasses>>
+    Awaited<ReturnType<typeof GetEventReservationPasses>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventAttendeeReservationPasses>>
+    Awaited<ReturnType<typeof GetEventReservationPasses>>
   >(
-    EVENT_ATTENDEE_RESERVATION_PASSES_QUERY_KEY(
-      eventId,
-      accountId,
-      reservationId
-    ),
+    EVENT_RESERVATION_PASSES_QUERY_KEY(eventId, reservationId),
     (params: InfiniteQueryParams) =>
-      GetEventAttendeeReservationPasses({
+      GetEventReservationPasses({
         ...params,
         eventId,
-        accountId,
         reservationId,
       }),
     params,
     {
       ...options,
-      enabled:
-        !!eventId &&
-        !!accountId &&
-        !!reservationId &&
-        (options.enabled ?? true),
+      enabled: !!eventId && !!reservationId && (options.enabled ?? true),
     },
     "events"
   );

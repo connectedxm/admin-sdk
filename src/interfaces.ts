@@ -954,7 +954,7 @@ export interface Event extends BaseEvent {
   newActivityCreatorPushNotification: boolean;
   seriesId: string | null;
   series: BaseSeries | null;
-  streamInput: BaseStreamInput | null;
+  streamInputs: BaseStreamInput[];
   streamReplayId: string | null;
   streamReplay: BaseVideo | null;
   groupId: string | null;
@@ -1904,12 +1904,14 @@ export interface Report {
   eventId: string | null;
   event: BaseEvent | null;
   user: BaseUser | null;
-  colDefs: any;
-  rowData: any[];
   shared: boolean;
   sharedUsers: BaseUser[];
   createdAt: string;
   updatedAt: string;
+  // DYNAMIC
+  colDefs: any;
+  rowData: any[];
+  nextCursor: number | null;
 }
 
 export interface SearchField {

@@ -2350,6 +2350,7 @@ export interface BaseEventPassType {
   id: string;
   slug: string;
   active: boolean;
+  cancelable: boolean;
   transferable: boolean;
   featured: boolean;
   visibility: PassTypeVisibility;

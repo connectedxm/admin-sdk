@@ -290,7 +290,18 @@ export interface AccountAddress extends BaseAccountAddress {
   updatedAt: string;
 }
 
-export interface APILog {
+export interface BaseAPILog {
+  id: string;
+  account: BaseAccount | null;
+  user: BaseUser | null;
+  source: "admin" | "client";
+  // RESPONSE
+  status: "success" | "failure";
+  statusCode: number;
+  response: string | null;
+}
+
+export interface APILog extends BaseAPILog {
   id: string;
   account: BaseAccount | null;
   user: BaseUser | null;

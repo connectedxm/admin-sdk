@@ -1427,6 +1427,7 @@ export interface PassTypeCreateInputs {
   visibility?: keyof typeof PassTypeVisibility | null;
   featured?: boolean;
   active?: boolean;
+  cancelable?: boolean;
   transferable?: boolean;
   slug?: string | null;
   longDescription?: string | null;
@@ -1446,6 +1447,7 @@ export interface PassTypeUpdateInputs {
   visibility?: keyof typeof PassTypeVisibility | null;
   featured?: boolean;
   active?: boolean;
+  cancelable?: boolean;
   transferable?: boolean;
   name?: string | null;
   slug?: string | null;

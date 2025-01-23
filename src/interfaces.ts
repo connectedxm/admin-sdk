@@ -299,35 +299,26 @@ export interface BaseAPILog {
   status: "success" | "failure";
   statusCode: number;
   response: string | null;
+  path: string;
+  method: string;
+  deviceType: string | null;
+  ipaddress: string;
+  country: string;
+  createdAt: string;
 }
 
 export interface APILog extends BaseAPILog {
-  id: string;
-  account: BaseAccount | null;
-  user: BaseUser | null;
-  source: "admin" | "client";
-  // RESPONSE
-  status: "success" | "failure";
-  statusCode: number;
-  response: string | null;
-  // REQUEST
   headers: object | null;
-  method: string;
-  path: string;
   params: object | null;
   query: object | null;
   body: object | null;
   // TRACKING
-  ipaddress: string;
-  country: string;
-  createdAt: string;
   updatedAt: string;
   // User Agent
   architecture: string | null;
   browser: string | null;
   browserVersion: string | null;
   deviceModel: string | null;
-  deviceType: string | null;
   deviceVendor: string | null;
   engine: string | null;
   engineVersion: string | null;

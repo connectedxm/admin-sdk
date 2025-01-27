@@ -1633,9 +1633,10 @@ export interface BasePayment {
   createdAt: string;
 }
 
-enum PaymentIntegrationType {
+export enum PaymentIntegrationType {
   stripe = "stripe",
   paypal = "paypal",
+  braintree = "braintree",
 }
 
 export interface Payment extends BasePayment {
@@ -1662,6 +1663,7 @@ export interface PaymentIntegration {
   enabled: boolean;
   stripe?: any | null;
   paypal?: any | null;
+  braintree?: any | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -2697,6 +2699,12 @@ export interface ThreadMember extends BaseThreadMember {
 
 export interface PaypalActivationFormParams {
   clientId: string;
+  clientSecret: string;
+}
+
+export interface BraintreeActivationFormParams {
+  clientId: string;
+  clientPublicKey: string;
   clientSecret: string;
 }
 

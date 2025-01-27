@@ -4,7 +4,7 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../useConnectedSingleQuery";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, PaymentIntegrationType } from "@src/interfaces";
 import { PaymentIntegration } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY } from "./useGetOrganizationPaymentIntegrations";
@@ -56,7 +56,7 @@ export const GetOrganizationPaymentIntegration = async ({
  * @group Organization
  */
 export const useGetOrganizationPaymentIntegration = (
-  type: "stripe" | "paypal",
+  type: keyof typeof PaymentIntegrationType,
   options: SingleQueryOptions<
     ReturnType<typeof GetOrganizationPaymentIntegration>
   > = {}

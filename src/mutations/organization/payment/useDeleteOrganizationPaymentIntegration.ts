@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, PaymentIntegrationType } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -16,7 +16,7 @@ import {
  */
 export interface DeleteOrganizationPaymentIntegrationParams
   extends MutationParams {
-  type: "stripe" | "paypal";
+  type: keyof typeof PaymentIntegrationType;
 }
 
 /**

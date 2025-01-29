@@ -9,14 +9,24 @@ import {
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 
+interface AnnouncementFilters {
+  eventId?: string;
+  groupId?: string;
+  tierId?: string;
+  channelId?: string;
+  accountId?: string;
+}
+
 /**
  * @category Keys
  * @group Announcements
  */
-export const ANNOUNCEMENTS_QUERY_KEY = (eventId?: string, groupId?: string) => {
+export const ANNOUNCEMENTS_QUERY_KEY = (filters?: AnnouncementFilters) => {
   const keys = ["ANNOUNCEMENTS"];
-  if (eventId) keys.push(eventId);
-  if (groupId) keys.push(groupId);
+  if (filters?.eventId) keys.push(filters.eventId);
+  if (filters?.groupId) keys.push(filters.groupId);
+  if (filters?.tierId) keys.push(filters.tierId);
+  if (filters?.accountId) keys.push(filters.accountId);
   return keys;
 };
 
@@ -33,8 +43,7 @@ export const SET_ANNOUNCEMENTS_QUERY_DATA = (
 };
 
 interface GetAnnouncementsProps extends InfiniteQueryParams {
-  eventId?: string;
-  groupId?: string;
+  filters?: AnnouncementFilters;
 }
 
 /**
@@ -46,8 +55,7 @@ export const GetAnnouncements = async ({
   pageSize,
   orderBy,
   search,
-  eventId,
-  groupId,
+  filters,
   adminApiParams,
 }: GetAnnouncementsProps): Promise<ConnectedXMResponse<Announcement[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -57,8 +65,7 @@ export const GetAnnouncements = async ({
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
-      eventId: eventId || undefined,
-      groupId: groupId || undefined,
+      ...filters,
     },
   });
   return data;
@@ -68,8 +75,7 @@ export const GetAnnouncements = async ({
  * @group Announcements
  */
 export const useGetAnnouncements = (
-  eventId?: string,
-  groupId?: string,
+  filters?: AnnouncementFilters,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -81,9 +87,8 @@ export const useGetAnnouncements = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetAnnouncements>>
   >(
-    ANNOUNCEMENTS_QUERY_KEY(eventId, groupId),
-    (params: InfiniteQueryParams) =>
-      GetAnnouncements({ eventId, groupId, ...params }),
+    ANNOUNCEMENTS_QUERY_KEY(filters),
+    (params: InfiniteQueryParams) => GetAnnouncements({ filters, ...params }),
     params,
     options,
     "announcements"

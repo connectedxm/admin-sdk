@@ -499,6 +499,8 @@ export interface BaseAnnouncement {
   creatorId: string | null;
   eventId: string | null;
   groupId: string | null;
+  tierId: string | null;
+  channelId: string | null;
   ticketId: string | null;
   userId: string | null;
   schedule: BaseSchedule;
@@ -524,6 +526,8 @@ export interface Announcement extends BaseAnnouncement {
   creator: BaseAccount | null;
   event: BaseEvent | null;
   group: BaseGroup | null;
+  tier: BaseTier | null;
+  channel: BaseChannel | null;
   sponsorshipLevelId: string | null;
   sponsorshipLevel: BaseLevel | null;
   ticket: BaseEventPassType | null;

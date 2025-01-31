@@ -788,7 +788,7 @@ export interface EventAddOn extends BaseEventAddOn {
   allowedTiers: BaseTier[];
   disallowedTiers: BaseTier[];
   _count: {
-    purchases: number;
+    passes: number;
   };
 }
 
@@ -1568,7 +1568,7 @@ export interface BaseEventPass {
 }
 
 export interface EventPass extends BaseEventPass {
-  addOns: BaseEventAddOn[];
+  passAddOns: PassAddOn[];
   attendeeId: string;
   attendee: BaseEventAttendee;
   // registrationId: string;
@@ -1577,6 +1577,13 @@ export interface EventPass extends BaseEventPass {
   payer: BaseAccount | null;
   amtPaid: number;
   amtRefunded: number;
+}
+
+export interface PassAddOn {
+  addOnId: string;
+  addOn: BaseEventAddOn;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface PushDevice {

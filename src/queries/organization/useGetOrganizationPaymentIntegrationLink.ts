@@ -3,7 +3,7 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../useConnectedSingleQuery";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, PaymentIntegrationType } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { ORGANIZATION_PAYMENT_INTEGRATION_QUERY_KEY } from "./useGetOrganizationPaymentIntegration";
 import { GetAdminAPI } from "@src/AdminAPI";
@@ -13,7 +13,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @group Organization
  */
 export const ORGANIZATION_PAYMENT_INTEGRATION_LINK_QUERY_KEY = (
-  type: "stripe" | "paypal"
+  type: keyof typeof PaymentIntegrationType
 ) => [...ORGANIZATION_PAYMENT_INTEGRATION_QUERY_KEY(type), "LINK"];
 
 /**
@@ -32,7 +32,7 @@ export const SET_ORGANIZATION_STRIPE_LINK_QUERY_DATA = (
 };
 
 interface GetOrganizationPaymentLinkProps extends SingleQueryParams {
-  type: "stripe" | "paypal";
+  type: keyof typeof PaymentIntegrationType;
 }
 
 /**
@@ -52,7 +52,7 @@ export const GetOrganizationPaymentLink = async ({
  * @group Organization
  */
 export const useGetOrganizationPaymentLink = (
-  type: "stripe" | "paypal",
+  type: keyof typeof PaymentIntegrationType,
   options: SingleQueryOptions<
     ReturnType<typeof GetOrganizationPaymentLink>
   > = {}

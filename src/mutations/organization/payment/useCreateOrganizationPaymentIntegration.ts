@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, PaymentIntegrationType } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -13,8 +13,9 @@ import { SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA } from "@src/queries";
  */
 export interface CreateOrganizationPaymentIntegrationParams
   extends MutationParams {
-  type: "stripe" | "paypal";
+  type: keyof typeof PaymentIntegrationType;
   clientId?: string;
+  clientPublicKey?: string;
   clientSecret?: string;
 }
 
@@ -25,6 +26,7 @@ export interface CreateOrganizationPaymentIntegrationParams
 export const CreateOrganizationPaymentIntegration = async ({
   type,
   clientId,
+  clientPublicKey,
   clientSecret,
   adminApiParams,
   queryClient,
@@ -36,6 +38,7 @@ export const CreateOrganizationPaymentIntegration = async ({
     `/organization/payment/${type}`,
     {
       clientId,
+      clientPublicKey,
       clientSecret,
     }
   );

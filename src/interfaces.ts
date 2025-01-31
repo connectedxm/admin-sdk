@@ -290,7 +290,7 @@ export interface AccountAddress extends BaseAccountAddress {
   updatedAt: string;
 }
 
-export interface APILog {
+export interface BaseAPILog {
   id: string;
   account: BaseAccount | null;
   user: BaseUser | null;
@@ -299,24 +299,26 @@ export interface APILog {
   status: "success" | "failure";
   statusCode: number;
   response: string | null;
-  // REQUEST
-  headers: object | null;
-  method: string;
   path: string;
+  method: string;
+  deviceType: string | null;
+  ipaddress: string;
+  country: string;
+  createdAt: string;
+}
+
+export interface APILog extends BaseAPILog {
+  headers: object | null;
   params: object | null;
   query: object | null;
   body: object | null;
   // TRACKING
-  ipaddress: string;
-  country: string;
-  createdAt: string;
   updatedAt: string;
   // User Agent
   architecture: string | null;
   browser: string | null;
   browserVersion: string | null;
   deviceModel: string | null;
-  deviceType: string | null;
   deviceVendor: string | null;
   engine: string | null;
   engineVersion: string | null;
@@ -1631,9 +1633,10 @@ export interface BasePayment {
   createdAt: string;
 }
 
-enum PaymentIntegrationType {
+export enum PaymentIntegrationType {
   stripe = "stripe",
   paypal = "paypal",
+  braintree = "braintree",
 }
 
 export interface Payment extends BasePayment {
@@ -1660,6 +1663,7 @@ export interface PaymentIntegration {
   enabled: boolean;
   stripe?: any | null;
   paypal?: any | null;
+  braintree?: any | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -2695,6 +2699,12 @@ export interface ThreadMember extends BaseThreadMember {
 
 export interface PaypalActivationFormParams {
   clientId: string;
+  clientSecret: string;
+}
+
+export interface BraintreeActivationFormParams {
+  clientId: string;
+  clientPublicKey: string;
   clientSecret: string;
 }
 

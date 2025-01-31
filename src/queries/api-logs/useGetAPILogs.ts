@@ -4,7 +4,7 @@ import {
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
-import { ConnectedXMResponse, APILog } from "@src/interfaces";
+import { ConnectedXMResponse, BaseAPILog } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
@@ -68,7 +68,7 @@ export const GetAPILogs = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetAPILogsParams): Promise<ConnectedXMResponse<APILog[]>> => {
+}: GetAPILogsParams): Promise<ConnectedXMResponse<BaseAPILog[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/logs/api`, {
     params: {

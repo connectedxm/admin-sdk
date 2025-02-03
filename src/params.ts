@@ -177,6 +177,8 @@ export interface AnnouncementCreateInputs {
   creatorId?: string | null;
   eventId?: string | null;
   groupId?: string | null;
+  tierId?: string | null;
+  channelId?: string | null;
   accountId?: string | null;
   email?: boolean;
   push?: boolean;
@@ -190,6 +192,8 @@ export interface AnnouncementUpdateInputs {
   creatorId?: string | null;
   eventId?: string | null;
   groupId?: string | null;
+  tierId?: string | null;
+  channelId?: string | null;
   accountId?: string | null;
   email?: boolean;
   push?: boolean;

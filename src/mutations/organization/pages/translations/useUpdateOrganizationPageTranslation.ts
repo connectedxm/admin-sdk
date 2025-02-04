@@ -33,9 +33,9 @@ export const UpdateOrganizationPageTranslation = async ({
   adminApiParams,
   queryClient,
 }: UpdateOrganizationPageTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put(
+  const { data } = await adminApi.put(
     `/organization/pages/${type}/translations/${locale}`,
     pageTranslation
   );

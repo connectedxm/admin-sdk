@@ -28,8 +28,8 @@ export const ResendRegistrationConfirmationEmail = async ({
 }: ResendRegistrationConfirmationEmailParams): Promise<
   ConnectedXMResponse<null>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<null>>(
     `/events/${eventId}/attendees/${accountId}/resendEmail`
   );
   if (queryClient && data.status === "ok") {

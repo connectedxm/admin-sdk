@@ -25,8 +25,8 @@ export const UpdateOrganization = async ({
   adminApiParams,
   queryClient,
 }: UpdateOrganizationParams): Promise<ConnectedXMResponse<Organization>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Organization>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<Organization>>(
     `/organization`,
     organization
   );

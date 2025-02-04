@@ -33,9 +33,9 @@ export const ToggleTaxIntegration = async ({
 }: ToggleTaxIntegrationParams): Promise<
   ConnectedXMResponse<TaxIntegration>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<ConnectedXMResponse<TaxIntegration>>(
+  const { data } = await adminApi.put<ConnectedXMResponse<TaxIntegration>>(
     `/organization/tax/${type}`
   );
   if (queryClient && data.status === "ok") {

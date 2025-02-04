@@ -36,8 +36,8 @@ export const AddEventReservationPass = async ({
 }: AddEventReservationPassParams): Promise<
   ConnectedXMResponse<EventRoomTypeReservation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<
     ConnectedXMResponse<EventRoomTypeReservation>
   >(`/events/${eventId}/reservations/${reservationId}/passes/${passId}`);
 

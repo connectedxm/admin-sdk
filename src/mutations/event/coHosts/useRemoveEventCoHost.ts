@@ -26,8 +26,8 @@ export const RemoveEventCoHost = async ({
   adminApiParams,
   queryClient,
 }: RemoveEventCoHostParams): Promise<ConnectedXMResponse<Account>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete(
     `/events/${eventId}/coHosts/${accountId}`
   );
 

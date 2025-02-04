@@ -36,8 +36,8 @@ export const UpdateInvoiceLineItem = async ({
   ConnectedXMResponse<InvoiceLineItem>
 > => {
   if (!invoiceId) throw new Error("Invoice ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<InvoiceLineItem>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<InvoiceLineItem>>(
     `/invoices/${invoiceId}/items/${lineItemId}`,
     {
       ...invoiceLineItem,

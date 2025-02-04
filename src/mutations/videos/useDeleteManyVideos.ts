@@ -24,9 +24,9 @@ export const DeleteManyVideos = async ({
   adminApiParams,
   queryClient,
 }: DeleteManyVideosParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<ConnectedXMResponse<null>>(
+  const { data } = await adminApi.post<ConnectedXMResponse<null>>(
     `/videos/delete`,
     { videoIds }
   );

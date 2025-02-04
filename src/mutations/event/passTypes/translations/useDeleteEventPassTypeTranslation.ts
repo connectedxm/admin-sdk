@@ -30,9 +30,9 @@ export const DeleteEventPassTypeTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteEventPassTypeTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/events/${eventId}/passTypes/${passTypeId}/translations/${locale}`
   );
   if (queryClient && data.status === "ok") {

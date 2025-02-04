@@ -36,8 +36,8 @@ export const UpdateEventRoomTypeAddOnDetails = async ({
 }: UpdateEventRoomTypeAddOnDetailsParams): Promise<
   ConnectedXMResponse<EventRoomType>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<EventRoomType>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<EventRoomType>>(
     `/events/${eventId}/roomTypes/${roomTypeId}/addOns/${addOnId}`,
     details
   );

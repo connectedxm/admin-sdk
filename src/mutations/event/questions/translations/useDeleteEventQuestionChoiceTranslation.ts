@@ -33,9 +33,9 @@ export const DeleteEventQuestionChoiceTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteEventQuestionChoiceTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/events/${eventId}/questions/${questionId}/choices/${choiceId}/translations/${locale}`
   );
 

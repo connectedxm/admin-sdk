@@ -26,8 +26,8 @@ export const AddEventBenefit = async ({
   adminApiParams,
   queryClient,
 }: AddEventBenefitParams): Promise<ConnectedXMResponse<Benefit>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Benefit>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Benefit>>(
     `/events/${eventId}/benefits/${benefitId}`
   );
 

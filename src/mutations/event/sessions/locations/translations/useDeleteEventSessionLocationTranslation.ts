@@ -29,9 +29,9 @@ export const DeleteEventSessionLocationTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteEventSessionLocationTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/events/${eventId}/sessionLocations/${locationId}/translations/${locale}`
   );
   if (queryClient && data.status === "ok") {

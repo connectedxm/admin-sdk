@@ -24,9 +24,9 @@ export const DeleteImage = async ({
   adminApiParams,
   queryClient,
 }: DeleteImageParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/images/${imageId}`
   );
   if (queryClient && data.status === "ok") {

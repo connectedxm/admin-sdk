@@ -24,8 +24,8 @@ export const DeleteInvoice = async ({
   adminApiParams,
   queryClient,
 }: DeleteInvoiceParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/invoices/${invoiceId}`
   );
   if (queryClient && data.status === "ok") {

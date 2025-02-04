@@ -25,8 +25,8 @@ export const CreateBenefit = async ({
   adminApiParams,
   queryClient,
 }: CreateBenefitParams): Promise<ConnectedXMResponse<Benefit>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Benefit>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Benefit>>(
     `/benefits`,
     benefit
   );

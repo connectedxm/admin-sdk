@@ -28,8 +28,8 @@ export const UpdateAccountCognitoUserPassword = async ({
 }: UpdateAccountCognitoUserPasswordParams): Promise<
   ConnectedXMResponse<Account>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Account>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<Account>>(
     `/accounts/${accountId}/cognito/${username}/password`,
     { password }
   );

@@ -35,9 +35,9 @@ export const CreateEventRoomTypeTranslation = async ({
 }: CreateEventRoomTypeTranslationParams): Promise<
   ConnectedXMResponse<EventRoomTypeTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<
+  const { data } = await adminApi.post<
     ConnectedXMResponse<EventRoomTypeTranslation>
   >(`/events/${eventId}/roomTypes/${roomTypeId}/translations`, {
     locale,

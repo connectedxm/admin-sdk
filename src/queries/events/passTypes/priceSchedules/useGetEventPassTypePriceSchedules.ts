@@ -54,8 +54,8 @@ export const GetEventPassTypePriceSchedules = async ({
 }: GetEventPassTypePriceSchedulesParams): Promise<
   ConnectedXMResponse<EventPassTypePriceSchedule[]>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.get(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.get(
     `/events/${eventId}/passTypes/${passTypeId}/priceSchedules`,
     {
       params: {

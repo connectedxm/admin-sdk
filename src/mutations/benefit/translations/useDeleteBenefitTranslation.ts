@@ -28,9 +28,9 @@ export const DeleteBenefitTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteBenefitTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/benefits/${benefitId}/translations/${locale}`
   );
 

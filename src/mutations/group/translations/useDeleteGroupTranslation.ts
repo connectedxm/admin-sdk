@@ -28,9 +28,9 @@ export const DeleteGroupTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteGroupTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/groups/${groupId}/translations/${locale}`
   );
   if (queryClient && data.status === "ok") {

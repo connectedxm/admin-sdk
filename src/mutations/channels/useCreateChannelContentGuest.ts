@@ -34,8 +34,8 @@ export const CreateChannelContentGuest = async ({
 }: CreateChannelContentGuestParams): Promise<
   ConnectedXMResponse<ChannelContentGuest>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<
     ConnectedXMResponse<ChannelContentGuest>
   >(`/channels/${channelId}/contents/${contentId}/guests`, content);
   if (queryClient && data.status === "ok") {

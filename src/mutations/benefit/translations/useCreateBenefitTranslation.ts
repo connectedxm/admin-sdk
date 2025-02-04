@@ -32,14 +32,15 @@ export const CreateBenefitTranslation = async ({
 }: CreateBenefitTranslationParams): Promise<
   ConnectedXMResponse<BenefitTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<
-    ConnectedXMResponse<BenefitTranslation>
-  >(`/benefits/${benefitId}/translations`, {
-    locale,
-    autoTranslate,
-  });
+  const { data } = await adminApi.post<ConnectedXMResponse<BenefitTranslation>>(
+    `/benefits/${benefitId}/translations`,
+    {
+      locale,
+      autoTranslate,
+    }
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: BENEFIT_TRANSLATIONS_QUERY_KEY(benefitId),

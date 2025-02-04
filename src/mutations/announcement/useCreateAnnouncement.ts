@@ -28,8 +28,8 @@ export const CreateAnnouncement = async ({
   adminApiParams,
   queryClient,
 }: CreateAnnouncementParams): Promise<ConnectedXMResponse<Announcement>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Announcement>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Announcement>>(
     `/announcements`,
     announcement
   );

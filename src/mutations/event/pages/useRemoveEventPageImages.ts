@@ -31,8 +31,8 @@ export const RemoveEventPageImage = async ({
   adminApiParams,
   queryClient,
 }: RemoveEventPageImageParams): Promise<ConnectedXMResponse<EventPage>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<EventPage>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<EventPage>>(
     `/events/${eventId}/pages/${pageId}/images/${imageId}`
   );
 

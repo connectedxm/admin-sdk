@@ -32,9 +32,9 @@ export const UpdateBenefitTranslation = async ({
   adminApiParams,
   queryClient,
 }: UpdateBenefitTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put(
+  const { data } = await adminApi.put(
     `/benefits/${benefitId}/translations/${locale}`,
     benefitTranslation
   );

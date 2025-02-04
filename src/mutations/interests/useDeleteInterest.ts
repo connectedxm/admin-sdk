@@ -24,8 +24,8 @@ export const DeleteInterest = async ({
   adminApiParams,
   queryClient,
 }: DeleteInterestParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/interests/${interestId}`
   );
   if (queryClient && data.status === "ok") {

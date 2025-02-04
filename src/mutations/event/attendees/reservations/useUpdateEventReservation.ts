@@ -37,8 +37,8 @@ export const UpdateEventReservation = async ({
 }: UpdateEventReservationParams): Promise<
   ConnectedXMResponse<EventRoomTypeReservation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put(
     `/events/${eventId}/reservations/${reservationId}`,
     reservation
   );

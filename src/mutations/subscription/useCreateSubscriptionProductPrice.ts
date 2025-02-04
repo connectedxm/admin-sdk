@@ -32,9 +32,9 @@ export const CreateSubscriptionProductPrice = async ({
 }: CreateSubscriptionProductPriceParams): Promise<
   ConnectedXMResponse<SubscriptionProductPrice>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<
+  const { data } = await adminApi.post<
     ConnectedXMResponse<SubscriptionProductPrice>
   >(
     `/subscription-products/${subscriptionProductId}/prices`,

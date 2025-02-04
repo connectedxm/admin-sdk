@@ -35,8 +35,8 @@ export const AddEventSectionTier = async ({
 }: AddEventSectionTierParams): Promise<
   ConnectedXMResponse<RegistrationSection>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post(
     `/events/${eventId}/sections/${sectionId}/tiers/${tierId}`,
     {
       allowed,

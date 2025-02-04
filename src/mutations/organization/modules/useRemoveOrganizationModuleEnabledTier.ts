@@ -37,8 +37,8 @@ export const RemoveOrganizationModuleEnabledTier = async ({
 }: RemoveOrganizationModuleEnabledTierParams): Promise<
   ConnectedXMResponse<OrganizationModule>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<
     ConnectedXMResponse<OrganizationModule>
   >(`/organization/modules/${moduleType}/enabledTiers/${tierId}`);
 

@@ -37,10 +37,10 @@ export const AddOrganizationModuleEditableTier = async ({
 }: AddOrganizationModuleEditableTierParams): Promise<
   ConnectedXMResponse<OrganizationModule>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
-    ConnectedXMResponse<OrganizationModule>
-  >(`/organization/modules/${moduleType}/editableTiers/${tierId}`);
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<OrganizationModule>>(
+    `/organization/modules/${moduleType}/editableTiers/${tierId}`
+  );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

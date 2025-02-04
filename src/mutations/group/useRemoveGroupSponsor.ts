@@ -26,8 +26,8 @@ export const RemoveGroupSponsor = async ({
   adminApiParams,
   queryClient,
 }: RemoveGroupSponsorParams): Promise<ConnectedXMResponse<Group>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<Group>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<Group>>(
     `/groups/${groupId}/sponsors/${accountId}`
   );
   if (queryClient && data.status === "ok") {

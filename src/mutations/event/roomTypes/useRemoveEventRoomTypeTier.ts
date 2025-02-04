@@ -35,8 +35,8 @@ export const RemoveEventRoomTypeTier = async ({
 }: RemoveEventRoomTypeTierParams): Promise<
   ConnectedXMResponse<EventRoomType>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete(
     `/events/${eventId}/roomTypes/${roomTypeId}/tiers/${tierId}`,
     {
       params: {

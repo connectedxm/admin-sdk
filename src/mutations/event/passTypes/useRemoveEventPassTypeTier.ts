@@ -35,8 +35,8 @@ export const RemoveEventPassTypeTier = async ({
 }: RemoveEventPassTypeTierParams): Promise<
   ConnectedXMResponse<EventPassType>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<EventPassType>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<EventPassType>>(
     `/events/${eventId}/passTypes/${passTypeId}/tiers/${tierId}`,
     {
       params: {

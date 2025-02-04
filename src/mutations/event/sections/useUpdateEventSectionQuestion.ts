@@ -35,12 +35,13 @@ export const UpdateEventSectionQuestion = async ({
 }: UpdateEventSectionQuestionParams): Promise<
   ConnectedXMResponse<RegistrationSection>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<
-    ConnectedXMResponse<RegistrationSection>
-  >(`/events/${eventId}/sections/${sectionId}/questions/${questionId}`, {
-    sortOrder,
-  });
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<RegistrationSection>>(
+    `/events/${eventId}/sections/${sectionId}/questions/${questionId}`,
+    {
+      sortOrder,
+    }
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_SECTIONS_QUERY_KEY(eventId),

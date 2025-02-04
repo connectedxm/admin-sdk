@@ -30,8 +30,8 @@ export const CreateOrganizationTeamMember = async ({
 }: CreateOrganizationTeamMemberParams): Promise<
   ConnectedXMResponse<TeamMember>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<TeamMember>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<TeamMember>>(
     `/organization/team-members`,
     teamMember
   );

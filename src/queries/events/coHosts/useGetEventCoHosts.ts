@@ -45,8 +45,8 @@ export const GetEventCoHosts = async ({
   search,
   adminApiParams,
 }: GetEventCoHostsProps): Promise<ConnectedXMResponse<Account[]>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.get(`/events/${eventId}/coHosts`, {
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.get(`/events/${eventId}/coHosts`, {
     params: {
       page: pageParam || undefined,
       pageSize: pageSize || undefined,

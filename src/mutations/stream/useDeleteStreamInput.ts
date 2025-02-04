@@ -24,8 +24,8 @@ export const DeleteStreamInput = async ({
   adminApiParams,
   queryClient,
 }: DeleteStreamInputParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/streams/${streamId}`
   );
   if (queryClient && data.status === "ok") {

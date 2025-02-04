@@ -35,21 +35,22 @@ export const UpdateEventSection = async ({
   ConnectedXMResponse<RegistrationSection>
 > => {
   if (!sectionId) throw new Error("Section ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<
-    ConnectedXMResponse<RegistrationSection>
-  >(`/events/${eventId}/sections/${sectionId}`, {
-    ...section,
-    id: undefined,
-    eventId: undefined,
-    questions: undefined,
-    eventTickets: undefined,
-    accountTiers: undefined,
-    _count: undefined,
-    createdAt: undefined,
-    updatedAt: undefined,
-  });
+  const { data } = await adminApi.put<ConnectedXMResponse<RegistrationSection>>(
+    `/events/${eventId}/sections/${sectionId}`,
+    {
+      ...section,
+      id: undefined,
+      eventId: undefined,
+      questions: undefined,
+      eventTickets: undefined,
+      accountTiers: undefined,
+      _count: undefined,
+      createdAt: undefined,
+      updatedAt: undefined,
+    }
+  );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

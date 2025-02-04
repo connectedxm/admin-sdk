@@ -28,9 +28,9 @@ export const DeleteLevelTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteLevelTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/levels/${levelId}/translations/${locale}`
   );
   if (queryClient && data.status === "ok") {

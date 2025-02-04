@@ -35,8 +35,8 @@ export const UpdateEventQuestion = async ({
   ConnectedXMResponse<RegistrationQuestion>
 > => {
   if (!questionId) throw new Error("Question ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<
     ConnectedXMResponse<RegistrationQuestion>
   >(`/events/${eventId}/questions/${questionId}`, {
     ...question,

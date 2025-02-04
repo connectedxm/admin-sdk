@@ -28,9 +28,9 @@ export const DeleteEventPassTypeRefundSchedule = async ({
   adminApiParams,
   queryClient,
 }: DeleteEventPassTypeRefundScheduleParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/events/${eventId}/passTypes/${passTypeId}/refundSchedules/${scheduleId}`
   );
 

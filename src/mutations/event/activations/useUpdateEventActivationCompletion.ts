@@ -36,8 +36,8 @@ export const UpdateEventActivationCompletion = async ({
 }: UpdateEventActivationCompletionParams): Promise<
   ConnectedXMResponse<EventActivation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<EventActivation>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<EventActivation>>(
     `/events/${eventId}/activations/${activationId}/completions/${completionId}`,
     completion
   );

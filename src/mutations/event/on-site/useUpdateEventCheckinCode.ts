@@ -24,8 +24,8 @@ export const UpdateEventCheckinCode = async ({
   adminApiParams,
   queryClient,
 }: UpdateEventCheckinCodeParams): Promise<ConnectedXMResponse<EventOnSite>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<EventOnSite>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<EventOnSite>>(
     `/events/${eventId}/on-site`
   );
   if (queryClient && data.status === "ok") {

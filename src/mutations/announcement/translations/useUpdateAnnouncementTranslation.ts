@@ -32,9 +32,9 @@ export const UpdateAnnouncementTranslation = async ({
   queryClient,
   adminApiParams,
 }: UpdateAnnouncementTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put(
+  const { data } = await adminApi.put(
     `/announcements/${announcementId}/translations/${locale}`,
     announcementTranslation
   );

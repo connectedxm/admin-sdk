@@ -27,8 +27,8 @@ export const UpdateSeries = async ({
   adminApiParams,
   queryClient,
 }: UpdateSeriesParams): Promise<ConnectedXMResponse<Series>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Series>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<Series>>(
     `/series/${seriesId}`,
     {
       ...series,

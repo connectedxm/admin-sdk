@@ -26,7 +26,7 @@ export const SwitchImage = async ({
   adminApiParams,
   queryClient,
 }: SwitchImageParams): Promise<ConnectedXMResponse<Image>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
   const buffer = await new Promise((resolve, reject) => {
     const fileReader = new FileReader();
@@ -39,7 +39,7 @@ export const SwitchImage = async ({
     };
   });
 
-  const { data } = await connectedXM.put<ConnectedXMResponse<Image>>(
+  const { data } = await adminApi.put<ConnectedXMResponse<Image>>(
     `/images/${imageId}/switch`,
     {
       buffer: buffer || undefined,

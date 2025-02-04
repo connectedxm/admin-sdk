@@ -29,8 +29,8 @@ export const DeleteEventSessionQuestion = async ({
   adminApiParams,
   queryClient,
 }: DeleteEventSessionQuestionParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/sessions/${sessionId}/questions/${questionId}`
   );
   if (queryClient && data.status === "ok") {

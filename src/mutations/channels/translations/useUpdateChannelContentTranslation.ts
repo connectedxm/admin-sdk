@@ -34,9 +34,9 @@ export const UpdateChannelContentTranslation = async ({
   adminApiParams,
   queryClient,
 }: UpdateChannelContentTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put(
+  const { data } = await adminApi.put(
     `/channels/${channelId}/contents/${contentId}/translations/${locale}`,
     contentTranslation
   );

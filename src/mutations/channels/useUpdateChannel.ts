@@ -31,8 +31,8 @@ export const UpdateChannel = async ({
   queryClient,
 }: UpdateChannelParams): Promise<ConnectedXMResponse<Channel>> => {
   if (!channelId) throw new Error("Content Type ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Channel>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<Channel>>(
     `/channels/${channelId}`,
     {
       ...channel,

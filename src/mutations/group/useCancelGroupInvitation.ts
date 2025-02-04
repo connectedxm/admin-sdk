@@ -28,8 +28,8 @@ export const CancelGroupInvitation = async ({
 }: CancelGroupInvitationParams): Promise<
   ConnectedXMResponse<GroupInvitation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<GroupInvitation>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<GroupInvitation>>(
     `/groups/${groupId}/invitations/${invitationId}/cancel`
   );
   if (queryClient && data.status === "ok") {

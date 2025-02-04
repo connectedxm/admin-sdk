@@ -37,8 +37,8 @@ export const CreateEventQuestionChoice = async ({
 }: CreateEventQuestionChoiceParams): Promise<
   ConnectedXMResponse<RegistrationQuestionChoice>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<
     ConnectedXMResponse<RegistrationQuestionChoice>
   >(`/events/${eventId}/questions/${questionId}/choices`, choice);
 

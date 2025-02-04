@@ -29,8 +29,8 @@ export const DeleteEventAttendee = async ({
   adminApiParams,
   queryClient,
 }: DeleteEventAttendeeParams): Promise<ConnectedXMResponse<EventAttendee>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<EventAttendee>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<EventAttendee>>(
     `/events/${eventId}/attendees/${accountId}`
   );
   if (queryClient && data.status === "ok") {

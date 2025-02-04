@@ -34,8 +34,8 @@ export const UpdateEventActivation = async ({
 }: UpdateEventActivationParams): Promise<
   ConnectedXMResponse<EventActivation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<EventActivation>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<EventActivation>>(
     `/events/${eventId}/activations/${activationId}`,
     activation
   );

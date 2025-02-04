@@ -26,8 +26,8 @@ export const DeleteEventPage = async ({
   adminApiParams,
   queryClient,
 }: DeleteEventPageParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/pages/${pageId}`
   );
 

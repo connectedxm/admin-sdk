@@ -25,8 +25,8 @@ export const CreateInvoice = async ({
   adminApiParams,
   queryClient,
 }: CreateInvoiceParams): Promise<ConnectedXMResponse<Invoice>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Invoice>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Invoice>>(
     `/invoices`,
     invoice
   );

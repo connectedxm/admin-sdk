@@ -27,8 +27,8 @@ export const DeleteSupportTicket = async ({
   adminApiParams,
   queryClient,
 }: DeleteSupportTicketParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/supportTickets/${supportTicketId}`
   );
   if (queryClient && data.status === "ok") {

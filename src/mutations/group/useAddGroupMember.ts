@@ -29,8 +29,8 @@ export const AddGroupMember = async ({
   adminApiParams,
   queryClient,
 }: AddGroupMemberParams): Promise<ConnectedXMResponse<GroupMembership>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<GroupMembership>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<GroupMembership>>(
     `/groups/${groupId}/members/${accountId}`
   );
   if (queryClient && data.status === "ok") {

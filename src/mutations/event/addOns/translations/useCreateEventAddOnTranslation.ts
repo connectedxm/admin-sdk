@@ -35,9 +35,9 @@ export const CreateEventAddOnTranslation = async ({
 }: CreateEventAddOnTranslationParams): Promise<
   ConnectedXMResponse<EventAddOnTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<
+  const { data } = await adminApi.post<
     ConnectedXMResponse<EventAddOnTranslation>
   >(`/events/${eventId}/addOns/${addOnId}/translations`, {
     locale,

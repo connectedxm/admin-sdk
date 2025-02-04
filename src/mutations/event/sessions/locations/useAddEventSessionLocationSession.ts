@@ -32,8 +32,8 @@ export const AddEventSessionLocationSession = async ({
   ConnectedXMResponse<EventSessionLocation>
 > => {
   if (!locationId) throw new Error("Location ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<
     ConnectedXMResponse<EventSessionLocation>
   >(`/events/${eventId}/sessionLocations/${locationId}/sessions/${sessionId}`);
 

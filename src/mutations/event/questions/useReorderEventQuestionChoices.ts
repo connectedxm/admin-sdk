@@ -34,9 +34,9 @@ export const ReorderEventQuestionChoices = async ({
   ConnectedXMResponse<RegistrationQuestionChoice[]>
 > => {
   if (!questionId) throw new Error("Question ID is undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<
+  const { data } = await adminApi.put<
     ConnectedXMResponse<RegistrationQuestionChoice[]>
   >(`/events/${eventId}/questions/${questionId}/choices/reorder`, {
     choicesIds,

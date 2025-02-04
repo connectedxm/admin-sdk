@@ -34,9 +34,9 @@ export const UpdateEventPageTranslation = async ({
   adminApiParams,
   queryClient,
 }: UpdateEventPageTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put(
+  const { data } = await adminApi.put(
     `/events/${eventId}/pages/${pageId}/translations/${locale}`,
     pageTranslation
   );

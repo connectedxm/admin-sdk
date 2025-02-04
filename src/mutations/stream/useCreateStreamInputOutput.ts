@@ -32,10 +32,11 @@ export const CreateStreamInputOutput = async ({
 }: CreateStreamInputOutputParams): Promise<
   ConnectedXMResponse<StreamInputOutput>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
-    ConnectedXMResponse<StreamInputOutput>
-  >(`/streams/${streamId}/outputs`, output);
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<StreamInputOutput>>(
+    `/streams/${streamId}/outputs`,
+    output
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: STREAM_INPUTS_QUERY_KEY() });
     SET_STREAM_INPUT_OUTPUT_QUERY_DATA(

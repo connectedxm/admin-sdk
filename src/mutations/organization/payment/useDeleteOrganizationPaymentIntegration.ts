@@ -30,8 +30,8 @@ export const DeleteOrganizationPaymentIntegration = async ({
 }: DeleteOrganizationPaymentIntegrationParams): Promise<
   ConnectedXMResponse<any>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<any>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<any>>(
     `/organization/payment/${type}`
   );
   if (queryClient && data.status === "ok") {

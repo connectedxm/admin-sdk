@@ -36,6 +36,10 @@ interface GetEventPassTypeRefundScheduleParams extends SingleQueryParams {
   scheduleId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ **/
 export const GetEventPassTypeRefundSchedule = async ({
   eventId,
   passTypeId,
@@ -44,8 +48,8 @@ export const GetEventPassTypeRefundSchedule = async ({
 }: GetEventPassTypeRefundScheduleParams): Promise<
   ConnectedXMResponse<EventPassTypeRefundSchedule>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.get(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.get(
     `/events/${eventId}/passTypes/${passTypeId}/refundSchedules/${scheduleId}`
   );
   return data;

@@ -27,9 +27,9 @@ export const UploadFile = async ({
   // queryClient,
   adminApiParams,
 }: UploadFileParams): Promise<ConnectedXMResponse<File>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<ConnectedXMResponse<File>>(`/files`, {
+  const { data } = await adminApi.post<ConnectedXMResponse<File>>(`/files`, {
     dataUri,
     source,
     name,

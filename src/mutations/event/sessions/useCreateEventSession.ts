@@ -30,8 +30,8 @@ export const CreateEventSession = async ({
   adminApiParams,
   queryClient,
 }: CreateEventSessionParams): Promise<ConnectedXMResponse<EventSession>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<EventSession>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<EventSession>>(
     `/events/${eventId}/sessions`,
     session
   );

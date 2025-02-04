@@ -29,8 +29,8 @@ export const CreateAccountAddress = async ({
 }: CreateAccountAddressParams): Promise<
   ConnectedXMResponse<AccountAddress>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<AccountAddress>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<AccountAddress>>(
     `/accounts/${accountId}/addresses`,
     address
   );

@@ -31,9 +31,9 @@ export const UpdateInterest = async ({
     throw Error("Interest ID Undefined");
   }
 
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<ConnectedXMResponse<Interest>>(
+  const { data } = await adminApi.put<ConnectedXMResponse<Interest>>(
     `/interests/${interestId}`,
     {
       ...interest,

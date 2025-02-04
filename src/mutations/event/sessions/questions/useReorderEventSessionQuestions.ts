@@ -31,9 +31,9 @@ export const ReorderEventSessionQuestions = async ({
   ConnectedXMResponse<EventSessionQuestion[]>
 > => {
   if (!sessionId) throw new Error("Session ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<
+  const { data } = await adminApi.put<
     ConnectedXMResponse<EventSessionQuestion[]>
   >(`/events/${eventId}/sessions/${sessionId}/questions/reorder`, {
     questionIds,

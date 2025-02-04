@@ -37,9 +37,9 @@ export const CreateEventSessionLocationTranslation = async ({
 }: CreateEventSessionLocationTranslationParams): Promise<
   ConnectedXMResponse<EventSessionLocationTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<
+  const { data } = await adminApi.post<
     ConnectedXMResponse<EventSessionLocationTranslation>
   >(`/events/${eventId}/sessionLocations/${locationId}/translations`, {
     locale,

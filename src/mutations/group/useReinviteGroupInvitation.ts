@@ -28,8 +28,8 @@ export const ReinviteGroupInvitation = async ({
 }: ReinviteGroupInvitationParams): Promise<
   ConnectedXMResponse<GroupInvitation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<GroupInvitation>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<GroupInvitation>>(
     `/groups/${groupId}/invitations/${invitationId}/reinvite`
   );
   if (queryClient && data.status === "ok") {

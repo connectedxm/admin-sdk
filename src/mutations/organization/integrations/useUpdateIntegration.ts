@@ -31,9 +31,9 @@ export const UpdateIntegration = async ({
   queryClient,
 }: UpdateIntegrationParams): Promise<ConnectedXMResponse<Integration>> => {
   if (!integrationId) throw new Error("Integration ID undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<ConnectedXMResponse<Integration>>(
+  const { data } = await adminApi.put<ConnectedXMResponse<Integration>>(
     `/organization/integrations/${integrationId}`,
     integration
   );

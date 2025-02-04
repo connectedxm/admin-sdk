@@ -28,9 +28,9 @@ export const UpdateLevel = async ({
   queryClient,
 }: UpdateLevelParams): Promise<ConnectedXMResponse<Level>> => {
   if (!levelId) throw new Error("Level ID undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<ConnectedXMResponse<Level>>(
+  const { data } = await adminApi.put<ConnectedXMResponse<Level>>(
     `/levels/${levelId}`,
     {
       ...level,

@@ -33,8 +33,8 @@ export const UpdateEventFaqSection = async ({
   queryClient,
 }: UpdateEventFaqSectionParams): Promise<ConnectedXMResponse<FaqSection>> => {
   if (!sectionId) throw new Error("Section ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<FaqSection>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<FaqSection>>(
     `/events/${eventId}/faqs/${sectionId}`,
     {
       ...section,

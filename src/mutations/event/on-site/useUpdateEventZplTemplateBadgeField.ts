@@ -35,8 +35,8 @@ export const UpdateEventZplTemplateBadgeField = async ({
   ConnectedXMResponse<EventOnSiteBadgeField>
 > => {
   if (!fieldId) throw new Error("Field ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put(
     `/events/${eventId}/zpl-template/fields/${fieldId}`,
     {
       ...field,

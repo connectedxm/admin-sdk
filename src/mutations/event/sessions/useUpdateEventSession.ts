@@ -33,8 +33,8 @@ export const UpdateEventSession = async ({
   queryClient,
 }: UpdateEventSessionParams): Promise<ConnectedXMResponse<EventSession>> => {
   if (!sessionId) throw new Error("Session ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<EventSession>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<EventSession>>(
     `/events/${eventId}/sessions/${sessionId}`,
     {
       ...session,

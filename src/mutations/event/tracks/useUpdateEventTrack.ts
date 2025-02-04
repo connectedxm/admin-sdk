@@ -32,8 +32,8 @@ export const UpdateEventTrack = async ({
   adminApiParams,
   queryClient,
 }: UpdateEventTrackParams): Promise<ConnectedXMResponse<EventTrack>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<EventTrack>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<EventTrack>>(
     `/events/${eventId}/tracks/${trackId}`,
     track
   );

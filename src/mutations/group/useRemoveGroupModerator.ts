@@ -32,10 +32,10 @@ export const RemoveGroupModerator = async ({
 }: RemoveGroupModeratorParams): Promise<
   ConnectedXMResponse<GroupMembership>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<
-    ConnectedXMResponse<GroupMembership>
-  >(`/groups/${groupId}/moderators/${accountId}`);
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<GroupMembership>>(
+    `/groups/${groupId}/moderators/${accountId}`
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: GROUP_MODERATORS_QUERY_KEY(groupId),

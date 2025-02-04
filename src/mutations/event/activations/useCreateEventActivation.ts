@@ -32,8 +32,8 @@ export const CreateEventActivation = async ({
 }: CreateEventActivationParams): Promise<
   ConnectedXMResponse<EventActivation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<EventActivation>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<EventActivation>>(
     `/events/${eventId}/activations`,
     activation
   );

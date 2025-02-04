@@ -27,8 +27,8 @@ export const CreateAdvertisement = async ({
   adminApiParams,
   queryClient,
 }: CreateAdvertisementParams): Promise<ConnectedXMResponse<Advertisement>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Advertisement>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Advertisement>>(
     `/advertisements`,
     advertisement
   );

@@ -30,8 +30,8 @@ export const CreateEventFaqSection = async ({
   adminApiParams,
   queryClient,
 }: CreateEventFaqSectionParams): Promise<ConnectedXMResponse<FaqSection>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<FaqSection>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<FaqSection>>(
     `/events/${eventId}/faqs`,
     faqSection
   );

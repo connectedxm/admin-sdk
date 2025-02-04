@@ -30,8 +30,8 @@ export const CreateEventAddOn = async ({
   adminApiParams,
   queryClient,
 }: CreateEventAddOnParams): Promise<ConnectedXMResponse<EventAddOn>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<EventAddOn>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<EventAddOn>>(
     `/events/${eventId}/addOns`,
     addOn
   );

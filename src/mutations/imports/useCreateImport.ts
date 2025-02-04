@@ -29,8 +29,8 @@ export const CreateImport = async ({
   adminApiParams,
   queryClient,
 }: CreateImportParams): Promise<ConnectedXMResponse<Import>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Import>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Import>>(
     `/imports/${type}`,
     {
       values,

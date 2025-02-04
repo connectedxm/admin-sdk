@@ -33,8 +33,8 @@ export const RemoveEventSpeakerSession = async ({
 }: RemoveEventSpeakerSessionParams): Promise<
   ConnectedXMResponse<EventSpeaker>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<EventSpeaker>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<EventSpeaker>>(
     `/events/${eventId}/speakers/${speakerId}/sessions/${sessionId}`
   );
   if (queryClient && data.status === "ok") {

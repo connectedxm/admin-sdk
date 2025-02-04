@@ -28,9 +28,9 @@ export const CreateChannel = async ({
   adminApiParams,
   queryClient,
 }: CreateChannelParams): Promise<ConnectedXMResponse<Channel>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<ConnectedXMResponse<Channel>>(
+  const { data } = await adminApi.post<ConnectedXMResponse<Channel>>(
     `/channels`,
     channel
   );

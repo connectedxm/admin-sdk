@@ -26,8 +26,8 @@ export const AddOrganizationUser = async ({
 }: AddOrganizationUserParams): Promise<
   ConnectedXMResponse<OrganizationMembership>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<
     ConnectedXMResponse<OrganizationMembership>
   >(`/organization/users`, { email });
   if (queryClient && data.status === "ok") {

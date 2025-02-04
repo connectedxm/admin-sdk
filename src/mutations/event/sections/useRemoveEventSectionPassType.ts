@@ -33,8 +33,8 @@ export const RemoveEventSectionPassType = async ({
 }: RemoveEventSectionPassTypeParams): Promise<
   ConnectedXMResponse<RegistrationSection>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<
     ConnectedXMResponse<RegistrationSection>
   >(`/events/${eventId}/sections/${sectionId}/passTypes/${passTypeId}`);
   if (queryClient && data.status === "ok") {

@@ -33,10 +33,10 @@ export const DeleteChannelContentGuest = async ({
 }: DeleteChannelContentGuestParams): Promise<
   ConnectedXMResponse<ChannelContent>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<
-    ConnectedXMResponse<ChannelContent>
-  >(`/channels/${channelId}/contents/${contentId}/guests/${guestId}`);
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<ChannelContent>>(
+    `/channels/${channelId}/contents/${contentId}/guests/${guestId}`
+  );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

@@ -41,8 +41,8 @@ export const UpdateEventQuestionChoiceSubQuestion = async ({
 }: UpdateEventQuestionChoiceSubQuestionParams): Promise<
   ConnectedXMResponse<RegistrationQuestionChoice>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<
     ConnectedXMResponse<RegistrationQuestionChoice>
   >(
     `/events/${eventId}/questions/${questionId}/choices/${choiceId}/subQuestions/${subQuestionId}`,

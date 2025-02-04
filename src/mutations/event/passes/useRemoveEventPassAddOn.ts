@@ -31,8 +31,8 @@ export const RemoveEventPassAddOn = async ({
   adminApiParams,
   queryClient,
 }: RemoveEventPassAddOnParams): Promise<ConnectedXMResponse<EventPass>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<EventPass>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<EventPass>>(
     `/events/${eventId}/passes/${passId}/addOns/${addOnId}`
   );
   if (queryClient && data.status === "ok") {

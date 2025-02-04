@@ -32,11 +32,12 @@ export const UpdateSubscriptionProduct = async ({
 }: UpdateSubscriptionProductParams): Promise<
   ConnectedXMResponse<SubscriptionProduct>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<
-    ConnectedXMResponse<SubscriptionProduct>
-  >(`/subscription-products/${subscriptionProductId}`, subscriptionProduct);
+  const { data } = await adminApi.put<ConnectedXMResponse<SubscriptionProduct>>(
+    `/subscription-products/${subscriptionProductId}`,
+    subscriptionProduct
+  );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

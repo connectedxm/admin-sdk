@@ -30,8 +30,8 @@ export const CreateEventRoomType = async ({
   adminApiParams,
   queryClient,
 }: CreateEventRoomTypeParams): Promise<ConnectedXMResponse<EventRoomType>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post(
     `/events/${eventId}/roomTypes`,
     roomType
   );

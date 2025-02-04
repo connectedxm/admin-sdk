@@ -31,8 +31,8 @@ export const UpdateStream = async ({
   adminApiParams,
   queryClient,
 }: UpdateStreamParams): Promise<ConnectedXMResponse<StreamInput>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<StreamInput>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<StreamInput>>(
     `/streams/${streamId}`,
     {
       ...stream,

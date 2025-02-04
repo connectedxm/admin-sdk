@@ -26,8 +26,8 @@ export const RemoveEventBenefit = async ({
   adminApiParams,
   queryClient,
 }: RemoveEventBenefitParams): Promise<ConnectedXMResponse<Benefit>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<Benefit>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<Benefit>>(
     `/events/${eventId}/benefits/${benefitId}`
   );
 

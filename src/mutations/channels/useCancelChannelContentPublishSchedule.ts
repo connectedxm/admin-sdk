@@ -32,10 +32,10 @@ export const CancelChannelContentPublishSchedule = async ({
 }: CancelChannelContentPublishScheduleParams): Promise<
   ConnectedXMResponse<ChannelContent>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<
-    ConnectedXMResponse<ChannelContent>
-  >(`/channels/${channelId}/contents/${contentId}/schedule`);
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<ChannelContent>>(
+    `/channels/${channelId}/contents/${contentId}/schedule`
+  );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

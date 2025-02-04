@@ -34,10 +34,11 @@ export const UpdateOrganizationModule = async ({
 }: UpdateOrganizationModuleParams): Promise<
   ConnectedXMResponse<OrganizationModule>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<
-    ConnectedXMResponse<OrganizationModule>
-  >(`/organization/modules/${moduleType}`, module);
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<OrganizationModule>>(
+    `/organization/modules/${moduleType}`,
+    module
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: ORGANIZATION_MODULES_QUERY_KEY(),

@@ -32,8 +32,8 @@ export const RefundOrganizationPayment = async ({
   adminApiParams,
   queryClient,
 }: RefundOrganizationPaymentParams): Promise<ConnectedXMResponse<Payment>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Payment>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Payment>>(
     `/payments/${paymentId}/refund`,
     {
       amount,

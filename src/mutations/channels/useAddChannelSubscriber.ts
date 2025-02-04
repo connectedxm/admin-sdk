@@ -28,8 +28,8 @@ export const AddChannelSubscriber = async ({
 }: AddChannelsubscriberParams): Promise<
   ConnectedXMResponse<BaseChannelSubscriber>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<
     ConnectedXMResponse<BaseChannelSubscriber>
   >(`/channels/${channelId}/subscribers`, { accountId });
 

@@ -35,8 +35,8 @@ export const UpdateEventFaqSectionQuestion = async ({
   queryClient,
 }: UpdateEventFaqSectionQuestionParams): Promise<ConnectedXMResponse<Faq>> => {
   if (!questionId) throw new Error("questionId is required");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Faq>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<Faq>>(
     `/events/${eventId}/faqs/${sectionId}/questions/${questionId}`,
     {
       ...faq,

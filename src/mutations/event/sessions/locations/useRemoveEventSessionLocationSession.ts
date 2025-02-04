@@ -33,8 +33,8 @@ export const RemoveEventSessionLocationSession = async ({
   ConnectedXMResponse<EventSessionLocation>
 > => {
   if (!locationId) throw new Error("Location ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<
     ConnectedXMResponse<EventSessionLocation>
   >(`/events/${eventId}/sessionLocations/${locationId}/sessions/${sessionId}`);
 

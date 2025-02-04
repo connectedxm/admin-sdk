@@ -34,9 +34,9 @@ export const UpdateEventRoomTypeTranslation = async ({
   adminApiParams,
   queryClient,
 }: UpdateEventRoomTypeTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put(
+  const { data } = await adminApi.put(
     `/events/${eventId}/roomTypes/${roomTypeId}/translations/${locale}`,
     roomTypeTranslation
   );

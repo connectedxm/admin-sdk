@@ -29,8 +29,8 @@ export const UpdateEventZplTemplate = async ({
   adminApiParams,
   queryClient,
 }: UpdateEventZplTemplateParams): Promise<ConnectedXMResponse<EventOnSite>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put(`/events/${eventId}/zpl-template`, {
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put(`/events/${eventId}/zpl-template`, {
     zplTemplate,
   });
 

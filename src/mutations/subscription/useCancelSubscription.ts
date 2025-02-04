@@ -27,8 +27,8 @@ export const CancelSubscription = async ({
   adminApiParams,
   queryClient,
 }: CancelSubscriptionParams): Promise<ConnectedXMResponse<Subscription>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<Subscription>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<Subscription>>(
     `/subscriptions/${subscriptionId}`
   );
   if (queryClient && data.status === "ok") {

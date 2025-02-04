@@ -29,8 +29,8 @@ export const CancelAnnouncementSchedule = async ({
 }: CancelAnnouncementScheduleParams): Promise<
   ConnectedXMResponse<Announcement>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<Announcement>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<Announcement>>(
     `/announcements/${announcementId}/schedule`
   );
   if (queryClient && data.status === "ok") {

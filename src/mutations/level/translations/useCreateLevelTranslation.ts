@@ -36,9 +36,9 @@ export const CreateLevelTranslation = async ({
 }: CreateLevelTranslationParams): Promise<
   ConnectedXMResponse<SponsorshipLevelTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<
+  const { data } = await adminApi.post<
     ConnectedXMResponse<SponsorshipLevelTranslation>
   >(`/levels/${levelId}/translations`, {
     locale,

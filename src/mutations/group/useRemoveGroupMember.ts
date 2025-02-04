@@ -30,10 +30,10 @@ export const RemoveGroupMember = async ({
   adminApiParams,
   queryClient,
 }: RemoveGroupMemberParams): Promise<ConnectedXMResponse<GroupMembership>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<
-    ConnectedXMResponse<GroupMembership>
-  >(`/groups/${groupId}/members/${accountId}`);
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<GroupMembership>>(
+    `/groups/${groupId}/members/${accountId}`
+  );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

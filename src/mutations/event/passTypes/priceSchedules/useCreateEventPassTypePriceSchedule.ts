@@ -32,9 +32,9 @@ export const CreateEventPassTypePriceSchedule = async ({
 }: CreateEventPassTypePriceScheduleParams): Promise<
   ConnectedXMResponse<EventPassType>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post(
+  const { data } = await adminApi.post(
     `/events/${eventId}/passTypes/${passTypeId}/priceSchedules`,
     schedule
   );

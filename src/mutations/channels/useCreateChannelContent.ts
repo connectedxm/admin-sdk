@@ -32,8 +32,8 @@ export const CreateChannelContent = async ({
 }: CreateChannelContentParams): Promise<
   ConnectedXMResponse<ChannelContent>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<ChannelContent>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<ChannelContent>>(
     `/channels/${channelId}/contents`,
     content
   );

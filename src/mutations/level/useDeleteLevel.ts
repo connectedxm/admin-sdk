@@ -24,8 +24,8 @@ export const DeleteLevel = async ({
   adminApiParams,
   queryClient,
 }: DeleteLevelParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/levels/${levelId}`
   );
   if (queryClient && data.status === "ok") {

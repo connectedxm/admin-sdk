@@ -50,8 +50,8 @@ export const GetEventPassQuestionSections = async ({
 }: GetEventPassQuestionSectionsProps): Promise<
   ConnectedXMResponse<RegistrationSection[]>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.get<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.get<
     ConnectedXMResponse<RegistrationSection[]>
   >(`/events/${eventId}/attendees/${accountId}/passes/${passId}/questions`);
   return data;

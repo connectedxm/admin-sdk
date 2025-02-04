@@ -31,8 +31,8 @@ export const AddEventPageImage = async ({
   adminApiParams,
   queryClient,
 }: AddEventPageImageParams): Promise<ConnectedXMResponse<EventPage>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post(
     `/events/${eventId}/pages/${pageId}/images/${imageId}`
   );
 

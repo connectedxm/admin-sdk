@@ -32,9 +32,9 @@ export const UpdateGroupTranslation = async ({
   queryClient,
   adminApiParams,
 }: UpdateGroupTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put(
+  const { data } = await adminApi.put(
     `/groups/${groupId}/translations/${locale}`,
     groupTranslation
   );

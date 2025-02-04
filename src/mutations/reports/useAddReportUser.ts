@@ -30,9 +30,9 @@ export const AddReportUser = async ({
     throw Error("Report ID Undefined");
   }
 
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<ConnectedXMResponse<User[]>>(
+  const { data } = await adminApi.post<ConnectedXMResponse<User[]>>(
     `/reports/${reportId}/users`,
     { userId }
   );

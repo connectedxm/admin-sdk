@@ -38,11 +38,12 @@ export const UpdateChannelTranslation = async ({
 }: UpdateChannelTranslationParams): Promise<
   ConnectedXMResponse<ChannelTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<
-    ConnectedXMResponse<ChannelTranslation>
-  >(`/channels/${channelId}/translations/${locale}`, channelTranslation);
+  const { data } = await adminApi.put<ConnectedXMResponse<ChannelTranslation>>(
+    `/channels/${channelId}/translations/${locale}`,
+    channelTranslation
+  );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

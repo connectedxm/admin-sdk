@@ -26,10 +26,10 @@ export const RemoveThreadMember = async ({
   adminApiParams,
   queryClient,
 }: RemoveThreadMemberParams): Promise<ConnectedXMResponse<GroupMembership>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<
-    ConnectedXMResponse<GroupMembership>
-  >(`/threads/${threadId}/members/${accountId}`);
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<GroupMembership>>(
+    `/threads/${threadId}/members/${accountId}`
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: THREAD_MEMBERS_QUERY_KEY(threadId),

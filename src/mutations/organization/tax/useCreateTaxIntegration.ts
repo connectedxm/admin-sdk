@@ -33,8 +33,8 @@ export const CreateTaxIntegration = async ({
 }: CreateTaxIntegrationParams): Promise<
   ConnectedXMResponse<TaxIntegration>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<TaxIntegration>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<TaxIntegration>>(
     `/organization/tax/${type}`,
     integration
   );

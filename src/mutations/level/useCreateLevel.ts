@@ -25,8 +25,8 @@ export const CreateLevel = async ({
   adminApiParams,
   queryClient,
 }: CreateLevelParams): Promise<ConnectedXMResponse<Level>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Level>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Level>>(
     `/levels`,
     level
   );

@@ -26,9 +26,9 @@ export const RemoveSubscriptionProductTier = async ({
   adminApiParams,
   queryClient,
 }: RemoveSubscriptionProductTierParams): Promise<ConnectedXMResponse<Tier>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete<ConnectedXMResponse<Tier>>(
+  const { data } = await adminApi.delete<ConnectedXMResponse<Tier>>(
     `/subscription-products/${subscriptionProductId}/tiers/${tierId}`
   );
   if (queryClient && data.status === "ok") {

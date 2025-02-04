@@ -29,8 +29,8 @@ export const CheckinAllAttendeePasses = async ({
   adminApiParams,
   queryClient,
 }: CheckinAllAttendeePassesParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<null>>(
     `/events/${eventId}/attendees/${accountId}/passes/checkin/all`
   );
   if (queryClient && data.status === "ok") {

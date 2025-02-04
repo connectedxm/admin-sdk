@@ -26,8 +26,8 @@ export const RemoveGroupEvent = async ({
   adminApiParams,
   queryClient,
 }: RemoveGroupEventParams): Promise<ConnectedXMResponse<Group>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<Group>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<Group>>(
     `/groups/${groupId}/events/${eventId}`
   );
   if (queryClient && data.status === "ok") {

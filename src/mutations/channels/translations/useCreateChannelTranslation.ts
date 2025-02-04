@@ -33,14 +33,15 @@ export const CreateChannelTranslation = async ({
 }: CreateChannelTranslationParams): Promise<
   ConnectedXMResponse<ChannelTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<
-    ConnectedXMResponse<ChannelTranslation>
-  >(`/channels/${channelId}/translations`, {
-    locale,
-    autoTranslate,
-  });
+  const { data } = await adminApi.post<ConnectedXMResponse<ChannelTranslation>>(
+    `/channels/${channelId}/translations`,
+    {
+      locale,
+      autoTranslate,
+    }
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: CHANNEL_TRANSLATION_QUERY_KEY(channelId, data?.data.locale),

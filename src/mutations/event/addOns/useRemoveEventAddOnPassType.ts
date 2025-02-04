@@ -33,8 +33,8 @@ export const RemoveEventAddOnPassType = async ({
 }: RemoveEventAddOnPassTypeParams): Promise<
   ConnectedXMResponse<EventAddOn>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<EventAddOn>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<EventAddOn>>(
     `/events/${eventId}/addOns/${addOnId}/passTypes/${passTypeId}`
   );
 

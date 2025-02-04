@@ -25,9 +25,9 @@ export const UpdateUserImage = async ({
   adminApiParams,
   queryClient,
 }: UpdateUserImageParams): Promise<ConnectedXMResponse<User>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<ConnectedXMResponse<User>>(
+  const { data } = await adminApi.put<ConnectedXMResponse<User>>(
     `/self/image`,
     image
   );

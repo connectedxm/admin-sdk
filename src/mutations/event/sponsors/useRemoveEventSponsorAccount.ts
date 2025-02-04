@@ -26,8 +26,8 @@ export const RemoveEventSponsorAccount = async ({
   adminApiParams,
   queryClient,
 }: RemoveEventSponsorAccountParams): Promise<ConnectedXMResponse<Event>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<Event>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<Event>>(
     `/events/${eventId}/sponsors/accounts/${accountId}`
   );
   if (queryClient && data.status === "ok") {

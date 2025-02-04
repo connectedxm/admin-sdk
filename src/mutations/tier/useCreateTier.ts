@@ -25,8 +25,8 @@ export const CreateTier = async ({
   adminApiParams,
   queryClient,
 }: CreateTierParams): Promise<ConnectedXMResponse<Tier>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Tier>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Tier>>(
     `/tiers`,
     tier
   );

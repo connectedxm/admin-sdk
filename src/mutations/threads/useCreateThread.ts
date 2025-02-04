@@ -31,8 +31,8 @@ export const CreateThread = async ({
   adminApiParams,
   queryClient,
 }: CreateThreadParams): Promise<ConnectedXMResponse<Thread>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Thread>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Thread>>(
     `/threads`,
     {
       thread,

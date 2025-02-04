@@ -29,8 +29,8 @@ export const DeleteChannelContent = async ({
   adminApiParams,
   queryClient,
 }: DeleteChannelContentParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/channels/${channelId}/contents/${contentId}`
   );
 

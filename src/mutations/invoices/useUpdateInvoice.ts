@@ -28,8 +28,8 @@ export const UpdateInvoice = async ({
   queryClient,
 }: UpdateInvoiceParams): Promise<ConnectedXMResponse<Invoice>> => {
   if (!invoiceId) throw new Error("Invoice ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Invoice>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<Invoice>>(
     `/invoices/${invoiceId}`,
     {
       ...invoice,

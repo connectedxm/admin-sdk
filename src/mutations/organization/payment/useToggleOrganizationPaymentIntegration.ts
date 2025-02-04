@@ -34,10 +34,10 @@ export const ToggleOrganizationPaymentIntegration = async ({
 }: ToggleOrganizationPaymentIntegrationParams): Promise<
   ConnectedXMResponse<PaymentIntegration>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<
-    ConnectedXMResponse<PaymentIntegration>
-  >(`/organization/payment/${type}`);
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<PaymentIntegration>>(
+    `/organization/payment/${type}`
+  );
   if (queryClient && data.status === "ok") {
     SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(queryClient, [type], data);
     queryClient.invalidateQueries({

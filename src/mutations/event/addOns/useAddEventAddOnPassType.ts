@@ -31,8 +31,8 @@ export const AddEventAddOnPassType = async ({
   adminApiParams,
   queryClient,
 }: AddEventAddOnPassTypeParams): Promise<ConnectedXMResponse<EventAddOn>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<EventAddOn>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<EventAddOn>>(
     `/events/${eventId}/addOns/${addOnId}/passTypes/${passTypeId}`
   );
 

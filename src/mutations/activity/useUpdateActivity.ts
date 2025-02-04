@@ -27,8 +27,8 @@ export const UpdateActivity = async ({
   adminApiParams,
   queryClient,
 }: UpdateActivityParams): Promise<ConnectedXMResponse<Activity>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Activity>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<Activity>>(
     `/activities/${activityId}`,
     activity
   );

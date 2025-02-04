@@ -33,8 +33,8 @@ export const UpdateEventAddOn = async ({
   queryClient,
 }: UpdateEventAddOnParams): Promise<ConnectedXMResponse<EventAddOn>> => {
   if (!addOnId) throw new Error("Add On ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<EventAddOn>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<EventAddOn>>(
     `/events/${eventId}/addOns/${addOnId}`,
     {
       ...addOn,

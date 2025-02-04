@@ -33,8 +33,8 @@ export const RemoveEventSessionTrack = async ({
 }: RemoveEventSessionTrackParams): Promise<
   ConnectedXMResponse<EventSession>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<EventSession>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<EventSession>>(
     `/events/${eventId}/sessions/${sessionId}/tracks/${trackId}`
   );
   if (queryClient && data.status === "ok") {

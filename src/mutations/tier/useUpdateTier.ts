@@ -31,9 +31,9 @@ export const UpdateTier = async ({
     throw Error("Tier ID Undefined");
   }
 
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<ConnectedXMResponse<Tier>>(
+  const { data } = await adminApi.put<ConnectedXMResponse<Tier>>(
     `/tiers/${tierId}`,
     {
       ...tier,

@@ -25,11 +25,8 @@ export const UpdateSelf = async ({
   adminApiParams,
   queryClient,
 }: UpdateSelfParams): Promise<ConnectedXMResponse<User>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<User>>(
-    `/self`,
-    user
-  );
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<User>>(`/self`, user);
   if (queryClient && data.status === "ok") {
     SET_SELF_QUERY_DATA(queryClient, [], data);
   }

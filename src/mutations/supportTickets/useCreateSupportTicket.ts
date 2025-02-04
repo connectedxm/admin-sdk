@@ -28,8 +28,8 @@ export const CreateSupportTicket = async ({
   adminApiParams,
   queryClient,
 }: CreateSupportTicketParams): Promise<ConnectedXMResponse<SupportTicket>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<SupportTicket>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<SupportTicket>>(
     `/supportTickets`,
     supportTicket
   );

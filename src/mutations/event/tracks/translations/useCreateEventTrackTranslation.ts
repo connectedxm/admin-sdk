@@ -35,9 +35,9 @@ export const CreateEventTrackTranslation = async ({
 }: CreateEventTrackTranslationParams): Promise<
   ConnectedXMResponse<EventTrackTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<
+  const { data } = await adminApi.post<
     ConnectedXMResponse<EventTrackTranslation>
   >(`/events/${eventId}/tracks/${trackId}/translations`, {
     locale,

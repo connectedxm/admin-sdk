@@ -26,8 +26,8 @@ export const AcceptGroupRequest = async ({
   adminApiParams,
   queryClient,
 }: AcceptGroupRequestParams): Promise<ConnectedXMResponse<GroupRequest>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<GroupRequest>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<GroupRequest>>(
     `/groups/${groupId}/requests/${requestId}/accept`
   );
   if (queryClient && data.status === "ok") {

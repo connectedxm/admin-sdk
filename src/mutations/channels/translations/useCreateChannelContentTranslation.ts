@@ -38,9 +38,9 @@ export const CreateChannelContentTranslation = async ({
 }: CreateChannelContentTranslationParams): Promise<
   ConnectedXMResponse<ChannelContentTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<
+  const { data } = await adminApi.post<
     ConnectedXMResponse<ChannelContentTranslation>
   >(`/channels/${channelId}/contents/${contentId}/translations`, {
     locale,

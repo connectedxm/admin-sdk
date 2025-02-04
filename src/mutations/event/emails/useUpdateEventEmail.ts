@@ -33,8 +33,8 @@ export const UpdateEventEmail = async ({
   adminApiParams,
   queryClient,
 }: UpdateEventEmailParams): Promise<ConnectedXMResponse<EventEmail>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<EventEmail>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<EventEmail>>(
     `/events/${eventId}/emails/${type}`,
     eventEmail
   );

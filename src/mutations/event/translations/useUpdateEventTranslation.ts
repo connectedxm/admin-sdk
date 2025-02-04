@@ -32,9 +32,9 @@ export const UpdateEventTranslation = async ({
   locale,
   queryClient,
 }: UpdateEventTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put(
+  const { data } = await adminApi.put(
     `/events/${eventId}/translations/${locale}`,
     eventTranslation
   );

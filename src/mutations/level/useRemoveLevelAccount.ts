@@ -30,8 +30,8 @@ export const RemoveLevelAccount = async ({
   adminApiParams,
   queryClient,
 }: RemoveLevelAccountParams): Promise<ConnectedXMResponse<Level>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<Level>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<Level>>(
     `/levels/${levelId}/accounts/${accountId}`
   );
   if (queryClient && data.status === "ok") {

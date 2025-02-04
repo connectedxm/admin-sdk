@@ -26,8 +26,8 @@ export const AddGroupEvent = async ({
   adminApiParams,
   queryClient,
 }: AddGroupEventParams): Promise<ConnectedXMResponse<Group>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Group>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Group>>(
     `/groups/${groupId}/events/${eventId}`
   );
   if (queryClient && data.status === "ok") {

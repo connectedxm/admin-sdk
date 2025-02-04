@@ -30,9 +30,9 @@ export const CreateSubscriptionProduct = async ({
 }: CreateSubscriptionProductParams): Promise<
   ConnectedXMResponse<SubscriptionProduct>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<
+  const { data } = await adminApi.post<
     ConnectedXMResponse<SubscriptionProduct>
   >(`/subscription-products`, subscriptionProduct);
   if (queryClient && data.status === "ok") {

@@ -31,8 +31,8 @@ export const AddThreadMember = async ({
   adminApiParams,
   queryClient,
 }: AddThreadMemberParams): Promise<ConnectedXMResponse<ThreadMember>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<ThreadMember>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<ThreadMember>>(
     `/threads/${threadId}/members/${accountId}`,
     {
       role,

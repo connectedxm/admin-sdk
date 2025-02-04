@@ -34,6 +34,10 @@ export interface GetThreadMessageProps {
   adminApiParams?: any;
 }
 
+/**
+ * @category Queries
+ * @group Threads
+ **/
 export const GetThreadMessage = async ({
   threadId,
   messageId,

@@ -30,8 +30,8 @@ export const AddLevelAccount = async ({
   adminApiParams,
   queryClient,
 }: AddLevelAccountParams): Promise<ConnectedXMResponse<Level>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Level>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Level>>(
     `/levels/${levelId}/accounts/${accountId}`
   );
   if (queryClient && data.status === "ok") {

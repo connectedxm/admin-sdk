@@ -28,8 +28,8 @@ export const CreateStreamInput = async ({
   adminApiParams,
   queryClient,
 }: CreateStreamInputParams): Promise<ConnectedXMResponse<StreamInput>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<StreamInput>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<StreamInput>>(
     `/streams`,
     stream
   );

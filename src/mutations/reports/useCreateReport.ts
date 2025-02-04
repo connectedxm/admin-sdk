@@ -28,8 +28,8 @@ export const CreateReport = async ({
   queryClient,
 }: CreateReportParams): Promise<ConnectedXMResponse<Report>> => {
   if (!report.parentId) throw new Error("Parent ID null");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Report>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Report>>(
     `/reports`,
     {
       ...report,

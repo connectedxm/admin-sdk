@@ -27,8 +27,8 @@ export const CloneEvent = async ({
 }: CloneEventParams): Promise<
   ConnectedXMResponse<{ id: string; slug: string }>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<
     ConnectedXMResponse<{ id: string; slug: string }>
   >(`/events/${eventId}/clone`, options);
   return data;

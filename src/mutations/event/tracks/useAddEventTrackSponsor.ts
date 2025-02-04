@@ -31,8 +31,8 @@ export const AddEventTrackSponsor = async ({
   adminApiParams,
   queryClient,
 }: AddEventTrackSponsorParams): Promise<ConnectedXMResponse<EventTrack>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<EventTrack>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<EventTrack>>(
     `/events/${eventId}/tracks/${trackId}/sponsors/${sponsorId}`
   );
   if (queryClient && data.status === "ok") {

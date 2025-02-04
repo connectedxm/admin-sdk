@@ -33,8 +33,8 @@ export const UpdateEventPassType = async ({
   queryClient,
 }: UpdateEventPassTypeParams): Promise<ConnectedXMResponse<EventPassType>> => {
   if (!passTypeId) throw new Error("PassType ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<EventPassType>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<EventPassType>>(
     `/events/${eventId}/passTypes/${passTypeId}`,
     {
       ...passType,

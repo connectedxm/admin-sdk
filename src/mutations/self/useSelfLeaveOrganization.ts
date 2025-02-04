@@ -27,8 +27,8 @@ export const SelfLeaveOrganization = async ({
   adminApiParams,
   queryClient,
 }: SelfLeaveOrganizationParams): Promise<ConnectedXMResponse<User>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<User>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<User>>(
     `/self/organizations/${organizationId}`
   );
   if (queryClient && data.status === "ok") {

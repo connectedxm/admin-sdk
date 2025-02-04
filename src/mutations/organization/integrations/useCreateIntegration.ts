@@ -28,8 +28,8 @@ export const CreateIntegration = async ({
   adminApiParams,
   queryClient,
 }: CreateIntegrationParams): Promise<ConnectedXMResponse<Integration>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Integration>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Integration>>(
     `/organization/integrations`,
     integration
   );

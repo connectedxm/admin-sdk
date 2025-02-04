@@ -38,9 +38,9 @@ export const CreateOrganizationPageTranslation = async ({
 }: CreateOrganizationPageTranslationParams): Promise<
   ConnectedXMResponse<PageTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<ConnectedXMResponse<PageTranslation>>(
+  const { data } = await adminApi.post<ConnectedXMResponse<PageTranslation>>(
     `/organization/pages/${type}/translations`,
     {
       locale,

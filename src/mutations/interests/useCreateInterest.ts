@@ -25,8 +25,8 @@ export const CreateInterest = async ({
   adminApiParams,
   queryClient,
 }: CreateInterestParams): Promise<ConnectedXMResponse<Interest>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Interest>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Interest>>(
     `/interests`,
     interest
   );

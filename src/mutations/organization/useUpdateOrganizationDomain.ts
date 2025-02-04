@@ -26,8 +26,8 @@ export const UpdateOrganizationDomain = async ({
 }: UpdateOrganizationDomainParams): Promise<
   ConnectedXMResponse<DomainDetails>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<DomainDetails>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<DomainDetails>>(
     `/organization/domain`,
     { domain }
   );

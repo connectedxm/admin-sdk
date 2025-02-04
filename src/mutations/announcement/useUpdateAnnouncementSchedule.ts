@@ -35,8 +35,8 @@ export const UpdateAnnouncementSchedule = async ({
 }: UpdateAnnouncementScheduleParams): Promise<
   ConnectedXMResponse<Announcement>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Announcement>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<Announcement>>(
     `/announcements/${announcementId}/schedule`,
     schedule
   );

@@ -30,8 +30,8 @@ export const CreateEventSessionLocation = async ({
 }: CreateEventSessionLocationParams): Promise<
   ConnectedXMResponse<EventSessionLocation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<
     ConnectedXMResponse<EventSessionLocation>
   >(`/events/${eventId}/sessionLocations`, location);
 

@@ -24,9 +24,9 @@ export const CreateSubscription = async ({
   // queryClient,
   adminApiParams,
 }: CreateSubscriptionParams): Promise<ConnectedXMResponse<Subscription>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<ConnectedXMResponse<Subscription>>(
+  const { data } = await adminApi.post<ConnectedXMResponse<Subscription>>(
     `/subscriptions`,
     subscription
   );

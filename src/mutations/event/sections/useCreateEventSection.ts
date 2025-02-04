@@ -32,8 +32,8 @@ export const CreateEventSection = async ({
 }: CreateEventSectionParams): Promise<
   ConnectedXMResponse<RegistrationSection>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<
     ConnectedXMResponse<RegistrationSection>
   >(`/events/${eventId}/sections`, section);
   if (queryClient && data.status === "ok") {

@@ -28,8 +28,8 @@ export const DeleteEventQuestionSearchValues = async ({
 }: DeleteEventQuestionSearchValuesParams): Promise<
   ConnectedXMResponse<null>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/questions/${questionId}/values`
   );
 

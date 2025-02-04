@@ -36,6 +36,10 @@ interface GetEventPassTypePriceScheduleParams extends SingleQueryParams {
   scheduleId: string;
 }
 
+/**
+ * @category Queries
+ * @group Events
+ **/
 export const GetEventPassTypePriceSchedule = async ({
   eventId,
   passTypeId,
@@ -44,8 +48,8 @@ export const GetEventPassTypePriceSchedule = async ({
 }: GetEventPassTypePriceScheduleParams): Promise<
   ConnectedXMResponse<EventPassTypePriceSchedule>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.get(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.get(
     `/events/${eventId}/passTypes/${passTypeId}/priceSchedules/${scheduleId}`
   );
   return data;

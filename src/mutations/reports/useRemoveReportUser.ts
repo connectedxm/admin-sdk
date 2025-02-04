@@ -30,9 +30,9 @@ export const RemoveReportUser = async ({
     throw Error("Report ID Undefined");
   }
 
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete<ConnectedXMResponse<User[]>>(
+  const { data } = await adminApi.delete<ConnectedXMResponse<User[]>>(
     `/reports/${reportId}/users/${userId}`
   );
   if (queryClient && data.status === "ok") {

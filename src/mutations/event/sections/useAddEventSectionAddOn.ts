@@ -33,8 +33,8 @@ export const AddEventSectionAddOn = async ({
 }: AddEventSectionAddOnParams): Promise<
   ConnectedXMResponse<RegistrationSection>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post(
     `/events/${eventId}/sections/${sectionId}/addOns/${addOnId}`
   );
   if (queryClient && data.status === "ok") {

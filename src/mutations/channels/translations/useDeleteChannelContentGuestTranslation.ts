@@ -31,9 +31,9 @@ export const DeleteChannelContentGuestTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteChannelContentGuestTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/channels/${channelId}/contents/${contentId}/guests/${guestId}/translations/${locale}`
   );
 

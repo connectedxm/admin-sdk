@@ -33,9 +33,9 @@ export const RemoveEventQuestionChoiceSubQuestion = async ({
 }: RemoveEventQuestionChoiceSubQuestionParams): Promise<
   ConnectedXMResponse<null>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/events/${eventId}/questions/${questionId}/choices/${choiceId}/subQuestions/${subQuestionId}`
   );
 

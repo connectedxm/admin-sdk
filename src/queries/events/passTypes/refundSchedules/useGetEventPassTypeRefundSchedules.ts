@@ -54,8 +54,8 @@ export const GetEventPassTypeRefundSchedules = async ({
 }: GetEventPassTypeRefundSchedulesParams): Promise<
   ConnectedXMResponse<EventPassTypeRefundSchedule[]>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.get(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.get(
     `/events/${eventId}/passTypes/${passTypeId}/refundSchedules`,
     {
       params: {

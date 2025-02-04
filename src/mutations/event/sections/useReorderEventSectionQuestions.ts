@@ -34,9 +34,9 @@ export const ReorderEventSectionQuestions = async ({
   ConnectedXMResponse<RegistrationSectionQuestion[]>
 > => {
   if (!sectionId) throw new Error("Section ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<
+  const { data } = await adminApi.put<
     ConnectedXMResponse<RegistrationSectionQuestion[]>
   >(`/events/${eventId}/sections/${sectionId}/questions/reorder`, {
     questionIds,

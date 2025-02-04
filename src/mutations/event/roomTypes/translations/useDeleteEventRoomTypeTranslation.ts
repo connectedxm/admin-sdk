@@ -30,9 +30,9 @@ export const DeleteEventRoomTypeTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteEventRoomTypeTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/events/${eventId}/roomTypes/${roomTypeId}/translations/${locale}`
   );
   if (queryClient && data.status === "ok") {

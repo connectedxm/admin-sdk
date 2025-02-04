@@ -26,8 +26,8 @@ export const DeleteGroupRequest = async ({
   adminApiParams,
   queryClient,
 }: DeleteGroupRequestParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/groups/${groupId}/requests/${requestId}`
   );
   if (queryClient && data.status === "ok") {

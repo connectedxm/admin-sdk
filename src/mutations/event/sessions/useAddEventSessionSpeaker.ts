@@ -33,8 +33,8 @@ export const AddEventSessionSpeaker = async ({
 }: AddEventSessionSpeakerParams): Promise<
   ConnectedXMResponse<EventSession>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<EventSession>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<EventSession>>(
     `/events/${eventId}/sessions/${sessionId}/speakers/${speakerId}`
   );
   if (queryClient && data.status === "ok") {

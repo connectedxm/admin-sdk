@@ -28,10 +28,10 @@ export const RemoveThreadModerator = async ({
 }: RemoveThreadModeratorParams): Promise<
   ConnectedXMResponse<GroupMembership>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<
-    ConnectedXMResponse<GroupMembership>
-  >(`/threads/${threadId}/moderators/${accountId}`);
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<GroupMembership>>(
+    `/threads/${threadId}/moderators/${accountId}`
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: THREAD_MODERATORS_QUERY_KEY(threadId),

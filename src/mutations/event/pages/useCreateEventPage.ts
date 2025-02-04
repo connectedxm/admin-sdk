@@ -27,8 +27,8 @@ export const CreateEventPage = async ({
   adminApiParams,
   queryClient,
 }: CreateEventPageParams): Promise<ConnectedXMResponse<EventPage>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<EventPage>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<EventPage>>(
     `/events/${eventId}/pages`,
     page
   );

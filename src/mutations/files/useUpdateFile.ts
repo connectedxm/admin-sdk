@@ -27,8 +27,8 @@ export const UpdateFile = async ({
   adminApiParams,
   queryClient,
 }: UpdateFileParams): Promise<ConnectedXMResponse<File>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<File>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<File>>(
     `/files/${fileId}`,
     file
   );

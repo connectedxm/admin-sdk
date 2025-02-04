@@ -31,9 +31,9 @@ export const DeleteEventEmailTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteEventEmailTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/events/${eventId}/emails/${type}/translations/${locale}`
   );
   if (queryClient && data.status === "ok") {

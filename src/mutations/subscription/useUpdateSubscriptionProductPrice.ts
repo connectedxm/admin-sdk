@@ -34,8 +34,8 @@ export const UpdateSubscriptionProductPrice = async ({
 }: UpdateSubscriptionProductPriceParams): Promise<
   ConnectedXMResponse<SubscriptionProductPrice>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<
     ConnectedXMResponse<SubscriptionProductPrice>
   >(
     `/subscription-products/${subscriptionProductId}/prices/${subscriptionProductPriceId}`,

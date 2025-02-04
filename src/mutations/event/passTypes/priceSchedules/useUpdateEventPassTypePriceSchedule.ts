@@ -31,9 +31,9 @@ export const UpdateEventPassTypePriceSchedule = async ({
   adminApiParams,
   queryClient,
 }: UpdateEventPassTypePriceScheduleParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put(
+  const { data } = await adminApi.put(
     `/events/${eventId}/passTypes/${passTypeId}/priceSchedules/${scheduleId}`,
     schedule
   );

@@ -38,9 +38,9 @@ export const CreateEventSectionTranslation = async ({
 }: CreateEventSectionTranslationParams): Promise<
   ConnectedXMResponse<RegistrationSectionTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<
+  const { data } = await adminApi.post<
     ConnectedXMResponse<RegistrationSectionTranslation>
   >(`/events/${eventId}/sections/${sectionId}/translations`, {
     locale,

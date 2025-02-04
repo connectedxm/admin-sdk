@@ -24,8 +24,8 @@ export const ImpersonateAccount = async ({
   username,
   adminApiParams,
 }: ImpersonateAccountParams): Promise<ConnectedXMResponse<string>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<string>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<string>>(
     `/accounts/${accountId}/impersonate/${username}`
   );
 

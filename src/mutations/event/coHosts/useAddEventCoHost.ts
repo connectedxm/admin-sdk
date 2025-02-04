@@ -26,8 +26,8 @@ export const AddEventCoHost = async ({
   adminApiParams,
   queryClient,
 }: AddEventCoHostParams): Promise<ConnectedXMResponse<Account>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post(
     `/events/${eventId}/coHosts/${accountId}`
   );
 

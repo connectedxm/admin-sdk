@@ -30,8 +30,8 @@ export const CreateEventCoupon = async ({
   adminApiParams,
   queryClient,
 }: CreateEventCouponParams): Promise<ConnectedXMResponse<Coupon>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Coupon>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Coupon>>(
     `/events/${eventId}/coupons`,
     coupon
   );

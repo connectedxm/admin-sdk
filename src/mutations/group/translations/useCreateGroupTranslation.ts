@@ -33,13 +33,14 @@ export const CreateGroupTranslation = async ({
 }: CreateGroupTranslationParams): Promise<
   ConnectedXMResponse<GroupTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
-    ConnectedXMResponse<GroupTranslation>
-  >(`/groups/${groupId}/translations`, {
-    locale,
-    autoTranslate,
-  });
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<GroupTranslation>>(
+    `/groups/${groupId}/translations`,
+    {
+      locale,
+      autoTranslate,
+    }
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: GROUP_TRANSLATIONS_QUERY_KEY(groupId),

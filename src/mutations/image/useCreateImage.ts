@@ -25,9 +25,9 @@ export const CreateImage = async ({
   adminApiParams,
   queryClient,
 }: CreateImageParams): Promise<ConnectedXMResponse<Image>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<ConnectedXMResponse<Image>>(
+  const { data } = await adminApi.post<ConnectedXMResponse<Image>>(
     `/images`,
     image
   );

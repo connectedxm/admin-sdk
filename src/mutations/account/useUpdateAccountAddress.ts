@@ -31,8 +31,8 @@ export const UpdateAccountAddress = async ({
 }: UpdateAccountAddressParams): Promise<
   ConnectedXMResponse<AccountAddress>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<AccountAddress>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<AccountAddress>>(
     `/accounts/${accountId}/addresses/${addressId}`,
     address
   );

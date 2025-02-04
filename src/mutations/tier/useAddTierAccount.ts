@@ -26,8 +26,8 @@ export const AddTierAccount = async ({
   adminApiParams,
   queryClient,
 }: AddTierAccountParams): Promise<ConnectedXMResponse<Tier>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Tier>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Tier>>(
     `/tiers/${tierId}/accounts/${accountId}`
   );
   if (queryClient && data.status === "ok") {

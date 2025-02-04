@@ -32,8 +32,8 @@ export const CreateEventSessionQuestion = async ({
 }: CreateEventSessionQuestionParams): Promise<
   ConnectedXMResponse<EventSessionQuestion>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<
     ConnectedXMResponse<EventSessionQuestion>
   >(`/events/${eventId}/sessions/${sessionId}/questions`, question);
   if (queryClient && data.status === "ok") {

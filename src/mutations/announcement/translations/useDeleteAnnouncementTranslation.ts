@@ -28,9 +28,9 @@ export const DeleteAnnouncementTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteAnnouncementTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/announcements/${announcementId}/translations/${locale}`
   );
   if (queryClient && data.status === "ok") {

@@ -28,8 +28,8 @@ export const ApproveEvent = async ({
   adminApiParams,
   queryClient,
 }: ApproveEventParams): Promise<ConnectedXMResponse<Event>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Event>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Event>>(
     `/events/${eventId}/approve`
   );
   if (queryClient && data.status === "ok") {

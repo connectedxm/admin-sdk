@@ -33,8 +33,8 @@ export const UpdateEventSpeaker = async ({
   queryClient,
 }: UpdateEventSpeakerParams): Promise<ConnectedXMResponse<EventSpeaker>> => {
   if (!speakerId) throw new Error("speakerId is required");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<EventSpeaker>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<EventSpeaker>>(
     `/events/${eventId}/speakers/${speakerId}`,
     {
       ...speaker,

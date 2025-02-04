@@ -29,9 +29,9 @@ export const DeleteEventRegistrationBypass = async ({
   adminApiParams,
   queryClient,
 }: DeleteEventRegistrationBypassParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/bypass/${bypassId}`
   );
 

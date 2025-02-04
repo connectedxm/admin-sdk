@@ -32,10 +32,11 @@ export const CreateEventRegistrationBypass = async ({
 }: CreateEventRegistrationBypassParams): Promise<
   ConnectedXMResponse<RegistrationBypass>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
-    ConnectedXMResponse<RegistrationBypass>
-  >(`/events/${eventId}/bypass`, bypass);
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<RegistrationBypass>>(
+    `/events/${eventId}/bypass`,
+    bypass
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY(eventId),

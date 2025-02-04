@@ -35,9 +35,9 @@ export const CreateEventPassTypeTranslation = async ({
 }: CreateEventPassTypeTranslationParams): Promise<
   ConnectedXMResponse<EventPassTypeTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<
+  const { data } = await adminApi.post<
     ConnectedXMResponse<EventPassTypeTranslation>
   >(`/events/${eventId}/passTypes/${passTypeId}/translations`, {
     locale,

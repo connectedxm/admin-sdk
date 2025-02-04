@@ -37,6 +37,12 @@ export interface GetThreadMessagesProps extends InfiniteQueryParams {
   threadId: string;
 }
 
+/**
+ * @name List Thread Messages
+ * @description Retrieve a list of messages for a thread
+ * @category Queries
+ * @group Threads
+ */
 export const GetThreadMessages = async ({
   threadId,
   pageParam,

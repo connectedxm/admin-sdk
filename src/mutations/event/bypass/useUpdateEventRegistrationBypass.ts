@@ -35,15 +35,16 @@ export const UpdateEventRegistrationBypass = async ({
   ConnectedXMResponse<RegistrationBypass>
 > => {
   if (!bypassId) throw new Error("Page ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<
-    ConnectedXMResponse<RegistrationBypass>
-  >(`/events/${eventId}/bypass/${bypassId}`, {
-    ...page,
-    id: undefined,
-    createdAt: undefined,
-    updatedAt: undefined,
-  });
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<RegistrationBypass>>(
+    `/events/${eventId}/bypass/${bypassId}`,
+    {
+      ...page,
+      id: undefined,
+      createdAt: undefined,
+      updatedAt: undefined,
+    }
+  );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

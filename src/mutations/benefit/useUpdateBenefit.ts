@@ -28,8 +28,8 @@ export const UpdateBenefit = async ({
   queryClient,
 }: UpdateBenefitParams): Promise<ConnectedXMResponse<Benefit>> => {
   if (!benefitId) throw new Error("Benefit ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Benefit>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<Benefit>>(
     `/benefits/${benefitId}`,
     {
       ...benefit,

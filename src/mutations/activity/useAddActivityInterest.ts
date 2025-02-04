@@ -31,8 +31,8 @@ export const AddActivityInterest = async ({
   adminApiParams,
   queryClient,
 }: AddActivityInterestParams): Promise<ConnectedXMResponse<Activity>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Activity>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Activity>>(
     `/activities/${activityId}/interests/${interestId}`
   );
 

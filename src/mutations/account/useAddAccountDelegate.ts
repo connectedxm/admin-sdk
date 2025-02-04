@@ -30,8 +30,8 @@ export const AddAccountDelegate = async ({
   adminApiParams,
   queryClient,
 }: AddAccountDelegateParams): Promise<ConnectedXMResponse<Account>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Account>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Account>>(
     `/accounts/${accountId}/delegates/${delegateId}`
   );
 

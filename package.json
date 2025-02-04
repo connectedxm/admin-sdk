@@ -20,11 +20,18 @@
     "local": "npm run release && npm pack",
     "document": "typedoc --plugin typedoc-material-theme",
     "exports": "tsx scripts/addExports.ts",
+    "generate": "tsx scripts/generateSchema.ts",
+    "rewrite": "tsx scripts/rewrite.ts",
     "tsc": "tsc"
   },
   "dependencies": {
+    "@ai-sdk/groq": "^1.1.7",
+    "ai": "^4.1.17",
     "axios": "^1.6.5",
-    "immer": "^10.0.3"
+    "comment-parser": "^1.4.1",
+    "groq-sdk": "^0.14.0",
+    "immer": "^10.0.3",
+    "ts-json-schema-generator": "^2.3.0"
   },
   "peerDependencies": {
     "@tanstack/react-query": "^5.0.0",
@@ -38,7 +45,7 @@
     "@types/node": "^20.14.2",
     "@types/react": "^18.2.47",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
-    "@typescript-eslint/parser": "^6.18.1",
+    "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.0.1",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",

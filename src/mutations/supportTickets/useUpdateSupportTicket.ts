@@ -30,9 +30,9 @@ export const UpdateSupportTicket = async ({
   adminApiParams,
   queryClient,
 }: UpdateSupportTicketParams): Promise<ConnectedXMResponse<SupportTicket>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<ConnectedXMResponse<SupportTicket>>(
+  const { data } = await adminApi.put<ConnectedXMResponse<SupportTicket>>(
     `/supportTickets/${supportTicketId}`,
     supportTicket
   );

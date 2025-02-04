@@ -29,8 +29,8 @@ export const ConfirmAccountCognitoUser = async ({
   adminApiParams,
   queryClient,
 }: ConfirmAccountCognitoUserParams): Promise<ConnectedXMResponse<Account>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Account>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<Account>>(
     `/accounts/${accountId}/cognito/${username}/confirm`
   );
 

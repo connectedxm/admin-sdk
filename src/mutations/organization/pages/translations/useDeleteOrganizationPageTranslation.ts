@@ -30,9 +30,9 @@ export const DeleteOrganizationPageTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteOrganizationPageTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/organization/pages/${type}/translations/${locale}`
   );
   if (queryClient && data.status === "ok") {

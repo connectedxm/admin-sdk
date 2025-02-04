@@ -33,8 +33,8 @@ export const UpdateEventRoomType = async ({
   queryClient,
 }: UpdateEventRoomTypeParams): Promise<ConnectedXMResponse<EventRoomType>> => {
   if (!roomTypeId) throw new Error("Room Type ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<EventRoomType>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<EventRoomType>>(
     `/events/${eventId}/roomTypes/${roomTypeId}`,
     {
       ...roomType,

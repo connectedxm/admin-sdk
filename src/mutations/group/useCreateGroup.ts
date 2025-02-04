@@ -25,8 +25,8 @@ export const CreateGroup = async ({
   adminApiParams,
   queryClient,
 }: CreateGroupParams): Promise<ConnectedXMResponse<Group>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Group>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Group>>(
     `/groups`,
     group
   );

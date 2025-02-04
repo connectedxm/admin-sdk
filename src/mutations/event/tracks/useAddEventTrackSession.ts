@@ -31,8 +31,8 @@ export const AddEventTrackSession = async ({
   adminApiParams,
   queryClient,
 }: AddEventTrackSessionParams): Promise<ConnectedXMResponse<EventTrack>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<EventTrack>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<EventTrack>>(
     `/events/${eventId}/tracks/${trackId}/sessions/${sessionId}`
   );
   if (queryClient && data.status === "ok") {

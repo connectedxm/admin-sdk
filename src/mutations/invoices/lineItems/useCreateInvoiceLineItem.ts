@@ -33,8 +33,8 @@ export const CreateInvoiceLineItem = async ({
 }: CreateInvoiceLineItemParams): Promise<
   ConnectedXMResponse<InvoiceLineItem>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<InvoiceLineItem>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<InvoiceLineItem>>(
     `/invoices/${invoiceId}/items`,
     invoiceLineItem
   );

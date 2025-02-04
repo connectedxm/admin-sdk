@@ -24,9 +24,9 @@ export const DeleteManyImages = async ({
   adminApiParams,
   queryClient,
 }: DeleteManyImagesParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<ConnectedXMResponse<null>>(
+  const { data } = await adminApi.post<ConnectedXMResponse<null>>(
     `/images/delete`,
     { imageIds }
   );

@@ -36,6 +36,8 @@ interface GetAccountActivitiesProps extends InfiniteQueryParams {
 }
 
 /**
+ * @name List Account Activities
+ * @description Retrieve a list of activities for an account
  * @category Queries
  * @group Accounts
  */
@@ -58,6 +60,7 @@ export const GetAccountActivities = async ({
   });
   return data;
 };
+
 /**
  * @category Hooks
  * @group Accounts

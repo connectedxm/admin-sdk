@@ -34,8 +34,8 @@ export const UpdateEventPassResponses = async ({
   adminApiParams,
   queryClient,
 }: UpdateEventPassResponsesParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put(
     `/events/${eventId}/attendees/${accountId}/passes/${passId}/responses`,
     { questions }
   );

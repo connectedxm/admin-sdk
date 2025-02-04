@@ -26,9 +26,9 @@ export const AddSubscriptionProductTier = async ({
   adminApiParams,
   queryClient,
 }: AddSubscriptionProductTierParams): Promise<ConnectedXMResponse<Tier>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<ConnectedXMResponse<Tier>>(
+  const { data } = await adminApi.post<ConnectedXMResponse<Tier>>(
     `/subscription-products/${subscriptionProductId}/tiers/${tierId}`
   );
   if (queryClient && data.status === "ok") {

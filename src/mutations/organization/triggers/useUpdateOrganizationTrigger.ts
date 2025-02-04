@@ -33,12 +33,13 @@ export const UpdateOrganizationTrigger = async ({
 }: UpdateOrganizationTriggerParams): Promise<
   ConnectedXMResponse<OrganizationTrigger>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<
-    ConnectedXMResponse<OrganizationTrigger>
-  >(`/organization/triggers/${type}`, {
-    code: trigger.code,
-  });
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<OrganizationTrigger>>(
+    `/organization/triggers/${type}`,
+    {
+      code: trigger.code,
+    }
+  );
   if (queryClient && data.status === "ok") {
     SET_ORGANIZATION_TRIGGER_QUERY_DATA(queryClient, [type], data);
   }

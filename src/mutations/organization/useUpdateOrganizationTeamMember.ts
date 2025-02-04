@@ -33,8 +33,8 @@ export const UpdateOrganizationTeamMember = async ({
   ConnectedXMResponse<TeamMember>
 > => {
   if (!teamMemberId) throw new Error("teamMemberId is required");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<TeamMember>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<TeamMember>>(
     `/organization/team-members/${teamMemberId}`,
     {
       ...teamMember,

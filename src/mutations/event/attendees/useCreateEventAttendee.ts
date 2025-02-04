@@ -29,8 +29,8 @@ export const CreateEventAttendee = async ({
   adminApiParams,
   queryClient,
 }: CreateEventAttendeeParams): Promise<ConnectedXMResponse<EventAttendee>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<EventAttendee>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<EventAttendee>>(
     `/events/${eventId}/attendees`,
     {
       accountId,

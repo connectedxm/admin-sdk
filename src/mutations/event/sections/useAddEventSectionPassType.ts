@@ -33,8 +33,8 @@ export const AddEventSectionPassType = async ({
 }: AddEventSectionPassTypeParams): Promise<
   ConnectedXMResponse<RegistrationSection>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<
     ConnectedXMResponse<RegistrationSection>
   >(`/events/${eventId}/sections/${sectionId}/passTypes/${passTypeId}`);
   if (queryClient && data.status === "ok") {

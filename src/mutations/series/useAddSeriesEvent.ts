@@ -26,8 +26,8 @@ export const AddSeriesEvent = async ({
   adminApiParams,
   queryClient,
 }: AddSeriesEventParams): Promise<ConnectedXMResponse<Series>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Series>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Series>>(
     `/series/${seriesId}/events/${eventId}`
   );
   if (queryClient && data.status === "ok") {

@@ -29,8 +29,8 @@ export const RemoveAccountFollowing = async ({
   adminApiParams,
   queryClient,
 }: RemoveAccountFollowingParams): Promise<ConnectedXMResponse<Account>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<Account>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<Account>>(
     `/accounts/${accountId}/following/${followingId}`
   );
 

@@ -26,8 +26,8 @@ export const RemoveSeriesEvent = async ({
   adminApiParams,
   queryClient,
 }: RemoveSeriesEventParams): Promise<ConnectedXMResponse<Series>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<Series>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<Series>>(
     `/series/${seriesId}/events/${eventId}`
   );
   if (queryClient && data.status === "ok") {

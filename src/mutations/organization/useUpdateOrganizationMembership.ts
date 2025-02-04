@@ -33,9 +33,9 @@ export const UpdateOrganizationMembership = async ({
 }: UpdateOrganizationMembershipParams): Promise<
   ConnectedXMResponse<OrganizationMembership>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<
+  const { data } = await adminApi.put<
     ConnectedXMResponse<OrganizationMembership>
   >(`/organization/users/${userId}`, membership);
   if (queryClient && data.status === "ok") {

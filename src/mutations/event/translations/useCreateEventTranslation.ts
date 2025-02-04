@@ -33,14 +33,15 @@ export const CreateEventTranslation = async ({
 }: CreateEventTranslationParams): Promise<
   ConnectedXMResponse<EventTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<
-    ConnectedXMResponse<EventTranslation>
-  >(`/events/${eventId}/translations`, {
-    locale,
-    autoTranslate,
-  });
+  const { data } = await adminApi.post<ConnectedXMResponse<EventTranslation>>(
+    `/events/${eventId}/translations`,
+    {
+      locale,
+      autoTranslate,
+    }
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_TRANSLATIONS_QUERY_KEY(eventId),

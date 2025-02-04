@@ -27,8 +27,8 @@ export const UpdateVideo = async ({
   adminApiParams,
   queryClient,
 }: UpdateVideoParams): Promise<ConnectedXMResponse<Video>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Video>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<Video>>(
     `/videos/${videoId}`,
     video
   );

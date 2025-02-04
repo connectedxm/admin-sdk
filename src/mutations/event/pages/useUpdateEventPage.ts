@@ -30,8 +30,8 @@ export const UpdateEventPage = async ({
   queryClient,
 }: UpdateEventPageParams): Promise<ConnectedXMResponse<EventPage>> => {
   if (!pageId) throw new Error("Page ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put(`/events/${eventId}/pages/${pageId}`, {
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put(`/events/${eventId}/pages/${pageId}`, {
     ...page,
     id: undefined,
     createdAt: undefined,

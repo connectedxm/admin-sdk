@@ -37,9 +37,9 @@ export const UpdateEventSessionQuestionTranslation = async ({
   adminApiParams,
   queryClient,
 }: UpdateEventSessionQuestionTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put(
+  const { data } = await adminApi.put(
     `/events/${eventId}/sessions/${sessionId}/questions/${questionId}/translations/${locale}`,
     sessionTranslation
   );

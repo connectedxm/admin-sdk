@@ -29,8 +29,8 @@ export const UpdateAccountLead = async ({
   adminApiParams,
   queryClient,
 }: UpdateAccountLeadParams): Promise<ConnectedXMResponse<Lead>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Lead>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<Lead>>(
     `/accounts/${accountId}/leads/${leadId}`,
     lead
   );

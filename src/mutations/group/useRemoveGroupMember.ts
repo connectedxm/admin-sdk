@@ -12,18 +12,19 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Groups
- */
+ * Endpoint to remove a member from a specified group.
+ * This function allows the removal of a user from a group by specifying the group ID and the account ID of the member to be removed.
+ * It is designed to be used in administrative contexts where group membership management is required.
+ * @name RemoveGroupMember
+ * @param {string} groupId - The ID of the group
+ * @param {string} accountId - The ID of the account
+ * @version 1.2
+ **/
 export interface RemoveGroupMemberParams extends MutationParams {
   groupId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Groups
- */
 export const RemoveGroupMember = async ({
   groupId,
   accountId,
@@ -49,10 +50,6 @@ export const RemoveGroupMember = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Groups
- */
 export const useRemoveGroupMember = (
   options: Omit<
     ConnectedXMMutationOptions<

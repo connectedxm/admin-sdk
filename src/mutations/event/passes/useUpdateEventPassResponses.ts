@@ -11,21 +11,24 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Attendees
- */
+ * Updates the responses for a specific event pass and invalidates relevant queries.
+ * This function is used to modify the responses associated with a particular event pass,
+ * ensuring that any cached queries related to the event pass responses and question sections
+ * are invalidated to reflect the updated data.
+ * @name UpdateEventPassResponses
+ * @param {string} eventId - The id of the event
+ * @param {string} passId - The id of the pass
+ * @param {string} accountId - The id of the account
+ * @param {Question[]} questions - The list of questions to update
+ * @version 1.2
+**/
 export interface UpdateEventPassResponsesParams extends MutationParams {
   eventId: string;
   passId: string;
   accountId: string;
-  //TODO: missing interface and validation
   questions: Question[];
 }
 
-/**
- * @category Methods
- * @group Event-Attendees
- */
 export const UpdateEventPassResponses = async ({
   eventId,
   accountId,
@@ -50,10 +53,6 @@ export const UpdateEventPassResponses = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Attendees
- */
 export const useUpdateEventPassResponses = (
   options: Omit<
     ConnectedXMMutationOptions<

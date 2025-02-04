@@ -9,9 +9,16 @@ import {
 import { EVENT_PASS_TYPE_QUERY_KEY } from "./useGetEventPassType";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Endpoint to retrieve event pass type passes for a specific event and pass type.
+ * This function allows users to fetch passes associated with a particular event and pass type, with an optional filter for checked-in status.
+ * It is designed to be used in applications where event management and pass tracking are required.
+ * @name GetEventPassTypePasses
+ * @param {string} eventId - The id of the event
+ * @param {string} passTypeId - The id of the pass type
+ * @param {boolean} [checkedIn] - Optional filtering by checkedIn status
+ * @version 1.2
+ **/
+
 export const EVENT_PASS_TYPE_PASSES_QUERY_KEY = (
   eventId: string,
   passTypeId: string,
@@ -24,10 +31,6 @@ export const EVENT_PASS_TYPE_PASSES_QUERY_KEY = (
   return keys;
 };
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_PASS_TYPE_PASSES_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_PASS_TYPE_PASSES_QUERY_KEY>,
@@ -42,10 +45,6 @@ interface GetEventPassTypePassesProps extends InfiniteQueryParams {
   checkedIn?: boolean;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventPassTypePasses = async ({
   eventId,
   passTypeId,
@@ -71,10 +70,7 @@ export const GetEventPassTypePasses = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventPassTypePasses = (
   eventId: string = "",
   passTypeId: string = "",

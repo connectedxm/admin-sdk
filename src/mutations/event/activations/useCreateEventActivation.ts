@@ -12,18 +12,20 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Activations
- */
+ * Endpoint to create a new event activation.
+ * This function allows the creation of an event activation by providing the necessary event ID and activation inputs.
+ * It is designed to be used in applications where event activations need to be managed and updated.
+ * @name CreateEventActivation
+ * @param {string} eventId - The id of the event
+ * @param {EventActivationCreateInputs} activation - The activation inputs for the event
+ * @version 1.2
+ **/
+
 export interface CreateEventActivationParams extends MutationParams {
   eventId: string;
   activation: EventActivationCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Activations
- */
 export const CreateEventActivation = async ({
   eventId,
   activation,
@@ -47,10 +49,6 @@ export const CreateEventActivation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Activations
- */
 export const useCreateEventActivation = (
   options: Omit<
     ConnectedXMMutationOptions<

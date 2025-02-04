@@ -12,18 +12,19 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Coupons
- */
+ * Endpoint to create a new event coupon.
+ * This function allows the creation of a coupon for a specific event by providing the event ID and coupon details.
+ * It is designed to be used in applications where event management and coupon distribution are required.
+ * @name CreateEventCoupon
+ * @param {string} eventId - The id of the event
+ * @param {EventCouponCreateInputs} coupon - The coupon details to be created
+ * @version 1.2
+**/
 export interface CreateEventCouponParams extends MutationParams {
   eventId: string;
   coupon: EventCouponCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Coupons
- */
 export const CreateEventCoupon = async ({
   eventId,
   coupon,
@@ -43,12 +44,8 @@ export const CreateEventCoupon = async ({
     SET_EVENT_COUPON_QUERY_DATA(queryClient, [eventId, data.data.id], data);
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Event-Coupons
- */
 export const useCreateEventCoupon = (
   options: Omit<
     ConnectedXMMutationOptions<

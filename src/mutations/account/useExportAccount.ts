@@ -7,17 +7,18 @@ import {
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to export data for a specific account.
+ * This function allows users to export detailed information about an account using the provided account ID.
+ * It is designed to be used in applications where exporting account data is necessary.
+ * @name ExportAccount
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export interface ExportAccountParams extends MutationParams {
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const ExportAccount = async ({
   accountId,
   adminApiParams,
@@ -30,10 +31,6 @@ export const ExportAccount = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useExportAccount = (
   options: Omit<
     ConnectedXMMutationOptions<

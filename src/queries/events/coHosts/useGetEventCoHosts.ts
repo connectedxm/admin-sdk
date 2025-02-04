@@ -9,18 +9,19 @@ import {
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves a list of co-hosts for a specified event.
+ * This function fetches data about co-hosts associated with a particular event, allowing users to view and manage event co-hosts.
+ * It is designed for applications that require detailed information about event co-hosts.
+ * @name GetEventCoHosts
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+ **/
+
 export const EVENT_CO_HOSTS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "COHOSTS",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_CO_HOSTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_CO_HOSTS_QUERY_KEY>,
@@ -33,10 +34,6 @@ interface GetEventCoHostsProps extends InfiniteQueryParams {
   eventId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventCoHosts = async ({
   eventId,
   pageParam,
@@ -57,10 +54,6 @@ export const GetEventCoHosts = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Events
- */
 export const useGetEventCoHosts = (
   eventId: string,
   params: Omit<

@@ -10,6 +10,18 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific translation for an event question choice.
+ * This function is used to remove a translation associated with a particular choice in an event question.
+ * It is useful in scenarios where outdated or incorrect translations need to be removed from the system.
+ * @name DeleteEventQuestionChoiceTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} questionId - The ID of the question
+ * @param {string} choiceId - The ID of the choice
+ * @param {string} locale - The locale of the translation
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Question-Translations
  */

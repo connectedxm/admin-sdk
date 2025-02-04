@@ -9,18 +9,20 @@ import { REPORTS_QUERY_KEY } from "@src/queries";
 import { ReportCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Reports
- */
+ * Endpoint to create a new report within the system.
+ * This function allows users to submit data for a new report, specifying the type of report they wish to create.
+ * It ensures that a parent ID is provided and interacts with the admin API to store the report data.
+ * Upon successful creation, it invalidates the relevant queries to update the report data cache.
+ * @name CreateReport
+ * @param {ReportCreateInputs} report - The report data to be created
+ * @param {ReportType} type - The type of the report
+ * @version 1.2
+ **/
 export interface CreateReportParams extends MutationParams {
   report: ReportCreateInputs;
   type: ReportType;
 }
 
-/**
- * @category Methods
- * @group Reports
- */
 export const CreateReport = async ({
   report,
   type,
@@ -42,10 +44,6 @@ export const CreateReport = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Reports
- */
 export const useCreateReport = (
   options: Omit<
     ConnectedXMMutationOptions<

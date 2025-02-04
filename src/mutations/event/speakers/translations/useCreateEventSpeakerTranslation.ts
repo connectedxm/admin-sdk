@@ -11,6 +11,18 @@ import {
 } from "@src/queries";
 
 /**
+ * Creates a new translation for a specific event speaker.
+ * This function allows the creation of a translation for a speaker at a given event, supporting multiple locales and optional auto-translation.
+ * It is designed to be used in applications where multilingual support for event speakers is required.
+ * @name PostEventSpeakerTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} speakerId - The ID of the speaker
+ * @param {string} locale - The locale for the translation
+ * @param {[boolean]} autoTranslate - Whether to automatically translate the content
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Speakers-Translations
  */

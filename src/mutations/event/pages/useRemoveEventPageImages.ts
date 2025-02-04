@@ -11,19 +11,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Page
- */
+ * Endpoint to remove an image from a specific event page.
+ * This function allows the removal of an image associated with a particular event page, 
+ * identified by the event ID, page ID, and image ID. It ensures that the image is 
+ * deleted from the event page and updates the query data accordingly.
+ * @name RemoveEventPageImage
+ * @param {string} eventId - The ID of the event
+ * @param {string} pageId - The ID of the page
+ * @param {string} imageId - The ID of the image
+ * @version 1.2
+ **/
 export interface RemoveEventPageImageParams extends MutationParams {
   eventId: string;
   pageId: string;
   imageId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Page
- */
 export const RemoveEventPageImage = async ({
   eventId,
   pageId,
@@ -45,10 +48,6 @@ export const RemoveEventPageImage = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Page
- */
 export const useRemoveEventPageImage = (
   options: Omit<
     ConnectedXMMutationOptions<

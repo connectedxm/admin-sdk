@@ -10,18 +10,19 @@ import { STREAM_INPUTS_QUERY_KEY } from "./useGetStreamInputs";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Streams
- */
+ * Fetches stream input data for a specific stream by its ID.
+ * This function is designed to retrieve detailed information about a stream input, which can be used in applications that require stream data.
+ * It utilizes a connected single query to ensure efficient data retrieval and management.
+ * @name GetStreamInput
+ * @param {string} streamId - The ID of the stream
+ * @version 1.2
+ **/
+
 export const STREAM_QUERY_KEY = (streamId: string) => [
   ...STREAM_INPUTS_QUERY_KEY(),
   streamId,
 ];
 
-/**
- * @category Setters
- * @group Streams
- */
 export const SET_STREAM_INPUT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof STREAM_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetStreamInputParams extends SingleQueryParams {
   streamId: string;
 }
 
-/**
- * @category Queries
- * @group Streams
- */
 export const GetStreamInput = async ({
   streamId,
   adminApiParams,
@@ -47,10 +44,7 @@ export const GetStreamInput = async ({
 
   return data;
 };
-/**
- * @category Hooks
- * @group Streams
- */
+
 export const useGetStreamInput = (
   streamId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetStreamInput>> = {}

@@ -16,27 +16,26 @@ import {
 } from "@src/mutations/useConnectedMutation";
 
 /**
- * @category Params
- * @group Organization
- */
-export interface RemoveOrganizationModuleEditableTierParams
-  extends MutationParams {
+ * Removes an editable tier from a specified organization module.
+ * This function is used to delete a tier from an organization module, identified by its type and tier ID.
+ * It ensures that the specified tier is removed and updates the relevant queries to reflect this change.
+ * @name RemoveOrganizationModuleEditableTier
+ * @param {keyof typeof OrganizationModuleType} moduleType - The type of the organization module
+ * @param {string} tierId - The id of the tier to be removed
+ * @version 1.2
+ **/
+
+export interface RemoveOrganizationModuleEditableTierParams extends MutationParams {
   moduleType: keyof typeof OrganizationModuleType;
   tierId: string;
 }
 
-/**
- * @category Methods
- * @group Organization
- */
 export const RemoveOrganizationModuleEditableTier = async ({
   moduleType,
   tierId,
   adminApiParams,
   queryClient,
-}: RemoveOrganizationModuleEditableTierParams): Promise<
-  ConnectedXMResponse<OrganizationModule>
-> => {
+}: RemoveOrganizationModuleEditableTierParams): Promise<ConnectedXMResponse<OrganizationModule>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.delete<
     ConnectedXMResponse<OrganizationModule>
@@ -54,10 +53,6 @@ export const RemoveOrganizationModuleEditableTier = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization
- */
 export const useRemoveOrganizationModuleEditableTier = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -8,9 +8,15 @@ import {
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Endpoint to retrieve a list of event passes for a specific event.
+ * This function allows users to fetch event passes, with an optional filter for checked-in status.
+ * It is designed to be used in applications where event pass details are required.
+ * @name GetEventPasses
+ * @param {string} eventId - The id of the event
+ * @param {boolean} [checkedIn] - Optional filtering by checkedIn status
+ * @version 1.2
+ **/
+
 export const EVENT_PASSES_QUERY_KEY = (
   eventId: string,
   checkedIn?: boolean
@@ -27,10 +33,6 @@ interface GetEventPassesProps extends InfiniteQueryParams {
   checkedIn?: boolean;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventPasses = async ({
   eventId,
   checkedIn,
@@ -53,10 +55,7 @@ export const GetEventPasses = async ({
 
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventPasses = (
   eventId: string = "",
   checkedIn?: boolean,

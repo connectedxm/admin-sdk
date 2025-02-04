@@ -8,17 +8,17 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { FILES_QUERY_KEY, FILE_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Files
- */
+ * Endpoint to delete a specific file by its unique identifier.
+ * This function allows users to remove a file from the system, ensuring that all related queries are invalidated.
+ * It is designed to be used in applications where file management and cleanup are required.
+ * @name DeleteFile
+ * @param {string} fileId - The id of the file to be deleted
+ * @version 1.2
+ **/
 export interface DeleteFileParams extends MutationParams {
   fileId: string;
 }
 
-/**
- * @category Methods
- * @group Files
- */
 export const DeleteFile = async ({
   fileId,
   adminApiParams,
@@ -35,10 +35,6 @@ export const DeleteFile = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Files
- */
 export const useDeleteFile = (
   options: Omit<
     ConnectedXMMutationOptions<

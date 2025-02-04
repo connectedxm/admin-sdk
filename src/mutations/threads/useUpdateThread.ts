@@ -9,19 +9,22 @@ import { THREADS_QUERY_KEY, SET_THREAD_QUERY_DATA } from "@src/queries";
 import { ThreadUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Threads
- */
+ * Endpoint to update an existing thread with new data.
+ * This function allows users to modify the details of a specific thread by providing the thread ID and the updated data.
+ * It supports optional image data URI for updating the thread's image.
+ * The function ensures that the thread data is updated in the cache if the operation is successful.
+ * @name UpdateThread
+ * @param {string} threadId - The id of the thread
+ * @param {ThreadUpdateInputs} thread - The thread data to update
+ * @param {string} [imageDataUri] - Optional image data URI
+ * @version 1.2
+ **/
 export interface UpdateThreadParams extends MutationParams {
   threadId: string;
   thread: ThreadUpdateInputs;
   imageDataUri?: string;
 }
 
-/**
- * @category Methods
- * @group Threads
- */
 export const UpdateThread = async ({
   threadId,
   thread,
@@ -44,10 +47,6 @@ export const UpdateThread = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Threads
- */
 export const useUpdateThread = (
   options: Omit<
     ConnectedXMMutationOptions<

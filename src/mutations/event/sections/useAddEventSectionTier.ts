@@ -11,9 +11,16 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sections
- */
+ * Endpoint to add a tier to a specific event section.
+ * This function allows the addition of a tier to an event section by specifying the event, section, and tier IDs.
+ * It is used in scenarios where event sections need to be dynamically updated with new tiers.
+ * @name AddEventSectionTier
+ * @param {boolean} allowed - Indicates if the tier is allowed
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the section
+ * @param {string} tierId - The id of the tier
+ * @version 1.2
+**/
 export interface AddEventSectionTierParams extends MutationParams {
   allowed: boolean;
   eventId: string;
@@ -21,10 +28,6 @@ export interface AddEventSectionTierParams extends MutationParams {
   tierId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sections
- */
 export const AddEventSectionTier = async ({
   allowed,
   eventId,
@@ -51,10 +54,6 @@ export const AddEventSectionTier = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sections
- */
 export const useAddEventSectionTier = (
   options: Omit<
     ConnectedXMMutationOptions<

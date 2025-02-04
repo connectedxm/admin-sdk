@@ -12,19 +12,21 @@ import {
 import { ChannelSubscriberUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Channel
- */
+ * Endpoint to update a channel subscriber's information.
+ * This function allows updating the details of a subscriber associated with a specific channel.
+ * It is designed to be used in applications where managing channel subscribers is required.
+ * @name UpdateChannelSubscriber
+ * @param {string} accountId - The id of the account
+ * @param {string} channelId - The id of the channel
+ * @param {ChannelSubscriberUpdateInputs} channelSubscriber - The subscriber update inputs
+ * @version 1.2
+ **/
 export interface UpdateChannelSubscriberParams extends MutationParams {
   accountId: string;
   channelId: string;
   channelSubscriber: ChannelSubscriberUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Channel
- */
 export const UpdateChannelSubscriber = async ({
   accountId,
   channelId,
@@ -52,10 +54,6 @@ export const UpdateChannelSubscriber = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Channel
- */
 export const useUpdateChannelSubscriber = (
   options: Omit<
     ConnectedXMMutationOptions<

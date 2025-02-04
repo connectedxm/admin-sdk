@@ -1,29 +1,28 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Account } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
-
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Accounts
- */
+ * Endpoint to retrieve a list of accounts with optional filtering by account type.
+ * This function allows users to fetch a paginated list of accounts, which can be filtered by account type if specified.
+ * It is designed to be used in applications where account management and retrieval are necessary.
+ * @name GetAccounts
+ * @param {string} [accountType] - Optional account type ("account" | "team")
+ * @version 1.2
+ **/
+
 export const ACCOUNTS_QUERY_KEY = (accountType?: "account" | "team") => {
   const keys = ["ACCOUNTS"];
   if (accountType) keys.push(accountType);
   return keys;
 };
 
-/**
- * @category Setters
- * @group Accounts
- */
 export const SET_ACCOUNTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNTS_QUERY_KEY>,
@@ -36,10 +35,6 @@ interface GetAccountsProps extends InfiniteQueryParams {
   accountType?: "account" | "team";
 }
 
-/**
- * @category Queries
- * @group Accounts
- */
 export const GetAccounts = async ({
   pageParam,
   pageSize,
@@ -60,10 +55,7 @@ export const GetAccounts = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Accounts
- */
+
 export const useGetAccounts = (
   accountType?: "account" | "team",
   params: Omit<

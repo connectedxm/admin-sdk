@@ -8,17 +8,17 @@ import { ConnectedXMResponse } from "@interfaces";
 import { ACTIVITIES_QUERY_KEY, ACTIVITY_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Activities
- */
+ * Endpoint to delete a specific activity by its ID.
+ * This function allows for the removal of an activity from the system, ensuring that all related queries are invalidated or removed.
+ * It is designed to be used in applications where activity management is required, providing a way to maintain up-to-date data.
+ * @name DeleteActivity
+ * @param {string} activityId - The ID of the activity to be deleted
+ * @version 1.2
+ **/
 export interface DeleteActivityParams extends MutationParams {
   activityId: string;
 }
 
-/**
- * @category Methods
- * @group Activities
- */
 export const DeleteActivity = async ({
   activityId,
   adminApiParams,
@@ -36,10 +36,6 @@ export const DeleteActivity = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Activities
- */
 export const useDeleteActivity = (
   options: Omit<
     ConnectedXMMutationOptions<

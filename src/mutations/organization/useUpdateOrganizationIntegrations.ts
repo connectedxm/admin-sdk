@@ -8,9 +8,18 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { ORGANIZATION_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Organization
- */
+ * Endpoint to update the organization's integrations with Ghost.
+ * This function allows updating the integration settings for Ghost within an organization,
+ * including enabling or disabling the integration and setting the necessary keys and URL.
+ * It is designed for use in applications that manage organizational settings and integrations.
+ * @name UpdateOrganizationIntegrations
+ * @param {boolean} ghost - Indicates if Ghost integration is enabled
+ * @param {string} ghostUrl - The URL for the Ghost instance
+ * @param {string} [ghostAdminKey] - Optional admin key for Ghost
+ * @param {string} [ghostContentKey] - Optional content key for Ghost
+ * @version 1.2
+ **/
+
 export interface UpdateOrganizationIntegrationsParams extends MutationParams {
   ghost: boolean;
   ghostUrl: string;
@@ -18,10 +27,6 @@ export interface UpdateOrganizationIntegrationsParams extends MutationParams {
   ghostContentKey?: string;
 }
 
-/**
- * @category Methods
- * @group Organization
- */
 export const UpdateOrganizationIntegrations = async ({
   ghost,
   ghostUrl,
@@ -48,10 +53,6 @@ export const UpdateOrganizationIntegrations = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization
- */
 export const useUpdateOrganizationIntegrations = (
   options: Omit<
     ConnectedXMMutationOptions<

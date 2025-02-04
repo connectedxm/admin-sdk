@@ -8,18 +8,19 @@ import {
 import { EVENT_CO_HOSTS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-CoHosts
- */
+ * Endpoint to remove a co-host from an event.
+ * This function allows the removal of a specified account as a co-host from a given event.
+ * It is useful in scenarios where event management requires updating the list of co-hosts.
+ * @name RemoveEventCoHost
+ * @param {string} eventId - The id of the event
+ * @param {string} accountId - The id of the account to be removed as co-host
+ * @version 1.2
+**/
 export interface RemoveEventCoHostParams extends MutationParams {
   eventId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Event-CoHosts
- */
 export const RemoveEventCoHost = async ({
   eventId,
   accountId,
@@ -39,10 +40,6 @@ export const RemoveEventCoHost = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-CoHosts
- */
 export const useRemoveEventCoHost = (
   options: Omit<
     ConnectedXMMutationOptions<

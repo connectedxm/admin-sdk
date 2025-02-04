@@ -12,18 +12,20 @@ import {
 import { SupportTicketUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group SupportTickets
- */
+ * Endpoint to update a support ticket with new information.
+ * This function allows for the modification of existing support tickets by providing updated inputs.
+ * It is designed to be used in applications where support ticket management is required.
+ * @name UpdateSupportTicket
+ * @param {string} supportTicketId - The id of the support ticket
+ * @param {SupportTicketUpdateInputs} supportTicket - The support ticket update inputs
+ * @version 1.2
+ **/
+
 export interface UpdateSupportTicketParams extends MutationParams {
   supportTicketId: string;
   supportTicket: SupportTicketUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group SupportTickets
- */
 export const UpdateSupportTicket = async ({
   supportTicketId,
   supportTicket,
@@ -43,10 +45,6 @@ export const UpdateSupportTicket = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group SupportTickets
- */
 export const useUpdateSupportTicket = (
   options: Omit<
     ConnectedXMMutationOptions<

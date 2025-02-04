@@ -4,9 +4,20 @@ import { ConnectedXMResponse } from "@interfaces";
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
   SingleQueryOptions,
+  SingleQueryParams,
   useConnectedSingleQuery,
 } from "../useConnectedSingleQuery";
 import { THREAD_MESSAGES_QUERY_KEY } from "./useGetThreadMessages";
+
+/**
+ * Fetches a specific message from a thread using the thread and message IDs.
+ * This function is part of a connected query system designed to retrieve detailed information about a particular message within a thread.
+ * It is useful in applications where accessing individual thread messages is necessary.
+ * @name GetThreadMessage
+ * @param {string} threadId - The ID of the thread
+ * @param {string} messageId - The ID of the message
+ * @version 1.2
+ **/
 
 export const THREAD_MESSAGE_QUERY_KEY = (
   threadId: string,
@@ -28,16 +39,11 @@ export const SET_THREAD_MESSAGE_QUERY_DATA = (
   );
 };
 
-export interface GetThreadMessageProps {
+export interface GetThreadMessageProps extends SingleQueryParams {
   threadId: string;
   messageId: string;
-  adminApiParams?: any;
 }
 
-/**
- * @category Queries
- * @group Threads
- **/
 export const GetThreadMessage = async ({
   threadId,
   messageId,

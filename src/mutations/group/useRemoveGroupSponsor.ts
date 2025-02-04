@@ -8,18 +8,20 @@ import { ConnectedXMResponse, Group } from "@src/interfaces";
 import { SET_GROUP_QUERY_DATA, GROUP_SPONSORS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Groups
- */
+ * Endpoint to remove a sponsor from a specified group.
+ * This function allows the removal of a sponsor from a group by specifying the group and account IDs.
+ * It is used in scenarios where managing group sponsorships is required, ensuring that the sponsor is no longer associated with the group.
+ * @name RemoveGroupSponsor
+ * @param {string} groupId - The id of the group
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export interface RemoveGroupSponsorParams extends MutationParams {
   groupId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Groups
- */
 export const RemoveGroupSponsor = async ({
   groupId,
   accountId,
@@ -39,10 +41,6 @@ export const RemoveGroupSponsor = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Groups
- */
 export const useRemoveGroupSponsor = (
   options: Omit<
     ConnectedXMMutationOptions<

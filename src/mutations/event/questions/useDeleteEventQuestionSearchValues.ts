@@ -8,18 +8,19 @@ import {
 import { EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Questions
- */
+ * Endpoint to delete search values for a specific question in an event.
+ * This function allows the removal of search values associated with a particular question within a specified event.
+ * It is useful in scenarios where search values need to be cleared or reset for event questions.
+ * @name DeleteEventQuestionSearchValues
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @version 1.2
+**/
 export interface DeleteEventQuestionSearchValuesParams extends MutationParams {
   eventId: string;
   questionId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Questions
- */
 export const DeleteEventQuestionSearchValues = async ({
   eventId,
   questionId,
@@ -41,10 +42,6 @@ export const DeleteEventQuestionSearchValues = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Questions
- */
 export const useDeleteEventQuestionSearchValues = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -10,6 +10,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific translation for an event room type.
+ * This function is used to remove a translation associated with a particular room type within an event, identified by event ID, room type ID, and locale.
+ * It is designed for applications managing multilingual event room type data, ensuring that outdated or incorrect translations can be efficiently removed.
+ * @name DeleteEventRoomTypeTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} roomTypeId - The ID of the room type
+ * @param {string} locale - The locale of the translation
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Reservations-Translations
  */

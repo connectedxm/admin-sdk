@@ -10,6 +10,16 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific translation of an announcement by its ID and locale.
+ * This function is used to remove a translation for a given announcement, identified by its announcement ID and locale.
+ * It is designed for applications that manage multilingual announcements and need to handle translation deletions.
+ * @name DeleteAnnouncementTranslation
+ * @param {string} announcementId - The ID of the announcement
+ * @param {string} locale - The locale of the translation to be deleted
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @announcement Announcements-Translations
  */

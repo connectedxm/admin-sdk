@@ -9,18 +9,19 @@ import {
 import { ConnectedXMResponse, Payment } from "@src/interfaces";
 
 /**
- * @category Keys
- * @group Payments
- */
+ * Fetches detailed information about a specific payment using its unique identifier.
+ * This function is part of the payment management system and allows retrieval of payment details for further processing or display.
+ * It is designed to be used in applications where payment information needs to be accessed or verified.
+ * @name GetPayment
+ * @param {string} paymentId - The id of the payment
+ * @version 1.2
+ **/
+
 export const PAYMENT_QUERY_KEY = (paymentId: string) => [
   ...PAYMENTS_QUERY_KEY(),
   paymentId,
 ];
 
-/**
- * @category Setters
- * @group Payments
- */
 export const SET_PAYMENT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof PAYMENT_QUERY_KEY>,
@@ -33,10 +34,6 @@ interface GetPaymentProps extends SingleQueryParams {
   paymentId: string;
 }
 
-/**
- * @category Queries
- * @group Payments
- */
 export const GetPayment = async ({
   paymentId,
   adminApiParams,
@@ -47,10 +44,7 @@ export const GetPayment = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Payments
- */
+
 export const useGetPayment = (
   paymentId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetPayment>> = {}

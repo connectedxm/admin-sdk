@@ -11,19 +11,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Attendee-Passes
- */
+ * Adds an add-on to a specific event pass and invalidates the relevant queries to ensure data consistency.
+ * This function is used to associate an additional feature or service (add-on) with an event pass, 
+ * allowing for enhanced functionality or offerings for event attendees.
+ * It is designed to be used in applications where event management and customization are required.
+ * @name AddEventPassAddOn
+ * @param {string} addOnId - The id of the add-on
+ * @param {string} eventId - The id of the event
+ * @param {string} passId - The id of the pass
+ * @version 1.2
+ **/
 export interface AddEventPassAddOnParams extends MutationParams {
   addOnId: string;
   eventId: string;
   passId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Attendee-Passes
- */
 export const AddEventPassAddOn = async ({
   addOnId,
   eventId,
@@ -45,10 +48,6 @@ export const AddEventPassAddOn = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Attendee-Passes
- */
 export const useAddEventPassAddOn = (
   options: Omit<
     ConnectedXMMutationOptions<

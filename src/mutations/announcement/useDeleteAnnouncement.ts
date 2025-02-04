@@ -8,17 +8,17 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { ANNOUNCEMENTS_QUERY_KEY, ANNOUNCEMENT_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Announcement
- */
+ * Endpoint to delete a specific announcement by its ID.
+ * This function allows for the removal of an announcement from the system, ensuring that it is no longer accessible.
+ * It is designed to be used in administrative contexts where managing announcements is required.
+ * @name DeleteAnnouncement
+ * @param {string} announcementId - The ID of the announcement to be deleted
+ * @version 1.2
+ **/
 export interface DeleteAnnouncementParams extends MutationParams {
   announcementId: string;
 }
 
-/**
- * @category Methods
- * @group Announcement
- */
 export const DeleteAnnouncement = async ({
   announcementId,
   adminApiParams,
@@ -37,10 +37,6 @@ export const DeleteAnnouncement = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Announcement
- */
 export const useDeleteAnnouncement = (
   options: Omit<
     ConnectedXMMutationOptions<

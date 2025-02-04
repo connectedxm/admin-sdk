@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { AdvertisementClick } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -10,18 +9,20 @@ import {
 import { ADVERTISEMENT_QUERY_KEY } from "./useGetAdvertisement";
 
 /**
- * @category Keys
- * @group Advertisements
- */
+ * Endpoint to retrieve click data for a specific advertisement.
+ * This function fetches detailed information about user interactions with an advertisement, 
+ * specifically the clicks it has received. It is useful for analyzing advertisement performance 
+ * and user engagement.
+ * @name GetAdvertisementClicks
+ * @param {string} advertisementId - The id of the advertisement
+ * @version 1.2
+ **/
+
 export const ADVERTISEMENT_CLICKS_QUERY_KEY = (advertisementId: string) => [
   ...ADVERTISEMENT_QUERY_KEY(advertisementId),
   "CLICKS",
 ];
 
-/**
- * @category Setters
- * @group Advertisements
- */
 export const SET_ADVERTISEMENT_CLICKS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof ADVERTISEMENT_CLICKS_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetAdvertisementClicksProps extends InfiniteQueryParams {
   advertisementId: string;
 }
 
-/**
- * @category Queries
- * @group Advertisements
- */
 export const GetAdvertisementClicks = async ({
   advertisementId,
   pageParam,
@@ -62,10 +59,7 @@ export const GetAdvertisementClicks = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Advertisements
- */
+
 export const useGetAdvertisementClicks = (
   advertisementId: string = "",
   params: Omit<

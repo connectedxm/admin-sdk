@@ -9,9 +9,15 @@ import {
 import { EVENT_ADD_ON_QUERY_KEY } from "../useGetEventAddOn";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves translations for a specific event add-on.
+ * This function fetches a list of translations associated with a given event add-on, identified by eventId and addOnId.
+ * It is useful for applications that need to display or manage multilingual content for event add-ons.
+ * @name GetEventAddOnTranslations
+ * @param {string} eventId - The ID of the event
+ * @param {string} addOnId - The ID of the add-on
+ * @version 1.2
+ **/
+
 export const EVENT_ADD_ON_TRANSLATIONS_QUERY_KEY = (
   eventId: string,
   addOnId: string

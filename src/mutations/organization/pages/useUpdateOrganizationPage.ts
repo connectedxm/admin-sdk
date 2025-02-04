@@ -9,18 +9,20 @@ import { OrganizationPageUpdateInputs } from "@src/params";
 import { SET_ORGANIZATION_PAGE_QUERY_DATA } from "@src/queries";
 
 /**
- * @category Params
- * @group Organization-Pages
- */
+ * Endpoint to update a specific organization page with new inputs.
+ * This function allows for updating the details of an organization page by specifying the page type and the new inputs.
+ * It is designed to be used in applications where organization page details need to be modified.
+ * @name UpdateOrganizationPage
+ * @param {PageType} type - The type of the page
+ * @param {OrganizationPageUpdateInputs} page - The inputs for updating the organization page
+ * @version 1.2
+ **/
+
 export interface UpdateOrganizationPageParams extends MutationParams {
   type: PageType;
   page: OrganizationPageUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Organization-Pages
- */
 export const UpdateOrganizationPage = async ({
   type,
   page,
@@ -38,10 +40,6 @@ export const UpdateOrganizationPage = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization-Pages
- */
 export const useUpdateOrganizationPage = (
   options: Omit<
     ConnectedXMMutationOptions<

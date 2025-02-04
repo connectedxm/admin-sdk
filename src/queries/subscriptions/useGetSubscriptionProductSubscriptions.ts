@@ -10,9 +10,15 @@ import { QueryClient } from "@tanstack/react-query";
 import { SUBSCRIPTION_PRODUCT_QUERY_KEY } from "./useGetSubscriptionProduct";
 
 /**
- * @category Keys
- * @group Subscriptions
- */
+ * Endpoint to retrieve a list of subscriptions associated with a specific subscription product.
+ * This function allows users to fetch subscriptions, optionally filtering by subscription status.
+ * It is designed to be used in applications where subscription management is required.
+ * @name GetSubscriptionProductSubscriptions
+ * @param {string} subscriptionProductId - The id of the subscription product
+ * @param {SubscriptionStatus} [status] - Optional filtering by subscription status
+ * @version 1.2
+ **/
+
 export const SUBSCRIPTION_PRODUCT_SUBSCRIPTIONS_QUERY_KEY = (
   subscriptionProductId: string,
   status?: SubscriptionStatus
@@ -29,10 +35,6 @@ export const SUBSCRIPTION_PRODUCT_SUBSCRIPTIONS_QUERY_KEY = (
   return queryKey;
 };
 
-/**
- * @category Setters
- * @group Subscriptions
- */
 export const SET_SUBSCRIPTION_PRODUCT_SUBSCRIPTIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SUBSCRIPTION_PRODUCT_SUBSCRIPTIONS_QUERY_KEY>,
@@ -49,10 +51,6 @@ interface GetSubscriptionProductSubscriptionsProps extends InfiniteQueryParams {
   status?: SubscriptionStatus;
 }
 
-/**
- * @category Queries
- * @group Subscriptions
- */
 export const GetSubscriptionProductSubscriptions = async ({
   subscriptionProductId,
   status,
@@ -79,10 +77,7 @@ export const GetSubscriptionProductSubscriptions = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Subscriptions
- */
+
 export const useGetSubscriptionProductSubscriptions = (
   subscriptionProductId: string,
   status?: SubscriptionStatus,

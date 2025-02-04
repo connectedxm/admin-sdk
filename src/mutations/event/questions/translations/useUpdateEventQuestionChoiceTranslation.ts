@@ -12,9 +12,18 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Question-Translations
- */
+ * Updates the translation for a specific event question choice.
+ * This function allows updating the translation of a choice within a question for a given event, identified by event ID, question ID, and choice ID.
+ * It is designed to be used in applications where multilingual support for event questions is required.
+ * @name PutEventQuestionChoiceTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} questionId - The ID of the question
+ * @param {string} choiceId - The ID of the choice
+ * @param {ISupportedLocale} locale - The locale for the translation
+ * @param {EventQuestionChoiceTranslationUpdateInputs} choiceTranslation - The translation inputs for the choice
+ * @version 1.2
+ **/
+
 export interface UpdateEventQuestionChoiceTranslationParams
   extends MutationParams {
   eventId: string;
@@ -24,10 +33,6 @@ export interface UpdateEventQuestionChoiceTranslationParams
   choiceTranslation: EventQuestionChoiceTranslationUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Question-Translations
- */
 export const UpdateEventQuestionChoiceTranslation = async ({
   eventId,
   questionId,
@@ -61,10 +66,6 @@ export const UpdateEventQuestionChoiceTranslation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Question-Translations
- */
 export const useUpdateEventQuestionChoiceTranslation = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -10,18 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Key
- * @group Emails
- */
+ * Fetches details of a specific email receipt by its unique ID.
+ * This function is used to retrieve detailed information about an email receipt, 
+ * which can be useful for tracking and auditing email communications.
+ * @name GetEmailReceipt
+ * @param {string} emailReceiptId - The ID of the email receipt
+ * @version 1.2
+ **/
+
 export const EMAIL_RECEIPT_QUERY_KEY = (emailReceiptId: string) => [
   ...EMAIL_RECEIPTS_QUERY_KEY(),
   emailReceiptId,
 ];
 
-/**
- * @category Setters
- * @group Emails
- */
 export const SET_EMAIL_RECEIPT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EMAIL_RECEIPT_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetEmailReceiptParams extends SingleQueryParams {
   emailReceiptId: string;
 }
 
-/**
- * @category Query
- * @group Emails
- */
 export const GetEmailReceipt = async ({
   emailReceiptId,
   adminApiParams,
@@ -48,10 +45,6 @@ export const GetEmailReceipt = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Emails
- */
 export const useGetEmailReceipt = (
   emailReceiptId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEmailReceipt>> = {}

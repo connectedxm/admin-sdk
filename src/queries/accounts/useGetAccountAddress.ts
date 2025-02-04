@@ -10,9 +10,15 @@ import { ACCOUNT_ADDRESSES_QUERY_KEY } from "./useGetAccountAddresses";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Accounts
- */
+ * Retrieves a specific account address using the account ID and address ID.
+ * This function is designed to fetch detailed information about an account's address, 
+ * which can be used in applications requiring precise address data for a given account.
+ * @name GetAccountAddress
+ * @param {string} accountId - The id of the account
+ * @param {string} addressId - The id of the address
+ * @version 1.2
+ **/
+
 export const ACCOUNT_ADDRESS_QUERY_KEY = (
   accountId: string,
   addressId: string
@@ -23,10 +29,6 @@ interface GetAccountAddressProps extends SingleQueryParams {
   addressId: string;
 }
 
-/**
- * @category Queries
- * @group Accounts
- */
 export const GetAccountAddress = async ({
   accountId,
   addressId,
@@ -38,10 +40,7 @@ export const GetAccountAddress = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Accounts
- */
+
 export const useGetAccountAddress = (
   accountId: string = "",
   addressId: string = "",

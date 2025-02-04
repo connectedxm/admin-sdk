@@ -9,17 +9,17 @@ import { LEVELS_QUERY_KEY, SET_LEVEL_QUERY_DATA } from "@src/queries";
 import { LevelCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Level
- */
+ * Endpoint to create a new level within the system.
+ * This function allows for the creation of a new level by providing the necessary inputs.
+ * It is designed to be used in applications where managing levels is required.
+ * @name CreateLevel
+ * @param {LevelCreateInputs} level - The inputs required to create a new level
+ * @version 1.2
+ **/
 export interface CreateLevelParams extends MutationParams {
   level: LevelCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Level
- */
 export const CreateLevel = async ({
   level,
   adminApiParams,
@@ -37,10 +37,6 @@ export const CreateLevel = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Level
- */
 export const useCreateLevel = (
   options: Omit<
     ConnectedXMMutationOptions<

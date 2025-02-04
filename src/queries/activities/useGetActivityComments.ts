@@ -1,5 +1,4 @@
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Activity } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -11,18 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Activities
- */
+ * Endpoint to fetch comments associated with a specific activity.
+ * This function retrieves a list of comments for a given activity, allowing users to view discussions or feedback related to that activity.
+ * It is designed to be used in applications where activity-related comments need to be displayed or managed.
+ * @name GetActivityComments
+ * @param {string} activityId - The id of the activity
+ * @version 1.2
+ **/
+
 export const ACTIVITY_COMMENTS_QUERY_KEY = (activityId: string) => [
   ...ACTIVITY_QUERY_KEY(activityId),
   "COMMENTS",
 ];
 
-/**
- * @category Setters
- * @group Activities
- */
 export const SET_ACTIVITY_COMMENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACTIVITY_COMMENTS_QUERY_KEY>,
@@ -35,10 +35,6 @@ interface GetActivityCommentsProps extends InfiniteQueryParams {
   activityId: string;
 }
 
-/**
- * @category Queries
- * @group Activities
- */
 export const GetActivityComments = async ({
   activityId,
   pageParam,
@@ -58,10 +54,7 @@ export const GetActivityComments = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Activities
- */
+
 export const useGetActivityComments = (
   activityId: string = "",
   params: Omit<

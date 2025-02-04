@@ -13,9 +13,16 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Groups
- */
+ * Endpoint to manage and retrieve group invitations for a specific group.
+ * This function allows users to fetch a list of invitations associated with a group, 
+ * optionally filtered by the invitation status. It is useful for applications that 
+ * need to display or manage group invitations.
+ * @name GetGroupInvitations
+ * @param {string} groupId - The id of the group
+ * @param {keyof typeof GroupInvitationStatus} [status] - Optional status of the group invitation
+ * @version 1.2
+ **/
+
 export const GROUP_INVITATIONS_QUERY_KEY = (
   groupId: string,
   status?: keyof typeof GroupInvitationStatus
@@ -25,10 +32,6 @@ export const GROUP_INVITATIONS_QUERY_KEY = (
   return keys;
 };
 
-/**
- * @category Setters
- * @group Groups
- */
 export const SET_GROUP_INVITATIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof GROUP_INVITATIONS_QUERY_KEY>,
@@ -42,10 +45,6 @@ interface GetGroupInvitationsProps extends InfiniteQueryParams {
   status: keyof typeof GroupInvitationStatus;
 }
 
-/**
- * @category Queries
- * @group Groups
- */
 export const GetGroupInvitations = async ({
   groupId,
   status,
@@ -69,10 +68,7 @@ export const GetGroupInvitations = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Groups
- */
+
 export const useGetGroupInvitations = (
   groupId: string = "",
   status: keyof typeof GroupInvitationStatus = GroupInvitationStatus.invited,

@@ -13,18 +13,20 @@ import {
 import { StreamInputUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Stream
- */
+ * Endpoint to update a specific stream with new input data.
+ * This function allows updating the details of an existing stream by providing the stream ID and the new input data.
+ * It is designed to be used in applications where stream data needs to be modified or updated.
+ * @name UpdateStream
+ * @param {string} streamId - The ID of the stream to be updated
+ * @param {StreamInputUpdateInputs} stream - The new stream input data
+ * @version 1.2
+ **/
+
 export interface UpdateStreamParams extends MutationParams {
   streamId: string;
   stream: StreamInputUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Stream
- */
 export const UpdateStream = async ({
   streamId,
   stream,
@@ -62,10 +64,6 @@ export const UpdateStream = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Stream
- */
 export const useUpdateStreamInput = (
   options: Omit<
     ConnectedXMMutationOptions<

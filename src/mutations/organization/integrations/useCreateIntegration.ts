@@ -12,17 +12,18 @@ import {
 import { IntegrationCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Integration
- */
+ * Endpoint to create a new integration for an organization.
+ * This function allows the creation of a new integration by providing the necessary integration details.
+ * It is designed to be used in applications where organizations need to add new integrations to their system.
+ * @name CreateIntegration
+ * @param {IntegrationCreateInputs} integration - The integration details to be created
+ * @version 1.2
+ **/
+
 export interface CreateIntegrationParams extends MutationParams {
   integration: IntegrationCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Integration
- */
 export const CreateIntegration = async ({
   integration,
   adminApiParams,
@@ -40,10 +41,6 @@ export const CreateIntegration = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Integration
- */
 export const useCreateIntegration = (
   options: Omit<
     ConnectedXMMutationOptions<

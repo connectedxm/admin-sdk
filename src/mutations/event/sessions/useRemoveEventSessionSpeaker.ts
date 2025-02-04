@@ -11,19 +11,23 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Endpoint to remove a speaker from a specific event session.
+ * This function allows the removal of a speaker from a designated session within an event, 
+ * ensuring that the session's speaker list is updated accordingly.
+ * It is intended for use in administrative contexts where event session management is required.
+ * @name RemoveEventSessionSpeaker
+ * @param {string} eventId - The id of the event
+ * @param {string} sessionId - The id of the session
+ * @param {string} speakerId - The id of the speaker
+ * @version 1.2
+ **/
+
 export interface RemoveEventSessionSpeakerParams extends MutationParams {
   eventId: string;
   sessionId: string;
   speakerId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const RemoveEventSessionSpeaker = async ({
   eventId,
   sessionId,
@@ -44,12 +48,8 @@ export const RemoveEventSessionSpeaker = async ({
     SET_EVENT_SESSION_QUERY_DATA(queryClient, [eventId, sessionId], data);
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useRemoveEventSessionSpeaker = (
   options: Omit<
     ConnectedXMMutationOptions<

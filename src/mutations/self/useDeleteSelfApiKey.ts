@@ -1,5 +1,3 @@
-// DeleteSelfApiKey.ts
-
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
   ConnectedXMMutationOptions,
@@ -10,17 +8,17 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { SELF_API_KEYS_QUERY_KEY, SELF_API_KEY_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group SelfApiKeys
- */
+ * Endpoint to delete a self API key.
+ * This function allows users to delete their own API key using the provided API key ID.
+ * It ensures that the API key is removed from the system and invalidates related queries to maintain data consistency.
+ * @name DeleteSelfApiKey
+ * @param {string} apiKeyId - The id of the API key to be deleted
+ * @version 1.2
+ **/
 export interface DeleteSelfApiKeyParams extends MutationParams {
   apiKeyId: string;
 }
 
-/**
- * @category Methods
- * @group SelfApiKeys
- */
 export const DeleteSelfApiKey = async ({
   apiKeyId,
   adminApiParams,
@@ -37,10 +35,6 @@ export const DeleteSelfApiKey = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group SelfApiKeys
- */
 export const useDeleteSelfApiKey = (
   options: Omit<
     ConnectedXMMutationOptions<

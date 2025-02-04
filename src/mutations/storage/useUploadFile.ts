@@ -7,24 +7,25 @@ import {
 import { ConnectedXMResponse, File } from "@src/interfaces";
 
 /**
- * @category Params
- * @group Storage
- */
+ * Endpoint to upload a file to storage.
+ * This function allows users to upload a file by providing its data URI and source.
+ * It is designed to be used in applications where file storage is required.
+ * @name UploadFile
+ * @param {string} dataUri - The data URI of the file
+ * @param {"admin" | "response"} source - The source of the file
+ * @param {string} [name] - Optional name of the file
+ * @version 1.2
+ **/
 export interface UploadFileParams extends MutationParams {
   dataUri: string;
   source: "admin" | "response";
   name?: string;
 }
 
-/**
- * @category Methods
- * @group Storage
- */
 export const UploadFile = async ({
   dataUri,
   source,
   name,
-  // queryClient,
   adminApiParams,
 }: UploadFileParams): Promise<ConnectedXMResponse<File>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -34,14 +35,9 @@ export const UploadFile = async ({
     source,
     name,
   });
-  // if(queryClient && data.status === "ok") { }
   return data;
 };
 
-/**
- * @category Mutations
- * @group Storage
- */
 export const useUploadFile = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -10,18 +10,19 @@ import { EVENTS_QUERY_KEY } from "./useGetEvents";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
+ * Provides functions and hooks for querying event data, including fetching specific events and managing query data.
+ * This module is designed to facilitate the retrieval and caching of event information within an application.
+ * It includes utilities for setting query data and hooks for integrating with React Query.
+ * @name GetEvent
+ * @param {string} eventId - The id of the event
+ * @version 1.2
  */
+
 export const EVENT_QUERY_KEY = (eventId: string) => [
   ...EVENTS_QUERY_KEY(),
   eventId,
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetEventProps extends SingleQueryParams {
   eventId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEvent = async ({
   eventId,
   adminApiParams,
@@ -46,10 +43,7 @@ export const GetEvent = async ({
   const { data } = await adminApi.get(`/events/${eventId}`);
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEvent = (
   eventId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEvent>> = {}

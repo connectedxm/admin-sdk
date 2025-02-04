@@ -8,9 +8,14 @@ import {
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Imports
- */
+ * Retrieves a list of imports, optionally filtered by a specific tier ID.
+ * This function is designed to fetch import data, which can be filtered by tier, 
+ * and is suitable for applications that require paginated import data retrieval.
+ * @name GetImports
+ * @param {string} [tierId] - The id of the tier to filter imports
+ * @version 1.2
+ **/
+
 export const IMPORTS_QUERY_KEY = (tierId?: string) => {
   const keys = ["IMPORTS"];
   if (tierId) keys.push(tierId);
@@ -21,10 +26,6 @@ interface GetImportsProps extends InfiniteQueryParams {
   tierId?: string;
 }
 
-/**
- * @category Queries
- * @group Imports
- */
 export const GetImports = async ({
   tierId,
   pageParam,
@@ -45,10 +46,7 @@ export const GetImports = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Imports
- */
+
 export const useGetImports = (
   tierId: string = "",
   params: Omit<

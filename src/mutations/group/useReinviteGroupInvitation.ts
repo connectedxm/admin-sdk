@@ -8,18 +8,20 @@ import {
 } from "../useConnectedMutation";
 
 /**
- * @category Params
- * @group Groups
- */
+ * Endpoint to reinvite a group member with a pending invitation.
+ * This function allows the reinvitation of a group member whose invitation is still pending.
+ * It updates the invitation status and ensures the group member receives a new invitation.
+ * @name PutReinviteGroupInvitation
+ * @param {string} groupId - The id of the group
+ * @param {string} invitationId - The id of the invitation
+ * @version 1.2
+ **/
+
 export interface ReinviteGroupInvitationParams extends MutationParams {
   groupId: string;
   invitationId: string;
 }
 
-/**
- * @category Methods
- * @group Groups
- */
 export const ReinviteGroupInvitation = async ({
   groupId,
   invitationId,
@@ -40,10 +42,6 @@ export const ReinviteGroupInvitation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Groups
- */
 export const useReinviteGroupInvitation = (
   options: Omit<
     ConnectedXMMutationOptions<

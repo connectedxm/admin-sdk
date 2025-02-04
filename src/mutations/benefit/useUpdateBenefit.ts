@@ -9,18 +9,19 @@ import { BENEFITS_QUERY_KEY, SET_BENEFIT_QUERY_DATA } from "@src/queries";
 import { BenefitTranslationUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Benefit
- */
+ * Endpoint to update the details of a specific benefit.
+ * This function allows for updating the information of a benefit by providing the benefit ID and the new details.
+ * It is used in scenarios where benefit information needs to be modified.
+ * @name UpdateBenefit
+ * @param {string} benefitId - The id of the benefit
+ * @param {BenefitTranslationUpdateInputs} benefit - The details of the benefit to update
+ * @version 1.2
+ **/
 export interface UpdateBenefitParams extends MutationParams {
   benefitId: string;
   benefit: BenefitTranslationUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Benefit
- */
 export const UpdateBenefit = async ({
   benefitId,
   benefit,
@@ -48,12 +49,8 @@ export const UpdateBenefit = async ({
     queryClient.invalidateQueries({ queryKey: BENEFITS_QUERY_KEY() });
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Benefit
- */
 export const useUpdateBenefit = (
   options: Omit<
     ConnectedXMMutationOptions<

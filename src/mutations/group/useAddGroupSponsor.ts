@@ -8,18 +8,19 @@ import { ConnectedXMResponse, Group } from "@src/interfaces";
 import { SET_GROUP_QUERY_DATA, GROUP_SPONSORS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Groups
- */
+ * Endpoint to add a sponsor to a specific group.
+ * This function allows the addition of a sponsor to a group by specifying the group and account IDs.
+ * It is used in scenarios where a group needs to be associated with a new sponsor.
+ * @name AddGroupSponsor
+ * @param {string} groupId - The id of the group
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
 export interface AddGroupSponsorParams extends MutationParams {
   groupId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Groups
- */
 export const AddGroupSponsor = async ({
   groupId,
   accountId,
@@ -39,10 +40,6 @@ export const AddGroupSponsor = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Groups
- */
 export const useAddGroupSponsor = (
   options: Omit<
     ConnectedXMMutationOptions<

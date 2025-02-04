@@ -9,17 +9,17 @@ import { INTERESTS_QUERY_KEY, SET_INTEREST_QUERY_DATA } from "@src/queries";
 import { InterestCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Interest
- */
+ * Endpoint to create a new interest within the system.
+ * This function allows for the creation of a new interest by providing the necessary interest data.
+ * It is designed to be used in applications where users can manage and add new interests.
+ * @name CreateInterest
+ * @param {InterestCreateInputs} interest - The interest data to be created
+ * @version 1.2
+ **/
 export interface CreateInterestParams extends MutationParams {
   interest: InterestCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Interest
- */
 export const CreateInterest = async ({
   interest,
   adminApiParams,
@@ -37,10 +37,6 @@ export const CreateInterest = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Interest
- */
 export const useCreateInterest = (
   options: Omit<
     ConnectedXMMutationOptions<

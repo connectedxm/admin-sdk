@@ -10,9 +10,16 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { EVENT_PASSES_QUERY_KEY } from "../passes";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Endpoint to retrieve a list of attendee passes for a specific event pass.
+ * This function allows users to fetch attendee pass details associated with a particular event and pass ID.
+ * It is designed to be used in applications where information about event pass attendees is required.
+ * @name GetEventPassAttendeePasses
+ * @param {string} eventId - The id of the event
+ * @param {string} passId - The id of the pass
+ * @param {keyof typeof EventPassStatus} [status] - Optional status of the event pass
+ * @version 1.2
+ **/
+
 export const EVENT_PASS_ATTENDEE_PASSES_QUERY_KEY = (
   eventId: string,
   passId: string,
@@ -27,10 +34,6 @@ export const EVENT_PASS_ATTENDEE_PASSES_QUERY_KEY = (
   return key;
 };
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_PASS_ATTENDEE_PASSES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_PASS_ATTENDEE_PASSES_QUERY_KEY>,
@@ -48,10 +51,6 @@ interface GetEventPassAttendeePassesProps extends InfiniteQueryParams {
   status?: keyof typeof EventPassStatus;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventPassAttendeePasses = async ({
   eventId,
   passId,
@@ -79,10 +78,7 @@ export const GetEventPassAttendeePasses = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventPassAttendeePasses = (
   eventId: string = "",
   passId: string = "",

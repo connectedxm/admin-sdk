@@ -8,18 +8,20 @@ import { ConnectedXMResponse, SupportTicket } from "@src/interfaces";
 import { SET_SUPPORT_TICKET_QUERY_DATA } from "@src/queries";
 
 /**
- * @category Params
- * @group SupportTickets
- */
+ * Endpoint to create a new note for a support ticket.
+ * This function allows users to add additional information or comments to an existing support ticket by creating a new note.
+ * It is useful for tracking the progress or updates related to a support ticket.
+ * @name CreateSupportTicketNote
+ * @param {string} supportTicketId - The id of the support ticket
+ * @param {string} text - The content of the note
+ * @version 1.2
+ **/
+
 export interface CreateSupportTicketNoteParams extends MutationParams {
   supportTicketId: string;
   text: string;
 }
 
-/**
- * @category Methods
- * @group SupportTickets
- */
 export const CreateSupportTicketNote = async ({
   supportTicketId,
   text,
@@ -39,10 +41,6 @@ export const CreateSupportTicketNote = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group SupportTickets
- */
 export const useCreateSupportTicketNote = (
   options: Omit<
     ConnectedXMMutationOptions<

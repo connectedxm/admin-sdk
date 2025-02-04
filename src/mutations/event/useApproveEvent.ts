@@ -12,17 +12,17 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event
- */
+ * Endpoint to approve an event within the system.
+ * This function allows administrators to approve events by providing the event ID.
+ * It updates the event status and refreshes relevant queries to ensure data consistency.
+ * @name ApproveEvent
+ * @param {string} eventId - The ID of the event to be approved
+ * @version 1.2
+ **/
 export interface ApproveEventParams extends MutationParams {
   eventId: string;
 }
 
-/**
- * @category Methods
- * @group Event
- */
 export const ApproveEvent = async ({
   eventId,
   adminApiParams,
@@ -40,10 +40,6 @@ export const ApproveEvent = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event
- */
 export const useApproveEvent = (
   options: Omit<
     ConnectedXMMutationOptions<

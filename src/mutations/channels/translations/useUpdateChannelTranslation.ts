@@ -16,19 +16,24 @@ import {
 } from "@src/queries/channels";
 
 /**
- * @category Params
- * @group Channel-Translation
- */
+ * Updates the translation for a specific channel in a given locale.
+ * This function allows for updating the translation details of a channel, 
+ * which is useful for maintaining multilingual support within the application.
+ * It ensures that the channel's translation is updated in the backend and 
+ * invalidates the relevant queries to keep the client-side data in sync.
+ * @name UpdateChannelTranslation
+ * @param {string} channelId - The ID of the channel
+ * @param {ISupportedLocale} locale - The locale for which the translation is being updated
+ * @param {ChannelTranslationUpdateInputs} channelTranslation - The translation details to update
+ * @version 1.2
+ **/
+
 export interface UpdateChannelTranslationParams extends MutationParams {
   channelId: string;
   locale: ISupportedLocale;
   channelTranslation: ChannelTranslationUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Channel-Translation
- */
 export const UpdateChannelTranslation = async ({
   channelId,
   channelTranslation,
@@ -59,10 +64,6 @@ export const UpdateChannelTranslation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Channel-Translation
- */
 export const useUpdateChannelTranslation = (
   options: Omit<
     ConnectedXMMutationOptions<

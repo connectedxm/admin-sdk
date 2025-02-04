@@ -11,19 +11,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-PassTypes
- */
+ * Endpoint to remove an add-on from a specific event pass type.
+ * This function allows the removal of an add-on associated with a particular event pass type by specifying the event ID, pass type ID, and add-on ID.
+ * It is used in scenarios where an add-on needs to be detached from an event pass type, ensuring the event pass type is updated accordingly.
+ * @name RemoveEventPassTypeAddOn
+ * @param {string} eventId - The id of the event
+ * @param {string} passTypeId - The id of the pass type
+ * @param {string} addOnId - The id of the add-on
+ * @version 1.2
+ **/
+
 export interface RemoveEventPassTypeAddOnParams extends MutationParams {
   eventId: string;
   passTypeId: string;
   addOnId: string;
 }
 
-/**
- * @category Methods
- * @group Event-PassTypes
- */
 export const RemoveEventPassTypeAddOn = async ({
   eventId,
   passTypeId,
@@ -46,10 +49,6 @@ export const RemoveEventPassTypeAddOn = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-PassTypes
- */
 export const useRemoveEventPassTypeAddOn = (
   options: Omit<
     ConnectedXMMutationOptions<

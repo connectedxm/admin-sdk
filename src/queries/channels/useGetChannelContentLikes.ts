@@ -1,5 +1,4 @@
 import { ChannelContentLike, ConnectedXMResponse } from "@src/interfaces";
-
 import {
   InfiniteQueryParams,
   InfiniteQueryOptions,
@@ -10,18 +9,20 @@ import { CHANNEL_CONTENT_QUERY_KEY } from "./useGetChannelContent";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Channels
- */
+ * Fetches the likes for a specific piece of content within a channel.
+ * This function supports pagination and filtering, allowing users to retrieve likes data efficiently.
+ * It is designed to be used in applications where understanding user engagement with channel content is necessary.
+ * @name GetChannelContentLikes
+ * @param {string} channelId - The id of the channel
+ * @param {string} contentId - The id of the content
+ * @version 1.2
+ **/
+
 export const CHANNEL_CONTENT_LIKES_QUERY_KEY = (
   channelId: string,
   contentId: string
 ) => [...CHANNEL_CONTENT_QUERY_KEY(channelId, contentId), "LIKES"];
 
-/**
- * @category Setters
- * @group Channels
- */
 export const SET_CHANNEL_CONTENT_LIKES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof CHANNEL_CONTENT_LIKES_QUERY_KEY>,
@@ -35,10 +36,6 @@ interface GetContentLikesProps extends InfiniteQueryParams {
   contentId: string;
 }
 
-/**
- * @category Queries
- * @group Channels
- */
 export const GetChannelContentLikes = async ({
   channelId,
   contentId,
@@ -59,15 +56,12 @@ export const GetChannelContentLikes = async ({
         pageSize: pageSize || undefined,
         orderBy: orderBy || undefined,
         search: search || undefined,
-      },
+      }
     }
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Channels
- */
+
 export const useGetChannelContentLikes = (
   channelId: string = "",
   contentId: string = "",

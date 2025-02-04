@@ -12,19 +12,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Faqs
- */
+ * Endpoint to create a new question for a specific FAQ section in an event.
+ * This function allows users to add a question to an existing FAQ section within a specified event.
+ * It is designed to facilitate the management of FAQ sections by enabling the addition of new questions.
+ * @name CreateEventFaqSectionQuestion
+ * @param {string} sectionId - The id of the FAQ section
+ * @param {string} eventId - The id of the event
+ * @param {EventFaqSectionQuestionCreateInputs} faq - The inputs for creating the FAQ section question
+ * @version 1.2
+ **/
+
 export interface CreateEventFaqSectionQuestionParams extends MutationParams {
   sectionId: string;
   eventId: string;
   faq: EventFaqSectionQuestionCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Faqs
- */
 export const CreateEventFaqSectionQuestion = async ({
   sectionId,
   eventId,
@@ -52,10 +55,6 @@ export const CreateEventFaqSectionQuestion = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Faqs
- */
 export const useCreateEventFaqSectionQuestion = (
   options: Omit<
     ConnectedXMMutationOptions<

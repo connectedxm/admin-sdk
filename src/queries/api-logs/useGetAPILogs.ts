@@ -8,9 +8,20 @@ import { ConnectedXMResponse, BaseAPILog } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Key
- * @group Emails
- */
+ * Endpoint to retrieve API logs with various filtering options.
+ * This function allows users to fetch API logs based on specific criteria such as date range, HTTP method, status, source, user ID, and account ID.
+ * It is designed to be used in applications where monitoring and analyzing API usage is required.
+ * @name GetAPILogs
+ * @param {string} startDate - The start date for filtering logs
+ * @param {string} endDate - The end date for filtering logs
+ * @param {string} [method] - Optional HTTP method for filtering logs
+ * @param {"success" | "failed"} [status] - Optional status for filtering logs
+ * @param {string} [source] - Optional source for filtering logs
+ * @param {string} [userId] - Optional user ID for filtering logs
+ * @param {string} [accountId] - Optional account ID for filtering logs
+ * @version 1.2
+ **/
+
 export const API_LOGS_QUERY_KEY = (
   startDate: string = "",
   endDate: string = "",
@@ -29,10 +40,6 @@ export const API_LOGS_QUERY_KEY = (
   return keys;
 };
 
-/**
- * @category Setters
- * @group Emails
- */
 export const SET_API_LOGS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof API_LOGS_QUERY_KEY>,
@@ -51,10 +58,6 @@ interface GetAPILogsParams extends InfiniteQueryParams {
   accountId?: string;
 }
 
-/**
- * @category Query
- * @group Emails
- */
 export const GetAPILogs = async ({
   startDate,
   endDate,
@@ -89,10 +92,6 @@ export const GetAPILogs = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Emails
- */
 export const useGetAPILogs = (
   startDate: string,
   endDate: string,

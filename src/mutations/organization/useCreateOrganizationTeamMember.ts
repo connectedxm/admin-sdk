@@ -12,17 +12,18 @@ import {
 import { OrganizationTeamMemberCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Organization
- */
+ * Endpoint to create a new organization team member.
+ * This function allows the creation of a new team member within an organization by providing the necessary inputs.
+ * It is designed to be used in applications where managing team members is required.
+ * @name CreateOrganizationTeamMember
+ * @param {OrganizationTeamMemberCreateInputs} teamMember - The inputs for creating a team member
+ * @version 1.2
+ **/
+
 export interface CreateOrganizationTeamMemberParams extends MutationParams {
   teamMember: OrganizationTeamMemberCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Organization
- */
 export const CreateOrganizationTeamMember = async ({
   teamMember,
   adminApiParams,
@@ -44,10 +45,6 @@ export const CreateOrganizationTeamMember = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization
- */
 export const useCreateOrganizationTeamMember = (
   options: Omit<
     ConnectedXMMutationOptions<

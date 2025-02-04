@@ -9,17 +9,18 @@ import { IMAGES_QUERY_KEY, SET_IMAGE_QUERY_DATA } from "@src/queries";
 import { ImageCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Images
- */
+ * Endpoint to create a new image in the system.
+ * This function allows users to upload and store a new image by providing the necessary image data.
+ * It is designed to be used in applications where image management and storage are required.
+ * @name CreateImage
+ * @param {ImageCreateInputs} image - The image data to be created
+ * @version 1.2
+ **/
+
 export interface CreateImageParams extends MutationParams {
   image: ImageCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Images
- */
 export const CreateImage = async ({
   image,
   adminApiParams,
@@ -38,10 +39,6 @@ export const CreateImage = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Images
- */
 export const useCreateImage = (
   options: Omit<
     ConnectedXMMutationOptions<

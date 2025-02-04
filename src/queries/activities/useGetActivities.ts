@@ -9,15 +9,15 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Activities
- */
+ * Endpoint to retrieve a list of activities.
+ * This function fetches a paginated list of activities from the server, allowing for optional sorting and searching.
+ * It is designed to be used in applications where activity data needs to be displayed or processed.
+ * @name GetActivities
+ * @version 1.2
+ **/
+
 export const ACTIVITIES_QUERY_KEY = () => ["ACTIVITIES"];
 
-/**
- * @category Setters
- * @group Activities
- */
 export const SET_ACTIVITIES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACTIVITIES_QUERY_KEY>,
@@ -28,10 +28,6 @@ export const SET_ACTIVITIES_QUERY_DATA = (
 
 interface GetActivitiesProps extends InfiniteQueryParams {}
 
-/**
- * @category Queries
- * @group Activities
- */
 export const GetActivities = async ({
   pageParam,
   pageSize,
@@ -50,10 +46,7 @@ export const GetActivities = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Activities
- */
+
 export const useGetActivities = (
   params: Omit<
     InfiniteQueryParams,

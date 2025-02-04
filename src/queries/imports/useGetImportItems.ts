@@ -1,19 +1,21 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { ImportItem } from "@src/interfaces";
 import {
   InfiniteQueryParams,
   InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
-
 import { IMPORTS_QUERY_KEY } from "./useGetImports";
 
 /**
- * @category Keys
- * @group Imports
- */
+ * Endpoint to retrieve a list of import items associated with a specific import ID.
+ * This function is designed to fetch import items, which are part of a larger import process, 
+ * allowing users to manage and review the items being imported.
+ * @name GetImportItems
+ * @param {string} importId - The id of the import
+ * @version 1.2
+ **/
 export const IMPORT_ITEMS_QUERY_KEY = (importId: string) => [
   ...IMPORTS_QUERY_KEY(),
   importId,
@@ -23,10 +25,6 @@ interface GetImportItemsProps extends InfiniteQueryParams {
   importId: string;
 }
 
-/**
- * @category Queries
- * @group Imports
- */
 export const GetImportItems = async ({
   importId,
   pageParam,
@@ -46,10 +44,7 @@ export const GetImportItems = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Imports
- */
+
 export const useGetImportItems = (
   importId: string = "",
   params: Omit<

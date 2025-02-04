@@ -9,18 +9,20 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { EVENT_SESSION_QUERY_KEY } from "../useGetEventSession";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Endpoint to retrieve and manage questions for a specific event session.
+ * This function allows users to fetch a list of questions associated with a particular event session.
+ * It is designed to be used in applications where detailed information about session questions is required.
+ * @name GetEventSessionQuestions
+ * @param {string} eventId - The id of the event
+ * @param {string} sessionId - The id of the session
+ * @version 1.2
+ **/
+
 export const EVENT_SESSION_QUESTIONS_QUERY_KEY = (
   eventId: string,
   sessionId: string
 ) => [...EVENT_SESSION_QUERY_KEY(eventId, sessionId), "QUESTIONS"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SESSION_QUESTIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SESSION_QUESTIONS_QUERY_KEY>,
@@ -43,10 +45,6 @@ interface GetEventSessionQuestionsProps extends InfiniteQueryParams {
   sessionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSessionQuestions = async ({
   eventId,
   sessionId,
@@ -72,10 +70,7 @@ export const GetEventSessionQuestions = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSessionQuestions = (
   eventId: string = "",
   sessionId: string = "",

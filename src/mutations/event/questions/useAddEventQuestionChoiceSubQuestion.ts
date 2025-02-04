@@ -15,9 +15,16 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Questions
- */
+ * Endpoint to add a sub-question to a specific choice of a question in an event.
+ * This function allows the addition of a sub-question to a particular choice within a question for a given event.
+ * It is useful in scenarios where dynamic question structures are needed, such as surveys or registration forms.
+ * @name AddEventQuestionChoiceSubQuestion
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @param {string} choiceId - The id of the choice
+ * @param {string} subQuestionId - The id of the sub-question
+ * @version 1.2
+**/
 export interface AddEventQuestionChoiceSubQuestionParams
   extends MutationParams {
   eventId: string;
@@ -26,10 +33,6 @@ export interface AddEventQuestionChoiceSubQuestionParams
   subQuestionId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Questions
- */
 export const AddEventQuestionChoiceSubQuestion = async ({
   eventId,
   questionId,
@@ -67,10 +70,6 @@ export const AddEventQuestionChoiceSubQuestion = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Questions
- */
 export const useAddEventQuestionChoiceSubQuestion = (
   options: Omit<
     ConnectedXMMutationOptions<

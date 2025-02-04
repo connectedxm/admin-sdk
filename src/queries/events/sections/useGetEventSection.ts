@@ -10,18 +10,20 @@ import { EVENT_SECTIONS_QUERY_KEY } from "./useGetEventSections";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches details for a specific event section by its ID within a given event.
+ * This function is designed to retrieve detailed information about a particular section of an event, 
+ * which can be used in applications that require insights into event structures.
+ * @name GetEventSection
+ * @param {string} eventId - The ID of the event
+ * @param {string} sectionId - The ID of the section
+ * @version 1.2
+ **/
+
 export const EVENT_SECTION_QUERY_KEY = (eventId: string, sectionId: string) => [
   ...EVENT_SECTIONS_QUERY_KEY(eventId),
   sectionId,
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SECTION_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_SECTION_QUERY_KEY>,
@@ -35,10 +37,6 @@ interface GetEventSectionProps extends SingleQueryParams {
   sectionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSection = async ({
   eventId,
   sectionId,
@@ -50,10 +48,7 @@ export const GetEventSection = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSection = (
   eventId: string = "",
   sectionId: string = "",

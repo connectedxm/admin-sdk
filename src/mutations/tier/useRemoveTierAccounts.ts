@@ -8,17 +8,18 @@ import { ConnectedXMResponse, Tier } from "@src/interfaces";
 import { SET_TIER_QUERY_DATA, TIER_ACCOUNTS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Tier
- */
+ * Endpoint to remove accounts from a specified tier.
+ * This function allows the removal of all accounts associated with a given tier ID.
+ * It is used in scenarios where accounts need to be disassociated from a tier within an application.
+ * @name RemoveTierAccounts
+ * @param {string} tierId - The id of the tier
+ * @version 1.2
+ **/
+
 export interface RemoveTierAccountsParams extends MutationParams {
   tierId: string;
 }
 
-/**
- * @category Methods
- * @group Tier
- */
 export const RemoveTierAccounts = async ({
   tierId,
   adminApiParams,
@@ -37,10 +38,6 @@ export const RemoveTierAccounts = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Tier
- */
 export const useRemoveTierAccounts = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -5,23 +5,24 @@ import {
   useConnectedSingleQuery,
 } from "../useConnectedSingleQuery";
 import { ConnectedXMResponse, Lead } from "@src/interfaces";
-
 import { QueryClient } from "@tanstack/react-query";
 import { ACCOUNT_LEADS_QUERY_KEY } from "./useGetAccountLeads";
 
 /**
- * @category Keys
- * @group Accounts
- */
+ * Endpoint to fetch a specific lead from an account.
+ * This function retrieves detailed information about a lead associated with a particular account.
+ * It is designed for applications that require access to specific lead data within an account.
+ * @name GetAccountLead
+ * @param {string} accountId - The id of the account
+ * @param {string} leadId - The id of the lead
+ * @version 1.2
+ **/
+
 export const ACCOUNT_LEAD_QUERY_KEY = (accountId: string, leadId: string) => [
   ...ACCOUNT_LEADS_QUERY_KEY(accountId),
   leadId,
 ];
 
-/**
- * @category Setters
- * @group Accounts
- */
 export const SET_ACCOUNT_LEAD_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_LEAD_QUERY_KEY>,
@@ -35,10 +36,6 @@ interface GetAccountLeadProps extends SingleQueryParams {
   leadId: string;
 }
 
-/**
- * @category Queries
- * @group Accounts
- */
 export const GetAccountLead = async ({
   accountId = "",
   leadId = "",
@@ -48,10 +45,7 @@ export const GetAccountLead = async ({
   const { data } = await adminApi.get(`/accounts/${accountId}/leads/${leadId}`);
   return data;
 };
-/**
- * @category Hooks
- * @group Accounts
- */
+
 export const useGetAccountLead = (
   accountId: string = "",
   leadId: string = "",

@@ -10,18 +10,20 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves a specific event page by its ID using the admin API.
+ * This function is designed to fetch detailed information about an event page, 
+ * which can be used in applications that require access to event page data.
+ * @name GetEventPage
+ * @param {string} eventId - The ID of the event
+ * @param {string} pageId - The ID of the page
+ * @version 1.2
+ **/
+
 export const EVENT_PAGE_QUERY_KEY = (eventId: string, pageId: string) => [
   ...EVENT_PAGES_QUERY_KEY(eventId),
   pageId,
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_PAGE_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_PAGE_QUERY_KEY>,
@@ -35,10 +37,6 @@ interface GetEventPageProps extends SingleQueryParams {
   pageId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventPage = async ({
   eventId,
   pageId,
@@ -48,10 +46,7 @@ export const GetEventPage = async ({
   const { data } = await adminApi.get(`/events/${eventId}/pages/${pageId}`);
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventPage = (
   eventId: string = "",
   pageId: string = "",

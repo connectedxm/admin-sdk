@@ -11,18 +11,19 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Reservations
- */
+ * Endpoint to delete a room type for a specific event and invalidate related queries.
+ * This function allows the removal of a room type associated with a given event, ensuring that
+ * any cached queries related to the event's room types are invalidated to maintain data consistency.
+ * @name DeleteEventRoomType
+ * @param {string} eventId - The id of the event
+ * @param {string} roomTypeId - The id of the room type
+ * @version 1.2
+**/
 export interface DeleteEventRoomTypeParams extends MutationParams {
   eventId: string;
   roomTypeId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Reservations
- */
 export const DeleteEventRoomType = async ({
   eventId,
   roomTypeId,
@@ -44,10 +45,6 @@ export const DeleteEventRoomType = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Reservations
- */
 export const useDeleteEventRoomType = (
   options: Omit<
     ConnectedXMMutationOptions<

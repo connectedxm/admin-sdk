@@ -10,18 +10,21 @@ import { QueryClient } from "@tanstack/react-query";
 import { EVENT_ATTENDEE_QUERY_KEY } from "./useGetEventAttendee";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches payments for a specific event attendee with pagination and filtering capabilities.
+ * This function is designed to retrieve payment details associated with an event attendee, 
+ * allowing for paginated and filtered results. It is useful in scenarios where detailed 
+ * payment information is required for event management applications.
+ * @name GetEventAttendeePayments
+ * @param {string} eventId - The id of the event
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export const EVENT_ATTENDEE_PAYMENTS_QUERY_KEY = (
   eventId: string,
   accountId: string
 ) => [...EVENT_ATTENDEE_QUERY_KEY(eventId, accountId), "PAYMENTS"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_ATTENDEE_PAYMENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_ATTENDEE_PAYMENTS_QUERY_KEY>,
@@ -38,10 +41,6 @@ interface GetEventAttendeePaymentsProps extends InfiniteQueryParams {
   accountId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventAttendeePayments = async ({
   eventId,
   accountId,
@@ -65,10 +64,7 @@ export const GetEventAttendeePayments = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventAttendeePayments = (
   eventId: string = "",
   accountId: string = "",

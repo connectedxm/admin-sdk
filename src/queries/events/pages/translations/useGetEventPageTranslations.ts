@@ -9,6 +9,16 @@ import {
 import { EVENT_PAGE_QUERY_KEY } from "../useGetEventPage";
 
 /**
+ * Retrieves translations for a specific event page.
+ * This function fetches translations associated with a given event and page ID, allowing applications to display localized content for event pages.
+ * It is designed to be used in scenarios where multilingual support for event pages is required.
+ * @name GetEventPageTranslations
+ * @param {string} eventId - The ID of the event
+ * @param {string} pageId - The ID of the page
+ * @version 1.2
+**/
+
+/**
  * @category Keys
  * @group Events
  */

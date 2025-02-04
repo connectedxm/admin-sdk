@@ -8,6 +8,17 @@ import { EVENT_SESSION_LOCATION_TRANSLATION_QUERY_KEY } from "@src/queries/event
 import { EVENT_SESSION_LOCATION_TRANSLATIONS_QUERY_KEY } from "@src/queries/events/sessions/locations/translations/useGetEventSessionTranslations";
 
 /**
+ * Deletes a specific translation for an event session location.
+ * This function is used to remove a translation entry for a given event session location identified by event ID, location ID, and locale.
+ * It ensures that the translation data is invalidated in the query cache upon successful deletion.
+ * @name DeleteEventSessionLocationTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} locationId - The ID of the session location
+ * @param {string} locale - The locale of the translation
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Session-Location-Translations
  */

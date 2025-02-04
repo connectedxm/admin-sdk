@@ -12,9 +12,17 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Emails-Translations
+ * Updates the translation of an event email for a specific locale.
+ * This function allows updating the translation details of an event email identified by event ID, email type, and locale.
+ * It is used in scenarios where the email content needs to be localized or updated for different languages.
+ * @name UpdateEventEmailTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {EventEmailType} type - The type of the event email
+ * @param {ISupportedLocale} locale - The locale for the translation
+ * @param {EventEmailTranslationUpdateInputs} emailTranslation - The translation inputs for the email
+ * @version 1.2
  */
+
 export interface UpdateEventEmailTranslationParams extends MutationParams {
   eventId: string;
   type: EventEmailType;
@@ -22,10 +30,6 @@ export interface UpdateEventEmailTranslationParams extends MutationParams {
   emailTranslation: EventEmailTranslationUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Emails-Translations
- */
 export const UpdateEventEmailTranslation = async ({
   eventId,
   type,
@@ -54,10 +58,6 @@ export const UpdateEventEmailTranslation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Emails-Translations
- */
 export const useUpdateEventEmailTranslation = (
   options: Omit<
     ConnectedXMMutationOptions<

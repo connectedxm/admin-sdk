@@ -1,5 +1,4 @@
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Activity } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
@@ -11,18 +10,20 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Accounts
- */
+ * Endpoint to retrieve a list of comments associated with a specific account, 
+ * supporting pagination and filtering options. This function is designed to 
+ * facilitate the fetching of account comments, allowing for efficient data 
+ * retrieval in applications that require comment management or display.
+ * @name GetAccountComments
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export const ACCOUNT_COMMENTS_QUERY_KEY = (accountId: string) => [
   ...ACCOUNT_QUERY_KEY(accountId),
   "COMMENTS",
 ];
 
-/**
- * @category Setters
- * @group Accounts
- */
 export const SET_ACCOUNT_COMMENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_COMMENTS_QUERY_KEY>,
@@ -30,14 +31,11 @@ export const SET_ACCOUNT_COMMENTS_QUERY_DATA = (
 ) => {
   client.setQueryData(ACCOUNT_COMMENTS_QUERY_KEY(...keyParams), response);
 };
+
 interface GetAccountCommentsProps extends InfiniteQueryParams {
   accountId: string;
 }
 
-/**
- * @category Queries
- * @group Accounts
- */
 export const GetAccountComments = async ({
   accountId,
   pageParam,
@@ -57,10 +55,7 @@ export const GetAccountComments = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Accounts
- */
+
 export const useGetAccountComments = (
   accountId: string = "",
   params: Omit<

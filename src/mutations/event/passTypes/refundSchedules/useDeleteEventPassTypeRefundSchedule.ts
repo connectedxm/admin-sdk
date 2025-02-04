@@ -8,19 +8,21 @@ import { EVENT_PASS_TYPE_REFUND_SCHEDULE_QUERY_KEY } from "@src/queries/events/p
 import { EVENT_PASS_TYPE_REFUND_SCHEDULES_QUERY_KEY } from "@src/queries/events/passTypes/refundSchedules/useGetEventPassTypeRefundSchedules";
 
 /**
- * @category Params
- * @group Events
- */
+ * Endpoint to delete a refund schedule for a specific event and pass type.
+ * This function allows the removal of a refund schedule associated with a particular event and pass type.
+ * It is designed to be used in scenarios where refund schedules need to be managed or updated.
+ * @name DeleteEventPassTypeRefundSchedule
+ * @param {string} eventId - The id of the event
+ * @param {string} passTypeId - The id of the pass type
+ * @param {string} scheduleId - The id of the refund schedule
+ * @version 1.2
+ **/
 interface DeleteEventPassTypeRefundScheduleParams extends MutationParams {
   eventId: string;
   passTypeId: string;
   scheduleId: string;
 }
 
-/**
- * @category Methods
- * @group Events
- */
 export const DeleteEventPassTypeRefundSchedule = async ({
   eventId,
   passTypeId,
@@ -50,10 +52,6 @@ export const DeleteEventPassTypeRefundSchedule = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Events
- */
 export const useDeleteEventPassTypeRefundSchedule = (
   options: Omit<
     ConnectedXMMutationOptions<

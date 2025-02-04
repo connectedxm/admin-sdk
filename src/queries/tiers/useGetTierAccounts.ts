@@ -8,20 +8,21 @@ import {
 import { TIER_QUERY_KEY } from "./useGetTier";
 import { GetAdminAPI } from "@src/AdminAPI";
 
-// export const QUERY_KEY = "ACCOUNT_TIER_ACCOUNTS";
 /**
- * @category Keys
- * @group Tiers
- */
+ * Endpoint to retrieve a list of accounts associated with a specific tier.
+ * This function allows users to fetch accounts that belong to a particular tier, 
+ * providing options for pagination, sorting, and searching.
+ * It is designed to be used in applications where tier-based account management is required.
+ * @name GetTierAccounts
+ * @param {string} [tierId] - The id of the tier
+ * @version 1.2
+ **/
+
 export const TIER_ACCOUNTS_QUERY_KEY = (tierId: string) => [
   ...TIER_QUERY_KEY(tierId),
   "ACCOUNTS",
 ];
 
-/**
- * @category Setters
- * @group Tiers
- */
 export const SET_TIER_ACCOUNTS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof TIER_ACCOUNTS_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetTierAccountsProps extends InfiniteQueryParams {
   tierId?: string;
 }
 
-/**
- * @category Queries
- * @group Tiers
- */
 export const GetTierAccounts = async ({
   pageParam,
   pageSize,
@@ -58,10 +55,7 @@ export const GetTierAccounts = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Tiers
- */
+
 export const useGetTierAccounts = (
   tierId: string = "",
   params: Omit<

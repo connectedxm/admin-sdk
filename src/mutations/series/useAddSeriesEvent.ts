@@ -8,18 +8,20 @@ import { ConnectedXMResponse, Series } from "@src/interfaces";
 import { SET_SERIES_QUERY_DATA, SERIES_EVENTS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Series
- */
+ * Endpoint to add an event to a specific series.
+ * This function allows users to associate an event with a series by providing the series and event identifiers.
+ * It is designed to update the series with the new event and refresh the relevant query data.
+ * @name AddSeriesEvent
+ * @param {string} seriesId - The id of the series
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+ **/
+
 export interface AddSeriesEventParams extends MutationParams {
   seriesId: string;
   eventId: string;
 }
 
-/**
- * @category Methods
- * @group Series
- */
 export const AddSeriesEvent = async ({
   seriesId,
   eventId,
@@ -39,10 +41,6 @@ export const AddSeriesEvent = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Series
- */
 export const useAddSeriesEvent = (
   options: Omit<
     ConnectedXMMutationOptions<

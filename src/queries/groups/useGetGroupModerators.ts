@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { GroupMembership } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -11,18 +10,18 @@ import { GROUP_QUERY_KEY } from "./useGetGroup";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Groups
- */
+ * Retrieves a list of moderators for a specified group.
+ * This function fetches the moderators associated with a particular group, allowing applications to display or manage group moderators.
+ * @name GetGroupModerators
+ * @param {string} groupId - The id of the group
+ * @version 1.2
+ **/
+
 export const GROUP_MODERATORS_QUERY_KEY = (groupId: string) => [
   ...GROUP_QUERY_KEY(groupId),
   "MODERATORS",
 ];
 
-/**
- * @category Setters
- * @group Groups
- */
 export const SET_GROUP_MODERATORS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof GROUP_MODERATORS_QUERY_KEY>,
@@ -35,10 +34,6 @@ interface GetGroupModeratorsProps extends InfiniteQueryParams {
   groupId: string;
 }
 
-/**
- * @category Queries
- * @group Groups
- */
 export const GetGroupModerators = async ({
   groupId,
   pageParam,
@@ -60,10 +55,7 @@ export const GetGroupModerators = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Groups
- */
+
 export const useGetGroupModerators = (
   groupId: string = "",
   params: Omit<

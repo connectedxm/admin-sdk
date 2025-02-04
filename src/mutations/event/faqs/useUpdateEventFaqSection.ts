@@ -12,19 +12,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Faqs
- */
+ * Updates a specific FAQ section for an event.
+ * This function allows for the modification of an existing FAQ section associated with a particular event.
+ * It is designed to be used in scenarios where event organizers need to update the content or details of an FAQ section.
+ * @name UpdateEventFaqSection
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the FAQ section
+ * @param {EventFaqSectionUpdateInputs} section - The inputs for updating the FAQ section
+ * @version 1.2
+ **/
+
 export interface UpdateEventFaqSectionParams extends MutationParams {
   eventId: string;
   sectionId: string;
   section: EventFaqSectionUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Faqs
- */
 export const UpdateEventFaqSection = async ({
   eventId,
   sectionId,
@@ -61,10 +64,6 @@ export const UpdateEventFaqSection = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Faqs
- */
 export const useUpdateEventFaqSection = (
   options: Omit<
     ConnectedXMMutationOptions<

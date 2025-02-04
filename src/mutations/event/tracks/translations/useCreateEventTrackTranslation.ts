@@ -11,6 +11,18 @@ import {
 } from "@src/queries";
 
 /**
+ * Creates a new translation for a specific event track.
+ * This function allows users to add a translation for an event track in a specified locale, with an option for automatic translation.
+ * It is designed to be used in applications where multilingual support for event tracks is required.
+ * @name PostEventTrackTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} trackId - The ID of the track
+ * @param {string} locale - The locale for the translation
+ * @param {[boolean]} autoTranslate - Whether to automatically translate the content
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Tracks-Translations
  */

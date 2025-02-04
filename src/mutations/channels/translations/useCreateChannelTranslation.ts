@@ -11,6 +11,17 @@ import {
 } from "@src/queries/channels";
 
 /**
+ * Creates a new translation for a specific channel.
+ * This function allows the creation of a channel translation by specifying the channel ID and locale.
+ * It supports optional auto-translation and updates the query cache upon successful creation.
+ * @name CreateChannelTranslation
+ * @param {string} channelId - The ID of the channel
+ * @param {string} locale - The locale for the translation
+ * @param {[boolean]} autoTranslate - Whether to auto-translate the content
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Channel-Translation
  */

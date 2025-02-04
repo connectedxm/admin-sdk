@@ -8,9 +8,16 @@ import { ConnectedXMMutationOptions } from "@src/mutations/useConnectedMutation"
 import { EVENT_ACCESS_USERS_QUERY_KEY } from "@src/queries/events/access/GetEventAccessUsers";
 
 /**
- * @category Mutations
- * @group Events
- */
+ * Endpoint to remove a user from the access list of a specific event.
+ * This function allows administrators to revoke access for a user from a particular event,
+ * ensuring that the user can no longer participate or view the event details.
+ * It is useful in scenarios where user access needs to be dynamically managed.
+ * @name RemoveEventAccessUser
+ * @param {string} eventId - The id of the event
+ * @param {string} userId - The id of the user
+ * @version 1.2
+ **/
+
 interface RemoveEventAccessUserParams extends MutationParams {
   eventId: string;
   userId: string;
@@ -36,10 +43,6 @@ export const RemoveEventAccessUser = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Events
- */
 export const useRemoveEventAccessUser = (
   options: Omit<
     ConnectedXMMutationOptions<

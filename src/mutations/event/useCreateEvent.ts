@@ -9,17 +9,17 @@ import { EVENTS_QUERY_KEY, SET_EVENT_QUERY_DATA } from "@src/queries";
 import { EventCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Event
- */
+ * Endpoint to create a new event within the system.
+ * This function allows for the creation of an event by providing the necessary event details.
+ * It is designed to be used in applications where event management is required.
+ * @name CreateEvent
+ * @param {EventCreateInputs} event - The event details to be created
+ * @version 1.2
+ **/
 export interface CreateEventParams extends MutationParams {
   event: EventCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Event
- */
 export const CreateEvent = async ({
   event,
   adminApiParams,
@@ -37,10 +37,6 @@ export const CreateEvent = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event
- */
 export const useCreateEvent = (
   options: Omit<
     ConnectedXMMutationOptions<

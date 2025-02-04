@@ -9,18 +9,19 @@ import {
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Endpoint to retrieve and manage event pass types for a specific event.
+ * This function allows users to fetch a list of pass types associated with a given event ID.
+ * It is designed to be used in applications where event pass type information is required.
+ * @name GetEventPassTypes
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+ **/
+
 export const EVENT_PASS_TYPES_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "PASS_TYPES",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_PASS_TYPES_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_PASS_TYPES_QUERY_KEY>,
@@ -33,10 +34,6 @@ interface GetEventPassTypesProps extends InfiniteQueryParams {
   eventId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventPassTypes = async ({
   eventId,
   pageParam,
@@ -56,10 +53,7 @@ export const GetEventPassTypes = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventPassTypes = (
   eventId: string = "",
   params: Omit<

@@ -8,18 +8,20 @@ import {
 import { EVENT_PAGES_QUERY_KEY, EVENT_PAGE_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Page
- */
+ * Endpoint to delete a specific event page within an event management system.
+ * This function allows administrators to remove a page associated with a particular event by providing the event and page identifiers.
+ * It ensures that the relevant cache is invalidated and queries are removed to maintain data consistency.
+ * @name DeleteEventPage
+ * @param {string} eventId - The id of the event
+ * @param {string} pageId - The id of the page
+ * @version 1.2
+ **/
+
 export interface DeleteEventPageParams extends MutationParams {
   eventId: string;
   pageId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Page
- */
 export const DeleteEventPage = async ({
   eventId,
   pageId,
@@ -40,10 +42,6 @@ export const DeleteEventPage = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Page
- */
 export const useDeleteEventPage = (
   options: Omit<
     ConnectedXMMutationOptions<

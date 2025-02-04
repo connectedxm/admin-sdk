@@ -12,19 +12,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Endpoint to update an event session with new data.
+ * This function allows updating the details of a specific session within an event by providing the event ID, session ID, and the updated session data.
+ * It is used in scenarios where modifications to session details are required, such as changing the session's schedule or speakers.
+ * @name UpdateEventSession
+ * @param {string} eventId - The id of the event
+ * @param {string} sessionId - The id of the session
+ * @param {EventSessionUpdateInputs} session - The session data to update
+ * @version 1.2
+**/
 export interface UpdateEventSessionParams extends MutationParams {
   eventId: string;
   sessionId: string;
   session: EventSessionUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const UpdateEventSession = async ({
   eventId,
   sessionId,
@@ -59,12 +61,8 @@ export const UpdateEventSession = async ({
     );
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useUpdateEventSession = (
   options: Omit<
     ConnectedXMMutationOptions<

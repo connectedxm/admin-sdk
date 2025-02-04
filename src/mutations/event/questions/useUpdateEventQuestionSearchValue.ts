@@ -15,9 +15,16 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Questions
- */
+ * Updates the search value for a specific question in an event.
+ * This function allows updating the search value associated with a particular question within an event.
+ * It is useful for scenarios where the search criteria for event questions need to be modified.
+ * @name UpdateEventQuestionSearchValue
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @param {string} searchValueId - The id of the search value
+ * @param {EventQuestionSearchValueUpdateInputs} searchValue - The new search value inputs
+ * @version 1.2
+ **/
 export interface UpdateEventQuestionSearchValueParams extends MutationParams {
   eventId: string;
   questionId: string;
@@ -25,10 +32,6 @@ export interface UpdateEventQuestionSearchValueParams extends MutationParams {
   searchValue: EventQuestionSearchValueUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Questions
- */
 export const UpdateEventQuestionSearchValue = async ({
   eventId,
   questionId,
@@ -60,10 +63,6 @@ export const UpdateEventQuestionSearchValue = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Questions
- */
 export const useUpdateEventQuestionSearchValue = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -11,19 +11,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Tracks
- */
+ * Endpoint to add a sponsor to a specific event track.
+ * This function allows the addition of a sponsor to a designated track within an event, 
+ * facilitating the management of event sponsorships. It is designed for use in applications 
+ * that require dynamic updates to event track sponsorships.
+ * @name AddEventTrackSponsor
+ * @param {string} eventId - The id of the event
+ * @param {string} trackId - The id of the track
+ * @param {string} sponsorId - The id of the sponsor
+ * @version 1.2
+ **/
 export interface AddEventTrackSponsorParams extends MutationParams {
   eventId: string;
   trackId: string;
   sponsorId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Tracks
- */
 export const AddEventTrackSponsor = async ({
   eventId,
   trackId,
@@ -44,10 +47,6 @@ export const AddEventTrackSponsor = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Tracks
- */
 export const useAddEventTrackSponsor = (
   options: Omit<
     ConnectedXMMutationOptions<

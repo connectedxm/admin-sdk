@@ -8,15 +8,15 @@ import { ConnectedXMResponse, User } from "@src/interfaces";
 import { SELF_QUERY_KEY, SET_SELF_QUERY_DATA } from "@src/queries";
 
 /**
- * @category Params
- * @group Images
- */
+ * Endpoint to delete the current user's profile image.
+ * This function allows users to remove their profile image from the system.
+ * It ensures that the user's image is deleted and updates the query cache accordingly.
+ * @name DeleteUserImage
+ * @version 1.2
+ **/
+
 export interface DeleteUserImageParams extends MutationParams {}
 
-/**
- * @category Methods
- * @group Images
- */
 export const DeleteUserImage = async ({
   adminApiParams,
   queryClient,
@@ -33,10 +33,6 @@ export const DeleteUserImage = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Images
- */
 export const useDeleteUserImage = (
   options: Omit<
     ConnectedXMMutationOptions<

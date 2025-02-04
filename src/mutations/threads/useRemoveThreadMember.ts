@@ -8,18 +8,20 @@ import { ConnectedXMResponse, GroupMembership } from "@src/interfaces";
 import { THREAD_MEMBERS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @thread Threads
- */
+ * Endpoint to remove a member from a specific thread.
+ * This function facilitates the removal of a user from a thread by specifying the thread and account IDs.
+ * It is intended for use in applications where thread membership management is required.
+ * @name RemoveThreadMember
+ * @param {string} threadId - The id of the thread
+ * @param {string} accountId - The id of the account to be removed
+ * @version 1.2
+ **/
+
 export interface RemoveThreadMemberParams extends MutationParams {
   threadId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @thread Threads
- */
 export const RemoveThreadMember = async ({
   threadId,
   accountId,
@@ -38,10 +40,6 @@ export const RemoveThreadMember = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @thread Threads
- */
 export const useRemoveThreadMember = (
   options: Omit<
     ConnectedXMMutationOptions<

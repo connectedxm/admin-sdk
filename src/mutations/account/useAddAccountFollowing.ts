@@ -11,18 +11,19 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to add a following relationship for a specified account.
+ * This function allows an account to follow another account by specifying the account IDs.
+ * It updates the account's following list and invalidates the relevant queries to ensure data consistency.
+ * @name AddAccountFollowing
+ * @param {string} accountId - The id of the account
+ * @param {string} followingId - The id of the account to follow
+ * @version 1.2
+ **/
 export interface AddAccountFollowingParams extends MutationParams {
   accountId: string;
   followingId: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const AddAccountFollowing = async ({
   accountId,
   followingId,
@@ -43,10 +44,6 @@ export const AddAccountFollowing = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useAddAccountFollowing = (
   options: Omit<
     ConnectedXMMutationOptions<

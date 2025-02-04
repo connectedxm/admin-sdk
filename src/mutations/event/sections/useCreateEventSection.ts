@@ -12,18 +12,19 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sections
- */
+ * Creates a new section for a specific event and updates the query client with the new data.
+ * This function is used to add a new section to an event, allowing for dynamic updates and management of event sections.
+ * It ensures that the query client is updated with the latest data, maintaining consistency across the application.
+ * @name CreateEventSection
+ * @param {string} eventId - The id of the event
+ * @param {EventSectionCreateInputs} section - The inputs for creating the event section
+ * @version 1.2
+ **/
 export interface CreateEventSectionParams extends MutationParams {
   eventId: string;
   section: EventSectionCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Sections
- */
 export const CreateEventSection = async ({
   eventId,
   section,
@@ -49,10 +50,6 @@ export const CreateEventSection = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sections
- */
 export const useCreateEventSection = (
   options: Omit<
     ConnectedXMMutationOptions<

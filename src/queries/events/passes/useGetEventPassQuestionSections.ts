@@ -9,18 +9,22 @@ import { QueryClient } from "@tanstack/react-query";
 import { EVENT_PASS_QUERY_KEY } from "./useGetEventPass";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves the question sections associated with a specific event pass.
+ * This endpoint is used to fetch detailed information about the question sections for a given event pass, 
+ * which is part of an attendee's registration process. It is essential for applications that need to display 
+ * or process the question sections related to event passes.
+ * @name GetEventPassQuestionSections
+ * @param {string} eventId - The id of the event
+ * @param {string} accountId - The id of the account
+ * @param {string} passId - The id of the pass
+ * @version 1.2
+ **/
+
 export const EVENT_PASS_QUESTION_SECTIONS_QUERY_KEY = (
   eventId: string,
   passId: string
 ) => [...EVENT_PASS_QUERY_KEY(eventId, passId), "SECTIONS"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_PASS_QUESTION_SECTIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_PASS_QUESTION_SECTIONS_QUERY_KEY>,
@@ -38,10 +42,6 @@ interface GetEventPassQuestionSectionsProps extends InfiniteQueryParams {
   passId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventPassQuestionSections = async ({
   eventId,
   accountId,
@@ -57,10 +57,6 @@ export const GetEventPassQuestionSections = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Events
- */
 export const useGetEventPassQuestionSections = (
   eventId: string = "",
   accountId: string = "",

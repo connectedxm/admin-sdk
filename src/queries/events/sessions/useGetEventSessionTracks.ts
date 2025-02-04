@@ -9,18 +9,21 @@ import {
 import { EVENT_SESSION_QUERY_KEY } from "./useGetEventSession";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches tracks for a specific event session with support for pagination and filtering.
+ * This function is designed to retrieve a list of tracks associated with a given event session, 
+ * allowing for detailed exploration of session content. It supports pagination and filtering 
+ * to efficiently manage and access large datasets.
+ * @name GetEventSessionTracks
+ * @param {string} eventId - The id of the event
+ * @param {string} sessionId - The id of the session
+ * @version 1.2
+ **/
+
 export const EVENT_SESSION_TRACKS_QUERY_KEY = (
   eventId: string,
   sessionId: string
 ) => [...EVENT_SESSION_QUERY_KEY(eventId, sessionId), "TRACKS"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SESSION_TRACKS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SESSION_TRACKS_QUERY_KEY>,
@@ -34,10 +37,6 @@ interface GetEventSessionTracksProps extends InfiniteQueryParams {
   sessionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSessionTracks = async ({
   eventId,
   sessionId,
@@ -61,10 +60,7 @@ export const GetEventSessionTracks = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSessionTracks = (
   eventId: string = "",
   sessionId: string = "",

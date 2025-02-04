@@ -9,18 +9,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 
 /**
- * @category Key
- * @group Emails
- */
+ * Retrieves authentication sessions for a specific account.
+ * This endpoint allows fetching a list of authentication sessions associated with a given account ID.
+ * It is useful for applications that need to display or manage authentication sessions for user accounts.
+ * @name GetAccountAuthSessions
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export const ACCOUNT_AUTH_SESSIONS_QUERY_KEY = (accountId: string) => {
   const keys = [...ACCOUNT_QUERY_KEY(accountId), "AUTH_SESSIONS"];
   return keys;
 };
 
-/**
- * @category Setters
- * @group Emails
- */
 export const SET_ACCOUNT_AUTH_SESSIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_AUTH_SESSIONS_QUERY_KEY>,
@@ -33,10 +34,6 @@ interface GetAccountAuthSessionsParams extends InfiniteQueryParams {
   accountId: string;
 }
 
-/**
- * @category Query
- * @group Emails
- */
 export const GetAccountAuthSessions = async ({
   accountId,
   pageParam,
@@ -60,10 +57,6 @@ export const GetAccountAuthSessions = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Emails
- */
 export const useGetAccountAuthSessions = (
   accountId: string = "",
   params: Omit<

@@ -9,18 +9,19 @@ import { ACCOUNTS_QUERY_KEY, SET_ACCOUNT_QUERY_DATA } from "@src/queries";
 import { AccountUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to update an existing account with new details.
+ * This function allows for updating the details of a specific account identified by its ID.
+ * It is designed to be used in applications where account information needs to be modified.
+ * @name UpdateAccount
+ * @param {string} accountId - The id of the account
+ * @param {AccountUpdateInputs} account - The account details to update
+ * @version 1.2
+ **/
 export interface UpdateAccountParams extends MutationParams {
   accountId: string;
   account: AccountUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const UpdateAccount = async ({
   accountId,
   account,
@@ -39,10 +40,6 @@ export const UpdateAccount = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useUpdateAccount = (
   options: Omit<
     ConnectedXMMutationOptions<

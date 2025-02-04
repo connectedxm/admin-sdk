@@ -15,19 +15,21 @@ import {
 import { EventQuestionChoiceCreateInputs } from "../../../params";
 
 /**
- * @category Params
- * @group Event-Questions
- */
+ * Endpoint to create a new event question choice.
+ * This function allows the creation of a choice for a specific question within an event.
+ * It is designed to be used in applications where event management and customization are required.
+ * @name CreateEventQuestionChoice
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @param {EventQuestionChoiceCreateInputs} choice - The choice inputs for the event question
+ * @version 1.2
+**/
 export interface CreateEventQuestionChoiceParams extends MutationParams {
   eventId: string;
   questionId: string;
   choice: EventQuestionChoiceCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Questions
- */
 export const CreateEventQuestionChoice = async ({
   eventId,
   questionId,
@@ -53,12 +55,8 @@ export const CreateEventQuestionChoice = async ({
     );
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Event-Questions
- */
 export const useCreateEventQuestionChoice = (
   options: Omit<
     ConnectedXMMutationOptions<

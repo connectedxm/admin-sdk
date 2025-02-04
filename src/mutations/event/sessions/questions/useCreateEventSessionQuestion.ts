@@ -10,19 +10,23 @@ import { SET_EVENT_SESSION_QUESTION_QUERY_DATA } from "@src/queries/events/sessi
 import { EVENT_SESSION_QUESTIONS_QUERY_KEY } from "@src/queries/events/sessions/questions/useGetEventSessionQuestions";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Endpoint to create a new question for a specific event session.
+ * This function allows the creation of a question within a specified event session, 
+ * enabling users to add interactive elements to their event sessions.
+ * It is designed to be used in applications where event session management is required.
+ * @name CreateEventSessionQuestion
+ * @param {string} eventId - The id of the event
+ * @param {string} sessionId - The id of the session
+ * @param {EventSessionQuestionCreateInputs} question - The question details
+ * @version 1.2
+ **/
+
 export interface CreateEventSessionQuestionParams extends MutationParams {
   eventId: string;
   sessionId: string;
   question: EventSessionQuestionCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const CreateEventSessionQuestion = async ({
   eventId,
   sessionId,
@@ -49,10 +53,6 @@ export const CreateEventSessionQuestion = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useCreateEventSessionQuestion = (
   options: Omit<
     ConnectedXMMutationOptions<

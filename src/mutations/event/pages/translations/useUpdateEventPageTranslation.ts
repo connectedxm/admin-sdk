@@ -12,6 +12,18 @@ import {
 } from "@src/queries";
 
 /**
+ * Updates the translation of a specific event page for a given locale.
+ * This function allows for updating the translation content of an event page, identified by eventId and pageId, in a specified locale.
+ * It is designed to be used in applications where multilingual support for event pages is required.
+ * @name UpdateEventPageTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} pageId - The ID of the page
+ * @param {ISupportedLocale} locale - The locale for the translation
+ * @param {EventPageTranslationUpdateInputs} pageTranslation - The translation inputs for the page
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Page-Translation
  */

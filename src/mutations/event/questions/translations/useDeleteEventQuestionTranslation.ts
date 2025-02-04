@@ -10,6 +10,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific translation of an event question for a given locale.
+ * This function is used to remove a translation entry for a question within an event, identified by event ID, question ID, and locale.
+ * It ensures that the relevant cache is invalidated to maintain data consistency.
+ * @name DeleteEventQuestionTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} questionId - The ID of the question
+ * @param {string} locale - The locale of the translation
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Question-Translations
  */

@@ -11,19 +11,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Endpoint to remove a track from a specific event session.
+ * This function allows the removal of a track from an event session by specifying the event, session, and track IDs.
+ * It is used in scenarios where tracks need to be dynamically managed within event sessions.
+ * @name RemoveEventSessionTrack
+ * @param {string} eventId - The id of the event
+ * @param {string} sessionId - The id of the session
+ * @param {string} trackId - The id of the track
+ * @version 1.2
+ **/
 export interface RemoveEventSessionTrackParams extends MutationParams {
   eventId: string;
   sessionId: string;
   trackId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const RemoveEventSessionTrack = async ({
   eventId,
   sessionId,
@@ -46,10 +48,6 @@ export const RemoveEventSessionTrack = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useRemoveEventSessionTrack = (
   options: Omit<
     ConnectedXMMutationOptions<

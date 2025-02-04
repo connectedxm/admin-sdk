@@ -9,18 +9,20 @@ import {
 import { EVENT_ROOM_TYPE_QUERY_KEY } from "./useGetEventRoomType";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Endpoint to retrieve passes for a specific event room type.
+ * This function fetches a list of passes associated with a given event and room type, 
+ * allowing users to manage or view passes for specific event room types.
+ * @name GetEventRoomTypePasses
+ * @param {string} eventId - The id of the event
+ * @param {string} roomTypeId - The id of the room type
+ * @version 1.2
+ **/
+
 export const EVENT_ROOM_TYPE_PASSES_QUERY_KEY = (
   eventId: string,
   roomTypeId: string
 ) => [...EVENT_ROOM_TYPE_QUERY_KEY(eventId, roomTypeId), "PASSES"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_ROOM_TYPE_PASSES_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_ROOM_TYPE_PASSES_QUERY_KEY>,
@@ -34,10 +36,6 @@ interface GetEventRoomTypePassesProps extends InfiniteQueryParams {
   roomTypeId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventRoomTypePasses = async ({
   eventId,
   roomTypeId,
@@ -61,10 +59,7 @@ export const GetEventRoomTypePasses = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventRoomTypePasses = (
   eventId: string = "",
   roomTypeId: string = "",

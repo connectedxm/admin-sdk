@@ -10,19 +10,22 @@ import { SET_EVENT_PASS_TYPE_PRICE_SCHEDULE_QUERY_DATA } from "@src/queries/even
 import { EVENT_PASS_TYPE_PRICE_SCHEDULES_QUERY_KEY } from "@src/queries/events/passTypes/priceSchedules/useGetEventPassTypePriceSchedules";
 
 /**
- * @category Params
- * @group Events
- */
+ * Endpoint to create a price schedule for a specific event pass type.
+ * This function allows the creation of a detailed price schedule for a given event pass type, 
+ * enabling the management of pricing structures within an event's pass types.
+ * It is designed to be used in applications that require dynamic pricing schedules for event passes.
+ * @name CreateEventPassTypePriceSchedule
+ * @param {string} eventId - The id of the event
+ * @param {string} passTypeId - The id of the pass type
+ * @param {PassTypePriceScheduleCreateInputs} schedule - The schedule details
+ * @version 1.2
+ **/
 interface CreateEventPassTypePriceScheduleParams extends MutationParams {
   eventId: string;
   passTypeId: string;
   schedule: PassTypePriceScheduleCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Events
- */
 export const CreateEventPassTypePriceSchedule = async ({
   eventId,
   passTypeId,
@@ -49,12 +52,8 @@ export const CreateEventPassTypePriceSchedule = async ({
     );
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Events
- */
 export const useCreateEventPassTypePriceSchedule = (
   options: Omit<
     ConnectedXMMutationOptions<

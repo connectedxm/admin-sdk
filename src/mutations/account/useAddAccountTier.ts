@@ -8,18 +8,19 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { ACCOUNT_TIERS_QUERY_KEY, SET_ACCOUNT_QUERY_DATA } from "@src/queries";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to add a tier to a specified account and update the query client.
+ * This function allows the addition of a specific tier to an account, ensuring that the query client is updated accordingly.
+ * It is designed for use in applications where account tier management is required.
+ * @name AddAccountTier
+ * @param {string} accountId - The id of the account
+ * @param {string} tierId - The id of the tier
+ * @version 1.2
+ **/
 export interface AddAccountTierParams extends MutationParams {
   accountId: string;
   tierId: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const AddAccountTier = async ({
   accountId,
   tierId,
@@ -39,10 +40,6 @@ export const AddAccountTier = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useAddAccountTier = (
   options: Omit<
     ConnectedXMMutationOptions<

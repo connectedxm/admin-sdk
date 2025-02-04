@@ -9,18 +9,19 @@ import { IMAGES_QUERY_KEY, SET_IMAGE_QUERY_DATA } from "@src/queries";
 import { ImageUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Images
- */
+ * Endpoint to update an image and invalidate related queries.
+ * This function allows updating an image's details using the provided image ID and update inputs.
+ * It ensures that any related queries are invalidated to maintain data consistency.
+ * @name UpdateImage
+ * @param {string} imageId - The id of the image
+ * @param {ImageUpdateInputs} image - The image update inputs
+ * @version 1.2
+ **/
 export interface UpdateImageParams extends MutationParams {
   imageId: string;
   image: ImageUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Images
- */
 export const UpdateImage = async ({
   imageId,
   image,
@@ -39,10 +40,6 @@ export const UpdateImage = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Images
- */
 export const useUpdateImage = (
   options: Omit<
     ConnectedXMMutationOptions<

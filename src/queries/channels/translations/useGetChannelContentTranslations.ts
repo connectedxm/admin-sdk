@@ -9,6 +9,15 @@ import {
 import { CHANNEL_CONTENT_QUERY_KEY } from "../useGetChannelContent";
 
 /**
+ * Retrieves translations for a specific channel content by its ID.
+ * This function is designed to fetch all available translations for a given content within a channel.
+ * It is useful for applications that need to display or manage content in multiple languages.
+ * @name GetChannelContentTranslations
+ * @param {string} contentId - The ID of the content for which translations are being retrieved
+ * @version 1.2
+ **/
+
+/**
  * @category Keys
  * @group Channels
  */
@@ -61,6 +70,7 @@ export const GetChannelContentTranslations = async ({
   });
   return data;
 };
+
 /**
  * @category Hooks
  * @group Channels

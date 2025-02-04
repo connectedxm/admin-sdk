@@ -10,18 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { REPORT_PARENTS_QUERY_KEY } from "./useGetReportParents";
 
 /**
- * @category Keys
- * @group Reports
- */
+ * Fetches data for a specific report parent by its ID.
+ * This function is used to retrieve detailed information about a report parent, which is a part of the reporting structure.
+ * It is designed for applications that require access to report parent data for further processing or display.
+ * @name GetReportParent
+ * @param {string} parentId - The ID of the report parent
+ * @version 1.2
+ **/
+
 export const REPORT_PARENT_QUERY_KEY = (parentId: string) => [
   ...REPORT_PARENTS_QUERY_KEY(),
   parentId,
 ];
 
-/**
- * @category Setters
- * @group Reports
- */
 export const SET_REPORT_PARENT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof REPORT_PARENT_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetReportParentProps extends SingleQueryParams {
   parentId: string;
 }
 
-/**
- * @category Queries
- * @group Reports
- */
 export const GetReportParent = async ({
   parentId,
   adminApiParams,
@@ -46,10 +43,7 @@ export const GetReportParent = async ({
   const { data } = await adminApi.get(`/reports/parents/${parentId}`);
   return data;
 };
-/**
- * @category Hooks
- * @group Reports
- */
+
 export const useGetReportParent = (
   parentId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetReportParent>> = {}

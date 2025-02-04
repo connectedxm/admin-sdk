@@ -11,9 +11,17 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Announcement
- */
+ * Endpoint to update the schedule for a specific announcement.
+ * This function allows updating the schedule details of an announcement, including the date and optional notification settings.
+ * It is designed to be used in applications where managing announcement schedules is required.
+ * @name UpdateAnnouncementSchedule
+ * @param {string} announcementId - The id of the announcement
+ * @param {Object} schedule - The schedule details
+ * @param {string} schedule.date - The date of the schedule
+ * @param {boolean} [schedule.email] - Optional email notification flag
+ * @param {boolean} [schedule.push] - Optional push notification flag
+ * @version 1.2
+ **/
 export interface UpdateAnnouncementScheduleParams extends MutationParams {
   announcementId: string;
   schedule: {
@@ -23,10 +31,6 @@ export interface UpdateAnnouncementScheduleParams extends MutationParams {
   };
 }
 
-/**
- * @category Methods
- * @group Announcement
- */
 export const UpdateAnnouncementSchedule = async ({
   announcementId,
   schedule,
@@ -47,10 +51,6 @@ export const UpdateAnnouncementSchedule = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Announcement
- */
 export const useUpdateAnnouncementSchedule = (
   options: Omit<
     ConnectedXMMutationOptions<

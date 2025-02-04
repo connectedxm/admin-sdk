@@ -11,19 +11,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sections
- */
+ * Adds an add-on to a specific section of an event.
+ * This function is used to associate an additional feature or service (add-on) with a particular section of an event.
+ * It is useful in scenarios where events are modular and require dynamic configuration of sections with various add-ons.
+ * @name AddEventSectionAddOn
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the section
+ * @param {string} addOnId - The id of the add-on
+ * @version 1.2
+ **/
 export interface AddEventSectionAddOnParams extends MutationParams {
   eventId: string;
   sectionId: string;
   addOnId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sections
- */
 export const AddEventSectionAddOn = async ({
   eventId,
   sectionId,
@@ -46,10 +48,6 @@ export const AddEventSectionAddOn = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sections
- */
 export const useAddEventSectionAddOn = (
   options: Omit<
     ConnectedXMMutationOptions<

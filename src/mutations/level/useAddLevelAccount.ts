@@ -12,18 +12,20 @@ import {
 } from "../useConnectedMutation";
 
 /**
- * @category Params
- * @group Level
- */
+ * Adds an account to a specified level, facilitating the management of account-level associations.
+ * This function is used to associate an account with a particular level, enabling the organization to manage permissions and access based on levels.
+ * It is particularly useful in scenarios where accounts need to be dynamically assigned to different levels for access control.
+ * @name AddLevelAccount
+ * @param {string} levelId - The id of the level
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export interface AddLevelAccountParams extends MutationParams {
   levelId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Level
- */
 export const AddLevelAccount = async ({
   levelId,
   accountId,
@@ -46,10 +48,6 @@ export const AddLevelAccount = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Level
- */
 export const useAddLevelAccount = (
   options: Omit<
     ConnectedXMMutationOptions<

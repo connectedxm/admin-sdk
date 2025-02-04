@@ -12,19 +12,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Reservations
- */
+ * Endpoint to update the room type for a specific event.
+ * This function allows updating the details of a room type associated with a particular event.
+ * It is designed to be used in scenarios where modifications to event room types are necessary.
+ * @name UpdateEventRoomType
+ * @param {string} eventId - The id of the event
+ * @param {string} roomTypeId - The id of the room type
+ * @param {EventRoomTypeUpdateInputs} roomType - The room type update inputs
+ * @version 1.2
+ **/
+
 export interface UpdateEventRoomTypeParams extends MutationParams {
   eventId: string;
   roomTypeId: string;
   roomType: EventRoomTypeUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Reservations
- */
 export const UpdateEventRoomType = async ({
   eventId,
   roomTypeId,
@@ -60,12 +63,8 @@ export const UpdateEventRoomType = async ({
     );
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Event-Reservations
- */
 export const useUpdateEventRoomType = (
   options: Omit<
     ConnectedXMMutationOptions<

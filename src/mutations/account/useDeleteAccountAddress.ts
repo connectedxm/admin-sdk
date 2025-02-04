@@ -8,18 +8,19 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { ACCOUNT_ADDRESSES_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to delete a specific address associated with an account.
+ * This function allows for the removal of an address from an account by specifying the account and address IDs.
+ * It is intended for use in applications where account address management is required.
+ * @name DeleteAccountAddress
+ * @param {string} accountId - The id of the account
+ * @param {string} addressId - The id of the address
+ * @version 1.2
+ **/
 export interface DeleteAccountAddressParams extends MutationParams {
   accountId: string;
   addressId: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const DeleteAccountAddress = async ({
   accountId,
   addressId,
@@ -40,10 +41,6 @@ export const DeleteAccountAddress = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useDeleteAccountAddress = (
   options: Omit<
     ConnectedXMMutationOptions<

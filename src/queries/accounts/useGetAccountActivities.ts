@@ -11,6 +11,15 @@ import { QueryClient } from "@tanstack/react-query";
 import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 
 /**
+ * Endpoint to retrieve a list of activities associated with a specific account.
+ * This function fetches activity data for a given account, allowing users to view detailed activity logs.
+ * It is designed to be used in applications where tracking account activities is necessary.
+ * @name GetAccountActivities
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
+/**
  * @category Keys
  * @group Accounts
  */
@@ -72,20 +81,4 @@ export const useGetAccountActivities = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetAccountActivities>>
-  > = {}
-) => {
-  return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetAccountActivities>>
-  >(
-    ACCOUNT_ACTIVITIES_QUERY_KEY(accountId),
-    (params: InfiniteQueryParams) =>
-      GetAccountActivities({ accountId, ...params }),
-    params,
-    {
-      ...options,
-      enabled: !!accountId && (options?.enabled ?? true),
-    },
-    "accounts"
-  );
-};
+    Awaited<Return

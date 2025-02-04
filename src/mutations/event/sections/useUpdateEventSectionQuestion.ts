@@ -11,9 +11,16 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sections
- */
+ * Endpoint to update a question within a specific section of an event.
+ * This function allows for modifying the sort order of a question in a designated event section.
+ * It is intended for use in applications that manage event configurations and require dynamic updates to question arrangements.
+ * @name UpdateEventSectionQuestion
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the section
+ * @param {string} questionId - The id of the question
+ * @param {number} sortOrder - The sort order of the question
+ * @version 1.2
+ **/
 export interface UpdateEventSectionQuestionParams extends MutationParams {
   eventId: string;
   sectionId: string;
@@ -21,10 +28,6 @@ export interface UpdateEventSectionQuestionParams extends MutationParams {
   sortOrder: number;
 }
 
-/**
- * @category Methods
- * @group Event-Sections
- */
 export const UpdateEventSectionQuestion = async ({
   eventId,
   sectionId,
@@ -51,10 +54,6 @@ export const UpdateEventSectionQuestion = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sections
- */
 export const useUpdateEventSectionQuestion = (
   options: Omit<
     ConnectedXMMutationOptions<

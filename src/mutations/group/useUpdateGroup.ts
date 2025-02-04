@@ -9,18 +9,19 @@ import { GROUPS_QUERY_KEY, SET_GROUP_QUERY_DATA } from "@src/queries";
 import { GroupUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Groups
- */
+ * Endpoint to update the data of a specific group.
+ * This function allows for updating a group's information by providing the group ID and the new data.
+ * It is designed to be used in applications where group data management is required.
+ * @name UpdateGroup
+ * @param {string} groupId - The ID of the group
+ * @param {GroupUpdateInputs} group - The data to update the group with
+ * @version 1.2
+ **/
 export interface UpdateGroupParams extends MutationParams {
   groupId: string;
   group: GroupUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Groups
- */
 export const UpdateGroup = async ({
   groupId,
   group,
@@ -39,10 +40,6 @@ export const UpdateGroup = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Groups
- */
 export const useUpdateGroup = (
   options: Omit<
     ConnectedXMMutationOptions<

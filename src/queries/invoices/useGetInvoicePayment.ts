@@ -10,18 +10,20 @@ import { INVOICE_PAYMENTS_QUERY_KEY } from "./useGetInvoicePayments";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Invoices
- */
+ * Fetches a specific payment associated with a given invoice.
+ * This function is designed to retrieve detailed information about a particular payment linked to an invoice.
+ * It is useful in scenarios where precise payment details are required for an invoice.
+ * @name GetInvoicePayment
+ * @param {string} invoiceId - The ID of the invoice
+ * @param {string} paymentId - The ID of the payment
+ * @version 1.2
+ **/
+
 export const INVOICE_PAYMENT_QUERY_KEY = (
   invoiceId: string,
   paymentId: string
 ) => [...INVOICE_PAYMENTS_QUERY_KEY(invoiceId), paymentId];
 
-/**
- * @category Setters
- * @group Invoices
- */
 export const SET_INVOICE_PAYMENT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INVOICE_PAYMENT_QUERY_KEY>,
@@ -35,10 +37,6 @@ interface GetInvoicePaymentProps extends SingleQueryParams {
   paymentId: string;
 }
 
-/**
- * @category Queries
- * @group Invoices
- */
 export const GetInvoicePayment = async ({
   invoiceId,
   paymentId,
@@ -50,10 +48,7 @@ export const GetInvoicePayment = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Invoices
- */
+
 export const useGetInvoicePayment = (
   invoiceId: string = "",
   paymentId: string = "",

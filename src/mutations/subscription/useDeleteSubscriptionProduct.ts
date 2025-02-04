@@ -11,17 +11,18 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Subscriptions
- */
+ * Endpoint to delete a subscription product.
+ * This function allows the deletion of a specific subscription product by its ID.
+ * It is used in scenarios where a subscription product needs to be removed from the system.
+ * @name DeleteSubscriptionProduct
+ * @param {string} subscriptionProductId - The ID of the subscription product to delete
+ * @version 1.2
+ **/
+
 export interface DeleteSubscriptionProductParams extends MutationParams {
   subscriptionProductId: string;
 }
 
-/**
- * @category Methods
- * @group Subscriptions
- */
 export const DeleteSubscriptionProduct = async ({
   subscriptionProductId,
   adminApiParams,
@@ -44,10 +45,6 @@ export const DeleteSubscriptionProduct = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Subscriptions
- */
 export const useDeleteSubscriptionProduct = (
   options: Omit<
     ConnectedXMMutationOptions<

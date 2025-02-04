@@ -8,17 +8,18 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { INTERESTS_QUERY_KEY, INTEREST_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Interest
- */
+ * Endpoint to delete a specific interest by its ID.
+ * This function allows for the removal of an interest from the system, ensuring that associated queries are invalidated and removed.
+ * It is designed to be used in applications where managing user or system interests is required.
+ * @name DeleteInterest
+ * @param {string} interestId - The ID of the interest to be deleted
+ * @version 1.2
+ **/
+
 export interface DeleteInterestParams extends MutationParams {
   interestId: string;
 }
 
-/**
- * @category Methods
- * @group Interest
- */
 export const DeleteInterest = async ({
   interestId,
   adminApiParams,
@@ -35,10 +36,6 @@ export const DeleteInterest = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Interest
- */
 export const useDeleteInterest = (
   options: Omit<
     ConnectedXMMutationOptions<

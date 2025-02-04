@@ -9,9 +9,16 @@ import { EVENT_SPEAKER_TRANSLATIONS_QUERY_KEY } from "./useGetEventSpeakerTransl
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves the translation details for a specific event speaker in a given locale.
+ * This function is used to fetch the translated information of a speaker for a particular event, 
+ * allowing applications to display speaker details in different languages.
+ * @name GetEventSpeakerTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} speakerId - The ID of the speaker
+ * @param {string} locale - The locale for the translation
+ * @version 1.2
+ **/
+
 export const EVENT_SPEAKER_TRANSLATION_QUERY_KEY = (
   eventId: string,
   speakerId: string,

@@ -12,9 +12,17 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Reservations
- */
+ * Endpoint to update the details of a specific pass type for a room type in an event.
+ * This function allows updating the details of a pass type associated with a room type within a specific event.
+ * It is designed to be used in applications where event management and room type configurations are required.
+ * @name UpdateEventRoomTypePassTypeDetails
+ * @param {string} eventId - The id of the event
+ * @param {string} roomTypeId - The id of the room type
+ * @param {string} passTypeId - The id of the pass type
+ * @param {EventRoomTypePassTypeDetailsUpdateInputs} details - The details to update
+ * @version 1.2
+ **/
+
 export interface UpdateEventRoomTypePassTypeDetailsParams
   extends MutationParams {
   eventId: string;
@@ -23,10 +31,6 @@ export interface UpdateEventRoomTypePassTypeDetailsParams
   details: EventRoomTypePassTypeDetailsUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Reservations
- */
 export const UpdateEventRoomTypePassTypeDetails = async ({
   eventId,
   roomTypeId,
@@ -55,10 +59,6 @@ export const UpdateEventRoomTypePassTypeDetails = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Reservations
- */
 export const useUpdateEventRoomTypePassTypeDetails = (
   options: Omit<
     ConnectedXMMutationOptions<

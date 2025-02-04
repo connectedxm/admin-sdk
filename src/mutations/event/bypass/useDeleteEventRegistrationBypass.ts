@@ -11,18 +11,19 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Bypass
- */
+ * Endpoint to delete a specific event registration bypass.
+ * This function allows the removal of a bypass associated with an event registration, identified by the event and bypass IDs.
+ * It is intended for use in scenarios where bypasses need to be managed or revoked for event registrations.
+ * @name DeleteEventRegistrationBypass
+ * @param {string} eventId - The id of the event
+ * @param {string} bypassId - The id of the bypass
+ * @version 1.2
+**/
 export interface DeleteEventRegistrationBypassParams extends MutationParams {
   eventId: string;
   bypassId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Bypass
- */
 export const DeleteEventRegistrationBypass = async ({
   eventId,
   bypassId,
@@ -46,10 +47,6 @@ export const DeleteEventRegistrationBypass = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Bypass
- */
 export const useDeleteEventRegistrationBypass = (
   options: Omit<
     ConnectedXMMutationOptions<

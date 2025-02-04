@@ -12,17 +12,17 @@ import {
 import { SubscriptionProductCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Subscriptions
- */
+ * Endpoint to create a new subscription product.
+ * This function allows the creation of a subscription product by providing the necessary details.
+ * It is designed to be used in applications where subscription products need to be managed.
+ * @name CreateSubscriptionProduct
+ * @param {SubscriptionProductCreateInputs} subscriptionProduct - The subscription product details to be created
+ * @version 1.2
+ **/
 export interface CreateSubscriptionProductParams extends MutationParams {
   subscriptionProduct: SubscriptionProductCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Subscriptions
- */
 export const CreateSubscriptionProduct = async ({
   subscriptionProduct,
   adminApiParams,
@@ -44,10 +44,6 @@ export const CreateSubscriptionProduct = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Subscriptions
- */
 export const useCreateSubscriptionProduct = (
   options: Omit<
     ConnectedXMMutationOptions<

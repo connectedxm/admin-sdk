@@ -11,9 +11,19 @@ import {
 } from "@src/queries/channels";
 
 /**
- * @category Params
- * @group Channel
- */
+ * Endpoint to update the publish schedule for a specific channel content.
+ * This function allows updating the schedule details for content within a channel, including date and notification settings.
+ * It is designed to be used in applications where managing content schedules is required.
+ * @name UpdateChannelContentPublishSchedule
+ * @param {string} contentId - The id of the content
+ * @param {string} channelId - The id of the channel
+ * @param {object} schedule - The schedule details
+ * @param {string} schedule.date - The date of the schedule
+ * @param {boolean} schedule.email - Email notification flag
+ * @param {boolean} schedule.push - Push notification flag
+ * @param {boolean} schedule.visible - Visibility flag
+ * @version 1.2
+ **/
 export interface UpdateChannelContentPublishScheduleParams
   extends MutationParams {
   contentId: string;
@@ -26,10 +36,6 @@ export interface UpdateChannelContentPublishScheduleParams
   };
 }
 
-/**
- * @category Methods
- * @group Channel
- */
 export const UpdateChannelContentPublishSchedule = async ({
   contentId,
   channelId,
@@ -53,10 +59,6 @@ export const UpdateChannelContentPublishSchedule = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Channel
- */
 export const useUpdateChannelContentPublishSchedule = (
   options: Omit<
     ConnectedXMMutationOptions<

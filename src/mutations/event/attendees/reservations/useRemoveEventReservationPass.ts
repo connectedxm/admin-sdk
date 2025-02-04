@@ -12,9 +12,16 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-AddOns
- */
+ * Endpoint to remove a reservation pass for a specific event.
+ * This function allows the removal of a pass associated with a reservation for a given event.
+ * It is useful in scenarios where a pass needs to be invalidated or removed from an event reservation.
+ * @name RemoveEventReservationPass
+ * @param {string} eventId - The id of the event
+ * @param {string} reservationId - The id of the reservation
+ * @param {string} passId - The id of the pass
+ * @param {string} [accountId] - Optional account id
+ * @version 1.2
+ **/
 export interface RemoveEventReservationPassParams extends MutationParams {
   eventId: string;
   reservationId: string;
@@ -22,10 +29,6 @@ export interface RemoveEventReservationPassParams extends MutationParams {
   accountId?: string;
 }
 
-/**
- * @category Methods
- * @group Event-AddOns
- */
 export const RemoveEventReservationPass = async ({
   eventId,
   reservationId,
@@ -57,10 +60,6 @@ export const RemoveEventReservationPass = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-AddOns
- */
 export const useRemoveEventReservationPass = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -9,19 +9,20 @@ import {
 } from "../useConnectedInfiniteQuery";
 
 /**
- * @category Keys
- * @group Videos
- */
+ * Endpoint to retrieve video data with optional filtering by source.
+ * This function supports pagination, ordering, and search functionalities, allowing users to efficiently query video data.
+ * It is designed for applications that require dynamic video content retrieval with flexible query parameters.
+ * @name GetVideos
+ * @param {string} [source] - The source of the videos
+ * @version 1.2
+ **/
+
 export const VIDEOS_QUERY_KEY = (source?: string) => {
   const keys = ["VIDEOS"];
   if (source) keys.push(source);
   return keys;
 };
 
-/**
- * @category Setters
- * @group Videos
- */
 export const SET_VIDEOS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof VIDEOS_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetVideosParams extends InfiniteQueryParams {
   source?: string;
 }
 
-/**
- * @category Queries
- * @group Videos
- */
 export const GetVideos = async ({
   pageParam,
   pageSize,
@@ -59,10 +56,7 @@ export const GetVideos = async ({
 
   return data;
 };
-/**
- * @category Hooks
- * @group Videos
- */
+
 export const useGetVideos = (
   source?: string,
   params: Omit<

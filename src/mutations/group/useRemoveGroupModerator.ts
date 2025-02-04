@@ -12,18 +12,20 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Groups
- */
+ * Endpoint to remove a moderator from a specified group.
+ * This function allows the removal of a moderator from a group by providing the group ID and the account ID of the moderator.
+ * It is used in scenarios where group moderation needs to be updated or modified.
+ * @name RemoveGroupModerator
+ * @param {string} groupId - The ID of the group
+ * @param {string} accountId - The ID of the account
+ * @version 1.2
+ **/
+
 export interface RemoveGroupModeratorParams extends MutationParams {
   groupId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Groups
- */
 export const RemoveGroupModerator = async ({
   groupId,
   accountId,
@@ -50,10 +52,6 @@ export const RemoveGroupModerator = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Groups
- */
 export const useRemoveGroupModerator = (
   options: Omit<
     ConnectedXMMutationOptions<

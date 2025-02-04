@@ -11,6 +11,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Creates a new translation for a specific announcement.
+ * This function allows the creation of a translation for an announcement in a specified locale.
+ * It supports optional auto-translation and updates the query cache upon successful creation.
+ * @name PostAnnouncementTranslation
+ * @param {string} announcementId - The ID of the announcement
+ * @param {string} locale - The locale for the translation
+ * @param {boolean} [autoTranslate] - Whether to auto-translate the content
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @announcement Announcements-Translations
  */

@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Interest } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -11,18 +10,19 @@ import { ACTIVITY_QUERY_KEY } from "./useGetActivity";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Activities
- */
+ * Retrieves a list of interests associated with a specific activity.
+ * This function is used to fetch interests for a given activity, allowing applications to display or process these interests.
+ * It supports infinite scrolling through pagination parameters.
+ * @name GetActivityInterests
+ * @param {string} activityId - The id of the activity
+ * @version 1.2
+ **/
+
 export const ACTIVITY_INTERESTS_QUERY_KEY = (activityId: string) => [
   ...ACTIVITY_QUERY_KEY(activityId),
   "INTERESTS",
 ];
 
-/**
- * @category Setters
- * @group Activities
- */
 export const SET_ACTIVITY_INTEREST_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACTIVITY_INTERESTS_QUERY_KEY>,
@@ -35,10 +35,6 @@ interface GetActivityInterestsProps extends InfiniteQueryParams {
   activityId: string;
 }
 
-/**
- * @category Queries
- * @group Activities
- */
 export const GetActivityInterests = async ({
   activityId,
   pageParam,
@@ -58,10 +54,7 @@ export const GetActivityInterests = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Activities
- */
+
 export const useGetActivityInterests = (
   activityId: string = "",
   params: Omit<

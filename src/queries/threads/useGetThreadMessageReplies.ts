@@ -12,6 +12,17 @@ import { useConnectedXM } from "@src/hooks";
 import { CacheIndividualQueries } from "@src/utilities";
 import { THREAD_MESSAGE_QUERY_KEY } from "./useGetThreadMessage";
 
+/**
+ * Endpoint to retrieve a list of replies for a specific message in a thread.
+ * This function fetches replies associated with a particular message within a thread, 
+ * allowing users to view the conversation flow. It is useful in applications where 
+ * threaded discussions or message replies need to be displayed.
+ * @name GetThreadMessageReplies
+ * @param {string} threadId - The id of the thread
+ * @param {string} messageId - The id of the message
+ * @version 1.2
+ */
+
 export const THREAD_MESSAGE_REPLIES_QUERY_KEY = (
   threadId: string,
   messageId: string
@@ -37,12 +48,6 @@ export interface GetThreadMessageRepliesProps extends InfiniteQueryParams {
   messageId: string;
 }
 
-/**
- * @name List Thread Message Replies
- * @description Retrieve a list of replies for a message in a thread
- * @category Queries
- * @group Threads
- */
 export const GetThreadMessageReplies = async ({
   threadId,
   messageId,

@@ -11,18 +11,19 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to remove an interest from a specified account.
+ * This function allows the removal of a specific interest from an account by providing the account ID and the interest ID.
+ * It is used in scenarios where account interests need to be dynamically managed and updated.
+ * @name RemoveAccountInterest
+ * @param {string} accountId - The id of the account
+ * @param {string} interestId - The id of the interest to be removed
+ * @version 1.2
+ **/
 export interface RemoveAccountInterestParams extends MutationParams {
   accountId: string;
   interestId: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const RemoveAccountInterest = async ({
   accountId,
   interestId,
@@ -42,10 +43,6 @@ export const RemoveAccountInterest = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useRemoveAccountInterest = (
   options: Omit<
     ConnectedXMMutationOptions<

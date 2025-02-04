@@ -9,18 +9,21 @@ import { QueryClient } from "@tanstack/react-query";
 import { CHANNEL_CONTENT_QUERY_KEY } from "./useGetChannelContent";
 
 /**
- * @category Keys
- * @group Channels
- */
+ * Endpoint to fetch guests for a specific channel content.
+ * This function retrieves a list of guests associated with a particular channel content,
+ * allowing users to manage or view guest information based on the channel and content identifiers.
+ * @name GetChannelContentGuests
+ * @param {string} channelId - The id of the channel
+ * @param {string} contentId - The id of the content
+ * @param {string} [status] - Optional status of the guests
+ * @version 1.2
+ **/
+
 export const CHANNEL_CONTENT_GUESTS_QUERY_KEY = (
   channelId: string,
   contentId: string
 ) => [...CHANNEL_CONTENT_QUERY_KEY(channelId, contentId), "GUESTS"];
 
-/**
- * @category Setters
- * @group Channels
- */
 export const SET_CHANNEL_CONTENT_GUESTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof CHANNEL_CONTENT_GUESTS_QUERY_KEY>,
@@ -35,10 +38,6 @@ interface GetChannelContentGuestsProps extends InfiniteQueryParams {
   status?: string;
 }
 
-/**
- * @category Queries
- * @group Channels
- */
 export const GetChannelContentGuests = async ({
   channelId,
   contentId,
@@ -63,10 +62,7 @@ export const GetChannelContentGuests = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Channels
- */
+
 export const useGetChannelContentGuests = (
   channelId: string = "",
   contentId: string = "",

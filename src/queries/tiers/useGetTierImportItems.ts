@@ -1,19 +1,25 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { ImportItem } from "@src/interfaces";
 import {
   InfiniteQueryParams,
   InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
-
 import { TIER_IMPORT_QUERY_KEY } from "./useGetTierImport";
 
 /**
- * @category Keys
- * @group Imports
- */
+ * Endpoint to retrieve a list of import items for a specific tier and import.
+ * This function fetches import items associated with a given tier and import ID, 
+ * allowing users to access detailed information about each import item.
+ * It is designed for applications that require a comprehensive list of import items 
+ * for further processing or display.
+ * @name GetTierImportItems
+ * @param {string} tierId - The id of the tier
+ * @param {string} importId - The id of the import
+ * @version 1.2
+ **/
+
 export const TIER_IMPORT_ITEMS_QUERY_KEY = (
   tierId: string,
   importId: string
@@ -24,10 +30,6 @@ interface GetTierImportItemsProps extends InfiniteQueryParams {
   importId: string;
 }
 
-/**
- * @category Queries
- * @group Imports
- */
 export const GetTierImportItems = async ({
   tierId,
   importId,
@@ -51,10 +53,7 @@ export const GetTierImportItems = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Imports
- */
+
 export const useGetTierImportItems = (
   tierId: string = "",
   importId: string = "",

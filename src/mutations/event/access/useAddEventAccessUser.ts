@@ -8,9 +8,14 @@ import { ConnectedXMMutationOptions } from "@src/mutations/useConnectedMutation"
 import { EVENT_ACCESS_USERS_QUERY_KEY } from "@src/queries/events/access/GetEventAccessUsers";
 
 /**
- * @category Mutations
- * @group Events
- */
+ * Endpoint to add a user to the access list of a specific event.
+ * This function allows administrators to grant access to users for specific events by adding them to the event's access list.
+ * It is designed to be used in applications where event access management is required.
+ * @name AddEventAccessUser
+ * @param {string} eventId - The id of the event
+ * @param {string} email - The email of the user to be added
+ * @version 1.2
+ **/
 interface AddEventAccessUserParams extends MutationParams {
   eventId: string;
   email: string;
@@ -37,9 +42,9 @@ export const AddEventAccessUser = async ({
 };
 
 /**
- * @category Hooks
- * @group Events
- */
+ * @name Use Add Event Access User
+ * @description Hook to use the AddEventAccessUser mutation
+ **/
 export const useAddEventAccessUser = (
   options: Omit<
     ConnectedXMMutationOptions<

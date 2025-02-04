@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Account } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
@@ -11,18 +10,19 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Accounts
- */
+ * Endpoint to retrieve a list of accounts and their delegate relationships.
+ * This function fetches accounts that are delegates of a specified account, providing detailed information about these relationships.
+ * It is designed for applications that need to manage or display delegate relationships for user accounts.
+ * @name GetAccountDelegateOf
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export const ACCOUNT_DELEGATE_OF_QUERY_KEY = (accountId: string) => [
   ...ACCOUNT_QUERY_KEY(accountId),
   "DELEGATE_OF",
 ];
 
-/**
- * @category Setters
- * @group Accounts
- */
 export const SET_ACCOUNT_DELEGATE_OF_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_DELEGATE_OF_QUERY_KEY>,
@@ -35,10 +35,6 @@ interface GetAccountDelegateOfProps extends InfiniteQueryParams {
   accountId: string;
 }
 
-/**
- * @category Queries
- * @group Accounts
- */
 export const GetAccountDelegateOf = async ({
   accountId,
   pageParam,
@@ -58,10 +54,7 @@ export const GetAccountDelegateOf = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Accounts
- */
+
 export const useGetAccountDelegateOf = (
   accountId: string = "",
   params: Omit<

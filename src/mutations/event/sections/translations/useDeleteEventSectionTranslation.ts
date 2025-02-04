@@ -10,6 +10,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific translation for an event section based on the provided event ID, section ID, and locale.
+ * This function is used to remove translations from event sections, ensuring that the specified translation is no longer available.
+ * It is particularly useful in scenarios where outdated or incorrect translations need to be removed from the system.
+ * @name DeleteEventSectionTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} sectionId - The ID of the section
+ * @param {string} locale - The locale of the translation
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Sections-Translations
  */

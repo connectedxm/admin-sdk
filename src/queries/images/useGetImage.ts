@@ -10,18 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Images
- */
+ * Fetches image data from the admin API using a specified image ID.
+ * This function is designed to retrieve detailed information about a specific image stored in the system.
+ * It is useful for applications that require access to image metadata or content.
+ * @name GetImage
+ * @param {string} [imageId] - The id of the image
+ * @version 1.2
+ **/
+
 export const IMAGE_QUERY_KEY = (imageId: string) => [
   ...IMAGES_QUERY_KEY(),
   imageId,
 ];
 
-/**
- * @category Setters
- * @group Images
- */
 export const SET_IMAGE_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof IMAGE_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetImageParams extends SingleQueryParams {
   imageId: string | undefined;
 }
 
-/**
- * @category Queries
- * @group Images
- */
 export const GetImage = async ({
   imageId,
   adminApiParams,
@@ -47,10 +44,7 @@ export const GetImage = async ({
 
   return data;
 };
-/**
- * @category Hooks
- * @group Images
- */
+
 export const useGetImage = (
   imageId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetImage>> = {}

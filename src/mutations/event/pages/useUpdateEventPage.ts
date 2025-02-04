@@ -9,19 +9,22 @@ import { EventPageUpdateInputs } from "@src/params";
 import { EVENT_PAGES_QUERY_KEY, SET_EVENT_PAGE_QUERY_DATA } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Page
- */
+ * Endpoint to update an event page with new details.
+ * This function allows updating the details of a specific event page by providing the event ID, page ID, and the new page details.
+ * It is designed to be used in applications where event page information needs to be modified.
+ * @name UpdateEventPage
+ * @param {string} eventId - The id of the event
+ * @param {string} pageId - The id of the page
+ * @param {EventPageUpdateInputs} page - The details of the event page to update
+ * @version 1.2
+ **/
+
 export interface UpdateEventPageParams extends MutationParams {
   eventId: string;
   pageId: string;
   page: EventPageUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Page
- */
 export const UpdateEventPage = async ({
   eventId,
   pageId,
@@ -47,12 +50,8 @@ export const UpdateEventPage = async ({
     );
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Event-Page
- */
 export const useUpdateEventPage = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -11,18 +11,18 @@ import { QueryClient } from "@tanstack/react-query";
 import { SELF_API_KEYS_QUERY_KEY } from "./useGetSelfApiKeys";
 
 /**
- * @category Keys
- * @group SelfApiKeys
- */
+ * Endpoint to retrieve a specific API key associated with the current user by its unique identifier.
+ * This function allows users to fetch details of their own API key using the provided API key ID.
+ * @name GetSelfApiKey
+ * @param {string} apiKeyId - The id of the API key
+ * @version 1.2
+ **/
+
 export const SELF_API_KEY_QUERY_KEY = (apiKeyId: string) => [
   ...SELF_API_KEYS_QUERY_KEY(),
   apiKeyId,
 ];
 
-/**
- * @category Setters
- * @group SelfApiKeys
- */
 export const SET_SELF_API_KEY_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SELF_API_KEY_QUERY_KEY>,
@@ -35,10 +35,6 @@ interface GetSelfApiKeyProps extends SingleQueryParams {
   apiKeyId: string;
 }
 
-/**
- * @category Queries
- * @group SelfApiKeys
- */
 export const GetSelfApiKey = async ({
   apiKeyId = "",
   adminApiParams,
@@ -48,10 +44,6 @@ export const GetSelfApiKey = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group SelfApiKeys
- */
 export const useGetSelfApiKey = (
   apiKeyId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetSelfApiKey>> = {}

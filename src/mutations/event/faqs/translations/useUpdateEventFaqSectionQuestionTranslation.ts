@@ -12,8 +12,17 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Faqs-Translations
+ * Updates the translation of a specific FAQ section question for an event.
+ * This function allows for the modification of the translation details of a question within a FAQ section of an event, 
+ * identified by event ID, section ID, question ID, and locale. It is used to ensure that the FAQ section questions 
+ * are accurately translated and updated in the system.
+ * @name UpdateEventFaqSectionQuestionTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} sectionId - The ID of the FAQ section
+ * @param {string} questionId - The ID of the question within the FAQ section
+ * @param {ISupportedLocale} locale - The locale for the translation
+ * @param {EventFaqSectionQuestionTranslationUpdateInputs} faqSectionQuestionTranslation - The translation inputs for the FAQ section question
+ * @version 1.2
  */
 export interface UpdateEventFaqSectionQuestionTranslationParams
   extends MutationParams {
@@ -24,10 +33,6 @@ export interface UpdateEventFaqSectionQuestionTranslationParams
   faqSectionQuestionTranslation: EventFaqSectionQuestionTranslationUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Faqs-Translations
- */
 export const UpdateEventFaqSectionQuestionTranslation = async ({
   eventId,
   sectionId,
@@ -61,10 +66,6 @@ export const UpdateEventFaqSectionQuestionTranslation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Faqs-Translations
- */
 export const useUpdateEventFaqSectionQuestionTranslation = (
   options: Omit<
     ConnectedXMMutationOptions<

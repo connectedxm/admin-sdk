@@ -9,18 +9,19 @@ import {
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Endpoint to fetch sections of a specific event.
+ * This function retrieves data about various sections within an event, allowing users to access detailed information about each section.
+ * It is designed for applications that require comprehensive event section data.
+ * @name GetEventSections
+ * @param {string} eventId - The ID of the event
+ * @version 1.2
+ **/
+
 export const EVENT_SECTIONS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "SECTIONS",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SECTIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SECTIONS_QUERY_KEY>,
@@ -33,10 +34,6 @@ interface GetEventSectionsProps extends InfiniteQueryParams {
   eventId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSections = async ({
   eventId,
   pageParam,
@@ -58,10 +55,7 @@ export const GetEventSections = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSections = (
   eventId: string = "",
   params: Omit<

@@ -12,18 +12,19 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Level
- */
+ * Endpoint to remove an account from a specified level within the system.
+ * This function facilitates the removal of an account from a particular level, ensuring that the associated data is updated accordingly.
+ * It is intended for use in administrative contexts where managing account-level associations is necessary.
+ * @name RemoveLevelAccount
+ * @param {string} levelId - The id of the level
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
 export interface RemoveLevelAccountParams extends MutationParams {
   levelId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Level
- */
 export const RemoveLevelAccount = async ({
   levelId,
   accountId,
@@ -46,10 +47,6 @@ export const RemoveLevelAccount = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Level
- */
 export const useRemoveLevelAccount = (
   options: Omit<
     ConnectedXMMutationOptions<

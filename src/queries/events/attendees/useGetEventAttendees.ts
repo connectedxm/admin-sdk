@@ -10,9 +10,14 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches and manages a list of attendees for a specific event, with support for pagination and optional filtering by event pass status.
+ * This function is designed to be used in applications that require detailed attendee information for events, allowing for efficient data retrieval and management.
+ * @name GetEventAttendees
+ * @param {string} eventId - The id of the event
+ * @param {EventPassStatus} [status] - Optional status of the event pass
+ * @version 1.2
+ **/
+
 export const EVENT_ATTENDEES_QUERY_KEY = (
   eventId: string,
   status?: EventPassStatus
@@ -22,10 +27,6 @@ export const EVENT_ATTENDEES_QUERY_KEY = (
   return keys;
 };
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_ATTENDEES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_ATTENDEES_QUERY_KEY>,
@@ -39,10 +40,6 @@ interface GetEventAttendeesProps extends InfiniteQueryParams {
   status?: EventPassStatus;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventAttendees = async ({
   eventId,
   pageParam,
@@ -64,10 +61,7 @@ export const GetEventAttendees = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventAttendees = (
   eventId: string,
   status?: EventPassStatus,

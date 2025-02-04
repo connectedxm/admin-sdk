@@ -11,17 +11,18 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Subscriptions
- */
+ * Endpoint to cancel a subscription.
+ * This function allows users to cancel an existing subscription by providing the subscription ID.
+ * It ensures that the subscription is removed and updates the query data accordingly.
+ * @name CancelSubscription
+ * @param {string} subscriptionId - The ID of the subscription to be canceled
+ * @version 1.2
+ **/
+
 export interface CancelSubscriptionParams extends MutationParams {
   subscriptionId: string;
 }
 
-/**
- * @category Methods
- * @group Subscriptions
- */
 export const CancelSubscription = async ({
   subscriptionId,
   adminApiParams,
@@ -38,10 +39,6 @@ export const CancelSubscription = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Subscriptions
- */
 export const useCancelSubscription = (
   options: Omit<
     ConnectedXMMutationOptions<

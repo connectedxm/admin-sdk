@@ -9,9 +9,16 @@ import {
 import { EVENT_ROOM_TYPE_QUERY_KEY } from "./useGetEventRoomType";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Endpoint to retrieve tiers for a specific room type within an event.
+ * This function allows users to fetch either allowed or disallowed tiers associated with a given room type in an event.
+ * It is designed to be used in applications where detailed tier information is required for event room types.
+ * @name GetEventRoomTypeTiers
+ * @param {boolean} allowed - Indicates if only allowed tiers should be fetched
+ * @param {string} eventId - The id of the event
+ * @param {string} roomTypeId - The id of the room type
+ * @version 1.2
+ **/
+
 export const EVENT_ROOM_TYPE_TIERS_QUERY_KEY = (
   allowed: boolean,
   eventId: string,
@@ -22,10 +29,6 @@ export const EVENT_ROOM_TYPE_TIERS_QUERY_KEY = (
   allowed ? "ALLOWED" : "DISALLOWED",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_ROOM_TYPE_TIERS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_ROOM_TYPE_TIERS_QUERY_KEY>,
@@ -40,10 +43,6 @@ interface GetEventRoomTypeTiersProps extends InfiniteQueryParams {
   roomTypeId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventRoomTypeTiers = async ({
   allowed,
   eventId,
@@ -69,10 +68,7 @@ export const GetEventRoomTypeTiers = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventRoomTypeTiers = (
   allowed: boolean,
   eventId: string = "",

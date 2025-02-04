@@ -11,6 +11,18 @@ import {
 } from "@src/queries";
 
 /**
+ * Creates a new translation for a specific event session.
+ * This function allows the creation of a translation for an event session by specifying the event ID, session ID, and locale.
+ * It supports optional auto-translation and updates the query cache upon successful creation.
+ * @name PostEventSessionTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} sessionId - The ID of the session
+ * @param {string} locale - The locale for the translation
+ * @param {[boolean]} autoTranslate - Whether to automatically translate the session
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Sessions-Translations
  */

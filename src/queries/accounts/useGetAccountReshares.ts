@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Activity } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
@@ -11,18 +10,19 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Accounts
- */
+ * Fetches a list of reshares for a specific account.
+ * This function retrieves data about account reshares, allowing applications to display or process reshare activities associated with a given account.
+ * It is designed to be used in scenarios where understanding the reshare activity of an account is necessary.
+ * @name GetAccountReshares
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export const ACCOUNT_RESHARES_QUERY_KEY = (accountId: string) => [
   ...ACCOUNT_QUERY_KEY(accountId),
   "RESHARES",
 ];
 
-/**
- * @category Setters
- * @group Accounts
- */
 export const SET_ACCOUNT_RESHARES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_RESHARES_QUERY_KEY>,
@@ -30,14 +30,11 @@ export const SET_ACCOUNT_RESHARES_QUERY_DATA = (
 ) => {
   client.setQueryData(ACCOUNT_RESHARES_QUERY_KEY(...keyParams), response);
 };
+
 interface GetAccountResharesProps extends InfiniteQueryParams {
   accountId: string;
 }
 
-/**
- * @category Queries
- * @group Accounts
- */
 export const GetAccountReshares = async ({
   accountId,
   pageParam,
@@ -57,10 +54,7 @@ export const GetAccountReshares = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Accounts
- */
+
 export const useGetAccountReshares = (
   accountId: string = "",
   params: Omit<

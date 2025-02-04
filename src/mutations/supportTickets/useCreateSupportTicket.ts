@@ -12,17 +12,18 @@ import {
 import { SupportTicketCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group SupportTickets
- */
+ * Endpoint to create a new support ticket.
+ * This function allows users to submit a support ticket with the necessary information.
+ * It is designed to be used in applications where users need to report issues or request assistance.
+ * @name CreateSupportTicket
+ * @param {SupportTicketCreateInputs} supportTicket - The information for the support ticket
+ * @version 1.2
+ **/
+
 export interface CreateSupportTicketParams extends MutationParams {
   supportTicket: SupportTicketCreateInputs;
 }
 
-/**
- * @category Methods
- * @group SupportTickets
- */
 export const CreateSupportTicket = async ({
   supportTicket,
   adminApiParams,
@@ -40,10 +41,6 @@ export const CreateSupportTicket = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group SupportTickets
- */
 export const useCreateSupportTicket = (
   options: Omit<
     ConnectedXMMutationOptions<

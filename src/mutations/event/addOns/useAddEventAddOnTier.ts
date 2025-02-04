@@ -11,9 +11,17 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-AddOns
- */
+ * Adds a tier to an event add-on and updates the relevant queries.
+ * This function is used to manage event add-ons by allowing the addition of tiers, 
+ * which can be configured to be allowed or disallowed. It ensures that the application 
+ * state is consistent by invalidating and updating the necessary queries.
+ * @name AddEventAddOnTier
+ * @param {boolean} allowed - Indicates if the tier is allowed
+ * @param {string} eventId - The ID of the event
+ * @param {string} addOnId - The ID of the add-on
+ * @param {string} tierId - The ID of the tier
+ * @version 1.2
+**/
 export interface AddEventAddOnTierParams extends MutationParams {
   allowed: boolean;
   eventId: string;
@@ -21,10 +29,6 @@ export interface AddEventAddOnTierParams extends MutationParams {
   tierId: string;
 }
 
-/**
- * @category Methods
- * @group Event-AddOns
- */
 export const AddEventAddOnTier = async ({
   allowed,
   eventId,
@@ -50,10 +54,6 @@ export const AddEventAddOnTier = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-AddOns
- */
 export const useAddEventAddOnTier = (
   options: Omit<
     ConnectedXMMutationOptions<

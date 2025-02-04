@@ -11,18 +11,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Threads
- */
+ * Adds a member as a moderator to a specified thread and invalidates relevant queries.
+ * This function is used to promote a thread member to a moderator role within a thread,
+ * ensuring that the thread's moderator and member data are updated accordingly.
+ * It is designed for applications that manage user roles within discussion threads.
+ * @name AddThreadModerator
+ * @param {string} threadId - The id of the thread
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export interface AddThreadModeratorParams extends MutationParams {
   threadId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Threads
- */
 export const AddThreadModerator = async ({
   threadId,
   accountId,
@@ -44,10 +47,6 @@ export const AddThreadModerator = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Threads
- */
 export const useAddThreadModerator = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -9,19 +9,22 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Support Tickets
- */
+ * Endpoint to fetch and manage support tickets with pagination and filtering capabilities.
+ * This function allows users to retrieve support tickets based on their status and type, 
+ * providing options for pagination and additional query parameters.
+ * It is designed for applications that require detailed management and retrieval of support tickets.
+ * @name GetSupportTickets
+ * @param {string} status - The status of the support tickets
+ * @param {string} type - The type of the support tickets
+ * @version 1.2
+ **/
+
 export const SUPPORT_TICKETS_QUERY_KEY = (status?: string, type?: string) => [
   "SUPPORT_TICKETS",
   type,
   status,
 ];
 
-/**
- * @category Setters
- * @group Support Tickets
- */
 export const SET_SUPPORT_TICKETS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SUPPORT_TICKETS_QUERY_KEY>,
@@ -35,10 +38,6 @@ interface GetSupportTicketsProps extends InfiniteQueryParams {
   type: string;
 }
 
-/**
- * @category Queries
- * @group Support Tickets
- */
 export const GetSupportTickets = async ({
   type,
   status,
@@ -61,10 +60,7 @@ export const GetSupportTickets = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Support Tickets
- */
+
 export const useGetSupportTickets = (
   type: string,
   status: string = "",

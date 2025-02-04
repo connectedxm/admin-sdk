@@ -11,15 +11,15 @@ import { QueryClient } from "@tanstack/react-query";
 import { SELF_QUERY_KEY } from "./useGetSelf";
 
 /**
- * @category Keys
- * @group SelfApiKeys
- */
+ * Retrieves a list of API keys associated with the current user.
+ * This function is designed to fetch all API keys that belong to the user, allowing them to manage or review their keys.
+ * It supports pagination and sorting to efficiently handle large sets of API keys.
+ * @name GetSelfApiKeys
+ * @version 1.2
+ **/
+
 export const SELF_API_KEYS_QUERY_KEY = () => [...SELF_QUERY_KEY(), "API_KEYS"];
 
-/**
- * @category Setters
- * @group SelfApiKeys
- */
 export const SET_SELF_API_KEYS_QUERY_DATA = (
   client: QueryClient,
   response: Awaited<ReturnType<typeof GetSelfApiKeys>>
@@ -29,10 +29,6 @@ export const SET_SELF_API_KEYS_QUERY_DATA = (
 
 interface GetSelfApiKeysProps extends InfiniteQueryParams {}
 
-/**
- * @category Queries
- * @group SelfApiKeys
- */
 export const GetSelfApiKeys = async ({
   pageParam,
   pageSize,
@@ -52,10 +48,6 @@ export const GetSelfApiKeys = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group SelfApiKeys
- */
 export const useGetSelfApiKeys = (
   params: Omit<
     InfiniteQueryParams,

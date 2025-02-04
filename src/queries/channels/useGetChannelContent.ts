@@ -10,18 +10,20 @@ import { QueryClient } from "@tanstack/react-query";
 import { CHANNEL_CONTENTS_QUERY_KEY } from "./useGetChannelContents";
 
 /**
- * @category Keys
- * @group Channels
- */
+ * Retrieves specific content from a channel by its ID.
+ * This function is used to fetch detailed information about a particular piece of content within a specified channel.
+ * It is designed for applications that require access to individual channel content details.
+ * @name GetChannelContent
+ * @param {string} channelId - The ID of the channel
+ * @param {string} contentId - The ID of the content
+ * @version 1.2
+ **/
+
 export const CHANNEL_CONTENT_QUERY_KEY = (
   channelId: string,
   contentId: string
 ) => [...CHANNEL_CONTENTS_QUERY_KEY(channelId), contentId];
 
-/**
- * @category Setters
- * @group Channels
- */
 export const SET_CHANNEL_CONTENT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof CHANNEL_CONTENT_QUERY_KEY>,
@@ -35,10 +37,6 @@ interface GetChannelContentProps extends SingleQueryParams {
   contentId: string;
 }
 
-/**
- * @category Queries
- * @group Channels
- */
 export const GetChannelContent = async ({
   channelId,
   contentId,
@@ -50,10 +48,7 @@ export const GetChannelContent = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Channels
- */
+
 export const useGetChannelContent = (
   channelId: string = "",
   contentId: string = "",

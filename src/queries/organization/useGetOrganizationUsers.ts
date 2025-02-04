@@ -10,18 +10,18 @@ import { ORGANIZATION_QUERY_KEY } from "./useGetOrganization";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Organization
- */
+ * Endpoint to retrieve a list of users within an organization.
+ * This function fetches user data from an organization, supporting pagination and search functionalities.
+ * It is designed for applications that need to display or manage organization members.
+ * @name GetOrganizationUsers
+ * @version 1.2
+ **/
+
 export const ORGANIZATION_USERS_QUERY_KEY = () => [
   ...ORGANIZATION_QUERY_KEY(),
   "USERS",
 ];
 
-/**
- * @category Setters
- * @group Organization
- */
 export const SET_ORGANIZATION_USERS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ORGANIZATION_USERS_QUERY_KEY>,
@@ -32,10 +32,6 @@ export const SET_ORGANIZATION_USERS_QUERY_DATA = (
 
 interface GetOrganizationUsersProps extends InfiniteQueryParams {}
 
-/**
- * @category Queries
- * @group Organization
- */
 export const GetOrganizationUsers = async ({
   pageParam,
   pageSize,
@@ -56,10 +52,7 @@ export const GetOrganizationUsers = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Organization
- */
+
 export const useGetOrganizationUsers = (
   params: Omit<
     InfiniteQueryParams,

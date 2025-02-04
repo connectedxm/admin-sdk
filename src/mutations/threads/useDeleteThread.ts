@@ -8,17 +8,18 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { THREADS_QUERY_KEY, THREAD_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Threads
- */
+ * Endpoint to delete a specific thread by its unique identifier.
+ * This function allows for the removal of a thread from the system, ensuring that associated cache entries are invalidated.
+ * It is designed to be used in applications where thread management and cleanup are required.
+ * @name DeleteThread
+ * @param {string} threadId - The id of the thread to be deleted
+ * @version 1.2
+ **/
+
 export interface DeleteThreadParams extends MutationParams {
   threadId: string;
 }
 
-/**
- * @category Methods
- * @group Threads
- */
 export const DeleteThread = async ({
   threadId,
   adminApiParams,
@@ -35,10 +36,6 @@ export const DeleteThread = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Threads
- */
 export const useDeleteThread = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -10,18 +10,20 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches event email data based on the specified type for a given event.
+ * This function is designed to retrieve detailed information about event emails, 
+ * which can be used in applications that require insights into specific types of event communications.
+ * @name GetEventEmail
+ * @param {string} eventId - The id of the event
+ * @param {EventEmailType} type - The type of the event email
+ * @version 1.2
+ **/
+
 export const EVENT_EMAIL_QUERY_KEY = (
   eventId: string,
   type: EventEmailType
 ) => [...EVENT_QUERY_KEY(eventId), "EVENT_EMAIL", type];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_EMAIL_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_EMAIL_QUERY_KEY>,
@@ -35,10 +37,6 @@ interface GetEventEmailProps extends SingleQueryParams {
   type: EventEmailType;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventEmail = async ({
   eventId,
   type,
@@ -48,10 +46,7 @@ export const GetEventEmail = async ({
   const { data } = await adminApi.get(`/events/${eventId}/emails/${type}`);
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventEmail = (
   eventId: string = "",
   type: EventEmailType,

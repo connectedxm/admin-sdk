@@ -10,18 +10,20 @@ import { EVENT_ACTIVATION_QUERY_KEY } from "./useGetEventActivation";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves a list of completions for a specific event activation.
+ * This function fetches data about the completions of an activation within a given event, 
+ * allowing users to track and manage activation progress.
+ * @name GetEventActivationCompletions
+ * @param {string} eventId - The id of the event
+ * @param {string} activationId - The id of the activation
+ * @version 1.2
+ **/
+
 export const EVENT_ACTIVATION_COMPLETIONS_QUERY_KEY = (
   eventId: string,
   activationId: string
 ) => [...EVENT_ACTIVATION_QUERY_KEY(eventId, activationId), "COMPLETIONS"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_ACTIVATION_COMPLETIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_ACTIVATION_COMPLETIONS_QUERY_KEY>,
@@ -38,10 +40,6 @@ interface GetEventActivationCompletionsProps extends InfiniteQueryParams {
   activationId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventActivationCompletions = async ({
   eventId,
   activationId,
@@ -67,10 +65,7 @@ export const GetEventActivationCompletions = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventActivationCompletions = (
   eventId: string = "",
   activationId: string = "",

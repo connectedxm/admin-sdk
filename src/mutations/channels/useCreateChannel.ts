@@ -12,17 +12,17 @@ import {
 import { ChannelCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Channel
- */
+ * Endpoint to create a new channel within the application.
+ * This function allows for the creation of a channel by providing the necessary inputs.
+ * It is designed to be used in scenarios where new communication channels need to be established.
+ * @name CreateChannel
+ * @param {ChannelCreateInputs} channel - The inputs required to create a channel
+ * @version 1.2
+ **/
 export interface CreateChannelParams extends MutationParams {
   channel: ChannelCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Channel
- */
 export const CreateChannel = async ({
   channel,
   adminApiParams,
@@ -42,10 +42,6 @@ export const CreateChannel = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Channel
- */
 export const useCreateChannel = (
   options: Omit<
     ConnectedXMMutationOptions<

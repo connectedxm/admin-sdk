@@ -12,18 +12,19 @@ import {
 import { AdvertisementUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Advertisement
- */
+ * Endpoint to update an existing advertisement with new details.
+ * This function allows users to modify the details of an advertisement by providing the advertisement ID and the updated inputs.
+ * It ensures that the advertisement data is updated in the system and invalidates the relevant queries to refresh the data.
+ * @name UpdateAdvertisement
+ * @param {string} advertisementId - The ID of the advertisement
+ * @param {AdvertisementUpdateInputs} advertisement - The advertisement update inputs
+ * @version 1.2
+ **/
 export interface UpdateAdvertisementParams extends MutationParams {
   advertisementId: string;
   advertisement: AdvertisementUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Advertisement
- */
 export const UpdateAdvertisement = async ({
   advertisementId,
   advertisement,
@@ -44,10 +45,6 @@ export const UpdateAdvertisement = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Advertisements
- */
 export const useUpdateAdvertisement = (
   options: Omit<
     ConnectedXMMutationOptions<

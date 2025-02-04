@@ -10,18 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Key
- * @group Emails
- */
+ * Endpoint to retrieve details of a specific API log entry by its unique identifier.
+ * This function allows users to fetch comprehensive information about a particular API log entry.
+ * It is designed for applications that require detailed logging information for auditing or debugging purposes.
+ * @name GetAPILog
+ * @param {string} logId - The id of the log entry
+ * @version 1.2
+ **/
+
 export const API_LOG_QUERY_KEY = (logId: string) => [
   ...API_LOGS_QUERY_KEY(),
   logId,
 ];
 
-/**
- * @category Setters
- * @group Emails
- */
 export const SET_API_LOG_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof API_LOG_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetAPILogParams extends SingleQueryParams {
   logId: string;
 }
 
-/**
- * @category Query
- * @group Emails
- */
 export const GetAPILog = async ({
   logId,
   adminApiParams,
@@ -48,10 +45,6 @@ export const GetAPILog = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Emails
- */
 export const useGetAPILog = (
   logId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetAPILog>> = {}

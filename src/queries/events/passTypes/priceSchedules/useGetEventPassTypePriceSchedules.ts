@@ -11,18 +11,20 @@ import {
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
+ * Fetches the price schedules for a specific event pass type, allowing for pagination and filtering.
+ * This function is designed to retrieve detailed pricing information for event pass types, which can be useful for event organizers and participants.
+ * It supports infinite scrolling and can be integrated into applications that require dynamic data loading.
+ * @name GetEventPassTypePriceSchedules
+ * @param {string} eventId - The id of the event
+ * @param {string} passTypeId - The id of the pass type
+ * @version 1.2
  */
+
 export const EVENT_PASS_TYPE_PRICE_SCHEDULES_QUERY_KEY = (
   eventId: string,
   passTypeId: string
 ) => [...EVENT_PASS_TYPE_QUERY_KEY(eventId, passTypeId), "PRICE_SCHEDULES"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_PASS_TYPE_PRICE_SCHEDULES_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_PASS_TYPE_PRICE_SCHEDULES_QUERY_KEY>,
@@ -39,10 +41,6 @@ interface GetEventPassTypePriceSchedulesParams extends InfiniteQueryParams {
   passTypeId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventPassTypePriceSchedules = async ({
   pageParam,
   pageSize,
@@ -69,10 +67,6 @@ export const GetEventPassTypePriceSchedules = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Events
- */
 export const useGetEventPassTypePriceSchedules = (
   eventId: string = "",
   passTypeId: string = "",

@@ -8,18 +8,19 @@ import {
 import { EVENT_SPONSORS_QUERY_KEY, SET_EVENT_QUERY_DATA } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sponsors
- */
+ * Adds a sponsor account to a specific event and updates the query client if successful.
+ * This function is used to associate a sponsor's account with an event, allowing for the management of event sponsorships.
+ * It ensures that the query client is updated to reflect the changes if the operation is successful.
+ * @name AddEventSponsorAccount
+ * @param {string} eventId - The id of the event
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
 export interface AddEventSponsorAccountParams extends MutationParams {
   eventId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sponsors
- */
 export const AddEventSponsorAccount = async ({
   eventId,
   accountId,
@@ -39,10 +40,6 @@ export const AddEventSponsorAccount = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sponsors
- */
 export const useAddEventSponsorAccount = (
   options: Omit<
     ConnectedXMMutationOptions<

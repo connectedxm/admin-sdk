@@ -11,19 +11,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Tracks
- */
+ * Endpoint to add a session to a specific event track.
+ * This function allows users to associate a session with a particular track within an event.
+ * It is designed to be used in applications where event management and session tracking are required.
+ * @name AddEventTrackSession
+ * @param {string} eventId - The id of the event
+ * @param {string} trackId - The id of the track
+ * @param {string} sessionId - The id of the session
+ * @version 1.2
+ **/
 export interface AddEventTrackSessionParams extends MutationParams {
   eventId: string;
   trackId: string;
   sessionId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Tracks
- */
 export const AddEventTrackSession = async ({
   eventId,
   trackId,
@@ -44,10 +46,6 @@ export const AddEventTrackSession = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Tracks
- */
 export const useAddEventTrackSession = (
   options: Omit<
     ConnectedXMMutationOptions<

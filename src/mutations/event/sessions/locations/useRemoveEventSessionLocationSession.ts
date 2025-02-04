@@ -9,9 +9,15 @@ import { SET_EVENT_SESSION_LOCATION_QUERY_DATA } from "@src/queries/events/sessi
 import { EVENT_SESSION_LOCATIONS_QUERY_KEY } from "@src/queries/events/sessions/locations/useGetEventSessionLocations";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Endpoint to remove a session location for a specific event.
+ * This function allows the removal of a session location from an event by specifying the event ID, location ID, and session ID.
+ * It is used in scenarios where a session location needs to be disassociated from an event.
+ * @name RemoveEventSessionLocationSession
+ * @param {string} eventId - The id of the event
+ * @param {string} locationId - The id of the location
+ * @param {string} sessionId - The id of the session
+ * @version 1.2
+ **/
 export interface RemoveEventSessionLocationSessionParams
   extends MutationParams {
   eventId: string;
@@ -19,10 +25,6 @@ export interface RemoveEventSessionLocationSessionParams
   sessionId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const RemoveEventSessionLocationSession = async ({
   eventId,
   locationId,
@@ -51,10 +53,6 @@ export const RemoveEventSessionLocationSession = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useRemoveEventSessionLocationSession = (
   options: Omit<
     ConnectedXMMutationOptions<

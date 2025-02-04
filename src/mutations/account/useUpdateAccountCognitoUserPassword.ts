@@ -5,20 +5,24 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
+
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to update the password for a Cognito user associated with an account.
+ * This function allows updating the password of a Cognito user linked to a specific account.
+ * It is intended for use in scenarios where password management for Cognito users is required.
+ * @name UpdateAccountCognitoUserPassword
+ * @param {string} accountId - The id of the account
+ * @param {string} username - The username of the Cognito user
+ * @param {string} password - The new password for the Cognito user
+ * @version 1.2
+ **/
+
 export interface UpdateAccountCognitoUserPasswordParams extends MutationParams {
   accountId: string;
   username: string;
   password: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const UpdateAccountCognitoUserPassword = async ({
   accountId,
   username,
@@ -44,10 +48,6 @@ export const UpdateAccountCognitoUserPassword = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useUpdateAccountCognitoUserPassword = (
   options: Omit<
     ConnectedXMMutationOptions<

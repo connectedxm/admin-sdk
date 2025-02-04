@@ -10,9 +10,14 @@ import { SUBSCRIPTION_PRODUCT_QUERY_KEY } from "./useGetSubscriptionProduct";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Subscriptions
- */
+ * Endpoint to retrieve a list of prices for a specific subscription product.
+ * This function allows users to fetch detailed pricing information associated with a subscription product.
+ * It is designed to be used in applications where pricing details of subscription products are required.
+ * @name GetSubscriptionProductPrices
+ * @param {string} subscriptionProductId - The id of the subscription product
+ * @version 1.2
+ **/
+
 export const SUBSCRIPTION_PRODUCT_PRICES_QUERY_KEY = (
   subscriptionProductId: string
 ) => [
@@ -20,10 +25,6 @@ export const SUBSCRIPTION_PRODUCT_PRICES_QUERY_KEY = (
   "SUBSCRIPTION_PRODUCT_PRICES",
 ];
 
-/**
- * @category Setters
- * @group Subscriptions
- */
 export const SET_SUBSCRIPTION_PRODUCT_PRICES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SUBSCRIPTION_PRODUCT_PRICES_QUERY_KEY>,
@@ -39,10 +40,6 @@ interface GetSubscriptionProductPricesProps extends InfiniteQueryParams {
   subscriptionProductId: string;
 }
 
-/**
- * @category Queries
- * @group Subscriptions
- */
 export const GetSubscriptionProductPrices = async ({
   pageParam,
   pageSize,
@@ -67,10 +64,7 @@ export const GetSubscriptionProductPrices = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Subscriptions
- */
+
 export const useGetSubscriptionProductPrices = (
   subscriptionProductId: string = "",
   params: Omit<

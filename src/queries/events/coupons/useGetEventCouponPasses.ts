@@ -10,18 +10,20 @@ import { QueryClient } from "@tanstack/react-query";
 import { EVENT_COUPON_QUERY_KEY } from "./useGetEventCoupon";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches a list of event coupon passes for a specific event and coupon.
+ * This function retrieves data about passes associated with a given event and coupon, 
+ * allowing applications to display or process this information as needed.
+ * @name GetEventCouponPasses
+ * @param {string} eventId - The id of the event
+ * @param {string} couponId - The id of the coupon
+ * @version 1.2
+ **/
+
 export const EVENT_COUPON_PASSES_QUERY_KEY = (
   eventId: string,
   couponId: string
 ) => [...EVENT_COUPON_QUERY_KEY(eventId, couponId), "PASSES"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_COUPON_PASSES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_COUPON_PASSES_QUERY_KEY>,
@@ -35,10 +37,6 @@ interface GetEventCouponPassesProps extends InfiniteQueryParams {
   couponId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventCouponPasses = async ({
   eventId,
   couponId,
@@ -62,10 +60,7 @@ export const GetEventCouponPasses = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventCouponPasses = (
   eventId: string = "",
   couponId: string = "",

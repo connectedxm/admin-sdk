@@ -8,22 +8,23 @@ import { Subscription, ConnectedXMResponse } from "@src/interfaces";
 import { SubscriptionUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Subscriptions
- */
+ * Endpoint to update a subscription with new details.
+ * This function allows users to modify an existing subscription by providing the subscription ID and the updated subscription details.
+ * It is designed to be used in applications where subscription management is required.
+ * @name UpdateSubscription
+ * @param {string} subscriptionId - The id of the subscription
+ * @param {SubscriptionUpdateInputs} subscription - The subscription update inputs
+ * @version 1.2
+ **/
+
 export interface UpdateSubscriptionParams extends MutationParams {
   subscriptionId: string;
   subscription: SubscriptionUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Subscriptions
- */
 export const UpdateSubscription = async ({
   subscriptionId,
   subscription,
-  // queryClient,
   adminApiParams,
 }: UpdateSubscriptionParams): Promise<ConnectedXMResponse<Subscription>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -32,14 +33,9 @@ export const UpdateSubscription = async ({
     `/subscriptions/${subscriptionId}`,
     subscription
   );
-  // if(queryClient && data.status === "ok") { }
   return data;
 };
 
-/**
- * @category Mutations
- * @group Subscriptions
- */
 export const useUpdateSubscription = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -12,18 +12,19 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to add a delegate to an account.
+ * This function allows the addition of a delegate to a specified account by providing the account and delegate IDs.
+ * It is used in scenarios where account management requires delegation capabilities.
+ * @name AddAccountDelegate
+ * @param {string} accountId - The id of the account
+ * @param {string} delegateId - The id of the delegate
+ * @version 1.2
+ **/
 export interface AddAccountDelegateParams extends MutationParams {
   accountId: string;
   delegateId: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const AddAccountDelegate = async ({
   accountId,
   delegateId,
@@ -45,12 +46,8 @@ export const AddAccountDelegate = async ({
     });
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useAddAccountDelegate = (
   options: Omit<
     ConnectedXMMutationOptions<

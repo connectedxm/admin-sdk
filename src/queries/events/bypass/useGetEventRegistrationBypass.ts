@@ -10,9 +10,15 @@ import { EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY } from "./useGetEventRegistrat
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches details of a specific event registration bypass using the event and bypass IDs.
+ * This function is designed to retrieve detailed information about a particular bypass associated with an event.
+ * It is useful in scenarios where understanding the specifics of an event's registration bypass is necessary.
+ * @name GetEventRegistrationBypass
+ * @param {string} eventId - The ID of the event
+ * @param {string} bypassId - The ID of the bypass
+ * @version 1.2
+ **/
+
 export const EVENT_REGISTRATION_BYPASS_QUERY_KEY = (
   eventId: string,
   bypassId: string
@@ -21,10 +27,6 @@ export const EVENT_REGISTRATION_BYPASS_QUERY_KEY = (
   bypassId.toString(),
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_REGISTRATION_BYPASS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_REGISTRATION_BYPASS_QUERY_KEY>,
@@ -41,10 +43,6 @@ interface GetEventRegistrationBypassProps extends SingleQueryParams {
   bypassId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventRegistrationBypass = async ({
   eventId,
   bypassId,
@@ -56,10 +54,7 @@ export const GetEventRegistrationBypass = async ({
   const { data } = await adminApi.get(`/events/${eventId}/bypass/${bypassId}`);
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventRegistrationBypass = (
   eventId: string = "",
   bypassId: string = "",

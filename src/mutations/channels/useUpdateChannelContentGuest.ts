@@ -12,9 +12,16 @@ import {
 import { ChannelContentGuestUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Channels
- */
+ * Endpoint to update a channel content guest.
+ * This function allows updating the details of a guest associated with specific content in a channel.
+ * It is used to modify guest information such as permissions or roles within the context of channel content.
+ * @name UpdateChannelContentGuest
+ * @param {string} contentId - The id of the content
+ * @param {string} channelId - The id of the channel
+ * @param {string} guestId - The id of the guest
+ * @param {ChannelContentGuestUpdateInputs} contentGuest - The content guest update inputs
+ * @version 1.2
+ **/
 export interface UpdateChannelContentGuestParams extends MutationParams {
   contentId: string;
   channelId: string;
@@ -22,10 +29,6 @@ export interface UpdateChannelContentGuestParams extends MutationParams {
   contentGuest: ChannelContentGuestUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Channels
- */
 export const UpdateChannelContentGuest = async ({
   contentId,
   channelId,
@@ -54,10 +57,6 @@ export const UpdateChannelContentGuest = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Channels
- */
 export const useUpdateChannelContentGuest = (
   options: Omit<
     ConnectedXMMutationOptions<

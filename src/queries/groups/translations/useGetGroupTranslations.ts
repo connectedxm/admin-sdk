@@ -9,6 +9,15 @@ import {
 import { GROUP_QUERY_KEY } from "../useGetGroup";
 
 /**
+ * Retrieves translations for a specific group by its ID.
+ * This function is used to fetch a list of translations associated with a particular group within an application.
+ * It supports infinite scrolling and can be used in scenarios where group translation data is required.
+ * @name GetGroupTranslations
+ * @param {string} groupId - The ID of the group
+ * @version 1.2
+ **/
+
+/**
  * @category Keys
  * @group Groups
  */

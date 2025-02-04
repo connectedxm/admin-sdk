@@ -12,6 +12,18 @@ import {
 } from "@src/queries";
 
 /**
+ * Updates the translation of a specific event question for a given locale.
+ * This function allows for the modification of question translations within an event, supporting multilingual capabilities.
+ * It is designed to be used in applications where event content needs to be localized.
+ * @name UpdateEventQuestionTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} questionId - The ID of the question
+ * @param {ISupportedLocale} locale - The locale for the translation
+ * @param {EventQuestionTranslationUpdateInputs} questionTranslation - The translation inputs for the question
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Question-Translations
  */

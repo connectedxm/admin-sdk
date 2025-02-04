@@ -8,17 +8,18 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { IMAGES_QUERY_KEY, IMAGE_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Images
- */
+ * Endpoint to delete an image from the storage.
+ * This function allows the removal of a specified image by its ID from the storage system.
+ * It ensures that the image is deleted and updates the query cache accordingly.
+ * @name DeleteImage
+ * @param {string} imageId - The id of the image to be deleted
+ * @version 1.2
+ **/
+
 export interface DeleteImageParams extends MutationParams {
   imageId: string;
 }
 
-/**
- * @category Methods
- * @group Images
- */
 export const DeleteImage = async ({
   imageId,
   adminApiParams,
@@ -36,10 +37,6 @@ export const DeleteImage = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Images
- */
 export const useDeleteImage = (
   options: Omit<
     ConnectedXMMutationOptions<

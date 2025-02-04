@@ -11,18 +11,19 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to add an interest to a specific account.
+ * This function allows the addition of a new interest to an account by specifying the account ID and the interest ID.
+ * It is designed to update the account's interests and ensure the query data is refreshed accordingly.
+ * @name AddAccountInterest
+ * @param {string} accountId - The id of the account
+ * @param {string} interestId - The id of the interest
+ * @version 1.2
+ **/
 export interface AddAccountInterestParams extends MutationParams {
   accountId: string;
   interestId: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const AddAccountInterest = async ({
   accountId,
   interestId,
@@ -43,10 +44,6 @@ export const AddAccountInterest = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useAddAccountInterest = (
   options: Omit<
     ConnectedXMMutationOptions<

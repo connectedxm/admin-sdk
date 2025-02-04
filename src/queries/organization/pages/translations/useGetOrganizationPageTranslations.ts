@@ -9,18 +9,19 @@ import {
 } from "@src/queries/useConnectedInfiniteQuery";
 
 /**
- * @category Keys
- * @group Organization
+ * Retrieves translations for a specific organization page type.
+ * This function fetches translations associated with a given page type within an organization, 
+ * allowing for dynamic content localization. It is useful for applications that need to display 
+ * translated content based on the user's language preferences.
+ * @name GetOrganizationPageTranslations
+ * @param {PageType} type - The type of the page for which translations are being retrieved
+ * @version 1.2
  */
 export const ORGANIZATION_PAGE_TRANSLATIONS_QUERY_KEY = (type: PageType) => [
   ...ORGANIZATION_PAGE_QUERY_KEY(type),
   "TRANSLATIONS",
 ];
 
-/**
- * @category Setters
- * @group Organization
- */
 export const SET_ORGANIZATION_PAGE_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof ORGANIZATION_PAGE_TRANSLATIONS_QUERY_KEY>,
@@ -36,10 +37,6 @@ interface GetOrganizationPageTranslationsProps extends InfiniteQueryParams {
   type: PageType;
 }
 
-/**
- * @category Queries
- * @group Organization
- */
 export const GetOrganizationPageTranslations = async ({
   pageParam,
   pageSize,
@@ -64,10 +61,7 @@ export const GetOrganizationPageTranslations = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Organization
- */
+
 export const useGetOrganizationPageTranslations = (
   type: PageType,
   params: Omit<

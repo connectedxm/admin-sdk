@@ -10,18 +10,19 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves a list of questions associated with a specific event.
+ * This function is designed to fetch event-related questions, which can be used in applications that require detailed information about event questions.
+ * It supports infinite scrolling and pagination through the use of connected infinite queries.
+ * @name GetEventQuestions
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+ **/
+
 export const EVENT_QUESTIONS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "QUESTIONS",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_QUESTIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_QUESTIONS_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetEventQuestionsProps extends InfiniteQueryParams {
   eventId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventQuestions = async ({
   eventId,
   pageParam,
@@ -59,10 +56,7 @@ export const GetEventQuestions = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventQuestions = (
   eventId: string = "",
   params: Omit<

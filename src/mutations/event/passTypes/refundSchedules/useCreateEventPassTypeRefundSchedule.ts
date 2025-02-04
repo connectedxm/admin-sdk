@@ -10,19 +10,21 @@ import { SET_EVENT_PASS_TYPE_REFUND_SCHEDULE_QUERY_DATA } from "@src/queries/eve
 import { EVENT_PASS_TYPE_REFUND_SCHEDULES_QUERY_KEY } from "@src/queries/events/passTypes/refundSchedules/useGetEventPassTypeRefundSchedules";
 
 /**
- * @category Params
- * @group Events
- */
+ * Endpoint to create a refund schedule for a specific event pass type.
+ * This function allows the creation of a refund schedule associated with a particular event pass type.
+ * It is designed to be used in scenarios where event organizers need to define refund policies for their event pass types.
+ * @name CreateEventPassTypeRefundSchedule
+ * @param {string} eventId - The id of the event
+ * @param {string} passTypeId - The id of the pass type
+ * @param {PassTypeRefundScheduleCreateInputs} schedule - The refund schedule inputs
+ * @version 1.2
+ **/
 interface CreateEventPassTypeRefundScheduleParams extends MutationParams {
   eventId: string;
   passTypeId: string;
   schedule: PassTypeRefundScheduleCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Events
- */
 export const CreateEventPassTypeRefundSchedule = async ({
   eventId,
   passTypeId,
@@ -51,10 +53,6 @@ export const CreateEventPassTypeRefundSchedule = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Events
- */
 export const useCreateEventPassTypeRefundSchedule = (
   options: Omit<
     ConnectedXMMutationOptions<

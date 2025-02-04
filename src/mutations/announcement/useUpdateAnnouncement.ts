@@ -12,18 +12,19 @@ import {
 import { AnnouncementUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Announcement
- */
+ * Endpoint to update an existing announcement.
+ * This function allows users to modify the details of a specific announcement by providing the announcement ID and the updated inputs.
+ * It ensures that the announcement data is updated in the system and the relevant queries are invalidated to reflect the changes.
+ * @name UpdateAnnouncement
+ * @param {string} announcementId - The ID of the announcement
+ * @param {AnnouncementUpdateInputs} announcement - The announcement update inputs
+ * @version 1.2
+ **/
 export interface UpdateAnnouncementParams extends MutationParams {
   announcementId: string;
   announcement: AnnouncementUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Announcement
- */
 export const UpdateAnnouncement = async ({
   announcementId,
   announcement,
@@ -42,10 +43,6 @@ export const UpdateAnnouncement = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Announcement
- */
 export const useUpdateAnnouncement = (
   options: Omit<
     ConnectedXMMutationOptions<

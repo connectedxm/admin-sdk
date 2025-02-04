@@ -12,19 +12,23 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Activations
- */
+ * Updates an event activation by its ID and invalidates the relevant query in the query client.
+ * This function is used to modify the details of an existing event activation, ensuring that the
+ * query client reflects the latest data by invalidating the cache for the specific event activation.
+ * It is designed for applications that manage event activations and require real-time updates.
+ * @name UpdateEventActivation
+ * @param {string} eventId - The id of the event
+ * @param {string} activationId - The id of the activation
+ * @param {EventActivationUpdateInputs} activation - The activation update inputs
+ * @version 1.2
+ **/
+
 export interface UpdateEventActivationParams extends MutationParams {
   eventId: string;
   activationId: string;
   activation: EventActivationUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Activations
- */
 export const UpdateEventActivation = async ({
   eventId,
   activationId,
@@ -47,12 +51,8 @@ export const UpdateEventActivation = async ({
     SET_EVENT_ACTIVATION_QUERY_DATA(queryClient, [eventId, data.data.id], data);
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Event-Activations
- */
 export const useUpdateEventActivation = (
   options: Omit<
     ConnectedXMMutationOptions<

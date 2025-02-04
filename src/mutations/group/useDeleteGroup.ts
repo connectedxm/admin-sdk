@@ -8,17 +8,18 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { GROUPS_QUERY_KEY, GROUP_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Groups
- */
+ * Endpoint to delete a group by its unique identifier.
+ * This function allows for the removal of a group from the system, ensuring that all associated queries are invalidated and removed.
+ * It is designed to be used in applications where group management and cleanup are necessary.
+ * @name DeleteGroup
+ * @param {string} groupId - The id of the group to be deleted
+ * @version 1.2
+ **/
+
 export interface DeleteGroupParams extends MutationParams {
   groupId: string;
 }
 
-/**
- * @category Methods
- * @group Groups
- */
 export const DeleteGroup = async ({
   groupId,
   adminApiParams,
@@ -35,10 +36,6 @@ export const DeleteGroup = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Groups
- */
 export const useDeleteGroup = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -12,9 +12,17 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Reservations
- */
+ * Endpoint to update the details of a specific add-on for a room type in an event.
+ * This function allows updating the details of an add-on associated with a room type within a specific event.
+ * It is designed to be used in scenarios where modifications to add-on details are required for event room types.
+ * @name UpdateEventRoomTypeAddOnDetails
+ * @param {string} eventId - The id of the event
+ * @param {string} roomTypeId - The id of the room type
+ * @param {string} addOnId - The id of the add-on
+ * @param {EventRoomTypeAddOnDetailsUpdateInputs} details - The details to update
+ * @version 1.2
+ **/
+
 export interface UpdateEventRoomTypeAddOnDetailsParams extends MutationParams {
   eventId: string;
   roomTypeId: string;
@@ -22,10 +30,6 @@ export interface UpdateEventRoomTypeAddOnDetailsParams extends MutationParams {
   details: EventRoomTypeAddOnDetailsUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Reservations
- */
 export const UpdateEventRoomTypeAddOnDetails = async ({
   eventId,
   roomTypeId,
@@ -54,10 +58,6 @@ export const UpdateEventRoomTypeAddOnDetails = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Reservations
- */
 export const useUpdateEventRoomTypeAddOnDetails = (
   options: Omit<
     ConnectedXMMutationOptions<

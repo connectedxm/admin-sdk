@@ -8,18 +8,20 @@ import { ConnectedXMResponse, GroupMembership } from "@src/interfaces";
 import { THREAD_MODERATORS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Threads
- */
+ * Endpoint to remove a moderator from a specific thread.
+ * This function allows the removal of a user's moderator role from a thread by specifying the thread and account IDs.
+ * It is useful in scenarios where thread moderation needs to be managed dynamically.
+ * @name RemoveThreadModerator
+ * @param {string} threadId - The id of the thread
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export interface RemoveThreadModeratorParams extends MutationParams {
   threadId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Threads
- */
 export const RemoveThreadModerator = async ({
   threadId,
   accountId,
@@ -40,10 +42,6 @@ export const RemoveThreadModerator = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Threads
- */
 export const useRemoveThreadModerator = (
   options: Omit<
     ConnectedXMMutationOptions<

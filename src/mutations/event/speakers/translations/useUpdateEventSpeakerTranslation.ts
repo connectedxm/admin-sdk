@@ -12,9 +12,17 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Speakers-Translations
+ * Updates the translation details for a specific event speaker.
+ * This function allows for the modification of translation data associated with a speaker in a particular event.
+ * It is designed to be used in applications where multilingual support for event speakers is required.
+ * @name UpdateEventSpeakerTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} speakerId - The ID of the speaker
+ * @param {ISupportedLocale} locale - The locale for the translation
+ * @param {EventSpeakerTranslationUpdateInputs} speakerTranslation - The translation inputs for the speaker
+ * @version 1.2
  */
+
 export interface UpdateEventSpeakerTranslationParams extends MutationParams {
   eventId: string;
   speakerId: string;
@@ -22,10 +30,6 @@ export interface UpdateEventSpeakerTranslationParams extends MutationParams {
   speakerTranslation: EventSpeakerTranslationUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Speakers-Translations
- */
 export const UpdateEventSpeakerTranslation = async ({
   eventId,
   speakerId,
@@ -53,10 +57,6 @@ export const UpdateEventSpeakerTranslation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Speakers-Translations
- */
 export const useUpdateEventSpeakerTranslation = (
   options: Omit<
     ConnectedXMMutationOptions<

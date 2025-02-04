@@ -8,18 +8,20 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { STREAM_INPUTS_QUERY_KEY, STREAM_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Stream
- */
+ * Endpoint to delete a specific output from a stream.
+ * This function allows the removal of an output associated with a given stream by specifying the stream and output IDs.
+ * It is useful in scenarios where stream outputs need to be managed or cleaned up.
+ * @name DeleteStreamInputOutput
+ * @param {string} streamId - The id of the stream
+ * @param {string} outputId - The id of the output
+ * @version 1.2
+ **/
+
 export interface DeleteStreamInputOutputParams extends MutationParams {
   streamId: string;
   outputId: string;
 }
 
-/**
- * @category Methods
- * @group Stream
- */
 export const DeleteStreamInputOutput = async ({
   streamId,
   outputId,
@@ -37,10 +39,6 @@ export const DeleteStreamInputOutput = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Stream
- */
 export const useDeleteStreamInputOutput = (
   options: Omit<
     ConnectedXMMutationOptions<

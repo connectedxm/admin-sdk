@@ -8,17 +8,17 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { SERIES_LIST_QUERY_KEY, SERIES_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Series
- */
+ * Endpoint to delete a series by its unique identifier.
+ * This function allows for the removal of a series from the system, ensuring that associated queries are invalidated and removed.
+ * It is designed to be used in applications where series management is required, providing a mechanism to delete series data.
+ * @name DeleteSeries
+ * @param {string} seriesId - The id of the series
+ * @version 1.2
+ **/
 export interface DeleteSeriesParams extends MutationParams {
   seriesId: string;
 }
 
-/**
- * @category Methods
- * @group Series
- */
 export const DeleteSeries = async ({
   seriesId,
   adminApiParams,
@@ -35,10 +35,6 @@ export const DeleteSeries = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Series
- */
 export const useDeleteSeries = (
   options: Omit<
     ConnectedXMMutationOptions<

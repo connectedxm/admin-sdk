@@ -14,18 +14,20 @@ import {
 } from "@src/mutations/useConnectedMutation";
 
 /**
- * @category Params
- * @group Organization
- */
+ * Updates an organization module and invalidates related queries if necessary.
+ * This function allows for updating the details of a specific organization module by its type.
+ * It ensures that any related queries are invalidated to maintain data consistency.
+ * @name UpdateOrganizationModule
+ * @param {OrganizationModuleUpdateInputs} module - The module data to update
+ * @param {keyof typeof OrganizationModuleType} moduleType - The type of the organization module
+ * @version 1.2
+ **/
+
 export interface UpdateOrganizationModuleParams extends MutationParams {
   module: OrganizationModuleUpdateInputs;
   moduleType: keyof typeof OrganizationModuleType;
 }
 
-/**
- * @category Methods
- * @group Organization
- */
 export const UpdateOrganizationModule = async ({
   module,
   moduleType,
@@ -47,10 +49,6 @@ export const UpdateOrganizationModule = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization
- */
 export const useUpdateOrganizationModule = (
   options: Omit<
     ConnectedXMMutationOptions<

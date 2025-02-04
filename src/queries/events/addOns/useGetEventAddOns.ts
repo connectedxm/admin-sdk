@@ -9,18 +9,19 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches a list of event add-ons associated with a specific event.
+ * This function supports optional pagination and filtering to retrieve event add-ons efficiently.
+ * It is designed for applications that need to display or manage additional features or services linked to an event.
+ * @name GetEventAddOns
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+ **/
+
 export const EVENT_ADD_ONS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "ADD_ONS",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_ADD_ONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_ADD_ONS_QUERY_KEY>,
@@ -33,10 +34,6 @@ interface GetEventAddOnsProps extends InfiniteQueryParams {
   eventId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventAddOns = async ({
   eventId,
   pageParam,
@@ -56,10 +53,7 @@ export const GetEventAddOns = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventAddOns = (
   eventId: string = "",
   params: Omit<

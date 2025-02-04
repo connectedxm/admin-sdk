@@ -9,18 +9,20 @@ import { EVENT_ADD_ON_QUERY_KEY } from "./useGetEventAddOn";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves a list of pass types associated with a specific event add-on.
+ * This function is used to fetch various pass types that are available for a given event add-on, 
+ * allowing applications to display or manage these pass types as needed.
+ * @name GetEventAddOnPassTypes
+ * @param {string} eventId - The id of the event
+ * @param {string} addOnId - The id of the add-on
+ * @version 1.2
+ **/
+
 export const EVENT_ADD_ON_PASS_TYPES_QUERY_KEY = (
   eventId: string,
   addOnId: string
 ) => [...EVENT_ADD_ON_QUERY_KEY(eventId, addOnId), "PASS_TYPES"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_ADD_ON_PASS_TYPES_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_ADD_ON_PASS_TYPES_QUERY_KEY>,
@@ -37,10 +39,6 @@ interface GetEventAddOnPassTypesProps extends InfiniteQueryParams {
   addOnId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventAddOnPassTypes = async ({
   eventId,
   addOnId,
@@ -66,10 +64,7 @@ export const GetEventAddOnPassTypes = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventAddOnPassTypes = (
   eventId: string = "",
   addOnId: string = "",

@@ -12,6 +12,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Updates the translation of a specific event for a given locale.
+ * This function allows for updating the translation details of an event, identified by its ID, for a specified locale.
+ * It is designed to be used in applications where event translations need to be managed and updated.
+ * @name UpdateEventTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {ISupportedLocale} locale - The locale for which the translation is being updated
+ * @param {EventTranslationUpdateInputs} eventTranslation - The translation details to update
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Translations
  */

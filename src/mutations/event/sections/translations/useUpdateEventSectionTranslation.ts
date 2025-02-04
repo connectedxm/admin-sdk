@@ -12,9 +12,18 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sections-Translations
+ * Updates the translation for a specific event section in a given locale.
+ * This function allows for updating the translation details of a specific section within an event, 
+ * identified by eventId and sectionId, for a specified locale. It is designed to be used in applications 
+ * that manage multilingual content for events.
+ * @name UpdateEventSectionTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} sectionId - The ID of the section within the event
+ * @param {ISupportedLocale} locale - The locale for which the translation is being updated
+ * @param {EventSectionTranslationUpdateInputs} sectionTranslation - The translation inputs for the section
+ * @version 1.2
  */
+
 export interface UpdateEventSectionTranslationParams extends MutationParams {
   eventId: string;
   sectionId: string;
@@ -22,10 +31,6 @@ export interface UpdateEventSectionTranslationParams extends MutationParams {
   sectionTranslation: EventSectionTranslationUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Sections-Translations
- */
 export const UpdateEventSectionTranslation = async ({
   eventId,
   sectionId,
@@ -54,10 +59,6 @@ export const UpdateEventSectionTranslation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sections-Translations
- */
 export const useUpdateEventSectionTranslation = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -13,18 +13,19 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Activities
- */
+ * Endpoint to remove an interest from a specific activity.
+ * This function allows the removal of a specified interest from an activity by providing the activity and interest IDs.
+ * It is designed to be used in applications where managing activity interests is required.
+ * @name RemoveActivityInterest
+ * @param {string} activityId - The id of the activity
+ * @param {string} interestId - The id of the interest
+ * @version 1.2
+ **/
 export interface RemoveActivityInterestParams extends MutationParams {
   activityId: string;
   interestId: string;
 }
 
-/**
- * @category Methods
- * @group Activities
- */
 export const RemoveActivityInterest = async ({
   activityId,
   interestId,
@@ -45,10 +46,6 @@ export const RemoveActivityInterest = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Activities
- */
 export const useRemoveActivityInterest = (
   options: Omit<
     ConnectedXMMutationOptions<

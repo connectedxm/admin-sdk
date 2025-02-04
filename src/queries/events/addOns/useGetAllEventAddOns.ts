@@ -10,18 +10,19 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves all add-ons associated with a specific event.
+ * This function is used to fetch and manage event add-ons, allowing applications to access detailed information about each add-on linked to an event.
+ * It supports setting query data for efficient data management and retrieval.
+ * @name GetAllEventAddOns
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+ **/
+
 export const ALL_EVENT_ADD_ON_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "ALL_ADD_ONS",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_ALL_EVENT_ADD_ON_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ALL_EVENT_ADD_ON_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetAllEventAddOnsProps extends SingleQueryParams {
   eventId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetAllEventAddOns = async ({
   eventId,
   adminApiParams,
@@ -50,10 +47,7 @@ export const GetAllEventAddOns = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetAllEventAddOns = (
   eventId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetAllEventAddOns>> = {}

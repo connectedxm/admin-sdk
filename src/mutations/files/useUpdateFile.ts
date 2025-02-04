@@ -9,18 +9,19 @@ import { FILES_QUERY_KEY, SET_FILE_QUERY_DATA } from "@src/queries";
 import { FileUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Files
- */
+ * Endpoint to update a specific file within the system.
+ * This function allows users to update the details of a file by providing the file ID and the new file data.
+ * It is designed to be used in applications where file management and updates are required.
+ * @name UpdateFile
+ * @param {string} fileId - The ID of the file to be updated
+ * @param {FileUpdateInputs} file - The inputs for updating the file
+ * @version 1.2
+**/
 export interface UpdateFileParams extends MutationParams {
   fileId: string;
   file: FileUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Files
- */
 export const UpdateFile = async ({
   fileId,
   file,
@@ -39,10 +40,6 @@ export const UpdateFile = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Files
- */
 export const useUpdateFile = (
   options: Omit<
     ConnectedXMMutationOptions<

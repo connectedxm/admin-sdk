@@ -12,18 +12,20 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Subscriptions
- */
+ * Endpoint to update the details of a specific subscription product.
+ * This function allows for updating the information of a subscription product by providing its ID and the new details.
+ * It is intended for use in applications that manage subscription products and require the ability to modify product details.
+ * @name UpdateSubscriptionProduct
+ * @param {string} subscriptionProductId - The ID of the subscription product
+ * @param {SubscriptionProductUpdateInputs} subscriptionProduct - The new details of the subscription product
+ * @version 1.2
+ **/
+
 export interface UpdateSubscriptionProductParams extends MutationParams {
   subscriptionProductId: string;
   subscriptionProduct: SubscriptionProductUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Subscriptions
- */
 export const UpdateSubscriptionProduct = async ({
   subscriptionProductId,
   subscriptionProduct,
@@ -50,10 +52,6 @@ export const UpdateSubscriptionProduct = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Subscriptions
- */
 export const useUpdateSubscriptionProduct = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -8,17 +8,18 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { CHANNELS_QUERY_KEY, CHANNEL_QUERY_KEY } from "@src/queries/channels";
 
 /**
- * @category Params
- * @group Channel
- */
+ * Endpoint to delete a specific channel by its ID.
+ * This function allows for the removal of a channel from the system, ensuring that all associated data is invalidated and removed from the cache.
+ * It is intended for use in administrative contexts where channel management is required.
+ * @name DeleteChannel
+ * @param {string} channelId - The ID of the channel to be deleted
+ * @version 1.2
+ **/
+
 export interface DeleteChannelParams extends MutationParams {
   channelId: string;
 }
 
-/**
- * @category Methods
- * @group Channel
- */
 export const DeleteChannel = async ({
   channelId,
   adminApiParams,
@@ -36,10 +37,6 @@ export const DeleteChannel = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Channel
- */
 export const useDeleteChannel = (
   options: Omit<
     ConnectedXMMutationOptions<

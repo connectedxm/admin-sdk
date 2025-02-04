@@ -34,8 +34,6 @@ const openApiSpec: any = {
 
 // Function to extract API details from query files
 function extractApiDetails(filePath: string) {
-  console.log(`🔍 Extracting API details from ${filePath}`);
-
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const parsedComments = parse(fileContent);
 
@@ -54,17 +52,17 @@ function extractApiDetails(filePath: string) {
   const comments = parsedComments[0];
   if (!comments) throw new Error(`Comments not found in ${filePath}`);
 
-  console.log(comments.tags);
-  const name = comments.tags.find((tag) => tag.tag === "name")?.name;
-  const description = comments.tags.find(
-    (tag) => tag.tag === "description"
-  )?.name;
+  const nameTag = comments.tags.find((tag) => tag.tag === "name");
+  let name = "";
+  if (nameTag) {
+    name = nameTag.name + " " + nameTag.description;
+  }
 
   openApiSpec.paths[apiPath || filePath] = {
     ...openApiSpec.paths[apiPath || filePath],
     [method]: {
       name,
-      description,
+      description: comments.description,
       // responses: {
       //   200: {
       //     description: `Successful response`,

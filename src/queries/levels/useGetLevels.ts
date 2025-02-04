@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Level } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -10,15 +9,15 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Levels
- */
+ * Endpoint to manage and fetch level data.
+ * This function provides the ability to retrieve a list of levels with support for pagination and sorting.
+ * It is designed to be used in applications where level data needs to be displayed or managed.
+ * @name GetLevels
+ * @version 1.2
+**/
+
 export const LEVELS_QUERY_KEY = () => ["LEVELS"];
 
-/**
- * @category Setters
- * @group Levels
- */
 export const SET_LEVELS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof LEVELS_QUERY_KEY>,
@@ -29,10 +28,6 @@ export const SET_LEVELS_QUERY_DATA = (
 
 interface GetLevelsProps extends InfiniteQueryParams {}
 
-/**
- * @category Queries
- * @group Levels
- */
 export const GetLevels = async ({
   pageParam,
   pageSize,
@@ -51,10 +46,7 @@ export const GetLevels = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Levels
- */
+
 export const useGetLevels = (
   params: Omit<
     InfiniteQueryParams,

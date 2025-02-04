@@ -14,8 +14,16 @@ import {
 } from "@src/queries/events/sessions/questions/translations";
 
 /**
- * @category Params
- * @group Event-Sessions-Translations
+ * Creates a new translation for a specific event session question.
+ * This function allows the creation of a translation for a question within an event session, supporting multiple locales and optional auto-translation.
+ * It is designed to be used in applications that manage multilingual event content.
+ * @name PostEventSessionQuestionTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} sessionId - The ID of the session
+ * @param {string} questionId - The ID of the question
+ * @param {string} locale - The locale for the translation
+ * @param {[boolean]} autoTranslate - Whether to automatically translate the question
+ * @version 1.2
  */
 export interface CreateEventSessionQuestionTranslationParams
   extends MutationParams {
@@ -26,10 +34,6 @@ export interface CreateEventSessionQuestionTranslationParams
   autoTranslate?: boolean;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions-Translations
- */
 export const CreateEventSessionQuestionTranslation = async ({
   eventId,
   sessionId,
@@ -69,10 +73,6 @@ export const CreateEventSessionQuestionTranslation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sessions-Translations
- */
 export const useCreateEventSessionQuestionTranslation = (
   options: Omit<
     ConnectedXMMutationOptions<

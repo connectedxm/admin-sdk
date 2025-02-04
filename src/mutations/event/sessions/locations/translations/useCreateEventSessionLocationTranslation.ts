@@ -12,8 +12,16 @@ import { SET_EVENT_SESSION_LOCATION_TRANSLATION_QUERY_DATA } from "@src/queries/
 import { EVENT_SESSION_LOCATION_TRANSLATIONS_QUERY_KEY } from "@src/queries/events/sessions/locations/translations/useGetEventSessionTranslations";
 
 /**
- * @category Params
- * @group Event-Session-Location-Translations
+ * Creates a new translation for a specific event session location.
+ * This function allows the creation of a translation for a given event session location, 
+ * supporting optional auto-translation. It is designed to be used in applications 
+ * that manage multilingual event data.
+ * @name CreateEventSessionLocationTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} locationId - The ID of the location
+ * @param {string} locale - The locale for the translation
+ * @param {[boolean]} autoTranslate - Whether to automatically translate the content
+ * @version 1.2
  */
 export interface CreateEventSessionLocationTranslationParams
   extends MutationParams {

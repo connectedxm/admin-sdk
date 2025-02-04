@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Event } from "@src/interfaces";
 import {
   useConnectedInfiniteQuery,
@@ -11,18 +10,18 @@ import { EVENTS_QUERY_KEY } from "./useGetEvents";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Endpoint to fetch a list of unapproved events.
+ * This function retrieves events that have not yet been approved, allowing users to review and manage pending events.
+ * It is designed to be used in applications where event moderation is required.
+ * @name GetUnapprovedEvents
+ * @version 1.2
+ **/
+
 export const UNAPPROVED_EVENTS_QUERY_KEY = () => [
   ...EVENTS_QUERY_KEY(),
   "UNAPPROVED",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_UNAPPROVED_EVENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof UNAPPROVED_EVENTS_QUERY_KEY>,
@@ -33,10 +32,6 @@ export const SET_UNAPPROVED_EVENTS_QUERY_DATA = (
 
 interface GetUnapprovedEventsProps extends InfiniteQueryParams {}
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetUnapprovedEvents = async ({
   pageParam,
   pageSize,
@@ -55,10 +50,7 @@ export const GetUnapprovedEvents = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetUnapprovedEvents = (
   params: Omit<
     InfiniteQueryParams,

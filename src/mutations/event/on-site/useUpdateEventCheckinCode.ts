@@ -8,17 +8,17 @@ import {
 import { SET_EVENT_ON_SITE_QUERY_DATA } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-OnSite
- */
+ * Endpoint to update the check-in code for a specific event.
+ * This function allows updating the check-in code for an event by providing the event ID.
+ * It is used to manage event check-in processes and ensure the correct code is set for on-site operations.
+ * @name UpdateEventCheckinCode
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+ **/
 export interface UpdateEventCheckinCodeParams extends MutationParams {
   eventId: string;
 }
 
-/**
- * @category Methods
- * @group Event-OnSite
- */
 export const UpdateEventCheckinCode = async ({
   eventId,
   adminApiParams,
@@ -34,10 +34,6 @@ export const UpdateEventCheckinCode = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-OnSite
- */
 export const useUpdateEventCheckinCode = (
   options: Omit<
     ConnectedXMMutationOptions<

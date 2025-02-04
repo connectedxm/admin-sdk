@@ -12,18 +12,20 @@ import {
 import { SubscriptionProductPriceCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Subscriptions
- */
+ * Endpoint to create a new price for a subscription product.
+ * This function allows the creation of a subscription product price by providing the necessary inputs.
+ * It is designed to be used in applications where subscription pricing needs to be managed.
+ * @name CreateSubscriptionProductPrice
+ * @param {string} subscriptionProductId - The id of the subscription product
+ * @param {SubscriptionProductPriceCreateInputs} subscriptionProductPrice - The inputs for creating a subscription product price
+ * @version 1.2
+ **/
+
 export interface CreateSubscriptionProductPriceParams extends MutationParams {
   subscriptionProductId: string;
   subscriptionProductPrice: SubscriptionProductPriceCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Subscriptions
- */
 export const CreateSubscriptionProductPrice = async ({
   subscriptionProductId,
   subscriptionProductPrice,
@@ -53,10 +55,6 @@ export const CreateSubscriptionProductPrice = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Subscriptions
- */
 export const useCreateSubscriptionProductPrice = (
   options: Omit<
     ConnectedXMMutationOptions<

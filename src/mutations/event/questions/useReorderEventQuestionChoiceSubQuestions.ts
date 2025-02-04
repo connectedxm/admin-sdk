@@ -15,9 +15,16 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Questions
- */
+ * Endpoint to reorder sub-questions of a specific choice in an event question.
+ * This function allows the reordering of sub-questions associated with a particular choice within an event question.
+ * It is designed to be used in scenarios where the order of sub-questions needs to be updated for a specific choice.
+ * @name ReorderEventQuestionChoiceSubQuestions
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @param {string} choiceId - The id of the choice
+ * @param {number[]} questionIds - The array of question ids to reorder
+ * @version 1.2
+**/
 export interface ReorderEventQuestionChoiceSubQuestionsParams
   extends MutationParams {
   eventId: string;
@@ -26,10 +33,6 @@ export interface ReorderEventQuestionChoiceSubQuestionsParams
   questionIds: number[];
 }
 
-/**
- * @category Methods
- * @group Event-Questions
- */
 export const ReorderEventQuestionChoiceSubQuestions = async ({
   eventId,
   questionId,
@@ -69,10 +72,6 @@ export const ReorderEventQuestionChoiceSubQuestions = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Questions
- */
 export const useReorderEventQuestionChoiceSubQuestions = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -15,19 +15,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Attendee-Passes
- */
+ * Endpoint to update an event pass with new details.
+ * This function allows updating the details of a specific event pass by providing the event ID, pass ID, and the new pass details.
+ * It is used in scenarios where event pass information needs to be modified, ensuring that the latest data is reflected in the system.
+ * @name UpdateEventPass
+ * @param {string} eventId - The id of the event
+ * @param {string} passId - The id of the pass
+ * @param {EventPassUpdateInputs} pass - The pass update inputs
+ * @version 1.2
+**/
 export interface UpdateEventPassParams extends MutationParams {
   eventId: string;
   passId: string;
   pass: EventPassUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Attendee-Passes
- */
 export const UpdateEventPass = async ({
   eventId,
   passId,
@@ -68,10 +70,6 @@ export const UpdateEventPass = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Attendee-Passes
- */
 export const useUpdateEventPass = (
   options: Omit<
     ConnectedXMMutationOptions<

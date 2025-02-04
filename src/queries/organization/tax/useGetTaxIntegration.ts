@@ -9,18 +9,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { ConnectedXMResponse, TaxIntegration } from "@src/interfaces";
 
 /**
- * @category Keys
- * @group Integrations
- */
+ * Fetches tax integration data for a specified type within an organization.
+ * This function is used to retrieve detailed information about a specific tax integration type.
+ * It is designed for applications that require access to tax integration details for organizational purposes.
+ * @name GetTaxIntegration
+ * @param {string} type - The type of tax integration
+ * @version 1.2
+ **/
+
 export const TAX_INTEGRATION_QUERY_KEY = (type: string) => [
   ...TAX_INTEGRATIONS_QUERY_KEY(),
   type,
 ];
 
-/**
- * @category Setters
- * @group Integrations
- */
 export const SET_TAX_INTEGRATION_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof TAX_INTEGRATION_QUERY_KEY>,
@@ -33,10 +34,6 @@ interface GetTaxIntegrationProps extends SingleQueryParams {
   type: string;
 }
 
-/**
- * @category Queries
- * @group Integrations
- */
 export const GetTaxIntegration = async ({
   type,
   adminApiParams,
@@ -47,10 +44,7 @@ export const GetTaxIntegration = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Integrations
- */
+
 export const useGetTaxIntegration = (
   type: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetTaxIntegration>> = {}

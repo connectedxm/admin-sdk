@@ -12,17 +12,17 @@ import {
 import { AnnouncementCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Announcement
- */
+ * Endpoint to create a new announcement within the system.
+ * This function allows users to submit details for a new announcement, which will be processed and stored.
+ * It is designed to be used in applications where announcements need to be dynamically created and managed.
+ * @name CreateAnnouncement
+ * @param {AnnouncementCreateInputs} announcement - The announcement details to be created
+ * @version 1.2
+ **/
 export interface CreateAnnouncementParams extends MutationParams {
   announcement: AnnouncementCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Announcement
- */
 export const CreateAnnouncement = async ({
   announcement,
   adminApiParams,
@@ -38,12 +38,8 @@ export const CreateAnnouncement = async ({
     queryClient.invalidateQueries({ queryKey: ANNOUNCEMENTS_QUERY_KEY() });
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Announcement
- */
 export const useCreateAnnouncement = (
   options: Omit<
     ConnectedXMMutationOptions<

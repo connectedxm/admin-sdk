@@ -11,19 +11,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Endpoint to add an account to a specific event session.
+ * This function allows the addition of an account to a designated session within an event, 
+ * facilitating the management of session participants.
+ * It is intended for use in applications that require dynamic session management capabilities.
+ * @name AddEventSessionAccount
+ * @param {string} eventId - The id of the event
+ * @param {string} sessionId - The id of the session
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
 export interface AddEventSessionAccountParams extends MutationParams {
   eventId: string;
   sessionId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const AddEventSessionAccount = async ({
   eventId,
   sessionId,
@@ -46,10 +49,6 @@ export const AddEventSessionAccount = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useAddEventSessionAccount = (
   options: Omit<
     ConnectedXMMutationOptions<

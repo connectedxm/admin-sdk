@@ -11,6 +11,18 @@ import {
 } from "@src/queries";
 
 /**
+ * Creates a new translation for a specific FAQ section within an event.
+ * This function allows for the addition of a translation to an FAQ section, supporting multiple locales and optional auto-translation.
+ * It is designed to be used in applications where multilingual support for event FAQs is required.
+ * @name PostEventFaqSectionTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} sectionId - The ID of the FAQ section
+ * @param {string} locale - The locale for the translation
+ * @param {[boolean]} autoTranslate - Whether to automatically translate the content
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Faqs-Translations
  */

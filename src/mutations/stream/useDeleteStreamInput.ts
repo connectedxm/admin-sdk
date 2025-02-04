@@ -8,17 +8,18 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { STREAM_INPUTS_QUERY_KEY, STREAM_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Stream
- */
+ * Endpoint to delete a specific stream input by its ID.
+ * This function allows for the removal of a stream input from the system, ensuring that associated queries are invalidated and removed.
+ * It is intended for use in scenarios where stream inputs need to be managed or cleaned up.
+ * @name DeleteStreamInput
+ * @param {string} streamId - The ID of the stream input to be deleted
+ * @version 1.2
+ **/
+
 export interface DeleteStreamInputParams extends MutationParams {
   streamId: string;
 }
 
-/**
- * @category Methods
- * @group Stream
- */
 export const DeleteStreamInput = async ({
   streamId,
   adminApiParams,
@@ -35,10 +36,6 @@ export const DeleteStreamInput = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Stream
- */
 export const useDeleteStreamInput = (
   options: Omit<
     ConnectedXMMutationOptions<

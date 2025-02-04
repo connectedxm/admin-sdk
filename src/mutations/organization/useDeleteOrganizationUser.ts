@@ -8,17 +8,17 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { ORGANIZATION_USERS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Organization
- */
+ * Endpoint to delete a user from the organization.
+ * This function allows administrators to remove a user from the organization's user list.
+ * It ensures that the user is properly deleted and the relevant queries are invalidated to maintain data consistency.
+ * @name DeleteOrganizationUser
+ * @param {string} userId - The id of the user to be deleted
+ * @version 1.2
+ **/
 export interface DeleteOrganizationUserParams extends MutationParams {
   userId: string;
 }
 
-/**
- * @category Methods
- * @group Organization
- */
 export const DeleteOrganizationUser = async ({
   userId,
   adminApiParams,
@@ -34,10 +34,6 @@ export const DeleteOrganizationUser = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization
- */
 export const useDeleteOrganizationUser = (
   options: Omit<
     ConnectedXMMutationOptions<

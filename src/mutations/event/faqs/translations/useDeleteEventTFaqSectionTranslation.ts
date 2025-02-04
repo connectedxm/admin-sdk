@@ -10,6 +10,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific FAQ section translation for an event.
+ * This function is used to remove a translation of a FAQ section within an event, identified by event ID, section ID, and locale.
+ * It ensures that the relevant cache is invalidated to maintain data consistency.
+ * @name DeleteEventFaqSectionTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} sectionId - The ID of the FAQ section
+ * @param {string} locale - The locale of the translation
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Faqs-Translations
  */

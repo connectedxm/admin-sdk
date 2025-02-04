@@ -12,19 +12,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-PassTypes
- */
+ * Endpoint to update an event pass type with new data.
+ * This function allows updating the details of a specific event pass type by providing the event ID and pass type ID.
+ * It is used to modify existing pass types within an event, ensuring the pass type data is current and accurate.
+ * @name UpdateEventPassType
+ * @param {string} eventId - The id of the event
+ * @param {string} passTypeId - The id of the pass type
+ * @param {PassTypeUpdateInputs} passType - The new data for the pass type
+ * @version 1.2
+ **/
+
 export interface UpdateEventPassTypeParams extends MutationParams {
   eventId: string;
   passTypeId: string;
   passType: PassTypeUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-PassTypes
- */
 export const UpdateEventPassType = async ({
   eventId,
   passTypeId,
@@ -58,12 +61,8 @@ export const UpdateEventPassType = async ({
     );
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Event-PassTypes
- */
 export const useUpdateEventPassType = (
   options: Omit<
     ConnectedXMMutationOptions<

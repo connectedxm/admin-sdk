@@ -12,9 +12,17 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Activations
- */
+ * Endpoint to update the completion status of an event activation.
+ * This function allows updating the completion details of a specific event activation by providing the necessary identifiers and update inputs.
+ * It is intended for use in scenarios where the completion status of an event activation needs to be modified.
+ * @name UpdateEventActivationCompletion
+ * @param {string} eventId - The id of the event
+ * @param {string} activationId - The id of the activation
+ * @param {string} completionId - The id of the completion
+ * @param {EventActivationCompletionUpdateInputs} completion - The completion update inputs
+ * @version 1.2
+ **/
+
 export interface UpdateEventActivationCompletionParams extends MutationParams {
   eventId: string;
   activationId: string;
@@ -22,10 +30,6 @@ export interface UpdateEventActivationCompletionParams extends MutationParams {
   completion: EventActivationCompletionUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Activations
- */
 export const UpdateEventActivationCompletion = async ({
   eventId,
   activationId,
@@ -49,12 +53,8 @@ export const UpdateEventActivationCompletion = async ({
     SET_EVENT_ACTIVATION_QUERY_DATA(queryClient, [eventId, data.data.id], data);
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Event-Activations
- */
 export const useUpdateEventActivationCompletion = (
   options: Omit<
     ConnectedXMMutationOptions<

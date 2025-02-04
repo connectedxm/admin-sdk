@@ -11,19 +11,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Endpoint to remove an account from a specific event session.
+ * This function allows the removal of an account from a designated event session by specifying the event ID, session ID, and account ID.
+ * It is used in scenarios where an account needs to be disassociated from a particular session within an event.
+ * @name RemoveEventSessionAccount
+ * @param {string} eventId - The id of the event
+ * @param {string} sessionId - The id of the session
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
 export interface RemoveEventSessionAccountParams extends MutationParams {
   eventId: string;
   sessionId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const RemoveEventSessionAccount = async ({
   eventId,
   sessionId,
@@ -46,10 +48,6 @@ export const RemoveEventSessionAccount = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useRemoveEventSessionAccount = (
   options: Omit<
     ConnectedXMMutationOptions<

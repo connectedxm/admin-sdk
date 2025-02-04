@@ -11,9 +11,17 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_KEY } from "./useGetEventSessionQuestionTranslations";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves the translation of a specific question within an event session for a given locale.
+ * This function is used to fetch the translated text of a question in an event session, allowing for localization of event content.
+ * It is particularly useful in applications that support multiple languages and need to display event content in the user's preferred language.
+ * @name GetEventSessionQuestionTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} sessionId - The ID of the session
+ * @param {string} questionId - The ID of the question
+ * @param {string} locale - The locale for the translation
+ * @version 1.2
+ **/
+
 export const EVENT_SESSION_QUESTION_TRANSLATION_QUERY_KEY = (
   eventId: string,
   sessionId: string,
@@ -28,10 +36,6 @@ export const EVENT_SESSION_QUESTION_TRANSLATION_QUERY_KEY = (
   locale,
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SESSION_QUESTION_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SESSION_QUESTION_TRANSLATION_QUERY_KEY>,
@@ -50,10 +54,6 @@ interface GetEventSessionQuestionTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSessionQuestionTranslation = async ({
   eventId,
   sessionId,
@@ -69,10 +69,7 @@ export const GetEventSessionQuestionTranslation = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSessionQuestionTranslation = (
   eventId: string = "",
   sessionId: string = "",

@@ -8,18 +8,19 @@ import {
 import { BENEFITS_QUERY_KEY, SET_BENEFIT_QUERY_DATA } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Benefits
- */
+ * Endpoint to remove a benefit from a specific event.
+ * This function allows the removal of a benefit associated with an event by specifying the event and benefit IDs.
+ * It is designed to be used in applications where event management and benefit association are required.
+ * @name RemoveEventBenefit
+ * @param {string} benefitId - The id of the benefit to be removed
+ * @param {string} eventId - The id of the event from which the benefit is to be removed
+ * @version 1.2
+ **/
 export interface RemoveEventBenefitParams extends MutationParams {
   benefitId: string;
   eventId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Benefits
- */
 export const RemoveEventBenefit = async ({
   benefitId,
   eventId,
@@ -38,10 +39,6 @@ export const RemoveEventBenefit = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Benefits
- */
 export const useRemoveEventBenefit = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -8,18 +8,20 @@ import {
 import { EVENT_ADD_ONS_QUERY_KEY, EVENT_ADD_ON_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-AddOns
- */
+ * Endpoint to delete an add-on from a specific event.
+ * This function allows the removal of an add-on associated with a given event by specifying the event and add-on IDs.
+ * It is useful in scenarios where event configurations need to be updated by removing unnecessary or outdated add-ons.
+ * @name DeleteEventAddOn
+ * @param {string} eventId - The id of the event
+ * @param {string} addOnId - The id of the add-on
+ * @version 1.2
+ **/
+
 export interface DeleteEventAddOnParams extends MutationParams {
   eventId: string;
   addOnId: string;
 }
 
-/**
- * @category Methods
- * @group Event-AddOns
- */
 export const DeleteEventAddOn = async ({
   eventId,
   addOnId,
@@ -42,10 +44,6 @@ export const DeleteEventAddOn = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-AddOns
- */
 export const useDeleteEventAddOn = (
   options: Omit<
     ConnectedXMMutationOptions<

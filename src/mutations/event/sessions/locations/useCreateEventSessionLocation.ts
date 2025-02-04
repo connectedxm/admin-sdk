@@ -10,18 +10,19 @@ import { SET_EVENT_SESSION_LOCATION_QUERY_DATA } from "@src/queries/events/sessi
 import { EVENT_SESSION_LOCATIONS_QUERY_KEY } from "@src/queries/events/sessions/locations/useGetEventSessionLocations";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Endpoint to create a new event session location.
+ * This function allows the creation of a new location for a specific event session.
+ * It is designed to be used in applications where event management and location tracking are required.
+ * @name CreateEventSessionLocation
+ * @param {string} eventId - The id of the event
+ * @param {EventSessionLocationCreateInputs} location - The location details for the event session
+ * @version 1.2
+ **/
 export interface CreateEventSessionLocationParams extends MutationParams {
   eventId: string;
   location: EventSessionLocationCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const CreateEventSessionLocation = async ({
   eventId,
   location,
@@ -48,10 +49,6 @@ export const CreateEventSessionLocation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useCreateEventSessionLocation = (
   options: Omit<
     ConnectedXMMutationOptions<

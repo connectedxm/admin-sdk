@@ -11,9 +11,16 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Questions
- */
+ * Endpoint to update a specific choice for a question in an event.
+ * This function allows updating the details of a choice associated with a question in a specific event.
+ * It is designed to be used in applications where event management and question customization are required.
+ * @name UpdateEventQuestionChoice
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @param {string} choiceId - The id of the choice
+ * @param {EventQuestionChoiceUpdateInputs} choice - The choice data to update
+ * @version 1.2
+ **/
 export interface UpdateEventQuestionChoiceParams extends MutationParams {
   eventId: string;
   questionId: string;
@@ -21,10 +28,6 @@ export interface UpdateEventQuestionChoiceParams extends MutationParams {
   choice: EventQuestionChoiceUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Questions
- */
 export const UpdateEventQuestionChoice = async ({
   eventId,
   questionId,
@@ -61,10 +64,6 @@ export const UpdateEventQuestionChoice = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Questions
- */
 export const useUpdateEventQuestionChoice = (
   options: Omit<
     ConnectedXMMutationOptions<

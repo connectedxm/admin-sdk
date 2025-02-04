@@ -11,19 +11,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Questions
- */
+ * Endpoint to delete a specific choice from a question in an event.
+ * This function allows the removal of a choice associated with a question within a specified event.
+ * It is useful in scenarios where event configurations need to be updated by removing certain choices.
+ * @name DeleteEventQuestionChoice
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @param {string} choiceId - The id of the choice
+ * @version 1.2
+ **/
+
 export interface DeleteEventQuestionChoiceParams extends MutationParams {
   eventId: string;
   questionId: string;
   choiceId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Questions
- */
 export const DeleteEventQuestionChoice = async ({
   eventId,
   questionId,
@@ -47,10 +50,6 @@ export const DeleteEventQuestionChoice = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Questions
- */
 export const useDeleteEventQuestionChoice = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -12,9 +12,16 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-AddOns
- */
+ * Endpoint to add a reservation pass to a specific event.
+ * This function allows users to associate a pass with a reservation for an event, potentially updating the reservation details.
+ * It is designed to be used in applications where event management and reservation handling are required.
+ * @name AddEventReservationPass
+ * @param {string} eventId - The id of the event
+ * @param {string} reservationId - The id of the reservation
+ * @param {string} passId - The id of the pass
+ * @param {string} [accountId] - The id of the account (optional)
+ * @version 1.2
+**/
 export interface AddEventReservationPassParams extends MutationParams {
   eventId: string;
   reservationId: string;
@@ -22,10 +29,6 @@ export interface AddEventReservationPassParams extends MutationParams {
   accountId?: string;
 }
 
-/**
- * @category Methods
- * @group Event-AddOns
- */
 export const AddEventReservationPass = async ({
   eventId,
   reservationId,
@@ -57,10 +60,6 @@ export const AddEventReservationPass = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-AddOns
- */
 export const useAddEventReservationPass = (
   options: Omit<
     ConnectedXMMutationOptions<

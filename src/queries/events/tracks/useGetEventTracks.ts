@@ -10,18 +10,19 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves a list of tracks associated with a specific event.
+ * This function fetches event track data, which can be used to display or manage tracks within an event.
+ * It is designed for applications that require detailed track information for events.
+ * @name GetEventTracks
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+ **/
+
 export const EVENT_TRACKS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "TRACKS",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_TRACKS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_TRACKS_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetEventTracksProps extends InfiniteQueryParams {
   eventId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventTracks = async ({
   eventId,
   pageParam,
@@ -57,10 +54,7 @@ export const GetEventTracks = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventTracks = (
   eventId: string = "",
   params: Omit<

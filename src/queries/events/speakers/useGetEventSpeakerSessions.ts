@@ -10,18 +10,21 @@ import { EVENT_SPEAKER_QUERY_KEY } from "./useGetEventSpeaker";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches sessions for a specific speaker at a given event.
+ * This function retrieves a list of sessions associated with a particular speaker within an event, 
+ * allowing users to view detailed session information. It is designed for applications that need 
+ * to display or manage event speaker sessions.
+ * @name GetEventSpeakerSessions
+ * @param {string} eventId - The id of the event
+ * @param {string} speakerId - The id of the speaker
+ * @version 1.2
+ **/
+
 export const EVENT_SPEAKER_SESSIONS_QUERY_KEY = (
   eventId: string,
   speakerId: string
 ) => [...EVENT_SPEAKER_QUERY_KEY(eventId, speakerId), "SESSIONS"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SPEAKER_SESSIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_SPEAKER_SESSIONS_QUERY_KEY>,
@@ -35,10 +38,6 @@ interface GetEventSpeakerSessionsProps extends InfiniteQueryParams {
   speakerId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSpeakerSessions = async ({
   eventId,
   speakerId,
@@ -64,10 +63,7 @@ export const GetEventSpeakerSessions = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSpeakerSessions = (
   eventId: string = "",
   speakerId: string = "",

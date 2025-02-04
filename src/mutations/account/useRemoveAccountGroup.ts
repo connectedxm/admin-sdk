@@ -8,18 +8,19 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { ACCOUNT_GROUPS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to remove a group from an account.
+ * This function allows the removal of a specified group from a given account by utilizing the account and group identifiers.
+ * It is designed to be used in scenarios where account group management is required, ensuring that the specified group is detached from the account.
+ * @name RemoveAccountGroup
+ * @param {string} accountId - The id of the account
+ * @param {string} groupId - The id of the group
+ * @version 1.2
+ **/
 export interface RemoveAccountGroupParams extends MutationParams {
   accountId: string;
   groupId: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const RemoveAccountGroup = async ({
   accountId,
   groupId,
@@ -39,10 +40,6 @@ export const RemoveAccountGroup = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useRemoveAccountGroup = (
   options: Omit<
     ConnectedXMMutationOptions<

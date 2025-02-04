@@ -1,5 +1,3 @@
-// CreateSelfApiKey.ts
-
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
   ConnectedXMMutationOptions,
@@ -14,17 +12,18 @@ import {
 import { UserApiKeyCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group SelfApiKeys
- */
+ * Endpoint to create a new API key for the current user.
+ * This function allows users to generate a new API key for their own use by providing the necessary data for creation.
+ * It is designed to be used in applications where users need to manage their own API keys.
+ * @name CreateSelfApiKey
+ * @param {UserApiKeyCreateInputs} apiKeyData - The data for the API key creation
+ * @version 1.2
+ **/
+
 export interface CreateSelfApiKeyParams extends MutationParams {
   apiKeyData: UserApiKeyCreateInputs;
 }
 
-/**
- * @category Methods
- * @group SelfApiKeys
- */
 export const CreateSelfApiKey = async ({
   apiKeyData,
   adminApiParams,
@@ -42,10 +41,6 @@ export const CreateSelfApiKey = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group SelfApiKeys
- */
 export const useCreateSelfApiKey = (
   options: Omit<
     ConnectedXMMutationOptions<

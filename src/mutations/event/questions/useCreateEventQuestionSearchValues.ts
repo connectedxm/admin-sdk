@@ -11,19 +11,21 @@ import {
 import { EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Questions
- */
+ * Endpoint to create search values for a specific event question.
+ * This function allows the creation of search values associated with a particular question in an event.
+ * It is designed to be used in applications where dynamic search values need to be added to event questions.
+ * @name CreateEventQuestionSearchValues
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @param {string[]} values - The values to be created
+ * @version 1.2
+ **/
 export interface CreateEventQuestionSearchValuesParams extends MutationParams {
   eventId: string;
   questionId: string;
   values: string[];
 }
 
-/**
- * @category Methods
- * @group Event-Questions
- */
 export const CreateEventQuestionSearchValues = async ({
   eventId,
   questionId,
@@ -46,10 +48,6 @@ export const CreateEventQuestionSearchValues = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Questions
- */
 export const useCreateEventQuestionSearchValues = (
   options: Omit<
     ConnectedXMMutationOptions<

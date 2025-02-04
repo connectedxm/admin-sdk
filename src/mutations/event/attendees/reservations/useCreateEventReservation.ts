@@ -13,19 +13,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Attendees
- */
+ * Endpoint to create a reservation for an event.
+ * This function allows users to create a reservation for a specific event by providing the event ID and reservation details.
+ * It is designed to be used in applications where event management and reservation functionalities are required.
+ * @name CreateEventReservation
+ * @param {string} eventId - The id of the event
+ * @param {EventRoomTypeReservationCreateInputs} reservation - The reservation details
+ * @param {string} [accountId] - The id of the account
+ * @version 1.2
+ **/
+
 export interface CreateEventReservationParams extends MutationParams {
   eventId: string;
   reservation: EventRoomTypeReservationCreateInputs;
   accountId?: string;
 }
 
-/**
- * @category Methods
- * @group Event-Attendees
- */
 export const CreateEventReservation = async ({
   eventId,
   reservation,
@@ -58,10 +61,6 @@ export const CreateEventReservation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Attendees
- */
 export const useCreateEventReservation = (
   options: Omit<
     ConnectedXMMutationOptions<

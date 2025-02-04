@@ -11,17 +11,17 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Advertisement
- */
+ * Endpoint to delete a specific advertisement by its ID.
+ * This function allows for the removal of an advertisement from the system, ensuring that it is no longer accessible or visible.
+ * It is designed to be used in applications where advertisement management is required, providing a mechanism to delete advertisements.
+ * @name DeleteAdvertisement
+ * @param {string} advertisementId - The ID of the advertisement to delete
+ * @version 1.2
+ **/
 export interface DeleteAdvertisementParams extends MutationParams {
   advertisementId: string;
 }
 
-/**
- * @category Methods
- * @group Advertisement
- */
 export const DeleteAdvertisement = async ({
   advertisementId,
   adminApiParams,
@@ -39,10 +39,7 @@ export const DeleteAdvertisement = async ({
   }
   return data;
 };
-/**
- * @category Mutations
- * @group Advertisements
- */
+
 export const useDeleteAdvertisement = (
   options: Omit<
     ConnectedXMMutationOptions<

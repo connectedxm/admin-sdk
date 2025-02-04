@@ -8,18 +8,20 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { EVENT_RESERVATIONS_QUERY_KEY } from "./useGetEventReservations";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches and manages event reservation details for a specific event and reservation ID.
+ * This module provides functionality to retrieve reservation data and update query data for event reservations.
+ * It is designed to be used in applications where detailed information about event reservations is required.
+ * @name GetEventReservation
+ * @param {string} eventId - The id of the event
+ * @param {string} reservationId - The id of the reservation
+ * @version 1.2
+ **/
+
 export const EVENT_RESERVATION_QUERY_KEY = (
   eventId: string,
   reservationId: string
 ) => [...EVENT_RESERVATIONS_QUERY_KEY(eventId), reservationId];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_RESERVATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_RESERVATION_QUERY_KEY>,
@@ -33,10 +35,6 @@ interface GetEventReservationProps extends SingleQueryParams {
   reservationId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventReservation = async ({
   eventId,
   reservationId,
@@ -51,10 +49,6 @@ export const GetEventReservation = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Events
- */
 export const useGetEventReservation = (
   eventId: string,
   reservationId: string = "",

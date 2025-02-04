@@ -11,17 +11,18 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Subscriptions
- */
+ * Endpoint to delete a subscription product price.
+ * This function allows the removal of a specific subscription product price by its unique identifier.
+ * It is intended for use in applications that manage subscription products and require the ability to delete product prices.
+ * @name DeleteSubscriptionProductPrice
+ * @param {string} subscriptionProductId - The id of the subscription product
+ * @version 1.2
+ **/
+
 export interface DeleteSubscriptionProductPriceParams extends MutationParams {
   subscriptionProductId: string;
 }
 
-/**
- * @category Methods
- * @group Subscriptions
- */
 export const DeleteSubscriptionProductPrice = async ({
   subscriptionProductId,
   adminApiParams,
@@ -46,10 +47,6 @@ export const DeleteSubscriptionProductPrice = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Subscriptions
- */
 export const useDeleteSubscriptionProductPrice = (
   options: Omit<
     ConnectedXMMutationOptions<

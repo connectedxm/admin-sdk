@@ -11,9 +11,17 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-PassTypes
- */
+ * Endpoint to remove a tier from a specified event pass type.
+ * This function allows the removal of a specific tier from an event pass type, given the event ID, pass type ID, and tier ID.
+ * It is used in scenarios where an event pass type needs to be modified by removing one of its tiers.
+ * @name RemoveEventPassTypeTier
+ * @param {boolean} allowed - Indicates if the operation is allowed
+ * @param {string} eventId - The ID of the event
+ * @param {string} passTypeId - The ID of the pass type
+ * @param {string} tierId - The ID of the tier to be removed
+ * @version 1.2
+ **/
+
 export interface RemoveEventPassTypeTierParams extends MutationParams {
   allowed: boolean;
   eventId: string;
@@ -21,10 +29,6 @@ export interface RemoveEventPassTypeTierParams extends MutationParams {
   tierId: string;
 }
 
-/**
- * @category Methods
- * @group Event-PassTypes
- */
 export const RemoveEventPassTypeTier = async ({
   allowed,
   eventId,
@@ -53,10 +57,6 @@ export const RemoveEventPassTypeTier = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-PassTypes
- */
 export const useRemoveEventPassTypeTier = (
   options: Omit<
     ConnectedXMMutationOptions<

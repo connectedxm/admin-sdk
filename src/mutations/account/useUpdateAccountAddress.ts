@@ -9,19 +9,21 @@ import { ACCOUNT_ADDRESSES_QUERY_KEY } from "@src/queries";
 import { AccountAddressUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to update the address of a specified account.
+ * This function allows updating the address details of a specific account by providing the account ID and address ID.
+ * It is designed to be used in applications where account address management is required.
+ * @name UpdateAccountAddress
+ * @param {string} accountId - The id of the account
+ * @param {string} addressId - The id of the address
+ * @param {AccountAddressUpdateInputs} address - The new address details
+ * @version 1.2
+ **/
 export interface UpdateAccountAddressParams extends MutationParams {
   accountId: string;
   addressId: string;
   address: AccountAddressUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const UpdateAccountAddress = async ({
   accountId,
   addressId,
@@ -46,10 +48,6 @@ export const UpdateAccountAddress = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useUpdateAccountAddress = (
   options: Omit<
     ConnectedXMMutationOptions<

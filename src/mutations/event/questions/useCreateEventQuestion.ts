@@ -14,18 +14,19 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Questions
- */
+ * Endpoint to create a new event question.
+ * This function allows the creation of a new question for a specific event, utilizing the provided event ID and question details.
+ * It is designed to be used in applications where event management and question registration are required.
+ * @name CreateEventQuestion
+ * @param {string} eventId - The id of the event
+ * @param {EventQuestionCreateInputs} question - The question details
+ * @version 1.2
+**/
 export interface CreateEventQuestionParams extends MutationParams {
   eventId: string;
   question: EventQuestionCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Questions
- */
 export const CreateEventQuestion = async ({
   eventId,
   question,
@@ -67,12 +68,8 @@ export const CreateEventQuestion = async ({
     }
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Event-Questions
- */
 export const useCreateEventQuestion = (
   options: Omit<
     ConnectedXMMutationOptions<

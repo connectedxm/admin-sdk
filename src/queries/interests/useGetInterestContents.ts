@@ -10,18 +10,21 @@ import { INTEREST_QUERY_KEY } from "./useGetInterest";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @content Interests
- */
+ * Endpoint to fetch the contents associated with a specific interest.
+ * This function retrieves a list of content items related to a given interest ID, 
+ * allowing users to explore and interact with content categorized under specific interests.
+ * It is designed to be used in applications where content needs to be dynamically loaded 
+ * based on user interests.
+ * @name GetInterestContents
+ * @param {string} interestId - The id of the interest
+ * @version 1.2
+ **/
+
 export const INTEREST_CONTENTS_QUERY_KEY = (interestId: string) => [
   ...INTEREST_QUERY_KEY(interestId),
   "CONTENTS",
 ];
 
-/**
- * @category Setters
- * @content Interests
- */
 export const SET_INTEREST_CONTENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INTEREST_CONTENTS_QUERY_KEY>,
@@ -34,10 +37,6 @@ interface GetInterestContentsProps extends InfiniteQueryParams {
   interestId: string;
 }
 
-/**
- * @category Queries
- * @content Interests
- */
 export const GetInterestContents = async ({
   interestId,
   pageParam,
@@ -59,10 +58,7 @@ export const GetInterestContents = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @content Interests
- */
+
 export const useGetInterestContents = (
   interestId: string = "",
   params: Omit<

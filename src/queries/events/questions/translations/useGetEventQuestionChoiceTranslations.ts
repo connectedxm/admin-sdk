@@ -9,9 +9,16 @@ import {
 import { EVENT_QUESTION_CHOICE_QUERY_KEY } from "../useGetEventQuestionChoice";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves translations for a specific event question choice.
+ * This function is used to fetch translation data for a given choice within an event question, 
+ * allowing applications to display localized text for event-related questions.
+ * @name GetEventQuestionChoiceTranslations
+ * @param {string} eventId - The ID of the event
+ * @param {string} questionId - The ID of the question
+ * @param {string} choiceId - The ID of the choice
+ * @version 1.2
+ **/
+
 export const EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_KEY = (
   eventId: string,
   questionId: string,
@@ -21,10 +28,6 @@ export const EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_KEY = (
   "TRANSLATIONS",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_KEY>,
@@ -42,10 +45,6 @@ interface GetEventQuestionChoiceTranslationsProps extends InfiniteQueryParams {
   choiceId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventQuestionChoiceTranslations = async ({
   pageParam,
   pageSize,
@@ -72,10 +71,7 @@ export const GetEventQuestionChoiceTranslations = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventQuestionChoiceTranslations = (
   eventId: string = "",
   questionId: string = "",

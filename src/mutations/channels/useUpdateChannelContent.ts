@@ -12,19 +12,21 @@ import {
 import { ChannelContentUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Channel
- */
+ * Endpoint to update the content of a specified channel.
+ * This function allows updating the details of a channel's content by providing the content ID, channel ID, and the new content inputs.
+ * It is designed for applications that need to modify existing channel content.
+ * @name UpdateChannelContent
+ * @param {string} contentId - The id of the content
+ * @param {ChannelContentUpdateInputs} content - The content update inputs
+ * @param {string} channelId - The id of the channel
+ * @version 1.2
+ **/
 export interface UpdateChannelContentParams extends MutationParams {
   contentId: string;
   content: ChannelContentUpdateInputs;
   channelId: string;
 }
 
-/**
- * @category Methods
- * @group Channel
- */
 export const UpdateChannelContent = async ({
   contentId,
   channelId,
@@ -48,10 +50,6 @@ export const UpdateChannelContent = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Channel
- */
 export const useUpdateChannelContent = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -11,19 +11,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sections
- */
+ * Endpoint to remove a pass type from a specific section of an event.
+ * This function allows the removal of a designated pass type from a specified section within an event.
+ * It is intended for use in scenarios where event management requires dynamic updates to pass type allocations.
+ * @name RemoveEventSectionPassType
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the section
+ * @param {string} passTypeId - The id of the pass type
+ * @version 1.2
+**/
 export interface RemoveEventSectionPassTypeParams extends MutationParams {
   eventId: string;
   sectionId: string;
   passTypeId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sections
- */
 export const RemoveEventSectionPassType = async ({
   eventId,
   sectionId,
@@ -46,10 +48,6 @@ export const RemoveEventSectionPassType = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sections
- */
 export const useRemoveEventSectionPassType = (
   options: Omit<
     ConnectedXMMutationOptions<

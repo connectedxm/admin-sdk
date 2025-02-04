@@ -9,15 +9,15 @@ import { User } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Self
- */
+ * Endpoint to retrieve the current user's data.
+ * This function fetches the details of the user who is currently authenticated.
+ * It is designed to be used in applications where user-specific data is required.
+ * @name GetSelf
+ * @version 1.2
+ **/
+
 export const SELF_QUERY_KEY = () => ["SELF"];
 
-/**
- * @category Setters
- * @group Self
- */
 export const SET_SELF_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SELF_QUERY_KEY>,
@@ -28,10 +28,6 @@ export const SET_SELF_QUERY_DATA = (
 
 interface GetSelfProps extends SingleQueryParams {}
 
-/**
- * @category Queries
- * @group Self
- */
 export const GetSelf = async ({
   adminApiParams,
 }: GetSelfProps): Promise<ConnectedXMResponse<User>> => {
@@ -39,10 +35,7 @@ export const GetSelf = async ({
   const { data } = await adminApi.get(`/self`);
   return data;
 };
-/**
- * @category Hooks
- * @group Self
- */
+
 export const useGetSelf = (
   options: SingleQueryOptions<ReturnType<typeof GetSelf>> = {}
 ) => {

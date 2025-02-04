@@ -9,18 +9,19 @@ import { EventPageCreateInputs } from "@src/params";
 import { EVENT_PAGES_QUERY_KEY, SET_EVENT_PAGE_QUERY_DATA } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Page
- */
+ * Endpoint to create a new event page within a specified event.
+ * This function allows users to create a new page for an event by providing the necessary inputs.
+ * It is designed to be used in applications where event management and page creation are required.
+ * @name CreateEventPage
+ * @param {string} eventId - The id of the event
+ * @param {EventPageCreateInputs} page - The inputs for creating the event page
+ * @version 1.2
+ **/
 export interface CreateEventPageParams extends MutationParams {
   eventId: string;
   page: EventPageCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Page
- */
 export const CreateEventPage = async ({
   eventId,
   page,
@@ -38,12 +39,8 @@ export const CreateEventPage = async ({
     SET_EVENT_PAGE_QUERY_DATA(queryClient, [eventId, data.data.id], data);
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Event-Page
- */
 export const useCreateEventPage = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -13,19 +13,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Invoices-LineItems
- */
+ * Endpoint to update a specific invoice line item within an invoice.
+ * This function allows users to modify details of a line item associated with a given invoice.
+ * It is designed to be used in applications where invoice management and updates are required.
+ * @name UpdateInvoiceLineItem
+ * @param {string} invoiceId - The id of the invoice
+ * @param {string} lineItemId - The id of the line item
+ * @param {InvoiceLineItemUpdateInputs} invoiceLineItem - The invoice line item update inputs
+ * @version 1.2
+ **/
+
 export interface UpdateInvoiceLineItemParams extends MutationParams {
   invoiceId: string;
   lineItemId: string;
   invoiceLineItem: InvoiceLineItemUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Invoices-LineItems
- */
 export const UpdateInvoiceLineItem = async ({
   invoiceId,
   lineItemId,
@@ -57,10 +60,6 @@ export const UpdateInvoiceLineItem = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Invoices-LineItems
- */
 export const useUpdateInvoiceLineItem = (
   options: Omit<
     ConnectedXMMutationOptions<

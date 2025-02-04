@@ -12,19 +12,23 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Activations
- */
+ * Endpoint to create a completion for a specific event activation.
+ * This function allows the creation of a completion record for a given event activation,
+ * utilizing the provided event and activation identifiers along with the completion inputs.
+ * It is designed to be used in scenarios where event activations need to be completed
+ * and tracked within the system.
+ * @name CreateEventActivationCompletion
+ * @param {string} eventId - The id of the event
+ * @param {string} activationId - The id of the activation
+ * @param {EventActivationCompletionCreateInputs} completion - The completion inputs
+ * @version 1.2
+ **/
 export interface CreateEventActivationCompletionParams extends MutationParams {
   eventId: string;
   activationId: string;
   completion: EventActivationCompletionCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Activations
- */
 export const CreateEventActivationCompletion = async ({
   eventId,
   activationId,
@@ -49,10 +53,6 @@ export const CreateEventActivationCompletion = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Activations
- */
 export const useCreateEventActivationCompletion = (
   options: Omit<
     ConnectedXMMutationOptions<

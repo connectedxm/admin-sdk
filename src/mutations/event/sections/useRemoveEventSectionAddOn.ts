@@ -11,19 +11,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sections
- */
+ * Endpoint to remove an add-on from a specific event section.
+ * This function allows the removal of a specified add-on from a given section within an event.
+ * It is useful for managing event configurations by dynamically updating the available add-ons for event sections.
+ * @name RemoveEventSectionAddOn
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the section
+ * @param {string} addOnId - The id of the add-on
+ * @version 1.2
+ **/
 export interface RemoveEventSectionAddOnParams extends MutationParams {
   eventId: string;
   sectionId: string;
   addOnId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sections
- */
 export const RemoveEventSectionAddOn = async ({
   eventId,
   sectionId,
@@ -46,10 +48,6 @@ export const RemoveEventSectionAddOn = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sections
- */
 export const useRemoveEventSectionAddOn = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -10,18 +10,19 @@ import {
 } from "@src/queries/useConnectedInfiniteQuery";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves a list of summaries for questions associated with a specific event.
+ * This function is designed to fetch detailed summaries of questions for a given event, 
+ * which can be used in applications that require insights into event-related questions.
+ * @name GetEventQuestionSummaries
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+ **/
+
 export const EVENT_QUESTION_SUMMARIES_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "QUESTION_SUMMARIES",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_QUESTION_SUMMARIES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_QUESTION_SUMMARIES_QUERY_KEY>,
@@ -37,10 +38,6 @@ interface GetEventQuestionSummariesProps extends InfiniteQueryParams {
   eventId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventQuestionSummaries = async ({
   eventId,
   pageParam,
@@ -58,10 +55,7 @@ export const GetEventQuestionSummaries = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventQuestionSummaries = (
   eventId: string = "",
   params: Omit<

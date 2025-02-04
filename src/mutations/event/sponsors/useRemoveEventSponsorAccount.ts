@@ -8,18 +8,19 @@ import {
 import { EVENT_SPONSORS_QUERY_KEY, SET_EVENT_QUERY_DATA } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sponsors
- */
+ * Endpoint to remove a sponsor account from a specific event.
+ * This function allows the removal of a sponsor's account from an event by specifying the event and account IDs.
+ * It is useful for managing event sponsorships and ensuring that only relevant sponsors are associated with an event.
+ * @name RemoveEventSponsorAccount
+ * @param {string} eventId - The ID of the event
+ * @param {string} accountId - The ID of the sponsor account
+ * @version 1.2
+**/
 export interface RemoveEventSponsorAccountParams extends MutationParams {
   eventId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sponsors
- */
 export const RemoveEventSponsorAccount = async ({
   eventId,
   accountId,
@@ -39,10 +40,6 @@ export const RemoveEventSponsorAccount = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sponsors
- */
 export const useRemoveEventSponsorAccount = (
   options: Omit<
     ConnectedXMMutationOptions<

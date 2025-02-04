@@ -14,9 +14,17 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Questions
- */
+ * Endpoint to update a sub-question for a specific choice in an event question.
+ * This function allows updating the sort order of a sub-question associated with a choice in an event question.
+ * It is designed to be used in scenarios where the order of sub-questions needs to be modified for better organization or presentation.
+ * @name UpdateEventQuestionChoiceSubQuestion
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @param {string} choiceId - The id of the choice
+ * @param {string} subQuestionId - The id of the sub-question
+ * @param {number} sortOrder - The sort order of the sub-question
+ * @version 1.2
+ **/
 export interface UpdateEventQuestionChoiceSubQuestionParams
   extends MutationParams {
   eventId: string;
@@ -26,10 +34,6 @@ export interface UpdateEventQuestionChoiceSubQuestionParams
   sortOrder: number;
 }
 
-/**
- * @category Methods
- * @group Event-Questions
- */
 export const UpdateEventQuestionChoiceSubQuestion = async ({
   eventId,
   questionId,
@@ -61,10 +65,6 @@ export const UpdateEventQuestionChoiceSubQuestion = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Questions
- */
 export const useUpdateEventQuestionChoiceSubQuestion = (
   options: Omit<
     ConnectedXMMutationOptions<

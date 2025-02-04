@@ -11,18 +11,20 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Attendees
- */
+ * Endpoint to create a new event attendee.
+ * This function allows the creation of a new attendee for a specified event by providing the event ID and account ID.
+ * It is designed to be used in applications where managing event attendees is required.
+ * @name CreateEventAttendee
+ * @param {string} eventId - The id of the event
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export interface CreateEventAttendeeParams extends MutationParams {
   eventId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Attendees
- */
 export const CreateEventAttendee = async ({
   eventId,
   accountId,
@@ -45,10 +47,6 @@ export const CreateEventAttendee = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Attendees
- */
 export const useCreateEventAttendee = (
   options: Omit<
     ConnectedXMMutationOptions<

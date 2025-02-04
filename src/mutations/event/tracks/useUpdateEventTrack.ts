@@ -12,19 +12,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Tracks
- */
+ * Endpoint to update an existing event track.
+ * This function allows users to modify the details of a specific track within an event by providing the event ID, track ID, and the updated track inputs.
+ * It is designed to be used in applications where event track management is required.
+ * @name UpdateEventTrack
+ * @param {string} eventId - The id of the event
+ * @param {string} trackId - The id of the track
+ * @param {EventTrackUpdateInputs} track - The track update inputs
+ * @version 1.2
+ **/
 export interface UpdateEventTrackParams extends MutationParams {
   eventId: string;
   trackId: string;
   track: EventTrackUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Tracks
- */
 export const UpdateEventTrack = async ({
   eventId,
   trackId,
@@ -46,10 +48,6 @@ export const UpdateEventTrack = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Tracks
- */
 export const useUpdateEventTrack = (
   options: Omit<
     ConnectedXMMutationOptions<

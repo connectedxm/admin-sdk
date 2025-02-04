@@ -11,19 +11,23 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Activations
- */
+ * Deletes a specific event activation completion and invalidates related queries.
+ * This function is used to remove a completion from an event activation, ensuring that
+ * any cached data related to the event or activation is invalidated to maintain data consistency.
+ * It is particularly useful in scenarios where event activations are dynamically managed and
+ * require real-time updates.
+ * @name DeleteEventActivationCompletion
+ * @param {string} eventId - The id of the event
+ * @param {string} activationId - The id of the activation
+ * @param {string} completionId - The id of the completion
+ * @version 1.2
+**/
 export interface DeleteEventActivationCompletionParams extends MutationParams {
   eventId: string;
   activationId: string;
   completionId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Activations
- */
 export const DeleteEventActivationCompletion = async ({
   eventId,
   activationId,
@@ -49,10 +53,6 @@ export const DeleteEventActivationCompletion = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Activations
- */
 export const useDeleteEventActivationCompletion = (
   options: Omit<
     ConnectedXMMutationOptions<

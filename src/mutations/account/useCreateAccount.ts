@@ -9,17 +9,17 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { AccountCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to create a new account within the system.
+ * This function allows for the creation of a new account by providing the necessary account details.
+ * It is designed to be used in applications where account management is required.
+ * @name CreateAccount
+ * @param {AccountCreateInputs} account - The account details to be created
+ * @version 1.2
+ **/
 export interface CreateAccountParams extends MutationParams {
   account: AccountCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const CreateAccount = async ({
   account,
   adminApiParams,
@@ -37,10 +37,6 @@ export const CreateAccount = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useCreateAccount = (
   options: Omit<
     ConnectedXMMutationOptions<

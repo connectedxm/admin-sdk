@@ -11,19 +11,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sections
- */
+ * Endpoint to add a pass type to a specific event section.
+ * This function allows the addition of a pass type to a designated section within an event.
+ * It is used to manage and update the pass types associated with event sections.
+ * @name AddEventSectionPassType
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the section
+ * @param {string} passTypeId - The id of the pass type
+ * @version 1.2
+ **/
 export interface AddEventSectionPassTypeParams extends MutationParams {
   eventId: string;
   sectionId: string;
   passTypeId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sections
- */
 export const AddEventSectionPassType = async ({
   eventId,
   sectionId,
@@ -46,10 +48,6 @@ export const AddEventSectionPassType = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sections
- */
 export const useAddEventSectionPassType = (
   options: Omit<
     ConnectedXMMutationOptions<

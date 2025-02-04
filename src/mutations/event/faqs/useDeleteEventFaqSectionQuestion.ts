@@ -11,19 +11,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Faqs
- */
+ * Endpoint to delete a question from a specific FAQ section of an event.
+ * This function allows the removal of a question from an event's FAQ section by specifying the event ID, section ID, and question ID.
+ * It is useful for managing the content of FAQ sections within event management applications.
+ * @name DeleteEventFaqSectionQuestion
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the FAQ section
+ * @param {string} questionId - The id of the question to be deleted
+ * @version 1.2
+ **/
+
 export interface DeleteEventFaqSectionQuestionParams extends MutationParams {
   eventId: string;
   sectionId: string;
   questionId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Faqs
- */
 export const DeleteEventFaqSectionQuestion = async ({
   eventId,
   sectionId,
@@ -51,10 +54,6 @@ export const DeleteEventFaqSectionQuestion = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Faqs
- */
 export const useDeleteEventFaqSectionQuestion = (
   options: Omit<
     ConnectedXMMutationOptions<

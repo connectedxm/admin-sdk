@@ -9,15 +9,14 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Invoices
- */
+ * Endpoint to retrieve a list of invoices.
+ * This function provides a paginated list of invoices, allowing for optional sorting and filtering.
+ * It is designed to be used in applications where invoice data needs to be displayed or processed.
+ * @name GetInvoices
+ * @version 1.2
+ **/
 export const INVOICES_QUERY_KEY = () => ["INVOICES"];
 
-/**
- * @category Setters
- * @group Invoices
- */
 export const SET_INVOICES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INVOICES_QUERY_KEY>,
@@ -28,10 +27,6 @@ export const SET_INVOICES_QUERY_DATA = (
 
 interface GetInvoicesProps extends InfiniteQueryParams {}
 
-/**
- * @category Queries
- * @group Invoices
- */
 export const GetInvoices = async ({
   pageParam,
   pageSize,
@@ -50,10 +45,7 @@ export const GetInvoices = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Invoices
- */
+
 export const useGetInvoices = (
   params: Omit<
     InfiniteQueryParams,

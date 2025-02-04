@@ -16,18 +16,20 @@ import {
 } from "@src/mutations/useConnectedMutation";
 
 /**
- * @category Params
- * @group Organization
- */
+ * Adds an enabled tier to a specific organization module.
+ * This function allows the addition of a tier to an organization module, enabling specific functionalities or features associated with that tier.
+ * It is intended for use in administrative contexts where organization modules need to be configured with specific tiers.
+ * @name AddOrganizationModuleEnabledTier
+ * @param {keyof typeof OrganizationModuleType} moduleType - The type of the organization module
+ * @param {string} tierId - The id of the tier to be enabled
+ * @version 1.2
+ **/
+
 export interface AddOrganizationModuleEnabledTierParams extends MutationParams {
   moduleType: keyof typeof OrganizationModuleType;
   tierId: string;
 }
 
-/**
- * @category Methods
- * @group Organization
- */
 export const AddOrganizationModuleEnabledTier = async ({
   moduleType,
   tierId,
@@ -53,10 +55,6 @@ export const AddOrganizationModuleEnabledTier = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization
- */
 export const useAddOrganizationModuleEnabledTier = (
   options: Omit<
     ConnectedXMMutationOptions<

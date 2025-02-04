@@ -9,9 +9,16 @@ import {
 import { EVENT_FAQ_SECTION_QUESTION_QUERY_KEY } from "../useGetEventFaqSectionQuestion";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves translations for a specific FAQ question within an event section.
+ * This function is used to fetch all available translations for a given FAQ question, identified by event, section, and question IDs.
+ * It is designed to support applications that require multilingual support for event-related FAQs.
+ * @name GetEventFaqSectionQuestionTranslations
+ * @param {string} eventId - The ID of the event
+ * @param {string} sectionId - The ID of the section within the event
+ * @param {string} questionId - The ID of the question within the section
+ * @version 1.2
+ **/
+
 export const EVENT_FAQ_SECTION_QUESTION_TRANSLATIONS_QUERY_KEY = (
   eventId: string,
   sectionId: string,

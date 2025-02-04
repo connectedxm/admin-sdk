@@ -8,17 +8,17 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { BENEFITS_QUERY_KEY, BENEFIT_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Benefit
- */
+ * Endpoint to delete a specific benefit by its ID.
+ * This function allows the removal of a benefit from the system, ensuring that all related queries are invalidated and removed.
+ * It is designed for use in administrative applications where benefit management is required.
+ * @name DeleteBenefit
+ * @param {string} benefitId - The ID of the benefit to be deleted
+ * @version 1.2
+ **/
 export interface DeleteBenefitParams extends MutationParams {
   benefitId: string;
 }
 
-/**
- * @category Methods
- * @group Benefit
- */
 export const DeleteBenefit = async ({
   benefitId,
   adminApiParams,
@@ -36,10 +36,6 @@ export const DeleteBenefit = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Benefit
- */
 export const useDeleteBenefit = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -11,18 +11,20 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Groups
- */
+ * Endpoint to add a member to a specific group within an organization.
+ * This function allows the addition of an account to a group by specifying the group and account IDs.
+ * It is designed to be used in applications where managing group memberships is required.
+ * @name AddGroupMember
+ * @param {string} groupId - The id of the group
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export interface AddGroupMemberParams extends MutationParams {
   groupId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Groups
- */
 export const AddGroupMember = async ({
   groupId,
   accountId,
@@ -44,10 +46,6 @@ export const AddGroupMember = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Groups
- */
 export const useAddGroupMember = (
   options: Omit<
     ConnectedXMMutationOptions<

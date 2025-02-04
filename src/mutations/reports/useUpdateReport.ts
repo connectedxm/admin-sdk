@@ -9,18 +9,20 @@ import { REPORT_QUERY_KEY } from "@src/queries";
 import { ReportUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Reports
- */
+ * Endpoint to update a report and invalidate related queries.
+ * This function allows updating the details of a specific report identified by its ID.
+ * It ensures that any related queries are invalidated to maintain data consistency.
+ * @name UpdateReport
+ * @param {string} reportId - The ID of the report
+ * @param {ReportUpdateInputs} report - The report update inputs
+ * @version 1.2
+ **/
+
 export interface UpdateReportParams extends MutationParams {
   reportId: string;
   report: ReportUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Reports
- */
 export const UpdateReport = async ({
   reportId,
   report,
@@ -61,10 +63,6 @@ export const UpdateReport = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Reports
- */
 export const useUpdateReport = (
   options: Omit<
     ConnectedXMMutationOptions<

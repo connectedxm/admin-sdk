@@ -9,17 +9,17 @@ import { SET_ORGANIZATION_QUERY_DATA } from "@src/queries";
 import { OrganizationUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Organization
- */
+ * Endpoint to update the details of an organization.
+ * This function allows for updating the information of an organization using the provided organization details.
+ * It is designed to be used in applications where organization data needs to be modified.
+ * @name UpdateOrganization
+ * @param {OrganizationUpdateInputs} organization - The organization details to update
+ * @version 1.2
+ **/
 export interface UpdateOrganizationParams extends MutationParams {
   organization: OrganizationUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Organization
- */
 export const UpdateOrganization = async ({
   organization,
   adminApiParams,
@@ -36,10 +36,6 @@ export const UpdateOrganization = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization
- */
 export const useUpdateOrganization = (
   options: Omit<
     ConnectedXMMutationOptions<

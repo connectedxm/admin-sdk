@@ -9,17 +9,17 @@ import { BENEFITS_QUERY_KEY, SET_BENEFIT_QUERY_DATA } from "@src/queries";
 import { BenefitCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Benefit
- */
+ * Endpoint to create a new benefit within the system.
+ * This function allows the creation of a benefit by providing the necessary input parameters.
+ * It interacts with the admin API to post the benefit data and updates the query cache upon successful creation.
+ * @name CreateBenefit
+ * @param {BenefitCreateInputs} benefit - The inputs required to create a benefit
+ * @version 1.2
+ **/
 export interface CreateBenefitParams extends MutationParams {
   benefit: BenefitCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Benefit
- */
 export const CreateBenefit = async ({
   benefit,
   adminApiParams,
@@ -38,10 +38,6 @@ export const CreateBenefit = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Benefit
- */
 export const useCreateBenefit = (
   options: Omit<
     ConnectedXMMutationOptions<

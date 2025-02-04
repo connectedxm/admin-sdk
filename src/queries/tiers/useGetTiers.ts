@@ -1,29 +1,28 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Tier } from "@src/interfaces";
 import {
   InfiniteQueryParams,
   InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
-
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Tiers
- */
+ * Endpoint to retrieve a list of tiers with an option to filter by type.
+ * This function allows users to fetch tiers, which can be categorized as either "external" or "internal".
+ * It is designed to be used in applications where tier information is required, with optional filtering capabilities.
+ * @name GetTiers
+ * @param {string} [type] - The type of tiers to retrieve, can be "external" or "internal"
+ * @version 1.2
+ **/
+
 export const TIERS_QUERY_KEY = (type?: "external" | "internal") => {
   const keys = ["TIERS"];
   if (type) keys.push(type);
   return keys;
 };
 
-/**
- * @category Setters
- * @group Tiers
- */
 export const SET_TIERS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof TIERS_QUERY_KEY>,
@@ -36,10 +35,6 @@ interface GetTiersProps extends InfiniteQueryParams {
   type?: "external" | "internal";
 }
 
-/**
- * @category Queries
- * @group Tiers
- */
 export const GetTiers = async ({
   type,
   pageParam,
@@ -60,10 +55,7 @@ export const GetTiers = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Tiers
- */
+
 export const useGetTiers = (
   type?: "external" | "internal",
   params: Omit<

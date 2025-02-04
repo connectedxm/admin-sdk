@@ -8,18 +8,19 @@ import {
 import { EVENT_CO_HOSTS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-CoHosts
- */
+ * Endpoint to add a co-host to a specific event.
+ * This function allows the addition of an account as a co-host to an event by specifying the event ID and account ID.
+ * It is used in scenarios where event management requires assigning co-host roles to different accounts.
+ * @name AddEventCoHost
+ * @param {string} eventId - The id of the event
+ * @param {string} accountId - The id of the account to be added as co-host
+ * @version 1.2
+**/
 export interface AddEventCoHostParams extends MutationParams {
   eventId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Event-CoHosts
- */
 export const AddEventCoHost = async ({
   eventId,
   accountId,
@@ -39,10 +40,6 @@ export const AddEventCoHost = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-CoHosts
- */
 export const useAddEventCoHost = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -15,6 +15,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Creates a new translation for a specific organization page.
+ * This function allows for the creation of translations for organization pages, supporting optional auto-translation.
+ * It is designed to be used in applications where multilingual support for organization pages is required.
+ * @name PostOrganizationPageTranslation
+ * @param {PageType} type - The type of the page
+ * @param {string} locale - The locale for the translation
+ * @param {[boolean]} autoTranslate - Whether to automatically translate the page
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Organization-Pages-Translations
  */

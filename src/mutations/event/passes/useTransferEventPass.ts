@@ -14,9 +14,16 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Attendee-Passes
- */
+ * Endpoint to transfer an event pass from one account to another.
+ * This function facilitates the transfer of a specific event pass to a designated receiver account.
+ * It is used in scenarios where event passes need to be reassigned or gifted to another user.
+ * @name TransferEventPass
+ * @param {string} eventId - The id of the event
+ * @param {string} accountId - The id of the account
+ * @param {string} passId - The id of the pass
+ * @param {string} receiverId - The id of the receiver
+ * @version 1.2
+**/
 export interface TransferEventPassParams extends MutationParams {
   eventId: string;
   accountId: string;
@@ -24,10 +31,6 @@ export interface TransferEventPassParams extends MutationParams {
   receiverId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Attendee-Passes
- */
 export const TransferEventPass = async ({
   eventId,
   accountId,
@@ -64,10 +67,6 @@ export const TransferEventPass = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Attendee-Passes
- */
 export const useTransferEventPass = (
   options: Omit<
     ConnectedXMMutationOptions<

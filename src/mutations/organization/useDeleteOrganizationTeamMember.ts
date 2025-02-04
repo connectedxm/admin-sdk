@@ -11,17 +11,18 @@ import {
 } from "../useConnectedMutation";
 
 /**
- * @category Params
- * @group Organization
- */
+ * Deletes a team member from an organization.
+ * This function allows for the removal of a specified team member by their ID from an organization's team.
+ * It is intended for use in administrative contexts where managing team membership is required.
+ * @name DeleteOrganizationTeamMember
+ * @param {string} teamMemberId - The ID of the team member to be deleted
+ * @version 1.2
+ **/
+
 export interface DeleteOrganizationTeamMemberParams extends MutationParams {
   teamMemberId: string;
 }
 
-/**
- * @category Methods
- * @group Organization
- */
 export const DeleteOrganizationTeamMember = async ({
   teamMemberId,
   adminApiParams,
@@ -42,10 +43,6 @@ export const DeleteOrganizationTeamMember = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization
- */
 export const useDeleteOrganizationTeamMember = (
   options: Omit<
     ConnectedXMMutationOptions<

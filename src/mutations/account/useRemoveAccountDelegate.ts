@@ -12,18 +12,19 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to remove a delegate from an account.
+ * This function allows the removal of a delegate associated with a specific account by their unique identifiers.
+ * It is designed to be used in applications where account management and delegate permissions are required.
+ * @name RemoveAccountDelegate
+ * @param {string} accountId - The id of the account
+ * @param {string} delegateId - The id of the delegate
+ * @version 1.2
+ **/
 export interface RemoveAccountDelegateParams extends MutationParams {
   accountId: string;
   delegateId: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const RemoveAccountDelegate = async ({
   accountId,
   delegateId,
@@ -47,10 +48,6 @@ export const RemoveAccountDelegate = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useRemoveAccountDelegate = (
   options: Omit<
     ConnectedXMMutationOptions<

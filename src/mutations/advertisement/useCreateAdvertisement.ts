@@ -12,16 +12,17 @@ import {
 import { AdvertisementCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Advertisement
- */
+ * Endpoint to create a new advertisement.
+ * This function allows the creation of a new advertisement by sending the advertisement data to the server.
+ * It is designed to be used in applications where advertisements need to be dynamically created and managed.
+ * @name CreateAdvertisement
+ * @param {AdvertisementCreateInputs} advertisement - The advertisement data to be created
+ * @version 1.2
+ **/
 export interface CreateAdvertisementParams extends MutationParams {
   advertisement: AdvertisementCreateInputs;
 }
-/**
- * @category Methods
- * @group Advertisement
- */
+
 export const CreateAdvertisement = async ({
   advertisement,
   adminApiParams,
@@ -40,10 +41,6 @@ export const CreateAdvertisement = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Advertisements
- */
 export const useCreateAdvertisement = (
   options: Omit<
     ConnectedXMMutationOptions<

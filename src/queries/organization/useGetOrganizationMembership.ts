@@ -10,19 +10,20 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Organization
- */
+ * Endpoint to retrieve organization membership data for a specific user.
+ * This function allows applications to fetch detailed membership information of a user within an organization.
+ * It is designed to be used in scenarios where user membership details are required for organizational management.
+ * @name GetOrganizationMembership
+ * @param {string} userId - The id of the user
+ * @version 1.2
+ **/
+
 export const ORGANIZATION_MEMBERSHIP_QUERY_KEY = (userId: string) => [
   ...ORGANIZATION_QUERY_KEY(),
   "MEMBERSHIP",
   userId,
 ];
 
-/**
- * @category Setters
- * @group Organization
- */
 export const SET_ORGANIZATION_MEMBERSHIP_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ORGANIZATION_MEMBERSHIP_QUERY_KEY>,
@@ -38,10 +39,6 @@ interface GetOrganizationMembershipProps extends SingleQueryParams {
   userId: string;
 }
 
-/**
- * @category Queries
- * @group Organization
- */
 export const GetOrganizationMembership = async ({
   userId,
   adminApiParams,
@@ -52,10 +49,7 @@ export const GetOrganizationMembership = async ({
   const { data } = await adminApi.get(`/organization/users/${userId}`);
   return data;
 };
-/**
- * @category Hooks
- * @group Organization
- */
+
 export const useGetOrganizationMembership = (
   userId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetOrganizationMembership>> = {}

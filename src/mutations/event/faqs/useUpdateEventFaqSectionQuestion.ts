@@ -12,9 +12,16 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Faqs
- */
+ * Endpoint to update a specific question in the FAQ section of an event.
+ * This function allows for the modification of a question within a specified FAQ section of an event.
+ * It is designed to be used in scenarios where event organizers need to update the content of FAQ questions.
+ * @name UpdateEventFaqSectionQuestion
+ * @param {string} sectionId - The id of the FAQ section
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @param {EventFaqSectionQuestionUpdateInputs} faq - The FAQ update inputs
+ * @version 1.2
+ **/
 export interface UpdateEventFaqSectionQuestionParams extends MutationParams {
   sectionId: string;
   eventId: string;
@@ -22,10 +29,6 @@ export interface UpdateEventFaqSectionQuestionParams extends MutationParams {
   faq: EventFaqSectionQuestionUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Faqs
- */
 export const UpdateEventFaqSectionQuestion = async ({
   sectionId,
   eventId,
@@ -63,10 +66,6 @@ export const UpdateEventFaqSectionQuestion = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Faqs
- */
 export const useUpdateEventFaqSectionQuestion = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -14,6 +14,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Creates a new translation for a specific sponsorship level.
+ * This function allows the creation of a translation for a given level ID and locale, with an optional auto-translation feature.
+ * It is used to manage multilingual support for sponsorship levels within the application.
+ * @name PostLevelTranslation
+ * @param {string} levelId - The ID of the level to translate
+ * @param {string} locale - The locale for the translation
+ * @param {[boolean]} autoTranslate - Whether to automatically translate the content
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Level-Translations
  */

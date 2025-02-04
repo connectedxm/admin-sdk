@@ -9,9 +9,17 @@ import { EVENT_QUESTION_CHOICE_TRANSLATIONS_QUERY_KEY } from "./useGetEventQuest
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves the translation for a specific event question choice based on the provided locale.
+ * This function is used to fetch the translated text for a choice within an event's question, allowing for localization support.
+ * It is particularly useful in applications that need to display event-related content in multiple languages.
+ * @name GetEventQuestionChoiceTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} questionId - The ID of the question
+ * @param {string} choiceId - The ID of the choice
+ * @param {string} locale - The locale for the translation
+ * @version 1.2
+**/
+
 export const EVENT_QUESTION_CHOICE_TRANSLATION_QUERY_KEY = (
   eventId: string,
   questionId: string,
@@ -26,10 +34,6 @@ export const EVENT_QUESTION_CHOICE_TRANSLATION_QUERY_KEY = (
   locale,
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_QUESTION_CHOICE_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_QUESTION_CHOICE_TRANSLATION_QUERY_KEY>,
@@ -48,10 +52,6 @@ interface GetEventQuestionChoiceTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventQuestionChoiceTranslation = async ({
   eventId,
   questionId,
@@ -67,10 +67,7 @@ export const GetEventQuestionChoiceTranslation = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventQuestionChoiceTranslation = (
   eventId: string = "",
   questionId: string = "",

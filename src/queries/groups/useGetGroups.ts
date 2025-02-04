@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Group } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -10,9 +9,15 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Groups
- */
+ * Fetch a list of groups with optional filtering by access level and featured status.
+ * This function allows retrieval of group data, supporting filters for access level and featured status.
+ * It is useful for applications that need to display or manage groups with specific characteristics.
+ * @name GetGroups
+ * @param {string} [access] - The access level of the groups, can be "public" or "private"
+ * @param {boolean} [featured] - Whether to filter groups by featured status
+ * @version 1.2
+ **/
+
 export const GROUPS_QUERY_KEY = (
   access?: "public" | "private",
   featured?: boolean
@@ -23,10 +28,6 @@ export const GROUPS_QUERY_KEY = (
   return keys;
 };
 
-/**
- * @category Setters
- * @group Groups
- */
 export const SET_GROUPS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof GROUPS_QUERY_KEY>,
@@ -40,10 +41,6 @@ interface GetGroupsProps extends InfiniteQueryParams {
   featured?: boolean;
 }
 
-/**
- * @category Queries
- * @group Groups
- */
 export const GetGroups = async ({
   access,
   featured,
@@ -66,10 +63,7 @@ export const GetGroups = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Groups
- */
+
 export const useGetGroups = (
   access?: "public" | "private",
   featured?: boolean,

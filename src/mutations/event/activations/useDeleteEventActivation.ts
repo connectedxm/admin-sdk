@@ -11,18 +11,19 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Activations
- */
+ * Endpoint to delete a specific event activation by its unique identifiers.
+ * This function allows for the removal of an activation associated with a particular event.
+ * It is designed to be used in applications where event activations need to be managed or removed.
+ * @name DeleteEventActivation
+ * @param {string} eventId - The id of the event
+ * @param {string} activationId - The id of the activation
+ * @version 1.2
+ **/
 export interface DeleteEventActivationParams extends MutationParams {
   eventId: string;
   activationId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Activations
- */
 export const DeleteEventActivation = async ({
   eventId,
   activationId,
@@ -45,10 +46,6 @@ export const DeleteEventActivation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Activations
- */
 export const useDeleteEventActivation = (
   options: Omit<
     ConnectedXMMutationOptions<

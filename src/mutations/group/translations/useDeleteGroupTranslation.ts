@@ -10,6 +10,16 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific translation for a group by its ID and locale.
+ * This function is used to remove a translation entry associated with a group, identified by the group ID and locale.
+ * It is designed to be used in applications where managing group translations is necessary.
+ * @name DeleteGroupTranslation
+ * @param {string} groupId - The ID of the group
+ * @param {string} locale - The locale of the translation
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Groups-Translations
  */

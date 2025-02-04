@@ -12,18 +12,19 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Speakers
- */
+ * Endpoint to create a new event speaker within a specified event.
+ * This function allows the creation of a new speaker for an event by providing the event ID and speaker details.
+ * It is designed to be used in applications where event management and speaker assignments are required.
+ * @name CreateEventSpeaker
+ * @param {string} eventId - The id of the event
+ * @param {EventSpeakerCreateInputs} speaker - The inputs for creating an event speaker
+ * @version 1.2
+ **/
 export interface CreateEventSpeakerParams extends MutationParams {
   eventId: string;
   speaker: EventSpeakerCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Speakers
- */
 export const CreateEventSpeaker = async ({
   eventId,
   speaker,
@@ -44,10 +45,6 @@ export const CreateEventSpeaker = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Speakers
- */
 export const useCreateEventSpeaker = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -11,19 +11,23 @@ import {
 import { SET_EVENT_SECTION_QUESTIONS_QUERY_DATA } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sections
- */
+ * Reorders questions within a specific section of an event.
+ * This function allows for the rearrangement of questions in a designated section of an event, 
+ * ensuring that the questions appear in the desired order. It is useful for event organizers 
+ * who need to customize the sequence of questions for participants.
+ * @name ReorderEventSectionQuestions
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the section
+ * @param {number[]} questionIds - Array of question ids to reorder
+ * @version 1.2
+ **/
+
 export interface ReorderEventSectionQuestionsParams extends MutationParams {
   eventId: string;
   sectionId: string;
   questionIds: number[];
 }
 
-/**
- * @category Methods
- * @group Event-Sections
- */
 export const ReorderEventSectionQuestions = async ({
   eventId,
   sectionId,
@@ -52,10 +56,6 @@ export const ReorderEventSectionQuestions = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sections
- */
 export const useReorderEventSectionQuestions = (
   options: Omit<
     ConnectedXMMutationOptions<

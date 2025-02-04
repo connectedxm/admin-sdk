@@ -10,18 +10,19 @@ import { ACTIVITY_QUERY_KEY } from "./useGetActivity";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Activities
- */
+ * Retrieves a list of reshares for a specific activity.
+ * This function is used to fetch reshare data associated with a particular activity, 
+ * allowing applications to display or process reshare information.
+ * @name GetActivityReshares
+ * @param {string} activityId - The id of the activity
+ * @version 1.2
+ **/
+
 export const ACTIVITY_RESHARES_QUERY_KEY = (activityId: string) => [
   ...ACTIVITY_QUERY_KEY(activityId),
   "RESHARES",
 ];
 
-/**
- * @category Setters
- * @group Activities
- */
 export const SET_ACTIVITY_RESHARES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACTIVITY_RESHARES_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetActivityResharesProps extends InfiniteQueryParams {
   activityId: string;
 }
 
-/**
- * @category Queries
- * @group Activities
- */
 export const GetActivityReshares = async ({
   activityId,
   pageParam,
@@ -58,10 +55,6 @@ export const GetActivityReshares = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Activities
- */
 export const useGetActivityReshares = (
   activityId: string = "",
   params: Omit<

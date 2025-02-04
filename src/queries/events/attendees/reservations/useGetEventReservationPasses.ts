@@ -10,18 +10,20 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { EVENT_RESERVATION_QUERY_KEY } from "./useGetEventReservation";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches and manages event reservation passes for a specific event and reservation.
+ * This function is used to retrieve and set data related to passes associated with event reservations.
+ * It is designed to be used in applications that require detailed information about event reservation passes.
+ * @name GetEventReservationPasses
+ * @param {string} eventId - The id of the event
+ * @param {string} reservationId - The id of the reservation
+ * @version 1.2
+ **/
+
 export const EVENT_RESERVATION_PASSES_QUERY_KEY = (
   eventId: string,
   reservationId: string
 ) => [...EVENT_RESERVATION_QUERY_KEY(eventId, reservationId), "PASSES"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_RESERVATION_PASSES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_RESERVATION_PASSES_QUERY_KEY>,
@@ -38,10 +40,6 @@ interface GetEventReservationPassesProps extends InfiniteQueryParams {
   reservationId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventReservationPasses = async ({
   eventId,
   reservationId,
@@ -68,10 +66,6 @@ export const GetEventReservationPasses = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Events
- */
 export const useGetEventReservationPasses = (
   eventId: string = "",
   reservationId: string = "",

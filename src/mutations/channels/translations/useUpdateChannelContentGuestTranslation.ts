@@ -14,6 +14,19 @@ import { SET_CHANNEL_CONTENT_GUEST_TRANSLATION_QUERY_DATA } from "@src/queries/c
 import { CHANNEL_CONTENT_GUEST_TRANSLATIONS_QUERY_KEY } from "@src/queries/channels/translations/useGetChannelContentGuestTranslations";
 
 /**
+ * Updates the translation of a guest's content within a specific channel.
+ * This function allows for modifying the translation details of a guest's content in a specified locale.
+ * It is useful for applications that need to manage multilingual content for guests in different channels.
+ * @name UpdateChannelContentGuestTranslation
+ * @param {string} channelId - The ID of the channel
+ * @param {string} contentId - The ID of the content
+ * @param {string} guestId - The ID of the guest
+ * @param {ISupportedLocale} locale - The locale for the translation
+ * @param {ChannelContentGuestTranslationUpdateInputs} guestTranslation - The translation inputs for the guest content
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Channel-Translation
  */

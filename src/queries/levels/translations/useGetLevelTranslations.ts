@@ -9,9 +9,14 @@ import {
 } from "@src/queries/useConnectedInfiniteQuery";
 
 /**
- * @category Keys
- * @group Levels
- */
+ * Retrieves translations for a specific sponsorship level.
+ * This function fetches translation data for a given level ID, allowing applications to display localized information for sponsorship levels.
+ * It is designed to be used in scenarios where multilingual support for sponsorship levels is required.
+ * @name GetLevelTranslations
+ * @param {string} levelId - The ID of the sponsorship level
+ * @version 1.2
+**/
+
 export const LEVEL_TRANSLATIONS_QUERY_KEY = (levelId: string) => [
   ...LEVEL_QUERY_KEY(levelId),
   "TRANSLATIONS",
@@ -58,6 +63,7 @@ export const GetLevelTranslations = async ({
   });
   return data;
 };
+
 /**
  * @category Hooks
  * @group Levels

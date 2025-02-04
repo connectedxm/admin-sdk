@@ -12,19 +12,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-AddOns
- */
+ * Endpoint to delete a reservation for a specific event.
+ * This function allows the removal of a reservation associated with a particular event, 
+ * providing the ability to specify an optional account ID for more granular control.
+ * It is designed for use in applications where event management and reservation handling are required.
+ * @name DeleteEventReservation
+ * @param {string} eventId - The id of the event
+ * @param {string} reservationId - The id of the reservation
+ * @param {string} [accountId] - Optional account id
+ * @version 1.2
+ **/
 export interface DeleteEventReservationParams extends MutationParams {
   eventId: string;
   reservationId: string;
   accountId?: string;
 }
 
-/**
- * @category Methods
- * @group Event-AddOns
- */
 export const DeleteEventReservation = async ({
   eventId,
   reservationId,
@@ -53,10 +56,6 @@ export const DeleteEventReservation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-AddOns
- */
 export const useDeleteEventReservation = (
   options: Omit<
     ConnectedXMMutationOptions<

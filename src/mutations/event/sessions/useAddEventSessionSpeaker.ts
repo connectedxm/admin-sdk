@@ -11,19 +11,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Endpoint to add a speaker to a specific event session.
+ * This function allows the addition of a speaker to a designated session within an event.
+ * It is designed to be used in applications where managing event sessions and their speakers is required.
+ * @name AddEventSessionSpeaker
+ * @param {string} eventId - The id of the event
+ * @param {string} sessionId - The id of the session
+ * @param {string} speakerId - The id of the speaker
+ * @version 1.2
+ **/
 export interface AddEventSessionSpeakerParams extends MutationParams {
   eventId: string;
   sessionId: string;
   speakerId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const AddEventSessionSpeaker = async ({
   eventId,
   sessionId,
@@ -46,10 +48,6 @@ export const AddEventSessionSpeaker = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useAddEventSessionSpeaker = (
   options: Omit<
     ConnectedXMMutationOptions<

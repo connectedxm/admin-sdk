@@ -10,18 +10,20 @@ import { QueryClient } from "@tanstack/react-query";
 import { TIER_IMPORTS_QUERY_KEY } from "./useGetTierImports";
 
 /**
- * @category Keys
- * @group Imports
- */
+ * Endpoint to retrieve a specific import associated with a tier by its unique identifiers.
+ * This function allows users to fetch details of a particular import within a specified tier.
+ * It is designed to be used in applications where detailed information about tier imports is required.
+ * @name GetTierImport
+ * @param {string} tierId - The id of the tier
+ * @param {string} importId - The id of the import
+ * @version 1.2
+ **/
+
 export const TIER_IMPORT_QUERY_KEY = (tierId: string, importId: string) => [
   ...TIER_IMPORTS_QUERY_KEY(tierId),
   importId,
 ];
 
-/**
- * @category Setters
- * @group Imports
- */
 export const SET_TIER_IMPORT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof TIER_IMPORT_QUERY_KEY>,
@@ -35,10 +37,6 @@ interface GetTierImportProps extends SingleQueryParams {
   importId: string;
 }
 
-/**
- * @category Queries
- * @group Imports
- */
 export const GetTierImport = async ({
   tierId,
   importId,
@@ -48,10 +46,7 @@ export const GetTierImport = async ({
   const { data } = await adminApi.get(`/tiers/${tierId}/imports/${importId}`);
   return data;
 };
-/**
- * @category Hooks
- * @group Imports
- */
+
 export const useGetTierImport = (
   tierId: string = "",
   importId: string = "",

@@ -10,18 +10,21 @@ import {
 import { EVENT_SECTION_QUERY_KEY } from "./useGetEventSection";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches questions for a specific event section with support for pagination and filtering.
+ * This function is designed to retrieve a list of questions associated with a particular event section,
+ * allowing for detailed data retrieval with options for pagination and filtering.
+ * It is useful in scenarios where event-specific questions need to be displayed or processed.
+ * @name GetEventSectionQuestions
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the section
+ * @version 1.2
+ **/
+
 export const EVENT_SECTION_QUESTIONS_QUERY_KEY = (
   eventId: string,
   sectionId: string
 ) => [...EVENT_SECTION_QUERY_KEY(eventId, sectionId), "QUESTIONS"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SECTION_QUESTIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SECTION_QUESTIONS_QUERY_KEY>,
@@ -45,10 +48,6 @@ interface GetEventSectionQuestionsProps extends InfiniteQueryParams {
   sectionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSectionQuestions = async ({
   eventId,
   sectionId,
@@ -74,10 +73,7 @@ export const GetEventSectionQuestions = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSectionQuestions = (
   eventId: string = "",
   sectionId: string = "",

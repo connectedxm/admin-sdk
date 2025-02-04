@@ -10,6 +10,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific translation for an event speaker.
+ * This function allows the removal of a translation associated with a particular speaker in an event, identified by event ID, speaker ID, and locale.
+ * It is useful for managing multilingual content for event speakers by removing outdated or incorrect translations.
+ * @name DeleteEventSpeakerTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} speakerId - The ID of the speaker
+ * @param {string} locale - The locale of the translation
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Speakers-Translations
  */

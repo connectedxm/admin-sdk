@@ -8,18 +8,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Organization
- */
+ * Fetches details for a specific organization team member by their ID.
+ * This function utilizes a connected single query to retrieve data about a team member within an organization.
+ * It is designed to be used in applications where detailed information about a team member is required.
+ * @name GetOrganizationTeamMember
+ * @param {string} teamMemberId - The ID of the team member
+ * @version 1.2
+ **/
+
 export const ORGANIZATION_TEAM_MEMBER_QUERY_KEY = (teamMemberId: string) => [
   ...ORGANIZATION_TEAM_MEMBERS_QUERY_KEY(),
   teamMemberId,
 ];
 
-/**
- * @category Setters
- * @group Organization
- */
 export const SET_ORGANIZATION_TEAM_MEMBER_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ORGANIZATION_TEAM_MEMBER_QUERY_KEY>,
@@ -35,10 +36,6 @@ interface GetOrganizationTeamMemberProps extends SingleQueryParams {
   teamMemberId: string;
 }
 
-/**
- * @category Queries
- * @group Organization
- */
 export const GetOrganizationTeamMember = async ({
   teamMemberId,
   adminApiParams,
@@ -49,10 +46,7 @@ export const GetOrganizationTeamMember = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Organization
- */
+
 export const useGetOrganizationTeamMember = (
   teamMemberId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetOrganizationTeamMember>> = {}

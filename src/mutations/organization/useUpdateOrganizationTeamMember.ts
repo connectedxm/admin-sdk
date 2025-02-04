@@ -12,18 +12,20 @@ import {
 import { OrganizationTeamMemberUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Organization
- */
+ * Endpoint to update a team member's information in the organization.
+ * This function allows updating the details of a specific team member within an organization using their ID.
+ * It is designed to be used in applications where team member information needs to be modified.
+ * @name UpdateOrganizationTeamMember
+ * @param {string} teamMemberId - The ID of the team member
+ * @param {OrganizationTeamMemberUpdateInputs} teamMember - The updated information for the team member
+ * @version 1.2
+ **/
+
 export interface UpdateOrganizationTeamMemberParams extends MutationParams {
   teamMemberId: string;
   teamMember: OrganizationTeamMemberUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Organization
- */
 export const UpdateOrganizationTeamMember = async ({
   teamMemberId,
   teamMember,
@@ -57,10 +59,6 @@ export const UpdateOrganizationTeamMember = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization
- */
 export const useUpdateOrganizationTeamMember = (
   options: Omit<
     ConnectedXMMutationOptions<

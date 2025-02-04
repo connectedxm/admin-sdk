@@ -1,5 +1,4 @@
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Like } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -11,18 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Activities
- */
+ * Endpoint to retrieve a list of likes for a specific activity.
+ * This function fetches likes associated with a given activity ID, allowing users to view who has liked a particular activity.
+ * It is designed for applications that require displaying or processing likes data for activities.
+ * @name GetActivityLikes
+ * @param {string} activityId - The id of the activity
+ * @version 1.2
+ **/
+
 export const ACTIVITY_LIKES_QUERY_KEY = (activityId: string) => [
   ...ACTIVITY_QUERY_KEY(activityId),
   "LIKES",
 ];
 
-/**
- * @category Setters
- * @group Activities
- */
 export const SET_ACTIVITY_LIKES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACTIVITY_LIKES_QUERY_KEY>,
@@ -35,10 +35,6 @@ interface GetActivityLikesProps extends InfiniteQueryParams {
   activityId: string;
 }
 
-/**
- * @category Queries
- * @group Activities
- */
 export const GetActivityLikes = async ({
   activityId,
   pageParam,
@@ -58,10 +54,7 @@ export const GetActivityLikes = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Activities
- */
+
 export const useGetActivityLikes = (
   activityId: string = "",
   params: Omit<

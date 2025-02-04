@@ -9,18 +9,20 @@ import { EVENT_SPEAKERS_QUERY_KEY } from "./useGetEventSpeakers";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches details of a specific event speaker by their ID within a given event.
+ * This function is designed to retrieve comprehensive information about a speaker associated with a particular event.
+ * It is useful in scenarios where detailed speaker data is required for event management or display purposes.
+ * @name GetEventSpeaker
+ * @param {string} eventId - The ID of the event
+ * @param {string} speakerId - The ID of the speaker
+ * @version 1.2
+**/
+
 export const EVENT_SPEAKER_QUERY_KEY = (eventId: string, speakerId: string) => [
   ...EVENT_SPEAKERS_QUERY_KEY(eventId),
   speakerId,
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SPEAKER_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SPEAKER_QUERY_KEY>,
@@ -34,10 +36,6 @@ interface GetEventSpeakerProps extends SingleQueryParams {
   speakerId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSpeaker = async ({
   eventId,
   speakerId,
@@ -49,10 +47,7 @@ export const GetEventSpeaker = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSpeaker = (
   eventId: string = "",
   speakerId: string = "",

@@ -9,9 +9,18 @@ import {
 import { EVENT_SECTION_QUERY_KEY } from "./useGetEventSection";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches tiers for a specific event section based on the provided parameters.
+ * This function retrieves a list of tiers associated with a given event section, 
+ * allowing for filtering based on whether only allowed tiers should be included.
+ * It is useful for applications that need to display or manage tier information 
+ * for event sections.
+ * @name GetEventSectionTiers
+ * @param {boolean} allowed - Indicates if only allowed tiers should be fetched
+ * @param {string} eventId - The ID of the event
+ * @param {string} sectionId - The ID of the section
+ * @version 1.2
+ **/
+
 export const EVENT_SECTION_TIERS_QUERY_KEY = (
   allowed: boolean,
   eventId: string,
@@ -22,10 +31,6 @@ export const EVENT_SECTION_TIERS_QUERY_KEY = (
   allowed ? "ALLOWED" : "DISALLOWED",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SECTION_TIERS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SECTION_TIERS_QUERY_KEY>,
@@ -40,10 +45,6 @@ interface GetEventSectionTiersProps extends InfiniteQueryParams {
   sectionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSectionTiers = async ({
   allowed,
   eventId,
@@ -69,10 +70,7 @@ export const GetEventSectionTiers = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSectionTiers = (
   allowed: boolean,
   eventId: string = "",

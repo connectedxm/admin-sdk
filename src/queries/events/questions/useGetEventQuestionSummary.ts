@@ -9,6 +9,15 @@ import { RegistrationQuestion } from "@src/interfaces";
 import { EVENT_QUESTION_SUMMARIES_QUERY_KEY } from "./useGetEventQuestionSummaries";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * Fetches summary data for a specific event question, providing various chart types such as bar, line, table, and count.
+ * This function is designed to retrieve detailed summary information for a question within an event, which can be used for data visualization and analysis.
+ * @name GetEventQuestionSummary
+ * @param {string} eventId - The ID of the event
+ * @param {string} questionId - The ID of the question
+ * @version 1.2
+ **/
+
 export interface BarChartSummaryData {
   type: "bar";
   data: {
@@ -37,6 +46,7 @@ export interface TableChartSummaryData {
   count: number;
   question?: RegistrationQuestion;
 }
+
 export interface CountChartSummaryData {
   type: "count";
   data: null;
@@ -50,19 +60,11 @@ export type SummaryData =
   | TableChartSummaryData
   | CountChartSummaryData;
 
-/**
- * @category Keys
- * @group Events
- */
 export const EVENT_QUESTION_SUMMARY_QUERY_KEY = (
   eventId: string,
   questionId: string
 ) => [...EVENT_QUESTION_SUMMARIES_QUERY_KEY(eventId), questionId];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_QUESTION_SUMMARY_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_QUESTION_SUMMARY_QUERY_KEY>,
@@ -76,10 +78,6 @@ interface GetEventQuestionSummaryProps extends SingleQueryParams {
   questionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventQuestionSummary = async ({
   adminApiParams,
   eventId,
@@ -91,10 +89,7 @@ export const GetEventQuestionSummary = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventQuestionSummary = (
   eventId: string = "",
   questionId: string = "",

@@ -11,18 +11,20 @@ import {
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches refund schedules for a specific event pass type with support for pagination and filtering.
+ * This function is designed to retrieve detailed refund schedule information for a given event pass type,
+ * allowing for efficient data handling and display in applications that require such data.
+ * @name GetEventPassTypeRefundSchedules
+ * @param {string} eventId - The id of the event
+ * @param {string} passTypeId - The id of the pass type
+ * @version 1.2
+ **/
+
 export const EVENT_PASS_TYPE_REFUND_SCHEDULES_QUERY_KEY = (
   eventId: string,
   passTypeId: string
 ) => [...EVENT_PASS_TYPE_QUERY_KEY(eventId, passTypeId), "REFUND_SCHEDULES"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_PASS_TYPE_REFUND_SCHEDULES_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_PASS_TYPE_REFUND_SCHEDULES_QUERY_KEY>,
@@ -39,10 +41,6 @@ interface GetEventPassTypeRefundSchedulesParams extends InfiniteQueryParams {
   passTypeId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventPassTypeRefundSchedules = async ({
   pageParam,
   pageSize,
@@ -69,10 +67,6 @@ export const GetEventPassTypeRefundSchedules = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Events
- */
 export const useGetEventPassTypeRefundSchedules = (
   eventId: string = "",
   passTypeId: string = "",

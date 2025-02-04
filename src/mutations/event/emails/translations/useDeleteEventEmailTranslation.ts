@@ -11,6 +11,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific event email translation for a given event, email type, and locale.
+ * This function is used to remove translations of event-related emails, ensuring that outdated or incorrect translations are no longer available.
+ * It is particularly useful in scenarios where event details change and corresponding email translations need to be updated or removed.
+ * @name DeleteEventEmailTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {EventEmailType} type - The type of the event email
+ * @param {string} locale - The locale of the translation
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Emails-Translations
  */

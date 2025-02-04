@@ -9,18 +9,20 @@ import { EVENT_TRACK_QUERY_KEY } from "./useGetEventTrack";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves a list of sessions for a specific event track.
+ * This function fetches session data associated with a given event and track, 
+ * allowing users to access detailed information about each session within the track.
+ * @name GetEventTrackSessions
+ * @param {string} eventId - The id of the event
+ * @param {string} trackId - The id of the track
+ * @version 1.2
+ **/
+
 export const EVENT_TRACK_SESSIONS_QUERY_KEY = (
   eventId: string,
   trackId: string
 ) => [...EVENT_TRACK_QUERY_KEY(eventId, trackId), "SESSIONS"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_TRACK_SESSIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_TRACK_SESSIONS_QUERY_KEY>,
@@ -34,10 +36,6 @@ interface GetEventTrackSessionsProps extends InfiniteQueryParams {
   trackId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventTrackSessions = async ({
   eventId,
   trackId,
@@ -63,10 +61,7 @@ export const GetEventTrackSessions = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventTrackSessions = (
   eventId: string = "",
   trackId: string = "",

@@ -9,6 +9,19 @@ import {
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 
+/**
+ * Endpoint to manage and fetch announcements.
+ * This function provides the ability to retrieve announcements based on various optional filters such as event, group, tier, channel, and account.
+ * It is designed to be used in applications where announcements need to be dynamically fetched and managed.
+ * @name GetAnnouncements
+ * @param {string} [eventId] - The id of the event
+ * @param {string} [groupId] - The id of the group
+ * @param {string} [tierId] - The id of the tier
+ * @param {string} [channelId] - The id of the channel
+ * @param {string} [accountId] - The id of the account
+ * @version 1.2
+ **/
+
 interface AnnouncementFilters {
   eventId?: string;
   groupId?: string;

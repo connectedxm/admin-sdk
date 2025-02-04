@@ -10,6 +10,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific translation for an event session.
+ * This function allows the removal of a translation associated with a particular event session, identified by event ID, session ID, and locale.
+ * It is useful in scenarios where translations need to be managed or removed from event sessions.
+ * @name DeleteEventSessionTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} sessionId - The ID of the session
+ * @param {string} locale - The locale of the translation
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Sessions-Translations
  */

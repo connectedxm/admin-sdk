@@ -8,18 +8,20 @@ import {
 } from "../useConnectedMutation";
 
 /**
- * @category Params
- * @group Groups
- */
+ * Endpoint to accept a group request.
+ * This function allows the acceptance of a pending group request by specifying the group and request IDs.
+ * It is used in scenarios where a user or admin needs to approve a request to join a group.
+ * @name AcceptGroupRequest
+ * @param {string} groupId - The id of the group
+ * @param {string} requestId - The id of the request
+ * @version 1.2
+ **/
+
 export interface AcceptGroupRequestParams extends MutationParams {
   groupId: string;
   requestId: string;
 }
 
-/**
- * @category Methods
- * @group Groups
- */
 export const AcceptGroupRequest = async ({
   groupId,
   requestId,
@@ -38,10 +40,6 @@ export const AcceptGroupRequest = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Groups
- */
 export const useAcceptGroupRequest = (
   options: Omit<
     ConnectedXMMutationOptions<

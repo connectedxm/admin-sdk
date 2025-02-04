@@ -12,8 +12,15 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Organization-Pages-Translations
+ * Updates the translation of a specific organization page for a given locale.
+ * This function allows for updating the translation details of an organization's page, 
+ * identified by the page type and locale. It is useful for applications that need to 
+ * manage multilingual content for organization pages.
+ * @name PutOrganizationPageTranslation
+ * @param {PageType} type - The type of the page to be translated
+ * @param {OrganizationPageTranslationUpdateInputs} pageTranslation - The translation details to update
+ * @param {ISupportedLocale} locale - The locale for which the translation is being updated
+ * @version 1.2
  */
 export interface UpdateOrganizationPageTranslationParams
   extends MutationParams {

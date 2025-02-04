@@ -12,19 +12,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Attendees
- */
+ * Endpoint to update the registration details of an event attendee.
+ * This function allows updating the registration information for a specific attendee of an event.
+ * It is designed to be used in applications where event management and attendee updates are required.
+ * @name UpdateEventAttendee
+ * @param {string} eventId - The id of the event
+ * @param {string} accountId - The id of the account
+ * @param {EventAttendeeUpdateInputs} registration - The registration details to update
+ * @version 1.2
+ **/
+
 export interface UpdateEventAttendeeParams extends MutationParams {
   eventId: string;
   accountId: string;
   registration: EventAttendeeUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Attendees
- */
 export const UpdateEventAttendee = async ({
   eventId,
   accountId,
@@ -46,10 +49,6 @@ export const UpdateEventAttendee = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Attendees
- */
 export const useUpdateEventAttendee = (
   options: Omit<
     ConnectedXMMutationOptions<

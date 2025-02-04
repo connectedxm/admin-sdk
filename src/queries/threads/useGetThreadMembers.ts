@@ -8,9 +8,15 @@ import {
 } from "../useConnectedInfiniteQuery";
 
 /**
- * @category Keys
- * @thread Thread Members
- */
+ * Endpoint to retrieve a list of members within a specific thread, with optional filtering by role.
+ * This function allows users to fetch thread members, providing the ability to filter results based on the role of the members.
+ * It is designed for applications that require detailed member information within a thread context.
+ * @name GetThreadMembers
+ * @param {string} threadId - The id of the thread
+ * @param {string} [role] - The role to filter thread members by
+ * @version 1.2
+ **/
+
 export const THREAD_MEMBERS_QUERY_KEY = (threadId: string) => [
   ...THREADS_QUERY_KEY(),
   "MEMBERS",
@@ -22,10 +28,6 @@ interface GetThreadMembersProps extends InfiniteQueryParams {
   role?: string;
 }
 
-/**
- * @category Queries
- * @thread Thread Members
- */
 export const GetThreadMembers = async ({
   threadId,
   pageParam,
@@ -48,10 +50,6 @@ export const GetThreadMembers = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @thread Thread Members
- */
 export const useGetThreadMembers = (
   threadId: string = "",
   params: Omit<

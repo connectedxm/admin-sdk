@@ -10,18 +10,20 @@ import { EVENT_QUESTION_QUERY_KEY } from "./useGetEventQuestion";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves search values for specific event questions.
+ * This endpoint allows fetching search values associated with a particular question within an event.
+ * It is useful for applications that need to display or process search values related to event questions.
+ * @name GetEventQuestionSearchValues
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @version 1.2
+ **/
+
 export const EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY = (
   eventId: string,
   questionId: string
 ) => [...EVENT_QUESTION_QUERY_KEY(eventId, questionId), "SEARCH_VALUES"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_QUESTION_SEARCH_VALUES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY>,
@@ -38,10 +40,6 @@ interface GetEventQuestionSearchValuesProps extends InfiniteQueryParams {
   questionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventQuestionSearchValues = async ({
   eventId,
   questionId,
@@ -67,10 +65,7 @@ export const GetEventQuestionSearchValues = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventQuestionSearchValues = (
   eventId: string = "",
   questionId: string = "",

@@ -13,18 +13,20 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Activities
- */
+ * Adds an interest to a specific activity and updates the query client.
+ * This function allows users to associate an interest with a given activity, 
+ * ensuring that the query client is updated to reflect this change. 
+ * It is useful in scenarios where activities need to be dynamically linked with interests.
+ * @name AddActivityInterest
+ * @param {string} activityId - The id of the activity
+ * @param {string} interestId - The id of the interest
+ * @version 1.2
+**/
 export interface AddActivityInterestParams extends MutationParams {
   activityId: string;
   interestId: string;
 }
 
-/**
- * @category Methods
- * @group Activities
- */
 export const AddActivityInterest = async ({
   activityId,
   interestId,
@@ -46,10 +48,6 @@ export const AddActivityInterest = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Activities
- */
 export const useAddActivityInterest = (
   options: Omit<
     ConnectedXMMutationOptions<

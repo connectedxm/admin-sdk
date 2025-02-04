@@ -9,18 +9,20 @@ import { ACTIVITIES_QUERY_KEY, SET_ACTIVITY_QUERY_DATA } from "@src/queries";
 import { ActivityUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Activities
- */
+ * Endpoint to update an existing activity with new data.
+ * This function allows users to modify the details of a specific activity by providing the activity ID and the updated data.
+ * It ensures that the activity information is current and accurate within the system.
+ * @name UpdateActivity
+ * @param {string} activityId - The ID of the activity to update
+ * @param {ActivityUpdateInputs} activity - The updated activity data
+ * @version 1.2
+ **/
+
 export interface UpdateActivityParams extends MutationParams {
   activityId: string;
   activity: ActivityUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Activities
- */
 export const UpdateActivity = async ({
   activityId,
   activity,
@@ -40,10 +42,6 @@ export const UpdateActivity = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Activities
- */
 export const useUpdateActivity = (
   options: Omit<
     ConnectedXMMutationOptions<

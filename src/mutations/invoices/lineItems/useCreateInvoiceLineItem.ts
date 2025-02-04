@@ -13,18 +13,20 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Invoices-LineItems
- */
+ * Endpoint to create a new invoice line item.
+ * This function allows the creation of a new line item for a specified invoice.
+ * It is designed to be used in applications where invoice management is required.
+ * @name CreateInvoiceLineItem
+ * @param {string} invoiceId - The id of the invoice
+ * @param {InvoiceLineItemCreateInputs} invoiceLineItem - The details of the invoice line item to create
+ * @version 1.2
+ **/
+
 export interface CreateInvoiceLineItemParams extends MutationParams {
   invoiceId: string;
   invoiceLineItem: InvoiceLineItemCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Invoices-LineItems
- */
 export const CreateInvoiceLineItem = async ({
   invoiceId,
   invoiceLineItem,
@@ -52,10 +54,6 @@ export const CreateInvoiceLineItem = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Invoices-LineItems
- */
 export const useCreateInvoiceLineItem = (
   options: Omit<
     ConnectedXMMutationOptions<

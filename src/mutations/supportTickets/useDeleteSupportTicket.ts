@@ -11,17 +11,18 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group SupportTickets
- */
+ * Endpoint to delete a support ticket by its unique identifier.
+ * This function allows administrators to remove a support ticket from the system.
+ * It ensures that the support ticket is deleted and updates the query cache accordingly.
+ * @name DeleteSupportTicket
+ * @param {string} supportTicketId - The ID of the support ticket
+ * @version 1.2
+ **/
+
 export interface DeleteSupportTicketParams extends MutationParams {
   supportTicketId: string;
 }
 
-/**
- * @category Methods
- * @group SupportTickets
- */
 export const DeleteSupportTicket = async ({
   supportTicketId,
   adminApiParams,
@@ -40,10 +41,6 @@ export const DeleteSupportTicket = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group SupportTickets
- */
 export const useDeleteSupportTicket = (
   options: Omit<
     ConnectedXMMutationOptions<

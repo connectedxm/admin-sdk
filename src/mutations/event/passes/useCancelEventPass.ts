@@ -14,9 +14,18 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Attendee-Passes
- */
+ * Endpoint to cancel an event pass.
+ * This function allows the cancellation of a specific event pass by its ID, with options to send a notification email, issue a refund, specify an admin refund amount, and remove a reservation.
+ * It is designed for use in event management systems where administrators need to manage event passes efficiently.
+ * @name CancelEventPass
+ * @param {string} eventId - The id of the event
+ * @param {string} passId - The id of the pass
+ * @param {boolean} [sendEmail] - Optionally send an email
+ * @param {boolean} [issueRefund] - Optionally issue a refund
+ * @param {number} [adminRefundAmt] - Optional admin refund amount
+ * @param {boolean} [removeReservation] - Optionally remove a reservation
+ * @version 1.2
+ **/
 export interface CancelEventPassParams extends MutationParams {
   eventId: string;
   passId: string;
@@ -26,10 +35,6 @@ export interface CancelEventPassParams extends MutationParams {
   removeReservation?: boolean;
 }
 
-/**
- * @category Methods
- * @group Event-Attendee-Passes
- */
 export const CancelEventPass = async ({
   eventId,
   passId,
@@ -73,10 +78,6 @@ export const CancelEventPass = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Attendee-Passes
- */
 export const useCancelEventPass = (
   options: Omit<
     ConnectedXMMutationOptions<

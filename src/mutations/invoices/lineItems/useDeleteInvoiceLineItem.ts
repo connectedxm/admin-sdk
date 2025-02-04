@@ -12,18 +12,20 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Invoices-LineItems
- */
+ * Endpoint to delete a specific line item from an invoice.
+ * This function allows the removal of a line item from a specified invoice using the invoice ID and line item ID.
+ * It is designed to be used in applications where invoice management and item removal are required.
+ * @name DeleteInvoiceLineItem
+ * @param {string} invoiceId - The id of the invoice
+ * @param {string} lineItemId - The id of the line item
+ * @version 1.2
+ **/
+
 export interface DeleteInvoiceLineItemParams extends MutationParams {
   invoiceId: string;
   lineItemId: string;
 }
 
-/**
- * @category Methods
- * @group Invoices-LineItems
- */
 export const DeleteInvoiceLineItem = async ({
   invoiceId,
   lineItemId,
@@ -46,10 +48,6 @@ export const DeleteInvoiceLineItem = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Invoices-LineItems
- */
 export const useDeleteInvoiceLineItem = (
   options: Omit<
     ConnectedXMMutationOptions<

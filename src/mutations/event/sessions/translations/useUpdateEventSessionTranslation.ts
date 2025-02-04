@@ -12,9 +12,17 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sessions-Translations
- */
+ * Updates the translation for a specific event session.
+ * This function allows updating the translation details of a session within an event for a specified locale.
+ * It is designed to be used in applications where multilingual support for event sessions is required.
+ * @name UpdateEventSessionTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} sessionId - The ID of the session
+ * @param {EventSessionTranslationUpdateInputs} sessionTranslation - The translation details to update
+ * @param {ISupportedLocale} locale - The locale for the translation
+ * @version 1.2
+ **/
+
 export interface UpdateEventSessionTranslationParams extends MutationParams {
   eventId: string;
   sessionId: string;
@@ -22,10 +30,6 @@ export interface UpdateEventSessionTranslationParams extends MutationParams {
   sessionTranslation: EventSessionTranslationUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions-Translations
- */
 export const UpdateEventSessionTranslation = async ({
   eventId,
   sessionId,
@@ -53,10 +57,6 @@ export const UpdateEventSessionTranslation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sessions-Translations
- */
 export const useUpdateEventSessionTranslation = (
   options: Omit<
     ConnectedXMMutationOptions<

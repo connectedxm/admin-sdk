@@ -9,8 +9,13 @@ import {
 } from "@src/queries/useConnectedSingleQuery";
 
 /**
- * @category Keys
- * @group Organization
+ * Retrieves the translation for a specific organization page based on the page type and locale.
+ * This function is used to fetch localized content for organization pages, allowing for internationalization support.
+ * It is designed to be used in applications where multilingual support is required for organization pages.
+ * @name GetOrganizationPageTranslation
+ * @param {PageType} type - The type of the page
+ * @param {string} locale - The locale for the translation
+ * @version 1.2
  */
 export const ORGANIZATION_PAGE_TRANSLATION_QUERY_KEY = (
   type: PageType,
@@ -54,6 +59,7 @@ export const GetOrganizationPageTranslation = async ({
   );
   return data;
 };
+
 /**
  * @category Hooks
  * @group Organization

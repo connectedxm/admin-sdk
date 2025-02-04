@@ -9,18 +9,21 @@ import { EVENT_QUESTION_QUERY_KEY } from "./useGetEventQuestion";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches responses for a specific event question with optional filtering.
+ * This function allows retrieval of responses associated with a particular event question, 
+ * providing options for pagination and sorting. It is useful for applications that need to 
+ * display or process responses to event questions.
+ * @name GetEventQuestionResponses
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @version 1.2
+ **/
+
 export const EVENT_QUESTION_RESPONSES_QUERY_KEY = (
   eventId: string,
   questionId: string
 ) => [...EVENT_QUESTION_QUERY_KEY(eventId, questionId), "RESPONSES"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_QUESTION_RESPONSES_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_QUESTION_RESPONSES_QUERY_KEY>,
@@ -37,10 +40,6 @@ interface GetEventQuestionResponsesProps extends InfiniteQueryParams {
   questionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventQuestionResponses = async ({
   eventId,
   questionId,
@@ -66,10 +65,7 @@ export const GetEventQuestionResponses = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventQuestionResponses = (
   eventId: string = "",
   questionId: string = "",

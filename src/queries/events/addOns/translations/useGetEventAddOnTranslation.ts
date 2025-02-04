@@ -9,9 +9,17 @@ import { EVENT_ADD_ON_TRANSLATIONS_QUERY_KEY } from "./useGetEventAddOnTranslati
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
+ * Retrieves the translation details for a specific event add-on based on the provided event ID, add-on ID, and locale.
+ * This function is designed to fetch localized translation data for event add-ons, which can be used in applications
+ * that require displaying event information in different languages. It utilizes a connected single query to ensure
+ * efficient data retrieval and caching.
+ * @name GetEventAddOnTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} addOnId - The ID of the add-on
+ * @param {string} locale - The locale for the translation
+ * @version 1.2
  */
+
 export const EVENT_ADD_ON_TRANSLATION_QUERY_KEY = (
   eventId: string,
   addOnId: string,

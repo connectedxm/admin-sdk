@@ -8,19 +8,21 @@ import {
 import { SET_EVENT_SESSION_QUESTIONS_QUERY_DATA } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Endpoint to reorder questions within a specific event session.
+ * This function allows the reordering of questions in a given session of an event by specifying the new order of question IDs.
+ * It is useful for managing the sequence of questions in event sessions, ensuring they are presented in the desired order.
+ * @name ReorderEventSessionQuestions
+ * @param {string} eventId - The id of the event
+ * @param {string} sessionId - The id of the session
+ * @param {string[]} questionIds - The ids of the questions to reorder
+ * @version 1.2
+ **/
 export interface ReorderEventSessionQuestionsParams extends MutationParams {
   eventId: string;
   sessionId: string;
   questionIds: string[];
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const ReorderEventSessionQuestions = async ({
   eventId,
   sessionId,
@@ -49,10 +51,6 @@ export const ReorderEventSessionQuestions = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useReorderEventSessionQuestions = (
   options: Omit<
     ConnectedXMMutationOptions<

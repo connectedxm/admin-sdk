@@ -8,18 +8,20 @@ import { ConnectedXMResponse, Group } from "@src/interfaces";
 import { SET_GROUP_QUERY_DATA, GROUP_EVENTS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Groups
- */
+ * Endpoint to remove a specific event from a group.
+ * This function allows the removal of an event from a specified group by providing the group and event identifiers.
+ * It is designed to be used in applications where managing group events is necessary.
+ * @name RemoveGroupEvent
+ * @param {string} groupId - The id of the group
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+ **/
+
 export interface RemoveGroupEventParams extends MutationParams {
   groupId: string;
   eventId: string;
 }
 
-/**
- * @category Methods
- * @group Groups
- */
 export const RemoveGroupEvent = async ({
   groupId,
   eventId,
@@ -39,10 +41,6 @@ export const RemoveGroupEvent = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Groups
- */
 export const useRemoveGroupEvent = (
   options: Omit<
     ConnectedXMMutationOptions<

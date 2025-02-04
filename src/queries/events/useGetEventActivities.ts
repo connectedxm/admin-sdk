@@ -1,5 +1,4 @@
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Activity } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -11,18 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @event Events
- */
+ * Fetches a list of activities associated with a specific event.
+ * This function is designed to retrieve paginated activity data for a given event, 
+ * allowing users to view detailed activity information related to that event.
+ * @name GetEventActivities
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+ **/
+
 export const EVENT_ACTIVITIES_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "ACTIVITIES",
 ];
 
-/**
- * @category Setters
- * @event Events
- */
 export const SET_EVENT_ACTIVITIES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_ACTIVITIES_QUERY_KEY>,
@@ -35,10 +35,6 @@ interface GetEventActivitiesProps extends InfiniteQueryParams {
   eventId: string;
 }
 
-/**
- * @category Queries
- * @event Events
- */
 export const GetEventActivities = async ({
   eventId,
   pageParam,
@@ -59,10 +55,6 @@ export const GetEventActivities = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @event Events
- */
 export const useGetEventActivities = (
   eventId: string = "",
   params: Omit<

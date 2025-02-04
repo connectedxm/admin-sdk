@@ -11,9 +11,17 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Reservations
- */
+ * Endpoint to add a new tier to a room type for a specific event.
+ * This function allows the addition of a tier to a specified room type within an event, 
+ * indicating whether the tier is allowed. It is used in scenarios where event room types 
+ * need to be dynamically updated with new tiers.
+ * @name AddEventRoomTypeTier
+ * @param {boolean} allowed - Indicates if the tier is allowed
+ * @param {string} eventId - The id of the event
+ * @param {string} roomTypeId - The id of the room type
+ * @param {string} tierId - The id of the tier
+ * @version 1.2
+ **/
 export interface AddEventRoomTypeTierParams extends MutationParams {
   allowed: boolean;
   eventId: string;
@@ -21,10 +29,6 @@ export interface AddEventRoomTypeTierParams extends MutationParams {
   tierId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Reservations
- */
 export const AddEventRoomTypeTier = async ({
   allowed,
   eventId,
@@ -49,10 +53,6 @@ export const AddEventRoomTypeTier = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Reservations
- */
 export const useAddEventRoomTypeTier = (
   options: Omit<
     ConnectedXMMutationOptions<

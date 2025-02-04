@@ -1,29 +1,28 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Subscription } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
-
 import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Accounts
- */
+ * Endpoint to retrieve a list of subscriptions associated with a specific account.
+ * This function allows users to fetch subscription details for a given account ID.
+ * It is designed to be used in applications where account subscription information is required.
+ * @name GetAccountSubscriptions
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export const ACCOUNT_SUBSCRIPTIONS_QUERY_KEY = (accountId: string) => [
   ...ACCOUNT_QUERY_KEY(accountId),
   "SUBSCRIPTIONS",
 ];
 
-/**
- * @category Setters
- * @group Accounts
- */
 export const SET_ACCOUNT_SUBSCRIPTIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_SUBSCRIPTIONS_QUERY_KEY>,
@@ -36,10 +35,6 @@ interface GetAccountSubscriptionsProps extends InfiniteQueryParams {
   accountId: string;
 }
 
-/**
- * @category Queries
- * @group Accounts
- */
 export const GetAccountSubscriptions = async ({
   accountId,
   pageParam,
@@ -61,10 +56,7 @@ export const GetAccountSubscriptions = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Accounts
- */
+
 export const useGetAccountSubscriptions = (
   accountId: string = "",
   params: Omit<

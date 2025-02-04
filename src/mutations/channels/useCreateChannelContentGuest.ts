@@ -12,19 +12,21 @@ import {
 import { ChannelContentGuestCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Channels
- */
+ * Endpoint to create a new guest for a specific channel content.
+ * This function allows the creation of a guest associated with a particular channel content by providing the necessary details.
+ * It is designed to be used in applications where managing guest access to channel content is required.
+ * @name CreateChannelContentGuest
+ * @param {string} contentId - The id of the content
+ * @param {string} channelId - The id of the channel
+ * @param {ChannelContentGuestCreateInputs} contentGuest - The guest details to be created
+ * @version 1.2
+ **/
 export interface CreateChannelContentGuestParams extends MutationParams {
   contentId: string;
   channelId: string;
   contentGuest: ChannelContentGuestCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Channels
- */
 export const CreateChannelContentGuest = async ({
   contentId,
   channelId,
@@ -49,12 +51,8 @@ export const CreateChannelContentGuest = async ({
     );
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Channels
- */
 export const useCreateChannelContentGuest = (
   options: Omit<
     ConnectedXMMutationOptions<

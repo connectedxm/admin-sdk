@@ -10,18 +10,19 @@ import { INTEREST_QUERY_KEY } from "./useGetInterest";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Interests
- */
+ * Endpoint to retrieve a list of groups associated with a specific interest.
+ * This function allows users to fetch groups that are linked to a particular interest by providing the interest ID.
+ * It is designed to be used in applications where categorization or grouping of interests is required.
+ * @name GetInterestGroups
+ * @param {string} interestId - The id of the interest
+ * @version 1.2
+ **/
+
 export const INTEREST_GROUPS_QUERY_KEY = (interestId: string) => [
   ...INTEREST_QUERY_KEY(interestId),
   "GROUPS",
 ];
 
-/**
- * @category Setters
- * @group Interests
- */
 export const SET_INTEREST_GROUPS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INTEREST_GROUPS_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetInterestGroupsProps extends InfiniteQueryParams {
   interestId: string;
 }
 
-/**
- * @category Queries
- * @group Interests
- */
 export const GetInterestGroups = async ({
   interestId,
   pageParam,
@@ -57,10 +54,7 @@ export const GetInterestGroups = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Interests
- */
+
 export const useGetInterestGroups = (
   interestId: string = "",
   params: Omit<

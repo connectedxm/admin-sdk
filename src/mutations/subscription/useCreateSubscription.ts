@@ -8,17 +8,18 @@ import {
 import { SubscriptionCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Subscriptions
- */
+ * Endpoint to create a new subscription.
+ * This function allows the creation of a new subscription by providing the necessary subscription details.
+ * It is designed to be used in applications where subscription management is required.
+ * @name CreateSubscription
+ * @param {SubscriptionCreateInputs} subscription - The subscription details to be created
+ * @version 1.2
+ **/
+
 export interface CreateSubscriptionParams extends MutationParams {
   subscription: SubscriptionCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Subscriptions
- */
 export const CreateSubscription = async ({
   subscription,
   // queryClient,
@@ -34,10 +35,6 @@ export const CreateSubscription = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Subscriptions
- */
 export const useCreateSubscription = (
   options: Omit<
     ConnectedXMMutationOptions<

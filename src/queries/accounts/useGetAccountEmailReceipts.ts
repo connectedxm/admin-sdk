@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { EmailReceipt, EmailReceiptStatus } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
@@ -11,9 +10,15 @@ import { QueryClient } from "@tanstack/react-query";
 import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 
 /**
- * @category Keys
- * @group Accounts
- */
+ * Endpoint to retrieve a list of email receipts associated with a specific account.
+ * This function allows users to fetch email receipt data for an account, with optional filtering by receipt status.
+ * It is designed to be used in applications where tracking email communications for an account is necessary.
+ * @name GetAccountEmailReceipts
+ * @param {string} accountId - The id of the account
+ * @param {keyof typeof EmailReceiptStatus} [status] - Optional filtering by email receipt status
+ * @version 1.2
+ **/
+
 export const ACCOUNT_EMAILS_QUERY_KEY = (
   accountId: string,
   status?: keyof typeof EmailReceiptStatus
@@ -26,10 +31,6 @@ export const ACCOUNT_EMAILS_QUERY_KEY = (
   return queryKey;
 };
 
-/**
- * @category Setters
- * @group Accounts
- */
 export const SET_ACCOUNT_EMAILS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_EMAILS_QUERY_KEY>,
@@ -43,10 +44,6 @@ interface GetAcccountEmailReceiptsProps extends InfiniteQueryParams {
   status?: keyof typeof EmailReceiptStatus;
 }
 
-/**
- * @category Queries
- * @group Accounts
- */
 export const GetAcccountEmailReceipts = async ({
   accountId,
   status,
@@ -70,10 +67,7 @@ export const GetAcccountEmailReceipts = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Accounts
- */
+
 export const useGetAcccountEmailReceipts = (
   accountId: string = "",
   status?: keyof typeof EmailReceiptStatus,

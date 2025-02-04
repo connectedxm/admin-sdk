@@ -9,18 +9,19 @@ import { ConnectedXMResponse, Event } from "@src/interfaces";
 import { EventUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Event
- */
+ * Endpoint to update an existing event with new details.
+ * This function allows users to modify the details of an event by providing the event ID and the updated event inputs.
+ * It ensures that the event data is refreshed in the query client upon successful update.
+ * @name UpdateEvent
+ * @param {string} eventId - The ID of the event to be updated
+ * @param {EventUpdateInputs} event - The new inputs for updating the event
+ * @version 1.2
+ **/
 export interface UpdateEventParams extends MutationParams {
   eventId: string;
   event: EventUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event
- */
 export const UpdateEvent = async ({
   eventId,
   event,
@@ -39,10 +40,6 @@ export const UpdateEvent = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event
- */
 export const useUpdateEvent = (
   options: Omit<
     ConnectedXMMutationOptions<

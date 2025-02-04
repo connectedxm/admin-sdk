@@ -9,18 +9,20 @@ import { EVENT_ACTIVATIONS_QUERY_KEY } from "./useGetEventActivations";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches detailed information about a specific event activation using the admin API.
+ * This function is designed to retrieve data related to a particular event activation by its unique identifiers.
+ * It is useful for applications that need to display or process event activation details.
+ * @name GetEventActivation
+ * @param {string} eventId - The id of the event
+ * @param {string} activationId - The id of the activation
+ * @version 1.2
+ **/
+
 export const EVENT_ACTIVATION_QUERY_KEY = (
   eventId: string,
   activationId: string
 ) => [...EVENT_ACTIVATIONS_QUERY_KEY(eventId), activationId];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_ACTIVATION_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_ACTIVATION_QUERY_KEY>,
@@ -34,10 +36,6 @@ interface GetEventActivationProps extends SingleQueryParams {
   activationId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventActivation = async ({
   eventId,
   activationId,
@@ -51,10 +49,7 @@ export const GetEventActivation = async ({
 
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventActivation = (
   eventId: string,
   activationId: string,

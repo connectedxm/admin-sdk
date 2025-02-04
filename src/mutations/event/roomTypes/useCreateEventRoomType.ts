@@ -12,18 +12,20 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Reservations
- */
+ * Endpoint to create a new event room type within a specified event.
+ * This function allows the creation of a new room type for an event by providing the necessary inputs.
+ * It is designed to be used in applications where event management and customization are required.
+ * @name CreateEventRoomType
+ * @param {string} eventId - The id of the event
+ * @param {EventRoomTypeCreateInputs} roomType - The inputs for creating the event room type
+ * @version 1.2
+ **/
+
 export interface CreateEventRoomTypeParams extends MutationParams {
   eventId: string;
   roomType: EventRoomTypeCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Reservations
- */
 export const CreateEventRoomType = async ({
   eventId,
   roomType,
@@ -44,10 +46,6 @@ export const CreateEventRoomType = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Reservations
- */
 export const useCreateEventRoomType = (
   options: Omit<
     ConnectedXMMutationOptions<

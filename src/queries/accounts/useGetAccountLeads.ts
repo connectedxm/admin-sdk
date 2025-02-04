@@ -11,9 +11,15 @@ import { QueryClient } from "@tanstack/react-query";
 import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 
 /**
- * @category Keys
- * @group Accounts
- */
+ * Endpoint to retrieve a list of leads associated with a specific account.
+ * This function allows users to fetch account leads with optional filtering by lead status and event ID.
+ * It is designed to be used in applications where detailed information about account leads is required.
+ * @name GetAccountLeads
+ * @param {string} accountId - The id of the account
+ * @param {keyof typeof LeadStatus} [status] - Optional filtering by lead status
+ * @param {string} [eventId] - Optional filtering by event ID
+ * @version 1.2
+ **/
 export const ACCOUNT_LEADS_QUERY_KEY = (
   accountId: string,
   status?: keyof typeof LeadStatus,
@@ -25,10 +31,6 @@ export const ACCOUNT_LEADS_QUERY_KEY = (
   return key;
 };
 
-/**
- * @category Setters
- * @group Accounts
- */
 export const SET_ACCOUNT_LEADS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_LEADS_QUERY_KEY>,
@@ -43,10 +45,6 @@ interface GetAccountLeadsProps extends InfiniteQueryParams {
   eventId?: string;
 }
 
-/**
- * @category Queries
- * @group Accounts
- */
 export const GetAccountLeads = async ({
   accountId,
   status,
@@ -70,10 +68,7 @@ export const GetAccountLeads = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Accounts
- */
+
 export const useGetAccountLeads = (
   accountId: string = "",
   status?: keyof typeof LeadStatus,

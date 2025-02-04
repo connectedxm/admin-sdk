@@ -9,18 +9,22 @@ import {
 import { EVENT_PASS_TYPE_QUERY_KEY } from "./useGetEventPassType";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches coupons associated with a specific event pass type.
+ * This function retrieves a list of coupons linked to a particular event pass type, 
+ * allowing users to manage and view available discounts or offers for event attendees.
+ * It is designed to be used in applications that require detailed coupon information 
+ * for event management and promotion purposes.
+ * @name GetEventPassTypeCoupons
+ * @param {string} eventId - The id of the event
+ * @param {string} passTypeId - The id of the pass type
+ * @version 1.2
+ **/
+
 export const EVENT_PASS_TYPE_COUPONS_QUERY_KEY = (
   eventId: string,
   passTypeId: string
 ) => [...EVENT_PASS_TYPE_QUERY_KEY(eventId, passTypeId), "COUPONS"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_PASS_TYPE_COUPONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_PASS_TYPE_COUPONS_QUERY_KEY>,
@@ -37,10 +41,6 @@ interface EventGetPassTypeCouponsProps extends InfiniteQueryParams {
   passTypeId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const EventGetPassTypeCoupons = async ({
   eventId,
   passTypeId,
@@ -65,10 +65,6 @@ export const EventGetPassTypeCoupons = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Events
- */
 export const useEventGetPassTypeCoupons = (
   eventId: string = "",
   passTypeId: string = "",

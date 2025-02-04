@@ -11,19 +11,20 @@ import {
 } from "@src/queries/channels";
 
 /**
- * @category Params
- * @group Channel
- */
+ * Endpoint to cancel the scheduled publish of channel content.
+ * This function allows users to cancel a previously scheduled publish operation for specific content within a channel.
+ * It is useful in scenarios where content needs to be unscheduled due to changes in publishing plans or errors in the scheduling process.
+ * @name CancelChannelContentPublishSchedule
+ * @param {string} contentId - The id of the content
+ * @param {string} channelId - The id of the channel
+ * @version 1.2
+ **/
 export interface CancelChannelContentPublishScheduleParams
   extends MutationParams {
   contentId: string;
   channelId: string;
 }
 
-/**
- * @category Methods
- * @group Channel
- */
 export const CancelChannelContentPublishSchedule = async ({
   contentId,
   channelId,
@@ -46,10 +47,6 @@ export const CancelChannelContentPublishSchedule = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Channel
- */
 export const useCancelChannelContentPublishSchedule = (
   options: Omit<
     ConnectedXMMutationOptions<

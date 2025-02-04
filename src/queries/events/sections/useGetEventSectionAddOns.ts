@@ -9,18 +9,20 @@ import {
 import { EVENT_SECTION_QUERY_KEY } from "./useGetEventSection";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches add-ons for a specific event section, supporting pagination and filtering.
+ * This function is designed to retrieve a list of add-ons associated with a particular event section.
+ * It supports pagination and filtering to allow for efficient data retrieval and management.
+ * @name GetEventSectionAddOns
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the section
+ * @version 1.2
+ **/
+
 export const EVENT_SECTION_ADDONS_QUERY_KEY = (
   eventId: string,
   sectionId: string
 ) => [...EVENT_SECTION_QUERY_KEY(eventId, sectionId), "ADDONS"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SECTION_ADDONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SECTION_ADDONS_QUERY_KEY>,
@@ -34,10 +36,6 @@ interface GetEventSectionAddOnsProps extends InfiniteQueryParams {
   sectionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSectionAddOns = async ({
   eventId,
   sectionId,
@@ -61,10 +59,7 @@ export const GetEventSectionAddOns = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSectionAddOns = (
   eventId: string = "",
   sectionId: string = "",

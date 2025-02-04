@@ -11,9 +11,16 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Reservations
- */
+ * Endpoint to remove a tier from a specified room type for an event.
+ * This function allows the removal of a specific tier from a room type within an event, provided the operation is allowed.
+ * It is used in scenarios where event room configurations need to be adjusted by removing certain tiers.
+ * @name RemoveEventRoomTypeTier
+ * @param {boolean} allowed - Indicates if the operation is allowed
+ * @param {string} eventId - The id of the event
+ * @param {string} roomTypeId - The id of the room type
+ * @param {string} tierId - The id of the tier
+ * @version 1.2
+ **/
 export interface RemoveEventRoomTypeTierParams extends MutationParams {
   allowed: boolean;
   eventId: string;
@@ -21,10 +28,6 @@ export interface RemoveEventRoomTypeTierParams extends MutationParams {
   tierId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Reservations
- */
 export const RemoveEventRoomTypeTier = async ({
   allowed,
   eventId,
@@ -53,10 +56,6 @@ export const RemoveEventRoomTypeTier = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Reservations
- */
 export const useRemoveEventRoomTypeTier = (
   options: Omit<
     ConnectedXMMutationOptions<

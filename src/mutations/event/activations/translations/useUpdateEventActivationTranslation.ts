@@ -16,9 +16,17 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Activations-Translations
- */
+ * Updates the translation for a specific event activation.
+ * This function allows updating the translation details for a given event activation identified by eventId and activationId.
+ * It is designed to be used in applications where event activation translations need to be modified.
+ * @name UpdateEventActivationTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} activationId - The ID of the activation
+ * @param {ISupportedLocale} locale - The locale for the translation
+ * @param {EventActivationTranslationUpdateInputs} eventActivationTranslation - The translation details to update
+ * @version 1.2
+ **/
+
 export interface UpdateEventActivationTranslationParams extends MutationParams {
   eventId: string;
   activationId: string;
@@ -26,10 +34,6 @@ export interface UpdateEventActivationTranslationParams extends MutationParams {
   eventActivationTranslation: EventActivationTranslationUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Activations-Translations
- */
 export const UpdateEventActivationTranslation = async ({
   eventId,
   activationId,
@@ -62,10 +66,6 @@ export const UpdateEventActivationTranslation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Activations-Translations
- */
 export const useUpdateEventActivationTranslation = (
   options: Omit<
     ConnectedXMMutationOptions<

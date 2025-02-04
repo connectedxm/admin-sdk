@@ -10,18 +10,20 @@ import { EVENT_COUPONS_QUERY_KEY } from "./useGetEventCoupons";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches a specific coupon associated with an event by its ID.
+ * This function is designed to retrieve detailed information about a coupon linked to a particular event.
+ * It is useful in scenarios where event-specific coupon details are required.
+ * @name GetEventCoupon
+ * @param {string} eventId - The ID of the event
+ * @param {string} couponId - The ID of the coupon
+ * @version 1.2
+ **/
+
 export const EVENT_COUPON_QUERY_KEY = (eventId: string, couponId: string) => [
   ...EVENT_COUPONS_QUERY_KEY(eventId),
   couponId,
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_COUPON_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_COUPON_QUERY_KEY>,
@@ -35,10 +37,6 @@ interface GetEventCouponProps extends SingleQueryParams {
   couponId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventCoupon = async ({
   eventId,
   couponId,
@@ -48,10 +46,7 @@ export const GetEventCoupon = async ({
   const { data } = await adminApi.get(`/events/${eventId}/coupons/${couponId}`);
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventCoupon = (
   eventId: string = "",
   couponId: string = "",

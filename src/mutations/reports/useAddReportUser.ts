@@ -8,18 +8,20 @@ import { ConnectedXMResponse, User } from "@src/interfaces";
 import { SET_REPORT_USERS_QUERY_DATA } from "@src/queries/reports/useGetReportUsers";
 
 /**
- * @category Params
- * @group Reports
- */
+ * Endpoint to add a user to a specific report within the system.
+ * This function allows the addition of a user to a report by specifying the report ID and user ID.
+ * It is designed to be used in applications where managing report participants is required.
+ * @name AddReportUser
+ * @param {string} reportId - The id of the report
+ * @param {string} userId - The id of the user
+ * @version 1.2
+ **/
+
 export interface AddReportUserParams extends MutationParams {
   reportId: string;
   userId: string;
 }
 
-/**
- * @category Methods
- * @group Reports
- */
 export const AddReportUser = async ({
   reportId,
   userId,
@@ -43,10 +45,6 @@ export const AddReportUser = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Reports
- */
 export const useAddReportUser = (
   options: Omit<
     ConnectedXMMutationOptions<

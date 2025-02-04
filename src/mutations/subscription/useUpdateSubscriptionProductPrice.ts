@@ -12,19 +12,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Subscriptions
- */
+ * Endpoint to update the price of a subscription product.
+ * This function allows updating the price details of a specific subscription product by providing the necessary identifiers and update inputs.
+ * It is designed to be used in applications where subscription product pricing needs to be modified.
+ * @name UpdateSubscriptionProductPrice
+ * @param {string} subscriptionProductId - The id of the subscription product
+ * @param {string} subscriptionProductPriceId - The id of the subscription product price
+ * @param {SubscriptionProductPriceUpdateInputs} subscriptionProductPrice - The subscription product price update inputs
+ * @version 1.2
+ **/
+
 export interface UpdateSubscriptionProductPriceParams extends MutationParams {
   subscriptionProductId: string;
   subscriptionProductPriceId: string;
   subscriptionProductPrice: SubscriptionProductPriceUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Subscriptions
- */
 export const UpdateSubscriptionProductPrice = async ({
   subscriptionProductId,
   subscriptionProductPriceId,
@@ -54,10 +57,6 @@ export const UpdateSubscriptionProductPrice = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Subscriptions
- */
 export const useUpdateSubscriptionProductPrice = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Advertisement } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -10,15 +9,16 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Advertisements
- */
+ * Endpoint to retrieve a list of advertisements.
+ * This function fetches advertisements with optional filtering by search term.
+ * It is designed to be used in applications where a list of advertisements is required.
+ * @name GetAdvertisements
+ * @param {string} [search] - Optional search term to filter advertisements
+ * @version 1.2
+ **/
+
 export const ADVERTISEMENTS_QUERY_KEY = () => ["ADVERTISEMENTS"];
 
-/**
- * @category Setters
- * @group Advertisements
- */
 export const SET_ADVERTISEMENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ADVERTISEMENTS_QUERY_KEY>,
@@ -29,10 +29,6 @@ export const SET_ADVERTISEMENTS_QUERY_DATA = (
 
 interface GetAdvertisementsProps extends InfiniteQueryParams {}
 
-/**
- * @category Queries
- * @group Advertisements
- */
 export const GetAdvertisements = async ({
   pageParam,
   pageSize,
@@ -51,10 +47,7 @@ export const GetAdvertisements = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Advertisements
- */
+
 export const useGetAdvertisements = (
   params: Omit<
     InfiniteQueryParams,

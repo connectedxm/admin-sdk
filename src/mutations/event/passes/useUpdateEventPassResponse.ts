@@ -14,21 +14,24 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Attendees
- */
+ * Endpoint to update the response for a specific event pass.
+ * This function allows updating the response to a registration question for a given event pass.
+ * It is used to modify the response data associated with a specific question in an event's pass.
+ * @name UpdateEventPassResponse
+ * @param {string} eventId - The id of the event
+ * @param {string} passId - The id of the pass
+ * @param {string} questionId - The id of the question
+ * @param {RegistrationQuestionResponse} response - The response to the registration question
+ * @version 1.2
+ **/
+
 export interface UpdateEventPassResponseParams extends MutationParams {
   eventId: string;
   passId: string;
   questionId: string;
-  //TODO: missing interface and validation
   response: RegistrationQuestionResponse;
 }
 
-/**
- * @category Methods
- * @group Event-Attendees
- */
 export const UpdateEventPassResponse = async ({
   eventId,
   passId,
@@ -55,12 +58,8 @@ export const UpdateEventPassResponse = async ({
     );
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Event-Attendees
- */
 export const useUpdateEventPassResponse = (
   options: Omit<
     ConnectedXMMutationOptions<

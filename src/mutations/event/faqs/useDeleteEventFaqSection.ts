@@ -11,18 +11,19 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Faqs
- */
+ * Endpoint to delete a specific FAQ section for an event and invalidate related queries.
+ * This function allows the removal of a FAQ section associated with a particular event, ensuring that any cached queries related to the FAQ sections are invalidated.
+ * It is useful in scenarios where FAQ sections need to be dynamically managed and kept up-to-date.
+ * @name DeleteEventFaqSection
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the FAQ section
+ * @version 1.2
+ **/
 export interface DeleteEventFaqSectionParams extends MutationParams {
   eventId: string;
   sectionId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Faqs
- */
 export const DeleteEventFaqSection = async ({
   eventId,
   sectionId,
@@ -44,10 +45,6 @@ export const DeleteEventFaqSection = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Faqs
- */
 export const useDeleteEventFaqSection = (
   options: Omit<
     ConnectedXMMutationOptions<

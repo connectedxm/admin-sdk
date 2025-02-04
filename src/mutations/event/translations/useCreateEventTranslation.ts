@@ -11,6 +11,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Creates a new translation for a specific event in a given locale.
+ * This function allows users to add translations to events, with an option for automatic translation.
+ * It is designed to be used in applications where multilingual support for events is required.
+ * @name PostEventTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} locale - The locale for the translation
+ * @param {[boolean]} autoTranslate - Whether to automatically translate the event
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Translations
  */

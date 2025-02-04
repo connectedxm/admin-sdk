@@ -7,1298 +7,3056 @@
   },
   "paths": {
     "`/accounts/:accountId/delegates/:delegateId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddAccountDelegate ",
+        "description": "Endpoint to add a delegate to an account"
+      },
+      "delete": {
+        "name": "RemoveAccountDelegate ",
+        "description": "Endpoint to remove a delegate from an account"
+      }
     },
     "`/accounts/:accountId/followers/:followerId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddAccountFollower ",
+        "description": "Adds a follower to a specified account"
+      },
+      "delete": {
+        "name": "RemoveAccountFollower ",
+        "description": "Endpoint to remove a follower from a specified account"
+      }
     },
     "`/accounts/:accountId/following/:followingId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddAccountFollowing ",
+        "description": "Endpoint to add a following relationship for a specified account"
+      },
+      "delete": {
+        "name": "RemoveAccountFollowing ",
+        "description": "Endpoint to remove a following relationship for a specified account"
+      }
     },
     "`/accounts/:accountId/groups/:groupId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddAccountGroup ",
+        "description": "Endpoint to add a group to an account and invalidate related queries"
+      },
+      "delete": {
+        "name": "RemoveAccountGroup ",
+        "description": "Endpoint to remove a group from an account"
+      }
     },
     "`/accounts/:accountId/interests/:interestId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddAccountInterest ",
+        "description": "Endpoint to add an interest to an account"
+      },
+      "delete": {
+        "name": "RemoveAccountInterest ",
+        "description": "Endpoint to remove an interest from a specified account"
+      }
     },
     "`/accounts/:accountId/tiers/:tierId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddAccountTier ",
+        "description": "Endpoint to add a tier to a specified account and update the query client"
+      },
+      "delete": {
+        "name": "RemoveAccountTier ",
+        "description": "Endpoint to remove a tier from a specified account"
+      }
     },
     "`/accounts/:accountId/cognito/:username/confirm`": {
-      "put": {}
+      "put": {
+        "name": "ConfirmAccountCognitoUser ",
+        "description": "Endpoint to confirm a Cognito user account"
+      }
     },
     "`/accounts`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateAccount ",
+        "description": "Endpoint to create a new account"
+      },
+      "get": {
+        "name": "GetAccounts ",
+        "description": "Endpoint to get a list of accounts"
+      }
     },
     "`/accounts/:accountId/addresses`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateAccountAddress ",
+        "description": "Endpoint to create a new account address and invalidate related queries"
+      },
+      "get": {
+        "name": "GetAccountAddresses ",
+        "description": "Endpoint to fetch account addresses with pagination and filtering capabilities"
+      }
     },
     "`/accounts/:accountId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteAccount ",
+        "description": "Endpoint to delete an account"
+      },
+      "put": {
+        "name": "UpdateAccount ",
+        "description": "Endpoint to update an existing account"
+      },
+      "get": {
+        "name": "GetAccount ",
+        "description": "Endpoint to get account details by ID"
+      }
     },
     "`/accounts/:accountId/addresses/:addressId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteAccountAddress ",
+        "description": "Endpoint to delete an account address"
+      },
+      "put": {
+        "name": "UpdateAccountAddress ",
+        "description": "Endpoint to update the address of a specified account"
+      },
+      "get": {
+        "name": "GetAccountAddress ",
+        "description": "Fetches account address data by account ID and address ID"
+      }
     },
     "`/accounts/:accountId/leads/:leadId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteAccountLead ",
+        "description": "Endpoint to delete a lead associated with a specific account"
+      },
+      "put": {
+        "name": "UpdateAccountLead ",
+        "description": "Endpoint to update a lead associated with a specific account"
+      },
+      "get": {
+        "name": "GetAccountLead ",
+        "description": "Endpoint to fetch a specific lead from an account"
+      }
     },
     "`/accounts/:accountId/export`": {
-      "post": {}
+      "post": {
+        "name": "ExportAccount ",
+        "description": "Endpoint to export account data"
+      }
     },
     "`/accounts/:accountId/impersonate/:username`": {
-      "post": {}
+      "post": {
+        "name": "ImpersonateAccount ",
+        "description": "Endpoint to impersonate a user account"
+      }
     },
     "`/accounts/:accountId/cognito/:username/password`": {
-      "put": {}
+      "put": {
+        "name": "UpdateAccountCognitoUserPassword ",
+        "description": "Endpoint to update the password for a Cognito user associated with an account"
+      }
     },
     "`/activities/:activityId/interests/:interestId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddActivityInterest ",
+        "description": "Adds an interest to a specific activity and updates the query client"
+      },
+      "delete": {
+        "name": "RemoveActivityInterest ",
+        "description": "Endpoint to remove an interest from a specific activity"
+      }
     },
     "`/activities/:activityId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteActivity ",
+        "description": "Endpoint to delete an activity"
+      },
+      "put": {
+        "name": "UpdateActivity ",
+        "description": "Endpoint to update an existing activity"
+      },
+      "get": {
+        "name": "GetActivity ",
+        "description": "Endpoint to get details of a specific activity"
+      }
     },
     "`/advertisements`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateAdvertisement ",
+        "description": "Endpoint to create a new advertisement"
+      },
+      "get": {
+        "name": "GetAdvertisements ",
+        "description": "Endpoint to get a list of advertisements"
+      }
     },
     "`/advertisements/:advertisementId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteAdvertisement ",
+        "description": "Endpoint to delete an advertisement"
+      },
+      "put": {
+        "name": "UpdateAdvertisement ",
+        "description": "Endpoint to update an existing advertisement"
+      },
+      "get": {
+        "name": "GetAdvertisement ",
+        "description": "Endpoint to get advertisement data"
+      }
     },
     "`/announcements/:announcementId/schedule`": {
-      "delete": {},
-      "put": {}
+      "delete": {
+        "name": "CancelAnnouncementSchedule ",
+        "description": "Endpoint to cancel a scheduled announcement"
+      },
+      "put": {
+        "name": "UpdateAnnouncementSchedule ",
+        "description": "Endpoint to update the schedule for a specific announcement"
+      }
     },
     "`/announcements`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateAnnouncement ",
+        "description": "Endpoint to create a new announcement"
+      },
+      "get": {
+        "name": "Announcements ",
+        "description": "Endpoint to manage and fetch announcements"
+      }
     },
     "`/announcements/:announcementId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteAnnouncement ",
+        "description": "Endpoint to delete an announcement"
+      },
+      "put": {
+        "name": "UpdateAnnouncement ",
+        "description": "Endpoint to update an existing announcement"
+      },
+      "get": {
+        "name": "GetAnnouncement ",
+        "description": "Endpoint to get an announcement by its ID"
+      }
     },
     "`/benefits`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateBenefit ",
+        "description": "Endpoint to create a new benefit"
+      },
+      "get": {
+        "name": "GetBenefits ",
+        "description": "Endpoint to get a list of benefits"
+      }
     },
     "`/benefits/:benefitId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteBenefit ",
+        "description": "Endpoint to delete a benefit"
+      },
+      "put": {
+        "name": "UpdateBenefit ",
+        "description": "Endpoint to update a benefit"
+      },
+      "get": {
+        "name": "GetBenefit ",
+        "description": "Endpoint to fetch a specific benefit"
+      }
     },
     "`/channels/:channelId/subscribers`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "AddChannelSubscriber ",
+        "description": "Adds a subscriber to a channel and invalidates the relevant query."
+      },
+      "get": {
+        "name": "GetChannelSubscribers ",
+        "description": "Endpoint to get a list of channel subscribers"
+      }
     },
     "`/channels/:channelId/contents/:contentId/schedule`": {
-      "delete": {},
-      "post": {}
+      "delete": {
+        "name": "CancelChannelContentPublishSchedule ",
+        "description": "Endpoint to cancel the scheduled publish of channel content"
+      },
+      "post": {
+        "name": "UpdateChannelContentPublishSchedule ",
+        "description": "Endpoint to update the publish schedule for a specific channel content"
+      }
     },
     "`/channels`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateChannel ",
+        "description": "Endpoint to create a new channel"
+      },
+      "get": {
+        "name": "GetChannels ",
+        "description": "Endpoint to get a list of channels"
+      }
     },
     "`/channels/:channelId/contents`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateChannelContent ",
+        "description": "Endpoint to create content for a specified channel"
+      },
+      "get": {
+        "name": "GetChannelContents ",
+        "description": "Endpoint to get channel contents"
+      }
     },
     "`/channels/:channelId/contents/:contentId/guests`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateChannelContentGuest ",
+        "description": "Endpoint to create a new guest for a specific channel content"
+      },
+      "get": {
+        "name": "GetChannelContentGuests ",
+        "description": "Endpoint to fetch guests for a specific channel content"
+      }
     },
     "`/channels/:channelId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteChannel ",
+        "description": "Endpoint to delete a channel"
+      },
+      "put": {
+        "name": "UpdateChannel ",
+        "description": "Endpoint to update the details of a specific channel"
+      },
+      "get": {
+        "name": "GetChannel ",
+        "description": "Endpoint to get details of a specific channel"
+      }
     },
     "`/channels/:channelId/contents/:contentId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteChannelContent ",
+        "description": "Endpoint to delete content from a specified channel"
+      },
+      "put": {
+        "name": "UpdateChannelContent ",
+        "description": "Endpoint to update the content of a specified channel"
+      },
+      "get": {
+        "name": "GetChannelContent ",
+        "description": "Endpoint to get a specific channel content by ID"
+      }
     },
     "`/channels/:channelId/contents/:contentId/guests/:guestId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteChannelContentGuest ",
+        "description": "Endpoint to delete a guest from the specified channel content"
+      },
+      "put": {
+        "name": "UpdateChannelContentGuest ",
+        "description": "Endpoint to update a channel content guest"
+      },
+      "get": {
+        "name": "GetChannelContentGuest ",
+        "description": "Endpoint to get details of a specific guest in a channel's content"
+      }
     },
     "`/channels/:channelId/subscribers/:accountId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "RemoveChannelSubscriber ",
+        "description": "Endpoint to remove a subscriber from a specified channel"
+      },
+      "put": {
+        "name": "UpdateChannelSubscriber ",
+        "description": "Endpoint to update a channel subscriber's information"
+      },
+      "get": {
+        "name": "GetChannelSubscriber ",
+        "description": "Endpoint to get a channel subscriber's data"
+      }
     },
     "`/events/:eventId/access-users`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "AddEventAccessUser ",
+        "description": "Endpoint to add a user to the access list of a specific event"
+      },
+      "get": {
+        "name": "GetEventAccessUsers ",
+        "description": "Endpoint to get a list of users with access to a specific event"
+      }
     },
     "`/events/:eventId/access-users/:userId`": {
-      "delete": {}
+      "delete": {
+        "name": "RemoveEventAccessUser ",
+        "description": "Endpoint to remove a user from the access list of a specific event"
+      }
     },
     "`/events/:eventId/activations`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventActivation ",
+        "description": "Endpoint to create a new event activation"
+      },
+      "get": {
+        "name": "Get Event Activations",
+        "description": ""
+      }
     },
     "`/events/:eventId/activations/:activationId/completions`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventActivationCompletion ",
+        "description": "Endpoint to create a completion for a specific event activation"
+      },
+      "get": {
+        "name": "GetEventActivationCompletions ",
+        "description": "Endpoint to get a list of event activation completions"
+      }
     },
     "`/events/:eventId/activations/:activationId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventActivation ",
+        "description": "Endpoint to delete an event activation"
+      },
+      "put": {
+        "name": "UpdateEventActivation ",
+        "description": "Updates an event activation and invalidates the relevant query in the query client"
+      },
+      "get": {
+        "name": "GetEventActivation ",
+        "description": "Fetches event activation details from the admin API"
+      }
     },
     "`/events/:eventId/activations/:activationId/completions/:completionId`": {
-      "delete": {},
-      "put": {}
+      "delete": {
+        "name": "DeleteEventActivationCompletion ",
+        "description": "Deletes a specific event activation completion and invalidates related queries"
+      },
+      "put": {
+        "name": "UpdateEventActivationCompletion ",
+        "description": "Endpoint to update the completion status of an event activation"
+      }
     },
     "`/events/:eventId/addOns/:addOnId/passTypes/:passTypeId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventAddOnPassType ",
+        "description": "Adds a pass type to an event's add-on and invalidates the relevant query."
+      },
+      "delete": {
+        "name": "RemoveEventAddOnPassType ",
+        "description": "Endpoint to remove a pass type from a specific event add-on"
+      }
     },
     "`/events/:eventId/addOns/:addOnId/tiers/:tierId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventAddOnTier ",
+        "description": "Adds a tier to an event add-on and invalidates the relevant queries"
+      },
+      "delete": {
+        "name": "RemoveEventAddOnTier ",
+        "description": "Endpoint to remove a tier from an event add-on"
+      }
     },
     "`/events/:eventId/addOns`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventAddOn ",
+        "description": "Endpoint to create a new event add-on"
+      },
+      "get": {
+        "name": "GetEventAddOns ",
+        "description": "Fetches a list of event add-ons with optional pagination and filtering"
+      }
     },
     "`/events/:eventId/addOns/:addOnId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventAddOn ",
+        "description": "Endpoint to delete an add-on from a specific event"
+      },
+      "put": {
+        "name": "UpdateEventAddOn ",
+        "description": "Endpoint to update an existing event add-on"
+      },
+      "get": {
+        "name": "GetEventAddOn ",
+        "description": "Fetches details of a specific event add-on"
+      }
     },
     "`/events/:eventId/reservations/:reservationId/passes/:passId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventReservationPass ",
+        "description": "Endpoint to add a reservation pass to an event"
+      },
+      "delete": {
+        "name": "RemoveEventReservationPass ",
+        "description": "Endpoint to remove a reservation pass for a specific event"
+      }
     },
     "`/events/:eventId/reservations`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventReservation ",
+        "description": "Endpoint to create a reservation for an event"
+      },
+      "get": {
+        "name": "EventReservations ",
+        "description": "Endpoint to manage event reservations"
+      }
     },
     "`/events/:eventId/reservations/:reservationId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventReservation ",
+        "description": "Endpoint to delete a reservation for a specific event"
+      },
+      "put": {
+        "name": "UpdateEventReservation ",
+        "description": "Endpoint to update an event reservation"
+      },
+      "get": {
+        "name": "Event Reservation",
+        "description": "Provides functionality for handling event reservations, including getting reservation data and updating query data."
+      }
     },
     "`/events/:eventId/attendees/:accountId/passes/checkin/all`": {
-      "put": {}
+      "put": {
+        "name": "CheckinAllAttendeePasses ",
+        "description": "Endpoint to check in all passes for a specific attendee at an event"
+      }
     },
     "`/events/:eventId/attendees`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventAttendee ",
+        "description": "Endpoint to create a new event attendee"
+      },
+      "get": {
+        "name": "GetEventAttendees ",
+        "description": "Fetches and manages event attendee data, including pagination and filtering capabilities."
+      }
     },
     "`/events/:eventId/attendees/:accountId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventAttendee ",
+        "description": "Endpoint to delete an attendee from a specific event"
+      },
+      "put": {
+        "name": "UpdateEventAttendee ",
+        "description": "Endpoint to update an event attendee's registration details"
+      },
+      "get": {
+        "name": "GetEventAttendee ",
+        "description": "Endpoint to manage event attendees"
+      }
     },
     "`/events/:eventId/attendees/:accountId/resendEmail`": {
-      "post": {}
+      "post": {
+        "name": "ResendRegistrationConfirmationEmail ",
+        "description": "Endpoint to resend the registration confirmation email"
+      }
     },
     "`/events/:eventId/benefits/:benefitId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventBenefit ",
+        "description": "Endpoint to add a benefit to a specific event"
+      },
+      "delete": {
+        "name": "RemoveEventBenefit ",
+        "description": "Endpoint to remove a benefit from an event"
+      }
     },
     "`/events/:eventId/bypass`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventRegistrationBypass ",
+        "description": "Endpoint to create a registration bypass for an event"
+      },
+      "get": {
+        "name": "GetEventRegistrationBypassList ",
+        "description": "Fetches a list of event registration bypass entries with support for pagination and filtering"
+      }
     },
     "`/events/:eventId/bypass/:bypassId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventRegistrationBypass ",
+        "description": "Endpoint to delete a specific event registration bypass"
+      },
+      "put": {
+        "name": "UpdateEventRegistrationBypass ",
+        "description": "Endpoint to update an event registration bypass"
+      },
+      "get": {
+        "name": "GetEventRegistrationBypass ",
+        "description": "Endpoint to get details of a specific event registration bypass"
+      }
     },
     "`/events/:eventId/coHosts/:accountId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventCoHost ",
+        "description": "Endpoint to add a co-host to an event"
+      },
+      "delete": {
+        "name": "RemoveEventCoHost ",
+        "description": "Endpoint to remove a co-host from an event"
+      }
     },
     "`/events/:eventId/coupons`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventCoupon ",
+        "description": "Endpoint to create a new event coupon"
+      },
+      "get": {
+        "name": "EventCoupons ",
+        "description": "Endpoint to manage event coupons"
+      }
     },
     "`/events/:eventId/coupons/:couponId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventCoupon ",
+        "description": "Endpoint to delete a coupon from a specific event and invalidate related queries"
+      },
+      "put": {
+        "name": "UpdateEventCoupon ",
+        "description": "Endpoint to update a coupon for a specific event"
+      },
+      "get": {
+        "name": "GetEventCoupon ",
+        "description": "Endpoint to fetch a specific coupon by its ID for an event"
+      }
     },
     "`/events/:eventId/emails/:type`": {
-      "put": {},
-      "get": {}
+      "put": {
+        "name": "UpdateEventEmail ",
+        "description": "Endpoint to update an event email"
+      },
+      "get": {
+        "name": "GetEventEmail ",
+        "description": "Endpoint to get event email data by type"
+      }
     },
     "`/events/:eventId/faqs`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventFaqSection ",
+        "description": "Endpoint to create a new FAQ section for a specific event"
+      },
+      "get": {
+        "name": "GetEventFaqSections ",
+        "description": "Endpoint to get FAQ sections for a specific event"
+      }
     },
     "`/events/:eventId/faqs/:sectionId/questions`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventFaqSectionQuestion ",
+        "description": "Endpoint to create a new question for a specific FAQ section in an event"
+      },
+      "get": {
+        "name": "GetEventFaqSectionQuestions ",
+        "description": "Endpoint to fetch questions from a specific section of an event's FAQ"
+      }
     },
     "`/events/:eventId/faqs/:sectionId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventFaqSection ",
+        "description": "Endpoint to delete a specific FAQ section for an event and invalidate related queries"
+      },
+      "put": {
+        "name": "UpdateEventFaqSection ",
+        "description": "Updates a specific FAQ section for an event"
+      },
+      "get": {
+        "name": "GetEventFaqSection ",
+        "description": "Endpoint to get a specific FAQ section for an event"
+      }
     },
     "`/events/:eventId/faqs/:sectionId/questions/:questionId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventFaqSectionQuestion ",
+        "description": "Endpoint to delete a question from a specific FAQ section of an event"
+      },
+      "put": {
+        "name": "UpdateEventFaqSectionQuestion ",
+        "description": "Endpoint to update a specific question in the FAQ section of an event"
+      },
+      "get": {
+        "name": "GetEventFaqSectionQuestion ",
+        "description": "Endpoint to get a specific FAQ question from an event's section"
+      }
     },
     "`/events/:eventId/faqs/:sectionId/questions/reorder`": {
-      "put": {}
+      "put": {
+        "name": "ReorderEventFaqSectionQuestions ",
+        "description": "Endpoint to reorder questions in a specific FAQ section of an event"
+      }
     },
     "`/events/:eventId/on-site`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "UpdateEventCheckinCode ",
+        "description": "Endpoint to update the check-in code for a specific event"
+      },
+      "get": {
+        "name": "GetEventOnSite ",
+        "description": "Endpoint to get event on-site data"
+      }
     },
     "`/events/:eventId/zpl-template`": {
-      "put": {}
+      "put": {
+        "name": "UpdateEventZplTemplate ",
+        "description": "Endpoint to update the ZPL template for a specific event"
+      }
     },
     "`/events/:eventId/zpl-template/fields/:fieldId`": {
-      "put": {},
-      "get": {}
+      "put": {
+        "name": "UpdateEventZplTemplateBadgeField ",
+        "description": "Endpoint to update the ZPL template badge field for a specific event"
+      },
+      "get": {
+        "name": "GetEventZplTemplateBadgeField ",
+        "description": "Fetches a specific ZPL template badge field from the admin API"
+      }
     },
     "`/events/:eventId/pages/:pageId/images/:imageId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventPageImage ",
+        "description": "Endpoint to add an image to a specific event page"
+      },
+      "delete": {
+        "name": "RemoveEventPageImage ",
+        "description": "Endpoint to remove an image from a specific event page"
+      }
     },
     "`/events/:eventId/pages`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventPage ",
+        "description": "Endpoint to create a new event page"
+      },
+      "get": {
+        "name": "GetEventPages ",
+        "description": "Endpoint to fetch event pages data"
+      }
     },
     "`/events/:eventId/pages/:pageId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventPage ",
+        "description": "Endpoint to delete a specific event page"
+      },
+      "put": {
+        "name": "UpdateEventPage ",
+        "description": "Endpoint to update an event page"
+      },
+      "get": {
+        "name": "GetEventPage ",
+        "description": "Fetches an event page by ID using the admin API"
+      }
     },
     "`/events/:eventId/passTypes/:passTypeId/priceSchedules`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventPassTypePriceSchedule ",
+        "description": "Endpoint to create a price schedule for a specific event pass type"
+      },
+      "get": {
+        "name": "Get Event Pass Type Price Schedules",
+        "description": ""
+      }
     },
     "`/events/:eventId/passTypes/:passTypeId/priceSchedules/:scheduleId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventPassTypePriceSchedule ",
+        "description": "Endpoint to delete a price schedule for a specific event and pass type"
+      },
+      "put": {
+        "name": "UpdateEventPassTypePriceSchedule ",
+        "description": "Endpoint to update the price schedule for a specific event pass type"
+      },
+      "get": {
+        "name": "GetEventPassTypePriceSchedule ",
+        "description": "Endpoint to fetch price schedule details for a specific event pass type"
+      }
     },
     "`/events/:eventId/passTypes/:passTypeId/refundSchedules`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventPassTypeRefundSchedule ",
+        "description": "Endpoint to create a refund schedule for a specific event pass type"
+      },
+      "get": {
+        "name": "Get Event Pass Type Refund Schedules",
+        "description": ""
+      }
     },
     "`/events/:eventId/passTypes/:passTypeId/refundSchedules/:scheduleId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventPassTypeRefundSchedule ",
+        "description": "Endpoint to delete a refund schedule for a specific event and pass type"
+      },
+      "put": {
+        "name": "UpdateEventPassTypeRefundSchedule ",
+        "description": "Endpoint to update the refund schedule for a specific event pass type"
+      },
+      "get": {
+        "name": "GetEventPassTypeRefundSchedule ",
+        "description": "Endpoint to fetch refund schedule details for a specific event pass type"
+      }
     },
     "`/events/:eventId/passTypes/:passTypeId/addOns/:addOnId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventPassTypeAddOn ",
+        "description": "Adds an add-on to a specific event pass type and invalidates the relevant queries"
+      },
+      "delete": {
+        "name": "RemoveEventPassTypeAddOn ",
+        "description": "Endpoint to remove an add-on from a specific event pass type"
+      }
     },
     "`/events/:eventId/passTypes/:passTypeId/tiers/:tierId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventPassTypeTier ",
+        "description": "Endpoint to add a new tier to an event pass type"
+      },
+      "delete": {
+        "name": "RemoveEventPassTypeTier ",
+        "description": "Endpoint to remove a tier from a specified event pass type"
+      }
     },
     "`/events/:eventId/passTypes`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventPassType ",
+        "description": "Endpoint to create a new event pass type"
+      },
+      "get": {
+        "name": "GetEventPassTypes ",
+        "description": "Endpoint to manage event pass types"
+      }
     },
     "`/events/:eventId/passTypes/:passTypeId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventPassType ",
+        "description": "Endpoint to delete a specific event pass type"
+      },
+      "put": {
+        "name": "UpdateEventPassType ",
+        "description": "Endpoint to update an event pass type"
+      },
+      "get": {
+        "name": "GetEventPassType ",
+        "description": "Endpoint to get event pass type data"
+      }
     },
     "`/events/:eventId/passes/:passId/addOns/:addOnId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventPassAddOn ",
+        "description": "Adds an add-on to an event pass and invalidates the relevant queries"
+      },
+      "delete": {
+        "name": "RemoveEventPassAddOn ",
+        "description": "Endpoint to remove an add-on from an event pass"
+      }
     },
     "`/events/:eventId/passes/:passId/cancel`": {
-      "put": {}
+      "put": {
+        "name": "CancelEventPass ",
+        "description": "Endpoint to cancel an event pass"
+      }
     },
     "`/events/:eventId/attendees/:accountId/passes`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventPass ",
+        "description": "Endpoint to create a new event pass for a specified attendee"
+      },
+      "get": {
+        "name": "EventAttendeePasses ",
+        "description": "Endpoint to manage event attendee passes"
+      }
     },
     "`/events/:eventId/passes/:passId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventPass ",
+        "description": "Endpoint to delete a specific event pass and invalidate related queries"
+      },
+      "put": {
+        "name": "UpdateEventPass ",
+        "description": "Endpoint to update an event pass"
+      },
+      "get": {
+        "name": "EventPassManagement ",
+        "description": "Endpoint to manage event passes"
+      }
     },
     "`/events/:eventId/attendees/:accountId/passes/:passId/transfers`": {
-      "post": {}
+      "post": {
+        "name": "TransferEventPass ",
+        "description": "Endpoint to transfer an event pass"
+      }
     },
     "`/events/:eventId/purchases/:passId/responses/:questionId`": {
-      "put": {}
+      "put": {
+        "name": "UpdateEventPassResponse ",
+        "description": "Endpoint to update the response for a specific event pass"
+      }
     },
     "`/events/:eventId/attendees/:accountId/passes/:passId/responses`": {
-      "put": {}
+      "put": {
+        "name": "UpdateEventPassResponses ",
+        "description": "Updates the responses for a specific event pass and invalidates relevant queries"
+      }
     },
     "`/events/:eventId/questions/:questionId/choices/:choiceId/subQuestions/:subQuestionId`": {
-      "post": {},
-      "delete": {},
-      "put": {}
+      "post": {
+        "name": "AddEventQuestionChoiceSubQuestion ",
+        "description": "Endpoint to add a sub-question to a specific choice of a question in an event"
+      },
+      "delete": {
+        "name": "RemoveEventQuestionChoiceSubQuestion ",
+        "description": "Endpoint to remove a sub-question from a choice in an event question"
+      },
+      "put": {
+        "name": "UpdateEventQuestionChoiceSubQuestion ",
+        "description": "Endpoint to update a sub-question for a specific choice in an event question"
+      }
     },
     "`/events/:eventId/questions`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventQuestion ",
+        "description": "Endpoint to create a new event question"
+      },
+      "get": {
+        "name": "GetEventQuestions ",
+        "description": "Endpoint to get a list of event questions"
+      }
     },
     "`/events/:eventId/questions/:questionId/choices`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventQuestionChoice ",
+        "description": "Endpoint to create a new event question choice"
+      },
+      "get": {
+        "name": "EventQuestionChoices ",
+        "description": "Endpoint to manage event question choices"
+      }
     },
     "`/events/:eventId/questions/:questionId/values`": {
-      "post": {},
-      "delete": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventQuestionSearchValues ",
+        "description": "Endpoint to create search values for a specific event question"
+      },
+      "delete": {
+        "name": "DeleteEventQuestionSearchValues ",
+        "description": "Endpoint to delete search values for a specific question in an event"
+      },
+      "get": {
+        "name": "GetEventQuestionSearchValues ",
+        "description": "Endpoint to get search values for event questions"
+      }
     },
     "`/events/:eventId/questions/:questionId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventQuestion ",
+        "description": "Endpoint to delete a question from an event"
+      },
+      "put": {
+        "name": "UpdateEventQuestion ",
+        "description": "Endpoint to update an existing event question"
+      },
+      "get": {
+        "name": "GetEventQuestion ",
+        "description": "Endpoint to get a specific event question"
+      }
     },
     "`/events/:eventId/questions/:questionId/choices/:choiceId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventQuestionChoice ",
+        "description": "Endpoint to delete a specific choice from a question in an event"
+      },
+      "put": {
+        "name": "UpdateEventQuestionChoice ",
+        "description": "Endpoint to update a specific choice for a question in an event"
+      },
+      "get": {
+        "name": "GetEventQuestionChoice ",
+        "description": "Endpoint to get a specific event question choice"
+      }
     },
     "`/events/:eventId/questions/:questionId/values/:searchValueId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventQuestionSearchValue ",
+        "description": "Endpoint to delete a specific search value for a question in an event"
+      },
+      "put": {
+        "name": "UpdateEventQuestionSearchValue ",
+        "description": "Updates the search value for a specific question in an event"
+      },
+      "get": {
+        "name": "GetEventQuestionSearchValue ",
+        "description": "Fetches a specific search value for an event question"
+      }
     },
     "`/events/:eventId/questions/:questionId/choices/:choiceId/subQuestions/reorder`": {
-      "put": {}
+      "put": {
+        "name": "ReorderEventQuestionChoiceSubQuestions ",
+        "description": "Endpoint to reorder sub-questions of a specific choice in an event question"
+      }
     },
     "`/events/:eventId/questions/:questionId/choices/reorder`": {
-      "put": {}
+      "put": {
+        "name": "ReorderEventQuestionChoices ",
+        "description": "Endpoint to reorder the choices of a specific question in an event"
+      }
     },
     "`/events/:eventId/roomTypes/:roomTypeId/tiers/:tierId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventRoomTypeTier ",
+        "description": "Endpoint to add a new tier to a room type for a specific event"
+      },
+      "delete": {
+        "name": "RemoveEventRoomTypeTier ",
+        "description": "Endpoint to remove a tier from a specified room type for an event"
+      }
     },
     "`/events/:eventId/roomTypes`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventRoomType ",
+        "description": "Endpoint to create a new event room type"
+      },
+      "get": {
+        "name": "GetEventRoomTypes ",
+        "description": "Endpoint to get event room types"
+      }
     },
     "`/events/:eventId/roomTypes/:roomTypeId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventRoomType ",
+        "description": "Endpoint to delete a room type for a specific event and invalidate related queries"
+      },
+      "put": {
+        "name": "UpdateEventRoomType ",
+        "description": "Endpoint to update the room type for a specific event"
+      },
+      "get": {
+        "name": "GetEventRoomType ",
+        "description": "Retrieves data for a specific event room type"
+      }
     },
     "`/events/:eventId/roomTypes/:roomTypeId/addOns/:addOnId`": {
-      "put": {}
+      "put": {
+        "name": "UpdateEventRoomTypeAddOnDetails ",
+        "description": "Endpoint to update the details of a specific add-on for a room type in an event"
+      }
     },
     "`/events/:eventId/roomTypes/:roomTypeId/passTypes/:passTypeId`": {
-      "put": {}
+      "put": {
+        "name": "UpdateEventRoomTypePassTypeDetails ",
+        "description": "Endpoint to update the details of a specific pass type for a room type in an event"
+      }
     },
     "`/events/:eventId/sections/:sectionId/addOns/:addOnId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventSectionAddOn ",
+        "description": "Adds an add-on to a specific section of an event"
+      },
+      "delete": {
+        "name": "RemoveEventSectionAddOn ",
+        "description": "Endpoint to remove an add-on from a specific event section"
+      }
     },
     "`/events/:eventId/sections/:sectionId/passTypes/:passTypeId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventSectionPassType ",
+        "description": "Endpoint to add a pass type to a specific event section"
+      },
+      "delete": {
+        "name": "RemoveEventSectionPassType ",
+        "description": "Endpoint to remove a pass type from a specific section of an event"
+      }
     },
     "`/events/:eventId/sections/:sectionId/questions/:questionId`": {
-      "post": {},
-      "delete": {},
-      "put": {}
+      "post": {
+        "name": "AddEventSectionQuestion ",
+        "description": "Endpoint to add a question to a specific section of an event"
+      },
+      "delete": {
+        "name": "RemoveEventSectionQuestion ",
+        "description": "Endpoint to remove a question from a specific section of an event"
+      },
+      "put": {
+        "name": "UpdateEventSectionQuestion ",
+        "description": "Endpoint to update a question in a specific event section"
+      }
     },
     "`/events/:eventId/sections/:sectionId/tiers/:tierId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventSectionTier ",
+        "description": "Endpoint to add a tier to an event section"
+      },
+      "delete": {
+        "name": "RemoveEventSectionTier ",
+        "description": "Endpoint to remove a tier from a specific event section"
+      }
     },
     "`/events/:eventId/sections`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventSection ",
+        "description": "Creates a new section for a specific event and updates the query client with the new data."
+      },
+      "get": {
+        "name": "GetEventSections ",
+        "description": "Endpoint to fetch event sections data"
+      }
     },
     "`/events/:eventId/sections/:sectionId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventSection ",
+        "description": "Endpoint to delete a specific section from an event"
+      },
+      "put": {
+        "name": "UpdateEventSection ",
+        "description": "Updates a specific section of an event with new data"
+      },
+      "get": {
+        "name": "GetEventSection ",
+        "description": "Endpoint to get a specific event section details"
+      }
     },
     "`/events/:eventId/sections/:sectionId/questions/reorder`": {
-      "put": {}
+      "put": {
+        "name": "ReorderEventSectionQuestions ",
+        "description": "Reorders questions in a specific event section"
+      }
     },
     "`/events/:eventId/sessionLocations/:locationId/sessions/:sessionId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventSessionLocationSession ",
+        "description": "Adds a location to a specific event session and updates the query client with the new data."
+      },
+      "delete": {
+        "name": "RemoveEventSessionLocationSession ",
+        "description": "Endpoint to remove a session location for a specific event"
+      }
     },
     "`/events/:eventId/sessionLocations`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventSessionLocation ",
+        "description": "Endpoint to create a new event session location"
+      },
+      "get": {
+        "name": "GetEventSessionLocations ",
+        "description": "Endpoint to get a list of session locations for an event"
+      }
     },
     "`/events/:eventId/sessionLocations/:locationId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventSessionLocation ",
+        "description": "Endpoint to delete a specific event session location"
+      },
+      "put": {
+        "name": "UpdateEventSessionLocation ",
+        "description": "Endpoint to update the location of a specific event session"
+      },
+      "get": {
+        "name": "GetEventSessionLocation ",
+        "description": "Endpoint to get details about a specific event session location"
+      }
     },
     "`/events/:eventId/sessions/:sessionId/questions`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventSessionQuestion ",
+        "description": "Endpoint to create a new question for a specific event session"
+      },
+      "get": {
+        "name": "EventSessionQuestions ",
+        "description": "Endpoint to manage event session questions"
+      }
     },
     "`/events/:eventId/sessions/:sessionId/questions/:questionId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventSessionQuestion ",
+        "description": "Endpoint to delete a question from a specific event session"
+      },
+      "put": {
+        "name": "UpdateEventSessionQuestion ",
+        "description": "Endpoint to update a specific question in an event session"
+      },
+      "get": {
+        "name": "GetEventSessionQuestion ",
+        "description": "Endpoint to get a specific question from an event session"
+      }
     },
     "`/events/:eventId/sessions/:sessionId/questions/reorder`": {
-      "put": {}
+      "put": {
+        "name": "ReorderEventSessionQuestions ",
+        "description": "Endpoint to reorder questions in a specific event session"
+      }
     },
     "`/events/:eventId/sessions/:sessionId/accounts/:accountId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventSessionAccount ",
+        "description": "Endpoint to add an account to a specific event session"
+      },
+      "delete": {
+        "name": "RemoveEventSessionAccount ",
+        "description": "Endpoint to remove an account from a specific event session"
+      }
     },
     "`/events/:eventId/sessions/:sessionId/speakers/:speakerId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventSessionSpeaker ",
+        "description": "Endpoint to add a speaker to a specific event session"
+      },
+      "delete": {
+        "name": "RemoveEventSessionSpeaker ",
+        "description": "Endpoint to remove a speaker from a specific event session"
+      }
     },
     "`/events/:eventId/sessions/:sessionId/sponsors/:sponsorId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventSessionSponsor ",
+        "description": "Adds a sponsor to a specific event session and updates the query client."
+      },
+      "delete": {
+        "name": "RemoveEventSessionSponsor ",
+        "description": "Endpoint to remove a sponsor from a specific event session"
+      }
     },
     "`/events/:eventId/sessions/:sessionId/tracks/:trackId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventSessionTrack ",
+        "description": "Endpoint to add a track to a specific event session"
+      },
+      "delete": {
+        "name": "RemoveEventSessionTrack ",
+        "description": "Endpoint to remove a track from a specific event session"
+      }
     },
     "`/events/:eventId/sessions`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventSession ",
+        "description": "Endpoint to create a new event session"
+      },
+      "get": {
+        "name": "GetEventSessions ",
+        "description": "Endpoint to get a list of event sessions"
+      }
     },
     "`/events/:eventId/sessions/:sessionId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventSession ",
+        "description": "Endpoint to delete a specific event session"
+      },
+      "put": {
+        "name": "UpdateEventSession ",
+        "description": "Endpoint to update an event session"
+      },
+      "get": {
+        "name": "GetEventSession ",
+        "description": "Endpoint to get event session data"
+      }
     },
     "`/events/:eventId/speakers/:speakerId/sessions/:sessionId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventSpeakerSession ",
+        "description": "Endpoint to add a session for a specific event speaker"
+      },
+      "delete": {
+        "name": "RemoveEventSpeakerSession ",
+        "description": "Endpoint to remove a session for a specific speaker at an event"
+      }
     },
     "`/events/:eventId/speakers`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventSpeaker ",
+        "description": "Endpoint to create a new event speaker"
+      },
+      "get": {
+        "name": "GetEventSpeakers ",
+        "description": "Fetches a list of event speakers based on the provided event ID"
+      }
     },
     "`/events/:eventId/speakers/:speakerId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventSpeaker ",
+        "description": "Endpoint to delete a speaker from a specific event"
+      },
+      "put": {
+        "name": "UpdateEventSpeaker ",
+        "description": "Endpoint to update the details of a specific event speaker"
+      },
+      "get": {
+        "name": "GetEventSpeaker ",
+        "description": "Endpoint to get details of a specific event speaker"
+      }
     },
     "`/events/:eventId/sponsors/accounts/:accountId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventSponsorAccount ",
+        "description": "Adds a sponsor account to a specific event and updates the query client if successful"
+      },
+      "delete": {
+        "name": "RemoveEventSponsorAccount ",
+        "description": "Endpoint to remove a sponsor account from an event"
+      }
     },
     "`/events/:eventId/tracks/:trackId/sessions/:sessionId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventTrackSession ",
+        "description": "Endpoint to add a session to a specific event track"
+      },
+      "delete": {
+        "name": "RemoveEventTrackSession ",
+        "description": "Endpoint to remove a session from a specific event track"
+      }
     },
     "`/events/:eventId/tracks/:trackId/sponsors/:sponsorId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddEventTrackSponsor ",
+        "description": "Endpoint to add a sponsor to a specific event track"
+      },
+      "delete": {
+        "name": "RemoveEventTrackSponsor ",
+        "description": "Endpoint to remove a sponsor from an event track"
+      }
     },
     "`/events/:eventId/tracks`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEventTrack ",
+        "description": "Endpoint to create a new event track"
+      },
+      "get": {
+        "name": "GetEventTracks ",
+        "description": "Endpoint to get a list of event tracks"
+      }
     },
     "`/events/:eventId/tracks/:trackId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEventTrack ",
+        "description": "Endpoint to delete a specific event track"
+      },
+      "put": {
+        "name": "UpdateEventTrack ",
+        "description": "Endpoint to update an existing event track"
+      },
+      "get": {
+        "name": "GetEventTrack ",
+        "description": "Endpoint to get details of a specific event track"
+      }
     },
     "`/events/:eventId/approve`": {
-      "post": {}
+      "post": {
+        "name": "ApproveEvent ",
+        "description": "Endpoint to approve an event"
+      }
     },
     "`/events/:eventId/clone`": {
-      "post": {}
+      "post": {
+        "name": "CloneEvent ",
+        "description": "Endpoint to clone an existing event"
+      }
     },
     "`/events`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateEvent ",
+        "description": "Endpoint to create a new event"
+      },
+      "get": {
+        "name": "GetEvents ",
+        "description": "Endpoint to get a list of events"
+      }
     },
     "`/events/:eventId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteEvent ",
+        "description": "Endpoint to delete an event"
+      },
+      "put": {
+        "name": "UpdateEvent ",
+        "description": "Endpoint to update an existing event"
+      },
+      "get": {
+        "name": "Event Query",
+        "description": "Provides functions and hooks for querying event data, including getting specific events and setting query data."
+      }
     },
     "`/files/:fileId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteFile ",
+        "description": "Endpoint to delete a file"
+      },
+      "put": {
+        "name": "UpdateFile ",
+        "description": "Endpoint to update a file"
+      },
+      "get": {
+        "name": "GetFile ",
+        "description": "Endpoint to get a specific file by its ID"
+      }
     },
     "`/groups/:groupId/requests/:requestId/accept`": {
-      "put": {}
+      "put": {
+        "name": "AcceptGroupRequest ",
+        "description": "Endpoint to accept a group request"
+      }
     },
     "`/groups/:groupId/events/:eventId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddGroupEvent ",
+        "description": "Adds an event to a group and updates the query client with the new data"
+      },
+      "delete": {
+        "name": "RemoveGroupEvent ",
+        "description": "Endpoint to remove an event from a group"
+      }
     },
     "`/groups/:groupId/interests/:interestId`": {
-      "post": {}
+      "post": {
+        "name": "AddGroupInterest ",
+        "description": "Endpoint to add an interest to a group"
+      }
     },
     "`/groups/:groupId/members/:accountId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddGroupMember ",
+        "description": "Endpoint to add a member to a group"
+      },
+      "delete": {
+        "name": "RemoveGroupMember ",
+        "description": "Endpoint to remove a member from a group"
+      }
     },
     "`/groups/:groupId/moderators/:accountId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddGroupModerator ",
+        "description": "Endpoint to add a moderator to a group"
+      },
+      "delete": {
+        "name": "RemoveGroupModerator ",
+        "description": "Endpoint to remove a moderator from a group"
+      }
     },
     "`/groups/:groupId/sponsors/:accountId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddGroupSponsor ",
+        "description": "Endpoint to add a sponsor to a group"
+      },
+      "delete": {
+        "name": "RemoveGroupSponsor ",
+        "description": "Endpoint to remove a sponsor from a specified group"
+      }
     },
     "`/groups/:groupId/invitations/:invitationId/cancel`": {
-      "put": {}
+      "put": {
+        "name": "CancelGroupInvitation ",
+        "description": "Endpoint to cancel a group invitation"
+      }
     },
     "`/groups`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "Create Group",
+        "description": ""
+      },
+      "get": {
+        "name": "GetGroups ",
+        "description": "Fetch a list of groups with optional filtering by access level and featured status"
+      }
     },
     "`/groups/:groupId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteGroup ",
+        "description": "Endpoint to delete a group"
+      },
+      "put": {
+        "name": "UpdateGroup ",
+        "description": "Endpoint to update a group's data"
+      },
+      "get": {
+        "name": "GetGroup ",
+        "description": "Endpoint to get details of a specific group"
+      }
     },
     "`/groups/:groupId/invitations/:invitationId`": {
-      "delete": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteGroupInvitation ",
+        "description": "Endpoint to delete a group invitation"
+      },
+      "get": {
+        "name": "GetGroupInvitation ",
+        "description": "Endpoint to get details of a specific group invitation"
+      }
     },
     "`/groups/:groupId/requests/:requestId`": {
-      "delete": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteGroupRequest ",
+        "description": "Endpoint to delete a specific group request and invalidate related queries"
+      },
+      "get": {
+        "name": "GetGroupRequest ",
+        "description": "Endpoint to get a specific group request"
+      }
     },
     "`/groups/:groupId/invitations/:invitationId/reinvite`": {
-      "put": {}
+      "put": {
+        "name": "ReinviteGroupInvitation ",
+        "description": "Endpoint to reinvite a group member with a pending invitation"
+      }
     },
     "`/groups/:groupId/requests/:requestId/reject`": {
-      "put": {}
+      "put": {
+        "name": "RejectGroupRequest ",
+        "description": "Endpoint to reject a group request"
+      }
     },
     "`/groups/:groupId/interests/:accountId`": {
-      "delete": {}
+      "delete": {
+        "name": "RemoveGroupInterest ",
+        "description": "Endpoint to remove an interest from a group"
+      }
     },
     "`/images`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateImage ",
+        "description": "Endpoint to create a new image"
+      },
+      "get": {
+        "name": "GetImages ",
+        "description": "Endpoint to get image data with optional filtering by type"
+      }
     },
     "`/images/:imageId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteImage ",
+        "description": "Endpoint to delete an image from the storage"
+      },
+      "put": {
+        "name": "UpdateImage ",
+        "description": "Endpoint to update an image and invalidate related queries"
+      },
+      "get": {
+        "name": "GetImage ",
+        "description": "Retrieves image data from the admin API"
+      }
     },
     "`/images/delete`": {
-      "post": {}
+      "post": {
+        "name": "DeleteManyImages ",
+        "description": "Endpoint to delete multiple images"
+      }
     },
     "`/images/:imageId/switch`": {
-      "put": {}
+      "put": {
+        "name": "SwitchImage ",
+        "description": "Endpoint to switch an image"
+      }
     },
     "`/imports/:type`": {
-      "post": {}
+      "post": {
+        "name": "CreateImport ",
+        "description": "Endpoint to create an import"
+      }
     },
     "`/interests`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateInterest ",
+        "description": "Endpoint to create a new interest"
+      },
+      "get": {
+        "name": "GetInterests ",
+        "description": "Endpoint to get a list of interests"
+      }
     },
     "`/interests/:interestId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteInterest ",
+        "description": "Endpoint to delete an interest"
+      },
+      "put": {
+        "name": "UpdateInterest ",
+        "description": "Endpoint to update an existing interest"
+      },
+      "get": {
+        "name": "GetInterest ",
+        "description": "Endpoint to get interest details"
+      }
     },
     "`/invoices/:invoiceId/items`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateInvoiceLineItem ",
+        "description": "Endpoint to create a new invoice line item"
+      },
+      "get": {
+        "name": "GetInvoiceLineItems ",
+        "description": "Endpoint to fetch invoice line items"
+      }
     },
     "`/invoices/:invoiceId/items/:lineItemId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteInvoiceLineItem ",
+        "description": "Endpoint to delete a specific line item from an invoice"
+      },
+      "put": {
+        "name": "UpdateInvoiceLineItem ",
+        "description": "Endpoint to update an invoice line item"
+      },
+      "get": {
+        "name": "GetInvoiceLineItem ",
+        "description": "Endpoint to fetch a specific invoice line item"
+      }
     },
     "`/invoices`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateInvoice ",
+        "description": "Endpoint to create a new invoice"
+      },
+      "get": {
+        "name": "GetInvoices ",
+        "description": "Endpoint to get a list of invoices"
+      }
     },
     "`/invoices/:invoiceId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteInvoice ",
+        "description": "Endpoint to delete an invoice"
+      },
+      "put": {
+        "name": "UpdateInvoice ",
+        "description": "Endpoint to update an invoice"
+      },
+      "get": {
+        "name": "GetInvoice ",
+        "description": "Endpoint to manage invoice data retrieval"
+      }
     },
     "`/levels/:levelId/accounts/:accountId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddLevelAccount ",
+        "description": "Adds an account to a level, allowing management of account-level associations."
+      },
+      "delete": {
+        "name": "RemoveLevelAccount ",
+        "description": "Endpoint to remove an account from a level"
+      }
     },
     "`/levels`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateLevel ",
+        "description": "Endpoint to create a new level"
+      },
+      "get": {
+        "name": "LevelsQuery ",
+        "description": "Endpoint to manage and fetch level data"
+      }
     },
     "`/levels/:levelId`": {
-      "delete": {},
-      "put": {}
+      "delete": {
+        "name": "DeleteLevel ",
+        "description": "Endpoint to delete a specific level and invalidate related queries"
+      },
+      "put": {
+        "name": "UpdateLevel ",
+        "description": "Endpoint to update a level with new data"
+      }
     },
     "`/organization/integrations`": {
-      "post": {},
-      "put": {},
-      "get": {}
+      "post": {
+        "name": "CreateIntegration ",
+        "description": "Endpoint to create a new integration for an organization"
+      },
+      "put": {
+        "name": "UpdateOrganizationIntegrations ",
+        "description": "Endpoint to update the organization's integrations with Ghost"
+      },
+      "get": {
+        "name": "GetIntegrations ",
+        "description": "Endpoint to get a list of integrations"
+      }
     },
     "`/organization/integrations/:integrationId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteIntegration ",
+        "description": "Endpoint to delete an integration"
+      },
+      "put": {
+        "name": "UpdateIntegration ",
+        "description": "Endpoint to update an integration"
+      },
+      "get": {
+        "name": "GetIntegration ",
+        "description": "Endpoint to get details of a specific integration"
+      }
     },
     "`/organization/modules/:moduleType/editableTiers/:tierId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddOrganizationModuleEditableTier ",
+        "description": "Adds an editable tier to an organization module"
+      },
+      "delete": {
+        "name": "RemoveOrganizationModuleEditableTier ",
+        "description": "Removes an editable tier from an organization module"
+      }
     },
     "`/organization/modules/:moduleType/enabledTiers/:tierId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddOrganizationModuleEnabledTier ",
+        "description": "Adds an enabled tier to a specific organization module"
+      },
+      "delete": {
+        "name": "RemoveOrganizationModuleEnabledTier ",
+        "description": "Removes an enabled tier from an organization module"
+      }
     },
     "`/organization/modules/:moduleType`": {
-      "put": {},
-      "get": {}
+      "put": {
+        "name": "UpdateOrganizationModule ",
+        "description": "Updates an organization module and invalidates related queries if necessary"
+      },
+      "get": {
+        "name": "OrganizationModuleQueries ",
+        "description": "Endpoint to manage organization module queries"
+      }
     },
     "`/organization/pages/:type`": {
-      "put": {},
-      "get": {}
+      "put": {
+        "name": "UpdateOrganizationPage ",
+        "description": "Endpoint to update a specific organization page"
+      },
+      "get": {
+        "name": "GetOrganizationPage ",
+        "description": "Endpoint to get organization pages"
+      }
     },
     "`/organization/payment/:type`": {
-      "post": {},
-      "delete": {},
-      "put": {},
-      "get": {}
+      "post": {
+        "name": "CreateOrganizationPaymentIntegration ",
+        "description": "Endpoint to create and manage payment integration for an organization"
+      },
+      "delete": {
+        "name": "DeleteOrganizationPaymentIntegration ",
+        "description": "Endpoint to delete a payment integration for an organization"
+      },
+      "put": {
+        "name": "ToggleOrganizationPaymentIntegration ",
+        "description": "Toggles the payment integration for an organization and updates the query client with new data"
+      },
+      "get": {
+        "name": "GetOrganizationPaymentIntegration ",
+        "description": "Endpoint to get payment integration details for an organization"
+      }
     },
     "`/organization/tax/:type`": {
-      "post": {},
-      "delete": {},
-      "put": {},
-      "get": {}
+      "post": {
+        "name": "CreateTaxIntegration ",
+        "description": "Creates a new tax integration for the organization"
+      },
+      "delete": {
+        "name": "DeleteTaxIntegration ",
+        "description": "Endpoint to delete a tax integration"
+      },
+      "put": {
+        "name": "ToggleTaxIntegration ",
+        "description": "Endpoint to toggle tax integration features"
+      },
+      "get": {
+        "name": "GetTaxIntegration ",
+        "description": "Endpoint to get tax integration data"
+      }
     },
     "`/organization/triggers/:type`": {
-      "put": {},
-      "get": {}
+      "put": {
+        "name": "UpdateOrganizationTrigger ",
+        "description": "Endpoint to update an organization trigger"
+      },
+      "get": {
+        "name": "GetOrganizationTrigger ",
+        "description": "Endpoint to get an organization trigger"
+      }
     },
     "`/organization/users`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "AddOrganizationUser ",
+        "description": "Endpoint to add a user to the organization"
+      },
+      "get": {
+        "name": "GetOrganizationUsers ",
+        "description": "Endpoint to get a list of users in the organization"
+      }
     },
     "`/organization/team-members`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateOrganizationTeamMember ",
+        "description": "Endpoint to create a new organization team member"
+      },
+      "get": {
+        "name": "GetOrganizationTeamMembers ",
+        "description": "Endpoint to get a list of organization team members"
+      }
     },
     "`/organization/domain`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteOrganizationDomain ",
+        "description": "Endpoint to delete an organization domain"
+      },
+      "put": {
+        "name": "UpdateOrganizationDomain ",
+        "description": "Endpoint to update the organization's domain"
+      },
+      "get": {
+        "name": "GetOrganizationDomain ",
+        "description": "Endpoint to get the organization's domain details"
+      }
     },
     "`/organization/team-members/:teamMemberId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteOrganizationTeamMember ",
+        "description": "Deletes a team member from an organization"
+      },
+      "put": {
+        "name": "UpdateOrganizationTeamMember ",
+        "description": "Endpoint to update a team member's information in the organization"
+      },
+      "get": {
+        "name": "GetOrganizationTeamMember ",
+        "description": "Fetches details for a specific organization team member"
+      }
     },
     "`/organization/users/:userId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteOrganizationUser ",
+        "description": "Endpoint to delete a user from the organization"
+      },
+      "put": {
+        "name": "UpdateOrganizationMembership ",
+        "description": "Endpoint to update a user's organization membership"
+      },
+      "get": {
+        "name": "GetOrganizationMembership ",
+        "description": "Endpoint to get organization membership data for a specific user"
+      }
     },
     "`/payments/:paymentId/refund`": {
-      "post": {}
+      "post": {
+        "name": "RefundOrganizationPayment ",
+        "description": "Endpoint to refund a specific organization payment"
+      }
     },
     "`/organization`": {
-      "put": {},
-      "get": {}
+      "put": {
+        "name": "UpdateOrganization ",
+        "description": "Endpoint to update organization details"
+      },
+      "get": {
+        "name": "GetOrganization ",
+        "description": "Endpoint to get organization data"
+      }
     },
     "`/reports/:reportId/users`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "AddReportUser ",
+        "description": "Endpoint to add a user to a report"
+      },
+      "get": {
+        "name": "GetReportUsers ",
+        "description": "Endpoint to manage and query user report data"
+      }
     },
     "`/reports`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateReport ",
+        "description": "Endpoint to create a new report"
+      },
+      "get": {
+        "name": "GetReports ",
+        "description": "Endpoint to get a list of reports"
+      }
     },
     "`/reports/:reportId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteReport ",
+        "description": "Endpoint to delete a report"
+      },
+      "put": {
+        "name": "UpdateReport ",
+        "description": "Endpoint to update a report and invalidate related queries"
+      },
+      "get": {
+        "name": "GetReport ",
+        "description": "Fetches a specific report by ID, including its data and pagination"
+      }
     },
     "`/reports/:reportId/users/:userId`": {
-      "delete": {}
+      "delete": {
+        "name": "RemoveReportUser ",
+        "description": "Endpoint to remove a user from a specified report"
+      }
     },
     "`/self/api-keys`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateSelfApiKey ",
+        "description": "Endpoint to create a self API key"
+      },
+      "get": {
+        "name": "GetSelfApiKeys ",
+        "description": "Fetches the API keys for the current user"
+      }
     },
     "`/self/api-keys/:apiKeyId`": {
-      "delete": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteSelfApiKey ",
+        "description": "Endpoint to delete a self API key"
+      },
+      "get": {
+        "name": "GetSelfApiKey ",
+        "description": "Endpoint to get a specific API key by ID"
+      }
     },
     "`/self/image`": {
-      "delete": {},
-      "put": {}
+      "delete": {
+        "name": "DeleteUserImage ",
+        "description": "Endpoint to delete a user's image"
+      },
+      "put": {
+        "name": "UpdateUserImage ",
+        "description": "Endpoint to update a user's image"
+      }
     },
     "`/self/organizations/:organizationId`": {
-      "delete": {}
+      "delete": {
+        "name": "Leave Organization",
+        "description": "Endpoint to leave an organization"
+      }
     },
     "`/self`": {
-      "put": {},
-      "get": {}
+      "put": {
+        "name": "UpdateSelf ",
+        "description": "Endpoint to update self-related data"
+      },
+      "get": {
+        "name": "GetSelf ",
+        "description": "Endpoint to get the current user's data"
+      }
     },
     "`/series/:seriesId/events/:eventId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddSeriesEvent ",
+        "description": "Endpoint to add an event to a series"
+      },
+      "delete": {
+        "name": "RemoveSeriesEvent ",
+        "description": "Endpoint to remove a series event"
+      }
     },
     "`/series`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateSeries ",
+        "description": "Endpoint to create a new series"
+      },
+      "get": {
+        "name": "GetSeriesList ",
+        "description": "Endpoint to get a list of series"
+      }
     },
     "`/series/:seriesId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteSeries ",
+        "description": "Endpoint to delete a series"
+      },
+      "put": {
+        "name": "UpdateSeries ",
+        "description": "Endpoint to update a series in the system"
+      },
+      "get": {
+        "name": "GetSeries ",
+        "description": "Endpoint to get a series by its ID"
+      }
     },
     "`/files`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "UploadFile ",
+        "description": "Endpoint to upload a file to storage"
+      },
+      "get": {
+        "name": "GetFiles ",
+        "description": "Endpoint to get and manage files through the API, including pagination and filtering"
+      }
     },
     "`/streams`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateStreamInput ",
+        "description": "Endpoint to create a stream input"
+      },
+      "get": {
+        "name": "GetStreamInputs ",
+        "description": "Endpoint to get a list of stream inputs"
+      }
     },
     "`/streams/:streamId/outputs`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateStreamInputOutput ",
+        "description": "Endpoint to create a new stream input output"
+      },
+      "get": {
+        "name": "GetStreamInputOutputs ",
+        "description": "Endpoint to fetch the input outputs for a specified stream"
+      }
     },
     "`/streams/:streamId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteStreamInput ",
+        "description": "Endpoint to delete a stream input"
+      },
+      "put": {
+        "name": "UpdateStream ",
+        "description": "Endpoint to update a stream"
+      },
+      "get": {
+        "name": "GetStreamInput ",
+        "description": "Endpoint to get stream input data"
+      }
     },
     "`/streams/:streamId/outputs/:outputId`": {
-      "delete": {},
-      "put": {}
+      "delete": {
+        "name": "DeleteStreamInputOutput ",
+        "description": "Endpoint to delete a specific output from a stream"
+      },
+      "put": {
+        "name": "UpdateStreamInputOutput ",
+        "description": "Endpoint to update a stream input output"
+      }
     },
     "`/streams/:streamId/config`": {
-      "put": {}
+      "put": {
+        "name": "UpdateStreamConfig ",
+        "description": "Endpoint to update the configuration of a stream"
+      }
     },
     "`/subscription-products/:subscriptionProductId/tiers/:tierId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddSubscriptionProductTier ",
+        "description": "Endpoint to add a tier to a subscription product"
+      },
+      "delete": {
+        "name": "RemoveSubscriptionProductTier ",
+        "description": "Endpoint to remove a tier from a subscription product"
+      }
     },
     "`/subscriptions/:subscriptionId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "CancelSubscription ",
+        "description": "Endpoint to cancel a subscription"
+      },
+      "put": {
+        "name": "UpdateSubscription ",
+        "description": "Endpoint to update a subscription"
+      },
+      "get": {
+        "name": "GetSubscription ",
+        "description": "Endpoint to get subscription data by ID"
+      }
     },
     "`/subscriptions`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateSubscription ",
+        "description": "Endpoint to create a new subscription"
+      },
+      "get": {
+        "name": "GetSubscriptions ",
+        "description": "Endpoint to get a list of subscriptions"
+      }
     },
     "`/subscription-products`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateSubscriptionProduct ",
+        "description": "Endpoint to create a new subscription product"
+      },
+      "get": {
+        "name": "GetSubscriptionProducts ",
+        "description": "Endpoint to get a list of subscription products"
+      }
     },
     "`/subscription-products/:subscriptionProductId/prices`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateSubscriptionProductPrice ",
+        "description": "Endpoint to create a subscription product price"
+      },
+      "get": {
+        "name": "GetSubscriptionProductPrices ",
+        "description": "Endpoint to get a list of subscription product prices"
+      }
     },
     "`/subscription-products/:subscriptionProductId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteSubscriptionProductPrice ",
+        "description": "Endpoint to delete a subscription product price"
+      },
+      "put": {
+        "name": "UpdateSubscriptionProduct ",
+        "description": "Endpoint to update a subscription product"
+      },
+      "get": {
+        "name": "GetSubscriptionProduct ",
+        "description": "Endpoint to get a specific subscription product"
+      }
     },
     "`/subscription-products/:subscriptionProductId/prices/:subscriptionProductPriceId`": {
-      "put": {},
-      "get": {}
+      "put": {
+        "name": "UpdateSubscriptionProductPrice ",
+        "description": "Endpoint to update a subscription product price"
+      },
+      "get": {
+        "name": "GetSubscriptionProductPrice ",
+        "description": "Endpoint to get a specific subscription product price"
+      }
     },
     "`/supportTickets`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateSupportTicket ",
+        "description": "Endpoint to create a new support ticket"
+      },
+      "get": {
+        "name": "GetSupportTickets ",
+        "description": "Endpoint to fetch and manage support tickets with pagination and filtering capabilities"
+      }
     },
     "`/supportTickets/:supportTicketId/notes`": {
-      "post": {}
+      "post": {
+        "name": "CreateSupportTicketNote ",
+        "description": "Endpoint to create a new note for a support ticket"
+      }
     },
     "`/supportTickets/:supportTicketId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteSupportTicket ",
+        "description": "Endpoint to delete a support ticket"
+      },
+      "put": {
+        "name": "UpdateSupportTicket ",
+        "description": "Endpoint to update a support ticket"
+      },
+      "get": {
+        "name": "GetSupportTicket ",
+        "description": "Endpoint to get a specific support ticket"
+      }
     },
     "`/supportTickets/:supportTicketId/notes/:noteId`": {
-      "delete": {}
+      "delete": {
+        "name": "DeleteSupportTicketNote ",
+        "description": "Endpoint to delete a support ticket note"
+      }
     },
     "`/threads/:threadId/members/:accountId`": {
-      "post": {},
-      "delete": {},
-      "get": {}
+      "post": {
+        "name": "AddThreadMember ",
+        "description": "Adds a member or moderator to a thread"
+      },
+      "delete": {
+        "name": "RemoveThreadMember ",
+        "description": "Endpoint to remove a member from a specific thread"
+      },
+      "get": {
+        "name": "GetThreadMember ",
+        "description": "Endpoint to get a specific thread member's information"
+      }
     },
     "`/threads/:threadId/moderators/:accountId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddThreadModerator ",
+        "description": "Adds a member as a moderator to a thread and invalidates relevant queries"
+      },
+      "delete": {
+        "name": "RemoveThreadModerator ",
+        "description": "Endpoint to remove a moderator from a thread"
+      }
     },
     "`/threads`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateThread ",
+        "description": "Endpoint to create a new thread"
+      },
+      "get": {
+        "name": "GetThreads ",
+        "description": "Endpoint to get threads based on various parameters"
+      }
     },
     "`/threads/:threadId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteThread ",
+        "description": "Endpoint to delete a specific thread"
+      },
+      "put": {
+        "name": "UpdateThread ",
+        "description": "Endpoint to update a thread"
+      },
+      "get": {
+        "name": "GetThread ",
+        "description": "Endpoint to fetch a specific thread by its ID"
+      }
     },
     "`/tiers/:tierId/accounts/:accountId`": {
-      "post": {},
-      "delete": {}
+      "post": {
+        "name": "AddTierAccount ",
+        "description": "Endpoint to add an account to a tier"
+      },
+      "delete": {
+        "name": "RemoveTierAccount ",
+        "description": "Endpoint to remove an account from a specified tier"
+      }
     },
     "`/tiers`": {
-      "post": {},
-      "get": {}
+      "post": {
+        "name": "CreateTier ",
+        "description": "Endpoint to create a new tier"
+      },
+      "get": {
+        "name": "GetTiers ",
+        "description": "Endpoint to get a list of tiers and optionally filter by type"
+      }
     },
     "`/tiers/:tierId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteTier ",
+        "description": "Endpoint to delete a tier and invalidate related queries"
+      },
+      "put": {
+        "name": "UpdateTier ",
+        "description": "Endpoint to update a tier"
+      },
+      "get": {
+        "name": "GetTier ",
+        "description": "Endpoint to get a specific tier by ID"
+      }
     },
     "`/tiers/:tierId/accounts`": {
-      "delete": {},
-      "get": {}
+      "delete": {
+        "name": "RemoveTierAccounts ",
+        "description": "Endpoint to remove accounts from a specified tier"
+      },
+      "get": {
+        "name": "GetTierAccounts ",
+        "description": "Endpoint to get a list of accounts for a specific tier"
+      }
     },
     "`/videos/delete`": {
-      "post": {}
+      "post": {
+        "name": "DeleteManyVideos ",
+        "description": "Endpoint to delete multiple videos"
+      }
     },
     "`/videos/:videoId`": {
-      "delete": {},
-      "put": {},
-      "get": {}
+      "delete": {
+        "name": "DeleteVideo ",
+        "description": "Endpoint to delete a video"
+      },
+      "put": {
+        "name": "UpdateVideo ",
+        "description": "Endpoint to update a video"
+      },
+      "get": {
+        "name": "GetVideo ",
+        "description": "Endpoint to get video data by ID"
+      }
     },
     "`/accounts/:accountId/activities`": {
-      "get": {}
+      "get": {
+        "name": "ListAccountActivities ",
+        "description": "Endpoint to retrieve a list of activities for an account"
+      }
     },
     "`/accounts/:accountId/auth-sessions`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountAuthSessions ",
+        "description": "Endpoint to get authentication sessions for a specific account"
+      }
     },
     "`/accounts/:accountId/cognito/:username`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountCognitoUser ",
+        "description": "Endpoint to get a Cognito user for a specific account by username"
+      }
     },
     "`/accounts/:accountId/cognito`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountCognitoUsers ",
+        "description": "Fetches the Cognito users associated with a specific account."
+      }
     },
     "`/accounts/:accountId/comments`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountComments ",
+        "description": "Endpoint to get a list of account comments with pagination and filtering capabilities"
+      }
     },
     "`/accounts/:accountId/delegate-of`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountDelegateOf ",
+        "description": "Endpoint to get a list of accounts and their delegate relationships"
+      }
     },
     "`/accounts/:accountId/delegates`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountDelegates ",
+        "description": "Endpoint to get a list of account delegates"
+      }
     },
     "`/accounts/:accountId/email-receipts`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountEmailReceipts ",
+        "description": "Endpoint to get a list of email receipts for an account"
+      }
     },
     "`/accounts/:accountId/events`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountEvents ",
+        "description": "Endpoint to manage and fetch account events"
+      }
     },
     "`/accounts/:accountId/followers`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountFollowers ",
+        "description": "Endpoint to get a list of followers for a specific account"
+      }
     },
     "`/accounts/:accountId/following`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountFollowing ",
+        "description": "Endpoint to get a list of accounts that the specified account is following"
+      }
     },
     "`/accounts/:accountId/groups`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountGroups ",
+        "description": "Endpoint to get a list of account groups"
+      }
     },
     "`/accounts/:accountId/interests`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountInterests ",
+        "description": "Endpoint to fetch account interests with optional filtering and pagination"
+      }
     },
     "`/accounts/:accountId/leads`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountLeads ",
+        "description": "Endpoint to get a list of account leads"
+      }
     },
     "`/accounts/:accountId/levels`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountLevels ",
+        "description": "Endpoint to get a list of account levels"
+      }
     },
     "`/accounts/:accountId/likes`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountLikes ",
+        "description": "Endpoint to get a list of likes for an account"
+      }
     },
     "`/accounts/:accountId/payments`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountPayments ",
+        "description": "Endpoint to get account payments"
+      }
     },
     "`/accounts/:accountId/reshares`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountReshares ",
+        "description": "Endpoint to get a list of account reshares"
+      }
     },
     "`/accounts/:accountId/subscriptions`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountSubscriptions ",
+        "description": "Endpoint to get a list of account subscriptions"
+      }
     },
     "`/accounts/:accountId/tiers`": {
-      "get": {}
+      "get": {
+        "name": "GetAccountTiers ",
+        "description": "Endpoint to get a list of account tiers"
+      }
     },
     "`/activities`": {
-      "get": {}
+      "get": {
+        "name": "GetActivities ",
+        "description": "Endpoint to get a list of activities"
+      }
     },
     "`/activities/:activityId/comments`": {
-      "get": {}
+      "get": {
+        "name": "GetActivityComments ",
+        "description": "Endpoint to fetch activity comments"
+      }
     },
     "`/activities/:activityId/interests`": {
-      "get": {}
+      "get": {
+        "name": "GetActivityInterests ",
+        "description": "Endpoint to get a list of activity interests"
+      }
     },
     "`/activities/:activityId/likes`": {
-      "get": {}
+      "get": {
+        "name": "GetActivityLikes ",
+        "description": "Endpoint to get a list of likes for a specific activity"
+      }
     },
     "`/activities/:activityId/reshares`": {
-      "get": {}
+      "get": {
+        "name": "GetActivityReshares ",
+        "description": "Endpoint to get a list of activity reshares"
+      }
     },
     "`/advertisements/:advertisementId/clicks`": {
-      "get": {}
+      "get": {
+        "name": "GetAdvertisementClicks ",
+        "description": "Endpoint to get advertisement click data"
+      }
     },
     "`/advertisements/:advertisementId/views`": {
-      "get": {}
+      "get": {
+        "name": "GetAdvertisementViews ",
+        "description": "Endpoint to get advertisement views"
+      }
     },
     "`/announcements/:announcementId/audience`": {
-      "get": {}
+      "get": {
+        "name": "GetAnnouncementAudience ",
+        "description": "Endpoint to fetch the audience for a specific announcement"
+      }
     },
     "`/announcements/:announcementId/email-receipts`": {
-      "get": {}
+      "get": {
+        "name": "AnnouncementEmailReceipts ",
+        "description": "Endpoint to manage announcement email receipts"
+      }
     },
     "`/logs/api/:logId`": {
-      "get": {}
+      "get": {
+        "name": "GetAPILog ",
+        "description": "Endpoint to get details of a specific API log entry"
+      }
     },
     "`/logs/api`": {
-      "get": {}
+      "get": {
+        "name": "GetAPILogs ",
+        "description": "Endpoint to get API logs with filtering options"
+      }
     },
     "`/logs/auth-sessions/:authSessionId`": {
-      "get": {}
+      "get": {
+        "name": "GetAuthSession ",
+        "description": "Endpoint to fetch data for a specific authentication session"
+      }
     },
     "`/logs/auth-sessions`": {
-      "get": {}
+      "get": {
+        "name": "GetAuthSessions ",
+        "description": "Endpoint to get a list of authentication sessions"
+      }
     },
     "`/benefits/:benefitId/clicks`": {
-      "get": {}
+      "get": {
+        "name": "GetBenefitClicks ",
+        "description": "Endpoint to get the click data for a specific benefit"
+      }
     },
     "`/channels/:channelId/activities`": {
-      "get": {}
+      "get": {
+        "name": "GetChannelActivities ",
+        "description": "Endpoint to get activities in a specific channel"
+      }
     },
     "`/channels/:channelId/contents/:contentId/activities`": {
-      "get": {}
+      "get": {
+        "name": "GetChannelContentActivities ",
+        "description": "Fetches activities for a specific channel content, supporting pagination and filtering"
+      }
     },
     "`/channels/:channelId/contents/:contentId/likes`": {
-      "get": {}
+      "get": {
+        "name": "GetChannelContentLikes ",
+        "description": "Fetches the likes for a specific channel content and handles pagination and filtering"
+      }
     },
     "`/contents`": {
-      "get": {}
+      "get": {
+        "name": "GetContents ",
+        "description": "Endpoint to get contents"
+      }
     },
     "`/channels/featured`": {
-      "get": {}
+      "get": {
+        "name": "GetFeaturedChannels ",
+        "description": "Endpoint to get a list of featured channels"
+      }
     },
     "`/logs/email-receipts/:emailReceiptId`": {
-      "get": {}
+      "get": {
+        "name": "GetEmailReceipt ",
+        "description": "Endpoint to get details of a specific email receipt by ID"
+      }
     },
     "`/logs/email-receipts`": {
-      "get": {}
+      "get": {
+        "name": "GetEmailReceipts ",
+        "description": "Endpoint to get a list of email receipts"
+      }
     },
     "`/events/:eventId/addOns/:addOnId/passTypes`": {
-      "get": {}
+      "get": {
+        "name": "GetEventAddOnPassTypes ",
+        "description": "Endpoint to get a list of pass types for an event add-on"
+      }
     },
     "`/events/:eventId/addOns/:addOnId/passes`": {
-      "get": {}
+      "get": {
+        "name": "GetEventAddOnPasses ",
+        "description": "Fetches passes for a specific event add-on."
+      }
     },
     "`/events/:eventId/addOns/:addOnId/tiers`": {
-      "get": {}
+      "get": {
+        "name": "GetEventAddOnTiers ",
+        "description": "Endpoint to get a list of event add-on tiers"
+      }
     },
     "`/events/:eventId/attendees/:accountId/reservations`": {
-      "get": {}
+      "get": {
+        "name": "GetEventAttendeeReservations ",
+        "description": "Endpoint to get a list of event attendee reservations"
+      }
     },
     "`/events/:eventId/reservations/:reservationId/passes`": {
-      "get": {}
+      "get": {
+        "name": "Event Reservation Passes",
+        "description": ""
+      }
     },
     "`/events/:eventId/attendees/:accountId/coupons`": {
-      "get": {}
+      "get": {
+        "name": "GetEventAttendeeCoupons ",
+        "description": "Fetches coupons for event attendees"
+      }
     },
     "`/events/:eventId/attendees/:accountId/payments`": {
-      "get": {}
+      "get": {
+        "name": "GetEventAttendeePayments ",
+        "description": ""
+      }
     },
     "`/events/:eventId/attendees/:accountId/transfers/logs`": {
-      "get": {}
+      "get": {
+        "name": "GetEventAttendeeTransfersLogs ",
+        "description": "Endpoint to get a list of attendee transfer logs for a specific event and account"
+      }
     },
     "`/events/:eventId/passes/:passId/attendee/passes`": {
-      "get": {}
+      "get": {
+        "name": "GetEventPassAttendeePasses ",
+        "description": "Endpoint to get a list of event pass attendee passes"
+      }
     },
     "`/events/:eventId/coHosts`": {
-      "get": {}
+      "get": {
+        "name": "GetEventCoHosts ",
+        "description": "Endpoint to get a list of event co-hosts"
+      }
     },
     "`/events/:eventId/coupons/:couponId/passes`": {
-      "get": {}
+      "get": {
+        "name": "GetEventCouponPasses ",
+        "description": "Endpoint to get a list of event coupon passes"
+      }
     },
     "`/events/:eventId/zpl-template/fields`": {
-      "get": {}
+      "get": {
+        "name": "GetEventZplTemplateBadgeFields ",
+        "description": "Endpoint to manage fetching and updating of ZPL template badge fields for events"
+      }
     },
     "`/events/:eventId/pages/:pageId/images`": {
-      "get": {}
+      "get": {
+        "name": "GetEventPageImages ",
+        "description": "Fetches images for a specific event page"
+      }
     },
     "`/events/:eventId/passTypes/:passTypeId/addOns`": {
-      "get": {}
+      "get": {
+        "name": "GetEventPassTypeAddOns ",
+        "description": "Fetches add-ons for a specific event pass type with support for pagination and filtering"
+      }
     },
     "`/events/:eventId/passTypes/:passTypeId/coupons`": {
-      "get": {}
+      "get": {
+        "name": "Get Event Pass Type Coupons",
+        "description": "Fetches coupons associated with a specific event pass type"
+      }
     },
     "`/events/:eventId/passTypes/:passTypeId/passes`": {
-      "get": {}
+      "get": {
+        "name": "GetEventPassTypePasses ",
+        "description": "Endpoint to get event pass type passes"
+      }
     },
     "`/events/:eventId/passTypes/:passTypeId/tiers`": {
-      "get": {}
+      "get": {
+        "name": "GetEventPassTypeTiers ",
+        "description": ""
+      }
     },
     "`/events/:eventId/passes/:passId/addOns`": {
-      "get": {}
+      "get": {
+        "name": "GetEventPassAddOns ",
+        "description": "Endpoint to get add-ons for an event pass"
+      }
     },
     "`/events/:eventId/attendees/:accountId/passes/:passId/questions`": {
-      "get": {}
+      "get": {
+        "name": "GetEventPassQuestionSections ",
+        "description": "Endpoint to get the question sections for an event pass"
+      }
     },
     "`/events/:eventId/passes/:passId/responses/:questionId`": {
-      "get": {}
+      "get": {
+        "name": "GetEventPassResponse ",
+        "description": "Endpoint to get a specific response for an event's pass question"
+      }
     },
     "`/events/:eventId/passes/:passId/responses/:questionId/changes`": {
-      "get": {}
+      "get": {
+        "name": "GetEventPassResponseChanges ",
+        "description": ""
+      }
     },
     "`/events/:eventId/passes/:passId/responses`": {
-      "get": {}
+      "get": {
+        "name": "GetEventPassResponses ",
+        "description": "Endpoint to get responses for event pass registration questions"
+      }
     },
     "`/events/:eventId/passes/:passId/transfers/logs`": {
-      "get": {}
+      "get": {
+        "name": "GetEventPassTransferLogs ",
+        "description": "Retrieves the transfer logs for a specific event pass, supporting pagination and filtering."
+      }
     },
     "`/events/:eventId/passes`": {
-      "get": {}
+      "get": {
+        "name": "GetEventPasses ",
+        "description": "Endpoint to get a list of event passes"
+      }
     },
     "`/events/:eventId/questions/:questionId/choices/:choiceId/subQuestions`": {
-      "get": {}
+      "get": {
+        "name": "GetEventQuestionChoiceSubQuestions ",
+        "description": "Endpoint to get sub questions for a specific event question choice"
+      }
     },
     "`/events/:eventId/questions/:questionId/responses`": {
-      "get": {}
+      "get": {
+        "name": "GetEventQuestionResponses ",
+        "description": "Fetches responses for a specific event question with optional filtering"
+      }
     },
     "`/events/:eventId/questions/summary`": {
-      "get": {}
+      "get": {
+        "name": "Get Event Question Summaries",
+        "description": ""
+      }
     },
     "`/events/:eventId/questions/:questionId/summary`": {
-      "get": {}
+      "get": {
+        "name": "GetEventQuestionSummary ",
+        "description": "Fetches summary data for event questions, including bar, line, table, and count charts."
+      }
     },
     "`/events/:eventId/roomTypes/:roomTypeId/passes`": {
-      "get": {}
+      "get": {
+        "name": "GetEventRoomTypePasses ",
+        "description": "Endpoint to get event room type passes"
+      }
     },
     "`/events/:eventId/roomTypes/:roomTypeId/tiers`": {
-      "get": {}
+      "get": {
+        "name": "GetEventRoomTypeTiers ",
+        "description": "Endpoint to get tiers for a specific room type in an event"
+      }
     },
     "`/events/:eventId/sections/:sectionId/addOns`": {
-      "get": {}
+      "get": {
+        "name": "GetEventSectionAddOns ",
+        "description": "Fetches add-ons for a specific event section, supporting pagination and filtering."
+      }
     },
     "`/events/:eventId/sections/:sectionId/passTypes`": {
-      "get": {}
+      "get": {
+        "name": "GetEventSectionPassTypes ",
+        "description": ""
+      }
     },
     "`/events/:eventId/sections/:sectionId/questions`": {
-      "get": {}
+      "get": {
+        "name": "Get Event Section Questions",
+        "description": ""
+      }
     },
     "`/events/:eventId/sections/:sectionId/tiers`": {
-      "get": {}
+      "get": {
+        "name": "GetEventSectionTiers ",
+        "description": "Fetches tiers for an event section based on the provided parameters"
+      }
     },
     "`/events/:eventId/sessionLocations/:locationId/sessions`": {
-      "get": {}
+      "get": {
+        "name": "GetEventSessionLocationSessions ",
+        "description": "Endpoint to fetch sessions for a specific event location"
+      }
     },
     "`/events/:eventId/sessions/:sessionId/accounts`": {
-      "get": {}
+      "get": {
+        "name": "GetEventSessionAccounts ",
+        "description": "Endpoint to manage event session accounts"
+      }
     },
     "`/events/:eventId/sessions/:sessionId/speakers`": {
-      "get": {}
+      "get": {
+        "name": "GetEventSessionSpeakers ",
+        "description": "Fetches speakers for a specific event session"
+      }
     },
     "`/events/:eventId/sessions/:sessionId/sponsors`": {
-      "get": {}
+      "get": {
+        "name": "GetEventSessionSponsors ",
+        "description": "Endpoint to get a list of sponsors for a specific event session"
+      }
     },
     "`/events/:eventId/sessions/:sessionId/tracks`": {
-      "get": {}
+      "get": {
+        "name": "GetEventSessionTracks ",
+        "description": "Fetches event session tracks with support for pagination and filtering"
+      }
     },
     "`/events/:eventId/speakers/:speakerId/sessions`": {
-      "get": {}
+      "get": {
+        "name": "GetEventSpeakerSessions ",
+        "description": "Endpoint to get event speaker sessions"
+      }
     },
     "`/events/:eventId/sponsors/accounts`": {
-      "get": {}
+      "get": {
+        "name": "GetEventSponsorAccounts ",
+        "description": "Fetches the list of sponsor accounts for a specific event, supporting pagination and filtering."
+      }
     },
     "`/events/:eventId/sponsors`": {
-      "get": {}
+      "get": {
+        "name": "GetEventSponsors ",
+        "description": "Endpoint to get a list of event sponsors"
+      }
     },
     "`/events/:eventId/tracks/:trackId/sessions`": {
-      "get": {}
+      "get": {
+        "name": "GetEventTrackSessions ",
+        "description": "Endpoint to get a list of event track sessions"
+      }
     },
     "`/events/:eventId/tracks/:trackId/sponsors`": {
-      "get": {}
+      "get": {
+        "name": "GetEventTrackSponsors ",
+        "description": "Endpoint to get a list of sponsors for a specific event track"
+      }
     },
     "`/events/:eventId/activities`": {
-      "get": {}
+      "get": {
+        "name": "GetEventActivities ",
+        "description": "Endpoint to get a list of activities for a specific event"
+      }
     },
     "`/events/featured`": {
-      "get": {}
+      "get": {
+        "name": "Get Featured Events",
+        "description": ""
+      }
     },
     "`/events/unapproved`": {
-      "get": {}
+      "get": {
+        "name": "GetUnapprovedEvents ",
+        "description": "Endpoint to fetch a list of unapproved events"
+      }
     },
     "`/groups/:groupId/activities`": {
-      "get": {}
+      "get": {
+        "name": "GetGroupActivities ",
+        "description": "Endpoint to fetch activities for a specific group"
+      }
     },
     "`/groups/:groupId/events`": {
-      "get": {}
+      "get": {
+        "name": "GetGroupEvents ",
+        "description": "Endpoint to get a list of group events"
+      }
     },
     "`/groups/:groupId/interests`": {
-      "get": {}
+      "get": {
+        "name": "GetGroupInterests ",
+        "description": "Endpoint to get a list of interests for a group"
+      }
     },
     "`/groups/:groupId/invitations`": {
-      "get": {}
+      "get": {
+        "name": "GetGroupInvitations ",
+        "description": "Endpoint to manage group invitations"
+      }
     },
     "`/groups/:groupId/members`": {
-      "get": {}
+      "get": {
+        "name": "GetGroupMembers ",
+        "description": "Endpoint to get the members of a group"
+      }
     },
     "`/groups/:groupId/moderators`": {
-      "get": {}
+      "get": {
+        "name": "GetGroupModerators ",
+        "description": "Endpoint to get a list of group moderators"
+      }
     },
     "`/groups/:groupId/requests`": {
-      "get": {}
+      "get": {
+        "name": "GetGroupRequests ",
+        "description": "Endpoint to handle group requests"
+      }
     },
     "`/groups/:groupId/sponsors`": {
-      "get": {}
+      "get": {
+        "name": "GetGroupSponsors ",
+        "description": "Endpoint to get a list of sponsors for a specific group"
+      }
     },
     "`/images/:imageId/usage`": {
-      "get": {}
+      "get": {
+        "name": "GetImageUsage ",
+        "description": "Endpoint to get the usage data for a specific image"
+      }
     },
     "`/imports/:importId`": {
-      "get": {}
+      "get": {
+        "name": "Import Management",
+        "description": ""
+      }
     },
     "`/imports/:importId/items`": {
-      "get": {}
+      "get": {
+        "name": "GetImportItems ",
+        "description": "Endpoint to get a list of import items"
+      }
     },
     "`/imports`": {
-      "get": {}
+      "get": {
+        "name": "GetImports ",
+        "description": "Endpoint to get a list of imports"
+      }
     },
     "`/interests/:interestId/accounts`": {
-      "get": {}
+      "get": {
+        "name": "GetInterestAccounts ",
+        "description": "Endpoint to get a list of interest accounts"
+      }
     },
     "`/interests/:interestId/activities`": {
-      "get": {}
+      "get": {
+        "name": "GetInterestActivities ",
+        "description": "Endpoint to get a list of activities for a specific interest"
+      }
     },
     "`/interests/:interestId/channels`": {
-      "get": {}
+      "get": {
+        "name": "GetInterestChannels ",
+        "description": "Fetches the channels associated with a specific interest"
+      }
     },
     "`/interests/:interestId/contents`": {
-      "get": {}
+      "get": {
+        "name": "GetInterestContents ",
+        "description": "Endpoint to fetch the contents of a specific interest"
+      }
     },
     "`/interests/:interestId/events`": {
-      "get": {}
+      "get": {
+        "name": "GetInterestEvents ",
+        "description": "Endpoint to get events related to an interest"
+      }
     },
     "`/interests/:interestId/groups`": {
-      "get": {}
+      "get": {
+        "name": "GetInterestGroups ",
+        "description": "Endpoint to get a list of groups for a given interest"
+      }
     },
     "`/invoices/:invoiceId/payments/:paymentId`": {
-      "get": {}
+      "get": {
+        "name": "GetInvoicePayment ",
+        "description": "Endpoint to fetch a specific payment for a given invoice"
+      }
     },
     "`/invoices/:invoiceId/payments`": {
-      "get": {}
+      "get": {
+        "name": "GetInvoicePayments ",
+        "description": "Endpoint to get a list of invoice payments"
+      }
     },
     "`/levels/:sponsorshipLevelId`": {
-      "get": {}
+      "get": {
+        "name": "GetLevel ",
+        "description": "Endpoint to get a specific level's details"
+      }
     },
     "`/levels/:levelId/accounts`": {
-      "get": {}
+      "get": {
+        "name": "GetLevelAccounts ",
+        "description": "Endpoint to get a list of accounts for a specific level"
+      }
     },
     "`/organization/modules/:moduleType/editableTiers`": {
-      "get": {}
+      "get": {
+        "name": "GetOrganizationModuleEditableTiers ",
+        "description": "Fetches editable tiers for a given organization module type"
+      }
     },
     "`/organization/modules/:moduleType/enabledTiers`": {
-      "get": {}
+      "get": {
+        "name": "GetOrganizationModuleEnabledTiers ",
+        "description": "Endpoint to get enabled tiers for a specific organization module"
+      }
     },
     "`/organization/modules`": {
-      "get": {}
+      "get": {
+        "name": "OrganizationModules ",
+        "description": "Endpoint to manage organization modules"
+      }
     },
     "`/payments/:paymentId`": {
-      "get": {}
+      "get": {
+        "name": "GetPayment ",
+        "description": "Endpoint to get payment details"
+      }
     },
     "`/payments`": {
-      "get": {}
+      "get": {
+        "name": "GetPayments ",
+        "description": "Fetches a list of payments with optional filtering and pagination parameters"
+      }
     },
     "`/organization/tax`": {
-      "get": {}
+      "get": {
+        "name": "GetTaxIntegrations ",
+        "description": "Endpoint to get a list of tax integrations"
+      }
     },
     "`/organization/payment/:type/link`": {
-      "get": {}
+      "get": {
+        "name": "GetOrganizationPaymentLink ",
+        "description": "Endpoint to get the payment link for a specific payment integration type for an organization"
+      }
     },
     "`/organization/payment`": {
-      "get": {}
+      "get": {
+        "name": "GetOrganizationPaymentIntegrations ",
+        "description": "Endpoint to get a list of payment integrations for an organization"
+      }
     },
     "`/organization/search`": {
-      "get": {}
+      "get": {
+        "name": "SearchOrganization ",
+        "description": "Endpoint to search for organizations"
+      }
     },
     "`/reports/parents/:parentId`": {
-      "get": {}
+      "get": {
+        "name": "GetReportParent ",
+        "description": "Endpoint to fetch report parent data"
+      }
     },
     "`/reports/parents`": {
-      "get": {}
+      "get": {
+        "name": "GetReportParents ",
+        "description": "Endpoint to get a list of report parents"
+      }
     },
     "`/self/organization-membership`": {
-      "get": {}
+      "get": {
+        "name": "GetSelfOrgMembership ",
+        "description": "Endpoint to fetch and manage self organization membership data"
+      }
     },
     "`/self/organizations`": {
-      "get": {}
+      "get": {
+        "name": "GetSelfOrganizations ",
+        "description": "Endpoint to get a list of organizations for the self user"
+      }
     },
     "`/series/:seriesId/events`": {
-      "get": {}
+      "get": {
+        "name": "GetSeriesEvents ",
+        "description": "Endpoint to fetch events for a specific series"
+      }
     },
     "`/streams/:streamId/outputs/:output`": {
-      "get": {}
+      "get": {
+        "name": "GetStreamInputOutput ",
+        "description": "Endpoint to get the input or output data for a specific stream output"
+      }
     },
     "`/subscriptions/:subscriptionId/payments`": {
-      "get": {}
+      "get": {
+        "name": "GetSubscriptionPayments ",
+        "description": "Endpoint to get a list of subscription payments"
+      }
     },
     "`/subscription-products/:subscriptionProductId/subscriptions`": {
-      "get": {}
+      "get": {
+        "name": "GetSubscriptionProductSubscriptions ",
+        "description": "Endpoint to get a list of subscriptions for a subscription product"
+      }
     },
     "`/subscription-products/:subscriptionProductId/tiers`": {
-      "get": {}
+      "get": {
+        "name": "GetSubscriptionProductTiers ",
+        "description": "Endpoint to get tiers for a subscription product"
+      }
     },
     "`/threads/:threadId/members`": {
-      "get": {}
+      "get": {
+        "name": "GetThreadMembers ",
+        "description": "Endpoint to get a list of thread members with optional filtering by role"
+      }
     },
     "`/threads/:threadId/messages/:messageId`": {
-      "get": {}
+      "get": {
+        "name": "GetThreadMessage ",
+        "description": "Endpoint to get a specific message from a thread by its ID"
+      }
     },
     "`/threads/:threadId/messages/:messageId/replies`": {
       "get": {
-        "name": "List",
-        "description": "Retrieve"
+        "name": "GetThreadMessageReplies ",
+        "description": "Endpoint to retrieve a list of replies for a specific message in a thread"
       }
     },
     "`/threads/:threadId/messages`": {
       "get": {
-        "name": "List",
-        "description": "Retrieve"
+        "name": "GetThreadMessages ",
+        "description": "Endpoint to retrieve a list of messages for a specific thread"
       }
     },
     "`/threads/:threadId/moderators`": {
-      "get": {}
+      "get": {
+        "name": "GetThreadModerators ",
+        "description": "Endpoint to get a list of moderators for a specific thread"
+      }
     },
     "`/tiers/:tierId/imports/:importId`": {
-      "get": {}
+      "get": {
+        "name": "GetTierImport ",
+        "description": "Endpoint to get a specific import for a tier"
+      }
     },
     "`/tiers/:tierId/imports/:importId/items`": {
-      "get": {}
+      "get": {
+        "name": "GetTierImportItems ",
+        "description": "Endpoint to get a list of import items for a specific tier and import"
+      }
     },
     "`/tiers/:tierId/imports`": {
-      "get": {}
+      "get": {
+        "name": "GetTierImports ",
+        "description": "Endpoint to get a list of tier imports with pagination and filtering capabilities"
+      }
     },
     "`/tiers/:tierId/subscribers`": {
-      "get": {}
+      "get": {
+        "name": "GetTierSubscribers ",
+        "description": "Endpoint to get a list of subscribers for a specific tier"
+      }
     },
     "`/videos`": {
-      "get": {}
+      "get": {
+        "name": "GetVideos ",
+        "description": "Endpoint to get video data with optional parameters for pagination, ordering, search, and source filtering"
+      }
     }
   },
   "components": {

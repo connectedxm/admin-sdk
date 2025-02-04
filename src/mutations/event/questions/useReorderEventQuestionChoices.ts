@@ -11,19 +11,22 @@ import {
 import { SET_EVENT_QUESTION_CHOICES_QUERY_DATA } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sections
- */
+ * Endpoint to reorder the choices of a specific question in an event.
+ * This function allows the reordering of choices associated with a particular question within an event.
+ * It is designed to be used in scenarios where the order of question choices needs to be updated.
+ * @name ReorderEventQuestionChoices
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @param {number[]} choicesIds - The ids of the choices to reorder
+ * @version 1.2
+ **/
+
 export interface ReorderEventQuestionChoicesParams extends MutationParams {
   eventId: string;
   questionId: string;
   choicesIds: number[];
 }
 
-/**
- * @category Methods
- * @group Event-Sections
- */
 export const ReorderEventQuestionChoices = async ({
   eventId,
   questionId,
@@ -52,10 +55,6 @@ export const ReorderEventQuestionChoices = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sections
- */
 export const useReorderEventQuestionChoices = (
   options: Omit<
     ConnectedXMMutationOptions<

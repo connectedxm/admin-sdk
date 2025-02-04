@@ -8,18 +8,20 @@ import {
 } from "../useConnectedMutation";
 
 /**
- * @category Params
- * @group Groups
- */
+ * Endpoint to reject a group request.
+ * This function allows an administrator to reject a specific request to join a group.
+ * It is designed to be used in applications where group membership management is required.
+ * @name RejectGroupRequest
+ * @param {string} groupId - The id of the group
+ * @param {string} requestId - The id of the request
+ * @version 1.2
+ **/
+
 export interface RejectGroupRequestParams extends MutationParams {
   groupId: string;
   requestId: string;
 }
 
-/**
- * @category Methods
- * @group Groups
- */
 export const RejectGroupRequest = async ({
   groupId,
   requestId,
@@ -38,10 +40,6 @@ export const RejectGroupRequest = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Groups
- */
 export const useRejectGroupRequest = (
   options: Omit<
     ConnectedXMMutationOptions<

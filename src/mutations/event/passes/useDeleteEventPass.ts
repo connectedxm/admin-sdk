@@ -12,19 +12,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Attendee-Passes
- */
+ * Endpoint to delete a specific event pass and invalidate related queries.
+ * This function allows the removal of an event pass by its ID and ensures that all related queries are invalidated to maintain data consistency.
+ * It is designed for use in applications where event management and pass handling are required.
+ * @name DeleteEventPass
+ * @param {string} eventId - The id of the event
+ * @param {string} passId - The id of the pass
+ * @param {string} [accountId] - Optional account id
+ * @version 1.2
+**/
 export interface DeleteEventPassParams extends MutationParams {
   eventId: string;
   passId: string;
   accountId?: string;
 }
 
-/**
- * @category Methods
- * @group Event-Attendee-Passes
- */
 export const DeleteEventPass = async ({
   eventId,
   passId,
@@ -52,10 +54,6 @@ export const DeleteEventPass = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Attendee-Passes
- */
 export const useDeleteEventPass = (
   options: Omit<
     ConnectedXMMutationOptions<

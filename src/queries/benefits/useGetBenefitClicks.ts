@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { BenefitClick } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -11,18 +10,19 @@ import { BENEFIT_QUERY_KEY } from "./useGetBenefit";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Benefits
- */
+ * Retrieves click data for a specific benefit.
+ * This function fetches detailed click information associated with a given benefit ID.
+ * It is designed to be used in applications where tracking user interactions with benefits is required.
+ * @name GetBenefitClicks
+ * @param {string} benefitId - The id of the benefit
+ * @version 1.2
+ **/
+
 export const BENEFIT_CLICKS_QUERY_KEY = (benefitId: string) => [
   ...BENEFIT_QUERY_KEY(benefitId),
   "CLICKS",
 ];
 
-/**
- * @category Setters
- * @group Benefits
- */
 export const SET_BENEFIT_CLICKS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof BENEFIT_CLICKS_QUERY_KEY>,
@@ -35,10 +35,6 @@ interface GetBenefitClicksProps extends InfiniteQueryParams {
   benefitId: string;
 }
 
-/**
- * @category Queries
- * @group Benefits
- */
 export const GetBenefitClicks = async ({
   benefitId,
   pageParam,
@@ -58,10 +54,7 @@ export const GetBenefitClicks = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Benefits
- */
+
 export const useGetBenefitClicks = (
   benefitId: string = "",
   params: Omit<

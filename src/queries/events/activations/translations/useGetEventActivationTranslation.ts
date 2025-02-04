@@ -9,9 +9,17 @@ import { EVENT_ACTIVATION_TRANSLATIONS_QUERY_KEY } from "./useGetEventActivation
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
+ * Retrieves the translation details for a specific event activation based on the provided event ID, activation ID, and locale.
+ * This function is designed to fetch localized translation data for event activations, which can be used in applications
+ * that require displaying event information in different languages. It utilizes a connected single query to ensure
+ * efficient data retrieval and caching.
+ * @name GetEventActivationTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} activationId - The ID of the activation
+ * @param {string} locale - The locale for the translation
+ * @version 1.2
  */
+
 export const EVENT_ACTIVATION_TRANSLATION_QUERY_KEY = (
   eventId: string,
   activationId: string,

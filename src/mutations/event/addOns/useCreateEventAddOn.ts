@@ -12,18 +12,20 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-AddOns
- */
+ * Endpoint to create a new event add-on.
+ * This function allows the creation of additional features or services for a specific event by providing the event ID and the add-on details.
+ * It is designed to be used in applications where event customization is required.
+ * @name CreateEventAddOn
+ * @param {string} eventId - The id of the event
+ * @param {EventAddOnCreateInputs} addOn - The add-on details to be created
+ * @version 1.2
+ **/
+
 export interface CreateEventAddOnParams extends MutationParams {
   eventId: string;
   addOn: EventAddOnCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-AddOns
- */
 export const CreateEventAddOn = async ({
   eventId,
   addOn,
@@ -45,10 +47,6 @@ export const CreateEventAddOn = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-AddOns
- */
 export const useCreateEventAddOn = (
   options: Omit<
     ConnectedXMMutationOptions<

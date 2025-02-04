@@ -9,19 +9,20 @@ import { QueryClient } from "@tanstack/react-query";
 import { ANNOUNCEMENT_QUERY_KEY } from "./useGetAnnouncement";
 
 /**
- * @category Keys
- * @group Announcements
- */
+ * Endpoint to fetch the audience for a specific announcement.
+ * This function retrieves the list of audience members associated with a given announcement ID.
+ * It is designed to be used in applications where understanding the reach or participants of an announcement is necessary.
+ * @name GetAnnouncementAudience
+ * @param {string} announcementId - The ID of the announcement
+ * @version 1.2
+ **/
+
 export const ANNOUNCEMENT_AUDIENCE_QUERY_KEY = (announcementId: string) => {
   const queryKey = [...ANNOUNCEMENT_QUERY_KEY(announcementId), "AUDIENCE"];
 
   return queryKey;
 };
 
-/**
- * @category Setters
- * @group Announcements
- */
 export const SET_ANNOUNCEMENT_AUDIENCE_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ANNOUNCEMENT_AUDIENCE_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetAnnouncementAudienceProps extends InfiniteQueryParams {
   announcementId: string;
 }
 
-/**
- * @category Queries
- * @group Announcements
- */
 export const GetAnnouncementAudience = async ({
   announcementId,
   pageParam,
@@ -62,10 +59,7 @@ export const GetAnnouncementAudience = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Announcements
- */
+
 export const useGetAnnouncementAudience = (
   announcementId: string = "",
   params: Omit<

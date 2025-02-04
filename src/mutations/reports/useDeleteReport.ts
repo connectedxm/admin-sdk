@@ -8,18 +8,20 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { REPORTS_QUERY_KEY, REPORT_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Reports
- */
+ * Endpoint to delete a specific report by its ID.
+ * This function allows for the removal of a report from the system, optionally associated with a specific event.
+ * It is designed to be used in applications where report management is required, ensuring that the report is deleted and relevant queries are invalidated.
+ * @name DeleteReport
+ * @param {string} reportId - The ID of the report to be deleted
+ * @param {string} [eventId] - Optional event ID associated with the report
+ * @version 1.2
+ **/
+
 export interface DeleteReportParams extends MutationParams {
   reportId: string;
   eventId?: string;
 }
 
-/**
- * @category Methods
- * @group Reports
- */
 export const DeleteReport = async ({
   reportId,
   eventId,
@@ -44,10 +46,6 @@ export const DeleteReport = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Reports
- */
 export const useDeleteReport = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -12,19 +12,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Bypass
- */
+ * Endpoint to update an event registration bypass.
+ * This function allows updating the details of a specific event registration bypass using the event ID and bypass ID.
+ * It is designed to be used in applications where modifications to event registration bypasses are required.
+ * @name UpdateEventRegistrationBypass
+ * @param {string} eventId - The id of the event
+ * @param {string} bypassId - The id of the bypass
+ * @param {EventRegistrationBypassUpdateInputs} page - The update inputs for the event registration bypass
+ * @version 1.2
+ **/
 export interface UpdateEventRegistrationBypassParams extends MutationParams {
   eventId: string;
   bypassId: string;
   page: EventRegistrationBypassUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Bypass
- */
 export const UpdateEventRegistrationBypass = async ({
   eventId,
   bypassId,
@@ -59,10 +61,6 @@ export const UpdateEventRegistrationBypass = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Bypass
- */
 export const useUpdateEventRegistrationBypass = (
   options: Omit<
     ConnectedXMMutationOptions<

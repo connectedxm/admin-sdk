@@ -9,18 +9,20 @@ import { SET_TIER_QUERY_DATA, TIERS_QUERY_KEY } from "@src/queries";
 import { TierUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Tier
- */
+ * Endpoint to update a specific tier within the system.
+ * This function allows for the modification of tier details by providing the tier ID and the updated tier inputs.
+ * It is designed to be used in applications where tier management is required, ensuring that the tier data is kept up-to-date.
+ * @name UpdateTier
+ * @param {string} tierId - The ID of the tier
+ * @param {TierUpdateInputs} tier - The tier update inputs
+ * @version 1.2
+ **/
+
 export interface UpdateTierParams extends MutationParams {
   tierId: string;
   tier: TierUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Tier
- */
 export const UpdateTier = async ({
   tierId,
   tier,
@@ -51,10 +53,6 @@ export const UpdateTier = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Tier
- */
 export const useUpdateTier = (
   options: Omit<
     ConnectedXMMutationOptions<

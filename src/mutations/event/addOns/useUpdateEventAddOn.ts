@@ -12,19 +12,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-AddOns
- */
+ * Endpoint to update an existing event add-on with new data.
+ * This function allows updating the details of a specific add-on associated with an event.
+ * It is designed to be used in applications where modifications to event add-ons are required.
+ * @name UpdateEventAddOn
+ * @param {string} eventId - The id of the event
+ * @param {string} addOnId - The id of the add-on
+ * @param {EventAddOnUpdateInputs} addOn - The new data for the add-on
+ * @version 1.2
+ **/
+
 export interface UpdateEventAddOnParams extends MutationParams {
   eventId: string;
   addOnId: string;
   addOn: EventAddOnUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-AddOns
- */
 export const UpdateEventAddOn = async ({
   eventId,
   addOnId,
@@ -61,12 +64,8 @@ export const UpdateEventAddOn = async ({
     );
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Event-AddOns
- */
 export const useUpdateEventAddOn = (
   options: Omit<
     ConnectedXMMutationOptions<

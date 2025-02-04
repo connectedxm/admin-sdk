@@ -10,9 +10,15 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Translations
+ * Deletes a specific event translation for a given event ID and locale.
+ * This function is used to remove translations associated with an event, ensuring that the event's translation data is up-to-date.
+ * It also invalidates the relevant queries in the query client to maintain data consistency.
+ * @name DeleteEventTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} locale - The locale of the translation to be deleted
+ * @version 1.2
  */
+
 export interface DeleteEventTranslationParams extends MutationParams {
   eventId: string;
   locale: string;

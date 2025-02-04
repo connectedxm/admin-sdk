@@ -8,18 +8,21 @@ import {
 } from "../useConnectedMutation";
 
 /**
- * @category Params
- * @group Groups
- */
+ * Endpoint to delete a specific group request and invalidate related queries.
+ * This function allows the removal of a group request by its unique identifiers, 
+ * ensuring that any cached queries related to the group requests are invalidated 
+ * to maintain data consistency.
+ * @name DeleteGroupRequest
+ * @param {string} groupId - The id of the group
+ * @param {string} requestId - The id of the request
+ * @version 1.2
+ **/
+
 export interface DeleteGroupRequestParams extends MutationParams {
   groupId: string;
   requestId: string;
 }
 
-/**
- * @category Methods
- * @group Groups
- */
 export const DeleteGroupRequest = async ({
   groupId,
   requestId,
@@ -38,10 +41,6 @@ export const DeleteGroupRequest = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Groups
- */
 export const useDeleteGroupRequest = (
   options: Omit<
     ConnectedXMMutationOptions<

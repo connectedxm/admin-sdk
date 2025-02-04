@@ -9,6 +9,16 @@ import {
 import { EVENT_SESSION_LOCATION_QUERY_KEY } from "../useGetEventSessionLocation";
 
 /**
+ * Retrieves translations for a specific event session location.
+ * This function fetches the translation details for a given event session location using the event and location IDs.
+ * It is useful for applications that need to display localized information for event session locations.
+ * @name GetEventSessionLocationTranslations
+ * @param {string} eventId - The ID of the event
+ * @param {string} locationId - The ID of the location
+ * @version 1.2
+ **/
+
+/**
  * @category Keys
  * @group Events
  */

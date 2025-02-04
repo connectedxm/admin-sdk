@@ -13,17 +13,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { ORGANIZATION_MODULES_QUERY_KEY } from "./useGetOrganizationModules";
 
 /**
- * @category Keys
- * @group Organization
- */
+ * Provides functionality to query and manage organization modules.
+ * This module includes functions to fetch, cache, and utilize organization module data
+ * based on the specified module type. It is designed to be used in applications
+ * that require interaction with different types of organization modules.
+ * @name GetOrganizationModule
+ * @param {keyof typeof OrganizationModuleType} moduleType - The type of the organization module
+ * @version 1.2
+ **/
+
 export const ORGANIZATION_MODULE_QUERY_KEY = (
   moduleType: keyof typeof OrganizationModuleType
 ) => [...ORGANIZATION_MODULES_QUERY_KEY(), moduleType];
 
-/**
- * @category Setters
- * @group Organization
- */
 export const SET_ORGANIZATION_MODULE_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ORGANIZATION_MODULE_QUERY_KEY>,
@@ -36,10 +38,6 @@ interface GetOrganizationModuleProps extends SingleQueryParams {
   moduleType: keyof typeof OrganizationModuleType;
 }
 
-/**
- * @category Queries
- * @group Organization
- */
 export const GetOrganizationModule = async ({
   moduleType,
   adminApiParams,
@@ -51,10 +49,6 @@ export const GetOrganizationModule = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Organization
- */
 export const useGetOrganizationModule = (
   moduleType: keyof typeof OrganizationModuleType,
   options: SingleQueryOptions<ReturnType<typeof GetOrganizationModule>> = {}

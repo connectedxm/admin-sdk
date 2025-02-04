@@ -9,9 +9,15 @@ import {
 } from "@src/queries/useConnectedSingleQuery";
 
 /**
- * @category Keys
- * @group Groups
- */
+ * Fetches the translation details for a specific group by its ID and locale.
+ * This function is used to retrieve translation data for a group within an application, 
+ * allowing for localization and internationalization support.
+ * @name GetGroupTranslation
+ * @param {string} groupId - The ID of the group
+ * @param {string} locale - The locale for the translation
+ * @version 1.2
+ **/
+
 export const GROUP_TRANSLATION_QUERY_KEY = (
   groupId: string,
   locale: string
@@ -51,6 +57,7 @@ export const GetGroupTranslation = async ({
   );
   return data;
 };
+
 /**
  * @category Hooks
  * @group Groups

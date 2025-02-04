@@ -9,18 +9,19 @@ import { VIDEOS_QUERY_KEY, SET_VIDEO_QUERY_DATA } from "@src/queries";
 import { VideoUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Videos
- */
+ * Endpoint to update an existing video with new information.
+ * This function allows users to modify the details of a video by providing the video ID and the updated video inputs.
+ * It ensures that the video data is updated in the system and invalidates the relevant queries to maintain data consistency.
+ * @name UpdateVideo
+ * @param {string} videoId - The ID of the video to update
+ * @param {VideoUpdateInputs} video - The video update inputs
+ * @version 1.2
+ **/
 export interface UpdateVideoParams extends MutationParams {
   videoId: string;
   video: VideoUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Videos
- */
 export const UpdateVideo = async ({
   videoId,
   video,
@@ -39,10 +40,6 @@ export const UpdateVideo = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Videos
- */
 export const useUpdateVideo = (
   options: Omit<
     ConnectedXMMutationOptions<

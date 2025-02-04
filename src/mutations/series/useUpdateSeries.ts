@@ -9,18 +9,20 @@ import { SERIES_LIST_QUERY_KEY, SET_SERIES_QUERY_DATA } from "@src/queries";
 import { SeriesUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Series
- */
+ * Endpoint to update a series in the system.
+ * This function allows for updating the details of an existing series by providing the series ID and the new series data.
+ * It is designed to be used in applications where series data needs to be modified.
+ * @name UpdateSeries
+ * @param {string} seriesId - The id of the series
+ * @param {SeriesUpdateInputs} series - The series update inputs
+ * @version 1.2
+ **/
+
 export interface UpdateSeriesParams extends MutationParams {
   seriesId: string;
   series: SeriesUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Series
- */
 export const UpdateSeries = async ({
   seriesId,
   series,
@@ -45,10 +47,6 @@ export const UpdateSeries = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Series
- */
 export const useUpdateSeries = (
   options: Omit<
     ConnectedXMMutationOptions<

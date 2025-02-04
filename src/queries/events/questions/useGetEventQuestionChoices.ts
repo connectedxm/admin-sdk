@@ -11,18 +11,20 @@ import { EVENT_QUESTION_QUERY_KEY } from "./useGetEventQuestion";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Provides functionality to retrieve and manage choices for a specific event question.
+ * This module includes methods to fetch event question choices, set query data, and utilize infinite queries.
+ * It is designed for applications that require dynamic interaction with event question choices data.
+ * @name GetEventQuestionChoices
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @version 1.2
+ **/
+
 export const EVENT_QUESTION_CHOICES_QUERY_KEY = (
   eventId: string,
   questionId: string
 ) => [...EVENT_QUESTION_QUERY_KEY(eventId, questionId), "CHOICES"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_QUESTION_CHOICES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_QUESTION_CHOICES_QUERY_KEY>,
@@ -45,10 +47,6 @@ interface GetEventQuestionChoicesProps extends InfiniteQueryParams {
   questionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventQuestionChoices = async ({
   eventId,
   questionId,
@@ -74,10 +72,7 @@ export const GetEventQuestionChoices = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventQuestionChoices = (
   eventId: string = "",
   questionId: string = "",

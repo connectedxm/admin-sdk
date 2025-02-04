@@ -10,18 +10,20 @@ import { QueryClient } from "@tanstack/react-query";
 import { EVENT_PASS_TYPES_QUERY_KEY } from "./useGetEventPassTypes";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches data for a specific event pass type by event and pass type IDs.
+ * This function is used to retrieve detailed information about a particular pass type associated with an event.
+ * It is designed for applications that require access to event pass type details.
+ * @name GetEventPassType
+ * @param {string} eventId - The ID of the event
+ * @param {string} passTypeId - The ID of the pass type
+ * @version 1.2
+ **/
+
 export const EVENT_PASS_TYPE_QUERY_KEY = (
   eventId: string,
   passTypeId: string
 ) => [...EVENT_PASS_TYPES_QUERY_KEY(eventId), passTypeId];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_PASS_TYPE_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_PASS_TYPE_QUERY_KEY>,
@@ -35,10 +37,6 @@ interface GetEventPassTypeParams extends SingleQueryParams {
   passTypeId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventPassType = async ({
   eventId,
   passTypeId,
@@ -50,10 +48,7 @@ export const GetEventPassType = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventPassType = (
   eventId: string = "",
   passTypeId: string = "",

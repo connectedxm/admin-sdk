@@ -12,23 +12,25 @@ import {
 } from "../../useConnectedInfiniteQuery";
 import { EVENT_PASS_QUERY_KEY } from "./useGetEventPass";
 
+/**
+ * Endpoint to retrieve responses for registration questions associated with a specific event pass.
+ * This function fetches the responses to registration questions for a given event and pass, 
+ * allowing users to analyze and process the collected data.
+ * @name GetEventPassResponses
+ * @param {string} eventId - The id of the event
+ * @param {string} passId - The id of the pass
+ * @version 1.2
+ **/
+
 export interface RegistrationQuestionWithResponse extends RegistrationQuestion {
   responses: RegistrationQuestionResponse[];
 }
 
-/**
- * @category Keys
- * @group Events
- */
 export const EVENT_PASS_RESPONSES_QUERY_KEY = (
   eventId: string,
   passId: string
 ) => [...EVENT_PASS_QUERY_KEY(eventId, passId), "RESPONSES"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_PASS_RESPONSES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_PASS_RESPONSES_QUERY_KEY>,
@@ -42,10 +44,6 @@ interface GetEventPassResponsesProps extends InfiniteQueryParams {
   passId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventPassResponses = async ({
   eventId,
   passId,
@@ -71,10 +69,7 @@ export const GetEventPassResponses = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventPassResponses = (
   eventId: string = "",
   passId: string = "",

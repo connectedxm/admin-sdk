@@ -11,6 +11,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Creates a new translation for a specific benefit.
+ * This function allows the creation of a translation for a benefit by specifying the benefit ID and locale.
+ * It supports optional auto-translation and updates the query cache upon successful creation.
+ * @name PostBenefitTranslation
+ * @param {string} benefitId - The ID of the benefit
+ * @param {string} locale - The locale for the translation
+ * @param {[boolean]} autoTranslate - Whether to auto-translate the benefit description
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Benefit
  */
@@ -19,6 +30,7 @@ export interface CreateBenefitTranslationParams extends MutationParams {
   locale: string;
   autoTranslate?: boolean;
 }
+
 /**
  * @category Methods
  * @group Benefit

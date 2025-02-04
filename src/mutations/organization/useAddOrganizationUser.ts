@@ -8,17 +8,18 @@ import { ConnectedXMResponse, OrganizationMembership } from "@src/interfaces";
 import { ORGANIZATION_USERS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Organization
- */
+ * Endpoint to add a user to the organization.
+ * This function allows administrators to add a new user to their organization by providing the user's email address.
+ * It is designed to be used in applications where managing organization memberships is required.
+ * @name AddOrganizationUser
+ * @param {string} email - The email address of the user to be added
+ * @version 1.2
+ **/
+
 export interface AddOrganizationUserParams extends MutationParams {
   email: string;
 }
 
-/**
- * @category Methods
- * @group Organization
- */
 export const AddOrganizationUser = async ({
   email,
   adminApiParams,
@@ -36,10 +37,6 @@ export const AddOrganizationUser = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization
- */
 export const useAddOrganizationUser = (
   options: Omit<
     ConnectedXMMutationOptions<

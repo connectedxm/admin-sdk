@@ -12,18 +12,20 @@ import {
 import { ChannelUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Channel
- */
+ * Endpoint to update the details of a specific channel.
+ * This function allows updating various attributes of a channel identified by its ID.
+ * It is designed to be used in applications where channel management is required.
+ * @name UpdateChannel
+ * @param {string} channelId - The ID of the channel
+ * @param {ChannelUpdateInputs} channel - The channel update inputs
+ * @version 1.2
+ **/
+
 export interface UpdateChannelParams extends MutationParams {
   channelId: string;
   channel: ChannelUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Channel
- */
 export const UpdateChannel = async ({
   channelId,
   channel,
@@ -50,12 +52,8 @@ export const UpdateChannel = async ({
     SET_CHANNEL_QUERY_DATA(queryClient, [channelId || data?.data.id], data);
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Channel
- */
 export const useUpdateChannel = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -8,17 +8,18 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { INVOICES_QUERY_KEY, INVOICE_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Invoices
- */
+ * Endpoint to delete a specific invoice by its ID.
+ * This function allows for the removal of an invoice from the system, ensuring that all related queries are invalidated and removed.
+ * It is designed to be used in applications where invoice management is required.
+ * @name DeleteInvoice
+ * @param {string} invoiceId - The ID of the invoice to be deleted
+ * @version 1.2
+ **/
+
 export interface DeleteInvoiceParams extends MutationParams {
   invoiceId: string;
 }
 
-/**
- * @category Methods
- * @group Invoices
- */
 export const DeleteInvoice = async ({
   invoiceId,
   adminApiParams,
@@ -35,10 +36,6 @@ export const DeleteInvoice = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Invoices
- */
 export const useDeleteInvoice = (
   options: Omit<
     ConnectedXMMutationOptions<

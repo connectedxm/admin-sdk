@@ -9,9 +9,15 @@ import {
 import { EVENT_PASS_TYPE_QUERY_KEY } from "../useGetEventPassType";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves translations for a specific event pass type.
+ * This function fetches the translations associated with a given event and pass type, 
+ * allowing applications to display localized information for event passes.
+ * @name GetEventPassTypeTranslations
+ * @param {string} eventId - The ID of the event
+ * @param {string} passTypeId - The ID of the pass type
+ * @version 1.2
+ **/
+
 export const EVENT_PASS_TYPE_TRANSLATIONS_QUERY_KEY = (
   eventId: string,
   passTypeId: string

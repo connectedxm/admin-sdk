@@ -8,18 +8,20 @@ import { ConnectedXMResponse, Tier } from "@src/interfaces";
 import { SET_TIER_QUERY_DATA, TIER_ACCOUNTS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Tier
- */
+ * Endpoint to add an account to a specific tier within the system.
+ * This function allows the addition of an account to a designated tier by providing the tier and account identifiers.
+ * It is used in scenarios where account management and tier allocation are required.
+ * @name AddTierAccount
+ * @param {string} tierId - The id of the tier
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export interface AddTierAccountParams extends MutationParams {
   tierId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Tier
- */
 export const AddTierAccount = async ({
   tierId,
   accountId,
@@ -39,10 +41,6 @@ export const AddTierAccount = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Tier
- */
 export const useAddTierAccount = (
   options: Omit<
     ConnectedXMMutationOptions<

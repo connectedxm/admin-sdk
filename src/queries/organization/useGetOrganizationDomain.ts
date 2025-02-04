@@ -8,15 +8,15 @@ import { ConnectedXMResponse, DomainDetails } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Organization
- */
+ * Fetches the domain details of an organization.
+ * This function is designed to retrieve detailed information about an organization's domain,
+ * which can be used in applications that require such data for administrative or display purposes.
+ * @name GetOrganizationDomain
+ * @version 1.2
+ **/
+
 export const ORGANIZATION_DOMAIN_QUERY_KEY = () => ["ORGANIZATION_DOMAIN"];
 
-/**
- * @category Setters
- * @group Organization
- */
 export const SET_ORGANIZATION_DOMAIN_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ORGANIZATION_DOMAIN_QUERY_KEY>,
@@ -27,10 +27,6 @@ export const SET_ORGANIZATION_DOMAIN_QUERY_DATA = (
 
 interface GetOrganizationDomainProps extends SingleQueryParams {}
 
-/**
- * @category Queries
- * @group Organization
- */
 export const GetOrganizationDomain = async ({
   adminApiParams,
 }: GetOrganizationDomainProps): Promise<
@@ -42,10 +38,7 @@ export const GetOrganizationDomain = async ({
   >(`/organization/domain`);
   return data;
 };
-/**
- * @category Hooks
- * @group Organization
- */
+
 export const useGetOrganizationDomain = (
   options: SingleQueryOptions<ReturnType<typeof GetOrganizationDomain>> = {}
 ) => {

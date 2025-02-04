@@ -12,17 +12,18 @@ import {
 import { StreamInputCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Stream
- */
+ * Endpoint to create a new stream input within the system.
+ * This function allows users to add a new stream input by providing the necessary stream input data.
+ * It ensures that the stream input is created and updates the relevant query data if the operation is successful.
+ * @name CreateStreamInput
+ * @param {StreamInputCreateInputs} stream - The stream input data to be created
+ * @version 1.2
+ **/
+
 export interface CreateStreamInputParams extends MutationParams {
   stream: StreamInputCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Stream
- */
 export const CreateStreamInput = async ({
   stream,
   adminApiParams,
@@ -40,10 +41,6 @@ export const CreateStreamInput = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Stream
- */
 export const useCreateStreamInput = (
   options: Omit<
     ConnectedXMMutationOptions<

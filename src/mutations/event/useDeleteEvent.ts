@@ -8,17 +8,17 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { EVENTS_QUERY_KEY, EVENT_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Event
- */
+ * Endpoint to delete a specific event by its unique identifier.
+ * This function allows administrators to remove an event from the system, ensuring that all related queries are invalidated and removed.
+ * It is designed for use in applications where event management and cleanup are required.
+ * @name DeleteEvent
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+**/
 export interface DeleteEventParams extends MutationParams {
   eventId: string;
 }
 
-/**
- * @category Methods
- * @group Event
- */
 export const DeleteEvent = async ({
   eventId,
   adminApiParams,
@@ -35,10 +35,6 @@ export const DeleteEvent = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event
- */
 export const useDeleteEvent = (
   options: Omit<
     ConnectedXMMutationOptions<

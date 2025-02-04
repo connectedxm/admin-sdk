@@ -10,6 +10,17 @@ import {
 } from "@src/queries/useConnectedSingleQuery";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * Fetches price schedule details for a specific event pass type.
+ * This function is designed to retrieve detailed information about the price schedule associated with a particular event pass type.
+ * It is useful in scenarios where precise pricing information is required for event management or ticketing systems.
+ * @name GetEventPassTypePriceSchedule
+ * @param {string} eventId - The id of the event
+ * @param {string} passTypeId - The id of the pass type
+ * @param {string} scheduleId - The id of the schedule
+ * @version 1.2
+ **/
+
 export const EVENT_PASS_TYPE_PRICE_SCHEDULE_QUERY_KEY = (
   eventId: string,
   passTypeId: string,
@@ -36,10 +47,6 @@ interface GetEventPassTypePriceScheduleParams extends SingleQueryParams {
   scheduleId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- **/
 export const GetEventPassTypePriceSchedule = async ({
   eventId,
   passTypeId,

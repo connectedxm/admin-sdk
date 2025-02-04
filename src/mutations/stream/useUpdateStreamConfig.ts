@@ -12,18 +12,20 @@ import {
 import { StreamInputUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Stream
- */
+ * Endpoint to update the configuration of a specific stream.
+ * This function allows users to modify the settings of a stream by providing the stream ID and the new configuration details.
+ * It is designed for applications that require dynamic updates to stream configurations.
+ * @name UpdateStreamConfig
+ * @param {string} streamId - The ID of the stream
+ * @param {StreamInputUpdateInputs} details - The details for updating the stream configuration
+ * @version 1.2
+ **/
+
 export interface UpdateStreamConfigParams extends MutationParams {
   streamId: string;
   details: StreamInputUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Stream
- */
 export const UpdateStreamConfig = async ({
   streamId,
   details,
@@ -42,10 +44,6 @@ export const UpdateStreamConfig = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Stream
- */
 export const useUpdateStreamConfig = (
   options: Omit<
     ConnectedXMMutationOptions<

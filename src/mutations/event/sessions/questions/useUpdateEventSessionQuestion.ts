@@ -10,9 +10,16 @@ import { SET_EVENT_SESSION_QUESTION_QUERY_DATA } from "@src/queries/events/sessi
 import { EVENT_SESSION_QUESTIONS_QUERY_KEY } from "@src/queries/events/sessions/questions/useGetEventSessionQuestions";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Endpoint to update a specific question in an event session.
+ * This function allows updating the details of a question within a specific event session.
+ * It is designed to be used in applications where event session questions need to be modified.
+ * @name UpdateEventSessionQuestion
+ * @param {string} eventId - The id of the event
+ * @param {string} sessionId - The id of the session
+ * @param {string} questionId - The id of the question
+ * @param {EventSessionQuestionUpdateInputs} question - The question update inputs
+ * @version 1.2
+**/
 export interface UpdateEventSessionQuestionParams extends MutationParams {
   eventId: string;
   sessionId: string;
@@ -20,10 +27,6 @@ export interface UpdateEventSessionQuestionParams extends MutationParams {
   question: EventSessionQuestionUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const UpdateEventSessionQuestion = async ({
   eventId,
   sessionId,
@@ -54,12 +57,8 @@ export const UpdateEventSessionQuestion = async ({
     );
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useUpdateEventSessionQuestion = (
   options: Omit<
     ConnectedXMMutationOptions<

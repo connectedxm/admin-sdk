@@ -8,17 +8,17 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { ACCOUNTS_QUERY_KEY, ACCOUNT_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to delete a specific account by its unique identifier.
+ * This function allows for the removal of an account from the system, ensuring that all associated queries are invalidated.
+ * It is designed to be used in applications where account management and cleanup are necessary.
+ * @name DeleteAccount
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
 export interface DeleteAccountParams extends MutationParams {
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const DeleteAccount = async ({
   accountId,
   adminApiParams,
@@ -36,10 +36,6 @@ export const DeleteAccount = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useDeleteAccount = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -12,19 +12,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-OnSite
- */
+ * Endpoint to update the ZPL template badge field for a specific event.
+ * This function allows updating the details of a badge field within a ZPL template for a given event.
+ * It is designed to be used in scenarios where modifications to badge fields are required for event management.
+ * @name UpdateEventZplTemplateBadgeField
+ * @param {string} eventId - The id of the event
+ * @param {string} fieldId - The id of the field
+ * @param {EventBadgeFieldUpdateInputs} field - The field update inputs
+ * @version 1.2
+ **/
+
 export interface UpdateEventZplTemplateBadgeFieldParams extends MutationParams {
   eventId: string;
   fieldId: string;
   field: EventBadgeFieldUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-OnSite
- */
 export const UpdateEventZplTemplateBadgeField = async ({
   eventId,
   fieldId,
@@ -60,10 +63,6 @@ export const UpdateEventZplTemplateBadgeField = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-OnSite
- */
 export const useUpdateEventZplTemplateBadgeField = (
   options: Omit<
     ConnectedXMMutationOptions<

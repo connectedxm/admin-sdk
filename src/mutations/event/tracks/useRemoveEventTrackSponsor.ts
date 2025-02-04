@@ -11,19 +11,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Tracks
- */
+ * Endpoint to remove a sponsor from a specific event track.
+ * This function allows the removal of a sponsor from an event track by specifying the event, track, and sponsor IDs.
+ * It is designed to be used in applications where managing event sponsorships is required.
+ * @name RemoveEventTrackSponsor
+ * @param {string} eventId - The id of the event
+ * @param {string} trackId - The id of the track
+ * @param {string} sponsorId - The id of the sponsor
+ * @version 1.2
+ **/
+
 export interface RemoveEventTrackSponsorParams extends MutationParams {
   eventId: string;
   trackId: string;
   sponsorId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Tracks
- */
 export const RemoveEventTrackSponsor = async ({
   eventId,
   trackId,
@@ -44,10 +47,6 @@ export const RemoveEventTrackSponsor = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Tracks
- */
 export const useRemoveEventTrackSponsor = (
   options: Omit<
     ConnectedXMMutationOptions<

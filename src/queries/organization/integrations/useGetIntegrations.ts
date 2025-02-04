@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Integration } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -10,15 +9,15 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Integrations
- */
+ * Endpoint to retrieve a list of integrations for an organization.
+ * This function fetches integration data, allowing users to view and manage integrations within their organization.
+ * It supports pagination and sorting to efficiently handle large datasets.
+ * @name GetIntegrations
+ * @version 1.2
+ **/
+
 export const INTEGRATIONS_QUERY_KEY = () => ["INTEGRATIONS"];
 
-/**
- * @category Setters
- * @group Integrations
- */
 export const SET_INTEGRATIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INTEGRATIONS_QUERY_KEY>,
@@ -29,10 +28,6 @@ export const SET_INTEGRATIONS_QUERY_DATA = (
 
 interface GetIntegrationsProps extends InfiniteQueryParams {}
 
-/**
- * @category Queries
- * @group Integrations
- */
 export const GetIntegrations = async ({
   pageParam,
   pageSize,
@@ -52,10 +47,6 @@ export const GetIntegrations = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Integrations
- */
 export const useGetIntegrations = (
   params: Omit<
     InfiniteQueryParams,

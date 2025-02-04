@@ -8,17 +8,18 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { VIDEOS_QUERY_KEY, VIDEO_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Videos
- */
+ * Endpoint to delete a specific video by its ID.
+ * This function allows for the removal of a video from the system, ensuring that associated queries are invalidated and removed.
+ * It is intended for use in applications where video management is required, providing a mechanism to delete videos securely.
+ * @name DeleteVideo
+ * @param {string} videoId - The ID of the video to be deleted
+ * @version 1.2
+ **/
+
 export interface DeleteVideoParams extends MutationParams {
   videoId: string;
 }
 
-/**
- * @category Methods
- * @group Videos
- */
 export const DeleteVideo = async ({
   videoId,
   adminApiParams,
@@ -35,10 +36,6 @@ export const DeleteVideo = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Videos
- */
 export const useDeleteVideo = (
   options: Omit<
     ConnectedXMMutationOptions<

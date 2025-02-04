@@ -8,18 +8,20 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { ACCOUNT_TIERS_QUERY_KEY, SET_ACCOUNT_QUERY_DATA } from "@src/queries";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to remove a tier from a specified account.
+ * This function allows the removal of a specific tier from an account by providing the account ID and the tier ID.
+ * It is used in scenarios where account tier management is required, ensuring that the specified tier is detached from the account.
+ * @name RemoveAccountTier
+ * @param {string} accountId - The id of the account
+ * @param {string} tierId - The id of the tier to be removed
+ * @version 1.2
+ **/
+
 export interface RemoveAccountTierParams extends MutationParams {
   accountId: string;
   tierId: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const RemoveAccountTier = async ({
   accountId,
   tierId,
@@ -40,10 +42,6 @@ export const RemoveAccountTier = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useRemoveAccountTier = (
   options: Omit<
     ConnectedXMMutationOptions<

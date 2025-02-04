@@ -13,18 +13,20 @@ import { TaxIntegrationCreateInputs } from "@src/params";
 import { TaxIntegrationType } from "@src/interfaces";
 
 /**
- * @category Params
- * @group Integration
- */
+ * Creates a new tax integration for the organization.
+ * This function allows the creation of a tax integration by specifying the type and the necessary inputs.
+ * It is intended for use in scenarios where an organization needs to set up a new tax integration.
+ * @name CreateTaxIntegration
+ * @param {keyof typeof TaxIntegrationType} type - The type of tax integration
+ * @param {TaxIntegrationCreateInputs} integration - The inputs for creating the tax integration
+ * @version 1.2
+ **/
+
 export interface CreateTaxIntegrationParams extends MutationParams {
   type: keyof typeof TaxIntegrationType;
   integration: TaxIntegrationCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Integration
- */
 export const CreateTaxIntegration = async ({
   type,
   integration,
@@ -45,10 +47,6 @@ export const CreateTaxIntegration = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Integration
- */
 export const useCreateTaxIntegration = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -10,18 +10,20 @@ import { EVENT_QUESTIONS_QUERY_KEY } from "./useGetEventQuestions";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches a specific question associated with an event by its unique identifiers.
+ * This function is designed to retrieve detailed information about a particular question within an event.
+ * It is useful in scenarios where precise data about event questions is required.
+ * @name GetEventQuestion
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @version 1.2
+ **/
+
 export const EVENT_QUESTION_QUERY_KEY = (
   eventId: string,
   questionId: string
 ) => [...EVENT_QUESTIONS_QUERY_KEY(eventId), questionId];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_QUESTION_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_QUESTION_QUERY_KEY>,
@@ -35,10 +37,6 @@ interface GetEventQuestionProps extends SingleQueryParams {
   questionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventQuestion = async ({
   eventId,
   questionId,
@@ -52,10 +50,7 @@ export const GetEventQuestion = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventQuestion = (
   eventId: string = "",
   questionId: string = "",

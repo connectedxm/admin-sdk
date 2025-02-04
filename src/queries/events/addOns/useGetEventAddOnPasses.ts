@@ -9,18 +9,21 @@ import {
 import { EVENT_ADD_ON_QUERY_KEY } from "./useGetEventAddOn";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves a list of passes associated with a specific event add-on.
+ * This function is designed to fetch passes for a given event and its add-on, 
+ * providing detailed information about each pass. It is useful for applications 
+ * that need to display or manage event add-on passes.
+ * @name GetEventAddOnPasses
+ * @param {string} eventId - The id of the event
+ * @param {string} addOnId - The id of the add-on
+ * @version 1.2
+ **/
+
 export const EVENT_ADD_ON_PASSES_QUERY_KEY = (
   eventId: string,
   addOnId: string
 ) => [...EVENT_ADD_ON_QUERY_KEY(eventId, addOnId), "PASSES"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_ADD_ON_PASSES_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_ADD_ON_PASSES_QUERY_KEY>,
@@ -34,10 +37,6 @@ interface GetEventAddOnPassesProps extends InfiniteQueryParams {
   addOnId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventAddOnPasses = async ({
   eventId,
   addOnId,
@@ -61,10 +60,7 @@ export const GetEventAddOnPasses = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventAddOnPasses = (
   eventId: string = "",
   addOnId: string = "",

@@ -9,18 +9,19 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Accounts
- */
+ * Retrieves a list of levels associated with a specific account.
+ * This function is designed to fetch account levels using infinite query pagination, allowing for efficient data retrieval and management.
+ * It is suitable for applications that require detailed information about account levels.
+ * @name GetAccountLevels
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export const ACCOUNT_LEVELS_QUERY_KEY = (accountId: string) => [
   ...ACCOUNT_QUERY_KEY(accountId),
   "LEVELS",
 ];
 
-/**
- * @category Setters
- * @group Accounts
- */
 export const SET_ACCOUNT_LEVELS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_LEVELS_QUERY_KEY>,
@@ -33,10 +34,6 @@ interface GetAccountLevelsProps extends InfiniteQueryParams {
   accountId: string;
 }
 
-/**
- * @category Queries
- * @group Accounts
- */
 export const GetAccountLevels = async ({
   accountId,
   pageParam,
@@ -61,10 +58,6 @@ export const GetAccountLevels = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Accounts
- */
 export const useGetAccountLevels = (
   accountId: string = "",
   params: Omit<

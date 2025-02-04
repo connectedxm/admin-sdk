@@ -9,19 +9,19 @@ import {
 } from "../useConnectedInfiniteQuery";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves a list of events, with the option to filter by past or upcoming events.
+ * This function is designed to be used in applications that require event data, allowing users to specify whether they want to see past events.
+ * @name GetEvents
+ * @param {boolean} [past] - Optional flag to filter past events
+ * @version 1.2
+ **/
+
 export const EVENTS_QUERY_KEY = (past?: boolean) => {
   let keys = ["EVENTS"];
   if (typeof past !== "undefined") keys = [...keys, past ? "PAST" : "UPCOMING"];
   return keys;
 };
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENTS_QUERY_KEY>,
@@ -34,10 +34,6 @@ interface GetEventsProps extends InfiniteQueryParams {
   past?: boolean;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEvents = async ({
   pageParam,
   pageSize,
@@ -59,10 +55,7 @@ export const GetEvents = async ({
 
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEvents = (
   past?: boolean,
   params: Omit<

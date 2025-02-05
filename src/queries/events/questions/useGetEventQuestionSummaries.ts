@@ -1,7 +1,6 @@
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, SummaryData } from "@src/interfaces";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { QueryClient } from "@tanstack/react-query";
-import { SummaryData } from "./useGetEventQuestionSummary";
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
   InfiniteQueryOptions,
@@ -11,7 +10,7 @@ import {
 
 /**
  * Retrieves a list of summaries for questions associated with a specific event.
- * This function is designed to fetch detailed summaries of questions for a given event, 
+ * This function is designed to fetch detailed summaries of questions for a given event,
  * which can be used in applications that require insights into event-related questions.
  * @name GetEventQuestionSummaries
  * @param {string} eventId - The id of the event

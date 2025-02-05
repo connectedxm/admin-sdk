@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
+  ConnectedXMResponse,
+  RegistrationQuestionChoice,
+} from "@src/interfaces";
+import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
@@ -35,7 +39,9 @@ export const UpdateEventQuestionChoice = async ({
   choice,
   adminApiParams,
   queryClient,
-}: UpdateEventQuestionChoiceParams) => {
+}: UpdateEventQuestionChoiceParams): Promise<
+  ConnectedXMResponse<RegistrationQuestionChoice>
+> => {
   if (!choiceId) throw new Error("Choice ID Undefined");
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.put(

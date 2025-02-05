@@ -38,7 +38,7 @@ export const GetUnapprovedEvents = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetUnapprovedEventsProps) => {
+}: GetUnapprovedEventsProps): Promise<ConnectedXMResponse<Event[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/unapproved`, {
     params: {

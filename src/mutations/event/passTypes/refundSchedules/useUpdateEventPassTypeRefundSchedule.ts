@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
+  ConnectedXMResponse,
+  EventPassTypePriceSchedule,
+} from "@src/interfaces";
+import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
@@ -33,7 +37,9 @@ export const UpdateEventPassTypeRefundSchedule = async ({
   schedule,
   adminApiParams,
   queryClient,
-}: UpdateEventPassTypeRefundScheduleParams) => {
+}: UpdateEventPassTypeRefundScheduleParams): Promise<
+  ConnectedXMResponse<EventPassTypePriceSchedule>
+> => {
   const adminApi = await GetAdminAPI(adminApiParams);
 
   const { data } = await adminApi.put(

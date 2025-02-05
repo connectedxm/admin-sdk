@@ -38,7 +38,7 @@ export const GetFeaturedEvents = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetFeaturedEventsProps) => {
+}: GetFeaturedEventsProps): Promise<ConnectedXMResponse<Event[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/featured`, {
     params: {

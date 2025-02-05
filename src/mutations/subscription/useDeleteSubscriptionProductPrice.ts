@@ -28,11 +28,11 @@ export const DeleteSubscriptionProductPrice = async ({
   adminApiParams,
   queryClient,
 }: DeleteSubscriptionProductPriceParams): Promise<
-  ConnectedXMResponse<void>
+  ConnectedXMResponse<null>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await adminApi.delete<ConnectedXMResponse<void>>(
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/subscription-products/${subscriptionProductId}`
   );
   if (queryClient && data.status === "ok") {

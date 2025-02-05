@@ -6,6 +6,7 @@ import {
 import { ORGANIZATION_TEAM_MEMBERS_QUERY_KEY } from "./useGetOrganizationTeamMembers";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse, TeamMember } from "@src/interfaces";
 
 /**
  * Fetches details for a specific organization team member by their ID.
@@ -39,7 +40,9 @@ interface GetOrganizationTeamMemberProps extends SingleQueryParams {
 export const GetOrganizationTeamMember = async ({
   teamMemberId,
   adminApiParams,
-}: GetOrganizationTeamMemberProps) => {
+}: GetOrganizationTeamMemberProps): Promise<
+  ConnectedXMResponse<TeamMember>
+> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
     `/organization/team-members/${teamMemberId}`

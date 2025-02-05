@@ -4,7 +4,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { CloneEventResponse, ConnectedXMResponse } from "@src/interfaces";
 import { CloneOptions } from "@src/params";
 
 /**
@@ -25,9 +25,7 @@ export const CloneEvent = async ({
   eventId,
   options,
   adminApiParams,
-}: CloneEventParams): Promise<
-  ConnectedXMResponse<{ id: string; slug: string }>
-> => {
+}: CloneEventParams): Promise<ConnectedXMResponse<CloneEventResponse>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.post<
     ConnectedXMResponse<{ id: string; slug: string }>

@@ -4,8 +4,7 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
-import { ConnectedXMResponse } from "@src/interfaces";
-import { RegistrationQuestion } from "@src/interfaces";
+import { ConnectedXMResponse, SummaryData } from "@src/interfaces";
 import { EVENT_QUESTION_SUMMARIES_QUERY_KEY } from "./useGetEventQuestionSummaries";
 import { QueryClient } from "@tanstack/react-query";
 
@@ -17,48 +16,6 @@ import { QueryClient } from "@tanstack/react-query";
  * @param {string} questionId - The ID of the question
  * @version 1.2
  **/
-
-export interface BarChartSummaryData {
-  type: "bar";
-  data: {
-    label: string;
-    value: number;
-  }[];
-  count: number;
-  question?: RegistrationQuestion;
-}
-
-export interface LineChartSummaryData {
-  type: "line";
-  data: {
-    label: string;
-    value: number;
-  }[];
-  count: number;
-  question?: RegistrationQuestion;
-}
-
-export interface TableChartSummaryData {
-  type: "table";
-  data: {
-    value: number;
-  }[];
-  count: number;
-  question?: RegistrationQuestion;
-}
-
-export interface CountChartSummaryData {
-  type: "count";
-  data: null;
-  count: number;
-  question?: RegistrationQuestion;
-}
-
-export type SummaryData =
-  | BarChartSummaryData
-  | LineChartSummaryData
-  | TableChartSummaryData
-  | CountChartSummaryData;
 
 export const EVENT_QUESTION_SUMMARY_QUERY_KEY = (
   eventId: string,

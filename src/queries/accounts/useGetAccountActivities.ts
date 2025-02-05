@@ -19,19 +19,11 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
  * @version 1.2
  **/
 
-/**
- * @category Keys
- * @group Accounts
- */
 export const ACCOUNT_ACTIVITIES_QUERY_KEY = (accountId: string) => [
   ...ACCOUNT_QUERY_KEY(accountId),
   "ACTIVITIES",
 ];
 
-/**
- * @category Setters
- * @group Accounts
- */
 export const SET_ACCOUNT_ACTIVITIES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_ACTIVITIES_QUERY_KEY>,
@@ -44,12 +36,6 @@ interface GetAccountActivitiesProps extends InfiniteQueryParams {
   accountId: string;
 }
 
-/**
- * @name List Account Activities
- * @description Retrieve a list of activities for an account
- * @category Queries
- * @group Accounts
- */
 export const GetAccountActivities = async ({
   accountId,
   pageParam,
@@ -70,10 +56,6 @@ export const GetAccountActivities = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Accounts
- */
 export const useGetAccountActivities = (
   accountId: string = "",
   params: Omit<
@@ -81,4 +63,20 @@ export const useGetAccountActivities = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<Return
+    Awaited<ReturnType<typeof GetAccountActivities>>
+  > = {}
+) => {
+  return useConnectedInfiniteQuery<
+    Awaited<ReturnType<typeof GetAccountActivities>>
+  >(
+    ACCOUNT_ACTIVITIES_QUERY_KEY(accountId),
+    (params: InfiniteQueryParams) =>
+      GetAccountActivities({ accountId, ...params }),
+    params,
+    {
+      ...options,
+      enabled: !!accountId && (options?.enabled ?? true),
+    },
+    "accounts"
+  );
+};

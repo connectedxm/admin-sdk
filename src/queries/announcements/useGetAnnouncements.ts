@@ -83,6 +83,7 @@ export const GetAnnouncements = async ({
   });
   return data;
 };
+
 /**
  * @category Hooks
  * @group Announcements

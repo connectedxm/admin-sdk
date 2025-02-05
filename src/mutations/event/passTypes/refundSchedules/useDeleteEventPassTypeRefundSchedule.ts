@@ -1,4 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -29,7 +30,9 @@ export const DeleteEventPassTypeRefundSchedule = async ({
   scheduleId,
   adminApiParams,
   queryClient,
-}: DeleteEventPassTypeRefundScheduleParams) => {
+}: DeleteEventPassTypeRefundScheduleParams): Promise<
+  ConnectedXMResponse<null>
+> => {
   const adminApi = await GetAdminAPI(adminApiParams);
 
   const { data } = await adminApi.delete(

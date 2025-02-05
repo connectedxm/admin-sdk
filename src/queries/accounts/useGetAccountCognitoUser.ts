@@ -17,7 +17,6 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @param {string} username - The username of the Cognito user
  * @version 1.2
  **/
-
 export const ACCOUNT_COGNITO_USER_QUERY_KEY = (
   accountId: string,
   username: string
@@ -25,4 +24,34 @@ export const ACCOUNT_COGNITO_USER_QUERY_KEY = (
 
 interface GetAccountCognitoUserProps extends SingleQueryParams {
   accountId: string;
-  username:
+  username: string;
+}
+
+export const GetAccountCognitoUser = async ({
+  accountId,
+  username,
+  adminApiParams,
+}: GetAccountCognitoUserProps): Promise<ConnectedXMResponse<CognitoUser>> => {
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.get(
+    `/accounts/${accountId}/cognito/${username}`
+  );
+  return data;
+};
+
+export const useGetAccountCognitoUser = (
+  accountId: string = "",
+  username: string = "",
+  options: SingleQueryOptions<ReturnType<typeof GetAccountCognitoUser>> = {}
+) => {
+  return useConnectedSingleQuery<ReturnType<typeof GetAccountCognitoUser>>(
+    ACCOUNT_COGNITO_USER_QUERY_KEY(accountId, username),
+    (params: SingleQueryParams) =>
+      GetAccountCognitoUser({ accountId: accountId, username, ...params }),
+    {
+      ...options,
+      enabled: !!accountId && !!username && (options?.enabled ?? true),
+    },
+    "accounts"
+  );
+};

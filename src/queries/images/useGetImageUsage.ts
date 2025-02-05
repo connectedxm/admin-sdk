@@ -4,8 +4,7 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../useConnectedSingleQuery";
-import { ConnectedXMResponse } from "@src/interfaces";
-import { Image } from "@src/interfaces";
+import { ConnectedXMResponse, ImageUsage } from "@src/interfaces";
 import { IMAGE_QUERY_KEY } from "./useGetImage";
 import { QueryClient } from "@tanstack/react-query";
 
@@ -33,18 +32,6 @@ export const SET_IMAGE_USAGE_QUERY_DATA = (
 
 interface GetImageUsageParams extends SingleQueryParams {
   imageId: string;
-}
-
-interface ImageUsage extends Image {
-  _count: {
-    accounts: number;
-    events: number;
-    sessions: number;
-    groups: number;
-    usage: number;
-    speakers: number;
-    tickets: number;
-  };
 }
 
 export const GetImageUsage = async ({

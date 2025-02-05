@@ -9,8 +9,13 @@ import {
 import { ANNOUNCEMENT_TRANSLATIONS_QUERY_KEY } from "./useGetAnnouncementTranslations";
 
 /**
- * @category Keys
- * @announcement Announcements
+ * Retrieves the translation of a specific announcement for a given locale.
+ * This function is used to fetch the translated content of an announcement, allowing applications to display announcements in different languages.
+ * It is particularly useful in multilingual applications where announcements need to be presented in the user's preferred language.
+ * @name GetAnnouncementTranslation
+ * @param {string} announcementId - The ID of the announcement
+ * @param {string} locale - The locale for which the translation is required
+ * @version 1.2
  */
 export const ANNOUNCEMENT_TRANSLATION_QUERY_KEY = (
   announcementId: string,
@@ -54,6 +59,7 @@ export const GetAnnouncementTranslation = async ({
   );
   return data;
 };
+
 /**
  * @category Hooks
  * @announcement Announcements

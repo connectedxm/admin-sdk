@@ -9,18 +9,20 @@ import {
 import { EVENT_PAGE_QUERY_KEY } from "./useGetEventPage";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches images associated with a specific event page.
+ * This function retrieves a list of images for a given event and page, allowing users to access visual content related to the event.
+ * It is designed to be used in applications where event-related images need to be displayed or managed.
+ * @name GetEventPageImages
+ * @param {string} eventId - The id of the event
+ * @param {string} pageId - The id of the page
+ * @version 1.2
+ **/
+
 export const EVENT_PAGE_IMAGES_QUERY_KEY = (
   eventId: string,
   pageId: string
 ) => [...EVENT_PAGE_QUERY_KEY(eventId, pageId), "IMAGES"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_PAGE_IMAGES_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_PAGE_IMAGES_QUERY_KEY>,
@@ -34,10 +36,6 @@ interface GetEventPageImagesProps extends InfiniteQueryParams {
   pageId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventPageImages = async ({
   eventId,
   pageId,
@@ -61,10 +59,7 @@ export const GetEventPageImages = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventPageImages = (
   eventId: string = "",
   pageId: string = "",

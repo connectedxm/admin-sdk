@@ -11,19 +11,22 @@ import {
 } from "@src/queries/channels";
 
 /**
- * @category Params
- * @group Channel
- */
+ * Endpoint to delete a guest from the specified channel content.
+ * This function allows the removal of a guest from a particular content within a channel.
+ * It is useful in scenarios where guest access needs to be revoked or managed.
+ * @name DeleteChannelContentGuest
+ * @param {string} contentId - The id of the content
+ * @param {string} channelId - The id of the channel
+ * @param {string} guestId - The id of the guest
+ * @version 1.2
+ **/
+
 export interface DeleteChannelContentGuestParams extends MutationParams {
   contentId: string;
   channelId: string;
   guestId: string;
 }
 
-/**
- * @category Methods
- * @group Channel
- */
 export const DeleteChannelContentGuest = async ({
   contentId,
   guestId,
@@ -33,10 +36,10 @@ export const DeleteChannelContentGuest = async ({
 }: DeleteChannelContentGuestParams): Promise<
   ConnectedXMResponse<ChannelContent>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<
-    ConnectedXMResponse<ChannelContent>
-  >(`/channels/${channelId}/contents/${contentId}/guests/${guestId}`);
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<ChannelContent>>(
+    `/channels/${channelId}/contents/${contentId}/guests/${guestId}`
+  );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
@@ -49,10 +52,6 @@ export const DeleteChannelContentGuest = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Channel
- */
 export const useDeleteChannelContentGuest = (
   options: Omit<
     ConnectedXMMutationOptions<

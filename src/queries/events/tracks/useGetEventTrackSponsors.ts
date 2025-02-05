@@ -9,18 +9,20 @@ import {
 import { EVENT_TRACK_QUERY_KEY } from "./useGetEventTrack";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Endpoint to retrieve a list of sponsors for a specific event track.
+ * This function allows users to fetch sponsors associated with a particular event track by providing the event and track IDs.
+ * It is designed to be used in applications where information about event track sponsors is required.
+ * @name GetEventTrackSponsors
+ * @param {string} eventId - The id of the event
+ * @param {string} trackId - The id of the track
+ * @version 1.2
+ **/
+
 export const EVENT_TRACK_SPONSORS_QUERY_KEY = (
   eventId: string,
   trackId: string
 ) => [...EVENT_TRACK_QUERY_KEY(eventId, trackId), "SPONSORS"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_TRACK_SPONSORS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_TRACK_SPONSORS_QUERY_KEY>,
@@ -34,10 +36,6 @@ interface GetEventTrackSponsorsProps extends InfiniteQueryParams {
   trackId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventTrackSponsors = async ({
   eventId,
   trackId,
@@ -61,10 +59,7 @@ export const GetEventTrackSponsors = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventTrackSponsors = (
   eventId: string = "",
   trackId: string = "",

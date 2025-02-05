@@ -1,5 +1,4 @@
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Account } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -11,18 +10,19 @@ import { LEVEL_QUERY_KEY } from "./useGetLevel";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Levels
- */
+ * Endpoint to retrieve a list of accounts associated with a specific level.
+ * This function is designed to fetch account details for a given level, which can be used in applications
+ * that require information about accounts linked to different levels within an organization.
+ * @name GetLevelAccounts
+ * @param {string} levelId - The id of the level
+ * @version 1.2
+ **/
+
 export const LEVEL_ACCOUNTS_QUERY_KEY = (levelId: string) => [
   ...LEVEL_QUERY_KEY(levelId),
   "ACCOUNTS",
 ];
 
-/**
- * @category Setters
- * @group Levels
- */
 export const SET_LEVEL_ACCOUNTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof LEVEL_ACCOUNTS_QUERY_KEY>,
@@ -35,10 +35,6 @@ interface GetLevelAccountsProps extends InfiniteQueryParams {
   levelId: string;
 }
 
-/**
- * @category Queries
- * @group Levels
- */
 export const GetLevelAccounts = async ({
   levelId,
   pageParam,
@@ -56,10 +52,7 @@ export const GetLevelAccounts = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Levels
- */
+
 export const useGetLevelAccounts = (
   levelId: string = "",
   params: Omit<

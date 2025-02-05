@@ -9,18 +9,18 @@ import {
 } from "@src/queries/useConnectedInfiniteQuery";
 
 /**
- * @category Keys
- * @group Organization
- */
+ * Endpoint to retrieve and manage organization modules.
+ * This function provides the ability to fetch a list of modules associated with an organization.
+ * It is designed to be used in applications that require dynamic access to organization-specific modules.
+ * @name GetOrganizationModules
+ * @version 1.2
+**/
+
 export const ORGANIZATION_MODULES_QUERY_KEY = () => [
   ...ORGANIZATION_QUERY_KEY(),
   "MODULES",
 ];
 
-/**
- * @category Setters
- * @group Organization
- */
 export const SET_ORGANIZATION_MODULES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ORGANIZATION_MODULES_QUERY_KEY>,
@@ -31,10 +31,6 @@ export const SET_ORGANIZATION_MODULES_QUERY_DATA = (
 
 interface GetOrganizationModulesProps extends InfiniteQueryParams {}
 
-/**
- * @category Queries
- * @group Organization
- */
 export const GetOrganizationModules = async ({
   adminApiParams,
 }: GetOrganizationModulesProps): Promise<
@@ -46,10 +42,6 @@ export const GetOrganizationModules = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Organization
- */
 export const useGetOrganizationModules = (
   options: InfiniteQueryOptions<
     Awaited<ReturnType<typeof GetOrganizationModules>>

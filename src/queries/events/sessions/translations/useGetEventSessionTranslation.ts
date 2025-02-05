@@ -9,8 +9,14 @@ import { EVENT_SESSION_TRANSLATIONS_QUERY_KEY } from "./useGetEventSessionTransl
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
+ * Retrieves the translation for a specific event session based on the provided event ID, session ID, and locale.
+ * This function is part of the event management system and is used to fetch localized translations for event sessions.
+ * It is designed to be used in applications that require displaying event session details in different languages.
+ * @name GetEventSessionTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} sessionId - The ID of the session
+ * @param {string} locale - The locale for the translation
+ * @version 1.2
  */
 export const EVENT_SESSION_TRANSLATION_QUERY_KEY = (
   eventId: string,
@@ -57,6 +63,7 @@ export const GetEventSessionTranslation = async ({
   );
   return data;
 };
+
 /**
  * @category Hooks
  * @group Events

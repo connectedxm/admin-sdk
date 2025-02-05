@@ -10,18 +10,18 @@ import { ORGANIZATION_QUERY_KEY } from "./useGetOrganization";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Organization
- */
+ * Retrieves a list of payment integrations for a specific organization.
+ * This function is used to fetch and manage payment integration data within an organization,
+ * allowing applications to display or process payment options available to the organization.
+ * @name GetOrganizationPaymentIntegrations
+ * @version 1.2
+ **/
+
 export const ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY = () => [
   ...ORGANIZATION_QUERY_KEY(),
   "PAYMENT_INTEGRATIONS",
 ];
 
-/**
- * @category Setters
- * @group Organization
- */
 export const SET_ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY>,
@@ -35,10 +35,6 @@ export const SET_ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_DATA = (
 
 interface GetOrganizationPaymentIntegrationsProps extends InfiniteQueryParams {}
 
-/**
- * @category Queries
- * @group Organization
- */
 export const GetOrganizationPaymentIntegrations = async ({
   pageParam,
   pageSize,
@@ -59,10 +55,7 @@ export const GetOrganizationPaymentIntegrations = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Organization
- */
+
 export const useGetOrganizationPaymentIntegrations = (
   params: Omit<
     InfiniteQueryParams,

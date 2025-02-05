@@ -10,8 +10,17 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Events
+ * Fetches event pages data from the admin API.
+ * This function is designed to retrieve paginated data for event pages associated with a specific event ID.
+ * It is useful for applications that need to display or manage multiple pages of event-related content.
+ * @name GetEventPages
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+ **/
+
+/**
+ * @name EVENT_PAGES_QUERY_KEY
+ * @description A query key generator for event pages
  */
 export const EVENT_PAGES_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
@@ -19,8 +28,8 @@ export const EVENT_PAGES_QUERY_KEY = (eventId: string) => [
 ];
 
 /**
- * @category Setters
- * @group Events
+ * @name SET_EVENT_PAGES_QUERY_DATA
+ * @description Sets the query data for event pages in the query client
  */
 export const SET_EVENT_PAGES_QUERY_DATA = (
   client: QueryClient,
@@ -35,8 +44,8 @@ interface GetEventPagesProps extends InfiniteQueryParams {
 }
 
 /**
- * @category Queries
- * @group Events
+ * @name GetEventPages
+ * @description Fetches event pages data from the admin API
  */
 export const GetEventPages = async ({
   eventId,
@@ -57,9 +66,10 @@ export const GetEventPages = async ({
   });
   return data;
 };
+
 /**
- * @category Hooks
- * @group Events
+ * @name useGetEventPages
+ * @description A custom hook for fetching event pages data
  */
 export const useGetEventPages = (
   eventId: string = "",

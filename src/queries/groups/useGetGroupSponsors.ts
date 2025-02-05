@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Account } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -11,18 +10,19 @@ import { GROUP_QUERY_KEY } from "./useGetGroup";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Groups
- */
+ * Endpoint to retrieve a list of sponsors associated with a specific group.
+ * This function allows users to fetch sponsor details for a given group by providing the group ID.
+ * It is designed to be used in applications where information about group sponsors is required.
+ * @name GetGroupSponsors
+ * @param {string} groupId - The id of the group
+ * @version 1.2
+ **/
+
 export const GROUP_SPONSORS_QUERY_KEY = (groupId: string) => [
   ...GROUP_QUERY_KEY(groupId),
   "SPONSORS",
 ];
 
-/**
- * @category Setters
- * @group Groups
- */
 export const SET_GROUP_SPONSORS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof GROUP_SPONSORS_QUERY_KEY>,
@@ -35,10 +35,6 @@ interface GetGroupSponsorsProps extends InfiniteQueryParams {
   groupId: string;
 }
 
-/**
- * @category Queries
- * @group Groups
- */
 export const GetGroupSponsors = async ({
   groupId,
   pageParam,
@@ -58,10 +54,7 @@ export const GetGroupSponsors = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Groups
- */
+
 export const useGetGroupSponsors = (
   groupId: string = "",
   params: Omit<

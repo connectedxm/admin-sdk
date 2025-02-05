@@ -10,18 +10,20 @@ import {
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches a specific ZPL template badge field associated with an event from the admin API.
+ * This function is used to retrieve detailed information about a particular badge field within a ZPL template for a given event.
+ * It is designed for applications that require access to specific badge field data for event management purposes.
+ * @name GetEventZplTemplateBadgeField
+ * @param {string} fieldId - The id of the badge field
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+ **/
+
 export const EVENT_ZPL_TEMPLATE_BADGE_FIELD_QUERY_KEY = (
   eventId: string,
   fieldId: string
 ) => [...EVENT_ZPL_TEMPLATE_BADGE_FIELDS_QUERY_KEY(eventId), fieldId];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_ZPL_TEMPLATE_BADGE_FIELD_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_ZPL_TEMPLATE_BADGE_FIELDS_QUERY_KEY>,
@@ -38,10 +40,6 @@ interface GetEventZplTemplateBadgeFieldProps extends SingleQueryParams {
   eventId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventZplTemplateBadgeField = async ({
   fieldId,
   eventId,
@@ -55,10 +53,7 @@ export const GetEventZplTemplateBadgeField = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventZplTemplateBadgeField = (
   eventId: string = "",
   fieldId: string = "",

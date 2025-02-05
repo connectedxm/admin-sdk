@@ -8,20 +8,20 @@ import {
 } from "../useConnectedInfiniteQuery";
 import { TIER_QUERY_KEY } from "./useGetTier";
 
-// export const QUERY_KEY = "SUBSCRIBER_TIER_ACCOUNTS";
 /**
- * @category Keys
- * @group Tiers
- */
+ * Endpoint to retrieve a list of subscribers for a specific tier.
+ * This function allows users to fetch subscribers associated with a particular tier within an organization.
+ * It is designed to be used in applications where subscriber information for a tier is required.
+ * @name GetTierSubscribers
+ * @param {string} [tierId] - The id of the tier
+ * @version 1.2
+ **/
+
 export const TIER_SUBSCRIBERS_QUERY_KEY = (tierId: string) => [
   ...TIER_QUERY_KEY(tierId),
   "SUBSCRIBERS",
 ];
 
-/**
- * @category Setters
- * @group Tiers
- */
 export const SET_TIER_SUBSCRIBERS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof TIER_SUBSCRIBERS_QUERY_KEY>,
@@ -34,10 +34,6 @@ interface GetTierSubscribersProps extends InfiniteQueryParams {
   tierId?: string;
 }
 
-/**
- * @category Queries
- * @group Tiers
- */
 export const GetTierSubscribers = async ({
   pageParam,
   pageSize,
@@ -58,10 +54,7 @@ export const GetTierSubscribers = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Tiers
- */
+
 export const useGetTierSubscribers = (
   tierId: string = "",
   params: Omit<

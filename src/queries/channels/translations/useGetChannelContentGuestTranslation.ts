@@ -11,9 +11,17 @@ import {
 import { CHANNEL_CONTENT_GUEST_TRANSLATIONS_QUERY_KEY } from "./useGetChannelContentGuestTranslations";
 
 /**
- * @category Keys
- * @group Channels
- */
+ * Retrieves a specific guest translation for channel content based on the provided identifiers.
+ * This function is used to fetch the translation of content for a guest in a specific locale within a channel.
+ * It is useful in scenarios where content needs to be displayed in different languages for different guests.
+ * @name GetChannelContentGuestTranslation
+ * @param {string} channelId - The ID of the channel
+ * @param {string} contentId - The ID of the content
+ * @param {string} guestId - The ID of the guest
+ * @param {string} locale - The locale for the translation
+ * @version 1.2
+ **/
+
 export const CHANNEL_CONTENT_GUEST_TRANSLATION_QUERY_KEY = (
   channelId: string,
   contentId: string,

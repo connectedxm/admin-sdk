@@ -10,6 +10,16 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific level translation for a given level ID and locale.
+ * This function is used to remove translations associated with a level, ensuring that the translation data is no longer available.
+ * It is particularly useful in scenarios where outdated or incorrect translations need to be removed from the system.
+ * @name DeleteLevelTranslation
+ * @param {string} levelId - The ID of the level
+ * @param {string} locale - The locale of the translation
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Level-Translations
  */
@@ -28,9 +38,9 @@ export const DeleteLevelTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteLevelTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/levels/${levelId}/translations/${locale}`
   );
   if (queryClient && data.status === "ok") {

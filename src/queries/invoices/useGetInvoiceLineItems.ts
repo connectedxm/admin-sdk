@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { InvoiceLineItem } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -11,18 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { INVOICE_QUERY_KEY } from "./useGetInvoice";
 
 /**
- * @category Keys
- * @group Invoices
- */
+ * Endpoint to fetch line items associated with a specific invoice.
+ * This function retrieves detailed information about each line item within a given invoice, 
+ * allowing users to view and manage invoice components effectively.
+ * @name GetInvoiceLineItems
+ * @param {string} invoiceId - The id of the invoice
+ * @version 1.2
+ **/
+
 export const INVOICE_LINE_ITEMS_QUERY_KEY = (invoiceId: string) => [
   ...INVOICE_QUERY_KEY(invoiceId),
   "LINE_ITEMS",
 ];
 
-/**
- * @category Setters
- * @group Invoices
- */
 export const SET_INVOICE_LINE_ITEMS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INVOICE_LINE_ITEMS_QUERY_KEY>,
@@ -35,10 +35,6 @@ interface GetInvoiceLineItemsProps extends InfiniteQueryParams {
   invoiceId: string;
 }
 
-/**
- * @category Queries
- * @group Invoices
- */
 export const GetInvoiceLineItems = async ({
   invoiceId,
   pageParam,
@@ -60,10 +56,7 @@ export const GetInvoiceLineItems = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Invoices
- */
+
 export const useGetInvoiceLineItems = (
   invoiceId: string = "",
   params: Omit<

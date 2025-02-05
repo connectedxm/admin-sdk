@@ -11,19 +11,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sections
- */
+ * Endpoint to add a question to a specific section of an event.
+ * This function allows users to associate a question with a particular section within an event, 
+ * facilitating the organization and management of event-related queries.
+ * @name AddEventSectionQuestion
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the section
+ * @param {string} questionId - The id of the question
+ * @version 1.2
+**/
 export interface AddEventSectionQuestionParams extends MutationParams {
   eventId: string;
   sectionId: string;
   questionId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sections
- */
 export const AddEventSectionQuestion = async ({
   eventId,
   sectionId,
@@ -33,8 +35,8 @@ export const AddEventSectionQuestion = async ({
 }: AddEventSectionQuestionParams): Promise<
   ConnectedXMResponse<RegistrationSection>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<
     ConnectedXMResponse<RegistrationSection>
   >(`/events/${eventId}/sections/${sectionId}/questions/${questionId}`);
   if (queryClient && data.status === "ok") {
@@ -46,10 +48,6 @@ export const AddEventSectionQuestion = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sections
- */
 export const useAddEventSectionQuestion = (
   options: Omit<
     ConnectedXMMutationOptions<

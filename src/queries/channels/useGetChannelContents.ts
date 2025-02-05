@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { ChannelContent } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -11,9 +10,15 @@ import { CHANNEL_QUERY_KEY } from "./useGetChannel";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Channels
- */
+ * Fetches the contents of a specific channel, with an optional filter for featured content.
+ * This function is designed to retrieve a list of contents associated with a given channel ID.
+ * It supports infinite scrolling and can be used in applications where channel content needs to be displayed.
+ * @name GetChannelContents
+ * @param {string} channelId - The id of the channel
+ * @param {boolean} [featured] - Optional flag to filter featured contents
+ * @version 1.2
+ **/
+
 export const CHANNEL_CONTENTS_QUERY_KEY = (
   channelId: string,
   featured?: boolean
@@ -24,10 +29,6 @@ export const CHANNEL_CONTENTS_QUERY_KEY = (
   return keys;
 };
 
-/**
- * @category Setters
- * @group Channels
- */
 export const SET_CHANNEL_CONTENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof CHANNEL_CONTENTS_QUERY_KEY>,
@@ -41,10 +42,6 @@ interface GetChannelContentsProps extends InfiniteQueryParams {
   featured?: boolean;
 }
 
-/**
- * @category Queries
- * @group Channels
- */
 export const GetChannelContents = async ({
   pageParam,
   pageSize,
@@ -66,10 +63,7 @@ export const GetChannelContents = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Channels
- */
+
 export const useGetChannelContents = (
   channelId: string = "",
   featured?: boolean,

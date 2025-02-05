@@ -9,9 +9,15 @@ import {
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches a list of event registration bypass entries with support for pagination and filtering.
+ * This function is designed to retrieve bypass entries for a specific event, allowing for detailed
+ * management and review of registration bypasses. It supports pagination and filtering to efficiently
+ * handle large datasets.
+ * @name GetEventRegistrationBypassList
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+ **/
+
 export const EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "BYPASS_LIST",
@@ -21,10 +27,6 @@ interface GetEventRegistrationBypassListProps extends InfiniteQueryParams {
   eventId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventRegistrationBypassList = async ({
   eventId,
   pageParam,
@@ -46,10 +48,7 @@ export const GetEventRegistrationBypassList = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventRegistrationBypassList = (
   eventId: string = "",
   params: Omit<

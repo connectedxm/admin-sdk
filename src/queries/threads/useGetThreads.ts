@@ -9,9 +9,16 @@ import {
 } from "../useConnectedInfiniteQuery";
 
 /**
- * @category Keys
- * @group Threads
- */
+ * Endpoint to retrieve threads based on specified parameters such as access level, group ID, and event ID.
+ * This function allows users to fetch threads that match the given criteria, supporting both public and private access levels.
+ * It is designed to be used in applications where thread data needs to be filtered and retrieved efficiently.
+ * @name GetThreads
+ * @param {string} [access] - The access level of the threads (public or private)
+ * @param {string} [groupId] - The ID of the group to filter threads
+ * @param {string} [eventId] - The ID of the event to filter threads
+ * @version 1.2
+ **/
+
 export const THREADS_QUERY_KEY = (
   access?: "public" | "private",
   groupId?: string,
@@ -24,10 +31,6 @@ export const THREADS_QUERY_KEY = (
   return keys;
 };
 
-/**
- * @category Setters
- * @group Threads
- */
 export const SET_THREADS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof THREADS_QUERY_KEY>,
@@ -42,10 +45,6 @@ interface GetThreadsProps extends InfiniteQueryParams {
   eventId?: string;
 }
 
-/**
- * @category Queries
- * @thread Threads
- */
 export const GetThreads = async ({
   pageParam,
   pageSize,
@@ -71,10 +70,7 @@ export const GetThreads = async ({
 
   return data;
 };
-/**
- * @category Hooks
- * @thread Threads
- */
+
 export const useGetThreads = (
   access?: "public" | "private",
   groupId?: string,

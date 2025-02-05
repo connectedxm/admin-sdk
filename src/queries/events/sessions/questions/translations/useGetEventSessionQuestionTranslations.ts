@@ -11,9 +11,16 @@ import {
 import { EVENT_SESSION_QUESTION_QUERY_KEY } from "../useGetEventSessionQuestion";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves translations for a specific event session question.
+ * This function fetches a list of translations associated with a particular question within an event session.
+ * It is useful for applications that need to display or manage multilingual content for event session questions.
+ * @name GetEventSessionQuestionTranslations
+ * @param {string} eventId - The ID of the event
+ * @param {string} sessionId - The ID of the session
+ * @param {string} questionId - The ID of the question
+ * @version 1.2
+ **/
+
 export const EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_KEY = (
   eventId: string,
   sessionId: string,
@@ -23,10 +30,6 @@ export const EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_KEY = (
   "TRANSLATIONS",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_KEY>,
@@ -44,10 +47,6 @@ interface GetEventSessionQuestionTranslationsProps extends InfiniteQueryParams {
   questionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSessionQuestionTranslations = async ({
   pageParam,
   pageSize,
@@ -74,10 +73,7 @@ export const GetEventSessionQuestionTranslations = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSessionQuestionTranslations = (
   eventId: string = "",
   sessionId: string = "",

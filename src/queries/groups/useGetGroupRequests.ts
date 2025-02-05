@@ -13,9 +13,15 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Groups
- */
+ * Endpoint to retrieve and manage group requests for a specific group.
+ * This function allows users to fetch and handle requests associated with a group, filtered by request status.
+ * It is designed to be used in applications where managing group membership requests is necessary.
+ * @name GetGroupRequests
+ * @param {string} groupId - The id of the group
+ * @param {[keyof typeof GroupRequestStatus]} status - The status of the group request
+ * @version 1.2
+ **/
+
 export const GROUP_REQUESTS_QUERY_KEY = (
   groupId: string,
   status?: keyof typeof GroupRequestStatus
@@ -24,10 +30,7 @@ export const GROUP_REQUESTS_QUERY_KEY = (
   if (status) keys.push(status);
   return keys;
 };
-/**
- * @category Setters
- * @group Groups
- */
+
 export const SET_GROUP_REQUESTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof GROUP_REQUESTS_QUERY_KEY>,
@@ -41,10 +44,6 @@ interface GetGroupRequestsProps extends InfiniteQueryParams {
   status: keyof typeof GroupRequestStatus;
 }
 
-/**
- * @category Queries
- * @group Groups
- */
 export const GetGroupRequests = async ({
   groupId,
   status,
@@ -66,10 +65,7 @@ export const GetGroupRequests = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Groups
- */
+
 export const useGetGroupRequests = (
   groupId: string = "",
   status: keyof typeof GroupRequestStatus = GroupRequestStatus.requested,

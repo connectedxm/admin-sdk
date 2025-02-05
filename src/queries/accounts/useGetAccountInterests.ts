@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Interest } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
@@ -12,18 +11,19 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Accounts
- */
+ * Endpoint to fetch interests associated with a specific account.
+ * This function provides the ability to retrieve account interests with support for optional filtering and pagination.
+ * It is useful for applications that need to display or process interest data linked to user accounts.
+ * @name GetAccountInterests
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export const ACCOUNT_INTERESTS_QUERY_KEY = (accountId: string) => [
   ...ACCOUNT_QUERY_KEY(accountId),
   "INTERESTS",
 ];
 
-/**
- * @category Setters
- * @group Accounts
- */
 export const SET_ACCOUNT_INTERESTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_INTERESTS_QUERY_KEY>,
@@ -36,10 +36,6 @@ interface GetAccountInterestsProps extends InfiniteQueryParams {
   accountId: string;
 }
 
-/**
- * @category Queries
- * @group Accounts
- */
 export const GetAccountInterests = async ({
   accountId,
   pageParam,
@@ -59,10 +55,7 @@ export const GetAccountInterests = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Accounts
- */
+
 export const useGetAccountInterests = (
   accountId: string = "",
   params: Omit<

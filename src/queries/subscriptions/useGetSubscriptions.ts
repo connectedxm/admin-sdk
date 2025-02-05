@@ -9,15 +9,17 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Subscriptions
- */
+ * Endpoint to retrieve a list of subscriptions with optional filtering.
+ * This function allows users to fetch a paginated list of subscriptions, with the ability to filter by subscription status and product ID.
+ * It is designed to be used in applications where subscription management and tracking are required.
+ * @name GetSubscriptions
+ * @param {SubscriptionStatus} [status] - Optional filtering by subscription status
+ * @param {string} [subscriptionProductId] - Optional filtering by subscription product ID
+ * @version 1.2
+ **/
+
 export const SUBSCRIPTIONS_QUERY_KEY = () => ["SUBSCRIPTIONS"];
 
-/**
- * @category Setters
- * @group Subscriptions
- */
 export const SET_SUBSCRIPTIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SUBSCRIPTIONS_QUERY_KEY>,
@@ -31,10 +33,6 @@ interface GetSubscriptionsProps extends InfiniteQueryParams {
   subscriptionProductId?: string;
 }
 
-/**
- * @category Queries
- * @group Subscriptions
- */
 export const GetSubscriptions = async ({
   pageParam,
   pageSize,
@@ -57,10 +55,7 @@ export const GetSubscriptions = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Subscriptions
- */
+
 export const useGetSubscriptions = (
   status?: SubscriptionStatus,
   subscriptionProductId?: string,

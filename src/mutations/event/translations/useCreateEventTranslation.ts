@@ -11,6 +11,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Creates a new translation for a specific event in a given locale.
+ * This function allows users to add translations to events, with an option for automatic translation.
+ * It is designed to be used in applications where multilingual support for events is required.
+ * @name PostEventTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} locale - The locale for the translation
+ * @param {[boolean]} autoTranslate - Whether to automatically translate the event
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Translations
  */
@@ -33,14 +44,15 @@ export const CreateEventTranslation = async ({
 }: CreateEventTranslationParams): Promise<
   ConnectedXMResponse<EventTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<
-    ConnectedXMResponse<EventTranslation>
-  >(`/events/${eventId}/translations`, {
-    locale,
-    autoTranslate,
-  });
+  const { data } = await adminApi.post<ConnectedXMResponse<EventTranslation>>(
+    `/events/${eventId}/translations`,
+    {
+      locale,
+      autoTranslate,
+    }
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_TRANSLATIONS_QUERY_KEY(eventId),

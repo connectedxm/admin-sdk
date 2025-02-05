@@ -10,18 +10,20 @@ import { INVOICE_LINE_ITEMS_QUERY_KEY } from "./useGetInvoiceLineItems";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Invoices
- */
+ * Endpoint to fetch a specific invoice line item by its ID.
+ * This function retrieves detailed information about a particular line item within an invoice.
+ * It is intended for use in applications that require access to specific invoice line item data.
+ * @name GetInvoiceLineItem
+ * @param {string} invoiceId - The ID of the invoice
+ * @param {string} lineItemId - The ID of the line item
+ * @version 1.2
+ **/
+
 export const INVOICE_LINE_ITEM_QUERY_KEY = (
   invoiceId: string,
   lineItemId: string
 ) => [...INVOICE_LINE_ITEMS_QUERY_KEY(invoiceId), lineItemId];
 
-/**
- * @category Setters
- * @group Invoices
- */
 export const SET_INVOICE_LINE_ITEM_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INVOICE_LINE_ITEM_QUERY_KEY>,
@@ -35,10 +37,6 @@ interface GetInvoiceLineItemProps extends SingleQueryParams {
   lineItemId: string;
 }
 
-/**
- * @category Queries
- * @group Invoices
- */
 export const GetInvoiceLineItem = async ({
   invoiceId,
   lineItemId,
@@ -50,10 +48,7 @@ export const GetInvoiceLineItem = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Invoices
- */
+
 export const useGetInvoiceLineItem = (
   invoiceId: string = "",
   lineItemId: string = "",

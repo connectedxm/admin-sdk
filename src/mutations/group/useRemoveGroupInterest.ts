@@ -8,26 +8,28 @@ import { ConnectedXMResponse, Group } from "@src/interfaces";
 import { SET_GROUP_QUERY_DATA, GROUP_INTERESTS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Groups
- */
+ * Endpoint to remove an interest from a group.
+ * This function allows the removal of a specific interest associated with a group by providing the group ID and account ID.
+ * It is designed to be used in applications where managing group interests is required.
+ * @name RemoveGroupInterest
+ * @param {string} groupId - The id of the group
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export interface RemoveGroupInterestParams extends MutationParams {
   groupId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Groups
- */
 export const RemoveGroupInterest = async ({
   groupId,
   accountId,
   adminApiParams,
   queryClient,
 }: RemoveGroupInterestParams): Promise<ConnectedXMResponse<Group>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<Group>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<Group>>(
     `/groups/${groupId}/interests/${accountId}`
   );
   if (queryClient && data.status === "ok") {
@@ -39,10 +41,6 @@ export const RemoveGroupInterest = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Groups
- */
 export const useRemoveGroupInterest = (
   options: Omit<
     ConnectedXMMutationOptions<

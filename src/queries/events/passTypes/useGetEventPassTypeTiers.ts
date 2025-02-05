@@ -9,9 +9,16 @@ import {
 import { EVENT_PASS_TYPE_QUERY_KEY } from "./useGetEventPassType";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves event pass type tiers with optional filtering for allowed tiers.
+ * This function fetches tiers associated with a specific event and pass type, providing the ability to filter based on whether the tiers are allowed.
+ * It is useful for applications that need to display or manage tiers for event pass types with specific filtering criteria.
+ * @name GetEventPassTypeTiers
+ * @param {boolean} allowed - Indicates if only allowed tiers should be fetched
+ * @param {string} eventId - The id of the event
+ * @param {string} passTypeId - The id of the pass type
+ * @version 1.2
+ **/
+
 export const EVENT_PASS_TYPE_TIERS_QUERY_KEY = (
   allowed: boolean,
   eventId: string,
@@ -22,10 +29,6 @@ export const EVENT_PASS_TYPE_TIERS_QUERY_KEY = (
   allowed ? "ALLOWED" : "DISALLOWED",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_PASS_TYPE_TIERS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_PASS_TYPE_TIERS_QUERY_KEY>,
@@ -40,10 +43,6 @@ interface GetEventPassTypeTiersProps extends InfiniteQueryParams {
   passTypeId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventPassTypeTiers = async ({
   allowed,
   eventId,
@@ -69,10 +68,7 @@ export const GetEventPassTypeTiers = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventPassTypeTiers = (
   allowed: boolean,
   eventId: string = "",

@@ -11,9 +11,16 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-AddOns
- */
+ * Endpoint to remove a specific tier from an event add-on.
+ * This function allows the removal of a tier associated with an event add-on, provided the operation is permitted.
+ * It is used in scenarios where event add-on configurations need to be modified by removing tiers.
+ * @name RemoveEventAddOnTier
+ * @param {boolean} allowed - Indicates if the operation is allowed
+ * @param {string} eventId - The id of the event
+ * @param {string} addOnId - The id of the add-on
+ * @param {string} tierId - The id of the tier
+ * @version 1.2
+**/
 export interface RemoveEventAddOnTierParams extends MutationParams {
   allowed: boolean;
   eventId: string;
@@ -21,10 +28,6 @@ export interface RemoveEventAddOnTierParams extends MutationParams {
   tierId: string;
 }
 
-/**
- * @category Methods
- * @group Event-AddOns
- */
 export const RemoveEventAddOnTier = async ({
   allowed,
   eventId,
@@ -33,8 +36,8 @@ export const RemoveEventAddOnTier = async ({
   adminApiParams,
   queryClient,
 }: RemoveEventAddOnTierParams): Promise<ConnectedXMResponse<EventAddOn>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<EventAddOn>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<EventAddOn>>(
     `/events/${eventId}/addOns/${addOnId}/tiers/${tierId}`,
     {
       params: {
@@ -52,10 +55,6 @@ export const RemoveEventAddOnTier = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-AddOns
- */
 export const useRemoveEventAddOnTier = (
   options: Omit<
     ConnectedXMMutationOptions<

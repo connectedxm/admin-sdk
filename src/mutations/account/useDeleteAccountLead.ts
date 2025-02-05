@@ -8,26 +8,27 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { ACCOUNT_LEAD_QUERY_KEY, ACCOUNT_LEADS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to delete a lead associated with a specific account.
+ * This function allows the removal of a lead from an account by specifying the account and lead identifiers.
+ * It is intended for use in scenarios where account management requires the deletion of associated leads.
+ * @name DeleteAccountLead
+ * @param {string} accountId - The id of the account
+ * @param {string} leadId - The id of the lead
+ * @version 1.2
+ **/
 export interface DeleteAccountLeadParams extends MutationParams {
   accountId: string;
   leadId: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const DeleteAccountLead = async ({
   accountId,
   leadId,
   adminApiParams,
   queryClient,
 }: DeleteAccountLeadParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/accounts/${accountId}/leads/${leadId}`
   );
 
@@ -43,10 +44,6 @@ export const DeleteAccountLead = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useDeleteAccountLead = (
   options: Omit<
     ConnectedXMMutationOptions<

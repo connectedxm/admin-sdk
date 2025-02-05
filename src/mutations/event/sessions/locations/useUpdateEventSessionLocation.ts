@@ -10,19 +10,22 @@ import { SET_EVENT_SESSION_LOCATION_QUERY_DATA } from "@src/queries/events/sessi
 import { EVENT_SESSION_LOCATIONS_QUERY_KEY } from "@src/queries/events/sessions/locations/useGetEventSessionLocations";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Endpoint to update the location of a specific event session.
+ * This function allows updating the details of a session location within an event by providing the event ID, location ID, and the update inputs.
+ * It is designed to be used in applications where event session locations need to be modified.
+ * @name UpdateEventSessionLocation
+ * @param {string} eventId - The id of the event
+ * @param {string} locationId - The id of the location
+ * @param {EventSessionLocationUpdateInputs} sessionLocation - The session location update inputs
+ * @version 1.2
+ **/
+
 export interface UpdateEventSessionLocationParams extends MutationParams {
   eventId: string;
   locationId: string;
   sessionLocation: EventSessionLocationUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const UpdateEventSessionLocation = async ({
   eventId,
   locationId,
@@ -33,8 +36,8 @@ export const UpdateEventSessionLocation = async ({
   ConnectedXMResponse<EventSessionLocation>
 > => {
   if (!locationId) throw new Error("Session ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<
     ConnectedXMResponse<EventSessionLocation>
   >(`/events/${eventId}/sessionLocations/${locationId}`, {
     ...sessionLocation,
@@ -54,10 +57,6 @@ export const UpdateEventSessionLocation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useUpdateEventSessionLocation = (
   options: Omit<
     ConnectedXMMutationOptions<

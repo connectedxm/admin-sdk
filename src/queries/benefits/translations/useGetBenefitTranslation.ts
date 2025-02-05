@@ -9,9 +9,15 @@ import {
 } from "@src/queries/useConnectedSingleQuery";
 
 /**
- * @category Keys
- * @group Benefits
- */
+ * Retrieves the translation of a specific benefit for a given locale.
+ * This function fetches the translated details of a benefit using its ID and the specified locale.
+ * It is useful for applications that need to display benefit information in multiple languages.
+ * @name GetBenefitTranslation
+ * @param {string} benefitId - The ID of the benefit
+ * @param {string} locale - The locale for the translation
+ * @version 1.2
+ **/
+
 export const BENEFIT_TRANSLATION_QUERY_KEY = (
   benefitId: string,
   locale: string

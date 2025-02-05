@@ -8,27 +8,29 @@ import { ConnectedXMResponse, Tier } from "@src/interfaces";
 import { SUBSCRIPTION_PRODUCT_TIERS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Subscriptions
- */
+ * Endpoint to remove a tier from a subscription product.
+ * This function allows the removal of a specific tier from a subscription product by providing the subscription product ID and the tier ID.
+ * It is used in scenarios where a tier needs to be deleted from a subscription product, ensuring the subscription product is updated accordingly.
+ * @name RemoveSubscriptionProductTier
+ * @param {string} subscriptionProductId - The id of the subscription product
+ * @param {string} tierId - The id of the tier to be removed
+ * @version 1.2
+ **/
+
 export interface RemoveSubscriptionProductTierParams extends MutationParams {
   subscriptionProductId: string;
   tierId: string;
 }
 
-/**
- * @category Methods
- * @group Subscriptions
- */
 export const RemoveSubscriptionProductTier = async ({
   subscriptionProductId,
   tierId,
   adminApiParams,
   queryClient,
 }: RemoveSubscriptionProductTierParams): Promise<ConnectedXMResponse<Tier>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete<ConnectedXMResponse<Tier>>(
+  const { data } = await adminApi.delete<ConnectedXMResponse<Tier>>(
     `/subscription-products/${subscriptionProductId}/tiers/${tierId}`
   );
   if (queryClient && data.status === "ok") {
@@ -39,10 +41,6 @@ export const RemoveSubscriptionProductTier = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Subscriptions
- */
 export const useRemoveSubscriptionProductTier = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -10,18 +10,18 @@ import { ORGANIZATION_QUERY_KEY } from "./useGetOrganization";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Organization
- */
+ * Endpoint to retrieve a list of team members within an organization.
+ * This function fetches a paginated list of team members, allowing for optional sorting and searching.
+ * It is designed to be used in applications that require displaying or managing organization team members.
+ * @name GetOrganizationTeamMembers
+ * @version 1.2
+ **/
+
 export const ORGANIZATION_TEAM_MEMBERS_QUERY_KEY = () => [
   ...ORGANIZATION_QUERY_KEY(),
   "TEAM_MEMBERS",
 ];
 
-/**
- * @category Setters
- * @group Organization
- */
 export const SET_ORGANIZATION_TEAM_MEMBERS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ORGANIZATION_TEAM_MEMBERS_QUERY_KEY>,
@@ -35,10 +35,6 @@ export const SET_ORGANIZATION_TEAM_MEMBERS_QUERY_DATA = (
 
 interface GetOrganizationTeamMembersProps extends InfiniteQueryParams {}
 
-/**
- * @category Queries
- * @group Organization
- */
 export const GetOrganizationTeamMembers = async ({
   pageParam,
   pageSize,
@@ -59,10 +55,7 @@ export const GetOrganizationTeamMembers = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Organization
- */
+
 export const useGetOrganizationTeamMembers = (
   params: Omit<
     InfiniteQueryParams,

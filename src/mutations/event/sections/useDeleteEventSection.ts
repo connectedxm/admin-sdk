@@ -11,26 +11,27 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sections
- */
+ * Endpoint to delete a specific section from an event.
+ * This function allows the removal of a section within a specified event by providing the event and section IDs.
+ * It is designed to be used in applications where event management and section organization are required.
+ * @name DeleteEventSection
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the section
+ * @version 1.2
+ **/
 export interface DeleteEventSectionParams extends MutationParams {
   eventId: string;
   sectionId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sections
- */
 export const DeleteEventSection = async ({
   eventId,
   sectionId,
   adminApiParams,
   queryClient,
 }: DeleteEventSectionParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/sections/${sectionId}`
   );
   if (queryClient && data.status === "ok") {
@@ -44,10 +45,6 @@ export const DeleteEventSection = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sections
- */
 export const useDeleteEventSection = (
   options: Omit<
     ConnectedXMMutationOptions<

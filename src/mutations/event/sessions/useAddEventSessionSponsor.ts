@@ -11,19 +11,22 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Adds a sponsor to a specific event session and updates the query client.
+ * This function is used to associate a sponsor with a particular session within an event, 
+ * ensuring that the query client is updated to reflect this change. It is useful in scenarios 
+ * where event sessions need to be dynamically updated with sponsor information.
+ * @name AddEventSessionSponsor
+ * @param {string} eventId - The id of the event
+ * @param {string} sessionId - The id of the session
+ * @param {string} sponsorId - The id of the sponsor
+ * @version 1.2
+ **/
 export interface AddEventSessionSponsorParams extends MutationParams {
   eventId: string;
   sessionId: string;
   sponsorId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const AddEventSessionSponsor = async ({
   eventId,
   sessionId,
@@ -33,8 +36,8 @@ export const AddEventSessionSponsor = async ({
 }: AddEventSessionSponsorParams): Promise<
   ConnectedXMResponse<EventSession>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<EventSession>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<EventSession>>(
     `/events/${eventId}/sessions/${sessionId}/sponsors/${sponsorId}`
   );
   if (queryClient && data.status === "ok") {
@@ -46,10 +49,6 @@ export const AddEventSessionSponsor = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useAddEventSessionSponsor = (
   options: Omit<
     ConnectedXMMutationOptions<

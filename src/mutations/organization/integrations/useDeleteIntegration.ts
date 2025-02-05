@@ -8,24 +8,25 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { INTEGRATIONS_QUERY_KEY, INTEGRATION_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Integration
- */
+ * Endpoint to delete a specific integration within an organization.
+ * This function allows for the removal of an integration by its unique identifier.
+ * It ensures that the integration is deleted and updates the query cache accordingly.
+ * @name DeleteIntegration
+ * @param {string} integrationId - The ID of the integration to be deleted
+ * @version 1.2
+ **/
+
 export interface DeleteIntegrationParams extends MutationParams {
   integrationId: string;
 }
 
-/**
- * @category Methods
- * @group Integration
- */
 export const DeleteIntegration = async ({
   integrationId,
   adminApiParams,
   queryClient,
 }: DeleteIntegrationParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/organization/integrations/${integrationId}`
   );
   if (queryClient && data.status === "ok") {
@@ -37,10 +38,6 @@ export const DeleteIntegration = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Integration
- */
 export const useDeleteIntegration = (
   options: Omit<
     ConnectedXMMutationOptions<

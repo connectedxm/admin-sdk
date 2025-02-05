@@ -1,5 +1,4 @@
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { GroupMembership } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -11,18 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Groups
- */
+ * Retrieves the list of members belonging to a specific group.
+ * This function is used to fetch group membership details, providing a paginated list of members.
+ * It is designed for applications that need to display or manage group members.
+ * @name GetGroupMembers
+ * @param {string} groupId - The id of the group
+ * @version 1.2
+ **/
+
 export const GROUP_MEMBERS_QUERY_KEY = (groupId: string) => [
   ...GROUP_QUERY_KEY(groupId),
   "MEMBERS",
 ];
 
-/**
- * @category Setters
- * @group Groups
- */
 export const SET_GROUP_MEMBERS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof GROUP_MEMBERS_QUERY_KEY>,
@@ -35,10 +35,6 @@ interface GetGroupMembersProps extends InfiniteQueryParams {
   groupId: string;
 }
 
-/**
- * @category Queries
- * @group Groups
- */
 export const GetGroupMembers = async ({
   groupId,
   pageParam,
@@ -58,10 +54,7 @@ export const GetGroupMembers = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Groups
- */
+
 export const useGetGroupMembers = (
   groupId: string = "",
   params: Omit<

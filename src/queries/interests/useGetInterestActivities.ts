@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Activity } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -11,18 +10,20 @@ import { QueryClient } from "@tanstack/react-query";
 import { INTEREST_QUERY_KEY } from "./useGetInterest";
 
 /**
- * @category Keys
- * @group Interests
- */
+ * Endpoint to retrieve a list of activities associated with a specific interest.
+ * This function is designed to fetch activities related to a given interest ID, 
+ * providing a paginated and optionally sorted list of activities.
+ * It is useful for applications that need to display or process activities linked to specific interests.
+ * @name GetInterestActivities
+ * @param {string} interestId - The id of the interest
+ * @version 1.2
+ **/
+
 export const INTEREST_ACTIVITIES_QUERY_KEY = (interestId: string) => [
   ...INTEREST_QUERY_KEY(interestId),
   "ACTIVITIES",
 ];
 
-/**
- * @category Setters
- * @group Interests
- */
 export const SET_INTEREST_ACTIVITIES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INTEREST_ACTIVITIES_QUERY_KEY>,
@@ -35,10 +36,6 @@ interface GetInterestActivitiesProps extends InfiniteQueryParams {
   interestId: string;
 }
 
-/**
- * @category Queries
- * @group Interests
- */
 export const GetInterestActivities = async ({
   interestId,
   pageParam,
@@ -58,10 +55,7 @@ export const GetInterestActivities = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Interests
- */
+
 export const useGetInterestActivities = (
   interestId: string = "",
   params: Omit<

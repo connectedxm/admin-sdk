@@ -9,18 +9,20 @@ import { LEVELS_QUERY_KEY, SET_LEVEL_QUERY_DATA } from "@src/queries";
 import { LevelUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Level
- */
+ * Endpoint to update a level with new data.
+ * This function allows updating the details of a specific level by providing new data.
+ * It is used in scenarios where level information needs to be modified.
+ * @name UpdateLevel
+ * @param {string} levelId - The id of the level
+ * @param {LevelUpdateInputs} level - The new data for the level
+ * @version 1.2
+ **/
+
 export interface UpdateLevelParams extends MutationParams {
   levelId: string;
   level: LevelUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Level
- */
 export const UpdateLevel = async ({
   levelId,
   level,
@@ -28,9 +30,9 @@ export const UpdateLevel = async ({
   queryClient,
 }: UpdateLevelParams): Promise<ConnectedXMResponse<Level>> => {
   if (!levelId) throw new Error("Level ID undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<ConnectedXMResponse<Level>>(
+  const { data } = await adminApi.put<ConnectedXMResponse<Level>>(
     `/levels/${levelId}`,
     {
       ...level,
@@ -48,10 +50,6 @@ export const UpdateLevel = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Level
- */
 export const useUpdateLevel = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -9,8 +9,12 @@ import {
 import { ANNOUNCEMENT_QUERY_KEY } from "../useGetAnnouncement";
 
 /**
- * @category Keys
- * @announcement Announcements
+ * Retrieves translations for a specific announcement by its ID.
+ * This function is part of the announcement management system, allowing users to fetch all available translations for a given announcement.
+ * It is designed to be used in applications where multilingual support for announcements is required.
+ * @name GetAnnouncementTranslations
+ * @param {string} announcementId - The ID of the announcement
+ * @version 1.2
  */
 export const ANNOUNCEMENT_TRANSLATIONS_QUERY_KEY = (announcementId: string) => [
   ...ANNOUNCEMENT_QUERY_KEY(announcementId),

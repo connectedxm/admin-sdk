@@ -8,26 +8,27 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { ACCOUNT_GROUPS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to add a group to an account and invalidate related queries.
+ * This function allows the addition of a specified group to a given account, ensuring that any related cached queries are invalidated to maintain data consistency.
+ * It is designed for use in applications where account group management is required.
+ * @name AddAccountGroup
+ * @param {string} accountId - The id of the account
+ * @param {string} groupId - The id of the group
+ * @version 1.2
+ **/
 export interface AddAccountGroupParams extends MutationParams {
   accountId: string;
   groupId: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const AddAccountGroup = async ({
   accountId,
   groupId,
   adminApiParams,
   queryClient,
 }: AddAccountGroupParams): Promise<ConnectedXMResponse<GroupMembership>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<GroupMembership>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<GroupMembership>>(
     `/accounts/${accountId}/groups/${groupId}`
   );
 
@@ -39,10 +40,6 @@ export const AddAccountGroup = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useAddAccountGroup = (
   options: Omit<
     ConnectedXMMutationOptions<

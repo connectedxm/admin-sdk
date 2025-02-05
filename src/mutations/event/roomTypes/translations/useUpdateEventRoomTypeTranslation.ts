@@ -12,6 +12,18 @@ import {
 } from "@src/queries";
 
 /**
+ * Updates the translation for a specific event room type.
+ * This function allows updating the translation details of a room type within an event for a specified locale.
+ * It is used in scenarios where the translation of room types needs to be modified or updated.
+ * @name UpdateEventRoomTypeTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} roomTypeId - The ID of the room type
+ * @param {ISupportedLocale} locale - The locale for the translation
+ * @param {EventRoomTypeTranslationUpdateInputs} roomTypeTranslation - The translation details to update
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Reservations-Translations
  */
@@ -34,9 +46,9 @@ export const UpdateEventRoomTypeTranslation = async ({
   adminApiParams,
   queryClient,
 }: UpdateEventRoomTypeTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put(
+  const { data } = await adminApi.put(
     `/events/${eventId}/roomTypes/${roomTypeId}/translations/${locale}`,
     roomTypeTranslation
   );

@@ -9,17 +9,18 @@ import { ORGANIZATION_PAYMENT_INTEGRATION_QUERY_KEY } from "./useGetOrganization
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Organization
- */
+ * Retrieves the payment link for a specified payment integration type within an organization.
+ * This function is designed to fetch the URL link associated with a particular payment integration type,
+ * allowing organizations to access or manage their payment integrations effectively.
+ * @name GetOrganizationPaymentLink
+ * @param {keyof typeof PaymentIntegrationType} type - The type of payment integration
+ * @version 1.2
+ **/
+
 export const ORGANIZATION_PAYMENT_INTEGRATION_LINK_QUERY_KEY = (
   type: keyof typeof PaymentIntegrationType
 ) => [...ORGANIZATION_PAYMENT_INTEGRATION_QUERY_KEY(type), "LINK"];
 
-/**
- * @category Setters
- * @group Organization
- */
 export const SET_ORGANIZATION_STRIPE_LINK_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ORGANIZATION_PAYMENT_INTEGRATION_LINK_QUERY_KEY>,
@@ -35,10 +36,6 @@ interface GetOrganizationPaymentLinkProps extends SingleQueryParams {
   type: keyof typeof PaymentIntegrationType;
 }
 
-/**
- * @category Queries
- * @group Organization
- */
 export const GetOrganizationPaymentLink = async ({
   type,
   adminApiParams,
@@ -47,10 +44,7 @@ export const GetOrganizationPaymentLink = async ({
   const { data } = await adminApi.get(`/organization/payment/${type}/link`);
   return data;
 };
-/**
- * @category Hooks
- * @group Organization
- */
+
 export const useGetOrganizationPaymentLink = (
   type: keyof typeof PaymentIntegrationType,
   options: SingleQueryOptions<

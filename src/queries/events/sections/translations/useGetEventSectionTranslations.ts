@@ -9,6 +9,16 @@ import {
 import { EVENT_SECTION_QUERY_KEY } from "../useGetEventSection";
 
 /**
+ * Retrieves translations for a specific event section.
+ * This function fetches translation data for a given event section, allowing applications to display localized content.
+ * It is designed to be used in scenarios where multilingual support is required for event sections.
+ * @name GetEventSectionTranslations
+ * @param {string} eventId - The ID of the event
+ * @param {string} sectionId - The ID of the section
+ * @version 1.2
+ **/
+
+/**
  * @category Keys
  * @group Events
  */

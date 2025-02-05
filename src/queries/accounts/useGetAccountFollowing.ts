@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Account } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
@@ -11,18 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 
 /**
- * @category Keys
- * @group Accounts
- */
+ * Endpoint to retrieve a list of accounts that a specified account is following.
+ * This function is used to fetch the accounts that are being followed by a particular account, 
+ * providing a way to access the following list of a user.
+ * @name GetAccountFollowing
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export const ACCOUNT_FOLLOWING_QUERY_KEY = (accountId: string) => [
   ...ACCOUNT_QUERY_KEY(accountId),
   "FOLLOWING",
 ];
 
-/**
- * @category Setters
- * @group Accounts
- */
 export const SET_ACCOUNT_FOLLOWING_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_FOLLOWING_QUERY_KEY>,
@@ -35,10 +35,6 @@ interface GetAccountFollowingProps extends InfiniteQueryParams {
   accountId: string;
 }
 
-/**
- * @category Queries
- * @group Accounts
- */
 export const GetAccountFollowing = async ({
   accountId,
   pageParam,
@@ -58,10 +54,7 @@ export const GetAccountFollowing = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Accounts
- */
+
 export const useGetAccountFollowing = (
   accountId: string = "",
   params: Omit<

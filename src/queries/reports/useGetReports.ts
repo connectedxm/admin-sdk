@@ -9,9 +9,15 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Reports
- */
+ * Endpoint to retrieve a list of reports based on specified criteria.
+ * This function allows users to fetch reports filtered by type and optionally by event ID.
+ * It is designed to be used in applications where report data is required for analysis or display.
+ * @name GetReports
+ * @param {ReportType} type - The type of the report
+ * @param {string} [eventId] - The ID of the event
+ * @version 1.2
+ **/
+
 export const REPORTS_QUERY_KEY = (
   type: keyof typeof ReportType,
   eventId?: string
@@ -21,10 +27,6 @@ export const REPORTS_QUERY_KEY = (
   return keys;
 };
 
-/**
- * @category Setters
- * @group Reports
- */
 export const SET_REPORTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof REPORTS_QUERY_KEY>,
@@ -38,10 +40,6 @@ interface GetReportsProps extends InfiniteQueryParams {
   eventId?: string;
 }
 
-/**
- * @category Queries
- * @group Reports
- */
 export const GetReports = async ({
   pageParam,
   pageSize,
@@ -64,10 +62,7 @@ export const GetReports = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Reports
- */
+
 export const useGetReports = (
   type: keyof typeof ReportType,
   eventId?: string,

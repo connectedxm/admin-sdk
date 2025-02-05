@@ -9,18 +9,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { ConnectedXMResponse, Level } from "@src/interfaces";
 
 /**
- * @category Keys
- * @group Levels
- */
+ * Fetches details for a specific sponsorship level by its ID.
+ * This function is used to retrieve detailed information about a particular sponsorship level within the system.
+ * It is designed to be utilized in applications where such detailed level information is necessary.
+ * @name GetLevel
+ * @param {string} sponsorshipLevelId - The ID of the sponsorship level
+ * @version 1.2
+ **/
+
 export const LEVEL_QUERY_KEY = (levelId: string) => [
   ...LEVELS_QUERY_KEY(),
   levelId,
 ];
 
-/**
- * @category Setters
- * @group Levels
- */
 export const SET_LEVEL_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof LEVEL_QUERY_KEY>,
@@ -33,10 +34,6 @@ interface GetLevelProps extends SingleQueryParams {
   sponsorshipLevelId: string;
 }
 
-/**
- * @category Queries
- * @group Levels
- */
 export const GetLevel = async ({
   sponsorshipLevelId,
   adminApiParams,
@@ -47,10 +44,7 @@ export const GetLevel = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Levels
- */
+
 export const useGetLevel = (
   sponsorshipLevelId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetLevel>> = {}

@@ -1,5 +1,4 @@
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Activity } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -11,18 +10,20 @@ import { CHANNEL_CONTENT_QUERY_KEY } from "./useGetChannelContent";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Channels
- */
+ * Fetches activities related to specific channel content, with support for pagination and filtering.
+ * This function is designed to retrieve a list of activities associated with a given channel and content ID.
+ * It is useful for applications that need to display or process activity logs or records for specific content.
+ * @name GetChannelContentActivities
+ * @param {string} channelId - The id of the channel
+ * @param {string} contentId - The id of the content
+ * @version 1.2
+ **/
+
 export const CHANNEL_CONTENT_ACTIVITIES_QUERY_KEY = (
   channelId: string,
   contentId: string
 ) => [...CHANNEL_CONTENT_QUERY_KEY(channelId, contentId), "ACTIVITIES"];
 
-/**
- * @category Setters
- * @group Channels
- */
 export const SET_CHANNEL_CONTENT_ACTIVITIES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof CHANNEL_CONTENT_ACTIVITIES_QUERY_KEY>,
@@ -39,10 +40,6 @@ interface GetContentActivitiesProps extends InfiniteQueryParams {
   contentId: string;
 }
 
-/**
- * @category Queries
- * @group Channels
- */
 export const GetChannelContentActivities = async ({
   channelId,
   contentId,
@@ -66,10 +63,7 @@ export const GetChannelContentActivities = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Channels
- */
+
 export const useGetChannelContentActivities = (
   channelId: string = "",
   contentId: string = "",

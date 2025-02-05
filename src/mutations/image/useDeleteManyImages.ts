@@ -8,25 +8,26 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { IMAGES_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Images
- */
+ * Endpoint to delete multiple images from the storage system.
+ * This function allows users to remove several images at once by providing their IDs.
+ * It is useful in scenarios where bulk deletion of images is required, ensuring efficient management of image resources.
+ * @name DeleteManyImages
+ * @param {string[]} imageIds - The IDs of the images to be deleted
+ * @version 1.2
+ **/
+
 export interface DeleteManyImagesParams extends MutationParams {
   imageIds: string[];
 }
 
-/**
- * @category Methods
- * @group Images
- */
 export const DeleteManyImages = async ({
   imageIds,
   adminApiParams,
   queryClient,
 }: DeleteManyImagesParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<ConnectedXMResponse<null>>(
+  const { data } = await adminApi.post<ConnectedXMResponse<null>>(
     `/images/delete`,
     { imageIds }
   );
@@ -36,10 +37,6 @@ export const DeleteManyImages = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Images
- */
 export const useDeleteManyImages = (
   options: Omit<
     ConnectedXMMutationOptions<

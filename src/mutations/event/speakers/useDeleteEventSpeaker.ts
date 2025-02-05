@@ -11,26 +11,28 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Speakers
- */
+ * Endpoint to delete a speaker from a specific event.
+ * This function allows the removal of a speaker from an event by specifying the event and speaker IDs.
+ * It is designed to be used in applications where event management and speaker coordination are required.
+ * @name DeleteEventSpeaker
+ * @param {string} eventId - The id of the event
+ * @param {string} speakerId - The id of the speaker
+ * @version 1.2
+ **/
+
 export interface DeleteEventSpeakerParams extends MutationParams {
   eventId: string;
   speakerId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Speakers
- */
 export const DeleteEventSpeaker = async ({
   eventId,
   speakerId,
   adminApiParams,
   queryClient,
 }: DeleteEventSpeakerParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/speakers/${speakerId}`
   );
   if (queryClient && data.status === "ok") {
@@ -44,10 +46,6 @@ export const DeleteEventSpeaker = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Speakers
- */
 export const useDeleteEventSpeaker = (
   options: Omit<
     ConnectedXMMutationOptions<

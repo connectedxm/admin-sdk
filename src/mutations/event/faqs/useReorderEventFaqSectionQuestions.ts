@@ -8,19 +8,22 @@ import {
 import { SET_EVENT_FAQ_SECTION_QUESTIONS_QUERY_DATA } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sections
- */
+ * Endpoint to reorder questions in a specific FAQ section of an event.
+ * This function allows users to change the order of questions within a specified FAQ section for a given event.
+ * It is useful for organizing FAQ content to improve clarity and accessibility for event participants.
+ * @name ReorderEventFaqSectionQuestions
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the FAQ section
+ * @param {string[]} questionIds - The ids of the questions to reorder
+ * @version 1.2
+ **/
+
 export interface ReorderEventFaqSectionQuestionsParams extends MutationParams {
   eventId: string;
   sectionId: string;
   questionIds: string[];
 }
 
-/**
- * @category Methods
- * @group Event-Sections
- */
 export const ReorderEventFaqSectionQuestions = async ({
   eventId,
   sectionId,
@@ -31,9 +34,9 @@ export const ReorderEventFaqSectionQuestions = async ({
   ConnectedXMResponse<Faq[]>
 > => {
   if (!sectionId) throw new Error("Section ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<ConnectedXMResponse<Faq[]>>(
+  const { data } = await adminApi.put<ConnectedXMResponse<Faq[]>>(
     `/events/${eventId}/faqs/${sectionId}/questions/reorder`,
     {
       questionIds,
@@ -50,10 +53,6 @@ export const ReorderEventFaqSectionQuestions = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sections
- */
 export const useReorderEventFaqSectionQuestions = (
   options: Omit<
     ConnectedXMMutationOptions<

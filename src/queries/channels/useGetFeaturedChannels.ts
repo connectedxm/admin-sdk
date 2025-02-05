@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Channel } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -11,18 +10,18 @@ import { QueryClient } from "@tanstack/react-query";
 import { CHANNELS_QUERY_KEY } from "./useGetChannels";
 
 /**
- * @category Keys
- * @group Channels
- */
+ * Retrieves a list of featured channels from the server.
+ * This function is designed to fetch and return a paginated list of channels that are marked as featured.
+ * It is useful for applications that need to display a curated list of channels to users.
+ * @name GetFeaturedChannels
+ * @version 1.2
+ **/
+
 export const FEATURED_CHANNELS_QUERY_KEY = () => [
   CHANNELS_QUERY_KEY(),
   "FEATURED",
 ];
 
-/**
- * @category Setters
- * @group Channels
- */
 export const SET_FEATURED_CHANNELS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof FEATURED_CHANNELS_QUERY_KEY>,
@@ -33,10 +32,6 @@ export const SET_FEATURED_CHANNELS_QUERY_DATA = (
 
 interface GetFeaturedChannelsProps extends InfiniteQueryParams {}
 
-/**
- * @category Queries
- * @group Channels
- */
 export const GetFeaturedChannels = async ({
   pageParam,
   pageSize,
@@ -55,10 +50,7 @@ export const GetFeaturedChannels = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Channels
- */
+
 export const useGetFeaturedChannels = (
   params: Omit<
     InfiniteQueryParams,

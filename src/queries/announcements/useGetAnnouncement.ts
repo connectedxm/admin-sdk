@@ -10,18 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Announcements
- */
+ * Fetches a specific announcement by its ID.
+ * This function is designed to retrieve detailed information about a particular announcement within the system.
+ * It is useful for applications that need to display or process information about a single announcement.
+ * @name GetAnnouncement
+ * @param {string} announcementId - The ID of the announcement
+ * @version 1.2
+ **/
+
 export const ANNOUNCEMENT_QUERY_KEY = (announcementId: string) => [
   ...ANNOUNCEMENTS_QUERY_KEY(),
   announcementId,
 ];
 
-/**
- * @category Setters
- * @group Announcements
- */
 export const SET_ANNOUNCEMENT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ANNOUNCEMENT_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetAnnouncementProps extends SingleQueryParams {
   announcementId: string;
 }
 
-/**
- * @category Queries
- * @group Announcements
- */
 export const GetAnnouncement = async ({
   announcementId,
   adminApiParams,
@@ -46,10 +43,7 @@ export const GetAnnouncement = async ({
   const { data } = await adminApi.get(`/announcements/${announcementId}`);
   return data;
 };
-/**
- * @category Hooks
- * @group Announcements
- */
+
 export const useGetAnnouncement = (
   announcementId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetAnnouncement>> = {}

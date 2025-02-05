@@ -12,6 +12,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Updates the translation for a specific level in a given locale.
+ * This function allows for updating the translation details of a level, identified by its ID, for a specified locale.
+ * It is used in applications where level translations need to be managed and updated.
+ * @name UpdateLevelTranslation
+ * @param {string} levelId - The ID of the level
+ * @param {ISupportedLocale} locale - The locale for which the translation is being updated
+ * @param {LevelTranslationUpdateInputs} levelTranslation - The translation details to update
+ * @version 1.2
+**/
+
+/**
  * @category Params
  * @group Level-Translations
  */
@@ -32,9 +43,9 @@ export const UpdateLevelTranslation = async ({
   adminApiParams,
   queryClient,
 }: UpdateLevelTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put(
+  const { data } = await adminApi.put(
     `/levels/${levelId}/translations/${locale}`,
     levelTranslation
   );

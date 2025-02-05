@@ -10,18 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Support Tickets
- */
+ * Endpoint to retrieve a specific support ticket by its unique identifier.
+ * This function allows users to fetch details of a support ticket using the provided support ticket ID.
+ * It is designed to be used in applications where detailed information about a support ticket is required.
+ * @name GetSupportTicket
+ * @param {string} supportTicketId - The ID of the support ticket
+ * @version 1.2
+ **/
+
 export const SUPPORT_TICKET_QUERY_KEY = (supportTicketId: string) => [
   ...SUPPORT_TICKETS_QUERY_KEY(),
   supportTicketId,
 ];
 
-/**
- * @category Setters
- * @group Support Tickets
- */
 export const SET_SUPPORT_TICKET_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SUPPORT_TICKET_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetSupportTicketProps extends SingleQueryParams {
   supportTicketId: string;
 }
 
-/**
- * @category Queries
- * @group Support Tickets
- */
 export const GetSupportTicket = async ({
   supportTicketId,
   adminApiParams,
@@ -46,10 +43,7 @@ export const GetSupportTicket = async ({
   const { data } = await adminApi.get(`/supportTickets/${supportTicketId}`);
   return data;
 };
-/**
- * @category Hooks
- * @group Support Tickets
- */
+
 export const useGetSupportTicket = (
   supportTicketId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetSupportTicket>> = {}

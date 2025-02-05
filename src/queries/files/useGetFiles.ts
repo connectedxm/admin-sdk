@@ -9,19 +9,20 @@ import {
 } from "../useConnectedInfiniteQuery";
 
 /**
- * @category Keys
- * @group Files
- */
+ * Provides functionality to retrieve and manage files through the API with support for pagination and filtering.
+ * This endpoint allows users to fetch a list of files, optionally filtered by a specified source.
+ * It is designed to be used in applications where file management and retrieval are required.
+ * @name GetFiles
+ * @param {string} [source] - Optional source of the files
+ * @version 1.2
+ **/
+
 export const FILES_QUERY_KEY = (source?: string) => {
   const keys = ["FILES"];
   if (source) keys.push(source);
   return keys;
 };
 
-/**
- * @category Setters
- * @group Files
- */
 export const SET_FILES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof FILES_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetFilesParams extends InfiniteQueryParams {
   source?: string;
 }
 
-/**
- * @category Queries
- * @group Files
- */
 export const GetFiles = async ({
   pageParam,
   pageSize,
@@ -59,10 +56,7 @@ export const GetFiles = async ({
 
   return data;
 };
-/**
- * @category Hooks
- * @group Files
- */
+
 export const useGetFiles = (
   source?: string,
   params: Omit<

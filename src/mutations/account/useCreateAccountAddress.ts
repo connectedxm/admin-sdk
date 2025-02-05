@@ -9,18 +9,19 @@ import { ACCOUNT_ADDRESSES_QUERY_KEY } from "@src/queries";
 import { AccountAddressCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to create a new account address and invalidate related queries.
+ * This function allows the creation of a new address for a specified account and ensures that any related cached queries are invalidated to maintain data consistency.
+ * It is designed for use in applications where account address management is required.
+ * @name CreateAccountAddress
+ * @param {string} accountId - The id of the account
+ * @param {AccountAddressCreateInputs} address - The address details to be created
+ * @version 1.2
+**/
 export interface CreateAccountAddressParams extends MutationParams {
   accountId: string;
   address: AccountAddressCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const CreateAccountAddress = async ({
   accountId,
   address,
@@ -29,8 +30,8 @@ export const CreateAccountAddress = async ({
 }: CreateAccountAddressParams): Promise<
   ConnectedXMResponse<AccountAddress>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<AccountAddress>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<AccountAddress>>(
     `/accounts/${accountId}/addresses`,
     address
   );
@@ -43,10 +44,6 @@ export const CreateAccountAddress = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useCreateAccountAddress = (
   options: Omit<
     ConnectedXMMutationOptions<

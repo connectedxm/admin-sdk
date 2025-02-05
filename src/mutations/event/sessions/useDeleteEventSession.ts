@@ -11,26 +11,28 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Endpoint to delete a specific event session.
+ * This function allows the removal of a session from an event by specifying the event and session IDs.
+ * It is designed to be used in applications where event management and session control are required.
+ * @name DeleteEventSession
+ * @param {string} eventId - The id of the event
+ * @param {string} sessionId - The id of the session
+ * @version 1.2
+ **/
+
 export interface DeleteEventSessionParams extends MutationParams {
   eventId: string;
   sessionId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const DeleteEventSession = async ({
   eventId,
   sessionId,
   adminApiParams,
   queryClient,
 }: DeleteEventSessionParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/sessions/${sessionId}`
   );
   if (queryClient && data.status === "ok") {
@@ -44,10 +46,6 @@ export const DeleteEventSession = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useDeleteEventSession = (
   options: Omit<
     ConnectedXMMutationOptions<

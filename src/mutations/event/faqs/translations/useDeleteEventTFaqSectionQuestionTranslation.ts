@@ -10,8 +10,15 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Faqs-Translations
+ * Deletes a specific translation of a FAQ section question for an event.
+ * This function is used to remove a translation of a question within a FAQ section of an event, identified by event ID, section ID, question ID, and locale.
+ * It is designed for applications that manage multilingual FAQ content for events.
+ * @name DeleteEventFaqSectionQuestionTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} sectionId - The ID of the FAQ section
+ * @param {string} questionId - The ID of the question
+ * @param {string} locale - The locale of the translation
+ * @version 1.2
  */
 export interface DeleteEventFaqSectionQuestionTranslationParams
   extends MutationParams {
@@ -33,9 +40,9 @@ export const DeleteEventFaqSectionQuestionTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteEventFaqSectionQuestionTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/events/${eventId}/faqs/${sectionId}/questions/${questionId}/translations/${locale}`
   );
 

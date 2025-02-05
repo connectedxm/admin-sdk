@@ -9,18 +9,20 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Channels
- */
+ * Fetches data for a specific channel subscriber by channel and account ID.
+ * This function is used to retrieve detailed information about a subscriber of a particular channel.
+ * It is designed for applications that need to access subscriber data within a channel context.
+ * @name GetChannelSubscriber
+ * @param {string} channelId - The ID of the channel
+ * @param {string} accountId - The ID of the account
+ * @version 1.2
+ **/
+
 export const CHANNEL_SUBSCRIBER_QUERY_KEY = (
   channelId: string,
   accountId: string
 ) => [...CHANNELS_QUERY_KEY(), channelId, accountId];
 
-/**
- * @category Setters
- * @group Channels
- */
 export const SET_CHANNEL_SUBSCRIBER_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof CHANNEL_SUBSCRIBER_QUERY_KEY>,
@@ -34,10 +36,6 @@ interface GetChannelSubscriberProps extends SingleQueryParams {
   accountId: string;
 }
 
-/**
- * @category Queries
- * @group Channels
- */
 export const GetChannelSubscriber = async ({
   channelId,
   accountId,
@@ -51,10 +49,7 @@ export const GetChannelSubscriber = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Channels
- */
+
 export const useGetChannelSubscriber = (
   channelId: string = "",
   accountId: string = "",

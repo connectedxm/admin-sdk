@@ -13,17 +13,18 @@ import {
 import { ORGANIZATION_MODULE_QUERY_KEY } from "./useGetOrganizationModule";
 
 /**
- * @category Keys
- * @group Organization
- */
+ * Fetches editable tiers for a specified organization module type.
+ * This function is used to retrieve a list of tiers that can be edited within a given organization module.
+ * It is particularly useful for applications that need to manage or display editable tiers for different modules.
+ * @name GetOrganizationModuleEditableTiers
+ * @param {keyof typeof OrganizationModuleType} moduleType - The type of the organization module
+ * @version 1.2
+ **/
+
 export const ORGANIZATION_MODULE_EDITABLE_TIERS_QUERY_KEY = (
   moduleType: keyof typeof OrganizationModuleType
 ) => [...ORGANIZATION_MODULE_QUERY_KEY(moduleType), "EDITABLE_TIERS"];
 
-/**
- * @category Setters
- * @group Organization
- */
 export const SET_ORGANIZATION_MODULE_EDITABLE_TIERS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ORGANIZATION_MODULE_EDITABLE_TIERS_QUERY_KEY>,
@@ -39,10 +40,6 @@ interface GetOrganizationModuleEditableTiersProps extends InfiniteQueryParams {
   moduleType: keyof typeof OrganizationModuleType;
 }
 
-/**
- * @category Queries
- * @group Organization
- */
 export const GetOrganizationModuleEditableTiers = async ({
   moduleType,
   adminApiParams,
@@ -57,10 +54,6 @@ export const GetOrganizationModuleEditableTiers = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Organization
- */
 export const useGetOrganizationModuleEditableTiers = (
   moduleType: keyof typeof OrganizationModuleType,
   options: InfiniteQueryOptions<

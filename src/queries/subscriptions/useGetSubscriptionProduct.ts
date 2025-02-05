@@ -10,17 +10,18 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Subscriptions
- */
+ * Fetches details for a specific subscription product by its ID.
+ * This function utilizes a connected single query to retrieve data about a subscription product.
+ * It is designed to be used in applications where detailed information about a subscription product is required.
+ * @name GetSubscriptionProduct
+ * @param {string} subscriptionProductId - The ID of the subscription product
+ * @version 1.2
+ **/
+
 export const SUBSCRIPTION_PRODUCT_QUERY_KEY = (
   subscriptionProductId: string
 ) => [...SUBSCRIPTION_PRODUCTS_QUERY_KEY(), subscriptionProductId];
 
-/**
- * @category Setters
- * @group Subscriptions
- */
 export const SET_SUBSCRIPTION_PRODUCT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SUBSCRIPTION_PRODUCT_QUERY_KEY>,
@@ -33,10 +34,6 @@ interface GetSubscriptionProductProps extends SingleQueryParams {
   subscriptionProductId: string;
 }
 
-/**
- * @category Queries
- * @group Subscriptions
- */
 export const GetSubscriptionProduct = async ({
   subscriptionProductId,
   adminApiParams,
@@ -49,10 +46,7 @@ export const GetSubscriptionProduct = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Subscriptions
- */
+
 export const useGetSubscriptionProduct = (
   subscriptionProductId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetSubscriptionProduct>> = {}

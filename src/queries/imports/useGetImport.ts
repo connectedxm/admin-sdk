@@ -10,18 +10,19 @@ import { IMPORTS_QUERY_KEY } from "./useGetImports";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Imports
- */
+ * Provides functionality for retrieving and managing import data within the application.
+ * This module includes methods to fetch import details by ID and update the query cache with the retrieved data.
+ * It is designed to be used in scenarios where import data needs to be accessed or manipulated.
+ * @name GetImport
+ * @param {string} importId - The id of the import
+ * @version 1.2
+ **/
+
 export const IMPORT_QUERY_KEY = (importId: string) => [
   ...IMPORTS_QUERY_KEY(),
   importId,
 ];
 
-/**
- * @category Setters
- * @group Imports
- */
 export const SET_IMPORT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof IMPORT_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetImportProps extends SingleQueryParams {
   importId: string;
 }
 
-/**
- * @category Queries
- * @group Imports
- */
 export const GetImport = async ({
   importId,
   adminApiParams,
@@ -46,10 +43,7 @@ export const GetImport = async ({
   const { data } = await adminApi.get(`/imports/${importId}`);
   return data;
 };
-/**
- * @category Hooks
- * @group Imports
- */
+
 export const useGetImport = (
   importId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetImport>> = {}

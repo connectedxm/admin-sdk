@@ -8,21 +8,21 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { SET_ORGANIZATION_DOMAIN_QUERY_DATA } from "@src/queries/organization/useGetOrganizationDomain";
 
 /**
- * @category Params
- * @group Organization
- */
+ * Endpoint to delete an organization domain.
+ * This function allows for the removal of a domain associated with an organization.
+ * It is intended for use in administrative contexts where domain management is required.
+ * @name DeleteOrganizationDomain
+ * @version 1.2
+ **/
+
 export interface DeleteOrganizationDomainParams extends MutationParams {}
 
-/**
- * @category Methods
- * @group Organization
- */
 export const DeleteOrganizationDomain = async ({
   adminApiParams,
   queryClient,
 }: DeleteOrganizationDomainParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/organization/domain`
   );
   if (queryClient && data.status === "ok") {
@@ -31,10 +31,6 @@ export const DeleteOrganizationDomain = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization
- */
 export const useDeleteOrganizationDomain = (
   options: Omit<
     ConnectedXMMutationOptions<

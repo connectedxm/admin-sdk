@@ -9,18 +9,19 @@ import { THREAD_QUERY_KEY } from "./useGetThread";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @thread Threads
- */
+ * Retrieves a list of moderators for a specific thread.
+ * This function fetches the moderators associated with a given thread ID, allowing applications to display or manage thread moderators.
+ * It is designed to be used in scenarios where thread moderation details are required.
+ * @name GetThreadModerators
+ * @param {string} threadId - The id of the thread
+ * @version 1.2
+ **/
+
 export const THREAD_MODERATORS_QUERY_KEY = (threadId: string) => [
   ...THREAD_QUERY_KEY(threadId),
   "MODERATORS",
 ];
 
-/**
- * @category Setters
- * @thread Threads
- */
 export const SET_THREAD_MODERATORS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof THREAD_MODERATORS_QUERY_KEY>,
@@ -33,10 +34,6 @@ interface GetThreadModeratorsProps extends InfiniteQueryParams {
   threadId: string;
 }
 
-/**
- * @category Queries
- * @thread Threads
- */
 export const GetThreadModerators = async ({
   threadId,
   pageParam,
@@ -56,10 +53,7 @@ export const GetThreadModerators = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @thread Threads
- */
+
 export const useGetThreadModerators = (
   threadId: string = "",
   params: Omit<

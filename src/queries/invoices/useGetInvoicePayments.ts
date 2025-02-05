@@ -11,18 +11,19 @@ import { INVOICE_QUERY_KEY } from "./useGetInvoice";
 import { Payment } from "@src/interfaces";
 
 /**
- * @category Keys
- * @group Invoices
- */
+ * Endpoint to retrieve a list of payments associated with a specific invoice.
+ * This function allows users to fetch payment details for a given invoice by its ID.
+ * It is designed to be used in applications where payment information for invoices is required.
+ * @name GetInvoicePayments
+ * @param {string} invoiceId - The id of the invoice
+ * @version 1.2
+ **/
+
 export const INVOICE_PAYMENTS_QUERY_KEY = (invoiceId: string) => [
   ...INVOICE_QUERY_KEY(invoiceId),
   "PAYMENTS",
 ];
 
-/**
- * @category Setters
- * @group Invoices
- */
 export const SET_INVOICE_PAYMENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INVOICE_PAYMENTS_QUERY_KEY>,
@@ -35,10 +36,6 @@ interface GetInvoicePaymentsProps extends InfiniteQueryParams {
   invoiceId: string;
 }
 
-/**
- * @category Queries
- * @group Invoices
- */
 export const GetInvoicePayments = async ({
   invoiceId,
   pageParam,
@@ -58,10 +55,7 @@ export const GetInvoicePayments = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Invoices
- */
+
 export const useGetInvoicePayments = (
   invoiceId: string = "",
   params: Omit<

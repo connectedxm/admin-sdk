@@ -1,5 +1,4 @@
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Account } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
@@ -11,18 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Accounts
- */
+ * Retrieves a list of followers for a specific account.
+ * This function fetches followers associated with a given account ID, allowing applications to display or process follower data.
+ * It is designed to be used in scenarios where follower information is needed for a particular account.
+ * @name GetAccountFollowers
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export const ACCOUNT_FOLLOWERS_QUERY_KEY = (accountId: string) => [
   ...ACCOUNT_QUERY_KEY(accountId),
   "FOLLOWERS",
 ];
 
-/**
- * @category Setters
- * @group Accounts
- */
 export const SET_ACCOUNT_FOLLOWERS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_FOLLOWERS_QUERY_KEY>,
@@ -35,10 +35,6 @@ interface GetAccountFollowersProps extends InfiniteQueryParams {
   accountId: string;
 }
 
-/**
- * @category Queries
- * @group Accounts
- */
 export const GetAccountFollowers = async ({
   accountId,
   pageParam,
@@ -58,10 +54,7 @@ export const GetAccountFollowers = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Accounts
- */
+
 export const useGetAccountFollowers = (
   accountId: string = "",
   params: Omit<

@@ -10,6 +10,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific translation for an event add-on based on the provided event ID, add-on ID, and locale.
+ * This function is used to remove translations associated with event add-ons, ensuring that outdated or incorrect translations can be managed effectively.
+ * It also handles cache invalidation for the related queries to ensure data consistency.
+ * @name DeleteEventAddOnTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} addOnId - The ID of the add-on
+ * @param {string} locale - The locale of the translation to be deleted
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-AddOns-Translations
  */
@@ -30,9 +41,9 @@ export const DeleteEventAddOnTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteEventAddOnTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/events/${eventId}/addOns/${addOnId}/translations/${locale}`
   );
 

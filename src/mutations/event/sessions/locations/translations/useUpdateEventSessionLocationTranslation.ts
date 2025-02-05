@@ -12,6 +12,18 @@ import {
 } from "@src/queries";
 
 /**
+ * Updates the translation for a specific event session location.
+ * This function allows updating the translation details of a session location within an event for a specified locale.
+ * It is useful for applications that manage multilingual event data and need to update location translations.
+ * @name UpdateEventSessionLocationTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} locationId - The ID of the session location
+ * @param {ISupportedLocale} locale - The locale for the translation
+ * @param {EventSessionLocationTranslationUpdateInputs} locationTranslation - The translation details to update
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Session-Location-Translations
  */
@@ -35,9 +47,9 @@ export const UpdateEventSessionLocationTranslation = async ({
   adminApiParams,
   queryClient,
 }: UpdateEventSessionLocationTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put(
+  const { data } = await adminApi.put(
     `/events/${eventId}/sessionLocations/${locationId}/translations/${locale}`,
     locationTranslation
   );

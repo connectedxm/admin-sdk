@@ -8,24 +8,24 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { TIERS_QUERY_KEY, TIER_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Tier
- */
+ * Endpoint to delete a specific tier and invalidate related queries.
+ * This function allows the removal of a tier by its unique identifier and ensures that any cached queries related to tiers are invalidated.
+ * It is designed to be used in applications where tier management is required, ensuring data consistency by updating the cache.
+ * @name DeleteTier
+ * @param {string} tierId - The id of the tier to be deleted
+ * @version 1.2
+ **/
 export interface DeleteTierParams extends MutationParams {
   tierId: string;
 }
 
-/**
- * @category Methods
- * @group Tier
- */
 export const DeleteTier = async ({
   tierId,
   adminApiParams,
   queryClient,
 }: DeleteTierParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/tiers/${tierId}`
   );
   if (queryClient && data.status === "ok") {
@@ -35,10 +35,6 @@ export const DeleteTier = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Tier
- */
 export const useDeleteTier = (
   options: Omit<
     ConnectedXMMutationOptions<

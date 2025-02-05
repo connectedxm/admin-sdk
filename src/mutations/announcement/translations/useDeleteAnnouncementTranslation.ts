@@ -10,6 +10,16 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific translation of an announcement by its ID and locale.
+ * This function is used to remove a translation for a given announcement, identified by its announcement ID and locale.
+ * It is designed for applications that manage multilingual announcements and need to handle translation deletions.
+ * @name DeleteAnnouncementTranslation
+ * @param {string} announcementId - The ID of the announcement
+ * @param {string} locale - The locale of the translation to be deleted
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @announcement Announcements-Translations
  */
@@ -28,9 +38,9 @@ export const DeleteAnnouncementTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteAnnouncementTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/announcements/${announcementId}/translations/${locale}`
   );
   if (queryClient && data.status === "ok") {

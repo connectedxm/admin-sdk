@@ -11,26 +11,27 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Attendees
- */
+ * Endpoint to delete an attendee from a specific event.
+ * This function allows the removal of an attendee from an event by specifying the event and account IDs.
+ * It is designed to be used in applications where managing event attendees is required.
+ * @name DeleteEventAttendee
+ * @param {string} eventId - The id of the event
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
 export interface DeleteEventAttendeeParams extends MutationParams {
   eventId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Attendees
- */
 export const DeleteEventAttendee = async ({
   eventId,
   accountId,
   adminApiParams,
   queryClient,
 }: DeleteEventAttendeeParams): Promise<ConnectedXMResponse<EventAttendee>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<EventAttendee>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<EventAttendee>>(
     `/events/${eventId}/attendees/${accountId}`
   );
   if (queryClient && data.status === "ok") {
@@ -44,10 +45,6 @@ export const DeleteEventAttendee = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Attendees
- */
 export const useDeleteEventAttendee = (
   options: Omit<
     ConnectedXMMutationOptions<

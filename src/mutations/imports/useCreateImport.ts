@@ -9,9 +9,16 @@ import { IMPORTS_QUERY_KEY } from "@src/queries";
 import { ImportCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Imports
- */
+ * Endpoint to create a new import within the system.
+ * This function allows users to initiate the creation of an import by providing necessary import data inputs.
+ * It supports optional message data, including a tier ID, to customize the import process.
+ * @name CreateImport
+ * @param {ImportCreateInputs} import - The import data inputs
+ * @param {Object} [messageData] - Optional message data
+ * @param {string} [messageData.tierId] - Optional tier ID
+ * @version 1.2
+ **/
+
 export interface CreateImportParams extends MutationParams {
   import: ImportCreateInputs;
   messageData?: {
@@ -19,18 +26,14 @@ export interface CreateImportParams extends MutationParams {
   };
 }
 
-/**
- * @category Methods
- * @group Imports
- */
 export const CreateImport = async ({
   import: { values, type },
   messageData,
   adminApiParams,
   queryClient,
 }: CreateImportParams): Promise<ConnectedXMResponse<Import>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Import>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Import>>(
     `/imports/${type}`,
     {
       values,
@@ -43,10 +46,6 @@ export const CreateImport = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Imports
- */
 export const useCreateImport = (
   options: Omit<
     ConnectedXMMutationOptions<

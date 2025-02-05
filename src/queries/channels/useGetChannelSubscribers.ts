@@ -10,9 +10,15 @@ import { CHANNEL_QUERY_KEY } from "./useGetChannel";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Channels
- */
+ * Endpoint to retrieve a list of subscribers for a specific channel.
+ * This function allows users to fetch subscribers of a channel, with an optional filter by status.
+ * It is designed to be used in applications where managing or viewing channel subscribers is required.
+ * @name GetChannelSubscribers
+ * @param {string} channelId - The id of the channel
+ * @param {string} [status] - Optional status to filter subscribers
+ * @version 1.2
+ **/
+
 export const CHANNEL_SUBSCRIBERS_QUERY_KEY = (
   channelId: string,
   status?: string
@@ -22,10 +28,6 @@ export const CHANNEL_SUBSCRIBERS_QUERY_KEY = (
   return keys;
 };
 
-/**
- * @category Setters
- * @group ChannelSubscribers
- */
 export const SET_CHANNEL_SUBSCRIBERS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof CHANNEL_SUBSCRIBERS_QUERY_KEY>,
@@ -39,10 +41,6 @@ interface GetChannelSubscribersProps extends InfiniteQueryParams {
   status?: string;
 }
 
-/**
- * @category Queries
- * @group ChannelSubscribers
- */
 export const GetChannelSubscribers = async ({
   pageParam,
   pageSize,
@@ -66,10 +64,7 @@ export const GetChannelSubscribers = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group ChannelSubscribers
- */
+
 export const useGetChannelSubscribers = (
   channelId: string = "",
   status?: string,

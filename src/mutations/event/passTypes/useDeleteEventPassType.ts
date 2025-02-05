@@ -11,26 +11,27 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-PassTypes
- */
+ * Endpoint to delete a specific event pass type.
+ * This function allows the removal of a pass type associated with a particular event by specifying the event and pass type IDs.
+ * It is useful in scenarios where event organizers need to manage and update the types of passes available for their events.
+ * @name DeleteEventPassType
+ * @param {string} eventId - The id of the event
+ * @param {string} passTypeId - The id of the pass type
+ * @version 1.2
+ **/
 export interface DeleteEventPassTypeParams extends MutationParams {
   eventId: string;
   passTypeId: string;
 }
 
-/**
- * @category Methods
- * @group Event-PassTypes
- */
 export const DeleteEventPassType = async ({
   eventId,
   passTypeId,
   adminApiParams,
   queryClient,
 }: DeleteEventPassTypeParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/passTypes/${passTypeId}`
   );
   if (queryClient && data.status === "ok") {
@@ -44,10 +45,6 @@ export const DeleteEventPassType = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-PassTypes
- */
 export const useDeleteEventPassType = (
   options: Omit<
     ConnectedXMMutationOptions<

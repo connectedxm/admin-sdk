@@ -9,19 +9,22 @@ import { SET_EVENT_SESSION_LOCATION_QUERY_DATA } from "@src/queries/events/sessi
 import { EVENT_SESSION_LOCATIONS_QUERY_KEY } from "@src/queries/events/sessions/locations/useGetEventSessionLocations";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Adds a location to a specific event session and updates the query client with the new data.
+ * This function is used to associate a location with a session within an event, ensuring that the session's location data is current and accurate.
+ * It is particularly useful in scenarios where event sessions are dynamically managed and require real-time updates.
+ * @name AddEventSessionLocationSession
+ * @param {string} eventId - The id of the event
+ * @param {string} locationId - The id of the location
+ * @param {string} sessionId - The id of the session
+ * @version 1.2
+ **/
+
 export interface AddEventSessionLocationSessionParams extends MutationParams {
   eventId: string;
   locationId: string;
   sessionId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const AddEventSessionLocationSession = async ({
   eventId,
   locationId,
@@ -32,8 +35,8 @@ export const AddEventSessionLocationSession = async ({
   ConnectedXMResponse<EventSessionLocation>
 > => {
   if (!locationId) throw new Error("Location ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<
     ConnectedXMResponse<EventSessionLocation>
   >(`/events/${eventId}/sessionLocations/${locationId}/sessions/${sessionId}`);
 
@@ -48,12 +51,8 @@ export const AddEventSessionLocationSession = async ({
     );
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useAddEventSessionLocationSession = (
   options: Omit<
     ConnectedXMMutationOptions<

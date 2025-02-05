@@ -11,19 +11,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Endpoint to remove a sponsor from a specific event session.
+ * This function allows the removal of a sponsor from an event session by specifying the event, session, and sponsor IDs.
+ * It is designed to be used in applications where managing event session sponsors is required.
+ * @name RemoveEventSessionSponsor
+ * @param {string} eventId - The id of the event
+ * @param {string} sessionId - The id of the session
+ * @param {string} sponsorId - The id of the sponsor
+ * @version 1.2
+ **/
 export interface RemoveEventSessionSponsorParams extends MutationParams {
   eventId: string;
   sessionId: string;
   sponsorId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const RemoveEventSessionSponsor = async ({
   eventId,
   sessionId,
@@ -33,8 +35,8 @@ export const RemoveEventSessionSponsor = async ({
 }: RemoveEventSessionSponsorParams): Promise<
   ConnectedXMResponse<EventSession>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<EventSession>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<EventSession>>(
     `/events/${eventId}/sessions/${sessionId}/sponsors/${sponsorId}`
   );
   if (queryClient && data.status === "ok") {
@@ -46,10 +48,6 @@ export const RemoveEventSessionSponsor = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useRemoveEventSessionSponsor = (
   options: Omit<
     ConnectedXMMutationOptions<

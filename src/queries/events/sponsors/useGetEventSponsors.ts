@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Account } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
@@ -11,18 +10,19 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves a list of sponsors for a specified event.
+ * This function fetches sponsor details associated with a particular event, allowing users to view and manage event sponsors.
+ * It is designed for applications that require detailed information about event sponsorships.
+ * @name GetEventSponsors
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+ **/
+
 export const EVENT_SPONSORS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "SPONSORS",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SPONSORS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_SPONSORS_QUERY_KEY>,
@@ -35,10 +35,6 @@ interface GetEventSponsorsProps extends InfiniteQueryParams {
   eventId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSponsors = async ({
   eventId,
   pageParam,
@@ -58,10 +54,7 @@ export const GetEventSponsors = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSponsors = (
   eventId: string = "",
   params: Omit<

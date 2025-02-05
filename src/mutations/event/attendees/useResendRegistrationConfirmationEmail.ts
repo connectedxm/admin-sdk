@@ -7,19 +7,21 @@ import {
 } from "@src/mutations/useConnectedMutation";
 
 /**
- * @category Params
- * @group Event-Attendees
- */
+ * Endpoint to resend the registration confirmation email for a specific event attendee.
+ * This function allows the system to trigger a resend of the confirmation email to an attendee of a specified event.
+ * It is useful in scenarios where the initial registration email was not received or needs to be sent again.
+ * @name ResendRegistrationConfirmationEmail
+ * @param {string} eventId - The id of the event
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export interface ResendRegistrationConfirmationEmailParams
   extends MutationParams {
   eventId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Attendees
- */
 export const ResendRegistrationConfirmationEmail = async ({
   eventId,
   accountId,
@@ -28,8 +30,8 @@ export const ResendRegistrationConfirmationEmail = async ({
 }: ResendRegistrationConfirmationEmailParams): Promise<
   ConnectedXMResponse<null>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<null>>(
     `/events/${eventId}/attendees/${accountId}/resendEmail`
   );
   if (queryClient && data.status === "ok") {
@@ -38,10 +40,6 @@ export const ResendRegistrationConfirmationEmail = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Attendees
- */
 export const useResendRegistrationConfirmationEmail = (
   options: Omit<
     ConnectedXMMutationOptions<

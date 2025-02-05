@@ -8,26 +8,28 @@ import { ConnectedXMResponse, Group } from "@src/interfaces";
 import { SET_GROUP_QUERY_DATA, GROUP_INTERESTS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Groups
- */
+ * Endpoint to add an interest to a specific group.
+ * This function allows users to associate a new interest with a group by providing the group's ID and the interest's ID.
+ * It is designed to update the group's interests and ensure the data is consistent across the application.
+ * @name AddGroupInterest
+ * @param {string} groupId - The id of the group
+ * @param {string} interestId - The id of the interest
+ * @version 1.2
+ **/
+
 export interface AddGroupInterestParams extends MutationParams {
   groupId: string;
   interestId: string;
 }
 
-/**
- * @category Methods
- * @group Groups
- */
 export const AddGroupInterest = async ({
   groupId,
   interestId,
   adminApiParams,
   queryClient,
 }: AddGroupInterestParams): Promise<ConnectedXMResponse<Group>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Group>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Group>>(
     `/groups/${groupId}/interests/${interestId}`
   );
   if (queryClient && data.status === "ok") {
@@ -39,10 +41,6 @@ export const AddGroupInterest = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Groups
- */
 export const useAddGroupInterest = (
   options: Omit<
     ConnectedXMMutationOptions<

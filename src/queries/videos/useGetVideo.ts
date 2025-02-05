@@ -10,18 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Videos
- */
+ * Endpoint to retrieve video data by its unique identifier.
+ * This function allows users to fetch detailed information about a specific video using its ID.
+ * It is designed for applications that require access to video metadata and related information.
+ * @name GetVideo
+ * @param {string} videoId - The ID of the video
+ * @version 1.2
+ **/
+
 export const VIDEO_QUERY_KEY = (videoId: string) => [
   ...VIDEOS_QUERY_KEY(""),
   videoId,
 ];
 
-/**
- * @category Setters
- * @group Videos
- */
 export const SET_VIDEO_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof VIDEO_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetVideoParams extends SingleQueryParams {
   videoId: string;
 }
 
-/**
- * @category Queries
- * @group Videos
- */
 export const GetVideo = async ({
   videoId,
   adminApiParams,
@@ -47,10 +44,7 @@ export const GetVideo = async ({
 
   return data;
 };
-/**
- * @category Hooks
- * @group Videos
- */
+
 export const useGetVideo = (
   videoId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetVideo>> = {}

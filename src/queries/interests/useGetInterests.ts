@@ -9,15 +9,15 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Interests
- */
+ * Endpoint to retrieve a list of interests.
+ * This function fetches a paginated list of interests from the server, allowing for optional sorting and searching.
+ * It is designed to be used in applications where a comprehensive list of interests is required.
+ * @name GetInterests
+ * @version 1.2
+**/
+
 export const INTERESTS_QUERY_KEY = () => ["INTERESTS"];
 
-/**
- * @category Setters
- * @group Interests
- */
 export const SET_INTERESTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INTERESTS_QUERY_KEY>,
@@ -28,10 +28,6 @@ export const SET_INTERESTS_QUERY_DATA = (
 
 interface GetInterestsProps extends InfiniteQueryParams {}
 
-/**
- * @category Queries
- * @group Interests
- */
 export const GetInterests = async ({
   pageParam,
   pageSize,
@@ -50,10 +46,7 @@ export const GetInterests = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Interests
- */
+
 export const useGetInterests = (
   params: Omit<
     InfiniteQueryParams,

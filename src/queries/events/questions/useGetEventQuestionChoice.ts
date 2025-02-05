@@ -10,19 +10,22 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches a specific choice for a question within an event.
+ * This function is used to retrieve detailed information about a particular choice associated with a question in an event.
+ * It is designed for applications that need to access specific event question choice data.
+ * @name GetEventQuestionChoice
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @param {string} choiceId - The id of the choice
+ * @version 1.2
+ **/
+
 export const EVENT_QUESTION_CHOICE_QUERY_KEY = (
   eventId: string,
   questionId: string,
   choiceId: string
 ) => [...EVENT_QUESTION_CHOICES_QUERY_KEY(eventId, questionId), choiceId];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_QUESTION_CHOICE_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_QUESTION_CHOICE_QUERY_KEY>,
@@ -37,10 +40,6 @@ interface GetEventQuestionChoiceProps extends SingleQueryParams {
   choiceId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventQuestionChoice = async ({
   eventId,
   questionId,
@@ -55,10 +54,7 @@ export const GetEventQuestionChoice = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventQuestionChoice = (
   eventId: string,
   questionId: string,

@@ -9,18 +9,20 @@ import { EVENT_ATTENDEES_QUERY_KEY } from "./useGetEventAttendees";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches details for a specific event attendee by their account ID within a given event.
+ * This function is designed to manage and retrieve data about attendees of a particular event.
+ * It is useful in applications where detailed information about event attendees is required.
+ * @name GetEventAttendee
+ * @param {string} eventId - The ID of the event
+ * @param {string} accountId - The ID of the account
+ * @version 1.2
+ **/
+
 export const EVENT_ATTENDEE_QUERY_KEY = (
   eventId: string,
   accountId: string
 ) => [...EVENT_ATTENDEES_QUERY_KEY(eventId), accountId];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_ATTENDEE_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_ATTENDEE_QUERY_KEY>,
@@ -34,10 +36,6 @@ interface GetEventAttendeeProps extends SingleQueryParams {
   accountId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventAttendee = async ({
   eventId,
   accountId,
@@ -49,10 +47,7 @@ export const GetEventAttendee = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventAttendee = (
   eventId: string,
   accountId: string = "",

@@ -9,24 +9,25 @@ import { TIERS_QUERY_KEY, SET_TIER_QUERY_DATA } from "@src/queries";
 import { TierCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Tier
- */
+ * Endpoint to create a new tier within the system.
+ * This function allows the creation of a tier by providing the necessary inputs.
+ * It is designed to be used in applications where tier management is required.
+ * @name CreateTier
+ * @param {TierCreateInputs} tier - The inputs required to create a tier
+ * @version 1.2
+ **/
+
 export interface CreateTierParams extends MutationParams {
   tier: TierCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Tier
- */
 export const CreateTier = async ({
   tier,
   adminApiParams,
   queryClient,
 }: CreateTierParams): Promise<ConnectedXMResponse<Tier>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Tier>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Tier>>(
     `/tiers`,
     tier
   );
@@ -37,10 +38,6 @@ export const CreateTier = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Tier
- */
 export const useCreateTier = (
   options: Omit<
     ConnectedXMMutationOptions<

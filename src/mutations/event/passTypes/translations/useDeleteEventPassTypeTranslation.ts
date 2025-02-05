@@ -10,6 +10,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific translation for an event pass type.
+ * This function allows the removal of a translation associated with a particular event pass type and locale.
+ * It is useful in scenarios where outdated or incorrect translations need to be removed from the system.
+ * @name DeleteEventPassTypeTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} passTypeId - The ID of the pass type
+ * @param {string} locale - The locale of the translation to be deleted
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-PassTypes-Translations
  */
@@ -30,9 +41,9 @@ export const DeleteEventPassTypeTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteEventPassTypeTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/events/${eventId}/passTypes/${passTypeId}/translations/${locale}`
   );
   if (queryClient && data.status === "ok") {

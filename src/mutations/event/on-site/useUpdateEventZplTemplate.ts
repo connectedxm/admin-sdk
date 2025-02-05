@@ -11,26 +11,27 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-OnSite
- */
+ * Endpoint to update the ZPL template for a specific event.
+ * This function allows updating the ZPL template associated with a given event ID.
+ * It is designed to be used in applications where event-specific ZPL templates need to be managed.
+ * @name UpdateEventZplTemplate
+ * @param {string} eventId - The id of the event
+ * @param {string} zplTemplate - The ZPL template to be updated
+ * @version 1.2
+ **/
 export interface UpdateEventZplTemplateParams extends MutationParams {
   eventId: string;
   zplTemplate: string;
 }
 
-/**
- * @category Methods
- * @group Event-OnSite
- */
 export const UpdateEventZplTemplate = async ({
   eventId,
   zplTemplate,
   adminApiParams,
   queryClient,
 }: UpdateEventZplTemplateParams): Promise<ConnectedXMResponse<EventOnSite>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put(`/events/${eventId}/zpl-template`, {
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put(`/events/${eventId}/zpl-template`, {
     zplTemplate,
   });
 
@@ -43,10 +44,6 @@ export const UpdateEventZplTemplate = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-OnSite
- */
 export const useUpdateEventZplTemplate = (
   options: Omit<
     ConnectedXMMutationOptions<

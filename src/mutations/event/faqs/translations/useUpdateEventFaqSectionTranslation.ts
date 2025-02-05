@@ -12,6 +12,18 @@ import {
 } from "@src/queries";
 
 /**
+ * Updates the translation of a specific FAQ section within an event.
+ * This function allows for modifying the translation details of a FAQ section for a given event and locale.
+ * It is designed to be used in applications where event FAQ translations need to be updated.
+ * @name UpdateEventFaqSectionTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} sectionId - The ID of the FAQ section
+ * @param {ISupportedLocale} locale - The locale for the translation
+ * @param {EventFaqSectionTranslationUpdateInputs} faqSectionTranslation - The translation inputs for the FAQ section
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Faqs-Translations
  */
@@ -34,9 +46,9 @@ export const UpdateEventFaqSectionTranslation = async ({
   adminApiParams,
   queryClient,
 }: UpdateEventFaqSectionTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put(
+  const { data } = await adminApi.put(
     `/events/${eventId}/faqs/${sectionId}/translations/${locale}`,
     faqSectionTranslation
   );

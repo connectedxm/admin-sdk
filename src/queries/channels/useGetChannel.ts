@@ -11,18 +11,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Channels
- */
+ * Endpoint to retrieve details of a specific channel by its unique identifier.
+ * This function allows users to fetch comprehensive information about a channel using the provided channel ID.
+ * It is designed for applications that require detailed channel data.
+ * @name GetChannel
+ * @param {string} channelId - The ID of the channel
+ * @version 1.2
+ **/
+
 export const CHANNEL_QUERY_KEY = (channelId: string) => [
   ...CHANNELS_QUERY_KEY(),
   channelId,
 ];
 
-/**
- * @category Setters
- * @group Channels
- */
 export const SET_CHANNEL_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof CHANNEL_QUERY_KEY>,
@@ -35,10 +36,6 @@ interface GetChannelProps extends SingleQueryParams {
   channelId: string;
 }
 
-/**
- * @category Queries
- * @group Channels
- */
 export const GetChannel = async ({
   channelId,
   adminApiParams,
@@ -47,10 +44,7 @@ export const GetChannel = async ({
   const { data } = await adminApi.get(`/channels/${channelId}`);
   return data;
 };
-/**
- * @category Hooks
- * @group Channels
- */
+
 export const useGetChannel = (
   channelId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetChannel>> = {}

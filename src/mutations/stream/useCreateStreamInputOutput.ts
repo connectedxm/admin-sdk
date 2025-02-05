@@ -12,18 +12,20 @@ import {
 import { StreamInputOutputCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Stream
- */
+ * Endpoint to create a new stream input-output configuration.
+ * This function allows the creation of a new output configuration for a specified stream.
+ * It is designed to be used in applications where stream output configurations need to be dynamically managed.
+ * @name CreateStreamInputOutput
+ * @param {string} streamId - The ID of the stream
+ * @param {StreamInputOutputCreateInputs} output - The output configuration for the stream
+ * @version 1.2
+ **/
+
 export interface CreateStreamInputOutputParams extends MutationParams {
   streamId: string;
   output: StreamInputOutputCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Stream
- */
 export const CreateStreamInputOutput = async ({
   streamId,
   output,
@@ -32,10 +34,11 @@ export const CreateStreamInputOutput = async ({
 }: CreateStreamInputOutputParams): Promise<
   ConnectedXMResponse<StreamInputOutput>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
-    ConnectedXMResponse<StreamInputOutput>
-  >(`/streams/${streamId}/outputs`, output);
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<StreamInputOutput>>(
+    `/streams/${streamId}/outputs`,
+    output
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: STREAM_INPUTS_QUERY_KEY() });
     SET_STREAM_INPUT_OUTPUT_QUERY_DATA(
@@ -47,10 +50,6 @@ export const CreateStreamInputOutput = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Stream
- */
 export const useCreateStreamInputOutput = (
   options: Omit<
     ConnectedXMMutationOptions<

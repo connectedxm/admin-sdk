@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { TaxIntegration } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -10,15 +9,15 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Integrations
- */
+ * Endpoint to retrieve a list of tax integrations for an organization.
+ * This function fetches tax integration data, which can be used to manage and display tax-related information within an organization.
+ * It supports pagination and sorting to efficiently handle large datasets.
+ * @name GetTaxIntegrations
+ * @version 1.2
+ **/
+
 export const TAX_INTEGRATIONS_QUERY_KEY = () => ["TAX_INTEGRATIONS"];
 
-/**
- * @category Setters
- * @group Integrations
- */
 export const SET_TAX_INTEGRATIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof TAX_INTEGRATIONS_QUERY_KEY>,
@@ -29,10 +28,6 @@ export const SET_TAX_INTEGRATIONS_QUERY_DATA = (
 
 interface GetTaxIntegrationsProps extends InfiniteQueryParams {}
 
-/**
- * @category Queries
- * @group Integrations
- */
 export const GetTaxIntegrations = async ({
   pageParam,
   pageSize,
@@ -52,10 +47,6 @@ export const GetTaxIntegrations = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Integrations
- */
 export const useGetTaxIntegrations = (
   params: Omit<
     InfiniteQueryParams,

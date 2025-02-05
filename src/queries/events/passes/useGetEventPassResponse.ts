@@ -9,19 +9,22 @@ import { EVENT_PASS_RESPONSES_QUERY_KEY } from "./useGetEventPassResponses";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves a specific response for a question associated with an event's pass.
+ * This function is designed to fetch detailed information about a particular response to a question linked to an event pass.
+ * It is useful in scenarios where precise data about event pass responses is required.
+ * @name GetEventPassResponse
+ * @param {string} eventId - The id of the event
+ * @param {string} passId - The id of the pass
+ * @param {string} questionId - The id of the question
+ * @version 1.2
+ **/
+
 export const EVENT_PASS_RESPONSE_QUERY_KEY = (
   eventId: string,
   passId: string,
   questionId: string
 ) => [...EVENT_PASS_RESPONSES_QUERY_KEY(eventId, passId), questionId];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_PASS_RESPONSE_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_PASS_RESPONSE_QUERY_KEY>,
@@ -36,10 +39,6 @@ interface GetEventPassResponseProps extends SingleQueryParams {
   questionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventPassResponse = async ({
   eventId,
   passId,
@@ -54,10 +53,7 @@ export const GetEventPassResponse = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventPassResponse = (
   eventId: string = "",
   passId: string = "",

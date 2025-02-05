@@ -8,26 +8,28 @@ import {
 } from "../useConnectedMutation";
 
 /**
- * @category Params
- * @group Groups
- */
+ * Endpoint to delete a group invitation.
+ * This function allows the removal of a specific invitation from a group by providing the group ID and invitation ID.
+ * It is used in scenarios where managing group memberships and invitations is required.
+ * @name DeleteGroupInvitation
+ * @param {string} groupId - The id of the group
+ * @param {string} invitationId - The id of the invitation
+ * @version 1.2
+ **/
+
 export interface DeleteGroupInvitationParams extends MutationParams {
   groupId: string;
   invitationId: string;
 }
 
-/**
- * @category Methods
- * @group Groups
- */
 export const DeleteGroupInvitation = async ({
   groupId,
   invitationId,
   adminApiParams,
   queryClient,
 }: DeleteGroupInvitationParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/groups/${groupId}/invitations/${invitationId}`
   );
   if (queryClient && data.status === "ok") {
@@ -38,10 +40,6 @@ export const DeleteGroupInvitation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Groups
- */
 export const useDeleteGroupInvitation = (
   options: Omit<
     ConnectedXMMutationOptions<

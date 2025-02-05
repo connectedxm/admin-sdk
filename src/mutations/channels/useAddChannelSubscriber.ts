@@ -8,18 +8,19 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { CHANNEL_SUBSCRIBERS_QUERY_KEY } from "@src/queries/channels/useGetChannelSubscribers";
 
 /**
- * @category Params
- * @group Channel
- */
+ * Adds a subscriber to a specified channel and invalidates the relevant query cache.
+ * This function is used to associate an account with a channel as a subscriber, ensuring that the channel's subscriber list is updated.
+ * It is particularly useful in applications where real-time updates to channel subscriptions are necessary.
+ * @name AddChannelSubscriber
+ * @param {string} channelId - The id of the channel
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
 export interface AddChannelsubscriberParams extends MutationParams {
   channelId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Channel
- */
 export const AddChannelSubscriber = async ({
   channelId,
   accountId,
@@ -28,8 +29,8 @@ export const AddChannelSubscriber = async ({
 }: AddChannelsubscriberParams): Promise<
   ConnectedXMResponse<BaseChannelSubscriber>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<
     ConnectedXMResponse<BaseChannelSubscriber>
   >(`/channels/${channelId}/subscribers`, { accountId });
 
@@ -41,10 +42,6 @@ export const AddChannelSubscriber = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Channel
- */
 export const useAddChannelSubscriber = (
   options: Omit<
     ConnectedXMMutationOptions<

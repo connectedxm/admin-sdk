@@ -11,19 +11,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Page
- */
+ * Endpoint to add an image to a specific event page.
+ * This function allows users to associate an image with a particular event page by specifying the event, page, and image identifiers.
+ * It is designed to be used in applications where managing event page content is required.
+ * @name AddEventPageImage
+ * @param {string} eventId - The id of the event
+ * @param {string} pageId - The id of the page
+ * @param {string} imageId - The id of the image
+ * @version 1.2
+ **/
 export interface AddEventPageImageParams extends MutationParams {
   eventId: string;
   pageId: string;
   imageId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Page
- */
 export const AddEventPageImage = async ({
   eventId,
   pageId,
@@ -31,8 +33,8 @@ export const AddEventPageImage = async ({
   adminApiParams,
   queryClient,
 }: AddEventPageImageParams): Promise<ConnectedXMResponse<EventPage>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post(
     `/events/${eventId}/pages/${pageId}/images/${imageId}`
   );
 
@@ -45,10 +47,6 @@ export const AddEventPageImage = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Page
- */
 export const useAddEventPageImage = (
   options: Omit<
     ConnectedXMMutationOptions<

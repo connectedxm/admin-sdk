@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { ChannelContent } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -10,9 +9,16 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Channels
- */
+ * Endpoint to retrieve a list of content items with optional filters for featured status, content type, and past events.
+ * This function allows users to fetch content such as videos, audios, or articles, and filter them based on whether they are featured or past events.
+ * It is designed to be used in applications where content needs to be dynamically loaded and filtered.
+ * @name GetContents
+ * @param {boolean} [featured] - Optional flag to filter featured contents
+ * @param {"video" | "audio" | "article"} [type] - Optional type of content
+ * @param {boolean} [past] - Optional flag to filter past contents
+ * @version 1.2
+ **/
+
 export const CONTENTS_QUERY_KEY = (
   featured?: boolean,
   type?: "video" | "audio" | "article",
@@ -26,10 +32,6 @@ export const CONTENTS_QUERY_KEY = (
   return keys;
 };
 
-/**
- * @category Setters
- * @group Channels
- */
 export const SET_CONTENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof CONTENTS_QUERY_KEY>,
@@ -44,10 +46,6 @@ interface GetContentsProps extends InfiniteQueryParams {
   past?: boolean;
 }
 
-/**
- * @category Queries
- * @group Channels
- */
 export const GetContents = async ({
   featured,
   type,
@@ -73,10 +71,6 @@ export const GetContents = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Channels
- */
 export const useGetContents = (
   featured?: boolean,
   type?: "video" | "audio" | "article",

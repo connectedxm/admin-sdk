@@ -10,9 +10,16 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Accounts
- */
+ * Endpoint to retrieve a list of account tiers for a specific account.
+ * This function allows users to fetch tier information associated with an account, 
+ * which can be filtered by an optional account type.
+ * It is designed to be used in applications where account tier details are required.
+ * @name GetAccountTiers
+ * @param {string} accountId - The id of the account
+ * @param {string} [type] - Optional account type ("external" | "internal")
+ * @version 1.2
+ **/
+
 export const ACCOUNT_TIERS_QUERY_KEY = (
   accountId: string,
   type?: "external" | "internal"
@@ -22,10 +29,6 @@ export const ACCOUNT_TIERS_QUERY_KEY = (
   return keys;
 };
 
-/**
- * @category Setters
- * @group Accounts
- */
 export const SET_ACCOUNT_TIERS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_TIERS_QUERY_KEY>,
@@ -39,10 +42,6 @@ interface GetAccountTiersProps extends InfiniteQueryParams {
   type?: "external" | "internal";
 }
 
-/**
- * @category Queries
- * @group Accounts
- */
 export const GetAccountTiers = async ({
   accountId,
   type,
@@ -64,10 +63,7 @@ export const GetAccountTiers = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Accounts
- */
+
 export const useGetAccountTiers = (
   accountId: string = "",
   type?: "external" | "internal",

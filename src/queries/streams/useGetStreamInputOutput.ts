@@ -10,18 +10,20 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Streams
- */
+ * Retrieves input or output data for a specific stream output.
+ * This function is used to fetch detailed information about the input or output associated with a given stream.
+ * It is designed for applications that require access to stream data outputs.
+ * @name GetStreamInputOutput
+ * @param {string} streamId - The ID of the stream
+ * @param {string} output - The output data identifier
+ * @version 1.2
+ **/
+
 export const STREAM_INPUT_OUTPUT_QUERY_KEY = (
   streamId: string,
   output: string
 ) => [...STREAM_INPUT_OUTPUTS_QUERY_KEY(streamId), output];
 
-/**
- * @category Setters
- * @group Streams
- */
 export const SET_STREAM_INPUT_OUTPUT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof STREAM_INPUT_OUTPUT_QUERY_KEY>,
@@ -35,10 +37,6 @@ interface GetStreamInputOutputParams extends SingleQueryParams {
   output: string;
 }
 
-/**
- * @category Queries
- * @group Streams
- */
 export const GetStreamInputOutput = async ({
   streamId,
   output,
@@ -51,10 +49,7 @@ export const GetStreamInputOutput = async ({
 
   return data;
 };
-/**
- * @category Hooks
- * @group Streams
- */
+
 export const useGetStreamInputOutput = (
   streamId: string = "",
   output: string = "",

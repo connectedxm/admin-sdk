@@ -9,18 +9,20 @@ import { QueryClient } from "@tanstack/react-query";
 import { EVENT_ATTENDEE_QUERY_KEY } from "../useGetEventAttendee";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Endpoint to retrieve a list of reservations for event attendees.
+ * This function fetches reservations associated with a specific event and account, 
+ * allowing users to view detailed reservation information for attendees.
+ * @name GetEventAttendeeReservations
+ * @param {string} eventId - The id of the event
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export const EVENT_ATTENDEE_RESERVATIONS_QUERY_KEY = (
   eventId: string,
   accountId: string
 ) => [...EVENT_ATTENDEE_QUERY_KEY(eventId, accountId), "RESERVATIONS"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_ATTENDEE_RESERVATIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_ATTENDEE_RESERVATIONS_QUERY_KEY>,
@@ -37,10 +39,6 @@ interface GetEventAttendeeReservationsProps extends InfiniteQueryParams {
   accountId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventAttendeeReservations = async ({
   eventId,
   accountId,
@@ -67,10 +65,6 @@ export const GetEventAttendeeReservations = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Events
- */
 export const useGetEventAttendeeReservations = (
   eventId: string,
   accountId: string,

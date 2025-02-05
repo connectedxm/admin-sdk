@@ -1,5 +1,4 @@
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Like } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
@@ -11,18 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Accounts
- */
+ * Retrieves a list of likes associated with a specific account.
+ * This function fetches likes for a given account using an infinite query, allowing for paginated data retrieval.
+ * It is useful in scenarios where an application needs to display or process the likes related to an account.
+ * @name GetAccountLikes
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export const ACCOUNT_LIKES_QUERY_KEY = (accountId: string) => [
   ...ACCOUNT_QUERY_KEY(accountId),
   "LIKES",
 ];
 
-/**
- * @category Setters
- * @group Accounts
- */
 export const SET_ACCOUNT_LIKES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_LIKES_QUERY_KEY>,
@@ -35,10 +35,6 @@ interface GetAccountLikesProps extends InfiniteQueryParams {
   accountId: string;
 }
 
-/**
- * @category Queries
- * @group Accounts
- */
 export const GetAccountLikes = async ({
   accountId,
   pageParam,
@@ -58,10 +54,7 @@ export const GetAccountLikes = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Accounts
- */
+
 export const useGetAccountLikes = (
   accountId: string = "",
   params: Omit<

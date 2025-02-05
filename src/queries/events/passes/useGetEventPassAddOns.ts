@@ -10,18 +10,20 @@ import { QueryClient } from "@tanstack/react-query";
 import { EVENT_PASS_QUERY_KEY } from "./useGetEventPass";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Endpoint to retrieve add-ons associated with a specific event pass.
+ * This function allows users to fetch a list of add-ons for a given event pass, 
+ * providing additional options or features that can be associated with the event.
+ * @name GetEventPassAddOns
+ * @param {string} eventId - The id of the event
+ * @param {string} passId - The id of the pass
+ * @version 1.2
+ **/
+
 export const EVENT_PASS_ADD_ONS_QUERY_KEY = (
   eventId: string,
   passId: string
 ) => [...EVENT_PASS_QUERY_KEY(eventId, passId), "ADD_ONS"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_PASS_ADD_ONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_PASS_ADD_ONS_QUERY_KEY>,
@@ -35,10 +37,6 @@ interface GetEventPassAddOnsProps extends InfiniteQueryParams {
   passId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventPassAddOns = async ({
   eventId,
   passId,
@@ -62,10 +60,7 @@ export const GetEventPassAddOns = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventPassAddOns = (
   eventId: string = "",
   passId: string = "",

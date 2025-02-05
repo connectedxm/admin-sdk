@@ -9,18 +9,18 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse, OrganizationMembership } from "@src/interfaces";
 
 /**
- * @category Keys
- * @group Self
- */
+ * Endpoint to fetch and manage the current user's organization membership data.
+ * This function allows users to retrieve their own organization membership details.
+ * It is designed to be used in applications where users need to access or manage their membership information.
+ * @name GetSelfOrgMembership
+ * @version 1.2
+ **/
+
 export const SELF_MEMBERSHIP_QUERY_KEY = () => [
   ...SELF_QUERY_KEY(),
   "MEMBERSHIP",
 ];
 
-/**
- * @category Setters
- * @group Self
- */
 export const SET_SELF_MEMBERSHIP_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SELF_MEMBERSHIP_QUERY_KEY>,
@@ -31,10 +31,6 @@ export const SET_SELF_MEMBERSHIP_QUERY_DATA = (
 
 interface GetSelfOrgMembershipProps extends SingleQueryParams {}
 
-/**
- * @category Queries
- * @group Self
- */
 export const GetSelfOrgMembership = async ({
   adminApiParams,
 }: GetSelfOrgMembershipProps): Promise<
@@ -44,10 +40,7 @@ export const GetSelfOrgMembership = async ({
   const { data } = await adminApi.get(`/self/organization-membership`);
   return data;
 };
-/**
- * @category Hooks
- * @group Self
- */
+
 export const useGetSelfOrgMembership = (
   options: SingleQueryOptions<ReturnType<typeof GetSelfOrgMembership>> = {}
 ) => {

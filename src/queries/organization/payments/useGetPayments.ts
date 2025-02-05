@@ -10,15 +10,15 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Payments
- */
+ * Fetches a list of payments with optional filtering and pagination parameters.
+ * This function allows retrieval of payment records, supporting features like pagination and sorting.
+ * It is designed for use in applications that require access to payment data with flexible query options.
+ * @name GetPayments
+ * @version 1.2
+ **/
+
 export const PAYMENTS_QUERY_KEY = () => ["PAYMENTS"];
 
-/**
- * @category Setters
- * @group Payments
- */
 export const SET_PAYMENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof PAYMENTS_QUERY_KEY>,
@@ -29,10 +29,6 @@ export const SET_PAYMENTS_QUERY_DATA = (
 
 interface GetPaymentsProps extends InfiniteQueryParams {}
 
-/**
- * @category Queries
- * @group Payments
- */
 export const GetPayments = async ({
   pageParam,
   pageSize,
@@ -51,10 +47,7 @@ export const GetPayments = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Payments
- */
+
 export const useGetPayments = (
   params: Omit<
     InfiniteQueryParams,

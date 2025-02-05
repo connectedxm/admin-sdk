@@ -10,18 +10,20 @@ import { EVENT_ADD_ONS_QUERY_KEY } from "./useGetEventAddOns";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches details of a specific event add-on by its unique identifiers.
+ * This function is used to retrieve detailed information about an add-on associated with a particular event.
+ * It is designed for applications that require access to event add-on data.
+ * @name GetEventAddOn
+ * @param {string} eventId - The id of the event
+ * @param {string} addOnId - The id of the add-on
+ * @version 1.2
+ **/
+
 export const EVENT_ADD_ON_QUERY_KEY = (eventId: string, addOnId: string) => [
   ...EVENT_ADD_ONS_QUERY_KEY(eventId),
   addOnId,
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_ADD_ON_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_ADD_ON_QUERY_KEY>,
@@ -35,10 +37,6 @@ interface GetEventAddOnProps extends SingleQueryParams {
   addOnId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventAddOn = async ({
   eventId,
   addOnId,
@@ -48,10 +46,7 @@ export const GetEventAddOn = async ({
   const { data } = await adminApi.get(`/events/${eventId}/addOns/${addOnId}`);
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventAddOn = (
   eventId: string = "",
   addOnId: string = "",

@@ -11,26 +11,27 @@ import {
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to confirm a Cognito user account associated with a specific account ID and username.
+ * This function is used to confirm the status of a Cognito user within an account, ensuring that the user is recognized and validated by the system.
+ * It is particularly useful in scenarios where user confirmation is required for account activation or access.
+ * @name ConfirmAccountCognitoUser
+ * @param {string} accountId - The id of the account
+ * @param {string} username - The username of the Cognito user
+ * @version 1.2
+ **/
 export interface ConfirmAccountCognitoUserParams extends MutationParams {
   accountId: string;
   username: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const ConfirmAccountCognitoUser = async ({
   accountId,
   username,
   adminApiParams,
   queryClient,
 }: ConfirmAccountCognitoUserParams): Promise<ConnectedXMResponse<Account>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Account>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<Account>>(
     `/accounts/${accountId}/cognito/${username}/confirm`
   );
 
@@ -45,10 +46,6 @@ export const ConfirmAccountCognitoUser = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useConfirmAccountCognitoUser = (
   options: Omit<
     ConnectedXMMutationOptions<

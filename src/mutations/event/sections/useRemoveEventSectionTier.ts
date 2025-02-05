@@ -11,9 +11,17 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sections
- */
+ * Endpoint to remove a tier from a specific event section.
+ * This function allows the removal of a tier from an event section by specifying the event, section, and tier IDs.
+ * It is used in scenarios where managing event sections and their tiers is necessary.
+ * @name RemoveEventSectionTier
+ * @param {boolean} allowed - Indicates if the operation is allowed
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the section
+ * @param {string} tierId - The id of the tier
+ * @version 1.2
+**/
+
 export interface RemoveEventSectionTierParams extends MutationParams {
   allowed: boolean;
   eventId: string;
@@ -21,10 +29,6 @@ export interface RemoveEventSectionTierParams extends MutationParams {
   tierId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sections
- */
 export const RemoveEventSectionTier = async ({
   allowed,
   eventId,
@@ -35,8 +39,8 @@ export const RemoveEventSectionTier = async ({
 }: RemoveEventSectionTierParams): Promise<
   ConnectedXMResponse<RegistrationSection>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<
     ConnectedXMResponse<RegistrationSection>
   >(`/events/${eventId}/sections/${sectionId}/tiers/${tierId}`, {
     params: {
@@ -52,10 +56,6 @@ export const RemoveEventSectionTier = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sections
- */
 export const useRemoveEventSectionTier = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -16,19 +16,21 @@ import {
 } from "@src/mutations/useConnectedMutation";
 
 /**
- * @category Params
- * @group Organization
- */
+ * Removes an enabled tier from a specified organization module.
+ * This function is used to delete a tier from an organization module by specifying the module type and tier ID.
+ * It ensures that the relevant queries are invalidated to maintain data consistency.
+ * @name RemoveOrganizationModuleEnabledTier
+ * @param {keyof typeof OrganizationModuleType} moduleType - The type of the organization module
+ * @param {string} tierId - The id of the tier to be removed
+ * @version 1.2
+ **/
+
 export interface RemoveOrganizationModuleEnabledTierParams
   extends MutationParams {
   moduleType: keyof typeof OrganizationModuleType;
   tierId: string;
 }
 
-/**
- * @category Methods
- * @group Organization
- */
 export const RemoveOrganizationModuleEnabledTier = async ({
   moduleType,
   tierId,
@@ -37,8 +39,8 @@ export const RemoveOrganizationModuleEnabledTier = async ({
 }: RemoveOrganizationModuleEnabledTierParams): Promise<
   ConnectedXMResponse<OrganizationModule>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<
     ConnectedXMResponse<OrganizationModule>
   >(`/organization/modules/${moduleType}/enabledTiers/${tierId}`);
 
@@ -54,10 +56,6 @@ export const RemoveOrganizationModuleEnabledTier = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization
- */
 export const useRemoveOrganizationModuleEnabledTier = (
   options: Omit<
     ConnectedXMMutationOptions<

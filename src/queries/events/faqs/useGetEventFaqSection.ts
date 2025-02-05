@@ -10,18 +10,20 @@ import { EVENT_FAQ_SECTIONS_QUERY_KEY } from "./useGetEventFaqSections";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches a specific FAQ section for a given event.
+ * This function is designed to retrieve detailed information about a particular FAQ section associated with an event.
+ * It is useful for applications that need to display or manage event-related FAQ content.
+ * @name GetEventFaqSection
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the FAQ section
+ * @version 1.2
+ **/
+
 export const EVENT_FAQ_SECTION_QUERY_KEY = (
   eventId: string,
   sectionId: string
 ) => [...EVENT_FAQ_SECTIONS_QUERY_KEY(eventId), sectionId];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_FAQ_SECTION_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_FAQ_SECTION_QUERY_KEY>,
@@ -35,10 +37,6 @@ interface GetEventFaqSectionProps extends SingleQueryParams {
   sectionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventFaqSection = async ({
   eventId,
   sectionId,
@@ -48,10 +46,7 @@ export const GetEventFaqSection = async ({
   const { data } = await adminApi.get(`/events/${eventId}/faqs/${sectionId}`);
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventFaqSection = (
   eventId: string = "",
   sectionId: string = "",

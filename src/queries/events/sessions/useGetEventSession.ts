@@ -9,18 +9,20 @@ import { EventSession } from "@src/interfaces";
 import { EVENT_SESSIONS_QUERY_KEY } from "./useGetEventSessions";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches detailed information about a specific event session using the event and session IDs.
+ * This function is designed to retrieve data for a particular session within an event, 
+ * providing essential details required for applications that manage or display event sessions.
+ * @name GetEventSession
+ * @param {string} eventId - The id of the event
+ * @param {string} sessionId - The id of the session
+ * @version 1.2
+ **/
+
 export const EVENT_SESSION_QUERY_KEY = (eventId: string, sessionId: string) => [
   ...EVENT_SESSIONS_QUERY_KEY(eventId),
   sessionId,
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SESSION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SESSION_QUERY_KEY>,
@@ -34,10 +36,6 @@ interface GetEventSessionProps extends SingleQueryParams {
   sessionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSession = async ({
   eventId,
   sessionId,
@@ -49,10 +47,7 @@ export const GetEventSession = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSession = (
   eventId: string = "",
   sessionId: string = "",

@@ -10,19 +10,22 @@ import {
 import { EVENT_PASS_RESPONSE_QUERY_KEY } from "./useGetEventPassResponse";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches the changes made to event pass responses, providing capabilities for pagination and filtering.
+ * This function is designed to retrieve a list of changes associated with a specific event pass response question.
+ * It is useful for applications that need to track modifications over time for auditing or review purposes.
+ * @name GetEventPassResponseChanges
+ * @param {string} eventId - The id of the event
+ * @param {string} passId - The id of the pass
+ * @param {string} questionId - The id of the question
+ * @version 1.2
+ **/
+
 export const EVENT_PASS_RESPONSE_CHANGES_QUERY_KEY = (
   eventId: string,
   passId: string,
   questionId: string
 ) => [...EVENT_PASS_RESPONSE_QUERY_KEY(eventId, passId, questionId), "CHANGES"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_PASS_RESPONSE_CHANGES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_PASS_RESPONSE_CHANGES_QUERY_KEY>,
@@ -40,10 +43,6 @@ interface GetEventPassResponseChangesProps extends InfiniteQueryParams {
   questionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventPassResponseChanges = async ({
   eventId,
   passId,
@@ -67,13 +66,10 @@ export const GetEventPassResponseChanges = async ({
         search: search || undefined,
       },
     }
-  );
+ );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventPassResponseChanges = (
   eventId: string = "",
   passId: string = "",

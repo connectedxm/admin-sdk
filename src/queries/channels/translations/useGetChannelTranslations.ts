@@ -9,6 +9,16 @@ import {
 } from "@src/queries/useConnectedInfiniteQuery";
 
 /**
+ * Retrieves translations for a specific channel by its ID.
+ * This function is designed to fetch a list of translations associated with a given channel, 
+ * allowing applications to display or manage channel-specific translations.
+ * It supports infinite scrolling through pagination parameters.
+ * @name GetChannelTranslations
+ * @param {string} channelId - The ID of the channel
+ * @version 1.2
+ **/
+
+/**
  * @category Keys
  * @group Channels
  */
@@ -58,6 +68,7 @@ export const GetChannelTranslations = async ({
   });
   return data;
 };
+
 /**
  * @category Hooks
  * @group Channels

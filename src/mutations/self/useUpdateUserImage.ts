@@ -9,25 +9,26 @@ import { SELF_QUERY_KEY, SET_SELF_QUERY_DATA } from "@src/queries";
 import { UserImageUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Images
- */
+ * Endpoint to update the image of the current user.
+ * This function allows users to update their profile image by providing the necessary image data.
+ * It ensures that the user's image is updated in the system and invalidates the relevant queries to reflect the changes.
+ * @name UpdateUserImage
+ * @param {UserImageUpdateInputs} image - The image data to update
+ * @version 1.2
+ **/
+
 export interface UpdateUserImageParams extends MutationParams {
   image: UserImageUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Images
- */
 export const UpdateUserImage = async ({
   image,
   adminApiParams,
   queryClient,
 }: UpdateUserImageParams): Promise<ConnectedXMResponse<User>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<ConnectedXMResponse<User>>(
+  const { data } = await adminApi.put<ConnectedXMResponse<User>>(
     `/self/image`,
     image
   );
@@ -38,10 +39,6 @@ export const UpdateUserImage = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Images
- */
 export const useUpdateUserImage = (
   options: Omit<
     ConnectedXMMutationOptions<

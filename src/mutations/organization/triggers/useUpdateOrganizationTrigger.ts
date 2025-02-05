@@ -13,18 +13,20 @@ import { TriggerUpdateInputs } from "@src/params";
 import { SET_ORGANIZATION_TRIGGER_QUERY_DATA } from "@src/queries";
 
 /**
- * @category Params
- * @group Organization-Triggers
- */
+ * Endpoint to update an organization trigger.
+ * This function allows updating the configuration of a specific organization trigger by specifying its type and the new trigger inputs.
+ * It is designed to be used in applications where organization triggers need to be modified or updated.
+ * @name UpdateOrganizationTrigger
+ * @param {OrganizationTriggerType} type - The type of the organization trigger
+ * @param {TriggerUpdateInputs} trigger - The inputs for updating the trigger
+ * @version 1.2
+ **/
+
 export interface UpdateOrganizationTriggerParams extends MutationParams {
   type: OrganizationTriggerType;
   trigger: TriggerUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Organization-Triggers
- */
 export const UpdateOrganizationTrigger = async ({
   type,
   trigger,
@@ -33,22 +35,19 @@ export const UpdateOrganizationTrigger = async ({
 }: UpdateOrganizationTriggerParams): Promise<
   ConnectedXMResponse<OrganizationTrigger>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<
-    ConnectedXMResponse<OrganizationTrigger>
-  >(`/organization/triggers/${type}`, {
-    code: trigger.code,
-  });
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<OrganizationTrigger>>(
+    `/organization/triggers/${type}`,
+    {
+      code: trigger.code,
+    }
+  );
   if (queryClient && data.status === "ok") {
     SET_ORGANIZATION_TRIGGER_QUERY_DATA(queryClient, [type], data);
   }
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization-Triggers
- */
 export const useUpdateOrganizationTrigger = (
   options: Omit<
     ConnectedXMMutationOptions<

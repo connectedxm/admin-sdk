@@ -10,18 +10,19 @@ import { GROUPS_QUERY_KEY } from "./useGetGroups";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Groups
- */
+ * Fetches details for a specific group by its ID.
+ * This function utilizes a connected single query to retrieve data about a group within the system.
+ * It is designed to be used in applications where detailed information about a group is required.
+ * @name GetGroup
+ * @param {string} groupId - The ID of the group
+ * @version 1.2
+ **/
+
 export const GROUP_QUERY_KEY = (groupId: string) => [
   ...GROUPS_QUERY_KEY(),
   groupId,
 ];
 
-/**
- * @category Setters
- * @group Groups
- */
 export const SET_GROUP_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof GROUP_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetGroupProps extends SingleQueryParams {
   groupId: string;
 }
 
-/**
- * @category Queries
- * @group Groups
- */
 export const GetGroup = async ({
   groupId,
   adminApiParams,
@@ -46,10 +43,7 @@ export const GetGroup = async ({
   const { data } = await adminApi.get(`/groups/${groupId}`);
   return data;
 };
-/**
- * @category Hooks
- * @group Groups
- */
+
 export const useGetGroup = (
   groupId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetGroup>> = {}

@@ -11,19 +11,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Endpoint to add a track to a specific event session.
+ * This function allows users to associate a track with a particular session within an event.
+ * It is useful for applications that manage event sessions and their respective tracks.
+ * @name AddEventSessionTrack
+ * @param {string} eventId - The id of the event
+ * @param {string} sessionId - The id of the session
+ * @param {string} trackId - The id of the track
+ * @version 1.2
+ **/
 export interface AddEventSessionTrackParams extends MutationParams {
   eventId: string;
   sessionId: string;
   trackId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const AddEventSessionTrack = async ({
   eventId,
   sessionId,
@@ -31,8 +33,8 @@ export const AddEventSessionTrack = async ({
   adminApiParams,
   queryClient,
 }: AddEventSessionTrackParams): Promise<ConnectedXMResponse<EventSession>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<EventSession>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<EventSession>>(
     `/events/${eventId}/sessions/${sessionId}/tracks/${trackId}`
   );
   if (queryClient && data.status === "ok") {
@@ -44,10 +46,6 @@ export const AddEventSessionTrack = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useAddEventSessionTrack = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -8,18 +8,19 @@ import {
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves a list of users who have access to a specific event.
+ * This function is used to fetch users associated with an event, providing details about their access.
+ * It is useful in scenarios where event access management and user details are required.
+ * @name GetEventAccessUsers
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+ **/
+
 export const EVENT_ACCESS_USERS_QUERY_KEY = (eventId: string) => [
   EVENT_QUERY_KEY(eventId),
   "ACCESS_USERS",
 ];
 
-/**
- * @category Queries
- * @group Events
- */
 interface GetEventAccessUsersParams extends InfiniteQueryParams {
   eventId: string;
 }
@@ -44,10 +45,6 @@ export const GetEventAccessUsers = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Events
- */
 export const useGetEventAccessUsers = (
   eventId: string = "",
   params: Omit<

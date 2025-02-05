@@ -12,18 +12,20 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Bypass
- */
+ * Endpoint to create a registration bypass for a specific event.
+ * This function allows the creation of a registration bypass, which can be used to manage event registrations more flexibly.
+ * It is designed for applications that require dynamic control over event registration processes.
+ * @name CreateEventRegistrationBypass
+ * @param {string} eventId - The id of the event
+ * @param {EventRegistrationBypassCreateInputs} bypass - The inputs for creating a registration bypass
+ * @version 1.2
+ **/
+
 export interface CreateEventRegistrationBypassParams extends MutationParams {
   eventId: string;
   bypass: EventRegistrationBypassCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Bypass
- */
 export const CreateEventRegistrationBypass = async ({
   eventId,
   bypass,
@@ -32,10 +34,11 @@ export const CreateEventRegistrationBypass = async ({
 }: CreateEventRegistrationBypassParams): Promise<
   ConnectedXMResponse<RegistrationBypass>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
-    ConnectedXMResponse<RegistrationBypass>
-  >(`/events/${eventId}/bypass`, bypass);
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<RegistrationBypass>>(
+    `/events/${eventId}/bypass`,
+    bypass
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_REGISTRATION_BYPASS_LIST_QUERY_KEY(eventId),
@@ -47,12 +50,8 @@ export const CreateEventRegistrationBypass = async ({
     );
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Event-Bypass
- */
 export const useCreateEventRegistrationBypass = (
   options: Omit<
     ConnectedXMMutationOptions<

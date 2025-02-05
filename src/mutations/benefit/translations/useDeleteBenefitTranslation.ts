@@ -10,6 +10,16 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific benefit translation for a given benefit ID and locale.
+ * This function is used to remove translations associated with a benefit, ensuring that the translation data is no longer available.
+ * It is typically used in administrative interfaces where managing benefit translations is required.
+ * @name DeleteBenefitTranslation
+ * @param {string} benefitId - The ID of the benefit
+ * @param {string} locale - The locale of the translation to be deleted
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Benefit-Translation
  */
@@ -28,9 +38,9 @@ export const DeleteBenefitTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteBenefitTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/benefits/${benefitId}/translations/${locale}`
   );
 

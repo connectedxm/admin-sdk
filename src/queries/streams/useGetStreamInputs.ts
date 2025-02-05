@@ -9,15 +9,15 @@ import { StreamInput } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Streams
- */
+ * Endpoint to retrieve a list of stream inputs.
+ * This function fetches stream input data from the server, allowing for infinite scrolling and pagination.
+ * It is designed to be used in applications where a comprehensive list of stream inputs is required.
+ * @name GetStreamInputs
+ * @version 1.2
+ **/
+
 export const STREAM_INPUTS_QUERY_KEY = () => ["STREAMS"];
 
-/**
- * @category Setters
- * @group Streams
- */
 export const SET_STREAM_INPUTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof STREAM_INPUTS_QUERY_KEY>,
@@ -28,10 +28,6 @@ export const SET_STREAM_INPUTS_QUERY_DATA = (
 
 interface GetStreamInputsParams extends InfiniteQueryParams {}
 
-/**
- * @category Queries
- * @group Streams
- */
 export const GetStreamInputs = async ({
   pageParam,
   pageSize,
@@ -51,10 +47,7 @@ export const GetStreamInputs = async ({
 
   return data;
 };
-/**
- * @category Hooks
- * @group Streams
- */
+
 export const useGetStreamInputs = (
   params: Omit<
     InfiniteQueryParams,

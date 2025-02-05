@@ -9,19 +9,21 @@ import { EVENT_SESSION_QUESTION_QUERY_KEY } from "@src/queries/events/sessions/q
 import { EVENT_SESSION_QUESTIONS_QUERY_KEY } from "@src/queries/events/sessions/questions/useGetEventSessionQuestions";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Endpoint to delete a question from a specific event session.
+ * This function allows the removal of a question from an event session by specifying the event, session, and question IDs.
+ * It is used in scenarios where questions need to be managed or moderated within event sessions.
+ * @name DeleteEventSessionQuestion
+ * @param {string} eventId - The id of the event
+ * @param {string} sessionId - The id of the session
+ * @param {string} questionId - The id of the question
+ * @version 1.2
+ **/
 export interface DeleteEventSessionQuestionParams extends MutationParams {
   eventId: string;
   sessionId: string;
   questionId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const DeleteEventSessionQuestion = async ({
   eventId,
   sessionId,
@@ -29,8 +31,8 @@ export const DeleteEventSessionQuestion = async ({
   adminApiParams,
   queryClient,
 }: DeleteEventSessionQuestionParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/sessions/${sessionId}/questions/${questionId}`
   );
   if (queryClient && data.status === "ok") {
@@ -48,10 +50,6 @@ export const DeleteEventSessionQuestion = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useDeleteEventSessionQuestion = (
   options: Omit<
     ConnectedXMMutationOptions<

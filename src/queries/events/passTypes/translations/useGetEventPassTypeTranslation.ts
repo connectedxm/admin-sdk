@@ -9,9 +9,17 @@ import { EVENT_PASS_TYPE_TRANSLATIONS_QUERY_KEY } from "./useGetEventPassTypeTra
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
+ * Retrieves the translation for a specific event pass type based on the provided event ID, pass type ID, and locale.
+ * This function is used to fetch localized translations for event pass types, which can be useful for displaying
+ * event information in different languages. It is designed to be used in applications that require multilingual support
+ * for event pass types.
+ * @name GetEventPassTypeTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} passTypeId - The ID of the pass type
+ * @param {string} locale - The locale for the translation
+ * @version 1.2
  */
+
 export const EVENT_PASS_TYPE_TRANSLATION_QUERY_KEY = (
   eventId: string,
   passTypeId: string,

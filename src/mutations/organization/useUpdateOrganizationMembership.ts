@@ -13,18 +13,19 @@ import {
 import { OrganizationMembershipUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Organization
- */
+ * Endpoint to update a user's organization membership.
+ * This function allows updating the membership details of a user within an organization.
+ * It is designed to be used in applications where user membership management is required.
+ * @name UpdateOrganizationMembership
+ * @param {string} userId - The id of the user
+ * @param {OrganizationMembershipUpdateInputs} membership - The membership details to update
+ * @version 1.2
+ **/
 export interface UpdateOrganizationMembershipParams extends MutationParams {
   userId: string;
   membership: OrganizationMembershipUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Organization
- */
 export const UpdateOrganizationMembership = async ({
   userId,
   membership,
@@ -33,9 +34,9 @@ export const UpdateOrganizationMembership = async ({
 }: UpdateOrganizationMembershipParams): Promise<
   ConnectedXMResponse<OrganizationMembership>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<
+  const { data } = await adminApi.put<
     ConnectedXMResponse<OrganizationMembership>
   >(`/organization/users/${userId}`, membership);
   if (queryClient && data.status === "ok") {
@@ -46,10 +47,6 @@ export const UpdateOrganizationMembership = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization
- */
 export const useUpdateOrganizationMembership = (
   options: Omit<
     ConnectedXMMutationOptions<

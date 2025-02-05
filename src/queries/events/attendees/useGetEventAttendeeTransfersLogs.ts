@@ -10,9 +10,15 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Endpoint to retrieve a list of attendee transfer logs for a specific event and account.
+ * This function fetches the transfer logs associated with attendees of a given event and account.
+ * It is useful for tracking and managing attendee transfers within an event context.
+ * @name GetEventAttendeeTransfersLogs
+ * @param {string} eventId - The id of the event
+ * @param {string} accountId - The id of the account
+ * @version 1.2
+ **/
+
 export const EVENT_ATTENDEE_TRANSFER_LOGS_QUERY_KEY = (
   eventId: string,
   accountId: string
@@ -25,10 +31,6 @@ export const EVENT_ATTENDEE_TRANSFER_LOGS_QUERY_KEY = (
   return keys;
 };
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_ATTENDEE_TRANSFER_LOGS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_ATTENDEE_TRANSFER_LOGS_QUERY_KEY>,
@@ -45,10 +47,6 @@ interface GetEventAttendeeTransfersLogsProps extends InfiniteQueryParams {
   accountId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventAttendeeTransfersLogs = async ({
   eventId,
   accountId,
@@ -75,10 +73,6 @@ export const GetEventAttendeeTransfersLogs = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Events
- */
 export const useGetEventAttendeeTransfersLogs = (
   eventId: string,
   accountId: string,

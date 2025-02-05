@@ -11,26 +11,27 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to remove a following relationship for a specified account.
+ * This function allows the removal of a following relationship between two accounts by specifying their IDs.
+ * It is used in scenarios where an account needs to unfollow another account.
+ * @name RemoveAccountFollowing
+ * @param {string} accountId - The id of the account
+ * @param {string} followingId - The id of the following account
+ * @version 1.2
+ **/
 export interface RemoveAccountFollowingParams extends MutationParams {
   accountId: string;
   followingId: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const RemoveAccountFollowing = async ({
   accountId,
   followingId,
   adminApiParams,
   queryClient,
 }: RemoveAccountFollowingParams): Promise<ConnectedXMResponse<Account>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<Account>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<Account>>(
     `/accounts/${accountId}/following/${followingId}`
   );
 
@@ -43,10 +44,6 @@ export const RemoveAccountFollowing = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useRemoveAccountFollowing = (
   options: Omit<
     ConnectedXMMutationOptions<

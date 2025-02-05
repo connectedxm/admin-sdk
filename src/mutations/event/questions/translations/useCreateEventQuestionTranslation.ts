@@ -14,6 +14,18 @@ import {
 } from "@src/queries";
 
 /**
+ * Creates a new translation for a specific event question.
+ * This function allows for the addition of a translation to a question within an event, supporting multiple locales and optional auto-translation.
+ * It is designed to be used in applications where multilingual support for event questions is required.
+ * @name PostEventQuestionTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} questionId - The ID of the question
+ * @param {string} locale - The locale for the translation
+ * @param {[boolean]} autoTranslate - Whether to automatically translate the question
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Question-Translations
  */
@@ -38,9 +50,9 @@ export const CreateEventQuestionTranslation = async ({
 }: CreateEventQuestionTranslationParams): Promise<
   ConnectedXMResponse<RegistrationQuestionTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post(
+  const { data } = await adminApi.post(
     `/events/${eventId}/questions/${questionId}/translations`,
     {
       locale,

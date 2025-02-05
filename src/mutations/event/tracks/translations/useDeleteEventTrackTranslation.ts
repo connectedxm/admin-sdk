@@ -10,6 +10,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific translation for an event track by its event ID, track ID, and locale.
+ * This function is used to remove a translation associated with a particular event track, 
+ * and it ensures that the relevant cache is invalidated to maintain data consistency.
+ * @name DeleteEventTrackTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} trackId - The ID of the track
+ * @param {string} locale - The locale of the translation
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Tracks-Translations
  */
@@ -30,9 +41,9 @@ export const DeleteEventTrackTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteEventTrackTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/events/${eventId}/tracks/${trackId}/translations/${locale}`
   );
   if (queryClient && data.status === "ok") {

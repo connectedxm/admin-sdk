@@ -9,9 +9,16 @@ import { EVENT_FAQ_SECTION_TRANSLATIONS_QUERY_KEY } from "./useGetEventFaqSectio
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves the translation of a specific FAQ section for an event in a given locale.
+ * This function is used to fetch the translated content of an FAQ section associated with an event, 
+ * allowing applications to display localized information to users.
+ * @name GetEventFaqSectionTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} sectionId - The ID of the FAQ section
+ * @param {string} locale - The locale for the translation
+ * @version 1.2
+ **/
+
 export const EVENT_FAQ_SECTION_TRANSLATION_QUERY_KEY = (
   eventId: string,
   sectionId: string,

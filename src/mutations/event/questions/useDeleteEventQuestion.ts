@@ -12,19 +12,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Questions
- */
+ * Endpoint to delete a specific question from an event.
+ * This function allows the removal of a question from an event, with an optional section parameter.
+ * It is designed to be used in applications where event management and question handling are required.
+ * @name DeleteEventQuestion
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @param {string} [sectionId] - The id of the section (optional)
+ * @version 1.2
+**/
 export interface DeleteEventQuestionParams extends MutationParams {
   eventId: string;
   questionId: string;
   sectionId?: string;
 }
 
-/**
- * @category Methods
- * @group Event-Questions
- */
 export const DeleteEventQuestion = async ({
   eventId,
   questionId,
@@ -32,8 +34,8 @@ export const DeleteEventQuestion = async ({
   adminApiParams,
   queryClient,
 }: DeleteEventQuestionParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/questions/${questionId}`
   );
 
@@ -51,12 +53,8 @@ export const DeleteEventQuestion = async ({
     }
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Event-Questions
- */
 export const useDeleteEventQuestion = (
   options: Omit<
     ConnectedXMMutationOptions<

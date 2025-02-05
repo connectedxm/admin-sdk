@@ -10,18 +10,19 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { REPORT_QUERY_KEY } from "./useGetReport";
 
 /**
- * @category Keys
- * @group Reports
- */
+ * Endpoint to manage and query user report data associated with a specific report.
+ * This function allows retrieval of user data linked to a particular report by its ID.
+ * It is designed for applications that need to access detailed user information within a report context.
+ * @name GetReportUsers
+ * @param {string} reportId - The id of the report
+ * @version 1.2
+ **/
+
 export const REPORT_USERS_QUERY_KEY = (
   type: keyof typeof ReportType,
   reportId: string
 ) => [...REPORT_QUERY_KEY(type, reportId), "USERS"];
 
-/**
- * @category Setters
- * @group Reports
- */
 export const SET_REPORT_USERS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof REPORT_USERS_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetReportUsersProps extends SingleQueryParams {
   reportId: string;
 }
 
-/**
- * @category Queries
- * @group Reports
- */
 export const GetReportUsers = async ({
   reportId,
   adminApiParams,
@@ -46,10 +43,7 @@ export const GetReportUsers = async ({
   const { data } = await adminApi.get(`/reports/${reportId}/users`);
   return data;
 };
-/**
- * @category Hooks
- * @group Reports
- */
+
 export const useGetReportUsers = (
   reportId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetReportUsers>> = {}

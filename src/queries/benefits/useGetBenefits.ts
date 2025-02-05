@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Benefit } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -9,19 +8,20 @@ import {
 } from "../useConnectedInfiniteQuery";
 
 /**
- * @category Keys
- * @group Benefits
- */
+ * Retrieves a list of benefits, optionally filtered by a specific event ID.
+ * This function is designed to be used in applications where a comprehensive list of benefits is required,
+ * with the ability to filter results based on an event. It supports infinite scrolling through pagination.
+ * @name GetBenefits
+ * @param {string} [eventId] - The id of the event to filter benefits
+ * @version 1.2
+ **/
+
 export const BENEFITS_QUERY_KEY = (eventId?: string) => {
   const keys = ["BENEFITS"];
   if (eventId) keys.push(eventId);
   return keys;
 };
 
-/**
- * @category Setters
- * @group Benefits
- */
 export const SET_BENEFITS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof BENEFITS_QUERY_KEY>,
@@ -34,10 +34,6 @@ interface GetBenefitsProps extends InfiniteQueryParams {
   eventId?: string;
 }
 
-/**
- * @category Queries
- * @group Benefits
- */
 export const GetBenefits = async ({
   pageParam,
   pageSize,
@@ -58,10 +54,7 @@ export const GetBenefits = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Benefits
- */
+
 export const useGetBenefits = (
   eventId: string = "",
   params: Omit<

@@ -9,24 +9,24 @@ import {
 import { GroupCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Groups
- */
+ * Creates a new group within the system using the specified parameters.
+ * This function is designed to facilitate the creation of groups by accepting necessary input parameters and interacting with the backend API.
+ * It ensures that the group is created and updates the query cache accordingly if the operation is successful.
+ * @name PostGroups
+ * @param {GroupCreateInputs} group - The inputs required to create a group
+ * @version 1.2
+ **/
 export interface CreateGroupParams extends MutationParams {
   group: GroupCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Groups
- */
 export const CreateGroup = async ({
   group,
   adminApiParams,
   queryClient,
 }: CreateGroupParams): Promise<ConnectedXMResponse<Group>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Group>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Group>>(
     `/groups`,
     group
   );
@@ -37,10 +37,6 @@ export const CreateGroup = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Groups
- */
 export const useCreateGroup = (
   options: Omit<
     ConnectedXMMutationOptions<

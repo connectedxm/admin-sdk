@@ -7,35 +7,33 @@ import {
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to impersonate a user account by providing the account ID and username.
+ * This function allows an admin to act on behalf of a user by impersonating their account, 
+ * which can be useful for troubleshooting or managing user-specific settings.
+ * @name ImpersonateAccount
+ * @param {string} accountId - The ID of the account to impersonate
+ * @param {string} username - The username associated with the account
+ * @version 1.2
+ **/
+
 export interface ImpersonateAccountParams extends MutationParams {
   accountId: string;
   username: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const ImpersonateAccount = async ({
   accountId,
   username,
   adminApiParams,
 }: ImpersonateAccountParams): Promise<ConnectedXMResponse<string>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<string>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<string>>(
     `/accounts/${accountId}/impersonate/${username}`
   );
 
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useImpersonateAccount = (
   options: Omit<
     ConnectedXMMutationOptions<

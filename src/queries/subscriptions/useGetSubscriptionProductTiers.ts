@@ -10,9 +10,13 @@ import { QueryClient } from "@tanstack/react-query";
 import { SUBSCRIPTION_PRODUCT_QUERY_KEY } from "./useGetSubscriptionProduct";
 
 /**
- * @category Keys
- * @group Subscriptions
- */
+ * Retrieves the tiers associated with a specific subscription product.
+ * This function is used to fetch and manage the tier data for a given subscription product, 
+ * allowing applications to display or process tier information as needed.
+ * @name GetSubscriptionProductTiers
+ * @param {string} subscriptionProductId - The id of the subscription product
+ * @version 1.2
+ **/
 export const SUBSCRIPTION_PRODUCT_TIERS_QUERY_KEY = (
   subscriptionProductId: string
 ) => [
@@ -20,10 +24,6 @@ export const SUBSCRIPTION_PRODUCT_TIERS_QUERY_KEY = (
   "SUBSCRIPTION_PRODUCT_TIERS",
 ];
 
-/**
- * @category Setters
- * @group Subscriptions
- */
 export const SET_SUBSCRIPTION_PRODUCT_TIERS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SUBSCRIPTION_PRODUCT_TIERS_QUERY_KEY>,
@@ -39,10 +39,6 @@ interface GetSubscriptionProductTiersProps extends InfiniteQueryParams {
   subscriptionProductId: string;
 }
 
-/**
- * @category Queries
- * @group Subscriptions
- */
 export const GetSubscriptionProductTiers = async ({
   pageParam,
   pageSize,
@@ -65,10 +61,7 @@ export const GetSubscriptionProductTiers = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Subscriptions
- */
+
 export const useGetSubscriptionProductTiers = (
   subscriptionProductId: string = "",
   params: Omit<

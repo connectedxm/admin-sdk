@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { RegistrationQuestionChoiceSubQuestion } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
@@ -10,9 +9,16 @@ import {
 import { EVENT_QUESTION_CHOICE_QUERY_KEY } from "./useGetEventQuestionChoice";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches sub-questions associated with a specific event question choice.
+ * This endpoint is used to retrieve detailed sub-question data for a given choice within an event's question.
+ * It is particularly useful in scenarios where understanding the hierarchical structure of event questions is necessary.
+ * @name GetEventQuestionChoiceSubQuestions
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @param {string} choiceId - The id of the choice
+ * @version 1.2
+ **/
+
 export const EVENT_QUESTION_CHOICE_QUESTIONS_QUERY_KEY = (
   eventId: string,
   questionId: string,
@@ -22,10 +28,6 @@ export const EVENT_QUESTION_CHOICE_QUESTIONS_QUERY_KEY = (
   "QUESTIONS",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_QUESTION_CHOICE_QUESTIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_QUESTION_CHOICE_QUESTIONS_QUERY_KEY>,
@@ -43,10 +45,6 @@ interface GetEventQuestionChoiceSubQuestionsProps extends InfiniteQueryParams {
   choiceId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventQuestionChoiceSubQuestions = async ({
   eventId,
   questionId,
@@ -73,10 +71,7 @@ export const GetEventQuestionChoiceSubQuestions = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventQuestionChoiceSubQuestions = (
   eventId: string = "",
   questionId: string = "",

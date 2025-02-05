@@ -12,26 +12,28 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sessions
- */
+ * Endpoint to create a new event session.
+ * This function allows the creation of a new session for a specified event by providing the event ID and session details.
+ * It is designed to be used in applications where event management and session scheduling are required.
+ * @name CreateEventSession
+ * @param {string} eventId - The id of the event
+ * @param {EventSessionCreateInputs} session - The session details to be created
+ * @version 1.2
+ **/
+
 export interface CreateEventSessionParams extends MutationParams {
   eventId: string;
   session: EventSessionCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Sessions
- */
 export const CreateEventSession = async ({
   eventId,
   session,
   adminApiParams,
   queryClient,
 }: CreateEventSessionParams): Promise<ConnectedXMResponse<EventSession>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<EventSession>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<EventSession>>(
     `/events/${eventId}/sessions`,
     session
   );
@@ -44,10 +46,6 @@ export const CreateEventSession = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sessions
- */
 export const useCreateEventSession = (
   options: Omit<
     ConnectedXMMutationOptions<

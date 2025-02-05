@@ -13,19 +13,22 @@ import { EventEmailUpdateInputs } from "@src/params";
 import { SET_EVENT_EMAIL_QUERY_DATA } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Emails
- */
+ * Endpoint to update an event email with specified details.
+ * This function allows updating the email associated with a specific event by providing the event ID, email type, and update inputs.
+ * It is designed for applications that need to modify event-related email content or settings.
+ * @name UpdateEventEmail
+ * @param {string} eventId - The id of the event
+ * @param {EventEmailType} type - The type of the event email
+ * @param {EventEmailUpdateInputs} eventEmail - The inputs for updating the event email
+ * @version 1.2
+ **/
+
 export interface UpdateEventEmailParams extends MutationParams {
   eventId: string;
   type: EventEmailType;
   eventEmail: EventEmailUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Emails
- */
 export const UpdateEventEmail = async ({
   eventId,
   type,
@@ -33,8 +36,8 @@ export const UpdateEventEmail = async ({
   adminApiParams,
   queryClient,
 }: UpdateEventEmailParams): Promise<ConnectedXMResponse<EventEmail>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<EventEmail>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<EventEmail>>(
     `/events/${eventId}/emails/${type}`,
     eventEmail
   );
@@ -45,10 +48,6 @@ export const UpdateEventEmail = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Emails
- */
 export const useUpdateEventEmail = (
   options: Omit<
     ConnectedXMMutationOptions<

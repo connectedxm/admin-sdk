@@ -9,6 +9,17 @@ import { EVENT_PAGE_TRANSLATIONS_QUERY_KEY } from "./useGetEventPageTranslations
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
+ * Retrieves the translation of a specific event page for a given locale.
+ * This function is used to fetch the translated content of an event page, identified by event ID, page ID, and locale.
+ * It is useful in applications that need to display event pages in different languages.
+ * @name GetEventPageTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} pageId - The ID of the page
+ * @param {string} locale - The locale for the translation
+ * @version 1.2
+ **/
+
+/**
  * @category Keys
  * @group Events
  */

@@ -13,9 +13,17 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Attendees
- */
+ * Endpoint to update an event reservation with new details.
+ * This function allows updating the reservation details for a specific event and reservation ID.
+ * It is designed to be used in applications where event reservation modifications are required.
+ * @name UpdateEventReservation
+ * @param {string} eventId - The id of the event
+ * @param {string} reservationId - The id of the reservation
+ * @param {EventRoomTypeReservationUpdateInputs} reservation - The reservation details to update
+ * @param {string} [accountId] - Optional account id
+ * @version 1.2
+**/
+
 export interface UpdateEventReservationParams extends MutationParams {
   eventId: string;
   reservationId: string;
@@ -23,10 +31,6 @@ export interface UpdateEventReservationParams extends MutationParams {
   accountId?: string;
 }
 
-/**
- * @category Methods
- * @group Event-Attendees
- */
 export const UpdateEventReservation = async ({
   eventId,
   reservationId,
@@ -37,8 +41,8 @@ export const UpdateEventReservation = async ({
 }: UpdateEventReservationParams): Promise<
   ConnectedXMResponse<EventRoomTypeReservation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put(
     `/events/${eventId}/reservations/${reservationId}`,
     reservation
   );
@@ -59,12 +63,8 @@ export const UpdateEventReservation = async ({
     }
   }
   return data;
-};
+}
 
-/**
- * @category Mutations
- * @group Event-Attendees
- */
 export const useUpdateEventReservation = (
   options: Omit<
     ConnectedXMMutationOptions<

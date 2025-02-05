@@ -1,5 +1,4 @@
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { EventSpeaker } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
@@ -10,18 +9,19 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches a list of speakers for a specific event using the event ID.
+ * This function is designed to retrieve detailed information about speakers associated with a particular event.
+ * It is useful for applications that need to display or process event speaker data.
+ * @name GetEventSpeakers
+ * @param {string} eventId - The ID of the event
+ * @version 1.2
+ **/
+
 export const EVENT_SPEAKERS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "SPEAKERS",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SPEAKERS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SPEAKERS_QUERY_KEY>,
@@ -34,10 +34,6 @@ interface GetEventSpeakersProps extends InfiniteQueryParams {
   eventId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSpeakers = async ({
   eventId,
   pageParam,
@@ -57,10 +53,7 @@ export const GetEventSpeakers = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSpeakers = (
   eventId: string = "",
   params: Omit<

@@ -8,18 +8,19 @@ import {
 import { EVENT_QUERY_KEY } from "../../useGetEvent";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves a list of session locations for a specified event.
+ * This function is designed to fetch session location data associated with a particular event, 
+ * providing necessary details for applications that require event session information.
+ * @name GetEventSessionLocations
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+ **/
+
 export const EVENT_SESSION_LOCATIONS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "SESSION_LOCATIONS",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SESSION_LOCATIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SESSION_LOCATIONS_QUERY_KEY>,
@@ -35,10 +36,6 @@ interface GetEventSessionLocationsProps extends InfiniteQueryParams {
   eventId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSessionLocations = async ({
   eventId,
   pageParam,
@@ -60,10 +57,7 @@ export const GetEventSessionLocations = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSessionLocations = (
   eventId: string = "",
   params: Omit<

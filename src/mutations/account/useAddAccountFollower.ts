@@ -11,26 +11,28 @@ import {
 } from "../useConnectedMutation";
 
 /**
- * @category Params
- * @group Account
- */
+ * Adds a follower to a specified account.
+ * This function allows the addition of a follower to an account by specifying the account and follower IDs.
+ * It is used in scenarios where account follower management is required, ensuring that the follower is added to the account's follower list.
+ * @name AddAccountFollower
+ * @param {string} accountId - The id of the account
+ * @param {string} followerId - The id of the follower
+ * @version 1.2
+ **/
+
 export interface AddAccountFollowerParams extends MutationParams {
   accountId: string;
   followerId: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const AddAccountFollower = async ({
   accountId,
   followerId,
   adminApiParams,
   queryClient,
 }: AddAccountFollowerParams): Promise<ConnectedXMResponse<Account>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Account>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Account>>(
     `/accounts/${accountId}/followers/${followerId}`
   );
   if (queryClient && data.status === "ok") {
@@ -42,10 +44,6 @@ export const AddAccountFollower = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useAddAccountFollower = (
   options: Omit<
     ConnectedXMMutationOptions<

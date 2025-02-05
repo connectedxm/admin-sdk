@@ -10,18 +10,20 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Reports
- */
+ * Fetches a specific report by its ID, including detailed data and handling pagination.
+ * This function is designed to retrieve comprehensive report information, optionally filtered by an event ID.
+ * It is suitable for applications that require detailed report data with support for pagination.
+ * @name GetReport
+ * @param {string} reportId - The ID of the report
+ * @param {string} [eventId] - Optional event ID for filtering the report
+ * @version 1.2
+ **/
+
 export const REPORT_QUERY_KEY = (
   type: keyof typeof ReportType,
   reportId: string
 ) => [...REPORTS_QUERY_KEY(type), reportId];
 
-/**
- * @category Setters
- * @group Reports
- */
 export const SET_REPORT_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof REPORT_QUERY_KEY>,
@@ -35,10 +37,6 @@ interface GetReportProps extends SingleQueryParams {
   eventId?: string;
 }
 
-/**
- * @category Queries
- * @group Reports
- */
 export const GetReport = async ({
   reportId,
   eventId,
@@ -84,10 +82,7 @@ export const GetReport = async ({
     },
   };
 };
-/**
- * @category Hooks
- * @group Reports
- */
+
 export const useGetReport = (
   reportId: string = "",
   eventId?: string,

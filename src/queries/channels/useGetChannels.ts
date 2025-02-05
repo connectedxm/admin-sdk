@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Channel } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -10,15 +9,15 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Channels
- */
+ * Endpoint to retrieve a list of channels.
+ * This function fetches a paginated list of channels from the server, allowing for optional sorting and searching.
+ * It is designed to be used in applications where a comprehensive list of channels is required.
+ * @name GetChannels
+ * @version 1.2
+ **/
+
 export const CHANNELS_QUERY_KEY = () => ["CHANNELS"];
 
-/**
- * @category Setters
- * @group Channels
- */
 export const SET_CHANNELS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof CHANNELS_QUERY_KEY>,
@@ -29,10 +28,6 @@ export const SET_CHANNELS_QUERY_DATA = (
 
 interface GetChannelsProps extends InfiniteQueryParams {}
 
-/**
- * @category Queries
- * @group Channels
- */
 export const GetChannels = async ({
   pageParam,
   pageSize,
@@ -51,10 +46,7 @@ export const GetChannels = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Channels
- */
+
 export const useGetChannels = (
   params: Omit<
     InfiniteQueryParams,

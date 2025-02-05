@@ -10,18 +10,19 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves a list of event activations with support for pagination and filtering.
+ * This function is designed to fetch event activations associated with a specific event ID.
+ * It is useful for applications that need to display or process event activations in a paginated format.
+ * @name GetEventActivations
+ * @param {string} eventId - The ID of the event
+ * @version 1.2
+ **/
+
 export const EVENT_ACTIVATIONS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "ACTIVATIONS",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_ACTIVATIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_ACTIVATIONS_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetEventActivationsProps extends InfiniteQueryParams {
   eventId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventActivations = async ({
   eventId,
   pageParam,
@@ -59,10 +56,7 @@ export const GetEventActivations = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventActivations = (
   eventId: string = "",
   params: Omit<

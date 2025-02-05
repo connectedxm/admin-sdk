@@ -8,9 +8,15 @@ import { THREADS_QUERY_KEY } from "./useGetThreads";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @thread Thread Members
- */
+ * Retrieves detailed information about a specific member of a thread.
+ * This function is designed to fetch data for a particular thread member using their thread and account IDs.
+ * It is useful in applications where thread member details are required for display or processing.
+ * @name GetThreadMember
+ * @param {string} threadId - The ID of the thread
+ * @param {string} accountId - The ID of the account
+ * @version 1.2
+ **/
+
 export const THREAD_MEMBER_QUERY_KEY = (
   threadId: string,
   accountId: string
@@ -21,10 +27,6 @@ interface GetThreadMemberProps extends SingleQueryParams {
   accountId: string;
 }
 
-/**
- * @category Queries
- * @thread Thread Members
- */
 export const GetThreadMember = async ({
   threadId,
   accountId,
@@ -37,10 +39,6 @@ export const GetThreadMember = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @thread Thread Members
- */
 export const useGetThreadMember = (
   threadId: string = "",
   accountId: string = "",

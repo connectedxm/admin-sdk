@@ -13,17 +13,18 @@ import {
 import { ORGANIZATION_MODULE_QUERY_KEY } from "./useGetOrganizationModule";
 
 /**
- * @category Keys
- * @group Organization
- */
+ * Endpoint to retrieve the enabled tiers for a specific organization module.
+ * This function fetches the tiers that are currently enabled for a given module type within an organization.
+ * It is useful for applications that need to display or manage the tiers available for different modules.
+ * @name GetOrganizationModuleEnabledTiers
+ * @param {keyof typeof OrganizationModuleType} moduleType - The type of the organization module
+ * @version 1.2
+ **/
+
 export const ORGANIZATION_MODULE_ENABLED_TIERS_QUERY_KEY = (
   moduleType: keyof typeof OrganizationModuleType
 ) => [...ORGANIZATION_MODULE_QUERY_KEY(moduleType), "ENABLED_TIERS"];
 
-/**
- * @category Setters
- * @group Organization
- */
 export const SET_ORGANIZATION_MODULE_ENABLED_TIERS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ORGANIZATION_MODULE_ENABLED_TIERS_QUERY_KEY>,
@@ -39,10 +40,6 @@ interface GetOrganizationModuleEnabledTiersProps extends InfiniteQueryParams {
   moduleType: keyof typeof OrganizationModuleType;
 }
 
-/**
- * @category Queries
- * @group Organization
- */
 export const GetOrganizationModuleEnabledTiers = async ({
   moduleType,
   adminApiParams,
@@ -57,10 +54,6 @@ export const GetOrganizationModuleEnabledTiers = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Organization
- */
 export const useGetOrganizationModuleEnabledTiers = (
   moduleType: keyof typeof OrganizationModuleType,
   options: InfiniteQueryOptions<

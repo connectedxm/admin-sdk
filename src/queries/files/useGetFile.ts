@@ -10,18 +10,19 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { FILES_QUERY_KEY } from "./useGetFiles";
 
 /**
- * @category Keys
- * @group Files
- */
+ * Endpoint to retrieve a specific file by its unique identifier.
+ * This function allows users to fetch details of a file using the provided file ID.
+ * It is designed to be used in applications where detailed information about a file is required.
+ * @name GetFile
+ * @param {string} fileId - The ID of the file
+ * @version 1.2
+ **/
+
 export const FILE_QUERY_KEY = (fileId: string) => [
   ...FILES_QUERY_KEY(),
   fileId,
 ];
 
-/**
- * @category Setters
- * @group Files
- */
 export const SET_FILE_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof FILE_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetFileParams extends SingleQueryParams {
   fileId: string;
 }
 
-/**
- * @category Queries
- * @group Files
- */
 export const GetFile = async ({
   fileId,
   adminApiParams,
@@ -47,10 +44,7 @@ export const GetFile = async ({
 
   return data;
 };
-/**
- * @category Hooks
- * @group Files
- */
+
 export const useGetFile = (
   fileId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetFile>> = {}

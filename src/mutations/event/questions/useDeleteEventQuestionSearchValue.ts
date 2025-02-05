@@ -8,19 +8,21 @@ import {
 import { EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Questions
- */
+ * Endpoint to delete a specific search value for a question in an event.
+ * This function allows the removal of a search value associated with a particular question within an event.
+ * It is useful in scenarios where search values need to be managed or cleaned up.
+ * @name DeleteEventQuestionSearchValue
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @param {string} searchValueId - The id of the search value
+ * @version 1.2
+**/
 export interface DeleteEventQuestionSearchValueParams extends MutationParams {
   eventId: string;
   questionId: string;
   searchValueId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Questions
- */
 export const DeleteEventQuestionSearchValue = async ({
   eventId,
   questionId,
@@ -30,8 +32,8 @@ export const DeleteEventQuestionSearchValue = async ({
 }: DeleteEventQuestionSearchValueParams): Promise<
   ConnectedXMResponse<null>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/questions/${questionId}/values/${searchValueId}`
   );
 
@@ -43,10 +45,6 @@ export const DeleteEventQuestionSearchValue = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Questions
- */
 export const useDeleteEventQuestionSearchValue = (
   options: Omit<
     ConnectedXMMutationOptions<

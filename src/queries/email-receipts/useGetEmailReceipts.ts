@@ -9,18 +9,19 @@ import { EmailReceiptStatus } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Key
- * @group Emails
- */
+ * Endpoint to retrieve a list of email receipts with optional filtering by status.
+ * This function allows users to fetch email receipt records, which can be filtered by their status if desired.
+ * It is designed to be used in applications where tracking and managing email receipts is necessary.
+ * @name GetEmailReceipts
+ * @param {string} [status] - Optional status to filter email receipts
+ * @version 1.2
+ **/
+
 export const EMAIL_RECEIPTS_QUERY_KEY = (status?: string) => [
   "EMAIL_RECEIPTS",
   status || "all",
 ];
 
-/**
- * @category Setters
- * @group Emails
- */
 export const SET_EMAIL_RECEIPTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EMAIL_RECEIPTS_QUERY_KEY>,
@@ -33,10 +34,6 @@ interface GetEmailReceiptsParams extends InfiniteQueryParams {
   status?: EmailReceiptStatus;
 }
 
-/**
- * @category Query
- * @group Emails
- */
 export const GetEmailReceipts = async ({
   pageParam,
   pageSize,
@@ -59,10 +56,6 @@ export const GetEmailReceipts = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Emails
- */
 export const useGetEmailReceipts = (
   status?: EmailReceiptStatus,
   params: Omit<

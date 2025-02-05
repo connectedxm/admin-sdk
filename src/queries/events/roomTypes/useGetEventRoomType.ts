@@ -9,18 +9,20 @@ import { QueryClient } from "@tanstack/react-query";
 import { EVENT_ROOM_TYPES_QUERY_KEY } from "./useGetEventRoomTypes";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves data for a specific event room type by its ID within a given event.
+ * This function is used to fetch detailed information about a particular room type associated with an event.
+ * It is designed for applications that require access to event room type details.
+ * @name GetEventRoomType
+ * @param {string} eventId - The ID of the event
+ * @param {string} roomTypeId - The ID of the room type
+ * @version 1.2
+ **/
+
 export const EVENT_ROOM_TYPE_QUERY_KEY = (
   eventId: string,
   roomTypeId: string
 ) => [...EVENT_ROOM_TYPES_QUERY_KEY(eventId), roomTypeId];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_ROOM_TYPE_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_ROOM_TYPE_QUERY_KEY>,
@@ -34,10 +36,6 @@ interface GetEventRoomTypeProps extends SingleQueryParams {
   roomTypeId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventRoomType = async ({
   eventId,
   roomTypeId,
@@ -49,10 +47,7 @@ export const GetEventRoomType = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventRoomType = (
   eventId: string = "",
   roomTypeId: string = "",

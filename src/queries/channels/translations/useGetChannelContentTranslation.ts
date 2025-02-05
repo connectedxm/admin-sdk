@@ -9,9 +9,15 @@ import {
 } from "@src/queries/useConnectedSingleQuery";
 
 /**
- * @category Keys
- * @group Channels
- */
+ * Fetches a specific translation of channel content by its content ID and locale.
+ * This function is used to retrieve the translated content for a given channel, identified by content ID and locale.
+ * It is designed for applications that need to display content in multiple languages.
+ * @name GetChannelContentTranslation
+ * @param {string} contentId - The ID of the content
+ * @param {string} locale - The locale of the translation
+ * @version 1.2
+ **/
+
 export const CHANNEL_CONTENT_TRANSLATION_QUERY_KEY = (
   channelId: string,
   contentId: string,
@@ -55,6 +61,7 @@ export const GetChannelContentTranslation = async ({
   );
   return data;
 };
+
 /**
  * @category Hooks
  * @group Channels

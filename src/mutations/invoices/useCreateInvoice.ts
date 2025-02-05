@@ -9,24 +9,25 @@ import { SET_INVOICE_QUERY_DATA, INVOICES_QUERY_KEY } from "@src/queries";
 import { InvoiceCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Invoices
- */
+ * Endpoint to create a new invoice within the system.
+ * This function allows users to submit data for a new invoice, which will be processed and stored.
+ * It is designed to be used in applications where invoice management is required.
+ * @name CreateInvoice
+ * @param {InvoiceCreateInputs} invoice - The data for the invoice to be created
+ * @version 1.2
+**/
+
 export interface CreateInvoiceParams extends MutationParams {
   invoice: InvoiceCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Invoices
- */
 export const CreateInvoice = async ({
   invoice,
   adminApiParams,
   queryClient,
 }: CreateInvoiceParams): Promise<ConnectedXMResponse<Invoice>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Invoice>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Invoice>>(
     `/invoices`,
     invoice
   );
@@ -37,10 +38,6 @@ export const CreateInvoice = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Invoices
- */
 export const useCreateInvoice = (
   options: Omit<
     ConnectedXMMutationOptions<

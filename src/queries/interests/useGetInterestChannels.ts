@@ -10,18 +10,19 @@ import { INTEREST_QUERY_KEY } from "./useGetInterest";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @channel Interests
- */
+ * Fetches the channels associated with a specific interest.
+ * This function is used to retrieve a list of channels linked to a given interest ID.
+ * It supports infinite scrolling and can be used in applications where channel data needs to be displayed dynamically.
+ * @name GetInterestChannels
+ * @param {string} interestId - The id of the interest
+ * @version 1.2
+ **/
+
 export const INTEREST_CHANNELS_QUERY_KEY = (interestId: string) => [
   ...INTEREST_QUERY_KEY(interestId),
   "CHANNELS",
 ];
 
-/**
- * @category Setters
- * @channel Interests
- */
 export const SET_INTEREST_CHANNELS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INTEREST_CHANNELS_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetInterestChannelsProps extends InfiniteQueryParams {
   interestId: string;
 }
 
-/**
- * @category Queries
- * @channel Interests
- */
 export const GetInterestChannels = async ({
   interestId,
   pageParam,
@@ -57,10 +54,7 @@ export const GetInterestChannels = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @channel Interests
- */
+
 export const useGetInterestChannels = (
   interestId: string = "",
   params: Omit<

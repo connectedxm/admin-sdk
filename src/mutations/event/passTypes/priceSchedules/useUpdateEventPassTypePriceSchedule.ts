@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
+  ConnectedXMResponse,
+  EventPassTypePriceSchedule,
+} from "@src/interfaces";
+import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
@@ -9,9 +13,16 @@ import { SET_EVENT_PASS_TYPE_PRICE_SCHEDULE_QUERY_DATA } from "@src/queries/even
 import { EVENT_PASS_TYPE_PRICE_SCHEDULES_QUERY_KEY } from "@src/queries/events/passTypes/priceSchedules/useGetEventPassTypePriceSchedules";
 
 /**
- * @category Params
- * @group Events
- */
+ * Endpoint to update the price schedule for a specific event pass type.
+ * This function allows updating the details of a price schedule associated with a particular event pass type.
+ * It is designed to be used in applications where event management and pricing updates are required.
+ * @name UpdateEventPassTypePriceSchedule
+ * @param {string} eventId - The id of the event
+ * @param {string} passTypeId - The id of the pass type
+ * @param {string} scheduleId - The id of the schedule
+ * @param {PassTypePriceScheduleUpdateInputs} schedule - The schedule details to update
+ * @version 1.2
+ **/
 interface UpdateEventPassTypePriceScheduleParams extends MutationParams {
   eventId: string;
   passTypeId: string;
@@ -19,10 +30,6 @@ interface UpdateEventPassTypePriceScheduleParams extends MutationParams {
   schedule: PassTypePriceScheduleUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Events
- */
 export const UpdateEventPassTypePriceSchedule = async ({
   eventId,
   passTypeId,
@@ -30,10 +37,12 @@ export const UpdateEventPassTypePriceSchedule = async ({
   schedule,
   adminApiParams,
   queryClient,
-}: UpdateEventPassTypePriceScheduleParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+}: UpdateEventPassTypePriceScheduleParams): Promise<
+  ConnectedXMResponse<EventPassTypePriceSchedule>
+> => {
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put(
+  const { data } = await adminApi.put(
     `/events/${eventId}/passTypes/${passTypeId}/priceSchedules/${scheduleId}`,
     schedule
   );
@@ -51,10 +60,6 @@ export const UpdateEventPassTypePriceSchedule = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Events
- */
 export const useUpdateEventPassTypePriceSchedule = (
   options: Omit<
     ConnectedXMMutationOptions<

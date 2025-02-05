@@ -8,18 +8,20 @@ import { ConnectedXMResponse, EventSessionLocation } from "@src/interfaces";
 import { EVENT_SESSION_LOCATIONS_QUERY_KEY } from "./useGetEventSessionLocations";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches detailed information about a specific event session location.
+ * This function is designed to retrieve data for a particular location within an event session, 
+ * providing essential details required for applications that manage or display event session locations.
+ * @name GetEventSessionLocation
+ * @param {string} eventId - The ID of the event
+ * @param {string} locationId - The ID of the location
+ * @version 1.2
+ **/
+
 export const EVENT_SESSION_LOCATION_QUERY_KEY = (
   eventId: string,
   locationId: string
 ) => [...EVENT_SESSION_LOCATIONS_QUERY_KEY(eventId), locationId];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SESSION_LOCATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SESSION_LOCATION_QUERY_KEY>,
@@ -33,10 +35,6 @@ interface GetEventSessionLocationProps extends SingleQueryParams {
   locationId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSessionLocation = async ({
   eventId,
   locationId,
@@ -50,10 +48,7 @@ export const GetEventSessionLocation = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSessionLocation = (
   eventId: string = "",
   locationId: string = "",

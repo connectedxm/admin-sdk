@@ -9,18 +9,18 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Series
- */
+ * Endpoint to retrieve a list of series.
+ * This function fetches a paginated list of series from the server, allowing for optional sorting and searching.
+ * It is designed to be used in applications where a comprehensive list of series is required.
+ * @name GetSeriesList
+ * @version 1.2
+ **/
+
 export const SERIES_LIST_QUERY_KEY = () => {
   const keys = ["SERIES"];
   return keys;
 };
 
-/**
- * @category Setters
- * @group Series
- */
 export const SET_SERIES_LIST_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SERIES_LIST_QUERY_KEY>,
@@ -31,10 +31,6 @@ export const SET_SERIES_LIST_QUERY_DATA = (
 
 interface GetSeriesListProps extends InfiniteQueryParams {}
 
-/**
- * @category Queries
- * @group Series
- */
 export const GetSeriesList = async ({
   pageParam,
   pageSize,
@@ -54,10 +50,7 @@ export const GetSeriesList = async ({
 
   return data;
 };
-/**
- * @category Hooks
- * @group Series
- */
+
 export const useGetSeriesList = (
   params: Omit<
     InfiniteQueryParams,

@@ -11,6 +11,18 @@ import {
 } from "@src/queries";
 
 /**
+ * Creates a new translation for a specific event page.
+ * This function allows for the creation of translations for event pages, supporting multiple locales and optional auto-translation.
+ * It is designed to be used in applications where event page content needs to be available in different languages.
+ * @name PostEventPageTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} pageId - The ID of the page
+ * @param {string} locale - The locale for the translation
+ * @param {boolean} [autoTranslate] - Whether to automatically translate the content
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Page-Translation
  */
@@ -35,9 +47,9 @@ export const CreateEventPageTranslation = async ({
 }: CreateEventPageTranslationParams): Promise<
   ConnectedXMResponse<EventPageTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<
+  const { data } = await adminApi.post<
     ConnectedXMResponse<EventPageTranslation>
   >(`/events/${eventId}/pages/${pageId}/translations`, {
     locale,

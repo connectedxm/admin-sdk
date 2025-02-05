@@ -1,5 +1,4 @@
 import { ConnectedXMResponse } from "@src/interfaces";
-
 import { Event } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -11,18 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Interests
- */
+ * Fetches events associated with a specific interest.
+ * This function is designed to retrieve a list of events that are related to a given interest, identified by its ID.
+ * It is useful for applications that need to display or process events linked to particular interests.
+ * @name GetInterestEvents
+ * @param {string} interestId - The id of the interest
+ * @version 1.2
+ **/
+
 export const INTEREST_EVENTS_QUERY_KEY = (interestId: string) => [
   ...INTEREST_QUERY_KEY(interestId),
   "EVENTS",
 ];
 
-/**
- * @category Setters
- * @group Interests
- */
 export const SET_INTEREST_EVENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INTEREST_EVENTS_QUERY_KEY>,
@@ -35,10 +35,6 @@ interface GetInterestEventsProps extends InfiniteQueryParams {
   interestId: string;
 }
 
-/**
- * @category Queries
- * @group Interests
- */
 export const GetInterestEvents = async ({
   interestId,
   pageParam,
@@ -58,10 +54,7 @@ export const GetInterestEvents = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Interests
- */
+
 export const useGetInterestEvents = (
   interestId: string = "",
   params: Omit<

@@ -9,9 +9,16 @@ import { EVENT_EMAIL_TRANSLATIONS_QUERY_KEY } from "./useGetEventEmailTranslatio
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
+ * Retrieves the translation of an event email for a specific locale.
+ * This function is used to fetch the translated content of an event email based on the event ID, email type, and locale.
+ * It is useful in applications that need to display event emails in different languages.
+ * @name GetEventEmailTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} type - The type of the event email
+ * @param {string} locale - The locale for the translation
+ * @version 1.2
  */
+
 export const EVENT_EMAIL_TRANSLATION_QUERY_KEY = (
   eventId: string,
   type: EventEmailType,

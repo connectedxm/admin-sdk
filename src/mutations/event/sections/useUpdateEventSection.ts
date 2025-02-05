@@ -12,19 +12,21 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Sections
- */
+ * Updates a specific section of an event with new data.
+ * This function allows for the modification of event sections by providing new data inputs.
+ * It is used in scenarios where event details need to be updated or modified.
+ * @name UpdateEventSection
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the section
+ * @param {EventSectionUpdateInputs} section - The new data for the section
+ * @version 1.2
+ **/
 export interface UpdateEventSectionParams extends MutationParams {
   eventId: string;
   sectionId: string;
   section: EventSectionUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Event-Sections
- */
 export const UpdateEventSection = async ({
   eventId,
   sectionId,
@@ -35,21 +37,22 @@ export const UpdateEventSection = async ({
   ConnectedXMResponse<RegistrationSection>
 > => {
   if (!sectionId) throw new Error("Section ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<
-    ConnectedXMResponse<RegistrationSection>
-  >(`/events/${eventId}/sections/${sectionId}`, {
-    ...section,
-    id: undefined,
-    eventId: undefined,
-    questions: undefined,
-    eventTickets: undefined,
-    accountTiers: undefined,
-    _count: undefined,
-    createdAt: undefined,
-    updatedAt: undefined,
-  });
+  const { data } = await adminApi.put<ConnectedXMResponse<RegistrationSection>>(
+    `/events/${eventId}/sections/${sectionId}`,
+    {
+      ...section,
+      id: undefined,
+      eventId: undefined,
+      questions: undefined,
+      eventTickets: undefined,
+      accountTiers: undefined,
+      _count: undefined,
+      createdAt: undefined,
+      updatedAt: undefined,
+    }
+  );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
@@ -64,10 +67,6 @@ export const UpdateEventSection = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Sections
- */
 export const useUpdateEventSection = (
   options: Omit<
     ConnectedXMMutationOptions<

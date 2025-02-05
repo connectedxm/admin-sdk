@@ -10,18 +10,19 @@ import { INVOICES_QUERY_KEY } from "./useGetInvoices";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Invoices
- */
+ * Endpoint to retrieve detailed information about a specific invoice by its ID.
+ * This function is designed to fetch invoice data, which can be used in applications
+ * that require access to invoice details for display or processing purposes.
+ * @name GetInvoice
+ * @param {string} invoiceId - The ID of the invoice
+ * @version 1.2
+ **/
+
 export const INVOICE_QUERY_KEY = (invoiceId: string) => [
   ...INVOICES_QUERY_KEY(),
   invoiceId,
 ];
 
-/**
- * @category Setters
- * @group Invoices
- */
 export const SET_INVOICE_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof INVOICE_QUERY_KEY>,
@@ -34,10 +35,6 @@ interface GetInvoiceProps extends SingleQueryParams {
   invoiceId: string;
 }
 
-/**
- * @category Queries
- * @group Invoices
- */
 export const GetInvoice = async ({
   invoiceId,
   adminApiParams,
@@ -46,10 +43,7 @@ export const GetInvoice = async ({
   const { data } = await adminApi.get(`/invoices/${invoiceId}`);
   return data;
 };
-/**
- * @category Hooks
- * @group Invoices
- */
+
 export const useGetInvoice = (
   invoiceId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetInvoice>> = {}

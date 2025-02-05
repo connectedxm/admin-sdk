@@ -11,26 +11,27 @@ import {
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Params
- * @group Account
- */
+ * Endpoint to remove a follower from a specified account.
+ * This function allows the removal of a follower from an account by specifying the account ID and the follower ID.
+ * It is designed to be used in applications where managing account followers is necessary.
+ * @name RemoveAccountFollower
+ * @param {string} accountId - The id of the account
+ * @param {string} followerId - The id of the follower to be removed
+ * @version 1.2
+ **/
 export interface RemoveAccountFollowerParams extends MutationParams {
   accountId: string;
   followerId: string;
 }
 
-/**
- * @category Methods
- * @group Account
- */
 export const RemoveAccountFollower = async ({
   accountId,
   followerId,
   adminApiParams,
   queryClient,
 }: RemoveAccountFollowerParams): Promise<ConnectedXMResponse<Account>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<Account>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<Account>>(
     `/accounts/${accountId}/followers/${followerId}`
   );
 
@@ -43,10 +44,6 @@ export const RemoveAccountFollower = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Account
- */
 export const useRemoveAccountFollower = (
   options: Omit<
     ConnectedXMMutationOptions<

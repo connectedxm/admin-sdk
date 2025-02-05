@@ -10,6 +10,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific event activation translation for a given event, activation, and locale.
+ * This function is used to remove translations associated with event activations, ensuring that the specified translation is no longer available.
+ * It is particularly useful in scenarios where outdated or incorrect translations need to be removed from the system.
+ * @name DeleteEventActivationTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} activationId - The ID of the activation
+ * @param {string} locale - The locale of the translation
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Activations-Translations
  */
@@ -30,9 +41,9 @@ export const DeleteEventActivationTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteEventActivationTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/events/${eventId}/activations/${activationId}/translations/${locale}`
   );
 

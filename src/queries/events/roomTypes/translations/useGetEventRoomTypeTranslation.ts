@@ -9,19 +9,22 @@ import { EVENT_ROOM_TYPE_TRANSLATIONS_QUERY_KEY } from "./useGetEventRoomTypeTra
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves the translation details for a specific event room type based on the provided event ID, room type ID, and locale.
+ * This function is part of the event management system and is used to fetch localized translations for room types within events.
+ * It is essential for applications that need to display event room type information in different languages.
+ * @name GetEventRoomTypeTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} roomTypeId - The ID of the room type
+ * @param {string} locale - The locale for the translation
+ * @version 1.2
+ **/
+
 export const EVENT_ROOM_TYPE_TRANSLATION_QUERY_KEY = (
   eventId: string,
   roomTypeId: string,
   locale: string
 ) => [...EVENT_ROOM_TYPE_TRANSLATIONS_QUERY_KEY(eventId, roomTypeId), locale];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_ROOM_TYPE_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_ROOM_TYPE_TRANSLATION_QUERY_KEY>,
@@ -39,10 +42,6 @@ interface GetEventRoomTypeTranslationProps extends SingleQueryParams {
   locale: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventRoomTypeTranslation = async ({
   eventId,
   roomTypeId,
@@ -57,10 +56,7 @@ export const GetEventRoomTypeTranslation = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventRoomTypeTranslation = (
   eventId: string = "",
   roomTypeId: string = "",

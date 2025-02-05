@@ -9,17 +9,18 @@ import { OrganizationTrigger } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Organization
- */
+ * Fetches an organization trigger based on the specified type.
+ * This function is designed to retrieve details of a specific organization trigger, 
+ * which can be used in applications that require information about organizational triggers.
+ * @name GetOrganizationTrigger
+ * @param {OrganizationTriggerType} type - The type of the organization trigger
+ * @version 1.2
+ **/
+
 export const ORGANIZATION_TRIGGER_QUERY_KEY = (
   type: OrganizationTriggerType
 ) => ["TRIGGER", type];
 
-/**
- * @category Setters
- * @group Organization
- */
 export const SET_ORGANIZATION_TRIGGER_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ORGANIZATION_TRIGGER_QUERY_KEY>,
@@ -32,10 +33,6 @@ interface GetOrganizationTriggerProps extends SingleQueryParams {
   type: OrganizationTriggerType;
 }
 
-/**
- * @category Queries
- * @group Organization
- */
 export const GetOrganizationTrigger = async ({
   type,
   adminApiParams,
@@ -46,10 +43,7 @@ export const GetOrganizationTrigger = async ({
   const { data } = await adminApi.get(`/organization/triggers/${type}`);
   return data;
 };
-/**
- * @category Hooks
- * @group Organization
- */
+
 export const useGetOrganizationTrigger = (
   type: OrganizationTriggerType,
   options: SingleQueryOptions<ReturnType<typeof GetOrganizationTrigger>> = {}

@@ -9,18 +9,19 @@ import {
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Endpoint to retrieve a list of sessions for a specific event.
+ * This function fetches event sessions using the event ID, allowing users to access detailed session information.
+ * It is designed for applications that require comprehensive data on event sessions.
+ * @name GetEventSessions
+ * @param {string} eventId - The id of the event
+ * @version 1.2
+ **/
+
 export const EVENT_SESSIONS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "SESSIONS",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SESSIONS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SESSIONS_QUERY_KEY>,
@@ -33,10 +34,6 @@ interface GetEventSessionsProps extends InfiniteQueryParams {
   eventId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSessions = async ({
   eventId,
   pageParam,
@@ -56,10 +53,7 @@ export const GetEventSessions = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSessions = (
   eventId: string = "",
   params: Omit<

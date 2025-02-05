@@ -10,9 +10,16 @@ import {
 } from "../../useConnectedSingleQuery";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves a specific search value associated with an event question.
+ * This function is designed to fetch detailed information about a particular search value linked to a question within an event.
+ * It is useful in scenarios where precise data retrieval for event-related questions is required.
+ * @name GetEventQuestionSearchValue
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @param {string} searchValueId - The id of the search value
+ * @version 1.2
+ **/
+
 export const EVENT_QUESTION_SEARCH_VALUE_QUERY_KEY = (
   eventId: string,
   questionId: string,
@@ -22,10 +29,6 @@ export const EVENT_QUESTION_SEARCH_VALUE_QUERY_KEY = (
   searchValueId,
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_QUESTION_SEARCH_VALUE_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_QUESTION_SEARCH_VALUE_QUERY_KEY>,
@@ -43,10 +46,6 @@ interface GetEventQuestionSearchValueProps extends SingleQueryParams {
   searchValueId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventQuestionSearchValue = async ({
   eventId,
   questionId,
@@ -61,10 +60,7 @@ export const GetEventQuestionSearchValue = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventQuestionSearchValue = (
   eventId: string = "",
   questionId: string = "",

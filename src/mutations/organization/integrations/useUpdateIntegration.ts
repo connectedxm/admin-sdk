@@ -12,18 +12,20 @@ import {
 import { IntegrationUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Integration
- */
+ * Endpoint to update an existing integration within an organization.
+ * This function allows users to modify the details of a specific integration by providing the integration ID and the updated inputs.
+ * It ensures that the integration data is updated in the system and invalidates the relevant queries to maintain data consistency.
+ * @name UpdateIntegration
+ * @param {string} integrationId - The ID of the integration
+ * @param {IntegrationUpdateInputs} integration - The integration update inputs
+ * @version 1.2
+**/
+
 export interface UpdateIntegrationParams extends MutationParams {
   integrationId: string;
   integration: IntegrationUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Integration
- */
 export const UpdateIntegration = async ({
   integrationId,
   integration,
@@ -31,9 +33,9 @@ export const UpdateIntegration = async ({
   queryClient,
 }: UpdateIntegrationParams): Promise<ConnectedXMResponse<Integration>> => {
   if (!integrationId) throw new Error("Integration ID undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<ConnectedXMResponse<Integration>>(
+  const { data } = await adminApi.put<ConnectedXMResponse<Integration>>(
     `/organization/integrations/${integrationId}`,
     integration
   );
@@ -44,10 +46,6 @@ export const UpdateIntegration = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Integration
- */
 export const useUpdateIntegration = (
   options: Omit<
     ConnectedXMMutationOptions<

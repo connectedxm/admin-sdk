@@ -12,19 +12,21 @@ import {
 import { StreamInputOutputUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Stream
- */
+ * Endpoint to update a specific stream input output by its identifiers.
+ * This function allows updating the output data of a stream input within a system.
+ * It is designed to be used in applications where modifications to stream outputs are required.
+ * @name UpdateStreamInputOutput
+ * @param {string} streamId - The ID of the stream
+ * @param {string} outputId - The ID of the output
+ * @param {StreamInputOutputUpdateInputs} output - The output data to update
+ * @version 1.2
+ **/
 export interface UpdateStreamInputOutputParams extends MutationParams {
   streamId: string;
   outputId: string;
   output: StreamInputOutputUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Stream
- */
 export const UpdateStreamInputOutput = async ({
   streamId,
   outputId,
@@ -34,12 +36,13 @@ export const UpdateStreamInputOutput = async ({
 }: UpdateStreamInputOutputParams): Promise<
   ConnectedXMResponse<StreamInputOutput>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<
-    ConnectedXMResponse<StreamInputOutput>
-  >(`/streams/${streamId}/outputs/${outputId}`, {
-    ...output,
-  });
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<StreamInputOutput>>(
+    `/streams/${streamId}/outputs/${outputId}`,
+    {
+      ...output,
+    }
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: STREAM_INPUTS_QUERY_KEY() });
     SET_STREAM_INPUT_OUTPUT_QUERY_DATA(queryClient, [streamId, outputId], data);
@@ -47,10 +50,6 @@ export const UpdateStreamInputOutput = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Stream
- */
 export const useUpdateStreamInputOutput = (
   options: Omit<
     ConnectedXMMutationOptions<

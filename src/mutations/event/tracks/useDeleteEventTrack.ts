@@ -8,26 +8,28 @@ import {
 import { EVENT_TRACKS_QUERY_KEY, EVENT_TRACK_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Tracks
- */
+ * Endpoint to delete a specific event track within an event.
+ * This function allows for the removal of a track from an event by specifying the event and track IDs.
+ * It is designed to be used in applications where event management and track deletion are required.
+ * @name DeleteEventTrack
+ * @param {string} eventId - The id of the event
+ * @param {string} trackId - The id of the track
+ * @version 1.2
+ **/
+
 export interface DeleteEventTrackParams extends MutationParams {
   eventId: string;
   trackId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Tracks
- */
 export const DeleteEventTrack = async ({
   eventId,
   trackId,
   adminApiParams,
   queryClient,
 }: DeleteEventTrackParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/tracks/${trackId}`
   );
   if (queryClient && data.status === "ok") {
@@ -41,10 +43,6 @@ export const DeleteEventTrack = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Tracks
- */
 export const useDeleteEventTrack = (
   options: Omit<
     ConnectedXMMutationOptions<

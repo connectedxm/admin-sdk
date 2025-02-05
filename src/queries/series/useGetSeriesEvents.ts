@@ -9,18 +9,19 @@ import {
 import { EVENT_QUERY_KEY } from "../events/useGetEvent";
 
 /**
- * @category Keys
- * @group Series
- */
+ * Endpoint to fetch events associated with a specific series.
+ * This function retrieves a list of events for a given series, allowing users to view and manage events within that series.
+ * It is designed to be used in applications where event management and retrieval are necessary.
+ * @name GetSeriesEvents
+ * @param {string} seriesId - The id of the series
+ * @version 1.2
+ **/
+
 export const SERIES_EVENTS_QUERY_KEY = (seriesId: string) => [
   ...EVENT_QUERY_KEY(seriesId),
   "EVENTS",
 ];
 
-/**
- * @category Setters
- * @group Series
- */
 export const SET_SERIES_EVENTS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof SERIES_EVENTS_QUERY_KEY>,
@@ -33,10 +34,6 @@ interface GetSeriesEventsProps extends InfiniteQueryParams {
   seriesId: string;
 }
 
-/**
- * @category Queries
- * @group Series
- */
 export const GetSeriesEvents = async ({
   seriesId,
   pageParam,
@@ -56,10 +53,7 @@ export const GetSeriesEvents = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Series
- */
+
 export const useGetSeriesEvents = (
   seriesId: string = "",
   params: Omit<

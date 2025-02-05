@@ -11,9 +11,15 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Accounts
- */
+ * Endpoint to manage and fetch events associated with a specific account.
+ * This function allows retrieval of events for a given account, with an option to filter for past events.
+ * It is designed to be used in applications where event data for accounts is required.
+ * @name GetAccountEvents
+ * @param {string} accountId - The id of the account
+ * @param {boolean} [past] - Optional flag to filter past events
+ * @version 1.2
+ **/
+
 export const ACCOUNT_EVENTS_QUERY_KEY = (accountId: string, past?: boolean) => {
   const keys = [...ACCOUNT_QUERY_KEY(accountId), "EVENTS"];
 
@@ -24,10 +30,6 @@ export const ACCOUNT_EVENTS_QUERY_KEY = (accountId: string, past?: boolean) => {
   return keys;
 };
 
-/**
- * @category Setters
- * @group Accounts
- */
 export const SET_ACCOUNT_EVENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof ACCOUNT_EVENTS_QUERY_KEY>,
@@ -41,10 +43,6 @@ interface GetAccountEventsProps extends InfiniteQueryParams {
   past?: boolean;
 }
 
-/**
- * @category Queries
- * @group Accounts
- */
 export const GetAccountEvents = async ({
   accountId,
   pageParam,
@@ -66,10 +64,7 @@ export const GetAccountEvents = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Accounts
- */
+
 export const useGetAccountEvents = (
   accountId: string = "",
   past?: boolean,

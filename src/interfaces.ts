@@ -1196,7 +1196,7 @@ export interface GroupTranslation {
   updatedAt: string;
 }
 
-enum ImageModerationLevel {
+export enum ImageModerationLevel {
   safe = "safe",
   warning = "warning",
 }
@@ -1215,6 +1215,10 @@ export interface Image extends BaseImage {
   description: string | null;
   moderation: ImageModerationLevel;
   updatedAt: string;
+}
+
+export interface ImageWCopyUri extends Image {
+  copyUri: string;
 }
 
 export enum ExportStatus {
@@ -2205,7 +2209,7 @@ export interface StreamInputDetails {
   };
   created: string;
   modified: string;
-  meta: Record<string, any>;
+  meta: any;
   defaultCreator: string;
   status: any;
   recording: {
@@ -2890,4 +2894,63 @@ export interface Lead extends BaseLead {
   tikTok: string | null;
   note: string | null;
   updatedAt: string;
+}
+
+export interface BarChartSummaryData {
+  type: "bar";
+  data: {
+    label: string;
+    value: number;
+  }[];
+  count: number;
+  question?: RegistrationQuestion;
+}
+
+export interface LineChartSummaryData {
+  type: "line";
+  data: {
+    label: string;
+    value: number;
+  }[];
+  count: number;
+  question?: RegistrationQuestion;
+}
+
+export interface TableChartSummaryData {
+  type: "table";
+  data: {
+    value: number;
+  }[];
+  count: number;
+  question?: RegistrationQuestion;
+}
+
+export interface CountChartSummaryData {
+  type: "count";
+  data: null;
+  count: number;
+  question?: RegistrationQuestion;
+}
+
+export type SummaryData =
+  | BarChartSummaryData
+  | LineChartSummaryData
+  | TableChartSummaryData
+  | CountChartSummaryData;
+
+export interface ImageUsage extends Image {
+  _count: {
+    accounts: number;
+    events: number;
+    sessions: number;
+    groups: number;
+    usage: number;
+    speakers: number;
+    tickets: number;
+  };
+}
+
+export interface CloneEventResponse {
+  id: string;
+  slug: string;
 }

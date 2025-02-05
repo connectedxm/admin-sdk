@@ -11,6 +11,18 @@ import {
 } from "@src/queries";
 
 /**
+ * Creates a new translation for a specific event pass type.
+ * This function allows the creation of translations for event pass types, enabling support for multiple locales.
+ * It is designed to be used in applications where event pass types need to be translated into different languages.
+ * @name CreateEventPassTypeTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} passTypeId - The ID of the pass type
+ * @param {string} locale - The locale for the translation
+ * @param {[boolean]} autoTranslate - Whether to automatically translate the pass type
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-PassTypes-Translations
  */
@@ -35,9 +47,9 @@ export const CreateEventPassTypeTranslation = async ({
 }: CreateEventPassTypeTranslationParams): Promise<
   ConnectedXMResponse<EventPassTypeTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<
+  const { data } = await adminApi.post<
     ConnectedXMResponse<EventPassTypeTranslation>
   >(`/events/${eventId}/passTypes/${passTypeId}/translations`, {
     locale,

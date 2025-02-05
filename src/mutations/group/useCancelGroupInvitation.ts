@@ -8,18 +8,20 @@ import {
 } from "../useConnectedMutation";
 
 /**
- * @category Params
- * @group Groups
- */
+ * Endpoint to cancel a group invitation.
+ * This function allows the cancellation of a specific invitation to a group by providing the group ID and invitation ID.
+ * It is useful in scenarios where an invitation needs to be revoked or invalidated.
+ * @name CancelGroupInvitation
+ * @param {string} groupId - The id of the group
+ * @param {string} invitationId - The id of the invitation
+ * @version 1.2
+ **/
+
 export interface CancelGroupInvitationParams extends MutationParams {
   groupId: string;
   invitationId: string;
 }
 
-/**
- * @category Methods
- * @group Groups
- */
 export const CancelGroupInvitation = async ({
   groupId,
   invitationId,
@@ -28,8 +30,8 @@ export const CancelGroupInvitation = async ({
 }: CancelGroupInvitationParams): Promise<
   ConnectedXMResponse<GroupInvitation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<GroupInvitation>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<GroupInvitation>>(
     `/groups/${groupId}/invitations/${invitationId}/cancel`
   );
   if (queryClient && data.status === "ok") {
@@ -40,10 +42,6 @@ export const CancelGroupInvitation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Groups
- */
 export const useCancelGroupInvitation = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -9,18 +9,21 @@ import { EVENT_SESSION_QUERY_KEY } from "./useGetEventSession";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches a list of accounts associated with a specific event session.
+ * This function is used to retrieve account details for a given event and session, 
+ * allowing for pagination and filtering options. It is designed for applications 
+ * that need to manage or display accounts linked to event sessions.
+ * @name GetEventSessionAccounts
+ * @param {string} eventId - The id of the event
+ * @param {string} sessionId - The id of the session
+ * @version 1.2
+ **/
+
 export const EVENT_SESSION_ACCOUNTS_QUERY_KEY = (
   eventId: string,
   sessionId: string
 ) => [...EVENT_SESSION_QUERY_KEY(eventId, sessionId), "ACCOUNTS"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SESSION_ACCOUNTS_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SESSION_ACCOUNTS_QUERY_KEY>,
@@ -34,10 +37,6 @@ interface GetEventSessionAccountsProps extends InfiniteQueryParams {
   sessionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSessionAccounts = async ({
   eventId,
   sessionId,
@@ -61,10 +60,7 @@ export const GetEventSessionAccounts = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSessionAccounts = (
   eventId: string = "",
   sessionId: string = "",

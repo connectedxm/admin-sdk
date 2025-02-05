@@ -8,18 +8,18 @@ import { ConnectedXMResponse, AuthSession } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Key
- * @group Emails
- */
+ * Endpoint to retrieve a list of authentication sessions.
+ * This function fetches authentication session data, which can be used to monitor and manage user sessions.
+ * It is designed for applications that require detailed tracking of user authentication activities.
+ * @name GetAuthSessions
+ * @version 1.2
+ **/
+
 export const AUTH_SESSIONS_QUERY_KEY = () => {
   const keys = ["AUTH_SESSIONS"];
   return keys;
 };
 
-/**
- * @category Setters
- * @group Emails
- */
 export const SET_AUTH_SESSIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof AUTH_SESSIONS_QUERY_KEY>,
@@ -30,10 +30,6 @@ export const SET_AUTH_SESSIONS_QUERY_DATA = (
 
 interface GetAuthSessionsParams extends InfiniteQueryParams {}
 
-/**
- * @category Query
- * @group Emails
- */
 export const GetAuthSessions = async ({
   pageParam,
   pageSize,
@@ -54,10 +50,6 @@ export const GetAuthSessions = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Emails
- */
 export const useGetAuthSessions = (
   params: Omit<
     InfiniteQueryParams,

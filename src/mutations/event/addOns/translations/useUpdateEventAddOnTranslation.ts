@@ -16,6 +16,18 @@ import {
 } from "@src/queries";
 
 /**
+ * Updates the translation for a specific event add-on in a given locale.
+ * This function allows for updating the translation details of an event add-on, identified by eventId and addOnId, for a specified locale.
+ * It is useful for applications that need to manage multilingual content for event add-ons.
+ * @name UpdateEventAddOnTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} addOnId - The ID of the add-on
+ * @param {ISupportedLocale} locale - The locale for the translation
+ * @param {EventAddOnTranslationUpdateInputs} addOnTranslation - The translation details to update
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-AddOns-Translations
  */
@@ -40,9 +52,9 @@ export const UpdateEventAddOnTranslation = async ({
 }: UpdateEventAddOnTranslationParams): Promise<
   ConnectedXMResponse<EventAddOnTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<
+  const { data } = await adminApi.put<
     ConnectedXMResponse<EventAddOnTranslation>
   >(
     `/events/${eventId}/addOns/${addOnId}/translations/${locale}`,

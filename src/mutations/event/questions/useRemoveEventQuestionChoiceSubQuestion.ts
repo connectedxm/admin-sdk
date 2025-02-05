@@ -8,9 +8,16 @@ import {
 import { EVENT_QUESTION_CHOICES_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Event-Questions
- */
+ * Endpoint to remove a sub-question from a specific choice within an event question.
+ * This function allows the removal of a sub-question associated with a choice in an event's question,
+ * facilitating the management of event question structures by dynamically updating the choices.
+ * @name RemoveEventQuestionChoiceSubQuestion
+ * @param {string} eventId - The id of the event
+ * @param {string} questionId - The id of the question
+ * @param {string} choiceId - The id of the choice
+ * @param {string} subQuestionId - The id of the sub-question
+ * @version 1.2
+ **/
 export interface RemoveEventQuestionChoiceSubQuestionParams
   extends MutationParams {
   eventId: string;
@@ -19,10 +26,6 @@ export interface RemoveEventQuestionChoiceSubQuestionParams
   subQuestionId: string;
 }
 
-/**
- * @category Methods
- * @group Event-Questions
- */
 export const RemoveEventQuestionChoiceSubQuestion = async ({
   eventId,
   questionId,
@@ -33,9 +36,9 @@ export const RemoveEventQuestionChoiceSubQuestion = async ({
 }: RemoveEventQuestionChoiceSubQuestionParams): Promise<
   ConnectedXMResponse<null>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/events/${eventId}/questions/${questionId}/choices/${choiceId}/subQuestions/${subQuestionId}`
   );
 
@@ -48,10 +51,6 @@ export const RemoveEventQuestionChoiceSubQuestion = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Event-Questions
- */
 export const useRemoveEventQuestionChoiceSubQuestion = (
   options: Omit<
     ConnectedXMMutationOptions<

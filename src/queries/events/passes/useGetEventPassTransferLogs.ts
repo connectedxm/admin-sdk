@@ -10,18 +10,20 @@ import {
 } from "@src/queries/useConnectedInfiniteQuery";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Retrieves the transfer logs for a specific event pass, supporting pagination and filtering.
+ * This function is designed to fetch detailed logs of transfers associated with a particular event pass.
+ * It supports pagination and filtering to allow for efficient data retrieval and management.
+ * @name GetEventPassTransferLogs
+ * @param {string} eventId - The id of the event
+ * @param {string} passId - The id of the pass
+ * @version 1.2
+ **/
+
 export const EVENT_PASS_TRANSFER_LOGS_QUERY_KEY = (
   eventId: string,
   passId: string
 ) => [...EVENT_PASS_QUERY_KEY(eventId, passId), "TRANSFER_LOGS"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_PASS_TRANSFER_LOGS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_PASS_TRANSFER_LOGS_QUERY_KEY>,
@@ -38,10 +40,6 @@ interface GetEventPassTransferLogsProps extends InfiniteQueryParams {
   passId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventPassTransferLogs = async ({
   eventId,
   passId,
@@ -67,10 +65,7 @@ export const GetEventPassTransferLogs = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventPassTransferLogs = (
   eventId: string = "",
   passId: string = "",

@@ -9,18 +9,21 @@ import { EVENT_SECTION_QUERY_KEY } from "./useGetEventSection";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches pass types for a specific event section with pagination support.
+ * This function is designed to retrieve different pass types available for a given event section,
+ * allowing for paginated data fetching to efficiently handle large datasets.
+ * It is useful in scenarios where detailed information about event pass types is required.
+ * @name GetEventSectionPassTypes
+ * @param {string} eventId - The id of the event
+ * @param {string} sectionId - The id of the section
+ * @version 1.2
+ **/
+
 export const EVENT_SECTION_PASS_TYPES_QUERY_KEY = (
   eventId: string,
   sectionId: string
 ) => [...EVENT_SECTION_QUERY_KEY(eventId, sectionId), "PASS_TYPES"];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SECTION_PASS_TYPES_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SECTION_PASS_TYPES_QUERY_KEY>,
@@ -37,10 +40,6 @@ interface GetEventSectionPassTypesProps extends InfiniteQueryParams {
   sectionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSectionPassTypes = async ({
   eventId,
   sectionId,
@@ -66,10 +65,7 @@ export const GetEventSectionPassTypes = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSectionPassTypes = (
   eventId: string = "",
   sectionId: string = "",

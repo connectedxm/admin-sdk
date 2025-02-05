@@ -10,6 +10,17 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific translation of an event page based on the provided event ID, page ID, and locale.
+ * This function is used to remove a translation entry from an event page, ensuring that the associated
+ * queries are invalidated to maintain data consistency within the application.
+ * @name DeleteEventPageTranslation
+ * @param {string} eventId - The ID of the event
+ * @param {string} pageId - The ID of the page
+ * @param {string} locale - The locale of the translation to be deleted
+ * @version 1.2
+ **/
+
+/**
  * @category Params
  * @group Event-Page-Translation
  */
@@ -30,9 +41,9 @@ export const DeleteEventPageTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteEventPageTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/events/${eventId}/pages/${pageId}/translations/${locale}`
   );
   if (queryClient && data.status === "ok") {

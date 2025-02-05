@@ -8,17 +8,18 @@ import { ConnectedXMResponse, DomainDetails } from "@src/interfaces";
 import { SET_ORGANIZATION_DOMAIN_QUERY_DATA } from "@src/queries/organization/useGetOrganizationDomain";
 
 /**
- * @category Params
- * @group Organization
- */
+ * Endpoint to update the organization's domain.
+ * This function allows updating the domain associated with an organization.
+ * It is designed to be used in applications where managing organization settings is required.
+ * @name UpdateOrganizationDomain
+ * @param {string} domain - The new domain for the organization
+ * @version 1.2
+ **/
+
 export interface UpdateOrganizationDomainParams extends MutationParams {
   domain: string;
 }
 
-/**
- * @category Methods
- * @group Organization
- */
 export const UpdateOrganizationDomain = async ({
   domain,
   adminApiParams,
@@ -26,8 +27,8 @@ export const UpdateOrganizationDomain = async ({
 }: UpdateOrganizationDomainParams): Promise<
   ConnectedXMResponse<DomainDetails>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<DomainDetails>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<DomainDetails>>(
     `/organization/domain`,
     { domain }
   );
@@ -37,10 +38,6 @@ export const UpdateOrganizationDomain = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization
- */
 export const useUpdateOrganizationDomain = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -8,18 +8,19 @@ import {
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches the types of rooms available for a specific event.
+ * This function is used to retrieve a list of room types associated with a given event, 
+ * which can be useful for applications that need to display or manage event room configurations.
+ * @name GetEventRoomTypes
+ * @param {string} eventId - The ID of the event
+ * @version 1.2
+ **/
+
 export const EVENT_ROOM_TYPES_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
   "ROOM_TYPES",
 ];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_ROOM_TYPES_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_ROOM_TYPES_QUERY_KEY>,
@@ -32,10 +33,6 @@ interface GetEventRoomTypesProps extends InfiniteQueryParams {
   eventId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventRoomTypes = async ({
   eventId,
   pageParam,
@@ -55,10 +52,7 @@ export const GetEventRoomTypes = async ({
   });
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventRoomTypes = (
   eventId: string = "",
   params: Omit<

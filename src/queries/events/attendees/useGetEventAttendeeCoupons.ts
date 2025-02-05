@@ -10,9 +10,17 @@ import { EVENT_ATTENDEE_QUERY_KEY } from "./useGetEventAttendee";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches coupons associated with event attendees for a specific event and account.
+ * This function is designed to retrieve a list of coupons that are linked to attendees of a given event, 
+ * filtered by the event ID and account ID. It also provides an optional filter for pre-paid status.
+ * This is useful in scenarios where event organizers need to manage or review coupons distributed to attendees.
+ * @name GetEventAttendeeCoupons
+ * @param {string} eventId - The id of the event
+ * @param {string} accountId - The id of the account
+ * @param {boolean} [prePaid] - Optional flag to filter by pre-paid status
+ * @version 1.2
+ **/
+
 export const EVENT_ATTENDEE_COUPONS_QUERY_KEY = (
   eventId: string,
   accountId: string,
@@ -27,10 +35,6 @@ export const EVENT_ATTENDEE_COUPONS_QUERY_KEY = (
   return key;
 };
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_REGISTRATION_COUPONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_ATTENDEE_COUPONS_QUERY_KEY>,
@@ -45,10 +49,6 @@ interface GetEventAttendeeCouponsProps extends InfiniteQueryParams {
   prePaid?: boolean;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventAttendeeCoupons = async ({
   eventId,
   accountId,
@@ -74,10 +74,7 @@ export const GetEventAttendeeCoupons = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventAttendeeCoupons = (
   eventId: string = "",
   accountId: string = "",

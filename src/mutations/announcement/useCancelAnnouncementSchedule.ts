@@ -11,17 +11,18 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Announcement
- */
+ * Endpoint to cancel a scheduled announcement.
+ * This function allows users to cancel a previously scheduled announcement by providing the announcement ID.
+ * It is useful in scenarios where an announcement needs to be retracted or rescheduled.
+ * @name CancelAnnouncementSchedule
+ * @param {string} announcementId - The ID of the announcement to cancel
+ * @version 1.2
+ **/
+
 export interface CancelAnnouncementScheduleParams extends MutationParams {
   announcementId: string;
 }
 
-/**
- * @category Methods
- * @group Announcement
- */
 export const CancelAnnouncementSchedule = async ({
   announcementId,
   adminApiParams,
@@ -29,8 +30,8 @@ export const CancelAnnouncementSchedule = async ({
 }: CancelAnnouncementScheduleParams): Promise<
   ConnectedXMResponse<Announcement>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<Announcement>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<Announcement>>(
     `/announcements/${announcementId}/schedule`
   );
   if (queryClient && data.status === "ok") {
@@ -40,10 +41,6 @@ export const CancelAnnouncementSchedule = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Announcement
- */
 export const useCancelAnnouncementSchedule = (
   options: Omit<
     ConnectedXMMutationOptions<

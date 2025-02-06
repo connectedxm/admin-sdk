@@ -2,9 +2,12 @@ import * as fs from "fs";
 import * as path from "path";
 import * as glob from "glob";
 import { createOpenAI } from "@ai-sdk/openai";
+// import { createGroq } from "@ai-sdk/groq";
 import { generateText } from "ai";
 
-const VERSION = "1.2";
+// const groq = createGroq({
+//   apiKey: "",
+// });
 
 const openai = createOpenAI({
   apiKey: "",
@@ -25,7 +28,8 @@ const filePaths = glob.sync(path.join(dir, "{queries,mutations}/**/*.ts"), {
 
 console.log(`📂 Found ${filePaths.length} files`);
 
-const CONCURRENT_LIMIT = 10; // OpenAI's recommended concurrency limit
+const VERSION = "1.3";
+const CONCURRENT_LIMIT = 5; // OpenAI's recommended concurrency limit
 const RETRY_LIMIT = 3; // Max retries for rate-limited requests
 
 async function delay(ms: number) {
@@ -47,50 +51,98 @@ async function processFile(
 
     let { text } = await generateText({
       model: openai("gpt-4o"),
+      // model: groq("llama-3.3-70b-versatile"),
+      system:
+        "You are an API that documents typescript files. You only receive a typescript file and rewrite it with updated comments. You NEVER comment or chat with the user",
       prompt: `
-            You are an API that documents typescript files. You are given a typescript file. Your task is to rewrite the entire file with file comments to match the example below. 
-            
-            1. The Comments are for the whole file not individual functions. 
-            2. DO NOT COMMENT EACH FUNCTION SEPARATELY. 
-            3. DO NOT CHANGE ANYTHING OTHER THAN COMMENTS.
-            4. Place the comments after the imports.
+            RULES:
+            1. DO NOT COMMENT THESE PARAMS [pageParam, pageSize, orderBy, search, adminApiParams]
+            2. Do not edit any part of the file except the comment after the imports.
+            3. Return the entire file with the updated comment.
+            4. Do not discuss your changes, just respond the file with edits.
 
-            1st Example:
+            INSTRUCTIONS: 
+            1. Look at the current params commented and compare them to the axios call and where they are used.
+            2. If used in the path, mark it as (path) - description
+            3. if used in the params, mark it as (query) - description
+            4. If used as req.body, mark it as (body) - description
+            5. If used as a value in the body, mark it as (bodyValue) - description
+
+            EXAMPLE 
             /**
-             * Fetches details for a specific organization team member by their ID.
-             * This function utilizes a connected single query to retrieve data about a team member within an organization.
-             * It is designed to be used in applications where detailed information about a team member is required.
-             * @name GetOrganizationTeamMember
-             * @param {string} teamMemberId - The ID of the team member
+             * Endpoint to retrieve a list of stream inputs.
+             * This function fetches stream input data from the server, allowing for infinite scrolling and pagination.
+             * It is designed to be used in applications where a comprehensive list of stream inputs is required.
+             * @name GetStreamInputs
              * @version 1.2
-             * @version ${VERSION}
-            **/
+             **/
+            const { data } = await adminApi.get("/streams", {
+              params: {
+                page: pageParam || undefined,
+                pageSize: pageSize || undefined,
+                orderBy: orderBy || undefined,
+                search: search || undefined,
+              },
+            });
 
-            2nd Example:
+            EXAMPLE 2:
             /**
-             * Endpoint to retrieve a specific API key associated with the current user by its unique identifier.
-             * This function allows users to fetch details of their own API key using the provided API key ID.
-             * @name GetSelfApiKey
-             * @param {string} apiKeyId - The id of the API key
-             * @version ${VERSION}
-            **/
+             * Endpoint to retrieve a list of stream inputs.
+             * This function fetches stream input data from the server, allowing for infinite scrolling and pagination.
+             * It is designed to be used in applications where a comprehensive list of stream inputs is required.
+             * @name GetStreamInputs
+             * @version 1.3
+             **/
+            export const GetStreamInputs = async ({
+              pageParam,
+              pageSize,
+              orderBy,
+              search,
+              adminApiParams,
+            }: GetStreamInputsParams): Promise<ConnectedXMResponse<StreamInput[]>> => {
+              const adminApi = await GetAdminAPI(adminApiParams);
+              const { data } = await adminApi.get("/streams", {
+                params: {
+                  page: pageParam || undefined,
+                  pageSize: pageSize || undefined,
+                  orderBy: orderBy || undefined,
+                  search: search || undefined,
+                },
+              });
 
-            NAME:
-            1. The name of the endpoint should have the method and the endpoint name. e.g. GetAccounts, PostAccounts, PutAccounts, DeleteAccounts
+              return data;
+            };
 
-            DESCRIPTION:
-            1. The description should be a summary of what the endpoint does.
-            2. the description should be detailed enough for public documentation
-            3. the description can be multiline but should be concise and clear.
-           
-            LOCATING PARAMS: 
-            1. Params should be pulled from the props interface
-            2. Optional params MUST be marked with [paramName], Fix this if not already done.
-            3. pageParam, pageSize, orderBy, search, adminApiParams should not be included in the comment EVER.
+            EXAMPLE 3:
+            /**
+             * Endpoint to create a new account within the system.
+             * This function allows for the creation of a new account by providing the necessary account details.
+             * It is designed to be used in applications where account management is required.
+             * @name CreateAccount
+             * @param {AccountCreateInputs} account (body) The account details to be created
+             * @version 1.2
+             **/
+            export const CreateAccount = async ({
+              account,
+              adminApiParams,
+              queryClient,
+            }: CreateAccountParams): Promise<ConnectedXMResponse<Account>> => {
+              const adminApi = await GetAdminAPI(adminApiParams);
+              const { data } = await adminApi.post<ConnectedXMResponse<Account>>(
+                "/accounts",
+                account
+              );
+              if (queryClient && data.status === "ok") {
+                queryClient.invalidateQueries({ queryKey: ACCOUNTS_QUERY_KEY() });
+                SET_ACCOUNT_QUERY_DATA(queryClient, [data?.data.id], data);
+              }
+              return data;
+            };
+         
+            IMPORTANT NOTES:
+            1. DO NOT COMMENT THESE PARAMS [pageParam, pageSize, orderBy, search, adminApiParams]
 
-            IMPORTANT: REWRITE THE ENTIRE FILE IN YOUR RESPONSE AND ONLY CHANGE THE FILE COMMENT.
-
-            API-VERSION: ${VERSION}
+            UPDATE COMMENT VERSION TO: ${VERSION}
 
             TYPESCRIPT FILE CODE: 
             ${file}`,

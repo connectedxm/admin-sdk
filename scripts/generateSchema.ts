@@ -3,6 +3,7 @@ import * as path from "path";
 import * as glob from "glob";
 import ts from "typescript";
 import { parse } from "comment-parser"; // Parses JSDoc comments
+import OpenAPISchemaValidator from "openapi-schema-validator";
 
 /**
  * Parse exported interfaces, type aliases, and enums into JSON Schemas.
@@ -286,7 +287,10 @@ function extractApiDetails(filePath: string) {
     } else if (paramType === "bodyValue") {
       body = {
         ...(body || {}),
-        [paramName]: GetTypeSchema(tag.type || "null"),
+        properties: {
+          ...(body?.properties || {}),
+          [paramName]: GetTypeSchema(tag.type || "null"),
+        },
       };
     } else if (paramType === "query" || paramType === "path") {
       params.push({
@@ -352,6 +356,7 @@ function extractApiDetails(filePath: string) {
       parameters: params,
       requestBody: body
         ? {
+            required: true,
             content: {
               "application/json": {
                 schema: body,
@@ -408,4 +413,22 @@ queries.reverse().forEach((filePath) => {
 const outputPath = path.join(__dirname, "../openapi.json");
 fs.writeFileSync(outputPath, JSON.stringify(openApiSpec, null, 2));
 
-console.log("✅ OpenAPI Spec generated!");
+const validator = new OpenAPISchemaValidator({
+  version: 3,
+});
+
+console.log("🔍 Validating OpenAPI Spec...");
+const { errors } = validator.validate(openApiSpec);
+
+if (errors.length) {
+  console.error("❌ OpenAPI Spec is invalid!");
+  fs.writeFileSync(
+    path.join(__dirname, "../openapi-errors.json"),
+    JSON.stringify(errors, null, 2)
+  );
+} else {
+  if (fs.existsSync(path.join(__dirname, "../openapi-errors.json"))) {
+    fs.unlinkSync(path.join(__dirname, "../openapi-errors.json"));
+  }
+  console.log("✅ OpenAPI Spec valid!");
+}

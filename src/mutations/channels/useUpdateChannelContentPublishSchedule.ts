@@ -1,4 +1,8 @@
-import { ConnectedXMResponse, ChannelContent } from "@src/interfaces";
+import {
+  ConnectedXMResponse,
+  ChannelContent,
+  ContentPublishSchedule,
+} from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -17,23 +21,14 @@ import {
  * @name UpdateChannelContentPublishSchedule
  * @param {string} contentId (path) The id of the content
  * @param {string} channelId (path) The id of the channel
- * @param {object} schedule (body) The schedule details
- * @param {string} schedule.date (bodyValue) The date of the schedule
- * @param {boolean} schedule.email (bodyValue) Email notification flag
- * @param {boolean} schedule.push (bodyValue) Push notification flag
- * @param {boolean} schedule.visible (bodyValue) Visibility flag
+ * @param {ContentPublishSchedule} schedule (body) The schedule details
  * @version 1.3
  **/
 export interface UpdateChannelContentPublishScheduleParams
   extends MutationParams {
   contentId: string;
   channelId: string;
-  schedule: {
-    date: string;
-    email: boolean;
-    push: boolean;
-    visible: boolean;
-  };
+  schedule: ContentPublishSchedule;
 }
 
 export const UpdateChannelContentPublishSchedule = async ({

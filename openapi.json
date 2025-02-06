@@ -816,6 +816,7 @@
         "description": "Endpoint to create a new account within the system. This function allows for the creation of a new account by providing the necessary account details. It is designed to be used in applications where account management is required.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -973,6 +974,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1181,6 +1183,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1363,6 +1366,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1554,6 +1558,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1800,11 +1805,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "password": {
-                  "type": "string"
+                "properties": {
+                  "password": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -2037,6 +2045,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2140,6 +2149,7 @@
         "description": "Endpoint to create a new advertisement. This function allows the creation of a new advertisement by sending the advertisement data to the server. It is designed to be used in applications where advertisements need to be dynamically created and managed.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2339,6 +2349,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2503,6 +2514,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2555,6 +2567,7 @@
         "description": "Endpoint to create a new announcement within the system. This function allows users to submit details for a new announcement, which will be processed and stored. It is designed to be used in applications where announcements need to be dynamically created and managed.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2799,6 +2812,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2902,6 +2916,7 @@
         "description": "Endpoint to create a new benefit within the system. This function allows the creation of a benefit by providing the necessary input parameters. It interacts with the admin API to post the benefit data and updates the query cache upon successful creation.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3110,6 +3125,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3223,11 +3239,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "accountId": {
-                  "type": "string"
+                "properties": {
+                  "accountId": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -3460,22 +3479,11 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/object",
-                "schedule.date": {
-                  "type": "string"
-                },
-                "schedule.email": {
-                  "type": "boolean"
-                },
-                "schedule.push": {
-                  "type": "boolean"
-                },
-                "schedule.visible": {
-                  "type": "boolean"
-                }
+                "$ref": "#/components/schemas/ContentPublishSchedule"
               }
             }
           }
@@ -3524,6 +3532,7 @@
         "description": "Endpoint to create a new channel within the application. This function allows for the creation of a channel by providing the necessary inputs. It is designed to be used in scenarios where new communication channels need to be established.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3672,6 +3681,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3847,6 +3857,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4064,6 +4075,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4246,6 +4258,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4455,6 +4468,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4655,6 +4669,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4777,11 +4792,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "email": {
-                  "type": "string"
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -4998,6 +5016,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5164,6 +5183,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5399,6 +5419,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5608,6 +5629,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5828,11 +5850,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "allowed": {
-                  "type": "boolean"
+                "properties": {
+                  "allowed": {
+                    "type": "boolean"
+                  }
                 }
               }
             }
@@ -5970,6 +5995,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -6196,6 +6222,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -6458,6 +6485,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -6684,6 +6712,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -6868,11 +6897,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "accountId": {
-                  "type": "string"
+                "properties": {
+                  "accountId": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -7105,6 +7137,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -7411,6 +7444,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -7637,6 +7671,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -7881,6 +7916,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -8107,6 +8143,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -8238,6 +8275,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -8360,6 +8398,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -8526,6 +8565,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -8761,6 +8801,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -8970,6 +9011,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -9110,13 +9152,16 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "questionIds": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/string"
+                "properties": {
+                  "questionIds": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/string"
+                    }
                   }
                 }
               }
@@ -9291,11 +9336,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "zplTemplate": {
-                  "type": "string"
+                "properties": {
+                  "zplTemplate": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -9364,6 +9412,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -9626,6 +9675,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -9852,6 +9902,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -9983,6 +10034,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -10236,6 +10288,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -10376,6 +10429,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -10629,6 +10683,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -10918,11 +10973,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "allowed": {
-                  "type": "boolean"
+                "properties": {
+                  "allowed": {
+                    "type": "boolean"
+                  }
                 }
               }
             }
@@ -11060,6 +11118,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -11286,6 +11345,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -11557,20 +11617,23 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "sendEmail": {
-                  "type": "boolean"
-                },
-                "issueRefund": {
-                  "type": "boolean"
-                },
-                "adminRefundAmt": {
-                  "type": "number"
-                },
-                "removeReservation": {
-                  "type": "boolean"
+                "properties": {
+                  "sendEmail": {
+                    "type": "boolean"
+                  },
+                  "issueRefund": {
+                    "type": "boolean"
+                  },
+                  "adminRefundAmt": {
+                    "type": "number"
+                  },
+                  "removeReservation": {
+                    "type": "boolean"
+                  }
                 }
               }
             }
@@ -11639,6 +11702,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -11883,6 +11947,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -12023,11 +12088,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "accountId": {
-                  "type": "string"
+                "properties": {
+                  "accountId": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -12105,6 +12173,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -12185,13 +12254,16 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "questions": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Question"
+                "properties": {
+                  "questions": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Question"
+                    }
                   }
                 }
               }
@@ -12435,11 +12507,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "sortOrder": {
-                  "type": "number"
+                "properties": {
+                  "sortOrder": {
+                    "type": "number"
+                  }
                 }
               }
             }
@@ -12499,6 +12574,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -12665,6 +12741,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -12840,6 +12917,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -13138,6 +13216,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -13347,6 +13426,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -13565,6 +13645,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -13714,13 +13795,16 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "questionIds": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/number"
+                "properties": {
+                  "questionIds": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/number"
+                    }
                   }
                 }
               }
@@ -13793,13 +13877,16 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "choicesIds": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/number"
+                "properties": {
+                  "choicesIds": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/number"
+                    }
                   }
                 }
               }
@@ -13881,11 +13968,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "allowed": {
-                  "type": "boolean"
+                "properties": {
+                  "allowed": {
+                    "type": "boolean"
+                  }
                 }
               }
             }
@@ -14023,6 +14113,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -14249,6 +14340,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -14389,6 +14481,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -14469,6 +14562,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -14967,11 +15061,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "sortOrder": {
-                  "type": "number"
+                "properties": {
+                  "sortOrder": {
+                    "type": "number"
+                  }
                 }
               }
             }
@@ -15049,11 +15146,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "allowed": {
-                  "type": "boolean"
+                "properties": {
+                  "allowed": {
+                    "type": "boolean"
+                  }
                 }
               }
             }
@@ -15191,6 +15291,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -15417,6 +15518,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -15548,13 +15650,16 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "questionIds": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/number"
+                "properties": {
+                  "questionIds": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/number"
+                    }
                   }
                 }
               }
@@ -15758,6 +15863,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -15984,6 +16090,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -16115,6 +16222,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -16368,6 +16476,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -16508,13 +16617,16 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "questionIds": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/string"
+                "properties": {
+                  "questionIds": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/string"
+                    }
                   }
                 }
               }
@@ -17138,6 +17250,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -17364,6 +17477,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -17626,6 +17740,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -17852,6 +17967,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -18376,6 +18492,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -18602,6 +18719,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -18777,6 +18895,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -18829,6 +18948,7 @@
         "description": "Endpoint to create a new event within the system. This function allows for the creation of an event by providing the necessary event details. It is designed to be used in applications where event management is required.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -19037,6 +19157,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -19201,6 +19322,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -19978,6 +20100,7 @@
         "description": "Creates a new group within the system using the specified parameters. This function is designed to facilitate the creation of groups by accepting necessary input parameters and interacting with the backend API. It ensures that the group is created and updates the query cache accordingly if the operation is successful.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -20195,6 +20318,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -20728,6 +20852,7 @@
         "description": "Endpoint to create a new image in the system. This function allows users to upload and store a new image by providing the necessary image data. It is designed to be used in applications where image management and storage are required.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -20936,6 +21061,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -21039,13 +21165,16 @@
         "description": "Endpoint to delete multiple images from the storage system. This function allows users to remove several images at once by providing their IDs. It is useful in scenarios where bulk deletion of images is required, ensuring efficient management of image resources.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "imageIds": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/string"
+                "properties": {
+                  "imageIds": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/string"
+                    }
                   }
                 }
               }
@@ -21096,6 +21225,7 @@
         "description": "Endpoint to create a new interest within the system. This function allows for the creation of a new interest by providing the necessary interest data. It is designed to be used in applications where users can manage and add new interests.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -21295,6 +21425,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -21408,6 +21539,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -21634,6 +21766,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -21746,6 +21879,7 @@
         "description": "Endpoint to create a new invoice within the system. This function allows users to submit data for a new invoice, which will be processed and stored. It is designed to be used in applications where invoice management is required.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -21945,6 +22079,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -22170,6 +22305,7 @@
         "description": "Endpoint to create a new level within the system. This function allows for the creation of a new level by providing the necessary inputs. It is designed to be used in applications where managing levels is required.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -22369,6 +22505,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -22421,6 +22558,7 @@
         "description": "Endpoint to create a new integration for an organization. This function allows the creation of a new integration by providing the necessary integration details. It is designed to be used in applications where organizations need to add new integrations to their system.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -22471,20 +22609,23 @@
         "description": "Endpoint to update the organization's integrations with Ghost. This function allows updating the integration settings for Ghost within an organization, including enabling or disabling the integration and setting the necessary keys and URL. It is designed for use in applications that manage organizational settings and integrations.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "ghost": {
-                  "type": "boolean"
-                },
-                "ghostUrl": {
-                  "type": "string"
-                },
-                "ghostAdminKey": {
-                  "type": "string"
-                },
-                "ghostContentKey": {
-                  "type": "string"
+                "properties": {
+                  "ghost": {
+                    "type": "boolean"
+                  },
+                  "ghostUrl": {
+                    "type": "string"
+                  },
+                  "ghostAdminKey": {
+                    "type": "string"
+                  },
+                  "ghostContentKey": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -22681,6 +22822,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -23038,6 +23180,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -23151,6 +23294,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -23264,17 +23408,20 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "clientId": {
-                  "type": "string"
-                },
-                "clientPublicKey": {
-                  "type": "string"
-                },
-                "clientSecret": {
-                  "type": "string"
+                "properties": {
+                  "clientId": {
+                    "type": "string"
+                  },
+                  "clientPublicKey": {
+                    "type": "string"
+                  },
+                  "clientSecret": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -23487,6 +23634,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -23702,6 +23850,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -23805,11 +23954,14 @@
         "description": "Endpoint to add a user to the organization. This function allows administrators to add a new user to their organization by providing the user's email address. It is designed to be used in applications where managing organization memberships is required.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "email": {
-                  "type": "string"
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -23945,6 +24097,7 @@
         "description": "Endpoint to create a new organization team member. This function allows the creation of a new team member within an organization by providing the necessary inputs. It is designed to be used in applications where managing team members is required.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -24124,11 +24277,14 @@
         "description": "Endpoint to update the organization's domain. This function allows updating the domain associated with an organization. It is designed to be used in applications where managing organization settings is required.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "domain": {
-                  "type": "string"
+                "properties": {
+                  "domain": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -24287,6 +24443,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -24451,6 +24608,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -24564,11 +24722,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "amount": {
-                  "type": "number"
+                "properties": {
+                  "amount": {
+                    "type": "number"
+                  }
                 }
               }
             }
@@ -24618,6 +24779,7 @@
         "description": "Endpoint to update the details of an organization. This function allows for updating the information of an organization using the provided organization details. It is designed to be used in applications where organization data needs to be modified.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -24721,11 +24883,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "userId": {
-                  "type": "string"
+                "properties": {
+                  "userId": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -24842,6 +25007,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -25059,6 +25225,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -25236,6 +25403,7 @@
         "description": "Endpoint to create a new API key for the current user. This function allows users to generate a new API key for their own use by providing the necessary data for creation. It is designed to be used in applications where users need to manage their own API keys.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -25519,6 +25687,7 @@
         "description": "Endpoint to update the image of the current user. This function allows users to update their profile image by providing the necessary image data. It ensures that the user's image is updated in the system and invalidates the relevant queries to reflect the changes.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -25624,6 +25793,7 @@
         "description": "Endpoint to update the current user's data. This function allows users to update their own profile information by providing the necessary user data. It ensures that the updated information is reflected in the application by setting the query data accordingly.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -25839,6 +26009,7 @@
         "description": "Endpoint to create a new series within the application. This function allows users to add a new series by providing the necessary series data. It ensures that the series is created and updates the query cache accordingly.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -26038,6 +26209,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -26141,17 +26313,20 @@
         "description": "Endpoint to upload a file to storage. This function allows users to upload a file by providing its data URI and source. It is designed to be used in applications where file storage is required.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "dataUri": {
-                  "type": "string"
-                },
-                "source": {
-                  "$ref": "#/components/schemas/\"admin\" | \"response\""
-                },
-                "name": {
-                  "type": "string"
+                "properties": {
+                  "dataUri": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "$ref": "#/components/schemas/\"admin\" | \"response\""
+                  },
+                  "name": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -26296,6 +26471,7 @@
         "description": "Endpoint to create a new stream input within the system. This function allows users to add a new stream input by providing the necessary stream input data. It ensures that the stream input is created and updates the relevant query data if the operation is successful.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -26444,6 +26620,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -26652,6 +26829,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -26834,6 +27012,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -26896,6 +27075,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -27131,6 +27311,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -27234,6 +27415,7 @@
         "description": "Endpoint to create a new subscription. This function allows the creation of a new subscription by providing the necessary subscription details. It is designed to be used in applications where subscription management is required.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -27390,6 +27572,7 @@
         "description": "Endpoint to create a new subscription product. This function allows the creation of a subscription product by providing the necessary details. It is designed to be used in applications where subscription products need to be managed.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -27538,6 +27721,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -27746,6 +27930,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -27868,6 +28053,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -27980,6 +28166,7 @@
         "description": "Endpoint to create a new support ticket. This function allows users to submit a support ticket with the necessary information. It is designed to be used in applications where users need to report issues or request assistance.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -28146,11 +28333,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "text": {
-                  "type": "string"
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -28261,6 +28451,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -28445,11 +28636,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "role": {
-                  "$ref": "#/components/schemas/(\"moderator\" | \"member\")"
+                "properties": {
+                  "role": {
+                    "$ref": "#/components/schemas/(\"moderator\" | \"member\")"
+                  }
                 }
               }
             }
@@ -28741,23 +28935,26 @@
         "description": "Endpoint to create a new thread within the application. This function allows users to initiate a new thread by providing necessary input data. It supports optional parameters for account IDs, a first message, and an image data URI. The function is designed to be used in scenarios where creating a new thread is required.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "thread": {
-                  "$ref": "#/components/schemas/ThreadCreateInputs"
-                },
-                "accountIds": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/string"
+                "properties": {
+                  "thread": {
+                    "$ref": "#/components/schemas/ThreadCreateInputs"
+                  },
+                  "accountIds": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/string"
+                    }
+                  },
+                  "firstMessage": {
+                    "type": "string"
+                  },
+                  "imageDataUri": {
+                    "type": "string"
                   }
-                },
-                "firstMessage": {
-                  "type": "string"
-                },
-                "imageDataUri": {
-                  "type": "string"
                 }
               }
             }
@@ -28981,14 +29178,17 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "thread": {
-                  "$ref": "#/components/schemas/ThreadUpdateInputs"
-                },
-                "imageDataUri": {
-                  "type": "string"
+                "properties": {
+                  "thread": {
+                    "$ref": "#/components/schemas/ThreadUpdateInputs"
+                  },
+                  "imageDataUri": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -29211,6 +29411,7 @@
         "description": "Endpoint to create a new tier within the system. This function allows the creation of a tier by providing the necessary inputs. It is designed to be used in applications where tier management is required.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -29419,6 +29620,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -29670,13 +29872,16 @@
         "description": "Endpoint to delete multiple videos from the storage system. This function allows users to remove several videos at once by providing their IDs. It is designed for applications that require batch deletion of video content.",
         "parameters": [],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "videoIds": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/string"
+                "properties": {
+                  "videoIds": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/string"
+                    }
                   }
                 }
               }
@@ -29788,6 +29993,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -54932,6 +55138,23 @@
             "type": "boolean"
           },
           "push": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ContentPublishSchedule": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "email": {
+            "type": "boolean"
+          },
+          "push": {
+            "type": "boolean"
+          },
+          "visible": {
             "type": "boolean"
           }
         }

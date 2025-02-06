@@ -2960,3 +2960,10 @@ export interface AnnouncementSchedule {
   email?: boolean;
   push?: boolean;
 }
+
+export interface ContentPublishSchedule {
+  date: string;
+  email: boolean;
+  push: boolean;
+  visible: boolean;
+}

@@ -12,22 +12,14 @@ function parseSchemas(sourceFile: ts.SourceFile): Record<string, any> {
   const schemas: Record<string, any> = {};
 
   function visit(node: ts.Node) {
-    // Process exported interfaces.
     if (ts.isInterfaceDeclaration(node)) {
       if (
         !node.modifiers ||
-        !node.modifiers.some(
-          (modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword
-        )
+        !node.modifiers.some((m) => m.kind === ts.SyntaxKind.ExportKeyword)
       ) {
         return;
       }
       const name = node.name.text;
-
-      if (name === "ConnectedXMResponse") {
-        return;
-      }
-
       const properties: Record<string, any> = {};
 
       node.members.forEach((member) => {
@@ -37,7 +29,8 @@ function parseSchemas(sourceFile: ts.SourceFile): Record<string, any> {
           ts.isIdentifier(member.name)
         ) {
           const propName = member.name.text;
-          properties[propName] = parseType(member.type, sourceFile);
+          const propSchema = parseType(member.type, sourceFile);
+          properties[propName] = propSchema;
         }
       });
 
@@ -47,28 +40,10 @@ function parseSchemas(sourceFile: ts.SourceFile): Record<string, any> {
       };
     }
 
-    // Process exported type aliases.
-    if (ts.isTypeAliasDeclaration(node)) {
-      if (
-        !node.modifiers ||
-        !node.modifiers.some(
-          (modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword
-        )
-      ) {
-        return;
-      }
-      const name = node.name.text;
-      const typeDefinition = parseType(node.type, sourceFile);
-      schemas[name] = typeDefinition;
-    }
-
-    // Process exported enums.
     if (ts.isEnumDeclaration(node)) {
       if (
         !node.modifiers ||
-        !node.modifiers.some(
-          (modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword
-        )
+        !node.modifiers.some((m) => m.kind === ts.SyntaxKind.ExportKeyword)
       ) {
         return;
       }
@@ -77,7 +52,6 @@ function parseSchemas(sourceFile: ts.SourceFile): Record<string, any> {
 
       node.members.forEach((member) => {
         let value: string | number;
-        // If an initializer is provided, use it.
         if (member.initializer) {
           if (
             ts.isStringLiteral(member.initializer) ||
@@ -88,14 +62,13 @@ function parseSchemas(sourceFile: ts.SourceFile): Record<string, any> {
             value = member.initializer.getText(sourceFile);
           }
         } else {
-          // Otherwise, use the member name.
           value = member.name.getText(sourceFile);
         }
         enumValues.push(value);
       });
 
       schemas[name] = {
-        type: "string", // Assuming string enums; adjust if necessary
+        type: typeof enumValues[0] === "number" ? "number" : "string",
         enum: enumValues,
       };
     }
@@ -111,27 +84,62 @@ function parseSchemas(sourceFile: ts.SourceFile): Record<string, any> {
  * Recursively convert a TypeScript TypeNode into a JSON Schema fragment.
  */
 function parseType(typeNode: ts.TypeNode, sourceFile: ts.SourceFile): any {
-  if (ts.isTypeReferenceNode(typeNode)) {
-    return {
-      $ref: `#/components/schemas/${typeNode.typeName.getText(sourceFile)}`,
-    };
+  const rawText = typeNode.getText(sourceFile).trim();
+
+  // Check for the "keyof typeof" pattern in the raw text.
+  if (rawText.startsWith("keyof typeof ")) {
+    const enumName = rawText.replace("keyof typeof ", "").trim();
+    return { $ref: `#/components/schemas/${enumName}` };
   }
+
+  // Existing handling for TypeReferenceNode
+  if (ts.isTypeReferenceNode(typeNode)) {
+    const typeName = typeNode.typeName.getText(sourceFile);
+    return { $ref: `#/components/schemas/${typeName}` };
+  }
+
   if (ts.isUnionTypeNode(typeNode)) {
+    const types = typeNode.types.map((t) => t.getText(sourceFile).trim());
+    const isNullable = types.includes("null");
+    const nonNullTypes = typeNode.types.filter(
+      (t) => t.getText(sourceFile).trim() !== "null"
+    );
+
+    // If there's exactly one non-null type and null is present, then this is a nullable type.
+    if (nonNullTypes.length === 1 && isNullable && nonNullTypes[0]) {
+      const schema = parseType(nonNullTypes[0], sourceFile);
+      // If the schema is a reference, we need to wrap it in allOf since $ref cannot have sibling properties.
+      if (schema.$ref) {
+        return {
+          allOf: [schema],
+          nullable: true,
+        };
+      }
+      // Otherwise, simply add the nullable property.
+      return {
+        ...schema,
+        nullable: true,
+      };
+    }
+
+    // If not a simple nullable type, use oneOf for the union.
     return { oneOf: typeNode.types.map((t) => parseType(t, sourceFile)) };
   }
+
   if (ts.isArrayTypeNode(typeNode)) {
     return {
       type: "array",
       items: parseType(typeNode.elementType, sourceFile),
     };
   }
+
   if (ts.isLiteralTypeNode(typeNode)) {
     return {
       enum: [typeNode.literal.getText(sourceFile).replace(/"/g, "")],
     };
   }
 
-  const text = typeNode.getText(sourceFile);
+  // Fallback for unknown types.
   const typeMap: Record<string, string> = {
     string: "string",
     number: "number",
@@ -140,35 +148,43 @@ function parseType(typeNode: ts.TypeNode, sourceFile: ts.SourceFile): any {
     null: "null",
   };
 
-  return { type: typeMap[text] || "object" };
+  return { type: typeMap[rawText] || "object" };
 }
 
-const GetTypeSchema = (responseType: string) => {
-  switch (responseType) {
-    case "null":
-      return { nullable: true };
-    case "string":
-      return { type: "string" };
-    case "number":
-      return { type: "number" };
-    case "boolean":
-      return { type: "boolean" };
-    case "any":
-      return { type: "object" };
-    default:
-      if (responseType.endsWith("[]")) {
-        return {
-          type: "array",
-          items: {
-            $ref: `#/components/schemas/${responseType.replace("[]", "")}`,
-          },
-        };
-      } else {
-        return {
-          $ref: `#/components/schemas/${responseType}`,
-        };
-      }
+const GetTypeSchema = (responseType: string): any => {
+  if (responseType === "null") {
+    return { nullable: true };
   }
+  if (responseType === "string") {
+    return { type: "string" };
+  }
+  if (responseType === "number") {
+    return { type: "number" };
+  }
+  if (responseType === "boolean") {
+    return { type: "boolean" };
+  }
+  if (responseType === "any") {
+    return { type: "object" };
+  }
+
+  // Handle union types (e.g., "string | null")
+  const unionTypes = responseType.split("|").map((t) => t.trim());
+  if (unionTypes.includes("null")) {
+    return {
+      type: unionTypes.find((t) => t !== "null") || "object",
+      nullable: true,
+    };
+  }
+
+  if (responseType.endsWith("[]")) {
+    return {
+      type: "array",
+      items: GetTypeSchema(responseType.replace("[]", "")),
+    };
+  }
+
+  return { $ref: `#/components/schemas/${responseType}` };
 };
 
 // LOAD INTERFACES
@@ -346,8 +362,6 @@ function extractApiDetails(filePath: string) {
   const responseType = responseTypeMatch[1];
   if (!responseType) throw new Error(`Response type not found in ${filePath}`);
 
-  const multipleResponseTypes = responseType.includes("|");
-
   openApiSpec.paths[apiPath || filePath] = {
     ...openApiSpec.paths[apiPath || filePath],
     [method]: {
@@ -375,11 +389,7 @@ function extractApiDetails(filePath: string) {
                   status: { type: "string", enum: ["ok", "error"] },
                   message: { type: "string" },
                   count: { type: "number", nullable: true },
-                  data: multipleResponseTypes
-                    ? {
-                        oneOf: responseType.split("|").map(GetTypeSchema),
-                      }
-                    : GetTypeSchema(responseType),
+                  data: GetTypeSchema(responseType),
                 },
                 required: ["status", "message", "data"],
               },

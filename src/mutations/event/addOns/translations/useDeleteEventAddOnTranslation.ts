@@ -14,10 +14,10 @@ import {
  * This function is used to remove translations associated with event add-ons, ensuring that outdated or incorrect translations can be managed effectively.
  * It also handles cache invalidation for the related queries to ensure data consistency.
  * @name DeleteEventAddOnTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} addOnId - The ID of the add-on
- * @param {string} locale - The locale of the translation to be deleted
- * @version 1.2
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} addOnId (path) The ID of the add-on
+ * @param {string} locale (path) The locale of the translation to be deleted
+ * @version 1.3
  **/
 
 /**

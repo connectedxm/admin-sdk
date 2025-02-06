@@ -17,7 +17,7 @@ import {
  * @name CancelChannelContentPublishSchedule
  * @param {string} contentId (path) The id of the content
  * @param {string} channelId (path) The id of the channel
- * @version 1.2
+ * @version 1.3
  **/
 export interface CancelChannelContentPublishScheduleParams
   extends MutationParams {

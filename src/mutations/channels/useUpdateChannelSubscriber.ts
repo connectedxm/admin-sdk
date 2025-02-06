@@ -19,7 +19,7 @@ import { ChannelSubscriberUpdateInputs } from "@src/params";
  * @param {string} accountId (path) The id of the account
  * @param {string} channelId (path) The id of the channel
  * @param {ChannelSubscriberUpdateInputs} channelSubscriber (body) The subscriber update inputs
- * @version 1.2
+ * @version 1.3
  **/
 export interface UpdateChannelSubscriberParams extends MutationParams {
   accountId: string;

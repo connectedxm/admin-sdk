@@ -18,7 +18,7 @@ import {
  * @name CreateEventCoupon
  * @param {string} eventId (path) The id of the event
  * @param {EventCouponCreateInputs} coupon (body) The coupon details to be created
- * @version 1.2
+ * @version 1.3
  **/
 export interface CreateEventCouponParams extends MutationParams {
   eventId: string;

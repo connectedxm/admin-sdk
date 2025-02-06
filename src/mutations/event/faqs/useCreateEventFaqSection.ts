@@ -19,7 +19,7 @@ import {
  * @name CreateEventFaqSection
  * @param {string} eventId (path) The id of the event
  * @param {EventFaqSectionCreateInputs} faqSection (body) The inputs for creating the FAQ section
- * @version 1.2
+ * @version 1.3
  **/
 
 export interface CreateEventFaqSectionParams extends MutationParams {

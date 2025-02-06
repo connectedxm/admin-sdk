@@ -14,10 +14,10 @@ import {
  * This function is used to remove a translation entry from an event page, ensuring that the associated
  * queries are invalidated to maintain data consistency within the application.
  * @name DeleteEventPageTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} pageId - The ID of the page
- * @param {string} locale - The locale of the translation to be deleted
- * @version 1.2
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} pageId (path) The ID of the page
+ * @param {string} locale (path) The locale of the translation to be deleted
+ * @version 1.3
  **/
 
 /**

@@ -18,11 +18,11 @@ import {
  * This function allows for the creation of a translation for a specific piece of content within a channel,
  * optionally using automatic translation. It is designed to be used in applications that manage multilingual content.
  * @name PostChannelContentTranslation
- * @param {string} channelId - The ID of the channel
- * @param {string} contentId - The ID of the content
- * @param {string} locale - The locale for the translation
- * @param {boolean} [autoTranslate] - Whether to use automatic translation
- * @version 1.2
+ * @param {string} channelId (path) The ID of the channel
+ * @param {string} contentId (path) The ID of the content
+ * @param {string} locale (bodyValue) The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) Whether to use automatic translation
+ * @version 1.3
  **/
 
 /**

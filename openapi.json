@@ -2910,6 +2910,59 @@
         }
       }
     },
+    "/announcements/{announcementId}/preview": {
+      "post": {
+        "summary": "SendAnnouncementPreview",
+        "description": "Endpoint to send a preview of an announcement. This function triggers the sending of a preview for a specific announcement, identified by its ID. It is designed to be used in applications where previewing announcements before sending is required.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "announcementId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the announcement to preview",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok",
+                        "error"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "data": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/benefits": {
       "post": {
         "summary": "CreateBenefit",
@@ -45623,6 +45676,9 @@
           "title": {
             "type": "string"
           },
+          "active": {
+            "type": "boolean"
+          },
           "subtitle": {
             "type": "string",
             "nullable": true
@@ -53459,6 +53515,9 @@
           "title": {
             "type": "string"
           },
+          "active": {
+            "type": "boolean"
+          },
           "subtitle": {
             "type": "string",
             "nullable": true
@@ -53511,6 +53570,9 @@
           "title": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean"
           },
           "subtitle": {
             "type": "string",

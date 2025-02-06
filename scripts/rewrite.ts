@@ -87,34 +87,6 @@ async function processFile(
 
             EXAMPLE 2:
             /**
-             * Endpoint to retrieve a list of stream inputs.
-             * This function fetches stream input data from the server, allowing for infinite scrolling and pagination.
-             * It is designed to be used in applications where a comprehensive list of stream inputs is required.
-             * @name GetStreamInputs
-             * @version 1.3
-             **/
-            export const GetStreamInputs = async ({
-              pageParam,
-              pageSize,
-              orderBy,
-              search,
-              adminApiParams,
-            }: GetStreamInputsParams): Promise<ConnectedXMResponse<StreamInput[]>> => {
-              const adminApi = await GetAdminAPI(adminApiParams);
-              const { data } = await adminApi.get("/streams", {
-                params: {
-                  page: pageParam || undefined,
-                  pageSize: pageSize || undefined,
-                  orderBy: orderBy || undefined,
-                  search: search || undefined,
-                },
-              });
-
-              return data;
-            };
-
-            EXAMPLE 3:
-            /**
              * Endpoint to create a new account within the system.
              * This function allows for the creation of a new account by providing the necessary account details.
              * It is designed to be used in applications where account management is required.

@@ -15,11 +15,11 @@ import {
  * This function allows for the addition of a translation to an FAQ section, supporting multiple locales and optional auto-translation.
  * It is designed to be used in applications where multilingual support for event FAQs is required.
  * @name PostEventFaqSectionTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} sectionId - The ID of the FAQ section
- * @param {string} locale - The locale for the translation
- * @param {boolean} [autoTranslate] - Whether to automatically translate the content
- * @version 1.2
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} sectionId (path) The ID of the FAQ section
+ * @param {string} locale (bodyValue) The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) Whether to automatically translate the content
+ * @version 1.3
  **/
 
 /**

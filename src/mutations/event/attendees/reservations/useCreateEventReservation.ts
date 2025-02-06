@@ -19,7 +19,7 @@ import {
  * @name CreateEventReservation
  * @param {string} eventId (path) The id of the event
  * @param {EventRoomTypeReservationCreateInputs} reservation (body) The reservation details
- * @version 1.2
+ * @version 1.3
  **/
 
 export interface CreateEventReservationParams extends MutationParams {

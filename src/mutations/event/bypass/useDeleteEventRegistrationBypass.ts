@@ -17,7 +17,7 @@ import {
  * @name DeleteEventRegistrationBypass
  * @param {string} eventId (path) The id of the event
  * @param {string} bypassId (path) The id of the bypass
- * @version 1.2
+ * @version 1.3
  **/
 export interface DeleteEventRegistrationBypassParams extends MutationParams {
   eventId: string;

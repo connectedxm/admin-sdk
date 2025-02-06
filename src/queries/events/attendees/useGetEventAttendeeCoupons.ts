@@ -11,13 +11,13 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Fetches coupons associated with event attendees for a specific event and account.
- * This function is designed to retrieve a list of coupons that are linked to attendees of a given event, 
+ * This function is designed to retrieve a list of coupons that are linked to attendees of a given event,
  * filtered by the event ID and account ID. It also provides an optional filter for pre-paid status.
  * This is useful in scenarios where event organizers need to manage or review coupons distributed to attendees.
  * @name GetEventAttendeeCoupons
- * @param {string} eventId (path) - The id of the event
- * @param {string} accountId (path) - The id of the account
- * @param {boolean} [prePaid] (query) - Optional flag to filter by pre-paid status
+ * @param {string} eventId (path) The id of the event
+ * @param {string} accountId (path) The id of the account
+ * @param {boolean} [prePaid] (query) Optional flag to filter by pre-paid status
  * @version 1.3
  **/
 

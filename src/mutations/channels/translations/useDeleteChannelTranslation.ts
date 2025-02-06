@@ -14,8 +14,8 @@ import {
  * This function is used to remove translations associated with a channel, identified by channel ID and locale.
  * It ensures that the translation data is invalidated in the query cache upon successful deletion.
  * @name DeleteChannelTranslation
- * @param {string} channelId (path) - The ID of the channel
- * @param {string} locale (path) - The locale of the translation to be deleted
+ * @param {string} channelId (path) The ID of the channel
+ * @param {string} locale (path) The locale of the translation to be deleted
  * @version 1.3
  **/
 

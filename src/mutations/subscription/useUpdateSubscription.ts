@@ -12,8 +12,8 @@ import { SubscriptionUpdateInputs } from "@src/params";
  * This function allows users to modify an existing subscription by providing the subscription ID and the updated subscription details.
  * It is designed to be used in applications where subscription management is required.
  * @name UpdateSubscription
- * @param {string} subscriptionId (path) - The id of the subscription
- * @param {SubscriptionUpdateInputs} subscription (body) - The subscription update inputs
+ * @param {string} subscriptionId (path) The id of the subscription
+ * @param {SubscriptionUpdateInputs} subscription (body) The subscription update inputs
  * @version 1.3
  **/
 

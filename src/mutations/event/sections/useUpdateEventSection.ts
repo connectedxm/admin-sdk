@@ -16,9 +16,9 @@ import {
  * This function allows for the modification of event sections by providing new data inputs.
  * It is used in scenarios where event details need to be updated or modified.
  * @name UpdateEventSection
- * @param {string} eventId (path) - The id of the event
- * @param {string} sectionId (path) - The id of the section
- * @param {EventSectionUpdateInputs} section (body) - The new data for the section
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sectionId (path) The id of the section
+ * @param {EventSectionUpdateInputs} section (body) The new data for the section
  * @version 1.3
  **/
 export interface UpdateEventSectionParams extends MutationParams {

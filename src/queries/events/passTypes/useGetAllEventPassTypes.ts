@@ -11,11 +11,11 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
 
 /**
  * Endpoint to retrieve all event pass types for a specific event.
- * This function fetches a list of all pass types associated with a given event, 
+ * This function fetches a list of all pass types associated with a given event,
  * allowing users to understand the different access levels or categories available for that event.
  * It is useful in scenarios where detailed information about event pass types is required.
  * @name GetAllEventPassTypes
- * @param {string} eventId (path) - The id of the event
+ * @param {string} eventId (path) The id of the event
  * @version 1.3
  **/
 

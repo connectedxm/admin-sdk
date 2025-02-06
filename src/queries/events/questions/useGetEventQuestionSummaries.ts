@@ -13,7 +13,7 @@ import {
  * This function is designed to fetch detailed summaries of questions for a given event,
  * which can be used in applications that require insights into event-related questions.
  * @name GetEventQuestionSummaries
- * @param {string} eventId (path) - The id of the event
+ * @param {string} eventId (path) The id of the event
  * @version 1.3
  **/
 

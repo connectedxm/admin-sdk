@@ -12,7 +12,7 @@ import { ORGANIZATION_USERS_QUERY_KEY } from "@src/queries";
  * This function allows administrators to remove a user from the organization's user list.
  * It ensures that the user is properly deleted and the relevant queries are invalidated to maintain data consistency.
  * @name DeleteOrganizationUser
- * @param {string} userId (path) - The id of the user to be deleted
+ * @param {string} userId (path) The id of the user to be deleted
  * @version 1.3
  **/
 export interface DeleteOrganizationUserParams extends MutationParams {

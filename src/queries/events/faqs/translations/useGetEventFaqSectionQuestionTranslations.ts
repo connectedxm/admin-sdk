@@ -13,9 +13,9 @@ import { EVENT_FAQ_SECTION_QUESTION_QUERY_KEY } from "../useGetEventFaqSectionQu
  * This function is used to fetch all available translations for a given FAQ question, identified by event, section, and question IDs.
  * It is designed to support applications that require multilingual support for event-related FAQs.
  * @name GetEventFaqSectionQuestionTranslations
- * @param {string} eventId (path) - The ID of the event
- * @param {string} sectionId (path) - The ID of the section within the event
- * @param {string} questionId (path) - The ID of the question within the section
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} sectionId (path) The ID of the section within the event
+ * @param {string} questionId (path) The ID of the question within the section
  * @version 1.3
  **/
 

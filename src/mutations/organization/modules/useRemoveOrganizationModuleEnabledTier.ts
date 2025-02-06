@@ -20,8 +20,8 @@ import {
  * This function is used to delete a tier from an organization module by specifying the module type and tier ID.
  * It ensures that the relevant queries are invalidated to maintain data consistency.
  * @name RemoveOrganizationModuleEnabledTier
- * @param {keyof typeof OrganizationModuleType} moduleType (path) - The type of the organization module
- * @param {string} tierId (path) - The id of the tier to be removed
+ * @param {keyof typeof OrganizationModuleType} moduleType (path) The type of the organization module
+ * @param {string} tierId (path) The id of the tier to be removed
  * @version 1.3
  **/
 

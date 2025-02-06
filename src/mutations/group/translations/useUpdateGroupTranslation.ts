@@ -16,9 +16,9 @@ import {
  * This function allows for the modification of group translations, enabling the update of translation data for a group in a specified language.
  * It is designed to be used in applications that require dynamic content updates for multilingual support.
  * @name PutGroupTranslation
- * @param {string} groupId (path) - The ID of the group
- * @param {ISupportedLocale} locale (path) - The locale for the translation
- * @param {GroupTranslationUpdateInputs} groupTranslation (body) - The translation data to update
+ * @param {string} groupId (path) The ID of the group
+ * @param {ISupportedLocale} locale (path) The locale for the translation
+ * @param {GroupTranslationUpdateInputs} groupTranslation (body) The translation data to update
  * @version 1.3
  **/
 

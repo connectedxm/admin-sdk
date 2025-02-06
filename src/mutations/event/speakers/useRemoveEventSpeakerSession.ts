@@ -15,9 +15,9 @@ import {
  * This function allows the removal of a session associated with a particular speaker at a given event.
  * It is designed to be used in scenarios where session management for event speakers is required.
  * @name RemoveEventSpeakerSession
- * @param {string} eventId (path) - The id of the event
- * @param {string} speakerId (path) - The id of the speaker
- * @param {string} sessionId (path) - The id of the session
+ * @param {string} eventId (path) The id of the event
+ * @param {string} speakerId (path) The id of the speaker
+ * @param {string} sessionId (path) The id of the session
  * @version 1.3
  **/
 export interface RemoveEventSpeakerSessionParams extends MutationParams {
@@ -46,7 +46,7 @@ export const RemoveEventSpeakerSession = async ({
     SET_EVENT_SPEAKER_QUERY_DATA(queryClient, [eventId, speakerId], data);
   }
   return data;
-}
+};
 
 export const useRemoveEventSpeakerSession = (
   options: Omit<

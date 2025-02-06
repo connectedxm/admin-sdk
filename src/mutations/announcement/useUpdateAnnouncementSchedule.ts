@@ -1,4 +1,8 @@
-import { Announcement, ConnectedXMResponse } from "@src/interfaces";
+import {
+  Announcement,
+  ConnectedXMResponse,
+  AnnouncementSchedule,
+} from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -15,20 +19,13 @@ import {
  * This function allows updating the schedule details of an announcement, including the date and optional notification settings.
  * It is designed to be used in applications where managing announcement schedules is required.
  * @name UpdateAnnouncementSchedule
- * @param {string} announcementId (path) - The id of the announcement
- * @param {Object} schedule (body) - The schedule details
- * @param {string} schedule.date (bodyValue) - The date of the schedule
- * @param {boolean} [schedule.email] (bodyValue) - Optional email notification flag
- * @param {boolean} [schedule.push] (bodyValue) - Optional push notification flag
+ * @param {string} announcementId (path) The id of the announcement
+ * @param {AnnouncementSchedule} schedule (body) The schedule details
  * @version 1.3
  **/
 export interface UpdateAnnouncementScheduleParams extends MutationParams {
   announcementId: string;
-  schedule: {
-    date: string;
-    email?: boolean;
-    push?: boolean;
-  };
+  schedule: AnnouncementSchedule;
 }
 
 export const UpdateAnnouncementSchedule = async ({

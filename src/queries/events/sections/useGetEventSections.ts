@@ -13,7 +13,7 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
  * This function retrieves data about various sections within an event, allowing users to access detailed information about each section.
  * It is designed for applications that require comprehensive event section data.
  * @name GetEventSections
- * @param {string} eventId (path) - The ID of the event
+ * @param {string} eventId (path) The ID of the event
  * @version 1.3
  **/
 

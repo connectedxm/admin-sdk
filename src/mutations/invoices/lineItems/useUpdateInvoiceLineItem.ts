@@ -17,9 +17,9 @@ import {
  * This function allows users to modify details of a line item associated with a given invoice.
  * It is designed to be used in applications where invoice management and updates are required.
  * @name UpdateInvoiceLineItem
- * @param {string} invoiceId (path) - The id of the invoice
- * @param {string} lineItemId (path) - The id of the line item
- * @param {InvoiceLineItemUpdateInputs} invoiceLineItem (body) - The invoice line item update inputs
+ * @param {string} invoiceId (path) The id of the invoice
+ * @param {string} lineItemId (path) The id of the line item
+ * @param {InvoiceLineItemUpdateInputs} invoiceLineItem (body) The invoice line item update inputs
  * @version 1.3
  **/
 

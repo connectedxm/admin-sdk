@@ -10,11 +10,11 @@ import { EVENT_ATTENDEE_QUERY_KEY } from "../useGetEventAttendee";
 
 /**
  * Endpoint to retrieve a list of reservations for event attendees.
- * This function fetches reservations associated with a specific event and account, 
+ * This function fetches reservations associated with a specific event and account,
  * allowing users to view detailed reservation information for attendees.
  * @name GetEventAttendeeReservations
- * @param {string} eventId (path) - The id of the event
- * @param {string} accountId (path) - The id of the account
+ * @param {string} eventId (path) The id of the event
+ * @param {string} accountId (path) The id of the account
  * @version 1.3
  **/
 

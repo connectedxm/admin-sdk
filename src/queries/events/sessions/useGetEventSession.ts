@@ -10,11 +10,11 @@ import { EVENT_SESSIONS_QUERY_KEY } from "./useGetEventSessions";
 
 /**
  * Fetches detailed information about a specific event session using the event and session IDs.
- * This function is designed to retrieve data for a particular session within an event, 
+ * This function is designed to retrieve data for a particular session within an event,
  * providing essential details required for applications that manage or display event sessions.
  * @name GetEventSession
- * @param {string} eventId (path) - The id of the event
- * @param {string} sessionId (path) - The id of the session
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sessionId (path) The id of the session
  * @version 1.3
  **/
 

@@ -15,10 +15,10 @@ import {
  * This function allows the removal of a bypass associated with an event registration, identified by the event and bypass IDs.
  * It is intended for use in scenarios where bypasses need to be managed or revoked for event registrations.
  * @name DeleteEventRegistrationBypass
- * @param {string} eventId - The id of the event
- * @param {string} bypassId - The id of the bypass
+ * @param {string} eventId (path) The id of the event
+ * @param {string} bypassId (path) The id of the bypass
  * @version 1.2
-**/
+ **/
 export interface DeleteEventRegistrationBypassParams extends MutationParams {
   eventId: string;
   bypassId: string;

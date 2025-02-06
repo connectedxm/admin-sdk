@@ -15,9 +15,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve detailed information about the price schedule associated with a particular event pass type.
  * It is useful in scenarios where precise pricing information is required for event management or ticketing systems.
  * @name GetEventPassTypePriceSchedule
- * @param {string} eventId (path) - The id of the event
- * @param {string} passTypeId (path) - The id of the pass type
- * @param {string} scheduleId (path) - The id of the schedule
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passTypeId (path) The id of the pass type
+ * @param {string} scheduleId (path) The id of the schedule
  * @version 1.3
  **/
 

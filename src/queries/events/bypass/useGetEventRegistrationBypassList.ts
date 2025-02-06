@@ -14,7 +14,7 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
  * management and review of registration bypasses. It supports pagination and filtering to efficiently
  * handle large datasets.
  * @name GetEventRegistrationBypassList
- * @param {string} eventId (path) - The id of the event
+ * @param {string} eventId (path) The id of the event
  * @version 1.3
  **/
 

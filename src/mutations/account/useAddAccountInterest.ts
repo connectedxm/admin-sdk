@@ -15,8 +15,8 @@ import {
  * This function allows the addition of a new interest to an account by specifying the account ID and the interest ID.
  * It is designed to update the account's interests and ensure the query data is refreshed accordingly.
  * @name AddAccountInterest
- * @param {string} accountId (path) - The id of the account
- * @param {string} interestId (path) - The id of the interest
+ * @param {string} accountId (path) The id of the account
+ * @param {string} interestId (path) The id of the interest
  * @version 1.3
  **/
 export interface AddAccountInterestParams extends MutationParams {

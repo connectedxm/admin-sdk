@@ -13,9 +13,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is used to fetch the translated content of an event page, identified by event ID, page ID, and locale.
  * It is useful in applications that need to display event pages in different languages.
  * @name GetEventPageTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} pageId (path) - The ID of the page
- * @param {string} locale (path) - The locale for the translation
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} pageId (path) The ID of the page
+ * @param {string} locale (path) The locale for the translation
  * @version 1.3
  **/
 

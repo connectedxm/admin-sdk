@@ -17,8 +17,8 @@ import {
  * providing the ability to specify an optional account ID for more granular control.
  * It is designed for use in applications where event management and reservation handling are required.
  * @name DeleteEventReservation
- * @param {string} eventId (path) - The id of the event
- * @param {string} reservationId (path) - The id of the reservation
+ * @param {string} eventId (path) The id of the event
+ * @param {string} reservationId (path) The id of the reservation
  * @version 1.3
  **/
 export interface DeleteEventReservationParams extends MutationParams {

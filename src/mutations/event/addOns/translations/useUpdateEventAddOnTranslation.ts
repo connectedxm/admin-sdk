@@ -20,10 +20,10 @@ import {
  * This function allows for updating the translation details of an event add-on, identified by eventId and addOnId, for a specified locale.
  * It is useful for applications that need to manage multilingual content for event add-ons.
  * @name UpdateEventAddOnTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} addOnId (path) - The ID of the add-on
- * @param {ISupportedLocale} locale (path) - The locale for the translation
- * @param {EventAddOnTranslationUpdateInputs} addOnTranslation (body) - The translation details to update
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} addOnId (path) The ID of the add-on
+ * @param {ISupportedLocale} locale (path) The locale for the translation
+ * @param {EventAddOnTranslationUpdateInputs} addOnTranslation (body) The translation details to update
  * @version 1.3
  **/
 

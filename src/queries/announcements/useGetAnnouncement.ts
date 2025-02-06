@@ -14,7 +14,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve detailed information about a particular announcement within the system.
  * It is useful for applications that need to display or process information about a single announcement.
  * @name GetAnnouncement
- * @param {string} announcementId (path) - The ID of the announcement
+ * @param {string} announcementId (path) The ID of the announcement
  * @version 1.3
  **/
 

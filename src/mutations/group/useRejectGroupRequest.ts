@@ -12,8 +12,8 @@ import {
  * This function allows an administrator to reject a specific request to join a group.
  * It is designed to be used in applications where group membership management is required.
  * @name RejectGroupRequest
- * @param {string} groupId (path) - The id of the group
- * @param {string} requestId (path) - The id of the request
+ * @param {string} groupId (path) The id of the group
+ * @param {string} requestId (path) The id of the request
  * @version 1.3
  **/
 

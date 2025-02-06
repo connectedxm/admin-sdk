@@ -15,9 +15,9 @@ import {
  * This function allows the removal of a sponsor from an event session by specifying the event, session, and sponsor IDs.
  * It is designed to be used in applications where managing event session sponsors is required.
  * @name RemoveEventSessionSponsor
- * @param {string} eventId (path) - The id of the event
- * @param {string} sessionId (path) - The id of the session
- * @param {string} sponsorId (path) - The id of the sponsor
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sessionId (path) The id of the session
+ * @param {string} sponsorId (path) The id of the sponsor
  * @version 1.3
  **/
 export interface RemoveEventSessionSponsorParams extends MutationParams {

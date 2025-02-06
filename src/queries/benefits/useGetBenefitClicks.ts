@@ -14,7 +14,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches detailed click information associated with a given benefit ID.
  * It is designed to be used in applications where tracking user interactions with benefits is required.
  * @name GetBenefitClicks
- * @param {string} benefitId (path) - The id of the benefit
+ * @param {string} benefitId (path) The id of the benefit
  * @version 1.3
  **/
 

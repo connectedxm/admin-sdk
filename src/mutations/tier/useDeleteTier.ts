@@ -12,7 +12,7 @@ import { TIERS_QUERY_KEY, TIER_QUERY_KEY } from "@src/queries";
  * This function allows the removal of a tier by its unique identifier and ensures that any cached queries related to tiers are invalidated.
  * It is designed to be used in applications where tier management is required, ensuring data consistency by updating the cache.
  * @name DeleteTier
- * @param {string} tierId (path) - The id of the tier to be deleted
+ * @param {string} tierId (path) The id of the tier to be deleted
  * @version 1.3
  **/
 export interface DeleteTierParams extends MutationParams {

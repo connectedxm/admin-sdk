@@ -15,9 +15,9 @@ import {
  * This function allows the creation of a translation for an announcement in a specified locale.
  * It supports optional auto-translation and updates the query cache upon successful creation.
  * @name PostAnnouncementTranslation
- * @param {string} announcementId (path) - The ID of the announcement
- * @param {string} locale (bodyValue) - The locale for the translation
- * @param {boolean} [autoTranslate] (bodyValue) - Whether to auto-translate the content
+ * @param {string} announcementId (path) The ID of the announcement
+ * @param {string} locale (bodyValue) The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) Whether to auto-translate the content
  * @version 1.3
  **/
 

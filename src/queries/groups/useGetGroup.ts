@@ -14,7 +14,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function utilizes a connected single query to retrieve data about a group within the system.
  * It is designed to be used in applications where detailed information about a group is required.
  * @name GetGroup
- * @param {string} groupId (path) - The ID of the group
+ * @param {string} groupId (path) The ID of the group
  * @version 1.3
  **/
 

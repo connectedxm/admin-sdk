@@ -16,11 +16,11 @@ import {
  * This function allows updating the details of a specific session within an event by providing the event ID, session ID, and the updated session data.
  * It is used in scenarios where modifications to session details are required, such as changing the session's schedule or speakers.
  * @name UpdateEventSession
- * @param {string} eventId (path) - The id of the event
- * @param {string} sessionId (path) - The id of the session
- * @param {EventSessionUpdateInputs} session (body) - The session data to update
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sessionId (path) The id of the session
+ * @param {EventSessionUpdateInputs} session (body) The session data to update
  * @version 1.3
-**/
+ **/
 export interface UpdateEventSessionParams extends MutationParams {
   eventId: string;
   sessionId: string;
@@ -61,7 +61,7 @@ export const UpdateEventSession = async ({
     );
   }
   return data;
-}
+};
 
 export const useUpdateEventSession = (
   options: Omit<

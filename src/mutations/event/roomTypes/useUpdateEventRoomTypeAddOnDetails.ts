@@ -16,10 +16,10 @@ import {
  * This function allows updating the details of an add-on associated with a room type within a specific event.
  * It is designed to be used in scenarios where modifications to add-on details are required for event room types.
  * @name UpdateEventRoomTypeAddOnDetails
- * @param {string} eventId (path) - The id of the event
- * @param {string} roomTypeId (path) - The id of the room type
- * @param {string} addOnId (path) - The id of the add-on
- * @param {EventRoomTypeAddOnDetailsUpdateInputs} details (body) - The details to update
+ * @param {string} eventId (path) The id of the event
+ * @param {string} roomTypeId (path) The id of the room type
+ * @param {string} addOnId (path) The id of the add-on
+ * @param {EventRoomTypeAddOnDetailsUpdateInputs} details (body) The details to update
  * @version 1.3
  **/
 

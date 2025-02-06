@@ -13,10 +13,10 @@ import { ORGANIZATION_QUERY_KEY } from "@src/queries";
  * including enabling or disabling the integration and setting the necessary keys and URL.
  * It is designed for use in applications that manage organizational settings and integrations.
  * @name UpdateOrganizationIntegrations
- * @param {boolean} ghost (bodyValue) - Indicates if Ghost integration is enabled
- * @param {string} ghostUrl (bodyValue) - The URL for the Ghost instance
- * @param {string} [ghostAdminKey] (bodyValue) - Optional admin key for Ghost
- * @param {string} [ghostContentKey] (bodyValue) - Optional content key for Ghost
+ * @param {boolean} ghost (bodyValue) Indicates if Ghost integration is enabled
+ * @param {string} ghostUrl (bodyValue) The URL for the Ghost instance
+ * @param {string} [ghostAdminKey] (bodyValue) Optional admin key for Ghost
+ * @param {string} [ghostContentKey] (bodyValue) Optional content key for Ghost
  * @version 1.3
  **/
 

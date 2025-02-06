@@ -15,8 +15,8 @@ import {
  * This function allows the removal of a section within a specified event by providing the event and section IDs.
  * It is designed to be used in applications where event management and section organization are required.
  * @name DeleteEventSection
- * @param {string} eventId (path) - The id of the event
- * @param {string} sectionId (path) - The id of the section
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sectionId (path) The id of the section
  * @version 1.3
  **/
 export interface DeleteEventSectionParams extends MutationParams {

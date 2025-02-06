@@ -13,7 +13,7 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
  * This function allows users to fetch a list of pass types associated with a given event ID.
  * It is designed to be used in applications where event pass type information is required.
  * @name GetEventPassTypes
- * @param {string} eventId (path) - The id of the event
+ * @param {string} eventId (path) The id of the event
  * @version 1.3
  **/
 

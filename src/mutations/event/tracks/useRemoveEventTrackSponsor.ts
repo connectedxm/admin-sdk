@@ -15,9 +15,9 @@ import {
  * This function allows the removal of a sponsor from an event track by specifying the event, track, and sponsor IDs.
  * It is designed to be used in applications where managing event sponsorships is required.
  * @name RemoveEventTrackSponsor
- * @param {string} eventId (path) - The id of the event
- * @param {string} trackId (path) - The id of the track
- * @param {string} sponsorId (path) - The id of the sponsor
+ * @param {string} eventId (path) The id of the event
+ * @param {string} trackId (path) The id of the track
+ * @param {string} sponsorId (path) The id of the sponsor
  * @version 1.3
  **/
 

@@ -11,11 +11,11 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Retrieves a specific event page by its ID using the admin API.
- * This function is designed to fetch detailed information about an event page, 
+ * This function is designed to fetch detailed information about an event page,
  * which can be used in applications that require access to event page data.
  * @name GetEventPage
- * @param {string} eventId (path) - The ID of the event
- * @param {string} pageId (path) - The ID of the page
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} pageId (path) The ID of the page
  * @version 1.3
  **/
 

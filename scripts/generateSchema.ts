@@ -267,25 +267,38 @@ function extractApiDetails(filePath: string) {
   // Extract @param tags
   const paramsTags = comments.tags.filter((tag) => tag.tag === "param");
 
+  const params = [];
+  let body: Record<string, any> | undefined;
   // Process each @param tag to build a params array with extra info
-  const params: any = paramsTags.map((tag) => {
+  paramsTags.map((tag) => {
     // Determine if the parameter is optional by checking if the name is wrapped in square brackets
-    let paramName = tag.name;
-    let isOptional = false;
-    if (paramName.startsWith("[") && paramName.endsWith("]")) {
-      isOptional = true;
-      // Remove the square brackets from the name
-      paramName = paramName.substring(1, paramName.length - 1);
-    }
-    const isPathParam = apiPath.includes(`{${paramName}}`);
+    const paramName = tag.name;
+    const isOptional = tag.optional || false;
 
-    return {
-      in: isPathParam ? "path" : "query",
-      name: paramName,
-      schema: GetTypeSchema(tag.type || "null"), // e.g., "string"
-      description: tag.description,
-      required: !isOptional,
-    };
+    const descriptionMatches = tag.description.match(/^\(([^)]+)\)\s*(.*)$/);
+    const [, paramType, paramDescription] = descriptionMatches || [];
+    if (!paramType) throw new Error(`Param type not found in ${filePath}`);
+    if (!paramDescription)
+      throw new Error(`Param description not found in ${filePath}`);
+
+    if (paramType === "body") {
+      body = GetTypeSchema(tag.type || "null");
+    } else if (paramType === "bodyValue") {
+      body = {
+        ...(body || {}),
+        [paramName]: GetTypeSchema(tag.type || "null"),
+      };
+    } else if (paramType === "query" || paramType === "path") {
+      params.push({
+        in: paramType,
+        name: paramName,
+        schema: GetTypeSchema(tag.type || "null"), // e.g., "string"
+        description: paramDescription,
+        required: !isOptional,
+      });
+    } else {
+      throw new Error(`Invalid param type: ${paramType} in ${filePath}`);
+    }
   });
 
   if (minified.includes("extendsInfiniteQueryParams")) {
@@ -319,22 +332,6 @@ function extractApiDetails(filePath: string) {
     });
   }
 
-  // params.push({
-  //   in: "header",
-  //   name: "organization",
-  //   schema: { type: "string" },
-  //   description: "Organization ID to use",
-  //   required: true,
-  // })
-
-  // params.push({
-  //   in: "header",
-  //   name: "api-key",
-  //   schema: { type: "string" },
-  //   description: "API Key ",
-  //   required: true,
-  // })
-
   // EXTRACT RESPONSE TYPE WITH REGEX
   const responseTypeMatch = minified.match(
     /Promise<ConnectedXMResponse<([^>]+)>>/
@@ -353,6 +350,15 @@ function extractApiDetails(filePath: string) {
       summary: name,
       description: comments.description,
       parameters: params,
+      requestBody: body
+        ? {
+            content: {
+              "application/json": {
+                schema: body,
+              },
+            },
+          }
+        : undefined,
       responses: {
         200: {
           description: `Successful response`,

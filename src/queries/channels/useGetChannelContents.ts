@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is designed to retrieve a list of contents associated with a given channel ID.
  * It supports infinite scrolling and can be used in applications where channel content needs to be displayed.
  * @name GetChannelContents
- * @param {string} channelId (path) - The id of the channel
- * @param {boolean} [featured] (query) - Optional flag to filter featured contents
+ * @param {string} channelId (path) The id of the channel
+ * @param {boolean} [featured] (query) Optional flag to filter featured contents
  * @version 1.3
  **/
 

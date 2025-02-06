@@ -15,10 +15,10 @@ import {
  * This function allows the creation of a translation for a speaker at a given event, supporting multiple locales and optional auto-translation.
  * It is designed to be used in applications where multilingual support for event speakers is required.
  * @name PostEventSpeakerTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} speakerId (path) - The ID of the speaker
- * @param {string} locale (bodyValue) - The locale for the translation
- * @param {boolean} [autoTranslate] (bodyValue) - Whether to automatically translate the content
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} speakerId (path) The ID of the speaker
+ * @param {string} locale (bodyValue) The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) Whether to automatically translate the content
  * @version 1.3
  **/
 

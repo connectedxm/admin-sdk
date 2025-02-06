@@ -11,13 +11,13 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Endpoint to manage and retrieve event attendee passes for a specific event and account.
- * This function allows users to fetch and manage the passes associated with an event attendee, 
- * providing options to filter by status. It is designed for applications that require detailed 
+ * This function allows users to fetch and manage the passes associated with an event attendee,
+ * providing options to filter by status. It is designed for applications that require detailed
  * management of event passes for attendees.
  * @name GetEventAttendeePasses
- * @param {string} eventId (path) - The id of the event
- * @param {string} accountId (path) - The id of the account
- * @param {keyof typeof EventPassStatus} [status] (query) - Optional status of the event pass
+ * @param {string} eventId (path) The id of the event
+ * @param {string} accountId (path) The id of the account
+ * @param {keyof typeof EventPassStatus} [status] (query) Optional status of the event pass
  * @version 1.3
  **/
 

@@ -11,11 +11,11 @@ import { EVENT_COUPON_QUERY_KEY } from "./useGetEventCoupon";
 
 /**
  * Fetches a list of event coupon passes for a specific event and coupon.
- * This function retrieves data about passes associated with a given event and coupon, 
+ * This function retrieves data about passes associated with a given event and coupon,
  * allowing applications to display or process this information as needed.
  * @name GetEventCouponPasses
- * @param {string} eventId (path) - The id of the event
- * @param {string} couponId (path) - The id of the coupon
+ * @param {string} eventId (path) The id of the event
+ * @param {string} couponId (path) The id of the coupon
  * @version 1.3
  **/
 

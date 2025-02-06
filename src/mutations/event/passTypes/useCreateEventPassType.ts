@@ -13,14 +13,14 @@ import {
 
 /**
  * Endpoint to create a new event pass type for a specified event.
- * This function allows the creation of a new pass type associated with an event, 
+ * This function allows the creation of a new pass type associated with an event,
  * enabling the management of different pass types within the event's context.
  * It is designed to be used in applications where event pass types need to be dynamically created.
  * @name CreateEventPassType
- * @param {string} eventId (path) - The id of the event
- * @param {PassTypeCreateInputs} passType (body) - The pass type details
+ * @param {string} eventId (path) The id of the event
+ * @param {PassTypeCreateInputs} passType (body) The pass type details
  * @version 1.3
-**/
+ **/
 
 export interface CreateEventPassTypeParams extends MutationParams {
   eventId: string;
@@ -45,7 +45,7 @@ export const CreateEventPassType = async ({
     SET_EVENT_PASS_TYPE_QUERY_DATA(queryClient, [eventId, data.data.id], data);
   }
   return data;
-}
+};
 
 export const useCreateEventPassType = (
   options: Omit<

@@ -17,10 +17,10 @@ import { EVENT_PASS_TYPE_PRICE_SCHEDULES_QUERY_KEY } from "@src/queries/events/p
  * This function allows updating the details of a price schedule associated with a particular event pass type.
  * It is designed to be used in applications where event management and pricing updates are required.
  * @name UpdateEventPassTypePriceSchedule
- * @param {string} eventId (path) - The id of the event
- * @param {string} passTypeId (path) - The id of the pass type
- * @param {string} scheduleId (path) - The id of the schedule
- * @param {PassTypePriceScheduleUpdateInputs} schedule (body) - The schedule details to update
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passTypeId (path) The id of the pass type
+ * @param {string} scheduleId (path) The id of the schedule
+ * @param {PassTypePriceScheduleUpdateInputs} schedule (body) The schedule details to update
  * @version 1.3
  **/
 interface UpdateEventPassTypePriceScheduleParams extends MutationParams {

@@ -15,8 +15,8 @@ import {
  * This function allows users to cancel a previously scheduled publish operation for specific content within a channel.
  * It is useful in scenarios where content needs to be unscheduled due to changes in publishing plans or errors in the scheduling process.
  * @name CancelChannelContentPublishSchedule
- * @param {string} contentId - The id of the content
- * @param {string} channelId - The id of the channel
+ * @param {string} contentId (path) The id of the content
+ * @param {string} channelId (path) The id of the channel
  * @version 1.2
  **/
 export interface CancelChannelContentPublishScheduleParams

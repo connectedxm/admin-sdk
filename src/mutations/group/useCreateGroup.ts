@@ -13,7 +13,7 @@ import { GroupCreateInputs } from "@src/params";
  * This function is designed to facilitate the creation of groups by accepting necessary input parameters and interacting with the backend API.
  * It ensures that the group is created and updates the query cache accordingly if the operation is successful.
  * @name PostGroups
- * @param {GroupCreateInputs} group (body) - The inputs required to create a group
+ * @param {GroupCreateInputs} group (body) The inputs required to create a group
  * @version 1.3
  **/
 export interface CreateGroupParams extends MutationParams {

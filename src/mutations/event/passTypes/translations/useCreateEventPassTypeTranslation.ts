@@ -15,10 +15,10 @@ import {
  * This function allows the creation of translations for event pass types, enabling support for multiple locales.
  * It is designed to be used in applications where event pass types need to be translated into different languages.
  * @name CreateEventPassTypeTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} passTypeId (path) - The ID of the pass type
- * @param {string} locale (bodyValue) - The locale for the translation
- * @param {boolean} [autoTranslate] (bodyValue) - Whether to automatically translate the pass type
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} passTypeId (path) The ID of the pass type
+ * @param {string} locale (bodyValue) The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) Whether to automatically translate the pass type
  * @version 1.3
  **/
 

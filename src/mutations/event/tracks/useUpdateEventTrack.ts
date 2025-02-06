@@ -16,9 +16,9 @@ import {
  * This function allows users to modify the details of a specific track within an event by providing the event ID, track ID, and the updated track inputs.
  * It is designed to be used in applications where event track management is required.
  * @name UpdateEventTrack
- * @param {string} eventId (path) - The id of the event
- * @param {string} trackId (path) - The id of the track
- * @param {EventTrackUpdateInputs} track (body) - The track update inputs
+ * @param {string} eventId (path) The id of the event
+ * @param {string} trackId (path) The id of the track
+ * @param {EventTrackUpdateInputs} track (body) The track update inputs
  * @version 1.3
  **/
 export interface UpdateEventTrackParams extends MutationParams {

@@ -15,8 +15,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is used to confirm the status of a Cognito user within an account, ensuring that the user is recognized and validated by the system.
  * It is particularly useful in scenarios where user confirmation is required for account activation or access.
  * @name ConfirmAccountCognitoUser
- * @param {string} accountId (path) - The id of the account
- * @param {string} username (path) - The username of the Cognito user
+ * @param {string} accountId (path) The id of the account
+ * @param {string} username (path) The username of the Cognito user
  * @version 1.3
  **/
 export interface ConfirmAccountCognitoUserParams extends MutationParams {

@@ -15,8 +15,8 @@ import {
  * This function allows the removal of a specific interest from an account by providing the account ID and the interest ID.
  * It is used in scenarios where account interests need to be dynamically managed and updated.
  * @name RemoveAccountInterest
- * @param {string} accountId (path) - The id of the account
- * @param {string} interestId (path) - The id of the interest to be removed
+ * @param {string} accountId (path) The id of the account
+ * @param {string} interestId (path) The id of the interest to be removed
  * @version 1.3
  **/
 export interface RemoveAccountInterestParams extends MutationParams {

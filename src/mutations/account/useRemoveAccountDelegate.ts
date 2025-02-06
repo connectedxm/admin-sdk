@@ -16,8 +16,8 @@ import {
  * This function allows the removal of a delegate associated with a specific account by their unique identifiers.
  * It is designed to be used in applications where account management and delegate permissions are required.
  * @name RemoveAccountDelegate
- * @param {string} accountId (path) - The id of the account
- * @param {string} delegateId (path) - The id of the delegate
+ * @param {string} accountId (path) The id of the account
+ * @param {string} delegateId (path) The id of the delegate
  * @version 1.3
  **/
 export interface RemoveAccountDelegateParams extends MutationParams {

@@ -13,8 +13,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function allows fetching detailed information about a Cognito user linked to an account.
  * It is useful in scenarios where user-specific data is required for account management or user verification.
  * @name GetAccountCognitoUser
- * @param {string} accountId (path) - The id of the account
- * @param {string} username (path) - The username of the Cognito user
+ * @param {string} accountId (path) The id of the account
+ * @param {string} username (path) The username of the Cognito user
  * @version 1.3
  **/
 export const ACCOUNT_COGNITO_USER_QUERY_KEY = (

@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function allows users to fetch subscribers of a channel, with an optional filter by status.
  * It is designed to be used in applications where managing or viewing channel subscribers is required.
  * @name GetChannelSubscribers
- * @param {string} channelId (path) - The id of the channel
- * @param {string} [status] (query) - Optional status to filter subscribers
+ * @param {string} channelId (path) The id of the channel
+ * @param {string} [status] (query) Optional status to filter subscribers
  * @version 1.3
  **/
 

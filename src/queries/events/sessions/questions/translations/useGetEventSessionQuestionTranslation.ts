@@ -15,10 +15,10 @@ import { EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_KEY } from "./useGetEventSess
  * This function is used to fetch the translated text of a question in an event session, allowing for localization of event content.
  * It is particularly useful in applications that support multiple languages and need to display event content in the user's preferred language.
  * @name GetEventSessionQuestionTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} sessionId (path) - The ID of the session
- * @param {string} questionId (path) - The ID of the question
- * @param {string} locale (path) - The locale for the translation
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} sessionId (path) The ID of the session
+ * @param {string} questionId (path) The ID of the question
+ * @param {string} locale (path) The locale for the translation
  * @version 1.3
  **/
 

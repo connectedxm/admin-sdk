@@ -12,7 +12,7 @@ import { STREAM_INPUTS_QUERY_KEY, STREAM_QUERY_KEY } from "@src/queries";
  * This function allows for the removal of a stream input from the system, ensuring that associated queries are invalidated and removed.
  * It is intended for use in scenarios where stream inputs need to be managed or cleaned up.
  * @name DeleteStreamInput
- * @param {string} streamId (path) - The ID of the stream input to be deleted
+ * @param {string} streamId (path) The ID of the stream input to be deleted
  * @version 1.3
  **/
 

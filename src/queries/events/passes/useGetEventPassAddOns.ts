@@ -11,11 +11,11 @@ import { EVENT_PASS_QUERY_KEY } from "./useGetEventPass";
 
 /**
  * Endpoint to retrieve add-ons associated with a specific event pass.
- * This function allows users to fetch a list of add-ons for a given event pass, 
+ * This function allows users to fetch a list of add-ons for a given event pass,
  * providing additional options or features that can be associated with the event.
  * @name GetEventPassAddOns
- * @param {string} eventId (path) - The id of the event
- * @param {string} passId (path) - The id of the pass
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passId (path) The id of the pass
  * @version 1.3
  **/
 

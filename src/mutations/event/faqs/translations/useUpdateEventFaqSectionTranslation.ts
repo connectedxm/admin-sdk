@@ -16,10 +16,10 @@ import {
  * This function allows for modifying the translation details of a FAQ section for a given event and locale.
  * It is designed to be used in applications where event FAQ translations need to be updated.
  * @name UpdateEventFaqSectionTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} sectionId (path) - The ID of the FAQ section
- * @param {ISupportedLocale} locale (path) - The locale for the translation
- * @param {EventFaqSectionTranslationUpdateInputs} faqSectionTranslation (body) - The translation inputs for the FAQ section
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} sectionId (path) The ID of the FAQ section
+ * @param {ISupportedLocale} locale (path) The locale for the translation
+ * @param {EventFaqSectionTranslationUpdateInputs} faqSectionTranslation (body) The translation inputs for the FAQ section
  * @version 1.3
  **/
 

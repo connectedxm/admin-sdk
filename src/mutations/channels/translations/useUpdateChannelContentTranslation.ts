@@ -13,14 +13,14 @@ import {
 
 /**
  * Updates the translation of a specific channel content for a given locale.
- * This function allows for updating the translation details of a channel's content, 
+ * This function allows for updating the translation details of a channel's content,
  * enabling localization and content management within different languages.
  * It is designed to be used in applications that require dynamic content translation updates.
  * @name UpdateChannelContentTranslation
- * @param {string} channelId (path) - The ID of the channel
- * @param {string} contentId (path) - The ID of the content
- * @param {ISupportedLocale} locale (path) - The locale for the translation
- * @param {ChannelContentTranslationUpdateInputs} contentTranslation (body) - The translation details to update
+ * @param {string} channelId (path) The ID of the channel
+ * @param {string} contentId (path) The ID of the content
+ * @param {ISupportedLocale} locale (path) The locale for the translation
+ * @param {ChannelContentTranslationUpdateInputs} contentTranslation (body) The translation details to update
  * @version 1.3
  **/
 

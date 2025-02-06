@@ -10,12 +10,12 @@ import { EVENT_SESSION_QUERY_KEY } from "./useGetEventSession";
 
 /**
  * Fetches tracks for a specific event session with support for pagination and filtering.
- * This function is designed to retrieve a list of tracks associated with a given event session, 
- * allowing for detailed exploration of session content. It supports pagination and filtering 
+ * This function is designed to retrieve a list of tracks associated with a given event session,
+ * allowing for detailed exploration of session content. It supports pagination and filtering
  * to efficiently manage and access large datasets.
  * @name GetEventSessionTracks
- * @param {string} eventId (path) - The id of the event
- * @param {string} sessionId (path) - The id of the session
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sessionId (path) The id of the session
  * @version 1.3
  **/
 

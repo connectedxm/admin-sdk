@@ -18,12 +18,12 @@ import {
  * This function allows the cancellation of a specific event pass by its ID, with options to send a notification email, issue a refund, specify an admin refund amount, and remove a reservation.
  * It is designed for use in event management systems where administrators need to manage event passes efficiently.
  * @name CancelEventPass
- * @param {string} eventId (path) - The id of the event
- * @param {string} passId (path) - The id of the pass
- * @param {boolean} [sendEmail] (bodyValue) - Optionally send an email
- * @param {boolean} [issueRefund] (bodyValue) - Optionally issue a refund
- * @param {number} [adminRefundAmt] (bodyValue) - Optional admin refund amount
- * @param {boolean} [removeReservation] (bodyValue) - Optionally remove a reservation
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passId (path) The id of the pass
+ * @param {boolean} [sendEmail] (bodyValue) Optionally send an email
+ * @param {boolean} [issueRefund] (bodyValue) Optionally issue a refund
+ * @param {number} [adminRefundAmt] (bodyValue) Optional admin refund amount
+ * @param {boolean} [removeReservation] (bodyValue) Optionally remove a reservation
  * @version 1.3
  **/
 export interface CancelEventPassParams extends MutationParams {

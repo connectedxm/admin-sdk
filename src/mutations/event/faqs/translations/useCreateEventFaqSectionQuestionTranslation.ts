@@ -15,11 +15,11 @@ import {
  * This function allows for the addition of a translation in a specified locale for a question in the FAQ section of an event.
  * It supports optional auto-translation and updates the query cache upon successful creation.
  * @name PostEventFaqSectionQuestionTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} sectionId (path) - The ID of the FAQ section
- * @param {string} questionId (path) - The ID of the question
- * @param {string} locale (bodyValue) - The locale for the translation
- * @param {boolean} [autoTranslate] (bodyValue) - Whether to auto-translate the question
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} sectionId (path) The ID of the FAQ section
+ * @param {string} questionId (path) The ID of the question
+ * @param {string} locale (bodyValue) The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) Whether to auto-translate the question
  * @version 1.3
  **/
 

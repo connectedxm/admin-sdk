@@ -15,8 +15,8 @@ import {
  * This function allows the removal of a pass type associated with a particular event by specifying the event and pass type IDs.
  * It is useful in scenarios where event organizers need to manage and update the types of passes available for their events.
  * @name DeleteEventPassType
- * @param {string} eventId (path) - The id of the event
- * @param {string} passTypeId (path) - The id of the pass type
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passTypeId (path) The id of the pass type
  * @version 1.3
  **/
 export interface DeleteEventPassTypeParams extends MutationParams {

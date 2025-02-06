@@ -11,10 +11,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Fetches a list of activities associated with a specific event.
- * This function is designed to retrieve paginated activity data for a given event, 
+ * This function is designed to retrieve paginated activity data for a given event,
  * allowing users to view detailed activity information related to that event.
  * @name GetEventActivities
- * @param {string} eventId (path) - The id of the event
+ * @param {string} eventId (path) The id of the event
  * @version 1.3
  **/
 

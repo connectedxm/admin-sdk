@@ -13,8 +13,8 @@ import { EVENT_PAGES_QUERY_KEY, SET_EVENT_PAGE_QUERY_DATA } from "@src/queries";
  * This function allows users to create a new page for an event by providing the necessary inputs.
  * It is designed to be used in applications where event management and page creation are required.
  * @name CreateEventPage
- * @param {string} eventId (path) - The id of the event
- * @param {EventPageCreateInputs} page (body) - The inputs for creating the event page
+ * @param {string} eventId (path) The id of the event
+ * @param {EventPageCreateInputs} page (body) The inputs for creating the event page
  * @version 1.3
  **/
 export interface CreateEventPageParams extends MutationParams {
@@ -39,7 +39,7 @@ export const CreateEventPage = async ({
     SET_EVENT_PAGE_QUERY_DATA(queryClient, [eventId, data.data.id], data);
   }
   return data;
-}
+};
 
 export const useCreateEventPage = (
   options: Omit<

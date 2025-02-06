@@ -16,8 +16,8 @@ import {
  * This function allows the removal of an event pass by its ID and ensures that all related queries are invalidated to maintain data consistency.
  * It is designed for use in applications where event management and pass handling are required.
  * @name DeleteEventPass
- * @param {string} eventId (path) - The id of the event
- * @param {string} passId (path) - The id of the pass
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passId (path) The id of the pass
  * @version 1.3
  **/
 export interface DeleteEventPassParams extends MutationParams {

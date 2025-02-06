@@ -14,8 +14,8 @@ import {
  * This function is used to remove translations associated with a benefit, ensuring that the translation data is no longer available.
  * It is typically used in administrative interfaces where managing benefit translations is required.
  * @name DeleteBenefitTranslation
- * @param {string} benefitId (path) - The ID of the benefit
- * @param {string} locale (path) - The locale of the translation to be deleted
+ * @param {string} benefitId (path) The ID of the benefit
+ * @param {string} locale (path) The locale of the translation to be deleted
  * @version 1.3
  **/
 

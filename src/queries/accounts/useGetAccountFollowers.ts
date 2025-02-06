@@ -14,7 +14,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function fetches followers associated with a given account ID, allowing applications to display or process follower data.
  * It is designed to be used in scenarios where follower information is needed for a particular account.
  * @name GetAccountFollowers
- * @param {string} accountId (path) - The id of the account
+ * @param {string} accountId (path) The id of the account
  * @version 1.3
  **/
 

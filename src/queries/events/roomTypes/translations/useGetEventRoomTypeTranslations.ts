@@ -13,8 +13,8 @@ import { EventRoomTypeTranslation } from "@src/interfaces";
  * This function fetches the translation details for a given event room type using the event ID and room type ID.
  * It is useful for applications that need to display or manage multilingual content for event room types.
  * @name GetEventRoomTypeTranslations
- * @param {string} eventId (path) - The ID of the event
- * @param {string} roomTypeId (path) - The ID of the room type
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} roomTypeId (path) The ID of the room type
  * @version 1.3
  **/
 

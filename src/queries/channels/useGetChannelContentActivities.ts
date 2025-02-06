@@ -14,8 +14,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve a list of activities associated with a given channel and content ID.
  * It is useful for applications that need to display or process activity logs or records for specific content.
  * @name GetChannelContentActivities
- * @param {string} channelId (path) - The id of the channel
- * @param {string} contentId (path) - The id of the content
+ * @param {string} channelId (path) The id of the channel
+ * @param {string} contentId (path) The id of the content
  * @version 1.3
  **/
 

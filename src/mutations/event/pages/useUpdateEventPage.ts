@@ -13,9 +13,9 @@ import { EVENT_PAGES_QUERY_KEY, SET_EVENT_PAGE_QUERY_DATA } from "@src/queries";
  * This function allows updating the details of a specific event page by providing the event ID, page ID, and the new page details.
  * It is designed to be used in applications where event page information needs to be modified.
  * @name UpdateEventPage
- * @param {string} eventId (path) - The id of the event
- * @param {string} pageId (path) - The id of the page
- * @param {EventPageUpdateInputs} page (body) - The details of the event page to update
+ * @param {string} eventId (path) The id of the event
+ * @param {string} pageId (path) The id of the page
+ * @param {EventPageUpdateInputs} page (body) The details of the event page to update
  * @version 1.3
  **/
 
@@ -50,7 +50,7 @@ export const UpdateEventPage = async ({
     );
   }
   return data;
-}
+};
 
 export const useUpdateEventPage = (
   options: Omit<

@@ -12,8 +12,8 @@ import {
  * This function allows the acceptance of a pending group request by specifying the group and request IDs.
  * It is used in scenarios where a user or admin needs to approve a request to join a group.
  * @name AcceptGroupRequest
- * @param {string} groupId (path) - The id of the group
- * @param {string} requestId (path) - The id of the request
+ * @param {string} groupId (path) The id of the group
+ * @param {string} requestId (path) The id of the request
  * @version 1.3
  **/
 

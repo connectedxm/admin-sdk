@@ -16,9 +16,9 @@ import {
  * This function allows updating the details of a coupon associated with a particular event.
  * It is designed to be used in applications where event management and coupon updates are required.
  * @name UpdateEventCoupon
- * @param {string} eventId (path) - The id of the event
- * @param {string} couponId (path) - The id of the coupon
- * @param {EventCouponUpdateInputs} coupon (body) - The coupon update inputs
+ * @param {string} eventId (path) The id of the event
+ * @param {string} couponId (path) The id of the coupon
+ * @param {EventCouponUpdateInputs} coupon (body) The coupon update inputs
  * @version 1.3
  **/
 export interface UpdateEventCouponParams extends MutationParams {

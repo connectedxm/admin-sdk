@@ -13,8 +13,8 @@ import { ACCOUNT_LEADS_QUERY_KEY } from "./useGetAccountLeads";
  * This function retrieves detailed information about a lead associated with a particular account.
  * It is designed for applications that require access to specific lead data within an account.
  * @name GetAccountLead
- * @param {string} accountId (path) - The id of the account
- * @param {string} leadId (path) - The id of the lead
+ * @param {string} accountId (path) The id of the account
+ * @param {string} leadId (path) The id of the lead
  * @version 1.3
  **/
 

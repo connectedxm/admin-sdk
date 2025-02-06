@@ -18,9 +18,9 @@ import {
  * This function allows the creation of a translation for a given level ID and locale, with an optional auto-translation feature.
  * It is used to manage multilingual support for sponsorship levels within the application.
  * @name PostLevelTranslation
- * @param {string} levelId (path) - The ID of the level to translate
- * @param {string} locale (bodyValue) - The locale for the translation
- * @param {boolean} [autoTranslate] (bodyValue) - Whether to automatically translate the content
+ * @param {string} levelId (path) The ID of the level to translate
+ * @param {string} locale (bodyValue) The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) Whether to automatically translate the content
  * @version 1.3
  **/
 

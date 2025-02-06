@@ -14,8 +14,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is used to retrieve detailed information about an add-on associated with a particular event.
  * It is designed for applications that require access to event add-on data.
  * @name GetEventAddOn
- * @param {string} eventId (path) - The id of the event
- * @param {string} addOnId (path) - The id of the add-on
+ * @param {string} eventId (path) The id of the event
+ * @param {string} addOnId (path) The id of the add-on
  * @version 1.3
  **/
 

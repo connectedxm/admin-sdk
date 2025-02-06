@@ -17,10 +17,10 @@ import { EVENT_SESSION_LOCATION_TRANSLATIONS_QUERY_KEY } from "@src/queries/even
  * supporting optional auto-translation. It is designed to be used in applications
  * that manage multilingual event data.
  * @name CreateEventSessionLocationTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} locationId (path) - The ID of the location
- * @param {string} locale (bodyValue) - The locale for the translation
- * @param {boolean} [autoTranslate] (bodyValue) - Whether to automatically translate the content
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} locationId (path) The ID of the location
+ * @param {string} locale (bodyValue) The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) Whether to automatically translate the content
  * @version 1.3
  */
 export interface CreateEventSessionLocationTranslationParams

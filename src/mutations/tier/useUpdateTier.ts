@@ -13,8 +13,8 @@ import { TierUpdateInputs } from "@src/params";
  * This function allows for the modification of tier details by providing the tier ID and the updated tier inputs.
  * It is designed to be used in applications where tier management is required, ensuring that the tier data is kept up-to-date.
  * @name UpdateTier
- * @param {string} tierId (path) - The ID of the tier
- * @param {TierUpdateInputs} tier (body) - The tier update inputs
+ * @param {string} tierId (path) The ID of the tier
+ * @param {TierUpdateInputs} tier (body) The tier update inputs
  * @version 1.3
  **/
 

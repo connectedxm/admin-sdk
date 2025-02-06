@@ -16,7 +16,7 @@ import { StreamInputCreateInputs } from "@src/params";
  * This function allows users to add a new stream input by providing the necessary stream input data.
  * It ensures that the stream input is created and updates the relevant query data if the operation is successful.
  * @name CreateStreamInput
- * @param {StreamInputCreateInputs} stream (body) - The stream input data to be created
+ * @param {StreamInputCreateInputs} stream (body) The stream input data to be created
  * @version 1.3
  **/
 

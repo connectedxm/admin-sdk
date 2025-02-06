@@ -11,12 +11,12 @@ import { EVENT_ATTENDEE_QUERY_KEY } from "./useGetEventAttendee";
 
 /**
  * Fetches payments for a specific event attendee with pagination and filtering capabilities.
- * This function is designed to retrieve payment details associated with an event attendee, 
- * allowing for paginated and filtered results. It is useful in scenarios where detailed 
+ * This function is designed to retrieve payment details associated with an event attendee,
+ * allowing for paginated and filtered results. It is useful in scenarios where detailed
  * payment information is required for event management applications.
  * @name GetEventAttendeePayments
- * @param {string} eventId (path) - The id of the event
- * @param {string} accountId (path) - The id of the account
+ * @param {string} eventId (path) The id of the event
+ * @param {string} accountId (path) The id of the account
  * @version 1.3
  **/
 

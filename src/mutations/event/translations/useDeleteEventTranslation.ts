@@ -14,8 +14,8 @@ import {
  * This function is used to remove translations associated with an event, ensuring that the event's translation data is up-to-date.
  * It also invalidates the relevant queries in the query client to maintain data consistency.
  * @name DeleteEventTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} locale (path) - The locale of the translation to be deleted
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} locale (path) The locale of the translation to be deleted
  * @version 1.3
  */
 

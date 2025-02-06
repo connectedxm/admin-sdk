@@ -19,9 +19,9 @@ import {
  * This function allows updating the details of a specific event pass by providing the event ID, pass ID, and the new pass details.
  * It is used in scenarios where event pass information needs to be modified, ensuring that the latest data is reflected in the system.
  * @name UpdateEventPass
- * @param {string} eventId (path) - The id of the event
- * @param {string} passId (path) - The id of the pass
- * @param {EventPassUpdateInputs} pass (body) - The pass update inputs
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passId (path) The id of the pass
+ * @param {EventPassUpdateInputs} pass (body) The pass update inputs
  * @version 1.3
  **/
 export interface UpdateEventPassParams extends MutationParams {

@@ -14,7 +14,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is designed to fetch event-related questions, which can be used in applications that require detailed information about event questions.
  * It supports infinite scrolling and pagination through the use of connected infinite queries.
  * @name GetEventQuestions
- * @param {string} eventId (path) - The id of the event
+ * @param {string} eventId (path) The id of the event
  * @version 1.3
  **/
 

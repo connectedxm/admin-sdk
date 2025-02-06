@@ -12,8 +12,8 @@ import { SET_SUPPORT_TICKET_QUERY_DATA } from "@src/queries";
  * This function allows users to add additional information or comments to an existing support ticket by creating a new note.
  * It is useful for tracking the progress or updates related to a support ticket.
  * @name CreateSupportTicketNote
- * @param {string} supportTicketId (path) - The id of the support ticket
- * @param {string} text (bodyValue) - The content of the note
+ * @param {string} supportTicketId (path) The id of the support ticket
+ * @param {string} text (bodyValue) The content of the note
  * @version 1.3
  **/
 

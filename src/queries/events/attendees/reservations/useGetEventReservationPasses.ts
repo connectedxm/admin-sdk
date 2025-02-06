@@ -14,8 +14,8 @@ import { EVENT_RESERVATION_QUERY_KEY } from "./useGetEventReservation";
  * This function is used to retrieve and set data related to passes associated with event reservations.
  * It is designed to be used in applications that require detailed information about event reservation passes.
  * @name GetEventReservationPasses
- * @param {string} eventId (path) - The id of the event
- * @param {string} reservationId (path) - The id of the reservation
+ * @param {string} eventId (path) The id of the event
+ * @param {string} reservationId (path) The id of the reservation
  * @version 1.3
  **/
 

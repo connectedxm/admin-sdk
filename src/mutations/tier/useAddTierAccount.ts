@@ -12,8 +12,8 @@ import { SET_TIER_QUERY_DATA, TIER_ACCOUNTS_QUERY_KEY } from "@src/queries";
  * This function allows the addition of an account to a designated tier by providing the tier and account identifiers.
  * It is used in scenarios where account management and tier allocation are required.
  * @name AddTierAccount
- * @param {string} tierId (path) - The id of the tier
- * @param {string} accountId (path) - The id of the account
+ * @param {string} tierId (path) The id of the tier
+ * @param {string} accountId (path) The id of the account
  * @version 1.3
  **/
 

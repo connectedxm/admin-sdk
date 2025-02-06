@@ -15,8 +15,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve detailed refund schedule information for a given event pass type,
  * allowing for efficient data handling and display in applications that require such data.
  * @name GetEventPassTypeRefundSchedules
- * @param {string} eventId (path) - The id of the event
- * @param {string} passTypeId (path) - The id of the pass type
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passTypeId (path) The id of the pass type
  * @version 1.3
  **/
 

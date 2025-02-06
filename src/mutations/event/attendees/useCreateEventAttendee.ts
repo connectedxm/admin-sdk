@@ -15,8 +15,8 @@ import {
  * This function allows the creation of a new attendee for a specified event by providing the event ID and account ID.
  * It is designed to be used in applications where managing event attendees is required.
  * @name CreateEventAttendee
- * @param {string} eventId (path) - The id of the event
- * @param {string} accountId (bodyValue) - The id of the account
+ * @param {string} eventId (path) The id of the event
+ * @param {string} accountId (bodyValue) The id of the account
  * @version 1.3
  **/
 

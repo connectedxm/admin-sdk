@@ -13,9 +13,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to fetch detailed information about a particular response to a question linked to an event pass.
  * It is useful in scenarios where precise data about event pass responses is required.
  * @name GetEventPassResponse
- * @param {string} eventId (path) - The id of the event
- * @param {string} passId (path) - The id of the pass
- * @param {string} questionId (path) - The id of the question
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passId (path) The id of the pass
+ * @param {string} questionId (path) The id of the question
  * @version 1.3
  **/
 

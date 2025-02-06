@@ -14,7 +14,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function utilizes a connected single query to retrieve data about an activity within the system.
  * It is designed to be used in applications where detailed information about an activity is required.
  * @name GetActivity
- * @param {string} activityId (path) - The ID of the activity
+ * @param {string} activityId (path) The ID of the activity
  * @version 1.3
  **/
 

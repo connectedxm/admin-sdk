@@ -12,8 +12,8 @@ import { SUBSCRIPTION_PRODUCT_TIERS_QUERY_KEY } from "@src/queries";
  * This function allows the removal of a specific tier from a subscription product by providing the subscription product ID and the tier ID.
  * It is used in scenarios where a tier needs to be deleted from a subscription product, ensuring the subscription product is updated accordingly.
  * @name RemoveSubscriptionProductTier
- * @param {string} subscriptionProductId (path) - The id of the subscription product
- * @param {string} tierId (path) - The id of the tier to be removed
+ * @param {string} subscriptionProductId (path) The id of the subscription product
+ * @param {string} tierId (path) The id of the tier to be removed
  * @version 1.3
  **/
 

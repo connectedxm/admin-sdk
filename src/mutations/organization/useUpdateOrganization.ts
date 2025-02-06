@@ -13,7 +13,7 @@ import { OrganizationUpdateInputs } from "@src/params";
  * This function allows for updating the information of an organization using the provided organization details.
  * It is designed to be used in applications where organization data needs to be modified.
  * @name UpdateOrganization
- * @param {OrganizationUpdateInputs} organization (body) - The organization details to update
+ * @param {OrganizationUpdateInputs} organization (body) The organization details to update
  * @version 1.3
  **/
 export interface UpdateOrganizationParams extends MutationParams {

@@ -13,10 +13,10 @@ import { EVENT_SESSION_LOCATIONS_QUERY_KEY } from "@src/queries/events/sessions/
  * This function allows the removal of a session location associated with a particular event.
  * It is designed to be used in applications where managing event session locations is required.
  * @name DeleteEventSessionLocation
- * @param {string} eventId (path) - The id of the event
- * @param {string} locationId (path) - The id of the location
+ * @param {string} eventId (path) The id of the event
+ * @param {string} locationId (path) The id of the location
  * @version 1.3
-**/
+ **/
 export interface DeleteEventSessionLocationParams extends MutationParams {
   eventId: string;
   locationId: string;

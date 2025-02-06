@@ -17,8 +17,8 @@ import {
  * This function allows the removal of a specified interest from an activity by providing the activity and interest IDs.
  * It is designed to be used in applications where managing activity interests is required.
  * @name RemoveActivityInterest
- * @param {string} activityId (path) - The id of the activity
- * @param {string} interestId (path) - The id of the interest
+ * @param {string} activityId (path) The id of the activity
+ * @param {string} interestId (path) The id of the interest
  * @version 1.3
  **/
 export interface RemoveActivityInterestParams extends MutationParams {

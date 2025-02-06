@@ -17,9 +17,9 @@ import {
  * query client reflects the latest data by invalidating the cache for the specific event activation.
  * It is designed for applications that manage event activations and require real-time updates.
  * @name UpdateEventActivation
- * @param {string} eventId (path) - The id of the event
- * @param {string} activationId (path) - The id of the activation
- * @param {EventActivationUpdateInputs} activation (body) - The activation update inputs
+ * @param {string} eventId (path) The id of the event
+ * @param {string} activationId (path) The id of the activation
+ * @param {EventActivationUpdateInputs} activation (body) The activation update inputs
  * @version 1.3
  **/
 
@@ -51,7 +51,7 @@ export const UpdateEventActivation = async ({
     SET_EVENT_ACTIVATION_QUERY_DATA(queryClient, [eventId, data.data.id], data);
   }
   return data;
-}
+};
 
 export const useUpdateEventActivation = (
   options: Omit<

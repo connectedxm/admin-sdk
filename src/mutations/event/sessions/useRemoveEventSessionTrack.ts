@@ -15,9 +15,9 @@ import {
  * This function allows the removal of a track from an event session by specifying the event, session, and track IDs.
  * It is used in scenarios where tracks need to be dynamically managed within event sessions.
  * @name RemoveEventSessionTrack
- * @param {string} eventId (path) - The id of the event
- * @param {string} sessionId (path) - The id of the session
- * @param {string} trackId (path) - The id of the track
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sessionId (path) The id of the session
+ * @param {string} trackId (path) The id of the track
  * @version 1.3
  **/
 export interface RemoveEventSessionTrackParams extends MutationParams {

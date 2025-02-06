@@ -16,8 +16,8 @@ import {
  * This function is used to associate an account with a particular level, enabling the organization to manage permissions and access based on levels.
  * It is particularly useful in scenarios where accounts need to be dynamically assigned to different levels for access control.
  * @name AddLevelAccount
- * @param {string} levelId (path) - The id of the level
- * @param {string} accountId (path) - The id of the account
+ * @param {string} levelId (path) The id of the level
+ * @param {string} accountId (path) The id of the account
  * @version 1.3
  **/
 

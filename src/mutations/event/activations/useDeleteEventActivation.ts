@@ -15,8 +15,8 @@ import {
  * This function allows for the removal of an activation associated with a particular event.
  * It is designed to be used in applications where event activations need to be managed or removed.
  * @name DeleteEventActivation
- * @param {string} eventId (path) - The id of the event
- * @param {string} activationId (path) - The id of the activation
+ * @param {string} eventId (path) The id of the event
+ * @param {string} activationId (path) The id of the activation
  * @version 1.3
  **/
 export interface DeleteEventActivationParams extends MutationParams {

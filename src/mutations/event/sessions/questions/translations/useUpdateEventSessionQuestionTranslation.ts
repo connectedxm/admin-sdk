@@ -16,11 +16,11 @@ import {
  * This function allows for the modification of question translations in different locales for a given event session.
  * It is designed to be used in applications that manage multilingual content for event sessions.
  * @name UpdateEventSessionQuestionTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} sessionId (path) - The ID of the session
- * @param {string} questionId (path) - The ID of the question
- * @param {EventSessionQuestionTranslationUpdateInputs} sessionTranslation (body) - The translation inputs for the session question
- * @param {ISupportedLocale} locale (path) - The locale for the translation
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} sessionId (path) The ID of the session
+ * @param {string} questionId (path) The ID of the question
+ * @param {EventSessionQuestionTranslationUpdateInputs} sessionTranslation (body) The translation inputs for the session question
+ * @param {ISupportedLocale} locale (path) The locale for the translation
  * @version 1.3
  */
 export interface UpdateEventSessionQuestionTranslationParams

@@ -11,11 +11,11 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Fetches event email data based on the specified type for a given event.
- * This function is designed to retrieve detailed information about event emails, 
+ * This function is designed to retrieve detailed information about event emails,
  * which can be used in applications that require insights into specific types of event communications.
  * @name GetEventEmail
- * @param {string} eventId (path) - The id of the event
- * @param {EventEmailType} type (path) - The type of the event email
+ * @param {string} eventId (path) The id of the event
+ * @param {EventEmailType} type (path) The type of the event email
  * @version 1.3
  **/
 

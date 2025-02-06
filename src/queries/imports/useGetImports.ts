@@ -9,10 +9,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Retrieves a list of imports, optionally filtered by a specific tier ID.
- * This function is designed to fetch import data, which can be filtered by tier, 
+ * This function is designed to fetch import data, which can be filtered by tier,
  * and is suitable for applications that require paginated import data retrieval.
  * @name GetImports
- * @param {string} [tierId] (query) - The id of the tier to filter imports
+ * @param {string} [tierId] (query) The id of the tier to filter imports
  * @version 1.3
  **/
 

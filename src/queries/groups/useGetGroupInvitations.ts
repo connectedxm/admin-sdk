@@ -14,12 +14,12 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Endpoint to manage and retrieve group invitations for a specific group.
- * This function allows users to fetch a list of invitations associated with a group, 
- * optionally filtered by the invitation status. It is useful for applications that 
+ * This function allows users to fetch a list of invitations associated with a group,
+ * optionally filtered by the invitation status. It is useful for applications that
  * need to display or manage group invitations.
  * @name GetGroupInvitations
- * @param {string} groupId (path) - The id of the group
- * @param {keyof typeof GroupInvitationStatus} [status] (query) - Optional status of the group invitation
+ * @param {string} groupId (path) The id of the group
+ * @param {keyof typeof GroupInvitationStatus} [status] (query) Optional status of the group invitation
  * @version 1.3
  **/
 

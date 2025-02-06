@@ -12,11 +12,11 @@ import { EVENT_QUESTION_SEARCH_VALUES_QUERY_KEY } from "@src/queries";
  * This function allows the removal of a search value associated with a particular question within an event.
  * It is useful in scenarios where search values need to be managed or cleaned up.
  * @name DeleteEventQuestionSearchValue
- * @param {string} eventId (path) - The id of the event
- * @param {string} questionId (path) - The id of the question
- * @param {string} searchValueId (path) - The id of the search value
+ * @param {string} eventId (path) The id of the event
+ * @param {string} questionId (path) The id of the question
+ * @param {string} searchValueId (path) The id of the search value
  * @version 1.3
-**/
+ **/
 export interface DeleteEventQuestionSearchValueParams extends MutationParams {
   eventId: string;
   questionId: string;

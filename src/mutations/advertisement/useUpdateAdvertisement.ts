@@ -16,8 +16,8 @@ import { AdvertisementUpdateInputs } from "@src/params";
  * This function allows users to modify the details of an advertisement by providing the advertisement ID and the updated inputs.
  * It ensures that the advertisement data is updated in the system and invalidates the relevant queries to refresh the data.
  * @name UpdateAdvertisement
- * @param {string} advertisementId (path) - The ID of the advertisement
- * @param {AdvertisementUpdateInputs} advertisement (body) - The advertisement update inputs
+ * @param {string} advertisementId (path) The ID of the advertisement
+ * @param {AdvertisementUpdateInputs} advertisement (body) The advertisement update inputs
  * @version 1.3
  **/
 export interface UpdateAdvertisementParams extends MutationParams {

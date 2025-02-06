@@ -13,7 +13,7 @@ import { EVENT_QUERY_KEY } from "../../useGetEvent";
  * This function provides the ability to fetch reservation details associated with a given event ID.
  * It is designed to be used in applications that require access to event reservation data.
  * @name GetEventReservations
- * @param {string} eventId (path) - The id of the event
+ * @param {string} eventId (path) The id of the event
  * @version 1.3
  **/
 

@@ -19,12 +19,12 @@ import {
  * This function allows the addition of a sub-question to a particular choice within a question for a given event.
  * It is useful in scenarios where dynamic question structures are needed, such as surveys or registration forms.
  * @name AddEventQuestionChoiceSubQuestion
- * @param {string} eventId (path) - The id of the event
- * @param {string} questionId (path) - The id of the question
- * @param {string} choiceId (path) - The id of the choice
- * @param {string} subQuestionId (path) - The id of the sub-question
+ * @param {string} eventId (path) The id of the event
+ * @param {string} questionId (path) The id of the question
+ * @param {string} choiceId (path) The id of the choice
+ * @param {string} subQuestionId (path) The id of the sub-question
  * @version 1.3
-**/
+ **/
 export interface AddEventQuestionChoiceSubQuestionParams
   extends MutationParams {
   eventId: string;

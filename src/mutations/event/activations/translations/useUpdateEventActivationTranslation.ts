@@ -20,10 +20,10 @@ import {
  * This function allows updating the translation details for a given event activation identified by eventId and activationId.
  * It is designed to be used in applications where event activation translations need to be modified.
  * @name UpdateEventActivationTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} activationId (path) - The ID of the activation
- * @param {ISupportedLocale} locale (path) - The locale for the translation
- * @param {EventActivationTranslationUpdateInputs} eventActivationTranslation (body) - The translation details to update
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} activationId (path) The ID of the activation
+ * @param {ISupportedLocale} locale (path) The locale for the translation
+ * @param {EventActivationTranslationUpdateInputs} eventActivationTranslation (body) The translation details to update
  * @version 1.3
  **/
 

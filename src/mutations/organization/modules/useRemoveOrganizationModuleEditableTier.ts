@@ -20,12 +20,13 @@ import {
  * This function is used to delete a tier from an organization module, identified by its type and tier ID.
  * It ensures that the specified tier is removed and updates the relevant queries to reflect this change.
  * @name RemoveOrganizationModuleEditableTier
- * @param {keyof typeof OrganizationModuleType} moduleType (path) - The type of the organization module
- * @param {string} tierId (path) - The id of the tier to be removed
+ * @param {keyof typeof OrganizationModuleType} moduleType (path) The type of the organization module
+ * @param {string} tierId (path) The id of the tier to be removed
  * @version 1.3
  **/
 
-export interface RemoveOrganizationModuleEditableTierParams extends MutationParams {
+export interface RemoveOrganizationModuleEditableTierParams
+  extends MutationParams {
   moduleType: keyof typeof OrganizationModuleType;
   tierId: string;
 }
@@ -35,7 +36,9 @@ export const RemoveOrganizationModuleEditableTier = async ({
   tierId,
   adminApiParams,
   queryClient,
-}: RemoveOrganizationModuleEditableTierParams): Promise<ConnectedXMResponse<OrganizationModule>> => {
+}: RemoveOrganizationModuleEditableTierParams): Promise<
+  ConnectedXMResponse<OrganizationModule>
+> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.delete<
     ConnectedXMResponse<OrganizationModule>

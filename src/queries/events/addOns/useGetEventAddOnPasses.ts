@@ -10,12 +10,12 @@ import { EVENT_ADD_ON_QUERY_KEY } from "./useGetEventAddOn";
 
 /**
  * Retrieves a list of passes associated with a specific event add-on.
- * This function is designed to fetch passes for a given event and its add-on, 
- * providing detailed information about each pass. It is useful for applications 
+ * This function is designed to fetch passes for a given event and its add-on,
+ * providing detailed information about each pass. It is useful for applications
  * that need to display or manage event add-on passes.
  * @name GetEventAddOnPasses
- * @param {string} eventId (path) - The id of the event
- * @param {string} addOnId (path) - The id of the add-on
+ * @param {string} eventId (path) The id of the event
+ * @param {string} addOnId (path) The id of the add-on
  * @version 1.3
  **/
 

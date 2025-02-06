@@ -13,9 +13,9 @@ import { EVENT_PASS_TYPE_REFUND_SCHEDULES_QUERY_KEY } from "@src/queries/events/
  * This function allows the removal of a refund schedule associated with a particular event and pass type.
  * It is designed to be used in scenarios where refund schedules need to be managed or updated.
  * @name DeleteEventPassTypeRefundSchedule
- * @param {string} eventId (path) - The id of the event
- * @param {string} passTypeId (path) - The id of the pass type
- * @param {string} scheduleId (path) - The id of the refund schedule
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passTypeId (path) The id of the pass type
+ * @param {string} scheduleId (path) The id of the refund schedule
  * @version 1.3
  **/
 interface DeleteEventPassTypeRefundScheduleParams extends MutationParams {

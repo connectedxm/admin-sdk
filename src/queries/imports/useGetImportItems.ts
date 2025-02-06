@@ -10,10 +10,10 @@ import { IMPORTS_QUERY_KEY } from "./useGetImports";
 
 /**
  * Endpoint to retrieve a list of import items associated with a specific import ID.
- * This function is designed to fetch import items, which are part of a larger import process, 
+ * This function is designed to fetch import items, which are part of a larger import process,
  * allowing users to manage and review the items being imported.
  * @name GetImportItems
- * @param {string} importId (path) - The id of the import
+ * @param {string} importId (path) The id of the import
  * @version 1.3
  **/
 export const IMPORT_ITEMS_QUERY_KEY = (importId: string) => [

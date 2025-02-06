@@ -15,8 +15,8 @@ import {
  * This function allows the removal of a session from an event by specifying the event and session IDs.
  * It is designed to be used in applications where event management and session control are required.
  * @name DeleteEventSession
- * @param {string} eventId (path) - The id of the event
- * @param {string} sessionId (path) - The id of the session
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sessionId (path) The id of the session
  * @version 1.3
  **/
 

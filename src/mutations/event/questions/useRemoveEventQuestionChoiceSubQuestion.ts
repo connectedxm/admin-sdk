@@ -12,10 +12,10 @@ import { EVENT_QUESTION_CHOICES_QUERY_KEY } from "@src/queries";
  * This function allows the removal of a sub-question associated with a choice in an event's question,
  * facilitating the management of event question structures by dynamically updating the choices.
  * @name RemoveEventQuestionChoiceSubQuestion
- * @param {string} eventId (path) - The id of the event
- * @param {string} questionId (path) - The id of the question
- * @param {string} choiceId (path) - The id of the choice
- * @param {string} subQuestionId (path) - The id of the sub-question
+ * @param {string} eventId (path) The id of the event
+ * @param {string} questionId (path) The id of the question
+ * @param {string} choiceId (path) The id of the choice
+ * @param {string} subQuestionId (path) The id of the sub-question
  * @version 1.3
  **/
 export interface RemoveEventQuestionChoiceSubQuestionParams

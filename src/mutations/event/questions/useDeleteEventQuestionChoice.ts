@@ -15,9 +15,9 @@ import {
  * This function allows the removal of a choice associated with a question within a specified event.
  * It is useful in scenarios where event configurations need to be updated by removing certain choices.
  * @name DeleteEventQuestionChoice
- * @param {string} eventId (path) - The id of the event
- * @param {string} questionId (path) - The id of the question
- * @param {string} choiceId (path) - The id of the choice
+ * @param {string} eventId (path) The id of the event
+ * @param {string} questionId (path) The id of the question
+ * @param {string} choiceId (path) The id of the choice
  * @version 1.3
  **/
 

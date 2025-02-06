@@ -15,12 +15,12 @@ import {
  * This function allows the removal of a tier associated with an event add-on, provided the operation is permitted.
  * It is used in scenarios where event add-on configurations need to be modified by removing tiers.
  * @name RemoveEventAddOnTier
- * @param {boolean} allowed (query) - Indicates if the operation is allowed
- * @param {string} eventId (path) - The id of the event
- * @param {string} addOnId (path) - The id of the add-on
- * @param {string} tierId (path) - The id of the tier
+ * @param {boolean} allowed (query) Indicates if the operation is allowed
+ * @param {string} eventId (path) The id of the event
+ * @param {string} addOnId (path) The id of the add-on
+ * @param {string} tierId (path) The id of the tier
  * @version 1.3
-**/
+ **/
 export interface RemoveEventAddOnTierParams extends MutationParams {
   allowed: boolean;
   eventId: string;

@@ -10,13 +10,13 @@ import { EVENT_PASS_TYPE_QUERY_KEY } from "./useGetEventPassType";
 
 /**
  * Fetches coupons associated with a specific event pass type.
- * This function retrieves a list of coupons linked to a particular event pass type, 
+ * This function retrieves a list of coupons linked to a particular event pass type,
  * allowing users to manage and view available discounts or offers for event attendees.
- * It is designed to be used in applications that require detailed coupon information 
+ * It is designed to be used in applications that require detailed coupon information
  * for event management and promotion purposes.
  * @name GetEventPassTypeCoupons
- * @param {string} eventId (path) - The id of the event
- * @param {string} passTypeId (path) - The id of the pass type
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passTypeId (path) The id of the pass type
  * @version 1.3
  **/
 

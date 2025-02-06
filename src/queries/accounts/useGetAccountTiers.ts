@@ -11,12 +11,12 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Endpoint to retrieve a list of account tiers for a specific account.
- * This function allows users to fetch tier information associated with an account, 
+ * This function allows users to fetch tier information associated with an account,
  * which can be filtered by an optional account type.
  * It is designed to be used in applications where account tier details are required.
  * @name GetAccountTiers
- * @param {string} accountId (path) - The id of the account
- * @param {string} [type] (query) - Optional account type ("external" | "internal")
+ * @param {string} accountId (path) The id of the account
+ * @param {string} [type] (query) Optional account type ("external" | "internal")
  * @version 1.3
  **/
 

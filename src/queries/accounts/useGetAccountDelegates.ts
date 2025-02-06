@@ -14,7 +14,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to fetch account delegates, providing detailed information about each delegate.
  * It is useful in scenarios where an application needs to display or manage account delegates.
  * @name GetAccountDelegates
- * @param {string} accountId (path) - The id of the account
+ * @param {string} accountId (path) The id of the account
  * @version 1.3
  **/
 

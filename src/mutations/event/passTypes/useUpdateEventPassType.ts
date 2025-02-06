@@ -16,9 +16,9 @@ import {
  * This function allows updating the details of a specific event pass type by providing the event ID and pass type ID.
  * It is used to modify existing pass types within an event, ensuring the pass type data is current and accurate.
  * @name UpdateEventPassType
- * @param {string} eventId (path) - The id of the event
- * @param {string} passTypeId (path) - The id of the pass type
- * @param {PassTypeUpdateInputs} passType (body) - The new data for the pass type
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passTypeId (path) The id of the pass type
+ * @param {PassTypeUpdateInputs} passType (body) The new data for the pass type
  * @version 1.3
  **/
 
@@ -61,7 +61,7 @@ export const UpdateEventPassType = async ({
     );
   }
   return data;
-}
+};
 
 export const useUpdateEventPassType = (
   options: Omit<

@@ -12,8 +12,8 @@ import { SET_GROUP_QUERY_DATA, GROUP_EVENTS_QUERY_KEY } from "@src/queries";
  * This function is used to associate an event with a group, ensuring that the group data is updated accordingly.
  * It is particularly useful in scenarios where group-event relationships need to be dynamically managed.
  * @name AddGroupEvent
- * @param {string} groupId (path) - The id of the group
- * @param {string} eventId (path) - The id of the event
+ * @param {string} groupId (path) The id of the group
+ * @param {string} eventId (path) The id of the event
  * @version 1.3
  **/
 

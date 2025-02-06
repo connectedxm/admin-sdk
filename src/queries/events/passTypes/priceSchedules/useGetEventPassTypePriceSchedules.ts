@@ -15,8 +15,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve detailed pricing information for event pass types, which can be useful for event organizers and participants.
  * It supports infinite scrolling and can be integrated into applications that require dynamic data loading.
  * @name GetEventPassTypePriceSchedules
- * @param {string} eventId (path) - The id of the event
- * @param {string} passTypeId (path) - The id of the pass type
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passTypeId (path) The id of the pass type
  * @version 1.3
  */
 

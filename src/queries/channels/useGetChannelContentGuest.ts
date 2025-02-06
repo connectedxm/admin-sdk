@@ -14,9 +14,9 @@ import { CHANNEL_CONTENT_GUESTS_QUERY_KEY } from "./useGetChannelContentGuests";
  * This function allows users to fetch detailed information about a guest associated with a particular content in a channel.
  * It is designed for applications that require access to guest details for content management or display purposes.
  * @name GetChannelContentGuest
- * @param {string} channelId (path) - The id of the channel
- * @param {string} contentId (path) - The id of the content
- * @param {string} guestId (path) - The id of the guest
+ * @param {string} channelId (path) The id of the channel
+ * @param {string} contentId (path) The id of the content
+ * @param {string} guestId (path) The id of the guest
  * @version 1.3
  **/
 

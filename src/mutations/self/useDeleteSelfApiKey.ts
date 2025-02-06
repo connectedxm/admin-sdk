@@ -12,7 +12,7 @@ import { SELF_API_KEYS_QUERY_KEY, SELF_API_KEY_QUERY_KEY } from "@src/queries";
  * This function allows users to delete their own API key using the provided API key ID.
  * It ensures that the API key is removed from the system and invalidates related queries to maintain data consistency.
  * @name DeleteSelfApiKey
- * @param {string} apiKeyId (path) - The id of the API key to be deleted
+ * @param {string} apiKeyId (path) The id of the API key to be deleted
  * @version 1.3
  **/
 export interface DeleteSelfApiKeyParams extends MutationParams {

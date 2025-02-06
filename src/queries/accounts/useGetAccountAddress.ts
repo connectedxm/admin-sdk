@@ -11,11 +11,11 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Retrieves a specific account address using the account ID and address ID.
- * This function is designed to fetch detailed information about an account's address, 
+ * This function is designed to fetch detailed information about an account's address,
  * which can be used in applications requiring precise address data for a given account.
  * @name GetAccountAddress
- * @param {string} accountId (path) - The id of the account
- * @param {string} addressId (path) - The id of the address
+ * @param {string} accountId (path) The id of the account
+ * @param {string} addressId (path) The id of the address
  * @version 1.3
  **/
 

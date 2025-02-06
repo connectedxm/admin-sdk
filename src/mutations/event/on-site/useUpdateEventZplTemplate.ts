@@ -15,8 +15,8 @@ import {
  * This function allows updating the ZPL template associated with a given event ID.
  * It is designed to be used in applications where event-specific ZPL templates need to be managed.
  * @name UpdateEventZplTemplate
- * @param {string} eventId (path) - The id of the event
- * @param {string} zplTemplate (bodyValue) - The ZPL template to be updated
+ * @param {string} eventId (path) The id of the event
+ * @param {string} zplTemplate (bodyValue) The ZPL template to be updated
  * @version 1.3
  **/
 export interface UpdateEventZplTemplateParams extends MutationParams {

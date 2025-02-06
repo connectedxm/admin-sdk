@@ -12,8 +12,8 @@ import { SET_GROUP_QUERY_DATA, GROUP_SPONSORS_QUERY_KEY } from "@src/queries";
  * This function allows the removal of a sponsor from a group by specifying the group and account IDs.
  * It is used in scenarios where managing group sponsorships is required, ensuring that the sponsor is no longer associated with the group.
  * @name RemoveGroupSponsor
- * @param {string} groupId (path) - The id of the group
- * @param {string} accountId (path) - The id of the account
+ * @param {string} groupId (path) The id of the group
+ * @param {string} accountId (path) The id of the account
  * @version 1.3
  **/
 

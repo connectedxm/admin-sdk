@@ -10,13 +10,13 @@ import { EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY } from "./useGetEventFaqSectionQu
 
 /**
  * Retrieves a specific FAQ question from a designated section within an event.
- * This function is designed to fetch detailed information about a particular FAQ question, 
+ * This function is designed to fetch detailed information about a particular FAQ question,
  * identified by its unique question ID, within a specified section of an event.
  * It is useful for applications that need to display or process information about individual FAQ questions.
  * @name GetEventFaqSectionQuestion
- * @param {string} eventId (path) - The id of the event
- * @param {string} sectionId (path) - The id of the section
- * @param {string} questionId (path) - The id of the question
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sectionId (path) The id of the section
+ * @param {string} questionId (path) The id of the question
  * @version 1.3
  **/
 

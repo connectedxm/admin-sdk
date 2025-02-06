@@ -11,10 +11,10 @@ import { INVOICE_QUERY_KEY } from "./useGetInvoice";
 
 /**
  * Endpoint to fetch line items associated with a specific invoice.
- * This function retrieves detailed information about each line item within a given invoice, 
+ * This function retrieves detailed information about each line item within a given invoice,
  * allowing users to view and manage invoice components effectively.
  * @name GetInvoiceLineItems
- * @param {string} invoiceId (path) - The id of the invoice
+ * @param {string} invoiceId (path) The id of the invoice
  * @version 1.3
  **/
 

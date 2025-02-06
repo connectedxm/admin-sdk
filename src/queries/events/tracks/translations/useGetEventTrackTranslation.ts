@@ -10,12 +10,12 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Fetches the translation details for a specific event track by its ID and locale.
- * This function is used to retrieve translation data for a particular track within an event, 
+ * This function is used to retrieve translation data for a particular track within an event,
  * allowing applications to display localized content based on the specified locale.
  * @name GetEventTrackTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} trackId (path) - The ID of the track
- * @param {string} locale (path) - The locale for the translation
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} trackId (path) The ID of the track
+ * @param {string} locale (path) The locale for the translation
  * @version 1.3
  **/
 

@@ -13,8 +13,8 @@ import { EventUpdateInputs } from "@src/params";
  * This function allows users to modify the details of an event by providing the event ID and the updated event inputs.
  * It ensures that the event data is refreshed in the query client upon successful update.
  * @name UpdateEvent
- * @param {string} eventId (path) - The ID of the event to be updated
- * @param {EventUpdateInputs} event (body) - The new inputs for updating the event
+ * @param {string} eventId (path) The ID of the event to be updated
+ * @param {EventUpdateInputs} event (body) The new inputs for updating the event
  * @version 1.3
  **/
 export interface UpdateEventParams extends MutationParams {

@@ -15,8 +15,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function allows the removal of a follower from an account by specifying the account ID and the follower ID.
  * It is designed to be used in applications where managing account followers is necessary.
  * @name RemoveAccountFollower
- * @param {string} accountId (path) - The id of the account
- * @param {string} followerId (path) - The id of the follower to be removed
+ * @param {string} accountId (path) The id of the account
+ * @param {string} followerId (path) The id of the follower to be removed
  * @version 1.3
  **/
 export interface RemoveAccountFollowerParams extends MutationParams {

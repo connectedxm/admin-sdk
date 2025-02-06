@@ -11,12 +11,12 @@ import { QueryClient } from "@tanstack/react-query";
 
 /**
  * Fetches sessions for a specific speaker at a given event.
- * This function retrieves a list of sessions associated with a particular speaker within an event, 
- * allowing users to view detailed session information. It is designed for applications that need 
+ * This function retrieves a list of sessions associated with a particular speaker within an event,
+ * allowing users to view detailed session information. It is designed for applications that need
  * to display or manage event speaker sessions.
  * @name GetEventSpeakerSessions
- * @param {string} eventId (path) - The id of the event
- * @param {string} speakerId (path) - The id of the speaker
+ * @param {string} eventId (path) The id of the event
+ * @param {string} speakerId (path) The id of the speaker
  * @version 1.3
  **/
 

@@ -10,11 +10,11 @@ import { ADVERTISEMENT_QUERY_KEY } from "./useGetAdvertisement";
 
 /**
  * Endpoint to retrieve click data for a specific advertisement.
- * This function fetches detailed information about user interactions with an advertisement, 
- * specifically the clicks it has received. It is useful for analyzing advertisement performance 
+ * This function fetches detailed information about user interactions with an advertisement,
+ * specifically the clicks it has received. It is useful for analyzing advertisement performance
  * and user engagement.
  * @name GetAdvertisementClicks
- * @param {string} advertisementId (path) - The id of the advertisement
+ * @param {string} advertisementId (path) The id of the advertisement
  * @version 1.3
  **/
 

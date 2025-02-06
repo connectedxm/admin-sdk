@@ -13,7 +13,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to fetch account levels using infinite query pagination, allowing for efficient data retrieval and management.
  * It is suitable for applications that require detailed information about account levels.
  * @name GetAccountLevels
- * @param {string} accountId (path) - The id of the account
+ * @param {string} accountId (path) The id of the account
  * @version 1.3
  **/
 

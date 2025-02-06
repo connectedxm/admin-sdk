@@ -13,9 +13,9 @@ import { EVENT_PASS_TYPE_QUERY_KEY } from "./useGetEventPassType";
  * This function fetches tiers associated with a specific event and pass type, providing the ability to filter based on whether the tiers are allowed.
  * It is useful for applications that need to display or manage tiers for event pass types with specific filtering criteria.
  * @name GetEventPassTypeTiers
- * @param {boolean} allowed (query) - Indicates if only allowed tiers should be fetched
- * @param {string} eventId (path) - The id of the event
- * @param {string} passTypeId (path) - The id of the pass type
+ * @param {boolean} allowed (query) Indicates if only allowed tiers should be fetched
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passTypeId (path) The id of the pass type
  * @version 1.3
  **/
 

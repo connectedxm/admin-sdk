@@ -10,11 +10,11 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Retrieves a list of sessions for a specific event track.
- * This function fetches session data associated with a given event and track, 
+ * This function fetches session data associated with a given event and track,
  * allowing users to access detailed information about each session within the track.
  * @name GetEventTrackSessions
- * @param {string} eventId (path) - The id of the event
- * @param {string} trackId (path) - The id of the track
+ * @param {string} eventId (path) The id of the event
+ * @param {string} trackId (path) The id of the track
  * @version 1.3
  **/
 

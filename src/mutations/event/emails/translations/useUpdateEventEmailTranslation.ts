@@ -16,10 +16,10 @@ import {
  * This function allows updating the translation details of an event email identified by event ID, email type, and locale.
  * It is used in scenarios where the email content needs to be localized or updated for different languages.
  * @name UpdateEventEmailTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {EventEmailType} type (path) - The type of the event email
- * @param {ISupportedLocale} locale (path) - The locale for the translation
- * @param {EventEmailTranslationUpdateInputs} emailTranslation (body) - The translation inputs for the email
+ * @param {string} eventId (path) The ID of the event
+ * @param {EventEmailType} type (path) The type of the event email
+ * @param {ISupportedLocale} locale (path) The locale for the translation
+ * @param {EventEmailTranslationUpdateInputs} emailTranslation (body) The translation inputs for the email
  * @version 1.3
  */
 

@@ -13,9 +13,9 @@ import { AccountAddressUpdateInputs } from "@src/params";
  * This function allows updating the address details of a specific account by providing the account ID and address ID.
  * It is designed to be used in applications where account address management is required.
  * @name UpdateAccountAddress
- * @param {string} accountId (path) - The id of the account
- * @param {string} addressId (path) - The id of the address
- * @param {AccountAddressUpdateInputs} address (body) - The new address details
+ * @param {string} accountId (path) The id of the account
+ * @param {string} addressId (path) The id of the address
+ * @param {AccountAddressUpdateInputs} address (body) The new address details
  * @version 1.3
  **/
 export interface UpdateAccountAddressParams extends MutationParams {

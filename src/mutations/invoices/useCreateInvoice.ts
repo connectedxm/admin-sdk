@@ -13,9 +13,9 @@ import { InvoiceCreateInputs } from "@src/params";
  * This function allows users to submit data for a new invoice, which will be processed and stored.
  * It is designed to be used in applications where invoice management is required.
  * @name CreateInvoice
- * @param {InvoiceCreateInputs} invoice (body) - The data for the invoice to be created
+ * @param {InvoiceCreateInputs} invoice (body) The data for the invoice to be created
  * @version 1.3
-**/
+ **/
 
 export interface CreateInvoiceParams extends MutationParams {
   invoice: InvoiceCreateInputs;

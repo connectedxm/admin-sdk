@@ -17,8 +17,8 @@ import { OrganizationMembershipUpdateInputs } from "@src/params";
  * This function allows updating the membership details of a user within an organization.
  * It is designed to be used in applications where user membership management is required.
  * @name UpdateOrganizationMembership
- * @param {string} userId (path) - The id of the user
- * @param {OrganizationMembershipUpdateInputs} membership (body) - The membership details to update
+ * @param {string} userId (path) The id of the user
+ * @param {OrganizationMembershipUpdateInputs} membership (body) The membership details to update
  * @version 1.3
  **/
 export interface UpdateOrganizationMembershipParams extends MutationParams {

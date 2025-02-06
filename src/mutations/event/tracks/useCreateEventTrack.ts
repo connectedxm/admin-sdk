@@ -16,8 +16,8 @@ import {
  * This function allows users to add a new track to an event by providing the event ID and the necessary track creation inputs.
  * It is designed to be used in applications where event management and track creation are required.
  * @name CreateEventTrack
- * @param {string} eventId (path) - The id of the event
- * @param {EventTrackCreateInputs} track (body) - The inputs for creating the event track
+ * @param {string} eventId (path) The id of the event
+ * @param {EventTrackCreateInputs} track (body) The inputs for creating the event track
  * @version 1.3
  **/
 

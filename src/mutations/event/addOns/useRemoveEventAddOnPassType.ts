@@ -12,14 +12,14 @@ import {
 
 /**
  * Endpoint to remove a pass type from a specific event add-on.
- * This function allows the removal of a pass type associated with a particular event add-on, 
+ * This function allows the removal of a pass type associated with a particular event add-on,
  * facilitating the management of event configurations by updating the event's add-on details.
  * @name RemoveEventAddOnPassType
- * @param {string} eventId (path) - The id of the event
- * @param {string} addOnId (path) - The id of the add-on
- * @param {string} passTypeId (path) - The id of the pass type
+ * @param {string} eventId (path) The id of the event
+ * @param {string} addOnId (path) The id of the add-on
+ * @param {string} passTypeId (path) The id of the pass type
  * @version 1.3
-**/
+ **/
 export interface RemoveEventAddOnPassTypeParams extends MutationParams {
   eventId: string;
   addOnId: string;

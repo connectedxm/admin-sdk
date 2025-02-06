@@ -19,10 +19,10 @@ import {
  * This function allows the reordering of sub-questions associated with a particular choice within an event question.
  * It is designed to be used in scenarios where the order of sub-questions needs to be updated for a specific choice.
  * @name ReorderEventQuestionChoiceSubQuestions
- * @param {string} eventId (path) - The id of the event
- * @param {string} questionId (path) - The id of the question
- * @param {string} choiceId (path) - The id of the choice
- * @param {number[]} questionIds (bodyValue) - The array of question ids to reorder
+ * @param {string} eventId (path) The id of the event
+ * @param {string} questionId (path) The id of the question
+ * @param {string} choiceId (path) The id of the choice
+ * @param {number[]} questionIds (bodyValue) The array of question ids to reorder
  * @version 1.3
  **/
 export interface ReorderEventQuestionChoiceSubQuestionsParams

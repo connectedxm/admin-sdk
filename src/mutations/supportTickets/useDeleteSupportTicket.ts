@@ -15,7 +15,7 @@ import {
  * This function allows administrators to remove a support ticket from the system.
  * It ensures that the support ticket is deleted and updates the query cache accordingly.
  * @name DeleteSupportTicket
- * @param {string} supportTicketId (path) - The ID of the support ticket
+ * @param {string} supportTicketId (path) The ID of the support ticket
  * @version 1.3
  **/
 

@@ -12,7 +12,7 @@ import { REPORTS_QUERY_KEY, REPORT_QUERY_KEY } from "@src/queries";
  * This function allows for the removal of a report from the system, optionally associated with a specific event.
  * It is designed to be used in applications where report management is required, ensuring that the report is deleted and relevant queries are invalidated.
  * @name DeleteReport
- * @param {string} reportId (path) - The ID of the report to be deleted
+ * @param {string} reportId (path) The ID of the report to be deleted
  * @version 1.3
  **/
 

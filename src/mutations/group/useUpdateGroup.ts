@@ -13,8 +13,8 @@ import { GroupUpdateInputs } from "@src/params";
  * This function allows for updating a group's information by providing the group ID and the new data.
  * It is designed to be used in applications where group data management is required.
  * @name UpdateGroup
- * @param {string} groupId (path) - The ID of the group
- * @param {GroupUpdateInputs} group (body) - The data to update the group with
+ * @param {string} groupId (path) The ID of the group
+ * @param {GroupUpdateInputs} group (body) The data to update the group with
  * @version 1.3
  **/
 export interface UpdateGroupParams extends MutationParams {

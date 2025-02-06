@@ -16,7 +16,7 @@ import { SupportTicketCreateInputs } from "@src/params";
  * This function allows users to submit a support ticket with the necessary information.
  * It is designed to be used in applications where users need to report issues or request assistance.
  * @name CreateSupportTicket
- * @param {SupportTicketCreateInputs} supportTicket (body) - The information for the support ticket
+ * @param {SupportTicketCreateInputs} supportTicket (body) The information for the support ticket
  * @version 1.3
  **/
 

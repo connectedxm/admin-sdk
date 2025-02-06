@@ -12,7 +12,7 @@ import { BENEFITS_QUERY_KEY, BENEFIT_QUERY_KEY } from "@src/queries";
  * This function allows the removal of a benefit from the system, ensuring that all related queries are invalidated and removed.
  * It is designed for use in administrative applications where benefit management is required.
  * @name DeleteBenefit
- * @param {string} benefitId (path) - The ID of the benefit to be deleted
+ * @param {string} benefitId (path) The ID of the benefit to be deleted
  * @version 1.3
  **/
 export interface DeleteBenefitParams extends MutationParams {

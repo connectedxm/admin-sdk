@@ -10,12 +10,12 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * Endpoint to retrieve a list of comments associated with a specific account, 
- * supporting pagination and filtering options. This function is designed to 
- * facilitate the fetching of account comments, allowing for efficient data 
+ * Endpoint to retrieve a list of comments associated with a specific account,
+ * supporting pagination and filtering options. This function is designed to
+ * facilitate the fetching of account comments, allowing for efficient data
  * retrieval in applications that require comment management or display.
  * @name GetAccountComments
- * @param {string} accountId (path) - The id of the account
+ * @param {string} accountId (path) The id of the account
  * @version 1.3
  **/
 

@@ -16,8 +16,8 @@ import {
  * This function allows for the refunding of a specified payment amount, optionally associated with an event.
  * It is designed to be used in scenarios where a payment needs to be refunded, and updates relevant queries upon success.
  * @name RefundOrganizationPayment
- * @param {string} paymentId (path) - The id of the payment to be refunded
- * @param {number} amount (bodyValue) - The amount to be refunded
+ * @param {string} paymentId (path) The id of the payment to be refunded
+ * @param {number} amount (bodyValue) The amount to be refunded
  * @version 1.3
  **/
 

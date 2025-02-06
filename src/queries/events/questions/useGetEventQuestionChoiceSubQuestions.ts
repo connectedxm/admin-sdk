@@ -13,9 +13,9 @@ import { EVENT_QUESTION_CHOICE_QUERY_KEY } from "./useGetEventQuestionChoice";
  * This endpoint is used to retrieve detailed sub-question data for a given choice within an event's question.
  * It is particularly useful in scenarios where understanding the hierarchical structure of event questions is necessary.
  * @name GetEventQuestionChoiceSubQuestions
- * @param {string} eventId (path) - The id of the event
- * @param {string} questionId (path) - The id of the question
- * @param {string} choiceId (path) - The id of the choice
+ * @param {string} eventId (path) The id of the event
+ * @param {string} questionId (path) The id of the question
+ * @param {string} choiceId (path) The id of the choice
  * @version 1.3
  **/
 

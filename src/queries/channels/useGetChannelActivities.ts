@@ -11,11 +11,11 @@ import { CHANNEL_QUERY_KEY } from "./useGetChannel";
 
 /**
  * Endpoint to retrieve activities within a specific channel.
- * This function fetches a list of activities associated with a given channel ID, 
+ * This function fetches a list of activities associated with a given channel ID,
  * allowing users to view and manage channel-specific activities.
  * It is designed for applications that require detailed activity logs for channels.
  * @name GetChannelActivities
- * @param {string} channelId (path) - The id of the channel
+ * @param {string} channelId (path) The id of the channel
  * @version 1.3
  **/
 

@@ -14,10 +14,10 @@ import { EVENT_SESSION_QUESTIONS_QUERY_KEY } from "@src/queries/events/sessions/
  * This function allows updating the details of a question within a specific event session.
  * It is designed to be used in applications where event session questions need to be modified.
  * @name UpdateEventSessionQuestion
- * @param {string} eventId (path) - The id of the event
- * @param {string} sessionId (path) - The id of the session
- * @param {string} questionId (path) - The id of the question
- * @param {EventSessionQuestionUpdateInputs} question (body) - The question update inputs
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sessionId (path) The id of the session
+ * @param {string} questionId (path) The id of the question
+ * @param {EventSessionQuestionUpdateInputs} question (body) The question update inputs
  * @version 1.3
  **/
 export interface UpdateEventSessionQuestionParams extends MutationParams {
@@ -57,7 +57,7 @@ export const UpdateEventSessionQuestion = async ({
     );
   }
   return data;
-}
+};
 
 export const useUpdateEventSessionQuestion = (
   options: Omit<

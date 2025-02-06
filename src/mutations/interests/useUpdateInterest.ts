@@ -13,8 +13,8 @@ import { InterestUpdateInputs } from "@src/params";
  * This function allows updating the details of a specific interest identified by its ID.
  * It is used in applications where interest data needs to be modified.
  * @name UpdateInterest
- * @param {string} interestId (path) - The ID of the interest to update
- * @param {InterestUpdateInputs} interest (body) - The new data for the interest
+ * @param {string} interestId (path) The ID of the interest to update
+ * @param {InterestUpdateInputs} interest (body) The new data for the interest
  * @version 1.3
  **/
 export interface UpdateInterestParams extends MutationParams {

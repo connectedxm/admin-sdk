@@ -13,8 +13,8 @@ import { EVENT_EMAIL_QUERY_KEY } from "../useGetEventEmail";
  * This function is designed to fetch paginated translations of event emails, allowing for detailed localization management.
  * It is useful in applications where event email content needs to be translated into multiple languages.
  * @name GetEventEmailTranslations
- * @param {string} eventId (path) - The ID of the event
- * @param {string} type (path) - The type of the event email
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} type (path) The type of the event email
  * @version 1.3
  **/
 

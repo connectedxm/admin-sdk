@@ -12,8 +12,8 @@ import { ACCOUNT_GROUPS_QUERY_KEY } from "@src/queries";
  * This function allows the addition of a specified group to a given account, ensuring that any related cached queries are invalidated to maintain data consistency.
  * It is designed for use in applications where account group management is required.
  * @name AddAccountGroup
- * @param {string} accountId (path) - The id of the account
- * @param {string} groupId (path) - The id of the group
+ * @param {string} accountId (path) The id of the account
+ * @param {string} groupId (path) The id of the group
  * @version 1.3
  **/
 export interface AddAccountGroupParams extends MutationParams {

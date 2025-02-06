@@ -13,7 +13,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function allows users to fetch a list of images, optionally filtered by a specified image type.
  * It is designed to be used in applications where image data retrieval is required, with support for infinite scrolling.
  * @name GetImages
- * @param {string} [type] (query) - Optional image type for filtering
+ * @param {string} [type] (query) Optional image type for filtering
  * @version 1.3
  **/
 

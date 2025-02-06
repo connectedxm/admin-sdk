@@ -15,8 +15,8 @@ import { EVENT_FAQ_SECTION_QUERY_KEY } from "./useGetEventFaqSection";
  * This function retrieves a list of questions associated with a particular FAQ section within an event.
  * It is useful for applications that need to display or manage FAQ content for event participants.
  * @name GetEventFaqSectionQuestions
- * @param {string} sectionId (path) - The id of the FAQ section
- * @param {string} eventId (path) - The id of the event
+ * @param {string} sectionId (path) The id of the FAQ section
+ * @param {string} eventId (path) The id of the event
  * @version 1.3
  **/
 

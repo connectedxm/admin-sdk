@@ -19,7 +19,7 @@ import {
  * This function allows the modification of tax integration settings by specifying the type of integration.
  * It is designed to be used in applications where tax integration features need to be enabled or disabled.
  * @name ToggleTaxIntegration
- * @param {keyof typeof TaxIntegrationType} type (path) - The type of tax integration
+ * @param {keyof typeof TaxIntegrationType} type (path) The type of tax integration
  * @version 1.3
  **/
 

@@ -14,8 +14,8 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
  * This function allows users to fetch email receipt data for an account, with optional filtering by receipt status.
  * It is designed to be used in applications where tracking email communications for an account is necessary.
  * @name GetAccountEmailReceipts
- * @param {string} accountId (path) - The id of the account
- * @param {keyof typeof EmailReceiptStatus} [status] (query) - Optional filtering by email receipt status
+ * @param {string} accountId (path) The id of the account
+ * @param {keyof typeof EmailReceiptStatus} [status] (query) Optional filtering by email receipt status
  * @version 1.3
  **/
 

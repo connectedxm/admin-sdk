@@ -12,7 +12,7 @@ import {
  * Retrieves a list of events, with the option to filter by past or upcoming events.
  * This function is designed to be used in applications that require event data, allowing users to specify whether they want to see past events.
  * @name GetEvents
- * @param {boolean} [past] (query) - Optional flag to filter past events
+ * @param {boolean} [past] (query) Optional flag to filter past events
  * @version 1.3
  **/
 

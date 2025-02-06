@@ -13,8 +13,8 @@ import { EVENT_SESSION_QUERY_KEY } from "../useGetEventSession";
  * This function fetches translation data for a given event session, allowing applications to display localized content.
  * It is designed to be used in scenarios where multilingual support is required for event sessions.
  * @name GetEventSessionTranslations
- * @param {string} eventId (path) - The ID of the event
- * @param {string} sessionId (path) - The ID of the session
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} sessionId (path) The ID of the session
  * @version 1.3
  **/
 

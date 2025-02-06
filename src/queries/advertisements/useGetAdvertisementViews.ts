@@ -13,7 +13,7 @@ import { ADVERTISEMENT_QUERY_KEY } from "./useGetAdvertisement";
  * This function utilizes a connected infinite query to retrieve data about views associated with a particular advertisement.
  * It is designed to be used in applications where detailed information about advertisement views is required.
  * @name GetAdvertisementViews
- * @param {string} advertisementId (path) - The ID of the advertisement
+ * @param {string} advertisementId (path) The ID of the advertisement
  * @version 1.3
  **/
 

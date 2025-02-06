@@ -12,8 +12,8 @@ import { SET_SERIES_QUERY_DATA, SERIES_EVENTS_QUERY_KEY } from "@src/queries";
  * This function allows the removal of an event identified by its ID from a series, also identified by its ID.
  * It is designed to be used in applications where managing series events is required.
  * @name RemoveSeriesEvent
- * @param {string} seriesId (path) - The ID of the series
- * @param {string} eventId (path) - The ID of the event
+ * @param {string} seriesId (path) The ID of the series
+ * @param {string} eventId (path) The ID of the event
  * @version 1.3
  **/
 

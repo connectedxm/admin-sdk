@@ -11,12 +11,12 @@ import { QueryClient } from "@tanstack/react-query";
 
 /**
  * Endpoint to retrieve and manage coupons associated with a specific event.
- * This function provides the ability to fetch a list of coupons for a given event, 
+ * This function provides the ability to fetch a list of coupons for a given event,
  * supporting pagination and other query parameters for refined data retrieval.
- * It is designed for use in applications that require detailed coupon information 
+ * It is designed for use in applications that require detailed coupon information
  * for events, facilitating operations such as listing and managing event-specific coupons.
  * @name GetEventCoupons
- * @param {string} eventId (path) - The id of the event
+ * @param {string} eventId (path) The id of the event
  * @version 1.3
  **/
 

@@ -12,7 +12,7 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
  * This function is used to fetch users associated with an event, providing details about their access.
  * It is useful in scenarios where event access management and user details are required.
  * @name GetEventAccessUsers
- * @param {string} eventId (path) - The id of the event
+ * @param {string} eventId (path) The id of the event
  * @version 1.3
  **/
 

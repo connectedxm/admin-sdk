@@ -14,7 +14,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function fetches likes associated with a given activity ID, allowing users to view who has liked a particular activity.
  * It is designed for applications that require displaying or processing likes data for activities.
  * @name GetActivityLikes
- * @param {string} activityId (path) - The id of the activity
+ * @param {string} activityId (path) The id of the activity
  * @version 1.3
  **/
 

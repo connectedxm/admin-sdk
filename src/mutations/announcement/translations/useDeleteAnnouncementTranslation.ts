@@ -14,8 +14,8 @@ import {
  * This function is used to remove a translation for a given announcement, identified by its announcement ID and locale.
  * It is designed for applications that manage multilingual announcements and need to handle translation deletions.
  * @name DeleteAnnouncementTranslation
- * @param {string} announcementId (path) - The ID of the announcement
- * @param {string} locale (path) - The locale of the translation to be deleted
+ * @param {string} announcementId (path) The ID of the announcement
+ * @param {string} locale (path) The locale of the translation to be deleted
  * @version 1.3
  **/
 

@@ -13,8 +13,8 @@ import { AccountUpdateInputs } from "@src/params";
  * This function allows for updating the details of a specific account identified by its ID.
  * It is designed to be used in applications where account information needs to be modified.
  * @name UpdateAccount
- * @param {string} accountId (path) - The id of the account
- * @param {AccountUpdateInputs} account (body) - The account details to update
+ * @param {string} accountId (path) The id of the account
+ * @param {AccountUpdateInputs} account (body) The account details to update
  * @version 1.3
  **/
 export interface UpdateAccountParams extends MutationParams {

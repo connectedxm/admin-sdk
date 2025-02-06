@@ -13,8 +13,8 @@ import { SET_ORGANIZATION_PAGE_QUERY_DATA } from "@src/queries";
  * This function allows for updating the details of an organization page by specifying the page type and the new inputs.
  * It is designed to be used in applications where organization page details need to be modified.
  * @name UpdateOrganizationPage
- * @param {PageType} type (path) - The type of the page
- * @param {OrganizationPageUpdateInputs} page (body) - The inputs for updating the organization page
+ * @param {PageType} type (path) The type of the page
+ * @param {OrganizationPageUpdateInputs} page (body) The inputs for updating the organization page
  * @version 1.3
  **/
 

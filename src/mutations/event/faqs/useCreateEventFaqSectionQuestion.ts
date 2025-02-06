@@ -16,9 +16,9 @@ import {
  * This function allows users to add a question to an existing FAQ section within a specified event.
  * It is designed to facilitate the management of FAQ sections by enabling the addition of new questions.
  * @name CreateEventFaqSectionQuestion
- * @param {string} sectionId (path) - The id of the FAQ section
- * @param {string} eventId (path) - The id of the event
- * @param {EventFaqSectionQuestionCreateInputs} faq (body) - The inputs for creating the FAQ section question
+ * @param {string} sectionId (path) The id of the FAQ section
+ * @param {string} eventId (path) The id of the event
+ * @param {EventFaqSectionQuestionCreateInputs} faq (body) The inputs for creating the FAQ section question
  * @version 1.3
  **/
 

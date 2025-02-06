@@ -13,8 +13,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to manage and retrieve data about attendees of a particular event.
  * It is useful in applications where detailed information about event attendees is required.
  * @name GetEventAttendee
- * @param {string} eventId (path) - The ID of the event
- * @param {string} accountId (path) - The ID of the account
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} accountId (path) The ID of the account
  * @version 1.3
  **/
 

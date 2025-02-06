@@ -12,13 +12,13 @@ import {
 
 /**
  * Endpoint to add a sponsor to a specific event track.
- * This function allows the addition of a sponsor to a designated track within an event, 
- * facilitating the management of event sponsorships. It is designed for use in applications 
+ * This function allows the addition of a sponsor to a designated track within an event,
+ * facilitating the management of event sponsorships. It is designed for use in applications
  * that require dynamic updates to event track sponsorships.
  * @name AddEventTrackSponsor
- * @param {string} eventId (path) - The id of the event
- * @param {string} trackId (path) - The id of the track
- * @param {string} sponsorId (path) - The id of the sponsor
+ * @param {string} eventId (path) The id of the event
+ * @param {string} trackId (path) The id of the track
+ * @param {string} sponsorId (path) The id of the sponsor
  * @version 1.3
  **/
 export interface AddEventTrackSponsorParams extends MutationParams {

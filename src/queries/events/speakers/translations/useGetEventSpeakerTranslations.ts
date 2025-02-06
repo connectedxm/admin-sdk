@@ -13,10 +13,10 @@ import { EVENT_SPEAKER_QUERY_KEY } from "../useGetEventSpeaker";
  * This function fetches translation data for a given speaker at a specific event, allowing applications to display speaker information in multiple languages.
  * It is designed to be used in scenarios where multilingual support for event speakers is required.
  * @name GetEventSpeakerTranslations
- * @param {string} eventId (path) - The ID of the event
- * @param {string} speakerId (path) - The ID of the speaker
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} speakerId (path) The ID of the speaker
  * @version 1.3
-**/
+ **/
 
 /**
  * @category Keys

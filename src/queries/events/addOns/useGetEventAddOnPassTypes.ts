@@ -10,11 +10,11 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Retrieves a list of pass types associated with a specific event add-on.
- * This function is used to fetch various pass types that are available for a given event add-on, 
+ * This function is used to fetch various pass types that are available for a given event add-on,
  * allowing applications to display or manage these pass types as needed.
  * @name GetEventAddOnPassTypes
- * @param {string} eventId (path) - The id of the event
- * @param {string} addOnId (path) - The id of the add-on
+ * @param {string} eventId (path) The id of the event
+ * @param {string} addOnId (path) The id of the add-on
  * @version 1.3
  **/
 

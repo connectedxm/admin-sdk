@@ -12,8 +12,8 @@ import { EVENT_RESERVATIONS_QUERY_KEY } from "./useGetEventReservations";
  * This module provides functionality to retrieve reservation data and update query data for event reservations.
  * It is designed to be used in applications where detailed information about event reservations is required.
  * @name GetEventReservation
- * @param {string} eventId (path) - The id of the event
- * @param {string} reservationId (path) - The id of the reservation
+ * @param {string} eventId (path) The id of the event
+ * @param {string} reservationId (path) The id of the reservation
  * @version 1.3
  **/
 

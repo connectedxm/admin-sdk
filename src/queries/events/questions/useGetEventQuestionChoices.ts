@@ -15,8 +15,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This module includes methods to fetch event question choices, set query data, and utilize infinite queries.
  * It is designed for applications that require dynamic interaction with event question choices data.
  * @name GetEventQuestionChoices
- * @param {string} eventId (path) - The id of the event
- * @param {string} questionId (path) - The id of the question
+ * @param {string} eventId (path) The id of the event
+ * @param {string} questionId (path) The id of the question
  * @version 1.3
  **/
 

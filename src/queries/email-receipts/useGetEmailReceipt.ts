@@ -11,10 +11,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Fetches details of a specific email receipt by its unique ID.
- * This function is used to retrieve detailed information about an email receipt, 
+ * This function is used to retrieve detailed information about an email receipt,
  * which can be useful for tracking and auditing email communications.
  * @name GetEmailReceipt
- * @param {string} emailReceiptId (path) - The ID of the email receipt
+ * @param {string} emailReceiptId (path) The ID of the email receipt
  * @version 1.3
  **/
 

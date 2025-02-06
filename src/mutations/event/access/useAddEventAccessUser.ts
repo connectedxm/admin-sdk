@@ -12,8 +12,8 @@ import { EVENT_ACCESS_USERS_QUERY_KEY } from "@src/queries/events/access/GetEven
  * This function allows administrators to grant access to users for specific events by adding them to the event's access list.
  * It is designed to be used in applications where event access management is required.
  * @name AddEventAccessUser
- * @param {string} eventId (path) - The id of the event
- * @param {string} email (bodyValue) - The email of the user to be added
+ * @param {string} eventId (path) The id of the event
+ * @param {string} email (bodyValue) The email of the user to be added
  * @version 1.3
  **/
 interface AddEventAccessUserParams extends MutationParams {

@@ -10,11 +10,11 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Fetches the list of sponsor accounts for a specific event, supporting pagination and filtering.
- * This function is designed to retrieve sponsor account details associated with a given event, 
+ * This function is designed to retrieve sponsor account details associated with a given event,
  * allowing for efficient data handling through pagination and optional filtering parameters.
  * It is intended for use in applications that require detailed sponsor account information for events.
  * @name GetEventSponsorAccounts
- * @param {string} eventId (path) - The id of the event
+ * @param {string} eventId (path) The id of the event
  * @version 1.3
  **/
 

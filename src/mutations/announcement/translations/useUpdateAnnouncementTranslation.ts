@@ -13,13 +13,13 @@ import {
 
 /**
  * Updates the translation of a specific announcement for a given locale.
- * This function allows for updating the translation details of an announcement, 
+ * This function allows for updating the translation details of an announcement,
  * ensuring that the translation is correctly stored and the relevant queries are invalidated.
  * It is designed to be used in applications where announcements need to be localized.
  * @name PutAnnouncementTranslation
- * @param {string} announcementId (path) - The ID of the announcement
- * @param {ISupportedLocale} locale (path) - The locale for which the translation is being updated
- * @param {AnnouncementTranslationUpdateInputs} announcementTranslation (body) - The translation details to update
+ * @param {string} announcementId (path) The ID of the announcement
+ * @param {ISupportedLocale} locale (path) The locale for which the translation is being updated
+ * @param {AnnouncementTranslationUpdateInputs} announcementTranslation (body) The translation details to update
  * @version 1.3
  **/
 

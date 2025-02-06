@@ -12,13 +12,13 @@ import {
 
 /**
  * Endpoint to remove a question from a specific section of an event.
- * This function allows the removal of a question from a designated section within an event, 
- * ensuring that the event's structure is updated accordingly. It is useful in scenarios where 
+ * This function allows the removal of a question from a designated section within an event,
+ * ensuring that the event's structure is updated accordingly. It is useful in scenarios where
  * event organizers need to dynamically manage the content of their event sections.
  * @name RemoveEventSectionQuestion
- * @param {string} eventId (path) - The id of the event
- * @param {string} sectionId (path) - The id of the section
- * @param {string} questionId (path) - The id of the question
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sectionId (path) The id of the section
+ * @param {string} questionId (path) The id of the question
  * @version 1.3
  **/
 export interface RemoveEventSectionQuestionParams extends MutationParams {

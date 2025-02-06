@@ -14,9 +14,9 @@ import {
  * This function is used to remove a translation for a question in a specified event session and locale.
  * It ensures that the translation data is invalidated in the query cache upon successful deletion.
  * @name DeleteEventSessionQuestionTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} sessionId (path) - The ID of the session
- * @param {string} locale (path) - The locale of the translation
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} sessionId (path) The ID of the session
+ * @param {string} locale (path) The locale of the translation
  * @version 1.3
  **/
 

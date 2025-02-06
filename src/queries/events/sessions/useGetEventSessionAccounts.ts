@@ -10,12 +10,12 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Fetches a list of accounts associated with a specific event session.
- * This function is used to retrieve account details for a given event and session, 
- * allowing for pagination and filtering options. It is designed for applications 
+ * This function is used to retrieve account details for a given event and session,
+ * allowing for pagination and filtering options. It is designed for applications
  * that need to manage or display accounts linked to event sessions.
  * @name GetEventSessionAccounts
- * @param {string} eventId (path) - The id of the event
- * @param {string} sessionId (path) - The id of the session
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sessionId (path) The id of the session
  * @version 1.3
  **/
 

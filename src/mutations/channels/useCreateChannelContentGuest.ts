@@ -16,9 +16,9 @@ import { ChannelContentGuestCreateInputs } from "@src/params";
  * This function allows the creation of a guest associated with a particular channel content by providing the necessary details.
  * It is designed to be used in applications where managing guest access to channel content is required.
  * @name CreateChannelContentGuest
- * @param {string} contentId (path) - The id of the content
- * @param {string} channelId (path) - The id of the channel
- * @param {ChannelContentGuestCreateInputs} contentGuest (body) - The guest details to be created
+ * @param {string} contentId (path) The id of the content
+ * @param {string} channelId (path) The id of the channel
+ * @param {ChannelContentGuestCreateInputs} contentGuest (body) The guest details to be created
  * @version 1.3
  **/
 export interface CreateChannelContentGuestParams extends MutationParams {
@@ -51,7 +51,7 @@ export const CreateChannelContentGuest = async ({
     );
   }
   return data;
-}
+};
 
 export const useCreateChannelContentGuest = (
   options: Omit<

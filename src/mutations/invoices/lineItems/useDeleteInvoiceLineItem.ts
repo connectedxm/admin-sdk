@@ -16,8 +16,8 @@ import {
  * This function allows the removal of a line item from a specified invoice using the invoice ID and line item ID.
  * It is designed to be used in applications where invoice management and item removal are required.
  * @name DeleteInvoiceLineItem
- * @param {string} invoiceId (path) - The id of the invoice
- * @param {string} lineItemId (path) - The id of the line item
+ * @param {string} invoiceId (path) The id of the invoice
+ * @param {string} lineItemId (path) The id of the line item
  * @version 1.3
  **/
 

@@ -18,9 +18,9 @@ import {
  * It is designed to be used in scenarios where event activations need to be completed
  * and tracked within the system.
  * @name CreateEventActivationCompletion
- * @param {string} eventId (path) - The id of the event
- * @param {string} activationId (path) - The id of the activation
- * @param {EventActivationCompletionCreateInputs} completion (body) - The completion inputs
+ * @param {string} eventId (path) The id of the event
+ * @param {string} activationId (path) The id of the activation
+ * @param {EventActivationCompletionCreateInputs} completion (body) The completion inputs
  * @version 1.3
  **/
 export interface CreateEventActivationCompletionParams extends MutationParams {

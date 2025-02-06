@@ -11,10 +11,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Fetches a list of accounts associated with a specific interest.
- * This function is designed to retrieve account data linked to a particular interest, 
+ * This function is designed to retrieve account data linked to a particular interest,
  * allowing applications to display or process information related to these accounts.
  * @name GetInterestAccounts
- * @param {string} interestId (path) - The id of the interest
+ * @param {string} interestId (path) The id of the interest
  * @version 1.3
  **/
 

@@ -15,7 +15,7 @@ import {
  * This function facilitates the removal of a user from an organization by deleting their association with it.
  * It is intended for use in applications where users need the ability to manage their organizational memberships.
  * @name DeleteSelfOrganizations
- * @param {string} organizationId (path) - The ID of the organization
+ * @param {string} organizationId (path) The ID of the organization
  * @version 1.3
  **/
 

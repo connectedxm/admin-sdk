@@ -15,8 +15,8 @@ import {
  * This function allows an account to follow another account by specifying the account IDs.
  * It updates the account's following list and invalidates the relevant queries to ensure data consistency.
  * @name AddAccountFollowing
- * @param {string} accountId (path) - The id of the account
- * @param {string} followingId (path) - The id of the account to follow
+ * @param {string} accountId (path) The id of the account
+ * @param {string} followingId (path) The id of the account to follow
  * @version 1.3
  **/
 export interface AddAccountFollowingParams extends MutationParams {

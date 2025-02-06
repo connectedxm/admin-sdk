@@ -12,7 +12,7 @@ import { LEVELS_QUERY_KEY, LEVEL_QUERY_KEY } from "@src/queries";
  * This function allows the removal of a level by its unique identifier and ensures that any cached queries related to levels are invalidated.
  * It is designed to be used in applications where level management is required, ensuring data consistency by updating the cache.
  * @name DeleteLevel
- * @param {string} levelId (path) - The id of the level to be deleted
+ * @param {string} levelId (path) The id of the level to be deleted
  * @version 1.3
  **/
 

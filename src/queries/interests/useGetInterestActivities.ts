@@ -11,11 +11,11 @@ import { INTEREST_QUERY_KEY } from "./useGetInterest";
 
 /**
  * Endpoint to retrieve a list of activities associated with a specific interest.
- * This function is designed to fetch activities related to a given interest ID, 
+ * This function is designed to fetch activities related to a given interest ID,
  * providing a paginated and optionally sorted list of activities.
  * It is useful for applications that need to display or process activities linked to specific interests.
  * @name GetInterestActivities
- * @param {string} interestId (path) - The id of the interest
+ * @param {string} interestId (path) The id of the interest
  * @version 1.3
  **/
 

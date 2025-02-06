@@ -14,7 +14,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve a list of events that are related to a given interest, identified by its ID.
  * It is useful for applications that need to display or process events linked to particular interests.
  * @name GetInterestEvents
- * @param {string} interestId (path) - The id of the interest
+ * @param {string} interestId (path) The id of the interest
  * @version 1.3
  **/
 

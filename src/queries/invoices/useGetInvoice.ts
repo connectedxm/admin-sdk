@@ -14,7 +14,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is designed to fetch invoice data, which can be used in applications
  * that require access to invoice details for display or processing purposes.
  * @name GetInvoice
- * @param {string} invoiceId (path) - The ID of the invoice
+ * @param {string} invoiceId (path) The ID of the invoice
  * @version 1.3
  **/
 

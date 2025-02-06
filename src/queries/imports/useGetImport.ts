@@ -14,7 +14,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This module includes methods to fetch import details by ID and update the query cache with the retrieved data.
  * It is designed to be used in scenarios where import data needs to be accessed or manipulated.
  * @name GetImport
- * @param {string} importId (path) - The id of the import
+ * @param {string} importId (path) The id of the import
  * @version 1.3
  **/
 

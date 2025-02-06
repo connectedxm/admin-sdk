@@ -14,11 +14,11 @@ import { EVENT_PASS_QUERY_KEY } from "./useGetEventPass";
 
 /**
  * Endpoint to retrieve responses for registration questions associated with a specific event pass.
- * This function fetches the responses to registration questions for a given event and pass, 
+ * This function fetches the responses to registration questions for a given event and pass,
  * allowing users to analyze and process the collected data.
  * @name GetEventPassResponses
- * @param {string} eventId (path) - The id of the event
- * @param {string} passId (path) - The id of the pass
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passId (path) The id of the pass
  * @version 1.3
  **/
 

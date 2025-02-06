@@ -10,12 +10,12 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Fetches responses for a specific event question with optional filtering.
- * This function allows retrieval of responses associated with a particular event question, 
- * providing options for pagination and sorting. It is useful for applications that need to 
+ * This function allows retrieval of responses associated with a particular event question,
+ * providing options for pagination and sorting. It is useful for applications that need to
  * display or process responses to event questions.
  * @name GetEventQuestionResponses
- * @param {string} eventId (path) - The id of the event
- * @param {string} questionId (path) - The id of the question
+ * @param {string} eventId (path) The id of the event
+ * @param {string} questionId (path) The id of the question
  * @version 1.3
  **/
 

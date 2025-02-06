@@ -13,10 +13,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve comprehensive information about a speaker associated with a particular event.
  * It is useful in scenarios where detailed speaker data is required for event management or display purposes.
  * @name GetEventSpeaker
- * @param {string} eventId (path) - The ID of the event
- * @param {string} speakerId (path) - The ID of the speaker
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} speakerId (path) The ID of the speaker
  * @version 1.3
-**/
+ **/
 
 export const EVENT_SPEAKER_QUERY_KEY = (eventId: string, speakerId: string) => [
   ...EVENT_SPEAKERS_QUERY_KEY(eventId),

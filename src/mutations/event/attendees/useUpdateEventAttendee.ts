@@ -16,9 +16,9 @@ import {
  * This function allows updating the registration information for a specific attendee of an event.
  * It is designed to be used in applications where event management and attendee updates are required.
  * @name UpdateEventAttendee
- * @param {string} eventId (path) - The id of the event
- * @param {string} accountId (path) - The id of the account
- * @param {EventAttendeeUpdateInputs} registration (body) - The registration details to update
+ * @param {string} eventId (path) The id of the event
+ * @param {string} accountId (path) The id of the account
+ * @param {EventAttendeeUpdateInputs} registration (body) The registration details to update
  * @version 1.3
  **/
 

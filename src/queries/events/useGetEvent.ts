@@ -14,7 +14,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This module is designed to facilitate the retrieval and caching of event information within an application.
  * It includes utilities for setting query data and hooks for integrating with React Query.
  * @name GetEvent
- * @param {string} eventId (path) - The id of the event
+ * @param {string} eventId (path) The id of the event
  * @version 1.3
  */
 

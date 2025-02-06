@@ -10,12 +10,12 @@ import { EVENT_QUESTION_CHOICE_QUERY_KEY } from "../useGetEventQuestionChoice";
 
 /**
  * Retrieves translations for a specific event question choice.
- * This function is used to fetch translation data for a given choice within an event question, 
+ * This function is used to fetch translation data for a given choice within an event question,
  * allowing applications to display localized text for event-related questions.
  * @name GetEventQuestionChoiceTranslations
- * @param {string} eventId (path) - The ID of the event
- * @param {string} questionId (path) - The ID of the question
- * @param {string} choiceId (path) - The ID of the choice
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} questionId (path) The ID of the question
+ * @param {string} choiceId (path) The ID of the choice
  * @version 1.3
  **/
 

@@ -14,7 +14,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function fetches likes for a given account using an infinite query, allowing for paginated data retrieval.
  * It is useful in scenarios where an application needs to display or process the likes related to an account.
  * @name GetAccountLikes
- * @param {string} accountId (path) - The id of the account
+ * @param {string} accountId (path) The id of the account
  * @version 1.3
  **/
 

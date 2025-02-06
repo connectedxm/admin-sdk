@@ -10,11 +10,11 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Fetches a list of sponsors for a specific event session.
- * This function retrieves sponsor information associated with a given event session, 
+ * This function retrieves sponsor information associated with a given event session,
  * allowing users to view all sponsors linked to a particular session within an event.
  * @name GetEventSessionSponsors
- * @param {string} eventId (path) - The id of the event
- * @param {string} sessionId (path) - The id of the session
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sessionId (path) The id of the session
  * @version 1.3
  **/
 

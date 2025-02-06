@@ -16,8 +16,8 @@ import {
  * This function allows the removal of a question from an event, with an optional section parameter.
  * It is designed to be used in applications where event management and question handling are required.
  * @name DeleteEventQuestion
- * @param {string} eventId (path) - The id of the event
- * @param {string} questionId (path) - The id of the question
+ * @param {string} eventId (path) The id of the event
+ * @param {string} questionId (path) The id of the question
  * @version 1.3
  **/
 export interface DeleteEventQuestionParams extends MutationParams {

@@ -16,8 +16,8 @@ import {
  * This function allows the creation of a new room type for an event by providing the necessary inputs.
  * It is designed to be used in applications where event management and customization are required.
  * @name CreateEventRoomType
- * @param {string} eventId (path) - The id of the event
- * @param {EventRoomTypeCreateInputs} roomType (body) - The inputs for creating the event room type
+ * @param {string} eventId (path) The id of the event
+ * @param {EventRoomTypeCreateInputs} roomType (body) The inputs for creating the event room type
  * @version 1.3
  **/
 

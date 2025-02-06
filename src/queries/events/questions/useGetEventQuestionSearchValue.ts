@@ -14,9 +14,9 @@ import {
  * This function is designed to fetch detailed information about a particular search value linked to a question within an event.
  * It is useful in scenarios where precise data retrieval for event-related questions is required.
  * @name GetEventQuestionSearchValue
- * @param {string} eventId (path) - The id of the event
- * @param {string} questionId (path) - The id of the question
- * @param {string} searchValueId (path) - The id of the search value
+ * @param {string} eventId (path) The id of the event
+ * @param {string} questionId (path) The id of the question
+ * @param {string} searchValueId (path) The id of the search value
  * @version 1.3
  **/
 

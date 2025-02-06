@@ -15,8 +15,8 @@ import {
  * This function is used to remove translations for organization pages, ensuring that outdated or incorrect translations can be managed effectively.
  * It also handles cache invalidation for the related queries to ensure data consistency.
  * @name DeleteOrganizationPageTranslation
- * @param {PageType} type (path) - The type of the page
- * @param {string} locale (path) - The locale of the translation
+ * @param {PageType} type (path) The type of the page
+ * @param {string} locale (path) The locale of the translation
  * @version 1.3
  **/
 

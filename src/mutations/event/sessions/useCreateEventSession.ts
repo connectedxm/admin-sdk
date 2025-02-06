@@ -16,8 +16,8 @@ import {
  * This function allows the creation of a new session for a specified event by providing the event ID and session details.
  * It is designed to be used in applications where event management and session scheduling are required.
  * @name CreateEventSession
- * @param {string} eventId (path) - The id of the event
- * @param {EventSessionCreateInputs} session (body) - The session details to be created
+ * @param {string} eventId (path) The id of the event
+ * @param {EventSessionCreateInputs} session (body) The session details to be created
  * @version 1.3
  **/
 

@@ -11,12 +11,12 @@ import { QueryClient } from "@tanstack/react-query";
 
 /**
  * Endpoint to fetch the contents associated with a specific interest.
- * This function retrieves a list of content items related to a given interest ID, 
+ * This function retrieves a list of content items related to a given interest ID,
  * allowing users to explore and interact with content categorized under specific interests.
- * It is designed to be used in applications where content needs to be dynamically loaded 
+ * It is designed to be used in applications where content needs to be dynamically loaded
  * based on user interests.
  * @name GetInterestContents
- * @param {string} interestId (path) - The id of the interest
+ * @param {string} interestId (path) The id of the interest
  * @version 1.3
  **/
 

@@ -9,10 +9,10 @@ import { EVENT_QUERY_KEY } from "../../useGetEvent";
 
 /**
  * Retrieves a list of session locations for a specified event.
- * This function is designed to fetch session location data associated with a particular event, 
+ * This function is designed to fetch session location data associated with a particular event,
  * providing necessary details for applications that require event session information.
  * @name GetEventSessionLocations
- * @param {string} eventId (path) - The id of the event
+ * @param {string} eventId (path) The id of the event
  * @version 1.3
  **/
 

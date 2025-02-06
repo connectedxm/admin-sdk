@@ -12,13 +12,13 @@ import {
 
 /**
  * Adds a sponsor to a specific event session and updates the query client.
- * This function is used to associate a sponsor with a particular session within an event, 
- * ensuring that the query client is updated to reflect this change. It is useful in scenarios 
+ * This function is used to associate a sponsor with a particular session within an event,
+ * ensuring that the query client is updated to reflect this change. It is useful in scenarios
  * where event sessions need to be dynamically updated with sponsor information.
  * @name AddEventSessionSponsor
- * @param {string} eventId (path) - The id of the event
- * @param {string} sessionId (path) - The id of the session
- * @param {string} sponsorId (path) - The id of the sponsor
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sessionId (path) The id of the session
+ * @param {string} sponsorId (path) The id of the sponsor
  * @version 1.3
  **/
 export interface AddEventSessionSponsorParams extends MutationParams {

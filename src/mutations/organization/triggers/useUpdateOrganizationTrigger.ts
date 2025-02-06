@@ -17,8 +17,8 @@ import { SET_ORGANIZATION_TRIGGER_QUERY_DATA } from "@src/queries";
  * This function allows updating the configuration of a specific organization trigger by specifying its type and the new trigger inputs.
  * It is designed to be used in applications where organization triggers need to be modified or updated.
  * @name UpdateOrganizationTrigger
- * @param {OrganizationTriggerType} type (path) - The type of the organization trigger
- * @param {TriggerUpdateInputs} trigger (body) - The inputs for updating the trigger
+ * @param {OrganizationTriggerType} type (path) The type of the organization trigger
+ * @param {TriggerUpdateInputs} trigger (body) The inputs for updating the trigger
  * @version 1.3
  **/
 

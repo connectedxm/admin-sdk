@@ -10,13 +10,13 @@ import { BENEFIT_QUERY_KEY } from "../useGetBenefit";
 
 /**
  * Retrieves translations for a specific benefit by its ID.
- * This function is used to fetch a list of translations associated with a particular benefit, 
+ * This function is used to fetch a list of translations associated with a particular benefit,
  * allowing applications to display benefit information in multiple languages.
  * It is designed to be used in scenarios where multilingual support for benefits is required.
  * @name GetBenefitTranslations
- * @param {string} benefitId (path) - The ID of the benefit
+ * @param {string} benefitId (path) The ID of the benefit
  * @version 1.3
-**/
+ **/
 
 /**
  * @category Keys

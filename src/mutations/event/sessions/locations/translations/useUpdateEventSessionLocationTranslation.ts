@@ -16,10 +16,10 @@ import {
  * This function allows updating the translation details of a session location within an event for a specified locale.
  * It is useful for applications that manage multilingual event data and need to update location translations.
  * @name UpdateEventSessionLocationTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} locationId (path) - The ID of the session location
- * @param {ISupportedLocale} locale (path) - The locale for the translation
- * @param {EventSessionLocationTranslationUpdateInputs} locationTranslation (body) - The translation details to update
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} locationId (path) The ID of the session location
+ * @param {ISupportedLocale} locale (path) The locale for the translation
+ * @param {EventSessionLocationTranslationUpdateInputs} locationTranslation (body) The translation details to update
  * @version 1.3
  **/
 

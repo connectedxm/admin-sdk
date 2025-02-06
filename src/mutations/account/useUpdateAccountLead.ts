@@ -13,9 +13,9 @@ import { LeadUpdateInputs } from "@src/params";
  * This function allows updating the details of a lead linked to a particular account using the provided account and lead identifiers.
  * It is designed to be used in applications where lead information needs to be modified.
  * @name UpdateAccountLead
- * @param {string} accountId (path) - The id of the account
- * @param {string} leadId (path) - The id of the lead
- * @param {LeadUpdateInputs} lead (body) - The lead update inputs
+ * @param {string} accountId (path) The id of the account
+ * @param {string} leadId (path) The id of the lead
+ * @param {LeadUpdateInputs} lead (body) The lead update inputs
  * @version 1.3
  **/
 export interface UpdateAccountLeadParams extends MutationParams {

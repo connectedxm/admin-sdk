@@ -13,9 +13,9 @@ import {
  * This function fetches translation data for a given level ID, allowing applications to display localized information for sponsorship levels.
  * It is designed to be used in scenarios where multilingual support for sponsorship levels is required.
  * @name GetLevelTranslations
- * @param {string} levelId (path) - The ID of the sponsorship level
+ * @param {string} levelId (path) The ID of the sponsorship level
  * @version 1.3
-**/
+ **/
 
 export const LEVEL_TRANSLATIONS_QUERY_KEY = (levelId: string) => [
   ...LEVEL_QUERY_KEY(levelId),

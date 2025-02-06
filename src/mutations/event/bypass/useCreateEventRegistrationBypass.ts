@@ -16,8 +16,8 @@ import {
  * This function allows the creation of a registration bypass, which can be used to manage event registrations more flexibly.
  * It is designed for applications that require dynamic control over event registration processes.
  * @name CreateEventRegistrationBypass
- * @param {string} eventId (path) - The id of the event
- * @param {EventRegistrationBypassCreateInputs} bypass (body) - The inputs for creating a registration bypass
+ * @param {string} eventId (path) The id of the event
+ * @param {EventRegistrationBypassCreateInputs} bypass (body) The inputs for creating a registration bypass
  * @version 1.3
  **/
 
@@ -50,7 +50,7 @@ export const CreateEventRegistrationBypass = async ({
     );
   }
   return data;
-}
+};
 
 export const useCreateEventRegistrationBypass = (
   options: Omit<

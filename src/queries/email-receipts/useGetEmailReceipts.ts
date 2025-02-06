@@ -13,7 +13,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function allows users to fetch email receipt records, which can be filtered by their status if desired.
  * It is designed to be used in applications where tracking and managing email receipts is necessary.
  * @name GetEmailReceipts
- * @param {string} [status] (query) - Optional status to filter email receipts
+ * @param {string} [status] (query) Optional status to filter email receipts
  * @version 1.3
  **/
 

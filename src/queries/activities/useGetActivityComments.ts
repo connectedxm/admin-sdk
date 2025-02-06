@@ -14,7 +14,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function retrieves a list of comments for a given activity, allowing users to view discussions or feedback related to that activity.
  * It is designed to be used in applications where activity-related comments need to be displayed or managed.
  * @name GetActivityComments
- * @param {string} activityId (path) - The id of the activity
+ * @param {string} activityId (path) The id of the activity
  * @version 1.3
  **/
 

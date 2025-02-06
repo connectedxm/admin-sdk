@@ -13,7 +13,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function allows retrieval of addresses associated with a specific account, providing options for pagination and filtering.
  * It is designed to be used in applications where account address information is needed.
  * @name GetAccountAddresses
- * @param {string} accountId (path) - The id of the account
+ * @param {string} accountId (path) The id of the account
  * @version 1.3
  **/
 

@@ -13,8 +13,8 @@ import { EVENT_ADD_ON_QUERY_KEY } from "../useGetEventAddOn";
  * This function fetches a list of translations associated with a given event add-on, identified by eventId and addOnId.
  * It is useful for applications that need to display or manage multilingual content for event add-ons.
  * @name GetEventAddOnTranslations
- * @param {string} eventId (path) - The ID of the event
- * @param {string} addOnId (path) - The ID of the add-on
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} addOnId (path) The ID of the add-on
  * @version 1.3
  **/
 

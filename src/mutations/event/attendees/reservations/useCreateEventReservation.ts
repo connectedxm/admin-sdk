@@ -17,9 +17,8 @@ import {
  * This function allows users to create a reservation for a specific event by providing the event ID and reservation details.
  * It is designed to be used in applications where event management and reservation functionalities are required.
  * @name CreateEventReservation
- * @param {string} eventId - The id of the event
- * @param {EventRoomTypeReservationCreateInputs} reservation - The reservation details
- * @param {string} [accountId] - The id of the account
+ * @param {string} eventId (path) The id of the event
+ * @param {EventRoomTypeReservationCreateInputs} reservation (body) The reservation details
  * @version 1.2
  **/
 

@@ -16,10 +16,10 @@ import {
  * This function allows for the modification of translation data associated with a speaker in a particular event.
  * It is designed to be used in applications where multilingual support for event speakers is required.
  * @name UpdateEventSpeakerTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} speakerId (path) - The ID of the speaker
- * @param {ISupportedLocale} locale (path) - The locale for the translation
- * @param {EventSpeakerTranslationUpdateInputs} speakerTranslation (body) - The translation inputs for the speaker
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} speakerId (path) The ID of the speaker
+ * @param {ISupportedLocale} locale (path) The locale for the translation
+ * @param {EventSpeakerTranslationUpdateInputs} speakerTranslation (body) The translation inputs for the speaker
  * @version 1.3
  */
 

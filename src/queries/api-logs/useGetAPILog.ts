@@ -14,7 +14,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function allows users to fetch comprehensive information about a particular API log entry.
  * It is designed for applications that require detailed logging information for auditing or debugging purposes.
  * @name GetAPILog
- * @param {string} logId (path) - The id of the log entry
+ * @param {string} logId (path) The id of the log entry
  * @version 1.3
  **/
 

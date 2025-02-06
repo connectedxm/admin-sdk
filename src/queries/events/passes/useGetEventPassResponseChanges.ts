@@ -14,9 +14,9 @@ import { EVENT_PASS_RESPONSE_QUERY_KEY } from "./useGetEventPassResponse";
  * This function is designed to retrieve a list of changes associated with a specific event pass response question.
  * It is useful for applications that need to track modifications over time for auditing or review purposes.
  * @name GetEventPassResponseChanges
- * @param {string} eventId (path) - The id of the event
- * @param {string} passId (path) - The id of the pass
- * @param {string} questionId (path) - The id of the question
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passId (path) The id of the pass
+ * @param {string} questionId (path) The id of the question
  * @version 1.3
  **/
 
@@ -66,7 +66,7 @@ export const GetEventPassResponseChanges = async ({
         search: search || undefined,
       },
     }
- );
+  );
   return data;
 };
 

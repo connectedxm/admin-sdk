@@ -11,10 +11,10 @@ import { EVENTS_QUERY_KEY } from "../useGetEvents";
 
 /**
  * Fetches on-site event data for a specific event by its ID.
- * This function is designed to retrieve detailed on-site information about an event, 
+ * This function is designed to retrieve detailed on-site information about an event,
  * which can be used in applications that require real-time event data.
  * @name GetEventOnSite
- * @param {string} eventId (path) - The ID of the event
+ * @param {string} eventId (path) The ID of the event
  * @version 1.3
  **/
 

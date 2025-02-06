@@ -13,8 +13,8 @@ import { ANNOUNCEMENT_TRANSLATIONS_QUERY_KEY } from "./useGetAnnouncementTransla
  * This function is used to fetch the translated content of an announcement, allowing applications to display announcements in different languages.
  * It is particularly useful in multilingual applications where announcements need to be presented in the user's preferred language.
  * @name GetAnnouncementTranslation
- * @param {string} announcementId (path) - The ID of the announcement
- * @param {string} locale (path) - The locale for which the translation is required
+ * @param {string} announcementId (path) The ID of the announcement
+ * @param {string} locale (path) The locale for which the translation is required
  * @version 1.3
  */
 export const ANNOUNCEMENT_TRANSLATION_QUERY_KEY = (

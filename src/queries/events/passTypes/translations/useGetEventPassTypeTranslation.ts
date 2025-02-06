@@ -14,9 +14,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * event information in different languages. It is designed to be used in applications that require multilingual support
  * for event pass types.
  * @name GetEventPassTypeTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} passTypeId (path) - The ID of the pass type
- * @param {string} locale (path) - The locale for the translation
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} passTypeId (path) The ID of the pass type
+ * @param {string} locale (path) The locale for the translation
  * @version 1.3
  */
 

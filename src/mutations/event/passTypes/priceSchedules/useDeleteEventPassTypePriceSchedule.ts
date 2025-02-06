@@ -16,9 +16,9 @@ import { EVENT_PASS_TYPE_PRICE_SCHEDULES_QUERY_KEY } from "@src/queries/events/p
  * This function allows the removal of a price schedule associated with a given event and pass type.
  * It is designed to be used in scenarios where an event's pricing structure needs to be updated or corrected.
  * @name DeleteEventPassTypePriceSchedule
- * @param {string} eventId (path) - The id of the event
- * @param {string} passTypeId (path) - The id of the pass type
- * @param {string} scheduleId (path) - The id of the schedule
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passTypeId (path) The id of the pass type
+ * @param {string} scheduleId (path) The id of the schedule
  * @version 1.3
  **/
 interface DeleteEventPassTypePriceScheduleParams extends MutationParams {

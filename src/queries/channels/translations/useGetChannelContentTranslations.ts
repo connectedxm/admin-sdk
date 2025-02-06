@@ -13,7 +13,7 @@ import { CHANNEL_CONTENT_QUERY_KEY } from "../useGetChannelContent";
  * This function is designed to fetch all available translations for a given content within a channel.
  * It is useful for applications that need to display or manage content in multiple languages.
  * @name GetChannelContentTranslations
- * @param {string} contentId (path) - The ID of the content for which translations are being retrieved
+ * @param {string} contentId (path) The ID of the content for which translations are being retrieved
  * @version 1.3
  **/
 

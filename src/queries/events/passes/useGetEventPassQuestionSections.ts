@@ -10,13 +10,13 @@ import { EVENT_PASS_QUERY_KEY } from "./useGetEventPass";
 
 /**
  * Retrieves the question sections associated with a specific event pass.
- * This endpoint is used to fetch detailed information about the question sections for a given event pass, 
- * which is part of an attendee's registration process. It is essential for applications that need to display 
+ * This endpoint is used to fetch detailed information about the question sections for a given event pass,
+ * which is part of an attendee's registration process. It is essential for applications that need to display
  * or process the question sections related to event passes.
  * @name GetEventPassQuestionSections
- * @param {string} eventId (path) - The id of the event
- * @param {string} accountId (path) - The id of the account
- * @param {string} passId (path) - The id of the pass
+ * @param {string} eventId (path) The id of the event
+ * @param {string} accountId (path) The id of the account
+ * @param {string} passId (path) The id of the pass
  * @version 1.3
  **/
 

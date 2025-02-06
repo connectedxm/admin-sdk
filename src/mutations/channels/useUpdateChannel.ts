@@ -16,8 +16,8 @@ import { ChannelUpdateInputs } from "@src/params";
  * This function allows updating various attributes of a channel identified by its ID.
  * It is designed to be used in applications where channel management is required.
  * @name UpdateChannel
- * @param {string} channelId (path) - The ID of the channel
- * @param {ChannelUpdateInputs} channel (body) - The channel update inputs
+ * @param {string} channelId (path) The ID of the channel
+ * @param {ChannelUpdateInputs} channel (body) The channel update inputs
  * @version 1.3
  **/
 
@@ -52,7 +52,7 @@ export const UpdateChannel = async ({
     SET_CHANNEL_QUERY_DATA(queryClient, [channelId || data?.data.id], data);
   }
   return data;
-}
+};
 
 export const useUpdateChannel = (
   options: Omit<

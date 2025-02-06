@@ -13,9 +13,9 @@ import { EVENT_SESSION_QUESTIONS_QUERY_KEY } from "@src/queries/events/sessions/
  * This function allows the removal of a question from an event session by specifying the event, session, and question IDs.
  * It is used in scenarios where questions need to be managed or moderated within event sessions.
  * @name DeleteEventSessionQuestion
- * @param {string} eventId (path) - The id of the event
- * @param {string} sessionId (path) - The id of the session
- * @param {string} questionId (path) - The id of the question
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sessionId (path) The id of the session
+ * @param {string} questionId (path) The id of the question
  * @version 1.3
  **/
 export interface DeleteEventSessionQuestionParams extends MutationParams {

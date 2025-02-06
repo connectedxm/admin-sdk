@@ -11,7 +11,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function allows users to export detailed information about an account using the provided account ID.
  * It is designed to be used in applications where exporting account data is necessary.
  * @name ExportAccount
- * @param {string} accountId (path) - The id of the account
+ * @param {string} accountId (path) The id of the account
  * @version 1.3
  **/
 

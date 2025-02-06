@@ -15,11 +15,11 @@ import {
  * This function allows the removal of a designated pass type from a specified section within an event.
  * It is intended for use in scenarios where event management requires dynamic updates to pass type allocations.
  * @name RemoveEventSectionPassType
- * @param {string} eventId (path) - The id of the event
- * @param {string} sectionId (path) - The id of the section
- * @param {string} passTypeId (path) - The id of the pass type
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sectionId (path) The id of the section
+ * @param {string} passTypeId (path) The id of the pass type
  * @version 1.3
-**/
+ **/
 export interface RemoveEventSectionPassTypeParams extends MutationParams {
   eventId: string;
   sectionId: string;

@@ -15,8 +15,8 @@ import {
  * This function allows the addition of a follower to an account by specifying the account and follower IDs.
  * It is used in scenarios where account follower management is required, ensuring that the follower is added to the account's follower list.
  * @name AddAccountFollower
- * @param {string} accountId (path) - The id of the account
- * @param {string} followerId (path) - The id of the follower
+ * @param {string} accountId (path) The id of the account
+ * @param {string} followerId (path) The id of the follower
  * @version 1.3
  **/
 

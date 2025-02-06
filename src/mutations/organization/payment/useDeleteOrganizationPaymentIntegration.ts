@@ -15,7 +15,7 @@ import {
  * This function allows the removal of a specified payment integration type from an organization.
  * It is designed to be used in applications where managing payment integrations is required.
  * @name DeleteOrganizationPaymentIntegration
- * @param {keyof typeof PaymentIntegrationType} type (path) - The type of payment integration
+ * @param {keyof typeof PaymentIntegrationType} type (path) The type of payment integration
  * @version 1.3
  **/
 export interface DeleteOrganizationPaymentIntegrationParams

@@ -14,7 +14,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches event track data, which can be used to display or manage tracks within an event.
  * It is designed for applications that require detailed track information for events.
  * @name GetEventTracks
- * @param {string} eventId (path) - The id of the event
+ * @param {string} eventId (path) The id of the event
  * @version 1.3
  **/
 

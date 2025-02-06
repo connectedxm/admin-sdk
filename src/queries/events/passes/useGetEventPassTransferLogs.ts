@@ -14,8 +14,8 @@ import {
  * This function is designed to fetch detailed logs of transfers associated with a particular event pass.
  * It supports pagination and filtering to allow for efficient data retrieval and management.
  * @name GetEventPassTransferLogs
- * @param {string} eventId (path) - The id of the event
- * @param {string} passId (path) - The id of the pass
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passId (path) The id of the pass
  * @version 1.3
  **/
 

@@ -16,10 +16,10 @@ import {
  * This function allows for the modification of question translations within an event, supporting multilingual capabilities.
  * It is designed to be used in applications where event content needs to be localized.
  * @name UpdateEventQuestionTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} questionId (path) - The ID of the question
- * @param {ISupportedLocale} locale (path) - The locale for the translation
- * @param {EventQuestionTranslationUpdateInputs} questionTranslation (body) - The translation inputs for the question
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} questionId (path) The ID of the question
+ * @param {ISupportedLocale} locale (path) The locale for the translation
+ * @param {EventQuestionTranslationUpdateInputs} questionTranslation (body) The translation inputs for the question
  * @version 1.3
  **/
 

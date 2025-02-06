@@ -16,10 +16,10 @@ import { ChannelContentGuestUpdateInputs } from "@src/params";
  * This function allows updating the details of a guest associated with specific content in a channel.
  * It is used to modify guest information such as permissions or roles within the context of channel content.
  * @name UpdateChannelContentGuest
- * @param {string} contentId (path) - The id of the content
- * @param {string} channelId (path) - The id of the channel
- * @param {string} guestId (path) - The id of the guest
- * @param {ChannelContentGuestUpdateInputs} contentGuest (body) - The content guest update inputs
+ * @param {string} contentId (path) The id of the content
+ * @param {string} channelId (path) The id of the channel
+ * @param {string} guestId (path) The id of the guest
+ * @param {ChannelContentGuestUpdateInputs} contentGuest (body) The content guest update inputs
  * @version 1.3
  **/
 export interface UpdateChannelContentGuestParams extends MutationParams {

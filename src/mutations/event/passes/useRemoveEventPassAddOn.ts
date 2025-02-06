@@ -15,9 +15,9 @@ import {
  * This function allows the removal of a specific add-on associated with an event pass, identified by the add-on ID, event ID, and pass ID.
  * It is used in scenarios where an event pass needs to be updated by removing an existing add-on.
  * @name RemoveEventPassAddOn
- * @param {string} addOnId (path) - The id of the add-on to be removed
- * @param {string} eventId (path) - The id of the event
- * @param {string} passId (path) - The id of the pass
+ * @param {string} addOnId (path) The id of the add-on to be removed
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passId (path) The id of the pass
  * @version 1.3
  **/
 export interface RemoveEventPassAddOnParams extends MutationParams {

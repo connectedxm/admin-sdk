@@ -12,9 +12,9 @@ import { SET_EVENT_FAQ_SECTION_QUESTIONS_QUERY_DATA } from "@src/queries";
  * This function allows users to change the order of questions within a specified FAQ section for a given event.
  * It is useful for organizing FAQ content to improve clarity and accessibility for event participants.
  * @name ReorderEventFaqSectionQuestions
- * @param {string} eventId (path) - The id of the event
- * @param {string} sectionId (path) - The id of the FAQ section
- * @param {string[]} questionIds (bodyValue) - The ids of the questions to reorder
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sectionId (path) The id of the FAQ section
+ * @param {string[]} questionIds (bodyValue) The ids of the questions to reorder
  * @version 1.3
  **/
 

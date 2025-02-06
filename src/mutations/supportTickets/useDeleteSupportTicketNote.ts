@@ -12,8 +12,8 @@ import { SUPPORT_TICKET_QUERY_KEY } from "@src/queries";
  * This function allows the removal of a note associated with a support ticket by specifying the ticket and note IDs.
  * It is intended for use in applications where managing support ticket notes is required.
  * @name DeleteSupportTicketNote
- * @param {string} supportTicketId (path) - The ID of the support ticket
- * @param {string} noteId (path) - The ID of the note to be deleted
+ * @param {string} supportTicketId (path) The ID of the support ticket
+ * @param {string} noteId (path) The ID of the note to be deleted
  * @version 1.3
  **/
 

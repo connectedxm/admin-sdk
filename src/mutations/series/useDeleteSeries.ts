@@ -12,7 +12,7 @@ import { SERIES_LIST_QUERY_KEY, SERIES_QUERY_KEY } from "@src/queries";
  * This function allows for the removal of a series from the system, ensuring that associated queries are invalidated and removed.
  * It is designed to be used in applications where series management is required, providing a mechanism to delete series data.
  * @name DeleteSeries
- * @param {string} seriesId (path) - The id of the series
+ * @param {string} seriesId (path) The id of the series
  * @version 1.3
  **/
 export interface DeleteSeriesParams extends MutationParams {

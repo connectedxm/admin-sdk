@@ -12,8 +12,8 @@ import { STREAM_INPUTS_QUERY_KEY, STREAM_QUERY_KEY } from "@src/queries";
  * This function allows the removal of an output associated with a given stream by specifying the stream and output IDs.
  * It is useful in scenarios where stream outputs need to be managed or cleaned up.
  * @name DeleteStreamInputOutput
- * @param {string} streamId (path) - The id of the stream
- * @param {string} outputId (path) - The id of the output
+ * @param {string} streamId (path) The id of the stream
+ * @param {string} outputId (path) The id of the output
  * @version 1.3
  **/
 

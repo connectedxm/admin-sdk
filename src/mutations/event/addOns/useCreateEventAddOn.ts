@@ -16,8 +16,8 @@ import {
  * This function allows the creation of additional features or services for a specific event by providing the event ID and the add-on details.
  * It is designed to be used in applications where event customization is required.
  * @name CreateEventAddOn
- * @param {string} eventId (path) - The id of the event
- * @param {EventAddOnCreateInputs} addOn (body) - The add-on details to be created
+ * @param {string} eventId (path) The id of the event
+ * @param {EventAddOnCreateInputs} addOn (body) The add-on details to be created
  * @version 1.3
  **/
 

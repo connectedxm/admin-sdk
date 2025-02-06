@@ -63,10 +63,10 @@ async function processFile(
 
             INSTRUCTIONS: 
             1. Look at the current params commented and compare them to the axios call and where they are used.
-            2. If used in the path, mark it as (path) - description
-            3. if used in the params, mark it as (query) - description
-            4. If used as req.body, mark it as (body) - description
-            5. If used as a value in the body, mark it as (bodyValue) - description
+            2. If used in the path, mark it as (path) description
+            3. if used in the params, mark it as (query) description
+            4. If used as req.body, mark it as (body) description
+            5. If used as a value in the body, mark it as (bodyValue) description
 
             EXAMPLE 
             /**

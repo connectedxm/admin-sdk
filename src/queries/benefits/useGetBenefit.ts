@@ -14,7 +14,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function allows users to retrieve comprehensive information about a particular benefit.
  * It is designed for applications that require detailed data on benefits for display or processing.
  * @name GetBenefit
- * @param {string} benefitId (path) - The ID of the benefit
+ * @param {string} benefitId (path) The ID of the benefit
  * @version 1.3
  **/
 

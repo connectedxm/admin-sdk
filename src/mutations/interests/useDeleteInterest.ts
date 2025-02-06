@@ -12,7 +12,7 @@ import { INTERESTS_QUERY_KEY, INTEREST_QUERY_KEY } from "@src/queries";
  * This function allows for the removal of an interest from the system, ensuring that associated queries are invalidated and removed.
  * It is designed to be used in applications where managing user or system interests is required.
  * @name DeleteInterest
- * @param {string} interestId (path) - The ID of the interest to be deleted
+ * @param {string} interestId (path) The ID of the interest to be deleted
  * @version 1.3
  **/
 

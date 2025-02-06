@@ -13,8 +13,8 @@ import { VideoUpdateInputs } from "@src/params";
  * This function allows users to modify the details of a video by providing the video ID and the updated video inputs.
  * It ensures that the video data is updated in the system and invalidates the relevant queries to maintain data consistency.
  * @name UpdateVideo
- * @param {string} videoId (path) - The ID of the video to update
- * @param {VideoUpdateInputs} video (body) - The video update inputs
+ * @param {string} videoId (path) The ID of the video to update
+ * @param {VideoUpdateInputs} video (body) The video update inputs
  * @version 1.3
  **/
 export interface UpdateVideoParams extends MutationParams {

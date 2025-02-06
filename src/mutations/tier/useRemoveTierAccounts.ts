@@ -12,7 +12,7 @@ import { SET_TIER_QUERY_DATA, TIER_ACCOUNTS_QUERY_KEY } from "@src/queries";
  * This function allows the removal of all accounts associated with a given tier ID.
  * It is used in scenarios where accounts need to be disassociated from a tier within an application.
  * @name RemoveTierAccounts
- * @param {string} tierId (path) - The id of the tier
+ * @param {string} tierId (path) The id of the tier
  * @version 1.3
  **/
 

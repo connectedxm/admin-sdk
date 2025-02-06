@@ -12,10 +12,10 @@ import { CHANNEL_CONTENT_GUEST_TRANSLATIONS_QUERY_KEY } from "@src/queries/chann
  * This function is used to remove a translation associated with a guest for a particular piece of content within a channel.
  * It ensures that the translation is deleted from the system and invalidates relevant queries to update the UI accordingly.
  * @name DeleteChannelContentGuestTranslation
- * @param {string} channelId (path) - The ID of the channel
- * @param {string} contentId (path) - The ID of the content
- * @param {string} guestId (path) - The ID of the guest
- * @param {string} locale (path) - The locale of the translation
+ * @param {string} channelId (path) The ID of the channel
+ * @param {string} contentId (path) The ID of the content
+ * @param {string} guestId (path) The ID of the guest
+ * @param {string} locale (path) The locale of the translation
  * @version 1.3
  **/
 

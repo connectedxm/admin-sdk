@@ -12,14 +12,14 @@ import {
 
 /**
  * Endpoint to add a new tier to a room type for a specific event.
- * This function allows the addition of a tier to a specified room type within an event, 
- * indicating whether the tier is allowed. It is used in scenarios where event room types 
+ * This function allows the addition of a tier to a specified room type within an event,
+ * indicating whether the tier is allowed. It is used in scenarios where event room types
  * need to be dynamically updated with new tiers.
  * @name AddEventRoomTypeTier
- * @param {boolean} allowed (bodyValue) - Indicates if the tier is allowed
- * @param {string} eventId (path) - The id of the event
- * @param {string} roomTypeId (path) - The id of the room type
- * @param {string} tierId (path) - The id of the tier
+ * @param {boolean} allowed (bodyValue) Indicates if the tier is allowed
+ * @param {string} eventId (path) The id of the event
+ * @param {string} roomTypeId (path) The id of the room type
+ * @param {string} tierId (path) The id of the tier
  * @version 1.3
  **/
 export interface AddEventRoomTypeTierParams extends MutationParams {

@@ -11,13 +11,13 @@ import { EVENT_SESSION_QUESTIONS_QUERY_KEY } from "@src/queries/events/sessions/
 
 /**
  * Endpoint to create a new question for a specific event session.
- * This function allows the creation of a question within a specified event session, 
+ * This function allows the creation of a question within a specified event session,
  * enabling users to add interactive elements to their event sessions.
  * It is designed to be used in applications where event session management is required.
  * @name CreateEventSessionQuestion
- * @param {string} eventId (path) - The id of the event
- * @param {string} sessionId (path) - The id of the session
- * @param {EventSessionQuestionCreateInputs} question (body) - The question details
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sessionId (path) The id of the session
+ * @param {EventSessionQuestionCreateInputs} question (body) The question details
  * @version 1.3
  **/
 

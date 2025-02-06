@@ -13,8 +13,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve data related to a particular event activation by its unique identifiers.
  * It is useful for applications that need to display or process event activation details.
  * @name GetEventActivation
- * @param {string} eventId (path) - The id of the event
- * @param {string} activationId (path) - The id of the activation
+ * @param {string} eventId (path) The id of the event
+ * @param {string} activationId (path) The id of the activation
  * @version 1.3
  **/
 

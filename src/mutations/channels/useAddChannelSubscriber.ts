@@ -12,8 +12,8 @@ import { CHANNEL_SUBSCRIBERS_QUERY_KEY } from "@src/queries/channels/useGetChann
  * This function is used to associate an account with a channel as a subscriber, ensuring that the channel's subscriber list is updated.
  * It is particularly useful in applications where real-time updates to channel subscriptions are necessary.
  * @name AddChannelSubscriber
- * @param {string} channelId (path) - The id of the channel
- * @param {string} accountId (bodyValue) - The id of the account
+ * @param {string} channelId (path) The id of the channel
+ * @param {string} accountId (bodyValue) The id of the account
  * @version 1.3
  **/
 export interface AddChannelsubscriberParams extends MutationParams {

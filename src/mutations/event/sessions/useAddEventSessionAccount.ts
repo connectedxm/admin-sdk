@@ -12,13 +12,13 @@ import {
 
 /**
  * Endpoint to add an account to a specific event session.
- * This function allows the addition of an account to a designated session within an event, 
+ * This function allows the addition of an account to a designated session within an event,
  * facilitating the management of session participants.
  * It is intended for use in applications that require dynamic session management capabilities.
  * @name AddEventSessionAccount
- * @param {string} eventId (path) - The id of the event
- * @param {string} sessionId (path) - The id of the session
- * @param {string} accountId (path) - The id of the account
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sessionId (path) The id of the session
+ * @param {string} accountId (path) The id of the account
  * @version 1.3
  **/
 export interface AddEventSessionAccountParams extends MutationParams {

@@ -13,8 +13,8 @@ import { BenefitTranslationUpdateInputs } from "@src/params";
  * This function allows for updating the information of a benefit by providing the benefit ID and the new details.
  * It is used in scenarios where benefit information needs to be modified.
  * @name UpdateBenefit
- * @param {string} benefitId (path) - The id of the benefit
- * @param {BenefitTranslationUpdateInputs} benefit (body) - The details of the benefit to update
+ * @param {string} benefitId (path) The id of the benefit
+ * @param {BenefitTranslationUpdateInputs} benefit (body) The details of the benefit to update
  * @version 1.3
  **/
 export interface UpdateBenefitParams extends MutationParams {
@@ -49,7 +49,7 @@ export const UpdateBenefit = async ({
     queryClient.invalidateQueries({ queryKey: BENEFITS_QUERY_KEY() });
   }
   return data;
-}
+};
 
 export const useUpdateBenefit = (
   options: Omit<

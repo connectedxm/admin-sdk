@@ -13,8 +13,8 @@ import { EVENT_SESSION_QUERY_KEY } from "../useGetEventSession";
  * This function allows users to fetch a list of questions associated with a particular event session.
  * It is designed to be used in applications where detailed information about session questions is required.
  * @name GetEventSessionQuestions
- * @param {string} eventId (path) - The id of the event
- * @param {string} sessionId (path) - The id of the session
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sessionId (path) The id of the session
  * @version 1.3
  **/
 

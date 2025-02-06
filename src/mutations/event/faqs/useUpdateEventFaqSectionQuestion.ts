@@ -16,10 +16,10 @@ import {
  * This function allows for the modification of a question within a specified FAQ section of an event.
  * It is designed to be used in scenarios where event organizers need to update the content of FAQ questions.
  * @name UpdateEventFaqSectionQuestion
- * @param {string} sectionId (path) - The id of the FAQ section
- * @param {string} eventId (path) - The id of the event
- * @param {string} questionId (path) - The id of the question
- * @param {EventFaqSectionQuestionUpdateInputs} faq (body) - The FAQ update inputs
+ * @param {string} sectionId (path) The id of the FAQ section
+ * @param {string} eventId (path) The id of the event
+ * @param {string} questionId (path) The id of the question
+ * @param {EventFaqSectionQuestionUpdateInputs} faq (body) The FAQ update inputs
  * @version 1.3
  **/
 export interface UpdateEventFaqSectionQuestionParams extends MutationParams {

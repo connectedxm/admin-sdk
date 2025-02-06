@@ -14,9 +14,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is used to retrieve detailed information about a particular choice associated with a question in an event.
  * It is designed for applications that need to access specific event question choice data.
  * @name GetEventQuestionChoice
- * @param {string} eventId (path) - The id of the event
- * @param {string} questionId (path) - The id of the question
- * @param {string} choiceId (path) - The id of the choice
+ * @param {string} eventId (path) The id of the event
+ * @param {string} questionId (path) The id of the question
+ * @param {string} choiceId (path) The id of the choice
  * @version 1.3
  **/
 

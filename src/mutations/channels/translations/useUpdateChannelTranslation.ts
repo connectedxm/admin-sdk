@@ -17,14 +17,14 @@ import {
 
 /**
  * Updates the translation for a specific channel in a given locale.
- * This function allows for updating the translation details of a channel, 
+ * This function allows for updating the translation details of a channel,
  * which is useful for maintaining multilingual support within the application.
- * It ensures that the channel's translation is updated in the backend and 
+ * It ensures that the channel's translation is updated in the backend and
  * invalidates the relevant queries to keep the client-side data in sync.
  * @name UpdateChannelTranslation
- * @param {string} channelId (path) - The ID of the channel
- * @param {ISupportedLocale} locale (path) - The locale for which the translation is being updated
- * @param {ChannelTranslationUpdateInputs} channelTranslation (body) - The translation details to update
+ * @param {string} channelId (path) The ID of the channel
+ * @param {ISupportedLocale} locale (path) The locale for which the translation is being updated
+ * @param {ChannelTranslationUpdateInputs} channelTranslation (body) The translation details to update
  * @version 1.3
  **/
 

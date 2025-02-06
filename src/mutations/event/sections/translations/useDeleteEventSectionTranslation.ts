@@ -14,9 +14,9 @@ import {
  * This function is used to remove translations from event sections, ensuring that the specified translation is no longer available.
  * It is particularly useful in scenarios where outdated or incorrect translations need to be removed from the system.
  * @name DeleteEventSectionTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} sectionId (path) - The ID of the section
- * @param {string} locale (path) - The locale of the translation
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} sectionId (path) The ID of the section
+ * @param {string} locale (path) The locale of the translation
  * @version 1.3
  **/
 

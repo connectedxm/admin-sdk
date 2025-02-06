@@ -12,8 +12,8 @@ import { SET_SERIES_QUERY_DATA, SERIES_EVENTS_QUERY_KEY } from "@src/queries";
  * This function allows users to associate an event with a series by providing the series and event identifiers.
  * It is designed to update the series with the new event and refresh the relevant query data.
  * @name AddSeriesEvent
- * @param {string} seriesId (path) - The id of the series
- * @param {string} eventId (path) - The id of the event
+ * @param {string} seriesId (path) The id of the series
+ * @param {string} eventId (path) The id of the event
  * @version 1.3
  **/
 

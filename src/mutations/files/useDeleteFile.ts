@@ -12,7 +12,7 @@ import { FILES_QUERY_KEY, FILE_QUERY_KEY } from "@src/queries";
  * This function allows users to remove a file from the system, ensuring that all related queries are invalidated.
  * It is designed to be used in applications where file management and cleanup are required.
  * @name DeleteFile
- * @param {string} fileId (path) - The id of the file to be deleted
+ * @param {string} fileId (path) The id of the file to be deleted
  * @version 1.3
  **/
 export interface DeleteFileParams extends MutationParams {

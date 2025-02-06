@@ -14,9 +14,9 @@ import { ThreadUpdateInputs } from "@src/params";
  * It supports optional image data URI for updating the thread's image.
  * The function ensures that the thread data is updated in the cache if the operation is successful.
  * @name UpdateThread
- * @param {string} threadId (path) - The id of the thread
- * @param {ThreadUpdateInputs} thread (bodyValue) - The thread data to update
- * @param {string} [imageDataUri] (bodyValue) - Optional image data URI
+ * @param {string} threadId (path) The id of the thread
+ * @param {ThreadUpdateInputs} thread (bodyValue) The thread data to update
+ * @param {string} [imageDataUri] (bodyValue) Optional image data URI
  * @version 1.3
  **/
 export interface UpdateThreadParams extends MutationParams {

@@ -15,12 +15,12 @@ import {
  * This function allows the addition of a tier to an event section by specifying the event, section, and tier IDs.
  * It is used in scenarios where event sections need to be dynamically updated with new tiers.
  * @name AddEventSectionTier
- * @param {boolean} allowed (bodyValue) - Indicates if the tier is allowed
- * @param {string} eventId (path) - The id of the event
- * @param {string} sectionId (path) - The id of the section
- * @param {string} tierId (path) - The id of the tier
+ * @param {boolean} allowed (bodyValue) Indicates if the tier is allowed
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sectionId (path) The id of the section
+ * @param {string} tierId (path) The id of the tier
  * @version 1.3
-**/
+ **/
 export interface AddEventSectionTierParams extends MutationParams {
   allowed: boolean;
   eventId: string;

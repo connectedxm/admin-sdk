@@ -16,9 +16,9 @@ import {
  * This function allows for the modification of an existing FAQ section associated with a particular event.
  * It is designed to be used in scenarios where event organizers need to update the content or details of an FAQ section.
  * @name UpdateEventFaqSection
- * @param {string} eventId (path) - The id of the event
- * @param {string} sectionId (path) - The id of the FAQ section
- * @param {EventFaqSectionUpdateInputs} section (body) - The inputs for updating the FAQ section
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sectionId (path) The id of the FAQ section
+ * @param {EventFaqSectionUpdateInputs} section (body) The inputs for updating the FAQ section
  * @version 1.3
  **/
 

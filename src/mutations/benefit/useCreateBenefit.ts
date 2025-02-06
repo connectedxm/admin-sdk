@@ -13,7 +13,7 @@ import { BenefitCreateInputs } from "@src/params";
  * This function allows the creation of a benefit by providing the necessary input parameters.
  * It interacts with the admin API to post the benefit data and updates the query cache upon successful creation.
  * @name CreateBenefit
- * @param {BenefitCreateInputs} benefit (body) - The inputs required to create a benefit
+ * @param {BenefitCreateInputs} benefit (body) The inputs required to create a benefit
  * @version 1.3
  **/
 export interface CreateBenefitParams extends MutationParams {

@@ -17,9 +17,9 @@ import { SET_EVENT_EMAIL_QUERY_DATA } from "@src/queries";
  * This function allows updating the email associated with a specific event by providing the event ID, email type, and update inputs.
  * It is designed for applications that need to modify event-related email content or settings.
  * @name UpdateEventEmail
- * @param {string} eventId (path) - The id of the event
- * @param {EventEmailType} type (path) - The type of the event email
- * @param {EventEmailUpdateInputs} eventEmail (body) - The inputs for updating the event email
+ * @param {string} eventId (path) The id of the event
+ * @param {EventEmailType} type (path) The type of the event email
+ * @param {EventEmailUpdateInputs} eventEmail (body) The inputs for updating the event email
  * @version 1.3
  **/
 

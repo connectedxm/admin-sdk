@@ -13,9 +13,9 @@ import { EVENT_SESSION_LOCATIONS_QUERY_KEY } from "@src/queries/events/sessions/
  * This function is used to associate a location with a session within an event, ensuring that the session's location data is current and accurate.
  * It is particularly useful in scenarios where event sessions are dynamically managed and require real-time updates.
  * @name AddEventSessionLocationSession
- * @param {string} eventId (path) - The id of the event
- * @param {string} locationId (path) - The id of the location
- * @param {string} sessionId (path) - The id of the session
+ * @param {string} eventId (path) The id of the event
+ * @param {string} locationId (path) The id of the location
+ * @param {string} sessionId (path) The id of the session
  * @version 1.3
  **/
 
@@ -51,7 +51,7 @@ export const AddEventSessionLocationSession = async ({
     );
   }
   return data;
-}
+};
 
 export const useAddEventSessionLocationSession = (
   options: Omit<

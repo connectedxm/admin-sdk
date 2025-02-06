@@ -12,7 +12,7 @@ import { CHANNELS_QUERY_KEY, CHANNEL_QUERY_KEY } from "@src/queries/channels";
  * This function allows for the removal of a channel from the system, ensuring that all associated data is invalidated and removed from the cache.
  * It is intended for use in administrative contexts where channel management is required.
  * @name DeleteChannel
- * @param {string} channelId (path) - The ID of the channel to be deleted
+ * @param {string} channelId (path) The ID of the channel to be deleted
  * @version 1.3
  **/
 

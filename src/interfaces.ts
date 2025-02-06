@@ -2954,3 +2954,9 @@ export interface CloneEventResponse {
   id: string;
   slug: string;
 }
+
+export interface AnnouncementSchedule {
+  date: string;
+  email?: boolean;
+  push?: boolean;
+}

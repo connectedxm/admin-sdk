@@ -13,8 +13,8 @@ import {
  * This function is used to fetch localized content for organization pages, allowing for internationalization support.
  * It is designed to be used in applications where multilingual support is required for organization pages.
  * @name GetOrganizationPageTranslation
- * @param {PageType} type (path) - The type of the page
- * @param {string} locale (path) - The locale for the translation
+ * @param {PageType} type (path) The type of the page
+ * @param {string} locale (path) The locale for the translation
  * @version 1.3
  */
 export const ORGANIZATION_PAGE_TRANSLATION_QUERY_KEY = (

@@ -12,8 +12,8 @@ import { BENEFITS_QUERY_KEY, SET_BENEFIT_QUERY_DATA } from "@src/queries";
  * This function allows the addition of a benefit to an event by specifying the benefit and event IDs.
  * It is designed to be used in applications where event management and benefit allocation are required.
  * @name AddEventBenefit
- * @param {string} benefitId (path) - The id of the benefit
- * @param {string} eventId (path) - The id of the event
+ * @param {string} benefitId (path) The id of the benefit
+ * @param {string} eventId (path) The id of the event
  * @version 1.3
  **/
 

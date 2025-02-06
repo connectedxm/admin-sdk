@@ -16,8 +16,8 @@ import {
  * This function allows the creation of a new speaker for an event by providing the event ID and speaker details.
  * It is designed to be used in applications where event management and speaker assignments are required.
  * @name CreateEventSpeaker
- * @param {string} eventId (path) - The id of the event
- * @param {EventSpeakerCreateInputs} speaker (body) - The inputs for creating an event speaker
+ * @param {string} eventId (path) The id of the event
+ * @param {EventSpeakerCreateInputs} speaker (body) The inputs for creating an event speaker
  * @version 1.3
  **/
 export interface CreateEventSpeakerParams extends MutationParams {

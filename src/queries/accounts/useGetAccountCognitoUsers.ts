@@ -10,10 +10,10 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 
 /**
  * Retrieves the Cognito users associated with a specific account.
- * This function fetches a list of Cognito users linked to a given account ID, 
+ * This function fetches a list of Cognito users linked to a given account ID,
  * providing detailed user information for applications that require user management capabilities.
  * @name GetAccountCognitoUsers
- * @param {string} accountId (path) - The id of the account
+ * @param {string} accountId (path) The id of the account
  * @version 1.3
  **/
 

@@ -14,9 +14,9 @@ import {
  * This function is used to remove a translation of a FAQ section within an event, identified by event ID, section ID, and locale.
  * It ensures that the relevant cache is invalidated to maintain data consistency.
  * @name DeleteEventFaqSectionTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} sectionId (path) - The ID of the FAQ section
- * @param {string} locale (path) - The locale of the translation
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} sectionId (path) The ID of the FAQ section
+ * @param {string} locale (path) The locale of the translation
  * @version 1.3
  **/
 

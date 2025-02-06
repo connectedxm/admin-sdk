@@ -14,7 +14,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to fetch account details for a given level, which can be used in applications
  * that require information about accounts linked to different levels within an organization.
  * @name GetLevelAccounts
- * @param {string} levelId (path) - The id of the level
+ * @param {string} levelId (path) The id of the level
  * @version 1.3
  **/
 

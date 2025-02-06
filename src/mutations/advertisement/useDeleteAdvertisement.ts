@@ -15,7 +15,7 @@ import {
  * This function allows for the removal of an advertisement from the system, ensuring that it is no longer accessible or visible.
  * It is designed to be used in applications where advertisement management is required, providing a mechanism to delete advertisements.
  * @name DeleteAdvertisement
- * @param {string} advertisementId (path) - The ID of the advertisement to delete
+ * @param {string} advertisementId (path) The ID of the advertisement to delete
  * @version 1.3
  **/
 export interface DeleteAdvertisementParams extends MutationParams {

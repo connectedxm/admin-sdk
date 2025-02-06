@@ -16,9 +16,9 @@ import {
  * This function allows updating the details of a specific event registration bypass using the event ID and bypass ID.
  * It is designed to be used in applications where modifications to event registration bypasses are required.
  * @name UpdateEventRegistrationBypass
- * @param {string} eventId (path) - The id of the event
- * @param {string} bypassId (path) - The id of the bypass
- * @param {EventRegistrationBypassUpdateInputs} page (body) - The update inputs for the event registration bypass
+ * @param {string} eventId (path) The id of the event
+ * @param {string} bypassId (path) The id of the bypass
+ * @param {EventRegistrationBypassUpdateInputs} page (body) The update inputs for the event registration bypass
  * @version 1.3
  **/
 export interface UpdateEventRegistrationBypassParams extends MutationParams {

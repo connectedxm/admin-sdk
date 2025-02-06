@@ -13,7 +13,7 @@ import { QueryClient } from "@tanstack/react-query";
  * Retrieves a list of moderators for a specified group.
  * This function fetches the moderators associated with a particular group, allowing applications to display or manage group moderators.
  * @name GetGroupModerators
- * @param {string} groupId (path) - The id of the group
+ * @param {string} groupId (path) The id of the group
  * @version 1.3
  **/
 

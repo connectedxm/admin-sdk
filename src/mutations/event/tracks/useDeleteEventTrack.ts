@@ -12,8 +12,8 @@ import { EVENT_TRACKS_QUERY_KEY, EVENT_TRACK_QUERY_KEY } from "@src/queries";
  * This function allows for the removal of a track from an event by specifying the event and track IDs.
  * It is designed to be used in applications where event management and track deletion are required.
  * @name DeleteEventTrack
- * @param {string} eventId (path) - The id of the event
- * @param {string} trackId (path) - The id of the track
+ * @param {string} eventId (path) The id of the event
+ * @param {string} trackId (path) The id of the track
  * @version 1.3
  **/
 

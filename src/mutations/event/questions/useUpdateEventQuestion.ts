@@ -16,9 +16,9 @@ import {
  * This function allows updating the details of a specific question associated with an event.
  * It is designed to be used in applications where event questions need to be modified.
  * @name UpdateEventQuestion
- * @param {string} eventId (path) - The id of the event
- * @param {string} questionId (path) - The id of the question
- * @param {EventQuestionUpdateInputs} question (body) - The updated question inputs
+ * @param {string} eventId (path) The id of the event
+ * @param {string} questionId (path) The id of the question
+ * @param {EventQuestionUpdateInputs} question (body) The updated question inputs
  * @version 1.3
  **/
 export interface UpdateEventQuestionParams extends MutationParams {
@@ -60,7 +60,7 @@ export const UpdateEventQuestion = async ({
     );
   }
   return data;
-}
+};
 
 export const useUpdateEventQuestion = (
   options: Omit<

@@ -12,8 +12,8 @@ import { SET_GROUP_QUERY_DATA, GROUP_INTERESTS_QUERY_KEY } from "@src/queries";
  * This function allows the removal of a specific interest associated with a group by providing the group ID and account ID.
  * It is designed to be used in applications where managing group interests is required.
  * @name RemoveGroupInterest
- * @param {string} groupId (path) - The id of the group
- * @param {string} accountId (path) - The id of the account
+ * @param {string} groupId (path) The id of the group
+ * @param {string} accountId (path) The id of the account
  * @version 1.3
  **/
 

@@ -16,9 +16,9 @@ import {
  * This function allows for updating the translation details of an event, identified by its ID, for a specified locale.
  * It is designed to be used in applications where event translations need to be managed and updated.
  * @name UpdateEventTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {ISupportedLocale} locale (path) - The locale for which the translation is being updated
- * @param {EventTranslationUpdateInputs} eventTranslation (body) - The translation details to update
+ * @param {string} eventId (path) The ID of the event
+ * @param {ISupportedLocale} locale (path) The locale for which the translation is being updated
+ * @param {EventTranslationUpdateInputs} eventTranslation (body) The translation details to update
  * @version 1.3
  **/
 

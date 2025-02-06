@@ -12,14 +12,15 @@ import { SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA } from "@src/queries";
  * This function allows the creation of a payment integration setup for an organization by specifying the type of integration and optional credentials.
  * It is designed to facilitate the management of payment integrations within organizational settings.
  * @name CreateOrganizationPaymentIntegration
- * @param {keyof typeof PaymentIntegrationType} type (path) - The type of payment integration
- * @param {string} [clientId] (bodyValue) - Optional client ID
- * @param {string} [clientPublicKey] (bodyValue) - Optional client public key
- * @param {string} [clientSecret] (bodyValue) - Optional client secret
+ * @param {keyof typeof PaymentIntegrationType} type (path) The type of payment integration
+ * @param {string} [clientId] (bodyValue) Optional client ID
+ * @param {string} [clientPublicKey] (bodyValue) Optional client public key
+ * @param {string} [clientSecret] (bodyValue) Optional client secret
  * @version 1.3
  **/
 
-export interface CreateOrganizationPaymentIntegrationParams extends MutationParams {
+export interface CreateOrganizationPaymentIntegrationParams
+  extends MutationParams {
   type: keyof typeof PaymentIntegrationType;
   clientId?: string;
   clientPublicKey?: string;
@@ -33,7 +34,9 @@ export const CreateOrganizationPaymentIntegration = async ({
   clientSecret,
   adminApiParams,
   queryClient,
-}: CreateOrganizationPaymentIntegrationParams): Promise<ConnectedXMResponse<any>> => {
+}: CreateOrganizationPaymentIntegrationParams): Promise<
+  ConnectedXMResponse<any>
+> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.post<ConnectedXMResponse<any>>(
     `/organization/payment/${type}`,

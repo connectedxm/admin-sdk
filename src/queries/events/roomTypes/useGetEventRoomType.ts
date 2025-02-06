@@ -13,8 +13,8 @@ import { EVENT_ROOM_TYPES_QUERY_KEY } from "./useGetEventRoomTypes";
  * This function is used to fetch detailed information about a particular room type associated with an event.
  * It is designed for applications that require access to event room type details.
  * @name GetEventRoomType
- * @param {string} eventId (path) - The ID of the event
- * @param {string} roomTypeId (path) - The ID of the room type
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} roomTypeId (path) The ID of the room type
  * @version 1.3
  **/
 

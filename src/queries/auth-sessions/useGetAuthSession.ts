@@ -14,7 +14,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function retrieves detailed information about an authentication session using its unique identifier.
  * It is intended for use in applications that require access to authentication session details.
  * @name GetAuthSession
- * @param {string | number} authSessionId (path) - The ID of the authentication session
+ * @param {string | number} authSessionId (path) The ID of the authentication session
  * @version 1.3
  **/
 

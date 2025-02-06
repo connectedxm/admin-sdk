@@ -18,11 +18,11 @@ import {
  * This function allows the creation of a translation for a given choice within an event question, supporting multiple locales.
  * It is designed to be used in applications where multilingual support for event questions is required.
  * @name CreateEventQuestionChoiceTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} questionId (path) - The ID of the question
- * @param {string} choiceId (path) - The ID of the choice
- * @param {string} locale (bodyValue) - The locale for the translation
- * @param {boolean} [autoTranslate] (bodyValue) - Whether to automatically translate the choice
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} questionId (path) The ID of the question
+ * @param {string} choiceId (path) The ID of the choice
+ * @param {string} locale (bodyValue) The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) Whether to automatically translate the choice
  * @version 1.3
  **/
 

@@ -12,13 +12,13 @@ import { SET_EVENT_SECTION_QUESTIONS_QUERY_DATA } from "@src/queries";
 
 /**
  * Reorders questions within a specific section of an event.
- * This function allows for the rearrangement of questions in a designated section of an event, 
- * ensuring that the questions appear in the desired order. It is useful for event organizers 
+ * This function allows for the rearrangement of questions in a designated section of an event,
+ * ensuring that the questions appear in the desired order. It is useful for event organizers
  * who need to customize the sequence of questions for participants.
  * @name ReorderEventSectionQuestions
- * @param {string} eventId (path) - The id of the event
- * @param {string} sectionId (path) - The id of the section
- * @param {number[]} questionIds (bodyValue) - Array of question ids to reorder
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sectionId (path) The id of the section
+ * @param {number[]} questionIds (bodyValue) Array of question ids to reorder
  * @version 1.3
  **/
 

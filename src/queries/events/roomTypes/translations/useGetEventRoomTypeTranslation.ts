@@ -13,9 +13,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is part of the event management system and is used to fetch localized translations for room types within events.
  * It is essential for applications that need to display event room type information in different languages.
  * @name GetEventRoomTypeTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} roomTypeId (path) - The ID of the room type
- * @param {string} locale (path) - The locale for the translation
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} roomTypeId (path) The ID of the room type
+ * @param {string} locale (path) The locale for the translation
  * @version 1.3
  **/
 

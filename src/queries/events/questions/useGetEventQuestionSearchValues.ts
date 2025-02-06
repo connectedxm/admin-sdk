@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This endpoint allows fetching search values associated with a particular question within an event.
  * It is useful for applications that need to display or process search values related to event questions.
  * @name GetEventQuestionSearchValues
- * @param {string} eventId (path) - The id of the event
- * @param {string} questionId (path) - The id of the question
+ * @param {string} eventId (path) The id of the event
+ * @param {string} questionId (path) The id of the question
  * @version 1.3
  **/
 

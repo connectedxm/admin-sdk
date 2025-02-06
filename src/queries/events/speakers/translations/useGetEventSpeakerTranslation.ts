@@ -10,12 +10,12 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Retrieves the translation details for a specific event speaker in a given locale.
- * This function is used to fetch the translated information of a speaker for a particular event, 
+ * This function is used to fetch the translated information of a speaker for a particular event,
  * allowing applications to display speaker details in different languages.
  * @name GetEventSpeakerTranslation
- * @param {string} eventId (path) - The ID of the event
- * @param {string} speakerId (path) - The ID of the speaker
- * @param {string} locale (path) - The locale for the translation
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} speakerId (path) The ID of the speaker
+ * @param {string} locale (path) The locale for the translation
  * @version 1.3
  **/
 

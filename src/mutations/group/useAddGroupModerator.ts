@@ -16,8 +16,8 @@ import {
  * This function allows the addition of a user as a moderator to a specified group by providing the group ID and the account ID of the user.
  * It is designed to be used in applications where group management and user roles are handled.
  * @name AddGroupModerator
- * @param {string} groupId (path) - The id of the group
- * @param {string} accountId (path) - The id of the account to be added as a moderator
+ * @param {string} groupId (path) The id of the group
+ * @param {string} accountId (path) The id of the account to be added as a moderator
  * @version 1.3
  **/
 

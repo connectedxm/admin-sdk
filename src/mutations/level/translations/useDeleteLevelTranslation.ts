@@ -14,8 +14,8 @@ import {
  * This function is used to remove translations associated with a level, ensuring that the translation data is no longer available.
  * It is particularly useful in scenarios where outdated or incorrect translations need to be removed from the system.
  * @name DeleteLevelTranslation
- * @param {string} levelId (path) - The ID of the level
- * @param {string} locale (path) - The locale of the translation
+ * @param {string} levelId (path) The ID of the level
+ * @param {string} locale (path) The locale of the translation
  * @version 1.3
  **/
 

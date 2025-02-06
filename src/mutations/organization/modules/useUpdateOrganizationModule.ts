@@ -18,8 +18,8 @@ import {
  * This function allows for updating the details of a specific organization module by its type.
  * It ensures that any related queries are invalidated to maintain data consistency.
  * @name UpdateOrganizationModule
- * @param {OrganizationModuleUpdateInputs} module (body) - The module data to update
- * @param {keyof typeof OrganizationModuleType} moduleType (path) - The type of the organization module
+ * @param {OrganizationModuleUpdateInputs} module (body) The module data to update
+ * @param {keyof typeof OrganizationModuleType} moduleType (path) The type of the organization module
  * @version 1.3
  **/
 

@@ -14,7 +14,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is used to fetch interests for a given activity, allowing applications to display or process these interests.
  * It supports infinite scrolling through pagination parameters.
  * @name GetActivityInterests
- * @param {string} activityId (path) - The id of the activity
+ * @param {string} activityId (path) The id of the activity
  * @version 1.3
  **/
 

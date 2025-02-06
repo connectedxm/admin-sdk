@@ -13,8 +13,8 @@ import { ReportUpdateInputs } from "@src/params";
  * This function allows updating the details of a specific report identified by its ID.
  * It ensures that any related queries are invalidated to maintain data consistency.
  * @name UpdateReport
- * @param {string} reportId (path) - The ID of the report
- * @param {ReportUpdateInputs} report (body) - The report update inputs
+ * @param {string} reportId (path) The ID of the report
+ * @param {ReportUpdateInputs} report (body) The report update inputs
  * @version 1.3
  **/
 

@@ -15,10 +15,10 @@ import {
  * This function allows the removal of a specific tier from an event pass type, given the event ID, pass type ID, and tier ID.
  * It is used in scenarios where an event pass type needs to be modified by removing one of its tiers.
  * @name RemoveEventPassTypeTier
- * @param {boolean} allowed (query) - Indicates if the operation is allowed
- * @param {string} eventId (path) - The ID of the event
- * @param {string} passTypeId (path) - The ID of the pass type
- * @param {string} tierId (path) - The ID of the tier to be removed
+ * @param {boolean} allowed (query) Indicates if the operation is allowed
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} passTypeId (path) The ID of the pass type
+ * @param {string} tierId (path) The ID of the tier to be removed
  * @version 1.3
  **/
 

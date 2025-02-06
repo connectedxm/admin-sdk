@@ -13,8 +13,8 @@ import { ImageUpdateInputs } from "@src/params";
  * This function allows updating an image's details using the provided image ID and update inputs.
  * It ensures that any related queries are invalidated to maintain data consistency.
  * @name UpdateImage
- * @param {string} imageId (path) - The id of the image
- * @param {ImageUpdateInputs} image (body) - The image update inputs
+ * @param {string} imageId (path) The id of the image
+ * @param {ImageUpdateInputs} image (body) The image update inputs
  * @version 1.3
  **/
 export interface UpdateImageParams extends MutationParams {

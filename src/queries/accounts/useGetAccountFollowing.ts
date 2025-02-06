@@ -11,10 +11,10 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 
 /**
  * Endpoint to retrieve a list of accounts that a specified account is following.
- * This function is used to fetch the accounts that are being followed by a particular account, 
+ * This function is used to fetch the accounts that are being followed by a particular account,
  * providing a way to access the following list of a user.
  * @name GetAccountFollowing
- * @param {string} accountId (path) - The id of the account
+ * @param {string} accountId (path) The id of the account
  * @version 1.3
  **/
 

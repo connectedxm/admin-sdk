@@ -16,10 +16,10 @@ import { IntegrationUpdateInputs } from "@src/params";
  * This function allows users to modify the details of a specific integration by providing the integration ID and the updated inputs.
  * It ensures that the integration data is updated in the system and invalidates the relevant queries to maintain data consistency.
  * @name UpdateIntegration
- * @param {string} integrationId (path) - The ID of the integration
- * @param {IntegrationUpdateInputs} integration (body) - The integration update inputs
+ * @param {string} integrationId (path) The ID of the integration
+ * @param {IntegrationUpdateInputs} integration (body) The integration update inputs
  * @version 1.3
-**/
+ **/
 
 export interface UpdateIntegrationParams extends MutationParams {
   integrationId: string;

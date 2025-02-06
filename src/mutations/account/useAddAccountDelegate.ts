@@ -16,8 +16,8 @@ import {
  * This function allows the addition of a delegate to a specified account by providing the account and delegate IDs.
  * It is used in scenarios where account management requires delegation capabilities.
  * @name AddAccountDelegate
- * @param {string} accountId (path) - The id of the account
- * @param {string} delegateId (path) - The id of the delegate
+ * @param {string} accountId (path) The id of the account
+ * @param {string} delegateId (path) The id of the delegate
  * @version 1.3
  **/
 export interface AddAccountDelegateParams extends MutationParams {
@@ -46,7 +46,7 @@ export const AddAccountDelegate = async ({
     });
   }
   return data;
-}
+};
 
 export const useAddAccountDelegate = (
   options: Omit<

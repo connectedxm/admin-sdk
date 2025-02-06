@@ -15,10 +15,10 @@ import {
  * This function allows the removal of a room type associated with a given event, ensuring that
  * any cached queries related to the event's room types are invalidated to maintain data consistency.
  * @name DeleteEventRoomType
- * @param {string} eventId (path) - The id of the event
- * @param {string} roomTypeId (path) - The id of the room type
+ * @param {string} eventId (path) The id of the event
+ * @param {string} roomTypeId (path) The id of the room type
  * @version 1.3
-**/
+ **/
 export interface DeleteEventRoomTypeParams extends MutationParams {
   eventId: string;
   roomTypeId: string;

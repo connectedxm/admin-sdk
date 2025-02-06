@@ -11,11 +11,11 @@ import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * Fetches details for a specific event section by its ID within a given event.
- * This function is designed to retrieve detailed information about a particular section of an event, 
+ * This function is designed to retrieve detailed information about a particular section of an event,
  * which can be used in applications that require insights into event structures.
  * @name GetEventSection
- * @param {string} eventId (path) - The ID of the event
- * @param {string} sectionId (path) - The ID of the section
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} sectionId (path) The ID of the section
  * @version 1.3
  **/
 

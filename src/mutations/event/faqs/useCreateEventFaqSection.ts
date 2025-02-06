@@ -13,12 +13,12 @@ import {
 
 /**
  * Endpoint to create a new FAQ section for a specific event.
- * This function allows the creation of a FAQ section associated with a given event, 
+ * This function allows the creation of a FAQ section associated with a given event,
  * enabling users to add frequently asked questions and their answers to the event's details.
  * It is designed to be used in applications where event management and information dissemination are required.
  * @name CreateEventFaqSection
- * @param {string} eventId - The id of the event
- * @param {EventFaqSectionCreateInputs} faqSection - The inputs for creating the FAQ section
+ * @param {string} eventId (path) The id of the event
+ * @param {EventFaqSectionCreateInputs} faqSection (body) The inputs for creating the FAQ section
  * @version 1.2
  **/
 
@@ -50,7 +50,7 @@ export const CreateEventFaqSection = async ({
     );
   }
   return data;
-}
+};
 
 export const useCreateEventFaqSection = (
   options: Omit<

@@ -12,8 +12,8 @@ import { SET_GROUP_QUERY_DATA, GROUP_SPONSORS_QUERY_KEY } from "@src/queries";
  * This function allows the addition of a sponsor to a group by specifying the group and account IDs.
  * It is used in scenarios where a group needs to be associated with a new sponsor.
  * @name AddGroupSponsor
- * @param {string} groupId (path) - The id of the group
- * @param {string} accountId (path) - The id of the account
+ * @param {string} groupId (path) The id of the group
+ * @param {string} accountId (path) The id of the account
  * @version 1.3
  **/
 export interface AddGroupSponsorParams extends MutationParams {

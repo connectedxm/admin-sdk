@@ -12,7 +12,7 @@ import { SET_ORGANIZATION_DOMAIN_QUERY_DATA } from "@src/queries/organization/us
  * This function allows updating the domain associated with an organization.
  * It is designed to be used in applications where managing organization settings is required.
  * @name UpdateOrganizationDomain
- * @param {string} domain (bodyValue) - The new domain for the organization
+ * @param {string} domain (bodyValue) The new domain for the organization
  * @version 1.3
  **/
 

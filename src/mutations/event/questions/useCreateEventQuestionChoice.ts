@@ -19,11 +19,11 @@ import { EventQuestionChoiceCreateInputs } from "../../../params";
  * This function allows the creation of a choice for a specific question within an event.
  * It is designed to be used in applications where event management and customization are required.
  * @name CreateEventQuestionChoice
- * @param {string} eventId (path) - The id of the event
- * @param {string} questionId (path) - The id of the question
- * @param {EventQuestionChoiceCreateInputs} choice (body) - The choice inputs for the event question
+ * @param {string} eventId (path) The id of the event
+ * @param {string} questionId (path) The id of the question
+ * @param {EventQuestionChoiceCreateInputs} choice (body) The choice inputs for the event question
  * @version 1.3
-**/
+ **/
 export interface CreateEventQuestionChoiceParams extends MutationParams {
   eventId: string;
   questionId: string;
@@ -55,7 +55,7 @@ export const CreateEventQuestionChoice = async ({
     );
   }
   return data;
-}
+};
 
 export const useCreateEventQuestionChoice = (
   options: Omit<

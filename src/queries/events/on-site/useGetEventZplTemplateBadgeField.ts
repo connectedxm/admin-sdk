@@ -14,8 +14,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is used to retrieve detailed information about a particular badge field within a ZPL template for a given event.
  * It is designed for applications that require access to specific badge field data for event management purposes.
  * @name GetEventZplTemplateBadgeField
- * @param {string} fieldId (path) - The id of the badge field
- * @param {string} eventId (path) - The id of the event
+ * @param {string} fieldId (path) The id of the badge field
+ * @param {string} eventId (path) The id of the event
  * @version 1.3
  **/
 

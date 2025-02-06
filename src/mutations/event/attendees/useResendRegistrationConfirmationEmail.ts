@@ -11,8 +11,8 @@ import {
  * This function allows the system to trigger a resend of the confirmation email to an attendee of a specified event.
  * It is useful in scenarios where the initial registration email was not received or needs to be sent again.
  * @name ResendRegistrationConfirmationEmail
- * @param {string} eventId (path) - The id of the event
- * @param {string} accountId (path) - The id of the account
+ * @param {string} eventId (path) The id of the event
+ * @param {string} accountId (path) The id of the account
  * @version 1.3
  **/
 

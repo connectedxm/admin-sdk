@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is designed to retrieve detailed information about a particular FAQ section associated with an event.
  * It is useful for applications that need to display or manage event-related FAQ content.
  * @name GetEventFaqSection
- * @param {string} eventId (path) - The id of the event
- * @param {string} sectionId (path) - The id of the FAQ section
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sectionId (path) The id of the FAQ section
  * @version 1.3
  **/
 

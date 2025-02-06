@@ -14,7 +14,7 @@ import { FILES_QUERY_KEY } from "./useGetFiles";
  * This function allows users to fetch details of a file using the provided file ID.
  * It is designed to be used in applications where detailed information about a file is required.
  * @name GetFile
- * @param {string} fileId (path) - The ID of the file
+ * @param {string} fileId (path) The ID of the file
  * @version 1.3
  **/
 

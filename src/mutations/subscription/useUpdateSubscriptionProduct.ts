@@ -16,8 +16,8 @@ import {
  * This function allows for updating the information of a subscription product by providing its ID and the new details.
  * It is intended for use in applications that manage subscription products and require the ability to modify product details.
  * @name UpdateSubscriptionProduct
- * @param {string} subscriptionProductId (path) - The ID of the subscription product
- * @param {SubscriptionProductUpdateInputs} subscriptionProduct (body) - The new details of the subscription product
+ * @param {string} subscriptionProductId (path) The ID of the subscription product
+ * @param {SubscriptionProductUpdateInputs} subscriptionProduct (body) The new details of the subscription product
  * @version 1.3
  **/
 

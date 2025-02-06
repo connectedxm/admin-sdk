@@ -13,7 +13,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve detailed information about speakers associated with a particular event.
  * It is useful for applications that need to display or process event speaker data.
  * @name GetEventSpeakers
- * @param {string} eventId (path) - The ID of the event
+ * @param {string} eventId (path) The ID of the event
  * @version 1.3
  **/
 

@@ -16,11 +16,11 @@ import {
  * This function allows for updating the translation details of a level, identified by its ID, for a specified locale.
  * It is used in applications where level translations need to be managed and updated.
  * @name UpdateLevelTranslation
- * @param {string} levelId (path) - The ID of the level
- * @param {ISupportedLocale} locale (path) - The locale for which the translation is being updated
- * @param {LevelTranslationUpdateInputs} levelTranslation (body) - The translation details to update
+ * @param {string} levelId (path) The ID of the level
+ * @param {ISupportedLocale} locale (path) The locale for which the translation is being updated
+ * @param {LevelTranslationUpdateInputs} levelTranslation (body) The translation details to update
  * @version 1.3
-**/
+ **/
 
 /**
  * @category Params

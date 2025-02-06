@@ -13,8 +13,8 @@ import { EVENT_ACCESS_USERS_QUERY_KEY } from "@src/queries/events/access/GetEven
  * ensuring that the user can no longer participate or view the event details.
  * It is useful in scenarios where user access needs to be dynamically managed.
  * @name RemoveEventAccessUser
- * @param {string} eventId (path) - The id of the event
- * @param {string} userId (path) - The id of the user
+ * @param {string} eventId (path) The id of the event
+ * @param {string} userId (path) The id of the user
  * @version 1.3
  **/
 

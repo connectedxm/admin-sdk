@@ -16,8 +16,8 @@ import { SupportTicketUpdateInputs } from "@src/params";
  * This function allows for the modification of existing support tickets by providing updated inputs.
  * It is designed to be used in applications where support ticket management is required.
  * @name UpdateSupportTicket
- * @param {string} supportTicketId (path) - The id of the support ticket
- * @param {SupportTicketUpdateInputs} supportTicket (body) - The support ticket update inputs
+ * @param {string} supportTicketId (path) The id of the support ticket
+ * @param {SupportTicketUpdateInputs} supportTicket (body) The support ticket update inputs
  * @version 1.3
  **/
 

@@ -10,11 +10,11 @@ import { EVENT_PASS_TYPE_QUERY_KEY } from "../useGetEventPassType";
 
 /**
  * Retrieves translations for a specific event pass type.
- * This function fetches the translations associated with a given event and pass type, 
+ * This function fetches the translations associated with a given event and pass type,
  * allowing applications to display localized information for event passes.
  * @name GetEventPassTypeTranslations
- * @param {string} eventId (path) - The ID of the event
- * @param {string} passTypeId (path) - The ID of the pass type
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} passTypeId (path) The ID of the pass type
  * @version 1.3
  **/
 

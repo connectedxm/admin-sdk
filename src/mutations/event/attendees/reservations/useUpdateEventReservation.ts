@@ -17,9 +17,9 @@ import {
  * This function allows updating the reservation details for a specific event and reservation ID.
  * It is designed to be used in applications where event reservation modifications are required.
  * @name UpdateEventReservation
- * @param {string} eventId (path) - The id of the event
- * @param {string} reservationId (path) - The id of the reservation
- * @param {EventRoomTypeReservationUpdateInputs} reservation (body) - The reservation details to update
+ * @param {string} eventId (path) The id of the event
+ * @param {string} reservationId (path) The id of the reservation
+ * @param {EventRoomTypeReservationUpdateInputs} reservation (body) The reservation details to update
  * @version 1.3
  **/
 

@@ -611,6 +611,7 @@ export interface EventFaqSectionUpdateInputs {
 export interface EventPageCreateInputs {
   slug?: string | null;
   title: string;
+  active?: boolean;
   subtitle?: string | null;
   html?: string | null;
   sortOrder?: number | string | null;
@@ -625,6 +626,7 @@ export interface EventPageTranslationUpdateInputs {
 export interface EventPageUpdateInputs {
   slug?: string | null;
   title?: string | null;
+  active?: boolean;
   subtitle?: string | null;
   html?: string | null;
   sortOrder?: number | string | null;

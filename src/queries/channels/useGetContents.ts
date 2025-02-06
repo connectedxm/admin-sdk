@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, ContentType } from "@src/interfaces";
 import { ChannelContent } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -14,14 +14,14 @@ import { QueryClient } from "@tanstack/react-query";
  * It is designed to be used in applications where content needs to be dynamically loaded and filtered.
  * @name GetContents
  * @param {boolean} [featured] (query) Optional flag to filter featured contents
- * @param {"video" | "audio" | "article"} [type] (query) Optional type of content
+ * @param {ContentType} [type] (query) Optional type of content
  * @param {boolean} [past] (query) Optional flag to filter past contents
  * @version 1.3
  **/
 
 export const CONTENTS_QUERY_KEY = (
   featured?: boolean,
-  type?: "video" | "audio" | "article",
+  type?: keyof typeof ContentType,
   past?: boolean
 ) => {
   const keys = ["CONTENTS"];
@@ -42,7 +42,7 @@ export const SET_CONTENTS_QUERY_DATA = (
 
 interface GetContentsProps extends InfiniteQueryParams {
   featured?: boolean;
-  type?: "video" | "audio" | "article";
+  type?: keyof typeof ContentType;
   past?: boolean;
 }
 
@@ -73,7 +73,7 @@ export const GetContents = async ({
 
 export const useGetContents = (
   featured?: boolean,
-  type?: "video" | "audio" | "article",
+  type?: keyof typeof ContentType,
   past?: boolean,
   params: Omit<
     InfiniteQueryParams,

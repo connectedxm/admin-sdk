@@ -14,11 +14,11 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function retrieves detailed information about an authentication session using its unique identifier.
  * It is intended for use in applications that require access to authentication session details.
  * @name GetAuthSession
- * @param {string | number} authSessionId (path) The ID of the authentication session
+ * @param {string} authSessionId (path) The ID of the authentication session
  * @version 1.3
  **/
 
-export const AUTH_SESSION_QUERY_KEY = (authSessionId: string | number) => [
+export const AUTH_SESSION_QUERY_KEY = (authSessionId: string) => [
   ...AUTH_SESSIONS_QUERY_KEY(),
   authSessionId,
 ];
@@ -32,7 +32,7 @@ export const SET_AUTH_SESSION_QUERY_DATA = (
 };
 
 interface GetAuthSessionParams extends SingleQueryParams {
-  authSessionId: string | number;
+  authSessionId: string;
 }
 
 export const GetAuthSession = async ({
@@ -46,7 +46,7 @@ export const GetAuthSession = async ({
 };
 
 export const useGetAuthSession = (
-  authSessionId: string | number = "",
+  authSessionId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetAuthSession>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetAuthSession>>(

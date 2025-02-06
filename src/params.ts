@@ -19,7 +19,6 @@ import {
   BaseSubscriptionProductPrice,
   ImageType,
   FileSource,
-  ModulePermissions,
   AuthLayout,
   DefaultAuthAction,
   BaseSupportTicketNote,
@@ -897,26 +896,33 @@ export interface GroupMembershipUpdateInputs {
   chatPushNotification?: boolean;
 }
 
+export interface MembershipUpdatePermission {
+  read: boolean;
+  create: boolean;
+  update: boolean;
+  del: boolean;
+}
+
 export interface OrganizationMembershipUpdateInputs {
-  org: Omit<ModulePermissions, "superEnabled" | "enabled">;
-  users: Omit<ModulePermissions, "superEnabled" | "enabled">;
-  reports: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  org: MembershipUpdatePermission;
+  users: MembershipUpdatePermission;
+  reports: MembershipUpdatePermission;
   // MODULES
-  activities: Omit<ModulePermissions, "superEnabled" | "enabled">;
-  events: Omit<ModulePermissions, "superEnabled" | "enabled">;
-  groups: Omit<ModulePermissions, "superEnabled" | "enabled">;
-  accounts: Omit<ModulePermissions, "superEnabled" | "enabled">;
-  channels: Omit<ModulePermissions, "superEnabled" | "enabled">;
-  threads: Omit<ModulePermissions, "superEnabled" | "enabled">;
-  storage: Omit<ModulePermissions, "superEnabled" | "enabled">;
-  support: Omit<ModulePermissions, "superEnabled" | "enabled">;
-  sponsors: Omit<ModulePermissions, "superEnabled" | "enabled">;
-  benefits: Omit<ModulePermissions, "superEnabled" | "enabled">;
-  interests: Omit<ModulePermissions, "superEnabled" | "enabled">;
-  advertisements: Omit<ModulePermissions, "superEnabled" | "enabled">;
-  subscriptions: Omit<ModulePermissions, "superEnabled" | "enabled">;
-  invoices: Omit<ModulePermissions, "superEnabled" | "enabled">;
-  announcements: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  activities: MembershipUpdatePermission;
+  events: MembershipUpdatePermission;
+  groups: MembershipUpdatePermission;
+  accounts: MembershipUpdatePermission;
+  channels: MembershipUpdatePermission;
+  threads: MembershipUpdatePermission;
+  storage: MembershipUpdatePermission;
+  support: MembershipUpdatePermission;
+  sponsors: MembershipUpdatePermission;
+  benefits: MembershipUpdatePermission;
+  interests: MembershipUpdatePermission;
+  advertisements: MembershipUpdatePermission;
+  subscriptions: MembershipUpdatePermission;
+  invoices: MembershipUpdatePermission;
+  announcements: MembershipUpdatePermission;
 }
 
 export interface GroupTranslationUpdateInputs {

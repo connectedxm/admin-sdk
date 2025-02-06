@@ -1,4 +1,4 @@
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, TierType } from "@src/interfaces";
 import { Tier } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
@@ -16,13 +16,13 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * It is designed to be used in applications where account tier details are required.
  * @name GetAccountTiers
  * @param {string} accountId (path) The id of the account
- * @param {string} [type] (query) Optional account type ("external" | "internal")
+ * @param {TierType} [type] (query) Optional tier type
  * @version 1.3
  **/
 
 export const ACCOUNT_TIERS_QUERY_KEY = (
   accountId: string,
-  type?: "external" | "internal"
+  type?: keyof typeof TierType
 ) => {
   const keys = [...ACCOUNT_QUERY_KEY(accountId), "TIERS"];
   if (type) keys.push(type);
@@ -39,7 +39,7 @@ export const SET_ACCOUNT_TIERS_QUERY_DATA = (
 
 interface GetAccountTiersProps extends InfiniteQueryParams {
   accountId: string;
-  type?: "external" | "internal";
+  type?: keyof typeof TierType;
 }
 
 export const GetAccountTiers = async ({
@@ -66,7 +66,7 @@ export const GetAccountTiers = async ({
 
 export const useGetAccountTiers = (
   accountId: string = "",
-  type?: "external" | "internal",
+  type?: keyof typeof TierType,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"

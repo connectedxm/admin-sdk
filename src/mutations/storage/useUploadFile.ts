@@ -4,7 +4,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import { ConnectedXMResponse, File } from "@src/interfaces";
+import { ConnectedXMResponse, File, FileSource } from "@src/interfaces";
 
 /**
  * Endpoint to upload a file to storage.
@@ -12,13 +12,13 @@ import { ConnectedXMResponse, File } from "@src/interfaces";
  * It is designed to be used in applications where file storage is required.
  * @name UploadFile
  * @param {string} dataUri (bodyValue) The data URI of the file
- * @param {"admin" | "response"} source (bodyValue) The source of the file
+ * @param {FileSource} source (bodyValue) The source of the file
  * @param {string} [name] (bodyValue) Optional name of the file
  * @version 1.3
  **/
 export interface UploadFileParams extends MutationParams {
   dataUri: string;
-  source: "admin" | "response";
+  source: keyof typeof FileSource;
   name?: string;
 }
 

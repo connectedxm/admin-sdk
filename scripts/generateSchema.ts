@@ -12,6 +12,7 @@ function parseSchemas(sourceFile: ts.SourceFile): Record<string, any> {
   const schemas: Record<string, any> = {};
 
   function visit(node: ts.Node) {
+    // Handle exported interfaces.
     if (ts.isInterfaceDeclaration(node)) {
       if (
         !node.modifiers ||
@@ -34,12 +35,15 @@ function parseSchemas(sourceFile: ts.SourceFile): Record<string, any> {
         }
       });
 
-      schemas[name] = {
-        type: "object",
-        properties,
-      };
+      if (name !== "ConnectedXMResponse") {
+        schemas[name] = {
+          type: "object",
+          properties,
+        };
+      }
     }
 
+    // Handle exported enums.
     if (ts.isEnumDeclaration(node)) {
       if (
         !node.modifiers ||
@@ -73,6 +77,19 @@ function parseSchemas(sourceFile: ts.SourceFile): Record<string, any> {
       };
     }
 
+    // Handle exported type aliases.
+    if (ts.isTypeAliasDeclaration(node)) {
+      if (
+        !node.modifiers ||
+        !node.modifiers.some((m) => m.kind === ts.SyntaxKind.ExportKeyword)
+      ) {
+        return;
+      }
+      const name = node.name.text;
+      // Use parseType to convert the alias to a schema fragment.
+      schemas[name] = parseType(node.type, sourceFile);
+    }
+
     ts.forEachChild(node, visit);
   }
 
@@ -86,44 +103,54 @@ function parseSchemas(sourceFile: ts.SourceFile): Record<string, any> {
 function parseType(typeNode: ts.TypeNode, sourceFile: ts.SourceFile): any {
   const rawText = typeNode.getText(sourceFile).trim();
 
-  // Check for the "keyof typeof" pattern in the raw text.
-  if (rawText.startsWith("keyof typeof ")) {
-    const enumName = rawText.replace("keyof typeof ", "").trim();
-    return { $ref: `#/components/schemas/${enumName}` };
+  // Handle the special case where a union is embedded in a single type node,
+  // e.g. "keyof typeof AccountType | null"
+  if (rawText.includes("|") && rawText.startsWith("keyof typeof ")) {
+    const unionParts = rawText.split("|").map((part) => part.trim());
+    const isNullable = unionParts.includes("null");
+    const nonNullParts = unionParts.filter((part) => part !== "null");
+    if (nonNullParts.length === 1 && isNullable) {
+      // Remove the "keyof typeof " prefix from the non-null part
+      const enumName = nonNullParts[0]!.replace("keyof typeof ", "").trim();
+      return {
+        allOf: [{ $ref: `#/components/schemas/${enumName}` }],
+        nullable: true,
+      };
+    }
   }
 
-  // Existing handling for TypeReferenceNode
-  if (ts.isTypeReferenceNode(typeNode)) {
-    const typeName = typeNode.typeName.getText(sourceFile);
-    return { $ref: `#/components/schemas/${typeName}` };
-  }
-
+  // Standard handling for union types.
   if (ts.isUnionTypeNode(typeNode)) {
     const types = typeNode.types.map((t) => t.getText(sourceFile).trim());
     const isNullable = types.includes("null");
     const nonNullTypes = typeNode.types.filter(
       (t) => t.getText(sourceFile).trim() !== "null"
     );
-
-    // If there's exactly one non-null type and null is present, then this is a nullable type.
     if (nonNullTypes.length === 1 && isNullable && nonNullTypes[0]) {
       const schema = parseType(nonNullTypes[0], sourceFile);
-      // If the schema is a reference, we need to wrap it in allOf since $ref cannot have sibling properties.
       if (schema.$ref) {
         return {
           allOf: [schema],
           nullable: true,
         };
       }
-      // Otherwise, simply add the nullable property.
       return {
         ...schema,
         nullable: true,
       };
     }
-
-    // If not a simple nullable type, use oneOf for the union.
     return { oneOf: typeNode.types.map((t) => parseType(t, sourceFile)) };
+  }
+
+  // Handle "keyof typeof" for non-union types.
+  if (rawText.startsWith("keyof typeof ")) {
+    const enumName = rawText.replace("keyof typeof ", "").trim();
+    return { $ref: `#/components/schemas/${enumName}` };
+  }
+
+  if (ts.isTypeReferenceNode(typeNode)) {
+    const typeName = typeNode.typeName.getText(sourceFile);
+    return { $ref: `#/components/schemas/${typeName}` };
   }
 
   if (ts.isArrayTypeNode(typeNode)) {
@@ -139,7 +166,6 @@ function parseType(typeNode: ts.TypeNode, sourceFile: ts.SourceFile): any {
     };
   }
 
-  // Fallback for unknown types.
   const typeMap: Record<string, string> = {
     string: "string",
     number: "number",
@@ -152,6 +178,10 @@ function parseType(typeNode: ts.TypeNode, sourceFile: ts.SourceFile): any {
 }
 
 const GetTypeSchema = (responseType: string): any => {
+  if (responseType.startsWith("keyof typeof")) {
+    responseType = responseType.replace("keyof typeof ", "");
+  }
+
   if (responseType === "null") {
     return { nullable: true };
   }
@@ -209,9 +239,10 @@ const paramsSchemas = parseSchemas(paramsFile);
 const openApiSpec: any = {
   openapi: "3.0.0",
   info: {
-    title: "Admin SDK API",
+    title: "Connected Admin API",
     version: "1.0.0",
-    description: "Auto-generated OpenAPI spec from TypeScript queries",
+    description:
+      "The Admin SDK API section provides an auto-generated OpenAPI spec based on TypeScript queries. Users can utilize this section to access detailed information about the Admin SDK API, enabling them to effectively integrate and utilize the SDK within their projects",
   },
   servers: [
     {
@@ -321,7 +352,9 @@ function extractApiDetails(filePath: string) {
     }
   });
 
-  if (minified.includes("extendsInfiniteQueryParams")) {
+  const isInfiniteQuery = minified.includes("extendsInfiniteQueryParams");
+
+  if (isInfiniteQuery) {
     params.push({
       in: "query",
       name: "page",
@@ -362,6 +395,32 @@ function extractApiDetails(filePath: string) {
   const responseType = responseTypeMatch[1];
   if (!responseType) throw new Error(`Response type not found in ${filePath}`);
 
+  const responses: any = {
+    200: {
+      description: `Successful response`,
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              status: { type: "string", enum: ["ok"] },
+              message: { type: "string", example: "Success message." },
+              data: GetTypeSchema(responseType),
+            },
+            required: ["status", "message", "data"],
+          },
+        },
+      },
+    },
+  };
+
+  if (isInfiniteQuery) {
+    responses[200].content["application/json"].schema.properties.count = {
+      type: "number",
+      example: 100,
+    };
+  }
+
   openApiSpec.paths[apiPath || filePath] = {
     ...openApiSpec.paths[apiPath || filePath],
     [method]: {
@@ -378,25 +437,7 @@ function extractApiDetails(filePath: string) {
             },
           }
         : undefined,
-      responses: {
-        200: {
-          description: `Successful response`,
-          content: {
-            "application/json": {
-              schema: {
-                type: "object",
-                properties: {
-                  status: { type: "string", enum: ["ok", "error"] },
-                  message: { type: "string" },
-                  count: { type: "number", nullable: true },
-                  data: GetTypeSchema(responseType),
-                },
-                required: ["status", "message", "data"],
-              },
-            },
-          },
-        },
-      },
+      responses,
     },
   };
 }

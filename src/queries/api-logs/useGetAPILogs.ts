@@ -4,7 +4,7 @@ import {
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
-import { ConnectedXMResponse, BaseAPILog } from "@src/interfaces";
+import { ConnectedXMResponse, BaseAPILog, ApiLogStatus } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
@@ -15,7 +15,7 @@ import { QueryClient } from "@tanstack/react-query";
  * @param {string} startDate (query) The start date for filtering logs
  * @param {string} endDate (query) The end date for filtering logs
  * @param {string} [method] (query) Optional HTTP method for filtering logs
- * @param {"success" | "failed"} [status] (query) Optional status for filtering logs
+ * @param {ApiLogStatus} [status] (query) Optional status for filtering logs
  * @param {string} [source] (query) Optional source for filtering logs
  * @param {string} [userId] (query) Optional user ID for filtering logs
  * @param {string} [accountId] (query) Optional account ID for filtering logs
@@ -26,7 +26,7 @@ export const API_LOGS_QUERY_KEY = (
   startDate: string = "",
   endDate: string = "",
   method?: string,
-  status?: "success" | "failed",
+  status?: keyof typeof ApiLogStatus,
   source?: string,
   userId?: string,
   accountId?: string
@@ -52,7 +52,7 @@ interface GetAPILogsParams extends InfiniteQueryParams {
   startDate: string;
   endDate: string;
   method?: string;
-  status?: "success" | "failed";
+  status?: keyof typeof ApiLogStatus;
   source?: string;
   userId?: string;
   accountId?: string;
@@ -96,7 +96,7 @@ export const useGetAPILogs = (
   startDate: string,
   endDate: string,
   method?: string,
-  status?: "success" | "failed",
+  status?: keyof typeof ApiLogStatus,
   source?: string,
   userId?: string,
   accountId?: string,

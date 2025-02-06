@@ -13,7 +13,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function allows users to fetch a paginated list of accounts, which can be filtered by account type if specified.
  * It is designed to be used in applications where account management and retrieval are necessary.
  * @name GetAccounts
- * @param {string} [accountType] (query) Optional account type ("account" | "team")
+ * @param {string} [accountType] (query) Optional account type
  * @version 1.3
  **/
 

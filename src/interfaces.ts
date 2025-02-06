@@ -334,6 +334,11 @@ export interface AuthSession {
   createdAt: string;
 }
 
+export enum TierType {
+  internal = "internal",
+  external = "external",
+}
+
 export interface BaseTier {
   id: string;
   slug: string;
@@ -1032,7 +1037,7 @@ export interface FaqTranslation {
   updatedAt: string;
 }
 
-enum SupportedLocale {
+export enum SupportedLocale {
   af = "af",
   sq = "sq",
   am = "am",
@@ -2967,4 +2972,15 @@ export interface ContentPublishSchedule {
   email: boolean;
   push: boolean;
   visible: boolean;
+}
+
+export enum ApiLogStatus {
+  success = "success",
+  error = "error",
+}
+
+export enum ContentType {
+  video = "video",
+  audio = "audio",
+  article = "article",
 }

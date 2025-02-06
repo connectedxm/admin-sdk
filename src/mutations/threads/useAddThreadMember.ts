@@ -4,7 +4,11 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import { ConnectedXMResponse, ThreadMember } from "@src/interfaces";
+import {
+  ConnectedXMResponse,
+  ThreadMember,
+  ThreadMemberRole,
+} from "@src/interfaces";
 import {
   THREAD_MEMBERS_QUERY_KEY,
   THREAD_MODERATORS_QUERY_KEY,
@@ -17,14 +21,14 @@ import {
  * @name AddThreadMember
  * @param {string} threadId (path) The id of the thread
  * @param {string} accountId (path) The id of the account
- * @param {("moderator" | "member")} role (bodyValue) The role to assign
+ * @param {ThreadMemberRole} role (bodyValue) The role to assign
  * @version 1.3
  **/
 
 export interface AddThreadMemberParams extends MutationParams {
   threadId: string;
   accountId: string;
-  role: "moderator" | "member";
+  role: keyof typeof ThreadMemberRole;
 }
 
 export const AddThreadMember = async ({

@@ -889,6 +889,7 @@ export interface BaseEventPage {
   id: string;
   slug: string;
   title: string;
+  active: boolean;
   subtitle: string | null;
   sortOrder: number;
 }

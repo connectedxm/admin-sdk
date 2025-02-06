@@ -13,7 +13,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches tax integration data, which can be used to manage and display tax-related information within an organization.
  * It supports pagination and sorting to efficiently handle large datasets.
  * @name GetTaxIntegrations
- * @version 1.2
+ * @version 1.3
  **/
 
 export const TAX_INTEGRATIONS_QUERY_KEY = () => ["TAX_INTEGRATIONS"];

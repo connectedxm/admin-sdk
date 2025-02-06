@@ -14,8 +14,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function fetches group membership details for a given account, allowing applications to display or manage account groups.
  * It is designed to be used in scenarios where group information for an account is needed.
  * @name GetAccountGroups
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 
 export const ACCOUNT_GROUPS_QUERY_KEY = (accountId: string) => [

@@ -12,7 +12,7 @@ import { SET_ORGANIZATION_DOMAIN_QUERY_DATA } from "@src/queries/organization/us
  * This function allows for the removal of a domain associated with an organization.
  * It is intended for use in administrative contexts where domain management is required.
  * @name DeleteOrganizationDomain
- * @version 1.2
+ * @version 1.3
  **/
 
 export interface DeleteOrganizationDomainParams extends MutationParams {}

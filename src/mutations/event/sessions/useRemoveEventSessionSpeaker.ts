@@ -16,10 +16,10 @@ import {
  * ensuring that the session's speaker list is updated accordingly.
  * It is intended for use in administrative contexts where event session management is required.
  * @name RemoveEventSessionSpeaker
- * @param {string} eventId - The id of the event
- * @param {string} sessionId - The id of the session
- * @param {string} speakerId - The id of the speaker
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} sessionId (path) - The id of the session
+ * @param {string} speakerId (path) - The id of the speaker
+ * @version 1.3
  **/
 
 export interface RemoveEventSessionSpeakerParams extends MutationParams {

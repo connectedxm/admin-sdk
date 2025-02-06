@@ -15,11 +15,11 @@ import {
  * This function allows the addition of a specific tier to an event pass type, specifying whether the tier is allowed.
  * It is used in scenarios where event organizers need to manage tiers within their event pass types.
  * @name AddEventPassTypeTier
- * @param {boolean} allowed - Indicates if the tier is allowed
- * @param {string} eventId - The id of the event
- * @param {string} passTypeId - The id of the pass type
- * @param {string} tierId - The id of the tier
- * @version 1.2
+ * @param {boolean} allowed (bodyValue) - Indicates if the tier is allowed
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} passTypeId (path) - The id of the pass type
+ * @param {string} tierId (path) - The id of the tier
+ * @version 1.3
 **/
 export interface AddEventPassTypeTierParams extends MutationParams {
   allowed: boolean;

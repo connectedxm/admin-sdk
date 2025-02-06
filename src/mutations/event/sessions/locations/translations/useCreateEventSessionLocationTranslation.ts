@@ -13,15 +13,15 @@ import { EVENT_SESSION_LOCATION_TRANSLATIONS_QUERY_KEY } from "@src/queries/even
 
 /**
  * Creates a new translation for a specific event session location.
- * This function allows the creation of a translation for a given event session location, 
- * supporting optional auto-translation. It is designed to be used in applications 
+ * This function allows the creation of a translation for a given event session location,
+ * supporting optional auto-translation. It is designed to be used in applications
  * that manage multilingual event data.
  * @name CreateEventSessionLocationTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} locationId - The ID of the location
- * @param {string} locale - The locale for the translation
- * @param {[boolean]} autoTranslate - Whether to automatically translate the content
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} locationId (path) - The ID of the location
+ * @param {string} locale (bodyValue) - The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) - Whether to automatically translate the content
+ * @version 1.3
  */
 export interface CreateEventSessionLocationTranslationParams
   extends MutationParams {

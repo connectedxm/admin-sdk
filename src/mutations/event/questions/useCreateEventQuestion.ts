@@ -18,9 +18,9 @@ import {
  * This function allows the creation of a new question for a specific event, utilizing the provided event ID and question details.
  * It is designed to be used in applications where event management and question registration are required.
  * @name CreateEventQuestion
- * @param {string} eventId - The id of the event
- * @param {EventQuestionCreateInputs} question - The question details
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {EventQuestionCreateInputs} question (body) - The question details
+ * @version 1.3
 **/
 export interface CreateEventQuestionParams extends MutationParams {
   eventId: string;

@@ -13,9 +13,9 @@ import { AccountAddressCreateInputs } from "@src/params";
  * This function allows the creation of a new address for a specified account and ensures that any related cached queries are invalidated to maintain data consistency.
  * It is designed for use in applications where account address management is required.
  * @name CreateAccountAddress
- * @param {string} accountId - The id of the account
- * @param {AccountAddressCreateInputs} address - The address details to be created
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @param {AccountAddressCreateInputs} address (body) - The address details to be created
+ * @version 1.3
 **/
 export interface CreateAccountAddressParams extends MutationParams {
   accountId: string;

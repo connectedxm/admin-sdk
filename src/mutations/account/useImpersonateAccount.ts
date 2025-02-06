@@ -11,9 +11,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function allows an admin to act on behalf of a user by impersonating their account, 
  * which can be useful for troubleshooting or managing user-specific settings.
  * @name ImpersonateAccount
- * @param {string} accountId - The ID of the account to impersonate
- * @param {string} username - The username associated with the account
- * @version 1.2
+ * @param {string} accountId (path) - The ID of the account to impersonate
+ * @param {string} username (path) - The username associated with the account
+ * @version 1.3
  **/
 
 export interface ImpersonateAccountParams extends MutationParams {

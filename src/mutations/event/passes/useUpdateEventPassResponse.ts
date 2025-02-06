@@ -18,11 +18,11 @@ import {
  * This function allows updating the response to a registration question for a given event pass.
  * It is used to modify the response data associated with a specific question in an event's pass.
  * @name UpdateEventPassResponse
- * @param {string} eventId - The id of the event
- * @param {string} passId - The id of the pass
- * @param {string} questionId - The id of the question
- * @param {RegistrationQuestionResponse} response - The response to the registration question
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} passId (path) - The id of the pass
+ * @param {string} questionId (path) - The id of the question
+ * @param {RegistrationQuestionResponse} response (body) - The response to the registration question
+ * @version 1.3
  **/
 
 export interface UpdateEventPassResponseParams extends MutationParams {

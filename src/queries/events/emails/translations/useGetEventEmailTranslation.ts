@@ -13,10 +13,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is used to fetch the translated content of an event email based on the event ID, email type, and locale.
  * It is useful in applications that need to display event emails in different languages.
  * @name GetEventEmailTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} type - The type of the event email
- * @param {string} locale - The locale for the translation
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} type (path) - The type of the event email
+ * @param {string} locale (path) - The locale for the translation
+ * @version 1.3
  */
 
 export const EVENT_EMAIL_TRANSLATION_QUERY_KEY = (

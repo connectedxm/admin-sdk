@@ -12,9 +12,9 @@ import { THREAD_MEMBERS_QUERY_KEY } from "@src/queries";
  * This function facilitates the removal of a user from a thread by specifying the thread and account IDs.
  * It is intended for use in applications where thread membership management is required.
  * @name RemoveThreadMember
- * @param {string} threadId - The id of the thread
- * @param {string} accountId - The id of the account to be removed
- * @version 1.2
+ * @param {string} threadId (path) - The id of the thread
+ * @param {string} accountId (path) - The id of the account to be removed
+ * @version 1.3
  **/
 
 export interface RemoveThreadMemberParams extends MutationParams {

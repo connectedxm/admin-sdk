@@ -13,9 +13,9 @@ import { SeriesUpdateInputs } from "@src/params";
  * This function allows for updating the details of an existing series by providing the series ID and the new series data.
  * It is designed to be used in applications where series data needs to be modified.
  * @name UpdateSeries
- * @param {string} seriesId - The id of the series
- * @param {SeriesUpdateInputs} series - The series update inputs
- * @version 1.2
+ * @param {string} seriesId (path) - The id of the series
+ * @param {SeriesUpdateInputs} series (body) - The series update inputs
+ * @version 1.3
  **/
 
 export interface UpdateSeriesParams extends MutationParams {

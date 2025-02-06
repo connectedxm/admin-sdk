@@ -12,9 +12,9 @@ import { SUBSCRIPTION_PRODUCT_TIERS_QUERY_KEY } from "@src/queries";
  * This function allows the addition of a specific tier to a given subscription product by their respective IDs.
  * It is used in scenarios where subscription products need to be enhanced with additional tiers.
  * @name AddSubscriptionProductTier
- * @param {string} subscriptionProductId - The id of the subscription product
- * @param {string} tierId - The id of the tier
- * @version 1.2
+ * @param {string} subscriptionProductId (path) - The id of the subscription product
+ * @param {string} tierId (path) - The id of the tier
+ * @version 1.3
  **/
 
 export interface AddSubscriptionProductTierParams extends MutationParams {

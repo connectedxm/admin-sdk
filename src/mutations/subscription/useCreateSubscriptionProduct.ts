@@ -16,8 +16,8 @@ import { SubscriptionProductCreateInputs } from "@src/params";
  * This function allows the creation of a subscription product by providing the necessary details.
  * It is designed to be used in applications where subscription products need to be managed.
  * @name CreateSubscriptionProduct
- * @param {SubscriptionProductCreateInputs} subscriptionProduct - The subscription product details to be created
- * @version 1.2
+ * @param {SubscriptionProductCreateInputs} subscriptionProduct (body) - The subscription product details to be created
+ * @version 1.3
  **/
 export interface CreateSubscriptionProductParams extends MutationParams {
   subscriptionProduct: SubscriptionProductCreateInputs;

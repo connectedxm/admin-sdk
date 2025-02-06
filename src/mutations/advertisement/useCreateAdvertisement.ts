@@ -16,8 +16,8 @@ import { AdvertisementCreateInputs } from "@src/params";
  * This function allows the creation of a new advertisement by sending the advertisement data to the server.
  * It is designed to be used in applications where advertisements need to be dynamically created and managed.
  * @name CreateAdvertisement
- * @param {AdvertisementCreateInputs} advertisement - The advertisement data to be created
- * @version 1.2
+ * @param {AdvertisementCreateInputs} advertisement (body) - The advertisement data to be created
+ * @version 1.3
  **/
 export interface CreateAdvertisementParams extends MutationParams {
   advertisement: AdvertisementCreateInputs;

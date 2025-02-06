@@ -14,8 +14,8 @@ import { ADVERTISEMENT_QUERY_KEY } from "./useGetAdvertisement";
  * specifically the clicks it has received. It is useful for analyzing advertisement performance 
  * and user engagement.
  * @name GetAdvertisementClicks
- * @param {string} advertisementId - The id of the advertisement
- * @version 1.2
+ * @param {string} advertisementId (path) - The id of the advertisement
+ * @version 1.3
  **/
 
 export const ADVERTISEMENT_CLICKS_QUERY_KEY = (advertisementId: string) => [

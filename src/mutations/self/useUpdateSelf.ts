@@ -13,8 +13,8 @@ import { UserUpdateInputs } from "@src/params";
  * This function allows users to update their own profile information by providing the necessary user data.
  * It ensures that the updated information is reflected in the application by setting the query data accordingly.
  * @name UpdateSelf
- * @param {UserUpdateInputs} user - The user data to update
- * @version 1.2
+ * @param {UserUpdateInputs} user (body) - The user data to update
+ * @version 1.3
  **/
 
 export interface UpdateSelfParams extends MutationParams {

@@ -14,10 +14,10 @@ import {
  * This function is used to remove a translation associated with a particular event track, 
  * and it ensures that the relevant cache is invalidated to maintain data consistency.
  * @name DeleteEventTrackTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} trackId - The ID of the track
- * @param {string} locale - The locale of the translation
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} trackId (path) - The ID of the track
+ * @param {string} locale (path) - The locale of the translation
+ * @version 1.3
  **/
 
 /**

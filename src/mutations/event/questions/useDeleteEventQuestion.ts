@@ -16,11 +16,10 @@ import {
  * This function allows the removal of a question from an event, with an optional section parameter.
  * It is designed to be used in applications where event management and question handling are required.
  * @name DeleteEventQuestion
- * @param {string} eventId - The id of the event
- * @param {string} questionId - The id of the question
- * @param {string} [sectionId] - The id of the section (optional)
- * @version 1.2
-**/
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} questionId (path) - The id of the question
+ * @version 1.3
+ **/
 export interface DeleteEventQuestionParams extends MutationParams {
   eventId: string;
   questionId: string;
@@ -53,7 +52,7 @@ export const DeleteEventQuestion = async ({
     }
   }
   return data;
-}
+};
 
 export const useDeleteEventQuestion = (
   options: Omit<

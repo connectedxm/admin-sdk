@@ -13,8 +13,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function supports optional pagination and filtering to retrieve event add-ons efficiently.
  * It is designed for applications that need to display or manage additional features or services linked to an event.
  * @name GetEventAddOns
- * @param {string} eventId - The id of the event
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @version 1.3
  **/
 
 export const EVENT_ADD_ONS_QUERY_KEY = (eventId: string) => [

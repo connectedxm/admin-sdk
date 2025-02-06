@@ -12,8 +12,8 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
  * This function is used to retrieve a list of room types associated with a given event, 
  * which can be useful for applications that need to display or manage event room configurations.
  * @name GetEventRoomTypes
- * @param {string} eventId - The ID of the event
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @version 1.3
  **/
 
 export const EVENT_ROOM_TYPES_QUERY_KEY = (eventId: string) => [

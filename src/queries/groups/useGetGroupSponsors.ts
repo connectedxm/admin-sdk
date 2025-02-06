@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function allows users to fetch sponsor details for a given group by providing the group ID.
  * It is designed to be used in applications where information about group sponsors is required.
  * @name GetGroupSponsors
- * @param {string} groupId - The id of the group
- * @version 1.2
+ * @param {string} groupId (path) - The id of the group
+ * @version 1.3
  **/
 
 export const GROUP_SPONSORS_QUERY_KEY = (groupId: string) => [

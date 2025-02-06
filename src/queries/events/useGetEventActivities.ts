@@ -14,8 +14,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve paginated activity data for a given event, 
  * allowing users to view detailed activity information related to that event.
  * @name GetEventActivities
- * @param {string} eventId - The id of the event
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @version 1.3
  **/
 
 export const EVENT_ACTIVITIES_QUERY_KEY = (eventId: string) => [

@@ -12,7 +12,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches authentication session data, which can be used to monitor and manage user sessions.
  * It is designed for applications that require detailed tracking of user authentication activities.
  * @name GetAuthSessions
- * @version 1.2
+ * @version 1.3
  **/
 
 export const AUTH_SESSIONS_QUERY_KEY = () => {

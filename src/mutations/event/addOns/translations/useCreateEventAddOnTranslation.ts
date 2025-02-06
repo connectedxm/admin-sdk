@@ -15,11 +15,11 @@ import {
  * This function allows the creation of translations for event add-ons by specifying the event ID, add-on ID, and locale.
  * It supports optional auto-translation and updates the query cache upon successful creation.
  * @name PostEventAddOnTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} addOnId - The ID of the add-on
- * @param {string} locale - The locale for the translation
- * @param {[boolean]} autoTranslate - Whether to auto-translate the content
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} addOnId (path) - The ID of the add-on
+ * @param {string} locale (bodyValue) - The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) - Whether to auto-translate the content
+ * @version 1.3
  **/
 
 /**

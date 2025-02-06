@@ -13,8 +13,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function fetches data about co-hosts associated with a particular event, allowing users to view and manage event co-hosts.
  * It is designed for applications that require detailed information about event co-hosts.
  * @name GetEventCoHosts
- * @param {string} eventId - The id of the event
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @version 1.3
  **/
 
 export const EVENT_CO_HOSTS_QUERY_KEY = (eventId: string) => [

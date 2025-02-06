@@ -12,8 +12,8 @@ import { ACTIVITIES_QUERY_KEY, ACTIVITY_QUERY_KEY } from "@src/queries";
  * This function allows for the removal of an activity from the system, ensuring that all related queries are invalidated or removed.
  * It is designed to be used in applications where activity management is required, providing a way to maintain up-to-date data.
  * @name DeleteActivity
- * @param {string} activityId - The ID of the activity to be deleted
- * @version 1.2
+ * @param {string} activityId (path) - The ID of the activity to be deleted
+ * @version 1.3
  **/
 export interface DeleteActivityParams extends MutationParams {
   activityId: string;

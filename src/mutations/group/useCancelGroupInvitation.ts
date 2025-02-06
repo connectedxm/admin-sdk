@@ -12,9 +12,9 @@ import {
  * This function allows the cancellation of a specific invitation to a group by providing the group ID and invitation ID.
  * It is useful in scenarios where an invitation needs to be revoked or invalidated.
  * @name CancelGroupInvitation
- * @param {string} groupId - The id of the group
- * @param {string} invitationId - The id of the invitation
- * @version 1.2
+ * @param {string} groupId (path) - The id of the group
+ * @param {string} invitationId (path) - The id of the invitation
+ * @version 1.3
  **/
 
 export interface CancelGroupInvitationParams extends MutationParams {

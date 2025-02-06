@@ -15,8 +15,8 @@ import { CHANNEL_QUERY_KEY } from "./useGetChannel";
  * allowing users to view and manage channel-specific activities.
  * It is designed for applications that require detailed activity logs for channels.
  * @name GetChannelActivities
- * @param {string} channelId - The id of the channel
- * @version 1.2
+ * @param {string} channelId (path) - The id of the channel
+ * @version 1.3
  **/
 
 export const CHANNEL_ACTIVITIES_QUERY_KEY = (channelId: string) => [

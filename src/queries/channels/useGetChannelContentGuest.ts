@@ -14,11 +14,10 @@ import { CHANNEL_CONTENT_GUESTS_QUERY_KEY } from "./useGetChannelContentGuests";
  * This function allows users to fetch detailed information about a guest associated with a particular content in a channel.
  * It is designed for applications that require access to guest details for content management or display purposes.
  * @name GetChannelContentGuest
- * @param {string} channelId - The id of the channel
- * @param {string} contentId - The id of the content
- * @param {string} guestId - The id of the guest
- * @param {string} [status] - Optional status of the guest
- * @version 1.2
+ * @param {string} channelId (path) - The id of the channel
+ * @param {string} contentId (path) - The id of the content
+ * @param {string} guestId (path) - The id of the guest
+ * @version 1.3
  **/
 
 export const CHANNEL_CONTENT_GUEST_QUERY_KEY = (
@@ -39,7 +38,6 @@ interface GetChannelContentGuestsProps extends SingleQueryParams {
   channelId: string;
   contentId: string;
   guestId: string;
-  status?: string;
 }
 
 export const GetChannelContentGuest = async ({

@@ -16,10 +16,10 @@ import {
  * This function allows updating the details of a specific add-on associated with an event.
  * It is designed to be used in applications where modifications to event add-ons are required.
  * @name UpdateEventAddOn
- * @param {string} eventId - The id of the event
- * @param {string} addOnId - The id of the add-on
- * @param {EventAddOnUpdateInputs} addOn - The new data for the add-on
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} addOnId (path) - The id of the add-on
+ * @param {EventAddOnUpdateInputs} addOn (body) - The new data for the add-on
+ * @version 1.3
  **/
 
 export interface UpdateEventAddOnParams extends MutationParams {

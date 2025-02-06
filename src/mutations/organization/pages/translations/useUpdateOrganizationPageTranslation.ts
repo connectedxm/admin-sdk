@@ -17,10 +17,10 @@ import {
  * identified by the page type and locale. It is useful for applications that need to 
  * manage multilingual content for organization pages.
  * @name PutOrganizationPageTranslation
- * @param {PageType} type - The type of the page to be translated
- * @param {OrganizationPageTranslationUpdateInputs} pageTranslation - The translation details to update
- * @param {ISupportedLocale} locale - The locale for which the translation is being updated
- * @version 1.2
+ * @param {PageType} type (path) - The type of the page to be translated
+ * @param {OrganizationPageTranslationUpdateInputs} pageTranslation (body) - The translation details to update
+ * @param {ISupportedLocale} locale (path) - The locale for which the translation is being updated
+ * @version 1.3
  */
 export interface UpdateOrganizationPageTranslationParams
   extends MutationParams {

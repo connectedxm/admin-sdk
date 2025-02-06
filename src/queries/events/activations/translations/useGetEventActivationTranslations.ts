@@ -13,9 +13,9 @@ import { EVENT_ACTIVATION_QUERY_KEY } from "../useGetEventActivation";
  * This function fetches translation data associated with a particular event activation, allowing applications to display localized content for events.
  * It is designed to be used in scenarios where event activation details need to be presented in multiple languages.
  * @name GetEventActivationTranslations
- * @param {string} eventId - The ID of the event
- * @param {string} activationId - The ID of the activation
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} activationId (path) - The ID of the activation
+ * @version 1.3
  **/
 
 /**

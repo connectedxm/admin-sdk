@@ -13,8 +13,8 @@ import { UserImageUpdateInputs } from "@src/params";
  * This function allows users to update their profile image by providing the necessary image data.
  * It ensures that the user's image is updated in the system and invalidates the relevant queries to reflect the changes.
  * @name UpdateUserImage
- * @param {UserImageUpdateInputs} image - The image data to update
- * @version 1.2
+ * @param {UserImageUpdateInputs} image (body) - The image data to update
+ * @version 1.3
  **/
 
 export interface UpdateUserImageParams extends MutationParams {

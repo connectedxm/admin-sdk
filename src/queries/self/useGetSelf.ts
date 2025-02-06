@@ -13,7 +13,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches the details of the user who is currently authenticated.
  * It is designed to be used in applications where user-specific data is required.
  * @name GetSelf
- * @version 1.2
+ * @version 1.3
  **/
 
 export const SELF_QUERY_KEY = () => ["SELF"];

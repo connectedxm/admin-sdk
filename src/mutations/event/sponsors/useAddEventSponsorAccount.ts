@@ -12,9 +12,9 @@ import { EVENT_SPONSORS_QUERY_KEY, SET_EVENT_QUERY_DATA } from "@src/queries";
  * This function is used to associate a sponsor's account with an event, allowing for the management of event sponsorships.
  * It ensures that the query client is updated to reflect the changes if the operation is successful.
  * @name AddEventSponsorAccount
- * @param {string} eventId - The id of the event
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 export interface AddEventSponsorAccountParams extends MutationParams {
   eventId: string;

@@ -16,11 +16,11 @@ import { ChannelContentGuestUpdateInputs } from "@src/params";
  * This function allows updating the details of a guest associated with specific content in a channel.
  * It is used to modify guest information such as permissions or roles within the context of channel content.
  * @name UpdateChannelContentGuest
- * @param {string} contentId - The id of the content
- * @param {string} channelId - The id of the channel
- * @param {string} guestId - The id of the guest
- * @param {ChannelContentGuestUpdateInputs} contentGuest - The content guest update inputs
- * @version 1.2
+ * @param {string} contentId (path) - The id of the content
+ * @param {string} channelId (path) - The id of the channel
+ * @param {string} guestId (path) - The id of the guest
+ * @param {ChannelContentGuestUpdateInputs} contentGuest (body) - The content guest update inputs
+ * @version 1.3
  **/
 export interface UpdateChannelContentGuestParams extends MutationParams {
   contentId: string;
@@ -33,7 +33,7 @@ export const UpdateChannelContentGuest = async ({
   contentId,
   channelId,
   guestId,
-  contentGuest: content,
+  contentGuest,
   adminApiParams,
   queryClient,
 }: UpdateChannelContentGuestParams): Promise<
@@ -42,7 +42,7 @@ export const UpdateChannelContentGuest = async ({
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.put(
     `/channels/${channelId}/contents/${contentId}/guests/${guestId}`,
-    content
+    contentGuest
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

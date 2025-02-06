@@ -15,10 +15,10 @@ import { EVENT_SECTION_QUERY_KEY } from "./useGetEventSection";
  * It is useful for applications that need to display or manage tier information 
  * for event sections.
  * @name GetEventSectionTiers
- * @param {boolean} allowed - Indicates if only allowed tiers should be fetched
- * @param {string} eventId - The ID of the event
- * @param {string} sectionId - The ID of the section
- * @version 1.2
+ * @param {boolean} allowed (query) - Indicates if only allowed tiers should be fetched
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} sectionId (path) - The ID of the section
+ * @version 1.3
  **/
 
 export const EVENT_SECTION_TIERS_QUERY_KEY = (

@@ -16,10 +16,10 @@ import { ChannelContentUpdateInputs } from "@src/params";
  * This function allows updating the details of a channel's content by providing the content ID, channel ID, and the new content inputs.
  * It is designed for applications that need to modify existing channel content.
  * @name UpdateChannelContent
- * @param {string} contentId - The id of the content
- * @param {ChannelContentUpdateInputs} content - The content update inputs
- * @param {string} channelId - The id of the channel
- * @version 1.2
+ * @param {string} contentId (path) - The id of the content
+ * @param {ChannelContentUpdateInputs} content (body) - The content update inputs
+ * @param {string} channelId (path) - The id of the channel
+ * @version 1.3
  **/
 export interface UpdateChannelContentParams extends MutationParams {
   contentId: string;

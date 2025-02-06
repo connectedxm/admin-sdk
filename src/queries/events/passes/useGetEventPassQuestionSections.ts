@@ -14,10 +14,10 @@ import { EVENT_PASS_QUERY_KEY } from "./useGetEventPass";
  * which is part of an attendee's registration process. It is essential for applications that need to display 
  * or process the question sections related to event passes.
  * @name GetEventPassQuestionSections
- * @param {string} eventId - The id of the event
- * @param {string} accountId - The id of the account
- * @param {string} passId - The id of the pass
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} accountId (path) - The id of the account
+ * @param {string} passId (path) - The id of the pass
+ * @version 1.3
  **/
 
 export const EVENT_PASS_QUESTION_SECTIONS_QUERY_KEY = (

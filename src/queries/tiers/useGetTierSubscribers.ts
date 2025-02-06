@@ -9,13 +9,13 @@ import {
 import { TIER_QUERY_KEY } from "./useGetTier";
 
 /**
- * Endpoint to retrieve a list of subscribers for a specific tier.
- * This function allows users to fetch subscribers associated with a particular tier within an organization.
- * It is designed to be used in applications where subscriber information for a tier is required.
+ * This file contains functions for retrieving a list of subscribers for a specific tier.
+ * It provides an endpoint to fetch subscribers associated with a particular tier within an organization.
+ * The functions in this file are designed to be used in applications where subscriber information for a tier is required.
  * @name GetTierSubscribers
- * @param {string} [tierId] - The id of the tier
- * @version 1.2
- **/
+ * @param {string} [tierId] (path) The id of the tier
+ * @version 1.3
+ */
 
 export const TIER_SUBSCRIBERS_QUERY_KEY = (tierId: string) => [
   ...TIER_QUERY_KEY(tierId),

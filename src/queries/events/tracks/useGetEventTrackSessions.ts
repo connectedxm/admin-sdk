@@ -13,9 +13,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function fetches session data associated with a given event and track, 
  * allowing users to access detailed information about each session within the track.
  * @name GetEventTrackSessions
- * @param {string} eventId - The id of the event
- * @param {string} trackId - The id of the track
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} trackId (path) - The id of the track
+ * @version 1.3
  **/
 
 export const EVENT_TRACK_SESSIONS_QUERY_KEY = (

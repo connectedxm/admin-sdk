@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches interests for a given group, allowing applications to display or process group-related interests.
  * It is designed to be used in scenarios where understanding or displaying group interests is necessary.
  * @name GetGroupInterests
- * @param {string} groupId - The id of the group
- * @version 1.2
+ * @param {string} groupId (path) - The id of the group
+ * @version 1.3
  **/
 
 export const GROUP_INTERESTS_QUERY_KEY = (groupId: string) => [

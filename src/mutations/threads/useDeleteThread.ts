@@ -12,8 +12,8 @@ import { THREADS_QUERY_KEY, THREAD_QUERY_KEY } from "@src/queries";
  * This function allows for the removal of a thread from the system, ensuring that associated cache entries are invalidated.
  * It is designed to be used in applications where thread management and cleanup are required.
  * @name DeleteThread
- * @param {string} threadId - The id of the thread to be deleted
- * @version 1.2
+ * @param {string} threadId (path) - The id of the thread to be deleted
+ * @version 1.3
  **/
 
 export interface DeleteThreadParams extends MutationParams {

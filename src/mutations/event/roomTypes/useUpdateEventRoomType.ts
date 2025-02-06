@@ -16,10 +16,10 @@ import {
  * This function allows updating the details of a room type associated with a particular event.
  * It is designed to be used in scenarios where modifications to event room types are necessary.
  * @name UpdateEventRoomType
- * @param {string} eventId - The id of the event
- * @param {string} roomTypeId - The id of the room type
- * @param {EventRoomTypeUpdateInputs} roomType - The room type update inputs
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} roomTypeId (path) - The id of the room type
+ * @param {EventRoomTypeUpdateInputs} roomType (body) - The room type update inputs
+ * @version 1.3
  **/
 
 export interface UpdateEventRoomTypeParams extends MutationParams {

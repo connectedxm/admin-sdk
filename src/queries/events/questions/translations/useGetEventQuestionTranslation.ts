@@ -13,10 +13,10 @@ import { EVENT_QUESTION_TRANSLATIONS_QUERY_KEY } from "./useGetEventQuestionTran
  * This function is used to fetch the translated text of a question within an event, 
  * allowing applications to display localized content based on the user's language preference.
  * @name GetEventQuestionTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} questionId - The ID of the question
- * @param {string} locale - The locale for the translation
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} questionId (path) - The ID of the question
+ * @param {string} locale (path) - The locale for the translation
+ * @version 1.3
  **/
 
 /**

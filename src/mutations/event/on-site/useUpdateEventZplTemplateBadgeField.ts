@@ -16,10 +16,10 @@ import {
  * This function allows updating the details of a badge field within a ZPL template for a given event.
  * It is designed to be used in scenarios where modifications to badge fields are required for event management.
  * @name UpdateEventZplTemplateBadgeField
- * @param {string} eventId - The id of the event
- * @param {string} fieldId - The id of the field
- * @param {EventBadgeFieldUpdateInputs} field - The field update inputs
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} fieldId (path) - The id of the field
+ * @param {EventBadgeFieldUpdateInputs} field (body) - The field update inputs
+ * @version 1.3
  **/
 
 export interface UpdateEventZplTemplateBadgeFieldParams extends MutationParams {

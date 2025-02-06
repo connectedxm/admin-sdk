@@ -13,8 +13,8 @@ import { ConnectedXMResponse, Payment } from "@src/interfaces";
  * This function is part of the payment management system and allows retrieval of payment details for further processing or display.
  * It is designed to be used in applications where payment information needs to be accessed or verified.
  * @name GetPayment
- * @param {string} paymentId - The id of the payment
- * @version 1.2
+ * @param {string} paymentId (path) The id of the payment
+ * @version 1.3
  **/
 
 export const PAYMENT_QUERY_KEY = (paymentId: string) => [

@@ -13,7 +13,7 @@ import { ConnectedXMResponse, OrganizationMembership } from "@src/interfaces";
  * This function allows users to retrieve their own organization membership details.
  * It is designed to be used in applications where users need to access or manage their membership information.
  * @name GetSelfOrgMembership
- * @version 1.2
+ * @version 1.3
  **/
 
 export const SELF_MEMBERSHIP_QUERY_KEY = () => [

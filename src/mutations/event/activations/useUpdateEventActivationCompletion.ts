@@ -16,11 +16,11 @@ import {
  * This function allows updating the completion details of a specific event activation by providing the necessary identifiers and update inputs.
  * It is intended for use in scenarios where the completion status of an event activation needs to be modified.
  * @name UpdateEventActivationCompletion
- * @param {string} eventId - The id of the event
- * @param {string} activationId - The id of the activation
- * @param {string} completionId - The id of the completion
- * @param {EventActivationCompletionUpdateInputs} completion - The completion update inputs
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} activationId (path) - The id of the activation
+ * @param {string} completionId (path) - The id of the completion
+ * @param {EventActivationCompletionUpdateInputs} completion (body) - The completion update inputs
+ * @version 1.3
  **/
 
 export interface UpdateEventActivationCompletionParams extends MutationParams {

@@ -13,8 +13,8 @@ import { EVENT_QUERY_KEY } from "../events/useGetEvent";
  * This function retrieves a list of events for a given series, allowing users to view and manage events within that series.
  * It is designed to be used in applications where event management and retrieval are necessary.
  * @name GetSeriesEvents
- * @param {string} seriesId - The id of the series
- * @version 1.2
+ * @param {string} seriesId (path) The id of the series
+ * @version 1.3
  **/
 
 export const SERIES_EVENTS_QUERY_KEY = (seriesId: string) => [

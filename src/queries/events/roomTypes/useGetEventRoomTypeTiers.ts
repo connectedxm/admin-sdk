@@ -13,10 +13,10 @@ import { EVENT_ROOM_TYPE_QUERY_KEY } from "./useGetEventRoomType";
  * This function allows users to fetch either allowed or disallowed tiers associated with a given room type in an event.
  * It is designed to be used in applications where detailed tier information is required for event room types.
  * @name GetEventRoomTypeTiers
- * @param {boolean} allowed - Indicates if only allowed tiers should be fetched
- * @param {string} eventId - The id of the event
- * @param {string} roomTypeId - The id of the room type
- * @version 1.2
+ * @param {boolean} allowed (query) - Indicates if only allowed tiers should be fetched
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} roomTypeId (path) - The id of the room type
+ * @version 1.3
  **/
 
 export const EVENT_ROOM_TYPE_TIERS_QUERY_KEY = (

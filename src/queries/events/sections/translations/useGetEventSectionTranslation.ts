@@ -13,10 +13,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is used to fetch the translated content of an event section, which is useful for applications
  * that support multiple languages and need to display event information in the user's preferred language.
  * @name GetEventSectionTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} sectionId - The ID of the section within the event
- * @param {string} locale - The locale for which the translation is requested
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} sectionId (path) - The ID of the section within the event
+ * @param {string} locale (path) - The locale for which the translation is requested
+ * @version 1.3
  */
 
 export const EVENT_SECTION_TRANSLATION_QUERY_KEY = (

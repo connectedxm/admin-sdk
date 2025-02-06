@@ -19,11 +19,11 @@ import {
  * This function allows updating the search value associated with a particular question within an event.
  * It is useful for scenarios where the search criteria for event questions need to be modified.
  * @name UpdateEventQuestionSearchValue
- * @param {string} eventId - The id of the event
- * @param {string} questionId - The id of the question
- * @param {string} searchValueId - The id of the search value
- * @param {EventQuestionSearchValueUpdateInputs} searchValue - The new search value inputs
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} questionId (path) - The id of the question
+ * @param {string} searchValueId (path) - The id of the search value
+ * @param {EventQuestionSearchValueUpdateInputs} searchValue (body) - The new search value inputs
+ * @version 1.3
  **/
 export interface UpdateEventQuestionSearchValueParams extends MutationParams {
   eventId: string;

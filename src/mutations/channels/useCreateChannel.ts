@@ -16,8 +16,8 @@ import { ChannelCreateInputs } from "@src/params";
  * This function allows for the creation of a channel by providing the necessary inputs.
  * It is designed to be used in scenarios where new communication channels need to be established.
  * @name CreateChannel
- * @param {ChannelCreateInputs} channel - The inputs required to create a channel
- * @version 1.2
+ * @param {ChannelCreateInputs} channel (body) - The inputs required to create a channel
+ * @version 1.3
  **/
 export interface CreateChannelParams extends MutationParams {
   channel: ChannelCreateInputs;

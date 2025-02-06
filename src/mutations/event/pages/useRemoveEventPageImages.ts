@@ -16,10 +16,10 @@ import {
  * identified by the event ID, page ID, and image ID. It ensures that the image is 
  * deleted from the event page and updates the query data accordingly.
  * @name RemoveEventPageImage
- * @param {string} eventId - The ID of the event
- * @param {string} pageId - The ID of the page
- * @param {string} imageId - The ID of the image
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} pageId (path) - The ID of the page
+ * @param {string} imageId (path) - The ID of the image
+ * @version 1.3
  **/
 export interface RemoveEventPageImageParams extends MutationParams {
   eventId: string;

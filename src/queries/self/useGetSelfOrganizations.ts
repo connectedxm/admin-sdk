@@ -14,7 +14,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches organizations that the self user is part of, utilizing infinite query capabilities for efficient data handling.
  * It is designed for applications that require displaying or managing user-specific organizational data.
  * @name GetSelfOrganizations
- * @version 1.2
+ * @version 1.3
  **/
 
 export const SELF_ORGANIZATIONS_QUERY_KEY = () => [

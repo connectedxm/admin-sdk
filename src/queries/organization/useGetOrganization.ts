@@ -13,7 +13,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is designed to retrieve detailed information about an organization.
  * It is intended for use in applications that require access to organization-level data.
  * @name GetOrganization
- * @version 1.2
+ * @version 1.3
  **/
 
 export const ORGANIZATION_QUERY_KEY = () => ["ORGANIZATION"];

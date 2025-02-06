@@ -13,8 +13,8 @@ import {
  * This function is designed to fetch detailed summaries of questions for a given event,
  * which can be used in applications that require insights into event-related questions.
  * @name GetEventQuestionSummaries
- * @param {string} eventId - The id of the event
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @version 1.3
  **/
 
 export const EVENT_QUESTION_SUMMARIES_QUERY_KEY = (eventId: string) => [

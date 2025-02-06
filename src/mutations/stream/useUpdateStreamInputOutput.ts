@@ -16,10 +16,10 @@ import { StreamInputOutputUpdateInputs } from "@src/params";
  * This function allows updating the output data of a stream input within a system.
  * It is designed to be used in applications where modifications to stream outputs are required.
  * @name UpdateStreamInputOutput
- * @param {string} streamId - The ID of the stream
- * @param {string} outputId - The ID of the output
- * @param {StreamInputOutputUpdateInputs} output - The output data to update
- * @version 1.2
+ * @param {string} streamId (path) - The ID of the stream
+ * @param {string} outputId (path) - The ID of the output
+ * @param {StreamInputOutputUpdateInputs} output (body) - The output data to update
+ * @version 1.3
  **/
 export interface UpdateStreamInputOutputParams extends MutationParams {
   streamId: string;

@@ -13,8 +13,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches advertisements with optional filtering by search term.
  * It is designed to be used in applications where a list of advertisements is required.
  * @name GetAdvertisements
- * @param {string} [search] - Optional search term to filter advertisements
- * @version 1.2
+ * @version 1.3
  **/
 
 export const ADVERTISEMENTS_QUERY_KEY = () => ["ADVERTISEMENTS"];

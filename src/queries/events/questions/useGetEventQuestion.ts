@@ -14,9 +14,9 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is designed to retrieve detailed information about a particular question within an event.
  * It is useful in scenarios where precise data about event questions is required.
  * @name GetEventQuestion
- * @param {string} eventId - The id of the event
- * @param {string} questionId - The id of the question
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} questionId (path) - The id of the question
+ * @version 1.3
  **/
 
 export const EVENT_QUESTION_QUERY_KEY = (

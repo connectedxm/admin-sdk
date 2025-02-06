@@ -16,10 +16,10 @@ import {
  * This function allows updating the registration information for a specific attendee of an event.
  * It is designed to be used in applications where event management and attendee updates are required.
  * @name UpdateEventAttendee
- * @param {string} eventId - The id of the event
- * @param {string} accountId - The id of the account
- * @param {EventAttendeeUpdateInputs} registration - The registration details to update
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} accountId (path) - The id of the account
+ * @param {EventAttendeeUpdateInputs} registration (body) - The registration details to update
+ * @version 1.3
  **/
 
 export interface UpdateEventAttendeeParams extends MutationParams {

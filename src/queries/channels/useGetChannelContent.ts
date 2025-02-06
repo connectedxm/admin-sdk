@@ -14,9 +14,9 @@ import { CHANNEL_CONTENTS_QUERY_KEY } from "./useGetChannelContents";
  * This function is used to fetch detailed information about a particular piece of content within a specified channel.
  * It is designed for applications that require access to individual channel content details.
  * @name GetChannelContent
- * @param {string} channelId - The ID of the channel
- * @param {string} contentId - The ID of the content
- * @version 1.2
+ * @param {string} channelId (path) - The ID of the channel
+ * @param {string} contentId (path) - The ID of the content
+ * @version 1.3
  **/
 
 export const CHANNEL_CONTENT_QUERY_KEY = (

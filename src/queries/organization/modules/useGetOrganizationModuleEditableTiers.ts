@@ -17,8 +17,8 @@ import { ORGANIZATION_MODULE_QUERY_KEY } from "./useGetOrganizationModule";
  * This function is used to retrieve a list of tiers that can be edited within a given organization module.
  * It is particularly useful for applications that need to manage or display editable tiers for different modules.
  * @name GetOrganizationModuleEditableTiers
- * @param {keyof typeof OrganizationModuleType} moduleType - The type of the organization module
- * @version 1.2
+ * @param {keyof typeof OrganizationModuleType} moduleType (path) The type of the organization module
+ * @version 1.3
  **/
 
 export const ORGANIZATION_MODULE_EDITABLE_TIERS_QUERY_KEY = (

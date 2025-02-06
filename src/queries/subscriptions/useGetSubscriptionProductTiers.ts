@@ -14,8 +14,8 @@ import { SUBSCRIPTION_PRODUCT_QUERY_KEY } from "./useGetSubscriptionProduct";
  * This function is used to fetch and manage the tier data for a given subscription product, 
  * allowing applications to display or process tier information as needed.
  * @name GetSubscriptionProductTiers
- * @param {string} subscriptionProductId - The id of the subscription product
- * @version 1.2
+ * @param {string} subscriptionProductId (path) The id of the subscription product
+ * @version 1.3
  **/
 export const SUBSCRIPTION_PRODUCT_TIERS_QUERY_KEY = (
   subscriptionProductId: string

@@ -13,7 +13,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches a paginated list of channels from the server, allowing for optional sorting and searching.
  * It is designed to be used in applications where a comprehensive list of channels is required.
  * @name GetChannels
- * @version 1.2
+ * @version 1.3
  **/
 
 export const CHANNELS_QUERY_KEY = () => ["CHANNELS"];

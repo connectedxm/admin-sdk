@@ -17,9 +17,9 @@ import {
  * This function allows the creation of a new line item for a specified invoice.
  * It is designed to be used in applications where invoice management is required.
  * @name CreateInvoiceLineItem
- * @param {string} invoiceId - The id of the invoice
- * @param {InvoiceLineItemCreateInputs} invoiceLineItem - The details of the invoice line item to create
- * @version 1.2
+ * @param {string} invoiceId (path) - The id of the invoice
+ * @param {InvoiceLineItemCreateInputs} invoiceLineItem (body) - The details of the invoice line item to create
+ * @version 1.3
  **/
 
 export interface CreateInvoiceLineItemParams extends MutationParams {

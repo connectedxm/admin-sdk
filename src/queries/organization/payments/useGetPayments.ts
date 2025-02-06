@@ -14,7 +14,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function allows retrieval of payment records, supporting features like pagination and sorting.
  * It is designed for use in applications that require access to payment data with flexible query options.
  * @name GetPayments
- * @version 1.2
+ * @version 1.3
  **/
 
 export const PAYMENTS_QUERY_KEY = () => ["PAYMENTS"];

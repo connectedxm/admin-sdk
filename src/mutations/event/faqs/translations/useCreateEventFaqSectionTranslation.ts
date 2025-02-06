@@ -18,7 +18,7 @@ import {
  * @param {string} eventId - The ID of the event
  * @param {string} sectionId - The ID of the FAQ section
  * @param {string} locale - The locale for the translation
- * @param {[boolean]} autoTranslate - Whether to automatically translate the content
+ * @param {boolean} [autoTranslate] - Whether to automatically translate the content
  * @version 1.2
  **/
 

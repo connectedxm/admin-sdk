@@ -15,9 +15,9 @@ import { TIER_IMPORT_QUERY_KEY } from "./useGetTierImport";
  * It is designed for applications that require a comprehensive list of import items 
  * for further processing or display.
  * @name GetTierImportItems
- * @param {string} tierId - The id of the tier
- * @param {string} importId - The id of the import
- * @version 1.2
+ * @param {string} tierId (path) The id of the tier
+ * @param {string} importId (path) The id of the import
+ * @version 1.3
  **/
 
 export const TIER_IMPORT_ITEMS_QUERY_KEY = (

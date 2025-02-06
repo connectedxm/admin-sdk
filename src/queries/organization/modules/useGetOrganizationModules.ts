@@ -13,7 +13,7 @@ import {
  * This function provides the ability to fetch a list of modules associated with an organization.
  * It is designed to be used in applications that require dynamic access to organization-specific modules.
  * @name GetOrganizationModules
- * @version 1.2
+ * @version 1.3
 **/
 
 export const ORGANIZATION_MODULES_QUERY_KEY = () => [

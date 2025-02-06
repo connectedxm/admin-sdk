@@ -13,9 +13,9 @@ import { EVENT_PAGE_QUERY_KEY } from "./useGetEventPage";
  * This function retrieves a list of images for a given event and page, allowing users to access visual content related to the event.
  * It is designed to be used in applications where event-related images need to be displayed or managed.
  * @name GetEventPageImages
- * @param {string} eventId - The id of the event
- * @param {string} pageId - The id of the page
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} pageId (path) - The id of the page
+ * @version 1.3
  **/
 
 export const EVENT_PAGE_IMAGES_QUERY_KEY = (

@@ -14,9 +14,9 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is designed to retrieve detailed information about a group invitation,
  * which can be used in applications that manage or display group invitation data.
  * @name GetGroupInvitation
- * @param {string} groupId - The id of the group
- * @param {string} invitationId - The id of the invitation
- * @version 1.2
+ * @param {string} groupId (path) - The id of the group
+ * @param {string} invitationId (path) - The id of the invitation
+ * @version 1.3
  **/
 
 export const GROUP_INVITATION_QUERY_KEY = (

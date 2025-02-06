@@ -13,11 +13,11 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is used to fetch the translated text for a choice within an event's question, allowing for localization support.
  * It is particularly useful in applications that need to display event-related content in multiple languages.
  * @name GetEventQuestionChoiceTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} questionId - The ID of the question
- * @param {string} choiceId - The ID of the choice
- * @param {string} locale - The locale for the translation
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} questionId (path) - The ID of the question
+ * @param {string} choiceId (path) - The ID of the choice
+ * @param {string} locale (path) - The locale for the translation
+ * @version 1.3
 **/
 
 export const EVENT_QUESTION_CHOICE_TRANSLATION_QUERY_KEY = (

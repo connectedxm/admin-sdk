@@ -12,8 +12,8 @@ import { ORGANIZATION_USERS_QUERY_KEY } from "@src/queries";
  * This function allows administrators to add a new user to their organization by providing the user's email address.
  * It is designed to be used in applications where managing organization memberships is required.
  * @name AddOrganizationUser
- * @param {string} email - The email address of the user to be added
- * @version 1.2
+ * @param {string} email (bodyValue) - The email address of the user to be added
+ * @version 1.3
  **/
 
 export interface AddOrganizationUserParams extends MutationParams {

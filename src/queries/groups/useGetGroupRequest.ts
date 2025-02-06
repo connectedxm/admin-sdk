@@ -14,9 +14,9 @@ import { QueryClient } from "@tanstack/react-query";
  * This function allows users to fetch details of a particular group request using the provided group ID and request ID.
  * It is designed to be used in applications where detailed information about a group request is required.
  * @name GetGroupRequest
- * @param {string} groupId - The ID of the group
- * @param {string} requestId - The ID of the request
- * @version 1.2
+ * @param {string} groupId (path) - The ID of the group
+ * @param {string} requestId (path) - The ID of the request
+ * @version 1.3
  **/
 
 export const GROUP_REQUEST_QUERY_KEY = (groupId: string, requestId: string) => [

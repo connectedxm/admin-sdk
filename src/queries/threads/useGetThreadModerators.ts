@@ -13,8 +13,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches the moderators associated with a given thread ID, allowing applications to display or manage thread moderators.
  * It is designed to be used in scenarios where thread moderation details are required.
  * @name GetThreadModerators
- * @param {string} threadId - The id of the thread
- * @version 1.2
+ * @param {string} threadId (path) The id of the thread
+ * @version 1.3
  **/
 
 export const THREAD_MODERATORS_QUERY_KEY = (threadId: string) => [

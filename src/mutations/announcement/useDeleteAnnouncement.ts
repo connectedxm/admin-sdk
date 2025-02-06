@@ -12,8 +12,8 @@ import { ANNOUNCEMENTS_QUERY_KEY, ANNOUNCEMENT_QUERY_KEY } from "@src/queries";
  * This function allows for the removal of an announcement from the system, ensuring that it is no longer accessible.
  * It is designed to be used in administrative contexts where managing announcements is required.
  * @name DeleteAnnouncement
- * @param {string} announcementId - The ID of the announcement to be deleted
- * @version 1.2
+ * @param {string} announcementId (path) - The ID of the announcement to be deleted
+ * @version 1.3
  **/
 export interface DeleteAnnouncementParams extends MutationParams {
   announcementId: string;

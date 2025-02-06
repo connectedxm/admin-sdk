@@ -14,11 +14,11 @@ import {
  * This function is used to remove a translation of a question within a FAQ section of an event, identified by event ID, section ID, question ID, and locale.
  * It is designed for applications that manage multilingual FAQ content for events.
  * @name DeleteEventFaqSectionQuestionTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} sectionId - The ID of the FAQ section
- * @param {string} questionId - The ID of the question
- * @param {string} locale - The locale of the translation
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} sectionId (path) - The ID of the FAQ section
+ * @param {string} questionId (path) - The ID of the question
+ * @param {string} locale (path) - The locale of the translation
+ * @version 1.3
  */
 export interface DeleteEventFaqSectionQuestionTranslationParams
   extends MutationParams {

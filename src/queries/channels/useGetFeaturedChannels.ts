@@ -14,7 +14,7 @@ import { CHANNELS_QUERY_KEY } from "./useGetChannels";
  * This function is designed to fetch and return a paginated list of channels that are marked as featured.
  * It is useful for applications that need to display a curated list of channels to users.
  * @name GetFeaturedChannels
- * @version 1.2
+ * @version 1.3
  **/
 
 export const FEATURED_CHANNELS_QUERY_KEY = () => [

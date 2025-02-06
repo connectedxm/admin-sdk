@@ -14,9 +14,9 @@ import { EVENT_SESSION_QUERY_KEY } from "./useGetEventSession";
  * allowing for detailed exploration of session content. It supports pagination and filtering 
  * to efficiently manage and access large datasets.
  * @name GetEventSessionTracks
- * @param {string} eventId - The id of the event
- * @param {string} sessionId - The id of the session
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} sessionId (path) - The id of the session
+ * @version 1.3
  **/
 
 export const EVENT_SESSION_TRACKS_QUERY_KEY = (

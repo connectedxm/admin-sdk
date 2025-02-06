@@ -13,10 +13,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is part of the event management system and is used to fetch localized translations for event sessions.
  * It is designed to be used in applications that require displaying event session details in different languages.
  * @name GetEventSessionTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} sessionId - The ID of the session
- * @param {string} locale - The locale for the translation
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} sessionId (path) - The ID of the session
+ * @param {string} locale (path) - The locale for the translation
+ * @version 1.3
  */
 export const EVENT_SESSION_TRANSLATION_QUERY_KEY = (
   eventId: string,

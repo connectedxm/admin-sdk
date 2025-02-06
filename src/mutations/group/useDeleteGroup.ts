@@ -12,8 +12,8 @@ import { GROUPS_QUERY_KEY, GROUP_QUERY_KEY } from "@src/queries";
  * This function allows for the removal of a group from the system, ensuring that all associated queries are invalidated and removed.
  * It is designed to be used in applications where group management and cleanup are necessary.
  * @name DeleteGroup
- * @param {string} groupId - The id of the group to be deleted
- * @version 1.2
+ * @param {string} groupId (path) - The id of the group to be deleted
+ * @version 1.3
  **/
 
 export interface DeleteGroupParams extends MutationParams {

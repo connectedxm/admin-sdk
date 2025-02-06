@@ -14,10 +14,10 @@ import { SUBSCRIPTION_PRODUCT_QUERY_KEY } from "./useGetSubscriptionProduct";
  * This function allows users to fetch subscriptions, optionally filtering by subscription status.
  * It is designed to be used in applications where subscription management is required.
  * @name GetSubscriptionProductSubscriptions
- * @param {string} subscriptionProductId - The id of the subscription product
- * @param {SubscriptionStatus} [status] - Optional filtering by subscription status
- * @version 1.2
- **/
+ * @param {string} subscriptionProductId (path) The id of the subscription product
+ * @param {SubscriptionStatus} [status] (query) Optional filtering by subscription status
+ * @version 1.3
+ */
 
 export const SUBSCRIPTION_PRODUCT_SUBSCRIPTIONS_QUERY_KEY = (
   subscriptionProductId: string,

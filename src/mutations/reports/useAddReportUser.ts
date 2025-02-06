@@ -12,9 +12,9 @@ import { SET_REPORT_USERS_QUERY_DATA } from "@src/queries/reports/useGetReportUs
  * This function allows the addition of a user to a report by specifying the report ID and user ID.
  * It is designed to be used in applications where managing report participants is required.
  * @name AddReportUser
- * @param {string} reportId - The id of the report
- * @param {string} userId - The id of the user
- * @version 1.2
+ * @param {string} reportId (path) - The id of the report
+ * @param {string} userId (bodyValue) - The id of the user
+ * @version 1.3
  **/
 
 export interface AddReportUserParams extends MutationParams {

@@ -14,8 +14,8 @@ import { INVOICE_QUERY_KEY } from "./useGetInvoice";
  * This function retrieves detailed information about each line item within a given invoice, 
  * allowing users to view and manage invoice components effectively.
  * @name GetInvoiceLineItems
- * @param {string} invoiceId - The id of the invoice
- * @version 1.2
+ * @param {string} invoiceId (path) - The id of the invoice
+ * @version 1.3
  **/
 
 export const INVOICE_LINE_ITEMS_QUERY_KEY = (invoiceId: string) => [

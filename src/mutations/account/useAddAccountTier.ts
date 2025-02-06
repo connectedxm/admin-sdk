@@ -12,9 +12,9 @@ import { ACCOUNT_TIERS_QUERY_KEY, SET_ACCOUNT_QUERY_DATA } from "@src/queries";
  * This function allows the addition of a specific tier to an account, ensuring that the query client is updated accordingly.
  * It is designed for use in applications where account tier management is required.
  * @name AddAccountTier
- * @param {string} accountId - The id of the account
- * @param {string} tierId - The id of the tier
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @param {string} tierId (path) - The id of the tier
+ * @version 1.3
  **/
 export interface AddAccountTierParams extends MutationParams {
   accountId: string;

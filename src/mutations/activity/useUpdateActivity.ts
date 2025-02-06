@@ -13,9 +13,9 @@ import { ActivityUpdateInputs } from "@src/params";
  * This function allows users to modify the details of a specific activity by providing the activity ID and the updated data.
  * It ensures that the activity information is current and accurate within the system.
  * @name UpdateActivity
- * @param {string} activityId - The ID of the activity to update
- * @param {ActivityUpdateInputs} activity - The updated activity data
- * @version 1.2
+ * @param {string} activityId (path) - The ID of the activity to update
+ * @param {ActivityUpdateInputs} activity (body) - The updated activity data
+ * @version 1.3
  **/
 
 export interface UpdateActivityParams extends MutationParams {

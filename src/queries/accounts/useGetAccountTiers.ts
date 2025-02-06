@@ -15,9 +15,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * which can be filtered by an optional account type.
  * It is designed to be used in applications where account tier details are required.
  * @name GetAccountTiers
- * @param {string} accountId - The id of the account
- * @param {string} [type] - Optional account type ("external" | "internal")
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @param {string} [type] (query) - Optional account type ("external" | "internal")
+ * @version 1.3
  **/
 
 export const ACCOUNT_TIERS_QUERY_KEY = (

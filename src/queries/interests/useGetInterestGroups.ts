@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function allows users to fetch groups that are linked to a particular interest by providing the interest ID.
  * It is designed to be used in applications where categorization or grouping of interests is required.
  * @name GetInterestGroups
- * @param {string} interestId - The id of the interest
- * @version 1.2
+ * @param {string} interestId (path) - The id of the interest
+ * @version 1.3
  **/
 
 export const INTEREST_GROUPS_QUERY_KEY = (interestId: string) => [

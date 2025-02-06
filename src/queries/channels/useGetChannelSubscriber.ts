@@ -13,9 +13,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is used to retrieve detailed information about a subscriber of a particular channel.
  * It is designed for applications that need to access subscriber data within a channel context.
  * @name GetChannelSubscriber
- * @param {string} channelId - The ID of the channel
- * @param {string} accountId - The ID of the account
- * @version 1.2
+ * @param {string} channelId (path) - The ID of the channel
+ * @param {string} accountId (path) - The ID of the account
+ * @version 1.3
  **/
 
 export const CHANNEL_SUBSCRIBER_QUERY_KEY = (

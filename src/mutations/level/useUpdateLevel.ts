@@ -13,9 +13,9 @@ import { LevelUpdateInputs } from "@src/params";
  * This function allows updating the details of a specific level by providing new data.
  * It is used in scenarios where level information needs to be modified.
  * @name UpdateLevel
- * @param {string} levelId - The id of the level
- * @param {LevelUpdateInputs} level - The new data for the level
- * @version 1.2
+ * @param {string} levelId (path) - The id of the level
+ * @param {LevelUpdateInputs} level (body) - The new data for the level
+ * @version 1.3
  **/
 
 export interface UpdateLevelParams extends MutationParams {

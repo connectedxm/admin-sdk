@@ -12,8 +12,8 @@ import { VIDEOS_QUERY_KEY } from "@src/queries";
  * This function allows users to remove several videos at once by providing their IDs.
  * It is designed for applications that require batch deletion of video content.
  * @name DeleteManyVideos
- * @param {string[]} videoIds - The IDs of the videos to be deleted
- * @version 1.2
+ * @param {string[]} videoIds (bodyValue) - The IDs of the videos to be deleted
+ * @version 1.3
  **/
 
 export interface DeleteManyVideosParams extends MutationParams {

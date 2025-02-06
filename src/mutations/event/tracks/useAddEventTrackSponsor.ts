@@ -16,10 +16,10 @@ import {
  * facilitating the management of event sponsorships. It is designed for use in applications 
  * that require dynamic updates to event track sponsorships.
  * @name AddEventTrackSponsor
- * @param {string} eventId - The id of the event
- * @param {string} trackId - The id of the track
- * @param {string} sponsorId - The id of the sponsor
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} trackId (path) - The id of the track
+ * @param {string} sponsorId (path) - The id of the sponsor
+ * @version 1.3
  **/
 export interface AddEventTrackSponsorParams extends MutationParams {
   eventId: string;

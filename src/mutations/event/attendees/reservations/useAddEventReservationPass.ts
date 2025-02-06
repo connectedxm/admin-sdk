@@ -16,12 +16,11 @@ import {
  * This function allows users to associate a pass with a reservation for an event, potentially updating the reservation details.
  * It is designed to be used in applications where event management and reservation handling are required.
  * @name AddEventReservationPass
- * @param {string} eventId - The id of the event
- * @param {string} reservationId - The id of the reservation
- * @param {string} passId - The id of the pass
- * @param {string} [accountId] - The id of the account (optional)
- * @version 1.2
-**/
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} reservationId (path) - The id of the reservation
+ * @param {string} passId (path) - The id of the pass
+ * @version 1.3
+ **/
 export interface AddEventReservationPassParams extends MutationParams {
   eventId: string;
   reservationId: string;

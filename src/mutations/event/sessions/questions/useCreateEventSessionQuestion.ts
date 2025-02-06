@@ -15,10 +15,10 @@ import { EVENT_SESSION_QUESTIONS_QUERY_KEY } from "@src/queries/events/sessions/
  * enabling users to add interactive elements to their event sessions.
  * It is designed to be used in applications where event session management is required.
  * @name CreateEventSessionQuestion
- * @param {string} eventId - The id of the event
- * @param {string} sessionId - The id of the session
- * @param {EventSessionQuestionCreateInputs} question - The question details
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} sessionId (path) - The id of the session
+ * @param {EventSessionQuestionCreateInputs} question (body) - The question details
+ * @version 1.3
  **/
 
 export interface CreateEventSessionQuestionParams extends MutationParams {

@@ -16,11 +16,11 @@ import {
  * This function allows updating the details of a pass type associated with a room type within a specific event.
  * It is designed to be used in applications where event management and room type configurations are required.
  * @name UpdateEventRoomTypePassTypeDetails
- * @param {string} eventId - The id of the event
- * @param {string} roomTypeId - The id of the room type
- * @param {string} passTypeId - The id of the pass type
- * @param {EventRoomTypePassTypeDetailsUpdateInputs} details - The details to update
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} roomTypeId (path) - The id of the room type
+ * @param {string} passTypeId (path) - The id of the pass type
+ * @param {EventRoomTypePassTypeDetailsUpdateInputs} details (body) - The details to update
+ * @version 1.3
  **/
 
 export interface UpdateEventRoomTypePassTypeDetailsParams

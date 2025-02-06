@@ -13,7 +13,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function provides the ability to retrieve a list of levels with support for pagination and sorting.
  * It is designed to be used in applications where level data needs to be displayed or managed.
  * @name GetLevels
- * @version 1.2
+ * @version 1.3
 **/
 
 export const LEVELS_QUERY_KEY = () => ["LEVELS"];

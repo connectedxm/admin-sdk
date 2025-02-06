@@ -15,10 +15,10 @@ import {
  * This function allows the removal of an add-on associated with a particular event pass type by specifying the event ID, pass type ID, and add-on ID.
  * It is used in scenarios where an add-on needs to be detached from an event pass type, ensuring the event pass type is updated accordingly.
  * @name RemoveEventPassTypeAddOn
- * @param {string} eventId - The id of the event
- * @param {string} passTypeId - The id of the pass type
- * @param {string} addOnId - The id of the add-on
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} passTypeId (path) - The id of the pass type
+ * @param {string} addOnId (path) - The id of the add-on
+ * @version 1.3
  **/
 
 export interface RemoveEventPassTypeAddOnParams extends MutationParams {

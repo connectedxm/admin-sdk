@@ -15,8 +15,8 @@ import { Payment } from "@src/interfaces";
  * This function allows users to fetch payment details for a given invoice by its ID.
  * It is designed to be used in applications where payment information for invoices is required.
  * @name GetInvoicePayments
- * @param {string} invoiceId - The id of the invoice
- * @version 1.2
+ * @param {string} invoiceId (path) - The id of the invoice
+ * @version 1.3
  **/
 
 export const INVOICE_PAYMENTS_QUERY_KEY = (invoiceId: string) => [

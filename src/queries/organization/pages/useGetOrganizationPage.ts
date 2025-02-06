@@ -13,8 +13,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function allows users to fetch pages associated with an organization by providing the page type.
  * It is designed to be used in applications where organization-specific page data is required.
  * @name GetOrganizationPage
- * @param {PageType} type - The type of the page
- * @version 1.2
+ * @param {PageType} type (path) The type of the page
+ * @version 1.3
  **/
 
 export const ORGANIZATION_PAGE_QUERY_KEY = (type: PageType) => ["PAGE", type];

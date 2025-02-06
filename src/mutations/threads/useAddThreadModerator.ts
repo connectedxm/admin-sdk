@@ -16,9 +16,9 @@ import {
  * ensuring that the thread's moderator and member data are updated accordingly.
  * It is designed for applications that manage user roles within discussion threads.
  * @name AddThreadModerator
- * @param {string} threadId - The id of the thread
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} threadId (path) - The id of the thread
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 
 export interface AddThreadModeratorParams extends MutationParams {

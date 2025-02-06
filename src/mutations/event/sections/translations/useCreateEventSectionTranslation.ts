@@ -18,11 +18,11 @@ import {
  * This function allows the creation of a translation for a given event section by specifying the event ID, section ID, and locale.
  * It supports optional auto-translation and updates the query cache upon successful creation.
  * @name PostEventSectionTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} sectionId - The ID of the section
- * @param {string} locale - The locale for the translation
- * @param {[boolean]} autoTranslate - Whether to automatically translate the section
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} sectionId (path) - The ID of the section
+ * @param {string} locale (bodyValue) - The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) - Whether to automatically translate the section
+ * @version 1.3
  **/
 
 /**

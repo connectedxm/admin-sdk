@@ -15,10 +15,10 @@ import { CHANNEL_CONTENT_GUEST_QUERY_KEY } from "../useGetChannelContentGuest";
  * This function is designed to fetch all available translations for a given guest's content in a channel, 
  * allowing applications to display content in multiple languages. It supports infinite scrolling through paginated results.
  * @name GetChannelContentGuestTranslations
- * @param {string} channelId - The ID of the channel
- * @param {string} contentId - The ID of the content
- * @param {string} guestId - The ID of the guest
- * @version 1.2
+ * @param {string} channelId (path) - The ID of the channel
+ * @param {string} contentId (path) - The ID of the content
+ * @param {string} guestId (path) - The ID of the guest
+ * @version 1.3
  **/
 
 export const CHANNEL_CONTENT_GUEST_TRANSLATIONS_QUERY_KEY = (

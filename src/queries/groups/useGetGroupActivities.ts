@@ -14,8 +14,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function retrieves a list of activities associated with a given group ID.
  * It is designed to be used in applications where tracking or displaying group activities is required.
  * @name GetGroupActivities
- * @param {string} groupId - The id of the group
- * @version 1.2
+ * @param {string} groupId (path) - The id of the group
+ * @version 1.3
  **/
 
 export const GROUP_ACTIVITIES_QUERY_KEY = (groupId: string) => [

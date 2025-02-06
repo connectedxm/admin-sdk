@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is designed to be used in applications where detailed information about an interest is required.
  * It utilizes a connected single query to fetch the interest data.
  * @name GetInterest
- * @param {string} interestId - The id of the interest
- * @version 1.2
+ * @param {string} interestId (path) - The id of the interest
+ * @version 1.3
  **/
 
 export const INTEREST_QUERY_KEY = (interestId: string) => [

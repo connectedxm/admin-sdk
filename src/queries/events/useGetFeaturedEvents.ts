@@ -14,7 +14,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to fetch events that are marked as featured, allowing users to view them with various filtering options.
  * It is useful in applications where showcasing highlighted events is necessary.
  * @name GetFeaturedEvents
- * @version 1.2
+ * @version 1.3
  **/
 
 export const FEATURED_EVENTS_QUERY_KEY = () => [

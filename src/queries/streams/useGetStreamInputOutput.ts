@@ -14,10 +14,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is used to fetch detailed information about the input or output associated with a given stream.
  * It is designed for applications that require access to stream data outputs.
  * @name GetStreamInputOutput
- * @param {string} streamId - The ID of the stream
- * @param {string} output - The output data identifier
- * @version 1.2
- **/
+ * @param {string} streamId (path) The ID of the stream
+ * @param {string} output (path) The output data identifier
+ * @version 1.3
+ */
 
 export const STREAM_INPUT_OUTPUT_QUERY_KEY = (
   streamId: string,

@@ -16,10 +16,10 @@ import {
  * This function allows for updating the translation details of a benefit, identified by its ID, for a specified locale.
  * It is designed to be used in applications where benefit translations need to be managed and updated.
  * @name UpdateBenefitTranslation
- * @param {string} benefitId - The ID of the benefit
- * @param {ISupportedLocale} locale - The locale for which the translation is being updated
- * @param {BenefitTranslationUpdateInputs} benefitTranslation - The translation details to be updated
- * @version 1.2
+ * @param {string} benefitId (path) - The ID of the benefit
+ * @param {ISupportedLocale} locale (path) - The locale for which the translation is being updated
+ * @param {BenefitTranslationUpdateInputs} benefitTranslation (body) - The translation details to be updated
+ * @version 1.3
  **/
 
 /**

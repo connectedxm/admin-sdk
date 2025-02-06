@@ -13,8 +13,8 @@ import { EVENT_QUERY_KEY } from "../../useGetEvent";
  * This function provides the ability to fetch reservation details associated with a given event ID.
  * It is designed to be used in applications that require access to event reservation data.
  * @name GetEventReservations
- * @param {string} eventId - The id of the event
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @version 1.3
  **/
 
 export const EVENT_RESERVATIONS_QUERY_KEY = (eventId: string) => [

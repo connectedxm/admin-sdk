@@ -12,9 +12,9 @@ import {
  * This function allows an administrator to reject a specific request to join a group.
  * It is designed to be used in applications where group membership management is required.
  * @name RejectGroupRequest
- * @param {string} groupId - The id of the group
- * @param {string} requestId - The id of the request
- * @version 1.2
+ * @param {string} groupId (path) - The id of the group
+ * @param {string} requestId (path) - The id of the request
+ * @version 1.3
  **/
 
 export interface RejectGroupRequestParams extends MutationParams {

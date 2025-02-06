@@ -14,8 +14,8 @@ import {
  * allowing applications to display or manage channel-specific translations.
  * It supports infinite scrolling through pagination parameters.
  * @name GetChannelTranslations
- * @param {string} channelId - The ID of the channel
- * @version 1.2
+ * @param {string} channelId (path) - The ID of the channel
+ * @version 1.3
  **/
 
 /**

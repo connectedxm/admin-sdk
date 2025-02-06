@@ -13,9 +13,9 @@ import { ACCOUNT_LEADS_QUERY_KEY } from "./useGetAccountLeads";
  * This function retrieves detailed information about a lead associated with a particular account.
  * It is designed for applications that require access to specific lead data within an account.
  * @name GetAccountLead
- * @param {string} accountId - The id of the account
- * @param {string} leadId - The id of the lead
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @param {string} leadId (path) - The id of the lead
+ * @version 1.3
  **/
 
 export const ACCOUNT_LEAD_QUERY_KEY = (accountId: string, leadId: string) => [

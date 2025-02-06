@@ -13,8 +13,8 @@ import { EventCreateInputs } from "@src/params";
  * This function allows for the creation of an event by providing the necessary event details.
  * It is designed to be used in applications where event management is required.
  * @name CreateEvent
- * @param {EventCreateInputs} event - The event details to be created
- * @version 1.2
+ * @param {EventCreateInputs} event (body) - The event details to be created
+ * @version 1.3
  **/
 export interface CreateEventParams extends MutationParams {
   event: EventCreateInputs;

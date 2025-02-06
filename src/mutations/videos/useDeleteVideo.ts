@@ -12,8 +12,8 @@ import { VIDEOS_QUERY_KEY, VIDEO_QUERY_KEY } from "@src/queries";
  * This function allows for the removal of a video from the system, ensuring that associated queries are invalidated and removed.
  * It is intended for use in applications where video management is required, providing a mechanism to delete videos securely.
  * @name DeleteVideo
- * @param {string} videoId - The ID of the video to be deleted
- * @version 1.2
+ * @param {string} videoId (path) - The ID of the video to be deleted
+ * @version 1.3
  **/
 
 export interface DeleteVideoParams extends MutationParams {

@@ -12,8 +12,8 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
  * This function is used to fetch users associated with an event, providing details about their access.
  * It is useful in scenarios where event access management and user details are required.
  * @name GetEventAccessUsers
- * @param {string} eventId - The id of the event
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @version 1.3
  **/
 
 export const EVENT_ACCESS_USERS_QUERY_KEY = (eventId: string) => [

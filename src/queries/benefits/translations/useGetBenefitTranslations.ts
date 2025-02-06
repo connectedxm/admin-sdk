@@ -14,8 +14,8 @@ import { BENEFIT_QUERY_KEY } from "../useGetBenefit";
  * allowing applications to display benefit information in multiple languages.
  * It is designed to be used in scenarios where multilingual support for benefits is required.
  * @name GetBenefitTranslations
- * @param {string} benefitId - The ID of the benefit
- * @version 1.2
+ * @param {string} benefitId (path) - The ID of the benefit
+ * @version 1.3
 **/
 
 /**

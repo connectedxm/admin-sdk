@@ -16,9 +16,9 @@ import { ChannelUpdateInputs } from "@src/params";
  * This function allows updating various attributes of a channel identified by its ID.
  * It is designed to be used in applications where channel management is required.
  * @name UpdateChannel
- * @param {string} channelId - The ID of the channel
- * @param {ChannelUpdateInputs} channel - The channel update inputs
- * @version 1.2
+ * @param {string} channelId (path) - The ID of the channel
+ * @param {ChannelUpdateInputs} channel (body) - The channel update inputs
+ * @version 1.3
  **/
 
 export interface UpdateChannelParams extends MutationParams {

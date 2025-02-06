@@ -18,8 +18,8 @@ import { THREAD_MESSAGE_QUERY_KEY } from "./useGetThreadMessage";
  * This function fetches messages associated with a given thread ID, allowing users to view the conversation history.
  * It is designed to be used in applications where thread-based message retrieval is required.
  * @name GetThreadMessages
- * @param {string} threadId - The id of the thread
- * @version 1.2
+ * @param {string} threadId (path) The id of the thread
+ * @version 1.3
  **/
 
 export const THREAD_MESSAGES_QUERY_KEY = (

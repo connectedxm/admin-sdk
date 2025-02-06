@@ -13,9 +13,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve additional features or services associated with a particular event pass type.
  * It supports pagination and filtering to efficiently manage and access large sets of add-on data.
  * @name GetEventPassTypeAddOns
- * @param {string} eventId - The id of the event
- * @param {string} passTypeId - The id of the pass type
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} passTypeId (path) - The id of the pass type
+ * @version 1.3
  **/
 
 export const EVENT_PASS_TYPE_ADD_ONS_QUERY_KEY = (

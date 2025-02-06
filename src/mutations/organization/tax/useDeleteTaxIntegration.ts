@@ -16,8 +16,8 @@ import {
  * ensuring that the integration is no longer active or available for use.
  * It is designed for administrative purposes where managing tax integrations is required.
  * @name DeleteTaxIntegration
- * @param {keyof typeof TaxIntegrationType} type - The type of the tax integration
- * @version 1.2
+ * @param {keyof typeof TaxIntegrationType} type (path) - The type of the tax integration
+ * @version 1.3
  **/
 
 export interface DeleteTaxIntegrationParams extends MutationParams {

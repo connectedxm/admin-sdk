@@ -13,8 +13,8 @@ import { ConnectedXMResponse, Integration } from "@src/interfaces";
  * This function allows users to fetch comprehensive information about a particular integration using its unique identifier.
  * It is designed for applications that require detailed integration data for organizational purposes.
  * @name GetIntegration
- * @param {string} integrationId - The ID of the integration
- * @version 1.2
+ * @param {string} integrationId (path) The ID of the integration
+ * @version 1.3
  **/
 
 export const INTEGRATION_QUERY_KEY = (integrationId: string) => [

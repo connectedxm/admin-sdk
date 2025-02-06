@@ -9,12 +9,12 @@ import { ORGANIZATION_PAYMENT_INTEGRATION_QUERY_KEY } from "./useGetOrganization
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * Retrieves the payment link for a specified payment integration type within an organization.
- * This function is designed to fetch the URL link associated with a particular payment integration type,
+ * This file contains functions for retrieving and managing organization payment integration links.
+ * It provides a way to fetch the URL link associated with a particular payment integration type,
  * allowing organizations to access or manage their payment integrations effectively.
- * @name GetOrganizationPaymentLink
- * @param {keyof typeof PaymentIntegrationType} type - The type of payment integration
- * @version 1.2
+ * @name OrganizationPaymentIntegration
+ * @param {keyof typeof PaymentIntegrationType} type (path) The type of payment integration
+ * @version 1.3
  **/
 
 export const ORGANIZATION_PAYMENT_INTEGRATION_LINK_QUERY_KEY = (

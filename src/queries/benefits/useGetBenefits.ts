@@ -12,8 +12,8 @@ import {
  * This function is designed to be used in applications where a comprehensive list of benefits is required,
  * with the ability to filter results based on an event. It supports infinite scrolling through pagination.
  * @name GetBenefits
- * @param {string} [eventId] - The id of the event to filter benefits
- * @version 1.2
+ * @param {string} [eventId] (query) - The id of the event to filter benefits
+ * @version 1.3
  **/
 
 export const BENEFITS_QUERY_KEY = (eventId?: string) => {

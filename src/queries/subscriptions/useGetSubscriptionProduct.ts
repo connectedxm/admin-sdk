@@ -14,9 +14,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function utilizes a connected single query to retrieve data about a subscription product.
  * It is designed to be used in applications where detailed information about a subscription product is required.
  * @name GetSubscriptionProduct
- * @param {string} subscriptionProductId - The ID of the subscription product
- * @version 1.2
- **/
+ * @param {string} subscriptionProductId (path) The ID of the subscription product
+ * @version 1.3
+ */
 
 export const SUBSCRIPTION_PRODUCT_QUERY_KEY = (
   subscriptionProductId: string

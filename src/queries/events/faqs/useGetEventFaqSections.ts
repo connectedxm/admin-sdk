@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches a list of frequently asked questions associated with a given event, 
  * allowing users to access detailed information about the event's FAQs.
  * @name GetEventFaqSections
- * @param {string} eventId - The id of the event
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @version 1.3
  **/
 
 export const EVENT_FAQ_SECTIONS_QUERY_KEY = (eventId: string) => [

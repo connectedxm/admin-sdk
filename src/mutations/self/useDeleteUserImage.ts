@@ -12,7 +12,7 @@ import { SELF_QUERY_KEY, SET_SELF_QUERY_DATA } from "@src/queries";
  * This function allows users to remove their profile image from the system.
  * It ensures that the user's image is deleted and updates the query cache accordingly.
  * @name DeleteUserImage
- * @version 1.2
+ * @version 1.3
  **/
 
 export interface DeleteUserImageParams extends MutationParams {}

@@ -13,16 +13,16 @@ import { CHANNEL_CONTENT_GUEST_TRANSLATIONS_QUERY_KEY } from "@src/queries/chann
 
 /**
  * Creates a translation for a specific guest's content within a channel.
- * This function allows for the creation of a guest translation for a specific content item in a channel, 
- * supporting optional auto-translation. It is useful for applications that need to manage multilingual content 
+ * This function allows for the creation of a guest translation for a specific content item in a channel,
+ * supporting optional auto-translation. It is useful for applications that need to manage multilingual content
  * for different guests within a channel.
  * @name PostChannelContentGuestTranslation
- * @param {string} channelId - The ID of the channel
- * @param {string} contentId - The ID of the content
- * @param {string} guestId - The ID of the guest
- * @param {string} locale - The locale for the translation
- * @param {[boolean]} autoTranslate - Whether to automatically translate the content
- * @version 1.2
+ * @param {string} channelId (path) - The ID of the channel
+ * @param {string} contentId (path) - The ID of the content
+ * @param {string} guestId (path) - The ID of the guest
+ * @param {string} locale (bodyValue) - The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) - Whether to automatically translate the content
+ * @version 1.3
  **/
 
 /**

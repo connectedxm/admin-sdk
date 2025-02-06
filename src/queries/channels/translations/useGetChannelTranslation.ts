@@ -13,9 +13,9 @@ import {
  * This function is used to fetch the translation data for a given channel ID and locale, 
  * allowing applications to display localized content for channels.
  * @name GetChannelTranslation
- * @param {string} channelId - The ID of the channel
- * @param {string} locale - The locale for the translation
- * @version 1.2
+ * @param {string} channelId (path) - The ID of the channel
+ * @param {string} locale (path) - The locale for the translation
+ * @version 1.3
  */
 export const CHANNEL_TRANSLATION_QUERY_KEY = (
   channelId: string,

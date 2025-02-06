@@ -16,11 +16,10 @@ import {
  * This function allows the removal of a pass associated with a reservation for a given event.
  * It is useful in scenarios where a pass needs to be invalidated or removed from an event reservation.
  * @name RemoveEventReservationPass
- * @param {string} eventId - The id of the event
- * @param {string} reservationId - The id of the reservation
- * @param {string} passId - The id of the pass
- * @param {string} [accountId] - Optional account id
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} reservationId (path) - The id of the reservation
+ * @param {string} passId (path) - The id of the pass
+ * @version 1.3
  **/
 export interface RemoveEventReservationPassParams extends MutationParams {
   eventId: string;

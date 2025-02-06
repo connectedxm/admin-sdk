@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is designed to fetch event activations associated with a specific event ID.
  * It is useful for applications that need to display or process event activations in a paginated format.
  * @name GetEventActivations
- * @param {string} eventId - The ID of the event
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @version 1.3
  **/
 
 export const EVENT_ACTIVATIONS_QUERY_KEY = (eventId: string) => [

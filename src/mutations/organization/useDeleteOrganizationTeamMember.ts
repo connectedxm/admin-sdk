@@ -15,8 +15,8 @@ import {
  * This function allows for the removal of a specified team member by their ID from an organization's team.
  * It is intended for use in administrative contexts where managing team membership is required.
  * @name DeleteOrganizationTeamMember
- * @param {string} teamMemberId - The ID of the team member to be deleted
- * @version 1.2
+ * @param {string} teamMemberId (path) - The ID of the team member to be deleted
+ * @version 1.3
  **/
 
 export interface DeleteOrganizationTeamMemberParams extends MutationParams {

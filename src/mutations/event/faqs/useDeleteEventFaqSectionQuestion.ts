@@ -15,10 +15,10 @@ import {
  * This function allows the removal of a question from an event's FAQ section by specifying the event ID, section ID, and question ID.
  * It is useful for managing the content of FAQ sections within event management applications.
  * @name DeleteEventFaqSectionQuestion
- * @param {string} eventId - The id of the event
- * @param {string} sectionId - The id of the FAQ section
- * @param {string} questionId - The id of the question to be deleted
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} sectionId (path) - The id of the FAQ section
+ * @param {string} questionId (path) - The id of the question to be deleted
+ * @version 1.3
  **/
 
 export interface DeleteEventFaqSectionQuestionParams extends MutationParams {

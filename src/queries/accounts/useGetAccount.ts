@@ -14,8 +14,8 @@ import { ACCOUNTS_QUERY_KEY } from "./useGetAccounts";
  * This function is designed to retrieve detailed information about an account using its unique identifier.
  * It is intended for use in applications where account-specific data is required.
  * @name GetAccount
- * @param {string} accountId - The ID of the account
- * @version 1.2
+ * @param {string} accountId (path) - The ID of the account
+ * @version 1.3
  **/
 
 export const ACCOUNT_QUERY_KEY = (accountId: string) => [

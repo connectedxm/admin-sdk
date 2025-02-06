@@ -12,9 +12,9 @@ import { CHANNEL_SUBSCRIBERS_QUERY_KEY } from "@src/queries/channels/useGetChann
  * This function allows the removal of a subscriber from a channel by specifying the channel ID and account ID.
  * It is used in scenarios where managing channel subscriptions is necessary.
  * @name RemoveChannelSubscriber
- * @param {string} channelId - The id of the channel
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} channelId (path) - The id of the channel
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 
 export interface RemoveChannelSubscriberParams extends MutationParams {

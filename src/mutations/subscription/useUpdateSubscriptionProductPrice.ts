@@ -16,10 +16,10 @@ import {
  * This function allows updating the price details of a specific subscription product by providing the necessary identifiers and update inputs.
  * It is designed to be used in applications where subscription product pricing needs to be modified.
  * @name UpdateSubscriptionProductPrice
- * @param {string} subscriptionProductId - The id of the subscription product
- * @param {string} subscriptionProductPriceId - The id of the subscription product price
- * @param {SubscriptionProductPriceUpdateInputs} subscriptionProductPrice - The subscription product price update inputs
- * @version 1.2
+ * @param {string} subscriptionProductId (path) - The id of the subscription product
+ * @param {string} subscriptionProductPriceId (path) - The id of the subscription product price
+ * @param {SubscriptionProductPriceUpdateInputs} subscriptionProductPrice (body) - The subscription product price update inputs
+ * @version 1.3
  **/
 
 export interface UpdateSubscriptionProductPriceParams extends MutationParams {

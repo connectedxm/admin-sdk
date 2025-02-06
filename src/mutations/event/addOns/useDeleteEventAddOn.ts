@@ -12,9 +12,9 @@ import { EVENT_ADD_ONS_QUERY_KEY, EVENT_ADD_ON_QUERY_KEY } from "@src/queries";
  * This function allows the removal of an add-on associated with a given event by specifying the event and add-on IDs.
  * It is useful in scenarios where event configurations need to be updated by removing unnecessary or outdated add-ons.
  * @name DeleteEventAddOn
- * @param {string} eventId - The id of the event
- * @param {string} addOnId - The id of the add-on
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} addOnId (path) - The id of the add-on
+ * @version 1.3
  **/
 
 export interface DeleteEventAddOnParams extends MutationParams {

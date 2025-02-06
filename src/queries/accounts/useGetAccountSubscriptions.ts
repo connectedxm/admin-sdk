@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function allows users to fetch subscription details for a given account ID.
  * It is designed to be used in applications where account subscription information is required.
  * @name GetAccountSubscriptions
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 
 export const ACCOUNT_SUBSCRIPTIONS_QUERY_KEY = (accountId: string) => [

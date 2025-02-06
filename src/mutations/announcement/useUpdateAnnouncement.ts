@@ -16,9 +16,9 @@ import { AnnouncementUpdateInputs } from "@src/params";
  * This function allows users to modify the details of a specific announcement by providing the announcement ID and the updated inputs.
  * It ensures that the announcement data is updated in the system and the relevant queries are invalidated to reflect the changes.
  * @name UpdateAnnouncement
- * @param {string} announcementId - The ID of the announcement
- * @param {AnnouncementUpdateInputs} announcement - The announcement update inputs
- * @version 1.2
+ * @param {string} announcementId (path) - The ID of the announcement
+ * @param {AnnouncementUpdateInputs} announcement (body) - The announcement update inputs
+ * @version 1.3
  **/
 export interface UpdateAnnouncementParams extends MutationParams {
   announcementId: string;

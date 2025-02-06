@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is used to retrieve a list of channels linked to a given interest ID.
  * It supports infinite scrolling and can be used in applications where channel data needs to be displayed dynamically.
  * @name GetInterestChannels
- * @param {string} interestId - The id of the interest
- * @version 1.2
+ * @param {string} interestId (path) - The id of the interest
+ * @version 1.3
  **/
 
 export const INTEREST_CHANNELS_QUERY_KEY = (interestId: string) => [

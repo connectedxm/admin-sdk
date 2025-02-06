@@ -14,10 +14,10 @@ import {
  * This function is used to remove a translation entry for a question within an event, identified by event ID, question ID, and locale.
  * It ensures that the relevant cache is invalidated to maintain data consistency.
  * @name DeleteEventQuestionTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} questionId - The ID of the question
- * @param {string} locale - The locale of the translation
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} questionId (path) - The ID of the question
+ * @param {string} locale (path) - The locale of the translation
+ * @version 1.3
  **/
 
 /**

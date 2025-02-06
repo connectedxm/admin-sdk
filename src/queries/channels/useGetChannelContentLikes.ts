@@ -13,9 +13,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function supports pagination and filtering, allowing users to retrieve likes data efficiently.
  * It is designed to be used in applications where understanding user engagement with channel content is necessary.
  * @name GetChannelContentLikes
- * @param {string} channelId - The id of the channel
- * @param {string} contentId - The id of the content
- * @version 1.2
+ * @param {string} channelId (path) - The id of the channel
+ * @param {string} contentId (path) - The id of the content
+ * @version 1.3
  **/
 
 export const CHANNEL_CONTENT_LIKES_QUERY_KEY = (

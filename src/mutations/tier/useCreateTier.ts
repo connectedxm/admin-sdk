@@ -13,8 +13,8 @@ import { TierCreateInputs } from "@src/params";
  * This function allows the creation of a tier by providing the necessary inputs.
  * It is designed to be used in applications where tier management is required.
  * @name CreateTier
- * @param {TierCreateInputs} tier - The inputs required to create a tier
- * @version 1.2
+ * @param {TierCreateInputs} tier (body) - The inputs required to create a tier
+ * @version 1.3
  **/
 
 export interface CreateTierParams extends MutationParams {

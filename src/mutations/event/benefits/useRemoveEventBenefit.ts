@@ -12,9 +12,9 @@ import { BENEFITS_QUERY_KEY, SET_BENEFIT_QUERY_DATA } from "@src/queries";
  * This function allows the removal of a benefit associated with an event by specifying the event and benefit IDs.
  * It is designed to be used in applications where event management and benefit association are required.
  * @name RemoveEventBenefit
- * @param {string} benefitId - The id of the benefit to be removed
- * @param {string} eventId - The id of the event from which the benefit is to be removed
- * @version 1.2
+ * @param {string} benefitId (path) - The id of the benefit to be removed
+ * @param {string} eventId (path) - The id of the event from which the benefit is to be removed
+ * @version 1.3
  **/
 export interface RemoveEventBenefitParams extends MutationParams {
   benefitId: string;

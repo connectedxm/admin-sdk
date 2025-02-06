@@ -13,9 +13,9 @@ import { EVENT_ROOM_TYPE_QUERY_KEY } from "./useGetEventRoomType";
  * This function fetches a list of passes associated with a given event and room type, 
  * allowing users to manage or view passes for specific event room types.
  * @name GetEventRoomTypePasses
- * @param {string} eventId - The id of the event
- * @param {string} roomTypeId - The id of the room type
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} roomTypeId (path) - The id of the room type
+ * @version 1.3
  **/
 
 export const EVENT_ROOM_TYPE_PASSES_QUERY_KEY = (

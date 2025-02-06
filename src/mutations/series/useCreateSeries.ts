@@ -13,8 +13,8 @@ import { SeriesCreateInputs } from "@src/params";
  * This function allows users to add a new series by providing the necessary series data.
  * It ensures that the series is created and updates the query cache accordingly.
  * @name CreateSeries
- * @param {SeriesCreateInputs} series - The series data to be created
- * @version 1.2
+ * @param {SeriesCreateInputs} series (body) - The series data to be created
+ * @version 1.3
  **/
 export interface CreateSeriesParams extends MutationParams {
   series: SeriesCreateInputs;

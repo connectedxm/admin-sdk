@@ -14,8 +14,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is used to fetch group membership details, providing a paginated list of members.
  * It is designed for applications that need to display or manage group members.
  * @name GetGroupMembers
- * @param {string} groupId - The id of the group
- * @version 1.2
+ * @param {string} groupId (path) - The id of the group
+ * @version 1.3
  **/
 
 export const GROUP_MEMBERS_QUERY_KEY = (groupId: string) => [

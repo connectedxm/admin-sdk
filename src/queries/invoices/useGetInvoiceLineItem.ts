@@ -14,9 +14,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function retrieves detailed information about a particular line item within an invoice.
  * It is intended for use in applications that require access to specific invoice line item data.
  * @name GetInvoiceLineItem
- * @param {string} invoiceId - The ID of the invoice
- * @param {string} lineItemId - The ID of the line item
- * @version 1.2
+ * @param {string} invoiceId (path) - The ID of the invoice
+ * @param {string} lineItemId (path) - The ID of the line item
+ * @version 1.3
  **/
 
 export const INVOICE_LINE_ITEM_QUERY_KEY = (

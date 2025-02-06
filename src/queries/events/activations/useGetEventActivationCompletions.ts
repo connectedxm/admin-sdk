@@ -14,9 +14,9 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches data about the completions of an activation within a given event, 
  * allowing users to track and manage activation progress.
  * @name GetEventActivationCompletions
- * @param {string} eventId - The id of the event
- * @param {string} activationId - The id of the activation
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} activationId (path) - The id of the activation
+ * @version 1.3
  **/
 
 export const EVENT_ACTIVATION_COMPLETIONS_QUERY_KEY = (

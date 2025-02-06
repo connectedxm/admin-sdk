@@ -15,11 +15,11 @@ import {
  * This function allows the creation of a translation for a room type within an event, supporting multiple locales and optional auto-translation.
  * It is designed to be used in applications that manage event reservations and require multilingual support for room types.
  * @name PostEventRoomTypeTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} roomTypeId - The ID of the room type
- * @param {string} locale - The locale for the translation
- * @param {boolean} [autoTranslate] - Whether to automatically translate the content
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} roomTypeId (path) - The ID of the room type
+ * @param {string} locale (bodyValue) - The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) - Whether to automatically translate the content
+ * @version 1.3
  **/
 
 /**

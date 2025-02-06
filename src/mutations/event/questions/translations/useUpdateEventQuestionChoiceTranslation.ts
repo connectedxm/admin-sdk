@@ -16,12 +16,12 @@ import {
  * This function allows updating the translation of a choice within a question for a given event, identified by event ID, question ID, and choice ID.
  * It is designed to be used in applications where multilingual support for event questions is required.
  * @name PutEventQuestionChoiceTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} questionId - The ID of the question
- * @param {string} choiceId - The ID of the choice
- * @param {ISupportedLocale} locale - The locale for the translation
- * @param {EventQuestionChoiceTranslationUpdateInputs} choiceTranslation - The translation inputs for the choice
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} questionId (path) - The ID of the question
+ * @param {string} choiceId (path) - The ID of the choice
+ * @param {ISupportedLocale} locale (path) - The locale for the translation
+ * @param {EventQuestionChoiceTranslationUpdateInputs} choiceTranslation (body) - The translation inputs for the choice
+ * @version 1.3
  **/
 
 export interface UpdateEventQuestionChoiceTranslationParams

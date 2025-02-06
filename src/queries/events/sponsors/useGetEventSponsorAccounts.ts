@@ -14,8 +14,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * allowing for efficient data handling through pagination and optional filtering parameters.
  * It is intended for use in applications that require detailed sponsor account information for events.
  * @name GetEventSponsorAccounts
- * @param {string} eventId - The id of the event
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @version 1.3
  **/
 
 export const EVENT_SPONSOR_ACCOUNTS_QUERY_KEY = (eventId: string) => [

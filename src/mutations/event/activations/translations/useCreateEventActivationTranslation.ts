@@ -15,11 +15,11 @@ import {
  * This function allows users to add translations to event activations, with an option for automatic translation.
  * It is designed to be used in applications that manage multilingual event content.
  * @name PostEventActivationTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} activationId - The ID of the activation
- * @param {string} locale - The locale for the translation
- * @param {[boolean]} autoTranslate - Whether to automatically translate the content
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} activationId (path) - The ID of the activation
+ * @param {string} locale (bodyValue) - The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) - Whether to automatically translate the content
+ * @version 1.3
  **/
 
 /**

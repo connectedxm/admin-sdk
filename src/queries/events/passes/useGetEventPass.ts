@@ -13,9 +13,9 @@ import { EVENT_PASSES_QUERY_KEY } from "./useGetEventPasses";
  * This function is designed to manage and retrieve information about event passes, allowing users to access detailed data about a specific pass associated with an event.
  * It is useful in applications where event management and pass details are required.
  * @name GetEventPass
- * @param {string} eventId - The id of the event
- * @param {string} passId - The id of the pass
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} passId (path) - The id of the pass
+ * @version 1.3
  **/
 
 export const EVENT_PASS_QUERY_KEY = (eventId: string, passId: string) => [

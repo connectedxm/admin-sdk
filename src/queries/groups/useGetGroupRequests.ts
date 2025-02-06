@@ -17,9 +17,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function allows users to fetch and handle requests associated with a group, filtered by request status.
  * It is designed to be used in applications where managing group membership requests is necessary.
  * @name GetGroupRequests
- * @param {string} groupId - The id of the group
- * @param {[keyof typeof GroupRequestStatus]} status - The status of the group request
- * @version 1.2
+ * @param {string} groupId (path) - The id of the group
+ * @param {keyof typeof GroupRequestStatus} status (query) - The status of the group request
+ * @version 1.3
  **/
 
 export const GROUP_REQUESTS_QUERY_KEY = (

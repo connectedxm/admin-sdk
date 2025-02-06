@@ -12,9 +12,9 @@ import { EVENT_CO_HOSTS_QUERY_KEY } from "@src/queries";
  * This function allows the removal of a specified account as a co-host from a given event.
  * It is useful in scenarios where event management requires updating the list of co-hosts.
  * @name RemoveEventCoHost
- * @param {string} eventId - The id of the event
- * @param {string} accountId - The id of the account to be removed as co-host
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} accountId (path) - The id of the account to be removed as co-host
+ * @version 1.3
 **/
 export interface RemoveEventCoHostParams extends MutationParams {
   eventId: string;

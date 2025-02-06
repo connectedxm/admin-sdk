@@ -15,9 +15,9 @@ import {
  * This function allows the addition of an account to a group by specifying the group and account IDs.
  * It is designed to be used in applications where managing group memberships is required.
  * @name AddGroupMember
- * @param {string} groupId - The id of the group
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} groupId (path) - The id of the group
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 
 export interface AddGroupMemberParams extends MutationParams {

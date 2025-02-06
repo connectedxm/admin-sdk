@@ -14,9 +14,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve detailed information about a particular section of an event, 
  * which can be used in applications that require insights into event structures.
  * @name GetEventSection
- * @param {string} eventId - The ID of the event
- * @param {string} sectionId - The ID of the section
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} sectionId (path) - The ID of the section
+ * @version 1.3
  **/
 
 export const EVENT_SECTION_QUERY_KEY = (eventId: string, sectionId: string) => [

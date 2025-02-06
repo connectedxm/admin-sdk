@@ -14,7 +14,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches a paginated list of team members, allowing for optional sorting and searching.
  * It is designed to be used in applications that require displaying or managing organization team members.
  * @name GetOrganizationTeamMembers
- * @version 1.2
+ * @version 1.3
  **/
 
 export const ORGANIZATION_TEAM_MEMBERS_QUERY_KEY = () => [

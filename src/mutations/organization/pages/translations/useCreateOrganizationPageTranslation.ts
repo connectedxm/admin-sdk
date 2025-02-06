@@ -19,10 +19,10 @@ import {
  * This function allows for the creation of translations for organization pages, supporting optional auto-translation.
  * It is designed to be used in applications where multilingual support for organization pages is required.
  * @name PostOrganizationPageTranslation
- * @param {PageType} type - The type of the page
- * @param {string} locale - The locale for the translation
- * @param {[boolean]} autoTranslate - Whether to automatically translate the page
- * @version 1.2
+ * @param {PageType} type (path) - The type of the page
+ * @param {string} locale (bodyValue) - The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) - Whether to automatically translate the page
+ * @version 1.3
  **/
 
 /**

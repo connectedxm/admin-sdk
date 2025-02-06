@@ -14,8 +14,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve account data linked to a particular interest, 
  * allowing applications to display or process information related to these accounts.
  * @name GetInterestAccounts
- * @param {string} interestId - The id of the interest
- * @version 1.2
+ * @param {string} interestId (path) - The id of the interest
+ * @version 1.3
  **/
 
 export const INTEREST_ACCOUNTS_QUERY_KEY = (interestId: string) => [

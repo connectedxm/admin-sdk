@@ -18,9 +18,9 @@ import {
  * ensuring that the query client is updated to reflect this change. 
  * It is useful in scenarios where activities need to be dynamically linked with interests.
  * @name AddActivityInterest
- * @param {string} activityId - The id of the activity
- * @param {string} interestId - The id of the interest
- * @version 1.2
+ * @param {string} activityId (path) - The id of the activity
+ * @param {string} interestId (path) - The id of the interest
+ * @version 1.3
 **/
 export interface AddActivityInterestParams extends MutationParams {
   activityId: string;

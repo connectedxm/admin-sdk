@@ -16,9 +16,9 @@ import {
  * This function facilitates the removal of an account from a particular level, ensuring that the associated data is updated accordingly.
  * It is intended for use in administrative contexts where managing account-level associations is necessary.
  * @name RemoveLevelAccount
- * @param {string} levelId - The id of the level
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} levelId (path) - The id of the level
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 export interface RemoveLevelAccountParams extends MutationParams {
   levelId: string;

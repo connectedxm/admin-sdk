@@ -14,9 +14,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * providing options for pagination, sorting, and searching.
  * It is designed to be used in applications where tier-based account management is required.
  * @name GetTierAccounts
- * @param {string} [tierId] - The id of the tier
- * @version 1.2
- **/
+ * @param {string} [tierId] (path) The id of the tier
+ * @version 1.3
+ */
 
 export const TIER_ACCOUNTS_QUERY_KEY = (tierId: string) => [
   ...TIER_QUERY_KEY(tierId),

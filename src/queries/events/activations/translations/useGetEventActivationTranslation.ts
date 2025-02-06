@@ -14,10 +14,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * that require displaying event information in different languages. It utilizes a connected single query to ensure
  * efficient data retrieval and caching.
  * @name GetEventActivationTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} activationId - The ID of the activation
- * @param {string} locale - The locale for the translation
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} activationId (path) - The ID of the activation
+ * @param {string} locale (path) - The locale for the translation
+ * @version 1.3
  */
 
 export const EVENT_ACTIVATION_TRANSLATION_QUERY_KEY = (

@@ -12,8 +12,8 @@ import { SET_EVENT_ON_SITE_QUERY_DATA } from "@src/queries";
  * This function allows updating the check-in code for an event by providing the event ID.
  * It is used to manage event check-in processes and ensure the correct code is set for on-site operations.
  * @name UpdateEventCheckinCode
- * @param {string} eventId - The id of the event
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @version 1.3
  **/
 export interface UpdateEventCheckinCodeParams extends MutationParams {
   eventId: string;

@@ -13,9 +13,9 @@ import {
  * This function is used to retrieve the translated content for a given channel, identified by content ID and locale.
  * It is designed for applications that need to display content in multiple languages.
  * @name GetChannelContentTranslation
- * @param {string} contentId - The ID of the content
- * @param {string} locale - The locale of the translation
- * @version 1.2
+ * @param {string} contentId (path) - The ID of the content
+ * @param {string} locale (path) - The locale of the translation
+ * @version 1.3
  **/
 
 export const CHANNEL_CONTENT_TRANSLATION_QUERY_KEY = (

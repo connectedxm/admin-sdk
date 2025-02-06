@@ -11,10 +11,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function allows updating the password of a Cognito user linked to a specific account.
  * It is intended for use in scenarios where password management for Cognito users is required.
  * @name UpdateAccountCognitoUserPassword
- * @param {string} accountId - The id of the account
- * @param {string} username - The username of the Cognito user
- * @param {string} password - The new password for the Cognito user
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @param {string} username (path) - The username of the Cognito user
+ * @param {string} password (bodyValue) - The new password for the Cognito user
+ * @version 1.3
  **/
 
 export interface UpdateAccountCognitoUserPasswordParams extends MutationParams {

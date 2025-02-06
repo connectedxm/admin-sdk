@@ -18,12 +18,12 @@ import {
  * This function facilitates the transfer of a specific event pass to a designated receiver account.
  * It is used in scenarios where event passes need to be reassigned or gifted to another user.
  * @name TransferEventPass
- * @param {string} eventId - The id of the event
- * @param {string} accountId - The id of the account
- * @param {string} passId - The id of the pass
- * @param {string} receiverId - The id of the receiver
- * @version 1.2
-**/
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} accountId (path) - The id of the account
+ * @param {string} passId (path) - The id of the pass
+ * @param {string} accountId (bodyValue) - The id of the receiver
+ * @version 1.3
+ **/
 export interface TransferEventPassParams extends MutationParams {
   eventId: string;
   accountId: string;

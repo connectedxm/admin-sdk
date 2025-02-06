@@ -16,8 +16,8 @@ import { QueryClient } from "@tanstack/react-query";
  * It is designed to be used in applications where content needs to be dynamically loaded 
  * based on user interests.
  * @name GetInterestContents
- * @param {string} interestId - The id of the interest
- * @version 1.2
+ * @param {string} interestId (path) - The id of the interest
+ * @version 1.3
  **/
 
 export const INTEREST_CONTENTS_QUERY_KEY = (interestId: string) => [

@@ -15,11 +15,11 @@ import {
  * This function allows for the creation of translations for event pages, supporting multiple locales and optional auto-translation.
  * It is designed to be used in applications where event page content needs to be available in different languages.
  * @name PostEventPageTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} pageId - The ID of the page
- * @param {string} locale - The locale for the translation
- * @param {boolean} [autoTranslate] - Whether to automatically translate the content
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} pageId (path) - The ID of the page
+ * @param {string} locale (bodyValue) - The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) - Whether to automatically translate the content
+ * @version 1.3
  **/
 
 /**

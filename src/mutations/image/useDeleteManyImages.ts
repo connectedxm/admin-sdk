@@ -12,8 +12,8 @@ import { IMAGES_QUERY_KEY } from "@src/queries";
  * This function allows users to remove several images at once by providing their IDs.
  * It is useful in scenarios where bulk deletion of images is required, ensuring efficient management of image resources.
  * @name DeleteManyImages
- * @param {string[]} imageIds - The IDs of the images to be deleted
- * @version 1.2
+ * @param {string[]} imageIds (bodyValue) - The IDs of the images to be deleted
+ * @version 1.3
  **/
 
 export interface DeleteManyImagesParams extends MutationParams {

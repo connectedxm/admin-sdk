@@ -13,10 +13,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is used to fetch the translated content of an FAQ section associated with an event, 
  * allowing applications to display localized information to users.
  * @name GetEventFaqSectionTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} sectionId - The ID of the FAQ section
- * @param {string} locale - The locale for the translation
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} sectionId (path) - The ID of the FAQ section
+ * @param {string} locale (path) - The locale for the translation
+ * @version 1.3
  **/
 
 export const EVENT_FAQ_SECTION_TRANSLATION_QUERY_KEY = (

@@ -13,9 +13,9 @@ import {
  * This function is used to retrieve translation data for a group within an application, 
  * allowing for localization and internationalization support.
  * @name GetGroupTranslation
- * @param {string} groupId - The ID of the group
- * @param {string} locale - The locale for the translation
- * @version 1.2
+ * @param {string} groupId (path) - The ID of the group
+ * @param {string} locale (path) - The locale for the translation
+ * @version 1.3
  **/
 
 export const GROUP_TRANSLATION_QUERY_KEY = (

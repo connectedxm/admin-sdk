@@ -14,9 +14,9 @@ import { QueryClient } from "@tanstack/react-query";
  * providing options for pagination and additional query parameters.
  * It is designed for applications that require detailed management and retrieval of support tickets.
  * @name GetSupportTickets
- * @param {string} status - The status of the support tickets
- * @param {string} type - The type of the support tickets
- * @version 1.2
+ * @param {string} status (query) The status of the support tickets
+ * @param {string} type (query) The type of the support tickets
+ * @version 1.3
  **/
 
 export const SUPPORT_TICKETS_QUERY_KEY = (status?: string, type?: string) => [

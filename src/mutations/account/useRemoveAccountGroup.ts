@@ -12,9 +12,9 @@ import { ACCOUNT_GROUPS_QUERY_KEY } from "@src/queries";
  * This function allows the removal of a specified group from a given account by utilizing the account and group identifiers.
  * It is designed to be used in scenarios where account group management is required, ensuring that the specified group is detached from the account.
  * @name RemoveAccountGroup
- * @param {string} accountId - The id of the account
- * @param {string} groupId - The id of the group
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @param {string} groupId (path) - The id of the group
+ * @version 1.3
  **/
 export interface RemoveAccountGroupParams extends MutationParams {
   accountId: string;

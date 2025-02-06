@@ -14,9 +14,9 @@ import { EVENT_SESSION_LOCATIONS_QUERY_KEY } from "@src/queries/events/sessions/
  * This function allows the creation of a new location for a specific event session.
  * It is designed to be used in applications where event management and location tracking are required.
  * @name CreateEventSessionLocation
- * @param {string} eventId - The id of the event
- * @param {EventSessionLocationCreateInputs} location - The location details for the event session
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {EventSessionLocationCreateInputs} location (body) - The location details for the event session
+ * @version 1.3
  **/
 export interface CreateEventSessionLocationParams extends MutationParams {
   eventId: string;

@@ -14,10 +14,10 @@ import { TIER_IMPORTS_QUERY_KEY } from "./useGetTierImports";
  * This function allows users to fetch details of a particular import within a specified tier.
  * It is designed to be used in applications where detailed information about tier imports is required.
  * @name GetTierImport
- * @param {string} tierId - The id of the tier
- * @param {string} importId - The id of the import
- * @version 1.2
- **/
+ * @param {string} tierId (path) The id of the tier
+ * @param {string} importId (path) The id of the import
+ * @version 1.3
+ */
 
 export const TIER_IMPORT_QUERY_KEY = (tierId: string, importId: string) => [
   ...TIER_IMPORTS_QUERY_KEY(tierId),

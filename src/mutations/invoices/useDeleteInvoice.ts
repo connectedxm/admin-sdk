@@ -12,8 +12,8 @@ import { INVOICES_QUERY_KEY, INVOICE_QUERY_KEY } from "@src/queries";
  * This function allows for the removal of an invoice from the system, ensuring that all related queries are invalidated and removed.
  * It is designed to be used in applications where invoice management is required.
  * @name DeleteInvoice
- * @param {string} invoiceId - The ID of the invoice to be deleted
- * @version 1.2
+ * @param {string} invoiceId (path) - The ID of the invoice to be deleted
+ * @version 1.3
  **/
 
 export interface DeleteInvoiceParams extends MutationParams {

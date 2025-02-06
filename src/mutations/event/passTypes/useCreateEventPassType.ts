@@ -17,9 +17,9 @@ import {
  * enabling the management of different pass types within the event's context.
  * It is designed to be used in applications where event pass types need to be dynamically created.
  * @name CreateEventPassType
- * @param {string} eventId - The id of the event
- * @param {PassTypeCreateInputs} passType - The pass type details
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {PassTypeCreateInputs} passType (body) - The pass type details
+ * @version 1.3
 **/
 
 export interface CreateEventPassTypeParams extends MutationParams {

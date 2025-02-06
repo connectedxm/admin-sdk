@@ -13,7 +13,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches integration data, allowing users to view and manage integrations within their organization.
  * It supports pagination and sorting to efficiently handle large datasets.
  * @name GetIntegrations
- * @version 1.2
+ * @version 1.3
  **/
 
 export const INTEGRATIONS_QUERY_KEY = () => ["INTEGRATIONS"];

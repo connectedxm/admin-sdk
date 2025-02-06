@@ -17,12 +17,11 @@ import {
  * This function allows updating the reservation details for a specific event and reservation ID.
  * It is designed to be used in applications where event reservation modifications are required.
  * @name UpdateEventReservation
- * @param {string} eventId - The id of the event
- * @param {string} reservationId - The id of the reservation
- * @param {EventRoomTypeReservationUpdateInputs} reservation - The reservation details to update
- * @param {string} [accountId] - Optional account id
- * @version 1.2
-**/
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} reservationId (path) - The id of the reservation
+ * @param {EventRoomTypeReservationUpdateInputs} reservation (body) - The reservation details to update
+ * @version 1.3
+ **/
 
 export interface UpdateEventReservationParams extends MutationParams {
   eventId: string;
@@ -63,7 +62,7 @@ export const UpdateEventReservation = async ({
     }
   }
   return data;
-}
+};
 
 export const useUpdateEventReservation = (
   options: Omit<

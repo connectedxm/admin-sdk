@@ -12,8 +12,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to fetch import data, which can be filtered by tier, 
  * and is suitable for applications that require paginated import data retrieval.
  * @name GetImports
- * @param {string} [tierId] - The id of the tier to filter imports
- * @version 1.2
+ * @param {string} [tierId] (query) - The id of the tier to filter imports
+ * @version 1.3
  **/
 
 export const IMPORTS_QUERY_KEY = (tierId?: string) => {

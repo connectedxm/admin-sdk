@@ -13,8 +13,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is used to fetch report parent data, which can be utilized in various reporting features within the application.
  * It supports infinite scrolling and pagination through the use of connected infinite queries.
  * @name GetReportParents
- * @param {string} type - The type of the report
- * @version 1.2
+ * @param {string} type (path) The type of the report
+ * @version 1.3
  **/
 
 export const REPORT_PARENTS_QUERY_KEY = (type?: keyof typeof ReportType) => {

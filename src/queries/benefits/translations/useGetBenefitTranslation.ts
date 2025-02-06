@@ -13,9 +13,9 @@ import {
  * This function fetches the translated details of a benefit using its ID and the specified locale.
  * It is useful for applications that need to display benefit information in multiple languages.
  * @name GetBenefitTranslation
- * @param {string} benefitId - The ID of the benefit
- * @param {string} locale - The locale for the translation
- * @version 1.2
+ * @param {string} benefitId (path) - The ID of the benefit
+ * @param {string} locale (path) - The locale for the translation
+ * @version 1.3
  **/
 
 export const BENEFIT_TRANSLATION_QUERY_KEY = (

@@ -16,9 +16,9 @@ import { SubscriptionProductPriceCreateInputs } from "@src/params";
  * This function allows the creation of a subscription product price by providing the necessary inputs.
  * It is designed to be used in applications where subscription pricing needs to be managed.
  * @name CreateSubscriptionProductPrice
- * @param {string} subscriptionProductId - The id of the subscription product
- * @param {SubscriptionProductPriceCreateInputs} subscriptionProductPrice - The inputs for creating a subscription product price
- * @version 1.2
+ * @param {string} subscriptionProductId (path) - The id of the subscription product
+ * @param {SubscriptionProductPriceCreateInputs} subscriptionProductPrice (body) - The inputs for creating a subscription product price
+ * @version 1.3
  **/
 
 export interface CreateSubscriptionProductPriceParams extends MutationParams {

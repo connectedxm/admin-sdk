@@ -13,10 +13,10 @@ import { EVENT_PASS_TYPE_QUERY_KEY } from "./useGetEventPassType";
  * This function allows users to fetch passes associated with a particular event and pass type, with an optional filter for checked-in status.
  * It is designed to be used in applications where event management and pass tracking are required.
  * @name GetEventPassTypePasses
- * @param {string} eventId - The id of the event
- * @param {string} passTypeId - The id of the pass type
- * @param {boolean} [checkedIn] - Optional filtering by checkedIn status
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} passTypeId (path) - The id of the pass type
+ * @param {boolean} [checkedIn] (query) - Optional filtering by checkedIn status
+ * @version 1.3
  **/
 
 export const EVENT_PASS_TYPE_PASSES_QUERY_KEY = (

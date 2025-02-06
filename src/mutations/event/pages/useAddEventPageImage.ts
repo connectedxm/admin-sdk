@@ -15,10 +15,10 @@ import {
  * This function allows users to associate an image with a particular event page by specifying the event, page, and image identifiers.
  * It is designed to be used in applications where managing event page content is required.
  * @name AddEventPageImage
- * @param {string} eventId - The id of the event
- * @param {string} pageId - The id of the page
- * @param {string} imageId - The id of the image
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} pageId (path) - The id of the page
+ * @param {string} imageId (path) - The id of the image
+ * @version 1.3
  **/
 export interface AddEventPageImageParams extends MutationParams {
   eventId: string;

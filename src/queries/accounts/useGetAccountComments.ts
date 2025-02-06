@@ -15,8 +15,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * facilitate the fetching of account comments, allowing for efficient data 
  * retrieval in applications that require comment management or display.
  * @name GetAccountComments
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 
 export const ACCOUNT_COMMENTS_QUERY_KEY = (accountId: string) => [

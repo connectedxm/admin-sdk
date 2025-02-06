@@ -16,8 +16,8 @@ import { UserApiKeyCreateInputs } from "@src/params";
  * This function allows users to generate a new API key for their own use by providing the necessary data for creation.
  * It is designed to be used in applications where users need to manage their own API keys.
  * @name CreateSelfApiKey
- * @param {UserApiKeyCreateInputs} apiKeyData - The data for the API key creation
- * @version 1.2
+ * @param {UserApiKeyCreateInputs} apiKeyData (body) - The data for the API key creation
+ * @version 1.3
  **/
 
 export interface CreateSelfApiKeyParams extends MutationParams {

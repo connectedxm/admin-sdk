@@ -12,9 +12,9 @@ import { SET_TIER_QUERY_DATA, TIER_ACCOUNTS_QUERY_KEY } from "@src/queries";
  * This function facilitates the removal of an account from a given tier within the system.
  * It is designed to be used in scenarios where account management within tiers is required.
  * @name RemoveTierAccount
- * @param {string} tierId - The id of the tier
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} tierId (path) - The id of the tier
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 
 export interface RemoveTierAccountParams extends MutationParams {

@@ -15,8 +15,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function provides the ability to retrieve account interests with support for optional filtering and pagination.
  * It is useful for applications that need to display or process interest data linked to user accounts.
  * @name GetAccountInterests
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 
 export const ACCOUNT_INTERESTS_QUERY_KEY = (accountId: string) => [

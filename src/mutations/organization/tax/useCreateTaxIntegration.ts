@@ -17,9 +17,9 @@ import { TaxIntegrationType } from "@src/interfaces";
  * This function allows the creation of a tax integration by specifying the type and the necessary inputs.
  * It is intended for use in scenarios where an organization needs to set up a new tax integration.
  * @name CreateTaxIntegration
- * @param {keyof typeof TaxIntegrationType} type - The type of tax integration
- * @param {TaxIntegrationCreateInputs} integration - The inputs for creating the tax integration
- * @version 1.2
+ * @param {keyof typeof TaxIntegrationType} type (path) - The type of tax integration
+ * @param {TaxIntegrationCreateInputs} integration (body) - The inputs for creating the tax integration
+ * @version 1.3
  **/
 
 export interface CreateTaxIntegrationParams extends MutationParams {

@@ -14,10 +14,10 @@ import { EVENT_FAQ_SECTION_QUESTIONS_QUERY_KEY } from "./useGetEventFaqSectionQu
  * identified by its unique question ID, within a specified section of an event.
  * It is useful for applications that need to display or process information about individual FAQ questions.
  * @name GetEventFaqSectionQuestion
- * @param {string} eventId - The id of the event
- * @param {string} sectionId - The id of the section
- * @param {string} questionId - The id of the question
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} sectionId (path) - The id of the section
+ * @param {string} questionId (path) - The id of the question
+ * @version 1.3
  **/
 
 export const EVENT_FAQ_SECTION_QUESTION_QUERY_KEY = (

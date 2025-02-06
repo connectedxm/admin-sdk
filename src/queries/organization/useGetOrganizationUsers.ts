@@ -14,7 +14,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches user data from an organization, supporting pagination and search functionalities.
  * It is designed for applications that need to display or manage organization members.
  * @name GetOrganizationUsers
- * @version 1.2
+ * @version 1.3
  **/
 
 export const ORGANIZATION_USERS_QUERY_KEY = () => [

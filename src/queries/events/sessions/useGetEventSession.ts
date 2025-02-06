@@ -13,9 +13,9 @@ import { EVENT_SESSIONS_QUERY_KEY } from "./useGetEventSessions";
  * This function is designed to retrieve data for a particular session within an event, 
  * providing essential details required for applications that manage or display event sessions.
  * @name GetEventSession
- * @param {string} eventId - The id of the event
- * @param {string} sessionId - The id of the session
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} sessionId (path) - The id of the session
+ * @version 1.3
  **/
 
 export const EVENT_SESSION_QUERY_KEY = (eventId: string, sessionId: string) => [

@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches sponsor details associated with a particular event, allowing users to view and manage event sponsors.
  * It is designed for applications that require detailed information about event sponsorships.
  * @name GetEventSponsors
- * @param {string} eventId - The id of the event
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @version 1.3
  **/
 
 export const EVENT_SPONSORS_QUERY_KEY = (eventId: string) => [

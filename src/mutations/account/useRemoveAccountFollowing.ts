@@ -15,9 +15,9 @@ import {
  * This function allows the removal of a following relationship between two accounts by specifying their IDs.
  * It is used in scenarios where an account needs to unfollow another account.
  * @name RemoveAccountFollowing
- * @param {string} accountId - The id of the account
- * @param {string} followingId - The id of the following account
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @param {string} followingId (path) - The id of the following account
+ * @version 1.3
  **/
 export interface RemoveAccountFollowingParams extends MutationParams {
   accountId: string;

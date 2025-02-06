@@ -15,10 +15,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * filtered by the event ID and account ID. It also provides an optional filter for pre-paid status.
  * This is useful in scenarios where event organizers need to manage or review coupons distributed to attendees.
  * @name GetEventAttendeeCoupons
- * @param {string} eventId - The id of the event
- * @param {string} accountId - The id of the account
- * @param {boolean} [prePaid] - Optional flag to filter by pre-paid status
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} accountId (path) - The id of the account
+ * @param {boolean} [prePaid] (query) - Optional flag to filter by pre-paid status
+ * @version 1.3
  **/
 
 export const EVENT_ATTENDEE_COUPONS_QUERY_KEY = (

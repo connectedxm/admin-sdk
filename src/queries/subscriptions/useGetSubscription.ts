@@ -14,8 +14,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve detailed information about a specific subscription using its ID.
  * It is intended for use in applications where subscription data is required for display or processing.
  * @name GetSubscription
- * @param {string} subscriptionId - The ID of the subscription
- * @version 1.2
+ * @param {string} subscriptionId (path) The ID of the subscription
+ * @version 1.3
  **/
 
 export const SUBSCRIPTION_QUERY_KEY = (subscriptionId: string) => [

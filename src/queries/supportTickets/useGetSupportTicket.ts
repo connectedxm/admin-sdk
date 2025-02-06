@@ -14,9 +14,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function allows users to fetch details of a support ticket using the provided support ticket ID.
  * It is designed to be used in applications where detailed information about a support ticket is required.
  * @name GetSupportTicket
- * @param {string} supportTicketId - The ID of the support ticket
- * @version 1.2
- **/
+ * @param {string} supportTicketId (path) The ID of the support ticket
+ * @version 1.3
+ */
 
 export const SUPPORT_TICKET_QUERY_KEY = (supportTicketId: string) => [
   ...SUPPORT_TICKETS_QUERY_KEY(),

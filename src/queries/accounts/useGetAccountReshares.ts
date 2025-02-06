@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function retrieves data about account reshares, allowing applications to display or process reshare activities associated with a given account.
  * It is designed to be used in scenarios where understanding the reshare activity of an account is necessary.
  * @name GetAccountReshares
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 
 export const ACCOUNT_RESHARES_QUERY_KEY = (accountId: string) => [

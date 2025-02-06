@@ -14,9 +14,9 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is used to retrieve detailed information about a particular track within an event.
  * It is designed for applications that require access to specific event track data.
  * @name GetEventTrack
- * @param {string} eventId - The ID of the event
- * @param {string} trackId - The ID of the track
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} trackId (path) - The ID of the track
+ * @version 1.3
  **/
 
 export const EVENT_TRACK_QUERY_KEY = (eventId: string, trackId: string) => [

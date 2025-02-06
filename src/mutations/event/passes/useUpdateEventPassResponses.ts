@@ -16,12 +16,12 @@ import {
  * ensuring that any cached queries related to the event pass responses and question sections
  * are invalidated to reflect the updated data.
  * @name UpdateEventPassResponses
- * @param {string} eventId - The id of the event
- * @param {string} passId - The id of the pass
- * @param {string} accountId - The id of the account
- * @param {Question[]} questions - The list of questions to update
- * @version 1.2
-**/
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} passId (path) - The id of the pass
+ * @param {string} accountId (path) - The id of the account
+ * @param {Question[]} questions (bodyValue) - The list of questions to update
+ * @version 1.3
+ **/
 export interface UpdateEventPassResponsesParams extends MutationParams {
   eventId: string;
   passId: string;

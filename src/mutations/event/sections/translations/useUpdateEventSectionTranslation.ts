@@ -17,11 +17,11 @@ import {
  * identified by eventId and sectionId, for a specified locale. It is designed to be used in applications 
  * that manage multilingual content for events.
  * @name UpdateEventSectionTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} sectionId - The ID of the section within the event
- * @param {ISupportedLocale} locale - The locale for which the translation is being updated
- * @param {EventSectionTranslationUpdateInputs} sectionTranslation - The translation inputs for the section
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} sectionId (path) - The ID of the section within the event
+ * @param {ISupportedLocale} locale (path) - The locale for which the translation is being updated
+ * @param {EventSectionTranslationUpdateInputs} sectionTranslation (body) - The translation inputs for the section
+ * @version 1.3
  */
 
 export interface UpdateEventSectionTranslationParams extends MutationParams {

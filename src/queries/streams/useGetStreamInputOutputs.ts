@@ -14,8 +14,8 @@ import { STREAM_QUERY_KEY } from "./useGetStreamInput";
  * This function retrieves a list of input and output records associated with a given stream ID.
  * It is designed to be used in applications that require detailed information about stream data transactions.
  * @name GetStreamInputOutputs
- * @param {string} streamId - The id of the stream
- * @version 1.2
+ * @param {string} streamId (path) The id of the stream
+ * @version 1.3
  **/
 
 export const STREAM_INPUT_OUTPUTS_QUERY_KEY = (streamId: string) => [

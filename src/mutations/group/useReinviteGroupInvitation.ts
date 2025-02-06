@@ -12,9 +12,9 @@ import {
  * This function allows the reinvitation of a group member whose invitation is still pending.
  * It updates the invitation status and ensures the group member receives a new invitation.
  * @name PutReinviteGroupInvitation
- * @param {string} groupId - The id of the group
- * @param {string} invitationId - The id of the invitation
- * @version 1.2
+ * @param {string} groupId (path) - The id of the group
+ * @param {string} invitationId (path) - The id of the invitation
+ * @version 1.3
  **/
 
 export interface ReinviteGroupInvitationParams extends MutationParams {

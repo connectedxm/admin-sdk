@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function allows users to fetch details of a tier using the provided tier ID.
  * It is designed to be used in applications where detailed information about a specific tier is required.
  * @name GetTier
- * @param {string} tierId - The ID of the tier to retrieve
- * @version 1.2
+ * @param {string} tierId (path) The ID of the tier to retrieve
+ * @version 1.3
  **/
 
 export const TIER_QUERY_KEY = (tierId: string) => [

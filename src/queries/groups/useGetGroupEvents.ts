@@ -14,9 +14,9 @@ import { QueryClient } from "@tanstack/react-query";
  * This function allows users to fetch events for a group, with an option to filter for past events.
  * It is designed to be used in applications where event management and tracking are required.
  * @name GetGroupEvents
- * @param {string} groupId - The id of the group
- * @param {boolean} [past] - Optional flag to filter past events
- * @version 1.2
+ * @param {string} groupId (path) - The id of the group
+ * @param {boolean} [past] (query) - Optional flag to filter past events
+ * @version 1.3
  **/
 
 export const GROUP_EVENTS_QUERY_KEY = (groupId: string, past?: boolean) => [

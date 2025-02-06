@@ -12,9 +12,9 @@ import { EVENT_CO_HOSTS_QUERY_KEY } from "@src/queries";
  * This function allows the addition of an account as a co-host to an event by specifying the event ID and account ID.
  * It is used in scenarios where event management requires assigning co-host roles to different accounts.
  * @name AddEventCoHost
- * @param {string} eventId - The id of the event
- * @param {string} accountId - The id of the account to be added as co-host
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} accountId (path) - The id of the account to be added as co-host
+ * @version 1.3
 **/
 export interface AddEventCoHostParams extends MutationParams {
   eventId: string;

@@ -15,9 +15,9 @@ import {
  * This function allows the removal of a FAQ section associated with a particular event, ensuring that any cached queries related to the FAQ sections are invalidated.
  * It is useful in scenarios where FAQ sections need to be dynamically managed and kept up-to-date.
  * @name DeleteEventFaqSection
- * @param {string} eventId - The id of the event
- * @param {string} sectionId - The id of the FAQ section
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} sectionId (path) - The id of the FAQ section
+ * @version 1.3
  **/
 export interface DeleteEventFaqSectionParams extends MutationParams {
   eventId: string;

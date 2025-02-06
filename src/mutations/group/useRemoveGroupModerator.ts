@@ -16,9 +16,9 @@ import {
  * This function allows the removal of a moderator from a group by providing the group ID and the account ID of the moderator.
  * It is used in scenarios where group moderation needs to be updated or modified.
  * @name RemoveGroupModerator
- * @param {string} groupId - The ID of the group
- * @param {string} accountId - The ID of the account
- * @version 1.2
+ * @param {string} groupId (path) - The ID of the group
+ * @param {string} accountId (path) - The ID of the account
+ * @version 1.3
  **/
 
 export interface RemoveGroupModeratorParams extends MutationParams {

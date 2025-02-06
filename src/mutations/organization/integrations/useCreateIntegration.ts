@@ -16,8 +16,8 @@ import { IntegrationCreateInputs } from "@src/params";
  * This function allows the creation of a new integration by providing the necessary integration details.
  * It is designed to be used in applications where organizations need to add new integrations to their system.
  * @name CreateIntegration
- * @param {IntegrationCreateInputs} integration - The integration details to be created
- * @version 1.2
+ * @param {IntegrationCreateInputs} integration (body) - The integration details to be created
+ * @version 1.3
  **/
 
 export interface CreateIntegrationParams extends MutationParams {

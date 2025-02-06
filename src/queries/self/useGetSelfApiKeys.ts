@@ -15,7 +15,7 @@ import { SELF_QUERY_KEY } from "./useGetSelf";
  * This function is designed to fetch all API keys that belong to the user, allowing them to manage or review their keys.
  * It supports pagination and sorting to efficiently handle large sets of API keys.
  * @name GetSelfApiKeys
- * @version 1.2
+ * @version 1.3
  **/
 
 export const SELF_API_KEYS_QUERY_KEY = () => [...SELF_QUERY_KEY(), "API_KEYS"];

@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches accounts that are delegates of a specified account, providing detailed information about these relationships.
  * It is designed for applications that need to manage or display delegate relationships for user accounts.
  * @name GetAccountDelegateOf
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 
 export const ACCOUNT_DELEGATE_OF_QUERY_KEY = (accountId: string) => [

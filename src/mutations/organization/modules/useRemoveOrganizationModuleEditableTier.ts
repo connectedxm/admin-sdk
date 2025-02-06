@@ -20,9 +20,9 @@ import {
  * This function is used to delete a tier from an organization module, identified by its type and tier ID.
  * It ensures that the specified tier is removed and updates the relevant queries to reflect this change.
  * @name RemoveOrganizationModuleEditableTier
- * @param {keyof typeof OrganizationModuleType} moduleType - The type of the organization module
- * @param {string} tierId - The id of the tier to be removed
- * @version 1.2
+ * @param {keyof typeof OrganizationModuleType} moduleType (path) - The type of the organization module
+ * @param {string} tierId (path) - The id of the tier to be removed
+ * @version 1.3
  **/
 
 export interface RemoveOrganizationModuleEditableTierParams extends MutationParams {

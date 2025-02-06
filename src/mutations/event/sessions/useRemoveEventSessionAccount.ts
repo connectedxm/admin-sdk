@@ -15,10 +15,10 @@ import {
  * This function allows the removal of an account from a designated event session by specifying the event ID, session ID, and account ID.
  * It is used in scenarios where an account needs to be disassociated from a particular session within an event.
  * @name RemoveEventSessionAccount
- * @param {string} eventId - The id of the event
- * @param {string} sessionId - The id of the session
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} sessionId (path) - The id of the session
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 export interface RemoveEventSessionAccountParams extends MutationParams {
   eventId: string;

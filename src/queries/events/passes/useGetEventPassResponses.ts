@@ -17,9 +17,9 @@ import { EVENT_PASS_QUERY_KEY } from "./useGetEventPass";
  * This function fetches the responses to registration questions for a given event and pass, 
  * allowing users to analyze and process the collected data.
  * @name GetEventPassResponses
- * @param {string} eventId - The id of the event
- * @param {string} passId - The id of the pass
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} passId (path) - The id of the pass
+ * @version 1.3
  **/
 
 export interface RegistrationQuestionWithResponse extends RegistrationQuestion {

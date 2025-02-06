@@ -15,10 +15,10 @@ import { SET_EVENT_QUESTION_CHOICES_QUERY_DATA } from "@src/queries";
  * This function allows the reordering of choices associated with a particular question within an event.
  * It is designed to be used in scenarios where the order of question choices needs to be updated.
  * @name ReorderEventQuestionChoices
- * @param {string} eventId - The id of the event
- * @param {string} questionId - The id of the question
- * @param {number[]} choicesIds - The ids of the choices to reorder
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} questionId (path) - The id of the question
+ * @param {number[]} choicesIds (bodyValue) - The ids of the choices to reorder
+ * @version 1.3
  **/
 
 export interface ReorderEventQuestionChoicesParams extends MutationParams {

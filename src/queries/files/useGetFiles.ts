@@ -13,8 +13,8 @@ import {
  * This endpoint allows users to fetch a list of files, optionally filtered by a specified source.
  * It is designed to be used in applications where file management and retrieval are required.
  * @name GetFiles
- * @param {string} [source] - Optional source of the files
- * @version 1.2
+ * @param {string} [source] (query) - Optional source of the files
+ * @version 1.3
  **/
 
 export const FILES_QUERY_KEY = (source?: string) => {

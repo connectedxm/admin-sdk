@@ -14,9 +14,9 @@ import { ANNOUNCEMENT_QUERY_KEY } from "./useGetAnnouncement";
  * This function allows users to fetch email receipt details for a given announcement, with optional filtering by status.
  * It is designed to be used in applications where tracking the status of announcement email deliveries is required.
  * @name GetAnnouncementEmailReceipts
- * @param {string} announcementId - The id of the announcement
- * @param {keyof typeof EmailReceiptStatus} [status] - Optional status of the email receipt
- * @version 1.2
+ * @param {string} announcementId (path) - The id of the announcement
+ * @param {keyof typeof EmailReceiptStatus} [status] (query) - Optional status of the email receipt
+ * @version 1.3
  **/
 
 export const ANNOUNCEMENT_EMAILS_QUERY_KEY = (

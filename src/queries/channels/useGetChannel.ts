@@ -15,8 +15,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function allows users to fetch comprehensive information about a channel using the provided channel ID.
  * It is designed for applications that require detailed channel data.
  * @name GetChannel
- * @param {string} channelId - The ID of the channel
- * @version 1.2
+ * @param {string} channelId (path) - The ID of the channel
+ * @version 1.3
  **/
 
 export const CHANNEL_QUERY_KEY = (channelId: string) => [

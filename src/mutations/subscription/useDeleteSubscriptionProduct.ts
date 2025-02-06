@@ -15,8 +15,8 @@ import {
  * This function allows the deletion of a specific subscription product by its ID.
  * It is used in scenarios where a subscription product needs to be removed from the system.
  * @name DeleteSubscriptionProduct
- * @param {string} subscriptionProductId - The ID of the subscription product to delete
- * @version 1.2
+ * @param {string} subscriptionProductId (path) - The ID of the subscription product to delete
+ * @version 1.3
  **/
 
 export interface DeleteSubscriptionProductParams extends MutationParams {

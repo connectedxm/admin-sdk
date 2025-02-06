@@ -15,9 +15,9 @@ import { EVENT_SECTION_QUERY_KEY } from "./useGetEventSection";
  * allowing for detailed data retrieval with options for pagination and filtering.
  * It is useful in scenarios where event-specific questions need to be displayed or processed.
  * @name GetEventSectionQuestions
- * @param {string} eventId - The id of the event
- * @param {string} sectionId - The id of the section
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} sectionId (path) - The id of the section
+ * @version 1.3
  **/
 
 export const EVENT_SECTION_QUESTIONS_QUERY_KEY = (

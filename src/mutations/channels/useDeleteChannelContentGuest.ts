@@ -15,10 +15,10 @@ import {
  * This function allows the removal of a guest from a particular content within a channel.
  * It is useful in scenarios where guest access needs to be revoked or managed.
  * @name DeleteChannelContentGuest
- * @param {string} contentId - The id of the content
- * @param {string} channelId - The id of the channel
- * @param {string} guestId - The id of the guest
- * @version 1.2
+ * @param {string} contentId (path) - The id of the content
+ * @param {string} channelId (path) - The id of the channel
+ * @param {string} guestId (path) - The id of the guest
+ * @version 1.3
  **/
 
 export interface DeleteChannelContentGuestParams extends MutationParams {

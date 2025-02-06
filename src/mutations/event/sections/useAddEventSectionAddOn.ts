@@ -15,10 +15,10 @@ import {
  * This function is used to associate an additional feature or service (add-on) with a particular section of an event.
  * It is useful in scenarios where events are modular and require dynamic configuration of sections with various add-ons.
  * @name AddEventSectionAddOn
- * @param {string} eventId - The id of the event
- * @param {string} sectionId - The id of the section
- * @param {string} addOnId - The id of the add-on
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} sectionId (path) - The id of the section
+ * @param {string} addOnId (path) - The id of the add-on
+ * @version 1.3
  **/
 export interface AddEventSectionAddOnParams extends MutationParams {
   eventId: string;

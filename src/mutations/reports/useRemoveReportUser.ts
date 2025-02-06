@@ -12,9 +12,9 @@ import { SET_REPORT_USERS_QUERY_DATA } from "@src/queries/reports/useGetReportUs
  * This function allows the removal of a user from a report by specifying the report ID and user ID.
  * It is used in scenarios where user access to a report needs to be revoked.
  * @name RemoveReportUser
- * @param {string} reportId - The id of the report
- * @param {string} userId - The id of the user
- * @version 1.2
+ * @param {string} reportId (path) - The id of the report
+ * @param {string} userId (path) - The id of the user
+ * @version 1.3
  **/
 export interface RemoveReportUserParams extends MutationParams {
   reportId: string;

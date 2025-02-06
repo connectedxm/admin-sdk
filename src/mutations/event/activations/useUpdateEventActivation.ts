@@ -17,10 +17,10 @@ import {
  * query client reflects the latest data by invalidating the cache for the specific event activation.
  * It is designed for applications that manage event activations and require real-time updates.
  * @name UpdateEventActivation
- * @param {string} eventId - The id of the event
- * @param {string} activationId - The id of the activation
- * @param {EventActivationUpdateInputs} activation - The activation update inputs
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} activationId (path) - The id of the activation
+ * @param {EventActivationUpdateInputs} activation (body) - The activation update inputs
+ * @version 1.3
  **/
 
 export interface UpdateEventActivationParams extends MutationParams {

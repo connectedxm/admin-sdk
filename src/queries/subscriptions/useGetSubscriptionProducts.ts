@@ -13,7 +13,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function fetches subscription products using infinite query pagination, allowing for efficient data retrieval.
  * It is designed to be used in applications where a comprehensive list of subscription products is required.
  * @name GetSubscriptionProducts
- * @version 1.2
+ * @version 1.3
  **/
 
 export const SUBSCRIPTION_PRODUCTS_QUERY_KEY = () => ["SUBSCRIPTION_PRODUCTS"];

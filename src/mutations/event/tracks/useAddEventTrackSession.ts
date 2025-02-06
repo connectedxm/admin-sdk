@@ -15,10 +15,10 @@ import {
  * This function allows users to associate a session with a particular track within an event.
  * It is designed to be used in applications where event management and session tracking are required.
  * @name AddEventTrackSession
- * @param {string} eventId - The id of the event
- * @param {string} trackId - The id of the track
- * @param {string} sessionId - The id of the session
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} trackId (path) - The id of the track
+ * @param {string} sessionId (path) - The id of the session
+ * @version 1.3
  **/
 export interface AddEventTrackSessionParams extends MutationParams {
   eventId: string;

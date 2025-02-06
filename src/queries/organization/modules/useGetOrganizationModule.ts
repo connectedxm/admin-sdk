@@ -18,8 +18,8 @@ import { ORGANIZATION_MODULES_QUERY_KEY } from "./useGetOrganizationModules";
  * based on the specified module type. It is designed to be used in applications
  * that require interaction with different types of organization modules.
  * @name GetOrganizationModule
- * @param {keyof typeof OrganizationModuleType} moduleType - The type of the organization module
- * @version 1.2
+ * @param {keyof typeof OrganizationModuleType} moduleType (path) The type of the organization module
+ * @version 1.3
  **/
 
 export const ORGANIZATION_MODULE_QUERY_KEY = (

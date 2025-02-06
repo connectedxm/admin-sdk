@@ -12,7 +12,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is designed to retrieve detailed information about an organization's domain,
  * which can be used in applications that require such data for administrative or display purposes.
  * @name GetOrganizationDomain
- * @version 1.2
+ * @version 1.3
  **/
 
 export const ORGANIZATION_DOMAIN_QUERY_KEY = () => ["ORGANIZATION_DOMAIN"];

@@ -13,8 +13,8 @@ import { ANNOUNCEMENT_QUERY_KEY } from "./useGetAnnouncement";
  * This function retrieves the list of audience members associated with a given announcement ID.
  * It is designed to be used in applications where understanding the reach or participants of an announcement is necessary.
  * @name GetAnnouncementAudience
- * @param {string} announcementId - The ID of the announcement
- * @version 1.2
+ * @param {string} announcementId (path) - The ID of the announcement
+ * @version 1.3
  **/
 
 export const ANNOUNCEMENT_AUDIENCE_QUERY_KEY = (announcementId: string) => {

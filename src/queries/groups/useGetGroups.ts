@@ -13,9 +13,9 @@ import { QueryClient } from "@tanstack/react-query";
  * This function allows retrieval of group data, supporting filters for access level and featured status.
  * It is useful for applications that need to display or manage groups with specific characteristics.
  * @name GetGroups
- * @param {string} [access] - The access level of the groups, can be "public" or "private"
- * @param {boolean} [featured] - Whether to filter groups by featured status
- * @version 1.2
+ * @param {string} [access] (query) - The access level of the groups, can be "public" or "private"
+ * @param {boolean} [featured] (query) - Whether to filter groups by featured status
+ * @version 1.3
  **/
 
 export const GROUPS_QUERY_KEY = (

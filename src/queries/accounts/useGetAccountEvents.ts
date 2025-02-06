@@ -15,9 +15,9 @@ import { QueryClient } from "@tanstack/react-query";
  * This function allows retrieval of events for a given account, with an option to filter for past events.
  * It is designed to be used in applications where event data for accounts is required.
  * @name GetAccountEvents
- * @param {string} accountId - The id of the account
- * @param {boolean} [past] - Optional flag to filter past events
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @param {boolean} [past] (query) - Optional flag to filter past events
+ * @version 1.3
  **/
 
 export const ACCOUNT_EVENTS_QUERY_KEY = (accountId: string, past?: boolean) => {

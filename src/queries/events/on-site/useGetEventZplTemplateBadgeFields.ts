@@ -14,8 +14,8 @@ import {
  * This function allows for the retrieval of on-site badge fields associated with a specific event's ZPL template.
  * It is designed to be used in applications where event-specific badge field data is required.
  * @name GetEventZplTemplateBadgeFields
- * @param {string} eventId - The id of the event
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @version 1.3
  **/
 
 export const EVENT_ZPL_TEMPLATE_BADGE_FIELDS_QUERY_KEY = (eventId: string) => [

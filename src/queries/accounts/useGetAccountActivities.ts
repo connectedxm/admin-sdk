@@ -15,8 +15,8 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
  * This function fetches activity data for a given account, allowing users to view detailed activity logs.
  * It is designed to be used in applications where tracking account activities is necessary.
  * @name GetAccountActivities
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 
 export const ACCOUNT_ACTIVITIES_QUERY_KEY = (accountId: string) => [

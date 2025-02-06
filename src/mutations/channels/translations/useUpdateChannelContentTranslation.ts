@@ -17,11 +17,11 @@ import {
  * enabling localization and content management within different languages.
  * It is designed to be used in applications that require dynamic content translation updates.
  * @name UpdateChannelContentTranslation
- * @param {string} channelId - The ID of the channel
- * @param {string} contentId - The ID of the content
- * @param {ISupportedLocale} locale - The locale for the translation
- * @param {ChannelContentTranslationUpdateInputs} contentTranslation - The translation details to update
- * @version 1.2
+ * @param {string} channelId (path) - The ID of the channel
+ * @param {string} contentId (path) - The ID of the content
+ * @param {ISupportedLocale} locale (path) - The locale for the translation
+ * @param {ChannelContentTranslationUpdateInputs} contentTranslation (body) - The translation details to update
+ * @version 1.3
  **/
 
 export interface UpdateChannelContentTranslationParams extends MutationParams {

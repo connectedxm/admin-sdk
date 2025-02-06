@@ -16,8 +16,8 @@ import { AnnouncementCreateInputs } from "@src/params";
  * This function allows users to submit details for a new announcement, which will be processed and stored.
  * It is designed to be used in applications where announcements need to be dynamically created and managed.
  * @name CreateAnnouncement
- * @param {AnnouncementCreateInputs} announcement - The announcement details to be created
- * @version 1.2
+ * @param {AnnouncementCreateInputs} announcement (body) - The announcement details to be created
+ * @version 1.3
  **/
 export interface CreateAnnouncementParams extends MutationParams {
   announcement: AnnouncementCreateInputs;

@@ -13,8 +13,8 @@ import { ConnectedXMResponse, Level } from "@src/interfaces";
  * This function is used to retrieve detailed information about a particular sponsorship level within the system.
  * It is designed to be utilized in applications where such detailed level information is necessary.
  * @name GetLevel
- * @param {string} sponsorshipLevelId - The ID of the sponsorship level
- * @version 1.2
+ * @param {string} sponsorshipLevelId (path) - The ID of the sponsorship level
+ * @version 1.3
  **/
 
 export const LEVEL_QUERY_KEY = (levelId: string) => [

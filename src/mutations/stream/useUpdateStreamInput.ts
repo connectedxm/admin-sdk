@@ -17,9 +17,9 @@ import { StreamInputUpdateInputs } from "@src/params";
  * This function allows updating the details of an existing stream by providing the stream ID and the new input data.
  * It is designed to be used in applications where stream data needs to be modified or updated.
  * @name UpdateStream
- * @param {string} streamId - The ID of the stream to be updated
- * @param {StreamInputUpdateInputs} stream - The new stream input data
- * @version 1.2
+ * @param {string} streamId (path) - The ID of the stream to be updated
+ * @param {StreamInputUpdateInputs} stream (body) - The new stream input data
+ * @version 1.3
  **/
 
 export interface UpdateStreamParams extends MutationParams {

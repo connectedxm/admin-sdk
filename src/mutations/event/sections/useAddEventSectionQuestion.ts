@@ -15,10 +15,10 @@ import {
  * This function allows users to associate a question with a particular section within an event, 
  * facilitating the organization and management of event-related queries.
  * @name AddEventSectionQuestion
- * @param {string} eventId - The id of the event
- * @param {string} sectionId - The id of the section
- * @param {string} questionId - The id of the question
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} sectionId (path) - The id of the section
+ * @param {string} questionId (path) - The id of the question
+ * @version 1.3
 **/
 export interface AddEventSectionQuestionParams extends MutationParams {
   eventId: string;

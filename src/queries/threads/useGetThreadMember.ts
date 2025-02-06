@@ -12,9 +12,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to fetch data for a particular thread member using their thread and account IDs.
  * It is useful in applications where thread member details are required for display or processing.
  * @name GetThreadMember
- * @param {string} threadId - The ID of the thread
- * @param {string} accountId - The ID of the account
- * @version 1.2
+ * @param {string} threadId (path) The ID of the thread
+ * @param {string} accountId (path) The ID of the account
+ * @version 1.3
  **/
 
 export const THREAD_MEMBER_QUERY_KEY = (

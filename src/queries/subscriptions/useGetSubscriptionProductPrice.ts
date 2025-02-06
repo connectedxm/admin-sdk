@@ -14,10 +14,10 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is used to retrieve detailed information about a particular subscription product price within a subscription product.
  * It is designed for applications that require access to specific pricing details of subscription products.
  * @name GetSubscriptionProductPrice
- * @param {string} subscriptionProductId - The ID of the subscription product
- * @param {string} subscriptionProductPriceId - The ID of the subscription product price
- * @version 1.2
- **/
+ * @param {string} subscriptionProductId (path) The ID of the subscription product
+ * @param {string} subscriptionProductPriceId (path) The ID of the subscription product price
+ * @version 1.3
+ */
 
 export const SUBSCRIPTION_PRODUCT_PRICE_QUERY_KEY = (
   subscriptionProductId: string,

@@ -13,7 +13,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function fetches a paginated list of series from the server, allowing for optional sorting and searching.
  * It is designed to be used in applications where a comprehensive list of series is required.
  * @name GetSeriesList
- * @version 1.2
+ * @version 1.3
  **/
 
 export const SERIES_LIST_QUERY_KEY = () => {

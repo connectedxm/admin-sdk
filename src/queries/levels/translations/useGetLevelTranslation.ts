@@ -13,9 +13,9 @@ import {
  * This function is used to retrieve localized translations for sponsorship levels, allowing applications to display level information in different languages.
  * It is particularly useful in multi-language applications where level details need to be presented in the user's preferred language.
  * @name GetLevelTranslation
- * @param {string} levelId - The ID of the sponsorship level
- * @param {string} locale - The locale for the translation
- * @version 1.2
+ * @param {string} levelId (path) - The ID of the sponsorship level
+ * @param {string} locale (path) - The locale for the translation
+ * @version 1.3
  **/
 
 export const LEVEL_TRANSLATION_QUERY_KEY = (

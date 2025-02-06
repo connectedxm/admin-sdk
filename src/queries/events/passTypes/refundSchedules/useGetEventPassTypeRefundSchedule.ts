@@ -15,10 +15,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve detailed information about the refund schedule associated with a particular event pass type.
  * It is useful for applications that need to display or process refund schedule data for event management.
  * @name GetEventPassTypeRefundSchedule
- * @param {string} eventId - The id of the event
- * @param {string} passTypeId - The id of the pass type
- * @param {string} scheduleId - The id of the refund schedule
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} passTypeId (path) - The id of the pass type
+ * @param {string} scheduleId (path) - The id of the refund schedule
+ * @version 1.3
  **/
 
 export const EVENT_PASS_TYPE_REFUND_SCHEDULE_QUERY_KEY = (

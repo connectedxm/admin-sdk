@@ -12,9 +12,9 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
  * This function allows users to fetch event passes, with an optional filter for checked-in status.
  * It is designed to be used in applications where event pass details are required.
  * @name GetEventPasses
- * @param {string} eventId - The id of the event
- * @param {boolean} [checkedIn] - Optional filtering by checkedIn status
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {boolean} [checkedIn] (query) - Optional filtering by checkedIn status
+ * @version 1.3
  **/
 
 export const EVENT_PASSES_QUERY_KEY = (

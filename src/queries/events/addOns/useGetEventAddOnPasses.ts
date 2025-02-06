@@ -14,9 +14,9 @@ import { EVENT_ADD_ON_QUERY_KEY } from "./useGetEventAddOn";
  * providing detailed information about each pass. It is useful for applications 
  * that need to display or manage event add-on passes.
  * @name GetEventAddOnPasses
- * @param {string} eventId - The id of the event
- * @param {string} addOnId - The id of the add-on
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} addOnId (path) - The id of the add-on
+ * @version 1.3
  **/
 
 export const EVENT_ADD_ON_PASSES_QUERY_KEY = (

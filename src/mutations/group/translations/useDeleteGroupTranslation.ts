@@ -14,9 +14,9 @@ import {
  * This function is used to remove a translation entry associated with a group, identified by the group ID and locale.
  * It is designed to be used in applications where managing group translations is necessary.
  * @name DeleteGroupTranslation
- * @param {string} groupId - The ID of the group
- * @param {string} locale - The locale of the translation
- * @version 1.2
+ * @param {string} groupId (path) - The ID of the group
+ * @param {string} locale (path) - The locale of the translation
+ * @version 1.3
  **/
 
 /**

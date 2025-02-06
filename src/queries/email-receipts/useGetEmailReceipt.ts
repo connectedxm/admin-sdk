@@ -14,8 +14,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is used to retrieve detailed information about an email receipt, 
  * which can be useful for tracking and auditing email communications.
  * @name GetEmailReceipt
- * @param {string} emailReceiptId - The ID of the email receipt
- * @version 1.2
+ * @param {string} emailReceiptId (path) - The ID of the email receipt
+ * @version 1.3
  **/
 
 export const EMAIL_RECEIPT_QUERY_KEY = (emailReceiptId: string) => [

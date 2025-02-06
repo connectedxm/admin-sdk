@@ -15,10 +15,10 @@ import {
  * This function is used to associate an additional feature or service (add-on) with a particular event pass type.
  * It ensures that the relevant queries are invalidated to maintain data consistency across the application.
  * @name AddEventPassTypeAddOn
- * @param {string} eventId - The id of the event
- * @param {string} passTypeId - The id of the pass type
- * @param {string} addOnId - The id of the add-on
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} passTypeId (path) - The id of the pass type
+ * @param {string} addOnId (path) - The id of the add-on
+ * @version 1.3
 **/
 
 export interface AddEventPassTypeAddOnParams extends MutationParams {

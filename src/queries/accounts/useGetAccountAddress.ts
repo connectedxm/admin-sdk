@@ -14,9 +14,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to fetch detailed information about an account's address, 
  * which can be used in applications requiring precise address data for a given account.
  * @name GetAccountAddress
- * @param {string} accountId - The id of the account
- * @param {string} addressId - The id of the address
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @param {string} addressId (path) - The id of the address
+ * @version 1.3
  **/
 
 export const ACCOUNT_ADDRESS_QUERY_KEY = (

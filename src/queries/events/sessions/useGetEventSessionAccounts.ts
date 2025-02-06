@@ -14,9 +14,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * allowing for pagination and filtering options. It is designed for applications 
  * that need to manage or display accounts linked to event sessions.
  * @name GetEventSessionAccounts
- * @param {string} eventId - The id of the event
- * @param {string} sessionId - The id of the session
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} sessionId (path) - The id of the session
+ * @version 1.3
  **/
 
 export const EVENT_SESSION_ACCOUNTS_QUERY_KEY = (

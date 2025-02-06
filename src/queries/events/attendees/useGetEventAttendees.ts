@@ -13,9 +13,9 @@ import { QueryClient } from "@tanstack/react-query";
  * Fetches and manages a list of attendees for a specific event, with support for pagination and optional filtering by event pass status.
  * This function is designed to be used in applications that require detailed attendee information for events, allowing for efficient data retrieval and management.
  * @name GetEventAttendees
- * @param {string} eventId - The id of the event
- * @param {EventPassStatus} [status] - Optional status of the event pass
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {EventPassStatus} [status] (query) - Optional status of the event pass
+ * @version 1.3
  **/
 
 export const EVENT_ATTENDEES_QUERY_KEY = (

@@ -16,9 +16,9 @@ import { StreamInputOutputCreateInputs } from "@src/params";
  * This function allows the creation of a new output configuration for a specified stream.
  * It is designed to be used in applications where stream output configurations need to be dynamically managed.
  * @name CreateStreamInputOutput
- * @param {string} streamId - The ID of the stream
- * @param {StreamInputOutputCreateInputs} output - The output configuration for the stream
- * @version 1.2
+ * @param {string} streamId (path) - The ID of the stream
+ * @param {StreamInputOutputCreateInputs} output (body) - The output configuration for the stream
+ * @version 1.3
  **/
 
 export interface CreateStreamInputOutputParams extends MutationParams {

@@ -15,9 +15,9 @@ import {
  * This function allows for the bulk check-in of all passes associated with a particular attendee at a given event.
  * It is useful in scenarios where an attendee needs to be quickly checked in for all their passes.
  * @name CheckinAllAttendeePasses
- * @param {string} eventId - The id of the event
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 export interface CheckinAllAttendeePassesParams extends MutationParams {
   eventId: string;

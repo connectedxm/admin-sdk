@@ -14,10 +14,10 @@ import { EVENT_SESSION_LOCATIONS_QUERY_KEY } from "@src/queries/events/sessions/
  * This function allows updating the details of a session location within an event by providing the event ID, location ID, and the update inputs.
  * It is designed to be used in applications where event session locations need to be modified.
  * @name UpdateEventSessionLocation
- * @param {string} eventId - The id of the event
- * @param {string} locationId - The id of the location
- * @param {EventSessionLocationUpdateInputs} sessionLocation - The session location update inputs
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} locationId (path) - The id of the location
+ * @param {EventSessionLocationUpdateInputs} sessionLocation (body) - The session location update inputs
+ * @version 1.3
  **/
 
 export interface UpdateEventSessionLocationParams extends MutationParams {

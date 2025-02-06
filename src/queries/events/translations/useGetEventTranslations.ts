@@ -14,8 +14,8 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
  * allowing applications to display event information in multiple languages.
  * It is designed to be used in scenarios where multilingual support for event details is required.
  * @name GetEventTranslations
- * @param {string} eventId - The ID of the event
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @version 1.3
  **/
 
 /**

@@ -12,9 +12,9 @@ import { ACCOUNT_LEAD_QUERY_KEY, ACCOUNT_LEADS_QUERY_KEY } from "@src/queries";
  * This function allows the removal of a lead from an account by specifying the account and lead identifiers.
  * It is intended for use in scenarios where account management requires the deletion of associated leads.
  * @name DeleteAccountLead
- * @param {string} accountId - The id of the account
- * @param {string} leadId - The id of the lead
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @param {string} leadId (path) - The id of the lead
+ * @version 1.3
  **/
 export interface DeleteAccountLeadParams extends MutationParams {
   accountId: string;

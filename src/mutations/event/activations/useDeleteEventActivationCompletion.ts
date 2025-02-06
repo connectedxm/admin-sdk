@@ -17,10 +17,10 @@ import {
  * It is particularly useful in scenarios where event activations are dynamically managed and
  * require real-time updates.
  * @name DeleteEventActivationCompletion
- * @param {string} eventId - The id of the event
- * @param {string} activationId - The id of the activation
- * @param {string} completionId - The id of the completion
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} activationId (path) - The id of the activation
+ * @param {string} completionId (path) - The id of the completion
+ * @version 1.3
 **/
 export interface DeleteEventActivationCompletionParams extends MutationParams {
   eventId: string;

@@ -14,9 +14,9 @@ import { ReportCreateInputs } from "@src/params";
  * It ensures that a parent ID is provided and interacts with the admin API to store the report data.
  * Upon successful creation, it invalidates the relevant queries to update the report data cache.
  * @name CreateReport
- * @param {ReportCreateInputs} report - The report data to be created
- * @param {ReportType} type - The type of the report
- * @version 1.2
+ * @param {ReportCreateInputs} report (body) - The report data to be created
+ * @param {ReportType} type (query) - The type of the report
+ * @version 1.3
  **/
 export interface CreateReportParams extends MutationParams {
   report: ReportCreateInputs;

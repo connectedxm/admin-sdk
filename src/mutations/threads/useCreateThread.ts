@@ -14,11 +14,11 @@ import { ThreadCreateInputs } from "@src/params";
  * It supports optional parameters for account IDs, a first message, and an image data URI.
  * The function is designed to be used in scenarios where creating a new thread is required.
  * @name CreateThread
- * @param {ThreadCreateInputs} thread - The thread input data
- * @param {string[]} [accountIds] - Optional list of account IDs
- * @param {string} [firstMessage] - Optional first message for the thread
- * @param {string} [imageDataUri] - Optional image data URI
- * @version 1.2
+ * @param {ThreadCreateInputs} thread (bodyValue) - The thread input data
+ * @param {string[]} [accountIds] (bodyValue) - Optional list of account IDs
+ * @param {string} [firstMessage] (bodyValue) - Optional first message for the thread
+ * @param {string} [imageDataUri] (bodyValue) - Optional image data URI
+ * @version 1.3
  **/
 export interface CreateThreadParams extends MutationParams {
   thread: ThreadCreateInputs;

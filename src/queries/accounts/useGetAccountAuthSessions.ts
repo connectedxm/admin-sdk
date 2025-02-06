@@ -13,8 +13,8 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
  * This endpoint allows fetching a list of authentication sessions associated with a given account ID.
  * It is useful for applications that need to display or manage authentication sessions for user accounts.
  * @name GetAccountAuthSessions
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 
 export const ACCOUNT_AUTH_SESSIONS_QUERY_KEY = (accountId: string) => {

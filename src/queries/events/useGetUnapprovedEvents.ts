@@ -14,7 +14,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function retrieves events that have not yet been approved, allowing users to review and manage pending events.
  * It is designed to be used in applications where event moderation is required.
  * @name GetUnapprovedEvents
- * @version 1.2
+ * @version 1.3
  **/
 
 export const UNAPPROVED_EVENTS_QUERY_KEY = () => [

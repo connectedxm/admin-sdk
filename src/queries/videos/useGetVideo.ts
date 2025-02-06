@@ -14,8 +14,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function allows users to fetch detailed information about a specific video using its ID.
  * It is designed for applications that require access to video metadata and related information.
  * @name GetVideo
- * @param {string} videoId - The ID of the video
- * @version 1.2
+ * @param {string} videoId (path) The ID of the video
+ * @version 1.3
  **/
 
 export const VIDEO_QUERY_KEY = (videoId: string) => [

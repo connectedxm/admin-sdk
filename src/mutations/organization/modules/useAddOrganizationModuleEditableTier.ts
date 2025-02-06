@@ -20,9 +20,9 @@ import {
  * This function allows the addition of a new tier to an organization module, making it editable.
  * It is intended for use in scenarios where organizations need to manage and customize their module tiers.
  * @name AddOrganizationModuleEditableTier
- * @param {keyof typeof OrganizationModuleType} moduleType - The type of the organization module
- * @param {string} tierId - The id of the tier
- * @version 1.2
+ * @param {keyof typeof OrganizationModuleType} moduleType (path) - The type of the organization module
+ * @param {string} tierId (path) - The id of the tier
+ * @version 1.3
  **/
 
 export interface AddOrganizationModuleEditableTierParams extends MutationParams {

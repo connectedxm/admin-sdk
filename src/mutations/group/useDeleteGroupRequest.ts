@@ -13,9 +13,9 @@ import {
  * ensuring that any cached queries related to the group requests are invalidated 
  * to maintain data consistency.
  * @name DeleteGroupRequest
- * @param {string} groupId - The id of the group
- * @param {string} requestId - The id of the request
- * @version 1.2
+ * @param {string} groupId (path) - The id of the group
+ * @param {string} requestId (path) - The id of the request
+ * @version 1.3
  **/
 
 export interface DeleteGroupRequestParams extends MutationParams {

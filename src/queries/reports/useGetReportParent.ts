@@ -14,8 +14,8 @@ import { REPORT_PARENTS_QUERY_KEY } from "./useGetReportParents";
  * This function is used to retrieve detailed information about a report parent, which is a part of the reporting structure.
  * It is designed for applications that require access to report parent data for further processing or display.
  * @name GetReportParent
- * @param {string} parentId - The ID of the report parent
- * @version 1.2
+ * @param {string} parentId (path) The ID of the report parent
+ * @version 1.3
  **/
 
 export const REPORT_PARENT_QUERY_KEY = (parentId: string) => [

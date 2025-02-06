@@ -16,9 +16,9 @@ import { ChannelContentCreateInputs } from "@src/params";
  * This function allows users to add new content to a specific channel by providing the necessary content details and channel ID.
  * It is designed to be used in applications where channel content management is required.
  * @name CreateChannelContent
- * @param {ChannelContentCreateInputs} content - The content to be created
- * @param {string} channelId - The id of the channel
- * @version 1.2
+ * @param {ChannelContentCreateInputs} content (body) - The content to be created
+ * @param {string} channelId (path) - The id of the channel
+ * @version 1.3
  **/
 export interface CreateChannelContentParams extends MutationParams {
   content: ChannelContentCreateInputs;

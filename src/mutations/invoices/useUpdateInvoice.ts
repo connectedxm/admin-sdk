@@ -13,9 +13,9 @@ import { InvoiceUpdateInputs } from "@src/params";
  * This function allows users to modify the details of a specific invoice identified by its ID.
  * It ensures that only the necessary fields are updated while maintaining the integrity of the invoice data.
  * @name UpdateInvoice
- * @param {string} invoiceId - The ID of the invoice to be updated
- * @param {InvoiceUpdateInputs} invoice - The invoice data to update
- * @version 1.2
+ * @param {string} invoiceId (path) - The ID of the invoice to be updated
+ * @param {InvoiceUpdateInputs} invoice (body) - The invoice data to update
+ * @version 1.3
  **/
 export interface UpdateInvoiceParams extends MutationParams {
   invoiceId: string;

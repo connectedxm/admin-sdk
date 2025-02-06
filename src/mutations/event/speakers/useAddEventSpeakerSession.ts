@@ -15,10 +15,10 @@ import {
  * This function allows the addition of a session to an event speaker's schedule by specifying the event, speaker, and session IDs.
  * It is designed to be used in applications where managing event speaker sessions is required.
  * @name AddEventSpeakerSession
- * @param {string} eventId - The id of the event
- * @param {string} speakerId - The id of the speaker
- * @param {string} sessionId - The id of the session
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} speakerId (path) - The id of the speaker
+ * @param {string} sessionId (path) - The id of the session
+ * @version 1.3
 **/
 
 export interface AddEventSpeakerSessionParams extends MutationParams {

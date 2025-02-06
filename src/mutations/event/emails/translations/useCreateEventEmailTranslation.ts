@@ -19,11 +19,11 @@ import {
  * This function allows the creation of a translation for a specific event email type and locale.
  * It is used to manage multilingual support for event-related communications.
  * @name PostEventEmailTranslation
- * @param {string} eventId - The ID of the event
- * @param {EventEmailType} type - The type of the event email
- * @param {string} locale - The locale for the translation
- * @param {[boolean]} autoTranslate - Whether to automatically translate the email content
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {EventEmailType} type (path) - The type of the event email
+ * @param {string} locale (bodyValue) - The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) - Whether to automatically translate the email content
+ * @version 1.3
  **/
 
 /**

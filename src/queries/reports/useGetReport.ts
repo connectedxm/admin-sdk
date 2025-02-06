@@ -14,9 +14,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve comprehensive report information, optionally filtered by an event ID.
  * It is suitable for applications that require detailed report data with support for pagination.
  * @name GetReport
- * @param {string} reportId - The ID of the report
- * @param {string} [eventId] - Optional event ID for filtering the report
- * @version 1.2
+ * @param {string} reportId (path) The ID of the report
+ * @param {string} [eventId] (query) Optional event ID for filtering the report
+ * @version 1.3
  **/
 
 export const REPORT_QUERY_KEY = (

@@ -22,10 +22,10 @@ import {
  * It ensures that the channel's translation is updated in the backend and 
  * invalidates the relevant queries to keep the client-side data in sync.
  * @name UpdateChannelTranslation
- * @param {string} channelId - The ID of the channel
- * @param {ISupportedLocale} locale - The locale for which the translation is being updated
- * @param {ChannelTranslationUpdateInputs} channelTranslation - The translation details to update
- * @version 1.2
+ * @param {string} channelId (path) - The ID of the channel
+ * @param {ISupportedLocale} locale (path) - The locale for which the translation is being updated
+ * @param {ChannelTranslationUpdateInputs} channelTranslation (body) - The translation details to update
+ * @version 1.3
  **/
 
 export interface UpdateChannelTranslationParams extends MutationParams {

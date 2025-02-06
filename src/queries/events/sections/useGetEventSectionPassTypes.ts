@@ -14,9 +14,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * allowing for paginated data fetching to efficiently handle large datasets.
  * It is useful in scenarios where detailed information about event pass types is required.
  * @name GetEventSectionPassTypes
- * @param {string} eventId - The id of the event
- * @param {string} sectionId - The id of the section
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} sectionId (path) - The id of the section
+ * @version 1.3
  **/
 
 export const EVENT_SECTION_PASS_TYPES_QUERY_KEY = (

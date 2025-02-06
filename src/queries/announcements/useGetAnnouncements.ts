@@ -14,12 +14,12 @@ import { QueryClient } from "@tanstack/react-query";
  * This function provides the ability to retrieve announcements based on various optional filters such as event, group, tier, channel, and account.
  * It is designed to be used in applications where announcements need to be dynamically fetched and managed.
  * @name GetAnnouncements
- * @param {string} [eventId] - The id of the event
- * @param {string} [groupId] - The id of the group
- * @param {string} [tierId] - The id of the tier
- * @param {string} [channelId] - The id of the channel
- * @param {string} [accountId] - The id of the account
- * @version 1.2
+ * @param {string} [eventId] (query) - The id of the event
+ * @param {string} [groupId] (query) - The id of the group
+ * @param {string} [tierId] (query) - The id of the tier
+ * @param {string} [channelId] (query) - The id of the channel
+ * @param {string} [accountId] (query) - The id of the account
+ * @version 1.3
  **/
 
 interface AnnouncementFilters {

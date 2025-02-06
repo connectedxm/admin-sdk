@@ -13,9 +13,9 @@ import { EVENT_SECTION_QUERY_KEY } from "./useGetEventSection";
  * This function is designed to retrieve a list of add-ons associated with a particular event section.
  * It supports pagination and filtering to allow for efficient data retrieval and management.
  * @name GetEventSectionAddOns
- * @param {string} eventId - The id of the event
- * @param {string} sectionId - The id of the section
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} sectionId (path) - The id of the section
+ * @version 1.3
  **/
 
 export const EVENT_SECTION_ADDONS_QUERY_KEY = (

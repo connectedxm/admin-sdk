@@ -12,9 +12,9 @@ import { SET_GROUP_QUERY_DATA, GROUP_EVENTS_QUERY_KEY } from "@src/queries";
  * This function allows the removal of an event from a specified group by providing the group and event identifiers.
  * It is designed to be used in applications where managing group events is necessary.
  * @name RemoveGroupEvent
- * @param {string} groupId - The id of the group
- * @param {string} eventId - The id of the event
- * @version 1.2
+ * @param {string} groupId (path) - The id of the group
+ * @param {string} eventId (path) - The id of the event
+ * @version 1.3
  **/
 
 export interface RemoveGroupEventParams extends MutationParams {

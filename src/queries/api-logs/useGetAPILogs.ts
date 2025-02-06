@@ -12,14 +12,14 @@ import { QueryClient } from "@tanstack/react-query";
  * This function allows users to fetch API logs based on specific criteria such as date range, HTTP method, status, source, user ID, and account ID.
  * It is designed to be used in applications where monitoring and analyzing API usage is required.
  * @name GetAPILogs
- * @param {string} startDate - The start date for filtering logs
- * @param {string} endDate - The end date for filtering logs
- * @param {string} [method] - Optional HTTP method for filtering logs
- * @param {"success" | "failed"} [status] - Optional status for filtering logs
- * @param {string} [source] - Optional source for filtering logs
- * @param {string} [userId] - Optional user ID for filtering logs
- * @param {string} [accountId] - Optional account ID for filtering logs
- * @version 1.2
+ * @param {string} startDate (query) - The start date for filtering logs
+ * @param {string} endDate (query) - The end date for filtering logs
+ * @param {string} [method] (query) - Optional HTTP method for filtering logs
+ * @param {"success" | "failed"} [status] (query) - Optional status for filtering logs
+ * @param {string} [source] (query) - Optional source for filtering logs
+ * @param {string} [userId] (query) - Optional user ID for filtering logs
+ * @param {string} [accountId] (query) - Optional account ID for filtering logs
+ * @version 1.3
  **/
 
 export const API_LOGS_QUERY_KEY = (

@@ -13,10 +13,10 @@ import { QueryClient } from "@tanstack/react-query";
  * This function allows users to fetch content such as videos, audios, or articles, and filter them based on whether they are featured or past events.
  * It is designed to be used in applications where content needs to be dynamically loaded and filtered.
  * @name GetContents
- * @param {boolean} [featured] - Optional flag to filter featured contents
- * @param {"video" | "audio" | "article"} [type] - Optional type of content
- * @param {boolean} [past] - Optional flag to filter past contents
- * @version 1.2
+ * @param {boolean} [featured] (query) - Optional flag to filter featured contents
+ * @param {"video" | "audio" | "article"} [type] (query) - Optional type of content
+ * @param {boolean} [past] (query) - Optional flag to filter past contents
+ * @version 1.3
  **/
 
 export const CONTENTS_QUERY_KEY = (

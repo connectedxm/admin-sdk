@@ -14,10 +14,10 @@ import {
  * This function allows the removal of a translation associated with a particular event pass type and locale.
  * It is useful in scenarios where outdated or incorrect translations need to be removed from the system.
  * @name DeleteEventPassTypeTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} passTypeId - The ID of the pass type
- * @param {string} locale - The locale of the translation to be deleted
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} passTypeId (path) - The ID of the pass type
+ * @param {string} locale (path) - The locale of the translation to be deleted
+ * @version 1.3
  **/
 
 /**

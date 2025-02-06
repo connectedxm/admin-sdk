@@ -12,8 +12,8 @@ import { SubscriptionCreateInputs } from "@src/params";
  * This function allows the creation of a new subscription by providing the necessary subscription details.
  * It is designed to be used in applications where subscription management is required.
  * @name CreateSubscription
- * @param {SubscriptionCreateInputs} subscription - The subscription details to be created
- * @version 1.2
+ * @param {SubscriptionCreateInputs} subscription (body) - The subscription details to be created
+ * @version 1.3
  **/
 
 export interface CreateSubscriptionParams extends MutationParams {

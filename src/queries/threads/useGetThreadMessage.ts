@@ -14,10 +14,10 @@ import { THREAD_MESSAGES_QUERY_KEY } from "./useGetThreadMessages";
  * This function is part of a connected query system designed to retrieve detailed information about a particular message within a thread.
  * It is useful in applications where accessing individual thread messages is necessary.
  * @name GetThreadMessage
- * @param {string} threadId - The ID of the thread
- * @param {string} messageId - The ID of the message
- * @version 1.2
- **/
+ * @param {string} threadId (path) The ID of the thread
+ * @param {string} messageId (path) The ID of the message
+ * @version 1.3
+ */
 
 export const THREAD_MESSAGE_QUERY_KEY = (
   threadId: string,

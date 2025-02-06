@@ -13,10 +13,10 @@ import {
  * This function allows users to fetch threads that match the given criteria, supporting both public and private access levels.
  * It is designed to be used in applications where thread data needs to be filtered and retrieved efficiently.
  * @name GetThreads
- * @param {string} [access] - The access level of the threads (public or private)
- * @param {string} [groupId] - The ID of the group to filter threads
- * @param {string} [eventId] - The ID of the event to filter threads
- * @version 1.2
+ * @param {string} [access] (query) The access level of the threads (public or private)
+ * @param {string} [groupId] (query) The ID of the group to filter threads
+ * @param {string} [eventId] (query) The ID of the event to filter threads
+ * @version 1.3
  **/
 
 export const THREADS_QUERY_KEY = (

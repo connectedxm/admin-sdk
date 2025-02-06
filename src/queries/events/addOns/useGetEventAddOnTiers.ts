@@ -13,10 +13,10 @@ import { EVENT_ADD_ON_QUERY_KEY } from "./useGetEventAddOn";
  * This function fetches tiers associated with an event add-on, allowing filtering based on whether only allowed tiers should be included.
  * It is useful for applications that need to display or manage tiers related to event add-ons.
  * @name GetEventAddOnTiers
- * @param {boolean} allowed - Indicates if only allowed tiers should be fetched
- * @param {string} eventId - The id of the event
- * @param {string} addOnId - The id of the add-on
- * @version 1.2
+ * @param {boolean} allowed (query) - Indicates if only allowed tiers should be fetched
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} addOnId (path) - The id of the add-on
+ * @version 1.3
  **/
 
 export const EVENT_ADD_ON_TIERS_QUERY_KEY = (

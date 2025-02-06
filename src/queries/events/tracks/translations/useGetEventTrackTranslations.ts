@@ -13,9 +13,9 @@ import { EVENT_TRACK_QUERY_KEY } from "../useGetEventTrack";
  * This function fetches translation data for a given event track using the event and track identifiers.
  * It is useful for applications that need to display or manage translations associated with event tracks.
  * @name GetEventTrackTranslations
- * @param {string} eventId - The ID of the event
- * @param {string} trackId - The ID of the track
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} trackId (path) - The ID of the track
+ * @version 1.3
 **/
 
 /**

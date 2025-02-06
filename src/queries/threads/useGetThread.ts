@@ -10,12 +10,14 @@ import { THREADS_QUERY_KEY } from "./useGetThreads";
 import { QueryClient, SetDataOptions, Updater } from "@tanstack/react-query";
 
 /**
- * Endpoint to fetch a specific thread by its ID.
- * This function allows users to retrieve detailed information about a particular thread using its unique identifier.
- * It is designed for applications that require access to thread data for display or processing purposes.
- * @name GetThread
- * @param {string} threadId - The ID of the thread
- * @version 1.2
+ * This file contains functions for fetching and managing thread data.
+ * It provides an endpoint to retrieve a specific thread by its ID and 
+ * utilizes connected single queries to retrieve data about threads.
+ * The functions in this file are designed to be used in applications 
+ * that require access to thread data for display or processing purposes.
+ * @name Thread Management
+ * @param {string} threadId (path) The ID of the thread
+ * @version 1.3
  **/
 
 export const THREAD_QUERY_KEY = (threadId: string, messageId?: string) => [

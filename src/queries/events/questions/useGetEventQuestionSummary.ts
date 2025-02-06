@@ -12,9 +12,9 @@ import { QueryClient } from "@tanstack/react-query";
  * Fetches summary data for a specific event question, providing various chart types such as bar, line, table, and count.
  * This function is designed to retrieve detailed summary information for a question within an event, which can be used for data visualization and analysis.
  * @name GetEventQuestionSummary
- * @param {string} eventId - The ID of the event
- * @param {string} questionId - The ID of the question
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} questionId (path) - The ID of the question
+ * @version 1.3
  **/
 
 export const EVENT_QUESTION_SUMMARY_QUERY_KEY = (

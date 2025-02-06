@@ -16,10 +16,10 @@ import {
  * allowing for enhanced functionality or offerings for event attendees.
  * It is designed to be used in applications where event management and customization are required.
  * @name AddEventPassAddOn
- * @param {string} addOnId - The id of the add-on
- * @param {string} eventId - The id of the event
- * @param {string} passId - The id of the pass
- * @version 1.2
+ * @param {string} addOnId (path) - The id of the add-on
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} passId (path) - The id of the pass
+ * @version 1.3
  **/
 export interface AddEventPassAddOnParams extends MutationParams {
   addOnId: string;

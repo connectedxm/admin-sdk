@@ -15,8 +15,8 @@ import { INTEREST_QUERY_KEY } from "./useGetInterest";
  * providing a paginated and optionally sorted list of activities.
  * It is useful for applications that need to display or process activities linked to specific interests.
  * @name GetInterestActivities
- * @param {string} interestId - The id of the interest
- * @version 1.2
+ * @param {string} interestId (path) - The id of the interest
+ * @version 1.3
  **/
 
 export const INTEREST_ACTIVITIES_QUERY_KEY = (interestId: string) => [

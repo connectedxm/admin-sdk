@@ -15,14 +15,14 @@ import {
  * This function allows updating the schedule details for content within a channel, including date and notification settings.
  * It is designed to be used in applications where managing content schedules is required.
  * @name UpdateChannelContentPublishSchedule
- * @param {string} contentId - The id of the content
- * @param {string} channelId - The id of the channel
- * @param {object} schedule - The schedule details
- * @param {string} schedule.date - The date of the schedule
- * @param {boolean} schedule.email - Email notification flag
- * @param {boolean} schedule.push - Push notification flag
- * @param {boolean} schedule.visible - Visibility flag
- * @version 1.2
+ * @param {string} contentId (path) - The id of the content
+ * @param {string} channelId (path) - The id of the channel
+ * @param {object} schedule (body) - The schedule details
+ * @param {string} schedule.date (bodyValue) - The date of the schedule
+ * @param {boolean} schedule.email (bodyValue) - Email notification flag
+ * @param {boolean} schedule.push (bodyValue) - Push notification flag
+ * @param {boolean} schedule.visible (bodyValue) - Visibility flag
+ * @version 1.3
  **/
 export interface UpdateChannelContentPublishScheduleParams
   extends MutationParams {

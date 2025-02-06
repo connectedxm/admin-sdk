@@ -16,9 +16,9 @@ import { OrganizationTeamMemberUpdateInputs } from "@src/params";
  * This function allows updating the details of a specific team member within an organization using their ID.
  * It is designed to be used in applications where team member information needs to be modified.
  * @name UpdateOrganizationTeamMember
- * @param {string} teamMemberId - The ID of the team member
- * @param {OrganizationTeamMemberUpdateInputs} teamMember - The updated information for the team member
- * @version 1.2
+ * @param {string} teamMemberId (path) - The ID of the team member
+ * @param {OrganizationTeamMemberUpdateInputs} teamMember (body) - The updated information for the team member
+ * @version 1.3
  **/
 
 export interface UpdateOrganizationTeamMemberParams extends MutationParams {

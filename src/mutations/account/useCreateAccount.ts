@@ -13,8 +13,8 @@ import { AccountCreateInputs } from "@src/params";
  * This function allows for the creation of a new account by providing the necessary account details.
  * It is designed to be used in applications where account management is required.
  * @name CreateAccount
- * @param {AccountCreateInputs} account - The account details to be created
- * @version 1.2
+ * @param {AccountCreateInputs} account (body) - The account details to be created
+ * @version 1.3
  **/
 export interface CreateAccountParams extends MutationParams {
   account: AccountCreateInputs;

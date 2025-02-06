@@ -14,8 +14,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function allows applications to fetch detailed membership information of a user within an organization.
  * It is designed to be used in scenarios where user membership details are required for organizational management.
  * @name GetOrganizationMembership
- * @param {string} userId - The id of the user
- * @version 1.2
+ * @param {string} userId (path) The id of the user
+ * @version 1.3
  **/
 
 export const ORGANIZATION_MEMBERSHIP_QUERY_KEY = (userId: string) => [

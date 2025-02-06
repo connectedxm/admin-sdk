@@ -15,8 +15,8 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
  * allowing users to understand the different access levels or categories available for that event.
  * It is useful in scenarios where detailed information about event pass types is required.
  * @name GetAllEventPassTypes
- * @param {string} eventId - The id of the event
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @version 1.3
  **/
 
 export const ALL_EVENT_PASS_TYPES_QUERY_KEY = (eventId: string) => [

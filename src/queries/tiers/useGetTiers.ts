@@ -9,13 +9,13 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * Endpoint to retrieve a list of tiers with an option to filter by type.
- * This function allows users to fetch tiers, which can be categorized as either "external" or "internal".
- * It is designed to be used in applications where tier information is required, with optional filtering capabilities.
+ * This file contains functions for retrieving and managing tier information.
+ * It provides an endpoint to fetch a list of tiers with optional filtering by type.
+ * The functions in this file are designed to be used in applications where tier information is required.
  * @name GetTiers
- * @param {string} [type] - The type of tiers to retrieve, can be "external" or "internal"
- * @version 1.2
- **/
+ * @param {string} [type] (query) The type of tiers to retrieve, can be "external" or "internal"
+ * @version 1.3
+ */
 
 export const TIERS_QUERY_KEY = (type?: "external" | "internal") => {
   const keys = ["TIERS"];

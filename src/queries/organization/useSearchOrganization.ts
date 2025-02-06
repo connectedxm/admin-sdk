@@ -8,13 +8,13 @@ import { ConnectedXMResponse, SearchField } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * Endpoint to search for organizations based on a search term.
- * This function allows users to search for organizations by providing an optional search term.
- * It is designed to be used in applications where users need to find specific organizations.
- * @name SearchOrganization
- * @param {string} [search] - Optional search term for organization
- * @version 1.2
- **/
+ * This file contains functions for searching organizations based on a search term.
+ * It provides an endpoint to search for organizations and a hook to use the search functionality.
+ * The search functionality is designed to be used in applications where users need to find specific organizations.
+ * @name Search Organization Functions
+ * @param {string} [search] (query) Optional search term for organization
+ * @version 1.3
+ */
 
 export const SEARCH_ORGANIZATION_QUERY_KEY = (search?: string) => [
   "SEARCH_ORGANIZATION",

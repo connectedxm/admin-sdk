@@ -12,8 +12,8 @@ import { ACCOUNTS_QUERY_KEY, ACCOUNT_QUERY_KEY } from "@src/queries";
  * This function allows for the removal of an account from the system, ensuring that all associated queries are invalidated.
  * It is designed to be used in applications where account management and cleanup are necessary.
  * @name DeleteAccount
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 export interface DeleteAccountParams extends MutationParams {
   accountId: string;

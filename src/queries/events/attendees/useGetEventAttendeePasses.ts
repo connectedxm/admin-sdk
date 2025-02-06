@@ -15,10 +15,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * providing options to filter by status. It is designed for applications that require detailed 
  * management of event passes for attendees.
  * @name GetEventAttendeePasses
- * @param {string} eventId - The id of the event
- * @param {string} accountId - The id of the account
- * @param {keyof typeof EventPassStatus} [status] - Optional status of the event pass
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} accountId (path) - The id of the account
+ * @param {keyof typeof EventPassStatus} [status] (query) - Optional status of the event pass
+ * @version 1.3
  **/
 
 export const EVENT_ATTENDEE_PASSES_QUERY_KEY = (

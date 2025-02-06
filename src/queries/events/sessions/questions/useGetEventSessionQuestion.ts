@@ -12,10 +12,10 @@ import { EVENT_SESSION_QUESTIONS_QUERY_KEY } from "./useGetEventSessionQuestions
  * This function is designed to retrieve detailed information about a particular question within an event session.
  * It is useful for applications that need to display or process data related to event session questions.
  * @name GetEventSessionQuestion
- * @param {string} eventId - The id of the event
- * @param {string} sessionId - The id of the session
- * @param {string} questionId - The id of the question
- * @version 1.2
+ * @param {string} eventId - The id of the event (path)
+ * @param {string} sessionId - The id of the session (path)
+ * @param {string} questionId - The id of the question (path)
+ * @version 1.3
  **/
 
 export const EVENT_SESSION_QUESTION_QUERY_KEY = (

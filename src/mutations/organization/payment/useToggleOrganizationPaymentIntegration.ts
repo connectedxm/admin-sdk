@@ -19,8 +19,8 @@ import {
  * This function allows the modification of payment integration settings for an organization by specifying the type of integration.
  * It ensures that the query client is updated with the latest data after the integration is toggled.
  * @name ToggleOrganizationPaymentIntegration
- * @param {keyof typeof PaymentIntegrationType} type - The type of payment integration
- * @version 1.2
+ * @param {keyof typeof PaymentIntegrationType} type (path) - The type of payment integration
+ * @version 1.3
  **/
 
 export interface ToggleOrganizationPaymentIntegrationParams extends MutationParams {

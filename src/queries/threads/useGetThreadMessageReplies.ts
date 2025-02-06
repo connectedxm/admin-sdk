@@ -18,9 +18,9 @@ import { THREAD_MESSAGE_QUERY_KEY } from "./useGetThreadMessage";
  * allowing users to view the conversation flow. It is useful in applications where 
  * threaded discussions or message replies need to be displayed.
  * @name GetThreadMessageReplies
- * @param {string} threadId - The id of the thread
- * @param {string} messageId - The id of the message
- * @version 1.2
+ * @param {string} threadId (path) The id of the thread
+ * @param {string} messageId (path) The id of the message
+ * @version 1.3
  */
 
 export const THREAD_MESSAGE_REPLIES_QUERY_KEY = (

@@ -17,10 +17,10 @@ import {
  * ensuring that the translation is correctly stored and the relevant queries are invalidated.
  * It is designed to be used in applications where announcements need to be localized.
  * @name PutAnnouncementTranslation
- * @param {string} announcementId - The ID of the announcement
- * @param {ISupportedLocale} locale - The locale for which the translation is being updated
- * @param {AnnouncementTranslationUpdateInputs} announcementTranslation - The translation details to update
- * @version 1.2
+ * @param {string} announcementId (path) - The ID of the announcement
+ * @param {ISupportedLocale} locale (path) - The locale for which the translation is being updated
+ * @param {AnnouncementTranslationUpdateInputs} announcementTranslation (body) - The translation details to update
+ * @version 1.3
  **/
 
 export interface UpdateAnnouncementTranslationParams extends MutationParams {

@@ -16,11 +16,11 @@ import {
  * This function allows updating the translation details of a room type within an event for a specified locale.
  * It is used in scenarios where the translation of room types needs to be modified or updated.
  * @name UpdateEventRoomTypeTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} roomTypeId - The ID of the room type
- * @param {ISupportedLocale} locale - The locale for the translation
- * @param {EventRoomTypeTranslationUpdateInputs} roomTypeTranslation - The translation details to update
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} roomTypeId (path) - The ID of the room type
+ * @param {ISupportedLocale} locale (path) - The locale for the translation
+ * @param {EventRoomTypeTranslationUpdateInputs} roomTypeTranslation (body) - The translation details to update
+ * @version 1.3
  **/
 
 /**

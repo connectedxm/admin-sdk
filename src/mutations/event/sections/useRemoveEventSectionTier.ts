@@ -15,12 +15,12 @@ import {
  * This function allows the removal of a tier from an event section by specifying the event, section, and tier IDs.
  * It is used in scenarios where managing event sections and their tiers is necessary.
  * @name RemoveEventSectionTier
- * @param {boolean} allowed - Indicates if the operation is allowed
- * @param {string} eventId - The id of the event
- * @param {string} sectionId - The id of the section
- * @param {string} tierId - The id of the tier
- * @version 1.2
-**/
+ * @param {boolean} allowed (query) - Indicates if the operation is allowed
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} sectionId (path) - The id of the section
+ * @param {string} tierId (path) - The id of the tier
+ * @version 1.3
+ **/
 
 export interface RemoveEventSectionTierParams extends MutationParams {
   allowed: boolean;

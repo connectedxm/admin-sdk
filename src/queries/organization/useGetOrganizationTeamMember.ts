@@ -13,9 +13,9 @@ import { ConnectedXMResponse, TeamMember } from "@src/interfaces";
  * This function utilizes a connected single query to retrieve data about a team member within an organization.
  * It is designed to be used in applications where detailed information about a team member is required.
  * @name GetOrganizationTeamMember
- * @param {string} teamMemberId - The ID of the team member
- * @version 1.2
- **/
+ * @param {string} teamMemberId (path) The ID of the team member
+ * @version 1.3
+ */
 
 export const ORGANIZATION_TEAM_MEMBER_QUERY_KEY = (teamMemberId: string) => [
   ...ORGANIZATION_TEAM_MEMBERS_QUERY_KEY(),

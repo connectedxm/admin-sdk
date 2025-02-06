@@ -14,8 +14,8 @@ import { ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY } from "./useGetOrganizatio
  * This function fetches detailed information about a payment integration type associated with an organization.
  * It is intended for use in applications that require access to specific payment integration configurations.
  * @name GetOrganizationPaymentIntegration
- * @param {string} type - The type of the payment integration
- * @version 1.2
+ * @param {string} type (path) The type of the payment integration
+ * @version 1.3
  **/
 
 export const ORGANIZATION_PAYMENT_INTEGRATION_QUERY_KEY = (type: string) => [

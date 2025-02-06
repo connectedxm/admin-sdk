@@ -16,11 +16,11 @@ import {
  * This function allows updating the translation details of a session within an event for a specified locale.
  * It is designed to be used in applications where multilingual support for event sessions is required.
  * @name UpdateEventSessionTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} sessionId - The ID of the session
- * @param {EventSessionTranslationUpdateInputs} sessionTranslation - The translation details to update
- * @param {ISupportedLocale} locale - The locale for the translation
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} sessionId (path) - The ID of the session
+ * @param {EventSessionTranslationUpdateInputs} sessionTranslation (body) - The translation details to update
+ * @param {ISupportedLocale} locale (path) - The locale for the translation
+ * @version 1.3
  **/
 
 export interface UpdateEventSessionTranslationParams extends MutationParams {

@@ -15,9 +15,9 @@ import {
  * This function allows the removal of a speaker from an event by specifying the event and speaker IDs.
  * It is designed to be used in applications where event management and speaker coordination are required.
  * @name DeleteEventSpeaker
- * @param {string} eventId - The id of the event
- * @param {string} speakerId - The id of the speaker
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} speakerId (path) - The id of the speaker
+ * @version 1.3
  **/
 
 export interface DeleteEventSpeakerParams extends MutationParams {

@@ -15,8 +15,8 @@ import {
  * This function allows users to cancel a previously scheduled announcement by providing the announcement ID.
  * It is useful in scenarios where an announcement needs to be retracted or rescheduled.
  * @name CancelAnnouncementSchedule
- * @param {string} announcementId - The ID of the announcement to cancel
- * @version 1.2
+ * @param {string} announcementId (path) - The ID of the announcement to cancel
+ * @version 1.3
  **/
 
 export interface CancelAnnouncementScheduleParams extends MutationParams {

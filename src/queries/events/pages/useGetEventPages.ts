@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is designed to retrieve paginated data for event pages associated with a specific event ID.
  * It is useful for applications that need to display or manage multiple pages of event-related content.
  * @name GetEventPages
- * @param {string} eventId - The id of the event
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @version 1.3
  **/
 
 /**

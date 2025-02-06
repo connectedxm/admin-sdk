@@ -13,7 +13,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches stream input data from the server, allowing for infinite scrolling and pagination.
  * It is designed to be used in applications where a comprehensive list of stream inputs is required.
  * @name GetStreamInputs
- * @version 1.2
+ * @version 1.3
  **/
 
 export const STREAM_INPUTS_QUERY_KEY = () => ["STREAMS"];

@@ -15,10 +15,10 @@ import {
  * This function allows for the addition of a translation to a group by specifying the group ID and locale.
  * It supports optional auto-translation and updates the query cache upon successful creation.
  * @name PostGroupTranslation
- * @param {string} groupId - The ID of the group
- * @param {string} locale - The locale for the translation
- * @param {boolean} [autoTranslate] - Whether to automatically translate the content
- * @version 1.2
+ * @param {string} groupId (path) - The ID of the group
+ * @param {string} locale (bodyValue) - The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) - Whether to automatically translate the content
+ * @version 1.3
  **/
 
 /**

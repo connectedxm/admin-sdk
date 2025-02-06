@@ -14,10 +14,10 @@ import { EVENT_PASSES_QUERY_KEY } from "../passes";
  * This function allows users to fetch attendee pass details associated with a particular event and pass ID.
  * It is designed to be used in applications where information about event pass attendees is required.
  * @name GetEventPassAttendeePasses
- * @param {string} eventId - The id of the event
- * @param {string} passId - The id of the pass
- * @param {keyof typeof EventPassStatus} [status] - Optional status of the event pass
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} passId (path) - The id of the pass
+ * @param {keyof typeof EventPassStatus} [status] (query) - Optional status of the event pass
+ * @version 1.3
  **/
 
 export const EVENT_PASS_ATTENDEE_PASSES_QUERY_KEY = (

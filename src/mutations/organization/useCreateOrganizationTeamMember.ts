@@ -16,8 +16,8 @@ import { OrganizationTeamMemberCreateInputs } from "@src/params";
  * This function allows the creation of a new team member within an organization by providing the necessary inputs.
  * It is designed to be used in applications where managing team members is required.
  * @name CreateOrganizationTeamMember
- * @param {OrganizationTeamMemberCreateInputs} teamMember - The inputs for creating a team member
- * @version 1.2
+ * @param {OrganizationTeamMemberCreateInputs} teamMember (body) - The inputs for creating a team member
+ * @version 1.3
  **/
 
 export interface CreateOrganizationTeamMemberParams extends MutationParams {

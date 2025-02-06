@@ -12,8 +12,8 @@ import { INTEGRATIONS_QUERY_KEY, INTEGRATION_QUERY_KEY } from "@src/queries";
  * This function allows for the removal of an integration by its unique identifier.
  * It ensures that the integration is deleted and updates the query cache accordingly.
  * @name DeleteIntegration
- * @param {string} integrationId - The ID of the integration to be deleted
- * @version 1.2
+ * @param {string} integrationId (path) - The ID of the integration to be deleted
+ * @version 1.3
  **/
 
 export interface DeleteIntegrationParams extends MutationParams {

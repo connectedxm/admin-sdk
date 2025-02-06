@@ -16,9 +16,9 @@ import {
  * This function allows the creation of an event activation by providing the necessary event ID and activation inputs.
  * It is designed to be used in applications where event activations need to be managed and updated.
  * @name CreateEventActivation
- * @param {string} eventId - The id of the event
- * @param {EventActivationCreateInputs} activation - The activation inputs for the event
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {EventActivationCreateInputs} activation (body) - The activation inputs for the event
+ * @version 1.3
  **/
 
 export interface CreateEventActivationParams extends MutationParams {

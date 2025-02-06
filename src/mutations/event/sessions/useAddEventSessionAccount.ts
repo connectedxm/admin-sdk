@@ -16,10 +16,10 @@ import {
  * facilitating the management of session participants.
  * It is intended for use in applications that require dynamic session management capabilities.
  * @name AddEventSessionAccount
- * @param {string} eventId - The id of the event
- * @param {string} sessionId - The id of the session
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} sessionId (path) - The id of the session
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 export interface AddEventSessionAccountParams extends MutationParams {
   eventId: string;

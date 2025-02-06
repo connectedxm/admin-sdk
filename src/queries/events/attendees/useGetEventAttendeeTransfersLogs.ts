@@ -14,9 +14,9 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches the transfer logs associated with attendees of a given event and account.
  * It is useful for tracking and managing attendee transfers within an event context.
  * @name GetEventAttendeeTransfersLogs
- * @param {string} eventId - The id of the event
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 
 export const EVENT_ATTENDEE_TRANSFER_LOGS_QUERY_KEY = (

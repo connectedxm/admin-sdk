@@ -15,10 +15,10 @@ import {
  * This function allows the removal of a sponsor from an event track by specifying the event, track, and sponsor IDs.
  * It is designed to be used in applications where managing event sponsorships is required.
  * @name RemoveEventTrackSponsor
- * @param {string} eventId - The id of the event
- * @param {string} trackId - The id of the track
- * @param {string} sponsorId - The id of the sponsor
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} trackId (path) - The id of the track
+ * @param {string} sponsorId (path) - The id of the sponsor
+ * @version 1.3
  **/
 
 export interface RemoveEventTrackSponsorParams extends MutationParams {

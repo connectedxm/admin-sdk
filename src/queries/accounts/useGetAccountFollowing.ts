@@ -14,8 +14,8 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
  * This function is used to fetch the accounts that are being followed by a particular account, 
  * providing a way to access the following list of a user.
  * @name GetAccountFollowing
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 
 export const ACCOUNT_FOLLOWING_QUERY_KEY = (accountId: string) => [

@@ -13,8 +13,8 @@ import { LevelCreateInputs } from "@src/params";
  * This function allows for the creation of a new level by providing the necessary inputs.
  * It is designed to be used in applications where managing levels is required.
  * @name CreateLevel
- * @param {LevelCreateInputs} level - The inputs required to create a new level
- * @version 1.2
+ * @param {LevelCreateInputs} level (body) - The inputs required to create a new level
+ * @version 1.3
  **/
 export interface CreateLevelParams extends MutationParams {
   level: LevelCreateInputs;

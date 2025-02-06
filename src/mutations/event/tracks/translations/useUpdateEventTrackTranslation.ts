@@ -16,11 +16,11 @@ import {
  * This function allows for updating the translation details of an event track, identified by eventId and trackId, for a specified locale.
  * It is designed to be used in applications that manage multilingual event content.
  * @name UpdateEventTrackTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} trackId - The ID of the track
- * @param {ISupportedLocale} locale - The locale for the translation
- * @param {EventTrackTranslationUpdateInputs} trackTranslation - The translation details to update
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} trackId (path) - The ID of the track
+ * @param {ISupportedLocale} locale (path) - The locale for the translation
+ * @param {EventTrackTranslationUpdateInputs} trackTranslation (body) - The translation details to update
+ * @version 1.3
  **/
 
 export interface UpdateEventTrackTranslationParams extends MutationParams {

@@ -16,9 +16,9 @@ import { StreamInputUpdateInputs } from "@src/params";
  * This function allows users to modify the settings of a stream by providing the stream ID and the new configuration details.
  * It is designed for applications that require dynamic updates to stream configurations.
  * @name UpdateStreamConfig
- * @param {string} streamId - The ID of the stream
- * @param {StreamInputUpdateInputs} details - The details for updating the stream configuration
- * @version 1.2
+ * @param {string} streamId (path) - The ID of the stream
+ * @param {StreamInputUpdateInputs} details (body) - The details for updating the stream configuration
+ * @version 1.3
  **/
 
 export interface UpdateStreamConfigParams extends MutationParams {

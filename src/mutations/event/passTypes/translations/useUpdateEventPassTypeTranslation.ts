@@ -16,11 +16,11 @@ import {
  * This function allows for updating the translation details of a pass type within an event for a specified locale.
  * It is designed to be used in applications where localization of event pass types is required.
  * @name UpdateEventPassTypeTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} passTypeId - The ID of the pass type
- * @param {ISupportedLocale} locale - The locale for the translation
- * @param {EventTranslationUpdateInputs} passTypeTranslation - The translation inputs for the pass type
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} passTypeId (path) - The ID of the pass type
+ * @param {ISupportedLocale} locale (path) - The locale for the translation
+ * @param {EventTranslationUpdateInputs} passTypeTranslation (body) - The translation inputs for the pass type
+ * @version 1.3
  */
 export interface UpdateEventPassTypeTranslationParams extends MutationParams {
   eventId: string;

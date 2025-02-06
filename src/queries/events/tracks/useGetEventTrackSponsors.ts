@@ -13,9 +13,9 @@ import { EVENT_TRACK_QUERY_KEY } from "./useGetEventTrack";
  * This function allows users to fetch sponsors associated with a particular event track by providing the event and track IDs.
  * It is designed to be used in applications where information about event track sponsors is required.
  * @name GetEventTrackSponsors
- * @param {string} eventId - The id of the event
- * @param {string} trackId - The id of the track
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} trackId (path) - The id of the track
+ * @version 1.3
  **/
 
 export const EVENT_TRACK_SPONSORS_QUERY_KEY = (

@@ -13,8 +13,8 @@ import { ConnectedXMResponse, TaxIntegration } from "@src/interfaces";
  * This function is used to retrieve detailed information about a specific tax integration type.
  * It is designed for applications that require access to tax integration details for organizational purposes.
  * @name GetTaxIntegration
- * @param {string} type - The type of tax integration
- * @version 1.2
+ * @param {string} type (path) The type of tax integration
+ * @version 1.3
  **/
 
 export const TAX_INTEGRATION_QUERY_KEY = (type: string) => [

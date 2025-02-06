@@ -14,9 +14,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to fetch detailed information about an event page, 
  * which can be used in applications that require access to event page data.
  * @name GetEventPage
- * @param {string} eventId - The ID of the event
- * @param {string} pageId - The ID of the page
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} pageId (path) - The ID of the page
+ * @version 1.3
  **/
 
 export const EVENT_PAGE_QUERY_KEY = (eventId: string, pageId: string) => [

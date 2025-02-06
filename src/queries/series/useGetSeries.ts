@@ -15,8 +15,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * utilizing a connected single query to ensure data consistency and efficiency.
  * It is suitable for applications that require access to series data by ID.
  * @name GetSeries
- * @param {string} seriesId - The ID of the series
- * @version 1.2
+ * @param {string} seriesId (path) The ID of the series
+ * @version 1.3
 **/
 
 export const SERIES_QUERY_KEY = (seriesId: string) => [

@@ -14,9 +14,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve detailed information about a particular payment linked to an invoice.
  * It is useful in scenarios where precise payment details are required for an invoice.
  * @name GetInvoicePayment
- * @param {string} invoiceId - The ID of the invoice
- * @param {string} paymentId - The ID of the payment
- * @version 1.2
+ * @param {string} invoiceId (path) - The ID of the invoice
+ * @param {string} paymentId (path) - The ID of the payment
+ * @version 1.3
  **/
 
 export const INVOICE_PAYMENT_QUERY_KEY = (

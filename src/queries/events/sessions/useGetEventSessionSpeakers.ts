@@ -13,9 +13,9 @@ import { EVENT_SESSION_QUERY_KEY } from "./useGetEventSession";
  * This function retrieves a list of speakers associated with a given event session, 
  * allowing applications to display or process speaker information for that session.
  * @name GetEventSessionSpeakers
- * @param {string} eventId - The id of the event
- * @param {string} sessionId - The id of the session
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} sessionId (path) - The id of the session
+ * @version 1.3
  **/
 
 export const EVENT_SESSION_SPEAKERS_QUERY_KEY = (

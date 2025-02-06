@@ -12,8 +12,8 @@ import { EVENT_QUERY_KEY } from "../../useGetEvent";
  * This function is designed to fetch session location data associated with a particular event, 
  * providing necessary details for applications that require event session information.
  * @name GetEventSessionLocations
- * @param {string} eventId - The id of the event
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @version 1.3
  **/
 
 export const EVENT_SESSION_LOCATIONS_QUERY_KEY = (eventId: string) => [

@@ -18,11 +18,11 @@ import {
  * This function allows for the addition of a translation to a question within an event, supporting multiple locales and optional auto-translation.
  * It is designed to be used in applications where multilingual support for event questions is required.
  * @name PostEventQuestionTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} questionId - The ID of the question
- * @param {string} locale - The locale for the translation
- * @param {[boolean]} autoTranslate - Whether to automatically translate the question
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} questionId (path) - The ID of the question
+ * @param {string} locale (bodyValue) - The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) - Whether to automatically translate the question
+ * @version 1.3
  **/
 
 /**

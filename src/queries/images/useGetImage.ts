@@ -14,8 +14,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve detailed information about a specific image stored in the system.
  * It is useful for applications that require access to image metadata or content.
  * @name GetImage
- * @param {string} [imageId] - The id of the image
- * @version 1.2
+ * @param {string} [imageId] (path) - The id of the image
+ * @version 1.3
  **/
 
 export const IMAGE_QUERY_KEY = (imageId: string) => [

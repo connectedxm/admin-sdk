@@ -14,8 +14,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function allows users to fetch detailed pricing information associated with a subscription product.
  * It is designed to be used in applications where pricing details of subscription products are required.
  * @name GetSubscriptionProductPrices
- * @param {string} subscriptionProductId - The id of the subscription product
- * @version 1.2
+ * @param {string} subscriptionProductId (path) The id of the subscription product
+ * @version 1.3
  **/
 
 export const SUBSCRIPTION_PRODUCT_PRICES_QUERY_KEY = (

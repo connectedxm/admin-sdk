@@ -16,8 +16,8 @@ import {
  * This function allows administrators to approve events by providing the event ID.
  * It updates the event status and refreshes relevant queries to ensure data consistency.
  * @name ApproveEvent
- * @param {string} eventId - The ID of the event to be approved
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event to be approved
+ * @version 1.3
  **/
 export interface ApproveEventParams extends MutationParams {
   eventId: string;

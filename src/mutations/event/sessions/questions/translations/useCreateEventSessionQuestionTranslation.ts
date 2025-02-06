@@ -18,12 +18,12 @@ import {
  * This function allows the creation of a translation for a question within an event session, supporting multiple locales and optional auto-translation.
  * It is designed to be used in applications that manage multilingual event content.
  * @name PostEventSessionQuestionTranslation
- * @param {string} eventId - The ID of the event
- * @param {string} sessionId - The ID of the session
- * @param {string} questionId - The ID of the question
- * @param {string} locale - The locale for the translation
- * @param {[boolean]} autoTranslate - Whether to automatically translate the question
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} sessionId (path) - The ID of the session
+ * @param {string} questionId (path) - The ID of the question
+ * @param {string} locale (bodyValue) - The locale for the translation
+ * @param {boolean} [autoTranslate] (bodyValue) - Whether to automatically translate the question
+ * @version 1.3
  */
 export interface CreateEventSessionQuestionTranslationParams
   extends MutationParams {

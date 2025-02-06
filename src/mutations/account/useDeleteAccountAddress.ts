@@ -12,9 +12,9 @@ import { ACCOUNT_ADDRESSES_QUERY_KEY } from "@src/queries";
  * This function allows for the removal of an address from an account by specifying the account and address IDs.
  * It is intended for use in applications where account address management is required.
  * @name DeleteAccountAddress
- * @param {string} accountId - The id of the account
- * @param {string} addressId - The id of the address
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @param {string} addressId (path) - The id of the address
+ * @version 1.3
  **/
 export interface DeleteAccountAddressParams extends MutationParams {
   accountId: string;

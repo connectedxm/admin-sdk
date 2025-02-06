@@ -16,10 +16,10 @@ import {
  * This function allows updating the information of an event speaker by providing the event ID, speaker ID, and the updated speaker details.
  * It is designed to be used in applications where event management and speaker details modification are required.
  * @name UpdateEventSpeaker
- * @param {string} eventId - The id of the event
- * @param {string} speakerId - The id of the speaker
- * @param {EventSpeakerUpdateInputs} speaker - The details of the speaker to update
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} speakerId (path) - The id of the speaker
+ * @param {EventSpeakerUpdateInputs} speaker (body) - The details of the speaker to update
+ * @version 1.3
  **/
 
 export interface UpdateEventSpeakerParams extends MutationParams {

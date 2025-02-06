@@ -14,8 +14,8 @@ import { REPORT_QUERY_KEY } from "./useGetReport";
  * This function allows retrieval of user data linked to a particular report by its ID.
  * It is designed for applications that need to access detailed user information within a report context.
  * @name GetReportUsers
- * @param {string} reportId - The id of the report
- * @version 1.2
+ * @param {string} reportId (path) The id of the report
+ * @version 1.3
  **/
 
 export const REPORT_USERS_QUERY_KEY = (

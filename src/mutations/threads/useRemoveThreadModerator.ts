@@ -12,9 +12,9 @@ import { THREAD_MODERATORS_QUERY_KEY } from "@src/queries";
  * This function allows the removal of a user's moderator role from a thread by specifying the thread and account IDs.
  * It is useful in scenarios where thread moderation needs to be managed dynamically.
  * @name RemoveThreadModerator
- * @param {string} threadId - The id of the thread
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} threadId (path) - The id of the thread
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 
 export interface RemoveThreadModeratorParams extends MutationParams {

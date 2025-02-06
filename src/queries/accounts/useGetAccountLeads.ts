@@ -15,10 +15,10 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
  * This function allows users to fetch account leads with optional filtering by lead status and event ID.
  * It is designed to be used in applications where detailed information about account leads is required.
  * @name GetAccountLeads
- * @param {string} accountId - The id of the account
- * @param {keyof typeof LeadStatus} [status] - Optional filtering by lead status
- * @param {string} [eventId] - Optional filtering by event ID
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @param {keyof typeof LeadStatus} [status] (query) - Optional filtering by lead status
+ * @param {string} [eventId] (query) - Optional filtering by event ID
+ * @version 1.3
  **/
 export const ACCOUNT_LEADS_QUERY_KEY = (
   accountId: string,

@@ -12,9 +12,9 @@ import { EVENT_SPONSORS_QUERY_KEY, SET_EVENT_QUERY_DATA } from "@src/queries";
  * This function allows the removal of a sponsor's account from an event by specifying the event and account IDs.
  * It is useful for managing event sponsorships and ensuring that only relevant sponsors are associated with an event.
  * @name RemoveEventSponsorAccount
- * @param {string} eventId - The ID of the event
- * @param {string} accountId - The ID of the sponsor account
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} accountId (path) - The ID of the sponsor account
+ * @version 1.3
 **/
 export interface RemoveEventSponsorAccountParams extends MutationParams {
   eventId: string;

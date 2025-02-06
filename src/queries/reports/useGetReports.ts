@@ -13,9 +13,9 @@ import { QueryClient } from "@tanstack/react-query";
  * This function allows users to fetch reports filtered by type and optionally by event ID.
  * It is designed to be used in applications where report data is required for analysis or display.
  * @name GetReports
- * @param {ReportType} type - The type of the report
- * @param {string} [eventId] - The ID of the event
- * @version 1.2
+ * @param {ReportType} type (query) The type of the report
+ * @param {string} [eventId] (query) The ID of the event
+ * @version 1.3
  **/
 
 export const REPORTS_QUERY_KEY = (

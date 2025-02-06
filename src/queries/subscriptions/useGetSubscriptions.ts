@@ -13,9 +13,9 @@ import { QueryClient } from "@tanstack/react-query";
  * This function allows users to fetch a paginated list of subscriptions, with the ability to filter by subscription status and product ID.
  * It is designed to be used in applications where subscription management and tracking are required.
  * @name GetSubscriptions
- * @param {SubscriptionStatus} [status] - Optional filtering by subscription status
- * @param {string} [subscriptionProductId] - Optional filtering by subscription product ID
- * @version 1.2
+ * @param {SubscriptionStatus} [status] (query) Optional filtering by subscription status
+ * @param {string} [subscriptionProductId] (query) Optional filtering by subscription product ID
+ * @version 1.3
  **/
 
 export const SUBSCRIPTIONS_QUERY_KEY = () => ["SUBSCRIPTIONS"];

@@ -14,7 +14,7 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is used to fetch and manage payment integration data within an organization,
  * allowing applications to display or process payment options available to the organization.
  * @name GetOrganizationPaymentIntegrations
- * @version 1.2
+ * @version 1.3
  **/
 
 export const ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY = () => [

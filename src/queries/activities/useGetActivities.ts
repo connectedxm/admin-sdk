@@ -13,7 +13,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function fetches a paginated list of activities from the server, allowing for optional sorting and searching.
  * It is designed to be used in applications where activity data needs to be displayed or processed.
  * @name GetActivities
- * @version 1.2
+ * @version 1.3
  **/
 
 export const ACTIVITIES_QUERY_KEY = () => ["ACTIVITIES"];

@@ -14,8 +14,8 @@ import {
  * allowing for dynamic content localization. It is useful for applications that need to display 
  * translated content based on the user's language preferences.
  * @name GetOrganizationPageTranslations
- * @param {PageType} type - The type of the page for which translations are being retrieved
- * @version 1.2
+ * @param {PageType} type (path) The type of the page for which translations are being retrieved
+ * @version 1.3
  */
 export const ORGANIZATION_PAGE_TRANSLATIONS_QUERY_KEY = (type: PageType) => [
   ...ORGANIZATION_PAGE_QUERY_KEY(type),

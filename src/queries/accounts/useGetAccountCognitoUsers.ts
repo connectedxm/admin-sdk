@@ -13,8 +13,8 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
  * This function fetches a list of Cognito users linked to a given account ID, 
  * providing detailed user information for applications that require user management capabilities.
  * @name GetAccountCognitoUsers
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 
 export const ACCOUNT_COGNITO_USERS_QUERY_KEY = (accountId: string) => [

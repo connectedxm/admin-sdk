@@ -14,10 +14,10 @@ import { EVENT_PASS_TYPE_REFUND_SCHEDULES_QUERY_KEY } from "@src/queries/events/
  * This function allows the creation of a refund schedule associated with a particular event pass type.
  * It is designed to be used in scenarios where event organizers need to define refund policies for their event pass types.
  * @name CreateEventPassTypeRefundSchedule
- * @param {string} eventId - The id of the event
- * @param {string} passTypeId - The id of the pass type
- * @param {PassTypeRefundScheduleCreateInputs} schedule - The refund schedule inputs
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} passTypeId (path) - The id of the pass type
+ * @param {PassTypeRefundScheduleCreateInputs} schedule (body) - The refund schedule inputs
+ * @version 1.3
  **/
 interface CreateEventPassTypeRefundScheduleParams extends MutationParams {
   eventId: string;

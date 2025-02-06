@@ -12,9 +12,9 @@ import {
  * This function allows the removal of a specific invitation from a group by providing the group ID and invitation ID.
  * It is used in scenarios where managing group memberships and invitations is required.
  * @name DeleteGroupInvitation
- * @param {string} groupId - The id of the group
- * @param {string} invitationId - The id of the invitation
- * @version 1.2
+ * @param {string} groupId (path) - The id of the group
+ * @param {string} invitationId (path) - The id of the invitation
+ * @version 1.3
  **/
 
 export interface DeleteGroupInvitationParams extends MutationParams {

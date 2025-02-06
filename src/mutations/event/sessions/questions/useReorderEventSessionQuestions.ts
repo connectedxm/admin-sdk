@@ -12,10 +12,10 @@ import { SET_EVENT_SESSION_QUESTIONS_QUERY_DATA } from "@src/queries";
  * This function allows the reordering of questions in a given session of an event by specifying the new order of question IDs.
  * It is useful for managing the sequence of questions in event sessions, ensuring they are presented in the desired order.
  * @name ReorderEventSessionQuestions
- * @param {string} eventId - The id of the event
- * @param {string} sessionId - The id of the session
- * @param {string[]} questionIds - The ids of the questions to reorder
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} sessionId (path) - The id of the session
+ * @param {string[]} questionIds (bodyValue) - The ids of the questions to reorder
+ * @version 1.3
  **/
 export interface ReorderEventSessionQuestionsParams extends MutationParams {
   eventId: string;

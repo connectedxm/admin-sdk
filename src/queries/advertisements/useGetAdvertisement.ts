@@ -14,8 +14,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function is designed to retrieve detailed information about a specific advertisement.
  * It is intended for use in applications where advertisement data is required.
  * @name GetAdvertisement
- * @param {string} advertisementId - The ID of the advertisement
- * @version 1.2
+ * @param {string} advertisementId (path) - The ID of the advertisement
+ * @version 1.3
  **/
 export const ADVERTISEMENT_QUERY_KEY = (advertisementId: string) => [
   ...ADVERTISEMENTS_QUERY_KEY(),

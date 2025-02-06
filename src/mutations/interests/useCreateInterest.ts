@@ -13,8 +13,8 @@ import { InterestCreateInputs } from "@src/params";
  * This function allows for the creation of a new interest by providing the necessary interest data.
  * It is designed to be used in applications where users can manage and add new interests.
  * @name CreateInterest
- * @param {InterestCreateInputs} interest - The interest data to be created
- * @version 1.2
+ * @param {InterestCreateInputs} interest (body) - The interest data to be created
+ * @version 1.3
  **/
 export interface CreateInterestParams extends MutationParams {
   interest: InterestCreateInputs;

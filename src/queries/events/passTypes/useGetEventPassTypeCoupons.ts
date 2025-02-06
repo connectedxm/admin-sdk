@@ -15,9 +15,9 @@ import { EVENT_PASS_TYPE_QUERY_KEY } from "./useGetEventPassType";
  * It is designed to be used in applications that require detailed coupon information 
  * for event management and promotion purposes.
  * @name GetEventPassTypeCoupons
- * @param {string} eventId - The id of the event
- * @param {string} passTypeId - The id of the pass type
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} passTypeId (path) - The id of the pass type
+ * @version 1.3
  **/
 
 export const EVENT_PASS_TYPE_COUPONS_QUERY_KEY = (

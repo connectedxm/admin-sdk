@@ -15,8 +15,8 @@ import {
  * This function allows the removal of a specific subscription product price by its unique identifier.
  * It is intended for use in applications that manage subscription products and require the ability to delete product prices.
  * @name DeleteSubscriptionProductPrice
- * @param {string} subscriptionProductId - The id of the subscription product
- * @version 1.2
+ * @param {string} subscriptionProductId (path) - The id of the subscription product
+ * @version 1.3
  **/
 
 export interface DeleteSubscriptionProductPriceParams extends MutationParams {

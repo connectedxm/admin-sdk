@@ -13,8 +13,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is designed to retrieve details of a specific organization trigger, 
  * which can be used in applications that require information about organizational triggers.
  * @name GetOrganizationTrigger
- * @param {OrganizationTriggerType} type - The type of the organization trigger
- * @version 1.2
+ * @param {OrganizationTriggerType} type (path) The type of the organization trigger
+ * @version 1.3
  **/
 
 export const ORGANIZATION_TRIGGER_QUERY_KEY = (

@@ -13,7 +13,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * This function provides a paginated list of invoices, allowing for optional sorting and filtering.
  * It is designed to be used in applications where invoice data needs to be displayed or processed.
  * @name GetInvoices
- * @version 1.2
+ * @version 1.3
  **/
 export const INVOICES_QUERY_KEY = () => ["INVOICES"];
 

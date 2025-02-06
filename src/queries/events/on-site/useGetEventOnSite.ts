@@ -14,8 +14,8 @@ import { EVENTS_QUERY_KEY } from "../useGetEvents";
  * This function is designed to retrieve detailed on-site information about an event, 
  * which can be used in applications that require real-time event data.
  * @name GetEventOnSite
- * @param {string} eventId - The ID of the event
- * @version 1.2
+ * @param {string} eventId (path) - The ID of the event
+ * @version 1.3
  **/
 
 export const EVENT_ON_SITE_QUERY_KEY = (eventId: string) => [

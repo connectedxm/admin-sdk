@@ -12,9 +12,9 @@ import {
  * This function allows users to fetch thread members, providing the ability to filter results based on the role of the members.
  * It is designed for applications that require detailed member information within a thread context.
  * @name GetThreadMembers
- * @param {string} threadId - The id of the thread
- * @param {string} [role] - The role to filter thread members by
- * @version 1.2
+ * @param {string} threadId (path) The id of the thread
+ * @param {string} [role] (query) The role to filter thread members by
+ * @version 1.3
  **/
 
 export const THREAD_MEMBERS_QUERY_KEY = (threadId: string) => [

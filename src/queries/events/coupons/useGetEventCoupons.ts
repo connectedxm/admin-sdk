@@ -16,8 +16,8 @@ import { QueryClient } from "@tanstack/react-query";
  * It is designed for use in applications that require detailed coupon information 
  * for events, facilitating operations such as listing and managing event-specific coupons.
  * @name GetEventCoupons
- * @param {string} eventId - The id of the event
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @version 1.3
  **/
 
 export const EVENT_COUPONS_QUERY_KEY = (eventId: string) => [

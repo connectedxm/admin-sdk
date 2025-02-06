@@ -18,9 +18,9 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * optionally filtered by the invitation status. It is useful for applications that 
  * need to display or manage group invitations.
  * @name GetGroupInvitations
- * @param {string} groupId - The id of the group
- * @param {keyof typeof GroupInvitationStatus} [status] - Optional status of the group invitation
- * @version 1.2
+ * @param {string} groupId (path) - The id of the group
+ * @param {keyof typeof GroupInvitationStatus} [status] (query) - Optional status of the group invitation
+ * @version 1.3
  **/
 
 export const GROUP_INVITATIONS_QUERY_KEY = (

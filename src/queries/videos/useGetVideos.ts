@@ -13,8 +13,8 @@ import {
  * This function supports pagination, ordering, and search functionalities, allowing users to efficiently query video data.
  * It is designed for applications that require dynamic video content retrieval with flexible query parameters.
  * @name GetVideos
- * @param {string} [source] - The source of the videos
- * @version 1.2
+ * @param {string} [source] (query) The source of the videos
+ * @version 1.3
  **/
 
 export const VIDEOS_QUERY_KEY = (source?: string) => {

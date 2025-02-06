@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches payment data for a given account ID, supporting pagination and sorting options.
  * It is intended for use in applications that require detailed payment history for user accounts.
  * @name GetAccountPayments
- * @param {string} accountId - The id of the account
- * @version 1.2
+ * @param {string} accountId (path) - The id of the account
+ * @version 1.3
  **/
 
 export const ACCOUNT_PAYMENTS_QUERY_KEY = (accountId: string) => [

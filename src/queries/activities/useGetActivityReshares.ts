@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is used to fetch reshare data associated with a particular activity, 
  * allowing applications to display or process reshare information.
  * @name GetActivityReshares
- * @param {string} activityId - The id of the activity
- * @version 1.2
+ * @param {string} activityId (path) - The id of the activity
+ * @version 1.3
  **/
 
 export const ACTIVITY_RESHARES_QUERY_KEY = (activityId: string) => [

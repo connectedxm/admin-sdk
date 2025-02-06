@@ -13,14 +13,13 @@ import {
 
 /**
  * Endpoint to delete a reservation for a specific event.
- * This function allows the removal of a reservation associated with a particular event, 
+ * This function allows the removal of a reservation associated with a particular event,
  * providing the ability to specify an optional account ID for more granular control.
  * It is designed for use in applications where event management and reservation handling are required.
  * @name DeleteEventReservation
- * @param {string} eventId - The id of the event
- * @param {string} reservationId - The id of the reservation
- * @param {string} [accountId] - Optional account id
- * @version 1.2
+ * @param {string} eventId (path) - The id of the event
+ * @param {string} reservationId (path) - The id of the reservation
+ * @version 1.3
  **/
 export interface DeleteEventReservationParams extends MutationParams {
   eventId: string;

@@ -16,11 +16,11 @@ import {
  * which can be configured to be allowed or disallowed. It ensures that the application 
  * state is consistent by invalidating and updating the necessary queries.
  * @name AddEventAddOnTier
- * @param {boolean} allowed - Indicates if the tier is allowed
- * @param {string} eventId - The ID of the event
- * @param {string} addOnId - The ID of the add-on
- * @param {string} tierId - The ID of the tier
- * @version 1.2
+ * @param {boolean} allowed (bodyValue) - Indicates if the tier is allowed
+ * @param {string} eventId (path) - The ID of the event
+ * @param {string} addOnId (path) - The ID of the add-on
+ * @param {string} tierId (path) - The ID of the tier
+ * @version 1.3
 **/
 export interface AddEventAddOnTierParams extends MutationParams {
   allowed: boolean;

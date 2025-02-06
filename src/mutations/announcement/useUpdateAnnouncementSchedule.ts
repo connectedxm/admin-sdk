@@ -15,12 +15,12 @@ import {
  * This function allows updating the schedule details of an announcement, including the date and optional notification settings.
  * It is designed to be used in applications where managing announcement schedules is required.
  * @name UpdateAnnouncementSchedule
- * @param {string} announcementId - The id of the announcement
- * @param {Object} schedule - The schedule details
- * @param {string} schedule.date - The date of the schedule
- * @param {boolean} [schedule.email] - Optional email notification flag
- * @param {boolean} [schedule.push] - Optional push notification flag
- * @version 1.2
+ * @param {string} announcementId (path) - The id of the announcement
+ * @param {Object} schedule (body) - The schedule details
+ * @param {string} schedule.date (bodyValue) - The date of the schedule
+ * @param {boolean} [schedule.email] (bodyValue) - Optional email notification flag
+ * @param {boolean} [schedule.push] (bodyValue) - Optional push notification flag
+ * @version 1.3
  **/
 export interface UpdateAnnouncementScheduleParams extends MutationParams {
   announcementId: string;

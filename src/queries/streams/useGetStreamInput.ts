@@ -14,8 +14,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function is designed to retrieve detailed information about a stream input, which can be used in applications that require stream data.
  * It utilizes a connected single query to ensure efficient data retrieval and management.
  * @name GetStreamInput
- * @param {string} streamId - The ID of the stream
- * @version 1.2
+ * @param {string} streamId (path) The ID of the stream
+ * @version 1.3
  **/
 
 export const STREAM_QUERY_KEY = (streamId: string) => [

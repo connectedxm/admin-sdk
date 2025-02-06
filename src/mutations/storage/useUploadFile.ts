@@ -11,10 +11,10 @@ import { ConnectedXMResponse, File } from "@src/interfaces";
  * This function allows users to upload a file by providing its data URI and source.
  * It is designed to be used in applications where file storage is required.
  * @name UploadFile
- * @param {string} dataUri - The data URI of the file
- * @param {"admin" | "response"} source - The source of the file
- * @param {string} [name] - Optional name of the file
- * @version 1.2
+ * @param {string} dataUri (bodyValue) - The data URI of the file
+ * @param {"admin" | "response"} source (bodyValue) - The source of the file
+ * @param {string} [name] (bodyValue) - Optional name of the file
+ * @version 1.3
  **/
 export interface UploadFileParams extends MutationParams {
   dataUri: string;

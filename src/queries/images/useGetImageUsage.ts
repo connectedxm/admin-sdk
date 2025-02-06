@@ -13,8 +13,8 @@ import { QueryClient } from "@tanstack/react-query";
  * This function fetches detailed usage statistics for an image, including counts of associated accounts, events, sessions, groups, usage, speakers, and tickets.
  * It is intended for use in applications that require insights into how an image is being utilized across different entities.
  * @name GetImageUsage
- * @param {string} imageId - The id of the image
- * @version 1.2
+ * @param {string} imageId (path) - The id of the image
+ * @version 1.3
  **/
 
 export const IMAGE_USAGE_QUERY_KEY = (imageId: string) => [

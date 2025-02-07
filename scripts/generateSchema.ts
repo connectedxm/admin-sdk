@@ -358,14 +358,14 @@ function extractApiDetails(filePath: string) {
     params.push({
       in: "query",
       name: "page",
-      schema: { type: "number", minimum: 1, maximum: 100, default: 25 },
+      schema: { type: "number", minimum: 1, default: 1 },
       description: "Page number",
       required: true,
     });
     params.push({
       in: "query",
       name: "pageSize",
-      schema: { type: "number", minimum: 1, default: 1 },
+      schema: { type: "number", minimum: 1, maximum: 100, default: 25 },
       description: "Number of items per page",
       required: true,
     });

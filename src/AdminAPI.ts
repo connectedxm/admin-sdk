@@ -4,7 +4,7 @@ export interface AdminApiParams {
   apiUrl:
     | "https://admin-api.connected.dev"
     | "https://staging-admin-api.connected.dev"
-    | "http://localhost:4001";
+    | "http://localhost:4000";
   organizationId: string;
   getToken?: () => Promise<string | undefined> | string | undefined;
   apiKey?: string;

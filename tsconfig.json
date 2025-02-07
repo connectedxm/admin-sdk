@@ -11,6 +11,7 @@
     "noEmit": true,
     "jsx": "react",
     "baseUrl": ".",
+    "resolveJsonModule": true,
     "paths": {
       "@src/*": ["./src/*"],
       "@interfaces": ["./src/interfaces"]

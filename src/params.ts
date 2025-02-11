@@ -125,6 +125,7 @@ export interface ActivityCreateInputs {
   contentId?: string | null;
   commentedId?: string | null;
   videoId?: string | null;
+  createdAt?: string | null;
 }
 
 export interface ActivityUpdateInputs {
@@ -138,6 +139,7 @@ export interface ActivityUpdateInputs {
   contentId?: string | null;
   commentedId?: string | null;
   videoId?: string | null;
+  createdAt?: string | null;
 }
 
 export interface AdvertisementCreateInputs {

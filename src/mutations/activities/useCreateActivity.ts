@@ -11,6 +11,10 @@ import { ActivityCreateInputs } from "@src/params";
 /**
  * @category Params
  * @group Activities
+ * @param {string} accountId (bodyValue) The ID of the account associated with the activity
+ * @param {ActivityCreateInputs} activity (bodyValue) The details of the activity to be created
+ * @param {string} [imageDataUri] (bodyValue) Optional image data URI for the activity
+ * @version 1.3
  */
 export interface CreateActivityParams extends MutationParams {
   accountId: string;
@@ -18,10 +22,6 @@ export interface CreateActivityParams extends MutationParams {
   imageDataUri?: string;
 }
 
-/**
- * @category Methods
- * @group Activities
- */
 export const CreateActivity = async ({
   accountId,
   activity,
@@ -29,8 +29,8 @@ export const CreateActivity = async ({
   adminApiParams,
   queryClient,
 }: CreateActivityParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<null>>(
     `/activities`,
     { accountId, activity, imageUri: imageDataUri }
   );
@@ -42,10 +42,6 @@ export const CreateActivity = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Activities
- */
 export const useCreateActivity = (
   options: Omit<
     ConnectedXMMutationOptions<

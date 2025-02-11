@@ -237,12 +237,12 @@ const paramsSchemas = parseSchemas(paramsFile);
 
 // OpenAPI Spec Structure – assign the parsed schemas directly.
 const openApiSpec: any = {
-  openapi: "3.0.0",
+  openapi: "3.0.1",
   info: {
     title: "Connected Admin API",
     version: "1.0.0",
     description:
-      "The Admin SDK API section provides an auto-generated OpenAPI spec based on TypeScript queries. Users can utilize this section to access detailed information about the Admin SDK API, enabling them to effectively integrate and utilize the SDK within their projects",
+      "The Admin API allows you to manage your Connected community programmatically.",
   },
   servers: [
     {
@@ -257,20 +257,17 @@ const openApiSpec: any = {
   paths: {},
   components: {
     securitySchemes: {
-      OrganizationId: {
-        type: "apiKey",
-        in: "header",
-        name: "organization",
-      },
       ApiKeyAuth: {
         type: "apiKey",
         in: "header",
         name: "api-key",
+        description: "All requests must include an API key.",
       },
-      TokenAuth: {
+      OrganizationId: {
         type: "apiKey",
         in: "header",
-        name: "Authorization",
+        name: "organization",
+        description: "Most requests must include an organization ID.",
       },
     },
     schemas: {
@@ -280,12 +277,8 @@ const openApiSpec: any = {
   },
   security: [
     {
-      OrganizationId: [],
       ApiKeyAuth: [],
-    },
-    {
       OrganizationId: [],
-      TokenAuth: [],
     },
   ],
 };
@@ -421,6 +414,15 @@ function extractApiDetails(filePath: string) {
     };
   }
 
+  let parentPath = filePath.split("queries")[1]?.split("/")[1];
+  if (!parentPath) {
+    parentPath = filePath.split("mutations")[1]?.split("/")[1];
+  }
+  if (!parentPath) throw new Error(`Parent path not found in ${filePath}`);
+  parentPath = [
+    parentPath?.split("")[0]?.toUpperCase() + parentPath.slice(1),
+  ].join("");
+
   openApiSpec.paths[apiPath || filePath] = {
     ...openApiSpec.paths[apiPath || filePath],
     [method]: {
@@ -438,6 +440,7 @@ function extractApiDetails(filePath: string) {
           }
         : undefined,
       responses,
+      tags: [parentPath],
     },
   };
 }

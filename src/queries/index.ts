@@ -5,6 +5,7 @@ export * from "./announcements";
 export * from "./api-logs";
 export * from "./auth-sessions";
 export * from "./benefits";
+export * from "./bookings";
 export * from "./channels";
 export * from "./email-receipts";
 export * from "./events";

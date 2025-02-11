@@ -1697,3 +1697,83 @@ export interface CloneOptions {
   locations: boolean;
   sessions: boolean;
 }
+
+export interface BookingPlaceCreateInputs {
+  name: string;
+  timezone: string;
+  description?: string | null;
+  imageId?: string | null;
+  address1?: string | null;
+  address2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  country?: string | null;
+  zip?: string | null;
+}
+
+export interface BookingPlaceUpdateInputs {
+  name?: string;
+  timezone?: string;
+  description?: string | null;
+  imageId?: string | null;
+  address1?: string | null;
+  address2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  country?: string | null;
+  zip?: string | null;
+}
+
+export interface BookingPlaceTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+}
+
+export interface BookingSpaceCreateInputs {
+  name: string;
+  supply: number;
+  slotDuration: number;
+  price?: number;
+  description?: string | null;
+  imageId?: string | null;
+  start?: string | null;
+  end?: string | null;
+}
+
+export interface BookingSpaceUpdateInputs {
+  name?: string;
+  supply?: number;
+  slotDuration?: number;
+  price?: number;
+  description?: string | null;
+  imageId?: string | null;
+  start?: string | null;
+  end?: string | null;
+}
+
+export interface BookingSpaceTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+}
+
+export interface BookingSpaceAvailabilityCreateInputs {
+  dayOfWeek: string;
+  startTime: string;
+  endTime: string;
+}
+
+export interface BookingSpaceAvailabilityUpdateInputs {
+  dayOfWeek?: string;
+  startTime?: string;
+  endTime?: string;
+}
+
+export interface BookingSpaceBlackoutCreateInputs {
+  start: string;
+  end: string;
+}
+
+export interface BookingSpaceBlackoutUpdateInputs {
+  start?: string;
+  end?: string;
+}

@@ -12,27 +12,29 @@ import {
 import { SupportTicketUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group SupportTickets
- */
+ * Endpoint to update a support ticket with new information.
+ * This function allows for the modification of existing support tickets by providing updated inputs.
+ * It is designed to be used in applications where support ticket management is required.
+ * @name UpdateSupportTicket
+ * @param {string} supportTicketId (path) The id of the support ticket
+ * @param {SupportTicketUpdateInputs} supportTicket (body) The support ticket update inputs
+ * @version 1.3
+ **/
+
 export interface UpdateSupportTicketParams extends MutationParams {
   supportTicketId: string;
   supportTicket: SupportTicketUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group SupportTickets
- */
 export const UpdateSupportTicket = async ({
   supportTicketId,
   supportTicket,
   adminApiParams,
   queryClient,
 }: UpdateSupportTicketParams): Promise<ConnectedXMResponse<SupportTicket>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<ConnectedXMResponse<SupportTicket>>(
+  const { data } = await adminApi.put<ConnectedXMResponse<SupportTicket>>(
     `/supportTickets/${supportTicketId}`,
     supportTicket
   );
@@ -43,10 +45,6 @@ export const UpdateSupportTicket = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group SupportTickets
- */
 export const useUpdateSupportTicket = (
   options: Omit<
     ConnectedXMMutationOptions<

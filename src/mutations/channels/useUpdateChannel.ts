@@ -12,18 +12,20 @@ import {
 import { ChannelUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Channel
- */
+ * Endpoint to update the details of a specific channel.
+ * This function allows updating various attributes of a channel identified by its ID.
+ * It is designed to be used in applications where channel management is required.
+ * @name UpdateChannel
+ * @param {string} channelId (path) The ID of the channel
+ * @param {ChannelUpdateInputs} channel (body) The channel update inputs
+ * @version 1.3
+ **/
+
 export interface UpdateChannelParams extends MutationParams {
   channelId: string;
   channel: ChannelUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Channel
- */
 export const UpdateChannel = async ({
   channelId,
   channel,
@@ -31,8 +33,8 @@ export const UpdateChannel = async ({
   queryClient,
 }: UpdateChannelParams): Promise<ConnectedXMResponse<Channel>> => {
   if (!channelId) throw new Error("Content Type ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Channel>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<Channel>>(
     `/channels/${channelId}`,
     {
       ...channel,
@@ -52,10 +54,6 @@ export const UpdateChannel = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Channel
- */
 export const useUpdateChannel = (
   options: Omit<
     ConnectedXMMutationOptions<

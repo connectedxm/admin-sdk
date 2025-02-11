@@ -9,8 +9,13 @@ import {
 } from "@src/queries/useConnectedSingleQuery";
 
 /**
- * @category Keys
- * @group Channels
+ * Retrieves the translation for a specific channel and locale.
+ * This function is used to fetch the translation data for a given channel ID and locale,
+ * allowing applications to display localized content for channels.
+ * @name GetChannelTranslation
+ * @param {string} channelId (path) The ID of the channel
+ * @param {string} locale (path) The locale for the translation
+ * @version 1.3
  */
 export const CHANNEL_TRANSLATION_QUERY_KEY = (
   channelId: string,
@@ -51,6 +56,7 @@ export const GetChannelTranslation = async ({
   );
   return data;
 };
+
 /**
  * @category Hooks
  * @group Channels

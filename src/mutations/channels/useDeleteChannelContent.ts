@@ -11,26 +11,27 @@ import {
 } from "@src/queries/channels";
 
 /**
- * @category Params
- * @group Channel
- */
+ * Endpoint to delete content from a specified channel.
+ * This function allows for the removal of content from a channel by specifying the content and channel IDs.
+ * It is useful in scenarios where content needs to be managed or moderated within a channel.
+ * @name DeleteChannelContent
+ * @param {string} contentId (path) The id of the content to be deleted
+ * @param {string} channelId (path) The id of the channel from which the content will be deleted
+ * @version 1.3
+ **/
 export interface DeleteChannelContentParams extends MutationParams {
   contentId: string;
   channelId: string;
 }
 
-/**
- * @category Methods
- * @group Channel
- */
 export const DeleteChannelContent = async ({
   contentId,
   channelId,
   adminApiParams,
   queryClient,
 }: DeleteChannelContentParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/channels/${channelId}/contents/${contentId}`
   );
 
@@ -45,10 +46,6 @@ export const DeleteChannelContent = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Channel
- */
 export const useDeleteChannelContent = (
   options: Omit<
     ConnectedXMMutationOptions<

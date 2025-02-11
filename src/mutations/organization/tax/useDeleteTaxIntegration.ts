@@ -11,24 +11,26 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Integration
- */
+ * Endpoint to delete a specific tax integration within an organization.
+ * This function allows the removal of a tax integration by specifying its type,
+ * ensuring that the integration is no longer active or available for use.
+ * It is designed for administrative purposes where managing tax integrations is required.
+ * @name DeleteTaxIntegration
+ * @param {keyof typeof TaxIntegrationType} type (path) The type of the tax integration
+ * @version 1.3
+ **/
+
 export interface DeleteTaxIntegrationParams extends MutationParams {
   type: keyof typeof TaxIntegrationType;
 }
 
-/**
- * @category Methods
- * @group Integration
- */
 export const DeleteTaxIntegration = async ({
   type,
   adminApiParams,
   queryClient,
 }: DeleteTaxIntegrationParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/organization/tax/${type}`
   );
   if (queryClient && data.status === "ok") {
@@ -40,10 +42,6 @@ export const DeleteTaxIntegration = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Integration
- */
 export const useDeleteTaxIntegration = (
   options: Omit<
     ConnectedXMMutationOptions<

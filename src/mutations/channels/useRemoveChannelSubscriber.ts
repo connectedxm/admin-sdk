@@ -8,18 +8,20 @@ import { GetAdminAPI } from "@src/AdminAPI";
 import { CHANNEL_SUBSCRIBERS_QUERY_KEY } from "@src/queries/channels/useGetChannelSubscribers";
 
 /**
- * @category Params
- * @group Channel
- */
+ * Endpoint to remove a subscriber from a specified channel.
+ * This function allows the removal of a subscriber from a channel by specifying the channel ID and account ID.
+ * It is used in scenarios where managing channel subscriptions is necessary.
+ * @name RemoveChannelSubscriber
+ * @param {string} channelId (path) The id of the channel
+ * @param {string} accountId (path) The id of the account
+ * @version 1.3
+ **/
+
 export interface RemoveChannelSubscriberParams extends MutationParams {
   channelId: string;
   accountId: string;
 }
 
-/**
- * @category Methods
- * @group Channel
- */
 export const RemoveChannelSubscriber = async ({
   channelId,
   accountId,
@@ -28,8 +30,8 @@ export const RemoveChannelSubscriber = async ({
 }: RemoveChannelSubscriberParams): Promise<
   ConnectedXMResponse<BaseChannelSubscriber>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<
     ConnectedXMResponse<BaseChannelSubscriber>
   >(`/channels/${channelId}/subscribers/${accountId}`);
 
@@ -41,10 +43,6 @@ export const RemoveChannelSubscriber = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Channel
- */
 export const useRemoveChannelSubscriber = (
   options: Omit<
     ConnectedXMMutationOptions<

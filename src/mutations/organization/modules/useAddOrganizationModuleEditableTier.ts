@@ -16,19 +16,21 @@ import {
 } from "@src/mutations/useConnectedMutation";
 
 /**
- * @category Params
- * @group Organization
- */
+ * Adds an editable tier to a specified organization module.
+ * This function allows the addition of a new tier to an organization module, making it editable.
+ * It is intended for use in scenarios where organizations need to manage and customize their module tiers.
+ * @name AddOrganizationModuleEditableTier
+ * @param {keyof typeof OrganizationModuleType} moduleType (path) The type of the organization module
+ * @param {string} tierId (path) The id of the tier
+ * @version 1.3
+ **/
+
 export interface AddOrganizationModuleEditableTierParams
   extends MutationParams {
   moduleType: keyof typeof OrganizationModuleType;
   tierId: string;
 }
 
-/**
- * @category Methods
- * @group Organization
- */
 export const AddOrganizationModuleEditableTier = async ({
   moduleType,
   tierId,
@@ -37,10 +39,10 @@ export const AddOrganizationModuleEditableTier = async ({
 }: AddOrganizationModuleEditableTierParams): Promise<
   ConnectedXMResponse<OrganizationModule>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
-    ConnectedXMResponse<OrganizationModule>
-  >(`/organization/modules/${moduleType}/editableTiers/${tierId}`);
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<OrganizationModule>>(
+    `/organization/modules/${moduleType}/editableTiers/${tierId}`
+  );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
@@ -54,10 +56,6 @@ export const AddOrganizationModuleEditableTier = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization
- */
 export const useAddOrganizationModuleEditableTier = (
   options: Omit<
     ConnectedXMMutationOptions<

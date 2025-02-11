@@ -8,19 +8,22 @@ import { ConnectedXMResponse, EventSessionQuestion } from "@src/interfaces";
 import { EVENT_SESSION_QUESTIONS_QUERY_KEY } from "./useGetEventSessionQuestions";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches a specific question from an event session using the provided event, session, and question IDs.
+ * This function is designed to retrieve detailed information about a particular question within an event session.
+ * It is useful for applications that need to display or process data related to event session questions.
+ * @name GetEventSessionQuestion
+ * @param {string} eventId (path) The id of the event (path)
+ * @param {string} sessionId (path) The id of the session (path)
+ * @param {string} questionId (path) The id of the question (path)
+ * @version 1.3
+ **/
+
 export const EVENT_SESSION_QUESTION_QUERY_KEY = (
   eventId: string,
   sessionId: string,
   questionId: string
 ) => [...EVENT_SESSION_QUESTIONS_QUERY_KEY(eventId, sessionId), questionId];
 
-/**
- * @category Setters
- * @group Events
- */
 export const SET_EVENT_SESSION_QUESTION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof EVENT_SESSION_QUESTION_QUERY_KEY>,
@@ -35,10 +38,6 @@ interface GetEventSessionQuestionProps extends SingleQueryParams {
   questionId: string;
 }
 
-/**
- * @category Queries
- * @group Events
- */
 export const GetEventSessionQuestion = async ({
   eventId,
   sessionId,
@@ -53,10 +52,7 @@ export const GetEventSessionQuestion = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Events
- */
+
 export const useGetEventSessionQuestion = (
   eventId: string = "",
   sessionId: string = "",

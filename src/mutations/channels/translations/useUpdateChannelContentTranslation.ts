@@ -12,9 +12,18 @@ import {
 } from "@src/queries/channels";
 
 /**
- * @category Params
- * @group Channel-Translation
- */
+ * Updates the translation of a specific channel content for a given locale.
+ * This function allows for updating the translation details of a channel's content,
+ * enabling localization and content management within different languages.
+ * It is designed to be used in applications that require dynamic content translation updates.
+ * @name UpdateChannelContentTranslation
+ * @param {string} channelId (path) The ID of the channel
+ * @param {string} contentId (path) The ID of the content
+ * @param {ISupportedLocale} locale (path) The locale for the translation
+ * @param {ChannelContentTranslationUpdateInputs} contentTranslation (body) The translation details to update
+ * @version 1.3
+ **/
+
 export interface UpdateChannelContentTranslationParams extends MutationParams {
   channelId: string;
   contentId: string;
@@ -22,10 +31,6 @@ export interface UpdateChannelContentTranslationParams extends MutationParams {
   contentTranslation: ChannelContentTranslationUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Channel-Translation
- */
 export const UpdateChannelContentTranslation = async ({
   channelId,
   contentId,
@@ -34,9 +39,9 @@ export const UpdateChannelContentTranslation = async ({
   adminApiParams,
   queryClient,
 }: UpdateChannelContentTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put(
+  const { data } = await adminApi.put(
     `/channels/${channelId}/contents/${contentId}/translations/${locale}`,
     contentTranslation
   );
@@ -54,10 +59,6 @@ export const UpdateChannelContentTranslation = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Channel-Translation
- */
 export const useUpdateChannelContentTranslation = (
   options: Omit<
     ConnectedXMMutationOptions<

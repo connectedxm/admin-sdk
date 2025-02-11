@@ -12,8 +12,15 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Organization-Pages-Translations
+ * Updates the translation of a specific organization page for a given locale.
+ * This function allows for updating the translation details of an organization's page,
+ * identified by the page type and locale. It is useful for applications that need to
+ * manage multilingual content for organization pages.
+ * @name PutOrganizationPageTranslation
+ * @param {PageType} type (path) The type of the page to be translated
+ * @param {OrganizationPageTranslationUpdateInputs} pageTranslation (body) The translation details to update
+ * @param {ISupportedLocale} locale (path) The locale for which the translation is being updated
+ * @version 1.3
  */
 export interface UpdateOrganizationPageTranslationParams
   extends MutationParams {
@@ -33,9 +40,9 @@ export const UpdateOrganizationPageTranslation = async ({
   adminApiParams,
   queryClient,
 }: UpdateOrganizationPageTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put(
+  const { data } = await adminApi.put(
     `/organization/pages/${type}/translations/${locale}`,
     pageTranslation
   );

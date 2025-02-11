@@ -8,26 +8,28 @@ import { ConnectedXMResponse, Series } from "@src/interfaces";
 import { SET_SERIES_QUERY_DATA, SERIES_EVENTS_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Series
- */
+ * Endpoint to remove a specific event from a series.
+ * This function allows the removal of an event identified by its ID from a series, also identified by its ID.
+ * It is designed to be used in applications where managing series events is required.
+ * @name RemoveSeriesEvent
+ * @param {string} seriesId (path) The ID of the series
+ * @param {string} eventId (path) The ID of the event
+ * @version 1.3
+ **/
+
 export interface RemoveSeriesEventParams extends MutationParams {
   seriesId: string;
   eventId: string;
 }
 
-/**
- * @category Methods
- * @group Series
- */
 export const RemoveSeriesEvent = async ({
   seriesId,
   eventId,
   adminApiParams,
   queryClient,
 }: RemoveSeriesEventParams): Promise<ConnectedXMResponse<Series>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<Series>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<Series>>(
     `/series/${seriesId}/events/${eventId}`
   );
   if (queryClient && data.status === "ok") {
@@ -39,10 +41,6 @@ export const RemoveSeriesEvent = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Series
- */
 export const useRemoveSeriesEvent = (
   options: Omit<
     ConnectedXMMutationOptions<

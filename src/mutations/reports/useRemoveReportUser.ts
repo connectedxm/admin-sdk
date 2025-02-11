@@ -8,18 +8,19 @@ import { ConnectedXMResponse, User } from "@src/interfaces";
 import { SET_REPORT_USERS_QUERY_DATA } from "@src/queries/reports/useGetReportUsers";
 
 /**
- * @category Params
- * @group Reports
- */
+ * Endpoint to remove a user from a specified report.
+ * This function allows the removal of a user from a report by specifying the report ID and user ID.
+ * It is used in scenarios where user access to a report needs to be revoked.
+ * @name RemoveReportUser
+ * @param {string} reportId (path) The id of the report
+ * @param {string} userId (path) The id of the user
+ * @version 1.3
+ **/
 export interface RemoveReportUserParams extends MutationParams {
   reportId: string;
   userId: string;
 }
 
-/**
- * @category Methods
- * @group Reports
- */
 export const RemoveReportUser = async ({
   reportId,
   userId,
@@ -30,9 +31,9 @@ export const RemoveReportUser = async ({
     throw Error("Report ID Undefined");
   }
 
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete<ConnectedXMResponse<User[]>>(
+  const { data } = await adminApi.delete<ConnectedXMResponse<User[]>>(
     `/reports/${reportId}/users/${userId}`
   );
   if (queryClient && data.status === "ok") {
@@ -42,10 +43,6 @@ export const RemoveReportUser = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Reports
- */
 export const useRemoveReportUser = (
   options: Omit<
     ConnectedXMMutationOptions<

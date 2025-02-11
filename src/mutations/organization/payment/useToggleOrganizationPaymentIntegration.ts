@@ -15,18 +15,19 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Organization-Payments
- */
+ * Toggles the payment integration for an organization and updates the query client with new data.
+ * This function allows the modification of payment integration settings for an organization by specifying the type of integration.
+ * It ensures that the query client is updated with the latest data after the integration is toggled.
+ * @name ToggleOrganizationPaymentIntegration
+ * @param {keyof typeof PaymentIntegrationType} type (path) The type of payment integration
+ * @version 1.3
+ **/
+
 export interface ToggleOrganizationPaymentIntegrationParams
   extends MutationParams {
   type: keyof typeof PaymentIntegrationType;
 }
 
-/**
- * @category Methods
- * @group Organization-Payments
- */
 export const ToggleOrganizationPaymentIntegration = async ({
   type,
   adminApiParams,
@@ -34,10 +35,10 @@ export const ToggleOrganizationPaymentIntegration = async ({
 }: ToggleOrganizationPaymentIntegrationParams): Promise<
   ConnectedXMResponse<PaymentIntegration>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<
-    ConnectedXMResponse<PaymentIntegration>
-  >(`/organization/payment/${type}`);
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<PaymentIntegration>>(
+    `/organization/payment/${type}`
+  );
   if (queryClient && data.status === "ok") {
     SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(queryClient, [type], data);
     queryClient.invalidateQueries({
@@ -47,10 +48,6 @@ export const ToggleOrganizationPaymentIntegration = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization-Payments
- */
 export const useToggleOrganizationPaymentIntegration = (
   options: Omit<
     ConnectedXMMutationOptions<

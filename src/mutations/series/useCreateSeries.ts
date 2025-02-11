@@ -9,24 +9,24 @@ import { SERIES_LIST_QUERY_KEY, SET_SERIES_QUERY_DATA } from "@src/queries";
 import { SeriesCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Series
- */
+ * Endpoint to create a new series within the application.
+ * This function allows users to add a new series by providing the necessary series data.
+ * It ensures that the series is created and updates the query cache accordingly.
+ * @name CreateSeries
+ * @param {SeriesCreateInputs} series (body) The series data to be created
+ * @version 1.3
+ **/
 export interface CreateSeriesParams extends MutationParams {
   series: SeriesCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Series
- */
 export const CreateSeries = async ({
   series,
   adminApiParams,
   queryClient,
 }: CreateSeriesParams): Promise<ConnectedXMResponse<Series>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Series>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Series>>(
     `/series`,
     series
   );
@@ -37,10 +37,6 @@ export const CreateSeries = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Series
- */
 export const useCreateSeries = (
   options: Omit<
     ConnectedXMMutationOptions<

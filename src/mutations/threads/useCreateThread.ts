@@ -9,9 +9,17 @@ import { THREADS_QUERY_KEY, SET_THREAD_QUERY_DATA } from "@src/queries";
 import { ThreadCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Thread
- */
+ * Endpoint to create a new thread within the application.
+ * This function allows users to initiate a new thread by providing necessary input data.
+ * It supports optional parameters for account IDs, a first message, and an image data URI.
+ * The function is designed to be used in scenarios where creating a new thread is required.
+ * @name CreateThread
+ * @param {ThreadCreateInputs} thread (bodyValue) The thread input data
+ * @param {string[]} [accountIds] (bodyValue) Optional list of account IDs
+ * @param {string} [firstMessage] (bodyValue) Optional first message for the thread
+ * @param {string} [imageDataUri] (bodyValue) Optional image data URI
+ * @version 1.3
+ **/
 export interface CreateThreadParams extends MutationParams {
   thread: ThreadCreateInputs;
   accountIds?: string[];
@@ -19,10 +27,6 @@ export interface CreateThreadParams extends MutationParams {
   imageDataUri?: string;
 }
 
-/**
- * @category Methods
- * @group Thread
- */
 export const CreateThread = async ({
   thread,
   accountIds,
@@ -31,8 +35,8 @@ export const CreateThread = async ({
   adminApiParams,
   queryClient,
 }: CreateThreadParams): Promise<ConnectedXMResponse<Thread>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Thread>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<Thread>>(
     `/threads`,
     {
       thread,
@@ -48,10 +52,6 @@ export const CreateThread = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Thread
- */
 export const useCreateThread = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -9,18 +9,19 @@ import { SET_INVOICE_QUERY_DATA, INVOICES_QUERY_KEY } from "@src/queries";
 import { InvoiceUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Invoices
- */
+ * Endpoint to update an existing invoice with new data.
+ * This function allows users to modify the details of a specific invoice identified by its ID.
+ * It ensures that only the necessary fields are updated while maintaining the integrity of the invoice data.
+ * @name UpdateInvoice
+ * @param {string} invoiceId (path) The ID of the invoice to be updated
+ * @param {InvoiceUpdateInputs} invoice (body) The invoice data to update
+ * @version 1.3
+ **/
 export interface UpdateInvoiceParams extends MutationParams {
   invoiceId: string;
   invoice: InvoiceUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Invoices
- */
 export const UpdateInvoice = async ({
   invoiceId,
   invoice,
@@ -28,8 +29,8 @@ export const UpdateInvoice = async ({
   queryClient,
 }: UpdateInvoiceParams): Promise<ConnectedXMResponse<Invoice>> => {
   if (!invoiceId) throw new Error("Invoice ID Undefined");
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Invoice>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<Invoice>>(
     `/invoices/${invoiceId}`,
     {
       ...invoice,
@@ -49,10 +50,6 @@ export const UpdateInvoice = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Invoices
- */
 export const useUpdateInvoice = (
   options: Omit<
     ConnectedXMMutationOptions<

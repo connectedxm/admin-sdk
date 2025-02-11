@@ -8,18 +8,19 @@ import { ConnectedXMResponse, SearchField } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Organization
+ * This file contains functions for searching organizations based on a search term.
+ * It provides an endpoint to search for organizations and a hook to use the search functionality.
+ * The search functionality is designed to be used in applications where users need to find specific organizations.
+ * @name Search Organization Functions
+ * @param {string} [search] (query) Optional search term for organization
+ * @version 1.3
  */
+
 export const SEARCH_ORGANIZATION_QUERY_KEY = (search?: string) => [
   "SEARCH_ORGANIZATION",
   search ?? "",
 ];
 
-/**
- * @category Setters
- * @group Organization
- */
 export const SET_SEARCH_ORGANIZATION_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SEARCH_ORGANIZATION_QUERY_KEY>,
@@ -32,10 +33,6 @@ interface SearchOrganizationProps extends SingleQueryParams {
   search?: string;
 }
 
-/**
- * @category Queries
- * @group Organization
- */
 export const SearchOrganization = async ({
   search,
   adminApiParams,
@@ -47,10 +44,6 @@ export const SearchOrganization = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Organization
- */
 export const useSearchOrganization = (
   search?: string,
   options: SingleQueryOptions<ReturnType<typeof SearchOrganization>> = {}

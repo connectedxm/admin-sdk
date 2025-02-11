@@ -9,9 +9,15 @@ import { EVENT_TRANSLATIONS_QUERY_KEY } from "./useGetEventTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Keys
- * @group Events
- */
+ * Fetches the translation of a specific event for a given locale.
+ * This function is used to retrieve the translated details of an event, allowing applications to display event information in different languages.
+ * It is particularly useful in multilingual applications where event details need to be presented in the user's preferred language.
+ * @name GetEventTranslation
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} locale (path) The locale for which the translation is required
+ * @version 1.3
+ **/
+
 export const EVENT_TRANSLATION_QUERY_KEY = (
   eventId: string,
   locale: string

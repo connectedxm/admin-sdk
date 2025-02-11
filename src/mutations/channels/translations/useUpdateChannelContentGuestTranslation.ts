@@ -14,6 +14,19 @@ import { SET_CHANNEL_CONTENT_GUEST_TRANSLATION_QUERY_DATA } from "@src/queries/c
 import { CHANNEL_CONTENT_GUEST_TRANSLATIONS_QUERY_KEY } from "@src/queries/channels/translations/useGetChannelContentGuestTranslations";
 
 /**
+ * Updates the translation of a guest's content within a specific channel.
+ * This function allows for modifying the translation details of a guest's content in a specified locale.
+ * It is useful for applications that need to manage multilingual content for guests in different channels.
+ * @name UpdateChannelContentGuestTranslation
+ * @param {string} channelId (path) The ID of the channel
+ * @param {string} contentId (path) The ID of the content
+ * @param {string} guestId (path) The ID of the guest
+ * @param {ISupportedLocale} locale (path) The locale for the translation
+ * @param {ChannelContentGuestTranslationUpdateInputs} guestTranslation (body) The translation inputs for the guest content
+ * @version 1.3
+ **/
+
+/**
  * @category Params
  * @group Channel-Translation
  */
@@ -41,9 +54,9 @@ export const UpdateChannelContentGuestTranslation = async ({
 }: UpdateChannelContentGuestTranslationParams): Promise<
   ConnectedXMResponse<ChannelContentGuestTranslation>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<
+  const { data } = await adminApi.put<
     ConnectedXMResponse<ChannelContentGuestTranslation>
   >(
     `/channels/${channelId}/contents/${contentId}/guests/${guestId}/translations/${locale}`,

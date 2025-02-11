@@ -10,19 +10,22 @@ import { THREADS_QUERY_KEY } from "./useGetThreads";
 import { QueryClient, SetDataOptions, Updater } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @thread Threads
- */
+ * This file contains functions for fetching and managing thread data.
+ * It provides an endpoint to retrieve a specific thread by its ID and 
+ * utilizes connected single queries to retrieve data about threads.
+ * The functions in this file are designed to be used in applications 
+ * that require access to thread data for display or processing purposes.
+ * @name Thread Management
+ * @param {string} threadId (path) The ID of the thread
+ * @version 1.3
+ **/
+
 export const THREAD_QUERY_KEY = (threadId: string, messageId?: string) => [
   ...THREADS_QUERY_KEY(),
   threadId,
   messageId,
 ];
 
-/**
- * @category Setters
- * @thread Threads
- */
 export const SET_THREAD_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof THREAD_QUERY_KEY>,
@@ -36,10 +39,6 @@ interface GetThreadProps extends SingleQueryParams {
   threadId: string;
 }
 
-/**
- * @category Queries
- * @thread Threads
- */
 export const GetThread = async ({
   threadId,
   adminApiParams,
@@ -49,10 +48,6 @@ export const GetThread = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Threads
- */
 export const useGetThread = (
   threadId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetThread>> = {}

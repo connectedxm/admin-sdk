@@ -11,18 +11,18 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Organization-Payments
- */
+ * Endpoint to delete a payment integration for an organization.
+ * This function allows the removal of a specified payment integration type from an organization.
+ * It is designed to be used in applications where managing payment integrations is required.
+ * @name DeleteOrganizationPaymentIntegration
+ * @param {keyof typeof PaymentIntegrationType} type (path) The type of payment integration
+ * @version 1.3
+ **/
 export interface DeleteOrganizationPaymentIntegrationParams
   extends MutationParams {
   type: keyof typeof PaymentIntegrationType;
 }
 
-/**
- * @category Methods
- * @group Organization-Payments
- */
 export const DeleteOrganizationPaymentIntegration = async ({
   type,
   adminApiParams,
@@ -30,8 +30,8 @@ export const DeleteOrganizationPaymentIntegration = async ({
 }: DeleteOrganizationPaymentIntegrationParams): Promise<
   ConnectedXMResponse<any>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<any>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<any>>(
     `/organization/payment/${type}`
   );
   if (queryClient && data.status === "ok") {
@@ -45,10 +45,6 @@ export const DeleteOrganizationPaymentIntegration = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization-Payments
- */
 export const useDeleteOrganizationPaymentIntegration = (
   options: Omit<
     ConnectedXMMutationOptions<

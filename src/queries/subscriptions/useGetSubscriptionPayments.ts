@@ -9,18 +9,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { SUBSCRIPTION_QUERY_KEY } from "./useGetSubscription";
 
 /**
- * @category Keys
- * @group Subscriptions
- */
+ * This file contains functions for retrieving a list of payments associated with a specific subscription.
+ * It provides a way to fetch detailed information about all payments made under a given subscription.
+ * The functions in this file are designed to be used in applications where tracking and managing subscription payments is required.
+ * @name GetSubscriptionPayments
+ * @param {string} subscriptionId (path) The id of the subscription
+ * @version 1.3
+ **/
+
 export const SUBSCRIPTION_PAYMENTS_QUERY_KEY = (subscriptionId: string) => [
   ...SUBSCRIPTION_QUERY_KEY(subscriptionId),
   "PAYMENTS",
 ];
 
-/**
- * @category Setters
- * @group Subscriptions
- */
 export const SET_SUBSCRIPTION_PAYMENTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof SUBSCRIPTION_PAYMENTS_QUERY_KEY>,
@@ -33,10 +34,6 @@ interface GetSubscriptionPaymentsProps extends InfiniteQueryParams {
   subscriptionId: string;
 }
 
-/**
- * @category Queries
- * @group Subscriptions
- */
 export const GetSubscriptionPayments = async ({
   pageParam,
   pageSize,
@@ -59,10 +56,7 @@ export const GetSubscriptionPayments = async ({
   );
   return data;
 };
-/**
- * @category Hooks
- * @group Subscriptions
- */
+
 export const useGetSubscriptionPayments = (
   subscriptionId: string = "",
   params: Omit<

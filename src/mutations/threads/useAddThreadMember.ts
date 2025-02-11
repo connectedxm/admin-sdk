@@ -4,26 +4,33 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import { ConnectedXMResponse, ThreadMember } from "@src/interfaces";
+import {
+  ConnectedXMResponse,
+  ThreadMember,
+  ThreadMemberRole,
+} from "@src/interfaces";
 import {
   THREAD_MEMBERS_QUERY_KEY,
   THREAD_MODERATORS_QUERY_KEY,
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Threads
- */
+ * Adds a member or moderator to a specified thread.
+ * This function allows the addition of a user to a thread with a specific role, either as a member or a moderator.
+ * It is designed to be used in applications where thread membership management is required.
+ * @name AddThreadMember
+ * @param {string} threadId (path) The id of the thread
+ * @param {string} accountId (path) The id of the account
+ * @param {ThreadMemberRole} role (bodyValue) The role to assign
+ * @version 1.3
+ **/
+
 export interface AddThreadMemberParams extends MutationParams {
   threadId: string;
   accountId: string;
-  role: "moderator" | "member";
+  role: keyof typeof ThreadMemberRole;
 }
 
-/**
- * @category Methods
- * @group Threads
- */
 export const AddThreadMember = async ({
   threadId,
   accountId,
@@ -31,8 +38,8 @@ export const AddThreadMember = async ({
   adminApiParams,
   queryClient,
 }: AddThreadMemberParams): Promise<ConnectedXMResponse<ThreadMember>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<ThreadMember>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<ThreadMember>>(
     `/threads/${threadId}/members/${accountId}`,
     {
       role,
@@ -52,10 +59,6 @@ export const AddThreadMember = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Threads
- */
 export const useAddThreadMember = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -10,6 +10,17 @@ import {
 } from "@src/queries/useConnectedSingleQuery";
 import { GetAdminAPI } from "@src/AdminAPI";
 
+/**
+ * Fetches refund schedule details for a specific event pass type.
+ * This function is designed to retrieve detailed information about the refund schedule associated with a particular event pass type.
+ * It is useful for applications that need to display or process refund schedule data for event management.
+ * @name GetEventPassTypeRefundSchedule
+ * @param {string} eventId (path) The id of the event
+ * @param {string} passTypeId (path) The id of the pass type
+ * @param {string} scheduleId (path) The id of the refund schedule
+ * @version 1.3
+ **/
+
 export const EVENT_PASS_TYPE_REFUND_SCHEDULE_QUERY_KEY = (
   eventId: string,
   passTypeId: string,
@@ -44,8 +55,8 @@ export const GetEventPassTypeRefundSchedule = async ({
 }: GetEventPassTypeRefundScheduleParams): Promise<
   ConnectedXMResponse<EventPassTypeRefundSchedule>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.get(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.get(
     `/events/${eventId}/passTypes/${passTypeId}/refundSchedules/${scheduleId}`
   );
   return data;

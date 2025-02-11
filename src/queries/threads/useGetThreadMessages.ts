@@ -13,6 +13,15 @@ import { useConnectedXM } from "@src/hooks";
 import { CacheIndividualQueries } from "@src/utilities";
 import { THREAD_MESSAGE_QUERY_KEY } from "./useGetThreadMessage";
 
+/**
+ * Endpoint to retrieve a list of messages for a specific thread.
+ * This function fetches messages associated with a given thread ID, allowing users to view the conversation history.
+ * It is designed to be used in applications where thread-based message retrieval is required.
+ * @name GetThreadMessages
+ * @param {string} threadId (path) The id of the thread
+ * @version 1.3
+ **/
+
 export const THREAD_MESSAGES_QUERY_KEY = (
   threadId: string,
   messageId?: string

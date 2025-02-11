@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "commonjs",
+    "target": "ESNext",
+    "module": "NodeNext",
     "outDir": "dist",
     "strict": true,
     "esModuleInterop": true,
@@ -11,6 +11,7 @@
     "noEmit": true,
     "jsx": "react",
     "baseUrl": ".",
+    "resolveJsonModule": true,
     "paths": {
       "@src/*": ["./src/*"],
       "@interfaces": ["./src/interfaces"]

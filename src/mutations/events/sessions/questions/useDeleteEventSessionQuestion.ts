@@ -1,0 +1,69 @@
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
+import {
+  ConnectedXMMutationOptions,
+  MutationParams,
+  useConnectedMutation,
+} from "@src/mutations/useConnectedMutation";
+import { EVENT_SESSION_QUESTION_QUERY_KEY } from "@src/queries/events/sessions/questions/useGetEventSessionQuestion";
+import { EVENT_SESSION_QUESTIONS_QUERY_KEY } from "@src/queries/events/sessions/questions/useGetEventSessionQuestions";
+
+/**
+ * Endpoint to delete a question from a specific event session.
+ * This function allows the removal of a question from an event session by specifying the event, session, and question IDs.
+ * It is used in scenarios where questions need to be managed or moderated within event sessions.
+ * @name DeleteEventSessionQuestion
+ * @param {string} eventId (path) The id of the event
+ * @param {string} sessionId (path) The id of the session
+ * @param {string} questionId (path) The id of the question
+ * @version 1.3
+ **/
+export interface DeleteEventSessionQuestionParams extends MutationParams {
+  eventId: string;
+  sessionId: string;
+  questionId: string;
+}
+
+export const DeleteEventSessionQuestion = async ({
+  eventId,
+  sessionId,
+  questionId,
+  adminApiParams,
+  queryClient,
+}: DeleteEventSessionQuestionParams): Promise<ConnectedXMResponse<null>> => {
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
+    `/events/${eventId}/sessions/${sessionId}/questions/${questionId}`
+  );
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SESSION_QUESTIONS_QUERY_KEY(eventId, sessionId),
+    });
+    queryClient.removeQueries({
+      queryKey: EVENT_SESSION_QUESTION_QUERY_KEY(
+        eventId,
+        sessionId,
+        questionId
+      ),
+    });
+  }
+  return data;
+};
+
+export const useDeleteEventSessionQuestion = (
+  options: Omit<
+    ConnectedXMMutationOptions<
+      Awaited<ReturnType<typeof DeleteEventSessionQuestion>>,
+      Omit<DeleteEventSessionQuestionParams, "queryClient" | "adminApiParams">
+    >,
+    "mutationFn"
+  > = {}
+) => {
+  return useConnectedMutation<
+    DeleteEventSessionQuestionParams,
+    Awaited<ReturnType<typeof DeleteEventSessionQuestion>>
+  >(DeleteEventSessionQuestion, options, {
+    domain: "events",
+    type: "update",
+  });
+};

@@ -12,19 +12,21 @@ import {
 import { ChannelContentGuestCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Channels
- */
+ * Endpoint to create a new guest for a specific channel content.
+ * This function allows the creation of a guest associated with a particular channel content by providing the necessary details.
+ * It is designed to be used in applications where managing guest access to channel content is required.
+ * @name CreateChannelContentGuest
+ * @param {string} contentId (path) The id of the content
+ * @param {string} channelId (path) The id of the channel
+ * @param {ChannelContentGuestCreateInputs} contentGuest (body) The guest details to be created
+ * @version 1.3
+ **/
 export interface CreateChannelContentGuestParams extends MutationParams {
   contentId: string;
   channelId: string;
   contentGuest: ChannelContentGuestCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Channels
- */
 export const CreateChannelContentGuest = async ({
   contentId,
   channelId,
@@ -34,8 +36,8 @@ export const CreateChannelContentGuest = async ({
 }: CreateChannelContentGuestParams): Promise<
   ConnectedXMResponse<ChannelContentGuest>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<
     ConnectedXMResponse<ChannelContentGuest>
   >(`/channels/${channelId}/contents/${contentId}/guests`, content);
   if (queryClient && data.status === "ok") {
@@ -51,10 +53,6 @@ export const CreateChannelContentGuest = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Channels
- */
 export const useCreateChannelContentGuest = (
   options: Omit<
     ConnectedXMMutationOptions<

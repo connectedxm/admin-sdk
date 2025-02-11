@@ -15,17 +15,18 @@ import {
 } from "@src/queries";
 
 /**
- * @category Params
- * @group Integration
- */
+ * Endpoint to toggle tax integration features for an organization.
+ * This function allows the modification of tax integration settings by specifying the type of integration.
+ * It is designed to be used in applications where tax integration features need to be enabled or disabled.
+ * @name ToggleTaxIntegration
+ * @param {keyof typeof TaxIntegrationType} type (path) The type of tax integration
+ * @version 1.3
+ **/
+
 export interface ToggleTaxIntegrationParams extends MutationParams {
   type: keyof typeof TaxIntegrationType;
 }
 
-/**
- * @category Methods
- * @group Integration
- */
 export const ToggleTaxIntegration = async ({
   type,
   adminApiParams,
@@ -33,9 +34,9 @@ export const ToggleTaxIntegration = async ({
 }: ToggleTaxIntegrationParams): Promise<
   ConnectedXMResponse<TaxIntegration>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.put<ConnectedXMResponse<TaxIntegration>>(
+  const { data } = await adminApi.put<ConnectedXMResponse<TaxIntegration>>(
     `/organization/tax/${type}`
   );
   if (queryClient && data.status === "ok") {
@@ -45,10 +46,6 @@ export const ToggleTaxIntegration = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Integration
- */
 export const useToggleTaxIntegration = (
   options: Omit<
     ConnectedXMMutationOptions<

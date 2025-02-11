@@ -9,6 +9,16 @@ import { EVENT_QUESTION_QUERY_KEY } from "../useGetEventQuestion";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
+ * Retrieves translations for a specific event question.
+ * This function fetches a list of translations associated with a particular question within an event.
+ * It is useful for applications that need to display or manage multilingual content for event questions.
+ * @name GetEventQuestionTranslations
+ * @param {string} eventId (path) The ID of the event
+ * @param {string} questionId (path) The ID of the question
+ * @version 1.3
+ **/
+
+/**
  * @category Keys
  * @group Events
  */

@@ -11,6 +11,16 @@ import {
 } from "@src/queries";
 
 /**
+ * Deletes a specific translation of an organization's page based on the provided type and locale.
+ * This function is used to remove translations for organization pages, ensuring that outdated or incorrect translations can be managed effectively.
+ * It also handles cache invalidation for the related queries to ensure data consistency.
+ * @name DeleteOrganizationPageTranslation
+ * @param {PageType} type (path) The type of the page
+ * @param {string} locale (path) The locale of the translation
+ * @version 1.3
+ **/
+
+/**
  * @category Params
  * @group Organization-Pages-Translations
  */
@@ -30,9 +40,9 @@ export const DeleteOrganizationPageTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteOrganizationPageTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/organization/pages/${type}/translations/${locale}`
   );
   if (queryClient && data.status === "ok") {

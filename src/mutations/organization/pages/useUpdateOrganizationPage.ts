@@ -9,26 +9,28 @@ import { OrganizationPageUpdateInputs } from "@src/params";
 import { SET_ORGANIZATION_PAGE_QUERY_DATA } from "@src/queries";
 
 /**
- * @category Params
- * @group Organization-Pages
- */
+ * Endpoint to update a specific organization page with new inputs.
+ * This function allows for updating the details of an organization page by specifying the page type and the new inputs.
+ * It is designed to be used in applications where organization page details need to be modified.
+ * @name UpdateOrganizationPage
+ * @param {PageType} type (path) The type of the page
+ * @param {OrganizationPageUpdateInputs} page (body) The inputs for updating the organization page
+ * @version 1.3
+ **/
+
 export interface UpdateOrganizationPageParams extends MutationParams {
   type: PageType;
   page: OrganizationPageUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Organization-Pages
- */
 export const UpdateOrganizationPage = async ({
   type,
   page,
   adminApiParams,
   queryClient,
 }: UpdateOrganizationPageParams): Promise<ConnectedXMResponse<Page>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Page>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<Page>>(
     `/organization/pages/${type}`,
     page
   );
@@ -38,10 +40,6 @@ export const UpdateOrganizationPage = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization-Pages
- */
 export const useUpdateOrganizationPage = (
   options: Omit<
     ConnectedXMMutationOptions<

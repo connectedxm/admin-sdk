@@ -10,18 +10,19 @@ import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
- * @category Key
- * @group Emails
- */
-export const AUTH_SESSION_QUERY_KEY = (authSessionId: string | number) => [
+ * Endpoint to fetch data for a specific authentication session.
+ * This function retrieves detailed information about an authentication session using its unique identifier.
+ * It is intended for use in applications that require access to authentication session details.
+ * @name GetAuthSession
+ * @param {string} authSessionId (path) The ID of the authentication session
+ * @version 1.3
+ **/
+
+export const AUTH_SESSION_QUERY_KEY = (authSessionId: string) => [
   ...AUTH_SESSIONS_QUERY_KEY(),
   authSessionId,
 ];
 
-/**
- * @category Setters
- * @group Emails
- */
 export const SET_AUTH_SESSION_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof AUTH_SESSION_QUERY_KEY>,
@@ -31,13 +32,9 @@ export const SET_AUTH_SESSION_QUERY_DATA = (
 };
 
 interface GetAuthSessionParams extends SingleQueryParams {
-  authSessionId: string | number;
+  authSessionId: string;
 }
 
-/**
- * @category Query
- * @group Emails
- */
 export const GetAuthSession = async ({
   authSessionId,
   adminApiParams,
@@ -48,12 +45,8 @@ export const GetAuthSession = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Emails
- */
 export const useGetAuthSession = (
-  authSessionId: string | number = "",
+  authSessionId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetAuthSession>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetAuthSession>>(

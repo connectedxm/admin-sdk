@@ -14,18 +14,20 @@ import {
 } from "@src/mutations/useConnectedMutation";
 
 /**
- * @category Params
- * @group Organization
- */
+ * Updates an organization module and invalidates related queries if necessary.
+ * This function allows for updating the details of a specific organization module by its type.
+ * It ensures that any related queries are invalidated to maintain data consistency.
+ * @name UpdateOrganizationModule
+ * @param {OrganizationModuleUpdateInputs} module (body) The module data to update
+ * @param {keyof typeof OrganizationModuleType} moduleType (path) The type of the organization module
+ * @version 1.3
+ **/
+
 export interface UpdateOrganizationModuleParams extends MutationParams {
   module: OrganizationModuleUpdateInputs;
   moduleType: keyof typeof OrganizationModuleType;
 }
 
-/**
- * @category Methods
- * @group Organization
- */
 export const UpdateOrganizationModule = async ({
   module,
   moduleType,
@@ -34,10 +36,11 @@ export const UpdateOrganizationModule = async ({
 }: UpdateOrganizationModuleParams): Promise<
   ConnectedXMResponse<OrganizationModule>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<
-    ConnectedXMResponse<OrganizationModule>
-  >(`/organization/modules/${moduleType}`, module);
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put<ConnectedXMResponse<OrganizationModule>>(
+    `/organization/modules/${moduleType}`,
+    module
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: ORGANIZATION_MODULES_QUERY_KEY(),
@@ -46,10 +49,6 @@ export const UpdateOrganizationModule = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization
- */
 export const useUpdateOrganizationModule = (
   options: Omit<
     ConnectedXMMutationOptions<

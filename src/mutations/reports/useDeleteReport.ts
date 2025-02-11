@@ -8,26 +8,27 @@ import { ConnectedXMResponse } from "@src/interfaces";
 import { REPORTS_QUERY_KEY, REPORT_QUERY_KEY } from "@src/queries";
 
 /**
- * @category Params
- * @group Reports
- */
+ * Endpoint to delete a specific report by its ID.
+ * This function allows for the removal of a report from the system, optionally associated with a specific event.
+ * It is designed to be used in applications where report management is required, ensuring that the report is deleted and relevant queries are invalidated.
+ * @name DeleteReport
+ * @param {string} reportId (path) The ID of the report to be deleted
+ * @version 1.3
+ **/
+
 export interface DeleteReportParams extends MutationParams {
   reportId: string;
   eventId?: string;
 }
 
-/**
- * @category Methods
- * @group Reports
- */
 export const DeleteReport = async ({
   reportId,
   eventId,
   adminApiParams,
   queryClient,
 }: DeleteReportParams): Promise<ConnectedXMResponse<null>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<null>>(
     `/reports/${reportId}`
   );
   if (queryClient && data.status === "ok") {
@@ -44,10 +45,6 @@ export const DeleteReport = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Reports
- */
 export const useDeleteReport = (
   options: Omit<
     ConnectedXMMutationOptions<

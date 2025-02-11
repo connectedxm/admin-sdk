@@ -1,6 +1,6 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
-import { Image, ImageType } from "@src/interfaces";
+import { ConnectedXMResponse, ImageWCopyUri } from "@src/interfaces";
+import { ImageType } from "@src/interfaces";
 import {
   InfiniteQueryParams,
   InfiniteQueryOptions,
@@ -9,19 +9,20 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Keys
- * @group Images
- */
+ * Endpoint to retrieve image data with optional filtering by image type.
+ * This function allows users to fetch a list of images, optionally filtered by a specified image type.
+ * It is designed to be used in applications where image data retrieval is required, with support for infinite scrolling.
+ * @name GetImages
+ * @param {string} [type] (query) Optional image type for filtering
+ * @version 1.3
+ **/
+
 export const IMAGES_QUERY_KEY = (type?: ImageType) => {
   const keys = ["IMAGES"];
   if (type) keys.push(type);
   return keys;
 };
 
-/**
- * @category Setters
- * @group Images
- */
 export const SET_IMAGES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof IMAGES_QUERY_KEY>,
@@ -30,18 +31,10 @@ export const SET_IMAGES_QUERY_DATA = (
   client.setQueryData(IMAGES_QUERY_KEY(...keyParams), response);
 };
 
-export interface ImageWCopyUri extends Image {
-  copyUri: string;
-}
-
 interface GetImagePrams extends InfiniteQueryParams {
   type?: ImageType;
 }
 
-/**
- * @category Queries
- * @group Images
- */
 export const GetImages = async ({
   pageParam,
   pageSize,
@@ -63,10 +56,7 @@ export const GetImages = async ({
 
   return data;
 };
-/**
- * @category Hooks
- * @group Images
- */
+
 export const useGetImages = (
   type?: ImageType,
   params: Omit<

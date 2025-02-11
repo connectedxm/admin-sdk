@@ -11,24 +11,25 @@ import {
 } from "../useConnectedMutation";
 
 /**
- * @category Params
- * @group Self
- */
+ * Endpoint to allow a user to leave an organization they are part of.
+ * This function facilitates the removal of a user from an organization by deleting their association with it.
+ * It is intended for use in applications where users need the ability to manage their organizational memberships.
+ * @name DeleteSelfOrganizations
+ * @param {string} organizationId (path) The ID of the organization
+ * @version 1.3
+ **/
+
 export interface SelfLeaveOrganizationParams extends MutationParams {
   organizationId: string;
 }
 
-/**
- * @category Methods
- * @group Self
- */
 export const SelfLeaveOrganization = async ({
   organizationId,
   adminApiParams,
   queryClient,
 }: SelfLeaveOrganizationParams): Promise<ConnectedXMResponse<User>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<User>>(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.delete<ConnectedXMResponse<User>>(
     `/self/organizations/${organizationId}`
   );
   if (queryClient && data.status === "ok") {
@@ -38,10 +39,6 @@ export const SelfLeaveOrganization = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Self
- */
 export const useSelfLeaveOrganization = (
   options: Omit<
     ConnectedXMMutationOptions<

@@ -15,7 +15,7 @@ export interface ConnectedXMClientContextState {
   apiUrl:
     | "https://admin-api.connected.dev"
     | "https://staging-admin-api.connected.dev"
-    | "http://localhost:4001";
+    | "http://localhost:4000";
   authenticated: boolean;
   setAuthenticated: (authenticated: boolean) => void;
   getToken: () => Promise<string | undefined>;

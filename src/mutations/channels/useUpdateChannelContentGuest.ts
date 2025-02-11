@@ -12,9 +12,16 @@ import {
 import { ChannelContentGuestUpdateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Channels
- */
+ * Endpoint to update a channel content guest.
+ * This function allows updating the details of a guest associated with specific content in a channel.
+ * It is used to modify guest information such as permissions or roles within the context of channel content.
+ * @name UpdateChannelContentGuest
+ * @param {string} contentId (path) The id of the content
+ * @param {string} channelId (path) The id of the channel
+ * @param {string} guestId (path) The id of the guest
+ * @param {ChannelContentGuestUpdateInputs} contentGuest (body) The content guest update inputs
+ * @version 1.3
+ **/
 export interface UpdateChannelContentGuestParams extends MutationParams {
   contentId: string;
   channelId: string;
@@ -22,24 +29,20 @@ export interface UpdateChannelContentGuestParams extends MutationParams {
   contentGuest: ChannelContentGuestUpdateInputs;
 }
 
-/**
- * @category Methods
- * @group Channels
- */
 export const UpdateChannelContentGuest = async ({
   contentId,
   channelId,
   guestId,
-  contentGuest: content,
+  contentGuest,
   adminApiParams,
   queryClient,
 }: UpdateChannelContentGuestParams): Promise<
   ConnectedXMResponse<ChannelContentGuest>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put(
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.put(
     `/channels/${channelId}/contents/${contentId}/guests/${guestId}`,
-    content
+    contentGuest
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
@@ -54,10 +57,6 @@ export const UpdateChannelContentGuest = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Channels
- */
 export const useUpdateChannelContentGuest = (
   options: Omit<
     ConnectedXMMutationOptions<

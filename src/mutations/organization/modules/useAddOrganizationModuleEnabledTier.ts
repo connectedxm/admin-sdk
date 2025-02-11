@@ -16,18 +16,20 @@ import {
 } from "@src/mutations/useConnectedMutation";
 
 /**
- * @category Params
- * @group Organization
- */
+ * Adds an enabled tier to a specific organization module.
+ * This function allows the addition of a tier to an organization module, enabling specific functionalities or features associated with that tier.
+ * It is intended for use in administrative contexts where organization modules need to be configured with specific tiers.
+ * @name AddOrganizationModuleEnabledTier
+ * @param {keyof typeof OrganizationModuleType} moduleType (path) The type of the organization module
+ * @param {string} tierId (path) The id of the tier to be enabled
+ * @version 1.3
+ **/
+
 export interface AddOrganizationModuleEnabledTierParams extends MutationParams {
   moduleType: keyof typeof OrganizationModuleType;
   tierId: string;
 }
 
-/**
- * @category Methods
- * @group Organization
- */
 export const AddOrganizationModuleEnabledTier = async ({
   moduleType,
   tierId,
@@ -36,10 +38,10 @@ export const AddOrganizationModuleEnabledTier = async ({
 }: AddOrganizationModuleEnabledTierParams): Promise<
   ConnectedXMResponse<OrganizationModule>
 > => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
-    ConnectedXMResponse<OrganizationModule>
-  >(`/organization/modules/${moduleType}/enabledTiers/${tierId}`);
+  const adminApi = await GetAdminAPI(adminApiParams);
+  const { data } = await adminApi.post<ConnectedXMResponse<OrganizationModule>>(
+    `/organization/modules/${moduleType}/enabledTiers/${tierId}`
+  );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
@@ -53,10 +55,6 @@ export const AddOrganizationModuleEnabledTier = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Organization
- */
 export const useAddOrganizationModuleEnabledTier = (
   options: Omit<
     ConnectedXMMutationOptions<

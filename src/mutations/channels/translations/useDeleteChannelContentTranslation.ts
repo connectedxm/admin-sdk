@@ -10,6 +10,17 @@ import {
 } from "@src/queries/channels";
 
 /**
+ * Deletes a specific translation of channel content by its content ID, channel ID, and locale.
+ * This function is used to remove a translation from a channel's content, ensuring that the specified translation is no longer available.
+ * It is designed for applications that manage multilingual content within channels.
+ * @name DeleteChannelContentTranslation
+ * @param {string} contentId (path) The ID of the content
+ * @param {string} channelId (path) The ID of the channel
+ * @param {string} locale (path) The locale of the translation
+ * @version 1.3
+ **/
+
+/**
  * @category Params
  * @group Channel-Translation
  */
@@ -30,9 +41,9 @@ export const DeleteChannelContentTranslation = async ({
   adminApiParams,
   queryClient,
 }: DeleteChannelContentTranslationParams) => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.delete(
+  const { data } = await adminApi.delete(
     `/channels/${channelId}/contents/${contentId}/translations/${locale}`
   );
 

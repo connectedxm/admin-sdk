@@ -4,18 +4,29 @@ import {
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
-import { ConnectedXMResponse, BaseAPILog } from "@src/interfaces";
+import { ConnectedXMResponse, BaseAPILog, ApiLogStatus } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
- * @category Key
- * @group Emails
- */
+ * Endpoint to retrieve API logs with various filtering options.
+ * This function allows users to fetch API logs based on specific criteria such as date range, HTTP method, status, source, user ID, and account ID.
+ * It is designed to be used in applications where monitoring and analyzing API usage is required.
+ * @name GetAPILogs
+ * @param {string} startDate (query) The start date for filtering logs
+ * @param {string} endDate (query) The end date for filtering logs
+ * @param {string} [method] (query) Optional HTTP method for filtering logs
+ * @param {ApiLogStatus} [status] (query) Optional status for filtering logs
+ * @param {string} [source] (query) Optional source for filtering logs
+ * @param {string} [userId] (query) Optional user ID for filtering logs
+ * @param {string} [accountId] (query) Optional account ID for filtering logs
+ * @version 1.3
+ **/
+
 export const API_LOGS_QUERY_KEY = (
   startDate: string = "",
   endDate: string = "",
   method?: string,
-  status?: "success" | "failed",
+  status?: keyof typeof ApiLogStatus,
   source?: string,
   userId?: string,
   accountId?: string
@@ -29,10 +40,6 @@ export const API_LOGS_QUERY_KEY = (
   return keys;
 };
 
-/**
- * @category Setters
- * @group Emails
- */
 export const SET_API_LOGS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof API_LOGS_QUERY_KEY>,
@@ -45,16 +52,12 @@ interface GetAPILogsParams extends InfiniteQueryParams {
   startDate: string;
   endDate: string;
   method?: string;
-  status?: "success" | "failed";
+  status?: keyof typeof ApiLogStatus;
   source?: string;
   userId?: string;
   accountId?: string;
 }
 
-/**
- * @category Query
- * @group Emails
- */
 export const GetAPILogs = async ({
   startDate,
   endDate,
@@ -89,15 +92,11 @@ export const GetAPILogs = async ({
   return data;
 };
 
-/**
- * @category Hooks
- * @group Emails
- */
 export const useGetAPILogs = (
   startDate: string,
   endDate: string,
   method?: string,
-  status?: "success" | "failed",
+  status?: keyof typeof ApiLogStatus,
   source?: string,
   userId?: string,
   accountId?: string,

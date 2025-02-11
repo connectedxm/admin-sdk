@@ -12,25 +12,25 @@ import {
 import { ChannelCreateInputs } from "@src/params";
 
 /**
- * @category Params
- * @group Channel
- */
+ * Endpoint to create a new channel within the application.
+ * This function allows for the creation of a channel by providing the necessary inputs.
+ * It is designed to be used in scenarios where new communication channels need to be established.
+ * @name CreateChannel
+ * @param {ChannelCreateInputs} channel (body) The inputs required to create a channel
+ * @version 1.3
+ **/
 export interface CreateChannelParams extends MutationParams {
   channel: ChannelCreateInputs;
 }
 
-/**
- * @category Methods
- * @group Channel
- */
 export const CreateChannel = async ({
   channel,
   adminApiParams,
   queryClient,
 }: CreateChannelParams): Promise<ConnectedXMResponse<Channel>> => {
-  const connectedXM = await GetAdminAPI(adminApiParams);
+  const adminApi = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<ConnectedXMResponse<Channel>>(
+  const { data } = await adminApi.post<ConnectedXMResponse<Channel>>(
     `/channels`,
     channel
   );
@@ -42,10 +42,6 @@ export const CreateChannel = async ({
   return data;
 };
 
-/**
- * @category Mutations
- * @group Channel
- */
 export const useCreateChannel = (
   options: Omit<
     ConnectedXMMutationOptions<

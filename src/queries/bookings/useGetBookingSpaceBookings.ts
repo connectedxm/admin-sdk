@@ -16,8 +16,18 @@ import { BOOKING_SPACE_QUERY_KEY } from "./useGetBookingSpace";
  */
 export const BOOKING_SPACE_BOOKINGS_QUERY_KEY = (
   bookingPlaceId: string,
-  bookingSpaceId: string
-) => [...BOOKING_SPACE_QUERY_KEY(bookingPlaceId, bookingSpaceId), "BOOKINGS"];
+  bookingSpaceId: string,
+  past?: boolean
+) => {
+  const keys = [
+    ...BOOKING_SPACE_QUERY_KEY(bookingPlaceId, bookingSpaceId),
+    "BOOKINGS",
+  ];
+  if (typeof past === "boolean") {
+    keys.push(past ? "PAST" : "UPCOMING");
+  }
+  return keys;
+};
 
 /**
  * @category Setters
@@ -34,6 +44,7 @@ export const SET_BOOKING_SPACE_BOOKINGS_QUERY_DATA = (
 interface GetBookingSpaceBookingsProps extends InfiniteQueryParams {
   bookingPlaceId: string;
   bookingSpaceId: string;
+  past?: boolean;
 }
 
 /**
@@ -43,6 +54,7 @@ interface GetBookingSpaceBookingsProps extends InfiniteQueryParams {
 export const GetBookingSpaceBookings = async ({
   bookingPlaceId,
   bookingSpaceId,
+  past,
   pageParam,
   pageSize,
   orderBy,
@@ -58,6 +70,7 @@ export const GetBookingSpaceBookings = async ({
         pageSize: pageSize || undefined,
         orderBy: orderBy || undefined,
         search: search || undefined,
+        past: typeof past === "boolean" ? past : undefined,
       },
     }
   );
@@ -71,6 +84,7 @@ export const GetBookingSpaceBookings = async ({
 export const useGetBookingSpaceBookings = (
   bookingPlaceId: string = "",
   bookingSpaceId: string = "",
+  past?: boolean,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -82,9 +96,14 @@ export const useGetBookingSpaceBookings = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetBookingSpaceBookings>>
   >(
-    BOOKING_SPACE_BOOKINGS_QUERY_KEY(bookingPlaceId, bookingSpaceId),
+    BOOKING_SPACE_BOOKINGS_QUERY_KEY(bookingPlaceId, bookingSpaceId, past),
     (params: InfiniteQueryParams) =>
-      GetBookingSpaceBookings({ bookingPlaceId, bookingSpaceId, ...params }),
+      GetBookingSpaceBookings({
+        bookingPlaceId,
+        bookingSpaceId,
+        past,
+        ...params,
+      }),
     params,
     {
       ...options,

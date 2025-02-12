@@ -2906,6 +2906,7 @@ export enum DayOfWeek {
 export interface BaseBookingPlace {
   id: string;
   name: string;
+  slug: string;
   timezone: string;
   description: string | null;
   image: BaseImage | null;
@@ -2924,6 +2925,7 @@ export interface BookingPlace extends BaseBookingPlace {
 export interface BaseBookingSpace {
   id: string;
   name: string;
+  slug: string;
   supply: number;
   slotDuration: number;
   price: number;

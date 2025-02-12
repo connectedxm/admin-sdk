@@ -30,7 +30,7 @@ export const CreateBookingPlace = async ({
 }: CreateBookingPlaceParams): Promise<ConnectedXMResponse<BookingPlace>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<BookingPlace>>(
-    `/bookingPlace`,
+    `/bookings/places`,
     bookingPlace
   );
 

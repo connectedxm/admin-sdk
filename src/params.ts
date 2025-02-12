@@ -906,6 +906,7 @@ export interface OrganizationMembershipUpdateInputs {
   // MODULES
   activities: Omit<ModulePermissions, "superEnabled" | "enabled">;
   events: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  bookings: Omit<ModulePermissions, "superEnabled" | "enabled">;
   groups: Omit<ModulePermissions, "superEnabled" | "enabled">;
   accounts: Omit<ModulePermissions, "superEnabled" | "enabled">;
   channels: Omit<ModulePermissions, "superEnabled" | "enabled">;

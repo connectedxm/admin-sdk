@@ -41,7 +41,7 @@ export const GetBookingPlaces = async ({
   adminApiParams,
 }: GetBookingPlacesProps): Promise<ConnectedXMResponse<BookingPlace[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/bookingPlaces`, {
+  const { data } = await adminApi.get(`/bookings/places`, {
     params: {
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
@@ -71,6 +71,6 @@ export const useGetBookingPlaces = (
     (params: InfiniteQueryParams) => GetBookingPlaces({ ...params }),
     params,
     options,
-    "events"
+    "bookings"
   );
 };

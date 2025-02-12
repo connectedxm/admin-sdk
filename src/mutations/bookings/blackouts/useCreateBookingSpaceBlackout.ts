@@ -16,8 +16,8 @@ import {
  * @group Bookings
  */
 export interface CreateBookingSpaceBlackoutParams extends MutationParams {
-  bookingPlaceId: string;
-  bookingSpaceId: string;
+  placeId: string;
+  spaceId: string;
   blackout: BookingSpaceBlackoutCreateInputs;
 }
 
@@ -26,8 +26,8 @@ export interface CreateBookingSpaceBlackoutParams extends MutationParams {
  * @group Bookings
  */
 export const CreateBookingSpaceBlackout = async ({
-  bookingPlaceId,
-  bookingSpaceId,
+  placeId,
+  spaceId,
   blackout,
   adminApiParams,
   queryClient,
@@ -37,22 +37,16 @@ export const CreateBookingSpaceBlackout = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<
     ConnectedXMResponse<BookingSpaceBlackout>
-  >(
-    `/bookingPlaces/${bookingPlaceId}/bookingSpaces/${bookingSpaceId}/blackouts`,
-    blackout
-  );
+  >(`/bookings/places/${placeId}/spaces/${spaceId}/blackouts`, blackout);
 
   if (queryClient && data.status === "ok") {
     SET_BOOKING_SPACE_BLACKOUT_QUERY_DATA(
       queryClient,
-      [bookingPlaceId, bookingSpaceId, data?.data.id],
+      [placeId, spaceId, data?.data.id],
       data
     );
     queryClient.invalidateQueries({
-      queryKey: BOOKING_SPACE_BLACKOUTS_QUERY_KEY(
-        bookingPlaceId,
-        bookingSpaceId
-      ),
+      queryKey: BOOKING_SPACE_BLACKOUTS_QUERY_KEY(placeId, spaceId),
     });
   }
   return data;
@@ -75,7 +69,7 @@ export const useCreateBookingSpaceBlackout = (
     CreateBookingSpaceBlackoutParams,
     Awaited<ReturnType<typeof CreateBookingSpaceBlackout>>
   >(CreateBookingSpaceBlackout, options, {
-    domain: "events",
+    domain: "bookings",
     type: "update",
   });
 };

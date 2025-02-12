@@ -58,7 +58,7 @@ export const useCreateBookingPlace = (
     CreateBookingPlaceParams,
     Awaited<ReturnType<typeof CreateBookingPlace>>
   >(CreateBookingPlace, options, {
-    domain: "events",
+    domain: "bookings",
     type: "create",
   });
 };

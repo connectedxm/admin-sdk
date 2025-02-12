@@ -13,13 +13,10 @@ import { BOOKING_SPACE_BLACKOUTS_QUERY_KEY } from "./useGetBookingSpaceBlackouts
  * @group Bookings
  */
 export const BOOKING_SPACE_BLACKOUT_QUERY_KEY = (
-  bookingPlaceId: string,
-  bookingSpaceId: string,
+  placeId: string,
+  spaceId: string,
   blackoutId: string
-) => [
-  ...BOOKING_SPACE_BLACKOUTS_QUERY_KEY(bookingPlaceId, blackoutId),
-  bookingSpaceId,
-];
+) => [...BOOKING_SPACE_BLACKOUTS_QUERY_KEY(placeId, blackoutId), spaceId];
 
 /**
  * @category Setters
@@ -34,8 +31,8 @@ export const SET_BOOKING_SPACE_BLACKOUT_QUERY_DATA = (
 };
 
 interface GetBookingSpaceBlackoutProps extends SingleQueryParams {
-  bookingPlaceId: string;
-  bookingSpaceId: string;
+  placeId: string;
+  spaceId: string;
   blackoutId: string;
 }
 
@@ -44,8 +41,8 @@ interface GetBookingSpaceBlackoutProps extends SingleQueryParams {
  * @group Bookings
  */
 export const GetBookingSpaceBlackout = async ({
-  bookingPlaceId,
-  bookingSpaceId,
+  placeId,
+  spaceId,
   blackoutId,
   adminApiParams,
 }: GetBookingSpaceBlackoutProps): Promise<
@@ -53,7 +50,7 @@ export const GetBookingSpaceBlackout = async ({
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/bookingPlaces/${bookingPlaceId}/bookingSpaces/${bookingSpaceId}/blackouts/${blackoutId}`
+    `/bookings/places/${placeId}/spaces/${spaceId}/blackouts/${blackoutId}`
   );
   return data;
 };
@@ -63,32 +60,25 @@ export const GetBookingSpaceBlackout = async ({
  * @group Bookings
  */
 export const useGetBookingSpaceBlackout = (
-  bookingPlaceId: string = "",
-  bookingSpaceId: string = "",
+  placeId: string = "",
+  spaceId: string = "",
   blackoutId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetBookingSpaceBlackout>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetBookingSpaceBlackout>>(
-    BOOKING_SPACE_BLACKOUT_QUERY_KEY(
-      bookingPlaceId,
-      bookingSpaceId,
-      blackoutId
-    ),
+    BOOKING_SPACE_BLACKOUT_QUERY_KEY(placeId, spaceId, blackoutId),
     (params: SingleQueryParams) =>
       GetBookingSpaceBlackout({
-        bookingPlaceId,
-        bookingSpaceId,
+        placeId,
+        spaceId,
         blackoutId,
         ...params,
       }),
     {
       ...options,
       enabled:
-        !!bookingPlaceId &&
-        !!bookingSpaceId &&
-        !!blackoutId &&
-        (options?.enabled ?? true),
+        !!placeId && !!spaceId && !!blackoutId && (options?.enabled ?? true),
     },
-    "events"
+    "bookings"
   );
 };

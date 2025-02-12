@@ -16,8 +16,8 @@ import {
  * @group Bookings
  */
 export interface UpdateBookingSpaceBlackoutParams extends MutationParams {
-  bookingPlaceId: string;
-  bookingSpaceId: string;
+  placeId: string;
+  spaceId: string;
   blackoutId: string;
   blackout: BookingSpaceBlackoutUpdateInputs;
 }
@@ -27,8 +27,8 @@ export interface UpdateBookingSpaceBlackoutParams extends MutationParams {
  * @group Bookings
  */
 export const UpdateBookingSpaceBlackout = async ({
-  bookingPlaceId,
-  bookingSpaceId,
+  placeId,
+  spaceId,
   blackoutId,
   blackout,
   adminApiParams,
@@ -36,31 +36,25 @@ export const UpdateBookingSpaceBlackout = async ({
 }: UpdateBookingSpaceBlackoutParams): Promise<
   ConnectedXMResponse<BookingSpaceBlackout>
 > => {
-  if (!bookingPlaceId) throw new Error("Booking Place ID Undefined");
+  if (!placeId) throw new Error("Booking Place ID Undefined");
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<
     ConnectedXMResponse<BookingSpaceBlackout>
-  >(
-    `/bookingPlaces/${bookingPlaceId}/bookingSpaces/${bookingSpaceId}/blackouts/${blackoutId}`,
-    {
-      ...blackout,
-      id: undefined,
-      createdAt: undefined,
-      updatedAt: undefined,
-    }
-  );
+  >(`/bookings/places/${placeId}/spaces/${spaceId}/blackouts/${blackoutId}`, {
+    ...blackout,
+    id: undefined,
+    createdAt: undefined,
+    updatedAt: undefined,
+  });
 
   if (queryClient && data.status === "ok") {
     SET_BOOKING_SPACE_BLACKOUT_QUERY_DATA(
       queryClient,
-      [bookingPlaceId, bookingSpaceId, blackoutId || data?.data.id],
+      [placeId, spaceId, blackoutId || data?.data.id],
       data
     );
     queryClient.invalidateQueries({
-      queryKey: BOOKING_SPACE_BLACKOUTS_QUERY_KEY(
-        bookingPlaceId,
-        bookingSpaceId
-      ),
+      queryKey: BOOKING_SPACE_BLACKOUTS_QUERY_KEY(placeId, spaceId),
     });
   }
   return data;
@@ -83,7 +77,7 @@ export const useUpdateBookingSpaceBlackout = (
     UpdateBookingSpaceBlackoutParams,
     Awaited<ReturnType<typeof UpdateBookingSpaceBlackout>>
   >(UpdateBookingSpaceBlackout, options, {
-    domain: "events",
+    domain: "bookings",
     type: "update",
   });
 };

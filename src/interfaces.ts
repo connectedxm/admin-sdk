@@ -1443,6 +1443,7 @@ export interface OrganizationMembership {
   subscriptions: ModulePermissions;
   invoices: ModulePermissions;
   announcements: ModulePermissions;
+  bookings: ModulePermissions;
 }
 
 export interface BaseOrganization {

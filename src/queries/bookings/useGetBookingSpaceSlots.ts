@@ -13,12 +13,9 @@ import { BOOKING_SPACE_QUERY_KEY } from "./useGetBookingSpace";
  * @group Bookings
  */
 export const BOOKING_SPACE_SLOTS_QUERY_KEY = (
-  bookingPlaceId: string,
-  bookingSpaceId: string
-) => [
-  ...BOOKING_SPACE_QUERY_KEY(bookingPlaceId, bookingSpaceId),
-  bookingSpaceId,
-];
+  placeId: string,
+  spaceId: string
+) => [...BOOKING_SPACE_QUERY_KEY(placeId, spaceId), spaceId];
 
 /**
  * @category Setters
@@ -33,8 +30,8 @@ export const SET_BOOKING_SPACE_SLOTS_QUERY_DATA = (
 };
 
 interface GetBookingSpaceSlotsProps extends SingleQueryParams {
-  bookingPlaceId: string;
-  bookingSpaceId: string;
+  placeId: string;
+  spaceId: string;
 }
 
 /**
@@ -42,13 +39,13 @@ interface GetBookingSpaceSlotsProps extends SingleQueryParams {
  * @group Bookings
  */
 export const GetBookingSpaceSlots = async ({
-  bookingPlaceId,
-  bookingSpaceId,
+  placeId,
+  spaceId,
   adminApiParams,
 }: GetBookingSpaceSlotsProps): Promise<ConnectedXMResponse<BookingSlot[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/bookingPlaces/${bookingPlaceId}/bookingSpaces/${bookingSpaceId}/slots`
+    `/bookings/places/${placeId}/spaces/${spaceId}/slots`
   );
   return data;
 };
@@ -58,23 +55,22 @@ export const GetBookingSpaceSlots = async ({
  * @group Bookings
  */
 export const useGetBookingSpaceSlots = (
-  bookingPlaceId: string = "",
-  bookingSpaceId: string = "",
+  placeId: string = "",
+  spaceId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetBookingSpaceSlots>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetBookingSpaceSlots>>(
-    BOOKING_SPACE_SLOTS_QUERY_KEY(bookingPlaceId, bookingSpaceId),
+    BOOKING_SPACE_SLOTS_QUERY_KEY(placeId, spaceId),
     (params: SingleQueryParams) =>
       GetBookingSpaceSlots({
-        bookingPlaceId,
-        bookingSpaceId,
+        placeId,
+        spaceId,
         ...params,
       }),
     {
       ...options,
-      enabled:
-        !!bookingPlaceId && !!bookingSpaceId && (options?.enabled ?? true),
+      enabled: !!placeId && !!spaceId && (options?.enabled ?? true),
     },
-    "events"
+    "bookings"
   );
 };

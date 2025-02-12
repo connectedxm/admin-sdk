@@ -11,9 +11,10 @@ import { BOOKING_PLACE_QUERY_KEY } from "./useGetBookingPlace";
  * @category Keys
  * @group Events
  */
-export const BOOKING_PLACE_TRANSLATIONS_QUERY_KEY = (
-  bookingPlaceId: string
-) => [...BOOKING_PLACE_QUERY_KEY(bookingPlaceId), "TRANSLATIONS"];
+export const BOOKING_PLACE_TRANSLATIONS_QUERY_KEY = (placeId: string) => [
+  ...BOOKING_PLACE_QUERY_KEY(placeId),
+  "TRANSLATIONS",
+];
 
 /**
  * @category Setters
@@ -31,7 +32,7 @@ export const SET_BOOKING_PLACE_TRANSLATIONS_QUERY_DATA = (
 };
 
 interface GetBookingPlaceTranslationsProps extends InfiniteQueryParams {
-  bookingPlaceId: string;
+  placeId: string;
 }
 
 /**
@@ -43,14 +44,14 @@ export const GetBookingPlaceTranslations = async ({
   pageSize,
   orderBy,
   search,
-  bookingPlaceId,
+  placeId,
   adminApiParams,
 }: GetBookingPlaceTranslationsProps): Promise<
   ConnectedXMResponse<BookingPlaceTranslation[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/bookingPlaces/${bookingPlaceId}/translations`,
+    `/bookings/places/${placeId}/translations`,
     {
       params: {
         page: pageParam || undefined,
@@ -67,7 +68,7 @@ export const GetBookingPlaceTranslations = async ({
  * @group Events
  */
 export const useGetBookingPlaceTranslations = (
-  bookingPlaceId: string = "",
+  placeId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -79,17 +80,17 @@ export const useGetBookingPlaceTranslations = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetBookingPlaceTranslations>>
   >(
-    BOOKING_PLACE_TRANSLATIONS_QUERY_KEY(bookingPlaceId),
+    BOOKING_PLACE_TRANSLATIONS_QUERY_KEY(placeId),
     (params: InfiniteQueryParams) =>
       GetBookingPlaceTranslations({
         ...params,
-        bookingPlaceId,
+        placeId,
       }),
     params,
     {
       ...options,
-      enabled: !!bookingPlaceId && (options.enabled ?? true),
+      enabled: !!placeId && (options.enabled ?? true),
     },
-    "events"
+    "bookings"
   );
 };

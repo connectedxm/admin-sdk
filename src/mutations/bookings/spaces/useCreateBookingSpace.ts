@@ -16,7 +16,7 @@ import {
  * @group Bookings
  */
 export interface CreateBookingSpaceParams extends MutationParams {
-  bookingPlaceId: string;
+  placeId: string;
   bookingSpace: BookingSpaceCreateInputs;
 }
 
@@ -25,25 +25,21 @@ export interface CreateBookingSpaceParams extends MutationParams {
  * @group Bookings
  */
 export const CreateBookingSpace = async ({
-  bookingPlaceId,
+  placeId,
   bookingSpace,
   adminApiParams,
   queryClient,
 }: CreateBookingSpaceParams): Promise<ConnectedXMResponse<BookingSpace>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<BookingSpace>>(
-    `/bookingPlaces/${bookingPlaceId}/bookingSpaces`,
+    `/bookings/places/${placeId}/spaces`,
     bookingSpace
   );
 
   if (queryClient && data.status === "ok") {
-    SET_BOOKING_SPACE_QUERY_DATA(
-      queryClient,
-      [bookingPlaceId, data?.data.id],
-      data
-    );
+    SET_BOOKING_SPACE_QUERY_DATA(queryClient, [placeId, data?.data.id], data);
     queryClient.invalidateQueries({
-      queryKey: BOOKING_SPACES_QUERY_KEY(bookingPlaceId),
+      queryKey: BOOKING_SPACES_QUERY_KEY(placeId),
     });
   }
   return data;
@@ -66,7 +62,7 @@ export const useCreateBookingSpace = (
     CreateBookingSpaceParams,
     Awaited<ReturnType<typeof CreateBookingSpace>>
   >(CreateBookingSpace, options, {
-    domain: "events",
+    domain: "bookings",
     type: "create",
   });
 };

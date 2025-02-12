@@ -12,13 +12,10 @@ import { BOOKING_SPACE_TRANSLATIONS_QUERY_KEY } from "./useGetBookingSpaceTransl
  * @group Bookings
  */
 export const BOOKING_SPACE_TRANSLATION_QUERY_KEY = (
-  bookingPlaceId: string,
-  bookingSpaceId: string,
+  placeId: string,
+  spaceId: string,
   locale: string
-) => [
-  ...BOOKING_SPACE_TRANSLATIONS_QUERY_KEY(bookingPlaceId, bookingSpaceId),
-  locale,
-];
+) => [...BOOKING_SPACE_TRANSLATIONS_QUERY_KEY(placeId, spaceId), locale];
 
 /**
  * @category Setters
@@ -36,8 +33,8 @@ export const SET_BOOKING_SPACE_TRANSLATION_QUERY_DATA = (
 };
 
 interface GetEventSpaceTranslationProps extends SingleQueryParams {
-  bookingPlaceId: string;
-  bookingSpaceId: string;
+  placeId: string;
+  spaceId: string;
   locale: string;
 }
 
@@ -46,8 +43,8 @@ interface GetEventSpaceTranslationProps extends SingleQueryParams {
  * @group Bookings
  */
 export const GetEventSpaceTranslation = async ({
-  bookingPlaceId,
-  bookingSpaceId,
+  placeId,
+  spaceId,
   locale,
   adminApiParams,
 }: GetEventSpaceTranslationProps): Promise<
@@ -55,7 +52,7 @@ export const GetEventSpaceTranslation = async ({
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/bookingPlaces/${bookingPlaceId}/bookingSpaces/${bookingSpaceId}/translations/${locale}`
+    `/bookings/places/${placeId}/spaces/${spaceId}/translations/${locale}`
   );
   return data;
 };
@@ -65,29 +62,29 @@ export const GetEventSpaceTranslation = async ({
  * @group Bookings
  */
 export const useGetEventSpaceTranslation = (
-  bookingPlaceId: string = "",
-  bookingSpaceId: string = "",
+  placeId: string = "",
+  spaceId: string = "",
   locale: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetEventSpaceTranslation>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEventSpaceTranslation>>(
-    BOOKING_SPACE_TRANSLATION_QUERY_KEY(bookingPlaceId, bookingSpaceId, locale),
+    BOOKING_SPACE_TRANSLATION_QUERY_KEY(placeId, spaceId, locale),
     (params: SingleQueryParams) =>
       GetEventSpaceTranslation({
-        bookingPlaceId,
-        bookingSpaceId,
+        placeId,
+        spaceId,
         locale,
         ...params,
       }),
     {
       ...options,
       enabled:
-        !!bookingPlaceId &&
-        !!bookingSpaceId &&
+        !!placeId &&
+        !!spaceId &&
         !!locale &&
         locale !== "en" &&
         (options?.enabled ?? true),
     },
-    "events"
+    "bookings"
   );
 };

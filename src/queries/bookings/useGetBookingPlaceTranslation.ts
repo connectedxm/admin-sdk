@@ -12,9 +12,9 @@ import { BOOKING_PLACE_TRANSLATIONS_QUERY_KEY } from "./useGetBookingPlaceTransl
  * @group Bookings
  */
 export const BOOKING_PLACE_TRANSLATION_QUERY_KEY = (
-  bookingPlaceId: string,
+  placeId: string,
   locale: string
-) => [...BOOKING_PLACE_TRANSLATIONS_QUERY_KEY(bookingPlaceId), locale];
+) => [...BOOKING_PLACE_TRANSLATIONS_QUERY_KEY(placeId), locale];
 
 /**
  * @category Setters
@@ -32,7 +32,7 @@ export const SET_BOOKING_PLACE_TRANSLATION_QUERY_DATA = (
 };
 
 interface GetBookingPlaceTranslationProps extends SingleQueryParams {
-  bookingPlaceId: string;
+  placeId: string;
   locale: string;
 }
 
@@ -41,7 +41,7 @@ interface GetBookingPlaceTranslationProps extends SingleQueryParams {
  * @group Bookings
  */
 export const GetBookingPlaceTranslation = async ({
-  bookingPlaceId,
+  placeId,
   locale,
   adminApiParams,
 }: GetBookingPlaceTranslationProps): Promise<
@@ -49,7 +49,7 @@ export const GetBookingPlaceTranslation = async ({
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/bookingPlaces/${bookingPlaceId}/translations/${locale}`
+    `/bookings/places/${placeId}/translations/${locale}`
   );
   return data;
 };
@@ -58,28 +58,25 @@ export const GetBookingPlaceTranslation = async ({
  * @group Bookings
  */
 export const useGetBookingPlaceTranslation = (
-  bookingPlaceId: string = "",
+  placeId: string = "",
   locale: string = "",
   options: SingleQueryOptions<
     ReturnType<typeof GetBookingPlaceTranslation>
   > = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetBookingPlaceTranslation>>(
-    BOOKING_PLACE_TRANSLATION_QUERY_KEY(bookingPlaceId, locale),
+    BOOKING_PLACE_TRANSLATION_QUERY_KEY(placeId, locale),
     (params: SingleQueryParams) =>
       GetBookingPlaceTranslation({
-        bookingPlaceId,
+        placeId,
         locale,
         ...params,
       }),
     {
       ...options,
       enabled:
-        !!bookingPlaceId &&
-        !!locale &&
-        locale !== "en" &&
-        (options?.enabled ?? true),
+        !!placeId && !!locale && locale !== "en" && (options?.enabled ?? true),
     },
-    "events"
+    "bookings"
   );
 };

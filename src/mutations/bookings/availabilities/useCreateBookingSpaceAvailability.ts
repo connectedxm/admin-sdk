@@ -16,8 +16,8 @@ import {
  * @group Bookings
  */
 export interface CreateBookingSpaceAvailabilityParams extends MutationParams {
-  bookingPlaceId: string;
-  bookingSpaceId: string;
+  placeId: string;
+  spaceId: string;
   availability: BookingSpaceAvailabilityCreateInputs;
 }
 
@@ -26,8 +26,8 @@ export interface CreateBookingSpaceAvailabilityParams extends MutationParams {
  * @group Bookings
  */
 export const CreateBookingSpaceAvailability = async ({
-  bookingPlaceId,
-  bookingSpaceId,
+  placeId,
+  spaceId,
   availability,
   adminApiParams,
   queryClient,
@@ -38,21 +38,18 @@ export const CreateBookingSpaceAvailability = async ({
   const { data } = await connectedXM.post<
     ConnectedXMResponse<BookingSpaceAvailability>
   >(
-    `/bookingPlaces/${bookingPlaceId}/bookingSpaces/${bookingSpaceId}/availabilities`,
+    `/bookings/places/${placeId}/spaces/${spaceId}/availabilities`,
     availability
   );
 
   if (queryClient && data.status === "ok") {
     SET_BOOKING_SPACE_AVAILABILITY_QUERY_DATA(
       queryClient,
-      [bookingPlaceId, bookingSpaceId, data?.data.id],
+      [placeId, spaceId, data?.data.id],
       data
     );
     queryClient.invalidateQueries({
-      queryKey: BOOKING_SPACE_AVAILABILITIES_QUERY_KEY(
-        bookingPlaceId,
-        bookingSpaceId
-      ),
+      queryKey: BOOKING_SPACE_AVAILABILITIES_QUERY_KEY(placeId, spaceId),
     });
   }
   return data;
@@ -78,7 +75,7 @@ export const useCreateBookingSpaceAvailability = (
     CreateBookingSpaceAvailabilityParams,
     Awaited<ReturnType<typeof CreateBookingSpaceAvailability>>
   >(CreateBookingSpaceAvailability, options, {
-    domain: "events",
+    domain: "bookings",
     type: "update",
   });
 };

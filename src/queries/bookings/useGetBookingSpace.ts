@@ -12,10 +12,10 @@ import { BOOKING_SPACES_QUERY_KEY } from "./useGetBookingSpaces";
  * @category Keys
  * @group Bookings
  */
-export const BOOKING_SPACE_QUERY_KEY = (
-  bookingPlaceId: string,
-  bookingSpaceId: string
-) => [...BOOKING_SPACES_QUERY_KEY(bookingPlaceId), bookingSpaceId];
+export const BOOKING_SPACE_QUERY_KEY = (placeId: string, spaceId: string) => [
+  ...BOOKING_SPACES_QUERY_KEY(placeId),
+  spaceId,
+];
 
 /**
  * @category Setters
@@ -30,8 +30,8 @@ export const SET_BOOKING_SPACE_QUERY_DATA = (
 };
 
 interface GetBookingSpaceProps extends SingleQueryParams {
-  bookingPlaceId: string;
-  bookingSpaceId: string;
+  placeId: string;
+  spaceId: string;
 }
 
 /**
@@ -39,13 +39,13 @@ interface GetBookingSpaceProps extends SingleQueryParams {
  * @group Bookings
  */
 export const GetBookingSpace = async ({
-  bookingPlaceId,
-  bookingSpaceId,
+  placeId,
+  spaceId,
   adminApiParams,
 }: GetBookingSpaceProps): Promise<ConnectedXMResponse<BookingSpace>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/bookingPlaces/${bookingPlaceId}/bookingSpaces/${bookingSpaceId}`
+    `/bookings/places/${placeId}/spaces/${spaceId}`
   );
   return data;
 };
@@ -55,19 +55,18 @@ export const GetBookingSpace = async ({
  * @group Bookings
  */
 export const useGetBookingSpace = (
-  bookingPlaceId: string = "",
-  bookingSpaceId: string = "",
+  placeId: string = "",
+  spaceId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetBookingSpace>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetBookingSpace>>(
-    BOOKING_SPACE_QUERY_KEY(bookingPlaceId, bookingSpaceId),
+    BOOKING_SPACE_QUERY_KEY(placeId, spaceId),
     (params: SingleQueryParams) =>
-      GetBookingSpace({ bookingPlaceId, bookingSpaceId, ...params }),
+      GetBookingSpace({ placeId, spaceId, ...params }),
     {
       ...options,
-      enabled:
-        !!bookingPlaceId && !!bookingSpaceId && (options?.enabled ?? true),
+      enabled: !!placeId && !!spaceId && (options?.enabled ?? true),
     },
-    "events"
+    "bookings"
   );
 };

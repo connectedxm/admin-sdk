@@ -1710,6 +1710,7 @@ export interface BookingPlaceCreateInputs {
   country?: string | null;
   zip?: string | null;
   sortOrder?: number | string | null;
+  visible?: boolean;
 }
 
 export interface BookingPlaceUpdateInputs {
@@ -1724,6 +1725,7 @@ export interface BookingPlaceUpdateInputs {
   country?: string | null;
   zip?: string | null;
   sortOrder?: number | string | null;
+  visible?: boolean;
 }
 
 export interface BookingPlaceTranslationUpdateInputs {
@@ -1741,6 +1743,7 @@ export interface BookingSpaceCreateInputs {
   start?: string | null;
   end?: string | null;
   sortOrder?: number | string | null;
+  visible?: boolean;
 }
 
 export interface BookingSpaceUpdateInputs {
@@ -1753,6 +1756,7 @@ export interface BookingSpaceUpdateInputs {
   start?: string | null;
   end?: string | null;
   sortOrder?: number | string | null;
+  visible?: boolean;
 }
 
 export interface BookingSpaceTranslationUpdateInputs {

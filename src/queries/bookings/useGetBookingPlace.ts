@@ -12,9 +12,9 @@ import { BOOKING_PLACES_QUERY_KEY } from "./useGetBookingPlaces";
  * @category Keys
  * @group Bookings
  */
-export const BOOKING_PLACE_QUERY_KEY = (bookingPlaceId: string) => [
+export const BOOKING_PLACE_QUERY_KEY = (placeId: string) => [
   ...BOOKING_PLACES_QUERY_KEY(),
-  bookingPlaceId,
+  placeId,
 ];
 
 /**
@@ -30,7 +30,7 @@ export const SET_BOOKING_PLACE_QUERY_DATA = (
 };
 
 interface GetBookingPlaceProps extends SingleQueryParams {
-  bookingPlaceId: string;
+  placeId: string;
 }
 
 /**
@@ -38,11 +38,11 @@ interface GetBookingPlaceProps extends SingleQueryParams {
  * @group Bookings
  */
 export const GetBookingPlace = async ({
-  bookingPlaceId,
+  placeId,
   adminApiParams,
 }: GetBookingPlaceProps): Promise<ConnectedXMResponse<BookingPlace>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/bookingPlaces/${bookingPlaceId}`);
+  const { data } = await adminApi.get(`/bookings/places/${placeId}`);
   return data;
 };
 /**
@@ -50,17 +50,16 @@ export const GetBookingPlace = async ({
  * @group Bookings
  */
 export const useGetBookingPlace = (
-  bookingPlaceId: string = "",
+  placeId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetBookingPlace>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetBookingPlace>>(
-    BOOKING_PLACE_QUERY_KEY(bookingPlaceId),
-    (params: SingleQueryParams) =>
-      GetBookingPlace({ bookingPlaceId, ...params }),
+    BOOKING_PLACE_QUERY_KEY(placeId),
+    (params: SingleQueryParams) => GetBookingPlace({ placeId, ...params }),
     {
       ...options,
-      enabled: !!bookingPlaceId && (options?.enabled ?? true),
+      enabled: !!placeId && (options?.enabled ?? true),
     },
-    "events"
+    "bookings"
   );
 };

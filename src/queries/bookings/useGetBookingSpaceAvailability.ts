@@ -13,12 +13,12 @@ import { BOOKING_SPACE_AVAILABILITIES_QUERY_KEY } from "./useGetBookingSpaceAvai
  * @group Bookings
  */
 export const BOOKING_SPACE_AVAILABILITY_QUERY_KEY = (
-  bookingPlaceId: string,
-  bookingSpaceId: string,
+  placeId: string,
+  spaceId: string,
   availabilityId: string
 ) => [
-  ...BOOKING_SPACE_AVAILABILITIES_QUERY_KEY(bookingPlaceId, availabilityId),
-  bookingSpaceId,
+  ...BOOKING_SPACE_AVAILABILITIES_QUERY_KEY(placeId, availabilityId),
+  spaceId,
 ];
 
 /**
@@ -37,8 +37,8 @@ export const SET_BOOKING_SPACE_AVAILABILITY_QUERY_DATA = (
 };
 
 interface GetBookingSpaceAvailabilityProps extends SingleQueryParams {
-  bookingPlaceId: string;
-  bookingSpaceId: string;
+  placeId: string;
+  spaceId: string;
   availabilityId: string;
 }
 
@@ -47,8 +47,8 @@ interface GetBookingSpaceAvailabilityProps extends SingleQueryParams {
  * @group Bookings
  */
 export const GetBookingSpaceAvailability = async ({
-  bookingPlaceId,
-  bookingSpaceId,
+  placeId,
+  spaceId,
   availabilityId,
   adminApiParams,
 }: GetBookingSpaceAvailabilityProps): Promise<
@@ -56,7 +56,7 @@ export const GetBookingSpaceAvailability = async ({
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/bookingPlaces/${bookingPlaceId}/bookingSpaces/${bookingSpaceId}/blackouts/${availabilityId}`
+    `/bookings/places/${placeId}/spaces/${spaceId}/blackouts/${availabilityId}`
   );
   return data;
 };
@@ -66,8 +66,8 @@ export const GetBookingSpaceAvailability = async ({
  * @group Bookings
  */
 export const useGetBookingSpaceAvailability = (
-  bookingPlaceId: string = "",
-  bookingSpaceId: string = "",
+  placeId: string = "",
+  spaceId: string = "",
   availabilityId: string = "",
   options: SingleQueryOptions<
     ReturnType<typeof GetBookingSpaceAvailability>
@@ -76,26 +76,22 @@ export const useGetBookingSpaceAvailability = (
   return useConnectedSingleQuery<
     ReturnType<typeof GetBookingSpaceAvailability>
   >(
-    BOOKING_SPACE_AVAILABILITY_QUERY_KEY(
-      bookingPlaceId,
-      bookingSpaceId,
-      availabilityId
-    ),
+    BOOKING_SPACE_AVAILABILITY_QUERY_KEY(placeId, spaceId, availabilityId),
     (params: SingleQueryParams) =>
       GetBookingSpaceAvailability({
-        bookingPlaceId,
-        bookingSpaceId,
+        placeId,
+        spaceId,
         availabilityId,
         ...params,
       }),
     {
       ...options,
       enabled:
-        !!bookingPlaceId &&
-        !!bookingSpaceId &&
+        !!placeId &&
+        !!spaceId &&
         !!availabilityId &&
         (options?.enabled ?? true),
     },
-    "events"
+    "bookings"
   );
 };

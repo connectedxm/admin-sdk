@@ -15,14 +15,11 @@ import { BOOKING_SPACE_QUERY_KEY } from "./useGetBookingSpace";
  * @group Bookings
  */
 export const BOOKING_SPACE_BLACKOUTS_QUERY_KEY = (
-  bookingPlaceId: string,
-  bookingSpaceId: string,
+  placeId: string,
+  spaceId: string,
   past?: boolean
 ) => {
-  const keys = [
-    ...BOOKING_SPACE_QUERY_KEY(bookingPlaceId, bookingSpaceId),
-    "BLACKOUTS",
-  ];
+  const keys = [...BOOKING_SPACE_QUERY_KEY(placeId, spaceId), "BLACKOUTS"];
   if (typeof past === "boolean") {
     keys.push(past ? "PAST" : "UPCOMING");
   }
@@ -45,8 +42,8 @@ export const SET_BOOKING_SPACE_BLACKOUTS_QUERY_DATA = (
 };
 
 interface GetBookingSpaceBlackoutsProps extends InfiniteQueryParams {
-  bookingPlaceId: string;
-  bookingSpaceId: string;
+  placeId: string;
+  spaceId: string;
   past?: boolean;
 }
 
@@ -55,8 +52,8 @@ interface GetBookingSpaceBlackoutsProps extends InfiniteQueryParams {
  * @group Bookings
  */
 export const GetBookingSpaceBlackouts = async ({
-  bookingPlaceId,
-  bookingSpaceId,
+  placeId,
+  spaceId,
   past,
   pageParam,
   pageSize,
@@ -68,7 +65,7 @@ export const GetBookingSpaceBlackouts = async ({
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/bookingPlaces/${bookingPlaceId}/bookingSpaces/${bookingSpaceId}/blackouts`,
+    `/bookings/places/${placeId}/spaces/${spaceId}/blackouts`,
     {
       params: {
         page: pageParam || undefined,
@@ -87,8 +84,8 @@ export const GetBookingSpaceBlackouts = async ({
  * @group Bookings
  */
 export const useGetBookingSpaceBlackouts = (
-  bookingPlaceId: string = "",
-  bookingSpaceId: string = "",
+  placeId: string = "",
+  spaceId: string = "",
   past?: boolean,
   params: Omit<
     InfiniteQueryParams,
@@ -101,20 +98,19 @@ export const useGetBookingSpaceBlackouts = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetBookingSpaceBlackouts>>
   >(
-    BOOKING_SPACE_BLACKOUTS_QUERY_KEY(bookingPlaceId, bookingSpaceId, past),
+    BOOKING_SPACE_BLACKOUTS_QUERY_KEY(placeId, spaceId, past),
     (params: InfiniteQueryParams) =>
       GetBookingSpaceBlackouts({
-        bookingPlaceId,
-        bookingSpaceId,
+        placeId,
+        spaceId,
         past,
         ...params,
       }),
     params,
     {
       ...options,
-      enabled:
-        !!bookingPlaceId && !!bookingSpaceId && (options?.enabled ?? true),
+      enabled: !!placeId && !!spaceId && (options?.enabled ?? true),
     },
-    "events"
+    "bookings"
   );
 };

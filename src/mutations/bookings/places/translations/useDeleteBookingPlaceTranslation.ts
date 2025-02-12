@@ -14,7 +14,7 @@ import {
  * @group Bookings
  */
 export interface DeleteBookingPlaceTranslationParams extends MutationParams {
-  bookingPlaceId: string;
+  placeId: string;
   locale: string;
 }
 
@@ -23,7 +23,7 @@ export interface DeleteBookingPlaceTranslationParams extends MutationParams {
  * @group Bookings
  */
 export const DeleteBookingPlaceTranslation = async ({
-  bookingPlaceId,
+  placeId,
   locale,
   adminApiParams,
   queryClient,
@@ -31,15 +31,15 @@ export const DeleteBookingPlaceTranslation = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.delete(
-    `/bookingPlaces/${bookingPlaceId}/translations/${locale}`
+    `/bookings/places/${placeId}/translations/${locale}`
   );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: BOOKING_PLACE_TRANSLATIONS_QUERY_KEY(bookingPlaceId),
+      queryKey: BOOKING_PLACE_TRANSLATIONS_QUERY_KEY(placeId),
     });
     queryClient.invalidateQueries({
-      queryKey: BOOKING_PLACE_TRANSLATION_QUERY_KEY(bookingPlaceId, locale),
+      queryKey: BOOKING_PLACE_TRANSLATION_QUERY_KEY(placeId, locale),
     });
   }
 
@@ -66,7 +66,7 @@ export const useDeleteBookingPlaceTranslation = (
     DeleteBookingPlaceTranslationParams,
     Awaited<ReturnType<typeof DeleteBookingPlaceTranslation>>
   >(DeleteBookingPlaceTranslation, options, {
-    domain: "events",
+    domain: "bookings",
     type: "update",
   });
 };

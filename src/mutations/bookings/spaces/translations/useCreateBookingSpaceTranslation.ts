@@ -15,8 +15,8 @@ import {
  * @group Bookings
  */
 export interface CreateBookingSpaceTranslationParams extends MutationParams {
-  bookingPlaceId: string;
-  bookingSpaceId: string;
+  placeId: string;
+  spaceId: string;
   locale: string;
   autoTranslate?: boolean;
 }
@@ -25,8 +25,8 @@ export interface CreateBookingSpaceTranslationParams extends MutationParams {
  * @group Bookings
  */
 export const CreateBookingSpaceTranslation = async ({
-  bookingPlaceId,
-  bookingSpaceId,
+  placeId,
+  spaceId,
   locale,
   autoTranslate,
   adminApiParams,
@@ -38,23 +38,17 @@ export const CreateBookingSpaceTranslation = async ({
 
   const { data } = await connectedXM.post<
     ConnectedXMResponse<BookingSpaceTranslation>
-  >(
-    `/bookingPlaces/${bookingPlaceId}/bookingspaces/${bookingSpaceId}/translations`,
-    {
-      locale,
-      autoTranslate,
-    }
-  );
+  >(`/bookings/places/${placeId}/bookingspaces/${spaceId}/translations`, {
+    locale,
+    autoTranslate,
+  });
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: BOOKING_SPACE_TRANSLATIONS_QUERY_KEY(
-        bookingPlaceId,
-        bookingSpaceId
-      ),
+      queryKey: BOOKING_SPACE_TRANSLATIONS_QUERY_KEY(placeId, spaceId),
     });
     SET_BOOKING_SPACE_TRANSLATION_QUERY_DATA(
       queryClient,
-      [bookingPlaceId, bookingSpaceId, data.data.locale],
+      [placeId, spaceId, data.data.locale],
       data
     );
   }
@@ -82,7 +76,7 @@ export const useCreateBookingSpaceTranslation = (
     CreateBookingSpaceTranslationParams,
     Awaited<ReturnType<typeof CreateBookingSpaceTranslation>>
   >(CreateBookingSpaceTranslation, options, {
-    domain: "events",
+    domain: "bookings",
     type: "update",
   });
 };

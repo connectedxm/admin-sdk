@@ -16,7 +16,7 @@ import {
  * @group Bookings
  */
 export interface UpdateBookingPlaceParams extends MutationParams {
-  bookingPlaceId: string;
+  placeId: string;
   bookingPlace: BookingPlaceUpdateInputs;
 }
 
@@ -25,15 +25,15 @@ export interface UpdateBookingPlaceParams extends MutationParams {
  * @group Bookings
  */
 export const UpdateBookingPlace = async ({
-  bookingPlaceId,
+  placeId,
   bookingPlace,
   adminApiParams,
   queryClient,
 }: UpdateBookingPlaceParams): Promise<ConnectedXMResponse<BookingPlace>> => {
-  if (!bookingPlaceId) throw new Error("BookingPlace ID Undefined");
+  if (!placeId) throw new Error("BookingPlace ID Undefined");
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<BookingPlace>>(
-    `/bookingPlaces/${bookingPlaceId}`,
+    `/bookings/places/${placeId}`,
     {
       ...bookingPlace,
       id: undefined,
@@ -44,11 +44,7 @@ export const UpdateBookingPlace = async ({
   );
 
   if (queryClient && data.status === "ok") {
-    SET_BOOKING_PLACE_QUERY_DATA(
-      queryClient,
-      [bookingPlaceId || data?.data.id],
-      data
-    );
+    SET_BOOKING_PLACE_QUERY_DATA(queryClient, [placeId || data?.data.id], data);
     queryClient.invalidateQueries({ queryKey: BOOKING_PLACES_QUERY_KEY() });
   }
   return data;
@@ -71,7 +67,7 @@ export const useUpdateBookingPlace = (
     UpdateBookingPlaceParams,
     Awaited<ReturnType<typeof UpdateBookingPlace>>
   >(UpdateBookingPlace, options, {
-    domain: "events",
+    domain: "bookings",
     type: "update",
   });
 };

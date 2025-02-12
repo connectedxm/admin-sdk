@@ -12,12 +12,9 @@ import { BOOKING_SPACE_QUERY_KEY } from "./useGetBookingSpace";
  * @group Events
  */
 export const BOOKING_SPACE_TRANSLATIONS_QUERY_KEY = (
-  bookingPlaceId: string,
-  bookingSpaceId: string
-) => [
-  ...BOOKING_SPACE_QUERY_KEY(bookingPlaceId, bookingSpaceId),
-  "TRANSLATIONS",
-];
+  placeId: string,
+  spaceId: string
+) => [...BOOKING_SPACE_QUERY_KEY(placeId, spaceId), "TRANSLATIONS"];
 
 /**
  * @category Setters
@@ -35,8 +32,8 @@ export const SET_BOOKING_SPACE_TRANSLATIONS_QUERY_DATA = (
 };
 
 interface GetBookingSpaceTranslationsProps extends InfiniteQueryParams {
-  bookingPlaceId: string;
-  bookingSpaceId: string;
+  placeId: string;
+  spaceId: string;
 }
 
 /**
@@ -44,8 +41,8 @@ interface GetBookingSpaceTranslationsProps extends InfiniteQueryParams {
  * @group Events
  */
 export const GetBookingSpaceTranslations = async ({
-  bookingPlaceId,
-  bookingSpaceId,
+  placeId,
+  spaceId,
   pageParam,
   pageSize,
   orderBy,
@@ -56,7 +53,7 @@ export const GetBookingSpaceTranslations = async ({
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/bookingPlaces/${bookingPlaceId}/bookingSpaces/${bookingSpaceId}/translations`,
+    `/bookings/places/${placeId}/spaces/${spaceId}/translations`,
     {
       params: {
         page: pageParam || undefined,
@@ -74,8 +71,8 @@ export const GetBookingSpaceTranslations = async ({
  * @group Events
  */
 export const useGetBookingSpaceTranslations = (
-  bookingPlaceId: string = "",
-  bookingSpaceId: string = "",
+  placeId: string = "",
+  spaceId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -87,19 +84,18 @@ export const useGetBookingSpaceTranslations = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetBookingSpaceTranslations>>
   >(
-    BOOKING_SPACE_TRANSLATIONS_QUERY_KEY(bookingPlaceId, bookingSpaceId),
+    BOOKING_SPACE_TRANSLATIONS_QUERY_KEY(placeId, spaceId),
     (params: InfiniteQueryParams) =>
       GetBookingSpaceTranslations({
-        bookingPlaceId,
-        bookingSpaceId,
+        placeId,
+        spaceId,
         ...params,
       }),
     params,
     {
       ...options,
-      enabled:
-        !!bookingPlaceId && !!bookingSpaceId && (options.enabled ?? true),
+      enabled: !!placeId && !!spaceId && (options.enabled ?? true),
     },
-    "events"
+    "bookings"
   );
 };

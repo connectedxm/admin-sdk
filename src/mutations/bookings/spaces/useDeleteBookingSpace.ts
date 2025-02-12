@@ -15,8 +15,8 @@ import {
  * @group Bookings
  */
 export interface DeleteBookingSpaceParams extends MutationParams {
-  bookingPlaceId: string;
-  bookingSpaceId: string;
+  placeId: string;
+  spaceId: string;
 }
 
 /**
@@ -24,22 +24,22 @@ export interface DeleteBookingSpaceParams extends MutationParams {
  * @group Bookings
  */
 export const DeleteBookingSpace = async ({
-  bookingPlaceId,
-  bookingSpaceId,
+  placeId,
+  spaceId,
   adminApiParams,
   queryClient,
 }: DeleteBookingSpaceParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
-    `/bookingPlaces/${bookingPlaceId}/bookingSpaces/${bookingSpaceId}`
+    `/bookings/places/${placeId}/spaces/${spaceId}`
   );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: BOOKING_SPACES_QUERY_KEY(bookingPlaceId),
+      queryKey: BOOKING_SPACES_QUERY_KEY(placeId),
     });
     queryClient.removeQueries({
-      queryKey: BOOKING_SPACE_QUERY_KEY(bookingPlaceId, bookingSpaceId),
+      queryKey: BOOKING_SPACE_QUERY_KEY(placeId, spaceId),
     });
   }
   return data;
@@ -62,7 +62,7 @@ export const useDeleteBookingSpace = (
     DeleteBookingSpaceParams,
     Awaited<ReturnType<typeof DeleteBookingSpace>>
   >(DeleteBookingSpace, options, {
-    domain: "events",
+    domain: "bookings",
     type: "del",
   });
 };

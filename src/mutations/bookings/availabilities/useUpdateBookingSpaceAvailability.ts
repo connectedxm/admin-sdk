@@ -16,8 +16,8 @@ import {
  * @group Bookings
  */
 export interface UpdateBookingSpaceAvailabilityParams extends MutationParams {
-  bookingPlaceId: string;
-  bookingSpaceId: string;
+  placeId: string;
+  spaceId: string;
   availabilityId: string;
   availability: BookingSpaceAvailabilityUpdateInputs;
 }
@@ -27,8 +27,8 @@ export interface UpdateBookingSpaceAvailabilityParams extends MutationParams {
  * @group Bookings
  */
 export const UpdateBookingSpaceAvailability = async ({
-  bookingPlaceId,
-  bookingSpaceId,
+  placeId,
+  spaceId,
   availabilityId,
   availability,
   adminApiParams,
@@ -36,12 +36,12 @@ export const UpdateBookingSpaceAvailability = async ({
 }: UpdateBookingSpaceAvailabilityParams): Promise<
   ConnectedXMResponse<BookingSpaceAvailability>
 > => {
-  if (!bookingPlaceId) throw new Error("Booking Place ID Undefined");
+  if (!placeId) throw new Error("Booking Place ID Undefined");
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<
     ConnectedXMResponse<BookingSpaceAvailability>
   >(
-    `/bookingPlaces/${bookingPlaceId}/bookingSpaces/${bookingSpaceId}/availabilities/${availabilityId}`,
+    `/bookings/places/${placeId}/spaces/${spaceId}/availabilities/${availabilityId}`,
     {
       ...availability,
       id: undefined,
@@ -53,14 +53,11 @@ export const UpdateBookingSpaceAvailability = async ({
   if (queryClient && data.status === "ok") {
     SET_BOOKING_SPACE_AVAILABILITY_QUERY_DATA(
       queryClient,
-      [bookingPlaceId, bookingSpaceId, availabilityId || data?.data.id],
+      [placeId, spaceId, availabilityId || data?.data.id],
       data
     );
     queryClient.invalidateQueries({
-      queryKey: BOOKING_SPACE_AVAILABILITIES_QUERY_KEY(
-        bookingPlaceId,
-        bookingSpaceId
-      ),
+      queryKey: BOOKING_SPACE_AVAILABILITIES_QUERY_KEY(placeId, spaceId),
     });
   }
   return data;
@@ -86,7 +83,7 @@ export const useUpdateBookingSpaceAvailability = (
     UpdateBookingSpaceAvailabilityParams,
     Awaited<ReturnType<typeof UpdateBookingSpaceAvailability>>
   >(UpdateBookingSpaceAvailability, options, {
-    domain: "events",
+    domain: "bookings",
     type: "update",
   });
 };

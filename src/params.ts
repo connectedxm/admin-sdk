@@ -1697,3 +1697,7 @@ export interface CloneOptions {
   locations: boolean;
   sessions: boolean;
 }
+
+export interface UpdateEventPassResponseInputs {
+  value: string;
+}

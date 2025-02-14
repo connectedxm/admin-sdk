@@ -15,7 +15,7 @@ import { BOOKING_SPACE_QUERY_KEY } from "./useGetBookingSpace";
 export const BOOKING_SPACE_AVAILABILITIES_QUERY_KEY = (
   placeId: string,
   spaceId: string
-) => [...BOOKING_SPACE_QUERY_KEY(placeId, spaceId), spaceId];
+) => [...BOOKING_SPACE_QUERY_KEY(placeId, spaceId), "AVAILABILITIES"];
 
 /**
  * @category Setters

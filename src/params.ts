@@ -1736,9 +1736,9 @@ export interface BookingPlaceTranslationUpdateInputs {
 
 export interface BookingSpaceCreateInputs {
   name: string;
-  supply: number | string | null;
-  slotDuration: number | string | null;
-  price?: number | string | null;
+  supply: number | string;
+  slotDuration: number | string;
+  price?: number | string;
   description?: string | null;
   imageId?: string | null;
   start?: string | null;
@@ -1749,9 +1749,9 @@ export interface BookingSpaceCreateInputs {
 
 export interface BookingSpaceUpdateInputs {
   name?: string;
-  supply?: number | string | null;
-  slotDuration?: number | string | null;
-  price?: number | string | null;
+  supply?: number | string;
+  slotDuration?: number | string;
+  price?: number | string;
   description?: string | null;
   imageId?: string | null;
   start?: string | null;

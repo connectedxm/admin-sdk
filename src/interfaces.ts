@@ -2911,6 +2911,8 @@ export interface BaseBookingPlace {
   timezone: string;
   description: string | null;
   image: BaseImage | null;
+  sortOrder: number;
+  visible: boolean;
 }
 
 export interface BookingPlace extends BaseBookingPlace {
@@ -2934,6 +2936,8 @@ export interface BaseBookingSpace {
   image: BaseImage | null;
   start: string | null;
   end: string | null;
+  sortOrder: number;
+  visible: boolean;
 }
 
 export interface BookingSpace extends BaseBookingSpace {

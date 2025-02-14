@@ -17,8 +17,8 @@ export const BOOKING_SPACE_AVAILABILITY_QUERY_KEY = (
   spaceId: string,
   availabilityId: string
 ) => [
-  ...BOOKING_SPACE_AVAILABILITIES_QUERY_KEY(placeId, availabilityId),
-  spaceId,
+  ...BOOKING_SPACE_AVAILABILITIES_QUERY_KEY(placeId, spaceId),
+  availabilityId,
 ];
 
 /**

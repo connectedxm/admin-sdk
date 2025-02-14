@@ -16,7 +16,7 @@ export const BOOKING_SPACE_BLACKOUT_QUERY_KEY = (
   placeId: string,
   spaceId: string,
   blackoutId: string
-) => [...BOOKING_SPACE_BLACKOUTS_QUERY_KEY(placeId, blackoutId), spaceId];
+) => [...BOOKING_SPACE_BLACKOUTS_QUERY_KEY(placeId, spaceId), blackoutId];
 
 /**
  * @category Setters

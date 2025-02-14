@@ -1786,3 +1786,14 @@ export interface BookingSpaceBlackoutUpdateInputs {
   start?: string;
   end?: string;
 }
+
+export interface BookingCreateInputs {
+  accountId: string;
+  day: string;
+  time: string;
+  status?: EventPassStatus;
+}
+
+export interface BookingUpdateInputs {
+  status?: EventPassStatus;
+}

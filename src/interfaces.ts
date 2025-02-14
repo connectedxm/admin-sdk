@@ -2988,9 +2988,12 @@ export interface BookingSpaceBlackout extends BaseBookingSpaceBlackout {
 
 export interface BaseBooking {
   id: string;
-  start: string;
-  accountId: string;
+  day: string;
+  time: string;
+  duration: number;
+  status: EventPassStatus;
   account: BaseAccount;
+  space: BaseBookingSpace;
 }
 
 export interface Booking extends BaseBooking {

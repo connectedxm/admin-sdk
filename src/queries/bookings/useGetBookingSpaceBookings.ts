@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { Booking, ConnectedXMResponse } from "@src/interfaces";
+import { Booking, ConnectedXMResponse, EventPassStatus } from "@src/interfaces";
 
 import {
   InfiniteQueryOptions,
@@ -17,12 +17,15 @@ import { BOOKING_SPACE_QUERY_KEY } from "./useGetBookingSpace";
 export const BOOKING_SPACE_BOOKINGS_QUERY_KEY = (
   placeId: string,
   spaceId: string,
-  past?: boolean
+  past?: boolean,
+  status?: EventPassStatus
 ) => {
   const keys = [...BOOKING_SPACE_QUERY_KEY(placeId, spaceId), "BOOKINGS"];
   if (typeof past === "boolean") {
     keys.push(past ? "PAST" : "UPCOMING");
   }
+  if (status) keys.push(status);
+
   return keys;
 };
 
@@ -42,6 +45,7 @@ interface GetBookingSpaceBookingsProps extends InfiniteQueryParams {
   placeId: string;
   spaceId: string;
   past?: boolean;
+  status?: EventPassStatus;
 }
 
 /**
@@ -51,6 +55,7 @@ interface GetBookingSpaceBookingsProps extends InfiniteQueryParams {
 export const GetBookingSpaceBookings = async ({
   placeId,
   spaceId,
+  status,
   past,
   pageParam,
   pageSize,
@@ -68,6 +73,7 @@ export const GetBookingSpaceBookings = async ({
         orderBy: orderBy || undefined,
         search: search || undefined,
         past: typeof past === "boolean" ? past : undefined,
+        status: status || undefined,
       },
     }
   );
@@ -82,6 +88,7 @@ export const useGetBookingSpaceBookings = (
   placeId: string = "",
   spaceId: string = "",
   past?: boolean,
+  status?: EventPassStatus,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -93,12 +100,13 @@ export const useGetBookingSpaceBookings = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetBookingSpaceBookings>>
   >(
-    BOOKING_SPACE_BOOKINGS_QUERY_KEY(placeId, spaceId, past),
+    BOOKING_SPACE_BOOKINGS_QUERY_KEY(placeId, spaceId, past, status),
     (params: InfiniteQueryParams) =>
       GetBookingSpaceBookings({
         placeId,
         spaceId,
         past,
+        status,
         ...params,
       }),
     params,

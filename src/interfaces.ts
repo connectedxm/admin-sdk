@@ -2729,14 +2729,14 @@ export interface BaseSchedule {
 
 export interface Schedule extends BaseSchedule {}
 
-export interface BaseCognitoUser {
+export interface BaseLogin {
   cognitoUsername: string;
   provider: string;
   updatedAt: string;
   createdAt: string;
 }
 
-export interface CognitoUser extends BaseCognitoUser {
+export interface Login extends BaseLogin {
   sub: string;
   userPoolId: string;
   enabled: boolean;

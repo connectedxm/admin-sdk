@@ -5,8 +5,8 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import {
-  ACCOUNT_COGNITO_USERS_QUERY_KEY,
-  ACCOUNT_COGNITO_USER_QUERY_KEY,
+  ACCOUNT_LOGINS_QUERY_KEY,
+  ACCOUNT_LOGIN_QUERY_KEY,
 } from "@src/queries";
 import { GetAdminAPI } from "@src/AdminAPI";
 
@@ -14,7 +14,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @category Params
  * @group Account
  */
-export interface ConfirmAccountCognitoUserParams extends MutationParams {
+export interface ConfirmAccountLoginParams extends MutationParams {
   accountId: string;
   username: string;
 }
@@ -23,12 +23,12 @@ export interface ConfirmAccountCognitoUserParams extends MutationParams {
  * @category Methods
  * @group Account
  */
-export const ConfirmAccountCognitoUser = async ({
+export const ConfirmAccountLogin = async ({
   accountId,
   username,
   adminApiParams,
   queryClient,
-}: ConfirmAccountCognitoUserParams): Promise<ConnectedXMResponse<Account>> => {
+}: ConfirmAccountLoginParams): Promise<ConnectedXMResponse<Account>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<Account>>(
     `/accounts/${accountId}/cognito/${username}/confirm`
@@ -36,10 +36,10 @@ export const ConfirmAccountCognitoUser = async ({
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: ACCOUNT_COGNITO_USERS_QUERY_KEY(accountId),
+      queryKey: ACCOUNT_LOGINS_QUERY_KEY(accountId),
     });
     queryClient.invalidateQueries({
-      queryKey: ACCOUNT_COGNITO_USER_QUERY_KEY(accountId, username),
+      queryKey: ACCOUNT_LOGIN_QUERY_KEY(accountId, username),
     });
   }
   return data;
@@ -49,19 +49,19 @@ export const ConfirmAccountCognitoUser = async ({
  * @category Mutations
  * @group Account
  */
-export const useConfirmAccountCognitoUser = (
+export const useConfirmAccountLogin = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof ConfirmAccountCognitoUser>>,
-      Omit<ConfirmAccountCognitoUserParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof ConfirmAccountLogin>>,
+      Omit<ConfirmAccountLoginParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    ConfirmAccountCognitoUserParams,
-    Awaited<ReturnType<typeof ConfirmAccountCognitoUser>>
-  >(ConfirmAccountCognitoUser, options, {
+    ConfirmAccountLoginParams,
+    Awaited<ReturnType<typeof ConfirmAccountLogin>>
+  >(ConfirmAccountLogin, options, {
     domain: "accounts",
     type: "update",
   });

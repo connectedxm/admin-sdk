@@ -68,6 +68,7 @@ export interface AccountUpdateInputs {
   imageId?: string | null;
   bannerId?: string | null;
   username?: string | null;
+  email?: string | null;
   phone?: string | null;
   title?: string | null;
   company?: string | null;

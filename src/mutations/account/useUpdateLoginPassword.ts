@@ -9,7 +9,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @category Params
  * @group Account
  */
-export interface UpdateAccountCognitoUserPasswordParams extends MutationParams {
+export interface UpdateLoginPasswordParams extends MutationParams {
   accountId: string;
   username: string;
   password: string;
@@ -19,28 +19,18 @@ export interface UpdateAccountCognitoUserPasswordParams extends MutationParams {
  * @category Methods
  * @group Account
  */
-export const UpdateAccountCognitoUserPassword = async ({
+export const UpdateLoginPassword = async ({
   accountId,
   username,
   password,
   adminApiParams,
-  queryClient,
-}: UpdateAccountCognitoUserPasswordParams): Promise<
-  ConnectedXMResponse<Account>
-> => {
+}: UpdateLoginPasswordParams): Promise<ConnectedXMResponse<Account>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<Account>>(
     `/accounts/${accountId}/cognito/${username}/password`,
     { password }
   );
-  if (queryClient && data.status === "ok") {
-    UpdateAccountCognitoUserPassword({
-      accountId,
-      username,
-      password,
-      adminApiParams,
-    });
-  }
+
   return data;
 };
 
@@ -48,22 +38,19 @@ export const UpdateAccountCognitoUserPassword = async ({
  * @category Mutations
  * @group Account
  */
-export const useUpdateAccountCognitoUserPassword = (
+export const useUpdateLoginPassword = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof UpdateAccountCognitoUserPassword>>,
-      Omit<
-        UpdateAccountCognitoUserPasswordParams,
-        "queryClient" | "adminApiParams"
-      >
+      Awaited<ReturnType<typeof UpdateLoginPassword>>,
+      Omit<UpdateLoginPasswordParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    UpdateAccountCognitoUserPasswordParams,
-    Awaited<ReturnType<typeof UpdateAccountCognitoUserPassword>>
-  >(UpdateAccountCognitoUserPassword, options, {
+    UpdateLoginPasswordParams,
+    Awaited<ReturnType<typeof UpdateLoginPassword>>
+  >(UpdateLoginPassword, options, {
     domain: "accounts",
     type: "update",
   });

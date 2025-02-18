@@ -206,6 +206,7 @@ export enum RegistrationQuestionType {
 export enum ReportType {
   organization = "organization",
   event = "event",
+  booking = "booking",
 }
 
 export enum OrganizationTriggerType {
@@ -1443,6 +1444,7 @@ export interface OrganizationMembership {
   subscriptions: ModulePermissions;
   invoices: ModulePermissions;
   announcements: ModulePermissions;
+  bookings: ModulePermissions;
 }
 
 export interface BaseOrganization {
@@ -2891,4 +2893,118 @@ export interface Lead extends BaseLead {
   tikTok: string | null;
   note: string | null;
   updatedAt: string;
+}
+
+export enum DayOfWeek {
+  sunday = "sunday",
+  monday = "monday",
+  tuesday = "tuesday",
+  wednesday = "wednesday",
+  thursday = "thursday",
+  friday = "friday",
+  saturday = "saturday",
+}
+
+export interface BaseBookingPlace {
+  id: string;
+  name: string;
+  slug: string;
+  timezone: string;
+  description: string | null;
+  image: BaseImage | null;
+  sortOrder: number;
+  visible: boolean;
+}
+
+export interface BookingPlace extends BaseBookingPlace {
+  address1: string | null;
+  address2: string | null;
+  city: string | null;
+  state: string | null;
+  zip: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseBookingSpace {
+  id: string;
+  name: string;
+  slug: string;
+  supply: number;
+  slotDuration: number;
+  price: number;
+  description: string | null;
+  image: BaseImage | null;
+  start: string | null;
+  end: string | null;
+  sortOrder: number;
+  visible: boolean;
+}
+
+export interface BookingSpace extends BaseBookingSpace {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BookingPlaceTranslation {
+  id: number;
+  locale: string;
+  name: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BookingSpaceTranslation {
+  id: number;
+  locale: string;
+  name: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseBookingSpaceAvailability {
+  id: string;
+  dayOfWeek: DayOfWeek;
+  startTime: string;
+  endTime: string;
+}
+
+export interface BookingSpaceAvailability extends BaseBookingSpaceAvailability {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseBookingSpaceBlackout {
+  id: string;
+  start: string;
+  end: string;
+}
+
+export interface BookingSpaceBlackout extends BaseBookingSpaceBlackout {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseBooking {
+  id: string;
+  placeId: string;
+  day: string;
+  time: string;
+  duration: number;
+  status: EventPassStatus;
+  account: BaseAccount;
+  space: BaseBookingSpace;
+}
+
+export interface Booking extends BaseBooking {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BookingSlot {
+  time: string;
+  blackout: boolean;
+  supply: number | null;
 }

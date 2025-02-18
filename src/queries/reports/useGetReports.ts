@@ -7,6 +7,10 @@ import {
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
+interface ReportFilters {
+  eventId?: string;
+  placeId?: string;
+}
 
 /**
  * @category Keys
@@ -14,10 +18,11 @@ import { QueryClient } from "@tanstack/react-query";
  */
 export const REPORTS_QUERY_KEY = (
   type: keyof typeof ReportType,
-  eventId?: string
+  filters?: ReportFilters
 ) => {
   const keys = ["REPORTS", type];
-  if (eventId) keys.push(eventId);
+  if (filters?.eventId) keys.push(filters.eventId);
+  if (filters?.placeId) keys.push(filters.placeId);
   return keys;
 };
 
@@ -35,7 +40,7 @@ export const SET_REPORTS_QUERY_DATA = (
 
 interface GetReportsProps extends InfiniteQueryParams {
   type: keyof typeof ReportType;
-  eventId?: string;
+  filters?: ReportFilters;
 }
 
 /**
@@ -48,7 +53,7 @@ export const GetReports = async ({
   orderBy,
   search,
   type,
-  eventId,
+  filters,
   adminApiParams,
 }: GetReportsProps): Promise<ConnectedXMResponse<Report[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -59,7 +64,8 @@ export const GetReports = async ({
       orderBy: orderBy || undefined,
       search: search || undefined,
       type,
-      eventId,
+      eventId: filters?.eventId,
+      placeId: filters?.placeId,
     },
   });
   return data;
@@ -70,7 +76,7 @@ export const GetReports = async ({
  */
 export const useGetReports = (
   type: keyof typeof ReportType,
-  eventId?: string,
+  filters?: ReportFilters,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -78,12 +84,16 @@ export const useGetReports = (
   options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetReports>>> = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetReports>>>(
-    REPORTS_QUERY_KEY(type, eventId),
-    (params: InfiniteQueryParams) => GetReports({ ...params, type, eventId }),
+    REPORTS_QUERY_KEY(type, filters),
+    (params: InfiniteQueryParams) => GetReports({ ...params, type, filters }),
     params,
     {
       ...options,
-      enabled: type === "event" ? !!eventId : true && (options.enabled ?? true),
+      enabled:
+        (type === "organization" ||
+          (type === "event" && !!filters?.eventId) ||
+          (type === "booking" && !!filters?.placeId)) &&
+        (options.enabled ?? true),
     },
     "reports"
   );

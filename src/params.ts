@@ -68,6 +68,7 @@ export interface AccountUpdateInputs {
   imageId?: string | null;
   bannerId?: string | null;
   username?: string | null;
+  email?: string | null;
   phone?: string | null;
   title?: string | null;
   company?: string | null;
@@ -1797,4 +1798,7 @@ export interface BookingCreateInputs {
 
 export interface BookingUpdateInputs {
   status?: EventPassStatus;
+}
+export interface UpdateEventPassResponseInputs {
+  value: string;
 }

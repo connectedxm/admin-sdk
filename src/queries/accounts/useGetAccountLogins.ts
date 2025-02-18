@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse } from "@src/interfaces";
 
-import { CognitoUser } from "@src/interfaces";
+import { Login } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -13,12 +13,12 @@ import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
  * @category Keys
  * @group Accounts
  */
-export const ACCOUNT_COGNITO_USERS_QUERY_KEY = (accountId: string) => [
+export const ACCOUNT_LOGINS_QUERY_KEY = (accountId: string) => [
   ...ACCOUNT_QUERY_KEY(accountId),
-  "COGNITO_USERS",
+  "LOGINS",
 ];
 
-interface GetAccountCognitoUsersProps extends InfiniteQueryParams {
+interface GetAccountLoginsProps extends InfiniteQueryParams {
   accountId: string;
 }
 
@@ -26,16 +26,14 @@ interface GetAccountCognitoUsersProps extends InfiniteQueryParams {
  * @category Queries
  * @group Accounts
  */
-export const GetAccountCognitoUsers = async ({
+export const GetAccountLogins = async ({
   accountId,
   pageParam,
   pageSize,
   orderBy,
   search,
   adminApiParams,
-}: GetAccountCognitoUsersProps): Promise<
-  ConnectedXMResponse<CognitoUser[]>
-> => {
+}: GetAccountLoginsProps): Promise<ConnectedXMResponse<Login[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/accounts/${accountId}/cognito`, {
     params: {
@@ -51,22 +49,21 @@ export const GetAccountCognitoUsers = async ({
  * @category Hooks
  * @group Accounts
  */
-export const useGetAccountCognitoUsers = (
+export const useGetAccountLogins = (
   accountId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetAccountCognitoUsers>>
+    Awaited<ReturnType<typeof GetAccountLogins>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetAccountCognitoUsers>>
+    Awaited<ReturnType<typeof GetAccountLogins>>
   >(
-    ACCOUNT_COGNITO_USERS_QUERY_KEY(accountId),
-    (params: InfiniteQueryParams) =>
-      GetAccountCognitoUsers({ accountId, ...params }),
+    ACCOUNT_LOGINS_QUERY_KEY(accountId),
+    (params: InfiniteQueryParams) => GetAccountLogins({ accountId, ...params }),
     params,
     {
       ...options,

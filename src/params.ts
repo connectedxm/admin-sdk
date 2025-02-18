@@ -1168,6 +1168,7 @@ export interface ReportCreateInputs {
   name: string;
   parentId: string | number;
   eventId?: string | null;
+  placeId?: string | null;
   description?: string | null;
   filters?: string | null;
   columns?: string | null;

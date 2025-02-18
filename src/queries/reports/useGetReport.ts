@@ -33,6 +33,7 @@ export const SET_REPORT_QUERY_DATA = (
 interface GetReportProps extends SingleQueryParams {
   reportId: string;
   eventId?: string;
+  placeId?: string;
 }
 
 /**
@@ -42,6 +43,7 @@ interface GetReportProps extends SingleQueryParams {
 export const GetReport = async ({
   reportId,
   eventId,
+  placeId,
   adminApiParams,
 }: GetReportProps): Promise<ConnectedXMResponse<Report>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -54,6 +56,7 @@ export const GetReport = async ({
     {
       params: {
         eventId,
+        placeId,
       },
     }
   );
@@ -91,11 +94,13 @@ export const GetReport = async ({
 export const useGetReport = (
   reportId: string = "",
   eventId?: string,
+  placeId?: string,
   options: SingleQueryOptions<ReturnType<typeof GetReport>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetReport>>(
     REPORT_QUERY_KEY(eventId ? "event" : "organization", reportId),
-    (params: SingleQueryParams) => GetReport({ reportId, eventId, ...params }),
+    (params: SingleQueryParams) =>
+      GetReport({ reportId, eventId, placeId, ...params }),
     {
       ...options,
       enabled: !!reportId && (options?.enabled ?? true),

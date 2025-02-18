@@ -206,6 +206,7 @@ export enum RegistrationQuestionType {
 export enum ReportType {
   organization = "organization",
   event = "event",
+  booking = "booking",
 }
 
 export enum OrganizationTriggerType {
@@ -2988,6 +2989,7 @@ export interface BookingSpaceBlackout extends BaseBookingSpaceBlackout {
 
 export interface BaseBooking {
   id: string;
+  placeId: string;
   day: string;
   time: string;
   duration: number;
@@ -3002,7 +3004,7 @@ export interface Booking extends BaseBooking {
 }
 
 export interface BookingSlot {
-  start: string;
+  time: string;
   blackout: boolean;
   supply: number | null;
 }

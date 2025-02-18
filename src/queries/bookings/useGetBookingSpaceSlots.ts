@@ -14,8 +14,9 @@ import { BOOKING_SPACE_QUERY_KEY } from "./useGetBookingSpace";
  */
 export const BOOKING_SPACE_SLOTS_QUERY_KEY = (
   placeId: string,
-  spaceId: string
-) => [...BOOKING_SPACE_QUERY_KEY(placeId, spaceId), spaceId];
+  spaceId: string,
+  firstDayOfMonth: string
+) => [...BOOKING_SPACE_QUERY_KEY(placeId, spaceId), "SLOTS", firstDayOfMonth];
 
 /**
  * @category Setters
@@ -32,6 +33,7 @@ export const SET_BOOKING_SPACE_SLOTS_QUERY_DATA = (
 interface GetBookingSpaceSlotsProps extends SingleQueryParams {
   placeId: string;
   spaceId: string;
+  firstDayOfMonth: string;
 }
 
 /**
@@ -41,11 +43,19 @@ interface GetBookingSpaceSlotsProps extends SingleQueryParams {
 export const GetBookingSpaceSlots = async ({
   placeId,
   spaceId,
+  firstDayOfMonth,
   adminApiParams,
-}: GetBookingSpaceSlotsProps): Promise<ConnectedXMResponse<BookingSlot[]>> => {
+}: GetBookingSpaceSlotsProps): Promise<
+  ConnectedXMResponse<{ day: string; slots: BookingSlot[] }[]>
+> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/bookings/places/${placeId}/spaces/${spaceId}/slots`
+    `/bookings/places/${placeId}/spaces/${spaceId}/slots`,
+    {
+      params: {
+        firstDayOfMonth,
+      },
+    }
   );
   return data;
 };
@@ -57,19 +67,25 @@ export const GetBookingSpaceSlots = async ({
 export const useGetBookingSpaceSlots = (
   placeId: string = "",
   spaceId: string = "",
+  firstDayOfMonth: string,
   options: SingleQueryOptions<ReturnType<typeof GetBookingSpaceSlots>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetBookingSpaceSlots>>(
-    BOOKING_SPACE_SLOTS_QUERY_KEY(placeId, spaceId),
+    BOOKING_SPACE_SLOTS_QUERY_KEY(placeId, spaceId, firstDayOfMonth),
     (params: SingleQueryParams) =>
       GetBookingSpaceSlots({
         placeId,
         spaceId,
+        firstDayOfMonth,
         ...params,
       }),
     {
       ...options,
-      enabled: !!placeId && !!spaceId && (options?.enabled ?? true),
+      enabled:
+        !!placeId &&
+        !!spaceId &&
+        !!firstDayOfMonth &&
+        (options?.enabled ?? true),
     },
     "bookings"
   );

@@ -10,6 +10,7 @@ import { QueryClient } from "@tanstack/react-query";
 interface ReportFilters {
   eventId?: string;
   placeId?: string;
+  groupId?: string;
 }
 
 /**
@@ -23,6 +24,7 @@ export const REPORTS_QUERY_KEY = (
   const keys = ["REPORTS", type];
   if (filters?.eventId) keys.push(filters.eventId);
   if (filters?.placeId) keys.push(filters.placeId);
+  if (filters?.groupId) keys.push(filters.groupId);
   return keys;
 };
 
@@ -66,6 +68,7 @@ export const GetReports = async ({
       type,
       eventId: filters?.eventId,
       placeId: filters?.placeId,
+      groupId: filters?.groupId,
     },
   });
   return data;

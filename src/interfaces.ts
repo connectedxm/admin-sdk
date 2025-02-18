@@ -207,6 +207,7 @@ export enum ReportType {
   organization = "organization",
   event = "event",
   booking = "booking",
+  group = "group",
 }
 
 export enum OrganizationTriggerType {

@@ -3006,6 +3006,5 @@ export interface Booking extends BaseBooking {
 
 export interface BookingSlot {
   time: string;
-  blackout: boolean;
   supply: number | null;
 }

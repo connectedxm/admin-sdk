@@ -907,6 +907,7 @@ export interface OrganizationMembershipUpdateInputs {
   // MODULES
   activities: Omit<ModulePermissions, "superEnabled" | "enabled">;
   events: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  bookings: Omit<ModulePermissions, "superEnabled" | "enabled">;
   groups: Omit<ModulePermissions, "superEnabled" | "enabled">;
   accounts: Omit<ModulePermissions, "superEnabled" | "enabled">;
   channels: Omit<ModulePermissions, "superEnabled" | "enabled">;
@@ -1168,6 +1169,7 @@ export interface ReportCreateInputs {
   name: string;
   parentId: string | number;
   eventId?: string | null;
+  placeId?: string | null;
   description?: string | null;
   filters?: string | null;
   columns?: string | null;
@@ -1699,6 +1701,104 @@ export interface CloneOptions {
   sessions: boolean;
 }
 
+export interface BookingPlaceCreateInputs {
+  name: string;
+  timezone: string;
+  description?: string | null;
+  imageId?: string | null;
+  address1?: string | null;
+  address2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  country?: string | null;
+  zip?: string | null;
+  sortOrder?: number | string | null;
+  visible?: boolean;
+}
+
+export interface BookingPlaceUpdateInputs {
+  name?: string;
+  timezone?: string;
+  description?: string | null;
+  imageId?: string | null;
+  address1?: string | null;
+  address2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  country?: string | null;
+  zip?: string | null;
+  sortOrder?: number | string | null;
+  visible?: boolean;
+}
+
+export interface BookingPlaceTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+}
+
+export interface BookingSpaceCreateInputs {
+  name: string;
+  supply: number | string;
+  slotDuration: number | string;
+  price?: number | string;
+  description?: string | null;
+  imageId?: string | null;
+  start?: string | null;
+  end?: string | null;
+  sortOrder?: number | string | null;
+  visible?: boolean;
+}
+
+export interface BookingSpaceUpdateInputs {
+  name?: string;
+  supply?: number | string;
+  slotDuration?: number | string;
+  price?: number | string;
+  description?: string | null;
+  imageId?: string | null;
+  start?: string | null;
+  end?: string | null;
+  sortOrder?: number | string | null;
+  visible?: boolean;
+}
+
+export interface BookingSpaceTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+}
+
+export interface BookingSpaceAvailabilityCreateInputs {
+  dayOfWeek: string;
+  startTime: string;
+  endTime: string;
+}
+
+export interface BookingSpaceAvailabilityUpdateInputs {
+  dayOfWeek?: string;
+  startTime?: string;
+  endTime?: string;
+}
+
+export interface BookingSpaceBlackoutCreateInputs {
+  start: string;
+  end: string;
+}
+
+export interface BookingSpaceBlackoutUpdateInputs {
+  start?: string;
+  end?: string;
+}
+
+export interface BookingCreateInputs {
+  accountId: string;
+  day: string;
+  time: string;
+  status?: EventPassStatus;
+}
+
+export interface BookingUpdateInputs {
+  status?: EventPassStatus;
+}
 export interface UpdateEventPassResponseInputs {
   value: string;
 }

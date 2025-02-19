@@ -1170,6 +1170,7 @@ export interface ReportCreateInputs {
   parentId: string | number;
   eventId?: string | null;
   placeId?: string | null;
+  groupId?: string | null;
   description?: string | null;
   filters?: string | null;
   columns?: string | null;

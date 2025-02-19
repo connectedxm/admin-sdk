@@ -6,6 +6,7 @@ import {
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
 import {
+  BOOKING_PAYMENTS_QUERY_KEY,
   EVENT_ATTENDEE_PAYMENTS_QUERY_KEY,
   PAYMENT_QUERY_KEY,
   PAYMENTS_QUERY_KEY,
@@ -55,6 +56,12 @@ export const RefundOrganizationPayment = async ({
           eventId,
           data.data.registrationId
         ),
+      });
+    }
+
+    if (data.data?.bookingId) {
+      queryClient.invalidateQueries({
+        queryKey: BOOKING_PAYMENTS_QUERY_KEY(data.data.bookingId),
       });
     }
   }

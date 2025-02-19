@@ -1,4 +1,5 @@
 export * from "./useGetBooking";
+export * from "./useGetBookingPayments";
 export * from "./useGetBookingPlace";
 export * from "./useGetBookingPlaceBookings";
 export * from "./useGetBookingPlaceTranslation";

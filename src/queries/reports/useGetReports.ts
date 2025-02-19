@@ -95,7 +95,8 @@ export const useGetReports = (
       enabled:
         (type === "organization" ||
           (type === "event" && !!filters?.eventId) ||
-          (type === "booking" && !!filters?.placeId)) &&
+          (type === "booking" && !!filters?.placeId) ||
+          (type === "group" && !!filters?.groupId)) &&
         (options.enabled ?? true),
     },
     "reports"

@@ -512,8 +512,8 @@ export interface BaseAnnouncement {
 export interface EventAnnouncementFilters {
   type: "event";
   ticketId?: string;
-  questionId?: number;
-  choiceId?: number;
+  questionId?: string;
+  choiceId?: string;
   eventRoomTypeId?: string;
   addOnId?: string;
 }
@@ -1700,7 +1700,7 @@ export interface TaxIntegration {
 }
 
 export interface BaseRegistrationQuestionChoice {
-  id: number;
+  id: string;
   value: string;
   text: string | null;
   description: string | null;
@@ -1709,10 +1709,10 @@ export interface BaseRegistrationQuestionChoice {
   subQuestions?:
     | RegistrationQuestion[]
     | {
-        questionId: number;
+        questionId: string;
       }[];
   question: {
-    id: number;
+    id: string;
     name: string;
   };
   _count: {
@@ -1721,13 +1721,13 @@ export interface BaseRegistrationQuestionChoice {
 }
 
 export interface Question {
-  id: number;
+  id: string;
   value: string;
 }
 
 export interface RegistrationQuestionChoice
   extends BaseRegistrationQuestionChoice {
-  questionId: number;
+  questionId: string;
   question: BaseRegistrationQuestion;
   subQuestions: BaseRegistrationQuestionChoiceSubQuestion[];
   createdAt: string;
@@ -1735,9 +1735,9 @@ export interface RegistrationQuestionChoice
 }
 
 export interface BaseRegistrationQuestionChoiceSubQuestion {
-  choiceId: number;
+  choiceId: string;
   choice: BaseRegistrationQuestionChoice;
-  questionId: number;
+  questionId: string;
   question: BaseRegistrationQuestion;
 }
 
@@ -1749,7 +1749,7 @@ export interface RegistrationQuestionChoiceSubQuestion
 }
 
 export interface RegistrationQuestionChoiceTranslation {
-  id: number;
+  id: string;
   locale: string;
   value: string;
   text: string | null;
@@ -1759,7 +1759,7 @@ export interface RegistrationQuestionChoiceTranslation {
 }
 
 export interface BaseRegistrationQuestionResponseChange {
-  id: number;
+  id: string;
   newValue: string;
   oldValue: string;
   eventId: string;
@@ -1776,9 +1776,9 @@ export interface RegistrationQuestionResponseChange
 }
 
 export interface BaseRegistrationQuestionResponse {
-  id: number;
+  id: string;
   value: string;
-  questionId: number;
+  questionId: string;
   question: BaseRegistrationQuestion;
 }
 
@@ -1790,7 +1790,7 @@ export interface RegistrationQuestionResponse
 }
 
 export interface BaseRegistrationQuestionSearchValue {
-  id: number;
+  id: string;
   value: string;
   top: boolean;
 }
@@ -1801,7 +1801,7 @@ export interface RegistrationQuestionSearchValue
 }
 
 export interface BaseRegistrationQuestion {
-  id: number;
+  id: string;
   eventId: string;
   type: RegistrationQuestionType;
   name: string;
@@ -1832,7 +1832,7 @@ export interface RegistrationQuestion extends BaseRegistrationQuestion {
 }
 
 export interface RegistrationQuestionTranslation {
-  id: number;
+  id: string;
   locale: string;
   label: string | null;
   placeholder: string | null;
@@ -1842,9 +1842,9 @@ export interface RegistrationQuestionTranslation {
 }
 
 export interface BaseRegistrationSectionQuestion {
-  sectionId: number;
+  sectionId: string;
   section: BaseRegistrationSection;
-  questionId: number;
+  questionId: string;
   question: BaseRegistrationQuestion;
   sortOrder: number;
 }
@@ -1856,7 +1856,7 @@ export interface RegistrationSectionQuestion
 }
 
 export interface BaseRegistrationSection {
-  id: number;
+  id: string;
   eventId: string;
   name: string;
   description: string | null;
@@ -1877,7 +1877,7 @@ export interface RegistrationSection extends BaseRegistrationSection {
 }
 
 export interface RegistrationSectionTranslation {
-  id: number;
+  id: string;
   locale: string;
   name: string;
   description: string | null;

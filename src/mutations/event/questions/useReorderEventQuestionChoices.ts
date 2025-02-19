@@ -17,7 +17,7 @@ import { SET_EVENT_QUESTION_CHOICES_QUERY_DATA } from "@src/queries";
 export interface ReorderEventQuestionChoicesParams extends MutationParams {
   eventId: string;
   questionId: string;
-  choicesIds: number[];
+  choicesIds: string[];
 }
 
 /**

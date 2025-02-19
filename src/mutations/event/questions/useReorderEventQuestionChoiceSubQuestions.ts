@@ -23,7 +23,7 @@ export interface ReorderEventQuestionChoiceSubQuestionsParams
   eventId: string;
   questionId: string;
   choiceId: string;
-  questionIds: number[];
+  questionIds: string[];
 }
 
 /**

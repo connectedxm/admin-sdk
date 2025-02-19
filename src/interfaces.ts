@@ -512,8 +512,8 @@ export interface BaseAnnouncement {
 export interface EventAnnouncementFilters {
   type: "event";
   ticketId?: string;
-  questionId?: number;
-  choiceId?: number;
+  questionId?: string;
+  choiceId?: string;
   eventRoomTypeId?: string;
   addOnId?: string;
 }

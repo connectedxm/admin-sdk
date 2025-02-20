@@ -1668,6 +1668,8 @@ export interface Payment extends BasePayment {
   coupons: BaseCoupon[];
   invoice: BaseInvoice;
   registrationId: string | null;
+  bookingId: string | null;
+  booking: BaseBooking | null;
   metadata?: any;
 }
 
@@ -2990,6 +2992,7 @@ export interface BookingSpaceBlackout extends BaseBookingSpaceBlackout {
 
 export interface BaseBooking {
   id: string;
+  alternateId: string;
   placeId: string;
   day: string;
   time: string;
@@ -3006,6 +3009,5 @@ export interface Booking extends BaseBooking {
 
 export interface BookingSlot {
   time: string;
-  blackout: boolean;
   supply: number | null;
 }

@@ -10,6 +10,7 @@ export * from "./useCreateAccountAddress";
 export * from "./useDeleteAccount";
 export * from "./useDeleteAccountAddress";
 export * from "./useDeleteAccountLead";
+export * from "./useDeleteAccountPushDevice";
 export * from "./useExportAccount";
 export * from "./useImpersonateAccount";
 export * from "./useRemoveAccountDelegate";

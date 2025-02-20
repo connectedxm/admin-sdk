@@ -5,7 +5,10 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ACCOUNT_LEAD_QUERY_KEY, ACCOUNT_LEADS_QUERY_KEY } from "@src/queries";
+import {
+  ACCOUNT_PUSH_DEVICE_QUERY_KEY,
+  ACCOUNT_PUSH_DEVICES_QUERY_KEY,
+} from "@src/queries";
 
 /**
  * @category Params
@@ -33,10 +36,10 @@ export const DeleteAccountPushDevice = async ({
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: ACCOUNT_LEADS_QUERY_KEY(accountId),
+      queryKey: ACCOUNT_PUSH_DEVICES_QUERY_KEY(accountId),
     });
     queryClient.invalidateQueries({
-      queryKey: ACCOUNT_LEAD_QUERY_KEY(accountId, pushDeviceId),
+      queryKey: ACCOUNT_PUSH_DEVICE_QUERY_KEY(accountId, pushDeviceId),
     });
   }
 

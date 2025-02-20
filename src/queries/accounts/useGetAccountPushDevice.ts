@@ -4,7 +4,7 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../useConnectedSingleQuery";
-import { ConnectedXMResponse, Lead } from "@src/interfaces";
+import { ConnectedXMResponse, PushDevice } from "@src/interfaces";
 
 import { QueryClient } from "@tanstack/react-query";
 import { ACCOUNT_PUSH_DEVICES_QUERY_KEY } from "./useGetAccountPushDevices";
@@ -43,7 +43,7 @@ export const GetAccountPushDevice = async ({
   accountId = "",
   pushDeviceId = "",
   adminApiParams,
-}: GetAccountPushDeviceProps): Promise<ConnectedXMResponse<Lead>> => {
+}: GetAccountPushDeviceProps): Promise<ConnectedXMResponse<PushDevice>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
     `/accounts/${accountId}/push-devices/${pushDeviceId}`

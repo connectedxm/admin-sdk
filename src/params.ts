@@ -1109,9 +1109,9 @@ export interface EventQuestionChoiceUpdateInputs {
 export interface EventQuestionCreateInputs {
   name: string;
   type: keyof typeof RegistrationQuestionType | null;
-  sectionId?: number;
-  questionId?: number;
-  choiceId?: number;
+  sectionId?: string;
+  questionId?: string;
+  choiceId?: string;
   required?: boolean;
   label?: string | null;
   placeholder?: string | null;

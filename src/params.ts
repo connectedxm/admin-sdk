@@ -1685,7 +1685,7 @@ export interface CloneOptions {
   passTypes: boolean;
   addOns: boolean;
   roomTypes: boolean;
-  // questions: boolean;
+  questions: boolean;
   bypassList: boolean;
   coHosts: boolean;
   emails: boolean;

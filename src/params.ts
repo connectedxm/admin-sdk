@@ -1799,6 +1799,8 @@ export interface BookingCreateInputs {
 
 export interface BookingUpdateInputs {
   status?: EventPassStatus;
+  day?: string;
+  time?: string;
 }
 export interface UpdateEventPassResponseInputs {
   value: string;

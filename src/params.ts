@@ -1748,6 +1748,8 @@ export interface BookingSpaceCreateInputs {
   end?: string | null;
   sortOrder?: number | string | null;
   visible?: boolean;
+  confirmationBody?: string | null;
+  confirmationReplyTo?: string | null;
 }
 
 export interface BookingSpaceUpdateInputs {
@@ -1760,6 +1762,8 @@ export interface BookingSpaceUpdateInputs {
   end?: string | null;
   sortOrder?: number | string | null;
   visible?: boolean;
+  confirmationBody?: string | null;
+  confirmationReplyTo?: string | null;
 }
 
 export interface BookingSpaceTranslationUpdateInputs {

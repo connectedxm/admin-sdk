@@ -24,7 +24,7 @@ export const BOOKING_SPACE_TRANSLATION_QUERY_KEY = (
 export const SET_BOOKING_SPACE_TRANSLATION_QUERY_DATA = (
   client: any,
   keyParams: Parameters<typeof BOOKING_SPACE_TRANSLATION_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventSpaceTranslation>>
+  response: Awaited<ReturnType<typeof GetBookingSpaceTranslation>>
 ) => {
   client.setQueryData(
     BOOKING_SPACE_TRANSLATION_QUERY_KEY(...keyParams),
@@ -32,7 +32,7 @@ export const SET_BOOKING_SPACE_TRANSLATION_QUERY_DATA = (
   );
 };
 
-interface GetEventSpaceTranslationProps extends SingleQueryParams {
+interface GetBookingSpaceTranslationProps extends SingleQueryParams {
   placeId: string;
   spaceId: string;
   locale: string;
@@ -42,12 +42,12 @@ interface GetEventSpaceTranslationProps extends SingleQueryParams {
  * @category Queries
  * @group Bookings
  */
-export const GetEventSpaceTranslation = async ({
+export const GetBookingSpaceTranslation = async ({
   placeId,
   spaceId,
   locale,
   adminApiParams,
-}: GetEventSpaceTranslationProps): Promise<
+}: GetBookingSpaceTranslationProps): Promise<
   ConnectedXMResponse<BookingSpaceTranslation | null>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -61,16 +61,18 @@ export const GetEventSpaceTranslation = async ({
  * @category Hooks
  * @group Bookings
  */
-export const useGetEventSpaceTranslation = (
+export const useGetBookingSpaceTranslation = (
   placeId: string = "",
   spaceId: string = "",
   locale: string = "",
-  options: SingleQueryOptions<ReturnType<typeof GetEventSpaceTranslation>> = {}
+  options: SingleQueryOptions<
+    ReturnType<typeof GetBookingSpaceTranslation>
+  > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventSpaceTranslation>>(
+  return useConnectedSingleQuery<ReturnType<typeof GetBookingSpaceTranslation>>(
     BOOKING_SPACE_TRANSLATION_QUERY_KEY(placeId, spaceId, locale),
     (params: SingleQueryParams) =>
-      GetEventSpaceTranslation({
+      GetBookingSpaceTranslation({
         placeId,
         spaceId,
         locale,

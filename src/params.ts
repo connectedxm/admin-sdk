@@ -1753,7 +1753,6 @@ export interface BookingSpaceCreateInputs {
 export interface BookingSpaceUpdateInputs {
   name?: string;
   supply?: number | string;
-  slotDuration?: number | string;
   price?: number | string;
   description?: string | null;
   imageId?: string | null;

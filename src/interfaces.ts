@@ -275,6 +275,13 @@ export interface Account extends BaseAccount {
   updatedAt: string;
 }
 
+export interface BaseAccountInvitation {
+  email: string;
+  createdAt: string;
+}
+
+export interface AccountInvitation extends BaseAccountInvitation {}
+
 export interface BaseAccountAddress {
   id: string;
   primary: boolean;
@@ -1516,6 +1523,7 @@ export interface Organization extends BaseOrganization {
   maxVideoMins: number | null;
   locales: string[];
   googleServices: string | null;
+  inviteOnly: boolean;
 }
 
 export interface OrganizationTrigger {

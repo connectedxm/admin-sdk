@@ -12,6 +12,7 @@ export * from "./useGetAccountFollowers";
 export * from "./useGetAccountFollowing";
 export * from "./useGetAccountGroups";
 export * from "./useGetAccountInterests";
+export * from "./useGetAccountInvitations";
 export * from "./useGetAccountLead";
 export * from "./useGetAccountLeads";
 export * from "./useGetAccountLevels";

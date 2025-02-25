@@ -1076,6 +1076,7 @@ export interface OrganizationUpdateInputs {
   appSplashScreenId?: string | null;
   locales?: string[] | null;
   googleServices?: string | null;
+  inviteOnly?: boolean;
 }
 
 export interface PaymentIntentPurchaseMetadataInputs {}

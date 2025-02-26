@@ -2631,6 +2631,7 @@ export enum ThreadType {
   public = "public",
   private = "private",
   direct = "direct",
+  group = "group",
 }
 
 export interface BaseThread {

@@ -10,7 +10,6 @@ import {
   RegistrationQuestionType,
   SubscriptionProductPriceType,
   SubscriptionProductPriceInterval,
-  ThreadAccessLevel,
   PassTypeVisibility,
   PassTypeAccessLevel,
   SubscriptionStatus,
@@ -1406,31 +1405,13 @@ export interface TeamUpdateInputs {
 }
 
 export interface ThreadCreateInputs {
-  access: keyof typeof ThreadAccessLevel;
-  name: string;
-  description?: string | null;
-  featured?: boolean;
-  visible?: boolean;
-  groupId?: string | null;
-  eventId?: string | null;
+  subject?: string | null;
   imageId?: string | null;
-  firstMessage?: string | null;
-  accountIds?: string | null;
-  section?: string | null;
 }
 
 export interface ThreadUpdateInputs {
-  name?: string | null;
-  description?: string | null;
-  featured?: boolean;
-  visible?: boolean;
-  access?: keyof typeof ThreadAccessLevel | null;
-  groupId?: string | null;
-  eventId?: string | null;
+  subject?: string | null;
   imageId?: string | null;
-  firstMessage?: string | null;
-  accountIds?: string | null;
-  section?: string | null;
 }
 
 export interface PassTypeCreateInputs {

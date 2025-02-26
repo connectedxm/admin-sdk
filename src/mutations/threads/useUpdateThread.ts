@@ -15,7 +15,6 @@ import { ThreadUpdateInputs } from "@src/params";
 export interface UpdateThreadParams extends MutationParams {
   threadId: string;
   thread: ThreadUpdateInputs;
-  imageDataUri?: string;
 }
 
 /**
@@ -25,17 +24,13 @@ export interface UpdateThreadParams extends MutationParams {
 export const UpdateThread = async ({
   threadId,
   thread,
-  imageDataUri,
   adminApiParams,
   queryClient,
 }: UpdateThreadParams): Promise<ConnectedXMResponse<Thread>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<Thread>>(
     `/threads/${threadId}`,
-    {
-      thread,
-      imageDataUri,
-    }
+    thread
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: THREADS_QUERY_KEY() });

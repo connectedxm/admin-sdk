@@ -1,4 +1,4 @@
-import { ConnectedXMResponse, ThreadMember } from "@src/interfaces";
+import { ConnectedXMResponse, Group, ThreadMember } from "@src/interfaces";
 import { THREADS_QUERY_KEY } from "./useGetThreads";
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
@@ -19,7 +19,6 @@ export const THREAD_MEMBERS_QUERY_KEY = (threadId: string) => [
 
 interface GetThreadMembersProps extends InfiniteQueryParams {
   threadId: string;
-  role?: string;
 }
 
 /**
@@ -32,9 +31,10 @@ export const GetThreadMembers = async ({
   pageSize,
   orderBy,
   search,
-  role,
   adminApiParams,
-}: GetThreadMembersProps): Promise<ConnectedXMResponse<ThreadMember[]>> => {
+}: GetThreadMembersProps): Promise<
+  ConnectedXMResponse<{ groups: Group; members: ThreadMember[] }>
+> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/threads/${threadId}/members`, {
     params: {
@@ -42,7 +42,6 @@ export const GetThreadMembers = async ({
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
-      role: role || undefined,
     },
   });
   return data;

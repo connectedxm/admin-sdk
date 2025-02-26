@@ -12,34 +12,23 @@ import { ThreadCreateInputs } from "@src/params";
  * @category Params
  * @group Thread
  */
-export interface CreateThreadParams extends MutationParams {
+export interface CreatePublicThreadParams extends MutationParams {
   thread: ThreadCreateInputs;
-  accountIds?: string[];
-  firstMessage?: string;
-  imageDataUri?: string;
 }
 
 /**
  * @category Methods
  * @group Thread
  */
-export const CreateThread = async ({
+export const CreatePublicThread = async ({
   thread,
-  accountIds,
-  firstMessage,
-  imageDataUri,
   adminApiParams,
   queryClient,
-}: CreateThreadParams): Promise<ConnectedXMResponse<Thread>> => {
+}: CreatePublicThreadParams): Promise<ConnectedXMResponse<Thread>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<Thread>>(
-    `/threads`,
-    {
-      thread,
-      accountIds,
-      firstMessage,
-      imageDataUri,
-    }
+    `/threads/public`,
+    thread
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: THREADS_QUERY_KEY() });
@@ -52,19 +41,19 @@ export const CreateThread = async ({
  * @category Mutations
  * @group Thread
  */
-export const useCreateThread = (
+export const useCreatePublicThread = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof CreateThread>>,
-      Omit<CreateThreadParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof CreatePublicThread>>,
+      Omit<CreatePublicThreadParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    CreateThreadParams,
-    Awaited<ReturnType<typeof CreateThread>>
-  >(CreateThread, options, {
+    CreatePublicThreadParams,
+    Awaited<ReturnType<typeof CreatePublicThread>>
+  >(CreatePublicThread, options, {
     domain: "threads",
     type: "create",
   });

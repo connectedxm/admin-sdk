@@ -2627,30 +2627,24 @@ export interface ThreadInvitation {
   updatedAt: string;
 }
 
-export interface BaseThread {
-  id: string;
-  name: string;
-  description: string | null;
-  featured: boolean;
-  imageId: string | null;
-  image: BaseImage | null;
-  access: ThreadAccessLevel;
-  section: string | null;
-  eventId: string | null;
-  groupId: string | null;
-  lastMessageAt: string | null;
+export enum ThreadType {
+  public = "public",
+  private = "private",
+  direct = "direct",
 }
 
-export interface Thread extends BaseThread {
+export interface BaseThread {
+  id: string;
+  subject: string;
+  imageId: string | null;
+  image: BaseImage | null;
+  type: ThreadType;
+  lastMessageAt: string | null;
+  lastMessage: string | null;
   createdAt: string;
-  event: BaseEvent | null;
-  group: BaseGroup | null;
-  members: ThreadMember[];
-  _count: {
-    members: number;
-    messages: number;
-  };
 }
+
+export interface Thread extends BaseThread {}
 
 export enum ThreadMemberRole {
   member = "member",

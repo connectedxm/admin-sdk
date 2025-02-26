@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, ThreadType } from "@src/interfaces";
 import { Thread } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import {
@@ -12,15 +12,11 @@ import {
  * @category Keys
  * @group Threads
  */
-export const THREADS_QUERY_KEY = (
-  access?: "public" | "private",
-  groupId?: string,
-  eventId?: string
-) => {
+export const THREADS_QUERY_KEY = (type?: keyof typeof ThreadType) => {
   const keys = ["THREADS"];
-  if (access) keys.push(access);
-  if (groupId) keys.push(groupId);
-  if (eventId) keys.push(eventId);
+
+  if (type) keys.push(type);
+
   return keys;
 };
 
@@ -37,9 +33,7 @@ export const SET_THREADS_QUERY_DATA = (
 };
 
 interface GetThreadsProps extends InfiniteQueryParams {
-  access?: "public" | "private";
-  groupId?: string;
-  eventId?: string;
+  type?: keyof typeof ThreadType;
 }
 
 /**
@@ -47,12 +41,10 @@ interface GetThreadsProps extends InfiniteQueryParams {
  * @thread Threads
  */
 export const GetThreads = async ({
+  type,
   pageParam,
   pageSize,
   orderBy,
-  access,
-  groupId,
-  eventId,
   search,
   adminApiParams,
 }: GetThreadsProps): Promise<ConnectedXMResponse<Thread[]>> => {
@@ -63,9 +55,7 @@ export const GetThreads = async ({
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
-      access: access || undefined,
-      groupId: groupId || undefined,
-      eventId: eventId || undefined,
+      type: type || undefined,
     },
   });
 
@@ -76,9 +66,7 @@ export const GetThreads = async ({
  * @thread Threads
  */
 export const useGetThreads = (
-  access?: "public" | "private",
-  groupId?: string,
-  eventId?: string,
+  type?: keyof typeof ThreadType,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -86,13 +74,11 @@ export const useGetThreads = (
   options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetThreads>>> = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetThreads>>>(
-    THREADS_QUERY_KEY(access, groupId, eventId),
+    THREADS_QUERY_KEY(type),
     (params: InfiniteQueryParams) =>
       GetThreads({
         ...params,
-        access,
-        groupId,
-        eventId,
+        type,
       }),
     params,
     options,

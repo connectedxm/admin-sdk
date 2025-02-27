@@ -6,7 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { DashboardWidget, ConnectedXMResponse } from "@src/interfaces";
 import { DashboardWidgetCreateInput } from "@src/params";
-import { DASHBOARD_WIDGETS_QUERY_KEY } from "@src/queries/dashboards/useGetDashboardWidgets";
+import { DASHBOARD_QUERY_KEY } from "@src/queries/dashboards/useGetDashboards";
 
 /**
  * @category Params
@@ -38,7 +38,7 @@ export const CreateDashboardWidget = async ({
   // Invalidate dashboard widgets query to refresh the data
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: DASHBOARD_WIDGETS_QUERY_KEY(dashboardId),
+      queryKey: DASHBOARD_QUERY_KEY(dashboardId),
     });
   }
 

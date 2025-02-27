@@ -1809,3 +1809,26 @@ export interface BookingUpdateInputs {
 export interface UpdateEventPassResponseInputs {
   value: string;
 }
+
+export interface DashboardCreateInput {
+  name: string;
+  eventId?: string;
+}
+
+export interface DashboardUpdateInput {
+  name?: string;
+}
+
+export interface DashboardWidgetCreateInput {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
+export interface DashboardWidgetUpdateInput {
+  x?: number;
+  y?: number;
+  w?: number;
+  h?: number;
+}

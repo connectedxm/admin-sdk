@@ -3021,3 +3021,52 @@ export interface BookingSlot {
   time: string;
   supply: number | null;
 }
+
+export enum WidgetCategory {
+  Organization = "Organization",
+  Event = "Event",
+}
+
+export enum WidgetType {
+  KPI = "kpi",
+  Bar = "bar",
+  Line = "line",
+}
+
+export interface DashboardWidgetEndpoint {
+  name: string;
+  description: string;
+  type: WidgetType;
+  endpoint: (params?: any) => string;
+  requiresDateRange: boolean;
+  category: WidgetCategory;
+  defaultSize?: {
+    w: number;
+    h: number;
+  };
+}
+
+export interface BaseDashboardWidget {
+  id: string;
+  endpoint: DashboardWidgetEndpoint;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
+export interface DashboardWidget extends BaseDashboardWidget {}
+
+export interface BaseDashboard {
+  id: string;
+  name: string;
+  organizationId: string;
+  eventId: string | null;
+  userId: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Dashboard extends BaseDashboard {
+  widgets: BaseDashboardWidget[];
+}

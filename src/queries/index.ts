@@ -28,3 +28,4 @@ export * from "./tiers";
 export * from "./useConnectedInfiniteQuery";
 export * from "./useConnectedSingleQuery";
 export * from "./videos";
+export * from "./dashboards";

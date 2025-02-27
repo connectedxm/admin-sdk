@@ -53,7 +53,7 @@ export const GetDashboard = async ({
  * @group Dashboards
  */
 export const useGetDashboard = (
-  dashboardId: string,
+  dashboardId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetDashboard>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetDashboard>>(

@@ -3023,14 +3023,14 @@ export interface BookingSlot {
 }
 
 export enum WidgetCategory {
-  Organization = "Organization",
-  Event = "Event",
+  organization = "organization",
+  event = "event",
 }
 
 export enum WidgetType {
-  KPI = "kpi",
-  Bar = "bar",
-  Line = "line",
+  kpi = "kpi",
+  bar = "bar",
+  line = "line",
 }
 
 export interface DashboardWidgetEndpoint {

@@ -5,7 +5,7 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { DASHBOARD_WIDGETS_QUERY_KEY } from "@src/queries/dashboards/useGetDashboardWidgets";
+import { DASHBOARD_QUERY_KEY } from "@src/queries/dashboards/useGetDashboardWidgets";
 
 /**
  * @category Params
@@ -34,7 +34,7 @@ export const DeleteDashboardWidget = async ({
   // Invalidate dashboard widgets query to refresh the data
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: DASHBOARD_WIDGETS_QUERY_KEY(dashboardId),
+      queryKey: DASHBOARD_QUERY_KEY(dashboardId),
     });
   }
 

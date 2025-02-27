@@ -5,8 +5,7 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { DASHBOARDS_QUERY_KEY } from "@src/queries/dashboards/useGetDashboards";
-import { DASHBOARD_QUERY_KEY } from "@src/queries/dashboards/useGetDashboard";
+import { DASHBOARDS_QUERY_KEY, DASHBOARD_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params

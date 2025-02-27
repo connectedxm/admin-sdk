@@ -6,7 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { Dashboard, ConnectedXMResponse } from "@src/interfaces";
 import { DashboardCreateInput } from "@src/params";
-import { DASHBOARDS_QUERY_KEY } from "@src/queries/dashboards/useGetDashboards";
+import { DASHBOARDS_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params

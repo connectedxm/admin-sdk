@@ -1453,6 +1453,7 @@ export interface OrganizationMembership {
   invoices: ModulePermissions;
   announcements: ModulePermissions;
   bookings: ModulePermissions;
+  surveys: ModulePermissions;
 }
 
 export interface BaseOrganization {
@@ -3069,4 +3070,232 @@ export interface BaseDashboard {
 
 export interface Dashboard extends BaseDashboard {
   widgets: BaseDashboardWidget[];
+}
+
+export interface BaseSurvey {
+  id: string;
+  slug: string;
+  name: string;
+  description: string | null;
+  image: BaseImage;
+  guest: boolean;
+  submissionsPerAccount: number;
+}
+
+export interface Survey extends BaseSurvey {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SurveyTranslation {
+  id: string;
+  locale: string;
+  name: string;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export enum SurveySubmissionStatus {
+  draft = "draft",
+  submission = "submission",
+}
+
+export interface BaseSurveySubmission {
+  id: string;
+  account: BaseAccount;
+  status: SurveySubmissionStatus;
+  responses: SurveyQuestionResponse;
+}
+
+export interface SurveySubmission extends BaseSurveySubmission {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export enum SurveyQuestionType {
+  text = "text",
+  textarea = "textarea",
+  number = "number",
+  time = "time",
+  date = "date",
+  toggle = "toggle",
+  select = "select",
+  radio = "radio",
+  checkbox = "checkbox",
+  search = "search",
+  file = "file",
+}
+
+export interface BaseSurveyQuestionChoice {
+  id: string;
+  value: string;
+  text: string | null;
+  description: string | null;
+  supply: number | null;
+  sortOrder: number;
+  subQuestions?:
+    | SurveyQuestion[]
+    | {
+        questionId: string;
+      }[];
+  question: {
+    id: string;
+    name: string;
+  };
+  _count: {
+    subQuestions: number;
+  };
+}
+
+export interface SurveyQuestionChoice extends BaseSurveyQuestionChoice {
+  questionId: string;
+  question: BaseSurveyQuestion;
+  subQuestions: BaseSurveyQuestionChoiceSubQuestion[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSurveyQuestionChoiceSubQuestion {
+  choiceId: string;
+  choice: BaseSurveyQuestionChoice;
+  questionId: string;
+  question: BaseSurveyQuestion;
+}
+
+export interface SurveyQuestionChoiceSubQuestion
+  extends BaseSurveyQuestionChoiceSubQuestion {
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SurveyQuestionChoiceTranslation {
+  id: string;
+  locale: string;
+  value: string;
+  text: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSurveyQuestionResponseChange {
+  id: string;
+  newValue: string;
+  oldValue: string;
+  eventId: string;
+  questionId: string;
+  responseId: string;
+  userId: string | null;
+  createdAt: string;
+}
+
+export interface SurveyQuestionResponseChange
+  extends BaseSurveyQuestionResponseChange {
+  response: BaseSurveyQuestionResponse;
+  user: BaseUser;
+}
+
+export interface BaseSurveyQuestionResponse {
+  id: string;
+  value: string;
+  questionId: string;
+  question: BaseSurveyQuestion;
+}
+
+export interface SurveyQuestionResponse extends BaseSurveyQuestionResponse {
+  changeLogs: BaseSurveyQuestionResponseChange[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSurveyQuestionSearchValue {
+  id: string;
+  value: string;
+  top: boolean;
+}
+
+export interface SurveyQuestionSearchValue
+  extends BaseSurveyQuestionSearchValue {
+  createdAt: string;
+}
+
+export interface BaseSurveyQuestion {
+  id: string;
+  eventId: string;
+  type: SurveyQuestionType;
+  name: string;
+  required: boolean;
+  description: string | null;
+  label: string | null;
+  placeholder: string | null;
+  default: string | null;
+  mutable: boolean;
+  min: string | null;
+  max: string | null;
+  validation: string | null;
+  validationMessage: string | null;
+  sortOrder: number;
+  featured: boolean;
+  choices: BaseSurveyQuestionChoice[];
+}
+
+export interface SurveyQuestion extends BaseSurveyQuestion {
+  sections: BaseSurveySectionQuestion[];
+  subQuestionOf: SurveyQuestionChoiceSubQuestion[];
+  createdAt: string;
+  updatedAt: string;
+  _count: {
+    responses: number;
+  };
+}
+
+export interface SurveyQuestionTranslation {
+  id: string;
+  locale: string;
+  label: string | null;
+  placeholder: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSurveySectionQuestion {
+  sectionId: string;
+  section: BaseSurveySection;
+  questionId: string;
+  question: BaseSurveyQuestion;
+  sortOrder: number;
+}
+
+export interface SurveySectionQuestion extends BaseSurveySectionQuestion {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSurveySection {
+  id: string;
+  eventId: string;
+  name: string;
+  description: string | null;
+  sortOrder: number;
+  _count: {
+    questions: number;
+  };
+}
+
+export interface SurveySection extends BaseSurveySection {
+  questions: SurveyQuestion[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SurveySectionTranslation {
+  id: string;
+  locale: string;
+  name: string;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
 }

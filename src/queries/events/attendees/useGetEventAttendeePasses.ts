@@ -1,4 +1,4 @@
-import { ConnectedXMResponse, EventPassStatus } from "@src/interfaces";
+import { ConnectedXMResponse, PurchaseStatus } from "@src/interfaces";
 import { EventPass } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
@@ -16,7 +16,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
 export const EVENT_ATTENDEE_PASSES_QUERY_KEY = (
   eventId: string,
   accountId: string,
-  status?: keyof typeof EventPassStatus
+  status?: keyof typeof PurchaseStatus
 ) => {
   const key = [...EVENT_ATTENDEE_QUERY_KEY(eventId, accountId), "PASSES"];
 
@@ -42,7 +42,7 @@ export const SET_EVENT_ATTENDEE_PASSES_QUERY_DATA = (
 interface GetEventAttendeePassesProps extends InfiniteQueryParams {
   eventId: string;
   accountId: string;
-  status?: keyof typeof EventPassStatus;
+  status?: keyof typeof PurchaseStatus;
 }
 
 /**
@@ -81,7 +81,7 @@ export const GetEventAttendeePasses = async ({
 export const useGetEventAttendeePasses = (
   eventId: string = "",
   accountId: string = "",
-  status?: keyof typeof EventPassStatus,
+  status?: keyof typeof PurchaseStatus,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"

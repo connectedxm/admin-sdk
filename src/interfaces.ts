@@ -1558,7 +1558,7 @@ export interface PageTranslation {
   updatedAt: string;
 }
 
-export enum EventPassStatus {
+export enum PurchaseStatus {
   draft = "draft",
   canceled = "canceled",
   needsInfo = "needsInfo",
@@ -1574,7 +1574,7 @@ export interface BaseEventPass {
   usedAt: string | null;
   transfer: { id: string; email: string; createdAt: string };
   responses: BaseRegistrationQuestionResponse[];
-  status: EventPassStatus;
+  status: PurchaseStatus;
   reservationId: string | null;
   reservation: BaseEventRoomTypeReservation | null;
   couponId: string | null;
@@ -3007,7 +3007,7 @@ export interface BaseBooking {
   day: string;
   time: string;
   duration: number;
-  status: EventPassStatus;
+  status: PurchaseStatus;
   account: BaseAccount;
   space: BaseBookingSpace;
 }
@@ -3069,4 +3069,53 @@ export interface BaseDashboard {
 
 export interface Dashboard extends BaseDashboard {
   widgets: BaseDashboardWidget[];
+}
+
+export interface BaseEventPackage {
+  id: string;
+  name: string;
+  description: string | null;
+  price: number;
+  isActive: boolean;
+}
+
+export interface EventPackage extends BaseEventPackage {
+  passes: BaseEventPackagePass[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventPackageTranslation {
+  id: string;
+  locale: string;
+  name: string | null;
+  description: string | null;
+}
+
+export interface BaseEventPackagePass {
+  id: string;
+  passTypeId: string;
+  passType: BaseEventPassType;
+  quantity: number;
+}
+
+export interface EventPackagePass extends BaseEventPackagePass {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseAttendeePackage {
+  id: string;
+  attendeeId: string;
+  packageId: string;
+  package: BaseEventPackage;
+  status: PurchaseStatus;
+  amtPaid: number;
+  amtRefunded: number;
+}
+
+export interface AttendeePackage extends BaseAttendeePackage {
+  passes: BaseEventPackagePass[];
+  createdAt: string;
+  updatedAt: string;
 }

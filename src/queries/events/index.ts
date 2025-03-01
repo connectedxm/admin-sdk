@@ -8,6 +8,7 @@ export * from "./coupons";
 export * from "./emails";
 export * from "./faqs";
 export * from "./on-site";
+export * from "./packages";
 export * from "./pages";
 export * from "./passTypes";
 export * from "./passes";

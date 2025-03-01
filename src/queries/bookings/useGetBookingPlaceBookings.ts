@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { Booking, ConnectedXMResponse, EventPassStatus } from "@src/interfaces";
+import { Booking, ConnectedXMResponse, PurchaseStatus } from "@src/interfaces";
 
 import {
   InfiniteQueryOptions,
@@ -17,7 +17,7 @@ import { BOOKING_PLACE_QUERY_KEY } from "./useGetBookingPlace";
 export const BOOKING_PLACE_BOOKINGS_QUERY_KEY = (
   placeId: string,
   past?: boolean,
-  status?: EventPassStatus
+  status?: PurchaseStatus
 ) => {
   const keys = [...BOOKING_PLACE_QUERY_KEY(placeId), "BOOKINGS"];
   if (typeof past === "boolean") {
@@ -42,7 +42,7 @@ export const SET_BOOKING_PLACE_BOOKINGS_QUERY_DATA = (
 interface GetBookingPlaceBookingsProps extends InfiniteQueryParams {
   placeId: string;
   past?: boolean;
-  status?: EventPassStatus;
+  status?: PurchaseStatus;
 }
 
 /**
@@ -80,7 +80,7 @@ export const GetBookingPlaceBookings = async ({
 export const useGetBookingPlaceBookings = (
   placeId: string = "",
   past?: boolean,
-  status?: EventPassStatus,
+  status?: PurchaseStatus,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"

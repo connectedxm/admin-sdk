@@ -26,7 +26,7 @@ import {
   SupportTicketType,
   ImportType,
   EventAnnouncementFilters,
-  EventPassStatus,
+  PurchaseStatus,
   IntegrationType,
   LeadStatus,
 } from "./interfaces";
@@ -636,14 +636,14 @@ export interface EventPageUpdateInputs {
 }
 
 export interface EventPassCreateInputs {
-  status?: EventPassStatus | null;
+  status?: PurchaseStatus | null;
   location?: string | null;
   usedAt?: string | null;
   ticketId?: string | null;
 }
 
 export interface EventPassUpdateInputs {
-  status?: EventPassStatus | null;
+  status?: PurchaseStatus | null;
   location?: string | null;
   usedAt?: string | null;
   ticketId?: string | null;
@@ -1798,11 +1798,11 @@ export interface BookingCreateInputs {
   accountId: string;
   day: string;
   time: string;
-  status?: EventPassStatus;
+  status?: PurchaseStatus;
 }
 
 export interface BookingUpdateInputs {
-  status?: EventPassStatus;
+  status?: PurchaseStatus;
   day?: string;
   time?: string;
 }
@@ -1810,25 +1810,64 @@ export interface UpdateEventPassResponseInputs {
   value: string;
 }
 
-export interface DashboardCreateInput {
+export interface DashboardCreateInputs {
   name: string;
   eventId?: string;
 }
 
-export interface DashboardUpdateInput {
+export interface DashboardUpdateInputs {
   name?: string;
 }
 
-export interface DashboardWidgetCreateInput {
+export interface DashboardWidgetCreateInputs {
   x: number;
   y: number;
   w: number;
   h: number;
 }
 
-export interface DashboardWidgetUpdateInput {
+export interface DashboardWidgetUpdateInputs {
   x?: number;
   y?: number;
   w?: number;
   h?: number;
+}
+
+export interface EventPackageCreateInputs {
+  name: string;
+  description?: string | null;
+  price: number;
+  isActive?: boolean;
+}
+
+export interface EventPackageUpdateInputs {
+  name?: string;
+  description?: string | null;
+  price?: number;
+  isActive?: boolean;
+}
+
+export interface EventPackagePassCreateInputs {
+  passTypeId: string;
+  quantity: number;
+}
+
+export interface EventPackagePassUpdateInputs {
+  passTypeId?: string;
+  quantity?: number;
+}
+
+export interface AttendeeEventPackageCreateInputs {
+  packageId: string;
+  attendeeId: string;
+}
+
+export interface AttendeeEventPackageUpdateInputs {
+  packageId?: string;
+  attendeeId?: string;
+}
+
+export interface EventPackageTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
 }

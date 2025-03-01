@@ -4,7 +4,7 @@ import {
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
-import { ConnectedXMResponse, EmailReceipt } from "@src/interfaces";
+import { BaseEmailReceipt, ConnectedXMResponse } from "@src/interfaces";
 import { EmailReceiptStatus } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
@@ -44,7 +44,9 @@ export const GetEmailReceipts = async ({
   search,
   status,
   adminApiParams,
-}: GetEmailReceiptsParams): Promise<ConnectedXMResponse<EmailReceipt[]>> => {
+}: GetEmailReceiptsParams): Promise<
+  ConnectedXMResponse<BaseEmailReceipt[]>
+> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/logs/email-receipts`, {
     params: {

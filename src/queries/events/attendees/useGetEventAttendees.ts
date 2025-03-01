@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, EventPassStatus } from "@src/interfaces";
+import { ConnectedXMResponse, PurchaseStatus } from "@src/interfaces";
 import { EventAttendee } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
@@ -15,7 +15,7 @@ import { QueryClient } from "@tanstack/react-query";
  */
 export const EVENT_ATTENDEES_QUERY_KEY = (
   eventId: string,
-  status?: EventPassStatus
+  status?: PurchaseStatus
 ) => {
   const keys = [...EVENT_QUERY_KEY(eventId), "ATTENDEES"];
   if (status) keys.push(status);
@@ -36,7 +36,7 @@ export const SET_EVENT_ATTENDEES_QUERY_DATA = (
 
 interface GetEventAttendeesProps extends InfiniteQueryParams {
   eventId: string;
-  status?: EventPassStatus;
+  status?: PurchaseStatus;
 }
 
 /**
@@ -70,7 +70,7 @@ export const GetEventAttendees = async ({
  */
 export const useGetEventAttendees = (
   eventId: string,
-  status?: EventPassStatus,
+  status?: PurchaseStatus,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"

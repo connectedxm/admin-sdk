@@ -1,5 +1,5 @@
 import { ConnectedXMResponse } from "@src/interfaces";
-import { PackagePass } from "@src/interfaces";
+import { EventPackagePass } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -45,7 +45,9 @@ export const GetEventPackagePasses = async ({
   pageSize,
   search,
   adminApiParams,
-}: GetEventPackagePassesProps): Promise<ConnectedXMResponse<PackagePass[]>> => {
+}: GetEventPackagePassesProps): Promise<
+  ConnectedXMResponse<EventPackagePass[]>
+> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
     `/events/${eventId}/packages/${packageId}/passes`,

@@ -1810,64 +1810,64 @@ export interface UpdateEventPassResponseInputs {
   value: string;
 }
 
-export interface DashboardCreateInput {
+export interface DashboardCreateInputs {
   name: string;
   eventId?: string;
 }
 
-export interface DashboardUpdateInput {
+export interface DashboardUpdateInputs {
   name?: string;
 }
 
-export interface DashboardWidgetCreateInput {
+export interface DashboardWidgetCreateInputs {
   x: number;
   y: number;
   w: number;
   h: number;
 }
 
-export interface DashboardWidgetUpdateInput {
+export interface DashboardWidgetUpdateInputs {
   x?: number;
   y?: number;
   w?: number;
   h?: number;
 }
 
-export interface PackageCreateInput {
+export interface EventPackageCreateInputs {
   name: string;
   description?: string | null;
   price: number;
   isActive?: boolean;
 }
 
-export interface PackageUpdateInput {
+export interface EventPackageUpdateInputs {
   name?: string;
   description?: string | null;
   price?: number;
   isActive?: boolean;
 }
 
-export interface PackagePassCreateInput {
+export interface EventPackagePassCreateInputs {
   passTypeId: string;
   quantity: number;
 }
 
-export interface PackagePassUpdateInput {
+export interface EventPackagePassUpdateInputs {
   passTypeId?: string;
   quantity?: number;
 }
 
-export interface AttendeePackageCreateInput {
+export interface AttendeeEventPackageCreateInputs {
   packageId: string;
   attendeeId: string;
 }
 
-export interface AttendeePackageUpdateInput {
+export interface AttendeeEventPackageUpdateInputs {
   packageId?: string;
   attendeeId?: string;
 }
 
-export interface PackageTranslationUpdateInput {
-  name?: string;
-  description?: string;
+export interface EventPackageTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
 }

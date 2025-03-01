@@ -3071,7 +3071,7 @@ export interface Dashboard extends BaseDashboard {
   widgets: BaseDashboardWidget[];
 }
 
-export interface BasePackage {
+export interface BaseEventPackage {
   id: string;
   name: string;
   description: string | null;
@@ -3079,27 +3079,27 @@ export interface BasePackage {
   isActive: boolean;
 }
 
-export interface Package extends BasePackage {
-  passes: BasePackagePass[];
+export interface EventPackage extends BaseEventPackage {
+  passes: BaseEventPackagePass[];
   createdAt: string;
   updatedAt: string;
 }
 
-export interface PackageTranslation {
+export interface EventPackageTranslation {
   id: string;
   locale: string;
   name: string | null;
   description: string | null;
 }
 
-export interface BasePackagePass {
+export interface BaseEventPackagePass {
   id: string;
   passTypeId: string;
   passType: BaseEventPassType;
   quantity: number;
 }
 
-export interface PackagePass extends BasePackagePass {
+export interface EventPackagePass extends BaseEventPackagePass {
   createdAt: string;
   updatedAt: string;
 }
@@ -3108,14 +3108,14 @@ export interface BaseAttendeePackage {
   id: string;
   attendeeId: string;
   packageId: string;
-  package: BasePackage;
+  package: BaseEventPackage;
   status: PurchaseStatus;
   amtPaid: number;
   amtRefunded: number;
 }
 
 export interface AttendeePackage extends BaseAttendeePackage {
-  passes: BasePackagePass[];
+  passes: BaseEventPackagePass[];
   createdAt: string;
   updatedAt: string;
 }

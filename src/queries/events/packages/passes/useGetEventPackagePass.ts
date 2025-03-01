@@ -4,7 +4,7 @@ import {
   useConnectedSingleQuery,
 } from "../../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { PackagePass } from "@src/interfaces";
+import { EventPackagePass } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_PACKAGE_PASSES_QUERY_KEY } from "./useGetEventPackagePasses";
 import { GetAdminAPI } from "@src/AdminAPI";
@@ -46,7 +46,9 @@ export const GetEventPackagePass = async ({
   packageId,
   passId,
   adminApiParams,
-}: GetEventPackagePassProps): Promise<ConnectedXMResponse<PackagePass>> => {
+}: GetEventPackagePassProps): Promise<
+  ConnectedXMResponse<EventPackagePass>
+> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
     `/events/${eventId}/packages/${packageId}/passes/${passId}`

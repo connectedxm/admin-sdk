@@ -1,11 +1,11 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, Package } from "@src/interfaces";
+import { ConnectedXMResponse, EventPackage } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { PackageUpdateInput } from "@src/params";
+import { EventPackageUpdateInputs } from "@src/params";
 import { EVENT_PACKAGES_QUERY_KEY } from "@src/queries/events/packages/useGetEventPackages";
 import { SET_EVENT_PACKAGE_QUERY_DATA } from "@src/queries/events/packages/useGetEventPackage";
 
@@ -16,7 +16,7 @@ import { SET_EVENT_PACKAGE_QUERY_DATA } from "@src/queries/events/packages/useGe
 export interface UpdateEventPackageParams extends MutationParams {
   eventId: string;
   packageId: string;
-  package: PackageUpdateInput;
+  package: EventPackageUpdateInputs;
 }
 
 /**
@@ -29,10 +29,10 @@ export const UpdateEventPackage = async ({
   package: packageData,
   adminApiParams,
   queryClient,
-}: UpdateEventPackageParams): Promise<ConnectedXMResponse<Package>> => {
+}: UpdateEventPackageParams): Promise<ConnectedXMResponse<EventPackage>> => {
   if (!packageId) throw new Error("Package ID Undefined");
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Package>>(
+  const { data } = await connectedXM.put<ConnectedXMResponse<EventPackage>>(
     `/events/${eventId}/packages/${packageId}`,
     {
       ...packageData,

@@ -1,11 +1,11 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, PackageTranslation } from "@src/interfaces";
+import { ConnectedXMResponse, EventPackageTranslation } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { PackageTranslationUpdateInput } from "@src/params";
+import { EventPackageTranslationUpdateInputs } from "@src/params";
 import { EVENT_PACKAGE_TRANSLATIONS_QUERY_KEY } from "@src/queries/events/packages/translations/useGetEventPackageTranslations";
 import { SET_EVENT_PACKAGE_TRANSLATION_QUERY_DATA } from "@src/queries/events/packages/translations/useGetEventPackageTranslation";
 
@@ -17,7 +17,7 @@ export interface UpdateEventPackageTranslationParams extends MutationParams {
   eventId: string;
   packageId: string;
   locale: string;
-  translation: PackageTranslationUpdateInput;
+  translation: EventPackageTranslationUpdateInputs;
 }
 
 /**
@@ -32,12 +32,12 @@ export const UpdateEventPackageTranslation = async ({
   adminApiParams,
   queryClient,
 }: UpdateEventPackageTranslationParams): Promise<
-  ConnectedXMResponse<PackageTranslation>
+  ConnectedXMResponse<EventPackageTranslation>
 > => {
   if (!locale) throw new Error("Locale Undefined");
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<
-    ConnectedXMResponse<PackageTranslation>
+    ConnectedXMResponse<EventPackageTranslation>
   >(
     `/events/${eventId}/packages/${packageId}/translations/${locale}`,
     translation

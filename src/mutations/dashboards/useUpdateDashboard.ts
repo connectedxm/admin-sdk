@@ -5,7 +5,7 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { Dashboard, ConnectedXMResponse } from "@src/interfaces";
-import { DashboardUpdateInput } from "@src/params";
+import { DashboardUpdateInputs } from "@src/params";
 import { SET_DASHBOARD_QUERY_DATA } from "@src/queries";
 
 /**
@@ -14,7 +14,7 @@ import { SET_DASHBOARD_QUERY_DATA } from "@src/queries";
  */
 export interface UpdateDashboardParams extends MutationParams {
   dashboardId: string;
-  dashboard: DashboardUpdateInput;
+  dashboard: DashboardUpdateInputs;
 }
 
 /**

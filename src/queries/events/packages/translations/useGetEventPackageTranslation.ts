@@ -4,7 +4,7 @@ import {
   useConnectedSingleQuery,
 } from "../../../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { PackageTranslation } from "@src/interfaces";
+import { EventPackageTranslation } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_PACKAGE_TRANSLATIONS_QUERY_KEY } from "./useGetEventPackageTranslations";
 import { GetAdminAPI } from "@src/AdminAPI";
@@ -50,7 +50,7 @@ export const GetEventPackageTranslation = async ({
   locale,
   adminApiParams,
 }: GetEventPackageTranslationProps): Promise<
-  ConnectedXMResponse<PackageTranslation>
+  ConnectedXMResponse<EventPackageTranslation>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(

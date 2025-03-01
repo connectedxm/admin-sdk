@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, PackageTranslation } from "@src/interfaces";
+import { ConnectedXMResponse, EventPackageTranslation } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -31,11 +31,11 @@ export const CreateEventPackageTranslation = async ({
   adminApiParams,
   queryClient,
 }: CreateEventPackageTranslationParams): Promise<
-  ConnectedXMResponse<PackageTranslation>
+  ConnectedXMResponse<EventPackageTranslation>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<
-    ConnectedXMResponse<PackageTranslation>
+    ConnectedXMResponse<EventPackageTranslation>
   >(`/events/${eventId}/packages/${packageId}/translations`, {
     locale,
     autoTranslate,

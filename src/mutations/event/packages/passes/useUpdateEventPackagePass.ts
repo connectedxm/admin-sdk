@@ -1,11 +1,11 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, PackagePass } from "@src/interfaces";
+import { ConnectedXMResponse, EventPackagePass } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { PackagePassUpdateInput } from "@src/params";
+import { EventPackagePassUpdateInputs } from "@src/params";
 import { EVENT_PACKAGE_PASSES_QUERY_KEY } from "@src/queries/events/packages/passes/useGetEventPackagePasses";
 import { SET_EVENT_PACKAGE_PASS_QUERY_DATA } from "@src/queries/events/packages/passes/useGetEventPackagePass";
 
@@ -17,7 +17,7 @@ export interface UpdateEventPackagePassParams extends MutationParams {
   eventId: string;
   packageId: string;
   passId: string;
-  pass: PackagePassUpdateInput;
+  pass: EventPackagePassUpdateInputs;
 }
 
 /**
@@ -31,10 +31,12 @@ export const UpdateEventPackagePass = async ({
   pass,
   adminApiParams,
   queryClient,
-}: UpdateEventPackagePassParams): Promise<ConnectedXMResponse<PackagePass>> => {
+}: UpdateEventPackagePassParams): Promise<
+  ConnectedXMResponse<EventPackagePass>
+> => {
   if (!passId) throw new Error("Pass ID Undefined");
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<PackagePass>>(
+  const { data } = await connectedXM.put<ConnectedXMResponse<EventPackagePass>>(
     `/events/${eventId}/packages/${packageId}/passes/${passId}`,
     {
       ...pass,

@@ -1906,7 +1906,7 @@ export interface BaseEventAttendee {
 export interface EventAttendee extends BaseEventAttendee {
   payments: BasePayment[];
   passes: BaseEventPass[];
-  packages: BaseEventPackage[];
+  packages: BaseAttendeePackage[];
   coupons: BaseCoupon[];
   createdAt: string;
   updatedAt: string;

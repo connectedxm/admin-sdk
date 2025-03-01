@@ -1588,7 +1588,7 @@ export interface EventPass extends BaseEventPass {
   passAddOns: PassAddOn[];
   attendeeId: string;
   attendee: BaseEventAttendee;
-  package: BaseEventPackage | null;
+  package: BaseAttendeePackage | null;
   payerId: string | null;
   payer: BaseAccount | null;
   amtPaid: number;

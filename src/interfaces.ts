@@ -1567,6 +1567,8 @@ export enum PurchaseStatus {
 
 export interface BaseEventPass {
   id: string;
+  eventId: string;
+  registrationId: string;
   alternateId: number;
   ticketId: string | null;
   ticket: BaseEventPassType | null;
@@ -3107,6 +3109,7 @@ export interface EventPackagePass extends BaseEventPackagePass {
 
 export interface BaseAttendeePackage {
   id: string;
+  eventId: string;
   attendeeId: string;
   packageId: string;
   package: BaseEventPackage;

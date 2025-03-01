@@ -1569,6 +1569,9 @@ export interface BaseEventPass {
   id: string;
   eventId: string;
   attendeeId: string;
+  attendee: {
+    accountId: string;
+  };
   alternateId: number;
   ticketId: string | null;
   ticket: BaseEventPassType | null;

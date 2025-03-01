@@ -26,7 +26,7 @@ import {
   SupportTicketType,
   ImportType,
   EventAnnouncementFilters,
-  EventPassStatus,
+  PurchaseStatus,
   IntegrationType,
   LeadStatus,
 } from "./interfaces";
@@ -636,14 +636,14 @@ export interface EventPageUpdateInputs {
 }
 
 export interface EventPassCreateInputs {
-  status?: EventPassStatus | null;
+  status?: PurchaseStatus | null;
   location?: string | null;
   usedAt?: string | null;
   ticketId?: string | null;
 }
 
 export interface EventPassUpdateInputs {
-  status?: EventPassStatus | null;
+  status?: PurchaseStatus | null;
   location?: string | null;
   usedAt?: string | null;
   ticketId?: string | null;
@@ -1798,11 +1798,11 @@ export interface BookingCreateInputs {
   accountId: string;
   day: string;
   time: string;
-  status?: EventPassStatus;
+  status?: PurchaseStatus;
 }
 
 export interface BookingUpdateInputs {
-  status?: EventPassStatus;
+  status?: PurchaseStatus;
   day?: string;
   time?: string;
 }
@@ -1831,4 +1831,43 @@ export interface DashboardWidgetUpdateInput {
   y?: number;
   w?: number;
   h?: number;
+}
+
+export interface PackageCreateInput {
+  name: string;
+  description?: string | null;
+  price: number;
+  isActive?: boolean;
+}
+
+export interface PackageUpdateInput {
+  name?: string;
+  description?: string | null;
+  price?: number;
+  isActive?: boolean;
+}
+
+export interface PackagePassCreateInput {
+  passTypeId: string;
+  quantity: number;
+}
+
+export interface PackagePassUpdateInput {
+  passTypeId?: string;
+  quantity?: number;
+}
+
+export interface AttendeePackageCreateInput {
+  packageId: string;
+  attendeeId: string;
+}
+
+export interface AttendeePackageUpdateInput {
+  packageId?: string;
+  attendeeId?: string;
+}
+
+export interface PackageTranslationUpdateInput {
+  name?: string;
+  description?: string;
 }

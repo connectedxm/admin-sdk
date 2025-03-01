@@ -1579,6 +1579,7 @@ export interface BaseEventPass {
   reservation: BaseEventRoomTypeReservation | null;
   couponId: string | null;
   coupon: BaseCoupon | null;
+  packageId: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -1587,8 +1588,7 @@ export interface EventPass extends BaseEventPass {
   passAddOns: PassAddOn[];
   attendeeId: string;
   attendee: BaseEventAttendee;
-  // registrationId: string;
-  // registration: BaseEventAttendee;
+  package: BaseEventPackage | null;
   payerId: string | null;
   payer: BaseAccount | null;
   amtPaid: number;
@@ -1906,6 +1906,7 @@ export interface BaseEventAttendee {
 export interface EventAttendee extends BaseEventAttendee {
   payments: BasePayment[];
   passes: BaseEventPass[];
+  packages: BaseEventPackage[];
   coupons: BaseCoupon[];
   createdAt: string;
   updatedAt: string;

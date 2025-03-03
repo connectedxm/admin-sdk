@@ -1838,6 +1838,8 @@ export interface EventPackageCreateInputs {
   description?: string | null;
   price: number;
   isActive?: boolean;
+  imageId?: string | null;
+  sortOrder?: number | string | null;
 }
 
 export interface EventPackageUpdateInputs {
@@ -1845,6 +1847,8 @@ export interface EventPackageUpdateInputs {
   description?: string | null;
   price?: number;
   isActive?: boolean;
+  imageId?: string | null;
+  sortOrder?: number | string | null;
 }
 
 export interface EventPackagePassCreateInputs {

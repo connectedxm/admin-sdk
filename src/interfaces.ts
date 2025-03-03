@@ -3078,7 +3078,7 @@ export interface BaseSurvey {
   name: string;
   description: string | null;
   image: BaseImage;
-  guest: boolean;
+  requireAuth: boolean;
   submissionsPerAccount: number;
 }
 
@@ -3096,16 +3096,11 @@ export interface SurveyTranslation {
   updatedAt: string;
 }
 
-export enum SurveySubmissionStatus {
-  draft = "draft",
-  submission = "submission",
-}
-
 export interface BaseSurveySubmission {
   id: string;
   account: BaseAccount;
-  status: SurveySubmissionStatus;
-  responses: SurveyQuestionResponse;
+  status: EventPassStatus;
+  responses: BaseSurveyQuestionResponse[];
 }
 
 export interface SurveySubmission extends BaseSurveySubmission {

@@ -30,7 +30,6 @@ import {
   IntegrationType,
   LeadStatus,
   SurveyQuestionType,
-  SurveySubmissionStatus,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -923,6 +922,7 @@ export interface OrganizationMembershipUpdateInputs {
   subscriptions: Omit<ModulePermissions, "superEnabled" | "enabled">;
   invoices: Omit<ModulePermissions, "superEnabled" | "enabled">;
   announcements: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  surveys: Omit<ModulePermissions, "superEnabled" | "enabled">;
 }
 
 export interface GroupTranslationUpdateInputs {
@@ -1840,7 +1840,7 @@ export interface SurveyCreateInputs {
   slug?: string;
   description?: string | null;
   imageId?: string | null;
-  guest?: boolean;
+  requireAuth?: boolean;
   submissionsPerAccount?: string | number;
 }
 
@@ -1849,7 +1849,7 @@ export interface SurveyUpdateInputs {
   slug?: string;
   description?: string | null;
   imageId?: string | null;
-  guest?: boolean;
+  requireAuth?: boolean;
   submissionsPerAccount?: string | number;
 }
 
@@ -1859,7 +1859,7 @@ export interface SurveyTranslationUpdateInputs {
 }
 
 export interface SurveySubmissionUpdateInputs {
-  status?: keyof typeof SurveySubmissionStatus;
+  status?: keyof typeof EventPassStatus;
 }
 
 export interface SurveyQuestionChoiceCreateInputs {

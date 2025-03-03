@@ -3083,6 +3083,9 @@ export interface BaseEventPackage {
   description: string | null;
   price: number;
   isActive: boolean;
+  imageId: string | null;
+  image: BaseImage | null;
+  sortOrder: number;
 }
 
 export interface EventPackage extends BaseEventPackage {

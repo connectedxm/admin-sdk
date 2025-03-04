@@ -1890,3 +1890,49 @@ export interface EventGalleryImageUpdateInputs {
   description?: string | null;
   sortOrder?: number | string | null;
 }
+
+export interface EventSponsorshipLevelCreateInputs {
+  name: string;
+  slug?: string | null;
+  sponsorsPerRow?: number | string;
+  sortOrder?: number | string;
+  description?: string | null;
+}
+
+export interface EventSponsorshipLevelUpdateInputs {
+  name?: string;
+  slug?: string;
+  sponsorsPerRow?: number | string;
+  sortOrder?: number | string;
+  description?: string | null;
+}
+
+export interface EventSponsorshipLevelTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+}
+
+export interface EventSponsorshipCreateInputs {
+  name: string;
+  slug?: string;
+  description?: string | null;
+  url?: string | null;
+  imageId?: string | null;
+  accountId?: string | null;
+  sortOrder?: number | string;
+}
+
+export interface EventSponsorshipUpdateInputs {
+  name?: string;
+  slug?: string;
+  description?: string | null;
+  url?: string | null;
+  imageId?: string | null;
+  accountId?: string | null;
+  sortOrder?: number;
+}
+
+export interface EventSponsorshipTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+}

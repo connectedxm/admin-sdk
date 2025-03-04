@@ -19,6 +19,8 @@ export * from "./sections";
 export * from "./sessions";
 export * from "./speakers";
 export * from "./sponsors";
+export * from "./sponsorshipLevels";
+export * from "./sponsorships";
 export * from "./tracks";
 export * from "./translations";
 export * from "./useGetEvent";

@@ -976,6 +976,8 @@ export interface Event extends BaseEvent {
   groupId: string | null;
   group: BaseGroup | null;
   groupOnly: boolean;
+  backgroundImageId: string | null;
+  backgroundImage: BaseImage | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -3126,6 +3128,20 @@ export interface BaseAttendeePackage {
 
 export interface AttendeePackage extends BaseAttendeePackage {
   passes: BaseEventPackagePass[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventGalleryImage {
+  id: string;
+  name: string | null;
+  description: string | null;
+  imageId: string;
+  image: BaseImage;
+  sortOrder: number;
+}
+
+export interface EventGalleryImage extends BaseEventGalleryImage {
   createdAt: string;
   updatedAt: string;
 }

@@ -3145,3 +3145,50 @@ export interface EventGalleryImage extends BaseEventGalleryImage {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface BaseEventSponsorshipLevel {
+  id: string;
+  slug: string;
+  name: string;
+  description: string | null;
+  sponsorsPerRow: number;
+}
+
+export interface EventSponsorshipLevel extends BaseEventSponsorshipLevel {
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventSponsorshipLevelTranslation {
+  id: number;
+  locale: string;
+  name: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventSponsorship {
+  id: string;
+  slug: string;
+  name: string;
+  description: string | null;
+  url: string | null;
+  account: BaseAccount | null;
+  image: BaseImage | null;
+}
+
+export interface EventSponsorship extends BaseEventSponsorship {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventSponsorshipTranslation {
+  id: number;
+  locale: string;
+  name: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}

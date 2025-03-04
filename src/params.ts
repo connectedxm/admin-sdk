@@ -26,7 +26,7 @@ import {
   SupportTicketType,
   ImportType,
   EventAnnouncementFilters,
-  EventPassStatus,
+  PurchaseStatus,
   IntegrationType,
   LeadStatus,
   SurveyQuestionType,
@@ -539,6 +539,7 @@ export interface EventCreateInputs {
   reservationDescription?: string | null;
   externalUrl?: string | null;
   imageId?: string | null;
+  backgroundImageId?: string | null;
   venueMapId?: string | null;
   venue?: string | null;
   location?: string | null;
@@ -637,14 +638,14 @@ export interface EventPageUpdateInputs {
 }
 
 export interface EventPassCreateInputs {
-  status?: EventPassStatus | null;
+  status?: PurchaseStatus | null;
   location?: string | null;
   usedAt?: string | null;
   ticketId?: string | null;
 }
 
 export interface EventPassUpdateInputs {
-  status?: EventPassStatus | null;
+  status?: PurchaseStatus | null;
   location?: string | null;
   usedAt?: string | null;
   ticketId?: string | null;
@@ -843,6 +844,7 @@ export interface EventUpdateInputs {
   eventEnd?: string | null;
   externalUrl?: string | null;
   imageId?: string | null;
+  backgroundImageId?: string | null;
   venueMapId?: string | null;
   venue?: string | null;
   location?: string | null;
@@ -1800,11 +1802,11 @@ export interface BookingCreateInputs {
   accountId: string;
   day: string;
   time: string;
-  status?: EventPassStatus;
+  status?: PurchaseStatus;
 }
 
 export interface BookingUpdateInputs {
-  status?: EventPassStatus;
+  status?: PurchaseStatus;
   day?: string;
   time?: string;
 }
@@ -1812,23 +1814,23 @@ export interface UpdateEventPassResponseInputs {
   value: string;
 }
 
-export interface DashboardCreateInput {
+export interface DashboardCreateInputs {
   name: string;
   eventId?: string;
 }
 
-export interface DashboardUpdateInput {
+export interface DashboardUpdateInputs {
   name?: string;
 }
 
-export interface DashboardWidgetCreateInput {
+export interface DashboardWidgetCreateInputs {
   x: number;
   y: number;
   w: number;
   h: number;
 }
 
-export interface DashboardWidgetUpdateInput {
+export interface DashboardWidgetUpdateInputs {
   x?: number;
   y?: number;
   w?: number;
@@ -1859,7 +1861,7 @@ export interface SurveyTranslationUpdateInputs {
 }
 
 export interface SurveySubmissionUpdateInputs {
-  status?: keyof typeof EventPassStatus;
+  status?: keyof typeof PurchaseStatus;
 }
 
 export interface SurveyQuestionChoiceCreateInputs {
@@ -1960,4 +1962,105 @@ export interface SurveySectionUpdateInputs {
   description?: string | null;
   guestDescription?: string | null;
   sortOrder?: number | string | null;
+}
+export interface EventPackageCreateInputs {
+  name: string;
+  description?: string | null;
+  price: number;
+  isActive?: boolean;
+  imageId?: string | null;
+  sortOrder?: number | string | null;
+}
+
+export interface EventPackageUpdateInputs {
+  name?: string;
+  description?: string | null;
+  price?: number;
+  isActive?: boolean;
+  imageId?: string | null;
+  sortOrder?: number | string | null;
+}
+
+export interface EventPackagePassCreateInputs {
+  passTypeId: string;
+  quantity: number;
+}
+
+export interface EventPackagePassUpdateInputs {
+  passTypeId?: string;
+  quantity?: number;
+}
+
+export interface AttendeeEventPackageCreateInputs {
+  packageId: string;
+  attendeeId: string;
+}
+
+export interface AttendeeEventPackageUpdateInputs {
+  packageId?: string;
+  attendeeId?: string;
+}
+
+export interface EventPackageTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+}
+
+export interface EventGalleryImageCreateInputs {
+  imageId: string;
+  name?: string | null;
+  description?: string | null;
+  sortOrder?: number | string | null;
+}
+
+export interface EventGalleryImageUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+  sortOrder?: number | string | null;
+}
+
+export interface EventSponsorshipLevelCreateInputs {
+  name: string;
+  slug?: string | null;
+  sponsorsPerRow?: number | string;
+  sortOrder?: number | string;
+  description?: string | null;
+}
+
+export interface EventSponsorshipLevelUpdateInputs {
+  name?: string;
+  slug?: string;
+  sponsorsPerRow?: number | string;
+  sortOrder?: number | string;
+  description?: string | null;
+}
+
+export interface EventSponsorshipLevelTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+}
+
+export interface EventSponsorshipCreateInputs {
+  name: string;
+  slug?: string;
+  description?: string | null;
+  url?: string | null;
+  imageId?: string | null;
+  accountId?: string | null;
+  sortOrder?: number | string;
+}
+
+export interface EventSponsorshipUpdateInputs {
+  name?: string;
+  slug?: string;
+  description?: string | null;
+  url?: string | null;
+  imageId?: string | null;
+  accountId?: string | null;
+  sortOrder?: number;
+}
+
+export interface EventSponsorshipTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
 }

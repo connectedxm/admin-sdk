@@ -976,6 +976,8 @@ export interface Event extends BaseEvent {
   groupId: string | null;
   group: BaseGroup | null;
   groupOnly: boolean;
+  backgroundImageId: string | null;
+  backgroundImage: BaseImage | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -1559,7 +1561,7 @@ export interface PageTranslation {
   updatedAt: string;
 }
 
-export enum EventPassStatus {
+export enum PurchaseStatus {
   draft = "draft",
   canceled = "canceled",
   needsInfo = "needsInfo",
@@ -1568,6 +1570,11 @@ export enum EventPassStatus {
 
 export interface BaseEventPass {
   id: string;
+  eventId: string;
+  attendeeId: string;
+  attendee: {
+    accountId: string;
+  };
   alternateId: number;
   ticketId: string | null;
   ticket: BaseEventPassType | null;
@@ -1575,11 +1582,12 @@ export interface BaseEventPass {
   usedAt: string | null;
   transfer: { id: string; email: string; createdAt: string };
   responses: BaseRegistrationQuestionResponse[];
-  status: EventPassStatus;
+  status: PurchaseStatus;
   reservationId: string | null;
   reservation: BaseEventRoomTypeReservation | null;
   couponId: string | null;
   coupon: BaseCoupon | null;
+  packageId: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -1588,8 +1596,7 @@ export interface EventPass extends BaseEventPass {
   passAddOns: PassAddOn[];
   attendeeId: string;
   attendee: BaseEventAttendee;
-  // registrationId: string;
-  // registration: BaseEventAttendee;
+  package: BaseAttendeePackage | null;
   payerId: string | null;
   payer: BaseAccount | null;
   amtPaid: number;
@@ -1907,6 +1914,7 @@ export interface BaseEventAttendee {
 export interface EventAttendee extends BaseEventAttendee {
   payments: BasePayment[];
   passes: BaseEventPass[];
+  packages: BaseAttendeePackage[];
   coupons: BaseCoupon[];
   createdAt: string;
   updatedAt: string;
@@ -3008,7 +3016,7 @@ export interface BaseBooking {
   day: string;
   time: string;
   duration: number;
-  status: EventPassStatus;
+  status: PurchaseStatus;
   account: BaseAccount;
   space: BaseBookingSpace;
 }
@@ -3072,6 +3080,121 @@ export interface Dashboard extends BaseDashboard {
   widgets: BaseDashboardWidget[];
 }
 
+export interface BaseEventPackage {
+  id: string;
+  name: string;
+  description: string | null;
+  price: number;
+  isActive: boolean;
+  imageId: string | null;
+  image: BaseImage | null;
+  sortOrder: number;
+}
+
+export interface EventPackage extends BaseEventPackage {
+  passes: BaseEventPackagePass[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventPackageTranslation {
+  id: string;
+  locale: string;
+  name: string | null;
+  description: string | null;
+}
+
+export interface BaseEventPackagePass {
+  id: string;
+  passTypeId: string;
+  passType: BaseEventPassType;
+  quantity: number;
+}
+
+export interface EventPackagePass extends BaseEventPackagePass {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseAttendeePackage {
+  id: string;
+  eventId: string;
+  attendeeId: string;
+  packageId: string;
+  package: BaseEventPackage;
+  status: PurchaseStatus;
+  amtPaid: number;
+  amtRefunded: number;
+}
+
+export interface AttendeePackage extends BaseAttendeePackage {
+  passes: BaseEventPackagePass[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventGalleryImage {
+  id: string;
+  name: string | null;
+  description: string | null;
+  imageId: string;
+  image: BaseImage;
+  sortOrder: number;
+}
+
+export interface EventGalleryImage extends BaseEventGalleryImage {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventSponsorshipLevel {
+  id: string;
+  slug: string;
+  name: string;
+  description: string | null;
+  sponsorsPerRow: number;
+}
+
+export interface EventSponsorshipLevel extends BaseEventSponsorshipLevel {
+  sortOrder: number;
+  sponsors: BaseEventSponsorship[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventSponsorshipLevelTranslation {
+  id: number;
+  locale: string;
+  name: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventSponsorship {
+  id: string;
+  slug: string;
+  name: string;
+  description: string | null;
+  url: string | null;
+  account: BaseAccount | null;
+  image: BaseImage | null;
+}
+
+export interface EventSponsorship extends BaseEventSponsorship {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventSponsorshipTranslation {
+  id: number;
+  locale: string;
+  name: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface BaseSurvey {
   id: string;
   slug: string;
@@ -3099,7 +3222,7 @@ export interface SurveyTranslation {
 export interface BaseSurveySubmission {
   id: string;
   account: BaseAccount;
-  status: EventPassStatus;
+  status: PurchaseStatus;
   responses: BaseSurveyQuestionResponse[];
 }
 

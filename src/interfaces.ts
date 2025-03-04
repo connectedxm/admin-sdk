@@ -3156,6 +3156,7 @@ export interface BaseEventSponsorshipLevel {
 
 export interface EventSponsorshipLevel extends BaseEventSponsorshipLevel {
   sortOrder: number;
+  sponsors: BaseEventSponsorship[];
   createdAt: string;
   updatedAt: string;
 }

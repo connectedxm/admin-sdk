@@ -1,6 +1,7 @@
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EventSponsorship } from "@src/interfaces";
 import {
+  GetBaseInfiniteQueryKeys,
   InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
@@ -26,7 +27,13 @@ export const SET_EVENT_SPONSORSHIPS_QUERY_DATA = (
   keyParams: Parameters<typeof EVENT_SPONSORSHIPS_QUERY_KEY>,
   response: Awaited<ReturnType<typeof GetEventSponsorships>>
 ) => {
-  client.setQueryData(EVENT_SPONSORSHIPS_QUERY_KEY(...keyParams), response);
+  client.setQueryData(
+    [
+      ...EVENT_SPONSORSHIPS_QUERY_KEY(...keyParams),
+      ...GetBaseInfiniteQueryKeys(""),
+    ],
+    { pages: [response], pageParams: [null] }
+  );
 };
 
 interface GetEventSponsorshipsProps extends InfiniteQueryParams {

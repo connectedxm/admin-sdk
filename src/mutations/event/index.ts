@@ -22,7 +22,6 @@ export * from "./speakers";
 export * from "./sponsors";
 export * from "./tracks";
 export * from "./translations";
-export * from "./useApproveEvent";
 export * from "./useCloneEvent";
 export * from "./useCreateEvent";
 export * from "./useDeleteEvent";

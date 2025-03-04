@@ -24,7 +24,6 @@ export * from "./sponsorshipLevels";
 export * from "./sponsorships";
 export * from "./tracks";
 export * from "./translations";
-export * from "./useApproveEvent";
 export * from "./useCloneEvent";
 export * from "./useCreateEvent";
 export * from "./useDeleteEvent";

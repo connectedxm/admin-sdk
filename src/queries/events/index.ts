@@ -27,4 +27,3 @@ export * from "./useGetEvent";
 export * from "./useGetEventActivities";
 export * from "./useGetEvents";
 export * from "./useGetFeaturedEvents";
-export * from "./useGetUnapprovedEvents";

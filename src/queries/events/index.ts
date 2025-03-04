@@ -7,6 +7,7 @@ export * from "./coHosts";
 export * from "./coupons";
 export * from "./emails";
 export * from "./faqs";
+export * from "./galleryImages";
 export * from "./on-site";
 export * from "./packages";
 export * from "./pages";

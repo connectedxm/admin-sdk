@@ -538,6 +538,7 @@ export interface EventCreateInputs {
   reservationDescription?: string | null;
   externalUrl?: string | null;
   imageId?: string | null;
+  backgroundImageId?: string | null;
   venueMapId?: string | null;
   venue?: string | null;
   location?: string | null;
@@ -842,6 +843,7 @@ export interface EventUpdateInputs {
   eventEnd?: string | null;
   externalUrl?: string | null;
   imageId?: string | null;
+  backgroundImageId?: string | null;
   venueMapId?: string | null;
   venue?: string | null;
   location?: string | null;
@@ -1874,4 +1876,17 @@ export interface AttendeeEventPackageUpdateInputs {
 export interface EventPackageTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;
+}
+
+export interface EventGalleryImageCreateInputs {
+  imageId: string;
+  name?: string | null;
+  description?: string | null;
+  sortOrder?: number | string | null;
+}
+
+export interface EventGalleryImageUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+  sortOrder?: number | string | null;
 }

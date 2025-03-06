@@ -203,13 +203,6 @@ export enum RegistrationQuestionType {
   file = "file",
 }
 
-export enum ReportType {
-  organization = "organization",
-  event = "event",
-  booking = "booking",
-  group = "group",
-}
-
 export enum OrganizationTriggerType {
   postAuth = "postAuth",
 }
@@ -1922,16 +1915,44 @@ export interface EventAttendee extends BaseEventAttendee {
   updatedAt: string;
 }
 
-export interface ReportParent {
-  id: number;
-  type: ReportType;
-  name: string;
-  description: string | null;
-  createdAt: string;
-  updatedAt: string;
+export enum ReportType {
+  organization = "organization",
+  event = "event",
+  listing = "listing",
+  booking = "booking",
+  group = "group",
 }
 
-export interface Report {
+export enum EventReportDateType {
+  lifetime = "lifetime",
+  year = "year",
+  quarter = "quarter",
+  month = "month",
+}
+
+export interface ReportFilters {
+  eventId?: string;
+  placeId?: string;
+  groupId?: string;
+}
+
+export interface BaseStandardReport {
+  id: string;
+  type: keyof typeof ReportType;
+  category: string;
+  name: string;
+  description: string;
+  dateType: keyof typeof EventReportDateType;
+  favorite: boolean;
+}
+
+export interface StandardReport extends BaseStandardReport {
+  rowData: object[];
+  colDefs: object[];
+  nextCursor: number | null;
+}
+
+export interface CustomReport {
   id: number;
   name: string;
   description: string | null;
@@ -1939,19 +1960,12 @@ export interface Report {
   filters: string | null;
   charts: string | null;
   advancedFilter: string | null;
-  parentId: number | null;
-  parent: ReportParent | null;
-  eventId: string | null;
-  event: BaseEvent | null;
+  standard: StandardReport;
   user: BaseUser | null;
   shared: boolean;
   sharedUsers: BaseUser[];
   createdAt: string;
   updatedAt: string;
-  // DYNAMIC
-  colDefs: any;
-  rowData: any[];
-  nextCursor: number | null;
 }
 
 export interface SearchField {

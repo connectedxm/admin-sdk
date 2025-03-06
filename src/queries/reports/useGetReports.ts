@@ -1,30 +1,19 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
-import { Report, ReportType } from "@src/interfaces";
+import { BaseStandardReport, ConnectedXMResponse } from "@src/interfaces";
+import { ReportType } from "@src/interfaces";
 import {
-  InfiniteQueryParams,
-  InfiniteQueryOptions,
-  useConnectedInfiniteQuery,
-} from "../useConnectedInfiniteQuery";
+  SingleQueryParams,
+  SingleQueryOptions,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { QueryClient } from "@tanstack/react-query";
-interface ReportFilters {
-  eventId?: string;
-  placeId?: string;
-  groupId?: string;
-}
 
 /**
  * @category Keys
  * @group Reports
  */
-export const REPORTS_QUERY_KEY = (
-  type: keyof typeof ReportType,
-  filters?: ReportFilters
-) => {
+export const REPORTS_QUERY_KEY = (type: keyof typeof ReportType) => {
   const keys = ["REPORTS", type];
-  if (filters?.eventId) keys.push(filters.eventId);
-  if (filters?.placeId) keys.push(filters.placeId);
-  if (filters?.groupId) keys.push(filters.groupId);
   return keys;
 };
 
@@ -40,9 +29,8 @@ export const SET_REPORTS_QUERY_DATA = (
   client.setQueryData(REPORTS_QUERY_KEY(...keyParams), response);
 };
 
-interface GetReportsProps extends InfiniteQueryParams {
+interface GetReportsProps extends SingleQueryParams {
   type: keyof typeof ReportType;
-  filters?: ReportFilters;
 }
 
 /**
@@ -50,25 +38,13 @@ interface GetReportsProps extends InfiniteQueryParams {
  * @group Reports
  */
 export const GetReports = async ({
-  pageParam,
-  pageSize,
-  orderBy,
-  search,
   type,
-  filters,
   adminApiParams,
-}: GetReportsProps): Promise<ConnectedXMResponse<Report[]>> => {
+}: GetReportsProps): Promise<ConnectedXMResponse<BaseStandardReport[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/reports`, {
     params: {
-      page: pageParam || undefined,
-      pageSize: pageSize || undefined,
-      orderBy: orderBy || undefined,
-      search: search || undefined,
       type,
-      eventId: filters?.eventId,
-      placeId: filters?.placeId,
-      groupId: filters?.groupId,
     },
   });
   return data;
@@ -79,25 +55,14 @@ export const GetReports = async ({
  */
 export const useGetReports = (
   type: keyof typeof ReportType,
-  filters?: ReportFilters,
-  params: Omit<
-    InfiniteQueryParams,
-    "pageParam" | "queryClient" | "adminApiParams"
-  > = {},
-  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetReports>>> = {}
+  options: SingleQueryOptions<ReturnType<typeof GetReports>> = {}
 ) => {
-  return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetReports>>>(
-    REPORTS_QUERY_KEY(type, filters),
-    (params: InfiniteQueryParams) => GetReports({ ...params, type, filters }),
-    params,
+  return useConnectedSingleQuery<ReturnType<typeof GetReports>>(
+    REPORTS_QUERY_KEY(type),
+    (params: SingleQueryParams) => GetReports({ ...params, type }),
     {
       ...options,
-      enabled:
-        (type === "organization" ||
-          (type === "event" && !!filters?.eventId) ||
-          (type === "booking" && !!filters?.placeId) ||
-          (type === "group" && !!filters?.groupId)) &&
-        (options.enabled ?? true),
+      enabled: !!type && (options.enabled ?? true),
     },
     "reports"
   );

@@ -4,8 +4,7 @@ import {
   useConnectedSingleQuery,
 } from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { Report, ReportType } from "@src/interfaces";
-import { REPORTS_QUERY_KEY } from "../reports/useGetReports";
+import { StandardReport } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
@@ -13,10 +12,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @category Keys
  * @group Reports
  */
-export const REPORT_QUERY_KEY = (
-  type: keyof typeof ReportType,
-  reportId: string
-) => [...REPORTS_QUERY_KEY(type), reportId];
+export const REPORT_QUERY_KEY = (standard: string) => ["REPORT", standard];
 
 /**
  * @category Setters
@@ -31,7 +27,7 @@ export const SET_REPORT_QUERY_DATA = (
 };
 
 interface GetReportProps extends SingleQueryParams {
-  reportId: string;
+  standard: string;
 }
 
 /**
@@ -39,30 +35,29 @@ interface GetReportProps extends SingleQueryParams {
  * @group Reports
  */
 export const GetReport = async ({
-  reportId,
+  standard,
   adminApiParams,
-}: GetReportProps): Promise<ConnectedXMResponse<Report>> => {
+}: GetReportProps): Promise<ConnectedXMResponse<StandardReport>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
 
   let nextCursor: number | null = null;
-  const rowData = [];
+  const rowData: object[] = [];
 
-  const { data } = await adminApi.get<ConnectedXMResponse<Report>>(
-    `/reports/${reportId}`
+  const { data } = await adminApi.get<ConnectedXMResponse<StandardReport>>(
+    `/reports/${standard}`
   );
 
   rowData.push(...data.data.rowData);
   nextCursor = data.data.nextCursor;
 
   while (nextCursor) {
-    const { data: nextData } = await adminApi.get<ConnectedXMResponse<Report>>(
-      `/reports/${reportId}`,
-      {
-        params: {
-          cursor: nextCursor,
-        },
-      }
-    );
+    const { data: nextData } = await adminApi.get<
+      ConnectedXMResponse<StandardReport>
+    >(`/reports/${standard}`, {
+      params: {
+        cursor: nextCursor,
+      },
+    });
 
     rowData.push(...nextData.data.rowData);
     nextCursor = nextData.data.nextCursor;
@@ -81,16 +76,15 @@ export const GetReport = async ({
  * @group Reports
  */
 export const useGetReport = (
-  type: keyof typeof ReportType,
-  reportId: string = "",
+  standard: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetReport>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetReport>>(
-    REPORT_QUERY_KEY(type, reportId),
-    (params: SingleQueryParams) => GetReport({ reportId, ...params }),
+    REPORT_QUERY_KEY(standard),
+    (params: SingleQueryParams) => GetReport({ standard, ...params }),
     {
       ...options,
-      enabled: !!reportId && (options?.enabled ?? true),
+      enabled: !!standard && (options?.enabled ?? true),
       refetchOnWindowFocus: false,
       refetchOnMount: false,
       refetchOnReconnect: false,

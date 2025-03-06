@@ -1660,6 +1660,7 @@ export interface BasePayment {
   country: string;
   state: string;
   zip: string;
+  captured: boolean;
   createdAt: string;
 }
 
@@ -1686,7 +1687,7 @@ export interface Payment extends BasePayment {
   registrationId: string | null;
   bookingId: string | null;
   booking: BaseBooking | null;
-  captured: boolean;
+
   metadata?: any;
 }
 

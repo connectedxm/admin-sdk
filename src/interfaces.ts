@@ -1687,7 +1687,6 @@ export interface Payment extends BasePayment {
   registrationId: string | null;
   bookingId: string | null;
   booking: BaseBooking | null;
-
   metadata?: any;
 }
 

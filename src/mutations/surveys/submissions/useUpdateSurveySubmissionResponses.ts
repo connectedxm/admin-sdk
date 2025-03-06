@@ -15,7 +15,7 @@ import { SURVEY_QUESTION_SECTIONS_QUERY_KEY } from "@src/queries/surveys/submiss
 export interface UpdateSurveySubmissionResponsesParams extends MutationParams {
   surveyId: string;
   submissionId: string;
-  questions: { id: string; value: string }[];
+  questions: { questionId: string; value: string }[];
 }
 
 /**

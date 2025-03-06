@@ -27,3 +27,4 @@ export * from "./threads";
 export * from "./tier";
 export * from "./useConnectedMutation";
 export * from "./videos";
+export * from "./payments";

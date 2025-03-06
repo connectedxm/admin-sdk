@@ -1,10 +1,10 @@
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EventGalleryImage } from "@src/interfaces";
 import {
-  InfiniteQueryOptions,
-  InfiniteQueryParams,
-  useConnectedInfiniteQuery,
-} from "../../useConnectedInfiniteQuery";
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { GetAdminAPI } from "@src/AdminAPI";
 
@@ -29,7 +29,7 @@ export const SET_EVENT_GALLERY_IMAGES_QUERY_DATA = (
   client.setQueryData(EVENT_GALLERY_IMAGES_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventGalleryImagesProps extends InfiniteQueryParams {
+interface GetEventGalleryImagesProps extends SingleQueryParams {
   eventId: string;
 }
 
@@ -39,23 +39,12 @@ interface GetEventGalleryImagesProps extends InfiniteQueryParams {
  */
 export const GetEventGalleryImages = async ({
   eventId,
-  pageParam,
-  pageSize,
-  orderBy,
-  search,
   adminApiParams,
 }: GetEventGalleryImagesProps): Promise<
   ConnectedXMResponse<EventGalleryImage[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/events/${eventId}/images`, {
-    params: {
-      page: pageParam || undefined,
-      pageSize: pageSize || undefined,
-      orderBy: orderBy || undefined,
-      search: search || undefined,
-    },
-  });
+  const { data } = await adminApi.get(`/events/${eventId}/images`);
   return data;
 };
 
@@ -65,27 +54,15 @@ export const GetEventGalleryImages = async ({
  */
 export const useGetEventGalleryImages = (
   eventId: string = "",
-  params: Omit<
-    InfiniteQueryParams,
-    "pageParam" | "queryClient" | "adminApiParams"
-  > = {},
-  options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventGalleryImages>>
-  > = {}
+  options: SingleQueryOptions<ReturnType<typeof GetEventGalleryImages>> = {}
 ) => {
-  return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventGalleryImages>>
-  >(
+  return useConnectedSingleQuery<ReturnType<typeof GetEventGalleryImages>>(
     EVENT_GALLERY_IMAGES_QUERY_KEY(eventId),
-    (params: InfiniteQueryParams) =>
-      GetEventGalleryImages({
-        ...params,
-        eventId,
-      }),
-    params,
+    (params: SingleQueryParams) =>
+      GetEventGalleryImages({ eventId, ...params }),
     {
       ...options,
-      enabled: !!eventId && (options.enabled ?? true),
+      enabled: !!eventId && (options?.enabled ?? true),
     },
     "events"
   );

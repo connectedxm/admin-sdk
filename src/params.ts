@@ -2064,3 +2064,7 @@ export interface EventSponsorshipTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;
 }
+
+export interface PaymentUpdateInputs {
+  captured?: boolean;
+}

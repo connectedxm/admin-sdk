@@ -1661,6 +1661,7 @@ export interface BasePayment {
   country: string;
   state: string;
   zip: string;
+  captured: boolean;
   createdAt: string;
 }
 
@@ -1668,6 +1669,7 @@ export enum PaymentIntegrationType {
   stripe = "stripe",
   paypal = "paypal",
   braintree = "braintree",
+  manual = "manual",
 }
 
 export interface Payment extends BasePayment {
@@ -1697,6 +1699,7 @@ export interface PaymentIntegration {
   stripe?: any | null;
   paypal?: any | null;
   braintree?: any | null;
+  manual?: any | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -3221,7 +3224,7 @@ export interface SurveyTranslation {
 
 export interface BaseSurveySubmission {
   id: string;
-  account: BaseAccount;
+  account: BaseAccount | null;
   status: PurchaseStatus;
   responses: BaseSurveyQuestionResponse[];
 }

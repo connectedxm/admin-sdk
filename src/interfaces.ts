@@ -1667,6 +1667,7 @@ export enum PaymentIntegrationType {
   stripe = "stripe",
   paypal = "paypal",
   braintree = "braintree",
+  manual = "manual",
 }
 
 export interface Payment extends BasePayment {
@@ -1685,6 +1686,7 @@ export interface Payment extends BasePayment {
   registrationId: string | null;
   bookingId: string | null;
   booking: BaseBooking | null;
+  captured: boolean;
   metadata?: any;
 }
 
@@ -1696,6 +1698,7 @@ export interface PaymentIntegration {
   stripe?: any | null;
   paypal?: any | null;
   braintree?: any | null;
+  manual?: any | null;
   createdAt: string;
   updatedAt: string;
 }

@@ -1921,6 +1921,10 @@ export enum ReportType {
   listing = "listing",
   booking = "booking",
   group = "group",
+  channel = "channel",
+  account = "account",
+  survey = "survey",
+  subscriptionProduct = "subscriptionProduct",
 }
 
 export enum EventReportDateType {
@@ -1934,6 +1938,10 @@ export interface ReportFilters {
   eventId?: string;
   placeId?: string;
   groupId?: string;
+  channelId?: string;
+  accountId?: string;
+  surveyId?: string;
+  subscriptionProductId?: string;
 }
 
 export interface BaseStandardReport {

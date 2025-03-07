@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, ReportFilters } from "@src/interfaces";
 import { CustomReport } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -12,7 +12,10 @@ import { QueryClient } from "@tanstack/react-query";
  * @category Keys
  * @group Reports
  */
-export const CUSTOM_REPORTS_QUERY_KEY = () => ["CUSTOM_REPORTS"];
+export const CUSTOM_REPORTS_QUERY_KEY = (filters: ReportFilters = {}) => [
+  "CUSTOM_REPORTS",
+  ...Object.values(filters),
+];
 
 /**
  * @category Setters
@@ -26,13 +29,16 @@ export const SET_CUSTOM_REPORTS_QUERY_DATA = (
   client.setQueryData(CUSTOM_REPORTS_QUERY_KEY(...keyParams), response);
 };
 
-interface GetCustomReportsProps extends InfiniteQueryParams {}
+interface GetCustomReportsProps extends InfiniteQueryParams {
+  filters?: ReportFilters;
+}
 
 /**
  * @category Queries
  * @group Reports
  */
 export const GetCustomReports = async ({
+  filters = {},
   pageParam,
   pageSize,
   orderBy,
@@ -48,6 +54,7 @@ export const GetCustomReports = async ({
         pageSize: pageSize || undefined,
         orderBy: orderBy || undefined,
         search: search || undefined,
+        ...filters,
       },
     }
   );
@@ -59,6 +66,7 @@ export const GetCustomReports = async ({
  * @group Reports
  */
 export const useGetCustomReports = (
+  filters: ReportFilters = {},
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -70,8 +78,8 @@ export const useGetCustomReports = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetCustomReports>>
   >(
-    CUSTOM_REPORTS_QUERY_KEY(),
-    (params: InfiniteQueryParams) => GetCustomReports({ ...params }),
+    CUSTOM_REPORTS_QUERY_KEY(filters),
+    (params: InfiniteQueryParams) => GetCustomReports({ filters, ...params }),
     params,
     options,
     "reports"

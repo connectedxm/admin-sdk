@@ -3,7 +3,7 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../useConnectedSingleQuery";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, ReportFilters } from "@src/interfaces";
 import { StandardReport } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
@@ -12,7 +12,10 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @category Keys
  * @group Reports
  */
-export const REPORT_QUERY_KEY = (standard: string) => ["REPORT", standard];
+export const REPORT_QUERY_KEY = (
+  standard: string,
+  filters: ReportFilters = {}
+) => ["REPORT", standard, ...Object.values(filters)];
 
 /**
  * @category Setters
@@ -28,6 +31,7 @@ export const SET_REPORT_QUERY_DATA = (
 
 interface GetReportProps extends SingleQueryParams {
   standard: string;
+  filters?: ReportFilters;
 }
 
 /**
@@ -36,6 +40,7 @@ interface GetReportProps extends SingleQueryParams {
  */
 export const GetReport = async ({
   standard,
+  filters = {},
   adminApiParams,
 }: GetReportProps): Promise<ConnectedXMResponse<StandardReport>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -44,7 +49,10 @@ export const GetReport = async ({
   const rowData: object[] = [];
 
   const { data } = await adminApi.get<ConnectedXMResponse<StandardReport>>(
-    `/reports/${standard}`
+    `/reports/${standard}`,
+    {
+      params: filters,
+    }
   );
 
   rowData.push(...data.data.rowData);
@@ -56,6 +64,7 @@ export const GetReport = async ({
     >(`/reports/${standard}`, {
       params: {
         cursor: nextCursor,
+        ...filters,
       },
     });
 
@@ -77,11 +86,12 @@ export const GetReport = async ({
  */
 export const useGetReport = (
   standard: string = "",
+  filters: ReportFilters = {},
   options: SingleQueryOptions<ReturnType<typeof GetReport>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetReport>>(
-    REPORT_QUERY_KEY(standard),
-    (params: SingleQueryParams) => GetReport({ standard, ...params }),
+    REPORT_QUERY_KEY(standard, filters),
+    (params: SingleQueryParams) => GetReport({ standard, filters, ...params }),
     {
       ...options,
       enabled: !!standard && (options?.enabled ?? true),

@@ -5,40 +5,34 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { REPORTS_QUERY_KEY, REPORT_QUERY_KEY } from "@src/queries";
+import { CUSTOM_REPORT_USERS_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
  * @group Reports
  */
-export interface DeleteReportParams extends MutationParams {
-  reportId: string;
-  eventId?: string;
+export interface RemoveCustomReportUserParams extends MutationParams {
+  reportId: number;
+  userId: string;
 }
 
 /**
  * @category Methods
  * @group Reports
  */
-export const DeleteReport = async ({
+export const RemoveCustomReportUser = async ({
   reportId,
-  eventId,
+  userId,
   adminApiParams,
   queryClient,
-}: DeleteReportParams): Promise<ConnectedXMResponse<null>> => {
+}: RemoveCustomReportUserParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
-    `/reports/${reportId}`
+    `/reports/custom/${reportId}/users/${userId}`
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: REPORTS_QUERY_KEY(eventId ? "event" : "organization"),
-    });
-    queryClient.removeQueries({
-      queryKey: REPORT_QUERY_KEY(
-        eventId ? "event" : "organization",
-        reportId.toString()
-      ),
+      queryKey: CUSTOM_REPORT_USERS_QUERY_KEY(reportId),
     });
   }
   return data;
@@ -48,19 +42,19 @@ export const DeleteReport = async ({
  * @category Mutations
  * @group Reports
  */
-export const useDeleteReport = (
+export const useRemoveCustomReportUser = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof DeleteReport>>,
-      Omit<DeleteReportParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof RemoveCustomReportUser>>,
+      Omit<RemoveCustomReportUserParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    DeleteReportParams,
-    Awaited<ReturnType<typeof DeleteReport>>
-  >(DeleteReport, options, {
+    RemoveCustomReportUserParams,
+    Awaited<ReturnType<typeof RemoveCustomReportUser>>
+  >(RemoveCustomReportUser, options, {
     domain: "reports",
     type: "del",
   });

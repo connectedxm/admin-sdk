@@ -1952,6 +1952,7 @@ export interface BaseStandardReport {
   description: string;
   dateType: keyof typeof EventReportDateType;
   favorite: boolean;
+  rowLink?: string;
 }
 
 export interface StandardReport extends BaseStandardReport {

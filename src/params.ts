@@ -1179,6 +1179,10 @@ export interface CustomReportCreateInputs {
   eventId?: string | null;
   placeId?: string | null;
   groupId?: string | null;
+  channelId?: string | null;
+  accountId?: string | null;
+  surveyId?: string | null;
+  subscriptionProductId?: string | null;
 }
 
 export interface CustomReportUpdateInputs {

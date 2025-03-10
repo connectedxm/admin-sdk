@@ -23,6 +23,7 @@ export * from "./storage";
 export * from "./stream";
 export * from "./subscription";
 export * from "./supportTickets";
+export * from "./surveys";
 export * from "./threads";
 export * from "./tier";
 export * from "./useConnectedMutation";

@@ -29,6 +29,7 @@ import {
   PurchaseStatus,
   IntegrationType,
   LeadStatus,
+  ReportFilters,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -1168,7 +1169,7 @@ export interface EventQuestionUpdateInputs {
   featured?: boolean;
 }
 
-export interface CustomReportCreateInputs {
+export interface CustomReportCreateInputs extends ReportFilters {
   name: string;
   description?: string | null;
   filters?: string | null;
@@ -1176,9 +1177,6 @@ export interface CustomReportCreateInputs {
   columns?: string | null;
   advancedFilter?: string | null;
   shared?: boolean;
-  eventId?: string | null;
-  placeId?: string | null;
-  groupId?: string | null;
 }
 
 export interface CustomReportUpdateInputs {

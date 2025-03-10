@@ -30,6 +30,7 @@ import {
   IntegrationType,
   LeadStatus,
   SurveyQuestionType,
+  ReportFilters,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -1170,21 +1171,17 @@ export interface EventQuestionUpdateInputs {
   featured?: boolean;
 }
 
-export interface ReportCreateInputs {
+export interface CustomReportCreateInputs extends ReportFilters {
   name: string;
-  parentId: string | number;
-  eventId?: string | null;
-  placeId?: string | null;
-  groupId?: string | null;
   description?: string | null;
   filters?: string | null;
-  columns?: string | null;
   charts?: string | null;
+  columns?: string | null;
   advancedFilter?: string | null;
   shared?: boolean;
 }
 
-export interface ReportUpdateInputs {
+export interface CustomReportUpdateInputs {
   name?: string | null;
   description?: string | null;
   filters?: string | null;

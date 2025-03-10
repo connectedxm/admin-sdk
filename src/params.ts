@@ -29,6 +29,7 @@ import {
   PurchaseStatus,
   IntegrationType,
   LeadStatus,
+  SurveyQuestionType,
   ReportFilters,
 } from "./interfaces";
 
@@ -924,6 +925,7 @@ export interface OrganizationMembershipUpdateInputs {
   subscriptions: Omit<ModulePermissions, "superEnabled" | "enabled">;
   invoices: Omit<ModulePermissions, "superEnabled" | "enabled">;
   announcements: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  surveys: Omit<ModulePermissions, "superEnabled" | "enabled">;
 }
 
 export interface GroupTranslationUpdateInputs {
@@ -1832,6 +1834,132 @@ export interface DashboardWidgetUpdateInputs {
   h?: number;
 }
 
+export interface SurveyCreateInputs {
+  name: string;
+  slug?: string;
+  description?: string | null;
+  imageId?: string | null;
+  requireAuth?: boolean;
+  submissionsPerAccount?: string | number;
+}
+
+export interface SurveyUpdateInputs {
+  name?: string;
+  slug?: string;
+  description?: string | null;
+  imageId?: string | null;
+  requireAuth?: boolean;
+  submissionsPerAccount?: string | number;
+}
+
+export interface SurveyTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+}
+
+export interface SurveySubmissionUpdateInputs {
+  status?: keyof typeof PurchaseStatus;
+}
+
+export interface SurveyQuestionChoiceCreateInputs {
+  value: string;
+  text?: string | null;
+  supply?: number | string | null;
+  description?: string | null;
+  sortOrder?: number | string | null;
+}
+
+export interface SurveyQuestionChoiceTranslationUpdateInputs {
+  value?: string | null;
+  text?: string | null;
+  description?: string | null;
+}
+
+export interface SurveyQuestionChoiceUpdateInputs {
+  value?: string | null;
+  text?: string | null;
+  supply?: number | string | null;
+  description?: string | null;
+  sortOrder?: number | string | null;
+}
+
+export interface SurveyQuestionCreateInputs {
+  name: string;
+  type: keyof typeof SurveyQuestionType | null;
+  sectionId?: string;
+  questionId?: string;
+  choiceId?: string;
+  required?: boolean;
+  label?: string | null;
+  placeholder?: string | null;
+  description?: string | null;
+  default?: string | null;
+  span?: number | string | null;
+  mutable?: boolean;
+  min?: string | null;
+  max?: string | null;
+  validation?: string | null;
+  validationMessage?: string | null;
+  sortOrder?: number | string | null;
+  featured?: boolean;
+  choices?: string[] | null;
+}
+
+export interface SurveyQuestionSearchInputs {
+  value: string;
+  top?: boolean;
+}
+
+export interface SurveyQuestionSearchValuesCreateInputs {
+  values?: string;
+}
+export interface SurveyQuestionSearchValueUpdateInputs {
+  value?: string | null;
+  top?: boolean;
+}
+
+export interface SurveyQuestionTranslationUpdateInputs {
+  label?: string | null;
+  placeholder?: string | null;
+  description?: string | null;
+}
+
+export interface SurveyQuestionUpdateInputs {
+  name?: string | null;
+  type?: keyof typeof SurveyQuestionType | null;
+  required?: boolean;
+  label?: string | null;
+  placeholder?: string | null;
+  description?: string | null;
+  default?: string | null;
+  span?: number | string | null;
+  mutable?: boolean;
+  min?: string | null;
+  max?: string | null;
+  validation?: string | null;
+  validationMessage?: string | null;
+  sortOrder?: number | string | null;
+  featured?: boolean;
+}
+
+export interface SurveySectionCreateInputs {
+  name: string;
+  description?: string | null;
+  sortOrder?: number | string | null;
+}
+
+export interface SurveySectionTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+  guestDescription?: string | null;
+}
+
+export interface SurveySectionUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+  guestDescription?: string | null;
+  sortOrder?: number | string | null;
+}
 export interface EventPackageCreateInputs {
   name: string;
   description?: string | null;

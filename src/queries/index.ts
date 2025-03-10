@@ -24,6 +24,7 @@ export * from "./series";
 export * from "./streams";
 export * from "./subscriptions";
 export * from "./supportTickets";
+export * from "./surveys";
 export * from "./threads";
 export * from "./tiers";
 export * from "./useConnectedInfiniteQuery";

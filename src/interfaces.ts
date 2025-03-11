@@ -3232,6 +3232,8 @@ export interface BaseSurvey {
 }
 
 export interface Survey extends BaseSurvey {
+  replyTo: string | null;
+  emailBody: string | null;
   createdAt: string;
   updatedAt: string;
 }

@@ -1841,6 +1841,8 @@ export interface SurveyCreateInputs {
   imageId?: string | null;
   requireAuth?: boolean;
   submissionsPerAccount?: string | number;
+  replyTo?: string | null;
+  emailBody?: string | null;
 }
 
 export interface SurveyUpdateInputs {
@@ -1850,11 +1852,14 @@ export interface SurveyUpdateInputs {
   imageId?: string | null;
   requireAuth?: boolean;
   submissionsPerAccount?: string | number;
+  replyTo?: string | null;
+  emailBody?: string | null;
 }
 
 export interface SurveyTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;
+  emailBody?: string | null;
 }
 
 export interface SurveySubmissionUpdateInputs {

@@ -14,9 +14,10 @@ import { QueryClient } from "@tanstack/react-query";
  * @category Keys
  * @group Events
  */
-export const EVENT_COUPONS_QUERY_KEY = (eventId: string) => [
+export const EVENT_COUPONS_QUERY_KEY = (eventId: string, prePaid?: boolean) => [
   ...EVENT_QUERY_KEY(eventId),
   "COUPONS",
+  prePaid ? "GROUP_PASSES" : "STANDARD",
 ];
 
 /**
@@ -33,6 +34,7 @@ export const SET_EVENT_COUPONS_QUERY_DATA = (
 
 interface GetEventCouponsProps extends InfiniteQueryParams {
   eventId: string;
+  prePaid?: boolean;
 }
 
 /**
@@ -46,6 +48,7 @@ export const GetEventCoupons = async ({
   orderBy,
   search,
   adminApiParams,
+  prePaid,
 }: GetEventCouponsProps): Promise<ConnectedXMResponse<Coupon[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/coupons`, {
@@ -54,6 +57,8 @@ export const GetEventCoupons = async ({
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
+      prePaid:
+        typeof prePaid === "boolean" ? (prePaid ? "true" : "false") : undefined,
     },
   });
   return data;
@@ -64,6 +69,7 @@ export const GetEventCoupons = async ({
  */
 export const useGetEventCoupons = (
   eventId: string = "",
+  prePaid: boolean = false,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -73,11 +79,12 @@ export const useGetEventCoupons = (
   > = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetEventCoupons>>>(
-    EVENT_COUPONS_QUERY_KEY(eventId),
+    EVENT_COUPONS_QUERY_KEY(eventId, prePaid),
     (params: InfiniteQueryParams) =>
       GetEventCoupons({
         ...params,
         eventId,
+        prePaid,
       }),
     params,
     {

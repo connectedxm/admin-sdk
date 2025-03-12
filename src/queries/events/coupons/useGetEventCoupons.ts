@@ -14,11 +14,13 @@ import { QueryClient } from "@tanstack/react-query";
  * @category Keys
  * @group Events
  */
-export const EVENT_COUPONS_QUERY_KEY = (eventId: string, prePaid?: boolean) => [
-  ...EVENT_QUERY_KEY(eventId),
-  "COUPONS",
-  prePaid ? "GROUP_PASSES" : "STANDARD",
-];
+export const EVENT_COUPONS_QUERY_KEY = (eventId: string, prePaid?: boolean) => {
+  const key = [...EVENT_QUERY_KEY(eventId), "COUPONS"];
+  if (typeof prePaid === "boolean") {
+    key.push(prePaid ? "GROUP" : "STANDARD");
+  }
+  return key;
+};
 
 /**
  * @category Setters
@@ -69,7 +71,7 @@ export const GetEventCoupons = async ({
  */
 export const useGetEventCoupons = (
   eventId: string = "",
-  prePaid: boolean = false,
+  prePaid?: boolean,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"

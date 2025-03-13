@@ -31,6 +31,7 @@ import {
   LeadStatus,
   SurveyQuestionType,
   ReportFilters,
+  MatchQuestionType,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -570,6 +571,10 @@ export interface EventCreateInputs {
   groupOnly?: boolean;
   passSupply?: number | string | null;
   passLimitPerAccount?: string | number | null;
+  numberOfRounds?: string | number | null;
+  matchSize?: string | number | null;
+  roundName?: string | null;
+  matchName?: string | null;
 }
 
 export interface EventEmailUpdateInputs {
@@ -684,6 +689,10 @@ export interface EventSessionCreateInputs {
   limit?: number | string | null;
   price?: number | string | null;
   locationId?: string | null;
+  numberOfRounds?: string | number | null;
+  matchSize?: string | number | null;
+  roundName?: string | null;
+  matchName?: string | null;
 }
 
 export interface EventSessionTranslationUpdateInputs {
@@ -707,6 +716,10 @@ export interface EventSessionUpdateInputs {
   limit?: number | string | null;
   price?: number | string | null;
   locationId?: string | null;
+  numberOfRounds?: string | number | null;
+  matchSize?: string | number | null;
+  roundName?: string | null;
+  matchName?: string | null;
 }
 
 export interface EventSessionLocationCreateInputs {
@@ -746,6 +759,7 @@ export interface EventSessionQuestionCreateInputs {
   description?: string | null;
   required?: boolean;
   sortOrder?: number | string | null;
+  matchType?: keyof typeof MatchQuestionType;
 }
 
 export interface EventSessionQuestionUpdateInputs {
@@ -754,6 +768,7 @@ export interface EventSessionQuestionUpdateInputs {
   description?: string | null;
   required?: boolean;
   sortOrder?: number | string | null;
+  matchType?: keyof typeof MatchQuestionType;
 }
 
 export interface EventSessionQuestionTranslationUpdateInputs {
@@ -876,6 +891,10 @@ export interface EventUpdateInputs {
   groupOnly?: boolean;
   passSupply?: number | string | null;
   passLimitPerAccount?: string | number | null;
+  numberOfRounds?: string | number | null;
+  matchSize?: string | number | null;
+  roundName?: string | null;
+  matchName?: string | null;
 }
 
 export interface FileUpdateInputs {
@@ -1132,6 +1151,7 @@ export interface EventQuestionCreateInputs {
   sortOrder?: number | string | null;
   featured?: boolean;
   choices?: string[] | null;
+  matchType?: keyof typeof MatchQuestionType;
 }
 
 export interface EventQuestionSearchInputs {
@@ -1169,6 +1189,7 @@ export interface EventQuestionUpdateInputs {
   validationMessage?: string | null;
   sortOrder?: number | string | null;
   featured?: boolean;
+  matchType?: keyof typeof MatchQuestionType;
 }
 
 export interface CustomReportCreateInputs extends ReportFilters {

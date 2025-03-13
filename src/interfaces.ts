@@ -943,6 +943,10 @@ export interface BaseEvent {
 }
 
 export interface Event extends BaseEvent {
+  numberOfRounds: number | null;
+  matchSize: number | null;
+  roundName: string | null;
+  matchName: string | null;
   passSupply: number | null;
   passLimitPerAccount: number | null;
   reservationDescription: string | null;
@@ -1833,6 +1837,7 @@ export interface BaseRegistrationQuestion {
   sortOrder: number;
   featured: boolean;
   choices: BaseRegistrationQuestionChoice[];
+  matchType: MatchQuestionType;
 }
 
 export interface RegistrationQuestion extends BaseRegistrationQuestion {
@@ -2031,6 +2036,10 @@ export interface BaseEventSession {
 }
 
 export interface EventSession extends BaseEventSession {
+  numberOfRounds: number | null;
+  matchSize: number | null;
+  roundName: string | null;
+  matchName: string | null;
   sortOrder: number;
   eventId: string;
   event: BaseEvent;
@@ -2083,6 +2092,7 @@ export interface BaseEventSessionQuestion {
   description: string | null;
   required: boolean;
   sortOrder: number;
+  matchType: MatchQuestionType;
 }
 
 export interface EventSessionQuestion extends BaseEventSessionQuestion {
@@ -3442,6 +3452,39 @@ export interface SurveySectionTranslation {
   locale: string;
   name: string;
   description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export enum MatchQuestionType {
+  exclude = "exclude",
+  include = "include",
+  split = "split",
+}
+
+export interface BaseRound {
+  id: string;
+  event: { roundName: string | null };
+  session: { roundName: string | null };
+  number: number;
+}
+
+export interface Round extends BaseRound {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseMatch {
+  id: string;
+  round: {
+    event: { roundName: string | null };
+    session: { roundName: string | null };
+  };
+  number: true;
+  title: string | null;
+}
+
+export interface Match extends BaseMatch {
   createdAt: string;
   updatedAt: string;
 }

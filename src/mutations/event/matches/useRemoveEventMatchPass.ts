@@ -11,7 +11,7 @@ import { EVENT_MATCH_PASSES_QUERY_KEY } from "@src/queries/events/matches/useGet
  * @category Params
  * @group Event
  */
-export interface RemoveSessionMatchSessionPassParams extends MutationParams {
+export interface RemoveEventMatchPassParams extends MutationParams {
   eventId: string;
   roundId: string;
   matchId: string;
@@ -22,14 +22,14 @@ export interface RemoveSessionMatchSessionPassParams extends MutationParams {
  * @category Methods
  * @group Event
  */
-export const RemoveSessionMatchSessionPass = async ({
+export const RemoveEventMatchPass = async ({
   eventId,
   roundId,
   matchId,
   passId,
   adminApiParams,
   queryClient,
-}: RemoveSessionMatchSessionPassParams): Promise<ConnectedXMResponse<null>> => {
+}: RemoveEventMatchPassParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/rounds/${roundId}/matches/${matchId}/sessionPasses/${passId}`
@@ -48,22 +48,19 @@ export const RemoveSessionMatchSessionPass = async ({
  * @category Mutations
  * @group Event
  */
-export const useRemoveSessionMatchSessionPass = (
+export const useRemoveEventMatchPass = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof RemoveSessionMatchSessionPass>>,
-      Omit<
-        RemoveSessionMatchSessionPassParams,
-        "queryClient" | "adminApiParams"
-      >
+      Awaited<ReturnType<typeof RemoveEventMatchPass>>,
+      Omit<RemoveEventMatchPassParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    RemoveSessionMatchSessionPassParams,
-    Awaited<ReturnType<typeof RemoveSessionMatchSessionPass>>
-  >(RemoveSessionMatchSessionPass, options, {
+    RemoveEventMatchPassParams,
+    Awaited<ReturnType<typeof RemoveEventMatchPass>>
+  >(RemoveEventMatchPass, options, {
     domain: "events",
     type: "update",
   });

@@ -5,7 +5,7 @@ import {
   useConnectedMutation,
 } from "../../../useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { EVENT_SESSION_MATCH_PASSES_QUERY_KEY } from "@src/queries/events/sessions/matches/useGetEventSessionMatchSessionPasses";
+import { EVENT_SESSION_MATCH_SESSION_PASSES_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
@@ -41,7 +41,7 @@ export const AddEventSessionMatchSessionPass = async ({
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_SESSION_MATCH_PASSES_QUERY_KEY(
+      queryKey: EVENT_SESSION_MATCH_SESSION_PASSES_QUERY_KEY(
         eventId,
         sessionId,
         roundId,

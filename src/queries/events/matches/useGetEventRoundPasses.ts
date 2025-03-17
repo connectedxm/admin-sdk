@@ -6,59 +6,65 @@ import {
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
-import { EVENT_MATCH_QUERY_KEY } from "./useGetEventMatch";
+import { EVENT_ROUNDS_QUERY_KEY } from "./useGetEventRounds";
 
 /**
  * @category Keys
  * @group Events
  */
-export const EVENT_MATCH_PASSES_QUERY_KEY = (
+export const EVENT_ROUND_PASSES_QUERY_KEY = (
+  assigned: boolean,
   eventId: string,
-  roundId: string,
-  matchId: string
-) => [...EVENT_MATCH_QUERY_KEY(eventId, roundId, matchId), "MATCHES"];
+  roundId: string
+) => [
+  ...EVENT_ROUNDS_QUERY_KEY(eventId),
+  roundId,
+  "PASSES",
+  assigned ? "ASSIGNED" : "UNASSIGNED",
+];
 
 /**
  * @category Setters
  * @group Events
  */
-export const SET_EVENT_MATCH_PASSES_QUERY_DATA = (
+export const SET_EVENT_ROUND_PASSES_QUERY_DATA = (
   client: QueryClient,
-  keyParams: Parameters<typeof EVENT_MATCH_PASSES_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventMatchPasses>>
+  keyParams: Parameters<typeof EVENT_ROUND_PASSES_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetEventRoundPasses>>
 ) => {
-  client.setQueryData(EVENT_MATCH_PASSES_QUERY_KEY(...keyParams), response);
+  client.setQueryData(EVENT_ROUND_PASSES_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventMatchPassesProps extends InfiniteQueryParams {
+interface GetEventRoundPassesProps extends InfiniteQueryParams {
+  assigned: boolean;
   eventId: string;
   roundId: string;
-  matchId: string;
 }
 
 /**
  * @category Queries
  * @group Events
  */
-export const GetEventMatchPasses = async ({
+export const GetEventRoundPasses = async ({
+  assigned,
   eventId,
   roundId,
-  matchId,
   pageParam,
   pageSize,
   orderBy,
   search,
   adminApiParams,
-}: GetEventMatchPassesProps): Promise<ConnectedXMResponse<EventPass[]>> => {
+}: GetEventRoundPassesProps): Promise<ConnectedXMResponse<EventPass[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/events/${eventId}/rounds/${roundId}/matches/${matchId}/paasses`,
+    `/events/${eventId}/rounds/${roundId}/passes`,
     {
       params: {
         page: pageParam || undefined,
         pageSize: pageSize || undefined,
         orderBy: orderBy || undefined,
         search: search || undefined,
+        assigned,
       },
     }
   );
@@ -70,34 +76,37 @@ export const GetEventMatchPasses = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventMatchPasses = (
+export const useGetEventRoundPasses = (
+  assigned: boolean,
   eventId: string = "",
   roundId: string = "",
-  matchId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventMatchPasses>>
+    Awaited<ReturnType<typeof GetEventRoundPasses>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventMatchPasses>>
+    Awaited<ReturnType<typeof GetEventRoundPasses>>
   >(
-    EVENT_MATCH_PASSES_QUERY_KEY(eventId, roundId, matchId),
+    EVENT_ROUND_PASSES_QUERY_KEY(assigned, eventId, roundId),
     (params: InfiniteQueryParams) =>
-      GetEventMatchPasses({
+      GetEventRoundPasses({
         eventId,
         roundId,
-        matchId,
+        assigned,
         ...params,
       }),
     params,
     {
       ...options,
       enabled:
-        !!eventId && !!roundId && !!matchId && (options?.enabled ?? true),
+        typeof assigned === "boolean" &&
+        !!eventId &&
+        !!roundId &&
+        (options?.enabled ?? true),
     },
     "events"
   );

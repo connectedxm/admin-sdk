@@ -2121,7 +2121,7 @@ export interface EventSessionQuestionResponse
 }
 
 export interface BaseEventSessionPass {
-  id: true;
+  id: string;
   canceled: boolean;
 }
 
@@ -3477,8 +3477,8 @@ export interface Round extends BaseRound {
 export interface BaseMatch {
   id: string;
   round: {
-    event: { roundName: string | null };
-    session: { roundName: string | null };
+    event: { matchName: string | null };
+    session: { matchName: string | null };
   };
   number: true;
   title: string | null;

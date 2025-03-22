@@ -940,6 +940,8 @@ export interface BaseEvent {
   registration: boolean;
   registrationStart: string | null;
   registrationEnd: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Event extends BaseEvent {
@@ -971,8 +973,6 @@ export interface Event extends BaseEvent {
   groupOnly: boolean;
   backgroundImageId: string | null;
   backgroundImage: BaseImage | null;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface EventTranslation {

@@ -20,6 +20,7 @@ export interface MutationParams {
   queryClient?: QueryClient;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface ConnectedXMMutationOptions<TResponseData, TMutationParams>
   extends UseMutationOptions<
     TResponseData,

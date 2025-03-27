@@ -1,8 +1,9 @@
 {
   "name": "@connectedxm/admin",
-  "version": "1.8.6-beta.14",
+  "version": "2.0.0-beta.0",
   "description": "Admin API javascript SDK",
   "author": "ConnectedXM Inc.",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/connectedxm/admin-sdk.git"
@@ -12,47 +13,38 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "vitest",
-    "lint": "npm run tsc && eslint src/**/*.ts",
-    "test": "vitest run",
+    "lint": "eslint src/**/*.ts",
     "build": "tsup src/index.ts --format cjs,esm --dts",
-    "release": "npm run lint && npm run test && npm run build",
     "local": "npm run release && npm pack",
-    "document": "typedoc --plugin typedoc-material-theme",
-    "exports": "tsx scripts/addExports.ts",
-    "tsc": "tsc"
+    "exports": "tsx scripts/addExports.ts"
   },
   "dependencies": {
-    "axios": "^1.6.5",
-    "immer": "^10.0.3"
+    "axios": "^1.8.4",
+    "immer": "^10.1.1"
   },
   "peerDependencies": {
     "@tanstack/react-query": "^5.0.0",
-    "react": "^18.0.0"
+    "react": "^18 || ^19"
   },
   "devDependencies": {
-    "@babel/parser": "^7.24.7",
-    "@swc/core": "^1.3.102",
-    "@tanstack/react-query": "^5.0.0",
+    "@babel/parser": "^7.26.10",
+    "@swc/core": "^1.11.11",
+    "@tanstack/react-query": "^5.69.0",
     "@types/glob": "^8.1.0",
-    "@types/node": "^20.14.2",
-    "@types/react": "^18.2.47",
-    "@typescript-eslint/eslint-plugin": "^6.4.0",
-    "@typescript-eslint/parser": "^6.18.1",
-    "eslint": "^8.0.1",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "glob": "^10.4.1",
-    "recast": "^0.23.9",
-    "tsup": "^8.0.1",
-    "typedoc": "^0.25.13",
-    "typedoc-material-theme": "^1.0.2",
-    "typedoc-theme-category-nav": "^0.0.3",
-    "typedoc-theme-hierarchy": "^4.0.0",
-    "typescript": "^5.4.2",
-    "vitest": "^1.3.1"
+    "@types/node": "^22.13.11",
+    "@types/react": "^19.0.12",
+    "@typescript-eslint/eslint-plugin": "^8.27.0",
+    "@typescript-eslint/parser": "^8.27.0",
+    "eslint": "^9.23.0",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "glob": "^11.0.1",
+    "recast": "^0.23.11",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.9"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.6.1"
+    "@rollup/rollup-linux-x64-gnu": "4.36.0"
   }
 }

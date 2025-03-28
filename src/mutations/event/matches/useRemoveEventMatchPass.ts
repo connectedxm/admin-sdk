@@ -6,6 +6,10 @@ import {
 } from "../../useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EVENT_MATCH_PASSES_QUERY_KEY } from "@src/queries/events/matches/useGetEventMatchPasses";
+import {
+  EVENT_MATCHES_QUERY_KEY,
+  EVENT_ROUND_PASSES_QUERY_KEY,
+} from "@src/queries";
 
 /**
  * @category Params
@@ -32,12 +36,21 @@ export const RemoveEventMatchPass = async ({
 }: RemoveEventMatchPassParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
-    `/events/${eventId}/rounds/${roundId}/matches/${matchId}/sessionPasses/${passId}`
+    `/events/${eventId}/rounds/${roundId}/matches/${matchId}/passes/${passId}`
   );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_MATCH_PASSES_QUERY_KEY(eventId, roundId, matchId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_MATCHES_QUERY_KEY(eventId, roundId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_ROUND_PASSES_QUERY_KEY(true, eventId, roundId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_ROUND_PASSES_QUERY_KEY(false, eventId, roundId),
     });
   }
 

@@ -5,7 +5,11 @@ import {
   useConnectedMutation,
 } from "../../../useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { EVENT_SESSION_MATCH_SESSION_PASSES_QUERY_KEY } from "@src/queries";
+import {
+  EVENT_SESSION_MATCH_SESSION_PASSES_QUERY_KEY,
+  EVENT_SESSION_MATCHES_QUERY_KEY,
+  EVENT_SESSION_ROUND_PASSES_QUERY_KEY,
+} from "@src/queries";
 
 /**
  * @category Params
@@ -47,6 +51,25 @@ export const RemoveEventSessionMatchSessionPass = async ({
         sessionId,
         roundId,
         matchId
+      ),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SESSION_MATCHES_QUERY_KEY(eventId, sessionId, roundId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SESSION_ROUND_PASSES_QUERY_KEY(
+        true,
+        eventId,
+        sessionId,
+        roundId
+      ),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SESSION_ROUND_PASSES_QUERY_KEY(
+        false,
+        eventId,
+        sessionId,
+        roundId
       ),
     });
   }

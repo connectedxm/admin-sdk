@@ -1,6 +1,6 @@
 {
   "name": "@connectedxm/admin",
-  "version": "2.0.0-beta.0",
+  "version": "2.0.1-beta.6",
   "description": "Admin API javascript SDK",
   "author": "ConnectedXM Inc.",
   "type": "module",
@@ -15,6 +15,7 @@
   "scripts": {
     "lint": "eslint src/**/*.ts",
     "build": "tsup src/index.ts --format cjs,esm --dts",
+    "release": "npm run lint && npm run build",
     "local": "npm run release && npm pack",
     "exports": "tsx scripts/addExports.ts"
   },

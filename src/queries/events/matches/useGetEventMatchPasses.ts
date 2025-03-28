@@ -16,7 +16,7 @@ export const EVENT_MATCH_PASSES_QUERY_KEY = (
   eventId: string,
   roundId: string,
   matchId: string
-) => [...EVENT_MATCH_QUERY_KEY(eventId, roundId, matchId), "MATCHES"];
+) => [...EVENT_MATCH_QUERY_KEY(eventId, roundId, matchId), "PASSES"];
 
 /**
  * @category Setters
@@ -52,7 +52,7 @@ export const GetEventMatchPasses = async ({
 }: GetEventMatchPassesProps): Promise<ConnectedXMResponse<EventPass[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/events/${eventId}/rounds/${roundId}/matches/${matchId}/paasses`,
+    `/events/${eventId}/rounds/${roundId}/matches/${matchId}/passes`,
     {
       params: {
         page: pageParam || undefined,

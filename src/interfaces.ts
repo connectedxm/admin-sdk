@@ -652,12 +652,6 @@ export interface ChannelContentTranslation {
   updatedAt: string;
 }
 
-export interface ChannelTranslation {
-  locale: string;
-  name: string;
-  description: string | null;
-}
-
 export interface BaseChannel {
   id: string;
   slug: string;
@@ -1040,7 +1034,7 @@ export interface FaqTranslation {
   updatedAt: string;
 }
 
-enum SupportedLocale {
+export enum SupportedLocale {
   af = "af",
   sq = "sq",
   am = "am",
@@ -3464,8 +3458,8 @@ export enum MatchQuestionType {
 
 export interface BaseRound {
   id: string;
-  event: { roundName: string | null };
-  session: { roundName: string | null };
+  event?: { roundName: string | null };
+  session?: { roundName: string | null };
   number: number;
 }
 
@@ -3477,8 +3471,8 @@ export interface Round extends BaseRound {
 export interface BaseMatch {
   id: string;
   round: {
-    event: { matchName: string | null };
-    session: { matchName: string | null };
+    event?: { matchName: string | null };
+    session?: { matchName: string | null };
   };
   number: true;
   title: string | null;

@@ -1840,9 +1840,6 @@ export interface RegistrationQuestion extends BaseRegistrationQuestion {
   subQuestionOf: RegistrationQuestionChoiceSubQuestion[];
   createdAt: string;
   updatedAt: string;
-  _count: {
-    responses: number;
-  };
 }
 
 export interface RegistrationQuestionTranslation {
@@ -2823,9 +2820,6 @@ export interface EventRoomType extends BaseEventRoomType {
   disallowedTiers: BaseTier[];
   createdAt: string;
   updatedAt: string;
-  _count: {
-    reservations: number;
-  };
 }
 
 export interface EventRoomTypeTranslation {

@@ -2,7 +2,7 @@ name: Publish Packages
 
 permissions:
   contents: read
-  packages: read
+  packages: write
 
 on:
   push:

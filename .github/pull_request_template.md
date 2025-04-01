@@ -1,6 +1,6 @@
 ### Description
 
-A brief description of the changes in this PR.
+<!-- A brief description of the changes in this PR. -->
 
 ### Linear Issues
 

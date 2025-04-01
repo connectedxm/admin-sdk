@@ -20,5 +20,3 @@ Indicate the appropriate version bump for this PR:
 - [ ] Breaking changes - Major version bump
 - [ ] New features / improvements - Minor version bump
 - [ ] Bug fixes - Patch version bump
-
-- [ ] I have updated the version in `package.json`

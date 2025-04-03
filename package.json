@@ -1,6 +1,6 @@
 {
   "name": "@connectedxm/admin",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Admin API javascript SDK",
   "author": "ConnectedXM Inc.",
   "type": "module",
@@ -31,10 +31,10 @@
   "devDependencies": {
     "@babel/parser": "^7.27.0",
     "@swc/core": "^1.11.16",
-    "@tanstack/react-query": "^5.71.1",
+    "@tanstack/react-query": "^5.71.5",
     "@types/glob": "^8.1.0",
-    "@types/node": "^22.13.17",
-    "@types/react": "^19.0.12",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.1.0",
     "@typescript-eslint/eslint-plugin": "^8.29.0",
     "@typescript-eslint/parser": "^8.29.0",
     "eslint": "^9.23.0",
@@ -47,6 +47,6 @@
     "vitest": "^3.1.1"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.38.0"
+    "@rollup/rollup-linux-x64-gnu": "4.39.0"
   }
 }

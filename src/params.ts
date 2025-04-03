@@ -1174,20 +1174,14 @@ export interface EventQuestionUpdateInputs {
 export interface CustomReportCreateInputs extends ReportFilters {
   name: string;
   description?: string | null;
-  filters?: string | null;
-  charts?: string | null;
-  columns?: string | null;
-  advancedFilter?: string | null;
+  gridState?: string | null;
   shared?: boolean;
 }
 
 export interface CustomReportUpdateInputs {
   name?: string | null;
   description?: string | null;
-  filters?: string | null;
-  columns?: string | null;
-  charts?: string | null;
-  advancedFilter?: string | null;
+  gridState?: string | null;
   shared?: boolean;
 }
 

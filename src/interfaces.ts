@@ -652,12 +652,6 @@ export interface ChannelContentTranslation {
   updatedAt: string;
 }
 
-export interface ChannelTranslation {
-  locale: string;
-  name: string;
-  description: string | null;
-}
-
 export interface BaseChannel {
   id: string;
   slug: string;
@@ -1036,7 +1030,7 @@ export interface FaqTranslation {
   updatedAt: string;
 }
 
-enum SupportedLocale {
+export enum SupportedLocale {
   af = "af",
   sq = "sq",
   am = "am",
@@ -1963,6 +1957,7 @@ export interface CustomReport {
   id: number;
   name: string;
   description: string | null;
+  gridState: string | null;
   columns: string | null;
   filters: string | null;
   charts: string | null;

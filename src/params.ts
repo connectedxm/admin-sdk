@@ -1079,6 +1079,7 @@ export interface OrganizationUpdateInputs {
   appIconId?: string | null;
   appAdaptiveIconId?: string | null;
   appSplashScreenId?: string | null;
+  locale?: string | null;
   locales?: string[] | null;
   googleServices?: string | null;
   inviteOnly?: boolean;

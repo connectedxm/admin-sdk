@@ -1454,7 +1454,7 @@ export interface BaseOrganization {
   iconId: string | null;
   icon: BaseImage | null;
   domain: string | null;
-  locale: true;
+  locale: string;
 }
 
 export interface Organization extends BaseOrganization {

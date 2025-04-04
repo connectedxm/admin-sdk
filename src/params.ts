@@ -1082,6 +1082,7 @@ export interface OrganizationUpdateInputs {
   locales?: string[] | null;
   googleServices?: string | null;
   inviteOnly?: boolean;
+  shopUrl?: string | null;
 }
 
 export interface PaymentIntentPurchaseMetadataInputs {}

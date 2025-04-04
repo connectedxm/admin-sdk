@@ -1514,6 +1514,7 @@ export interface Organization extends BaseOrganization {
   locales: string[];
   googleServices: string | null;
   inviteOnly: boolean;
+  shopUrl: string | null;
 }
 
 export interface OrganizationTrigger {

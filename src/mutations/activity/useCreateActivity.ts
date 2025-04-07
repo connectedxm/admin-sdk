@@ -4,7 +4,7 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@interfaces";
+import { Activity, ConnectedXMResponse } from "@interfaces";
 import { ACTIVITIES_QUERY_KEY } from "@src/queries";
 import { ActivityCreateInputs } from "@src/params";
 
@@ -28,9 +28,9 @@ export const CreateActivity = async ({
   imageDataUri,
   adminApiParams,
   queryClient,
-}: CreateActivityParams): Promise<ConnectedXMResponse<null>> => {
+}: CreateActivityParams): Promise<ConnectedXMResponse<Activity>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<null>>(
+  const { data } = await connectedXM.post<ConnectedXMResponse<Activity>>(
     `/activities`,
     { accountId, activity, imageUri: imageDataUri }
   );

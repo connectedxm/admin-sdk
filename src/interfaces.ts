@@ -1565,7 +1565,10 @@ export interface BaseEventPass {
   eventId: string;
   attendeeId: string;
   attendee: {
-    accountId: string;
+    account: {
+      id: string;
+      email: string;
+    };
   };
   alternateId: number;
   ticketId: string | null;
@@ -2115,6 +2118,8 @@ export interface EventSessionQuestionResponse
 
 export interface BaseEventSessionPass {
   id: string;
+  session: BaseEventSession;
+  pass: BaseEventPass;
   canceled: boolean;
 }
 

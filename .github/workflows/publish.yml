@@ -1,8 +1,19 @@
 name: Publish Packages
 
 permissions:
+  actions: none
+  checks: none
   contents: read
+  deployments: none
+  id-token: none
+  issues: none
+  discussions: none
   packages: write
+  pages: none
+  pull-requests: none
+  repository-projects: none
+  security-events: none
+  statuses: none
 
 on:
   push:

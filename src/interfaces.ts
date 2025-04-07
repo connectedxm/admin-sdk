@@ -1458,7 +1458,7 @@ export interface BaseOrganization {
   iconId: string | null;
   icon: BaseImage | null;
   domain: string | null;
-  locale: true;
+  locale: string;
 }
 
 export interface Organization extends BaseOrganization {
@@ -1518,6 +1518,7 @@ export interface Organization extends BaseOrganization {
   locales: string[];
   googleServices: string | null;
   inviteOnly: boolean;
+  shopUrl: string | null;
 }
 
 export interface OrganizationTrigger {
@@ -1839,9 +1840,6 @@ export interface RegistrationQuestion extends BaseRegistrationQuestion {
   subQuestionOf: RegistrationQuestionChoiceSubQuestion[];
   createdAt: string;
   updatedAt: string;
-  _count: {
-    responses: number;
-  };
 }
 
 export interface RegistrationQuestionTranslation {
@@ -1965,6 +1963,7 @@ export interface CustomReport {
   id: number;
   name: string;
   description: string | null;
+  gridState: string | null;
   columns: string | null;
   filters: string | null;
   charts: string | null;
@@ -2827,9 +2826,6 @@ export interface EventRoomType extends BaseEventRoomType {
   disallowedTiers: BaseTier[];
   createdAt: string;
   updatedAt: string;
-  _count: {
-    reservations: number;
-  };
 }
 
 export interface EventRoomTypeTranslation {

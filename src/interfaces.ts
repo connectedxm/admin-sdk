@@ -2816,7 +2816,7 @@ export interface EventRoomType extends BaseEventRoomType {
   disallowedTiers: BaseTier[];
   createdAt: string;
   updatedAt: string;
-  _count?: {
+  _count: {
     reservations: number;
   };
 }

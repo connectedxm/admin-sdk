@@ -9,6 +9,7 @@ export * from "./coupons";
 export * from "./emails";
 export * from "./faqs";
 export * from "./galleryImages";
+export * from "./matches";
 export * from "./on-site";
 export * from "./packages";
 export * from "./pages";

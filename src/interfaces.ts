@@ -2841,6 +2841,7 @@ export interface BaseEventRoomTypeReservation {
 export interface EventRoomTypeReservation extends BaseEventRoomTypeReservation {
   passes: {
     id: string;
+    status: PurchaseStatus;
     ticket?: {
       id: string;
       name: string;

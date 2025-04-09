@@ -2831,6 +2831,9 @@ export interface EventRoomType extends BaseEventRoomType {
   disallowedTiers: BaseTier[];
   createdAt: string;
   updatedAt: string;
+  _count: {
+    reservations: number;
+  };
 }
 
 export interface EventRoomTypeTranslation {
@@ -2853,6 +2856,7 @@ export interface BaseEventRoomTypeReservation {
 export interface EventRoomTypeReservation extends BaseEventRoomTypeReservation {
   passes: {
     id: string;
+    status: PurchaseStatus;
     ticket?: {
       id: string;
       name: string;

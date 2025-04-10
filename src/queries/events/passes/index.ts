@@ -1,5 +1,6 @@
 export * from "./useGetEventPass";
 export * from "./useGetEventPassAddOns";
+export * from "./useGetEventPassMatches";
 export * from "./useGetEventPassQuestionSections";
 export * from "./useGetEventPassResponse";
 export * from "./useGetEventPassResponseChanges";

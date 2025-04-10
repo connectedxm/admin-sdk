@@ -3463,8 +3463,14 @@ export enum MatchQuestionType {
 
 export interface BaseRound {
   id: string;
-  event?: { roundName: string | null };
-  session?: { roundName: string | null };
+  event: {
+    roundName: string | null;
+    matchName: string | null;
+  } | null;
+  session: {
+    roundName: string | null;
+    matchName: string | null;
+  } | null;
   number: number;
 }
 
@@ -3475,15 +3481,14 @@ export interface Round extends BaseRound {
 
 export interface BaseMatch {
   id: string;
-  round: {
-    event?: { matchName: string | null };
-    session?: { matchName: string | null };
-  };
+  round: BaseRound;
   number: true;
   title: string | null;
 }
 
 export interface Match extends BaseMatch {
+  passes: BaseEventPass[];
+  sessionPasses: BaseEventSessionPass[];
   createdAt: string;
   updatedAt: string;
 }

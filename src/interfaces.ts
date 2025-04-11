@@ -3439,3 +3439,31 @@ export interface SurveySectionTranslation {
   createdAt: string;
   updatedAt: string;
 }
+
+export enum CustomModulePosition {
+  top = "top",
+  bottom = "bottom",
+}
+
+export interface CustomModule {
+  id: string;
+  name: string;
+  url: string;
+  iconName: string;
+  color: string;
+  description: string | null;
+  enabled: boolean;
+  position: CustomModulePosition;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CustomModuleTranslation {
+  id: string;
+  moduleId: string;
+  locale: string;
+  name: string;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}

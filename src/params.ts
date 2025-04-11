@@ -31,6 +31,7 @@ import {
   LeadStatus,
   SurveyQuestionType,
   ReportFilters,
+  CustomModulePosition,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -2065,4 +2066,28 @@ export interface EventSponsorshipTranslationUpdateInputs {
 
 export interface PaymentUpdateInputs {
   captured?: boolean;
+}
+
+export interface CustomModuleCreateInputs {
+  name: string;
+  url: string;
+  iconName: string;
+  color: string;
+  description?: string | null;
+  sortOrder?: number | string | null;
+}
+
+export interface CustomModuleUpdateInputs {
+  name?: string | null;
+  url?: string | null;
+  description?: string | null;
+  iconName?: string | null;
+  position?: CustomModulePosition | null;
+  color?: string | null;
+  sortOrder?: number | string | null;
+}
+
+export interface CustomModuleTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
 }

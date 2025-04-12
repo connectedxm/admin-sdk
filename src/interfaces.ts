@@ -1645,6 +1645,7 @@ export interface BasePayment {
   id: number;
   type: PaymentType;
   chargedAmt: number;
+  currency: string;
   ticketId: string | null;
   ticket: BaseEventPassType | null;
   stripeId: string | null;

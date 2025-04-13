@@ -1,20 +1,15 @@
-export const TransformPrice = (
-  value: number,
-  withDollar: boolean = false,
-  freeText: string = "FREE"
-) => {
+export const TransformPrice = (value: number, currency: string) => {
   if (typeof value !== "number") return undefined;
 
-  const dollarUSLocale = Intl.NumberFormat("en-US", {
+  const formatter = new Intl.NumberFormat(undefined, {
+    style: "currency",
+    currency: currency,
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
 
-  if (value === 0) return freeText;
-
-  if (withDollar) {
-    return "$" + dollarUSLocale.format(value / 100);
-  } else {
-    return dollarUSLocale.format(value / 100);
-  }
+  if (value === 0) return "--.--";
+  if (value < 0)
+    return formatter.format(-value / 100).replace(currency, `-${currency}`);
+  return formatter.format(value / 100);
 };

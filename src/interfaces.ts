@@ -1459,6 +1459,7 @@ export interface BaseOrganization {
   icon: BaseImage | null;
   domain: string | null;
   locale: string;
+  currency: string;
 }
 
 export interface Organization extends BaseOrganization {
@@ -1473,7 +1474,7 @@ export interface Organization extends BaseOrganization {
   zip: string | null;
   primaryColor: string | null;
   secondaryColor: string | null;
-  currency: string | null;
+
   facebook: string | null;
   twitter: string | null;
   instagram: string | null;

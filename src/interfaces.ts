@@ -1459,6 +1459,7 @@ export interface BaseOrganization {
   icon: BaseImage | null;
   domain: string | null;
   locale: string;
+  currency: string;
 }
 
 export interface Organization extends BaseOrganization {
@@ -1473,7 +1474,7 @@ export interface Organization extends BaseOrganization {
   zip: string | null;
   primaryColor: string | null;
   secondaryColor: string | null;
-  currency: string | null;
+
   facebook: string | null;
   twitter: string | null;
   instagram: string | null;
@@ -1518,7 +1519,6 @@ export interface Organization extends BaseOrganization {
   locales: string[];
   googleServices: string | null;
   inviteOnly: boolean;
-  shopUrl: string | null;
 }
 
 export interface OrganizationTrigger {
@@ -1646,6 +1646,7 @@ export interface BasePayment {
   id: number;
   type: PaymentType;
   chargedAmt: number;
+  currency: string;
   ticketId: string | null;
   ticket: BaseEventPassType | null;
   stripeId: string | null;
@@ -3453,6 +3454,30 @@ export interface SurveySectionTranslation {
   description: string | null;
   createdAt: string;
   updatedAt: string;
+}
+
+export enum CustomModulePosition {
+  top = "top",
+  bottom = "bottom",
+}
+
+export interface CustomModule {
+  id: string;
+  name: string;
+  url: string;
+  iconName: string;
+  color: string;
+  description: string | null;
+  enabled: boolean;
+  position: CustomModulePosition;
+}
+
+export interface CustomModuleTranslation {
+  id: string;
+  moduleId: string;
+  locale: string;
+  name: string;
+  description: string | null;
 }
 
 export enum MatchQuestionType {

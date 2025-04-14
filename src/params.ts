@@ -695,6 +695,14 @@ export interface EventSessionCreateInputs {
   matchName?: string | null;
 }
 
+export interface EventSessionPassCreateInputs {
+  sessionId: string;
+}
+
+export interface EventSessionPassUpdateInputs {
+  canceld?: boolean;
+}
+
 export interface EventSessionTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;

@@ -901,6 +901,7 @@ export interface EventUpdateInputs {
 export interface FileUpdateInputs {
   name?: string;
   source?: FileSource;
+  public?: boolean;
 }
 
 export interface GroupCreateInputs {

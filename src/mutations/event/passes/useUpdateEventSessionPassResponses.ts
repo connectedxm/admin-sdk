@@ -32,7 +32,7 @@ export const UpdateEventSessionPassResponses = async ({
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<EventSessionPass>>(
-    `/events/${eventId}/sessionPasses/${sessionPassId}`,
+    `/events/${eventId}/sessionPasses/${sessionPassId}/responses`,
     responses
   );
 

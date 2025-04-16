@@ -701,7 +701,7 @@ export interface EventSessionPassCreateInputs {
 }
 
 export interface EventSessionPassUpdateInputs {
-  canceld?: boolean;
+  canceled?: boolean;
 }
 
 export interface EventSessionTranslationUpdateInputs {

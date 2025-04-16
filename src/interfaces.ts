@@ -2113,6 +2113,7 @@ export interface BaseEventSessionQuestionResponse {
 
 export interface EventSessionQuestionResponse
   extends BaseEventSessionQuestionResponse {
+  question: BaseEventSessionQuestion[];
   createdAt: string;
   updatedAt: string;
 }
@@ -2125,8 +2126,8 @@ export interface BaseEventSessionPass {
 }
 
 export interface EventSessionPass extends BaseEventSessionPass {
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseEventSpeaker {

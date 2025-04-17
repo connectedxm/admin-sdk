@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, EventSessionPass } from "@src/interfaces";
+import { ConnectedXMResponse, EventAccess } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import {
   InfiniteQueryOptions,
@@ -20,7 +20,7 @@ export const EVENT_SESSION_ROUND_PASSES_QUERY_KEY = (
 ) => [
   ...EVENT_SESSION_ROUNDS_QUERY_KEY(eventId, sessionId),
   roundId,
-  "SESSION_PASSES",
+  "ACCESSES",
   assigned ? "ASSIGNED" : "UNASSIGNED",
 ];
 
@@ -31,7 +31,7 @@ export const EVENT_SESSION_ROUND_PASSES_QUERY_KEY = (
 export const SET_EVENT_SESSION_ROUND_PASSES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof EVENT_SESSION_ROUND_PASSES_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventSessionRoundSessionPasses>>
+  response: Awaited<ReturnType<typeof GetEventSessionRoundAccesses>>
 ) => {
   client.setQueryData(
     EVENT_SESSION_ROUND_PASSES_QUERY_KEY(...keyParams),
@@ -39,7 +39,7 @@ export const SET_EVENT_SESSION_ROUND_PASSES_QUERY_DATA = (
   );
 };
 
-interface GetEventSessionRoundSessionPassesProps extends InfiniteQueryParams {
+interface GetEventSessionRoundAccessesProps extends InfiniteQueryParams {
   assigned: boolean;
   eventId: string;
   sessionId: string;
@@ -50,7 +50,7 @@ interface GetEventSessionRoundSessionPassesProps extends InfiniteQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetEventSessionRoundSessionPasses = async ({
+export const GetEventSessionRoundAccesses = async ({
   assigned,
   eventId,
   sessionId,
@@ -60,12 +60,12 @@ export const GetEventSessionRoundSessionPasses = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetEventSessionRoundSessionPassesProps): Promise<
-  ConnectedXMResponse<EventSessionPass[]>
+}: GetEventSessionRoundAccessesProps): Promise<
+  ConnectedXMResponse<EventAccess[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/events/${eventId}/sessions/${sessionId}/rounds/${roundId}/sessionPasses`,
+    `/events/${eventId}/sessions/${sessionId}/rounds/${roundId}/accesses`,
     {
       params: {
         page: pageParam || undefined,
@@ -84,7 +84,7 @@ export const GetEventSessionRoundSessionPasses = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventSessionRoundSessionPasses = (
+export const useGetEventSessionRoundAccesses = (
   assigned: boolean,
   eventId: string = "",
   sessionId: string = "",
@@ -94,15 +94,15 @@ export const useGetEventSessionRoundSessionPasses = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventSessionRoundSessionPasses>>
+    Awaited<ReturnType<typeof GetEventSessionRoundAccesses>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventSessionRoundSessionPasses>>
+    Awaited<ReturnType<typeof GetEventSessionRoundAccesses>>
   >(
     EVENT_SESSION_ROUND_PASSES_QUERY_KEY(assigned, eventId, sessionId, roundId),
     (params: InfiniteQueryParams) =>
-      GetEventSessionRoundSessionPasses({
+      GetEventSessionRoundAccesses({
         eventId,
         sessionId,
         roundId,

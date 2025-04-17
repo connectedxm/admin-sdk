@@ -696,11 +696,11 @@ export interface EventSessionCreateInputs {
   matchName?: string | null;
 }
 
-export interface EventSessionPassCreateInputs {
+export interface EventAccessCreateInputs {
   sessionId: string;
 }
 
-export interface EventSessionPassUpdateInputs {
+export interface EventAccessUpdateInputs {
   canceled?: boolean;
 }
 

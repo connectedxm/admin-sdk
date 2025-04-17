@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, EventSessionPass } from "@src/interfaces";
+import { ConnectedXMResponse, EventAccess } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import {
   InfiniteQueryOptions,
@@ -12,32 +12,32 @@ import { EVENT_SESSION_MATCH_QUERY_KEY } from "./useGetEventSessionMatch";
  * @category Keys
  * @group Events
  */
-export const EVENT_SESSION_MATCH_SESSION_PASSES_QUERY_KEY = (
+export const EVENT_SESSION_MATCH_ACCESSES_QUERY_KEY = (
   eventId: string,
   sessionId: string,
   roundId: string,
   matchId: string
 ) => [
   ...EVENT_SESSION_MATCH_QUERY_KEY(eventId, sessionId, roundId, matchId),
-  "SESSION_PASSES",
+  "ACCESSES",
 ];
 
 /**
  * @category Setters
  * @group Events
  */
-export const SET_EVENT_SESSION_MATCH_SESSION_PASSES_QUERY_DATA = (
+export const SET_EVENT_SESSION_MATCH_ACCESSES_QUERY_DATA = (
   client: QueryClient,
-  keyParams: Parameters<typeof EVENT_SESSION_MATCH_SESSION_PASSES_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventSessionMatchSessionPasses>>
+  keyParams: Parameters<typeof EVENT_SESSION_MATCH_ACCESSES_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetEventSessionMatchAccesses>>
 ) => {
   client.setQueryData(
-    EVENT_SESSION_MATCH_SESSION_PASSES_QUERY_KEY(...keyParams),
+    EVENT_SESSION_MATCH_ACCESSES_QUERY_KEY(...keyParams),
     response
   );
 };
 
-interface GetEventSessionMatchSessionPassesProps extends InfiniteQueryParams {
+interface GetEventSessionMatchAccessesProps extends InfiniteQueryParams {
   eventId: string;
   sessionId: string;
   roundId: string;
@@ -48,7 +48,7 @@ interface GetEventSessionMatchSessionPassesProps extends InfiniteQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetEventSessionMatchSessionPasses = async ({
+export const GetEventSessionMatchAccesses = async ({
   eventId,
   sessionId,
   roundId,
@@ -58,12 +58,12 @@ export const GetEventSessionMatchSessionPasses = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetEventSessionMatchSessionPassesProps): Promise<
-  ConnectedXMResponse<EventSessionPass[]>
+}: GetEventSessionMatchAccessesProps): Promise<
+  ConnectedXMResponse<EventAccess[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/events/${eventId}/sessions/${sessionId}/rounds/${roundId}/matches/${matchId}/sessionPasses`,
+    `/events/${eventId}/sessions/${sessionId}/rounds/${roundId}/matches/${matchId}/accesses`,
     {
       params: {
         page: pageParam || undefined,
@@ -81,7 +81,7 @@ export const GetEventSessionMatchSessionPasses = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventSessionMatchSessionPasses = (
+export const useGetEventSessionMatchAccesses = (
   eventId: string = "",
   sessionId: string = "",
   roundId: string = "",
@@ -91,20 +91,20 @@ export const useGetEventSessionMatchSessionPasses = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventSessionMatchSessionPasses>>
+    Awaited<ReturnType<typeof GetEventSessionMatchAccesses>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventSessionMatchSessionPasses>>
+    Awaited<ReturnType<typeof GetEventSessionMatchAccesses>>
   >(
-    EVENT_SESSION_MATCH_SESSION_PASSES_QUERY_KEY(
+    EVENT_SESSION_MATCH_ACCESSES_QUERY_KEY(
       eventId,
       sessionId,
       roundId,
       matchId
     ),
     (params: InfiniteQueryParams) =>
-      GetEventSessionMatchSessionPasses({
+      GetEventSessionMatchAccesses({
         eventId,
         sessionId,
         roundId,

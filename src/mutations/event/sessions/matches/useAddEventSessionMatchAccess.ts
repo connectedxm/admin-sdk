@@ -6,7 +6,7 @@ import {
 } from "../../../useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
 import {
-  EVENT_SESSION_MATCH_SESSION_PASSES_QUERY_KEY,
+  EVENT_SESSION_MATCH_ACCESSES_QUERY_KEY,
   EVENT_SESSION_MATCHES_QUERY_KEY,
   EVENT_SESSION_ROUND_PASSES_QUERY_KEY,
 } from "@src/queries";
@@ -15,38 +15,35 @@ import {
  * @category Params
  * @group Event
  */
-export interface RemoveEventSessionMatchSessionPassParams
-  extends MutationParams {
+export interface AddEventSessionMatchAccessParams extends MutationParams {
   eventId: string;
   sessionId: string;
   roundId: string;
   matchId: string;
-  sessionPassId: string;
+  accessId: string;
 }
 
 /**
  * @category Methods
  * @group Event
  */
-export const RemoveEventSessionMatchSessionPass = async ({
+export const AddEventSessionMatchAccess = async ({
   eventId,
   sessionId,
   roundId,
   matchId,
-  sessionPassId,
+  accessId,
   adminApiParams,
   queryClient,
-}: RemoveEventSessionMatchSessionPassParams): Promise<
-  ConnectedXMResponse<null>
-> => {
+}: AddEventSessionMatchAccessParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
-    `/events/${eventId}/sessions/${sessionId}/rounds/${roundId}/matches/${matchId}/sessionPasses/${sessionPassId}`
+  const { data } = await connectedXM.post<ConnectedXMResponse<null>>(
+    `/events/${eventId}/sessions/${sessionId}/rounds/${roundId}/matches/${matchId}/accesses/${accessId}`
   );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_SESSION_MATCH_SESSION_PASSES_QUERY_KEY(
+      queryKey: EVENT_SESSION_MATCH_ACCESSES_QUERY_KEY(
         eventId,
         sessionId,
         roundId,
@@ -81,22 +78,19 @@ export const RemoveEventSessionMatchSessionPass = async ({
  * @category Mutations
  * @group Event
  */
-export const useRemoveEventSessionMatchSessionPass = (
+export const useAddEventSessionMatchAccess = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof RemoveEventSessionMatchSessionPass>>,
-      Omit<
-        RemoveEventSessionMatchSessionPassParams,
-        "queryClient" | "adminApiParams"
-      >
+      Awaited<ReturnType<typeof AddEventSessionMatchAccess>>,
+      Omit<AddEventSessionMatchAccessParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    RemoveEventSessionMatchSessionPassParams,
-    Awaited<ReturnType<typeof RemoveEventSessionMatchSessionPass>>
-  >(RemoveEventSessionMatchSessionPass, options, {
+    AddEventSessionMatchAccessParams,
+    Awaited<ReturnType<typeof AddEventSessionMatchAccess>>
+  >(AddEventSessionMatchAccess, options, {
     domain: "events",
     type: "update",
   });

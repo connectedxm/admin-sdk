@@ -4,6 +4,7 @@ export * from "./questions";
 export * from "./translations";
 export * from "./useGetEventSession";
 export * from "./useGetEventSessionAccounts";
+export * from "./useGetEventSessionPasses";
 export * from "./useGetEventSessionSpeakers";
 export * from "./useGetEventSessionSponsors";
 export * from "./useGetEventSessionTracks";

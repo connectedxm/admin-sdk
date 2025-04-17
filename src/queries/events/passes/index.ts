@@ -10,5 +10,4 @@ export * from "./useGetEventPassTransferLogs";
 export * from "./useGetEventPasses";
 export * from "./useGetEventSessionPass";
 export * from "./useGetEventSessionPassMatches";
-export * from "./useGetEventSessionPassPayments";
 export * from "./useGetEventSessionPassResponses";

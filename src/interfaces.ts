@@ -1684,6 +1684,7 @@ export interface Payment extends BasePayment {
   registrationId: string | null;
   bookingId: string | null;
   booking: BaseBooking | null;
+  sessionPasses: BaseEventSessionPass[];
   metadata?: any;
 }
 
@@ -1927,6 +1928,7 @@ export enum ReportType {
   account = "account",
   survey = "survey",
   subscriptionProduct = "subscriptionProduct",
+  session = "session",
 }
 
 export enum EventReportDateType {
@@ -1944,6 +1946,7 @@ export interface ReportFilters {
   accountId?: string;
   surveyId?: string;
   subscriptionProductId?: string;
+  sessionId?: string;
 }
 
 export interface BaseStandardReport {

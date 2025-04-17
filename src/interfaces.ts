@@ -2649,6 +2649,7 @@ export interface BaseFile {
   source: FileSource;
   kilobytes: number;
   url?: string;
+  public: boolean;
   createdAt: string;
   updatedAt: string;
 }

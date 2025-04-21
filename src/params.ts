@@ -696,11 +696,7 @@ export interface EventSessionCreateInputs {
   matchName?: string | null;
 }
 
-export interface EventAccessCreateInputs {
-  sessionId: string;
-}
-
-export interface EventAccessUpdateInputs {
+export interface EventSessionAccessUpdateInputs {
   canceled?: boolean;
 }
 

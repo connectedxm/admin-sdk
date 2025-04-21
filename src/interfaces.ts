@@ -1684,7 +1684,7 @@ export interface Payment extends BasePayment {
   registrationId: string | null;
   bookingId: string | null;
   booking: BaseBooking | null;
-  accesses: BaseEventAccess[];
+  accesses: BaseEventSessionAccess[];
   metadata?: any;
 }
 
@@ -2085,14 +2085,14 @@ export interface EventSessionLocationTranslation {
   updatedAt: string | null;
 }
 
-export interface BaseEventAccess {
+export interface BaseEventSessionAccess {
   id: string;
   session: BaseEventSession;
   pass: BaseEventPass;
   canceled: boolean;
 }
 
-export interface EventAccess extends BaseEventAccess {
+export interface EventSessionAccess extends BaseEventSessionAccess {
   createdAt: string;
   updatedAt: string;
 }
@@ -3482,7 +3482,7 @@ export interface BaseMatch {
 
 export interface Match extends BaseMatch {
   passes: BaseEventPass[];
-  accesses: BaseEventAccess[];
+  accesses: BaseEventSessionAccess[];
   createdAt: string;
   updatedAt: string;
 }

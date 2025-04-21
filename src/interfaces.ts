@@ -1684,6 +1684,7 @@ export interface Payment extends BasePayment {
   registrationId: string | null;
   bookingId: string | null;
   booking: BaseBooking | null;
+  sessionPasses: BaseEventSessionPass[];
   metadata?: any;
 }
 
@@ -1927,6 +1928,7 @@ export enum ReportType {
   account = "account",
   survey = "survey",
   subscriptionProduct = "subscriptionProduct",
+  session = "session",
 }
 
 export enum EventReportDateType {
@@ -1944,6 +1946,7 @@ export interface ReportFilters {
   accountId?: string;
   surveyId?: string;
   subscriptionProductId?: string;
+  sessionId?: string;
 }
 
 export interface BaseStandardReport {
@@ -2113,6 +2116,7 @@ export interface BaseEventSessionQuestionResponse {
 
 export interface EventSessionQuestionResponse
   extends BaseEventSessionQuestionResponse {
+  question: BaseEventSessionQuestion;
   createdAt: string;
   updatedAt: string;
 }
@@ -2125,8 +2129,8 @@ export interface BaseEventSessionPass {
 }
 
 export interface EventSessionPass extends BaseEventSessionPass {
-  createdAt: true;
-  updatedAt: true;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseEventSpeaker {
@@ -2645,6 +2649,7 @@ export interface BaseFile {
   source: FileSource;
   kilobytes: number;
   url?: string;
+  public: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -3488,8 +3493,14 @@ export enum MatchQuestionType {
 
 export interface BaseRound {
   id: string;
-  event?: { roundName: string | null };
-  session?: { roundName: string | null };
+  event: {
+    roundName: string | null;
+    matchName: string | null;
+  } | null;
+  session: {
+    roundName: string | null;
+    matchName: string | null;
+  } | null;
   number: number;
 }
 
@@ -3500,15 +3511,14 @@ export interface Round extends BaseRound {
 
 export interface BaseMatch {
   id: string;
-  round: {
-    event?: { matchName: string | null };
-    session?: { matchName: string | null };
-  };
+  round: BaseRound;
   number: true;
   title: string | null;
 }
 
 export interface Match extends BaseMatch {
+  passes: BaseEventPass[];
+  sessionPasses: BaseEventSessionPass[];
   createdAt: string;
   updatedAt: string;
 }

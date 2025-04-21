@@ -28,7 +28,6 @@ export default [
       "@typescript-eslint/no-empty-object-type": "off",
       "prettier/prettier": "off",
       "eol-last": "off",
-      "@typescript-eslint/no-empty-object-type": "off",
     },
     settings: {
       react: {

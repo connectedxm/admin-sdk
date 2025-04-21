@@ -1684,7 +1684,7 @@ export interface Payment extends BasePayment {
   registrationId: string | null;
   bookingId: string | null;
   booking: BaseBooking | null;
-  sessionPasses: BaseEventSessionPass[];
+  accesses: BaseEventAccess[];
   metadata?: any;
 }
 
@@ -2085,50 +2085,14 @@ export interface EventSessionLocationTranslation {
   updatedAt: string | null;
 }
 
-export interface BaseEventSessionQuestion {
-  id: string;
-  name: string;
-  label: string | null;
-  description: string | null;
-  required: boolean;
-  sortOrder: number;
-  matchType: MatchQuestionType;
-}
-
-export interface EventSessionQuestion extends BaseEventSessionQuestion {
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface EventSessionQuestionTranslation {
-  id: string;
-  locale: string;
-  label: string | null;
-  description: string | null;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface BaseEventSessionQuestionResponse {
-  id: string;
-  value: string;
-}
-
-export interface EventSessionQuestionResponse
-  extends BaseEventSessionQuestionResponse {
-  question: BaseEventSessionQuestion;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface BaseEventSessionPass {
+export interface BaseEventAccess {
   id: string;
   session: BaseEventSession;
   pass: BaseEventPass;
   canceled: boolean;
 }
 
-export interface EventSessionPass extends BaseEventSessionPass {
+export interface EventAccess extends BaseEventAccess {
   createdAt: string;
   updatedAt: string;
 }
@@ -3518,7 +3482,7 @@ export interface BaseMatch {
 
 export interface Match extends BaseMatch {
   passes: BaseEventPass[];
-  sessionPasses: BaseEventSessionPass[];
+  accesses: BaseEventAccess[];
   createdAt: string;
   updatedAt: string;
 }

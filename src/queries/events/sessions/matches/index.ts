@@ -1,5 +1,5 @@
 export * from "./useGetEventSessionMatch";
 export * from "./useGetEventSessionMatches";
-export * from "./useGetEventSessionMatchesSessionPasses";
-export * from "./useGetEventSessionRoundSessionPasses";
+export * from "./useGetEventSessionMatchesAccesses";
+export * from "./useGetEventSessionRoundAccesses";
 export * from "./useGetEventSessionRounds";

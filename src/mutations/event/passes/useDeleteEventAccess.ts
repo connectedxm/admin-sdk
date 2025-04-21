@@ -5,40 +5,40 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EVENT_SESSION_PASS_QUERY_KEY } from "@src/queries";
-import { EVENT_PASS_SESSION_PASSES_QUERY_KEY } from "@src/queries/events/passes/useGetEventPassSessionPasses";
+import { EVENT_ACCESS_QUERY_KEY } from "@src/queries";
+import { EVENT_PASS_ACCESSES_QUERY_KEY } from "@src/queries/events/passes/useGetEventPassAccesses";
 
 /**
  * @category Params
  * @group Event-Attendee-Passes
  */
-export interface DeleteEventSessionPassParams extends MutationParams {
+export interface DeleteEventAccessParams extends MutationParams {
   eventId: string;
   passId: string;
-  sessionPassId: string;
+  accessId: string;
 }
 
 /**
  * @category Methods
  * @group Event-Attendee-Passes
  */
-export const DeleteEventSessionPass = async ({
+export const DeleteEventAccess = async ({
   eventId,
   passId,
-  sessionPassId,
+  accessId,
   adminApiParams,
   queryClient,
-}: DeleteEventSessionPassParams): Promise<ConnectedXMResponse<null>> => {
+}: DeleteEventAccessParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
-    `/events/${eventId}/sessionPasses/${sessionPassId}`
+    `/events/${eventId}/accesses/${accessId}`
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_PASS_SESSION_PASSES_QUERY_KEY(eventId, passId),
+      queryKey: EVENT_PASS_ACCESSES_QUERY_KEY(eventId, passId),
     });
     queryClient.removeQueries({
-      queryKey: EVENT_SESSION_PASS_QUERY_KEY(eventId, sessionPassId),
+      queryKey: EVENT_ACCESS_QUERY_KEY(eventId, accessId),
     });
   }
   return data;
@@ -48,19 +48,19 @@ export const DeleteEventSessionPass = async ({
  * @category Mutations
  * @group Event-Attendee-Passes
  */
-export const useDeleteEventSessionPass = (
+export const useDeleteEventAccess = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof DeleteEventSessionPass>>,
-      Omit<DeleteEventSessionPassParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof DeleteEventAccess>>,
+      Omit<DeleteEventAccessParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    DeleteEventSessionPassParams,
-    Awaited<ReturnType<typeof DeleteEventSessionPass>>
-  >(DeleteEventSessionPass, options, {
+    DeleteEventAccessParams,
+    Awaited<ReturnType<typeof DeleteEventAccess>>
+  >(DeleteEventAccess, options, {
     domain: "events",
     type: "update",
   });

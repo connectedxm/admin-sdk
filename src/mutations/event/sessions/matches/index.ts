@@ -1,5 +1,5 @@
-export * from "./useAddEventSessionMatchSessionPass";
+export * from "./useAddEventSessionMatchAccess";
 export * from "./useCreateEventSessionMatch";
 export * from "./useDeleteEventSessionMatch";
-export * from "./useRemoveEventSessionMatchSessionPass";
+export * from "./useRemoveEventSessionMatchAccess";
 export * from "./useUpdateEventSessionMatch";

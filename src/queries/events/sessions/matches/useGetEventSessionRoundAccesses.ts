@@ -1,75 +1,78 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, EventSessionPass } from "@src/interfaces";
+import { ConnectedXMResponse, EventAccess } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../../../useConnectedInfiniteQuery";
-import { EVENT_SESSION_MATCH_QUERY_KEY } from "./useGetEventSessionMatch";
+import { EVENT_SESSION_ROUNDS_QUERY_KEY } from "./useGetEventSessionRounds";
 
 /**
  * @category Keys
  * @group Events
  */
-export const EVENT_SESSION_MATCH_SESSION_PASSES_QUERY_KEY = (
+export const EVENT_SESSION_ROUND_PASSES_QUERY_KEY = (
+  assigned: boolean,
   eventId: string,
   sessionId: string,
-  roundId: string,
-  matchId: string
+  roundId: string
 ) => [
-  ...EVENT_SESSION_MATCH_QUERY_KEY(eventId, sessionId, roundId, matchId),
-  "SESSION_PASSES",
+  ...EVENT_SESSION_ROUNDS_QUERY_KEY(eventId, sessionId),
+  roundId,
+  "ACCESSES",
+  assigned ? "ASSIGNED" : "UNASSIGNED",
 ];
 
 /**
  * @category Setters
  * @group Events
  */
-export const SET_EVENT_SESSION_MATCH_SESSION_PASSES_QUERY_DATA = (
+export const SET_EVENT_SESSION_ROUND_PASSES_QUERY_DATA = (
   client: QueryClient,
-  keyParams: Parameters<typeof EVENT_SESSION_MATCH_SESSION_PASSES_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventSessionMatchSessionPasses>>
+  keyParams: Parameters<typeof EVENT_SESSION_ROUND_PASSES_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetEventSessionRoundAccesses>>
 ) => {
   client.setQueryData(
-    EVENT_SESSION_MATCH_SESSION_PASSES_QUERY_KEY(...keyParams),
+    EVENT_SESSION_ROUND_PASSES_QUERY_KEY(...keyParams),
     response
   );
 };
 
-interface GetEventSessionMatchSessionPassesProps extends InfiniteQueryParams {
+interface GetEventSessionRoundAccessesProps extends InfiniteQueryParams {
+  assigned: boolean;
   eventId: string;
   sessionId: string;
   roundId: string;
-  matchId: string;
 }
 
 /**
  * @category Queries
  * @group Events
  */
-export const GetEventSessionMatchSessionPasses = async ({
+export const GetEventSessionRoundAccesses = async ({
+  assigned,
   eventId,
   sessionId,
   roundId,
-  matchId,
   pageParam,
   pageSize,
   orderBy,
   search,
   adminApiParams,
-}: GetEventSessionMatchSessionPassesProps): Promise<
-  ConnectedXMResponse<EventSessionPass[]>
+}: GetEventSessionRoundAccessesProps): Promise<
+  ConnectedXMResponse<EventAccess[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/events/${eventId}/sessions/${sessionId}/rounds/${roundId}/matches/${matchId}/sessionPasses`,
+    `/events/${eventId}/sessions/${sessionId}/rounds/${roundId}/accesses`,
     {
       params: {
         page: pageParam || undefined,
         pageSize: pageSize || undefined,
         orderBy: orderBy || undefined,
         search: search || undefined,
+        assigned,
       },
     }
   );
@@ -81,44 +84,39 @@ export const GetEventSessionMatchSessionPasses = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventSessionMatchSessionPasses = (
+export const useGetEventSessionRoundAccesses = (
+  assigned: boolean,
   eventId: string = "",
   sessionId: string = "",
   roundId: string = "",
-  matchId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventSessionMatchSessionPasses>>
+    Awaited<ReturnType<typeof GetEventSessionRoundAccesses>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventSessionMatchSessionPasses>>
+    Awaited<ReturnType<typeof GetEventSessionRoundAccesses>>
   >(
-    EVENT_SESSION_MATCH_SESSION_PASSES_QUERY_KEY(
-      eventId,
-      sessionId,
-      roundId,
-      matchId
-    ),
+    EVENT_SESSION_ROUND_PASSES_QUERY_KEY(assigned, eventId, sessionId, roundId),
     (params: InfiniteQueryParams) =>
-      GetEventSessionMatchSessionPasses({
+      GetEventSessionRoundAccesses({
         eventId,
         sessionId,
         roundId,
-        matchId,
+        assigned,
         ...params,
       }),
     params,
     {
       ...options,
       enabled:
+        typeof assigned === "boolean" &&
         !!eventId &&
         !!sessionId &&
         !!roundId &&
-        !!matchId &&
         (options?.enabled ?? true),
     },
     "events"

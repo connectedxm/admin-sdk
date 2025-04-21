@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, EventSessionPass } from "@src/interfaces";
+import { ConnectedXMResponse, EventAccess } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -11,7 +11,7 @@ import { EVENT_SESSION_QUERY_KEY } from "./useGetEventSession";
  * @category Keys
  * @group Events
  */
-export const EVENT_SESSION_PASSES_QUERY_KEY = (
+export const EVENT_ACCESSES_QUERY_KEY = (
   eventId: string,
   sessionId: string
 ) => [...EVENT_SESSION_QUERY_KEY(eventId, sessionId), "PASSES"];
@@ -20,15 +20,15 @@ export const EVENT_SESSION_PASSES_QUERY_KEY = (
  * @category Setters
  * @group Events
  */
-export const SET_EVENT_SESSION_PASSES_QUERY_DATA = (
+export const SET_EVENT_ACCESSES_QUERY_DATA = (
   client: any,
-  keyParams: Parameters<typeof EVENT_SESSION_PASSES_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventSessionPasses>>
+  keyParams: Parameters<typeof EVENT_ACCESSES_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetEventAccesses>>
 ) => {
-  client.setQueryData(EVENT_SESSION_PASSES_QUERY_KEY(...keyParams), response);
+  client.setQueryData(EVENT_ACCESSES_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventSessionPassesProps extends InfiniteQueryParams {
+interface GetEventAccessesProps extends InfiniteQueryParams {
   eventId: string;
   sessionId: string;
 }
@@ -37,7 +37,7 @@ interface GetEventSessionPassesProps extends InfiniteQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetEventSessionPasses = async ({
+export const GetEventAccesses = async ({
   eventId,
   sessionId,
   pageParam,
@@ -45,12 +45,10 @@ export const GetEventSessionPasses = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetEventSessionPassesProps): Promise<
-  ConnectedXMResponse<EventSessionPass[]>
-> => {
+}: GetEventAccessesProps): Promise<ConnectedXMResponse<EventAccess[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/events/${eventId}/sessions/${sessionId}/sessionPasses`,
+    `/events/${eventId}/sessions/${sessionId}/accesses`,
     {
       params: {
         page: pageParam || undefined,
@@ -67,7 +65,7 @@ export const GetEventSessionPasses = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventSessionPasses = (
+export const useGetEventAccesses = (
   eventId: string = "",
   sessionId: string = "",
   params: Omit<
@@ -75,15 +73,15 @@ export const useGetEventSessionPasses = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventSessionPasses>>
+    Awaited<ReturnType<typeof GetEventAccesses>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventSessionPasses>>
+    Awaited<ReturnType<typeof GetEventAccesses>>
   >(
-    EVENT_SESSION_PASSES_QUERY_KEY(eventId, sessionId),
+    EVENT_ACCESSES_QUERY_KEY(eventId, sessionId),
     (params: InfiniteQueryParams) =>
-      GetEventSessionPasses({
+      GetEventAccesses({
         ...params,
         eventId,
         sessionId,

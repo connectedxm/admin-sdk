@@ -2089,10 +2089,200 @@ export interface BaseEventSessionAccess {
   id: string;
   session: BaseEventSession;
   pass: BaseEventPass;
-  canceled: boolean;
+  status: PurchaseStatus;
 }
 
 export interface EventSessionAccess extends BaseEventSessionAccess {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export enum EventSessionQuestionType {
+  text = "text",
+  textarea = "textarea",
+  number = "number",
+  time = "time",
+  date = "date",
+  toggle = "toggle",
+  select = "select",
+  radio = "radio",
+  checkbox = "checkbox",
+  search = "search",
+  file = "file",
+}
+
+export interface BaseEventSessionQuestionChoice {
+  id: string;
+  value: string;
+  text: string | null;
+  description: string | null;
+  supply: number | null;
+  sortOrder: number;
+  subQuestions?:
+    | EventSessionQuestion[]
+    | {
+        questionId: string;
+      }[];
+  question: {
+    id: string;
+    name: string;
+  };
+  _count: {
+    subQuestions: number;
+  };
+}
+
+export interface EventSessionQuestionChoice
+  extends BaseEventSessionQuestionChoice {
+  questionId: string;
+  question: BaseEventSessionQuestion;
+  subQuestions: BaseEventSessionQuestionChoiceSubQuestion[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventSessionQuestionChoiceSubQuestion {
+  choiceId: string;
+  choice: BaseEventSessionQuestionChoice;
+  questionId: string;
+  question: BaseEventSessionQuestion;
+}
+
+export interface EventSessionQuestionChoiceSubQuestion
+  extends BaseEventSessionQuestionChoiceSubQuestion {
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventSessionQuestionChoiceTranslation {
+  id: string;
+  locale: string;
+  value: string;
+  text: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventSessionQuestionResponseChange {
+  id: string;
+  newValue: string;
+  oldValue: string;
+  eventId: string;
+  questionId: string;
+  responseId: string;
+  userId: string | null;
+  createdAt: string;
+}
+
+export interface EventSessionQuestionResponseChange
+  extends BaseEventSessionQuestionResponseChange {
+  response: BaseEventSessionQuestionResponse;
+  user: BaseUser;
+}
+
+export interface BaseEventSessionQuestionResponse {
+  id: string;
+  value: string;
+  questionId: string;
+  question: BaseEventSessionQuestion;
+}
+
+export interface EventSessionQuestionResponse
+  extends BaseEventSessionQuestionResponse {
+  changeLogs: BaseEventSessionQuestionResponseChange[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventSessionQuestionSearchValue {
+  id: string;
+  value: string;
+  top: boolean;
+}
+
+export interface EventSessionQuestionSearchValue
+  extends BaseEventSessionQuestionSearchValue {
+  createdAt: string;
+}
+
+export interface BaseEventSessionQuestion {
+  id: string;
+  eventId: string;
+  type: EventSessionQuestionType;
+  name: string;
+  required: boolean;
+  description: string | null;
+  label: string | null;
+  placeholder: string | null;
+  default: string | null;
+  mutable: boolean;
+  min: string | null;
+  max: string | null;
+  validation: string | null;
+  validationMessage: string | null;
+  sortOrder: number;
+  featured: boolean;
+  choices: BaseEventSessionQuestionChoice[];
+}
+
+export interface EventSessionQuestion extends BaseEventSessionQuestion {
+  sections: BaseEventSessionSectionQuestion[];
+  subQuestionOf: EventSessionQuestionChoiceSubQuestion[];
+  createdAt: string;
+  updatedAt: string;
+  _count: {
+    responses: number;
+  };
+}
+
+export interface EventSessionQuestionTranslation {
+  id: string;
+  locale: string;
+  label: string | null;
+  placeholder: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventSessionSectionQuestion {
+  sectionId: string;
+  section: BaseEventSessionSection;
+  questionId: string;
+  question: BaseEventSessionQuestion;
+  sortOrder: number;
+}
+
+export interface EventSessionSectionQuestion
+  extends BaseEventSessionSectionQuestion {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventSessionSection {
+  id: string;
+  eventId: string;
+  name: string;
+  description: string | null;
+  sortOrder: number;
+  _count: {
+    questions: number;
+  };
+}
+
+export interface EventSessionSection extends BaseEventSessionSection {
+  questions: EventSessionQuestion[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventSessionSectionTranslation {
+  id: string;
+  locale: string;
+  name: string;
+  description: string | null;
   createdAt: string;
   updatedAt: string;
 }

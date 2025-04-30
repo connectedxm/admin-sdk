@@ -6,6 +6,7 @@ export * from "./translations";
 export * from "./useGetEventSession";
 export * from "./useGetEventSessionAccess";
 export * from "./useGetEventSessionAccounts";
+export * from "./useGetEventSessionPassTypes";
 export * from "./useGetEventSessionPasses";
 export * from "./useGetEventSessionSpeakers";
 export * from "./useGetEventSessionSponsors";

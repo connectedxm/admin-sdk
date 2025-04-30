@@ -801,6 +801,8 @@ export interface EventSessionQuestionCreateInputs {
   sortOrder?: number | string | null;
   featured?: boolean;
   choices?: string[] | null;
+  price?: number | string | null;
+  supply?: number | string | null;
 }
 
 export interface EventSessionQuestionSearchInputs {
@@ -838,6 +840,8 @@ export interface EventSessionQuestionUpdateInputs {
   validationMessage?: string | null;
   sortOrder?: number | string | null;
   featured?: boolean;
+  price?: number | string | null;
+  supply?: number | string | null;
 }
 
 export interface EventSessionSectionCreateInputs {

@@ -2109,6 +2109,7 @@ export enum EventSessionQuestionType {
   checkbox = "checkbox",
   search = "search",
   file = "file",
+  quantity = "quantity",
 }
 
 export interface BaseEventSessionQuestionChoice {
@@ -2225,6 +2226,8 @@ export interface BaseEventSessionQuestion {
   sortOrder: number;
   featured: boolean;
   choices: BaseEventSessionQuestionChoice[];
+  price: number | null;
+  supply: number | null;
 }
 
 export interface EventSessionQuestion extends BaseEventSessionQuestion {

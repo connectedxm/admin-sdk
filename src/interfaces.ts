@@ -138,7 +138,6 @@ export enum NotificationType {
   TRANSFER = "TRANSFER",
   LIKE = "LIKE",
   COMMENT = "COMMENT",
-  RESHARE = "RESHARE",
   EVENT = "EVENT",
   ACTIVITY = "ACTIVITY",
 }
@@ -405,15 +404,20 @@ export interface ActivationTranslation {
   updatedAt: string;
 }
 
+export enum ModerationStatus {
+  none = "none",
+  reported = "reported",
+  approved = "approved",
+}
+
 export interface BaseActivity {
   id: string;
   message: string;
-  readMore: boolean;
-  linkPreview: BaseLinkPreview;
   giphyId: string | null;
   imageId: string | null;
   image: BaseImage | null;
   account: BaseAccount;
+  entities: BaseActivityEntity[];
   eventId: string | null;
   groupId: string | null;
   contentId: string | null;
@@ -422,8 +426,6 @@ export interface BaseActivity {
   _count: {
     likes: number;
     comments: number;
-    reshares: number;
-    interests: number;
   };
 }
 
@@ -432,12 +434,29 @@ export interface Activity extends BaseActivity {
   group: BaseGroup | null;
   event: BaseEvent | null;
   content: BaseChannelContent | null;
-  interests: BaseInterest[];
-  videoId: string | null;
-  html: string | null;
-  text: string | null;
-  messageExtended: boolean;
 }
+
+export enum ActivityEntityType {
+  mention = "mention",
+  interest = "interest",
+  link = "link",
+  segment = "segment",
+}
+
+export interface BaseActivityEntity {
+  type: ActivityEntityType;
+  startIndex: number;
+  endIndex: number;
+  marks: string[];
+  accountId: string;
+  account: BaseAccount;
+  interestId: string;
+  interest: BaseInterest;
+  linkPreviewId: string;
+  linkPreview: BaseLinkPreview;
+}
+
+export interface ActivityEntity extends BaseActivityEntity {}
 
 export interface AdvertisementClick {
   id: string;
@@ -1375,7 +1394,6 @@ export interface NotificationPreferences {
   newFollowerPush: boolean;
   newFollowerEmail: boolean;
   likePush: boolean;
-  resharePush: boolean;
   commentPush: boolean;
   commentEmail: boolean;
   transferPush: boolean;

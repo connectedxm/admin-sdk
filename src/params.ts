@@ -34,6 +34,8 @@ import {
   CustomModulePosition,
   MatchQuestionType,
   EventSessionQuestionType,
+  ModerationStatus,
+  ActivityEntityType,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -120,30 +122,52 @@ export interface ImportCreateInputs {
   type?: ImportType | null;
 }
 
+export interface BaseActivityEntityInput {
+  type: ActivityEntityType;
+  startIndex: number;
+  endIndex: number;
+  marks: ("bold" | "italic" | "underline" | "strike")[];
+}
+
+export interface MentionInputs extends BaseActivityEntityInput {
+  type: ActivityEntityType.mention;
+  accountId: string;
+}
+
+export interface LinkInputs extends BaseActivityEntityInput {
+  type: ActivityEntityType.link;
+}
+
+export interface InterestInputs extends BaseActivityEntityInput {
+  type: ActivityEntityType.interest;
+}
+
+export interface SegmentInputs extends BaseActivityEntityInput {
+  type: ActivityEntityType.segment;
+}
+
+type ActivityEntityInputs =
+  | MentionInputs
+  | LinkInputs
+  | InterestInputs
+  | SegmentInputs;
+
 export interface ActivityCreateInputs {
   message: string;
-  html?: string | null;
-  text?: string | null;
-  giphyId?: string | null;
+  entities?: ActivityEntityInputs[] | null;
   imageId?: string | null;
+  videoId?: string | null;
   eventId?: string | null;
   groupId?: string | null;
   contentId?: string | null;
   commentedId?: string | null;
-  videoId?: string | null;
-  createdAt?: string | null;
 }
 
 export interface ActivityUpdateInputs {
   message?: string | null;
-  html?: string | null;
-  text?: string | null;
-  giphyId?: string | null;
+  entities?: ActivityEntityInputs[] | null;
+  status?: keyof typeof ModerationStatus | null;
   imageId?: string | null;
-  eventId?: string | null;
-  groupId?: string | null;
-  contentId?: string | null;
-  commentedId?: string | null;
   videoId?: string | null;
   createdAt?: string | null;
 }

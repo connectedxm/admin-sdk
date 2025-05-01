@@ -33,6 +33,7 @@ import {
   ReportFilters,
   CustomModulePosition,
   MatchQuestionType,
+  EventSessionQuestionType,
   ModerationStatus,
   ActivityEntityType,
 } from "./interfaces";
@@ -721,7 +722,7 @@ export interface EventSessionCreateInputs {
 }
 
 export interface EventSessionAccessUpdateInputs {
-  canceled?: boolean;
+  status?: PurchaseStatus;
 }
 
 export interface EventSessionTranslationUpdateInputs {
@@ -782,27 +783,108 @@ export interface EventSessionLocationUpdateInputs {
   zip?: string | null;
 }
 
-export interface EventSessionQuestionCreateInputs {
-  name: string;
-  label?: string | null;
+export interface EventSessionQuestionChoiceCreateInputs {
+  value: string;
+  text?: string | null;
+  supply?: number | string | null;
   description?: string | null;
-  required?: boolean;
   sortOrder?: number | string | null;
-  matchType?: keyof typeof MatchQuestionType;
 }
 
-export interface EventSessionQuestionUpdateInputs {
-  name?: string | null;
-  label?: string | null;
+export interface EventSessionQuestionChoiceTranslationUpdateInputs {
+  value?: string | null;
+  text?: string | null;
   description?: string | null;
-  required?: boolean;
+}
+
+export interface EventSessionQuestionChoiceUpdateInputs {
+  value?: string | null;
+  text?: string | null;
+  supply?: number | string | null;
+  description?: string | null;
   sortOrder?: number | string | null;
-  matchType?: keyof typeof MatchQuestionType;
+}
+
+export interface EventSessionQuestionCreateInputs {
+  name: string;
+  type: keyof typeof EventSessionQuestionType | null;
+  sectionId?: string;
+  questionId?: string;
+  choiceId?: string;
+  required?: boolean;
+  label?: string | null;
+  placeholder?: string | null;
+  description?: string | null;
+  default?: string | null;
+  span?: number | string | null;
+  mutable?: boolean;
+  min?: string | null;
+  max?: string | null;
+  validation?: string | null;
+  validationMessage?: string | null;
+  sortOrder?: number | string | null;
+  featured?: boolean;
+  choices?: string[] | null;
+  price?: number | string | null;
+  supply?: number | string | null;
+}
+
+export interface EventSessionQuestionSearchInputs {
+  value: string;
+  top?: boolean;
+}
+
+export interface EventSessionQuestionSearchValuesCreateInputs {
+  values?: string;
+}
+export interface EventSessionQuestionSearchValueUpdateInputs {
+  value?: string | null;
+  top?: boolean;
 }
 
 export interface EventSessionQuestionTranslationUpdateInputs {
   label?: string | null;
+  placeholder?: string | null;
   description?: string | null;
+}
+
+export interface EventSessionQuestionUpdateInputs {
+  name?: string | null;
+  type?: keyof typeof EventSessionQuestionType | null;
+  required?: boolean;
+  label?: string | null;
+  placeholder?: string | null;
+  description?: string | null;
+  default?: string | null;
+  span?: number | string | null;
+  mutable?: boolean;
+  min?: string | null;
+  max?: string | null;
+  validation?: string | null;
+  validationMessage?: string | null;
+  sortOrder?: number | string | null;
+  featured?: boolean;
+  price?: number | string | null;
+  supply?: number | string | null;
+}
+
+export interface EventSessionSectionCreateInputs {
+  name: string;
+  description?: string | null;
+  sortOrder?: number | string | null;
+}
+
+export interface EventSessionSectionTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+  guestDescription?: string | null;
+}
+
+export interface EventSessionSectionUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+  guestDescription?: string | null;
+  sortOrder?: number | string | null;
 }
 
 export interface EventSpeakerCreateInputs {

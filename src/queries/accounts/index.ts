@@ -22,7 +22,6 @@ export * from "./useGetAccountLogins";
 export * from "./useGetAccountPayments";
 export * from "./useGetAccountPushDevice";
 export * from "./useGetAccountPushDevices";
-export * from "./useGetAccountReshares";
 export * from "./useGetAccountSubscriptions";
 export * from "./useGetAccountTiers";
 export * from "./useGetAccounts";

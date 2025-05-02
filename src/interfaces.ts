@@ -1321,7 +1321,6 @@ export interface Interest extends BaseInterest {
   _count: {
     accounts: number;
     groups: number;
-    activities: number;
   };
 }
 

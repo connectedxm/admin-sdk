@@ -418,6 +418,7 @@ export interface BaseActivity {
   image: BaseImage | null;
   account: BaseAccount;
   entities: BaseActivityEntity[];
+  moderation: keyof typeof ModerationStatus | null;
   eventId: string | null;
   groupId: string | null;
   contentId: string | null;

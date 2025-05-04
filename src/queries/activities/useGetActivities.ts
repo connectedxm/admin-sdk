@@ -1,4 +1,4 @@
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, ModerationStatus } from "@src/interfaces";
 import { Activity } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
@@ -12,7 +12,15 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @category Keys
  * @group Activities
  */
-export const ACTIVITIES_QUERY_KEY = () => ["ACTIVITIES"];
+export const ACTIVITIES_QUERY_KEY = (
+  moderation?: keyof typeof ModerationStatus
+) => {
+  const key = ["ACTIVITIES"];
+  if (moderation) {
+    key.push(moderation);
+  }
+  return key;
+};
 
 /**
  * @category Setters
@@ -26,13 +34,16 @@ export const SET_ACTIVITIES_QUERY_DATA = (
   client.setQueryData(ACTIVITIES_QUERY_KEY(...keyParams), response);
 };
 
-interface GetActivitiesProps extends InfiniteQueryParams {}
+interface GetActivitiesProps extends InfiniteQueryParams {
+  moderation?: keyof typeof ModerationStatus;
+}
 
 /**
  * @category Queries
  * @group Activities
  */
 export const GetActivities = async ({
+  moderation,
   pageParam,
   pageSize,
   orderBy,
@@ -46,6 +57,7 @@ export const GetActivities = async ({
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
+      moderation: moderation || undefined,
     },
   });
   return data;
@@ -55,6 +67,7 @@ export const GetActivities = async ({
  * @group Activities
  */
 export const useGetActivities = (
+  moderation?: keyof typeof ModerationStatus,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -62,8 +75,8 @@ export const useGetActivities = (
   options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetActivities>>> = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetActivities>>>(
-    ACTIVITIES_QUERY_KEY(),
-    (params: InfiniteQueryParams) => GetActivities({ ...params }),
+    ACTIVITIES_QUERY_KEY(moderation),
+    (params: InfiniteQueryParams) => GetActivities({ ...params, moderation }),
     params,
     options,
     "activities"

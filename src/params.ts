@@ -1212,7 +1212,6 @@ export interface OrganizationUpdateInputs {
   appSplashScreenId?: string | null;
   locale?: string | null;
   locales?: string[] | null;
-  googleServices?: string | null;
   inviteOnly?: boolean;
 }
 

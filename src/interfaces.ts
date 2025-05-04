@@ -1535,7 +1535,6 @@ export interface Organization extends BaseOrganization {
   maxImageCount: number | null;
   maxVideoMins: number | null;
   locales: string[];
-  googleServices: string | null;
   inviteOnly: boolean;
 }
 

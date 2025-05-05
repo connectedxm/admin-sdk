@@ -3,9 +3,9 @@ import {
   SingleQueryOptions,
   SingleQueryParams,
   useConnectedSingleQuery,
-} from "../../useConnectedSingleQuery";
+} from "../../../useConnectedSingleQuery";
 import { GetAdminAPI } from "@src/AdminAPI";
-import { EVENT_SESSION_PASSES_QUERY_KEY } from ".";
+import { EVENT_SESSION_PASSES_QUERY_KEY } from "..";
 
 /**
  * @category Keys

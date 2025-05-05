@@ -2106,8 +2106,10 @@ export interface EventSessionLocationTranslation {
 export interface BaseEventSessionAccess {
   id: string;
   session: BaseEventSession;
+  passId: string;
   pass: BaseEventPass;
   status: PurchaseStatus;
+  responses: BaseEventSessionQuestionResponse[];
 }
 
 export interface EventSessionAccess extends BaseEventSessionAccess {

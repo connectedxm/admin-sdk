@@ -418,6 +418,7 @@ export interface BaseActivity {
   image: BaseImage | null;
   account: BaseAccount;
   entities: BaseActivityEntity[];
+  moderation: keyof typeof ModerationStatus | null;
   eventId: string | null;
   groupId: string | null;
   contentId: string | null;
@@ -1321,7 +1322,6 @@ export interface Interest extends BaseInterest {
   _count: {
     accounts: number;
     groups: number;
-    activities: number;
   };
 }
 
@@ -1535,7 +1535,6 @@ export interface Organization extends BaseOrganization {
   maxImageCount: number | null;
   maxVideoMins: number | null;
   locales: string[];
-  googleServices: string | null;
   inviteOnly: boolean;
 }
 

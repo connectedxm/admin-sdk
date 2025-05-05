@@ -166,7 +166,7 @@ export interface ActivityCreateInputs {
 export interface ActivityUpdateInputs {
   message?: string | null;
   entities?: ActivityEntityInputs[] | null;
-  status?: keyof typeof ModerationStatus | null;
+  moderation?: keyof typeof ModerationStatus | null;
   imageId?: string | null;
   videoId?: string | null;
   createdAt?: string | null;
@@ -1212,7 +1212,6 @@ export interface OrganizationUpdateInputs {
   appSplashScreenId?: string | null;
   locale?: string | null;
   locales?: string[] | null;
-  googleServices?: string | null;
   inviteOnly?: boolean;
 }
 

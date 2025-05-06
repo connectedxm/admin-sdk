@@ -1605,7 +1605,7 @@ export interface BaseEventPass {
 }
 
 export interface EventPass extends BaseEventPass {
-  passAddOns: PassAddOn[];
+  passAddOns: BasePassAddOn[];
   attendeeId: string;
   attendee: BaseEventAttendee;
   package: BaseAttendeePackage | null;
@@ -1615,10 +1615,15 @@ export interface EventPass extends BaseEventPass {
   amtRefunded: number;
 }
 
-export interface PassAddOn {
+export interface BasePassAddOn {
   addOnId: string;
   addOn: BaseEventAddOn;
   createdAt: string;
+}
+
+export interface PassAddOn extends BasePassAddOn {
+  amtPaid: number;
+  amtRefunded: number;
   updatedAt: string;
 }
 
@@ -1694,7 +1699,6 @@ export interface Payment extends BasePayment {
     type: PaymentIntegrationType;
   };
   subscription: BaseSubscription;
-  addOns: BaseEventAddOn[];
   purchases: BaseEventPass[];
   coupons: BaseCoupon[];
   invoice: BaseInvoice;
@@ -1702,6 +1706,9 @@ export interface Payment extends BasePayment {
   bookingId: string | null;
   booking: BaseBooking | null;
   accesses: BaseEventSessionAccess[];
+  reservations: BaseEventRoomTypeReservation[];
+  packages: BaseEventPackage[];
+  passAddOns: BasePassAddOn[];
   metadata?: any;
 }
 
@@ -2124,6 +2131,8 @@ export interface BaseEventSessionAccess {
 }
 
 export interface EventSessionAccess extends BaseEventSessionAccess {
+  amtPaid: number;
+  amtRefunded: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -3023,6 +3032,8 @@ export interface EventRoomType extends BaseEventRoomType {
   maxEnd: string | null;
   allowedTiers: BaseTier[];
   disallowedTiers: BaseTier[];
+  amtPaid: number;
+  amtRefunded: number;
   createdAt: string;
   updatedAt: string;
   _count: {
@@ -3065,6 +3076,8 @@ export interface EventRoomTypeReservation extends BaseEventRoomTypeReservation {
       };
     };
   }[];
+  amtPaid: number;
+  amtRefunded: number;
   createdAt: string;
   updatedAt: string;
 }

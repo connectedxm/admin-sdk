@@ -1661,6 +1661,7 @@ export interface UserUpdateInputs {
   title?: string | null;
   firstName?: string;
   lastName?: string;
+  termsAccepted?: string;
 }
 
 export interface UserApiKeyCreateInputs {

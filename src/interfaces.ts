@@ -2752,6 +2752,7 @@ export interface BaseUser {
   lastName: string;
   title: string | null;
   imageUrl: string;
+  termsAccepted: string | null;
 }
 
 export interface User extends BaseUser {

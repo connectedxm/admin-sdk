@@ -2033,7 +2033,7 @@ export interface SearchField {
   updatedAt: string;
 }
 
-export interface Self extends Account {}
+export interface Self extends User {}
 
 export interface BaseSeries {
   id: string;

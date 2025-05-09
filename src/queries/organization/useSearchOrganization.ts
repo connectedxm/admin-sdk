@@ -11,9 +11,13 @@ import { QueryClient } from "@tanstack/react-query";
  * @category Keys
  * @group Organization
  */
-export const SEARCH_ORGANIZATION_QUERY_KEY = (search?: string) => [
+export const SEARCH_ORGANIZATION_QUERY_KEY = (
+  search?: string,
+  filters?: SearchOrganizationFilters
+) => [
   "SEARCH_ORGANIZATION",
   search ?? "",
+  ...(filters ? [JSON.stringify(filters)] : []),
 ];
 
 /**
@@ -28,8 +32,18 @@ export const SET_SEARCH_ORGANIZATION_QUERY_DATA = (
   client.setQueryData(SEARCH_ORGANIZATION_QUERY_KEY(...keyParams), response);
 };
 
+export interface SearchOrganizationFilters {
+  accounts?: boolean;
+  events?: boolean;
+  groups?: boolean;
+  channels?: boolean;
+  contents?: boolean;
+  threads?: boolean;
+}
+
 interface SearchOrganizationProps extends SingleQueryParams {
   search?: string;
+  filters?: SearchOrganizationFilters;
 }
 
 /**
@@ -38,11 +52,15 @@ interface SearchOrganizationProps extends SingleQueryParams {
  */
 export const SearchOrganization = async ({
   search,
+  filters,
   adminApiParams,
 }: SearchOrganizationProps): Promise<ConnectedXMResponse<SearchField[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/organization/search`, {
-    params: { search: search },
+    params: {
+      search: search,
+      ...filters,
+    },
   });
   return data;
 };
@@ -53,11 +71,13 @@ export const SearchOrganization = async ({
  */
 export const useSearchOrganization = (
   search?: string,
+  filters?: SearchOrganizationFilters,
   options: SingleQueryOptions<ReturnType<typeof SearchOrganization>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof SearchOrganization>>(
-    SEARCH_ORGANIZATION_QUERY_KEY(search),
-    (params: SingleQueryParams) => SearchOrganization({ ...params, search }),
+    SEARCH_ORGANIZATION_QUERY_KEY(search, filters),
+    (params: SingleQueryParams) =>
+      SearchOrganization({ ...params, search, filters }),
     {
       ...options,
       enabled: !!search && (options.enabled ?? true),

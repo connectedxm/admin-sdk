@@ -212,6 +212,8 @@ export interface AnnouncementCreateInputs {
   tierId?: string | null;
   channelId?: string | null;
   accountId?: string | null;
+  verifiedAccounts?: boolean | null;
+  sponsorshipLevelId?: string | null;
   email?: boolean;
   push?: boolean;
   filters?: EventAnnouncementFilters | null;
@@ -221,12 +223,6 @@ export interface AnnouncementUpdateInputs {
   title?: string | null;
   html?: string | null;
   slug?: string | null;
-  creatorId?: string | null;
-  eventId?: string | null;
-  groupId?: string | null;
-  tierId?: string | null;
-  channelId?: string | null;
-  accountId?: string | null;
   email?: boolean;
   push?: boolean;
   filters?: EventAnnouncementFilters | null;

@@ -19,6 +19,7 @@ export * from "./useGetAccountLevels";
 export * from "./useGetAccountLikes";
 export * from "./useGetAccountLogin";
 export * from "./useGetAccountLogins";
+export * from "./useGetAccountNotificationPreferences";
 export * from "./useGetAccountPayments";
 export * from "./useGetAccountPushDevice";
 export * from "./useGetAccountPushDevices";

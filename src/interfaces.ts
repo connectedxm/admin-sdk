@@ -1399,8 +1399,20 @@ export interface NotificationPreferences {
   transferPush: boolean;
   transferEmail: boolean;
   supportTicketConfirmationEmail: boolean;
+  eventReminderEmail: boolean;
   eventAnnouncementEmail: boolean;
   eventAnnouncementPush: boolean;
+  chatPush: boolean;
+  chatUnreadEmail: boolean;
+  chatUnreadPush: boolean;
+  organizationAnnouncementEmail: boolean;
+  organizationAnnouncementPush: boolean;
+  groupAnnouncementEmail: boolean;
+  groupAnnouncementPush: boolean;
+  groupInvitationEmail: boolean;
+  groupInvitationPush: boolean;
+  groupRequestAcceptedEmail: boolean;
+  groupRequestAcceptedPush: boolean;
 }
 
 export interface BaseNotification {

@@ -7,20 +7,17 @@ import {
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
-import { SUBSCRIPTION_PRODUCT_QUERY_KEY } from "./useGetSubscriptionProduct";
+import { MEMBERSHIP_QUERY_KEY } from "./useGetMembership";
 
 /**
  * @category Keys
  * @group Subscriptions
  */
-export const SUBSCRIPTION_PRODUCT_SUBSCRIPTIONS_QUERY_KEY = (
-  subscriptionProductId: string,
+export const MEMBERSHIP_SUBSCRIPTIONS_QUERY_KEY = (
+  membershipId: string,
   status?: SubscriptionStatus
 ) => {
-  const queryKey = [
-    ...SUBSCRIPTION_PRODUCT_QUERY_KEY(subscriptionProductId),
-    subscriptionProductId,
-  ];
+  const queryKey = [...MEMBERSHIP_QUERY_KEY(membershipId), membershipId];
 
   if (status) {
     queryKey.push(status);
@@ -33,19 +30,19 @@ export const SUBSCRIPTION_PRODUCT_SUBSCRIPTIONS_QUERY_KEY = (
  * @category Setters
  * @group Subscriptions
  */
-export const SET_SUBSCRIPTION_PRODUCT_SUBSCRIPTIONS_QUERY_DATA = (
+export const SET_MEMBERSHIP_SUBSCRIPTIONS_QUERY_DATA = (
   client: QueryClient,
-  keyParams: Parameters<typeof SUBSCRIPTION_PRODUCT_SUBSCRIPTIONS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetSubscriptionProductSubscriptions>>
+  keyParams: Parameters<typeof MEMBERSHIP_SUBSCRIPTIONS_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetMembershipSubscriptions>>
 ) => {
   client.setQueryData(
-    SUBSCRIPTION_PRODUCT_SUBSCRIPTIONS_QUERY_KEY(...keyParams),
+    MEMBERSHIP_SUBSCRIPTIONS_QUERY_KEY(...keyParams),
     response
   );
 };
 
-interface GetSubscriptionProductSubscriptionsProps extends InfiniteQueryParams {
-  subscriptionProductId: string;
+interface GetMembershipSubscriptionsProps extends InfiniteQueryParams {
+  membershipId: string;
   status?: SubscriptionStatus;
 }
 
@@ -53,20 +50,20 @@ interface GetSubscriptionProductSubscriptionsProps extends InfiniteQueryParams {
  * @category Queries
  * @group Subscriptions
  */
-export const GetSubscriptionProductSubscriptions = async ({
-  subscriptionProductId,
+export const GetMembershipSubscriptions = async ({
+  membershipId,
   status,
   pageParam,
   pageSize,
   orderBy,
   search,
   adminApiParams,
-}: GetSubscriptionProductSubscriptionsProps): Promise<
+}: GetMembershipSubscriptionsProps): Promise<
   ConnectedXMResponse<Subscription[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/subscription-products/${subscriptionProductId}/subscriptions`,
+    `/subscription-products/${membershipId}/subscriptions`,
     {
       params: {
         page: pageParam || undefined,
@@ -83,31 +80,31 @@ export const GetSubscriptionProductSubscriptions = async ({
  * @category Hooks
  * @group Subscriptions
  */
-export const useGetSubscriptionProductSubscriptions = (
-  subscriptionProductId: string,
+export const useGetMembershipSubscriptions = (
+  membershipId: string,
   status?: SubscriptionStatus,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetSubscriptionProductSubscriptions>>
+    Awaited<ReturnType<typeof GetMembershipSubscriptions>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetSubscriptionProductSubscriptions>>
+    Awaited<ReturnType<typeof GetMembershipSubscriptions>>
   >(
-    SUBSCRIPTION_PRODUCT_SUBSCRIPTIONS_QUERY_KEY(subscriptionProductId),
+    MEMBERSHIP_SUBSCRIPTIONS_QUERY_KEY(membershipId, status),
     (params: InfiniteQueryParams) =>
-      GetSubscriptionProductSubscriptions({
-        subscriptionProductId,
+      GetMembershipSubscriptions({
+        membershipId,
         status,
         ...params,
       }),
     params,
     {
       ...options,
-      enabled: !!subscriptionProductId && (options.enabled ?? true),
+      enabled: !!membershipId && (options.enabled ?? true),
     },
     "subscriptions"
   );

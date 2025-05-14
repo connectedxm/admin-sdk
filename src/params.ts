@@ -8,15 +8,15 @@ import {
   EventType,
   GroupAccess,
   RegistrationQuestionType,
-  SubscriptionProductPriceType,
-  SubscriptionProductPriceInterval,
+  MembershipPriceType,
+  MembershipPriceInterval,
   ThreadAccessLevel,
   PassTypeVisibility,
   PassTypeAccessLevel,
   SubscriptionStatus,
-  BaseSubscriptionProduct,
+  BaseMembership,
   BaseAccount,
-  BaseSubscriptionProductPrice,
+  BaseMembershipPrice,
   ImageType,
   FileSource,
   ModulePermissions,
@@ -564,8 +564,6 @@ export interface EventCreateInputs {
   externalUrl?: string | null;
   imageId?: string | null;
   backgroundImageId?: string | null;
-  venueMapId?: string | null;
-  venue?: string | null;
   location?: string | null;
   address1?: string | null;
   address2?: string | null;
@@ -575,7 +573,6 @@ export interface EventCreateInputs {
   zip?: string | null;
   creatorId?: string | null;
   seriesId?: string | null;
-  approved?: boolean;
   meetingUrl?: string | null;
   registration?: boolean;
   registrationStart?: string | null;
@@ -968,8 +965,6 @@ export interface EventUpdateInputs {
   externalUrl?: string | null;
   imageId?: string | null;
   backgroundImageId?: string | null;
-  venueMapId?: string | null;
-  venue?: string | null;
   location?: string | null;
   address1?: string | null;
   address2?: string | null;
@@ -979,7 +974,6 @@ export interface EventUpdateInputs {
   zip?: string | null;
   creatorId?: string | null;
   seriesId?: string | null;
-  approved?: boolean;
   meetingUrl?: string | null;
   registration?: boolean;
   registrationStart?: string | null;
@@ -1409,7 +1403,7 @@ export interface StreamOutputCreateInputs {
   url: string;
 }
 
-export interface SubscriptionProductCreateInputs {
+export interface MembershipCreateInputs {
   name: string;
   active?: boolean;
   description?: string | null;
@@ -1417,20 +1411,20 @@ export interface SubscriptionProductCreateInputs {
   features?: string[] | null;
 }
 
-export interface SubscriptionProductPriceCreateInputs {
+export interface MembershipPriceCreateInputs {
   active?: boolean;
-  type: keyof typeof SubscriptionProductPriceType;
+  type: keyof typeof MembershipPriceType;
   amount: string | number; // Assuming REQUIRED_PRICE can be string or number
   currency: "usd"; // Assuming currency is limited to 'usd'
-  interval: keyof typeof SubscriptionProductPriceInterval;
+  interval: keyof typeof MembershipPriceInterval;
   intervalCount: string | number;
 }
 
-export interface SubscriptionProductPriceUpdateInputs {
+export interface MembershipPriceUpdateInputs {
   active?: boolean;
 }
 
-export interface SubscriptionProductUpdateInputs {
+export interface MembershipUpdateInputs {
   active?: boolean;
   name?: string | null;
   description?: string | null;
@@ -1444,11 +1438,11 @@ export interface SubscriptionCreateInputs {
   cancelAtEnd?: boolean;
   integrationId?: string | null;
   subscriptionProductId?: string | null;
-  subscriptionProduct?: BaseSubscriptionProduct;
+  subscriptionProduct?: BaseMembership;
   accountId?: string | null;
   account?: BaseAccount;
   priceId?: string | null;
-  price?: BaseSubscriptionProductPrice;
+  price?: BaseMembershipPrice;
 }
 
 export interface SubscriptionUpdateInputs {

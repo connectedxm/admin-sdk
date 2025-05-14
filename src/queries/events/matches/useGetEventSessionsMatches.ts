@@ -46,7 +46,7 @@ export const GetEventSessionsMatches = async ({
   adminApiParams,
 }: GetEventSessionsMatchesProps): Promise<ConnectedXMResponse<Match[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/events/${eventId}/sessions/matches`, {
+  const { data } = await adminApi.get(`/events/${eventId}/session-matches`, {
     params: {
       page: pageParam || undefined,
       pageSize: pageSize || undefined,

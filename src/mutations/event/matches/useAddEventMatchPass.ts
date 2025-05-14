@@ -10,6 +10,7 @@ import {
   EVENT_ROUND_MATCHES_QUERY_KEY,
   EVENT_ROUND_PASSES_QUERY_KEY,
 } from "@src/queries";
+import { EVENT_PASS_MATCHES_QUERY_KEY } from "@src/queries/events/passes/useGetEventPassMatches";
 
 /**
  * @category Params
@@ -51,6 +52,9 @@ export const AddEventMatchPass = async ({
     });
     queryClient.invalidateQueries({
       queryKey: EVENT_ROUND_PASSES_QUERY_KEY(false, eventId, roundId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_PASS_MATCHES_QUERY_KEY(eventId, passId),
     });
   }
 

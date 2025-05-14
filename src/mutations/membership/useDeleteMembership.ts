@@ -5,39 +5,36 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
-import {
-  SUBSCRIPTION_PRODUCTS_QUERY_KEY,
-  SUBSCRIPTION_PRODUCT_QUERY_KEY,
-} from "@src/queries";
+import { MEMBERSHIPS_QUERY_KEY, MEMBERSHIP_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
  * @group Subscriptions
  */
-export interface DeleteSubscriptionProductParams extends MutationParams {
-  subscriptionProductId: string;
+export interface DeleteMembershipParams extends MutationParams {
+  membershipId: string;
 }
 
 /**
  * @category Methods
  * @group Subscriptions
  */
-export const DeleteSubscriptionProduct = async ({
-  subscriptionProductId,
+export const DeleteMembership = async ({
+  membershipId,
   adminApiParams,
   queryClient,
-}: DeleteSubscriptionProductParams): Promise<ConnectedXMResponse<void>> => {
+}: DeleteMembershipParams): Promise<ConnectedXMResponse<void>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.delete<ConnectedXMResponse<void>>(
-    `/subscription-products/${subscriptionProductId}`
+    `/subscription-products/${membershipId}`
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: SUBSCRIPTION_PRODUCTS_QUERY_KEY(),
+      queryKey: MEMBERSHIPS_QUERY_KEY(),
     });
     queryClient.removeQueries({
-      queryKey: SUBSCRIPTION_PRODUCT_QUERY_KEY(subscriptionProductId),
+      queryKey: MEMBERSHIP_QUERY_KEY(membershipId),
     });
   }
 
@@ -48,19 +45,19 @@ export const DeleteSubscriptionProduct = async ({
  * @category Mutations
  * @group Subscriptions
  */
-export const useDeleteSubscriptionProduct = (
+export const useDeleteMembership = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof DeleteSubscriptionProduct>>,
-      Omit<DeleteSubscriptionProductParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof DeleteMembership>>,
+      Omit<DeleteMembershipParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    DeleteSubscriptionProductParams,
-    Awaited<ReturnType<typeof DeleteSubscriptionProduct>>
-  >(DeleteSubscriptionProduct, options, {
+    DeleteMembershipParams,
+    Awaited<ReturnType<typeof DeleteMembership>>
+  >(DeleteMembership, options, {
     domain: "subscriptions",
     type: "del",
   });

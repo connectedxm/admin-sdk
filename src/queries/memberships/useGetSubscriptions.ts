@@ -12,7 +12,13 @@ import { QueryClient } from "@tanstack/react-query";
  * @category Keys
  * @group Subscriptions
  */
-export const SUBSCRIPTIONS_QUERY_KEY = () => ["SUBSCRIPTIONS"];
+export const SUBSCRIPTIONS_QUERY_KEY = (status?: SubscriptionStatus) => {
+  const queryKey = ["SUBSCRIPTIONS"];
+  if (status) {
+    queryKey.push(status);
+  }
+  return queryKey;
+};
 
 /**
  * @category Setters
@@ -28,7 +34,7 @@ export const SET_SUBSCRIPTIONS_QUERY_DATA = (
 
 interface GetSubscriptionsProps extends InfiniteQueryParams {
   status?: SubscriptionStatus;
-  subscriptionProductId?: string;
+  membershipId?: string;
 }
 
 /**
@@ -41,7 +47,7 @@ export const GetSubscriptions = async ({
   orderBy,
   search,
   status,
-  subscriptionProductId,
+  membershipId,
   adminApiParams,
 }: GetSubscriptionsProps): Promise<ConnectedXMResponse<Subscription[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -52,7 +58,7 @@ export const GetSubscriptions = async ({
       orderBy: orderBy || undefined,
       search: search || undefined,
       status: status || undefined,
-      subscriptionProductId: subscriptionProductId || undefined,
+      subscriptionProductId: membershipId || undefined,
     },
   });
   return data;
@@ -63,7 +69,7 @@ export const GetSubscriptions = async ({
  */
 export const useGetSubscriptions = (
   status?: SubscriptionStatus,
-  subscriptionProductId?: string,
+  membershipId?: string,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -75,11 +81,11 @@ export const useGetSubscriptions = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetSubscriptions>>
   >(
-    SUBSCRIPTIONS_QUERY_KEY(),
+    SUBSCRIPTIONS_QUERY_KEY(status),
     (params: InfiniteQueryParams) =>
       GetSubscriptions({
         status,
-        subscriptionProductId,
+        membershipId,
         ...params,
       }),
     params,

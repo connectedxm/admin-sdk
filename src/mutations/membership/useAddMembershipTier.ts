@@ -5,14 +5,14 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { ConnectedXMResponse, Tier } from "@src/interfaces";
-import { SUBSCRIPTION_PRODUCT_TIERS_QUERY_KEY } from "@src/queries";
+import { MEMBERSHIP_TIERS_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
  * @group Subscriptions
  */
-export interface AddSubscriptionProductTierParams extends MutationParams {
-  subscriptionProductId: string;
+export interface AddMembershipTierParams extends MutationParams {
+  membershipId: string;
   tierId: string;
 }
 
@@ -20,20 +20,20 @@ export interface AddSubscriptionProductTierParams extends MutationParams {
  * @category Methods
  * @group Subscriptions
  */
-export const AddSubscriptionProductTier = async ({
-  subscriptionProductId,
+export const AddMembershipTier = async ({
+  membershipId,
   tierId,
   adminApiParams,
   queryClient,
-}: AddSubscriptionProductTierParams): Promise<ConnectedXMResponse<Tier>> => {
+}: AddMembershipTierParams): Promise<ConnectedXMResponse<Tier>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.post<ConnectedXMResponse<Tier>>(
-    `/subscription-products/${subscriptionProductId}/tiers/${tierId}`
+    `/subscription-products/${membershipId}/tiers/${tierId}`
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: SUBSCRIPTION_PRODUCT_TIERS_QUERY_KEY(subscriptionProductId),
+      queryKey: MEMBERSHIP_TIERS_QUERY_KEY(membershipId),
     });
   }
   return { ...data };
@@ -43,19 +43,19 @@ export const AddSubscriptionProductTier = async ({
  * @category Mutations
  * @group Subscriptions
  */
-export const useAddSubscriptionProductTier = (
+export const useAddMembershipTier = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof AddSubscriptionProductTier>>,
-      Omit<AddSubscriptionProductTierParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof AddMembershipTier>>,
+      Omit<AddMembershipTierParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    AddSubscriptionProductTierParams,
-    Awaited<ReturnType<typeof AddSubscriptionProductTier>>
-  >(AddSubscriptionProductTier, options, {
+    AddMembershipTierParams,
+    Awaited<ReturnType<typeof AddMembershipTier>>
+  >(AddMembershipTier, options, {
     domain: "subscriptions",
     type: "update",
   });

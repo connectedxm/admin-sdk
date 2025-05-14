@@ -1,5 +1,5 @@
 import { ConnectedXMResponse } from "@src/interfaces";
-import { SubscriptionProduct } from "@src/interfaces";
+import { Membership } from "@src/interfaces";
 import {
   InfiniteQueryParams,
   InfiniteQueryOptions,
@@ -12,35 +12,33 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @category Keys
  * @group Subscriptions
  */
-export const SUBSCRIPTION_PRODUCTS_QUERY_KEY = () => ["SUBSCRIPTION_PRODUCTS"];
+export const MEMBERSHIPS_QUERY_KEY = () => ["MEMBERSHIPS"];
 
 /**
  * @category Setters
  * @group Subscriptions
  */
-export const SET_SUBSCRIPTION_PRODUCTS_QUERY_DATA = (
+export const SET_MEMBERSHIPS_QUERY_DATA = (
   client: QueryClient,
-  keyParams: Parameters<typeof SUBSCRIPTION_PRODUCTS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetSubscriptionProducts>>
+  keyParams: Parameters<typeof MEMBERSHIPS_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetMemberships>>
 ) => {
-  client.setQueryData(SUBSCRIPTION_PRODUCTS_QUERY_KEY(...keyParams), response);
+  client.setQueryData(MEMBERSHIPS_QUERY_KEY(...keyParams), response);
 };
 
-interface GetSubscriptionProductsProps extends InfiniteQueryParams {}
+interface GetMembershipsProps extends InfiniteQueryParams {}
 
 /**
  * @category Queries
  * @group Subscriptions
  */
-export const GetSubscriptionProducts = async ({
+export const GetMemberships = async ({
   pageParam,
   pageSize,
   orderBy,
   search,
   adminApiParams,
-}: GetSubscriptionProductsProps): Promise<
-  ConnectedXMResponse<SubscriptionProduct[]>
-> => {
+}: GetMembershipsProps): Promise<ConnectedXMResponse<Membership[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/subscription-products`, {
     params: {
@@ -56,20 +54,16 @@ export const GetSubscriptionProducts = async ({
  * @category Hooks
  * @group Subscriptions
  */
-export const useGetSubscriptionProducts = (
+export const useGetMemberships = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
-  options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetSubscriptionProducts>>
-  > = {}
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetMemberships>>> = {}
 ) => {
-  return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetSubscriptionProducts>>
-  >(
-    SUBSCRIPTION_PRODUCTS_QUERY_KEY(),
-    (params: InfiniteQueryParams) => GetSubscriptionProducts(params),
+  return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetMemberships>>>(
+    MEMBERSHIPS_QUERY_KEY(),
+    (params: InfiniteQueryParams) => GetMemberships(params),
     params,
     options,
     "subscriptions"

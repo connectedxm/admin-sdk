@@ -1822,7 +1822,7 @@ export interface BaseRegistrationQuestionResponseChange {
 export interface RegistrationQuestionResponseChange
   extends BaseRegistrationQuestionResponseChange {
   response: BaseRegistrationQuestionResponse;
-  user: BaseUser;
+  user: BaseUser | null;
 }
 
 export interface BaseRegistrationQuestionResponse {

@@ -3732,7 +3732,6 @@ export interface BaseMatch {
 
 export interface Match extends BaseMatch {
   passes: BaseEventPass[];
-  accesses: BaseEventSessionAccess[];
   createdAt: string;
   updatedAt: string;
 }

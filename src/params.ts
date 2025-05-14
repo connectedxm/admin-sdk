@@ -573,7 +573,6 @@ export interface EventCreateInputs {
   zip?: string | null;
   creatorId?: string | null;
   seriesId?: string | null;
-  approved?: boolean;
   meetingUrl?: string | null;
   registration?: boolean;
   registrationStart?: string | null;
@@ -975,7 +974,6 @@ export interface EventUpdateInputs {
   zip?: string | null;
   creatorId?: string | null;
   seriesId?: string | null;
-  approved?: boolean;
   meetingUrl?: string | null;
   registration?: boolean;
   registrationStart?: string | null;

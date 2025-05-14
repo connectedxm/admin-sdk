@@ -932,7 +932,6 @@ export interface BaseEvent {
   internalRefId: string | null;
   featured: boolean;
   visible: boolean;
-  approved: boolean;
   source: EventSource;
   eventType: EventType;
   name: string;

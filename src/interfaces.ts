@@ -941,7 +941,6 @@ export interface BaseEvent {
   eventEnd: string;
   timezone: string;
   externalUrl: string | null;
-  location: string | null;
   venue: string | null;
   address1: string | null;
   address2: string | null;
@@ -968,8 +967,6 @@ export interface Event extends BaseEvent {
   reservationDescription: string | null;
   longDescription: string | null;
   meetingUrl: string | null;
-  venueMapId: string | null;
-  venueMap: BaseImage | null;
   creatorId: string | null;
   creator: BaseAccount | null;
   registrationLimit: number | null;
@@ -2487,45 +2484,45 @@ export interface StreamInputDetails {
   deleteRecordingAfterDays: null | number;
 }
 
-export enum SubscriptionProductPriceType {
+export enum MembershipPriceType {
   flat = "flat",
   payWhatYouWant = "payWhatYouWant",
 }
 
-export enum SubscriptionProductPriceInterval {
+export enum MembershipPriceInterval {
   day = "day",
   week = "week",
   month = "month",
   year = "year",
 }
 
-export interface BaseSubscriptionProductPrice {
+export interface BaseMembershipPrice {
   id: string;
   active: boolean;
   amount: number;
   currency: string;
-  interval: SubscriptionProductPriceInterval;
+  interval: MembershipPriceInterval;
   intervalCount: number;
   minAmount: number;
   maxAmount: number;
-  type: SubscriptionProductPriceType;
+  type: MembershipPriceType;
 }
 
-export interface SubscriptionProductPrice extends BaseSubscriptionProductPrice {
-  subscriptionProduct: BaseSubscriptionProduct;
+export interface MembershipPrice extends BaseMembershipPrice {
+  subscriptionProduct: BaseMembership;
   createdAt: string;
   updatedAt: string;
 }
 
-export interface BaseSubscriptionProduct {
+export interface BaseMembership {
   id: string;
   active: boolean;
   name: string;
   description: string | null;
 }
 
-export interface SubscriptionProduct extends BaseSubscriptionProduct {
-  prices: BaseSubscriptionProductPrice[];
+export interface Membership extends BaseMembership {
+  prices: BaseMembershipPrice[];
   statementDescriptor: string | null;
   features: string[];
   createdAt: string;
@@ -2548,14 +2545,14 @@ export interface BaseSubscription {
   cancelAtEnd: boolean;
   integrationId: string | null;
   subscriptionProductId: string;
-  subscriptionProduct: BaseSubscriptionProduct;
+  subscriptionProduct: BaseMembership;
 }
 
 export interface Subscription extends BaseSubscription {
   accountId: string;
   account: BaseAccount;
   priceId: string;
-  price: BaseSubscriptionProductPrice;
+  price: BaseMembershipPrice;
   createdAt: string;
   updatedAt: string;
 }
@@ -3337,6 +3334,7 @@ export interface Dashboard extends BaseDashboard {
 
 export interface BaseEventPackage {
   id: string;
+
   name: string;
   description: string | null;
   price: number;
@@ -3373,18 +3371,15 @@ export interface EventPackagePass extends BaseEventPackagePass {
 
 export interface BaseAttendeePackage {
   id: string;
-  eventId: string;
   attendeeId: string;
   packageId: string;
   package: BaseEventPackage;
   status: PurchaseStatus;
-  amtPaid: number;
-  amtRefunded: number;
+  createdAt: string;
 }
 
 export interface AttendeePackage extends BaseAttendeePackage {
   passes: BaseEventPackagePass[];
-  createdAt: string;
   updatedAt: string;
 }
 

@@ -5,9 +5,9 @@ import {
   useConnectedMutation,
 } from "../../useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { EVENT_MATCH_PASSES_QUERY_KEY } from "@src/queries/events/matches/useGetEventMatchPasses";
 import {
-  EVENT_MATCHES_QUERY_KEY,
+  EVENT_ROUND_MATCH_PASSES_QUERY_KEY,
+  EVENT_ROUND_MATCHES_QUERY_KEY,
   EVENT_ROUND_PASSES_QUERY_KEY,
 } from "@src/queries";
 
@@ -41,10 +41,10 @@ export const RemoveEventMatchPass = async ({
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_MATCH_PASSES_QUERY_KEY(eventId, roundId, matchId),
+      queryKey: EVENT_ROUND_MATCH_PASSES_QUERY_KEY(eventId, roundId, matchId),
     });
     queryClient.invalidateQueries({
-      queryKey: EVENT_MATCHES_QUERY_KEY(eventId, roundId),
+      queryKey: EVENT_ROUND_MATCHES_QUERY_KEY(eventId, roundId),
     });
     queryClient.invalidateQueries({
       queryKey: EVENT_ROUND_PASSES_QUERY_KEY(true, eventId, roundId),

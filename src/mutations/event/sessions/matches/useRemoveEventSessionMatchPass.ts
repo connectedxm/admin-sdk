@@ -6,7 +6,6 @@ import {
 } from "../../../useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
 import {
-  EVENT_PASS_SESSION_MATCHES_QUERY_KEY,
   EVENT_SESSION_ROUND_MATCH_PASSES_QUERY_KEY,
   EVENT_SESSION_ROUND_MATCHES_QUERY_KEY,
   EVENT_SESSION_ROUND_PASSES_QUERY_KEY,
@@ -73,9 +72,6 @@ export const RemoveEventSessionMatchPass = async ({
         sessionId,
         roundId
       ),
-    });
-    queryClient.invalidateQueries({
-      queryKey: EVENT_PASS_SESSION_MATCHES_QUERY_KEY(eventId, passId),
     });
   }
 

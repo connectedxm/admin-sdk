@@ -1,11 +1,10 @@
-import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse, Match } from "@src/interfaces";
-import { QueryClient } from "@tanstack/react-query";
 import {
-  InfiniteQueryOptions,
-  InfiniteQueryParams,
-  useConnectedInfiniteQuery,
-} from "../../useConnectedInfiniteQuery";
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../../useConnectedSingleQuery";
+import { GetAdminAPI } from "@src/AdminAPI";
 import { EVENT_PASS_QUERY_KEY } from "./useGetEventPass";
 
 /**
@@ -22,14 +21,14 @@ export const EVENT_PASS_MATCHES_QUERY_KEY = (
  * @group Events
  */
 export const SET_EVENT_PASS_MATCHES_QUERY_DATA = (
-  client: QueryClient,
+  client: any,
   keyParams: Parameters<typeof EVENT_PASS_MATCHES_QUERY_KEY>,
   response: Awaited<ReturnType<typeof GetEventPassMatches>>
 ) => {
   client.setQueryData(EVENT_PASS_MATCHES_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventPassMatchesProps extends InfiniteQueryParams {
+interface GetEventPassMatchesProps extends SingleQueryParams {
   eventId: string;
   passId: string;
 }
@@ -41,27 +40,14 @@ interface GetEventPassMatchesProps extends InfiniteQueryParams {
 export const GetEventPassMatches = async ({
   eventId,
   passId,
-  pageParam,
-  pageSize,
-  orderBy,
-  search,
   adminApiParams,
 }: GetEventPassMatchesProps): Promise<ConnectedXMResponse<Match[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/events/${eventId}/passes/${passId}/matches`,
-    {
-      params: {
-        page: pageParam || undefined,
-        pageSize: pageSize || undefined,
-        orderBy: orderBy || undefined,
-        search: search || undefined,
-      },
-    }
+    `/events/${eventId}/passes/${passId}/matches`
   );
   return data;
 };
-
 /**
  * @category Hooks
  * @group Events
@@ -69,28 +55,19 @@ export const GetEventPassMatches = async ({
 export const useGetEventPassMatches = (
   eventId: string = "",
   passId: string = "",
-  params: Omit<
-    InfiniteQueryParams,
-    "pageParam" | "queryClient" | "adminApiParams"
-  > = {},
-  options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventPassMatches>>
-  > = {}
+  options: SingleQueryOptions<ReturnType<typeof GetEventPassMatches>> = {}
 ) => {
-  return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventPassMatches>>
-  >(
+  return useConnectedSingleQuery<ReturnType<typeof GetEventPassMatches>>(
     EVENT_PASS_MATCHES_QUERY_KEY(eventId, passId),
-    (params: InfiniteQueryParams) =>
+    (params: SingleQueryParams) =>
       GetEventPassMatches({
-        ...params,
         eventId,
         passId,
+        ...params,
       }),
-    params,
     {
       ...options,
-      enabled: !!eventId && !!passId && (options.enabled ?? true),
+      enabled: !!eventId && !!passId && (options?.enabled ?? true),
     },
     "events"
   );

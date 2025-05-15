@@ -2216,3 +2216,13 @@ export interface CustomModuleTranslationUpdateInputs {
 export interface MatchUpdateInputs {
   title?: string | null;
 }
+
+export interface EventAttendeePackageCreateInputs {
+  packageId: string;
+  status?: PurchaseStatus;
+}
+
+export interface EventAttendeePackageUpdateInputs {
+  packageId?: string;
+  status?: PurchaseStatus;
+}

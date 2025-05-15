@@ -5,7 +5,6 @@ export * from "./useGetEventPassQuestionSections";
 export * from "./useGetEventPassResponse";
 export * from "./useGetEventPassResponseChanges";
 export * from "./useGetEventPassResponses";
-export * from "./useGetEventPassSessionMatches";
 export * from "./useGetEventPassSessions";
 export * from "./useGetEventPassTransferLogs";
 export * from "./useGetEventPasses";

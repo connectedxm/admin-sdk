@@ -1822,7 +1822,7 @@ export interface BaseRegistrationQuestionResponseChange {
 export interface RegistrationQuestionResponseChange
   extends BaseRegistrationQuestionResponseChange {
   response: BaseRegistrationQuestionResponse;
-  user: BaseUser;
+  user: BaseUser | null;
 }
 
 export interface BaseRegistrationQuestionResponse {
@@ -3378,7 +3378,7 @@ export interface BaseAttendeePackage {
 }
 
 export interface AttendeePackage extends BaseAttendeePackage {
-  passes: BaseEventPackagePass[];
+  passes: BaseEventPass[];
   updatedAt: string;
 }
 

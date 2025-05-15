@@ -1,4 +1,4 @@
-import { ConnectedXMResponse, EventRoomTypeReservation } from "@src/interfaces";
+import { ConnectedXMResponse, AttendeePackage } from "@src/interfaces";
 import {
   SingleQueryOptions,
   SingleQueryParams,
@@ -45,7 +45,7 @@ export const GetEventAttendeePackage = async ({
   packageId,
   adminApiParams,
 }: GetEventAttendeePackageProps): Promise<
-  ConnectedXMResponse<EventRoomTypeReservation>
+  ConnectedXMResponse<AttendeePackage>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(

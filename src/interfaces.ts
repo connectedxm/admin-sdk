@@ -3715,6 +3715,7 @@ export interface BaseRound {
 }
 
 export interface Round extends BaseRound {
+  matches: { id: string; number: number; title: string | null }[];
   createdAt: string;
   updatedAt: string;
 }
@@ -3722,7 +3723,7 @@ export interface Round extends BaseRound {
 export interface BaseMatch {
   id: string;
   round: BaseRound;
-  number: true;
+  number: number;
   title: string | null;
 }
 

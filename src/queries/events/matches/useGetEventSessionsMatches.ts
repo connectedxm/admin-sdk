@@ -6,30 +6,30 @@ import {
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
-import { EVENT_ROUNDS_QUERY_KEY } from "./useGetEventRounds";
+import { EVENT_QUERY_KEY } from "../useGetEvent";
 
 /**
  * @category Keys
  * @group Events
  */
-export const EVENT_MATCHES_QUERY_KEY = (eventId: string) => [
-  ...EVENT_ROUNDS_QUERY_KEY(eventId),
-  "ALL_MATCHES",
+export const EVENT_SESSIONS_MATCHES_QUERY_KEY = (eventId: string) => [
+  ...EVENT_QUERY_KEY(eventId),
+  "ALL_SESSION_MATCHES",
 ];
 
 /**
  * @category Setters
  * @group Events
  */
-export const SET_EVENT_MATCHES_QUERY_DATA = (
+export const SET_EVENT_SESSIONS_MATCHES_QUERY_DATA = (
   client: QueryClient,
-  keyParams: Parameters<typeof EVENT_MATCHES_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventMatches>>
+  keyParams: Parameters<typeof EVENT_SESSIONS_MATCHES_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetEventSessionsMatches>>
 ) => {
-  client.setQueryData(EVENT_MATCHES_QUERY_KEY(...keyParams), response);
+  client.setQueryData(EVENT_SESSIONS_MATCHES_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventMatchesProps extends InfiniteQueryParams {
+interface GetEventSessionsMatchesProps extends InfiniteQueryParams {
   eventId: string;
 }
 
@@ -37,16 +37,16 @@ interface GetEventMatchesProps extends InfiniteQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetEventMatches = async ({
+export const GetEventSessionsMatches = async ({
   eventId,
   pageParam,
   pageSize,
   orderBy,
   search,
   adminApiParams,
-}: GetEventMatchesProps): Promise<ConnectedXMResponse<Match[]>> => {
+}: GetEventSessionsMatchesProps): Promise<ConnectedXMResponse<Match[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/events/${eventId}/matches`, {
+  const { data } = await adminApi.get(`/events/${eventId}/session-matches`, {
     params: {
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
@@ -62,20 +62,22 @@ export const GetEventMatches = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventMatches = (
+export const useGetEventSessionsMatches = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventMatches>>
+    Awaited<ReturnType<typeof GetEventSessionsMatches>>
   > = {}
 ) => {
-  return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetEventMatches>>>(
-    EVENT_MATCHES_QUERY_KEY(eventId),
+  return useConnectedInfiniteQuery<
+    Awaited<ReturnType<typeof GetEventSessionsMatches>>
+  >(
+    EVENT_SESSIONS_MATCHES_QUERY_KEY(eventId),
     (params: InfiniteQueryParams) =>
-      GetEventMatches({
+      GetEventSessionsMatches({
         eventId,
         ...params,
       }),

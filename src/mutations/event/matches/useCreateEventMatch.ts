@@ -5,7 +5,7 @@ import {
   useConnectedMutation,
 } from "../../useConnectedMutation";
 import { ConnectedXMResponse, Match } from "@src/interfaces";
-import { EVENT_MATCHES_QUERY_KEY } from "@src/queries/events/matches/useGetEventMatches";
+import { EVENT_ROUND_MATCHES_QUERY_KEY } from "@src/queries/events/matches/useGetEventRoundMatches";
 
 /**
  * @category Params
@@ -33,7 +33,7 @@ export const CreateEventMatch = async ({
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_MATCHES_QUERY_KEY(eventId, roundId),
+      queryKey: EVENT_ROUND_MATCHES_QUERY_KEY(eventId, roundId),
     });
   }
 

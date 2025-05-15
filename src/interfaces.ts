@@ -3378,7 +3378,7 @@ export interface BaseAttendeePackage {
 }
 
 export interface AttendeePackage extends BaseAttendeePackage {
-  passes: BaseEventPackagePass[];
+  passes: BaseEventPass[];
   updatedAt: string;
 }
 

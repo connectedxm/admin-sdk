@@ -3702,10 +3702,12 @@ export enum MatchQuestionType {
 export interface BaseRound {
   id: string;
   event: {
+    id: string;
     roundName: string | null;
     matchName: string | null;
   } | null;
   session: {
+    id: string;
     roundName: string | null;
     matchName: string | null;
   } | null;
@@ -3726,7 +3728,6 @@ export interface BaseMatch {
 
 export interface Match extends BaseMatch {
   passes: BaseEventPass[];
-  accesses: BaseEventSessionAccess[];
   createdAt: string;
   updatedAt: string;
 }

@@ -7,8 +7,8 @@ import {
 import { ConnectedXMResponse, Match } from "@src/interfaces";
 import { MatchUpdateInputs } from "@src/params";
 import {
-  EVENT_MATCHES_QUERY_KEY,
-  SET_EVENT_MATCH_QUERY_DATA,
+  EVENT_ROUND_MATCHES_QUERY_KEY,
+  SET_EVENT_ROUND_MATCH_QUERY_DATA,
 } from "@src/queries";
 
 /**
@@ -41,10 +41,14 @@ export const UpdateEventMatch = async ({
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_MATCHES_QUERY_KEY(eventId, roundId),
+      queryKey: EVENT_ROUND_MATCHES_QUERY_KEY(eventId, roundId),
     });
 
-    SET_EVENT_MATCH_QUERY_DATA(queryClient, [eventId, roundId, matchId], data);
+    SET_EVENT_ROUND_MATCH_QUERY_DATA(
+      queryClient,
+      [eventId, roundId, matchId],
+      data
+    );
   }
   return data;
 };

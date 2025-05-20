@@ -7,8 +7,8 @@ import {
 } from "@src/mutations/useConnectedMutation";
 import { EventSessionAccessUpdateInputs } from "@src/params";
 import {
-  EVENT_PASS_SESSIONS_QUERY_KEY,
-  EVENT_SESSION_PASSES_QUERY_KEY,
+  EVENT_PASS_ACCESSES_QUERY_KEY,
+  EVENT_SESSION_ACCESSES_QUERY_KEY,
   SET_EVENT_SESSION_ACCESS_QUERY_DATA,
 } from "@src/queries";
 
@@ -44,10 +44,10 @@ export const UpdateEventSessionAccess = async ({
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_PASS_SESSIONS_QUERY_KEY(eventId, passId),
+      queryKey: EVENT_PASS_ACCESSES_QUERY_KEY(eventId, passId),
     });
     queryClient.invalidateQueries({
-      queryKey: EVENT_SESSION_PASSES_QUERY_KEY(eventId, sessionId),
+      queryKey: EVENT_SESSION_ACCESSES_QUERY_KEY(eventId, sessionId),
     });
     SET_EVENT_SESSION_ACCESS_QUERY_DATA(
       queryClient,

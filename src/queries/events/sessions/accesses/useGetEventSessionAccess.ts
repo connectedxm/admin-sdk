@@ -5,7 +5,7 @@ import {
   useConnectedSingleQuery,
 } from "../../../useConnectedSingleQuery";
 import { GetAdminAPI } from "@src/AdminAPI";
-import { EVENT_SESSION_PASSES_QUERY_KEY } from "..";
+import { EVENT_SESSION_ACCESSES_QUERY_KEY } from "..";
 
 /**
  * @category Keys
@@ -15,7 +15,7 @@ export const EVENT_SESSION_ACCESS_QUERY_KEY = (
   eventId: string,
   sessionId: string,
   passId: string
-) => [...EVENT_SESSION_PASSES_QUERY_KEY(eventId, sessionId), passId];
+) => [...EVENT_SESSION_ACCESSES_QUERY_KEY(eventId, sessionId), passId];
 
 /**
  * @category Setters

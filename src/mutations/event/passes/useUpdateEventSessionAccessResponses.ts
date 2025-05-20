@@ -5,7 +5,10 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EVENT_SESSION_ACCESS_QUERY_KEY } from "@src/queries";
+import {
+  EVENT_SESSION_ACCESS_QUERY_KEY,
+  EVENT_SESSION_ACCESS_RESPONSE_CHANGES_QUERY_KEY,
+} from "@src/queries";
 
 /**
  * @category Params
@@ -43,6 +46,16 @@ export const UpdateEventSessionAccessResponses = async ({
     queryClient.invalidateQueries({
       queryKey: EVENT_SESSION_ACCESS_QUERY_KEY(eventId, sessionId, passId),
     });
+    for (const response of responses) {
+      queryClient.invalidateQueries({
+        queryKey: EVENT_SESSION_ACCESS_RESPONSE_CHANGES_QUERY_KEY(
+          eventId,
+          passId,
+          sessionId,
+          response.questionId
+        ),
+      });
+    }
   }
 
   return data;

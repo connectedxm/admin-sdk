@@ -45,6 +45,7 @@ export interface BaseOrganizationModule {
 export interface OrganizationModule extends BaseOrganizationModule {
   enabledTiers: BaseTier[];
   editableTiers: BaseTier[];
+  options: object | null;
   createdAt: string;
   updatedAt: string;
 }

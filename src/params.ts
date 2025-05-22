@@ -1671,6 +1671,7 @@ export interface OrganizationModuleUpdateInputs {
   requireAuth?: boolean;
   enabled?: boolean;
   editable?: boolean;
+  options?: object | null;
 }
 
 export interface PassTypePriceScheduleCreateInputs {

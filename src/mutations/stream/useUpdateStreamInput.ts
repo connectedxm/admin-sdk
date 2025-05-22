@@ -39,7 +39,6 @@ export const UpdateStream = async ({
       id: undefined,
       event: undefined,
       session: undefined,
-      connected: undefined,
       cloudflareId: undefined,
       createdAt: undefined,
     }

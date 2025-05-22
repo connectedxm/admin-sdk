@@ -1200,6 +1200,7 @@ export interface OrganizationUpdateInputs {
   appIconId?: string | null;
   appAdaptiveIconId?: string | null;
   appSplashScreenId?: string | null;
+  appSplashScreenColor?: string | null;
   locale?: string | null;
   locales?: string[] | null;
   inviteOnly?: boolean;

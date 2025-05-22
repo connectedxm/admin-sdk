@@ -1520,6 +1520,7 @@ export interface Organization extends BaseOrganization {
   appAdaptiveIcon: BaseImage | null;
   appSplashScreenId: string | null;
   appSplashScreen: BaseImage | null;
+  appSplashScreenColor: string | null;
   darkIconId: string | null;
   darkIcon: BaseImage | null;
   darkLogoId: string | null;

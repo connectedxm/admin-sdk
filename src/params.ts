@@ -1387,6 +1387,7 @@ export interface StreamInputUpdateInputs {
   eventId?: string | null;
   sessionId?: string | null;
   details?: object | null;
+  connected?: boolean;
 }
 
 export interface StreamInputOutputCreateInputs {

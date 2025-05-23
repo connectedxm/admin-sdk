@@ -9,11 +9,11 @@ import { EventSessionQuestionTranslationUpdateInputs } from "@src/params";
 import {
   EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_KEY,
   SET_EVENT_SESSION_QUESTION_TRANSLATION_QUERY_DATA,
-} from "@src/queries/events/sessions/questions/translations";
+} from "@src/queries";
 
 /**
  * @category Params
- * @group Event-Sessions-Translations
+ * @group EventSession-Question-Translations
  */
 export interface UpdateEventSessionQuestionTranslationParams
   extends MutationParams {
@@ -21,19 +21,19 @@ export interface UpdateEventSessionQuestionTranslationParams
   sessionId: string;
   questionId: string;
   locale: ISupportedLocale;
-  sessionTranslation: EventSessionQuestionTranslationUpdateInputs;
+  questionTranslation: EventSessionQuestionTranslationUpdateInputs;
 }
 
 /**
  * @category Methods
- * @group Event-Sessions-Translations
+ * @group EventSession-Question-Translations
  */
 export const UpdateEventSessionQuestionTranslation = async ({
   eventId,
   sessionId,
   questionId,
-  sessionTranslation,
   locale,
+  questionTranslation,
   adminApiParams,
   queryClient,
 }: UpdateEventSessionQuestionTranslationParams) => {
@@ -41,8 +41,9 @@ export const UpdateEventSessionQuestionTranslation = async ({
 
   const { data } = await connectedXM.put(
     `/events/${eventId}/sessions/${sessionId}/questions/${questionId}/translations/${locale}`,
-    sessionTranslation
+    questionTranslation
   );
+
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_KEY(
@@ -62,7 +63,7 @@ export const UpdateEventSessionQuestionTranslation = async ({
 
 /**
  * @category Mutations
- * @group Event-Sessions-Translations
+ * @group EventSession-Question-Translations
  */
 export const useUpdateEventSessionQuestionTranslation = (
   options: Omit<

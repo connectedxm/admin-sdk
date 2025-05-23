@@ -1,14 +1,12 @@
-import { GetAdminAPI } from "@src/AdminAPI";
-import {
-  ConnectedXMResponse,
-  EventSessionQuestionTranslation,
-} from "@src/interfaces";
+import { ConnectedXMResponse } from "@src/interfaces";
+import { EventSessionQuestionTranslation } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../../../../useConnectedInfiniteQuery";
 import { EVENT_SESSION_QUESTION_QUERY_KEY } from "../useGetEventSessionQuestion";
+import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * @category Keys
@@ -108,7 +106,8 @@ export const useGetEventSessionQuestionTranslations = (
     params,
     {
       ...options,
-      enabled: !!eventId && !!sessionId && (options.enabled ?? true),
+      enabled:
+        !!eventId && !!sessionId && !!questionId && (options.enabled ?? true),
     },
     "events"
   );

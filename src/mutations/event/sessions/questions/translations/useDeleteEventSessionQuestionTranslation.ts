@@ -5,28 +5,30 @@ import {
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
 import {
-  EVENT_SESSION_TRANSLATIONS_QUERY_KEY,
-  EVENT_SESSION_TRANSLATION_QUERY_KEY,
+  EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_KEY,
+  EVENT_SESSION_QUESTION_TRANSLATION_QUERY_KEY,
 } from "@src/queries";
 
 /**
  * @category Params
- * @group Event-Sessions-Translations
+ * @group EventSession-Question-Translations
  */
 export interface DeleteEventSessionQuestionTranslationParams
   extends MutationParams {
   eventId: string;
   sessionId: string;
+  questionId: string;
   locale: string;
 }
 
 /**
  * @category Methods
- * @group Event-Sessions-Translations
+ * @group EventSession-Question-Translations
  */
 export const DeleteEventSessionQuestionTranslation = async ({
   eventId,
   sessionId,
+  questionId,
   locale,
   adminApiParams,
   queryClient,
@@ -34,14 +36,24 @@ export const DeleteEventSessionQuestionTranslation = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.delete(
-    `/events/${eventId}/sessions/${sessionId}/translations/${locale}`
+    `/events/${eventId}/sessions/${sessionId}/questions/${questionId}/translations/${locale}`
   );
+
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_SESSION_TRANSLATIONS_QUERY_KEY(eventId, sessionId),
+      queryKey: EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_KEY(
+        eventId,
+        sessionId,
+        questionId
+      ),
     });
     queryClient.invalidateQueries({
-      queryKey: EVENT_SESSION_TRANSLATION_QUERY_KEY(eventId, sessionId, locale),
+      queryKey: EVENT_SESSION_QUESTION_TRANSLATION_QUERY_KEY(
+        eventId,
+        sessionId,
+        questionId,
+        locale
+      ),
     });
   }
   return data;
@@ -49,7 +61,7 @@ export const DeleteEventSessionQuestionTranslation = async ({
 
 /**
  * @category Mutations
- * @group Event-Sessions-Translations
+ * @group EventSession-Question-Translations
  */
 export const useDeleteEventSessionQuestionTranslation = (
   options: Omit<

@@ -1,5 +1,4 @@
-import { ConnectedXMResponse } from "@src/interfaces";
-import { Event } from "@src/interfaces";
+import { BaseEvent, ConnectedXMResponse } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -42,7 +41,7 @@ export const GetFeaturedEvents = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetFeaturedEventsProps) => {
+}: GetFeaturedEventsProps): Promise<ConnectedXMResponse<BaseEvent[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/featured`, {
     params: {
@@ -67,7 +66,7 @@ export const useGetFeaturedEvents = (
     Awaited<ReturnType<typeof GetFeaturedEvents>>
   > = {}
 ) => {
-  return useConnectedInfiniteQuery<ConnectedXMResponse<Event[]>>(
+  return useConnectedInfiniteQuery<ConnectedXMResponse<BaseEvent[]>>(
     FEATURED_EVENTS_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetFeaturedEvents(params),
     params,

@@ -1,11 +1,12 @@
-import { ConnectedXMResponse, EventSessionQuestion } from "@src/interfaces";
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
+import { EventSessionQuestion } from "@src/interfaces";
 import {
-  GetBaseInfiniteQueryKeys,
   InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../../../useConnectedInfiniteQuery";
-import { GetAdminAPI } from "@src/AdminAPI";
+import { QueryClient } from "@tanstack/react-query";
 import { EVENT_SESSION_QUERY_KEY } from "../useGetEventSession";
 
 /**
@@ -22,19 +23,13 @@ export const EVENT_SESSION_QUESTIONS_QUERY_KEY = (
  * @group Events
  */
 export const SET_EVENT_SESSION_QUESTIONS_QUERY_DATA = (
-  client: any,
+  client: QueryClient,
   keyParams: Parameters<typeof EVENT_SESSION_QUESTIONS_QUERY_KEY>,
   response: Awaited<ReturnType<typeof GetEventSessionQuestions>>
 ) => {
   client.setQueryData(
-    [
-      ...EVENT_SESSION_QUESTIONS_QUERY_KEY(...keyParams),
-      ...GetBaseInfiniteQueryKeys(""),
-    ],
-    {
-      pages: [response],
-      pageParams: [null],
-    }
+    EVENT_SESSION_QUESTIONS_QUERY_KEY(...keyParams),
+    response
   );
 };
 

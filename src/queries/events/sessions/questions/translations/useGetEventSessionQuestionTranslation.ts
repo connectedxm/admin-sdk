@@ -1,13 +1,11 @@
+import { GetAdminAPI } from "@src/AdminAPI";
 import {
   SingleQueryOptions,
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../../../../useConnectedSingleQuery";
-import {
-  ConnectedXMResponse,
-  EventSessionQuestionTranslation,
-} from "@src/interfaces";
-import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
+import { EventSessionQuestionTranslation } from "@src/interfaces";
 import { EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_KEY } from "./useGetEventSessionQuestionTranslations";
 
 /**
@@ -69,6 +67,7 @@ export const GetEventSessionQuestionTranslation = async ({
   );
   return data;
 };
+
 /**
  * @category Hooks
  * @group Events
@@ -91,18 +90,23 @@ export const useGetEventSessionQuestionTranslation = (
       questionId,
       locale
     ),
-    (params) =>
+    (params: SingleQueryParams) =>
       GetEventSessionQuestionTranslation({
-        ...params,
         eventId,
         sessionId,
         questionId,
         locale,
+        ...params,
       }),
     {
       ...options,
       enabled:
-        !!eventId && !!sessionId && !!questionId && !!locale && locale !== "en",
+        !!eventId &&
+        !!sessionId &&
+        !!questionId &&
+        !!locale &&
+        locale !== "en" &&
+        (options?.enabled ?? true),
     },
     "events"
   );

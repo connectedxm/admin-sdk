@@ -6,12 +6,14 @@ import {
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
 import { EventSessionQuestionUpdateInputs } from "@src/params";
-import { SET_EVENT_SESSION_QUESTION_QUERY_DATA } from "@src/queries/events/sessions/questions/useGetEventSessionQuestion";
-import { EVENT_SESSION_QUESTIONS_QUERY_KEY } from "@src/queries/events/sessions/questions/useGetEventSessionQuestions";
+import {
+  EVENT_SESSION_QUESTIONS_QUERY_KEY,
+  SET_EVENT_SESSION_QUESTION_QUERY_DATA,
+} from "@src/queries";
 
 /**
  * @category Params
- * @group Event-Sessions
+ * @group Events
  */
 export interface UpdateEventSessionQuestionParams extends MutationParams {
   eventId: string;
@@ -22,7 +24,7 @@ export interface UpdateEventSessionQuestionParams extends MutationParams {
 
 /**
  * @category Methods
- * @group Event-Sessions
+ * @group Events
  */
 export const UpdateEventSessionQuestion = async ({
   eventId,
@@ -34,7 +36,6 @@ export const UpdateEventSessionQuestion = async ({
 }: UpdateEventSessionQuestionParams): Promise<
   ConnectedXMResponse<EventSessionQuestion>
 > => {
-  if (!sessionId) throw new Error("Session ID Undefined");
   if (!questionId) throw new Error("Question ID Undefined");
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<
@@ -42,6 +43,11 @@ export const UpdateEventSessionQuestion = async ({
   >(`/events/${eventId}/sessions/${sessionId}/questions/${questionId}`, {
     ...question,
     id: undefined,
+    sessionId: undefined,
+    choices: undefined,
+    createdAt: undefined,
+    updatedAt: undefined,
+    _count: undefined,
   });
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
@@ -49,7 +55,7 @@ export const UpdateEventSessionQuestion = async ({
     });
     SET_EVENT_SESSION_QUESTION_QUERY_DATA(
       queryClient,
-      [eventId, sessionId, questionId || data.data?.id],
+      [eventId, sessionId, questionId || data.data.id.toString()],
       data
     );
   }
@@ -58,7 +64,7 @@ export const UpdateEventSessionQuestion = async ({
 
 /**
  * @category Mutations
- * @group Event-Sessions
+ * @group Events
  */
 export const useUpdateEventSessionQuestion = (
   options: Omit<

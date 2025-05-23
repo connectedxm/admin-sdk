@@ -11,11 +11,11 @@ import {
 import {
   EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_KEY,
   SET_EVENT_SESSION_QUESTION_TRANSLATION_QUERY_DATA,
-} from "@src/queries/events/sessions/questions/translations";
+} from "@src/queries";
 
 /**
  * @category Params
- * @group Event-Sessions-Translations
+ * @group EventSession-Question-Translations
  */
 export interface CreateEventSessionQuestionTranslationParams
   extends MutationParams {
@@ -28,7 +28,7 @@ export interface CreateEventSessionQuestionTranslationParams
 
 /**
  * @category Methods
- * @group Event-Sessions-Translations
+ * @group EventSession-Question-Translations
  */
 export const CreateEventSessionQuestionTranslation = async ({
   eventId,
@@ -43,15 +43,14 @@ export const CreateEventSessionQuestionTranslation = async ({
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
-  const { data } = await connectedXM.post<
-    ConnectedXMResponse<EventSessionQuestionTranslation>
-  >(
+  const { data } = await connectedXM.post(
     `/events/${eventId}/sessions/${sessionId}/questions/${questionId}/translations`,
     {
       locale,
       autoTranslate,
     }
   );
+
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_SESSION_QUESTION_TRANSLATIONS_QUERY_KEY(
@@ -71,7 +70,7 @@ export const CreateEventSessionQuestionTranslation = async ({
 
 /**
  * @category Mutations
- * @group Event-Sessions-Translations
+ * @group EventSession-Question-Translations
  */
 export const useCreateEventSessionQuestionTranslation = (
   options: Omit<

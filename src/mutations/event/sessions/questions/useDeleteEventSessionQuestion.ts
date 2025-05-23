@@ -5,27 +5,32 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EVENT_SESSION_QUESTION_QUERY_KEY } from "@src/queries/events/sessions/questions/useGetEventSessionQuestion";
-import { EVENT_SESSION_QUESTIONS_QUERY_KEY } from "@src/queries/events/sessions/questions/useGetEventSessionQuestions";
+import {
+  EVENT_SESSION_QUESTIONS_QUERY_KEY,
+  EVENT_SESSION_QUESTION_QUERY_KEY,
+  EVENT_SESSION_SECTION_QUESTIONS_QUERY_KEY,
+} from "@src/queries";
 
 /**
  * @category Params
- * @group Event-Sessions
+ * @group Events
  */
 export interface DeleteEventSessionQuestionParams extends MutationParams {
   eventId: string;
   sessionId: string;
   questionId: string;
+  sectionId?: string;
 }
 
 /**
  * @category Methods
- * @group Event-Sessions
+ * @group Events
  */
 export const DeleteEventSessionQuestion = async ({
   eventId,
   sessionId,
   questionId,
+  sectionId,
   adminApiParams,
   queryClient,
 }: DeleteEventSessionQuestionParams): Promise<ConnectedXMResponse<null>> => {
@@ -33,6 +38,7 @@ export const DeleteEventSessionQuestion = async ({
   const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/events/${eventId}/sessions/${sessionId}/questions/${questionId}`
   );
+
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_SESSION_QUESTIONS_QUERY_KEY(eventId, sessionId),
@@ -44,13 +50,22 @@ export const DeleteEventSessionQuestion = async ({
         questionId
       ),
     });
+    if (sectionId) {
+      queryClient.invalidateQueries({
+        queryKey: EVENT_SESSION_SECTION_QUESTIONS_QUERY_KEY(
+          eventId,
+          sessionId,
+          sectionId
+        ),
+      });
+    }
   }
   return data;
 };
 
 /**
  * @category Mutations
- * @group Event-Sessions
+ * @group Events
  */
 export const useDeleteEventSessionQuestion = (
   options: Omit<
@@ -61,10 +76,7 @@ export const useDeleteEventSessionQuestion = (
     "mutationFn"
   > = {}
 ) => {
-  return useConnectedMutation<
-    DeleteEventSessionQuestionParams,
-    Awaited<ReturnType<typeof DeleteEventSessionQuestion>>
-  >(DeleteEventSessionQuestion, options, {
+  return useConnectedMutation(DeleteEventSessionQuestion, options, {
     domain: "events",
     type: "update",
   });

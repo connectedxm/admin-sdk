@@ -14,6 +14,7 @@ import { ConnectedXMResponse, Payment } from "@src/interfaces";
  */
 export const PAYMENT_QUERY_KEY = (paymentId: string) => [
   ...PAYMENTS_QUERY_KEY(),
+  "PAYMENT",
   paymentId,
 ];
 

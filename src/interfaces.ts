@@ -45,6 +45,7 @@ export interface BaseOrganizationModule {
 export interface OrganizationModule extends BaseOrganizationModule {
   enabledTiers: BaseTier[];
   editableTiers: BaseTier[];
+  options: object | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -138,7 +139,6 @@ export enum NotificationType {
   TRANSFER = "TRANSFER",
   LIKE = "LIKE",
   COMMENT = "COMMENT",
-  RESHARE = "RESHARE",
   EVENT = "EVENT",
   ACTIVITY = "ACTIVITY",
 }
@@ -201,13 +201,6 @@ export enum RegistrationQuestionType {
   checkbox = "checkbox",
   search = "search",
   file = "file",
-}
-
-export enum ReportType {
-  organization = "organization",
-  event = "event",
-  booking = "booking",
-  group = "group",
 }
 
 export enum OrganizationTriggerType {
@@ -412,15 +405,21 @@ export interface ActivationTranslation {
   updatedAt: string;
 }
 
+export enum ModerationStatus {
+  none = "none",
+  reported = "reported",
+  approved = "approved",
+}
+
 export interface BaseActivity {
   id: string;
   message: string;
-  readMore: boolean;
-  linkPreview: BaseLinkPreview;
   giphyId: string | null;
   imageId: string | null;
   image: BaseImage | null;
   account: BaseAccount;
+  entities: BaseActivityEntity[];
+  moderation: keyof typeof ModerationStatus | null;
   eventId: string | null;
   groupId: string | null;
   contentId: string | null;
@@ -429,8 +428,6 @@ export interface BaseActivity {
   _count: {
     likes: number;
     comments: number;
-    reshares: number;
-    interests: number;
   };
 }
 
@@ -439,12 +436,29 @@ export interface Activity extends BaseActivity {
   group: BaseGroup | null;
   event: BaseEvent | null;
   content: BaseChannelContent | null;
-  interests: BaseInterest[];
-  videoId: string | null;
-  html: string | null;
-  text: string | null;
-  messageExtended: boolean;
 }
+
+export enum ActivityEntityType {
+  mention = "mention",
+  interest = "interest",
+  link = "link",
+  segment = "segment",
+}
+
+export interface BaseActivityEntity {
+  type: ActivityEntityType;
+  startIndex: number;
+  endIndex: number;
+  marks: string[];
+  accountId: string;
+  account: BaseAccount;
+  interestId: string;
+  interest: BaseInterest;
+  linkPreviewId: string;
+  linkPreview: BaseLinkPreview;
+}
+
+export interface ActivityEntity extends BaseActivityEntity {}
 
 export interface AdvertisementClick {
   id: string;
@@ -657,12 +671,6 @@ export interface ChannelContentTranslation {
   body: string | null;
   createdAt: string;
   updatedAt: string;
-}
-
-export interface ChannelTranslation {
-  locale: string;
-  name: string;
-  description: string | null;
 }
 
 export interface BaseChannel {
@@ -925,7 +933,6 @@ export interface BaseEvent {
   internalRefId: string | null;
   featured: boolean;
   visible: boolean;
-  approved: boolean;
   source: EventSource;
   eventType: EventType;
   name: string;
@@ -934,7 +941,6 @@ export interface BaseEvent {
   eventEnd: string;
   timezone: string;
   externalUrl: string | null;
-  location: string | null;
   venue: string | null;
   address1: string | null;
   address2: string | null;
@@ -947,16 +953,20 @@ export interface BaseEvent {
   registration: boolean;
   registrationStart: string | null;
   registrationEnd: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Event extends BaseEvent {
+  numberOfRounds: number | null;
+  matchSize: number | null;
+  roundName: string | null;
+  matchName: string | null;
   passSupply: number | null;
   passLimitPerAccount: number | null;
   reservationDescription: string | null;
   longDescription: string | null;
   meetingUrl: string | null;
-  venueMapId: string | null;
-  venueMap: BaseImage | null;
   creatorId: string | null;
   creator: BaseAccount | null;
   registrationLimit: number | null;
@@ -976,8 +986,8 @@ export interface Event extends BaseEvent {
   groupId: string | null;
   group: BaseGroup | null;
   groupOnly: boolean;
-  createdAt: string;
-  updatedAt: string;
+  backgroundImageId: string | null;
+  backgroundImage: BaseImage | null;
 }
 
 export interface EventTranslation {
@@ -1041,7 +1051,7 @@ export interface FaqTranslation {
   updatedAt: string;
 }
 
-enum SupportedLocale {
+export enum SupportedLocale {
   af = "af",
   sq = "sq",
   am = "am",
@@ -1309,7 +1319,6 @@ export interface Interest extends BaseInterest {
   _count: {
     accounts: number;
     groups: number;
-    activities: number;
   };
 }
 
@@ -1382,14 +1391,25 @@ export interface NotificationPreferences {
   newFollowerPush: boolean;
   newFollowerEmail: boolean;
   likePush: boolean;
-  resharePush: boolean;
   commentPush: boolean;
   commentEmail: boolean;
   transferPush: boolean;
   transferEmail: boolean;
   supportTicketConfirmationEmail: boolean;
+  eventReminderEmail: boolean;
   eventAnnouncementEmail: boolean;
   eventAnnouncementPush: boolean;
+  chatPush: boolean;
+  chatUnreadEmail: boolean;
+  chatUnreadPush: boolean;
+  organizationAnnouncementEmail: boolean;
+  organizationAnnouncementPush: boolean;
+  groupAnnouncementEmail: boolean;
+  groupAnnouncementPush: boolean;
+  groupInvitationEmail: boolean;
+  groupInvitationPush: boolean;
+  groupRequestAcceptedEmail: boolean;
+  groupRequestAcceptedPush: boolean;
 }
 
 export interface BaseNotification {
@@ -1453,6 +1473,7 @@ export interface OrganizationMembership {
   invoices: ModulePermissions;
   announcements: ModulePermissions;
   bookings: ModulePermissions;
+  surveys: ModulePermissions;
 }
 
 export interface BaseOrganization {
@@ -1464,7 +1485,8 @@ export interface BaseOrganization {
   iconId: string | null;
   icon: BaseImage | null;
   domain: string | null;
-  locale: true;
+  locale: string;
+  currency: string;
 }
 
 export interface Organization extends BaseOrganization {
@@ -1479,7 +1501,7 @@ export interface Organization extends BaseOrganization {
   zip: string | null;
   primaryColor: string | null;
   secondaryColor: string | null;
-  currency: string | null;
+
   facebook: string | null;
   twitter: string | null;
   instagram: string | null;
@@ -1499,6 +1521,7 @@ export interface Organization extends BaseOrganization {
   appAdaptiveIcon: BaseImage | null;
   appSplashScreenId: string | null;
   appSplashScreen: BaseImage | null;
+  appSplashScreenColor: string | null;
   darkIconId: string | null;
   darkIcon: BaseImage | null;
   darkLogoId: string | null;
@@ -1522,7 +1545,6 @@ export interface Organization extends BaseOrganization {
   maxImageCount: number | null;
   maxVideoMins: number | null;
   locales: string[];
-  googleServices: string | null;
   inviteOnly: boolean;
 }
 
@@ -1558,7 +1580,7 @@ export interface PageTranslation {
   updatedAt: string;
 }
 
-export enum EventPassStatus {
+export enum PurchaseStatus {
   draft = "draft",
   canceled = "canceled",
   needsInfo = "needsInfo",
@@ -1567,6 +1589,14 @@ export enum EventPassStatus {
 
 export interface BaseEventPass {
   id: string;
+  eventId: string;
+  attendeeId: string;
+  attendee: {
+    account: {
+      id: string;
+      email: string;
+    };
+  };
   alternateId: number;
   ticketId: string | null;
   ticket: BaseEventPassType | null;
@@ -1574,31 +1604,36 @@ export interface BaseEventPass {
   usedAt: string | null;
   transfer: { id: string; email: string; createdAt: string };
   responses: BaseRegistrationQuestionResponse[];
-  status: EventPassStatus;
+  status: PurchaseStatus;
   reservationId: string | null;
   reservation: BaseEventRoomTypeReservation | null;
   couponId: string | null;
   coupon: BaseCoupon | null;
+  packageId: string | null;
   createdAt: string;
   updatedAt: string;
 }
 
 export interface EventPass extends BaseEventPass {
-  passAddOns: PassAddOn[];
+  passAddOns: BasePassAddOn[];
   attendeeId: string;
   attendee: BaseEventAttendee;
-  // registrationId: string;
-  // registration: BaseEventAttendee;
+  package: BaseAttendeePackage | null;
   payerId: string | null;
   payer: BaseAccount | null;
   amtPaid: number;
   amtRefunded: number;
 }
 
-export interface PassAddOn {
+export interface BasePassAddOn {
   addOnId: string;
   addOn: BaseEventAddOn;
   createdAt: string;
+}
+
+export interface PassAddOn extends BasePassAddOn {
+  amtPaid: number;
+  amtRefunded: number;
   updatedAt: string;
 }
 
@@ -1643,6 +1678,7 @@ export interface BasePayment {
   id: number;
   type: PaymentType;
   chargedAmt: number;
+  currency: string;
   ticketId: string | null;
   ticket: BaseEventPassType | null;
   stripeId: string | null;
@@ -1653,6 +1689,7 @@ export interface BasePayment {
   country: string;
   state: string;
   zip: string;
+  captured: boolean;
   createdAt: string;
 }
 
@@ -1660,6 +1697,7 @@ export enum PaymentIntegrationType {
   stripe = "stripe",
   paypal = "paypal",
   braintree = "braintree",
+  manual = "manual",
 }
 
 export interface Payment extends BasePayment {
@@ -1671,13 +1709,16 @@ export interface Payment extends BasePayment {
     type: PaymentIntegrationType;
   };
   subscription: BaseSubscription;
-  addOns: BaseEventAddOn[];
   purchases: BaseEventPass[];
   coupons: BaseCoupon[];
   invoice: BaseInvoice;
   registrationId: string | null;
   bookingId: string | null;
   booking: BaseBooking | null;
+  accesses: BaseEventSessionAccess[];
+  reservations: BaseEventRoomTypeReservation[];
+  packages: BaseEventPackage[];
+  passAddOns: BasePassAddOn[];
   metadata?: any;
 }
 
@@ -1689,6 +1730,7 @@ export interface PaymentIntegration {
   stripe?: any | null;
   paypal?: any | null;
   braintree?: any | null;
+  manual?: any | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -1782,7 +1824,7 @@ export interface BaseRegistrationQuestionResponseChange {
 export interface RegistrationQuestionResponseChange
   extends BaseRegistrationQuestionResponseChange {
   response: BaseRegistrationQuestionResponse;
-  user: BaseUser;
+  user: BaseUser | null;
 }
 
 export interface BaseRegistrationQuestionResponse {
@@ -1829,6 +1871,7 @@ export interface BaseRegistrationQuestion {
   sortOrder: number;
   featured: boolean;
   choices: BaseRegistrationQuestionChoice[];
+  matchType: MatchQuestionType;
 }
 
 export interface RegistrationQuestion extends BaseRegistrationQuestion {
@@ -1836,9 +1879,6 @@ export interface RegistrationQuestion extends BaseRegistrationQuestion {
   subQuestionOf: RegistrationQuestionChoiceSubQuestion[];
   createdAt: string;
   updatedAt: string;
-  _count: {
-    responses: number;
-  };
 }
 
 export interface RegistrationQuestionTranslation {
@@ -1906,41 +1946,87 @@ export interface BaseEventAttendee {
 export interface EventAttendee extends BaseEventAttendee {
   payments: BasePayment[];
   passes: BaseEventPass[];
+  packages: BaseAttendeePackage[];
   coupons: BaseCoupon[];
   createdAt: string;
   updatedAt: string;
 }
 
-export interface ReportParent {
-  id: number;
-  type: ReportType;
-  name: string;
-  description: string | null;
-  createdAt: string;
-  updatedAt: string;
+export enum ReportType {
+  organization = "organization",
+  activities = "activities",
+  activity = "activity",
+  surveys = "surveys",
+  survey = "survey",
+  events = "events",
+  event = "event",
+  session = "session",
+  listing = "listing",
+  bookings = "bookings",
+  booking = "booking",
+  groups = "groups",
+  group = "group",
+  channels = "channels",
+  channel = "channel",
+  content = "content",
+  threads = "threads",
+  thread = "thread",
+  accounts = "accounts",
+  account = "account",
+  revenue = "revenue",
+  subscriptionProduct = "subscriptionProduct",
 }
 
-export interface Report {
+export enum EventReportDateType {
+  lifetime = "lifetime",
+  year = "year",
+  quarter = "quarter",
+  month = "month",
+}
+
+export interface ReportFilters {
+  eventId?: string;
+  placeId?: string;
+  groupId?: string;
+  channelId?: string;
+  accountId?: string;
+  surveyId?: string;
+  subscriptionProductId?: string;
+  sessionId?: string;
+}
+
+export interface BaseStandardReport {
+  id: string;
+  type: keyof typeof ReportType;
+  category: string;
+  name: string;
+  description: string;
+  dateType: keyof typeof EventReportDateType;
+  favorite: boolean;
+  rowLink?: string;
+}
+
+export interface StandardReport extends BaseStandardReport {
+  rowData: object[];
+  colDefs: object[];
+  nextCursor: number | null;
+}
+
+export interface CustomReport {
   id: number;
   name: string;
   description: string | null;
+  gridState: string | null;
   columns: string | null;
   filters: string | null;
   charts: string | null;
   advancedFilter: string | null;
-  parentId: number | null;
-  parent: ReportParent | null;
-  eventId: string | null;
-  event: BaseEvent | null;
+  standard: StandardReport;
   user: BaseUser | null;
   shared: boolean;
   sharedUsers: BaseUser[];
   createdAt: string;
   updatedAt: string;
-  // DYNAMIC
-  colDefs: any;
-  rowData: any[];
-  nextCursor: number | null;
 }
 
 export interface SearchField {
@@ -1957,7 +2043,7 @@ export interface SearchField {
   updatedAt: string;
 }
 
-export interface Self extends Account {}
+export interface Self extends User {}
 
 export interface BaseSeries {
   id: string;
@@ -1996,6 +2082,10 @@ export interface BaseEventSession {
 }
 
 export interface EventSession extends BaseEventSession {
+  numberOfRounds: number | null;
+  matchSize: number | null;
+  roundName: string | null;
+  matchName: string | null;
   sortOrder: number;
   eventId: string;
   event: BaseEvent;
@@ -2041,48 +2131,213 @@ export interface EventSessionLocationTranslation {
   updatedAt: string | null;
 }
 
+export interface BaseEventSessionAccess {
+  id: string;
+  session: BaseEventSession;
+  passId: string;
+  pass: BaseEventPass;
+  status: PurchaseStatus;
+  responses: BaseEventSessionQuestionResponse[];
+}
+
+export interface EventSessionAccess extends BaseEventSessionAccess {
+  amtPaid: number;
+  amtRefunded: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export enum EventSessionQuestionType {
+  text = "text",
+  textarea = "textarea",
+  number = "number",
+  time = "time",
+  date = "date",
+  toggle = "toggle",
+  select = "select",
+  radio = "radio",
+  checkbox = "checkbox",
+  search = "search",
+  file = "file",
+  quantity = "quantity",
+}
+
+export interface BaseEventSessionQuestionChoice {
+  id: string;
+  value: string;
+  text: string | null;
+  description: string | null;
+  supply: number | null;
+  sortOrder: number;
+  subQuestions?:
+    | EventSessionQuestion[]
+    | {
+        questionId: string;
+      }[];
+  question: {
+    id: string;
+    name: string;
+  };
+  _count: {
+    subQuestions: number;
+  };
+}
+
+export interface EventSessionQuestionChoice
+  extends BaseEventSessionQuestionChoice {
+  questionId: string;
+  question: BaseEventSessionQuestion;
+  subQuestions: BaseEventSessionQuestionChoiceSubQuestion[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventSessionQuestionChoiceSubQuestion {
+  choiceId: string;
+  choice: BaseEventSessionQuestionChoice;
+  questionId: string;
+  question: BaseEventSessionQuestion;
+}
+
+export interface EventSessionQuestionChoiceSubQuestion
+  extends BaseEventSessionQuestionChoiceSubQuestion {
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventSessionQuestionChoiceTranslation {
+  id: string;
+  locale: string;
+  value: string;
+  text: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventSessionQuestionResponseChange {
+  id: string;
+  newValue: string;
+  oldValue: string;
+  eventId: string;
+  questionId: string;
+  responseId: string;
+  userId: string | null;
+  createdAt: string;
+}
+
+export interface EventSessionQuestionResponseChange
+  extends BaseEventSessionQuestionResponseChange {
+  response: BaseEventSessionQuestionResponse;
+  user: BaseUser;
+}
+
+export interface BaseEventSessionQuestionResponse {
+  id: string;
+  value: string;
+  questionId: string;
+  question: BaseEventSessionQuestion;
+}
+
+export interface EventSessionQuestionResponse
+  extends BaseEventSessionQuestionResponse {
+  changeLogs: BaseEventSessionQuestionResponseChange[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventSessionQuestionSearchValue {
+  id: string;
+  value: string;
+  top: boolean;
+}
+
+export interface EventSessionQuestionSearchValue
+  extends BaseEventSessionQuestionSearchValue {
+  createdAt: string;
+}
+
 export interface BaseEventSessionQuestion {
   id: string;
+  eventId: string;
+  type: EventSessionQuestionType;
   name: string;
-  label: string | null;
-  description: string | null;
   required: boolean;
+  description: string | null;
+  label: string | null;
+  placeholder: string | null;
+  default: string | null;
+  mutable: boolean;
+  min: string | null;
+  max: string | null;
+  validation: string | null;
+  validationMessage: string | null;
   sortOrder: number;
+  featured: boolean;
+  choices: BaseEventSessionQuestionChoice[];
+  price: number | null;
+  supply: number | null;
 }
 
 export interface EventSessionQuestion extends BaseEventSessionQuestion {
+  sections: BaseEventSessionSectionQuestion[];
+  subQuestionOf: EventSessionQuestionChoiceSubQuestion[];
   createdAt: string;
   updatedAt: string;
+  _count: {
+    responses: number;
+  };
 }
 
 export interface EventSessionQuestionTranslation {
   id: string;
   locale: string;
   label: string | null;
+  placeholder: string | null;
   description: string | null;
   createdAt: string;
   updatedAt: string;
 }
 
-export interface BaseEventSessionQuestionResponse {
-  id: string;
-  value: string;
+export interface BaseEventSessionSectionQuestion {
+  sectionId: string;
+  section: BaseEventSessionSection;
+  questionId: string;
+  question: BaseEventSessionQuestion;
+  sortOrder: number;
 }
 
-export interface EventSessionQuestionResponse
-  extends BaseEventSessionQuestionResponse {
+export interface EventSessionSectionQuestion
+  extends BaseEventSessionSectionQuestion {
   createdAt: string;
   updatedAt: string;
 }
 
-export interface BaseEventSessionPass {
-  id: true;
-  canceled: boolean;
+export interface BaseEventSessionSection {
+  id: string;
+  eventId: string;
+  name: string;
+  description: string | null;
+  sortOrder: number;
+  _count: {
+    questions: number;
+  };
 }
 
-export interface EventSessionPass extends BaseEventSessionPass {
-  createdAt: true;
-  updatedAt: true;
+export interface EventSessionSection extends BaseEventSessionSection {
+  questions: EventSessionQuestion[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventSessionSectionTranslation {
+  id: string;
+  locale: string;
+  name: string;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface BaseEventSpeaker {
@@ -2230,45 +2485,45 @@ export interface StreamInputDetails {
   deleteRecordingAfterDays: null | number;
 }
 
-export enum SubscriptionProductPriceType {
+export enum MembershipPriceType {
   flat = "flat",
   payWhatYouWant = "payWhatYouWant",
 }
 
-export enum SubscriptionProductPriceInterval {
+export enum MembershipPriceInterval {
   day = "day",
   week = "week",
   month = "month",
   year = "year",
 }
 
-export interface BaseSubscriptionProductPrice {
+export interface BaseMembershipPrice {
   id: string;
   active: boolean;
   amount: number;
   currency: string;
-  interval: SubscriptionProductPriceInterval;
+  interval: MembershipPriceInterval;
   intervalCount: number;
   minAmount: number;
   maxAmount: number;
-  type: SubscriptionProductPriceType;
+  type: MembershipPriceType;
 }
 
-export interface SubscriptionProductPrice extends BaseSubscriptionProductPrice {
-  subscriptionProduct: BaseSubscriptionProduct;
+export interface MembershipPrice extends BaseMembershipPrice {
+  subscriptionProduct: BaseMembership;
   createdAt: string;
   updatedAt: string;
 }
 
-export interface BaseSubscriptionProduct {
+export interface BaseMembership {
   id: string;
   active: boolean;
   name: string;
   description: string | null;
 }
 
-export interface SubscriptionProduct extends BaseSubscriptionProduct {
-  prices: BaseSubscriptionProductPrice[];
+export interface Membership extends BaseMembership {
+  prices: BaseMembershipPrice[];
   statementDescriptor: string | null;
   features: string[];
   createdAt: string;
@@ -2291,14 +2546,14 @@ export interface BaseSubscription {
   cancelAtEnd: boolean;
   integrationId: string | null;
   subscriptionProductId: string;
-  subscriptionProduct: BaseSubscriptionProduct;
+  subscriptionProduct: BaseMembership;
 }
 
 export interface Subscription extends BaseSubscription {
   accountId: string;
   account: BaseAccount;
   priceId: string;
-  price: BaseSubscriptionProductPrice;
+  price: BaseMembershipPrice;
   createdAt: string;
   updatedAt: string;
 }
@@ -2507,6 +2762,7 @@ export interface BaseUser {
   lastName: string;
   title: string | null;
   imageUrl: string;
+  termsAccepted: string | null;
 }
 
 export interface User extends BaseUser {
@@ -2601,6 +2857,7 @@ export interface BaseFile {
   source: FileSource;
   kilobytes: number;
   url?: string;
+  public: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -2781,6 +3038,8 @@ export interface EventRoomType extends BaseEventRoomType {
   maxEnd: string | null;
   allowedTiers: BaseTier[];
   disallowedTiers: BaseTier[];
+  amtPaid: number;
+  amtRefunded: number;
   createdAt: string;
   updatedAt: string;
   _count: {
@@ -2808,6 +3067,7 @@ export interface BaseEventRoomTypeReservation {
 export interface EventRoomTypeReservation extends BaseEventRoomTypeReservation {
   passes: {
     id: string;
+    status: PurchaseStatus;
     ticket?: {
       id: string;
       name: string;
@@ -2822,6 +3082,8 @@ export interface EventRoomTypeReservation extends BaseEventRoomTypeReservation {
       };
     };
   }[];
+  amtPaid: number;
+  amtRefunded: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -3002,7 +3264,7 @@ export interface BaseBooking {
   day: string;
   time: string;
   duration: number;
-  status: EventPassStatus;
+  status: PurchaseStatus;
   account: BaseAccount;
   space: BaseBookingSpace;
 }
@@ -3015,4 +3277,455 @@ export interface Booking extends BaseBooking {
 export interface BookingSlot {
   time: string;
   supply: number | null;
+}
+
+export enum WidgetCategory {
+  organization = "organization",
+  event = "event",
+}
+
+export enum WidgetType {
+  kpi = "kpi",
+  bar = "bar",
+  line = "line",
+}
+
+export interface DashboardWidgetEndpoint {
+  name: string;
+  description: string;
+  type: WidgetType;
+  endpoint: (params?: any) => string;
+  requiresDateRange: boolean;
+  category: WidgetCategory;
+  defaultSize?: {
+    w: number;
+    h: number;
+  };
+}
+
+export interface BaseDashboardWidget {
+  id: string;
+  endpoint: DashboardWidgetEndpoint;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
+export interface DashboardWidget extends BaseDashboardWidget {}
+
+export interface BaseDashboard {
+  id: string;
+  name: string;
+  organizationId: string;
+  eventId: string | null;
+  userId: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Dashboard extends BaseDashboard {
+  widgets: BaseDashboardWidget[];
+}
+
+export interface BaseEventPackage {
+  id: string;
+
+  name: string;
+  description: string | null;
+  price: number;
+  isActive: boolean;
+  imageId: string | null;
+  image: BaseImage | null;
+  sortOrder: number;
+}
+
+export interface EventPackage extends BaseEventPackage {
+  passes: BaseEventPackagePass[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventPackageTranslation {
+  id: string;
+  locale: string;
+  name: string | null;
+  description: string | null;
+}
+
+export interface BaseEventPackagePass {
+  id: string;
+  passTypeId: string;
+  passType: BaseEventPassType;
+  quantity: number;
+}
+
+export interface EventPackagePass extends BaseEventPackagePass {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseAttendeePackage {
+  id: string;
+  attendeeId: string;
+  packageId: string;
+  package: BaseEventPackage;
+  status: PurchaseStatus;
+  createdAt: string;
+}
+
+export interface AttendeePackage extends BaseAttendeePackage {
+  passes: BaseEventPass[];
+  updatedAt: string;
+}
+
+export interface BaseEventGalleryImage {
+  id: string;
+  name: string | null;
+  description: string | null;
+  imageId: string;
+  image: BaseImage;
+  sortOrder: number;
+}
+
+export interface EventGalleryImage extends BaseEventGalleryImage {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventSponsorshipLevel {
+  id: string;
+  slug: string;
+  name: string;
+  description: string | null;
+  sponsorsPerRow: number;
+}
+
+export interface EventSponsorshipLevel extends BaseEventSponsorshipLevel {
+  sortOrder: number;
+  sponsors: BaseEventSponsorship[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventSponsorshipLevelTranslation {
+  id: number;
+  locale: string;
+  name: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventSponsorship {
+  id: string;
+  slug: string;
+  name: string;
+  description: string | null;
+  url: string | null;
+  account: BaseAccount | null;
+  image: BaseImage | null;
+}
+
+export interface EventSponsorship extends BaseEventSponsorship {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventSponsorshipTranslation {
+  id: number;
+  locale: string;
+  name: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSurvey {
+  id: string;
+  slug: string;
+  name: string;
+  description: string | null;
+  image: BaseImage;
+  requireAuth: boolean;
+  submissionsPerAccount: number;
+}
+
+export interface Survey extends BaseSurvey {
+  replyTo: string | null;
+  emailBody: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SurveyTranslation {
+  id: string;
+  locale: string;
+  name: string;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSurveySubmission {
+  id: string;
+  account: BaseAccount | null;
+  status: PurchaseStatus;
+  responses: BaseSurveyQuestionResponse[];
+}
+
+export interface SurveySubmission extends BaseSurveySubmission {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export enum SurveyQuestionType {
+  text = "text",
+  textarea = "textarea",
+  number = "number",
+  time = "time",
+  date = "date",
+  toggle = "toggle",
+  select = "select",
+  radio = "radio",
+  checkbox = "checkbox",
+  search = "search",
+  file = "file",
+}
+
+export interface BaseSurveyQuestionChoice {
+  id: string;
+  value: string;
+  text: string | null;
+  description: string | null;
+  supply: number | null;
+  sortOrder: number;
+  subQuestions?:
+    | SurveyQuestion[]
+    | {
+        questionId: string;
+      }[];
+  question: {
+    id: string;
+    name: string;
+  };
+  _count: {
+    subQuestions: number;
+  };
+}
+
+export interface SurveyQuestionChoice extends BaseSurveyQuestionChoice {
+  questionId: string;
+  question: BaseSurveyQuestion;
+  subQuestions: BaseSurveyQuestionChoiceSubQuestion[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSurveyQuestionChoiceSubQuestion {
+  choiceId: string;
+  choice: BaseSurveyQuestionChoice;
+  questionId: string;
+  question: BaseSurveyQuestion;
+}
+
+export interface SurveyQuestionChoiceSubQuestion
+  extends BaseSurveyQuestionChoiceSubQuestion {
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SurveyQuestionChoiceTranslation {
+  id: string;
+  locale: string;
+  value: string;
+  text: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSurveyQuestionResponseChange {
+  id: string;
+  newValue: string;
+  oldValue: string;
+  eventId: string;
+  questionId: string;
+  responseId: string;
+  userId: string | null;
+  createdAt: string;
+}
+
+export interface SurveyQuestionResponseChange
+  extends BaseSurveyQuestionResponseChange {
+  response: BaseSurveyQuestionResponse;
+  user: BaseUser;
+}
+
+export interface BaseSurveyQuestionResponse {
+  id: string;
+  value: string;
+  questionId: string;
+  question: BaseSurveyQuestion;
+}
+
+export interface SurveyQuestionResponse extends BaseSurveyQuestionResponse {
+  changeLogs: BaseSurveyQuestionResponseChange[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSurveyQuestionSearchValue {
+  id: string;
+  value: string;
+  top: boolean;
+}
+
+export interface SurveyQuestionSearchValue
+  extends BaseSurveyQuestionSearchValue {
+  createdAt: string;
+}
+
+export interface BaseSurveyQuestion {
+  id: string;
+  eventId: string;
+  type: SurveyQuestionType;
+  name: string;
+  required: boolean;
+  description: string | null;
+  label: string | null;
+  placeholder: string | null;
+  default: string | null;
+  mutable: boolean;
+  min: string | null;
+  max: string | null;
+  validation: string | null;
+  validationMessage: string | null;
+  sortOrder: number;
+  featured: boolean;
+  choices: BaseSurveyQuestionChoice[];
+}
+
+export interface SurveyQuestion extends BaseSurveyQuestion {
+  sections: BaseSurveySectionQuestion[];
+  subQuestionOf: SurveyQuestionChoiceSubQuestion[];
+  createdAt: string;
+  updatedAt: string;
+  _count: {
+    responses: number;
+  };
+}
+
+export interface SurveyQuestionTranslation {
+  id: string;
+  locale: string;
+  label: string | null;
+  placeholder: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSurveySectionQuestion {
+  sectionId: string;
+  section: BaseSurveySection;
+  questionId: string;
+  question: BaseSurveyQuestion;
+  sortOrder: number;
+}
+
+export interface SurveySectionQuestion extends BaseSurveySectionQuestion {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSurveySection {
+  id: string;
+  eventId: string;
+  name: string;
+  description: string | null;
+  sortOrder: number;
+  _count: {
+    questions: number;
+  };
+}
+
+export interface SurveySection extends BaseSurveySection {
+  questions: SurveyQuestion[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SurveySectionTranslation {
+  id: string;
+  locale: string;
+  name: string;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export enum CustomModulePosition {
+  top = "top",
+  bottom = "bottom",
+}
+
+export interface CustomModule {
+  id: string;
+  name: string;
+  url: string;
+  iconName: string;
+  color: string;
+  description: string | null;
+  enabled: boolean;
+  position: CustomModulePosition;
+}
+
+export interface CustomModuleTranslation {
+  id: string;
+  moduleId: string;
+  locale: string;
+  name: string;
+  description: string | null;
+}
+
+export enum MatchQuestionType {
+  exclude = "exclude",
+  include = "include",
+  split = "split",
+}
+
+export interface BaseRound {
+  id: string;
+  event: {
+    id: string;
+    roundName: string | null;
+    matchName: string | null;
+  } | null;
+  session: {
+    id: string;
+    roundName: string | null;
+    matchName: string | null;
+  } | null;
+  number: number;
+}
+
+export interface Round extends BaseRound {
+  matches: { id: string; number: number; title: string | null }[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseMatch {
+  id: string;
+  round: BaseRound;
+  number: number;
+  title: string | null;
+}
+
+export interface Match extends BaseMatch {
+  passes: BaseEventPass[];
+  createdAt: string;
+  updatedAt: string;
 }

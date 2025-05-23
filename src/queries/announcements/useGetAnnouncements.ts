@@ -10,11 +10,13 @@ import {
 import { QueryClient } from "@tanstack/react-query";
 
 interface AnnouncementFilters {
+  verifiedAccounts?: boolean;
   eventId?: string;
   groupId?: string;
   tierId?: string;
   channelId?: string;
   accountId?: string;
+  sponsorshipLevelId?: string;
 }
 
 /**
@@ -23,10 +25,13 @@ interface AnnouncementFilters {
  */
 export const ANNOUNCEMENTS_QUERY_KEY = (filters?: AnnouncementFilters) => {
   const keys = ["ANNOUNCEMENTS"];
+  if (filters?.verifiedAccounts) keys.push("VERIFIED_ACCOUNTS");
   if (filters?.eventId) keys.push(filters.eventId);
   if (filters?.groupId) keys.push(filters.groupId);
   if (filters?.tierId) keys.push(filters.tierId);
+  if (filters?.channelId) keys.push(filters.channelId);
   if (filters?.accountId) keys.push(filters.accountId);
+  if (filters?.sponsorshipLevelId) keys.push(filters.sponsorshipLevelId);
   return keys;
 };
 

@@ -1,6 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
-import { Event } from "@src/interfaces";
+import { BaseEvent, ConnectedXMResponse } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import {
   InfiniteQueryOptions,
@@ -45,7 +44,7 @@ export const GetEvents = async ({
   past,
   search,
   adminApiParams,
-}: GetEventsProps): Promise<ConnectedXMResponse<Event[]>> => {
+}: GetEventsProps): Promise<ConnectedXMResponse<BaseEvent[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events`, {
     params: {

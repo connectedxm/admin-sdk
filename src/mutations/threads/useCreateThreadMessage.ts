@@ -13,7 +13,9 @@ import { THREAD_MESSAGES_QUERY_KEY } from "@src/queries";
  */
 export interface CreateThreadMessageParams extends MutationParams {
   threadId: string;
+  accountId: string;
   text: string;
+  entities: any[];
   replyToId?: string;
 }
 
@@ -23,7 +25,9 @@ export interface CreateThreadMessageParams extends MutationParams {
  */
 export const CreateThreadMessage = async ({
   threadId,
+  accountId,
   text,
+  entities,
   replyToId,
   adminApiParams,
   queryClient,
@@ -32,7 +36,9 @@ export const CreateThreadMessage = async ({
   const { data } = await connectedXM.post<ConnectedXMResponse<ThreadMessage>>(
     `/threads/${threadId}/messages`,
     {
+      accountId,
       text,
+      entities,
       replyToId,
     }
   );

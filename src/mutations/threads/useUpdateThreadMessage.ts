@@ -15,6 +15,7 @@ export interface UpdateThreadMessageParams extends MutationParams {
   threadId: string;
   messageId: string;
   text: string;
+  entities: any[];
 }
 
 /**

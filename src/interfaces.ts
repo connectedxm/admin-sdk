@@ -2933,28 +2933,40 @@ export interface ThreadMessageReaction extends BaseThreadMessageReaction {
 
 export interface BaseThreadMessage {
   id: string;
-  organizationId: string;
-  threadId: string;
   body: string;
   createdAt: string;
   replyToId: string | null;
   reactions: ThreadMessageReaction[];
-  account: BaseAccount;
+  account: BaseAccount | null;
 }
 
 export interface ThreadMessage extends BaseThreadMessage {
   thread: BaseThread;
-  accountId: string;
+  accountId: string | null;
   type: ThreadMessageType;
+  entities: ThreadMessageEntity[];
+  account: BaseAccount | null;
   replyTo: BaseThreadMessage | null;
   replies: BaseThreadMessage[];
-  mentions: BaseAccount[];
   files: BaseFile[];
   images: BaseImage[];
   videos: BaseVideo[];
   editedAt: string | null;
   sentAt: string;
 }
+
+export interface BaseThreadMessageEntity {
+  type: string;
+  startIndex: number;
+  endIndex: number;
+  marks: string[];
+  accountId?: string;
+  account?: BaseAccount;
+  href?: string;
+  linkPreview?: BaseLinkPreview;
+}
+
+export interface ThreadMessageEntity extends BaseThreadMessageEntity {}
 
 export interface BaseThreadMember {
   accountId: string;

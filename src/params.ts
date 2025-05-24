@@ -1534,6 +1534,16 @@ export interface ThreadUpdateInputs {
   imageId?: string | null;
 }
 
+export interface ThreadMessageCreateInputs {
+  body: string;
+  entities?: any[] | null;
+}
+
+export interface ThreadMessageUpdateInputs {
+  text?: string | null;
+  entities?: any[] | null;
+}
+
 export interface PassTypeCreateInputs {
   name: string;
   shortDescription: string;

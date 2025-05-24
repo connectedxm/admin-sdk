@@ -5,7 +5,7 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { ConnectedXMResponse, Thread } from "@src/interfaces";
-import { THREADS_QUERY_KEY, SET_THREAD_QUERY_DATA } from "@src/queries";
+import { PUBLIC_THREADS_QUERY_KEY, SET_THREAD_QUERY_DATA } from "@src/queries";
 import { ThreadCreateInputs } from "@src/params";
 
 /**
@@ -31,7 +31,7 @@ export const CreatePublicThread = async ({
     thread
   );
   if (queryClient && data.status === "ok") {
-    queryClient.invalidateQueries({ queryKey: THREADS_QUERY_KEY() });
+    queryClient.invalidateQueries({ queryKey: PUBLIC_THREADS_QUERY_KEY() });
     SET_THREAD_QUERY_DATA(queryClient, [data.data?.id], data);
   }
   return data;

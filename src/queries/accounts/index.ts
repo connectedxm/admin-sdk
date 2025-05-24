@@ -24,5 +24,6 @@ export * from "./useGetAccountPayments";
 export * from "./useGetAccountPushDevice";
 export * from "./useGetAccountPushDevices";
 export * from "./useGetAccountSubscriptions";
+export * from "./useGetAccountThreads";
 export * from "./useGetAccountTiers";
 export * from "./useGetAccounts";

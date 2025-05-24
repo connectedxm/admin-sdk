@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, ThreadType } from "@src/interfaces";
+import { ConnectedXMResponse } from "@src/interfaces";
 import { Thread } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import {
@@ -12,10 +12,8 @@ import {
  * @category Keys
  * @group Threads
  */
-export const THREADS_QUERY_KEY = (type?: keyof typeof ThreadType) => {
-  const keys = ["THREADS"];
-
-  if (type) keys.push(type);
+export const PRIVATE_THREADS_QUERY_KEY = () => {
+  const keys = ["THREADS", "PRIVATE"];
 
   return keys;
 };
@@ -24,38 +22,34 @@ export const THREADS_QUERY_KEY = (type?: keyof typeof ThreadType) => {
  * @category Setters
  * @group Threads
  */
-export const SET_THREADS_QUERY_DATA = (
+export const SET_PRIVATE_THREADS_QUERY_DATA = (
   client: QueryClient,
-  keyParams: Parameters<typeof THREADS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetThreads>>
+  keyParams: Parameters<typeof PRIVATE_THREADS_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetPrivateThreads>>
 ) => {
-  client.setQueryData(THREADS_QUERY_KEY(...keyParams), response);
+  client.setQueryData(PRIVATE_THREADS_QUERY_KEY(...keyParams), response);
 };
 
-interface GetThreadsProps extends InfiniteQueryParams {
-  type?: keyof typeof ThreadType;
-}
+interface GetPrivateThreadsProps extends InfiniteQueryParams {}
 
 /**
  * @category Queries
  * @thread Threads
  */
-export const GetThreads = async ({
-  type,
+export const GetPrivateThreads = async ({
   pageParam,
   pageSize,
   orderBy,
   search,
   adminApiParams,
-}: GetThreadsProps): Promise<ConnectedXMResponse<Thread[]>> => {
+}: GetPrivateThreadsProps): Promise<ConnectedXMResponse<Thread[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/threads`, {
+  const { data } = await adminApi.get(`/threads/private`, {
     params: {
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
-      type: type || undefined,
     },
   });
 
@@ -65,20 +59,22 @@ export const GetThreads = async ({
  * @category Hooks
  * @thread Threads
  */
-export const useGetThreads = (
-  type?: keyof typeof ThreadType,
+export const useGetPrivateThreads = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
-  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetThreads>>> = {}
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetPrivateThreads>>
+  > = {}
 ) => {
-  return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetThreads>>>(
-    THREADS_QUERY_KEY(type),
+  return useConnectedInfiniteQuery<
+    Awaited<ReturnType<typeof GetPrivateThreads>>
+  >(
+    PRIVATE_THREADS_QUERY_KEY(),
     (params: InfiniteQueryParams) =>
-      GetThreads({
+      GetPrivateThreads({
         ...params,
-        type,
       }),
     params,
     options,

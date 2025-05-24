@@ -1,4 +1,4 @@
-import { ConnectedXMResponse, ThreadMember } from "@src/interfaces";
+import { ConnectedXMResponse, Group } from "@src/interfaces";
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
   InfiniteQueryOptions,
@@ -10,13 +10,13 @@ import {
  * @category Keys
  * @thread Thread Members
  */
-export const THREAD_MEMBERS_QUERY_KEY = (threadId: string) => [
+export const THREAD_GROUPS_QUERY_KEY = (threadId: string) => [
   "THREADS",
   threadId,
-  "MEMBERS",
+  "GROUPS",
 ];
 
-interface GetThreadMembersProps extends InfiniteQueryParams {
+interface GetThreadGroupsProps extends InfiniteQueryParams {
   threadId: string;
 }
 
@@ -24,16 +24,16 @@ interface GetThreadMembersProps extends InfiniteQueryParams {
  * @category Queries
  * @thread Thread Members
  */
-export const GetThreadMembers = async ({
+export const GetThreadGroups = async ({
   threadId,
   pageParam,
   pageSize,
   orderBy,
   search,
   adminApiParams,
-}: GetThreadMembersProps): Promise<ConnectedXMResponse<ThreadMember[]>> => {
+}: GetThreadGroupsProps): Promise<ConnectedXMResponse<Group[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/threads/${threadId}/members`, {
+  const { data } = await adminApi.get(`/threads/${threadId}/groups`, {
     params: {
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
@@ -48,21 +48,19 @@ export const GetThreadMembers = async ({
  * @category Hooks
  * @thread Thread Members
  */
-export const useGetThreadMembers = (
+export const useGetThreadGroups = (
   threadId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetThreadMembers>>
+    Awaited<ReturnType<typeof GetThreadGroups>>
   > = {}
 ) => {
-  return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetThreadMembers>>
-  >(
-    THREAD_MEMBERS_QUERY_KEY(threadId),
-    (params: InfiniteQueryParams) => GetThreadMembers({ ...params, threadId }),
+  return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetThreadGroups>>>(
+    THREAD_GROUPS_QUERY_KEY(threadId),
+    (params: InfiniteQueryParams) => GetThreadGroups({ ...params, threadId }),
     params,
     {
       ...options,

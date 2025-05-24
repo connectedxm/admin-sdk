@@ -2986,6 +2986,28 @@ export interface ThreadMember extends BaseThreadMember {
   updatedAt: string;
 }
 
+export enum ThreadCircleAccountRole {
+  member = "member",
+  manager = "manager",
+}
+
+export interface BaseThreadCircle {
+  id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ThreadCircle extends BaseThreadCircle {}
+
+export interface BaseThreadCircleAccount {
+  accountId: string;
+  role: ThreadCircleAccountRole;
+  account: BaseAccount;
+}
+
+export interface ThreadCircleAccount extends BaseThreadCircleAccount {}
+
 export interface PaypalActivationFormParams {
   clientId: string;
   clientSecret: string;

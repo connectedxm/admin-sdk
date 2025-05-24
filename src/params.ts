@@ -35,6 +35,7 @@ import {
   EventSessionQuestionType,
   ModerationStatus,
   ActivityEntityType,
+  ThreadCircleAccountRole,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -1527,6 +1528,8 @@ export interface TeamUpdateInputs {
 export interface ThreadCreateInputs {
   subject?: string | null;
   imageId?: string | null;
+  groupId?: string;
+  circleId?: string;
 }
 
 export interface ThreadUpdateInputs {
@@ -1535,6 +1538,7 @@ export interface ThreadUpdateInputs {
 }
 
 export interface ThreadMessageCreateInputs {
+  accountId: string;
   body: string;
   entities?: any[] | null;
 }
@@ -1542,6 +1546,23 @@ export interface ThreadMessageCreateInputs {
 export interface ThreadMessageUpdateInputs {
   text?: string | null;
   entities?: any[] | null;
+}
+
+export interface ThreadCircleCreateInputs {
+  name: string;
+}
+
+export interface ThreadCircleUpdateInputs {
+  name?: string | null;
+}
+
+export interface ThreadCircleAccountCreateInputs {
+  accountId: string;
+  role: keyof typeof ThreadCircleAccountRole;
+}
+
+export interface ThreadCircleAccountUpdateInputs {
+  role?: keyof typeof ThreadCircleAccountRole | null;
 }
 
 export interface PassTypeCreateInputs {

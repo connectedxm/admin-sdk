@@ -1,4 +1,8 @@
-import { ConnectedXMResponse, ThreadMember } from "@src/interfaces";
+import {
+  ConnectedXMResponse,
+  ThreadMember,
+  ThreadMemberRole,
+} from "@src/interfaces";
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
   InfiniteQueryOptions,
@@ -10,14 +14,20 @@ import {
  * @category Keys
  * @thread Thread Members
  */
-export const THREAD_MEMBERS_QUERY_KEY = (threadId: string) => [
-  "THREADS",
-  threadId,
-  "MEMBERS",
-];
+export const THREAD_MEMBERS_QUERY_KEY = (
+  threadId: string,
+  role?: keyof typeof ThreadMemberRole
+) => {
+  const key = ["THREADS", threadId, "MEMBERS"];
+  if (role) {
+    key.push(role);
+  }
+  return key;
+};
 
 interface GetThreadMembersProps extends InfiniteQueryParams {
   threadId: string;
+  role?: keyof typeof ThreadMemberRole;
 }
 
 /**
@@ -26,6 +36,7 @@ interface GetThreadMembersProps extends InfiniteQueryParams {
  */
 export const GetThreadMembers = async ({
   threadId,
+  role,
   pageParam,
   pageSize,
   orderBy,
@@ -39,6 +50,7 @@ export const GetThreadMembers = async ({
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
+      role: role || undefined,
     },
   });
   return data;
@@ -50,6 +62,7 @@ export const GetThreadMembers = async ({
  */
 export const useGetThreadMembers = (
   threadId: string = "",
+  role?: keyof typeof ThreadMemberRole,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -61,7 +74,7 @@ export const useGetThreadMembers = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetThreadMembers>>
   >(
-    THREAD_MEMBERS_QUERY_KEY(threadId),
+    THREAD_MEMBERS_QUERY_KEY(threadId, role),
     (params: InfiniteQueryParams) => GetThreadMembers({ ...params, threadId }),
     params,
     {

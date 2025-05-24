@@ -5,7 +5,7 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { THREADS_QUERY_KEY, THREAD_QUERY_KEY } from "@src/queries";
+import { THREAD_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
@@ -29,7 +29,7 @@ export const DeleteThread = async ({
     `/threads/${threadId}`
   );
   if (queryClient && data.status === "ok") {
-    queryClient.invalidateQueries({ queryKey: THREADS_QUERY_KEY() });
+    queryClient.invalidateQueries({ queryKey: ["THREADS"], exact: false });
     queryClient.removeQueries({ queryKey: THREAD_QUERY_KEY(threadId) });
   }
   return data;

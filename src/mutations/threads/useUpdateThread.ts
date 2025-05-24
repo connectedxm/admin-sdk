@@ -5,7 +5,7 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { Thread, ConnectedXMResponse } from "@src/interfaces";
-import { THREADS_QUERY_KEY, SET_THREAD_QUERY_DATA } from "@src/queries";
+import { SET_THREAD_QUERY_DATA } from "@src/queries";
 import { ThreadUpdateInputs } from "@src/params";
 
 /**
@@ -15,7 +15,6 @@ import { ThreadUpdateInputs } from "@src/params";
 export interface UpdateThreadParams extends MutationParams {
   threadId: string;
   thread: ThreadUpdateInputs;
-  imageDataUri?: string;
 }
 
 /**
@@ -25,20 +24,16 @@ export interface UpdateThreadParams extends MutationParams {
 export const UpdateThread = async ({
   threadId,
   thread,
-  imageDataUri,
   adminApiParams,
   queryClient,
 }: UpdateThreadParams): Promise<ConnectedXMResponse<Thread>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<Thread>>(
     `/threads/${threadId}`,
-    {
-      thread,
-      imageDataUri,
-    }
+    thread
   );
   if (queryClient && data.status === "ok") {
-    queryClient.invalidateQueries({ queryKey: THREADS_QUERY_KEY() });
+    queryClient.invalidateQueries({ queryKey: ["THREADS"], exact: false });
     SET_THREAD_QUERY_DATA(queryClient, [threadId], data);
   }
   return data;

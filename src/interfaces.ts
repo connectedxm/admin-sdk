@@ -2884,30 +2884,25 @@ export interface ThreadInvitation {
   updatedAt: string;
 }
 
-export interface BaseThread {
-  id: string;
-  name: string;
-  description: string | null;
-  featured: boolean;
-  imageId: string | null;
-  image: BaseImage | null;
-  access: ThreadAccessLevel;
-  section: string | null;
-  eventId: string | null;
-  groupId: string | null;
-  lastMessageAt: string | null;
+export enum ThreadType {
+  public = "public",
+  private = "private",
+  direct = "direct",
+  group = "group",
 }
 
-export interface Thread extends BaseThread {
+export interface BaseThread {
+  id: string;
+  subject: string;
+  imageId: string | null;
+  image: BaseImage | null;
+  type: ThreadType;
+  lastMessageAt: string | null;
+  lastMessage: string | null;
   createdAt: string;
-  event: BaseEvent | null;
-  group: BaseGroup | null;
-  members: ThreadMember[];
-  _count: {
-    members: number;
-    messages: number;
-  };
 }
+
+export interface Thread extends BaseThread {}
 
 export enum ThreadMemberRole {
   member = "member",
@@ -2938,28 +2933,40 @@ export interface ThreadMessageReaction extends BaseThreadMessageReaction {
 
 export interface BaseThreadMessage {
   id: string;
-  organizationId: string;
-  threadId: string;
   body: string;
   createdAt: string;
   replyToId: string | null;
   reactions: ThreadMessageReaction[];
-  account: BaseAccount;
+  account: BaseAccount | null;
 }
 
 export interface ThreadMessage extends BaseThreadMessage {
   thread: BaseThread;
-  accountId: string;
+  accountId: string | null;
   type: ThreadMessageType;
+  entities: ThreadMessageEntity[];
+  account: BaseAccount | null;
   replyTo: BaseThreadMessage | null;
   replies: BaseThreadMessage[];
-  mentions: BaseAccount[];
   files: BaseFile[];
   images: BaseImage[];
   videos: BaseVideo[];
   editedAt: string | null;
   sentAt: string;
 }
+
+export interface BaseThreadMessageEntity {
+  type: string;
+  startIndex: number;
+  endIndex: number;
+  marks: string[];
+  accountId?: string;
+  account?: BaseAccount;
+  href?: string;
+  linkPreview?: BaseLinkPreview;
+}
+
+export interface ThreadMessageEntity extends BaseThreadMessageEntity {}
 
 export interface BaseThreadMember {
   accountId: string;
@@ -2978,6 +2985,28 @@ export interface ThreadMember extends BaseThreadMember {
   createdAt: string;
   updatedAt: string;
 }
+
+export enum ThreadCircleAccountRole {
+  member = "member",
+  manager = "manager",
+}
+
+export interface BaseThreadCircle {
+  id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ThreadCircle extends BaseThreadCircle {}
+
+export interface BaseThreadCircleAccount {
+  accountId: string;
+  role: ThreadCircleAccountRole;
+  account: BaseAccount;
+}
+
+export interface ThreadCircleAccount extends BaseThreadCircleAccount {}
 
 export interface PaypalActivationFormParams {
   clientId: string;

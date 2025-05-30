@@ -10,7 +10,6 @@ import {
   RegistrationQuestionType,
   MembershipPriceType,
   MembershipPriceInterval,
-  ThreadAccessLevel,
   PassTypeVisibility,
   PassTypeAccessLevel,
   SubscriptionStatus,
@@ -36,6 +35,7 @@ import {
   EventSessionQuestionType,
   ModerationStatus,
   ActivityEntityType,
+  ThreadCircleAccountRole,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -1524,31 +1524,53 @@ export interface TeamUpdateInputs {
 }
 
 export interface ThreadCreateInputs {
-  access: keyof typeof ThreadAccessLevel;
-  name: string;
-  description?: string | null;
-  featured?: boolean;
-  visible?: boolean;
-  groupId?: string | null;
-  eventId?: string | null;
+  subject?: string | null;
   imageId?: string | null;
-  firstMessage?: string | null;
-  accountIds?: string | null;
-  section?: string | null;
+  groupId?: string;
+  circleId?: string;
+  eventId?: string;
+  streamId?: string;
 }
 
 export interface ThreadUpdateInputs {
-  name?: string | null;
-  description?: string | null;
-  featured?: boolean;
-  visible?: boolean;
-  access?: keyof typeof ThreadAccessLevel | null;
-  groupId?: string | null;
-  eventId?: string | null;
+  subject?: string | null;
   imageId?: string | null;
-  firstMessage?: string | null;
-  accountIds?: string | null;
-  section?: string | null;
+}
+
+export interface ThreadMessageCreateInputs {
+  accountId: string;
+  body: string;
+  entities: any[];
+}
+
+export interface ThreadMessageUpdateInputs {
+  body: string;
+  entities: any[];
+}
+
+export interface ThreadCircleCreateInputs {
+  name: string;
+}
+
+export interface ThreadCircleUpdateInputs {
+  name?: string | null;
+}
+
+export interface ThreadCircleAccountCreateInputs {
+  accountId: string;
+  role: keyof typeof ThreadCircleAccountRole;
+}
+
+export interface ThreadCircleAccountUpdateInputs {
+  role?: keyof typeof ThreadCircleAccountRole | null;
+}
+
+export interface ThreadMessageReactionCreateInputs {
+  emojiName: string;
+}
+
+export interface ThreadMessageReactionUpdateInputs {
+  emojiName?: string;
 }
 
 export interface PassTypeCreateInputs {

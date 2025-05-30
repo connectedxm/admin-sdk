@@ -117,11 +117,6 @@ export enum PassTypeAccessLevel {
   vip = "vip",
 }
 
-export enum ThreadAccessLevel {
-  public = "public",
-  private = "private",
-}
-
 export enum GroupAccess {
   public = "public",
   private = "private",
@@ -2429,6 +2424,7 @@ export interface StreamInput extends BaseStreamInput {
   sessionId: string | null;
   session: BaseEventSession | null;
   details?: StreamInputDetails;
+  threads: BaseThread[];
   createdAt: string;
 }
 
@@ -2884,30 +2880,25 @@ export interface ThreadInvitation {
   updatedAt: string;
 }
 
-export interface BaseThread {
-  id: string;
-  name: string;
-  description: string | null;
-  featured: boolean;
-  imageId: string | null;
-  image: BaseImage | null;
-  access: ThreadAccessLevel;
-  section: string | null;
-  eventId: string | null;
-  groupId: string | null;
-  lastMessageAt: string | null;
+export enum ThreadType {
+  circle = "circle",
+  group = "group",
+  event = "event",
+  stream = "stream",
 }
 
-export interface Thread extends BaseThread {
+export interface BaseThread {
+  id: string;
+  subject: string;
+  imageId: string | null;
+  image: BaseImage | null;
+  type: ThreadType;
+  lastMessageAt: string | null;
+  lastMessage: string | null;
   createdAt: string;
-  event: BaseEvent | null;
-  group: BaseGroup | null;
-  members: ThreadMember[];
-  _count: {
-    members: number;
-    messages: number;
-  };
 }
+
+export interface Thread extends BaseThread {}
 
 export enum ThreadMemberRole {
   member = "member",
@@ -2938,46 +2929,79 @@ export interface ThreadMessageReaction extends BaseThreadMessageReaction {
 
 export interface BaseThreadMessage {
   id: string;
-  organizationId: string;
-  threadId: string;
   body: string;
+  accountId: string | null;
+  member: BaseThreadViewer | null;
   createdAt: string;
-  replyToId: string | null;
-  reactions: ThreadMessageReaction[];
-  account: BaseAccount;
-}
-
-export interface ThreadMessage extends BaseThreadMessage {
-  thread: BaseThread;
-  accountId: string;
-  type: ThreadMessageType;
-  replyTo: BaseThreadMessage | null;
-  replies: BaseThreadMessage[];
-  mentions: BaseAccount[];
-  files: BaseFile[];
-  images: BaseImage[];
-  videos: BaseVideo[];
   editedAt: string | null;
   sentAt: string;
 }
 
-export interface BaseThreadMember {
+export interface ThreadMessage extends BaseThreadMessage {
+  type: ThreadMessageType;
+  reactions: ThreadMessageReaction[];
+  entities: ThreadMessageEntity[];
+  replyToId: string | null;
+  replyTo: BaseThreadMessage | null;
+  files: BaseFile[];
+  images: BaseImage[];
+  videos: BaseVideo[];
+}
+
+export interface BaseThreadMessageEntity {
+  type: string;
+  startIndex: number;
+  endIndex: number;
+  marks: string[];
+  accountId?: string;
+  account?: BaseAccount;
+  href?: string;
+  linkPreview?: BaseLinkPreview;
+}
+
+export interface ThreadMessageEntity extends BaseThreadMessageEntity {}
+
+export interface BaseThreadViewer {
+  id: string;
   accountId: string;
-  role: ThreadMemberRole;
+  lastReadAt: string | null;
+  notifications: boolean;
   account: BaseAccount;
 }
 
-export interface ThreadMember extends BaseThreadMember {
-  id: string;
-  organizationId: string;
-  threadId: string;
-  thread: BaseThread;
-  accepted: boolean;
-  lastReadAt: string | null;
-  notifications: boolean;
+export interface ThreadViewer extends BaseThreadViewer {
   createdAt: string;
   updatedAt: string;
 }
+
+export enum ThreadCircleAccountRole {
+  member = "member",
+  manager = "manager",
+  invited = "invited",
+}
+
+export enum ThreadCircleType {
+  private = "private",
+  direct = "direct",
+}
+
+export interface BaseThreadCircle {
+  id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  type: ThreadCircleType;
+}
+
+export interface ThreadCircle extends BaseThreadCircle {}
+
+export interface BaseThreadCircleAccount {
+  accountId: string;
+  role: ThreadCircleAccountRole;
+  account: BaseAccount;
+}
+
+export interface ThreadCircleAccount extends BaseThreadCircleAccount {}
 
 export interface PaypalActivationFormParams {
   clientId: string;

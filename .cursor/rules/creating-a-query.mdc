@@ -1,15 +1,16 @@
 ---
-description: adding new query functions to interface with a GET endpoint in the API
+description: 
 globs: 
 alwaysApply: false
 ---
 When creating a Query function to interact with a get or list endpoint in the API you should follow the same template.
 
-Standard Parts of query file:
-- a QueryKey Function
-- a Setter function
-- the function to interact with the api
-- the react-query hook to use the function
+1. check or add the interfaces in [interfaces.ts](mdc:admin-sdk/src/interfaces.ts).ts file
+2. Standard Parts of query file:
+    - a QueryKey Function
+    - a Setter function
+    - the function to interact with the api
+    - the react-query hook to use the function
 
-Single Query Example: [useGetAccount.ts](mdc:src/queries/accounts/useGetAccount.ts) 
-Infinite Query Example: [useGetAccounts.ts](mdc:src/queries/accounts/useGetAccounts.ts)
+Single Query Example: [useGetAccount.ts](mdc:admin-web/src/queries/accounts/useGetAccount.ts) 
+Infinite Query Example: [useGetAccounts.ts](mdc:admin-web/src/queries/accounts/useGetAccounts.ts)

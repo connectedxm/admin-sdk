@@ -1,0 +1,17 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+When creating a Mutation file to interact with a put, post, delete endpoint in the API you should follow the same template.
+
+1. First check for Params in the [params.ts](mdc:admin-sdk/src/params.ts) file
+2. Then check for the interfaces in [interfaces.ts](mdc:admin-sdk/src/interfaces.ts) file
+3. Create the file in the mutations folder
+    - a set of params
+    - the function to interact with the api
+    - the react-query mutation hook to use the function
+
+Create Example: [useCreateAccount.ts](mdc:admin-sdk/src/mutations/account/useCreateAccount.ts)
+Update Example: [useUpdateAccount.ts](mdc:admin-sdk/src/mutations/account/useUpdateAccount.ts)
+Delete Example: [useDeleteAccount.ts](mdc:admin-sdk/src/mutations/account/useDeleteAccount.ts)

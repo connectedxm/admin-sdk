@@ -15,7 +15,6 @@ import { THREAD_CIRCLE_QUERY_KEY } from "./useGetThreadCircle";
 export const THREAD_CIRCLE_THREADS_QUERY_KEY = (circleId: string) => [
   THREAD_CIRCLE_QUERY_KEY(circleId),
   circleId,
-  "THREADS",
 ];
 
 /**
@@ -63,7 +62,7 @@ export const GetThreadCircleThreads = async ({
  * @group Threads
  */
 export const useGetThreadCircleThreads = (
-  circleId: string,
+  circleId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -79,7 +78,10 @@ export const useGetThreadCircleThreads = (
     (params: InfiniteQueryParams) =>
       GetThreadCircleThreads({ circleId, ...params }),
     params,
-    options,
+    {
+      enabled: !!circleId && (options.enabled ?? true),
+      ...options,
+    },
     "threads"
   );
 };

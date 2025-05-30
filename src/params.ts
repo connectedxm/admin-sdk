@@ -1530,6 +1530,8 @@ export interface ThreadCreateInputs {
   imageId?: string | null;
   groupId?: string;
   circleId?: string;
+  eventId?: string;
+  streamId?: string;
 }
 
 export interface ThreadUpdateInputs {
@@ -1540,12 +1542,12 @@ export interface ThreadUpdateInputs {
 export interface ThreadMessageCreateInputs {
   accountId: string;
   body: string;
-  entities?: any[] | null;
+  entities: any[];
 }
 
 export interface ThreadMessageUpdateInputs {
-  text?: string | null;
-  entities?: any[] | null;
+  body: string;
+  entities: any[];
 }
 
 export interface ThreadCircleCreateInputs {
@@ -1563,6 +1565,14 @@ export interface ThreadCircleAccountCreateInputs {
 
 export interface ThreadCircleAccountUpdateInputs {
   role?: keyof typeof ThreadCircleAccountRole | null;
+}
+
+export interface ThreadMessageReactionCreateInputs {
+  emojiName: string;
+}
+
+export interface ThreadMessageReactionUpdateInputs {
+  emojiName?: string;
 }
 
 export interface PassTypeCreateInputs {

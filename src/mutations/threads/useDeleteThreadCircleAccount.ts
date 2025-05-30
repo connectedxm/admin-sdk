@@ -6,6 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { THREAD_CIRCLE_ACCOUNTS_QUERY_KEY } from "@src/queries/threads/useGetThreadCircleAccounts";
+import { THREAD_CIRCLE_ACCOUNT_QUERY_KEY } from "@src/queries/threads/useGetThreadCircleAccount";
 
 /**
  * @category Params
@@ -33,6 +34,9 @@ export const DeleteThreadCircleAccount = async ({
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: THREAD_CIRCLE_ACCOUNTS_QUERY_KEY(circleId),
+    });
+    queryClient.removeQueries({
+      queryKey: THREAD_CIRCLE_ACCOUNT_QUERY_KEY(circleId, accountId),
     });
   }
   return data;

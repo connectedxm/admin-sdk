@@ -32,6 +32,7 @@ export const SET_VIDEOS_QUERY_DATA = (
 
 interface GetVideosParams extends InfiniteQueryParams {
   source?: string;
+  streamId?: string;
 }
 
 /**

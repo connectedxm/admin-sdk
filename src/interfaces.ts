@@ -117,11 +117,6 @@ export enum PassTypeAccessLevel {
   vip = "vip",
 }
 
-export enum ThreadAccessLevel {
-  public = "public",
-  private = "private",
-}
-
 export enum GroupAccess {
   public = "public",
   private = "private",
@@ -2429,6 +2424,7 @@ export interface StreamInput extends BaseStreamInput {
   sessionId: string | null;
   session: BaseEventSession | null;
   details?: StreamInputDetails;
+  threads: BaseThread[];
   createdAt: string;
 }
 
@@ -2885,10 +2881,10 @@ export interface ThreadInvitation {
 }
 
 export enum ThreadType {
-  public = "public",
-  private = "private",
-  direct = "direct",
+  circle = "circle",
   group = "group",
+  event = "event",
+  stream = "stream",
 }
 
 export interface BaseThread {
@@ -2934,25 +2930,22 @@ export interface ThreadMessageReaction extends BaseThreadMessageReaction {
 export interface BaseThreadMessage {
   id: string;
   body: string;
+  accountId: string | null;
+  member: BaseThreadMember | null;
   createdAt: string;
-  replyToId: string | null;
-  reactions: ThreadMessageReaction[];
-  account: BaseAccount | null;
+  editedAt: string | null;
+  sentAt: string;
 }
 
 export interface ThreadMessage extends BaseThreadMessage {
-  thread: BaseThread;
-  accountId: string | null;
   type: ThreadMessageType;
+  reactions: ThreadMessageReaction[];
   entities: ThreadMessageEntity[];
-  account: BaseAccount | null;
+  replyToId: string | null;
   replyTo: BaseThreadMessage | null;
-  replies: BaseThreadMessage[];
   files: BaseFile[];
   images: BaseImage[];
   videos: BaseVideo[];
-  editedAt: string | null;
-  sentAt: string;
 }
 
 export interface BaseThreadMessageEntity {
@@ -2969,19 +2962,14 @@ export interface BaseThreadMessageEntity {
 export interface ThreadMessageEntity extends BaseThreadMessageEntity {}
 
 export interface BaseThreadMember {
+  id: string;
   accountId: string;
-  role: ThreadMemberRole;
+  lastReadAt: string | null;
+  notifications: boolean;
   account: BaseAccount;
 }
 
 export interface ThreadMember extends BaseThreadMember {
-  id: string;
-  organizationId: string;
-  threadId: string;
-  thread: BaseThread;
-  accepted: boolean;
-  lastReadAt: string | null;
-  notifications: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -2989,6 +2977,12 @@ export interface ThreadMember extends BaseThreadMember {
 export enum ThreadCircleAccountRole {
   member = "member",
   manager = "manager",
+  invited = "invited",
+}
+
+export enum ThreadCircleType {
+  private = "private",
+  direct = "direct",
 }
 
 export interface BaseThreadCircle {
@@ -2996,6 +2990,7 @@ export interface BaseThreadCircle {
   name: string;
   createdAt: string;
   updatedAt: string;
+  type: ThreadCircleType;
 }
 
 export interface ThreadCircle extends BaseThreadCircle {}

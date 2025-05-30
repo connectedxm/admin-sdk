@@ -6,7 +6,11 @@ import {
 } from "../useConnectedMutation";
 import { ConnectedXMResponse, Thread } from "@src/interfaces";
 import { ThreadCreateInputs } from "@src/params";
-import { GROUP_THREADS_QUERY_KEY } from "@src/queries";
+import {
+  EVENT_THREADS_QUERY_KEY,
+  GROUP_THREADS_QUERY_KEY,
+  STREAM_THREADS_QUERY_KEY,
+} from "@src/queries";
 import { THREAD_CIRCLE_THREADS_QUERY_KEY } from "@src/queries/threads/useGetThreadCircleThreads";
 
 /**
@@ -43,6 +47,18 @@ export const CreateThread = async ({
     if (thread.circleId) {
       queryClient.invalidateQueries({
         queryKey: THREAD_CIRCLE_THREADS_QUERY_KEY(thread.circleId),
+      });
+    }
+
+    if (thread.eventId) {
+      queryClient.invalidateQueries({
+        queryKey: EVENT_THREADS_QUERY_KEY(thread.eventId),
+      });
+    }
+
+    if (thread.streamId) {
+      queryClient.invalidateQueries({
+        queryKey: STREAM_THREADS_QUERY_KEY(thread.streamId),
       });
     }
   }

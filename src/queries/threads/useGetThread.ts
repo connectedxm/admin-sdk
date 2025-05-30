@@ -7,15 +7,15 @@ import {
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Thread } from "@src/interfaces";
 import { QueryClient, SetDataOptions, Updater } from "@tanstack/react-query";
+import { THREADS_QUERY_KEY } from "./useGetThreads";
 
 /**
  * @category Keys
  * @thread Threads
  */
-export const THREAD_QUERY_KEY = (threadId: string, messageId?: string) => [
-  "THREADS",
+export const THREAD_QUERY_KEY = (threadId: string) => [
+  THREADS_QUERY_KEY(),
   threadId,
-  messageId,
 ];
 
 /**

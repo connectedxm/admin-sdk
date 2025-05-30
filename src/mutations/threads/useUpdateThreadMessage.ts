@@ -6,6 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { ConnectedXMResponse, ThreadMessage } from "@src/interfaces";
 import { THREAD_MESSAGES_QUERY_KEY } from "@src/queries";
+import { ThreadMessageUpdateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -14,8 +15,7 @@ import { THREAD_MESSAGES_QUERY_KEY } from "@src/queries";
 export interface UpdateThreadMessageParams extends MutationParams {
   threadId: string;
   messageId: string;
-  text: string;
-  entities: any[];
+  message: ThreadMessageUpdateInputs;
 }
 
 /**
@@ -25,16 +25,14 @@ export interface UpdateThreadMessageParams extends MutationParams {
 export const UpdateThreadMessage = async ({
   threadId,
   messageId,
-  text,
+  message,
   adminApiParams,
   queryClient,
 }: UpdateThreadMessageParams): Promise<ConnectedXMResponse<ThreadMessage>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<ThreadMessage>>(
     `/threads/${threadId}/messages/${messageId}`,
-    {
-      text,
-    }
+    message
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

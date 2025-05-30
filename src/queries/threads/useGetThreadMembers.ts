@@ -9,6 +9,7 @@ import {
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
+import { THREAD_QUERY_KEY } from "./useGetThread";
 
 /**
  * @category Keys
@@ -18,7 +19,7 @@ export const THREAD_MEMBERS_QUERY_KEY = (
   threadId: string,
   role?: keyof typeof ThreadMemberRole
 ) => {
-  const key = ["THREADS", threadId, "MEMBERS"];
+  const key = [...THREAD_QUERY_KEY(threadId), "MEMBERS"];
   if (role) {
     key.push(role);
   }

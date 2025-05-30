@@ -51,13 +51,16 @@ export const GetThreadCircle = async ({
  * @group Threads
  */
 export const useGetThreadCircle = (
-  circleId: string,
+  circleId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetThreadCircle>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetThreadCircle>>(
     THREAD_CIRCLE_QUERY_KEY(circleId),
     (params: SingleQueryParams) => GetThreadCircle({ circleId, ...params }),
-    options,
+    {
+      ...options,
+      enabled: !!circleId && (options.enabled ?? true),
+    },
     "threads"
   );
 };

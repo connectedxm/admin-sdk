@@ -1,20 +1,31 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, ThreadCircleAccount } from "@src/interfaces";
+import {
+  ConnectedXMResponse,
+  ThreadCircleAccount,
+  ThreadCircleAccountRole,
+} from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
+import { THREAD_CIRCLE_QUERY_KEY } from "./useGetThreadCircle";
 
 /**
  * @category Keys
  * @group Threads
  */
-export const THREAD_CIRCLE_ACCOUNTS_QUERY_KEY = (circleId: string) => [
-  "THREAD_CIRCLE_ACCOUNTS",
-  circleId,
-];
+export const THREAD_CIRCLE_ACCOUNTS_QUERY_KEY = (
+  circleId: string,
+  role?: keyof typeof ThreadCircleAccountRole
+) => {
+  const key = [...THREAD_CIRCLE_QUERY_KEY(circleId), "ACCOUNTS"];
+  if (role) {
+    key.push(role);
+  }
+  return key;
+};
 
 /**
  * @category Setters
@@ -30,6 +41,7 @@ export const SET_THREAD_CIRCLE_ACCOUNTS_QUERY_DATA = (
 
 interface GetThreadCircleAccountsProps extends InfiniteQueryParams {
   circleId: string;
+  role?: keyof typeof ThreadCircleAccountRole;
 }
 
 /**
@@ -38,6 +50,7 @@ interface GetThreadCircleAccountsProps extends InfiniteQueryParams {
  */
 export const GetThreadCircleAccounts = async ({
   circleId,
+  role,
   pageParam,
   pageSize,
   orderBy,
@@ -53,6 +66,7 @@ export const GetThreadCircleAccounts = async ({
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
+      role: role || undefined,
     },
   });
   return data;
@@ -64,6 +78,7 @@ export const GetThreadCircleAccounts = async ({
  */
 export const useGetThreadCircleAccounts = (
   circleId: string,
+  role?: keyof typeof ThreadCircleAccountRole,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -75,11 +90,14 @@ export const useGetThreadCircleAccounts = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetThreadCircleAccounts>>
   >(
-    THREAD_CIRCLE_ACCOUNTS_QUERY_KEY(circleId),
+    THREAD_CIRCLE_ACCOUNTS_QUERY_KEY(circleId, role),
     (params: InfiniteQueryParams) =>
-      GetThreadCircleAccounts({ circleId, ...params }),
+      GetThreadCircleAccounts({ circleId, role, ...params }),
     params,
-    options,
+    {
+      ...options,
+      enabled: !!circleId && (options.enabled ?? true),
+    },
     "threads"
   );
 };

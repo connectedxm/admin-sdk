@@ -6,6 +6,7 @@ import {
 } from "../../../useConnectedMutation";
 import { ConnectedXMResponse, Match } from "@src/interfaces";
 import { EVENT_SESSION_ROUND_MATCHES_QUERY_KEY } from "@src/queries/events/sessions/matches/useGetEventSessionRoundMatches";
+import { EVENT_SESSION_ROUNDS_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
@@ -40,6 +41,9 @@ export const CreateEventSessionMatch = async ({
         sessionId,
         roundId
       ),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SESSION_ROUNDS_QUERY_KEY(eventId, sessionId),
     });
   }
 

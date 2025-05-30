@@ -589,8 +589,6 @@ export interface EventCreateInputs {
   groupOnly?: boolean;
   passSupply?: number | string | null;
   passLimitPerAccount?: string | number | null;
-  numberOfRounds?: string | number | null;
-  matchSize?: string | number | null;
   roundName?: string | null;
   matchName?: string | null;
 }
@@ -707,8 +705,6 @@ export interface EventSessionCreateInputs {
   limit?: number | string | null;
   price?: number | string | null;
   locationId?: string | null;
-  numberOfRounds?: string | number | null;
-  matchSize?: string | number | null;
   roundName?: string | null;
   matchName?: string | null;
 }
@@ -738,8 +734,6 @@ export interface EventSessionUpdateInputs {
   limit?: number | string | null;
   price?: number | string | null;
   locationId?: string | null;
-  numberOfRounds?: string | number | null;
-  matchSize?: string | number | null;
   roundName?: string | null;
   matchName?: string | null;
 }
@@ -990,8 +984,6 @@ export interface EventUpdateInputs {
   groupOnly?: boolean;
   passSupply?: number | string | null;
   passLimitPerAccount?: string | number | null;
-  numberOfRounds?: string | number | null;
-  matchSize?: string | number | null;
   roundName?: string | null;
   matchName?: string | null;
 }

@@ -953,8 +953,6 @@ export interface BaseEvent {
 }
 
 export interface Event extends BaseEvent {
-  numberOfRounds: number | null;
-  matchSize: number | null;
   roundName: string | null;
   matchName: string | null;
   passSupply: number | null;
@@ -2077,8 +2075,6 @@ export interface BaseEventSession {
 }
 
 export interface EventSession extends BaseEventSession {
-  numberOfRounds: number | null;
-  matchSize: number | null;
   roundName: string | null;
   matchName: string | null;
   sortOrder: number;

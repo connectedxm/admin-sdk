@@ -5,52 +5,69 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { ConnectedXMResponse, Thread } from "@src/interfaces";
-import { THREADS_QUERY_KEY, SET_THREAD_QUERY_DATA } from "@src/queries";
 import { ThreadCreateInputs } from "@src/params";
+import {
+  EVENT_THREADS_QUERY_KEY,
+  GROUP_THREADS_QUERY_KEY,
+  STREAM_THREADS_QUERY_KEY,
+} from "@src/queries";
+import { THREAD_CIRCLE_THREADS_QUERY_KEY } from "@src/queries/threads/useGetThreadCircleThreads";
 
 /**
  * @category Params
- * @group Thread
+ * @group Threads
  */
 export interface CreateThreadParams extends MutationParams {
   thread: ThreadCreateInputs;
-  accountIds?: string[];
-  firstMessage?: string;
-  imageDataUri?: string;
 }
 
 /**
  * @category Methods
- * @group Thread
+ * @group Threads
  */
 export const CreateThread = async ({
   thread,
-  accountIds,
-  firstMessage,
-  imageDataUri,
   adminApiParams,
   queryClient,
 }: CreateThreadParams): Promise<ConnectedXMResponse<Thread>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<Thread>>(
     `/threads`,
-    {
-      thread,
-      accountIds,
-      firstMessage,
-      imageDataUri,
-    }
+    thread
   );
   if (queryClient && data.status === "ok") {
-    queryClient.invalidateQueries({ queryKey: THREADS_QUERY_KEY() });
-    SET_THREAD_QUERY_DATA(queryClient, [data.data?.id], data);
+    // Invalidate any group threads lists if applicable
+    if (thread.groupId) {
+      queryClient.invalidateQueries({
+        queryKey: GROUP_THREADS_QUERY_KEY(thread.groupId),
+      });
+    }
+
+    // Invalidate circle threads if applicable
+    if (thread.circleId) {
+      queryClient.invalidateQueries({
+        queryKey: THREAD_CIRCLE_THREADS_QUERY_KEY(thread.circleId),
+      });
+    }
+
+    if (thread.eventId) {
+      queryClient.invalidateQueries({
+        queryKey: EVENT_THREADS_QUERY_KEY(thread.eventId),
+      });
+    }
+
+    if (thread.streamId) {
+      queryClient.invalidateQueries({
+        queryKey: STREAM_THREADS_QUERY_KEY(thread.streamId),
+      });
+    }
   }
   return data;
 };
 
 /**
  * @category Mutations
- * @group Thread
+ * @group Threads
  */
 export const useCreateThread = (
   options: Omit<

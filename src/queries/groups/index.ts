@@ -10,4 +10,5 @@ export * from "./useGetGroupModerators";
 export * from "./useGetGroupRequest";
 export * from "./useGetGroupRequests";
 export * from "./useGetGroupSponsors";
+export * from "./useGetGroupThreads";
 export * from "./useGetGroups";

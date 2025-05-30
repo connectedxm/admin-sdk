@@ -12,7 +12,7 @@ export const THREAD_MESSAGE_QUERY_KEY = (
   threadId: string,
   messageId: string
 ): QueryKey => {
-  return [...THREAD_MESSAGES_QUERY_KEY(threadId, messageId)];
+  return [...THREAD_MESSAGES_QUERY_KEY(threadId), messageId];
 };
 
 export const SET_THREAD_MESSAGE_QUERY_DATA = (

@@ -1,48 +1,44 @@
-import { ConnectedXMResponse, ThreadMember } from "@src/interfaces";
-import { THREADS_QUERY_KEY } from "./useGetThreads";
+import { Account, ConnectedXMResponse } from "@src/interfaces";
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
+import { THREAD_QUERY_KEY } from "./useGetThread";
 
 /**
  * @category Keys
- * @thread Thread Members
+ * @thread Thread Accounts
  */
-export const THREAD_MEMBERS_QUERY_KEY = (threadId: string) => [
-  ...THREADS_QUERY_KEY(),
-  "MEMBERS",
-  threadId,
-];
+export const THREAD_ACCOUNTS_QUERY_KEY = (threadId: string) => {
+  const key = [...THREAD_QUERY_KEY(threadId), "ACCOUNTS"];
+  return key;
+};
 
-interface GetThreadMembersProps extends InfiniteQueryParams {
+interface GetThreadAccountsProps extends InfiniteQueryParams {
   threadId: string;
-  role?: string;
 }
 
 /**
  * @category Queries
- * @thread Thread Members
+ * @thread Thread Accounts
  */
-export const GetThreadMembers = async ({
+export const GetThreadAccounts = async ({
   threadId,
   pageParam,
   pageSize,
   orderBy,
   search,
-  role,
   adminApiParams,
-}: GetThreadMembersProps): Promise<ConnectedXMResponse<ThreadMember[]>> => {
+}: GetThreadAccountsProps): Promise<ConnectedXMResponse<Account[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/threads/${threadId}/members`, {
+  const { data } = await adminApi.get(`/threads/${threadId}/accounts`, {
     params: {
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
-      role: role || undefined,
     },
   });
   return data;
@@ -50,23 +46,23 @@ export const GetThreadMembers = async ({
 
 /**
  * @category Hooks
- * @thread Thread Members
+ * @thread Thread Accounts
  */
-export const useGetThreadMembers = (
+export const useGetThreadAccounts = (
   threadId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetThreadMembers>>
+    Awaited<ReturnType<typeof GetThreadAccounts>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetThreadMembers>>
+    Awaited<ReturnType<typeof GetThreadAccounts>>
   >(
-    THREAD_MEMBERS_QUERY_KEY(threadId),
-    (params: InfiniteQueryParams) => GetThreadMembers({ ...params, threadId }),
+    THREAD_ACCOUNTS_QUERY_KEY(threadId),
+    (params: InfiniteQueryParams) => GetThreadAccounts({ ...params, threadId }),
     params,
     {
       ...options,

@@ -10,7 +10,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
  * @category Params
  * @group Event
  */
-export interface StartRoundMatchmakingParams extends MutationParams {
+export interface StartEventRoundMatchmakingParams extends MutationParams {
   eventId: string;
   roundId: string;
   targetMatchSize: number;
@@ -20,12 +20,12 @@ export interface StartRoundMatchmakingParams extends MutationParams {
  * @category Methods
  * @group Event
  */
-export const StartRoundMatchmaking = async ({
+export const StartEventRoundMatchmaking = async ({
   eventId,
   roundId,
   targetMatchSize,
   adminApiParams,
-}: StartRoundMatchmakingParams): Promise<ConnectedXMResponse<null>> => {
+}: StartEventRoundMatchmakingParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<null>>(
     `/events/${eventId}/rounds/${roundId}/start`,
@@ -38,19 +38,19 @@ export const StartRoundMatchmaking = async ({
  * @category Mutations
  * @group Event
  */
-export const useStartRoundMatchmaking = (
+export const useStartEventRoundMatchmaking = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof StartRoundMatchmaking>>,
-      Omit<StartRoundMatchmakingParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof StartEventRoundMatchmaking>>,
+      Omit<StartEventRoundMatchmakingParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    StartRoundMatchmakingParams,
-    Awaited<ReturnType<typeof StartRoundMatchmaking>>
-  >(StartRoundMatchmaking, options, {
+    StartEventRoundMatchmakingParams,
+    Awaited<ReturnType<typeof StartEventRoundMatchmaking>>
+  >(StartEventRoundMatchmaking, options, {
     domain: "events",
     type: "update",
   });

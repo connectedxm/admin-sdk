@@ -4,14 +4,14 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import { ConnectedXMResponse, Image } from "@src/interfaces";
+import { ConnectedXMResponse } from "@src/interfaces";
 import { THREAD_MESSAGE_IMAGES_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
  * @group Threads
  */
-export interface ConnectThreadMessageImageParams extends MutationParams {
+export interface DeleteThreadMessageImageParams extends MutationParams {
   threadId: string;
   messageId: string;
   imageId: string;
@@ -21,15 +21,15 @@ export interface ConnectThreadMessageImageParams extends MutationParams {
  * @category Methods
  * @group Threads
  */
-export const ConnectThreadMessageImage = async ({
+export const DeleteThreadMessageImage = async ({
   threadId,
   messageId,
   imageId,
   adminApiParams,
   queryClient,
-}: ConnectThreadMessageImageParams): Promise<ConnectedXMResponse<Image>> => {
+}: DeleteThreadMessageImageParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Image>>(
+  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
     `/threads/${threadId}/messages/${messageId}/images/${imageId}`
   );
   if (queryClient && data.status === "ok") {
@@ -44,20 +44,20 @@ export const ConnectThreadMessageImage = async ({
  * @category Mutations
  * @group Threads
  */
-export const useConnectThreadMessageImage = (
+export const useDeleteThreadMessageImage = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof ConnectThreadMessageImage>>,
-      Omit<ConnectThreadMessageImageParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof DeleteThreadMessageImage>>,
+      Omit<DeleteThreadMessageImageParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    ConnectThreadMessageImageParams,
-    Awaited<ReturnType<typeof ConnectThreadMessageImage>>
-  >(ConnectThreadMessageImage, options, {
+    DeleteThreadMessageImageParams,
+    Awaited<ReturnType<typeof DeleteThreadMessageImage>>
+  >(DeleteThreadMessageImage, options, {
     domain: "threads",
-    type: "update",
+    type: "del",
   });
 };

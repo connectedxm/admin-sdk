@@ -4,14 +4,14 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, ThreadMessage } from "@src/interfaces";
 import { THREAD_MESSAGE_IMAGES_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
  * @group Threads
  */
-export interface DisconnectThreadMessageImageParams extends MutationParams {
+export interface CreateThreadMessageImageParams extends MutationParams {
   threadId: string;
   messageId: string;
   imageId: string;
@@ -21,15 +21,17 @@ export interface DisconnectThreadMessageImageParams extends MutationParams {
  * @category Methods
  * @group Threads
  */
-export const DisconnectThreadMessageImage = async ({
+export const CreateThreadMessageImage = async ({
   threadId,
   messageId,
   imageId,
   adminApiParams,
   queryClient,
-}: DisconnectThreadMessageImageParams): Promise<ConnectedXMResponse<null>> => {
+}: CreateThreadMessageImageParams): Promise<
+  ConnectedXMResponse<ThreadMessage>
+> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const { data } = await connectedXM.post<ConnectedXMResponse<ThreadMessage>>(
     `/threads/${threadId}/messages/${messageId}/images/${imageId}`
   );
   if (queryClient && data.status === "ok") {
@@ -44,20 +46,20 @@ export const DisconnectThreadMessageImage = async ({
  * @category Mutations
  * @group Threads
  */
-export const useDisconnectThreadMessageImage = (
+export const useCreateThreadMessageImage = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof DisconnectThreadMessageImage>>,
-      Omit<DisconnectThreadMessageImageParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof CreateThreadMessageImage>>,
+      Omit<CreateThreadMessageImageParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    DisconnectThreadMessageImageParams,
-    Awaited<ReturnType<typeof DisconnectThreadMessageImage>>
-  >(DisconnectThreadMessageImage, options, {
+    CreateThreadMessageImageParams,
+    Awaited<ReturnType<typeof CreateThreadMessageImage>>
+  >(CreateThreadMessageImage, options, {
     domain: "threads",
-    type: "del",
+    type: "update",
   });
 };

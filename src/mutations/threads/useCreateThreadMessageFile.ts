@@ -4,14 +4,14 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, ThreadMessage } from "@src/interfaces";
 import { THREAD_MESSAGE_FILES_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
  * @group Threads
  */
-export interface DisconnectThreadMessageFileParams extends MutationParams {
+export interface CreateThreadMessageFileParams extends MutationParams {
   threadId: string;
   messageId: string;
   fileId: string;
@@ -21,15 +21,17 @@ export interface DisconnectThreadMessageFileParams extends MutationParams {
  * @category Methods
  * @group Threads
  */
-export const DisconnectThreadMessageFile = async ({
+export const CreateThreadMessageFile = async ({
   threadId,
   messageId,
   fileId,
   adminApiParams,
   queryClient,
-}: DisconnectThreadMessageFileParams): Promise<ConnectedXMResponse<null>> => {
+}: CreateThreadMessageFileParams): Promise<
+  ConnectedXMResponse<ThreadMessage>
+> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const { data } = await connectedXM.post<ConnectedXMResponse<ThreadMessage>>(
     `/threads/${threadId}/messages/${messageId}/files/${fileId}`
   );
   if (queryClient && data.status === "ok") {
@@ -44,20 +46,20 @@ export const DisconnectThreadMessageFile = async ({
  * @category Mutations
  * @group Threads
  */
-export const useDisconnectThreadMessageFile = (
+export const useCreateThreadMessageFile = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof DisconnectThreadMessageFile>>,
-      Omit<DisconnectThreadMessageFileParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof CreateThreadMessageFile>>,
+      Omit<CreateThreadMessageFileParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    DisconnectThreadMessageFileParams,
-    Awaited<ReturnType<typeof DisconnectThreadMessageFile>>
-  >(DisconnectThreadMessageFile, options, {
+    CreateThreadMessageFileParams,
+    Awaited<ReturnType<typeof CreateThreadMessageFile>>
+  >(CreateThreadMessageFile, options, {
     domain: "threads",
-    type: "del",
+    type: "update",
   });
 };

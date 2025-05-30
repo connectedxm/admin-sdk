@@ -5,7 +5,7 @@ export * from "./useGetThreadCircleAccount";
 export * from "./useGetThreadCircleAccounts";
 export * from "./useGetThreadCircleThreads";
 export * from "./useGetThreadCircles";
-export * from "./useGetThreadMembers";
+export * from "./useGetThreadViewers";
 export * from "./useGetThreadMessage";
 export * from "./useGetThreadMessageFiles";
 export * from "./useGetThreadMessageImages";

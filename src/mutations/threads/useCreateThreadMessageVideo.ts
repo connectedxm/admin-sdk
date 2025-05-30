@@ -4,14 +4,14 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, ThreadMessage } from "@src/interfaces";
 import { THREAD_MESSAGE_VIDEOS_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
  * @group Threads
  */
-export interface DisconnectThreadMessageVideoParams extends MutationParams {
+export interface CreateThreadMessageVideoParams extends MutationParams {
   threadId: string;
   messageId: string;
   videoId: string;
@@ -21,15 +21,17 @@ export interface DisconnectThreadMessageVideoParams extends MutationParams {
  * @category Methods
  * @group Threads
  */
-export const DisconnectThreadMessageVideo = async ({
+export const CreateThreadMessageVideo = async ({
   threadId,
   messageId,
   videoId,
   adminApiParams,
   queryClient,
-}: DisconnectThreadMessageVideoParams): Promise<ConnectedXMResponse<null>> => {
+}: CreateThreadMessageVideoParams): Promise<
+  ConnectedXMResponse<ThreadMessage>
+> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+  const { data } = await connectedXM.post<ConnectedXMResponse<ThreadMessage>>(
     `/threads/${threadId}/messages/${messageId}/videos/${videoId}`
   );
   if (queryClient && data.status === "ok") {
@@ -44,20 +46,20 @@ export const DisconnectThreadMessageVideo = async ({
  * @category Mutations
  * @group Threads
  */
-export const useDisconnectThreadMessageVideo = (
+export const useCreateThreadMessageVideo = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof DisconnectThreadMessageVideo>>,
-      Omit<DisconnectThreadMessageVideoParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof CreateThreadMessageVideo>>,
+      Omit<CreateThreadMessageVideoParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    DisconnectThreadMessageVideoParams,
-    Awaited<ReturnType<typeof DisconnectThreadMessageVideo>>
-  >(DisconnectThreadMessageVideo, options, {
+    CreateThreadMessageVideoParams,
+    Awaited<ReturnType<typeof CreateThreadMessageVideo>>
+  >(CreateThreadMessageVideo, options, {
     domain: "threads",
-    type: "del",
+    type: "update",
   });
 };

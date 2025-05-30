@@ -564,7 +564,6 @@ export interface EventCreateInputs {
   externalUrl?: string | null;
   imageId?: string | null;
   backgroundImageId?: string | null;
-  location?: string | null;
   address1?: string | null;
   address2?: string | null;
   city?: string | null;
@@ -965,7 +964,6 @@ export interface EventUpdateInputs {
   externalUrl?: string | null;
   imageId?: string | null;
   backgroundImageId?: string | null;
-  location?: string | null;
   address1?: string | null;
   address2?: string | null;
   city?: string | null;

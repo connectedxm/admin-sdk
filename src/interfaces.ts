@@ -3418,6 +3418,7 @@ export interface BaseEventMediaItem {
 }
 
 export interface EventMediaItem extends BaseEventMediaItem {
+  allowedPassTypes: BaseEventPassType[];
   createdAt: string;
   updatedAt: string;
 }

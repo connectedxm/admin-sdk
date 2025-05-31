@@ -43,11 +43,7 @@ export const UpdateEventMediaItem = async ({
     queryClient.invalidateQueries({
       queryKey: EVENT_MEDIA_ITEMS_QUERY_KEY(eventId),
     });
-    SET_EVENT_MEDIA_ITEM_QUERY_DATA(
-      queryClient,
-      [eventId, mediaItemId || data.data?.id],
-      data
-    );
+    SET_EVENT_MEDIA_ITEM_QUERY_DATA(queryClient, [eventId, mediaItemId], data);
   }
   return data;
 };

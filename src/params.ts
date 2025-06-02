@@ -2143,14 +2143,16 @@ export interface EventPackageTranslationUpdateInputs {
   description?: string | null;
 }
 
-export interface EventGalleryImageCreateInputs {
-  imageId: string;
+export interface EventMediaItemCreateInputs {
   name?: string | null;
   description?: string | null;
   sortOrder?: number | string | null;
+  imageId?: string | null;
+  videoId?: string | null;
+  fileId?: string | null;
 }
 
-export interface EventGalleryImageUpdateInputs {
+export interface EventMediaItemUpdateInputs {
   name?: string | null;
   description?: string | null;
   sortOrder?: number | string | null;

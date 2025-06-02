@@ -3404,16 +3404,21 @@ export interface AttendeePackage extends BaseAttendeePackage {
   updatedAt: string;
 }
 
-export interface BaseEventGalleryImage {
+export interface BaseEventMediaItem {
   id: string;
   name: string | null;
   description: string | null;
-  imageId: string;
-  image: BaseImage;
+  imageId: string | null;
+  image: BaseImage | null;
+  videoId: string | null;
+  video: BaseVideo | null;
+  fileId: string | null;
+  file: BaseFile | null;
   sortOrder: number;
 }
 
-export interface EventGalleryImage extends BaseEventGalleryImage {
+export interface EventMediaItem extends BaseEventMediaItem {
+  allowedPassTypes: BaseEventPassType[];
   createdAt: string;
   updatedAt: string;
 }

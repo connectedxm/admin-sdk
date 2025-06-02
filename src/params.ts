@@ -813,6 +813,7 @@ export interface EventSessionQuestionCreateInputs {
   choices?: string[] | null;
   price?: number | string | null;
   supply?: number | string | null;
+  matchType?: keyof typeof MatchQuestionType;
 }
 
 export interface EventSessionQuestionSearchInputs {
@@ -852,6 +853,7 @@ export interface EventSessionQuestionUpdateInputs {
   featured?: boolean;
   price?: number | string | null;
   supply?: number | string | null;
+  matchType?: keyof typeof MatchQuestionType;
 }
 
 export interface EventSessionSectionCreateInputs {

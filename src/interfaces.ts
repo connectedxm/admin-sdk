@@ -2929,7 +2929,7 @@ export interface BaseThreadMessage {
   id: string;
   body: string;
   accountId: string | null;
-  member: BaseThreadViewer | null;
+  viewer: BaseThreadViewer | null;
   createdAt: string;
   editedAt: string | null;
   sentAt: string;

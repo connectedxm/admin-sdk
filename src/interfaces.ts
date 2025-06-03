@@ -2412,6 +2412,8 @@ export interface BaseStreamInput {
   event: {
     name: string;
   } | null;
+  imageId: string | null;
+  image: BaseImage | null;
 }
 
 export interface StreamInput extends BaseStreamInput {

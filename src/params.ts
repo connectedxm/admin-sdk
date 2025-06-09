@@ -2208,6 +2208,7 @@ export interface EventSponsorshipTranslationUpdateInputs {
 
 export interface PaymentUpdateInputs {
   captured?: boolean;
+  registrationId?: string | null;
 }
 
 export interface CustomModuleCreateInputs {

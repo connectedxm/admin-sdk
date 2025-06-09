@@ -235,6 +235,7 @@ export interface BaseAccount {
   country: string | null;
   internalRefId: string | null;
   accountTiers: BaseTier[];
+  chatConnected: boolean;
   subscriptions: {
     subscriptionProduct: {
       tiers: BaseTier[];

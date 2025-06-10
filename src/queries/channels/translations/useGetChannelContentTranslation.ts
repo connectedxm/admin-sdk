@@ -34,6 +34,7 @@ export const SET_CHANNEL_CONTENT_TRANSLATION_QUERY_DATA = (
 };
 
 interface GetChannelContentTranslationProps extends SingleQueryParams {
+  channelId: string;
   contentId: string;
   locale: string;
 }
@@ -43,6 +44,7 @@ interface GetChannelContentTranslationProps extends SingleQueryParams {
  * @group Channels
  */
 export const GetChannelContentTranslation = async ({
+  channelId,
   contentId,
   locale,
   adminApiParams,
@@ -51,7 +53,7 @@ export const GetChannelContentTranslation = async ({
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/contents/${contentId}/translations/${locale}`
+    `/channels/${channelId}/contents/${contentId}/translations/${locale}`
   );
   return data;
 };
@@ -74,12 +76,18 @@ export const useGetChannelContentTranslation = (
     (params: SingleQueryParams) =>
       GetChannelContentTranslation({
         ...params,
+        channelId,
         contentId,
         locale,
       }),
     {
       ...options,
-      enabled: !!channelId && !!contentId && !!locale && locale !== "en",
+      enabled:
+        !!channelId &&
+        !!contentId &&
+        !!locale &&
+        locale !== "en" &&
+        (options.enabled ?? true),
     },
     "channels"
   );

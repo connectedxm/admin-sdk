@@ -36,6 +36,25 @@ export const UpdatePayment = async ({
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: PAYMENT_QUERY_KEY(paymentId) });
+
+    if (typeof payment.registrationId !== "undefined") {
+      // Invalidate all event attendee payments queries since we don't have eventId/accountId
+      queryClient.invalidateQueries({
+        predicate: (query) => {
+          const queryKey = query.queryKey;
+          // Check if this matches the EVENT_ATTENDEE_PAYMENTS_QUERY_KEY structure:
+          // ["EVENTS", eventId, "ATTENDEES", accountId, "PAYMENTS", ""]
+          return (
+            Array.isArray(queryKey) &&
+            queryKey.length === 6 &&
+            queryKey[0] === "EVENTS" &&
+            queryKey[2] === "ATTENDEES" &&
+            queryKey[4] === "PAYMENTS"
+          );
+        },
+      });
+    }
+
     SET_PAYMENT_QUERY_DATA(queryClient, [paymentId], data);
   }
 

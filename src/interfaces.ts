@@ -667,7 +667,7 @@ export interface ChannelContentTranslation {
   body: string | null;
   imageId: string | null;
   image: BaseImage | null;
-  audioId: string | null;
+  audioId: number | null;
   audio: BaseFile | null;
   videoId: string | null;
   video: BaseVideo | null;

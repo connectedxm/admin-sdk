@@ -400,6 +400,9 @@ export interface ChannelContentTranslationUpdateInputs {
   title?: string | null;
   description?: string | null;
   body?: string | null;
+  imageId?: string | null;
+  videoId?: string | null;
+  audioId?: number | null;
 }
 
 export interface ChannelContentUpdateInputs {

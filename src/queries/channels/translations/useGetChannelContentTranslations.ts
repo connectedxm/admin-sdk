@@ -33,6 +33,7 @@ export const SET_CHANNEL_CONTENT_TRANSLATIONS_QUERY_DATA = (
 };
 
 interface GetChannelContentTranslationsProps extends InfiniteQueryParams {
+  channelId: string;
   contentId: string;
 }
 
@@ -45,20 +46,24 @@ export const GetChannelContentTranslations = async ({
   pageSize,
   orderBy,
   search,
+  channelId,
   contentId,
   adminApiParams,
 }: GetChannelContentTranslationsProps): Promise<
   ConnectedXMResponse<ChannelContentTranslation[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/contents/${contentId}/translations`, {
-    params: {
-      page: pageParam || undefined,
-      pageSize: pageSize || undefined,
-      orderBy: orderBy || undefined,
-      search: search || undefined,
-    },
-  });
+  const { data } = await adminApi.get(
+    `/channels/${channelId}/contents/${contentId}/translations`,
+    {
+      params: {
+        page: pageParam || undefined,
+        pageSize: pageSize || undefined,
+        orderBy: orderBy || undefined,
+        search: search || undefined,
+      },
+    }
+  );
   return data;
 };
 /**
@@ -83,12 +88,13 @@ export const useGetChannelContentTranslations = (
     (params: InfiniteQueryParams) =>
       GetChannelContentTranslations({
         ...params,
+        channelId,
         contentId,
       }),
     params,
     {
       ...options,
-      enabled: !!contentId,
+      enabled: !!channelId && !!contentId && (options.enabled ?? true),
     },
     "channels"
   );

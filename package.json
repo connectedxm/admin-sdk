@@ -1,6 +1,6 @@
 {
   "name": "@connectedxm/admin",
-  "version": "2.4.11",
+  "version": "2.4.12",
   "description": "Admin API javascript SDK",
   "author": "ConnectedXM Inc.",
   "type": "module",
@@ -29,24 +29,24 @@
     "react": "^18 || ^19"
   },
   "devDependencies": {
-    "@babel/parser": "^7.27.1",
-    "@swc/core": "^1.11.24",
-    "@tanstack/react-query": "^5.75.1",
+    "@babel/parser": "^7.27.5",
+    "@swc/core": "^1.12.0",
+    "@tanstack/react-query": "^5.80.7",
     "@types/glob": "^8.1.0",
     "@types/node": "^22.15.3",
-    "@types/react": "^19.1.2",
-    "@typescript-eslint/eslint-plugin": "^8.31.1",
-    "@typescript-eslint/parser": "^8.31.1",
-    "eslint": "^9.26.0",
+    "@types/react": "^19.1.8",
+    "@typescript-eslint/eslint-plugin": "^8.34.0",
+    "@typescript-eslint/parser": "^8.34.0",
+    "eslint": "^9.28.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "glob": "^11.0.2",
     "recast": "^0.23.11",
-    "tsup": "^8.4.0",
+    "tsup": "^8.5.0",
     "typescript": "^5.8.3",
-    "vitest": "^3.1.2"
+    "vitest": "^3.2.3"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.40.1"
+    "@rollup/rollup-linux-x64-gnu": "4.43.0"
   }
 }

@@ -997,6 +997,8 @@ export interface EventTranslation {
   shortDescription: string;
   longDescription: string | null;
   reservationDescription: string | null;
+  imageId: string | null;
+  image: BaseImage | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -1212,6 +1214,8 @@ export interface GroupTranslation {
   locale: string;
   name: string;
   description: string;
+  imageId: string | null;
+  image: BaseImage | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -2097,6 +2101,8 @@ export interface EventSessionTranslation {
   name: string;
   description: string | null;
   longDescription: string | null;
+  imageId: string | null;
+  image: BaseImage | null;
   createdAt: string;
   updatedAt: string;
 }

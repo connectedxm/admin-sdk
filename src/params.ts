@@ -720,6 +720,7 @@ export interface EventSessionTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;
   longDescription?: string | null;
+  imageId?: string | null;
 }
 
 export interface EventSessionUpdateInputs {
@@ -945,6 +946,7 @@ export interface EventTranslationUpdateInputs {
   shortDescription?: string | null;
   longDescription?: string | null;
   reservationDescription?: string | null;
+  imageId?: string | null;
 }
 
 export interface EventUpdateInputs {
@@ -1047,6 +1049,7 @@ export interface OrganizationMembershipUpdateInputs {
 export interface GroupTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;
+  imageId?: string | null;
 }
 
 export interface GroupUpdateInputs {

@@ -1611,6 +1611,7 @@ export interface BaseEventPass {
   status: PurchaseStatus;
   reservationId: string | null;
   reservation: BaseEventRoomTypeReservation | null;
+  matches: BaseMatch[];
   couponId: string | null;
   coupon: BaseCoupon | null;
   packageId: string | null;

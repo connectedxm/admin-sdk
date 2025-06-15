@@ -1291,6 +1291,7 @@ export interface EventQuestionUpdateInputs {
   sortOrder?: number | string | null;
   featured?: boolean;
   matchType?: keyof typeof MatchQuestionType;
+  unique?: boolean;
 }
 
 export interface CustomReportCreateInputs extends ReportFilters {

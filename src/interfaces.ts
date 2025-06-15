@@ -1876,6 +1876,7 @@ export interface BaseRegistrationQuestion {
   featured: boolean;
   choices: BaseRegistrationQuestionChoice[];
   matchType: MatchQuestionType;
+  unique: boolean;
 }
 
 export interface RegistrationQuestion extends BaseRegistrationQuestion {

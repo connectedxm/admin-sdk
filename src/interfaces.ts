@@ -3776,3 +3776,30 @@ export interface Match extends BaseMatch {
   createdAt: string;
   updatedAt: string;
 }
+
+export enum SideEffectTriggerType {
+  NEW_PASS_OF_PASS_TYPE = "NEW_PASS_OF_PASS_TYPE",
+}
+
+export enum SideEffectActionType {
+  JOIN_GROUP = "JOIN_GROUP",
+  ADD_TO_TIER = "ADD_TO_TIER",
+  SUBSCRIBE_TO_CHANNEL = "SUBSCRIBE_TO_CHANNEL",
+}
+
+export interface SideEffect {
+  id: string;
+  organizationId: string;
+  // Triggers
+  newPassOfPassTypeId: string | null;
+  newPassOfPassType: BaseEventPassType | null;
+  // Effects
+  joinGroupId: string | null;
+  joinGroup: BaseGroup | null;
+  addToTierId: string | null;
+  addToTier: BaseEventPassType | null;
+  subscribeToChannelId: string | null;
+  subscribeToChannel: BaseChannel | null;
+  createdAt: string;
+  updatedAt: string;
+}

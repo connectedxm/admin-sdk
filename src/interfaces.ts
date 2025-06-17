@@ -3797,7 +3797,7 @@ export interface SideEffect {
   joinGroupId: string | null;
   joinGroup: BaseGroup | null;
   addToTierId: string | null;
-  addToTier: BaseEventPassType | null;
+  addToTier: BaseTier | null;
   subscribeToChannelId: string | null;
   subscribeToChannel: BaseChannel | null;
   createdAt: string;

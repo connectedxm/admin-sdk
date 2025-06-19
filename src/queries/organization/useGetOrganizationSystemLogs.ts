@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, SystemEventLogStatus } from "@src/interfaces";
 import { SystemEventLog } from "@src/interfaces";
 import {
   InfiniteQueryParams,
@@ -13,10 +13,15 @@ import { QueryClient } from "@tanstack/react-query";
  * @category Keys
  * @group Organization
  */
-export const ORGANIZATION_SYSTEM_LOGS_QUERY_KEY = () => [
-  ...ORGANIZATION_QUERY_KEY(),
-  "SYSTEM_LOGS",
-];
+export const ORGANIZATION_SYSTEM_LOGS_QUERY_KEY = (
+  status?: keyof typeof SystemEventLogStatus,
+  trigger?: string
+) => {
+  const key = [...ORGANIZATION_QUERY_KEY(), "SYSTEM_LOGS"];
+  if (status) key.push(status);
+  if (trigger) key.push(trigger);
+  return key;
+};
 
 /**
  * @category Setters
@@ -34,7 +39,7 @@ export const SET_ORGANIZATION_SYSTEM_LOGS_QUERY_DATA = (
 };
 
 interface GetOrganizationSystemLogsProps extends InfiniteQueryParams {
-  status?: string;
+  status?: keyof typeof SystemEventLogStatus;
   trigger?: string;
 }
 
@@ -71,6 +76,8 @@ export const GetOrganizationSystemLogs = async ({
  * @group Organization
  */
 export const useGetOrganizationSystemLogs = (
+  status?: keyof typeof SystemEventLogStatus,
+  trigger?: string,
   params: Omit<
     GetOrganizationSystemLogsProps,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -82,8 +89,9 @@ export const useGetOrganizationSystemLogs = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetOrganizationSystemLogs>>
   >(
-    ORGANIZATION_SYSTEM_LOGS_QUERY_KEY(),
-    (params: InfiniteQueryParams) => GetOrganizationSystemLogs(params),
+    ORGANIZATION_SYSTEM_LOGS_QUERY_KEY(status, trigger),
+    (params: InfiniteQueryParams) =>
+      GetOrganizationSystemLogs({ ...params, status, trigger }),
     params,
     options,
     "org"

@@ -3803,3 +3803,18 @@ export interface SideEffect {
   createdAt: string;
   updatedAt: string;
 }
+
+export enum SystemEventLogStatus {
+  pending = "pending",
+  completed = "completed",
+}
+
+export interface SystemEventLog {
+  id: string;
+  organizationId: string;
+  status: SystemEventLogStatus;
+  trigger: string;
+  progress: Record<string, boolean>;
+  createdAt: string;
+  updatedAt: string;
+}

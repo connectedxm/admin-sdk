@@ -11,6 +11,8 @@ export * from "./useGetOrganizationMembership";
 export * from "./useGetOrganizationPaymentIntegration";
 export * from "./useGetOrganizationPaymentIntegrationLink";
 export * from "./useGetOrganizationPaymentIntegrations";
+export * from "./useGetOrganizationSystemLog";
+export * from "./useGetOrganizationSystemLogs";
 export * from "./useGetOrganizationTeamMember";
 export * from "./useGetOrganizationTeamMembers";
 export * from "./useGetOrganizationUsers";

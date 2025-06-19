@@ -6,8 +6,8 @@ import {
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
 import {
-  EVENT_ACTIVATIONS_QUERY_KEY,
-  EVENT_ACTIVATION_QUERY_KEY,
+  EVENT_ACTIVATION_COMPLETIONS_QUERY_KEY,
+  EVENT_ACTIVATION_COMPLETION_QUERY_KEY,
 } from "@src/queries";
 
 /**
@@ -40,10 +40,14 @@ export const DeleteEventActivationCompletion = async ({
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_ACTIVATIONS_QUERY_KEY(eventId),
+      queryKey: EVENT_ACTIVATION_COMPLETIONS_QUERY_KEY(eventId, activationId),
     });
     queryClient.removeQueries({
-      queryKey: EVENT_ACTIVATION_QUERY_KEY(eventId, activationId),
+      queryKey: EVENT_ACTIVATION_COMPLETION_QUERY_KEY(
+        eventId,
+        activationId,
+        completionId
+      ),
     });
   }
   return data;

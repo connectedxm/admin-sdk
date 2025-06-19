@@ -376,6 +376,7 @@ export interface BaseEventActivation {
   maxPoints: number;
   startAfter: string | null;
   protected: false;
+  accessLevel: keyof typeof PassTypeAccessLevel;
 }
 
 export interface EventActivation extends BaseEventActivation {

@@ -441,6 +441,7 @@ export interface EventActivationCreateInputs {
   protectionCode?: number | string | null;
   email?: boolean;
   push?: boolean;
+  accessLevel?: keyof typeof PassTypeAccessLevel;
 }
 
 export interface EventActivationTranslationUpdateInputs {
@@ -460,11 +461,17 @@ export interface EventActivationUpdateInputs {
   startAfter?: string | null;
   protected?: boolean;
   protectionCode?: number | string | null;
+  accessLevel?: keyof typeof PassTypeAccessLevel;
 }
 
-export interface EventActivationCompletionCreateInputs {}
+export interface EventActivationCompletionCreateInputs {
+  accountId: string;
+  earnedPoints: number | string | null;
+}
 
-export interface EventActivationCompletionUpdateInputs {}
+export interface EventActivationCompletionUpdateInputs {
+  earnedPoints: number | string | null;
+}
 
 export interface EventAddOnCreateInputs {
   name: string;

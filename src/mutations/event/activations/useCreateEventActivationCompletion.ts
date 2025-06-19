@@ -1,15 +1,12 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { EventActivation, ConnectedXMResponse } from "@src/interfaces";
+import { ActivationCompletion, ConnectedXMResponse } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
 import { EventActivationCompletionCreateInputs } from "@src/params";
-import {
-  EVENT_ACTIVATIONS_QUERY_KEY,
-  SET_EVENT_ACTIVATION_QUERY_DATA,
-} from "@src/queries";
+import { EVENT_ACTIVATION_COMPLETIONS_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
@@ -32,19 +29,17 @@ export const CreateEventActivationCompletion = async ({
   adminApiParams,
   queryClient,
 }: CreateEventActivationCompletionParams): Promise<
-  ConnectedXMResponse<EventActivation>
+  ConnectedXMResponse<ActivationCompletion>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<EventActivation>>(
-    `/events/${eventId}/activations/${activationId}/completions`,
-    completion
-  );
+  const { data } = await connectedXM.post<
+    ConnectedXMResponse<ActivationCompletion>
+  >(`/events/${eventId}/activations/${activationId}/completions`, completion);
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_ACTIVATIONS_QUERY_KEY(eventId),
+      queryKey: EVENT_ACTIVATION_COMPLETIONS_QUERY_KEY(eventId, activationId),
     });
-    SET_EVENT_ACTIVATION_QUERY_DATA(queryClient, [eventId, data.data.id], data);
   }
   return data;
 };

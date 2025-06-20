@@ -1185,6 +1185,7 @@ export interface OrganizationUpdateInputs {
   zip?: string | null;
   primaryColor?: string | null;
   secondaryColor?: string | null;
+  appName?: string | null;
   logoId?: string | null;
   darkLogoId?: string | null;
   iconId?: string | null;

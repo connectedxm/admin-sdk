@@ -1506,7 +1506,6 @@ export interface Organization extends BaseOrganization {
   zip: string | null;
   primaryColor: string | null;
   secondaryColor: string | null;
-
   facebook: string | null;
   twitter: string | null;
   instagram: string | null;
@@ -1520,6 +1519,7 @@ export interface Organization extends BaseOrganization {
   createdAt: string;
   updatedAt: string;
   integrations: Integration[];
+  appName: string | null;
   appIconId: string | null;
   appIcon: BaseImage | null;
   appAdaptiveIconId: string | null;

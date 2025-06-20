@@ -340,7 +340,7 @@ export interface ChannelContentCreateInputs {
   imageUrl?: string | null;
   imageId?: string | null;
   squareImageId?: string | null;
-  audioId?: string | null;
+  audioId?: number | null;
   videoId?: string | null;
   externalUrl?: string | null;
   appleUrl?: string | null;

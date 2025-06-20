@@ -339,7 +339,8 @@ export interface ChannelContentCreateInputs {
   body?: string | null;
   imageUrl?: string | null;
   imageId?: string | null;
-  audioId?: string | null;
+  squareImageId?: string | null;
+  audioId?: number | null;
   videoId?: string | null;
   externalUrl?: string | null;
   appleUrl?: string | null;
@@ -417,6 +418,7 @@ export interface ChannelContentUpdateInputs {
   body?: string | null;
   imageUrl?: string | null;
   imageId?: string | null;
+  squareImageId?: string | null;
   audioId?: number | null;
   videoId?: string | null;
   externalUrl?: string | null;
@@ -573,6 +575,7 @@ export interface EventCreateInputs {
   reservationDescription?: string | null;
   externalUrl?: string | null;
   imageId?: string | null;
+  squareImageId?: string | null;
   backgroundImageId?: string | null;
   venue?: string | null;
   address1?: string | null;
@@ -972,6 +975,7 @@ export interface EventUpdateInputs {
   eventEnd?: string | null;
   externalUrl?: string | null;
   imageId?: string | null;
+  squareImageId?: string | null;
   backgroundImageId?: string | null;
   venue?: string | null;
   address1?: string | null;
@@ -1018,6 +1022,7 @@ export interface GroupCreateInputs {
   active?: boolean;
   access?: keyof typeof GroupAccess | null;
   imageId?: string | null;
+  squareImageId?: string | null;
   externalUrl?: string | null;
 }
 
@@ -1069,6 +1074,7 @@ export interface GroupUpdateInputs {
   active?: boolean;
   access?: keyof typeof GroupAccess | null;
   imageId?: string | null;
+  squareImageId?: string | null;
   externalUrl?: string | null;
 }
 

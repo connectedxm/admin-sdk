@@ -613,32 +613,38 @@ export interface BenefitTranslation {
 }
 
 export interface BaseChannelContent {
-  channelId: string;
   id: string;
-  slug: string;
   featured: boolean;
-  status: ContentStatus;
-  published: string | null;
-  visible: boolean;
+  slug: string;
   title: string | null;
   description: string | null;
+  imageId: string | null;
+  image: BaseImage | null;
+  squareImageId: string | null;
+  squareImage: BaseImage | null;
+  imageUrl: string | null;
+  audioId: string | null;
+  audio: BaseFile | null;
+  videoId: string | null;
+  video: BaseVideo | null;
+  channelId: string;
+  channel: BaseChannel | null;
   duration: string | null;
+  published: string | null;
+  visible: boolean;
   email: boolean;
   push: boolean;
 }
 
 export interface ChannelContent extends BaseChannelContent {
   body: string | null;
-  imageUrl: string | null;
-  audioUrl: string | null;
-  videoUrl: string | null;
+  editor: string | null;
   externalUrl: string | null;
   appleUrl: string | null;
   spotifyUrl: string | null;
   googleUrl: string | null;
   youtubeUrl: string | null;
-  authors: BaseAccount[];
-  mentions: BaseAccount[];
+  guests: BaseChannelContentGuest[];
   publishSchedule: BaseSchedule | null;
   createdAt: string;
   updatedAt: string;
@@ -953,6 +959,8 @@ export interface BaseEvent {
   zip: string | null;
   imageId: string | null;
   image: BaseImage | null;
+  squareImageId: string | null;
+  squareImage: BaseImage | null;
   registration: boolean;
   registrationStart: string | null;
   registrationEnd: string | null;
@@ -1194,6 +1202,8 @@ export interface BaseGroup {
   featured: boolean;
   imageId: string | null;
   image: BaseImage | null;
+  squareImageId: string | null;
+  squareImage: BaseImage | null;
   _count: {
     members: number;
   };

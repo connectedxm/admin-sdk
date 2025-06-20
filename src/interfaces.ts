@@ -623,7 +623,7 @@ export interface BaseChannelContent {
   squareImageId: string | null;
   squareImage: BaseImage | null;
   imageUrl: string | null;
-  audioId: string | null;
+  audioId: number | null;
   audio: BaseFile | null;
   videoId: string | null;
   video: BaseVideo | null;

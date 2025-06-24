@@ -1516,6 +1516,7 @@ export interface Organization extends BaseOrganization {
   zip: string | null;
   primaryColor: string | null;
   secondaryColor: string | null;
+  clientTheme: string | null;
   facebook: string | null;
   twitter: string | null;
   instagram: string | null;

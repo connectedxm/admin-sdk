@@ -1191,6 +1191,7 @@ export interface OrganizationUpdateInputs {
   zip?: string | null;
   primaryColor?: string | null;
   secondaryColor?: string | null;
+  clientTheme?: string | null;
   appName?: string | null;
   logoId?: string | null;
   darkLogoId?: string | null;

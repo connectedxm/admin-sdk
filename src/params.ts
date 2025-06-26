@@ -676,14 +676,12 @@ export interface EventPageUpdateInputs {
 export interface EventPassCreateInputs {
   status?: PurchaseStatus | null;
   location?: string | null;
-  usedAt?: string | null;
   ticketId?: string | null;
 }
 
 export interface EventPassUpdateInputs {
   status?: PurchaseStatus | null;
   location?: string | null;
-  usedAt?: string | null;
   ticketId?: string | null;
   couponId?: string | null;
 }

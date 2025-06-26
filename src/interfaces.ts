@@ -1556,7 +1556,7 @@ export interface Organization extends BaseOrganization {
   appleAuthEnabled: boolean;
   facebookAuthEnabled: boolean;
   googleAuthEnabled: boolean;
-  oAuth: boolean;
+  oAuth: { id: string }[];
   maxFileGbs: number | null;
   maxImageCount: number | null;
   maxVideoMins: number | null;

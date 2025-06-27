@@ -3791,12 +3791,14 @@ export interface Match extends BaseMatch {
 
 export enum SideEffectTriggerType {
   NEW_PASS_OF_PASS_TYPE = "NEW_PASS_OF_PASS_TYPE",
+  CHECKED_IN_EVENT_PASS = "CHECKED_IN_EVENT_PASS",
 }
 
 export enum SideEffectActionType {
   JOIN_GROUP = "JOIN_GROUP",
   ADD_TO_TIER = "ADD_TO_TIER",
   SUBSCRIBE_TO_CHANNEL = "SUBSCRIBE_TO_CHANNEL",
+  SEND_WEBHOOK = "SEND_WEBHOOK",
 }
 
 export interface SideEffect {
@@ -3805,6 +3807,8 @@ export interface SideEffect {
   // Triggers
   newPassOfPassTypeId: string | null;
   newPassOfPassType: BaseEventPassType | null;
+  checkedInPassEventId: string | null;
+  checkedInPassEvent: BaseEvent | null;
   // Effects
   joinGroupId: string | null;
   joinGroup: BaseGroup | null;
@@ -3812,6 +3816,8 @@ export interface SideEffect {
   addToTier: BaseTier | null;
   subscribeToChannelId: string | null;
   subscribeToChannel: BaseChannel | null;
+  sendWebhookId: string | null;
+  sendWebhook: BaseWebhook | null;
   createdAt: string;
   updatedAt: string;
 }

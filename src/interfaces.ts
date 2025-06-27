@@ -1614,7 +1614,7 @@ export interface BaseEventPass {
     };
   };
   alternateId: number;
-  ticketId: string | null;
+  ticketId: string;
   ticket: BaseEventPassType;
   location: string | null;
   usedAt: string | null;

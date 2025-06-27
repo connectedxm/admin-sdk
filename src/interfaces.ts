@@ -1614,8 +1614,8 @@ export interface BaseEventPass {
     };
   };
   alternateId: number;
-  ticketId: string | null;
-  ticket: BaseEventPassType | null;
+  ticketId: string;
+  ticket: BaseEventPassType;
   location: string | null;
   usedAt: string | null;
   transfer: { id: string; email: string; createdAt: string };
@@ -2296,6 +2296,7 @@ export interface BaseEventSessionQuestion {
   choices: BaseEventSessionQuestionChoice[];
   price: number | null;
   supply: number | null;
+  matchType: MatchQuestionType;
 }
 
 export interface EventSessionQuestion extends BaseEventSessionQuestion {
@@ -3776,6 +3777,17 @@ export interface Round extends BaseRound {
   updatedAt: string;
 }
 
+export interface BaseMatchPass {
+  id: string;
+  alternateId: number;
+  ticket: BaseEventPassType;
+  attendee: BaseEventAttendee;
+  responses?: BaseRegistrationQuestionResponse[];
+  accesses?: {
+    responses: BaseEventSessionQuestionResponse[];
+  }[];
+}
+
 export interface BaseMatch {
   id: string;
   round: BaseRound;
@@ -3784,7 +3796,7 @@ export interface BaseMatch {
 }
 
 export interface Match extends BaseMatch {
-  passes: BaseEventPass[];
+  passes: BaseMatchPass[];
   createdAt: string;
   updatedAt: string;
 }

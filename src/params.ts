@@ -2270,3 +2270,12 @@ export interface EventAttendeePackageUpdateInputs {
   packageId?: string;
   status?: PurchaseStatus;
 }
+export interface WebhookCreateInputs {
+  name?: string | null;
+  url: string;
+  secret: string;
+}
+
+export interface WebhookUpdateInputs {
+  name?: string | null;
+}

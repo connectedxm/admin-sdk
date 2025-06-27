@@ -3830,3 +3830,15 @@ export interface SystemEventLog {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface BaseWebhook {
+  id: string;
+  url: string;
+  name: string;
+  verified: boolean;
+}
+
+export interface Webhook extends BaseWebhook {
+  createdAt: string;
+  updatedAt: string;
+}

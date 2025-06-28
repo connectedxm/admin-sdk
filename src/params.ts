@@ -290,7 +290,7 @@ export interface ChannelCreateInputs {
   description?: string | null;
   priority?: number | string | null;
   visible?: boolean;
-  private?: boolean | null;
+  private?: boolean;
   externalUrl?: string | null;
   appleUrl?: string | null;
   spotifyUrl?: string | null;
@@ -319,7 +319,7 @@ export interface ChannelUpdateInputs {
   description?: string | null;
   priority?: number | string | null;
   visible?: boolean;
-  private?: boolean | null;
+  private?: boolean;
   externalUrl?: string | null;
   appleUrl?: string | null;
   spotifyUrl?: string | null;

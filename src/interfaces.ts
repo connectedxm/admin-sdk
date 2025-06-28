@@ -690,6 +690,7 @@ export interface BaseChannel {
   description: string | null;
   priority: number;
   visible: boolean;
+  private: boolean;
   imageId: string;
   image: BaseImage;
   bannerId: string | null;

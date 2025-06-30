@@ -637,7 +637,6 @@ export interface BaseChannelContent {
 
 export interface ChannelContent extends BaseChannelContent {
   body: string | null;
-  editor: string | null;
   externalUrl: string | null;
   appleUrl: string | null;
   spotifyUrl: string | null;

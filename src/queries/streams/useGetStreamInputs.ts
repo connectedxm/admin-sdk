@@ -87,6 +87,6 @@ export const useGetStreamInputs = (
       GetStreamInputs({ ...params, eventId, sessionId }),
     params,
     options,
-    "events"
+    "streams"
   );
 };

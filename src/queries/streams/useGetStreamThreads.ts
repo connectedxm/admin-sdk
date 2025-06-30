@@ -86,6 +86,6 @@ export const useGetStreamThreads = (
       ...options,
       enabled: !!streamId && (options.enabled ?? true),
     },
-    ["events", "threads"]
+    ["streams", "threads"]
   );
 };

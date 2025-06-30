@@ -64,7 +64,7 @@ export const useCreateStreamInputOutput = (
     CreateStreamInputOutputParams,
     Awaited<ReturnType<typeof CreateStreamInputOutput>>
   >(CreateStreamInputOutput, options, {
-    domain: "events",
+    domain: "streams",
     type: "create",
   });
 };

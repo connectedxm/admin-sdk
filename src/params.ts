@@ -1056,6 +1056,7 @@ export interface OrganizationMembershipUpdateInputs {
   invoices: Omit<ModulePermissions, "superEnabled" | "enabled">;
   announcements: Omit<ModulePermissions, "superEnabled" | "enabled">;
   surveys: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  streams: Omit<ModulePermissions, "superEnabled" | "enabled">;
 }
 
 export interface GroupTranslationUpdateInputs {

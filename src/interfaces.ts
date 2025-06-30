@@ -631,7 +631,6 @@ export interface BaseChannelContent {
   channel: BaseChannel | null;
   duration: string | null;
   published: string | null;
-  visible: boolean;
   email: boolean;
   push: boolean;
 }

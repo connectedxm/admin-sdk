@@ -22,7 +22,6 @@ export interface UpdateChannelContentPublishScheduleParams
     date: string;
     email: boolean;
     push: boolean;
-    visible: boolean;
   };
 }
 

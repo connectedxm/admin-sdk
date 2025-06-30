@@ -334,7 +334,6 @@ export interface ChannelContentCreateInputs {
   published?: string | null;
   channelId?: string | null;
   featured?: boolean;
-  visible?: boolean;
   slug?: string | null;
   description?: string | null;
   duration?: string | null;
@@ -412,7 +411,6 @@ export interface ChannelContentUpdateInputs {
   published?: string | null;
   channelId?: string | null;
   featured?: boolean;
-  visible?: boolean;
   title?: string | null;
   slug?: string | null;
   description?: string | null;

@@ -83,6 +83,6 @@ export const useGetStreamVideos = (
       ...options,
       enabled: !!streamId && (options.enabled ?? true),
     },
-    ["events", "storage"]
+    ["streams", "storage"]
   );
 };

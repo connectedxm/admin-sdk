@@ -31,6 +31,7 @@ export enum OrganizationModuleType {
   advertisements = "advertisements",
   subscriptions = "subscriptions",
   invoices = "invoices",
+  streams = "streams",
 }
 
 export interface BaseOrganizationModule {
@@ -1488,6 +1489,7 @@ export interface OrganizationMembership {
   announcements: ModulePermissions;
   bookings: ModulePermissions;
   surveys: ModulePermissions;
+  streams: ModulePermissions;
 }
 
 export interface BaseOrganization {

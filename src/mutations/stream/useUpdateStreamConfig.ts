@@ -59,7 +59,7 @@ export const useUpdateStreamConfig = (
     UpdateStreamConfigParams,
     Awaited<ReturnType<typeof UpdateStreamConfig>>
   >(UpdateStreamConfig, options, {
-    domain: "events",
+    domain: "streams",
     type: "update",
   });
 };

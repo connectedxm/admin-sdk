@@ -85,6 +85,6 @@ export const useGetStreamInputOutputs = (
       ...options,
       enabled: !!streamId && (options.enabled ?? true),
     },
-    "events"
+    "streams"
   );
 };

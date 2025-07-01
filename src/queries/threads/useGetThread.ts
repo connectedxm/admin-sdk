@@ -14,7 +14,7 @@ import { THREADS_QUERY_KEY } from "./useGetThreads";
  * @thread Threads
  */
 export const THREAD_QUERY_KEY = (threadId: string) => [
-  THREADS_QUERY_KEY(),
+  ...THREADS_QUERY_KEY(),
   threadId,
 ];
 

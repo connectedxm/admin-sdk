@@ -1206,6 +1206,7 @@ export interface OrganizationUpdateInputs {
   discord?: string | null;
   defaultAuthAction?: keyof typeof DefaultAuthAction;
   authLayout?: keyof typeof AuthLayout;
+  emailAuthEnabled?: boolean;
   requirePhone?: boolean;
   requireTitle?: boolean;
   requireCompany?: boolean;

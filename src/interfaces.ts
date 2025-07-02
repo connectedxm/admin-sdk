@@ -1554,6 +1554,7 @@ export interface Organization extends BaseOrganization {
   appBundleIdentifier: string | null;
   expoProjectId: string | null;
   expoSlug: string | null;
+  emailAuthEnabled: boolean;
   appleAuthEnabled: boolean;
   facebookAuthEnabled: boolean;
   googleAuthEnabled: boolean;

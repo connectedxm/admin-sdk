@@ -11,7 +11,7 @@ import { THREAD_QUERY_KEY } from "./useGetThread";
  * @category Keys
  * @thread Thread Viewers
  */
-export const THREAD_VIEWERS_QUERY_KEY = (threadId: string) => {
+export const THREAD_MEMBERS_QUERY_KEY = (threadId: string) => {
   const key = [...THREAD_QUERY_KEY(threadId), "VIEWERS"];
   return key;
 };
@@ -61,7 +61,7 @@ export const useGetThreadMembers = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetThreadMembers>>
   >(
-    THREAD_VIEWERS_QUERY_KEY(threadId),
+    THREAD_MEMBERS_QUERY_KEY(threadId),
     (params: InfiniteQueryParams) => GetThreadMembers({ ...params, threadId }),
     params,
     {

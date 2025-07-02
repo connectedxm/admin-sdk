@@ -6,7 +6,7 @@ import {
 } from "../useConnectedMutation";
 import { ConnectedXMResponse, ThreadMember } from "@src/interfaces";
 import { ThreadMemberUpdateInputs } from "@src/params";
-import { THREAD_VIEWERS_QUERY_KEY } from "@src/queries/threads/useGetThreadMembers";
+import { THREAD_MEMBERS_QUERY_KEY } from "@src/queries/threads/useGetThreadMembers";
 import { THREAD_QUERY_KEY } from "@src/queries/threads/useGetThread";
 
 /**
@@ -37,7 +37,7 @@ export const UpdateThreadMember = async ({
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: THREAD_VIEWERS_QUERY_KEY(threadId),
+      queryKey: THREAD_MEMBERS_QUERY_KEY(threadId),
     });
     queryClient.invalidateQueries({
       queryKey: THREAD_QUERY_KEY(threadId),

@@ -1206,6 +1206,7 @@ export interface OrganizationUpdateInputs {
   discord?: string | null;
   defaultAuthAction?: keyof typeof DefaultAuthAction;
   authLayout?: keyof typeof AuthLayout;
+  emailAuthEnabled?: boolean;
   requirePhone?: boolean;
   requireTitle?: boolean;
   requireCompany?: boolean;
@@ -1565,6 +1566,12 @@ export interface ThreadMessageCreateInputs {
 export interface ThreadMessageUpdateInputs {
   body: string;
   entities: any[];
+}
+
+export interface ThreadMemberCreateInputs {}
+
+export interface ThreadMemberUpdateInputs {
+  blocked?: boolean;
 }
 
 export interface ThreadCircleCreateInputs {

@@ -17,4 +17,5 @@ export * from "./useDeleteThreadMessageVideo";
 export * from "./useUpdateThread";
 export * from "./useUpdateThreadCircle";
 export * from "./useUpdateThreadCircleAccount";
+export * from "./useUpdateThreadMember";
 export * from "./useUpdateThreadMessage";

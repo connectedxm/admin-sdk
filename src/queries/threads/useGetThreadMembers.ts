@@ -1,4 +1,4 @@
-import { ConnectedXMResponse, ThreadViewer } from "@src/interfaces";
+import { ConnectedXMResponse, ThreadMember } from "@src/interfaces";
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
   InfiniteQueryOptions,
@@ -11,12 +11,12 @@ import { THREAD_QUERY_KEY } from "./useGetThread";
  * @category Keys
  * @thread Thread Viewers
  */
-export const THREAD_VIEWERS_QUERY_KEY = (threadId: string) => {
+export const THREAD_MEMBERS_QUERY_KEY = (threadId: string) => {
   const key = [...THREAD_QUERY_KEY(threadId), "VIEWERS"];
   return key;
 };
 
-interface GetThreadViewersProps extends InfiniteQueryParams {
+interface GetThreadMembersProps extends InfiniteQueryParams {
   threadId: string;
 }
 
@@ -24,16 +24,16 @@ interface GetThreadViewersProps extends InfiniteQueryParams {
  * @category Queries
  * @thread Thread Viewers
  */
-export const GetThreadViewers = async ({
+export const GetThreadMembers = async ({
   threadId,
   pageParam,
   pageSize,
   orderBy,
   search,
   adminApiParams,
-}: GetThreadViewersProps): Promise<ConnectedXMResponse<ThreadViewer[]>> => {
+}: GetThreadMembersProps): Promise<ConnectedXMResponse<ThreadMember[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/threads/${threadId}/viewers`, {
+  const { data } = await adminApi.get(`/threads/${threadId}/members`, {
     params: {
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
@@ -48,21 +48,21 @@ export const GetThreadViewers = async ({
  * @category Hooks
  * @thread Thread Viewers
  */
-export const useGetThreadViewers = (
+export const useGetThreadMembers = (
   threadId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetThreadViewers>>
+    Awaited<ReturnType<typeof GetThreadMembers>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetThreadViewers>>
+    Awaited<ReturnType<typeof GetThreadMembers>>
   >(
-    THREAD_VIEWERS_QUERY_KEY(threadId),
-    (params: InfiniteQueryParams) => GetThreadViewers({ ...params, threadId }),
+    THREAD_MEMBERS_QUERY_KEY(threadId),
+    (params: InfiniteQueryParams) => GetThreadMembers({ ...params, threadId }),
     params,
     {
       ...options,

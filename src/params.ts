@@ -1568,6 +1568,12 @@ export interface ThreadMessageUpdateInputs {
   entities: any[];
 }
 
+export interface ThreadMemberCreateInputs {}
+
+export interface ThreadMemberUpdateInputs {
+  blocked?: boolean;
+}
+
 export interface ThreadCircleCreateInputs {
   name: string;
 }

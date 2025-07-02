@@ -2959,7 +2959,7 @@ export interface BaseThreadMessage {
   id: string;
   body: string;
   accountId: string | null;
-  viewer: BaseThreadViewer | null;
+  viewer: BaseThreadMember | null;
   createdAt: string;
   editedAt: string | null;
   sentAt: string;
@@ -2989,15 +2989,16 @@ export interface BaseThreadMessageEntity {
 
 export interface ThreadMessageEntity extends BaseThreadMessageEntity {}
 
-export interface BaseThreadViewer {
+export interface BaseThreadMember {
   id: string;
   accountId: string;
   lastReadAt: string | null;
   notifications: boolean;
   account: BaseAccount;
+  blocked: boolean;
 }
 
-export interface ThreadViewer extends BaseThreadViewer {
+export interface ThreadMember extends BaseThreadMember {
   createdAt: string;
   updatedAt: string;
 }

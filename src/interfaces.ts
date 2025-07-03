@@ -341,11 +341,11 @@ export interface BaseTier {
   iconName: string;
   color: string | null;
   internal: boolean;
+  imageId: string | null;
+  image: BaseImage | null;
 }
 
 export interface Tier extends BaseTier {
-  imageId: string;
-  image: BaseImage;
   description: string | null;
   createdAt: string;
   updatedAt: string;

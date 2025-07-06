@@ -826,7 +826,6 @@ export interface EventSessionQuestionCreateInputs {
   choices?: string[] | null;
   price?: number | string | null;
   supply?: number | string | null;
-  matchType?: keyof typeof MatchQuestionType;
 }
 
 export interface EventSessionQuestionSearchInputs {
@@ -866,7 +865,6 @@ export interface EventSessionQuestionUpdateInputs {
   featured?: boolean;
   price?: number | string | null;
   supply?: number | string | null;
-  matchType?: keyof typeof MatchQuestionType;
 }
 
 export interface EventSessionSectionCreateInputs {
@@ -1269,7 +1267,6 @@ export interface EventQuestionCreateInputs {
   sortOrder?: number | string | null;
   featured?: boolean;
   choices?: string[] | null;
-  matchType?: keyof typeof MatchQuestionType;
 }
 
 export interface EventQuestionSearchInputs {
@@ -1307,7 +1304,6 @@ export interface EventQuestionUpdateInputs {
   validationMessage?: string | null;
   sortOrder?: number | string | null;
   featured?: boolean;
-  matchType?: keyof typeof MatchQuestionType;
   unique?: boolean;
 }
 

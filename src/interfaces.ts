@@ -1890,7 +1890,6 @@ export interface BaseRegistrationQuestion {
   sortOrder: number;
   featured: boolean;
   choices: BaseRegistrationQuestionChoice[];
-  matchType: MatchQuestionType;
   unique: boolean;
 }
 
@@ -2298,7 +2297,6 @@ export interface BaseEventSessionQuestion {
   choices: BaseEventSessionQuestionChoice[];
   price: number | null;
   supply: number | null;
-  matchType: MatchQuestionType;
 }
 
 export interface EventSessionQuestion extends BaseEventSessionQuestion {
@@ -3754,7 +3752,6 @@ export interface CustomModuleTranslation {
 }
 
 export enum MatchQuestionType {
-  exclude = "exclude",
   include = "include",
   split = "split",
 }

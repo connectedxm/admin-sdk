@@ -3776,6 +3776,41 @@ export interface BaseRound {
 
 export interface Round extends BaseRound {
   matches: { id: string; number: number; title: string | null }[];
+  eventQuestions: BaseRoundEventQuestion[];
+  sessionQuestions: BaseRoundSessionQuestion[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseRoundEventQuestion {
+  id: string;
+  organizationId: string;
+  eventId: string;
+  roundId: string;
+  questionId: string;
+  type: MatchQuestionType;
+  question: BaseRegistrationQuestion;
+}
+
+export interface RoundEventQuestion extends BaseRoundEventQuestion {
+  round: BaseRound;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseRoundSessionQuestion {
+  id: string;
+  organizationId: string;
+  eventId: string;
+  sessionId: string;
+  roundId: string;
+  questionId: string;
+  type: MatchQuestionType;
+  question: BaseEventSessionQuestion;
+}
+
+export interface RoundSessionQuestion extends BaseRoundSessionQuestion {
+  round: BaseRound;
   createdAt: string;
   updatedAt: string;
 }

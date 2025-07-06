@@ -2287,3 +2287,11 @@ export interface WebhookCreateInputs {
 export interface WebhookUpdateInputs {
   name?: string | null;
 }
+
+export interface RoundEventQuestionUpsertInputs {
+  type: keyof typeof MatchQuestionType;
+}
+
+export interface RoundSessionQuestionUpsertInputs {
+  type: keyof typeof MatchQuestionType;
+}

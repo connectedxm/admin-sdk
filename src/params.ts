@@ -2284,10 +2284,10 @@ export interface WebhookUpdateInputs {
   name?: string | null;
 }
 
-export interface RoundEventQuestionUpsertInputs {
+export interface RoundEventQuestionUpdataInputs {
   type: keyof typeof MatchQuestionType;
 }
 
-export interface RoundSessionQuestionUpsertInputs {
+export interface RoundSessionQuestionUpdateInputs {
   type: keyof typeof MatchQuestionType;
 }

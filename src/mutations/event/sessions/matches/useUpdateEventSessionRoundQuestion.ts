@@ -1,38 +1,36 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse, RoundSessionQuestion } from "@src/interfaces";
-import { RoundSessionQuestionUpsertInputs } from "@src/params";
+import { RoundSessionQuestionUpdateInputs } from "@src/params";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "../../../useConnectedMutation";
-import { EVENT_SESSION_ROUND_QUESTIONS_QUERY_KEY } from "@src/queries/events/sessions/matches/useGetEventSessionRoundQuestions";
 
 /**
  * @category Params
  * @group Events
  */
-export interface UpsertEventSessionRoundQuestionParams extends MutationParams {
+export interface UpdateEventSessionRoundQuestionParams extends MutationParams {
   eventId: string;
   sessionId: string;
   roundId: string;
   questionId: string;
-  roundSessionQuestion: RoundSessionQuestionUpsertInputs;
+  roundSessionQuestion: RoundSessionQuestionUpdateInputs;
 }
 
 /**
  * @category Methods
  * @group Events
  */
-export const UpsertEventSessionRoundQuestion = async ({
+export const UpdateEventSessionRoundQuestion = async ({
   eventId,
   sessionId,
   roundId,
   questionId,
   roundSessionQuestion,
   adminApiParams,
-  queryClient,
-}: UpsertEventSessionRoundQuestionParams): Promise<
+}: UpdateEventSessionRoundQuestionParams): Promise<
   ConnectedXMResponse<RoundSessionQuestion>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -41,16 +39,6 @@ export const UpsertEventSessionRoundQuestion = async ({
     roundSessionQuestion
   );
 
-  if (queryClient && data.status === "ok") {
-    queryClient.invalidateQueries({
-      queryKey: EVENT_SESSION_ROUND_QUESTIONS_QUERY_KEY(
-        eventId,
-        sessionId,
-        roundId
-      ),
-    });
-  }
-
   return data;
 };
 
@@ -58,12 +46,12 @@ export const UpsertEventSessionRoundQuestion = async ({
  * @category Mutations
  * @group Events
  */
-export const useUpsertEventSessionRoundQuestion = (
+export const useUpdateEventSessionRoundQuestion = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof UpsertEventSessionRoundQuestion>>,
+      Awaited<ReturnType<typeof UpdateEventSessionRoundQuestion>>,
       Omit<
-        UpsertEventSessionRoundQuestionParams,
+        UpdateEventSessionRoundQuestionParams,
         "queryClient" | "adminApiParams"
       >
     >,
@@ -71,9 +59,9 @@ export const useUpsertEventSessionRoundQuestion = (
   > = {}
 ) => {
   return useConnectedMutation<
-    UpsertEventSessionRoundQuestionParams,
-    Awaited<ReturnType<typeof UpsertEventSessionRoundQuestion>>
-  >(UpsertEventSessionRoundQuestion, options, {
+    UpdateEventSessionRoundQuestionParams,
+    Awaited<ReturnType<typeof UpdateEventSessionRoundQuestion>>
+  >(UpdateEventSessionRoundQuestion, options, {
     domain: "events",
     type: "update",
   });

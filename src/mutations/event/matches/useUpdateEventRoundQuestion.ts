@@ -1,36 +1,34 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse, RoundEventQuestion } from "@src/interfaces";
-import { RoundEventQuestionUpsertInputs } from "@src/params";
+import { RoundEventQuestionUpdataInputs } from "@src/params";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "../../useConnectedMutation";
-import { EVENT_ROUND_QUESTIONS_QUERY_KEY } from "@src/queries/events/matches/useGetEventRoundQuestions";
 
 /**
  * @category Params
  * @group Events
  */
-export interface UpsertEventRoundQuestionParams extends MutationParams {
+export interface UpdateEventRoundQuestionParams extends MutationParams {
   eventId: string;
   roundId: string;
   questionId: string;
-  roundEventQuestion: RoundEventQuestionUpsertInputs;
+  roundEventQuestion: RoundEventQuestionUpdataInputs;
 }
 
 /**
  * @category Methods
  * @group Events
  */
-export const UpsertEventRoundQuestion = async ({
+export const UpdateEventRoundQuestion = async ({
   eventId,
   roundId,
   questionId,
   roundEventQuestion,
   adminApiParams,
-  queryClient,
-}: UpsertEventRoundQuestionParams): Promise<
+}: UpdateEventRoundQuestionParams): Promise<
   ConnectedXMResponse<RoundEventQuestion>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -39,12 +37,6 @@ export const UpsertEventRoundQuestion = async ({
     roundEventQuestion
   );
 
-  if (queryClient && data.status === "ok") {
-    queryClient.invalidateQueries({
-      queryKey: EVENT_ROUND_QUESTIONS_QUERY_KEY(eventId, roundId),
-    });
-  }
-
   return data;
 };
 
@@ -52,19 +44,19 @@ export const UpsertEventRoundQuestion = async ({
  * @category Mutations
  * @group Events
  */
-export const useUpsertEventRoundQuestion = (
+export const useUpdateEventRoundQuestion = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof UpsertEventRoundQuestion>>,
-      Omit<UpsertEventRoundQuestionParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof UpdateEventRoundQuestion>>,
+      Omit<UpdateEventRoundQuestionParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    UpsertEventRoundQuestionParams,
-    Awaited<ReturnType<typeof UpsertEventRoundQuestion>>
-  >(UpsertEventRoundQuestion, options, {
+    UpdateEventRoundQuestionParams,
+    Awaited<ReturnType<typeof UpdateEventRoundQuestion>>
+  >(UpdateEventRoundQuestion, options, {
     domain: "events",
     type: "update",
   });

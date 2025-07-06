@@ -13,8 +13,19 @@ import { EVENT_PASS_QUERY_KEY } from "./useGetEventPass";
  */
 export const EVENT_PASS_MATCHES_QUERY_KEY = (
   eventId: string,
-  passId: string
-) => [...EVENT_PASS_QUERY_KEY(eventId, passId), "MATCHES"];
+  passId: string,
+  sessionId?: string,
+  roundId?: string
+) => {
+  const keys = [...EVENT_PASS_QUERY_KEY(eventId, passId), "MATCHES"];
+  if (sessionId) {
+    keys.push(sessionId);
+  }
+  if (roundId) {
+    keys.push(roundId);
+  }
+  return keys;
+};
 
 /**
  * @category Setters
@@ -31,6 +42,8 @@ export const SET_EVENT_PASS_MATCHES_QUERY_DATA = (
 interface GetEventPassMatchesProps extends SingleQueryParams {
   eventId: string;
   passId: string;
+  sessionId?: string;
+  roundId?: string;
 }
 
 /**
@@ -40,11 +53,14 @@ interface GetEventPassMatchesProps extends SingleQueryParams {
 export const GetEventPassMatches = async ({
   eventId,
   passId,
+  sessionId,
+  roundId,
   adminApiParams,
 }: GetEventPassMatchesProps): Promise<ConnectedXMResponse<Match[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/events/${eventId}/passes/${passId}/matches`
+    `/events/${eventId}/passes/${passId}/matches`,
+    { params: { roundId, sessionId } }
   );
   return data;
 };
@@ -55,14 +71,18 @@ export const GetEventPassMatches = async ({
 export const useGetEventPassMatches = (
   eventId: string = "",
   passId: string = "",
+  sessionId?: string,
+  roundId?: string,
   options: SingleQueryOptions<ReturnType<typeof GetEventPassMatches>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEventPassMatches>>(
-    EVENT_PASS_MATCHES_QUERY_KEY(eventId, passId),
+    EVENT_PASS_MATCHES_QUERY_KEY(eventId, passId, roundId),
     (params: SingleQueryParams) =>
       GetEventPassMatches({
         eventId,
         passId,
+        sessionId,
+        roundId,
         ...params,
       }),
     {

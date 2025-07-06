@@ -1,8 +1,8 @@
 import {
-  SingleQueryOptions,
-  SingleQueryParams,
-  useConnectedSingleQuery,
-} from "../../useConnectedSingleQuery";
+  InfiniteQueryOptions,
+  InfiniteQueryParams,
+  useConnectedInfiniteQuery,
+} from "../../useConnectedInfiniteQuery";
 import { ConnectedXMResponse, RoundEventQuestion } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
@@ -29,7 +29,7 @@ export const SET_EVENT_ROUND_QUESTIONS_QUERY_DATA = (
   client.setQueryData(EVENT_ROUND_QUESTIONS_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventRoundQuestionsProps extends SingleQueryParams {
+interface GetEventRoundQuestionsProps extends InfiniteQueryParams {
   eventId: string;
   roundId: string;
 }
@@ -41,13 +41,25 @@ interface GetEventRoundQuestionsProps extends SingleQueryParams {
 export const GetEventRoundQuestions = async ({
   eventId,
   roundId,
+  pageParam,
+  pageSize,
+  orderBy,
+  search,
   adminApiParams,
 }: GetEventRoundQuestionsProps): Promise<
   ConnectedXMResponse<RoundEventQuestion[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/events/${eventId}/rounds/${roundId}/questions`
+    `/events/${eventId}/rounds/${roundId}/questions`,
+    {
+      params: {
+        page: pageParam || undefined,
+        pageSize: pageSize || undefined,
+        orderBy: orderBy || undefined,
+        search: search || undefined,
+      },
+    }
   );
   return data;
 };
@@ -59,15 +71,28 @@ export const GetEventRoundQuestions = async ({
 export const useGetEventRoundQuestions = (
   eventId: string = "",
   roundId: string = "",
-  options: SingleQueryOptions<ReturnType<typeof GetEventRoundQuestions>> = {}
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<
+    Awaited<ReturnType<typeof GetEventRoundQuestions>>
+  > = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetEventRoundQuestions>>(
+  return useConnectedInfiniteQuery<
+    Awaited<ReturnType<typeof GetEventRoundQuestions>>
+  >(
     EVENT_ROUND_QUESTIONS_QUERY_KEY(eventId, roundId),
-    (params: SingleQueryParams) =>
-      GetEventRoundQuestions({ eventId, roundId, ...params }),
+    (params: InfiniteQueryParams) =>
+      GetEventRoundQuestions({
+        ...params,
+        eventId,
+        roundId,
+      }),
+    params,
     {
       ...options,
-      enabled: !!eventId && !!roundId && (options?.enabled ?? true),
+      enabled: !!eventId && !!roundId && (options.enabled ?? true),
     },
     "events"
   );

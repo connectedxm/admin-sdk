@@ -6,3 +6,4 @@ export * from "./useDeleteEventSessionRound";
 export * from "./useRemoveEventSessionMatchPass";
 export * from "./useStartEventSessionRoundMatchmaking";
 export * from "./useUpdateEventSessionMatch";
+export * from "./useUpdateEventSessionRoundQuestion";

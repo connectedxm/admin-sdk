@@ -1890,7 +1890,6 @@ export interface BaseRegistrationQuestion {
   sortOrder: number;
   featured: boolean;
   choices: BaseRegistrationQuestionChoice[];
-  matchType: MatchQuestionType;
   unique: boolean;
 }
 
@@ -2298,7 +2297,6 @@ export interface BaseEventSessionQuestion {
   choices: BaseEventSessionQuestionChoice[];
   price: number | null;
   supply: number | null;
-  matchType: MatchQuestionType;
 }
 
 export interface EventSessionQuestion extends BaseEventSessionQuestion {
@@ -3780,6 +3778,16 @@ export interface Round extends BaseRound {
   updatedAt: string;
 }
 
+export interface RoundEventQuestion extends RegistrationQuestion {
+  matchType: "include" | "split" | "exclude";
+  roundQuestionId?: string;
+}
+
+export interface RoundSessionQuestion extends EventSessionQuestion {
+  matchType: "include" | "split" | "exclude";
+  roundQuestionId?: string;
+}
+
 export interface BaseMatchPass {
   id: string;
   alternateId: number;
@@ -3796,6 +3804,7 @@ export interface BaseMatch {
   round: BaseRound;
   number: number;
   title: string | null;
+  description: string | null;
 }
 
 export interface Match extends BaseMatch {

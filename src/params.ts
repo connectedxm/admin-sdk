@@ -1616,6 +1616,7 @@ export interface PassTypeCreateInputs {
   sortOrder?: number | string | null;
   enableCoupons?: boolean;
   overrideStartDate?: string | null;
+  requireCoupon?: boolean;
 }
 
 export interface PassTypeUpdateInputs {
@@ -1639,6 +1640,7 @@ export interface PassTypeUpdateInputs {
   sortOrder?: number | string | null;
   enableCoupons?: boolean;
   overrideStartDate?: string | null;
+  requireCoupon?: boolean;
 }
 
 export interface TierCreateInputs {

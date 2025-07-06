@@ -2671,7 +2671,7 @@ export interface BaseEventPassType {
   minQuantityPerSale: number;
   maxQuantityPerSale: number;
   emailDomains: string | null;
-
+  requireCoupon: boolean;
   createdAt: string;
   updatedAt: string;
 }

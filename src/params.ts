@@ -2263,6 +2263,7 @@ export interface CustomModuleTranslationUpdateInputs {
 
 export interface MatchUpdateInputs {
   title?: string | null;
+  description?: string | null;
 }
 
 export interface EventAttendeePackageCreateInputs {

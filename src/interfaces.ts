@@ -3804,6 +3804,7 @@ export interface BaseMatch {
   round: BaseRound;
   number: number;
   title: string | null;
+  description: string | null;
 }
 
 export interface Match extends BaseMatch {

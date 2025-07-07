@@ -36,10 +36,12 @@ import {
   ModerationStatus,
   ActivityEntityType,
   ThreadCircleAccountRole,
+  AccountAccess,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
   accountType: keyof typeof AccountType;
+  accountAccess: keyof typeof AccountAccess;
   email: string;
   username?: string | null;
   featured?: boolean;
@@ -69,6 +71,7 @@ export interface AccountCreateInputs {
 
 export interface AccountUpdateInputs {
   accountType?: keyof typeof AccountType | null;
+  accountAccess?: keyof typeof AccountAccess | null;
   featured?: boolean;
   firstName?: string | null;
   lastName?: string | null;

@@ -78,6 +78,13 @@ export enum AccountType {
   team = "team",
 }
 
+export enum AccountAccess {
+  FULL_ACCESS = "FULL_ACCESS",
+  DELISTED = "DELISTED",
+  RESTRICTED = "RESTRICTED",
+  BANNED = "BANNED",
+}
+
 export enum PushDeviceAppType {
   EVENTXM = "EVENTXM",
   COMMUNITYXM = "COMMUNITYXM",
@@ -223,6 +230,7 @@ export interface BaseAccount {
   organizationId: string;
   id: string;
   accountType: AccountType;
+  accountAccess: AccountAccess;
   firstName: string | null;
   lastName: string | null;
   email: string;

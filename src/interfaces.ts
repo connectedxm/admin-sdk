@@ -380,6 +380,7 @@ export interface ActivationCompletion extends BaseActivationCompletion {
 export interface BaseEventActivation {
   id: string;
   slug: string;
+  visible: boolean;
   name: string;
   shortDescription: string;
   maxPoints: number;
@@ -3879,4 +3880,11 @@ export interface BaseWebhook {
 export interface Webhook extends BaseWebhook {
   createdAt: string;
   updatedAt: string;
+}
+
+export interface VideoCaption {
+  language: string;
+  label: string;
+  generated: boolean;
+  status: "inprogress" | "ready" | "error";
 }

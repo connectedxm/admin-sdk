@@ -435,6 +435,7 @@ export interface ChannelContentUpdateInputs {
 export interface EventActivationCreateInputs {
   name: string;
   shortDescription: string;
+  visible?: boolean;
   imageId?: string | null;
   managerId?: string | null;
   slug?: string | null;
@@ -459,6 +460,7 @@ export interface EventActivationUpdateInputs {
   managerId?: string | null;
   name?: string | null;
   slug?: string | null;
+  visible?: boolean;
   shortDescription?: string | null;
   longDescription?: string | null;
   maxPoints?: number | string | null;

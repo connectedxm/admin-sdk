@@ -41,7 +41,6 @@ import {
 
 export interface AccountCreateInputs {
   accountType: keyof typeof AccountType;
-  accountAccess: keyof typeof AccountAccess;
   email: string;
   username?: string | null;
   featured?: boolean;

@@ -157,6 +157,7 @@ type ActivityEntityInputs =
 export interface ActivityCreateInputs {
   message: string;
   entities?: ActivityEntityInputs[] | null;
+  featured?: boolean;
   imageId?: string | null;
   videoId?: string | null;
   eventId?: string | null;
@@ -169,6 +170,7 @@ export interface ActivityUpdateInputs {
   message?: string | null;
   entities?: ActivityEntityInputs[] | null;
   moderation?: keyof typeof ModerationStatus | null;
+  featured?: boolean;
   imageId?: string | null;
   videoId?: string | null;
   createdAt?: string | null;
@@ -681,6 +683,7 @@ export interface EventPassCreateInputs {
   status?: PurchaseStatus | null;
   location?: string | null;
   ticketId?: string | null;
+  usedAt?: string | null;
 }
 
 export interface EventPassUpdateInputs {
@@ -688,6 +691,7 @@ export interface EventPassUpdateInputs {
   location?: string | null;
   ticketId?: string | null;
   couponId?: string | null;
+  usedAt?: string | null;
 }
 
 export interface EventAttendeeUpdateInputs {}

@@ -13,11 +13,15 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @group Activities
  */
 export const ACTIVITIES_QUERY_KEY = (
-  moderation?: keyof typeof ModerationStatus
+  moderation?: keyof typeof ModerationStatus,
+  featured?: true
 ) => {
   const key = ["ACTIVITIES"];
   if (moderation) {
     key.push(moderation);
+  }
+  if (featured) {
+    key.push("FEATURED");
   }
   return key;
 };
@@ -36,6 +40,7 @@ export const SET_ACTIVITIES_QUERY_DATA = (
 
 interface GetActivitiesProps extends InfiniteQueryParams {
   moderation?: keyof typeof ModerationStatus;
+  featured?: true;
 }
 
 /**
@@ -44,6 +49,7 @@ interface GetActivitiesProps extends InfiniteQueryParams {
  */
 export const GetActivities = async ({
   moderation,
+  featured,
   pageParam,
   pageSize,
   orderBy,
@@ -58,6 +64,7 @@ export const GetActivities = async ({
       orderBy: orderBy || undefined,
       search: search || undefined,
       moderation: moderation || undefined,
+      featured: featured || undefined,
     },
   });
   return data;
@@ -68,6 +75,7 @@ export const GetActivities = async ({
  */
 export const useGetActivities = (
   moderation?: keyof typeof ModerationStatus,
+  featured?: true,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -76,7 +84,8 @@ export const useGetActivities = (
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetActivities>>>(
     ACTIVITIES_QUERY_KEY(moderation),
-    (params: InfiniteQueryParams) => GetActivities({ ...params, moderation }),
+    (params: InfiniteQueryParams) =>
+      GetActivities({ ...params, moderation, featured }),
     params,
     options,
     "activities"

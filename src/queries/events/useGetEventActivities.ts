@@ -14,10 +14,16 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @category Keys
  * @event Events
  */
-export const EVENT_ACTIVITIES_QUERY_KEY = (eventId: string) => [
-  ...EVENT_QUERY_KEY(eventId),
-  "ACTIVITIES",
-];
+export const EVENT_ACTIVITIES_QUERY_KEY = (
+  eventId: string,
+  featured?: true
+) => {
+  const key = [...EVENT_QUERY_KEY(eventId), "ACTIVITIES"];
+  if (featured) {
+    key.push("FEATURED");
+  }
+  return key;
+};
 
 /**
  * @category Setters
@@ -33,6 +39,7 @@ export const SET_EVENT_ACTIVITIES_QUERY_DATA = (
 
 interface GetEventActivitiesProps extends InfiniteQueryParams {
   eventId: string;
+  featured?: true;
 }
 
 /**
@@ -41,6 +48,7 @@ interface GetEventActivitiesProps extends InfiniteQueryParams {
  */
 export const GetEventActivities = async ({
   eventId,
+  featured,
   pageParam,
   pageSize,
   orderBy,
@@ -54,6 +62,7 @@ export const GetEventActivities = async ({
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
+      featured: featured || undefined,
     },
   });
   return data;
@@ -65,6 +74,7 @@ export const GetEventActivities = async ({
  */
 export const useGetEventActivities = (
   eventId: string = "",
+  featured?: true,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -76,10 +86,11 @@ export const useGetEventActivities = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventActivities>>
   >(
-    EVENT_ACTIVITIES_QUERY_KEY(eventId),
+    EVENT_ACTIVITIES_QUERY_KEY(eventId, featured),
     (params: InfiniteQueryParams) =>
       GetEventActivities({
         eventId,
+        featured,
         ...params,
       }),
     params,

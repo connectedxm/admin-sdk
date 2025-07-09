@@ -17,8 +17,8 @@ import { QueryClient } from "@tanstack/react-query";
 export const ACCOUNTS_QUERY_KEY = (accountType?: "account" | "team", verified?: boolean, online?: boolean) => {
   const keys = ["ACCOUNTS"];
   if (accountType) keys.push(accountType);
-  if (verified) keys.push("VERIFIED");
-  if (online) keys.push("ONLINE");
+  if (typeof verified !== "undefined") keys.push(verified ? "VERIFIED" : "UNVERIFIED");
+  if (typeof online !== "undefined") keys.push(online ? "ONLINE" : "OFFLINE");
   return keys;
 };
 

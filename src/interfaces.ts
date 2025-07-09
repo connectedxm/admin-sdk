@@ -421,6 +421,7 @@ export enum ModerationStatus {
 export interface BaseActivity {
   id: string;
   message: string;
+  featured: boolean;
   giphyId: string | null;
   imageId: string | null;
   image: BaseImage | null;

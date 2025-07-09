@@ -83,7 +83,7 @@ export const useGetActivities = (
   options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetActivities>>> = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetActivities>>>(
-    ACTIVITIES_QUERY_KEY(moderation),
+    ACTIVITIES_QUERY_KEY(moderation, featured),
     (params: InfiniteQueryParams) =>
       GetActivities({ ...params, moderation, featured }),
     params,

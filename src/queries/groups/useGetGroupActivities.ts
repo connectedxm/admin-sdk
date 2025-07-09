@@ -14,10 +14,16 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @category Keys
  * @group Groups
  */
-export const GROUP_ACTIVITIES_QUERY_KEY = (groupId: string) => [
-  ...GROUP_QUERY_KEY(groupId),
-  "ACTIVITIES",
-];
+export const GROUP_ACTIVITIES_QUERY_KEY = (
+  groupId: string,
+  featured?: true
+) => {
+  const key = [...GROUP_QUERY_KEY(groupId), "ACTIVITIES"];
+  if (featured) {
+    key.push("FEATURED");
+  }
+  return key;
+};
 
 /**
  * @category Setters
@@ -33,6 +39,7 @@ export const SET_GROUP_ACTIVITIES_QUERY_DATA = (
 
 interface GetGroupActivitiesProps extends InfiniteQueryParams {
   groupId: string;
+  featured?: true;
 }
 
 /**
@@ -41,6 +48,7 @@ interface GetGroupActivitiesProps extends InfiniteQueryParams {
  */
 export const GetGroupActivities = async ({
   groupId,
+  featured,
   pageParam,
   pageSize,
   orderBy,
@@ -54,6 +62,7 @@ export const GetGroupActivities = async ({
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
+      featured: featured || undefined,
     },
   });
   return data;
@@ -64,6 +73,7 @@ export const GetGroupActivities = async ({
  */
 export const useGetGroupActivities = (
   groupId: string = "",
+  featured?: true,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -75,10 +85,11 @@ export const useGetGroupActivities = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetGroupActivities>>
   >(
-    GROUP_ACTIVITIES_QUERY_KEY(groupId),
+    GROUP_ACTIVITIES_QUERY_KEY(groupId, featured),
     (params: InfiniteQueryParams) =>
       GetGroupActivities({
         groupId,
+        featured,
         ...params,
       }),
     params,

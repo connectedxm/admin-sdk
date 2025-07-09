@@ -14,9 +14,11 @@ import { QueryClient } from "@tanstack/react-query";
  * @category Keys
  * @group Accounts
  */
-export const ACCOUNTS_QUERY_KEY = (accountType?: "account" | "team") => {
+export const ACCOUNTS_QUERY_KEY = (accountType?: "account" | "team", verified?: boolean, online?: boolean) => {
   const keys = ["ACCOUNTS"];
   if (accountType) keys.push(accountType);
+  if (typeof verified !== "undefined") keys.push(verified ? "VERIFIED" : "UNVERIFIED");
+  if (typeof online !== "undefined") keys.push(online ? "ONLINE" : "OFFLINE");
   return keys;
 };
 
@@ -34,6 +36,8 @@ export const SET_ACCOUNTS_QUERY_DATA = (
 
 interface GetAccountsProps extends InfiniteQueryParams {
   accountType?: "account" | "team";
+  verified?: boolean;
+  online?: boolean;
 }
 
 /**
@@ -47,6 +51,8 @@ export const GetAccounts = async ({
   accountType,
   search,
   adminApiParams,
+  verified,
+  online,
 }: GetAccountsProps): Promise<ConnectedXMResponse<Account[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/accounts`, {
@@ -56,6 +62,8 @@ export const GetAccounts = async ({
       orderBy: orderBy || undefined,
       accountType: accountType || undefined,
       search: search || undefined,
+      verified: verified || undefined,
+      online: online || undefined,
     },
   });
   return data;
@@ -66,6 +74,8 @@ export const GetAccounts = async ({
  */
 export const useGetAccounts = (
   accountType?: "account" | "team",
+  verified?: boolean,
+  online?: boolean,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -73,8 +83,8 @@ export const useGetAccounts = (
   options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetAccounts>>> = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetAccounts>>>(
-    ACCOUNTS_QUERY_KEY(accountType),
-    (params: InfiniteQueryParams) => GetAccounts({ ...params, accountType }),
+    ACCOUNTS_QUERY_KEY(accountType, verified, online),
+    (params: InfiniteQueryParams) => GetAccounts({ ...params, accountType, verified, online }),
     params,
     options,
     "accounts"

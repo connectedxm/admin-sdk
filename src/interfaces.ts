@@ -2099,6 +2099,7 @@ export interface BaseEventSession {
   image: BaseImage | null;
   startTime: string;
   endTime: string;
+  registrationEnd?: string;
   tracks: BaseEventTrack[];
   nonSession: boolean;
   visible: boolean;

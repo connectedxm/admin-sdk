@@ -714,6 +714,7 @@ export interface EventSessionCreateInputs {
   name: string;
   startTime: string;
   endTime: string;
+  registrationEnd?: string | null;
   slug?: string | null;
   description?: string | null;
   longDescription?: string | null;
@@ -744,6 +745,7 @@ export interface EventSessionUpdateInputs {
   name?: string | null;
   startTime?: string | null;
   endTime?: string | null;
+  registrationEnd?: string | null;
   slug?: string | null;
   description?: string | null;
   longDescription?: string | null;

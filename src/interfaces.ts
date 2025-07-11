@@ -2447,6 +2447,7 @@ export interface BaseStreamInput {
   name: string;
   cloudflareId: string | null;
   connected: boolean;
+  public: boolean;
   eventId: string | null;
   event: {
     name: string;

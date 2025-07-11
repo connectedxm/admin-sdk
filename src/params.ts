@@ -1402,6 +1402,7 @@ export interface StreamInputCreateInputs {
   sessionId?: string | null;
   details?: object | null;
   imageId?: string | null;
+  public?: boolean;
 }
 
 export interface StreamInputUpdateInputs {
@@ -1412,6 +1413,7 @@ export interface StreamInputUpdateInputs {
   details?: object | null;
   connected?: boolean;
   imageId?: string | null;
+  public?: boolean;
 }
 
 export interface StreamInputOutputCreateInputs {

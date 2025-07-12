@@ -1,11 +1,13 @@
 import { ConnectedXMResponse, ThreadMessage } from "@interfaces";
 import {
   GetBaseInfiniteQueryKeys,
-  InfiniteQueryOptions,
-  InfiniteQueryParams,
   setFirstPageData,
-  useConnectedInfiniteQuery,
 } from "@src/queries/useConnectedInfiniteQuery";
+import {
+  CursorQueryOptions,
+  CursorQueryParams,
+  useConnectedCursorQuery,
+} from "@src/queries/useConnectedCursorQuery";
 import { QueryClient, QueryKey } from "@tanstack/react-query";
 import { THREAD_QUERY_KEY } from "./useGetThread";
 import { GetAdminAPI } from "@src/AdminAPI";
@@ -22,7 +24,7 @@ export const SET_THREAD_MESSAGES_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof THREAD_MESSAGES_QUERY_KEY>,
   response: Awaited<ReturnType<typeof GetThreadMessages>>,
-  baseKeys: Parameters<typeof GetBaseInfiniteQueryKeys> = ["en"]
+  baseKeys: Parameters<typeof GetBaseInfiniteQueryKeys> = [""]
 ) => {
   client.setQueryData(
     [
@@ -33,13 +35,13 @@ export const SET_THREAD_MESSAGES_QUERY_DATA = (
   );
 };
 
-export interface GetThreadMessagesProps extends InfiniteQueryParams {
+export interface GetThreadMessagesProps extends CursorQueryParams {
   threadId: string;
 }
 
 export const GetThreadMessages = async ({
   threadId,
-  pageParam,
+  cursor,
   pageSize,
   orderBy,
   search,
@@ -49,7 +51,7 @@ export const GetThreadMessages = async ({
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/threads/${threadId}/messages`, {
     params: {
-      page: pageParam || undefined,
+      cursor: cursor || undefined,
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
@@ -68,18 +70,16 @@ export const GetThreadMessages = async ({
 export const useGetThreadMessages = (
   threadId: string = "",
   params: Omit<
-    InfiniteQueryParams,
-    "pageParam" | "queryClient" | "adminApiParams"
+    CursorQueryParams,
+    "cursor" | "queryClient" | "adminApiParams"
   > = {},
-  options: InfiniteQueryOptions<
+  options: CursorQueryOptions<
     Awaited<ReturnType<typeof GetThreadMessages>>
   > = {}
 ) => {
   const { authenticated } = useConnectedXM();
 
-  return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetThreadMessages>>
-  >(
+  return useConnectedCursorQuery<Awaited<ReturnType<typeof GetThreadMessages>>>(
     THREAD_MESSAGES_QUERY_KEY(threadId),
     (params: Omit<GetThreadMessagesProps, "threadId">) =>
       GetThreadMessages({ ...params, threadId }),

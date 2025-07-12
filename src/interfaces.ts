@@ -3,6 +3,7 @@ export interface ConnectedXMResponse<TData> {
   message: string;
   count?: number;
   data: TData;
+  cursor?: string | number | null;
 }
 
 export enum OrganizationActionType {

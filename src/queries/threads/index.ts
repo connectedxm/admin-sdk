@@ -12,4 +12,5 @@ export * from "./useGetThreadMessageImages";
 export * from "./useGetThreadMessageReactions";
 export * from "./useGetThreadMessageVideos";
 export * from "./useGetThreadMessages";
+export * from "./useGetThreadMessagesPoll";
 export * from "./useGetThreads";

@@ -28,6 +28,8 @@ export * from "./supportTickets";
 export * from "./surveys";
 export * from "./threads";
 export * from "./tiers";
-export * from "./useConnectedInfiniteQuery";
-export * from "./useConnectedSingleQuery";
 export * from "./videos";
+
+export * from "./useConnectedInfiniteQuery";
+export * from "./useConnectedCursorQuery";
+export * from "./useConnectedSingleQuery";

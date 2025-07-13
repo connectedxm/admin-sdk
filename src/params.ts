@@ -516,6 +516,8 @@ export interface EventBadgeFieldUpdateInputs {
   defaultValue?: string | null;
   transformation?: keyof typeof BadgeFieldTransformation | null;
   sortOrder?: number | string | null;
+  iconData?: string | null;
+  sessionId?: string | null;
 }
 
 export interface EventCouponCreateInputs {

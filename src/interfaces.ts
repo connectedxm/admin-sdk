@@ -885,6 +885,8 @@ export enum BadgeFieldType {
   tier = "tier",
   ticket = "ticket",
   pass = "pass",
+  session = "session",
+  session_question = "session_question",
 }
 
 export enum BadgeFieldTransformation {
@@ -901,6 +903,8 @@ export interface BaseEventOnSiteBadgeField {
   maxLength: number | null;
   defaultValue: string | null;
   transformation: BadgeFieldTransformation | null;
+  iconData: string | null;
+  sessionId: string | null;
   sortOrder: number;
   createdAt: string;
   updatedAt: string;

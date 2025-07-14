@@ -527,6 +527,7 @@ export interface BaseAnnouncement {
   email: boolean;
   push: boolean;
   sms: boolean;
+  includePasses: boolean;
   accountId: string | null;
   creatorId: string | null;
   eventId: string | null;

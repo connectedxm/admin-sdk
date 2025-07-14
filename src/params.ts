@@ -221,6 +221,7 @@ export interface AnnouncementCreateInputs {
   email?: boolean;
   push?: boolean;
   filters?: EventAnnouncementFilters | null;
+  includePasses?: boolean;
 }
 
 export interface AnnouncementUpdateInputs {
@@ -230,6 +231,7 @@ export interface AnnouncementUpdateInputs {
   email?: boolean;
   push?: boolean;
   filters?: EventAnnouncementFilters | null;
+  includePasses?: boolean;
 }
 
 export interface AnnouncementTranslationUpdateInputs {

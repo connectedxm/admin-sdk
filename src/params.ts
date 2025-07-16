@@ -727,6 +727,7 @@ export interface EventSessionCreateInputs {
   visible?: boolean;
   sortOrder?: number | string | null;
   registrationEnabled?: boolean;
+  allowQuickRegister?: boolean;
   limit?: number | string | null;
   price?: number | string | null;
   locationId?: string | null;
@@ -758,6 +759,7 @@ export interface EventSessionUpdateInputs {
   visible?: boolean;
   sortOrder?: number | string | null;
   registrationEnabled?: boolean;
+  allowQuickRegister?: boolean;
   limit?: number | string | null;
   price?: number | string | null;
   locationId?: string | null;

@@ -1013,6 +1013,7 @@ export interface Event extends BaseEvent {
   groupOnly: boolean;
   backgroundImageId: string | null;
   backgroundImage: BaseImage | null;
+  activityFeedEnabled: boolean;
 }
 
 export interface EventTranslation {

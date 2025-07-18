@@ -615,6 +615,7 @@ export interface EventCreateInputs {
   passLimitPerAccount?: string | number | null;
   roundName?: string | null;
   matchName?: string | null;
+  activityFeedEnabled?: boolean;
 }
 
 export interface EventEmailUpdateInputs {
@@ -1018,6 +1019,7 @@ export interface EventUpdateInputs {
   passLimitPerAccount?: string | number | null;
   roundName?: string | null;
   matchName?: string | null;
+  activityFeedEnabled?: boolean;
 }
 
 export interface FileUpdateInputs {

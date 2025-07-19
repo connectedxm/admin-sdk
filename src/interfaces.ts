@@ -2456,10 +2456,9 @@ export interface BaseStreamInput {
   cloudflareId: string | null;
   connected: boolean;
   public: boolean;
+  sessionId: string | null;
   eventId: string | null;
-  event: {
-    name: string;
-  } | null;
+  groupId: string | null;
   imageId: string | null;
   image: BaseImage | null;
 }
@@ -2467,8 +2466,8 @@ export interface BaseStreamInput {
 export interface StreamInput extends BaseStreamInput {
   sortOrder: number;
   event: BaseEvent | null;
-  sessionId: string | null;
   session: BaseEventSession | null;
+  group: BaseGroup | null;
   details?: StreamInputDetails;
   threads: BaseThread[];
   createdAt: string;

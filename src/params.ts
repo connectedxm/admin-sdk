@@ -1408,6 +1408,7 @@ export interface StreamInputCreateInputs {
   sortOrder?: number | string | null;
   eventId?: string | null;
   sessionId?: string | null;
+  groupId?: string | null;
   details?: object | null;
   imageId?: string | null;
   public?: boolean;
@@ -1418,6 +1419,7 @@ export interface StreamInputUpdateInputs {
   sortOrder?: number | string | null;
   eventId?: string | null;
   sessionId?: string | null;
+  groupId?: string | null;
   details?: object | null;
   connected?: boolean;
   imageId?: string | null;

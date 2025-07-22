@@ -37,6 +37,7 @@ import {
   ActivityEntityType,
   ThreadCircleAccountRole,
   AccountAccess,
+  SessionAccess,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -726,6 +727,7 @@ export interface EventSessionCreateInputs {
   nonSession?: boolean;
   imageId?: string | null;
   visible?: boolean;
+  access?: keyof typeof SessionAccess;
   sortOrder?: number | string | null;
   registrationEnabled?: boolean;
   allowQuickRegister?: boolean;
@@ -758,6 +760,7 @@ export interface EventSessionUpdateInputs {
   nonSession?: boolean;
   imageId?: string | null;
   visible?: boolean;
+  access?: keyof typeof SessionAccess;
   sortOrder?: number | string | null;
   registrationEnabled?: boolean;
   allowQuickRegister?: boolean;

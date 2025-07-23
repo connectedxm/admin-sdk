@@ -12,10 +12,10 @@ import { QueryClient } from "@tanstack/react-query";
  * @category Keys
  * @group Support Tickets
  */
-export const SUPPORT_TICKETS_QUERY_KEY = (status?: string, type?: string) => [
+export const SUPPORT_TICKETS_QUERY_KEY = (state?: string, type?: string) => [
   "SUPPORT_TICKETS",
   type,
-  status,
+  state,
 ];
 
 /**
@@ -31,7 +31,7 @@ export const SET_SUPPORT_TICKETS_QUERY_DATA = (
 };
 
 interface GetSupportTicketsProps extends InfiniteQueryParams {
-  status: string;
+  state: string;
   type: string;
 }
 
@@ -41,7 +41,7 @@ interface GetSupportTicketsProps extends InfiniteQueryParams {
  */
 export const GetSupportTickets = async ({
   type,
-  status,
+  state,
   pageParam,
   pageSize,
   orderBy,
@@ -51,7 +51,7 @@ export const GetSupportTickets = async ({
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/supportTickets`, {
     params: {
-      status: status || undefined,
+      state: state || undefined,
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
@@ -67,7 +67,7 @@ export const GetSupportTickets = async ({
  */
 export const useGetSupportTickets = (
   type: string,
-  status: string = "",
+  state: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -79,11 +79,11 @@ export const useGetSupportTickets = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetSupportTickets>>
   >(
-    SUPPORT_TICKETS_QUERY_KEY(status, type),
+    SUPPORT_TICKETS_QUERY_KEY(state, type),
     (params: InfiniteQueryParams) =>
       GetSupportTickets({
         type,
-        status,
+        state,
         ...params,
       }),
     params,

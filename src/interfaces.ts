@@ -376,13 +376,19 @@ export interface BaseActivationCompletion {
   eventActivationId: string;
   eventActivation: BaseEventActivation;
   earnedPoints: number;
-  accountId: string;
+  passId: string;
 }
 
 export interface ActivationCompletion extends BaseActivationCompletion {
-  account: BaseAccount;
+  pass: BaseEventPass;
   createdAt: string;
   updatedAt: string;
+}
+
+export enum EventActivationType {
+  public = "public",
+  private = "private",
+  protected = "protected",
 }
 
 export interface BaseEventActivation {
@@ -393,15 +399,13 @@ export interface BaseEventActivation {
   shortDescription: string;
   maxPoints: number;
   startAfter: string | null;
-  protected: false;
+  type: keyof typeof EventActivationType;
   accessLevel: keyof typeof PassTypeAccessLevel;
 }
 
 export interface EventActivation extends BaseEventActivation {
   eventId: string;
   event: BaseEvent;
-  managerId: string | null;
-  manager: BaseAccount | null;
   imageId: string | null;
   image: BaseImage | null;
   protectionCode: number | null;

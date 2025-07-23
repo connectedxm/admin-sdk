@@ -7,6 +7,7 @@ export * from "./useAddGroupModerator";
 export * from "./useAddGroupSponsor";
 export * from "./useCancelGroupInvitation";
 export * from "./useCreateGroup";
+export * from "./useCreateGroupInvitations";
 export * from "./useDeleteGroup";
 export * from "./useDeleteGroupInvitation";
 export * from "./useDeleteGroupRequest";

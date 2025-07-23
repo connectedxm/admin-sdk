@@ -1738,6 +1738,7 @@ export enum PaymentIntegrationType {
   stripe = "stripe",
   paypal = "paypal",
   braintree = "braintree",
+  authorizenet = "authorizenet",
   manual = "manual",
 }
 
@@ -1771,6 +1772,7 @@ export interface PaymentIntegration {
   stripe?: any | null;
   paypal?: any | null;
   braintree?: any | null;
+  authorizenet?: any | null;
   manual?: any | null;
   createdAt: string;
   updatedAt: string;
@@ -3061,6 +3063,12 @@ export interface PaypalActivationFormParams {
 }
 
 export interface BraintreeActivationFormParams {
+  clientId: string;
+  clientPublicKey: string;
+  clientSecret: string;
+}
+
+export interface AuthorizeNetActivationFormParams {
   clientId: string;
   clientPublicKey: string;
   clientSecret: string;

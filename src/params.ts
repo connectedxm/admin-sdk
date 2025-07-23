@@ -444,7 +444,6 @@ export interface EventActivationCreateInputs {
   shortDescription: string;
   visible?: boolean;
   imageId?: string | null;
-  managerId?: string | null;
   slug?: string | null;
   longDescription?: string | null;
   maxPoints?: number | string | null;
@@ -464,7 +463,6 @@ export interface EventActivationTranslationUpdateInputs {
 
 export interface EventActivationUpdateInputs {
   imageId?: string | null;
-  managerId?: string | null;
   name?: string | null;
   slug?: string | null;
   visible?: boolean;

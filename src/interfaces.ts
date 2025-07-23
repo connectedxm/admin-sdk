@@ -169,8 +169,8 @@ export enum SupportTicketType {
 
 export enum SupportTicketState {
   new = "new",
-  inProgress = "inProgress",
-  onHold = "onHold",
+  awaitingAdmin = "awaitingAdmin",
+  awaitingClient = "awaitingClient",
   resolved = "resolved",
   spam = "spam",
 }

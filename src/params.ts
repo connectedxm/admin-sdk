@@ -39,6 +39,7 @@ import {
   AccountAccess,
   SessionAccess,
   SupportTicketState,
+  EventActivationType,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -443,12 +444,11 @@ export interface EventActivationCreateInputs {
   shortDescription: string;
   visible?: boolean;
   imageId?: string | null;
-  managerId?: string | null;
   slug?: string | null;
   longDescription?: string | null;
   maxPoints?: number | string | null;
   startAfter?: string | null;
-  protected?: boolean;
+  type?: keyof typeof EventActivationType;
   protectionCode?: number | string | null;
   email?: boolean;
   push?: boolean;
@@ -463,7 +463,6 @@ export interface EventActivationTranslationUpdateInputs {
 
 export interface EventActivationUpdateInputs {
   imageId?: string | null;
-  managerId?: string | null;
   name?: string | null;
   slug?: string | null;
   visible?: boolean;
@@ -471,13 +470,13 @@ export interface EventActivationUpdateInputs {
   longDescription?: string | null;
   maxPoints?: number | string | null;
   startAfter?: string | null;
-  protected?: boolean;
+  type?: keyof typeof EventActivationType;
   protectionCode?: number | string | null;
   accessLevel?: keyof typeof PassTypeAccessLevel;
 }
 
 export interface EventActivationCompletionCreateInputs {
-  accountId: string;
+  passId: string;
   earnedPoints: number | string | null;
 }
 

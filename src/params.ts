@@ -38,6 +38,7 @@ import {
   ThreadCircleAccountRole,
   AccountAccess,
   SessionAccess,
+  SupportTicketState,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -1500,7 +1501,7 @@ export interface SupportTicketUpdateInputs {
   request?: string;
   accountId?: string | null;
   eventId?: string | null;
-  status?: "new" | "inProgress" | "complete";
+  state?: SupportTicketState;
   notes?: BaseSupportTicketNote[];
 }
 

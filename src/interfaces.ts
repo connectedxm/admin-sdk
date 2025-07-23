@@ -163,12 +163,14 @@ export enum ImageType {
 
 export enum SupportTicketType {
   support = "support",
-  inquiry = "inquiry",
+  feedback = "feedback",
+  bug = "bug",
 }
 
 export enum SupportTicketState {
   new = "new",
-  awaitingResponse = "awaitingResponse",
+  inProgress = "inProgress",
+  onHold = "onHold",
   resolved = "resolved",
   spam = "spam",
 }
@@ -2638,7 +2640,6 @@ export interface BaseSupportTicket {
   type: SupportTicketType;
   email: string;
   request: string;
-  status: "new" | "inProgress" | "complete";
   state: SupportTicketState;
 }
 

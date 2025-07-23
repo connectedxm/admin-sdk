@@ -227,6 +227,11 @@ export enum FileSource {
   content = "content",
 }
 
+export enum SessionAccess {
+  public = "PUBLIC",
+  private = "PRIVATE",
+}
+
 export interface BaseAccount {
   organizationId: string;
   id: string;
@@ -2113,6 +2118,7 @@ export interface BaseEventSession {
   tracks: BaseEventTrack[];
   nonSession: boolean;
   visible: boolean;
+  access: SessionAccess;
   location: BaseEventSession | null;
   registrationEnabled: boolean;
   price: number | null;

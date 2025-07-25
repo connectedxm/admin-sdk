@@ -18,7 +18,7 @@ import { EVENT_SESSION_QUERY_KEY } from "./useGetEventSession";
 export const EVENT_SESSION_ACCESSES_QUERY_KEY = (
   eventId: string,
   sessionId: string,
-  purchaseStatus?: PurchaseStatus
+  purchaseStatus?: keyof typeof PurchaseStatus
 ) => {
   const baseKey = [...EVENT_SESSION_QUERY_KEY(eventId, sessionId), "PASSES"];
   return purchaseStatus !== undefined ? [...baseKey, purchaseStatus] : baseKey;
@@ -39,7 +39,7 @@ export const SET_EVENT_SESSION_ACCESSES_QUERY_DATA = (
 interface GetEventSessionAccessesProps extends InfiniteQueryParams {
   eventId: string;
   sessionId: string;
-  purchaseStatus?: PurchaseStatus;
+  purchaseStatus?: keyof typeof PurchaseStatus;
 }
 
 /**
@@ -81,10 +81,11 @@ export const GetEventSessionAccesses = async ({
 export const useGetEventSessionAccesses = (
   eventId: string = "",
   sessionId: string = "",
+  purchaseStatus?: keyof typeof PurchaseStatus,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
-  > & { purchaseStatus?: PurchaseStatus } = {},
+  > = {},
   options: InfiniteQueryOptions<
     Awaited<ReturnType<typeof GetEventSessionAccesses>>
   > = {}
@@ -92,12 +93,13 @@ export const useGetEventSessionAccesses = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventSessionAccesses>>
   >(
-    EVENT_SESSION_ACCESSES_QUERY_KEY(eventId, sessionId, params.purchaseStatus),
-    (params: InfiniteQueryParams & { purchaseStatus?: PurchaseStatus }) =>
+    EVENT_SESSION_ACCESSES_QUERY_KEY(eventId, sessionId, purchaseStatus),
+    (params: InfiniteQueryParams) =>
       GetEventSessionAccesses({
         ...params,
         eventId,
         sessionId,
+        purchaseStatus,
       }),
     params,
     {

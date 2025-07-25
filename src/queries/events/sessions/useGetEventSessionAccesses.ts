@@ -1,5 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, EventSessionAccess } from "@src/interfaces";
+import {
+  ConnectedXMResponse,
+  EventSessionAccess,
+  PurchaseStatus,
+} from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -13,8 +17,12 @@ import { EVENT_SESSION_QUERY_KEY } from "./useGetEventSession";
  */
 export const EVENT_SESSION_ACCESSES_QUERY_KEY = (
   eventId: string,
-  sessionId: string
-) => [...EVENT_SESSION_QUERY_KEY(eventId, sessionId), "PASSES"];
+  sessionId: string,
+  purchaseStatus?: keyof typeof PurchaseStatus
+) => {
+  const baseKey = [...EVENT_SESSION_QUERY_KEY(eventId, sessionId), "PASSES"];
+  return purchaseStatus !== undefined ? [...baseKey, purchaseStatus] : baseKey;
+};
 
 /**
  * @category Setters
@@ -31,6 +39,7 @@ export const SET_EVENT_SESSION_ACCESSES_QUERY_DATA = (
 interface GetEventSessionAccessesProps extends InfiniteQueryParams {
   eventId: string;
   sessionId: string;
+  purchaseStatus?: keyof typeof PurchaseStatus;
 }
 
 /**
@@ -44,6 +53,7 @@ export const GetEventSessionAccesses = async ({
   pageSize,
   orderBy,
   search,
+  purchaseStatus,
   adminApiParams,
 }: GetEventSessionAccessesProps): Promise<
   ConnectedXMResponse<EventSessionAccess[]>
@@ -57,6 +67,7 @@ export const GetEventSessionAccesses = async ({
         pageSize: pageSize || undefined,
         orderBy: orderBy || undefined,
         search: search || undefined,
+        purchaseStatus: purchaseStatus || undefined,
       },
     }
   );
@@ -70,6 +81,7 @@ export const GetEventSessionAccesses = async ({
 export const useGetEventSessionAccesses = (
   eventId: string = "",
   sessionId: string = "",
+  purchaseStatus?: keyof typeof PurchaseStatus,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -81,12 +93,13 @@ export const useGetEventSessionAccesses = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventSessionAccesses>>
   >(
-    EVENT_SESSION_ACCESSES_QUERY_KEY(eventId, sessionId),
+    EVENT_SESSION_ACCESSES_QUERY_KEY(eventId, sessionId, purchaseStatus),
     (params: InfiniteQueryParams) =>
       GetEventSessionAccesses({
         ...params,
         eventId,
         sessionId,
+        purchaseStatus,
       }),
     params,
     {

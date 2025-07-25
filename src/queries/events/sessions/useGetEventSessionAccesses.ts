@@ -19,7 +19,10 @@ export const EVENT_SESSION_ACCESSES_QUERY_KEY = (
   eventId: string,
   sessionId: string,
   purchaseStatus?: PurchaseStatus
-) => [...EVENT_SESSION_QUERY_KEY(eventId, sessionId), "PASSES", purchaseStatus];
+) => {
+  const baseKey = [...EVENT_SESSION_QUERY_KEY(eventId, sessionId), "PASSES"];
+  return purchaseStatus !== undefined ? [...baseKey, purchaseStatus] : baseKey;
+};
 
 /**
  * @category Setters

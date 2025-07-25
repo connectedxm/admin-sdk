@@ -67,7 +67,7 @@ export const GetEventSessionAccesses = async ({
         pageSize: pageSize || undefined,
         orderBy: orderBy || undefined,
         search: search || undefined,
-        purchaseStatus: purchaseStatus || undefined,
+        status: purchaseStatus || undefined,
       },
     }
   );

@@ -1402,6 +1402,8 @@ export interface Invoice extends BaseInvoice {
   payments: BasePayment;
   accountId: string | null;
   account: BaseAccount | null;
+  eventId: string | null;
+  event: BaseEvent | null;
   createdAt: string;
   updatedAt: string;
 }

@@ -1132,6 +1132,7 @@ export interface InvoiceCreateInputs {
   status?: keyof typeof InvoiceStatus | null;
   notes?: string | null;
   accountId?: string | null;
+  eventId?: string | null;
 }
 
 export interface InvoiceLineItemCreateInputs {
@@ -1155,6 +1156,7 @@ export interface InvoiceUpdateInputs {
   dueDate?: string | null;
   notes?: string | null;
   accountId?: string | null;
+  eventId?: string | null;
 }
 
 export interface LeadCreateInputs {

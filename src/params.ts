@@ -602,6 +602,11 @@ export interface EventCreateInputs {
   registrationStart?: string | null;
   registrationEnd?: string | null;
   registrationLimit?: number | string | null;
+  allowMultipleRegistrations?: boolean;
+  allowSplitPayment?: boolean;
+  splitPaymentPercentage?: number | string;
+  splitPaymentNetDays?: number | string | null;
+  splitPaymentDueDate?: string | null;
   publicRegistrants?: boolean;
   sessionsVisible?: boolean;
   speakersVisible?: boolean;
@@ -1007,6 +1012,11 @@ export interface EventUpdateInputs {
   registrationStart?: string | null;
   registrationEnd?: string | null;
   registrationLimit?: number | null | string;
+  allowMultipleRegistrations?: boolean;
+  allowSplitPayment?: boolean;
+  splitPaymentPercentage?: number | string;
+  splitPaymentNetDays?: number | string | null;
+  splitPaymentDueDate?: string | null;
   publicRegistrants?: boolean;
   sessionsVisible?: boolean;
   speakersVisible?: boolean;

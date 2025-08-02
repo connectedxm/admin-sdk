@@ -1006,6 +1006,11 @@ export interface Event extends BaseEvent {
   creatorId: string | null;
   creator: BaseAccount | null;
   registrationLimit: number | null;
+  allowMultipleRegistrations: boolean;
+  allowSplitPayment: boolean;
+  splitPaymentPercentage: number;
+  splitPaymentNetDays: number | null;
+  splitPaymentDueDate: string | null;
   publicRegistrants: boolean;
   sessionsVisible: boolean;
   speakersVisible: boolean;

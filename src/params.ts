@@ -1133,6 +1133,7 @@ export interface InvoiceCreateInputs {
   notes?: string | null;
   accountId?: string | null;
   eventId?: string | null;
+  taxable?: boolean;
 }
 
 export interface InvoiceLineItemCreateInputs {
@@ -1157,6 +1158,7 @@ export interface InvoiceUpdateInputs {
   notes?: string | null;
   accountId?: string | null;
   eventId?: string | null;
+  taxable?: boolean;
 }
 
 export interface LeadCreateInputs {
@@ -1865,11 +1867,11 @@ export interface EventRoomTypeAddOnDetailsUpdateInputs {
 }
 
 export interface TaxIntegrationCreateInputs {
-  apiKey?: string;
-}
-
-export interface TaxIntegrationUpdateInputs {
-  apiKey?: string | null;
+  apiKey?: string; // taxjar
+  accountId?: string; // avalara
+  licenseKey?: string; // avalara
+  clientId?: string; // vertex
+  clientSecret?: string; // vertex
 }
 
 export interface CloneOptions {

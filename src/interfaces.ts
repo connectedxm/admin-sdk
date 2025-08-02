@@ -1756,6 +1756,8 @@ export interface Payment extends BasePayment {
   account: BaseAccount;
   bypassedId: string | null;
   bypassedBy: BaseUser | null;
+  refunds: BasePayment[];
+  refunded: Omit<BasePayment, "refunded"> | null;
   integration: {
     type: PaymentIntegrationType;
   };

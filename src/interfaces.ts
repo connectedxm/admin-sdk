@@ -1395,6 +1395,7 @@ export interface BaseInvoice {
   status: InvoiceStatus;
   title: string;
   notes: string | null;
+  taxable: boolean;
 }
 
 export interface Invoice extends BaseInvoice {

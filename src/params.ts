@@ -4,7 +4,6 @@ import {
   BadgeFieldTransformation,
   BadgeFieldType,
   ContentGuestType,
-  InvoiceStatus,
   EventType,
   GroupAccess,
   RegistrationQuestionType,
@@ -1139,7 +1138,6 @@ export interface InvoiceCreateInputs {
   title: string;
   dueDate: string;
   description?: string | null;
-  status?: keyof typeof InvoiceStatus | null;
   notes?: string | null;
   accountId?: string | null;
   eventId?: string | null;
@@ -1163,7 +1161,6 @@ export interface InvoiceLineItemUpdateInputs {
 export interface InvoiceUpdateInputs {
   title?: string | null;
   description?: string | null;
-  status?: keyof typeof InvoiceStatus | null;
   dueDate?: string | null;
   notes?: string | null;
   accountId?: string | null;

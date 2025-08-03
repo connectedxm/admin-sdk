@@ -1763,6 +1763,9 @@ export interface Payment extends BasePayment {
   bypassedBy: BaseUser | null;
   refunds: BasePayment[];
   refunded: Omit<BasePayment, "refunded"> | null;
+  deferredAmount: number | null;
+  deferredDueDate: string | null;
+  deferredInvoices: BaseInvoice[];
   integration: {
     type: PaymentIntegrationType;
   };

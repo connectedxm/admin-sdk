@@ -1600,6 +1600,7 @@ export interface Organization extends BaseOrganization {
   maxVideoMins: number | null;
   locales: string[];
   inviteOnly: boolean;
+  googleTagManagerId: string | null;
 }
 
 export interface OrganizationTrigger {

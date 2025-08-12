@@ -1249,6 +1249,7 @@ export interface OrganizationUpdateInputs {
   locale?: string | null;
   locales?: string[] | null;
   inviteOnly?: boolean;
+  googleTagManagerId?: string | null;
 }
 
 export interface PaymentIntentPurchaseMetadataInputs {}

@@ -5,7 +5,11 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ACCOUNT_TIERS_QUERY_KEY, SET_ACCOUNT_QUERY_DATA } from "@src/queries";
+import {
+  ACCOUNT_TIERS_QUERY_KEY,
+  SET_ACCOUNT_QUERY_DATA,
+  TIER_ACCOUNTS_QUERY_KEY,
+} from "@src/queries";
 
 /**
  * @category Params
@@ -34,6 +38,9 @@ export const AddAccountTier = async ({
     SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], data);
     queryClient.invalidateQueries({
       queryKey: ACCOUNT_TIERS_QUERY_KEY(accountId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: TIER_ACCOUNTS_QUERY_KEY(tierId),
     });
   }
   return data;

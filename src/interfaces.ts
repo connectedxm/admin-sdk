@@ -363,6 +363,7 @@ export interface BaseTier {
 
 export interface Tier extends BaseTier {
   description: string | null;
+  exclusionGroup: string | null;
   createdAt: string;
   updatedAt: string;
   _count: {
@@ -1030,6 +1031,7 @@ export interface Event extends BaseEvent {
   backgroundImageId: string | null;
   backgroundImage: BaseImage | null;
   activityFeedEnabled: boolean;
+  options: object | null;
 }
 
 export interface EventTranslation {

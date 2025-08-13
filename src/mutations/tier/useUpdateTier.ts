@@ -35,14 +35,7 @@ export const UpdateTier = async ({
 
   const { data } = await connectedXM.put<ConnectedXMResponse<Tier>>(
     `/tiers/${tierId}`,
-    {
-      ...tier,
-      id: undefined,
-      image: undefined,
-      createdAt: undefined,
-      updatedAt: undefined,
-      _count: undefined,
-    }
+    tier
   );
   if (queryClient && data.status === "ok") {
     SET_TIER_QUERY_DATA(queryClient, [tierId || data.data?.id], data);

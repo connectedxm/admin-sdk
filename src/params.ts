@@ -621,6 +621,7 @@ export interface EventCreateInputs {
   roundName?: string | null;
   matchName?: string | null;
   activityFeedEnabled?: boolean;
+  options?: object | null;
 }
 
 export interface EventEmailUpdateInputs {
@@ -1032,6 +1033,7 @@ export interface EventUpdateInputs {
   roundName?: string | null;
   matchName?: string | null;
   activityFeedEnabled?: boolean;
+  options?: object | null;
 }
 
 export interface FileUpdateInputs {
@@ -1689,6 +1691,7 @@ export interface TierCreateInputs {
   imageId?: string | null;
   color?: string | null;
   internal?: boolean;
+  exclusionGroup?: string | null;
 }
 
 export interface TierUpdateInputs {
@@ -1700,6 +1703,7 @@ export interface TierUpdateInputs {
   imageId?: string | null;
   color?: string | null;
   internal?: boolean;
+  exclusionGroup?: string | null;
 }
 
 export interface EventTrackCreateInputs {

@@ -4,7 +4,6 @@ import {
   BadgeFieldTransformation,
   BadgeFieldType,
   ContentGuestType,
-  InvoiceStatus,
   EventAgendaVisibility,
   EventType,
   GroupAccess,

@@ -4,6 +4,8 @@ import {
   BadgeFieldTransformation,
   BadgeFieldType,
   ContentGuestType,
+  InvoiceStatus,
+  EventAgendaVisibility,
   EventType,
   GroupAccess,
   RegistrationQuestionType,
@@ -609,6 +611,8 @@ export interface EventCreateInputs {
   publicRegistrants?: boolean;
   sessionsVisible?: boolean;
   speakersVisible?: boolean;
+  sessionsVisibility?: keyof typeof EventAgendaVisibility;
+  speakersVisibility?: keyof typeof EventAgendaVisibility;
   iosAppLink?: string | null;
   androidAppLink?: string | null;
   newActivityCreatorEmailNotification?: boolean;
@@ -1020,6 +1024,8 @@ export interface EventUpdateInputs {
   publicRegistrants?: boolean;
   sessionsVisible?: boolean;
   speakersVisible?: boolean;
+  sessionsVisibility?: keyof typeof EventAgendaVisibility;
+  speakersVisibility?: keyof typeof EventAgendaVisibility;
   inviteOnly?: boolean;
   iosAppLink?: string | null;
   androidAppLink?: string | null;

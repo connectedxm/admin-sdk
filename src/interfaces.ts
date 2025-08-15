@@ -126,6 +126,12 @@ export enum PassTypeAccessLevel {
   vip = "vip",
 }
 
+export enum EventAgendaVisibility {
+  everyone = "everyone",
+  registered = "registered",
+  hidden = "hidden",
+}
+
 export enum GroupAccess {
   public = "public",
   private = "private",
@@ -1015,6 +1021,8 @@ export interface Event extends BaseEvent {
   publicRegistrants: boolean;
   sessionsVisible: boolean;
   speakersVisible: boolean;
+  sessionsVisibility: EventAgendaVisibility;
+  speakersVisibility: EventAgendaVisibility;
   checkinCode: number | null;
   iosAppLink: string | null;
   androidAppLink: string | null;

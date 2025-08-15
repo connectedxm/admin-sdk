@@ -1019,8 +1019,6 @@ export interface Event extends BaseEvent {
   splitPaymentNetDays: number | null;
   splitPaymentDueDate: string | null;
   publicRegistrants: boolean;
-  sessionsVisible: boolean;
-  speakersVisible: boolean;
   sessionsVisibility: EventAgendaVisibility;
   speakersVisibility: EventAgendaVisibility;
   checkinCode: number | null;

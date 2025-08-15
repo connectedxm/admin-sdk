@@ -4,6 +4,7 @@ import {
   BadgeFieldTransformation,
   BadgeFieldType,
   ContentGuestType,
+  EventAgendaVisibility,
   EventType,
   GroupAccess,
   RegistrationQuestionType,
@@ -607,8 +608,8 @@ export interface EventCreateInputs {
   splitPaymentNetDays?: number | string | null;
   splitPaymentDueDate?: string | null;
   publicRegistrants?: boolean;
-  sessionsVisible?: boolean;
-  speakersVisible?: boolean;
+  sessionsVisibility?: keyof typeof EventAgendaVisibility;
+  speakersVisibility?: keyof typeof EventAgendaVisibility;
   iosAppLink?: string | null;
   androidAppLink?: string | null;
   newActivityCreatorEmailNotification?: boolean;
@@ -1018,8 +1019,8 @@ export interface EventUpdateInputs {
   splitPaymentNetDays?: number | string | null;
   splitPaymentDueDate?: string | null;
   publicRegistrants?: boolean;
-  sessionsVisible?: boolean;
-  speakersVisible?: boolean;
+  sessionsVisibility?: keyof typeof EventAgendaVisibility;
+  speakersVisibility?: keyof typeof EventAgendaVisibility;
   inviteOnly?: boolean;
   iosAppLink?: string | null;
   androidAppLink?: string | null;

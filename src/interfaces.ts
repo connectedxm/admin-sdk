@@ -789,13 +789,12 @@ export interface BaseCoupon {
 export interface Coupon extends BaseCoupon {
   registrationId: string | null;
   registration: BaseEventAttendee | null;
-  paymentId: number | null;
-  payment: BasePayment;
+  lineItem: BasePaymentLineItem | null;
   createdAt: string;
   updatedAt: string;
   _count: {
     purchases: number;
-    uses: number;
+    payments: number;
   };
 }
 
@@ -1413,7 +1412,7 @@ export interface BaseInvoice {
 
 export interface Invoice extends BaseInvoice {
   lineItems: BaseInvoiceLineItem;
-  payments: BasePayment;
+  lineItem: BasePaymentLineItem | null;
   accountId: string | null;
   account: BaseAccount | null;
   eventId: string | null;
@@ -1685,8 +1684,6 @@ export interface EventPass extends BaseEventPass {
   package: BaseAttendeePackage | null;
   payerId: string | null;
   payer: BaseAccount | null;
-  amtPaid: number;
-  amtRefunded: number;
 }
 
 export interface BasePassAddOn {
@@ -1696,8 +1693,6 @@ export interface BasePassAddOn {
 }
 
 export interface PassAddOn extends BasePassAddOn {
-  amtPaid: number;
-  amtRefunded: number;
   updatedAt: string;
 }
 
@@ -1790,6 +1785,30 @@ export interface Payment extends BasePayment {
   packages: BaseEventPackage[];
   passAddOns: BasePassAddOn[];
   metadata?: any;
+  lineItems: BasePaymentLineItem[];
+}
+
+export enum PaymentLineItemType {
+  pass = "pass",
+  package = "package",
+  reservation = "reservation",
+  addOn = "addOn",
+  access = "access",
+  invoice = "invoice",
+  booking = "booking",
+  coupon = "coupon",
+  subscription = "subscription",
+}
+
+export interface BasePaymentLineItem {
+  id: string;
+  type: keyof typeof PaymentLineItemType;
+  name: string;
+  quantity: number;
+  price: number;
+  discount: number;
+  lineTotal: number;
+  taxable: boolean;
 }
 
 export interface PaymentIntegration {
@@ -2215,8 +2234,7 @@ export interface BaseEventSessionAccess {
 }
 
 export interface EventSessionAccess extends BaseEventSessionAccess {
-  amtPaid: number;
-  amtRefunded: number;
+  lineItem: BasePaymentLineItem | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -3154,8 +3172,6 @@ export interface EventRoomType extends BaseEventRoomType {
   maxEnd: string | null;
   allowedTiers: BaseTier[];
   disallowedTiers: BaseTier[];
-  amtPaid: number;
-  amtRefunded: number;
   createdAt: string;
   updatedAt: string;
   _count: {
@@ -3198,8 +3214,7 @@ export interface EventRoomTypeReservation extends BaseEventRoomTypeReservation {
       };
     };
   }[];
-  amtPaid: number;
-  amtRefunded: number;
+  lineItem: BasePaymentLineItem | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -3386,6 +3401,7 @@ export interface BaseBooking {
 }
 
 export interface Booking extends BaseBooking {
+  lineItem: BasePaymentLineItem | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -3492,6 +3508,7 @@ export interface BaseAttendeePackage {
 
 export interface AttendeePackage extends BaseAttendeePackage {
   passes: BaseEventPass[];
+  lineItem: BasePaymentLineItem | null;
   updatedAt: string;
 }
 

@@ -6,11 +6,15 @@ import {
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
 import {
-  BOOKING_PAYMENTS_QUERY_KEY,
   EVENT_ATTENDEE_PAYMENTS_QUERY_KEY,
   PAYMENT_QUERY_KEY,
   PAYMENTS_QUERY_KEY,
 } from "@src/queries";
+
+export interface RefundLineItem {
+  lineItemId: string;
+  amount: number;
+}
 
 /**
  * @category Params
@@ -19,7 +23,7 @@ import {
 export interface RefundOrganizationPaymentParams extends MutationParams {
   paymentId: string;
   eventId?: string;
-  amount: number;
+  lineItems: RefundLineItem[];
 }
 
 /**
@@ -29,16 +33,14 @@ export interface RefundOrganizationPaymentParams extends MutationParams {
 export const RefundOrganizationPayment = async ({
   paymentId,
   eventId,
-  amount,
+  lineItems,
   adminApiParams,
   queryClient,
 }: RefundOrganizationPaymentParams): Promise<ConnectedXMResponse<Payment>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<Payment>>(
     `/payments/${paymentId}/refund`,
-    {
-      amount,
-    }
+    lineItems
   );
 
   if (queryClient && data.status === "ok") {
@@ -56,12 +58,6 @@ export const RefundOrganizationPayment = async ({
           eventId,
           data.data.registrationId
         ),
-      });
-    }
-
-    if (data.data?.bookingId) {
-      queryClient.invalidateQueries({
-        queryKey: BOOKING_PAYMENTS_QUERY_KEY(data.data.bookingId),
       });
     }
   }

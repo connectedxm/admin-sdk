@@ -1773,17 +1773,15 @@ export interface Payment extends BasePayment {
   integration: {
     type: PaymentIntegrationType;
   };
-  subscription: BaseSubscription;
-  purchases: BaseEventPass[];
-  coupons: BaseCoupon[];
-  invoice: BaseInvoice;
-  registrationId: string | null;
-  bookingId: string | null;
-  booking: BaseBooking | null;
-  accesses: BaseEventSessionAccess[];
-  reservations: BaseEventRoomTypeReservation[];
-  packages: BaseEventPackage[];
-  passAddOns: BasePassAddOn[];
+  event: BaseEvent | null;
+  registration: BaseEventAttendee | null;
+  passType: BaseEventPassType | null;
+  pass: BaseEventPass | null;
+  session: BaseEventSession | null;
+  place: BaseBookingPlace | null;
+  space: BaseBookingSpace | null;
+  membership: BaseMembership | null;
+  coupon: BaseCoupon | null;
   metadata?: any;
   lineItems: BasePaymentLineItem[];
 }

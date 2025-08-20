@@ -52,11 +52,11 @@ export const RefundOrganizationPayment = async ({
       queryKey: PAYMENTS_QUERY_KEY(),
     });
 
-    if (eventId && data.data?.registrationId) {
+    if (eventId && data.data?.registration?.id) {
       queryClient.invalidateQueries({
         queryKey: EVENT_ATTENDEE_PAYMENTS_QUERY_KEY(
           eventId,
-          data.data.registrationId
+          data.data.registration.id
         ),
       });
     }

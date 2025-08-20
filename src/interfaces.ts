@@ -789,7 +789,7 @@ export interface BaseCoupon {
 export interface Coupon extends BaseCoupon {
   registrationId: string | null;
   registration: BaseEventAttendee | null;
-  lineItem: BasePaymentLineItem | null;
+  lineItem: PaymentLineItem | null;
   createdAt: string;
   updatedAt: string;
   _count: {
@@ -1412,7 +1412,7 @@ export interface BaseInvoice {
 
 export interface Invoice extends BaseInvoice {
   lineItems: BaseInvoiceLineItem;
-  lineItem: BasePaymentLineItem | null;
+  lineItem: PaymentLineItem | null;
   accountId: string | null;
   account: BaseAccount | null;
   eventId: string | null;
@@ -1656,6 +1656,8 @@ export interface BaseEventPass {
   attendee: {
     account: {
       id: string;
+      firstName: string | null;
+      lastName: string | null;
       email: string;
     };
   };
@@ -1673,6 +1675,7 @@ export interface BaseEventPass {
   couponId: string | null;
   coupon: BaseCoupon | null;
   packageId: string | null;
+  package: BaseAttendeePackage | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -1681,7 +1684,6 @@ export interface EventPass extends BaseEventPass {
   passAddOns: BasePassAddOn[];
   attendeeId: string;
   attendee: BaseEventAttendee;
-  package: BaseAttendeePackage | null;
   payerId: string | null;
   payer: BaseAccount | null;
 }
@@ -1736,7 +1738,6 @@ export enum PaymentType {
 export interface BasePayment {
   id: number;
   type: PaymentType;
-  chargedAmt: number;
   currency: string;
   ticketId: string | null;
   ticket: BaseEventPassType | null;
@@ -1749,6 +1750,7 @@ export interface BasePayment {
   state: string;
   zip: string;
   captured: boolean;
+  lineItems: BasePaymentLineItem[];
   createdAt: string;
 }
 
@@ -1783,7 +1785,7 @@ export interface Payment extends BasePayment {
   membership: BaseMembership | null;
   coupon: BaseCoupon | null;
   metadata?: any;
-  lineItems: BasePaymentLineItem[];
+  lineItems: PaymentLineItem[];
 }
 
 export enum PaymentLineItemType {
@@ -1803,10 +1805,40 @@ export interface BasePaymentLineItem {
   type: keyof typeof PaymentLineItemType;
   name: string;
   quantity: number;
-  price: number;
+  amount: number;
+  paid: number;
+  refunded: number;
   discount: number;
-  lineTotal: number;
   taxable: boolean;
+  paymentId: number;
+  // PARENT IDS
+  eventId: string | null;
+  accountId: string | null;
+  addOnId: string | null;
+  sessionId: string | null;
+  placeId: string | null;
+  spaceId: string | null;
+  // ITEM IDS
+  passId: string | null;
+  packageId: string | null;
+  passAddOnId: string | null;
+  reservationId: string | null;
+  accessId: string | null;
+  invoiceId: string | null;
+  bookingId: string | null;
+  subscriptionId: string | null;
+}
+
+export interface PaymentLineItem extends BasePaymentLineItem {
+  pass: BaseEventPass | null;
+  package: BaseEventPackage | null;
+  passAddOn: BasePassAddOn | null;
+  reservation: BaseEventRoomTypeReservation | null;
+  access: BaseEventSessionAccess | null;
+  invoice: BaseInvoice | null;
+  booking: BaseBooking | null;
+  subscription: BaseSubscription | null;
+  payment: BasePayment;
 }
 
 export interface PaymentIntegration {
@@ -2232,7 +2264,7 @@ export interface BaseEventSessionAccess {
 }
 
 export interface EventSessionAccess extends BaseEventSessionAccess {
-  lineItem: BasePaymentLineItem | null;
+  lineItem: PaymentLineItem | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -3212,7 +3244,7 @@ export interface EventRoomTypeReservation extends BaseEventRoomTypeReservation {
       };
     };
   }[];
-  lineItem: BasePaymentLineItem | null;
+  lineItem: PaymentLineItem | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -3399,7 +3431,7 @@ export interface BaseBooking {
 }
 
 export interface Booking extends BaseBooking {
-  lineItem: BasePaymentLineItem | null;
+  lineItem: PaymentLineItem | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -3506,7 +3538,7 @@ export interface BaseAttendeePackage {
 
 export interface AttendeePackage extends BaseAttendeePackage {
   passes: BaseEventPass[];
-  lineItem: BasePaymentLineItem | null;
+  lineItem: PaymentLineItem | null;
   updatedAt: string;
 }
 

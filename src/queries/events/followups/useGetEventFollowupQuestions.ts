@@ -1,7 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
   ConnectedXMResponse,
-  RegistrationSectionQuestion,
+  RegistrationFollowupQuestion,
 } from "@src/interfaces";
 import {
   GetBaseInfiniteQueryKeys,
@@ -9,29 +9,29 @@ import {
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
-import { EVENT_SECTION_QUERY_KEY } from "./useGetEventSection";
+import { EVENT_FOLLOWUP_QUERY_KEY } from "./useGetEventFollowup";
 
 /**
  * @category Keys
  * @group Events
  */
-export const EVENT_SECTION_QUESTIONS_QUERY_KEY = (
+export const EVENT_FOLLOWUP_QUESTIONS_QUERY_KEY = (
   eventId: string,
-  sectionId: string
-) => [...EVENT_SECTION_QUERY_KEY(eventId, sectionId), "QUESTIONS"];
+  followupId: string
+) => [...EVENT_FOLLOWUP_QUERY_KEY(eventId, followupId), "QUESTIONS"];
 
 /**
  * @category Setters
  * @group Events
  */
-export const SET_EVENT_SECTION_QUESTIONS_QUERY_DATA = (
+export const SET_EVENT_FOLLOWUP_QUESTIONS_QUERY_DATA = (
   client: any,
-  keyParams: Parameters<typeof EVENT_SECTION_QUESTIONS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventSectionQuestions>>
+  keyParams: Parameters<typeof EVENT_FOLLOWUP_QUESTIONS_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetEventFollowupQuestions>>
 ) => {
   client.setQueryData(
     [
-      ...EVENT_SECTION_QUESTIONS_QUERY_KEY(...keyParams),
+      ...EVENT_FOLLOWUP_QUESTIONS_QUERY_KEY(...keyParams),
       ...GetBaseInfiniteQueryKeys(""),
     ],
     {
@@ -42,29 +42,29 @@ export const SET_EVENT_SECTION_QUESTIONS_QUERY_DATA = (
   );
 };
 
-interface GetEventSectionQuestionsProps extends InfiniteQueryParams {
+interface GetEventFollowupQuestionsProps extends InfiniteQueryParams {
   eventId: string;
-  sectionId: string;
+  followupId: string;
 }
 
 /**
  * @category Queries
  * @group Events
  */
-export const GetEventSectionQuestions = async ({
+export const GetEventFollowupQuestions = async ({
   eventId,
-  sectionId,
+  followupId,
   pageParam,
   pageSize,
   orderBy,
   search,
   adminApiParams,
-}: GetEventSectionQuestionsProps): Promise<
-  ConnectedXMResponse<RegistrationSectionQuestion[]>
+}: GetEventFollowupQuestionsProps): Promise<
+  ConnectedXMResponse<RegistrationFollowupQuestion[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/events/${eventId}/sections/${sectionId}/questions`,
+    `/events/${eventId}/followups/${followupId}/questions`,
     {
       params: {
         page: pageParam || undefined,
@@ -81,31 +81,31 @@ export const GetEventSectionQuestions = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventSectionQuestions = (
+export const useGetEventFollowupQuestions = (
   eventId: string = "",
-  sectionId: string = "",
+  followupId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventSectionQuestions>>
+    Awaited<ReturnType<typeof GetEventFollowupQuestions>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventSectionQuestions>>
+    Awaited<ReturnType<typeof GetEventFollowupQuestions>>
   >(
-    EVENT_SECTION_QUESTIONS_QUERY_KEY(eventId, sectionId),
+    EVENT_FOLLOWUP_QUESTIONS_QUERY_KEY(eventId, followupId),
     (params: InfiniteQueryParams) =>
-      GetEventSectionQuestions({
+      GetEventFollowupQuestions({
         ...params,
         eventId,
-        sectionId,
+        followupId,
       }),
     params,
     {
       ...options,
-      enabled: !!eventId && !!sectionId && (options.enabled ?? true),
+      enabled: !!eventId && !!followupId && (options.enabled ?? true),
     },
     "events"
   );

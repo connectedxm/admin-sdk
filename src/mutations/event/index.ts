@@ -8,6 +8,7 @@ export * from "./coHosts";
 export * from "./coupons";
 export * from "./emails";
 export * from "./faqs";
+export * from "./followups";
 export * from "./matches";
 export * from "./media";
 export * from "./on-site";

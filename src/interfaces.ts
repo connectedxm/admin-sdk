@@ -2020,7 +2020,20 @@ export interface BaseRegistrationSectionQuestion {
 }
 
 export interface RegistrationSectionQuestion
-  extends BaseRegistrationSectionQuestion {
+extends BaseRegistrationSectionQuestion {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseRegistrationFollowupQuestion {
+  followupId: string;
+  followup: BaseRegistrationFollowup;
+  questionId: string;
+  question: BaseRegistrationQuestion;
+  sortOrder: number;
+}
+
+export interface RegistrationFollowupQuestion extends BaseRegistrationFollowupQuestion {
   createdAt: string;
   updatedAt: string;
 }
@@ -2037,8 +2050,29 @@ export interface BaseRegistrationSection {
 }
 
 export interface RegistrationSection extends BaseRegistrationSection {
-  questions: RegistrationQuestion[];
+  questions: RegistrationSectionQuestion[];
   eventTickets: BaseEventPassType[];
+  eventAddOns: BaseEventAddOn[];
+  accountTiers: BaseTier[];
+  disallowedTiers: BaseTier[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseRegistrationFollowup {
+  id: string;
+  eventId: string;
+  name: string;
+  description: string | null;
+  sortOrder: number;
+  _count: {
+    questions: number;
+  };
+}
+
+export interface RegistrationFollowup extends BaseRegistrationFollowup {
+  questions: RegistrationFollowupQuestion[];
+  passTypes: BaseEventPassType[];
   eventAddOns: BaseEventAddOn[];
   accountTiers: BaseTier[];
   disallowedTiers: BaseTier[];
@@ -2054,6 +2088,16 @@ export interface RegistrationSectionTranslation {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface RegistrationFollowupTranslation {
+  id: string;
+  locale: string;
+  name: string;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface BaseEventAttendee {
   id: string;
   alternateId: number;

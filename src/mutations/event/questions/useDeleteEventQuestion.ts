@@ -9,6 +9,7 @@ import {
   EVENT_QUESTIONS_QUERY_KEY,
   EVENT_QUESTION_QUERY_KEY,
   EVENT_SECTION_QUESTIONS_QUERY_KEY,
+  EVENT_FOLLOWUP_QUESTIONS_QUERY_KEY,
 } from "@src/queries";
 
 /**
@@ -19,6 +20,7 @@ export interface DeleteEventQuestionParams extends MutationParams {
   eventId: string;
   questionId: string;
   sectionId?: string;
+  followupId?: string;
 }
 
 /**
@@ -29,6 +31,7 @@ export const DeleteEventQuestion = async ({
   eventId,
   questionId,
   sectionId,
+  followupId,
   adminApiParams,
   queryClient,
 }: DeleteEventQuestionParams): Promise<ConnectedXMResponse<null>> => {
@@ -44,6 +47,11 @@ export const DeleteEventQuestion = async ({
     queryClient.removeQueries({
       queryKey: EVENT_QUESTION_QUERY_KEY(eventId, questionId),
     });
+    if (followupId) {
+      queryClient.invalidateQueries({
+        queryKey: EVENT_FOLLOWUP_QUESTIONS_QUERY_KEY(eventId, followupId),
+      });
+    }
     if (sectionId) {
       queryClient.invalidateQueries({
         queryKey: EVENT_SECTION_QUESTIONS_QUERY_KEY(eventId, sectionId),

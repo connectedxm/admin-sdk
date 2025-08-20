@@ -1996,6 +1996,7 @@ export interface BaseRegistrationQuestion {
 
 export interface RegistrationQuestion extends BaseRegistrationQuestion {
   sections: BaseRegistrationSectionQuestion[];
+  followups: BaseRegistrationFollowupQuestion[];
   subQuestionOf: RegistrationQuestionChoiceSubQuestion[];
   createdAt: string;
   updatedAt: string;

@@ -60,7 +60,10 @@ export const useReorderEventFollowupQuestions = (
   options: Omit<
     ConnectedXMMutationOptions<
       Awaited<ReturnType<typeof ReorderEventFollowupQuestions>>,
-      Omit<ReorderEventFollowupQuestionsParams, "queryClient" | "adminApiParams">
+      Omit<
+        ReorderEventFollowupQuestionsParams,
+        "queryClient" | "adminApiParams"
+      >
     >,
     "mutationFn"
   > = {}

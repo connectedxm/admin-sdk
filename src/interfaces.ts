@@ -2051,7 +2051,7 @@ export interface BaseRegistrationSection {
 }
 
 export interface RegistrationSection extends BaseRegistrationSection {
-  questions: RegistrationSectionQuestion[];
+  questions: RegistrationQuestion[];
   eventTickets: BaseEventPassType[];
   eventAddOns: BaseEventAddOn[];
   accountTiers: BaseTier[];
@@ -2072,7 +2072,7 @@ export interface BaseRegistrationFollowup {
 }
 
 export interface RegistrationFollowup extends BaseRegistrationFollowup {
-  questions: RegistrationFollowupQuestion[];
+  questions: RegistrationQuestion[];
   passTypes: BaseEventPassType[];
   eventAddOns: BaseEventAddOn[];
   accountTiers: BaseTier[];

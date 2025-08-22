@@ -10,6 +10,7 @@ import {
   EVENT_QUESTION_CHOICES_QUERY_KEY,
   EVENT_QUESTIONS_QUERY_KEY,
   EVENT_SECTION_QUESTIONS_QUERY_KEY,
+  EVENT_FOLLOWUP_QUESTIONS_QUERY_KEY,
   SET_EVENT_QUESTION_QUERY_DATA,
 } from "@src/queries";
 
@@ -53,6 +54,15 @@ export const CreateEventQuestion = async ({
         queryKey: EVENT_SECTION_QUESTIONS_QUERY_KEY(
           eventId,
           question.sectionId.toString()
+        ),
+      });
+    }
+
+    if (question.followupId) {
+      queryClient.invalidateQueries({
+        queryKey: EVENT_FOLLOWUP_QUESTIONS_QUERY_KEY(
+          eventId,
+          question.followupId.toString()
         ),
       });
     }

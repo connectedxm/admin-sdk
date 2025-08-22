@@ -9,5 +9,7 @@ export * from "./useTransferEventPass";
 export * from "./useUpdateEventPass";
 export * from "./useUpdateEventPassResponse";
 export * from "./useUpdateEventPassResponses";
+export * from "./useUpdateEventPassFollowupResponses";
+export * from "./useUpdateEventPassSingleFollowupResponses";
 export * from "./useUpdateEventSessionAccess";
 export * from "./useUpdateEventSessionAccessResponses";

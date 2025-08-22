@@ -5,18 +5,18 @@ import {
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
-import { EVENT_SECTION_QUERY_KEY } from "./useGetEventSection";
+import { EVENT_FOLLOWUP_QUERY_KEY } from "./useGetEventFollowup";
 
 /**
  * @category Keys
  * @group Events
  */
-export const EVENT_SECTION_TIERS_QUERY_KEY = (
+export const EVENT_FOLLOWUP_TIERS_QUERY_KEY = (
   allowed: boolean,
   eventId: string,
-  sectionId: string
+  followupId: string
 ) => [
-  ...EVENT_SECTION_QUERY_KEY(eventId, sectionId),
+  ...EVENT_FOLLOWUP_QUERY_KEY(eventId, followupId),
   "TIERS",
   allowed ? "ALLOWED" : "DISALLOWED",
 ];
@@ -25,37 +25,37 @@ export const EVENT_SECTION_TIERS_QUERY_KEY = (
  * @category Setters
  * @group Events
  */
-export const SET_EVENT_SECTION_TIERS_QUERY_DATA = (
+export const SET_EVENT_FOLLOWUP_TIERS_QUERY_DATA = (
   client: any,
-  keyParams: Parameters<typeof EVENT_SECTION_TIERS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventSectionTiers>>
+  keyParams: Parameters<typeof EVENT_FOLLOWUP_TIERS_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetEventFollowupTiers>>
 ) => {
-  client.setQueryData(EVENT_SECTION_TIERS_QUERY_KEY(...keyParams), response);
+  client.setQueryData(EVENT_FOLLOWUP_TIERS_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventSectionTiersProps extends InfiniteQueryParams {
+interface GetEventFollowupTiersProps extends InfiniteQueryParams {
   allowed: boolean;
   eventId: string;
-  sectionId: string;
+  followupId: string;
 }
 
 /**
  * @category Queries
  * @group Events
  */
-export const GetEventSectionTiers = async ({
+export const GetEventFollowupTiers = async ({
   allowed,
   eventId,
-  sectionId,
+  followupId,
   pageParam,
   pageSize,
   orderBy,
   search,
   adminApiParams,
-}: GetEventSectionTiersProps): Promise<ConnectedXMResponse<Tier[]>> => {
+}: GetEventFollowupTiersProps): Promise<ConnectedXMResponse<Tier[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/events/${eventId}/sections/${sectionId}/tiers`,
+    `/events/${eventId}/followups/${followupId}/tiers`,
     {
       params: {
         allowed,
@@ -72,28 +72,28 @@ export const GetEventSectionTiers = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventSectionTiers = (
+export const useGetEventFollowupTiers = (
   allowed: boolean,
   eventId: string = "",
-  sectionId: string = "",
+  followupId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventSectionTiers>>
+    Awaited<ReturnType<typeof GetEventFollowupTiers>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventSectionTiers>>
+    Awaited<ReturnType<typeof GetEventFollowupTiers>>
   >(
-    EVENT_SECTION_TIERS_QUERY_KEY(allowed, eventId, sectionId),
+    EVENT_FOLLOWUP_TIERS_QUERY_KEY(allowed, eventId, followupId),
     (params: InfiniteQueryParams) =>
-      GetEventSectionTiers({
+      GetEventFollowupTiers({
         ...params,
         allowed,
         eventId,
-        sectionId,
+        followupId,
       }),
     params,
     {
@@ -101,7 +101,7 @@ export const useGetEventSectionTiers = (
       enabled:
         typeof allowed === "boolean" &&
         !!eventId &&
-        !!sectionId &&
+        !!followupId &&
         (options.enabled ?? true),
     },
     "events"

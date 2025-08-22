@@ -3,8 +3,7 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
-import { ConnectedXMResponse } from "@src/interfaces";
-import { RegistrationSection } from "@src/interfaces";
+import { ConnectedXMResponse, RegistrationSection } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { EVENT_SECTIONS_QUERY_KEY } from "./useGetEventSections";
 import { GetAdminAPI } from "@src/AdminAPI";

@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, RegistrationSection } from "@src/interfaces";
+import { ConnectedXMResponse, RegistrationFollowup } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -11,24 +11,24 @@ import { EVENT_QUERY_KEY } from "../useGetEvent";
  * @category Keys
  * @group Events
  */
-export const EVENT_SECTIONS_QUERY_KEY = (eventId: string) => [
+export const EVENT_FOLLOWUPS_QUERY_KEY = (eventId: string) => [
   ...EVENT_QUERY_KEY(eventId),
-  "SECTIONS",
+  "FOLLOWUPS",
 ];
 
 /**
  * @category Setters
  * @group Events
  */
-export const SET_EVENT_SECTIONS_QUERY_DATA = (
+export const SET_EVENT_FOLLOWUPS_QUERY_DATA = (
   client: any,
-  keyParams: Parameters<typeof EVENT_SECTIONS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventSections>>
+  keyParams: Parameters<typeof EVENT_FOLLOWUPS_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetEventFollowups>>
 ) => {
-  client.setQueryData(EVENT_SECTIONS_QUERY_KEY(...keyParams), response);
+  client.setQueryData(EVENT_FOLLOWUPS_QUERY_KEY(...keyParams), response);
 };
 
-interface GetEventSectionsProps extends InfiniteQueryParams {
+interface GetEventFollowupsProps extends InfiniteQueryParams {
   eventId: string;
 }
 
@@ -36,18 +36,18 @@ interface GetEventSectionsProps extends InfiniteQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetEventSections = async ({
+export const GetEventFollowups = async ({
   eventId,
   pageParam,
   pageSize,
   orderBy,
   search,
   adminApiParams,
-}: GetEventSectionsProps): Promise<
-  ConnectedXMResponse<RegistrationSection[]>
+}: GetEventFollowupsProps): Promise<
+  ConnectedXMResponse<RegistrationFollowup[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/events/${eventId}/sections`, {
+  const { data } = await adminApi.get(`/events/${eventId}/followups`, {
     params: {
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
@@ -62,22 +62,22 @@ export const GetEventSections = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventSections = (
+export const useGetEventFollowups = (
   eventId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventSections>>
+    Awaited<ReturnType<typeof GetEventFollowups>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventSections>>
+    Awaited<ReturnType<typeof GetEventFollowups>>
   >(
-    EVENT_SECTIONS_QUERY_KEY(eventId),
+    EVENT_FOLLOWUPS_QUERY_KEY(eventId),
     (params: InfiniteQueryParams) =>
-      GetEventSections({
+      GetEventFollowups({
         ...params,
         eventId,
       }),

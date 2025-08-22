@@ -1,49 +1,47 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import {
-  RegistrationQuestionResponse,
-  ConnectedXMResponse,
-} from "@src/interfaces";
+import { ConnectedXMResponse, Question } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { UpdateEventPassResponseInputs } from "@src/params";
 import {
-  EVENT_PASS_RESPONSES_QUERY_KEY,
   EVENT_PASS_QUESTION_FOLLOWUPS_QUERY_KEY,
-  SET_EVENT_PASS_RESPONSE_QUERY_DATA,
+  EVENT_PASS_RESPONSES_QUERY_KEY,
 } from "@src/queries";
 
 /**
  * @category Params
  * @group Event-Attendees
  */
-export interface UpdateEventPassResponseParams extends MutationParams {
+export interface UpdateEventPassSingleFollowupResponsesParams
+  extends MutationParams {
   eventId: string;
   passId: string;
-  questionId: string;
-  response: UpdateEventPassResponseInputs;
+  accountId: string;
+  followupId: string;
+  questions: Question[];
 }
 
 /**
  * @category Methods
  * @group Event-Attendees
  */
-export const UpdateEventPassResponse = async ({
+export const UpdateEventPassSingleFollowupResponses = async ({
   eventId,
+  accountId,
   passId,
-  questionId,
-  response,
+  followupId,
+  questions,
   adminApiParams,
   queryClient,
-}: UpdateEventPassResponseParams): Promise<
-  ConnectedXMResponse<RegistrationQuestionResponse>
+}: UpdateEventPassSingleFollowupResponsesParams): Promise<
+  ConnectedXMResponse<null>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put(
-    `/events/${eventId}/passes/${passId}/responses/${questionId}`,
-    response
+    `/events/${eventId}/attendees/${accountId}/passes/${passId}/followups/${followupId}`,
+    { questions }
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
@@ -52,11 +50,6 @@ export const UpdateEventPassResponse = async ({
     queryClient.invalidateQueries({
       queryKey: EVENT_PASS_QUESTION_FOLLOWUPS_QUERY_KEY(eventId, passId),
     });
-    SET_EVENT_PASS_RESPONSE_QUERY_DATA(
-      queryClient,
-      [eventId, passId, questionId],
-      data
-    );
   }
   return data;
 };
@@ -65,19 +58,22 @@ export const UpdateEventPassResponse = async ({
  * @category Mutations
  * @group Event-Attendees
  */
-export const useUpdateEventPassResponse = (
+export const useUpdateEventPassSingleFollowupResponses = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof UpdateEventPassResponse>>,
-      Omit<UpdateEventPassResponseParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof UpdateEventPassSingleFollowupResponses>>,
+      Omit<
+        UpdateEventPassSingleFollowupResponsesParams,
+        "queryClient" | "adminApiParams"
+      >
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    UpdateEventPassResponseParams,
-    Awaited<ReturnType<typeof UpdateEventPassResponse>>
-  >(UpdateEventPassResponse, options, {
+    UpdateEventPassSingleFollowupResponsesParams,
+    Awaited<ReturnType<typeof UpdateEventPassSingleFollowupResponses>>
+  >(UpdateEventPassSingleFollowupResponses, options, {
     domain: "events",
     type: "update",
   });

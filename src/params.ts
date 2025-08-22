@@ -1287,6 +1287,7 @@ export interface EventQuestionCreateInputs {
   name: string;
   type: keyof typeof RegistrationQuestionType | null;
   sectionId?: string;
+  followupId?: string;
   questionId?: string;
   choiceId?: string;
   required?: boolean;
@@ -1371,6 +1372,26 @@ export interface EventSectionTranslationUpdateInputs {
 }
 
 export interface EventSectionUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+  guestDescription?: string | null;
+  sortOrder?: number | string | null;
+}
+
+export interface EventFollowupCreateInputs {
+  name: string;
+  description?: string | null;
+  guestDescription?: string | null;
+  sortOrder?: number | string | null;
+}
+
+export interface EventFollowupTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+  guestDescription?: string | null;
+}
+
+export interface EventFollowupUpdateInputs {
   name?: string | null;
   description?: string | null;
   guestDescription?: string | null;

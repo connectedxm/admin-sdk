@@ -2,6 +2,7 @@ export * from "./useGetEventPass";
 export * from "./useGetEventPassAccesses";
 export * from "./useGetEventPassAddOns";
 export * from "./useGetEventPassMatches";
+export * from "./useGetEventPassQuestionFollowups";
 export * from "./useGetEventPassQuestionSections";
 export * from "./useGetEventPassResponse";
 export * from "./useGetEventPassResponseChanges";

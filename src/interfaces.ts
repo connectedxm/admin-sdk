@@ -764,6 +764,7 @@ export interface ChannelTranslation {
 }
 
 export interface BaseCoupon {
+  eventId: string;
   id: string;
   prePaid: boolean;
   code: string;
@@ -784,10 +785,13 @@ export interface BaseCoupon {
   applyToPassType: boolean;
   applyToAddOns: boolean;
   applyToReservation: boolean;
+  registrationId: string | null;
+  registration: {
+    accountId: string;
+  } | null;
 }
 
 export interface Coupon extends BaseCoupon {
-  registrationId: string | null;
   registration: BaseEventAttendee | null;
   lineItem: PaymentLineItem | null;
   createdAt: string;
@@ -1684,6 +1688,7 @@ export interface EventPass extends BaseEventPass {
   passAddOns: BasePassAddOn[];
   attendeeId: string;
   attendee: BaseEventAttendee;
+  lineItem: PaymentLineItem | null;
   payerId: string | null;
   payer: BaseAccount | null;
 }
@@ -1691,10 +1696,17 @@ export interface EventPass extends BaseEventPass {
 export interface BasePassAddOn {
   addOnId: string;
   addOn: BaseEventAddOn;
+  pass: {
+    id: string;
+    attendee: {
+      accountId: string;
+    };
+  };
   createdAt: string;
 }
 
-export interface PassAddOn extends BasePassAddOn {
+export interface PassAddOn extends Omit<BasePassAddOn, "pass"> {
+  pass: BaseEventPass;
   updatedAt: string;
 }
 
@@ -1785,10 +1797,11 @@ export interface Payment extends BasePayment {
   membership: BaseMembership | null;
   coupon: BaseCoupon | null;
   metadata?: any;
-  lineItems: PaymentLineItem[];
+  lineItems: Omit<PaymentLineItem, "payment">[];
 }
 
 export enum PaymentLineItemType {
+  general = "general",
   pass = "pass",
   package = "package",
   reservation = "reservation",
@@ -1803,12 +1816,14 @@ export enum PaymentLineItemType {
 export interface BasePaymentLineItem {
   id: string;
   type: keyof typeof PaymentLineItemType;
+  parent: string | null;
   name: string;
   quantity: number;
   amount: number;
   paid: number;
   refunded: number;
   discount: number;
+  deferred: number;
   taxable: boolean;
   paymentId: number;
   // PARENT IDS
@@ -1838,6 +1853,7 @@ export interface PaymentLineItem extends BasePaymentLineItem {
   invoice: BaseInvoice | null;
   booking: BaseBooking | null;
   subscription: BaseSubscription | null;
+  coupon: BaseCoupon | null;
   payment: BasePayment;
 }
 
@@ -2021,7 +2037,7 @@ export interface BaseRegistrationSectionQuestion {
 }
 
 export interface RegistrationSectionQuestion
-extends BaseRegistrationSectionQuestion {
+  extends BaseRegistrationSectionQuestion {
   createdAt: string;
   updatedAt: string;
 }
@@ -2034,7 +2050,8 @@ export interface BaseRegistrationFollowupQuestion {
   sortOrder: number;
 }
 
-export interface RegistrationFollowupQuestion extends BaseRegistrationFollowupQuestion {
+export interface RegistrationFollowupQuestion
+  extends BaseRegistrationFollowupQuestion {
   createdAt: string;
   updatedAt: string;
 }
@@ -3269,9 +3286,16 @@ export interface BaseEventRoomTypeReservation {
   end: string | null;
   eventRoomTypeId: string;
   eventRoomType: BaseEventRoomType;
+  passes: {
+    id: string;
+    attendee: {
+      accountId: string;
+    };
+  }[];
 }
 
-export interface EventRoomTypeReservation extends BaseEventRoomTypeReservation {
+export interface EventRoomTypeReservation
+  extends Omit<BaseEventRoomTypeReservation, "passes"> {
   passes: {
     id: string;
     status: PurchaseStatus;

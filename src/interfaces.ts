@@ -1811,6 +1811,7 @@ export enum PaymentLineItemType {
   booking = "booking",
   coupon = "coupon",
   subscription = "subscription",
+  refund = "refund",
 }
 
 export interface BasePaymentLineItem {

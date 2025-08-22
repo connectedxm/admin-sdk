@@ -12,7 +12,7 @@ import {
 } from "@src/queries";
 
 export interface RefundLineItem {
-  lineItemId: string;
+  id: string;
   amount: number;
 }
 

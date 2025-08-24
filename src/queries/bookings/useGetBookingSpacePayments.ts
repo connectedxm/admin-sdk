@@ -16,16 +16,9 @@ import { BOOKING_SPACE_QUERY_KEY } from "./useGetBookingSpace";
  */
 export const BOOKING_SPACE_PAYMENTS_QUERY_KEY = (
   placeId: string,
-  spaceId: string,
-  past?: boolean,
-  status?: PurchaseStatus
+  spaceId: string
 ) => {
   const keys = [...BOOKING_SPACE_QUERY_KEY(placeId, spaceId), "PAYMENTS"];
-  if (typeof past === "boolean") {
-    keys.push(past ? "PAST" : "UPCOMING");
-  }
-  if (status) keys.push(status);
-
   return keys;
 };
 
@@ -87,8 +80,6 @@ export const GetBookingSpacePayments = async ({
 export const useGetBookingSpacePayments = (
   placeId: string = "",
   spaceId: string = "",
-  past?: boolean,
-  status?: PurchaseStatus,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -100,13 +91,11 @@ export const useGetBookingSpacePayments = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetBookingSpacePayments>>
   >(
-    BOOKING_SPACE_PAYMENTS_QUERY_KEY(placeId, spaceId, past, status),
+    BOOKING_SPACE_PAYMENTS_QUERY_KEY(placeId, spaceId),
     (params: InfiniteQueryParams) =>
       GetBookingSpacePayments({
         placeId,
         spaceId,
-        past,
-        status,
         ...params,
       }),
     params,

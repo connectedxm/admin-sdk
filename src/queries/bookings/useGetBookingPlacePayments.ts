@@ -14,16 +14,8 @@ import { BOOKING_PLACE_QUERY_KEY } from "./useGetBookingPlace";
  * @category Keys
  * @group Bookings
  */
-export const BOOKING_PLACE_PAYMENTS_QUERY_KEY = (
-  placeId: string,
-  past?: boolean,
-  status?: PurchaseStatus
-) => {
+export const BOOKING_PLACE_PAYMENTS_QUERY_KEY = (placeId: string) => {
   const keys = [...BOOKING_PLACE_QUERY_KEY(placeId), "PAYMENTS"];
-  if (typeof past === "boolean") {
-    keys.push(past ? "PAST" : "UPCOMING");
-  }
-  if (status) keys.push(status);
   return keys;
 };
 
@@ -51,8 +43,6 @@ interface GetBookingPlacePaymentsProps extends InfiniteQueryParams {
  */
 export const GetBookingPlacePayments = async ({
   placeId,
-  past,
-  status,
   pageParam,
   pageSize,
   orderBy,
@@ -66,8 +56,6 @@ export const GetBookingPlacePayments = async ({
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
-      past: typeof past === "boolean" ? past : undefined,
-      status: status || undefined,
     },
   });
   return data;
@@ -79,8 +67,6 @@ export const GetBookingPlacePayments = async ({
  */
 export const useGetBookingPlacePayments = (
   placeId: string = "",
-  past?: boolean,
-  status?: PurchaseStatus,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -92,12 +78,10 @@ export const useGetBookingPlacePayments = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetBookingPlacePayments>>
   >(
-    BOOKING_PLACE_PAYMENTS_QUERY_KEY(placeId, past, status),
+    BOOKING_PLACE_PAYMENTS_QUERY_KEY(placeId),
     (params: InfiniteQueryParams) =>
       GetBookingPlacePayments({
         placeId,
-        past,
-        status,
         ...params,
       }),
     params,

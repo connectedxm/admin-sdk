@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, Payment, PurchaseStatus } from "@src/interfaces";
+import { ConnectedXMResponse, Payment } from "@src/interfaces";
 
 import {
   InfiniteQueryOptions,
@@ -33,8 +33,6 @@ export const SET_BOOKING_PLACE_PAYMENTS_QUERY_DATA = (
 
 interface GetBookingPlacePaymentsProps extends InfiniteQueryParams {
   placeId: string;
-  past?: boolean;
-  status?: PurchaseStatus;
 }
 
 /**

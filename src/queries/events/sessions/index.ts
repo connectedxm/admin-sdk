@@ -8,6 +8,7 @@ export * from "./useGetEventSession";
 export * from "./useGetEventSessionAccesses";
 export * from "./useGetEventSessionAccounts";
 export * from "./useGetEventSessionPassTypes";
+export * from "./useGetEventSessionPayments";
 export * from "./useGetEventSessionSpeakers";
 export * from "./useGetEventSessionSponsors";
 export * from "./useGetEventSessionTracks";

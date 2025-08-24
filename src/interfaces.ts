@@ -1762,6 +1762,16 @@ export interface BasePayment {
   state: string;
   zip: string;
   captured: boolean;
+  accountId: string;
+  eventId: string;
+  registrationId: string;
+  passTypeId: string;
+  passId: string;
+  sessionId: string;
+  placeId: string;
+  spaceId: string;
+  membershipId: string;
+  couponId: string;
   lineItems: BasePaymentLineItem[];
   createdAt: string;
 }
@@ -1775,7 +1785,6 @@ export enum PaymentIntegrationType {
 }
 
 export interface Payment extends BasePayment {
-  accountId: string;
   account: BaseAccount;
   bypassedId: string | null;
   bypassedBy: BaseUser | null;
@@ -1827,13 +1836,6 @@ export interface BasePaymentLineItem {
   deferred: number;
   taxable: boolean;
   paymentId: number;
-  // PARENT IDS
-  eventId: string | null;
-  accountId: string | null;
-  addOnId: string | null;
-  sessionId: string | null;
-  placeId: string | null;
-  spaceId: string | null;
   // ITEM IDS
   passId: string | null;
   packageId: string | null;

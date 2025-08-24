@@ -91,7 +91,7 @@ export const useGetEventPassTypePayments = (
     params,
     {
       ...options,
-      enabled: !!passTypeId && (options.enabled ?? true),
+      enabled: !!eventId && !!passTypeId && (options.enabled ?? true),
     },
     "events"
   );

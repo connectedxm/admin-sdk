@@ -1,6 +1,7 @@
 export * from "./useGetBooking";
 export * from "./useGetBookingPlace";
 export * from "./useGetBookingPlaceBookings";
+export * from "./useGetBookingPlacePayments";
 export * from "./useGetBookingPlaceTranslation";
 export * from "./useGetBookingPlaceTranslations";
 export * from "./useGetBookingPlaces";
@@ -10,6 +11,7 @@ export * from "./useGetBookingSpaceAvailability";
 export * from "./useGetBookingSpaceBlackout";
 export * from "./useGetBookingSpaceBlackouts";
 export * from "./useGetBookingSpaceBookings";
+export * from "./useGetBookingSpacePayments";
 export * from "./useGetBookingSpaceSlots";
 export * from "./useGetBookingSpaceTranslation";
 export * from "./useGetBookingSpaceTranslations";

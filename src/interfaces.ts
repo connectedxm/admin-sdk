@@ -1763,15 +1763,15 @@ export interface BasePayment {
   zip: string;
   captured: boolean;
   accountId: string;
-  eventId: string;
-  registrationId: string;
-  passTypeId: string;
-  passId: string;
-  sessionId: string;
-  placeId: string;
-  spaceId: string;
-  membershipId: string;
-  couponId: string;
+  eventId: string | null;
+  registrationId: string | null;
+  passTypeId: string | null;
+  passId: string | null;
+  sessionId: string | null;
+  placeId: string | null;
+  spaceId: string | null;
+  membershipId: string | null;
+  couponId: string | null;
   lineItems: BasePaymentLineItem[];
   createdAt: string;
 }

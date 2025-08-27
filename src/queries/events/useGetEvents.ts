@@ -86,6 +86,7 @@ export const useGetEvents = (
     (params: InfiniteQueryParams) =>
       GetEvents({
         ...params,
+        featured,
         past,
       }),
     params,

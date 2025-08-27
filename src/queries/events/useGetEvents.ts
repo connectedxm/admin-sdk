@@ -11,9 +11,11 @@ import {
  * @category Keys
  * @group Events
  */
-export const EVENTS_QUERY_KEY = (past?: boolean) => {
+export const EVENTS_QUERY_KEY = (past?: boolean, featured?: boolean) => {
   let keys = ["EVENTS"];
   if (typeof past !== "undefined") keys = [...keys, past ? "PAST" : "UPCOMING"];
+  if (typeof featured !== "undefined")
+    keys = [...keys, featured ? "FEATURED" : "NOT_FEATURED"];
   return keys;
 };
 
@@ -31,6 +33,7 @@ export const SET_EVENTS_QUERY_DATA = (
 
 interface GetEventsProps extends InfiniteQueryParams {
   past?: boolean;
+  featured?: boolean;
 }
 
 /**
@@ -42,17 +45,24 @@ export const GetEvents = async ({
   pageSize,
   orderBy,
   past,
+  featured,
   search,
   adminApiParams,
 }: GetEventsProps): Promise<ConnectedXMResponse<BaseEvent[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events`, {
     params: {
-      past: typeof past !== "undefined" ? (past ? "true" : "false") : undefined,
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
+      past: typeof past !== "undefined" ? (past ? "true" : "false") : undefined,
+      featured:
+        typeof featured !== "undefined"
+          ? featured
+            ? "true"
+            : "false"
+          : undefined,
     },
   });
 
@@ -64,6 +74,7 @@ export const GetEvents = async ({
  */
 export const useGetEvents = (
   past?: boolean,
+  featured?: boolean,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -71,10 +82,11 @@ export const useGetEvents = (
   options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetEvents>>> = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetEvents>>>(
-    EVENTS_QUERY_KEY(past),
+    EVENTS_QUERY_KEY(past, featured),
     (params: InfiniteQueryParams) =>
       GetEvents({
         ...params,
+        featured,
         past,
       }),
     params,

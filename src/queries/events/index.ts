@@ -30,4 +30,3 @@ export * from "./useGetEventActivities";
 export * from "./useGetEventPayments";
 export * from "./useGetEventThreads";
 export * from "./useGetEvents";
-export * from "./useGetFeaturedEvents";

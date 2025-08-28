@@ -1933,13 +1933,6 @@ export interface CloneOptions {
   sessions: boolean;
 }
 
-export interface TemplateListParams {
-  page?: number;
-  pageSize?: number;
-  orderBy?: string;
-  search?: string;
-}
-
 export interface BookingPlaceCreateInputs {
   name: string;
   timezone: string;

@@ -1940,11 +1940,6 @@ export interface TemplateListParams {
   search?: string;
 }
 
-export interface CloneFromTemplateParams {
-  templateId: string;
-  options: CloneOptions;
-}
-
 export interface BookingPlaceCreateInputs {
   name: string;
   timezone: string;

@@ -623,6 +623,7 @@ export interface EventCreateInputs {
   matchName?: string | null;
   activityFeedEnabled?: boolean;
   options?: object | null;
+  template?: boolean;
 }
 
 export interface EventEmailUpdateInputs {
@@ -1930,6 +1931,18 @@ export interface CloneOptions {
   sponsors: boolean;
   locations: boolean;
   sessions: boolean;
+}
+
+export interface TemplateListParams {
+  page?: number;
+  pageSize?: number;
+  orderBy?: string;
+  search?: string;
+}
+
+export interface CloneFromTemplateParams {
+  templateId: string;
+  options: CloneOptions;
 }
 
 export interface BookingPlaceCreateInputs {

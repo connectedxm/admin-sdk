@@ -23,6 +23,7 @@ export * from "./speakers";
 export * from "./sponsors";
 export * from "./sponsorshipLevels";
 export * from "./sponsorships";
+export * from "./templates";
 export * from "./tracks";
 export * from "./translations";
 export * from "./useGetEvent";

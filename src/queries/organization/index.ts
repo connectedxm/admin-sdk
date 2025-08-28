@@ -4,7 +4,6 @@ export * from "./pages";
 export * from "./payments";
 export * from "./sideEffects";
 export * from "./tax";
-export * from "./triggers";
 export * from "./useGetOrganization";
 export * from "./useGetOrganizationDomain";
 export * from "./useGetOrganizationMembership";

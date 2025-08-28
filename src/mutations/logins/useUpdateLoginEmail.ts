@@ -1,4 +1,4 @@
-import { Account, ConnectedXMResponse } from "@src/interfaces";
+import { Login, ConnectedXMResponse } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -7,27 +7,25 @@ import {
 import { GetAdminAPI } from "@src/AdminAPI";
 /**
  * @category Params
- * @group Account
+ * @group Logins
  */
 export interface UpdateLoginEmailParams extends MutationParams {
-  accountId: string;
-  username: string;
+  sub: string;
   email: string;
 }
 
 /**
  * @category Methods
- * @group Account
+ * @group Logins
  */
 export const UpdateLoginEmail = async ({
-  accountId,
-  username,
+  sub,
   email,
   adminApiParams,
-}: UpdateLoginEmailParams): Promise<ConnectedXMResponse<Account>> => {
+}: UpdateLoginEmailParams): Promise<ConnectedXMResponse<Login>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Account>>(
-    `/accounts/${accountId}/cognito/${username}/email`,
+  const { data } = await connectedXM.put<ConnectedXMResponse<Login>>(
+    `/logins/${sub}/email`,
     { email }
   );
 
@@ -36,7 +34,7 @@ export const UpdateLoginEmail = async ({
 
 /**
  * @category Mutations
- * @group Account
+ * @group Logins
  */
 export const useUpdateLoginEmail = (
   options: Omit<

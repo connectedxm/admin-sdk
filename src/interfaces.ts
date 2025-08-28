@@ -74,11 +74,6 @@ export enum UserRole {
   staff = "staff",
 }
 
-export enum AccountType {
-  account = "account",
-  team = "team",
-}
-
 export enum AccountAccess {
   FULL_ACCESS = "FULL_ACCESS",
   DELISTED = "DELISTED",
@@ -243,7 +238,6 @@ export enum SessionAccess {
 export interface BaseAccount {
   organizationId: string;
   id: string;
-  accountType: AccountType;
   accountAccess: AccountAccess;
   firstName: string | null;
   lastName: string | null;
@@ -3224,20 +3218,22 @@ export interface BaseSchedule {
 export interface Schedule extends BaseSchedule {}
 
 export interface BaseLogin {
-  cognitoUsername: string;
-  provider: string;
-  updatedAt: string;
-  createdAt: string;
-}
-
-export interface Login extends BaseLogin {
   sub: string;
   userPoolId: string;
-  enabled: boolean;
-  status: string;
+  username: string;
   email: string;
+  status: string;
+  enabled: boolean;
   verified: boolean;
+  firstName: string | null;
+  lastName: string | null;
+  internalRefId: string | null;
+  provider: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
+
+export interface Login extends BaseLogin {}
 
 export interface DomainDetails {
   name: string;

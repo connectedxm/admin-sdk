@@ -4,7 +4,6 @@ export * from "./pages";
 export * from "./payment";
 export * from "./sideEffects";
 export * from "./tax";
-export * from "./triggers";
 export * from "./useAddOrganizationUser";
 export * from "./useCreateOrganizationTeamMember";
 export * from "./useCreateOrganizationWebhook";

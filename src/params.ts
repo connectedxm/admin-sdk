@@ -1909,7 +1909,6 @@ export interface TaxIntegrationCreateInputs {
 export interface CloneOptions {
   name: string;
   eventStart: string;
-  eventEnd: string;
   passTypes: boolean;
   addOns: boolean;
   roomTypes: boolean;

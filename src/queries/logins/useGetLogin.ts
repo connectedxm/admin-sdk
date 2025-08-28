@@ -11,10 +11,13 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @category Keys
  * @group Logins
  */
-export const LOGIN_QUERY_KEY = (sub: string) => [...LOGINS_QUERY_KEY(), sub];
+export const LOGIN_QUERY_KEY = (username: string) => [
+  ...LOGINS_QUERY_KEY(),
+  username,
+];
 
 interface GetLoginProps extends SingleQueryParams {
-  sub: string;
+  username: string;
 }
 
 /**
@@ -22,11 +25,11 @@ interface GetLoginProps extends SingleQueryParams {
  * @group Logins
  */
 export const GetLogin = async ({
-  sub,
+  username,
   adminApiParams,
 }: GetLoginProps): Promise<ConnectedXMResponse<Login>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/logins/${sub}`);
+  const { data } = await adminApi.get(`/logins/${username}`);
   return data;
 };
 /**
@@ -34,15 +37,15 @@ export const GetLogin = async ({
  * @group Logins
  */
 export const useGetLogin = (
-  sub: string = "",
+  username: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetLogin>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetLogin>>(
-    LOGIN_QUERY_KEY(sub),
-    (params: SingleQueryParams) => GetLogin({ sub, ...params }),
+    LOGIN_QUERY_KEY(username),
+    (params: SingleQueryParams) => GetLogin({ username, ...params }),
     {
       ...options,
-      enabled: !!sub && (options?.enabled ?? true),
+      enabled: !!username && (options?.enabled ?? true),
     },
     "accounts"
   );

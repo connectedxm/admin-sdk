@@ -4,10 +4,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import {
-  LOGINS_QUERY_KEY,
-  LOGIN_QUERY_KEY,
-} from "@src/queries";
+import { LOGINS_QUERY_KEY, LOGIN_QUERY_KEY } from "@src/queries";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
@@ -15,7 +12,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @group Logins
  */
 export interface DeleteLoginParams extends MutationParams {
-  sub: string;
+  username: string;
 }
 
 /**
@@ -23,13 +20,13 @@ export interface DeleteLoginParams extends MutationParams {
  * @group Logins
  */
 export const DeleteLogin = async ({
-  sub,
+  username,
   adminApiParams,
   queryClient,
 }: DeleteLoginParams): Promise<ConnectedXMResponse<Login>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<Login>>(
-    `/logins/${sub}`
+    `/logins/${username}`
   );
 
   if (queryClient && data.status === "ok") {
@@ -37,7 +34,7 @@ export const DeleteLogin = async ({
       queryKey: LOGINS_QUERY_KEY(),
     });
     queryClient.invalidateQueries({
-      queryKey: LOGIN_QUERY_KEY(sub),
+      queryKey: LOGIN_QUERY_KEY(username),
     });
   }
   return data;

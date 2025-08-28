@@ -10,7 +10,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @group Logins
  */
 export interface UpdateLoginEmailParams extends MutationParams {
-  sub: string;
+  username: string;
   email: string;
 }
 
@@ -19,13 +19,13 @@ export interface UpdateLoginEmailParams extends MutationParams {
  * @group Logins
  */
 export const UpdateLoginEmail = async ({
-  sub,
+  username,
   email,
   adminApiParams,
 }: UpdateLoginEmailParams): Promise<ConnectedXMResponse<Login>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<Login>>(
-    `/logins/${sub}/email`,
+    `/logins/${username}/email`,
     { email }
   );
 

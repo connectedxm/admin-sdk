@@ -3229,12 +3229,15 @@ export interface BaseLogin {
   firstName: string | null;
   lastName: string | null;
   internalRefId: string | null;
-  provider: string | null;
   createdAt: string;
   updatedAt: string;
 }
 
-export interface Login extends BaseLogin {}
+export interface Login extends BaseLogin {
+  _count: {
+    accounts: number;
+  };
+}
 
 export interface DomainDetails {
   name: string;

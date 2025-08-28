@@ -11,13 +11,13 @@ import { LOGIN_QUERY_KEY } from "./useGetLogin";
  * @category Keys
  * @group Logins
  */
-export const LOGIN_ACCOUNTS_QUERY_KEY = (sub: string) => [
-  ...LOGIN_QUERY_KEY(sub),
+export const LOGIN_ACCOUNTS_QUERY_KEY = (username: string) => [
+  ...LOGIN_QUERY_KEY(username),
   "ACCOUNTS",
 ];
 
 interface GetLoginAccountsProps extends InfiniteQueryParams {
-  sub: string;
+  username: string;
 }
 
 /**
@@ -25,7 +25,7 @@ interface GetLoginAccountsProps extends InfiniteQueryParams {
  * @group Logins
  */
 export const GetLoginAccounts = async ({
-  sub,
+  username,
   pageParam,
   pageSize,
   orderBy,
@@ -33,7 +33,7 @@ export const GetLoginAccounts = async ({
   adminApiParams,
 }: GetLoginAccountsProps): Promise<ConnectedXMResponse<Account[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/logins/${sub}/accounts`, {
+  const { data } = await adminApi.get(`/logins/${username}/accounts`, {
     params: {
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
@@ -48,7 +48,7 @@ export const GetLoginAccounts = async ({
  * @group Logins
  */
 export const useGetLoginAccounts = (
-  sub: string = "",
+  username: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -60,13 +60,13 @@ export const useGetLoginAccounts = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetLoginAccounts>>
   >(
-    LOGIN_ACCOUNTS_QUERY_KEY(sub),
+    LOGIN_ACCOUNTS_QUERY_KEY(username),
     (queryParams: InfiniteQueryParams) =>
-      GetLoginAccounts({ sub, ...queryParams }),
+      GetLoginAccounts({ username, ...queryParams }),
     params,
     {
       ...options,
-      enabled: !!sub && (options.enabled ?? true),
+      enabled: !!username && (options.enabled ?? true),
     },
     "accounts"
   );

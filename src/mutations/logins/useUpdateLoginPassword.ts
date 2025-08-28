@@ -10,7 +10,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @group Logins
  */
 export interface UpdateLoginPasswordParams extends MutationParams {
-  sub: string;
+  username: string;
   password: string;
 }
 
@@ -19,13 +19,13 @@ export interface UpdateLoginPasswordParams extends MutationParams {
  * @group Logins
  */
 export const UpdateLoginPassword = async ({
-  sub,
+  username,
   password,
   adminApiParams,
 }: UpdateLoginPasswordParams): Promise<ConnectedXMResponse<Login>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<Login>>(
-    `/logins/${sub}/password`,
+    `/logins/${username}/password`,
     { password }
   );
 

@@ -4,10 +4,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import {
-  LOGIN_QUERY_KEY,
-  LOGIN_ACCOUNTS_QUERY_KEY,
-} from "@src/queries";
+import { LOGIN_QUERY_KEY, LOGIN_ACCOUNTS_QUERY_KEY } from "@src/queries";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
@@ -15,7 +12,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @group Logins
  */
 export interface AddLoginAccountParams extends MutationParams {
-  sub: string;
+  username: string;
   accountId: string;
 }
 
@@ -24,22 +21,22 @@ export interface AddLoginAccountParams extends MutationParams {
  * @group Logins
  */
 export const AddLoginAccount = async ({
-  sub,
+  username,
   accountId,
   adminApiParams,
   queryClient,
 }: AddLoginAccountParams): Promise<ConnectedXMResponse<Login>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<Login>>(
-    `/logins/${sub}/accounts/${accountId}`
+    `/logins/${username}/accounts/${accountId}`
   );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: LOGIN_QUERY_KEY(sub),
+      queryKey: LOGIN_QUERY_KEY(username),
     });
     queryClient.invalidateQueries({
-      queryKey: LOGIN_ACCOUNTS_QUERY_KEY(sub),
+      queryKey: LOGIN_ACCOUNTS_QUERY_KEY(username),
     });
   }
   return data;

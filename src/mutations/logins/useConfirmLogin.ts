@@ -4,10 +4,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
-import {
-  LOGINS_QUERY_KEY,
-  LOGIN_QUERY_KEY,
-} from "@src/queries";
+import { LOGINS_QUERY_KEY, LOGIN_QUERY_KEY } from "@src/queries";
 import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
@@ -15,7 +12,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @group Logins
  */
 export interface ConfirmLoginParams extends MutationParams {
-  sub: string;
+  username: string;
 }
 
 /**
@@ -23,13 +20,13 @@ export interface ConfirmLoginParams extends MutationParams {
  * @group Logins
  */
 export const ConfirmLogin = async ({
-  sub,
+  username,
   adminApiParams,
   queryClient,
 }: ConfirmLoginParams): Promise<ConnectedXMResponse<Login>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<Login>>(
-    `/logins/${sub}/confirm`
+    `/logins/${username}/confirm`
   );
 
   if (queryClient && data.status === "ok") {
@@ -37,7 +34,7 @@ export const ConfirmLogin = async ({
       queryKey: LOGINS_QUERY_KEY(),
     });
     queryClient.invalidateQueries({
-      queryKey: LOGIN_QUERY_KEY(sub),
+      queryKey: LOGIN_QUERY_KEY(username),
     });
   }
   return data;

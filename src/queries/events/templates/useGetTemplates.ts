@@ -6,7 +6,6 @@ import {
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "../../useConnectedInfiniteQuery";
-import { TemplateListParams } from "@src/params";
 
 /**
  * @category Keys
@@ -25,9 +24,7 @@ export const SET_EVENT_TEMPLATES_QUERY_DATA = (
   client.setQueryData(EVENT_TEMPLATES_QUERY_KEY(), response);
 };
 
-interface GetTemplatesProps extends InfiniteQueryParams {
-  params?: TemplateListParams;
-}
+interface GetTemplatesProps extends InfiniteQueryParams {}
 
 /**
  * @category Queries
@@ -38,7 +35,6 @@ export const GetTemplates = async ({
   pageSize,
   orderBy,
   search,
-  params,
   adminApiParams,
 }: GetTemplatesProps): Promise<ConnectedXMResponse<Event[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -48,7 +44,6 @@ export const GetTemplates = async ({
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
-      ...params,
     },
   });
 
@@ -63,16 +58,12 @@ export const useGetTemplates = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
-  > & { params?: TemplateListParams } = {},
-    options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetTemplates>>> = {}
+  > = {},
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetTemplates>>> = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetTemplates>>>(
     EVENT_TEMPLATES_QUERY_KEY(),
-    (queryParams: InfiniteQueryParams) =>
-      GetTemplates({
-        ...queryParams,
-        params: params.params,
-      }),
+    (queryParams: InfiniteQueryParams) => GetTemplates(queryParams),
     params,
     options,
     "events"

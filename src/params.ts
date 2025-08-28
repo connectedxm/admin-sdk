@@ -620,6 +620,7 @@ export interface EventCreateInputs {
   matchName?: string | null;
   activityFeedEnabled?: boolean;
   options?: object | null;
+  template?: boolean;
 }
 
 export interface EventEmailUpdateInputs {

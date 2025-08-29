@@ -4,6 +4,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
+import { LOGINS_QUERY_KEY, LOGIN_QUERY_KEY } from "@src/queries";
 import { GetAdminAPI } from "@src/AdminAPI";
 /**
  * @category Params
@@ -22,6 +23,7 @@ export const UpdateLoginPassword = async ({
   username,
   password,
   adminApiParams,
+  queryClient,
 }: UpdateLoginPasswordParams): Promise<ConnectedXMResponse<Login>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<Login>>(
@@ -29,6 +31,14 @@ export const UpdateLoginPassword = async ({
     { password }
   );
 
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: LOGINS_QUERY_KEY(),
+    });
+    queryClient.invalidateQueries({
+      queryKey: LOGIN_QUERY_KEY(username),
+    });
+  }
   return data;
 };
 

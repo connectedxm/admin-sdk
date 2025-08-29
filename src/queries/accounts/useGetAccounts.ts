@@ -14,10 +14,10 @@ import { QueryClient } from "@tanstack/react-query";
  * @category Keys
  * @group Accounts
  */
-export const ACCOUNTS_QUERY_KEY = (accountType?: "account" | "team", verified?: boolean, online?: boolean) => {
+export const ACCOUNTS_QUERY_KEY = (verified?: boolean, online?: boolean) => {
   const keys = ["ACCOUNTS"];
-  if (accountType) keys.push(accountType);
-  if (typeof verified !== "undefined") keys.push(verified ? "VERIFIED" : "UNVERIFIED");
+  if (typeof verified !== "undefined")
+    keys.push(verified ? "VERIFIED" : "UNVERIFIED");
   if (typeof online !== "undefined") keys.push(online ? "ONLINE" : "OFFLINE");
   return keys;
 };
@@ -35,7 +35,6 @@ export const SET_ACCOUNTS_QUERY_DATA = (
 };
 
 interface GetAccountsProps extends InfiniteQueryParams {
-  accountType?: "account" | "team";
   verified?: boolean;
   online?: boolean;
 }
@@ -48,7 +47,6 @@ export const GetAccounts = async ({
   pageParam,
   pageSize,
   orderBy,
-  accountType,
   search,
   adminApiParams,
   verified,
@@ -60,7 +58,6 @@ export const GetAccounts = async ({
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
-      accountType: accountType || undefined,
       search: search || undefined,
       verified: verified || undefined,
       online: online || undefined,
@@ -73,7 +70,6 @@ export const GetAccounts = async ({
  * @group Accounts
  */
 export const useGetAccounts = (
-  accountType?: "account" | "team",
   verified?: boolean,
   online?: boolean,
   params: Omit<
@@ -83,8 +79,9 @@ export const useGetAccounts = (
   options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetAccounts>>> = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetAccounts>>>(
-    ACCOUNTS_QUERY_KEY(accountType, verified, online),
-    (params: InfiniteQueryParams) => GetAccounts({ ...params, accountType, verified, online }),
+    ACCOUNTS_QUERY_KEY(verified, online),
+    (params: InfiniteQueryParams) =>
+      GetAccounts({ ...params, verified, online }),
     params,
     options,
     "accounts"

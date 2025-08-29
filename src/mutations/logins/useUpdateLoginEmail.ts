@@ -1,42 +1,50 @@
-import { Account, ConnectedXMResponse } from "@src/interfaces";
+import { Login, ConnectedXMResponse } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
+import { LOGINS_QUERY_KEY, LOGIN_QUERY_KEY } from "@src/queries";
 import { GetAdminAPI } from "@src/AdminAPI";
 /**
  * @category Params
- * @group Account
+ * @group Logins
  */
 export interface UpdateLoginEmailParams extends MutationParams {
-  accountId: string;
   username: string;
   email: string;
 }
 
 /**
  * @category Methods
- * @group Account
+ * @group Logins
  */
 export const UpdateLoginEmail = async ({
-  accountId,
   username,
   email,
   adminApiParams,
-}: UpdateLoginEmailParams): Promise<ConnectedXMResponse<Account>> => {
+  queryClient,
+}: UpdateLoginEmailParams): Promise<ConnectedXMResponse<Login>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Account>>(
-    `/accounts/${accountId}/cognito/${username}/email`,
+  const { data } = await connectedXM.put<ConnectedXMResponse<Login>>(
+    `/logins/${username}/email`,
     { email }
   );
 
+  if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: LOGINS_QUERY_KEY(),
+    });
+    queryClient.invalidateQueries({
+      queryKey: LOGIN_QUERY_KEY(username),
+    });
+  }
   return data;
 };
 
 /**
  * @category Mutations
- * @group Account
+ * @group Logins
  */
 export const useUpdateLoginEmail = (
   options: Omit<

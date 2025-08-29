@@ -74,11 +74,6 @@ export enum UserRole {
   staff = "staff",
 }
 
-export enum AccountType {
-  account = "account",
-  team = "team",
-}
-
 export enum AccountAccess {
   FULL_ACCESS = "FULL_ACCESS",
   DELISTED = "DELISTED",
@@ -243,7 +238,6 @@ export enum SessionAccess {
 export interface BaseAccount {
   organizationId: string;
   id: string;
-  accountType: AccountType;
   accountAccess: AccountAccess;
   firstName: string | null;
   lastName: string | null;
@@ -1620,29 +1614,6 @@ export interface OrganizationTrigger {
   code: string;
   type: OrganizationTriggerType;
   enabled: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface BasePage {
-  id: string;
-  slug: string;
-  title: string | null;
-  subtitle: string | null;
-}
-
-export interface Page extends BasePage {
-  html: string | null;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface PageTranslation {
-  id: number;
-  locale: string;
-  title: string | null;
-  subtitle: string | null;
-  html: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -3225,19 +3196,24 @@ export interface BaseSchedule {
 export interface Schedule extends BaseSchedule {}
 
 export interface BaseLogin {
-  cognitoUsername: string;
-  provider: string;
-  updatedAt: string;
+  sub: string;
+  userPoolId: string;
+  username: string;
+  email: string;
+  status: string;
+  enabled: boolean;
+  verified: boolean;
+  firstName: string | null;
+  lastName: string | null;
+  internalRefId: string | null;
   createdAt: string;
+  updatedAt: string;
 }
 
 export interface Login extends BaseLogin {
-  sub: string;
-  userPoolId: string;
-  enabled: boolean;
-  status: string;
-  email: string;
-  verified: boolean;
+  _count: {
+    accounts: number;
+  };
 }
 
 export interface DomainDetails {

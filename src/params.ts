@@ -1,5 +1,4 @@
 import {
-  AccountType,
   AdvertisementType,
   BadgeFieldTransformation,
   BadgeFieldType,
@@ -43,7 +42,6 @@ import {
 } from "./interfaces";
 
 export interface AccountCreateInputs {
-  accountType: keyof typeof AccountType;
   email: string;
   username?: string | null;
   featured?: boolean;
@@ -72,7 +70,6 @@ export interface AccountCreateInputs {
 }
 
 export interface AccountUpdateInputs {
-  accountType?: keyof typeof AccountType | null;
   accountAccess?: keyof typeof AccountAccess | null;
   featured?: boolean;
   firstName?: string | null;
@@ -1912,7 +1909,6 @@ export interface TaxIntegrationCreateInputs {
 export interface CloneOptions {
   name: string;
   eventStart: string;
-  eventEnd: string;
   passTypes: boolean;
   addOns: boolean;
   roomTypes: boolean;

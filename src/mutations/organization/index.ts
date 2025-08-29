@@ -1,6 +1,5 @@
 export * from "./integrations";
 export * from "./modules";
-export * from "./pages";
 export * from "./payment";
 export * from "./sideEffects";
 export * from "./tax";

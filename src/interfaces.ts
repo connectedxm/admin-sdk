@@ -1618,29 +1618,6 @@ export interface OrganizationTrigger {
   updatedAt: string;
 }
 
-export interface BasePage {
-  id: string;
-  slug: string;
-  title: string | null;
-  subtitle: string | null;
-}
-
-export interface Page extends BasePage {
-  html: string | null;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface PageTranslation {
-  id: number;
-  locale: string;
-  title: string | null;
-  subtitle: string | null;
-  html: string | null;
-  createdAt: string;
-  updatedAt: string;
-}
-
 export enum PurchaseStatus {
   draft = "draft",
   canceled = "canceled",

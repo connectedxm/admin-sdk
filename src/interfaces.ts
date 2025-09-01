@@ -1607,6 +1607,7 @@ export interface Organization extends BaseOrganization {
   locales: string[];
   inviteOnly: boolean;
   googleTagManagerId: string | null;
+  options: object | null;
 }
 
 export interface OrganizationTrigger {

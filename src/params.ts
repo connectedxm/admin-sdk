@@ -1944,6 +1944,28 @@ export interface BookingPlaceCreateInputs {
   visible?: boolean;
 }
 
+export interface SearchListCreateInputs {
+  name: string;
+}
+
+export interface SearchListUpdateInputs {
+  name?: string;
+}
+
+export interface SearchListValueCreateInputs {
+  value: string;
+  top?: boolean;
+}
+
+export interface SearchListValueUpdateInputs {
+  value?: string;
+  top?: boolean;
+}
+
+export interface AttachSearchListInputs {
+  searchListId: string;
+}
+
 export interface BookingPlaceUpdateInputs {
   name?: string;
   timezone?: string;

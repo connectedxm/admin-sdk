@@ -19,6 +19,7 @@ export * from "./membership";
 export * from "./organization";
 export * from "./payments";
 export * from "./reports";
+export * from "./searchlists";
 export * from "./self";
 export * from "./series";
 export * from "./storage";

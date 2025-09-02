@@ -1,5 +1,6 @@
 export * from "./translations";
 export * from "./useAddSurveyQuestionChoiceSubQuestion";
+export * from "./useAttachSurveyQuestionSearchList";
 export * from "./useCreateSurveyQuestion";
 export * from "./useCreateSurveyQuestionChoice";
 export * from "./useCreateSurveyQuestionSearchValues";
@@ -7,6 +8,7 @@ export * from "./useDeleteSurveyQuestion";
 export * from "./useDeleteSurveyQuestionChoice";
 export * from "./useDeleteSurveyQuestionSearchValue";
 export * from "./useDeleteSurveyQuestionSearchValues";
+export * from "./useDetachSurveyQuestionSearchList";
 export * from "./useRemoveSurveyQuestionChoiceSubQuestion";
 export * from "./useReorderSurveyQuestionChoiceSubQuestions";
 export * from "./useReorderSurveyQuestionChoices";

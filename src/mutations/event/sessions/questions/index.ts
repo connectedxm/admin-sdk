@@ -1,5 +1,6 @@
 export * from "./translations";
 export * from "./useAddEventSessionQuestionChoiceSubQuestion";
+export * from "./useAttachEventSessionQuestionSearchList";
 export * from "./useCreateEventSessionQuestion";
 export * from "./useCreateEventSessionQuestionChoice";
 export * from "./useCreateEventSessionQuestionSearchValues";
@@ -7,6 +8,7 @@ export * from "./useDeleteEventSessionQuestion";
 export * from "./useDeleteEventSessionQuestionChoice";
 export * from "./useDeleteEventSessionQuestionSearchValue";
 export * from "./useDeleteEventSessionQuestionSearchValues";
+export * from "./useDetachEventSessionQuestionSearchList";
 export * from "./useRemoveEventSessionQuestionChoiceSubQuestion";
 export * from "./useReorderEventSessionQuestionChoiceSubQuestions";
 export * from "./useReorderEventSessionQuestionChoices";

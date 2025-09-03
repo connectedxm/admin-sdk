@@ -81,7 +81,7 @@ export const useGetPushDevices = (
     params,
     {
       ...options,
-      enabled: !!accountId && (options?.enabled ?? true),
+      enabled: options?.enabled ?? true,
     },
     "accounts"
   );

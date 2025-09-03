@@ -1678,7 +1678,7 @@ export interface PassAddOn extends Omit<BasePassAddOn, "pass"> {
   updatedAt: string;
 }
 
-export interface PushDevice {
+export interface BasePushDevice {
   id: string;
   name: string | null;
   model: string | null;
@@ -1692,6 +1692,10 @@ export interface PushDevice {
   pushService: PushService;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface PushDevice extends BasePushDevice {
+  accounts: BaseAccount[];
 }
 
 export interface BaseRegistrationBypass {

@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, PushDevice } from "@src/interfaces";
+import { ConnectedXMResponse, BasePushDevice } from "@src/interfaces";
 
 import {
   InfiniteQueryOptions,
@@ -8,14 +8,14 @@ import {
 } from "../useConnectedInfiniteQuery";
 
 import { QueryClient } from "@tanstack/react-query";
-import { ACCOUNT_QUERY_KEY } from "./useGetAccount";
 
 /**
  * @category Keys
  * @group Accounts
  */
-export const ACCOUNT_PUSH_DEVICES_QUERY_KEY = (accountId: string) => {
-  const key = [...ACCOUNT_QUERY_KEY(accountId), "PUSH_DEVICES"];
+export const PUSH_DEVICES_QUERY_KEY = (accountId?: string) => {
+  const key = ["PUSH_DEVICES"];
+  if (accountId) key.push(accountId);
   return key;
 };
 
@@ -25,35 +25,36 @@ export const ACCOUNT_PUSH_DEVICES_QUERY_KEY = (accountId: string) => {
  */
 export const SET_ACCOUNT_PUSH_DEVICES_QUERY_DATA = (
   client: QueryClient,
-  keyParams: Parameters<typeof ACCOUNT_PUSH_DEVICES_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetAccountPushDevices>>
+  keyParams: Parameters<typeof PUSH_DEVICES_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetPushDevices>>
 ) => {
-  client.setQueryData(ACCOUNT_PUSH_DEVICES_QUERY_KEY(...keyParams), response);
+  client.setQueryData(PUSH_DEVICES_QUERY_KEY(...keyParams), response);
 };
 
-interface GetAccountPushDevicesProps extends InfiniteQueryParams {
-  accountId: string;
+interface GetPushDevicesProps extends InfiniteQueryParams {
+  accountId?: string;
 }
 
 /**
  * @category Queries
  * @group Accounts
  */
-export const GetAccountPushDevices = async ({
+export const GetPushDevices = async ({
   accountId,
   pageParam,
   pageSize,
   orderBy,
   search,
   adminApiParams,
-}: GetAccountPushDevicesProps): Promise<ConnectedXMResponse<PushDevice[]>> => {
+}: GetPushDevicesProps): Promise<ConnectedXMResponse<BasePushDevice[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/accounts/${accountId}/push-devices`, {
+  const { data } = await adminApi.get(`/push-devices`, {
     params: {
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
+      accountId: accountId || undefined,
     },
   });
   return data;
@@ -62,29 +63,25 @@ export const GetAccountPushDevices = async ({
  * @category Hooks
  * @group Accounts
  */
-export const useGetAccountPushDevices = (
+export const useGetPushDevices = (
   accountId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
-  options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetAccountPushDevices>>
-  > = {}
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetPushDevices>>> = {}
 ) => {
-  return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetAccountPushDevices>>
-  >(
-    ACCOUNT_PUSH_DEVICES_QUERY_KEY(accountId),
+  return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetPushDevices>>>(
+    PUSH_DEVICES_QUERY_KEY(accountId),
     (params: InfiniteQueryParams) =>
-      GetAccountPushDevices({
+      GetPushDevices({
         ...params,
         accountId,
       }),
     params,
     {
       ...options,
-      enabled: !!accountId && (options?.enabled ?? true),
+      enabled: options?.enabled ?? true,
     },
     "accounts"
   );

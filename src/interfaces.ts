@@ -1695,6 +1695,7 @@ export interface BasePushDevice {
 }
 
 export interface PushDevice extends BasePushDevice {
+  login: BaseLogin;
   accounts: BaseAccount[];
 }
 
@@ -3210,6 +3211,7 @@ export interface BaseLogin {
 export interface Login extends BaseLogin {
   _count: {
     accounts: number;
+    devices: number;
   };
 }
 

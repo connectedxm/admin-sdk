@@ -81,11 +81,6 @@ export enum AccountAccess {
   BANNED = "BANNED",
 }
 
-export enum PushDeviceAppType {
-  EVENTXM = "EVENTXM",
-  COMMUNITYXM = "COMMUNITYXM",
-}
-
 export enum PushService {
   apn = "apn",
   firebase = "firebase",
@@ -1685,8 +1680,6 @@ export interface PassAddOn extends Omit<BasePassAddOn, "pass"> {
 
 export interface PushDevice {
   id: string;
-  accountId: string;
-  account: BaseAccount;
   name: string | null;
   model: string | null;
   brand: string | null;
@@ -1696,7 +1689,6 @@ export interface PushDevice {
   manufacturer: string | null;
   supportedCpuArchitectures: string | null;
   totalMemory: number | null;
-  appType: PushDeviceAppType;
   pushService: PushService;
   createdAt: string;
   updatedAt: string;

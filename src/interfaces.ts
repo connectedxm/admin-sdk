@@ -1690,14 +1690,12 @@ export interface BasePushDevice {
   supportedCpuArchitectures: string | null;
   totalMemory: number | null;
   pushService: PushService;
+  login: BaseLogin;
   createdAt: string;
   updatedAt: string;
 }
 
-export interface PushDevice extends BasePushDevice {
-  login: BaseLogin;
-  accounts: BaseAccount[];
-}
+export interface PushDevice extends BasePushDevice {}
 
 export interface BaseRegistrationBypass {
   id: number;

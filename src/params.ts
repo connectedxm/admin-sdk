@@ -1926,6 +1926,8 @@ export interface CloneOptions {
   pages: boolean;
   benefits: boolean;
   interests: boolean;
+  announcements: boolean;
+  media: boolean;
   // ONSITE
   activations: boolean;
   onSite: boolean;
@@ -1936,6 +1938,9 @@ export interface CloneOptions {
   sponsorshipLevels: boolean;
   locations: boolean; // locations
   sessions: boolean;
+  // SETTINGS
+  sideEffects: boolean;
+  advancedSettings: boolean;
 }
 
 export interface BookingPlaceCreateInputs {

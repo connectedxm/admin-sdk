@@ -67,6 +67,7 @@ export interface AccountCreateInputs {
   internalRefId?: string | null;
   verified?: boolean;
   locale?: string | null;
+  taxEntityUseCode?: string | null;
 }
 
 export interface AccountUpdateInputs {
@@ -96,6 +97,7 @@ export interface AccountUpdateInputs {
   internalRefId?: string | null;
   verified?: boolean;
   locale?: string | null;
+  taxEntityUseCode?: string | null;
 }
 
 export interface AccountAddressCreateInputs {
@@ -1900,34 +1902,61 @@ export interface EventRoomTypeAddOnDetailsUpdateInputs {
 }
 
 export interface TaxIntegrationCreateInputs {
+  sandbox?: boolean;
   apiKey?: string; // taxjar
   accountId?: string; // avalara
   licenseKey?: string; // avalara
-  clientId?: string; // vertex
-  clientSecret?: string; // vertex
+}
+
+export interface TaxIntegrationUpdateInputs {
+  companyCode?: string | null;
+  commit?: boolean;
+  // TYPE CODES
+  passTaxCode?: string | null;
+  packageTaxCode?: string | null;
+  reservationTaxCode?: string | null;
+  addOnTaxCode?: string | null;
+  accessTaxCode?: string | null;
+  invoiceTaxCode?: string | null;
+  bookingTaxCode?: string | null;
+  couponTaxCode?: string | null;
+  subscriptionTaxCode?: string | null;
 }
 
 export interface CloneOptions {
   name: string;
   eventStart: string;
+  // REGISTRATION
   passTypes: boolean;
+  packages: boolean;
   addOns: boolean;
   roomTypes: boolean;
   questions: boolean;
   bypassList: boolean;
+  coupons: boolean;
+  followups: boolean;
+  // DETAILS
   coHosts: boolean;
   emails: boolean;
   faqSections: boolean;
   pages: boolean;
   benefits: boolean;
   interests: boolean;
+  announcements: boolean;
+  media: boolean;
+  // ONSITE
   activations: boolean;
   onSite: boolean;
+  // AGENDA
   tracks: boolean;
   speakers: boolean;
   sponsors: boolean;
-  locations: boolean;
+  sponsorshipLevels: boolean;
+  locations: boolean; // locations
   sessions: boolean;
+  // SETTINGS
+  sideEffects: boolean;
+  advancedSettings: boolean;
 }
 
 export interface BookingPlaceCreateInputs {

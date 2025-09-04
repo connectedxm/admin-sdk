@@ -273,6 +273,7 @@ export interface Account extends BaseAccount {
   video: string | null;
   youtube: string | null;
   dietaryRestrictions: string | null;
+  taxEntityUseCode: string | null;
   updatedAt: string;
 }
 
@@ -1853,7 +1854,35 @@ export interface TaxIntegration {
   id: string;
   type: TaxIntegrationType;
   connectionId: string;
+  sandbox: boolean;
   enabled: boolean;
+  companyCode: string;
+  commit: boolean;
+  passTaxCode: string;
+  packageTaxCode: string;
+  reservationTaxCode: string;
+  addOnTaxCode: string;
+  accessTaxCode: string;
+  invoiceTaxCode: string;
+  bookingTaxCode: string;
+  couponTaxCode: string;
+  subscriptionTaxCode: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+enum TaxIntegrationLogType {
+  quote = "quote",
+  record = "record",
+  refund = "refund",
+}
+
+export interface TaxIntegrationLog {
+  id: string;
+  type: TaxIntegrationLogType;
+  success: boolean;
+  request: object;
+  response: object;
   createdAt: string;
   updatedAt: string;
 }

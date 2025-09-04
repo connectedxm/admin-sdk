@@ -1909,7 +1909,7 @@ export interface TaxIntegrationCreateInputs {
 }
 
 export interface TaxIntegrationUpdateInputs {
-  companyCode?: null;
+  companyCode?: string | null;
   commit?: boolean;
   // TYPE CODES
   passTaxCode?: string | null;

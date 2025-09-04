@@ -18,6 +18,7 @@ export * from "./logins";
 export * from "./membership";
 export * from "./organization";
 export * from "./payments";
+export * from "./push-devices";
 export * from "./reports";
 export * from "./searchlists";
 export * from "./self";

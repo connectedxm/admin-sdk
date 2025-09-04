@@ -5,17 +5,13 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
-import {
-  ACCOUNT_PUSH_DEVICE_QUERY_KEY,
-  ACCOUNT_PUSH_DEVICES_QUERY_KEY,
-} from "@src/queries";
+import { PUSH_DEVICE_QUERY_KEY, PUSH_DEVICES_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
  * @group Account
  */
-export interface DeleteAccountPushDeviceParams extends MutationParams {
-  accountId: string;
+export interface DeletePushDeviceParams extends MutationParams {
   pushDeviceId: string;
 }
 
@@ -23,23 +19,22 @@ export interface DeleteAccountPushDeviceParams extends MutationParams {
  * @category Methods
  * @group Account
  */
-export const DeleteAccountPushDevice = async ({
-  accountId,
+export const DeletePushDevice = async ({
   pushDeviceId,
   adminApiParams,
   queryClient,
-}: DeleteAccountPushDeviceParams): Promise<ConnectedXMResponse<null>> => {
+}: DeletePushDeviceParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
-    `/accounts/${accountId}/push-devices/${pushDeviceId}`
+    `/push-devices/${pushDeviceId}`
   );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: ACCOUNT_PUSH_DEVICES_QUERY_KEY(accountId),
+      queryKey: PUSH_DEVICES_QUERY_KEY(),
     });
-    queryClient.invalidateQueries({
-      queryKey: ACCOUNT_PUSH_DEVICE_QUERY_KEY(accountId, pushDeviceId),
+    queryClient.removeQueries({
+      queryKey: PUSH_DEVICE_QUERY_KEY(pushDeviceId),
     });
   }
 
@@ -50,19 +45,19 @@ export const DeleteAccountPushDevice = async ({
  * @category Mutations
  * @group Account
  */
-export const useDeleteAccountPushDevice = (
+export const useDeletePushDevice = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof DeleteAccountPushDevice>>,
-      Omit<DeleteAccountPushDeviceParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof DeletePushDevice>>,
+      Omit<DeletePushDeviceParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    DeleteAccountPushDeviceParams,
-    Awaited<ReturnType<typeof DeleteAccountPushDevice>>
-  >(DeleteAccountPushDevice, options, {
+    DeletePushDeviceParams,
+    Awaited<ReturnType<typeof DeletePushDevice>>
+  >(DeletePushDevice, options, {
     domain: "accounts",
     type: "update",
   });

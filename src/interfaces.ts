@@ -81,11 +81,6 @@ export enum AccountAccess {
   BANNED = "BANNED",
 }
 
-export enum PushDeviceAppType {
-  EVENTXM = "EVENTXM",
-  COMMUNITYXM = "COMMUNITYXM",
-}
-
 export enum PushService {
   apn = "apn",
   firebase = "firebase",
@@ -279,6 +274,7 @@ export interface Account extends BaseAccount {
   video: string | null;
   youtube: string | null;
   dietaryRestrictions: string | null;
+  taxEntityUseCode: string | null;
   updatedAt: string;
 }
 
@@ -1634,6 +1630,7 @@ export interface Organization extends BaseOrganization {
   locales: string[];
   inviteOnly: boolean;
   googleTagManagerId: string | null;
+  options: object | null;
 }
 
 export interface OrganizationTrigger {
@@ -1709,10 +1706,8 @@ export interface PassAddOn extends Omit<BasePassAddOn, "pass"> {
   updatedAt: string;
 }
 
-export interface PushDevice {
+export interface BasePushDevice {
   id: string;
-  accountId: string;
-  account: BaseAccount;
   name: string | null;
   model: string | null;
   brand: string | null;
@@ -1722,11 +1717,13 @@ export interface PushDevice {
   manufacturer: string | null;
   supportedCpuArchitectures: string | null;
   totalMemory: number | null;
-  appType: PushDeviceAppType;
   pushService: PushService;
+  login: BaseLogin;
   createdAt: string;
   updatedAt: string;
 }
+
+export interface PushDevice extends BasePushDevice {}
 
 export interface BaseRegistrationBypass {
   id: number;
@@ -1884,7 +1881,35 @@ export interface TaxIntegration {
   id: string;
   type: TaxIntegrationType;
   connectionId: string;
+  sandbox: boolean;
   enabled: boolean;
+  companyCode: string;
+  commit: boolean;
+  passTaxCode: string;
+  packageTaxCode: string;
+  reservationTaxCode: string;
+  addOnTaxCode: string;
+  accessTaxCode: string;
+  invoiceTaxCode: string;
+  bookingTaxCode: string;
+  couponTaxCode: string;
+  subscriptionTaxCode: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+enum TaxIntegrationLogType {
+  quote = "quote",
+  record = "record",
+  refund = "refund",
+}
+
+export interface TaxIntegrationLog {
+  id: string;
+  type: TaxIntegrationLogType;
+  success: boolean;
+  request: object;
+  response: object;
   createdAt: string;
   updatedAt: string;
 }
@@ -3240,6 +3265,7 @@ export interface BaseLogin {
 export interface Login extends BaseLogin {
   _count: {
     accounts: number;
+    devices: number;
   };
 }
 

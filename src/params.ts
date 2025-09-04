@@ -67,6 +67,7 @@ export interface AccountCreateInputs {
   internalRefId?: string | null;
   verified?: boolean;
   locale?: string | null;
+  taxEntityUseCode?: string | null;
 }
 
 export interface AccountUpdateInputs {
@@ -96,6 +97,7 @@ export interface AccountUpdateInputs {
   internalRefId?: string | null;
   verified?: boolean;
   locale?: string | null;
+  taxEntityUseCode?: string | null;
 }
 
 export interface AccountAddressCreateInputs {
@@ -1900,11 +1902,25 @@ export interface EventRoomTypeAddOnDetailsUpdateInputs {
 }
 
 export interface TaxIntegrationCreateInputs {
+  sandbox?: boolean;
   apiKey?: string; // taxjar
   accountId?: string; // avalara
   licenseKey?: string; // avalara
-  clientId?: string; // vertex
-  clientSecret?: string; // vertex
+}
+
+export interface TaxIntegrationUpdateInputs {
+  companyCode?: null;
+  commit?: boolean;
+  // TYPE CODES
+  passTaxCode?: string | null;
+  packageTaxCode?: string | null;
+  reservationTaxCode?: string | null;
+  addOnTaxCode?: string | null;
+  accessTaxCode?: string | null;
+  invoiceTaxCode?: string | null;
+  bookingTaxCode?: string | null;
+  couponTaxCode?: string | null;
+  subscriptionTaxCode?: string | null;
 }
 
 export interface CloneOptions {

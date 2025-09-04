@@ -203,7 +203,6 @@ export enum RegistrationQuestionType {
   checkbox = "checkbox",
   search = "search",
   file = "file",
-  searchlist = "searchlist",
 }
 
 export enum OrganizationTriggerType {

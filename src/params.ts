@@ -852,6 +852,7 @@ export interface EventSessionQuestionCreateInputs {
   choices?: string[] | null;
   price?: number | string | null;
   supply?: number | string | null;
+  searchListId?: string;
 }
 
 export interface EventSessionQuestionSearchInputs {
@@ -859,9 +860,6 @@ export interface EventSessionQuestionSearchInputs {
   top?: boolean;
 }
 
-export interface EventSessionQuestionSearchValuesCreateInputs {
-  values?: string;
-}
 export interface EventSessionQuestionSearchValueUpdateInputs {
   value?: string | null;
   top?: boolean;
@@ -891,6 +889,7 @@ export interface EventSessionQuestionUpdateInputs {
   featured?: boolean;
   price?: number | string | null;
   supply?: number | string | null;
+  searchListId?: string;
 }
 
 export interface EventSessionSectionCreateInputs {
@@ -1305,15 +1304,12 @@ export interface EventQuestionCreateInputs {
   sortOrder?: number | string | null;
   featured?: boolean;
   choices?: string[] | null;
+  searchListId?: string;
 }
 
 export interface EventQuestionSearchInputs {
   value: string;
   top?: boolean;
-}
-
-export interface EventQuestionSearchValuesCreateInputs {
-  values?: string;
 }
 export interface EventQuestionSearchValueUpdateInputs {
   value?: string | null;
@@ -1343,6 +1339,7 @@ export interface EventQuestionUpdateInputs {
   sortOrder?: number | string | null;
   featured?: boolean;
   unique?: boolean;
+  searchListId?: string;
 }
 
 export interface CustomReportCreateInputs extends ReportFilters {
@@ -2186,6 +2183,7 @@ export interface SurveyQuestionCreateInputs {
   sortOrder?: number | string | null;
   featured?: boolean;
   choices?: string[] | null;
+  searchListId?: string;
 }
 
 export interface SurveyQuestionSearchInputs {
@@ -2193,9 +2191,6 @@ export interface SurveyQuestionSearchInputs {
   top?: boolean;
 }
 
-export interface SurveyQuestionSearchValuesCreateInputs {
-  values?: string;
-}
 export interface SurveyQuestionSearchValueUpdateInputs {
   value?: string | null;
   top?: boolean;
@@ -2223,6 +2218,7 @@ export interface SurveyQuestionUpdateInputs {
   validationMessage?: string | null;
   sortOrder?: number | string | null;
   featured?: boolean;
+  searchListId?: string;
 }
 
 export interface SurveySectionCreateInputs {

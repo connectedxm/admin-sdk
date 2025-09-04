@@ -5,7 +5,10 @@ import {
   useConnectedMutation,
 } from "../../../useConnectedMutation";
 import { EventSessionQuestion, ConnectedXMResponse } from "@src/interfaces";
-import { EVENT_SESSION_QUESTION_QUERY_KEY } from "@src/queries";
+import {
+  EVENT_SESSION_QUESTION_QUERY_KEY,
+  EVENT_SESSION_QUESTION_SEARCHLIST_QUERY_KEY,
+} from "@src/queries";
 import { AttachSearchListInputs } from "@src/params";
 
 /**
@@ -48,6 +51,19 @@ export const AttachEventSessionQuestionSearchList = async ({
         sessionId,
         questionId
       ),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_SESSION_QUESTION_SEARCHLIST_QUERY_KEY(
+        eventId,
+        sessionId,
+        questionId
+      ),
+    });
+    // Also invalidate all searchlist values queries to ensure fresh data
+    queryClient.invalidateQueries({
+      predicate: (query) => {
+        return query.queryKey[0] === "SEARCHLIST_VALUES";
+      },
     });
   }
   return data;

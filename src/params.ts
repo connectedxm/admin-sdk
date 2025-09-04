@@ -1954,6 +1954,7 @@ export interface CloneOptions {
   sponsorshipLevels: boolean;
   locations: boolean; // locations
   sessions: boolean;
+  rounds: boolean;
   // SETTINGS
   sideEffects: boolean;
   advancedSettings: boolean;

@@ -1858,6 +1858,7 @@ export interface TaxIntegration {
   enabled: boolean;
   companyCode: string;
   commit: boolean;
+  logging: boolean;
   passTaxCode: string;
   packageTaxCode: string;
   reservationTaxCode: string;
@@ -1877,14 +1878,18 @@ enum TaxIntegrationLogType {
   refund = "refund",
 }
 
-export interface TaxIntegrationLog {
+export interface BaseTaxIntegrationLog {
   id: string;
   type: TaxIntegrationLogType;
   success: boolean;
-  request: object;
-  response: object;
+  duration: number;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface TaxIntegrationLog extends BaseTaxIntegrationLog {
+  request: object;
+  response: object;
 }
 
 export interface BaseRegistrationQuestionChoice {
@@ -4060,4 +4065,9 @@ export interface VideoCaption {
   label: string;
   generated: boolean;
   status: "inprogress" | "ready" | "error";
+}
+
+export interface TaxCode {
+  code: string;
+  description: string;
 }

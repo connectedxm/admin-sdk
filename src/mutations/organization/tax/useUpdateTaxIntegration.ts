@@ -9,39 +9,35 @@ import {
   ConnectedXMResponse,
   TaxIntegrationType,
 } from "@src/interfaces";
-import {
-  TAX_INTEGRATIONS_QUERY_KEY,
-  SET_TAX_INTEGRATION_QUERY_DATA,
-} from "@src/queries";
+import { TaxIntegrationUpdateInputs } from "@src/params";
 
 /**
  * @category Params
  * @group Integration
  */
-export interface ToggleTaxIntegrationParams extends MutationParams {
+export interface UpdateTaxIntegrationParams extends MutationParams {
   type: keyof typeof TaxIntegrationType;
+  taxIntegration: TaxIntegrationUpdateInputs;
 }
 
 /**
  * @category Methods
  * @group Integration
  */
-export const ToggleTaxIntegration = async ({
+export const UpdateTaxIntegration = async ({
   type,
+  taxIntegration,
   adminApiParams,
-  queryClient,
-}: ToggleTaxIntegrationParams): Promise<
+}: UpdateTaxIntegrationParams): Promise<
   ConnectedXMResponse<TaxIntegration>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.put<ConnectedXMResponse<TaxIntegration>>(
-    `/organization/tax/${type}/toggle`
+    `/organization/tax/${type}`,
+    taxIntegration
   );
-  if (queryClient && data.status === "ok") {
-    queryClient.invalidateQueries({ queryKey: TAX_INTEGRATIONS_QUERY_KEY() });
-    SET_TAX_INTEGRATION_QUERY_DATA(queryClient, [type], data);
-  }
+
   return data;
 };
 
@@ -49,19 +45,19 @@ export const ToggleTaxIntegration = async ({
  * @category Mutations
  * @group Integration
  */
-export const useToggleTaxIntegration = (
+export const useUpdateTaxIntegration = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof ToggleTaxIntegration>>,
-      Omit<ToggleTaxIntegrationParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof UpdateTaxIntegration>>,
+      Omit<UpdateTaxIntegrationParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    ToggleTaxIntegrationParams,
-    Awaited<ReturnType<typeof ToggleTaxIntegration>>
-  >(ToggleTaxIntegration, options, {
+    UpdateTaxIntegrationParams,
+    Awaited<ReturnType<typeof UpdateTaxIntegration>>
+  >(UpdateTaxIntegration, options, {
     domain: "org",
     type: "update",
   });

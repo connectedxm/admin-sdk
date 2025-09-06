@@ -1911,6 +1911,7 @@ export interface TaxIntegrationCreateInputs {
 export interface TaxIntegrationUpdateInputs {
   companyCode?: string | null;
   commit?: boolean;
+  logging?: boolean;
   // TYPE CODES
   passTaxCode?: string | null;
   packageTaxCode?: string | null;

@@ -6,3 +6,4 @@ export * from "./IsUUID";
 export * from "./MergeInfinitePages";
 export * from "./TransformPrice";
 export * from "./usePermission";
+export * from "./CalculateDuration";

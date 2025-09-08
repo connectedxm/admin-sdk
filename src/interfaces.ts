@@ -1853,6 +1853,8 @@ export interface PaymentLineItem extends BasePaymentLineItem {
   subscription: BaseSubscription | null;
   coupon: BaseCoupon | null;
   payment: BasePayment;
+  taxable: boolean;
+  taxCode?: string | null;
 }
 
 export interface PaymentIntegration {
@@ -1884,6 +1886,7 @@ export interface TaxIntegration {
   enabled: boolean;
   companyCode: string;
   commit: boolean;
+  logging: boolean;
   passTaxCode: string;
   packageTaxCode: string;
   reservationTaxCode: string;
@@ -1903,14 +1906,18 @@ enum TaxIntegrationLogType {
   refund = "refund",
 }
 
-export interface TaxIntegrationLog {
+export interface BaseTaxIntegrationLog {
   id: string;
   type: TaxIntegrationLogType;
   success: boolean;
-  request: object;
-  response: object;
+  duration: number;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface TaxIntegrationLog extends BaseTaxIntegrationLog {
+  request: object;
+  response: object;
 }
 
 export interface BaseRegistrationQuestionChoice {
@@ -4024,32 +4031,48 @@ export interface Match extends BaseMatch {
 export enum SideEffectTriggerType {
   NEW_PASS_OF_PASS_TYPE = "NEW_PASS_OF_PASS_TYPE",
   CHECKED_IN_EVENT_PASS = "CHECKED_IN_EVENT_PASS",
+  NEW_ACCOUNT_TIER = "NEW_ACCOUNT_TIER",
+  REMOVED_ACCOUNT_TIER = "REMOVED_ACCOUNT_TIER",
 }
 
 export enum SideEffectActionType {
   JOIN_GROUP = "JOIN_GROUP",
+  LEAVE_GROUP = "LEAVE_GROUP",
   ADD_TO_TIER = "ADD_TO_TIER",
   SUBSCRIBE_TO_CHANNEL = "SUBSCRIBE_TO_CHANNEL",
   SEND_WEBHOOK = "SEND_WEBHOOK",
 }
 
-export interface SideEffect {
+export interface BaseSideEffect {
+  id: string;
+  // Triggers
+  newPassOfPassTypeId: string | null;
+  checkedInPassEventId: string | null;
+  newAccountTierId: string | null;
+  removedAccountTierId: string | null;
+  // ACTIONS
+  joinGroupId: string | null;
+  leaveGroupId: string | null;
+  addToTierId: string | null;
+  subscribeToChannelId: string | null;
+  sendWebhookId: string | null;
+}
+
+export interface SideEffect extends BaseSideEffect {
   id: string;
   organizationId: string;
   // Triggers
-  newPassOfPassTypeId: string | null;
   newPassOfPassType: BaseEventPassType | null;
-  checkedInPassEventId: string | null;
   checkedInPassEvent: BaseEvent | null;
+  newAccountTier: BaseTier | null;
+  removedAccountTier: BaseTier | null;
   // Effects
-  joinGroupId: string | null;
   joinGroup: BaseGroup | null;
-  addToTierId: string | null;
+  leaveGroup: BaseGroup | null;
   addToTier: BaseTier | null;
-  subscribeToChannelId: string | null;
   subscribeToChannel: BaseChannel | null;
-  sendWebhookId: string | null;
   sendWebhook: BaseWebhook | null;
+  // Timestamps
   createdAt: string;
   updatedAt: string;
 }
@@ -4086,4 +4109,9 @@ export interface VideoCaption {
   label: string;
   generated: boolean;
   status: "inprogress" | "ready" | "error";
+}
+
+export interface TaxCode {
+  code: string;
+  description: string;
 }

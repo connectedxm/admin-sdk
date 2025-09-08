@@ -6,8 +6,6 @@ export * from "./useGetEventQuestionChoices";
 export * from "./useGetEventQuestionResponses";
 export * from "./useGetEventQuestionSearchList";
 export * from "./useGetEventQuestionSearchListValues";
-export * from "./useGetEventQuestionSearchValue";
-export * from "./useGetEventQuestionSearchValues";
 export * from "./useGetEventQuestionSummaries";
 export * from "./useGetEventQuestionSummary";
 export * from "./useGetEventQuestions";

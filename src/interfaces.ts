@@ -2010,17 +2010,6 @@ export interface RegistrationQuestionResponse
   updatedAt: string;
 }
 
-export interface BaseRegistrationQuestionSearchValue {
-  id: string;
-  value: string;
-  top: boolean;
-}
-
-export interface RegistrationQuestionSearchValue
-  extends BaseRegistrationQuestionSearchValue {
-  createdAt: string;
-}
-
 export interface BaseRegistrationQuestion {
   id: string;
   eventId: string;
@@ -2462,17 +2451,6 @@ export interface EventSessionQuestionResponse
   changeLogs: BaseEventSessionQuestionResponseChange[];
   createdAt: string;
   updatedAt: string;
-}
-
-export interface BaseEventSessionQuestionSearchValue {
-  id: string;
-  value: string;
-  top: boolean;
-}
-
-export interface EventSessionQuestionSearchValue
-  extends BaseEventSessionQuestionSearchValue {
-  createdAt: string;
 }
 
 export interface BaseEventSessionQuestion {
@@ -3850,17 +3828,6 @@ export interface SurveyQuestionResponse extends BaseSurveyQuestionResponse {
   changeLogs: BaseSurveyQuestionResponseChange[];
   createdAt: string;
   updatedAt: string;
-}
-
-export interface BaseSurveyQuestionSearchValue {
-  id: string;
-  value: string;
-  top: boolean;
-}
-
-export interface SurveyQuestionSearchValue
-  extends BaseSurveyQuestionSearchValue {
-  createdAt: string;
 }
 
 export interface BaseSurveyQuestion {

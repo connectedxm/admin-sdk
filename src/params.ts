@@ -860,11 +860,6 @@ export interface EventSessionQuestionSearchInputs {
   top?: boolean;
 }
 
-export interface EventSessionQuestionSearchValueUpdateInputs {
-  value?: string | null;
-  top?: boolean;
-}
-
 export interface EventSessionQuestionTranslationUpdateInputs {
   label?: string | null;
   placeholder?: string | null;
@@ -1309,10 +1304,6 @@ export interface EventQuestionCreateInputs {
 
 export interface EventQuestionSearchInputs {
   value: string;
-  top?: boolean;
-}
-export interface EventQuestionSearchValueUpdateInputs {
-  value?: string | null;
   top?: boolean;
 }
 
@@ -2189,11 +2180,6 @@ export interface SurveyQuestionCreateInputs {
 
 export interface SurveyQuestionSearchInputs {
   value: string;
-  top?: boolean;
-}
-
-export interface SurveyQuestionSearchValueUpdateInputs {
-  value?: string | null;
   top?: boolean;
 }
 

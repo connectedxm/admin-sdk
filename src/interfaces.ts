@@ -1372,6 +1372,31 @@ export interface Interest extends BaseInterest {
   };
 }
 
+export interface BaseSearchList {
+  id: string;
+  organizationId: string;
+  name: string;
+}
+
+export interface SearchList extends BaseSearchList {
+  createdAt: string;
+  updatedAt: string;
+  values: SearchListValue[];
+}
+
+export interface BaseSearchListValue {
+  id: string;
+  searchListId: string;
+  value: string;
+  top: boolean;
+}
+
+export interface SearchListValue extends BaseSearchListValue {
+  createdAt: string;
+  updatedAt: string;
+  searchList: SearchList;
+}
+
 export interface BaseInvoiceLineItem {
   id: string;
   name: string;
@@ -1527,6 +1552,7 @@ export interface OrganizationMembership {
   announcements: ModulePermissions;
   bookings: ModulePermissions;
   surveys: ModulePermissions;
+  searchlists: ModulePermissions;
   streams: ModulePermissions;
 }
 
@@ -1984,17 +2010,6 @@ export interface RegistrationQuestionResponse
   updatedAt: string;
 }
 
-export interface BaseRegistrationQuestionSearchValue {
-  id: string;
-  value: string;
-  top: boolean;
-}
-
-export interface RegistrationQuestionSearchValue
-  extends BaseRegistrationQuestionSearchValue {
-  createdAt: string;
-}
-
 export interface BaseRegistrationQuestion {
   id: string;
   eventId: string;
@@ -2005,6 +2020,7 @@ export interface BaseRegistrationQuestion {
   label: string | null;
   placeholder: string | null;
   default: string | null;
+  searchListId: string | null;
   span: number;
   mutable: boolean;
   min: string | null;
@@ -2438,17 +2454,6 @@ export interface EventSessionQuestionResponse
   updatedAt: string;
 }
 
-export interface BaseEventSessionQuestionSearchValue {
-  id: string;
-  value: string;
-  top: boolean;
-}
-
-export interface EventSessionQuestionSearchValue
-  extends BaseEventSessionQuestionSearchValue {
-  createdAt: string;
-}
-
 export interface BaseEventSessionQuestion {
   id: string;
   eventId: string;
@@ -2459,6 +2464,7 @@ export interface BaseEventSessionQuestion {
   label: string | null;
   placeholder: string | null;
   default: string | null;
+  searchListId: string | null;
   mutable: boolean;
   min: string | null;
   max: string | null;
@@ -3826,17 +3832,6 @@ export interface SurveyQuestionResponse extends BaseSurveyQuestionResponse {
   updatedAt: string;
 }
 
-export interface BaseSurveyQuestionSearchValue {
-  id: string;
-  value: string;
-  top: boolean;
-}
-
-export interface SurveyQuestionSearchValue
-  extends BaseSurveyQuestionSearchValue {
-  createdAt: string;
-}
-
 export interface BaseSurveyQuestion {
   id: string;
   eventId: string;
@@ -3847,6 +3842,7 @@ export interface BaseSurveyQuestion {
   label: string | null;
   placeholder: string | null;
   default: string | null;
+  searchListId: string | null;
   mutable: boolean;
   min: string | null;
   max: string | null;

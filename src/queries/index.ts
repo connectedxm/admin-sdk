@@ -23,6 +23,7 @@ export * from "./memberships";
 export * from "./organization";
 export * from "./push-devices";
 export * from "./reports";
+export * from "./searchlists";
 export * from "./self";
 export * from "./series";
 export * from "./streams";

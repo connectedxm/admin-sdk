@@ -9,7 +9,7 @@ import { SurveyQuestionUpdateInputs } from "@src/params";
 import {
   SURVEY_QUESTIONS_QUERY_KEY,
   SET_SURVEY_QUESTION_QUERY_DATA,
-  SURVEY_QUESTION_SEARCHLIST_QUERY_KEY,
+  SEARCHLIST_QUERY_KEY,
 } from "@src/queries";
 
 /**
@@ -56,7 +56,7 @@ export const UpdateSurveyQuestion = async ({
     // Invalidate searchlist query if searchListId was updated
     if (question.searchListId !== undefined) {
       queryClient.invalidateQueries({
-        queryKey: SURVEY_QUESTION_SEARCHLIST_QUERY_KEY(surveyId, questionId),
+        queryKey: SEARCHLIST_QUERY_KEY(question.searchListId),
       });
       // Also invalidate all searchlist values queries to ensure fresh data
       queryClient.invalidateQueries({

@@ -9,7 +9,7 @@ import { EventQuestionUpdateInputs } from "@src/params";
 import {
   EVENT_QUESTIONS_QUERY_KEY,
   SET_EVENT_QUESTION_QUERY_DATA,
-  EVENT_QUESTION_SEARCHLIST_QUERY_KEY,
+  SEARCHLIST_QUERY_KEY,
 } from "@src/queries";
 
 /**
@@ -55,7 +55,7 @@ export const UpdateEventQuestion = async ({
     // Invalidate searchlist query if searchListId was updated
     if (question.searchListId !== undefined) {
       queryClient.invalidateQueries({
-        queryKey: EVENT_QUESTION_SEARCHLIST_QUERY_KEY(eventId, questionId),
+        queryKey: SEARCHLIST_QUERY_KEY(question.searchListId),
       });
       // Also invalidate all searchlist values queries to ensure fresh data
       queryClient.invalidateQueries({

@@ -7,7 +7,7 @@ import {
 import { EventSessionQuestion, ConnectedXMResponse } from "@src/interfaces";
 import {
   EVENT_SESSION_QUESTION_QUERY_KEY,
-  EVENT_SESSION_QUESTION_SEARCHLIST_QUERY_KEY,
+  SEARCHLISTS_QUERY_KEY,
 } from "@src/queries";
 
 /**
@@ -48,20 +48,9 @@ export const DetachEventSessionQuestionSearchList = async ({
         questionId
       ),
     });
+    // Since we don't know which searchlist was detached, invalidate all searchlists
     queryClient.invalidateQueries({
-      queryKey: EVENT_SESSION_QUESTION_SEARCHLIST_QUERY_KEY(
-        eventId,
-        sessionId,
-        questionId
-      ),
-    });
-    // Force remove the cached data to ensure it refetches
-    queryClient.removeQueries({
-      queryKey: EVENT_SESSION_QUESTION_SEARCHLIST_QUERY_KEY(
-        eventId,
-        sessionId,
-        questionId
-      ),
+      queryKey: SEARCHLISTS_QUERY_KEY(),
     });
     // Also invalidate all searchlist values queries to ensure fresh data
     queryClient.invalidateQueries({

@@ -5,10 +5,7 @@ import {
   useConnectedMutation,
 } from "../../useConnectedMutation";
 import { SurveyQuestion, ConnectedXMResponse } from "@src/interfaces";
-import {
-  SURVEY_QUESTION_QUERY_KEY,
-  SURVEY_QUESTION_SEARCHLIST_QUERY_KEY,
-} from "@src/queries";
+import { SURVEY_QUESTION_QUERY_KEY, SEARCHLIST_QUERY_KEY } from "@src/queries";
 import { AttachSearchListInputs } from "@src/params";
 
 /**
@@ -44,7 +41,7 @@ export const AttachSurveyQuestionSearchList = async ({
       queryKey: SURVEY_QUESTION_QUERY_KEY(surveyId, questionId),
     });
     queryClient.invalidateQueries({
-      queryKey: SURVEY_QUESTION_SEARCHLIST_QUERY_KEY(surveyId, questionId),
+      queryKey: SEARCHLIST_QUERY_KEY(searchList.searchListId),
     });
     // Also invalidate all searchlist values queries to ensure fresh data
     queryClient.invalidateQueries({

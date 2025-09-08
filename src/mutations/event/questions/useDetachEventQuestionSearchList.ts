@@ -5,10 +5,7 @@ import {
   useConnectedMutation,
 } from "../../useConnectedMutation";
 import { RegistrationQuestion, ConnectedXMResponse } from "@src/interfaces";
-import {
-  EVENT_QUESTION_QUERY_KEY,
-  EVENT_QUESTION_SEARCHLIST_QUERY_KEY,
-} from "@src/queries";
+import { EVENT_QUESTION_QUERY_KEY, SEARCHLISTS_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
@@ -39,12 +36,9 @@ export const DetachEventQuestionSearchList = async ({
     queryClient.invalidateQueries({
       queryKey: EVENT_QUESTION_QUERY_KEY(eventId, questionId),
     });
+    // Since we don't know which searchlist was detached, invalidate all searchlists
     queryClient.invalidateQueries({
-      queryKey: EVENT_QUESTION_SEARCHLIST_QUERY_KEY(eventId, questionId),
-    });
-    // Force remove the cached data to ensure it refetches
-    queryClient.removeQueries({
-      queryKey: EVENT_QUESTION_SEARCHLIST_QUERY_KEY(eventId, questionId),
+      queryKey: SEARCHLISTS_QUERY_KEY(),
     });
     // Also invalidate all searchlist values queries to ensure fresh data
     queryClient.invalidateQueries({

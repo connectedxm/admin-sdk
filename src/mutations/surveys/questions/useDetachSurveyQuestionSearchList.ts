@@ -5,10 +5,7 @@ import {
   useConnectedMutation,
 } from "../../useConnectedMutation";
 import { SurveyQuestion, ConnectedXMResponse } from "@src/interfaces";
-import {
-  SURVEY_QUESTION_QUERY_KEY,
-  SURVEY_QUESTION_SEARCHLIST_QUERY_KEY,
-} from "@src/queries";
+import { SURVEY_QUESTION_QUERY_KEY, SEARCHLISTS_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
@@ -39,12 +36,9 @@ export const DetachSurveyQuestionSearchList = async ({
     queryClient.invalidateQueries({
       queryKey: SURVEY_QUESTION_QUERY_KEY(surveyId, questionId),
     });
+    // Since we don't know which searchlist was detached, invalidate all searchlists
     queryClient.invalidateQueries({
-      queryKey: SURVEY_QUESTION_SEARCHLIST_QUERY_KEY(surveyId, questionId),
-    });
-    // Force remove the cached data to ensure it refetches
-    queryClient.removeQueries({
-      queryKey: SURVEY_QUESTION_SEARCHLIST_QUERY_KEY(surveyId, questionId),
+      queryKey: SEARCHLISTS_QUERY_KEY(),
     });
     // Also invalidate all searchlist values queries to ensure fresh data
     queryClient.invalidateQueries({

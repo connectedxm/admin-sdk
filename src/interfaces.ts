@@ -1381,7 +1381,9 @@ export interface BaseSearchList {
 export interface SearchList extends BaseSearchList {
   createdAt: string;
   updatedAt: string;
-  values: SearchListValue[];
+  _count: {
+    values: number;
+  };
 }
 
 export interface BaseSearchListValue {

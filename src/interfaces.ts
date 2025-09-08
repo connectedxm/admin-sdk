@@ -2020,6 +2020,7 @@ export interface BaseRegistrationQuestion {
   label: string | null;
   placeholder: string | null;
   default: string | null;
+  searchListId: string | null;
   span: number;
   mutable: boolean;
   min: string | null;
@@ -2463,6 +2464,7 @@ export interface BaseEventSessionQuestion {
   label: string | null;
   placeholder: string | null;
   default: string | null;
+  searchListId: string | null;
   mutable: boolean;
   min: string | null;
   max: string | null;
@@ -3840,6 +3842,7 @@ export interface BaseSurveyQuestion {
   label: string | null;
   placeholder: string | null;
   default: string | null;
+  searchListId: string | null;
   mutable: boolean;
   min: string | null;
   max: string | null;

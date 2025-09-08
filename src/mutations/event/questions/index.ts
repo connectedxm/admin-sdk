@@ -1,5 +1,6 @@
 export * from "./translations";
 export * from "./useAddEventQuestionChoiceSubQuestion";
+export * from "./useAttachEventQuestionSearchList";
 export * from "./useCreateEventQuestion";
 export * from "./useCreateEventQuestionChoice";
 export * from "./useCreateEventQuestionSearchValues";
@@ -7,6 +8,7 @@ export * from "./useDeleteEventQuestion";
 export * from "./useDeleteEventQuestionChoice";
 export * from "./useDeleteEventQuestionSearchValue";
 export * from "./useDeleteEventQuestionSearchValues";
+export * from "./useDetachEventQuestionSearchList";
 export * from "./useRemoveEventQuestionChoiceSubQuestion";
 export * from "./useReorderEventQuestionChoiceSubQuestions";
 export * from "./useReorderEventQuestionChoices";

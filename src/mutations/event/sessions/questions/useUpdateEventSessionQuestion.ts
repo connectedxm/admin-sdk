@@ -9,6 +9,7 @@ import { EventSessionQuestionUpdateInputs } from "@src/params";
 import {
   EVENT_SESSION_QUESTIONS_QUERY_KEY,
   SET_EVENT_SESSION_QUESTION_QUERY_DATA,
+  EVENT_SESSION_QUESTION_SEARCHLIST_QUERY_KEY,
 } from "@src/queries";
 
 /**
@@ -53,6 +54,22 @@ export const UpdateEventSessionQuestion = async ({
     queryClient.invalidateQueries({
       queryKey: EVENT_SESSION_QUESTIONS_QUERY_KEY(eventId, sessionId),
     });
+    // Invalidate searchlist query if searchListId was updated
+    if (question.searchListId !== undefined) {
+      queryClient.invalidateQueries({
+        queryKey: EVENT_SESSION_QUESTION_SEARCHLIST_QUERY_KEY(
+          eventId,
+          sessionId,
+          questionId
+        ),
+      });
+      // Also invalidate all searchlist values queries to ensure fresh data
+      queryClient.invalidateQueries({
+        predicate: (query) => {
+          return query.queryKey[0] === "SEARCHLIST_VALUES";
+        },
+      });
+    }
     SET_EVENT_SESSION_QUESTION_QUERY_DATA(
       queryClient,
       [eventId, sessionId, questionId || data.data.id.toString()],

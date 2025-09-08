@@ -1372,6 +1372,31 @@ export interface Interest extends BaseInterest {
   };
 }
 
+export interface BaseSearchList {
+  id: string;
+  organizationId: string;
+  name: string;
+}
+
+export interface SearchList extends BaseSearchList {
+  createdAt: string;
+  updatedAt: string;
+  values: SearchListValue[];
+}
+
+export interface BaseSearchListValue {
+  id: string;
+  searchListId: string;
+  value: string;
+  top: boolean;
+}
+
+export interface SearchListValue extends BaseSearchListValue {
+  createdAt: string;
+  updatedAt: string;
+  searchList: SearchList;
+}
+
 export interface BaseInvoiceLineItem {
   id: string;
   name: string;
@@ -1527,6 +1552,7 @@ export interface OrganizationMembership {
   announcements: ModulePermissions;
   bookings: ModulePermissions;
   surveys: ModulePermissions;
+  searchlists: ModulePermissions;
   streams: ModulePermissions;
 }
 

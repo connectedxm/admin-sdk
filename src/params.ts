@@ -852,18 +852,11 @@ export interface EventSessionQuestionCreateInputs {
   choices?: string[] | null;
   price?: number | string | null;
   supply?: number | string | null;
+  searchListId?: string;
 }
 
 export interface EventSessionQuestionSearchInputs {
   value: string;
-  top?: boolean;
-}
-
-export interface EventSessionQuestionSearchValuesCreateInputs {
-  values?: string;
-}
-export interface EventSessionQuestionSearchValueUpdateInputs {
-  value?: string | null;
   top?: boolean;
 }
 
@@ -891,6 +884,7 @@ export interface EventSessionQuestionUpdateInputs {
   featured?: boolean;
   price?: number | string | null;
   supply?: number | string | null;
+  searchListId?: string;
 }
 
 export interface EventSessionSectionCreateInputs {
@@ -1305,18 +1299,11 @@ export interface EventQuestionCreateInputs {
   sortOrder?: number | string | null;
   featured?: boolean;
   choices?: string[] | null;
+  searchListId?: string;
 }
 
 export interface EventQuestionSearchInputs {
   value: string;
-  top?: boolean;
-}
-
-export interface EventQuestionSearchValuesCreateInputs {
-  values?: string;
-}
-export interface EventQuestionSearchValueUpdateInputs {
-  value?: string | null;
   top?: boolean;
 }
 
@@ -1343,6 +1330,7 @@ export interface EventQuestionUpdateInputs {
   sortOrder?: number | string | null;
   featured?: boolean;
   unique?: boolean;
+  searchListId?: string;
 }
 
 export interface CustomReportCreateInputs extends ReportFilters {
@@ -1976,6 +1964,28 @@ export interface BookingPlaceCreateInputs {
   visible?: boolean;
 }
 
+export interface SearchListCreateInputs {
+  name: string;
+}
+
+export interface SearchListUpdateInputs {
+  name?: string;
+}
+
+export interface SearchListValueCreateInputs {
+  value: string;
+  top?: boolean;
+}
+
+export interface SearchListValueUpdateInputs {
+  value?: string;
+  top?: boolean;
+}
+
+export interface AttachSearchListInputs {
+  searchListId: string;
+}
+
 export interface BookingPlaceUpdateInputs {
   name?: string;
   timezone?: string;
@@ -2165,18 +2175,11 @@ export interface SurveyQuestionCreateInputs {
   sortOrder?: number | string | null;
   featured?: boolean;
   choices?: string[] | null;
+  searchListId?: string;
 }
 
 export interface SurveyQuestionSearchInputs {
   value: string;
-  top?: boolean;
-}
-
-export interface SurveyQuestionSearchValuesCreateInputs {
-  values?: string;
-}
-export interface SurveyQuestionSearchValueUpdateInputs {
-  value?: string | null;
   top?: boolean;
 }
 
@@ -2202,6 +2205,7 @@ export interface SurveyQuestionUpdateInputs {
   validationMessage?: string | null;
   sortOrder?: number | string | null;
   featured?: boolean;
+  searchListId?: string;
 }
 
 export interface SurveySectionCreateInputs {

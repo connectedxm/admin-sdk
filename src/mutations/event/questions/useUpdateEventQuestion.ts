@@ -11,6 +11,7 @@ import {
   SET_EVENT_QUESTION_QUERY_DATA,
   SEARCHLIST_QUERY_KEY,
 } from "@src/queries";
+import { DetachEventQuestionSearchList } from "./useDetachEventQuestionSearchList";
 
 /**
  * @category Params
@@ -36,6 +37,17 @@ export const UpdateEventQuestion = async ({
   ConnectedXMResponse<RegistrationQuestion>
 > => {
   if (!questionId) throw new Error("Question ID Undefined");
+
+  // If searchListId is null, detach the search list instead of updating
+  if (question.searchListId === null) {
+    return await DetachEventQuestionSearchList({
+      eventId,
+      questionId,
+      adminApiParams,
+      queryClient,
+    });
+  }
+
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<
     ConnectedXMResponse<RegistrationQuestion>
@@ -53,7 +65,7 @@ export const UpdateEventQuestion = async ({
       queryKey: EVENT_QUESTIONS_QUERY_KEY(eventId),
     });
     // Invalidate searchlist query if searchListId was updated
-    if (question.searchListId !== undefined) {
+    if (question.searchListId !== undefined && question.searchListId !== null) {
       queryClient.invalidateQueries({
         queryKey: SEARCHLIST_QUERY_KEY(question.searchListId),
       });

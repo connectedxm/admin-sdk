@@ -1399,6 +1399,25 @@ export interface SearchListValue extends BaseSearchListValue {
   searchList: SearchList;
 }
 
+export interface SearchListConnectedQuestion {
+  id: string;
+  name: string;
+  label: string | null;
+  type: string;
+  required: boolean;
+  questionType: "registration" | "session" | "survey";
+  parentContext: {
+    id: string;
+    name: string;
+  };
+  sessionDetails?: {
+    id: string;
+    name: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface BaseInvoiceLineItem {
   id: string;
   name: string;

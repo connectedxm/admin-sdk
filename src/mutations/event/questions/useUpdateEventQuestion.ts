@@ -39,7 +39,7 @@ export const UpdateEventQuestion = async ({
   if (!questionId) throw new Error("Question ID Undefined");
 
   if (question.searchListId === null) {
-    await DetachEventQuestionSearchList({
+    const detachResult = await DetachEventQuestionSearchList({
       eventId,
       questionId,
       adminApiParams,
@@ -51,12 +51,7 @@ export const UpdateEventQuestion = async ({
     const hasOtherUpdates = Object.keys(questionCopy).length > 0;
 
     if (!hasOtherUpdates) {
-      return await DetachEventQuestionSearchList({
-        eventId,
-        questionId,
-        adminApiParams,
-        queryClient,
-      });
+      return detachResult;
     }
 
     delete question.searchListId;

@@ -39,7 +39,7 @@ export const UpdateSurveyQuestion = async ({
   if (!questionId) throw new Error("Question ID Undefined");
 
   if (question.searchListId === null) {
-    await DetachSurveyQuestionSearchList({
+    const detachResult = await DetachSurveyQuestionSearchList({
       surveyId,
       questionId,
       adminApiParams,
@@ -51,12 +51,7 @@ export const UpdateSurveyQuestion = async ({
     const hasOtherUpdates = Object.keys(questionCopy).length > 0;
 
     if (!hasOtherUpdates) {
-      return await DetachSurveyQuestionSearchList({
-        surveyId,
-        questionId,
-        adminApiParams,
-        queryClient,
-      });
+      return detachResult;
     }
 
     delete question.searchListId;

@@ -1391,6 +1391,7 @@ export interface BaseSearchListValue {
   searchListId: string;
   value: string;
   top: boolean;
+  priority: number | null;
 }
 
 export interface SearchListValue extends BaseSearchListValue {

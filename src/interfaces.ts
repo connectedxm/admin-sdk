@@ -1406,14 +1406,8 @@ export interface SearchListConnectedQuestion {
   type: string;
   required: boolean;
   questionType: "registration" | "session" | "survey";
-  parentContext: {
-    id: string;
-    name: string;
-  };
-  sessionDetails?: {
-    id: string;
-    name: string;
-  };
+  parentName: string;
+  sessionName?: string;
   createdAt: string;
   updatedAt: string;
 }

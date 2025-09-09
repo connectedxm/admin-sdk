@@ -1410,6 +1410,7 @@ export interface SearchListConnectedQuestion {
   parentName: string;
   parentId: string;
   sessionName?: string;
+  sessionId?: string;
   createdAt: string;
   updatedAt: string;
 }

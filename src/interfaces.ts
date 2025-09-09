@@ -1408,6 +1408,7 @@ export interface SearchListConnectedQuestion {
   required: boolean;
   questionType: "registration" | "session" | "survey";
   parentName: string;
+  parentId: string;
   sessionName?: string;
   createdAt: string;
   updatedAt: string;

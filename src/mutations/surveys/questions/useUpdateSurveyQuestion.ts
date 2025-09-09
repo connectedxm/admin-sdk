@@ -38,14 +38,28 @@ export const UpdateSurveyQuestion = async ({
 > => {
   if (!questionId) throw new Error("Question ID Undefined");
 
-  // If searchListId is null, detach the search list instead of updating
   if (question.searchListId === null) {
-    return await DetachSurveyQuestionSearchList({
+    await DetachSurveyQuestionSearchList({
       surveyId,
       questionId,
       adminApiParams,
       queryClient,
     });
+
+    const questionCopy = { ...question };
+    delete questionCopy.searchListId;
+    const hasOtherUpdates = Object.keys(questionCopy).length > 0;
+
+    if (!hasOtherUpdates) {
+      return await DetachSurveyQuestionSearchList({
+        surveyId,
+        questionId,
+        adminApiParams,
+        queryClient,
+      });
+    }
+
+    delete question.searchListId;
   }
 
   const connectedXM = await GetAdminAPI(adminApiParams);

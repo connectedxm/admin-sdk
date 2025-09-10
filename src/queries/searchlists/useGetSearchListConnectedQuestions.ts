@@ -64,7 +64,7 @@ export const GetSearchListConnectedQuestions = async ({
         cursor,
         pageSize,
         orderBy,
-        search,
+        search: search || undefined,
       },
     }
   );

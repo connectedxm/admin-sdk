@@ -38,7 +38,6 @@ export const UpdateEventSessionQuestion = async ({
   ConnectedXMResponse<EventSessionQuestion>
 > => {
   if (!questionId) throw new Error("Question ID Undefined");
-
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<
     ConnectedXMResponse<EventSessionQuestion>
@@ -56,9 +55,9 @@ export const UpdateEventSessionQuestion = async ({
       queryKey: EVENT_SESSION_QUESTIONS_QUERY_KEY(eventId, sessionId),
     });
     // Invalidate searchlist query if searchListId was updated
-    if (question.searchListId !== undefined && question.searchListId !== null) {
+    if (data.data.searchListId !== undefined && data.data.searchListId !== null) {
       queryClient.invalidateQueries({
-        queryKey: SEARCHLIST_QUERY_KEY(question.searchListId),
+        queryKey: SEARCHLIST_QUERY_KEY(data.data.searchListId),
       });
       // Also invalidate all searchlist values queries to ensure fresh data
       queryClient.invalidateQueries({

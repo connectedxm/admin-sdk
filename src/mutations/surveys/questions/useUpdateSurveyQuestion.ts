@@ -36,7 +36,6 @@ export const UpdateSurveyQuestion = async ({
   ConnectedXMResponse<SurveyQuestion>
 > => {
   if (!questionId) throw new Error("Question ID Undefined");
-
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<SurveyQuestion>>(
     `/surveys/${surveyId}/questions/${questionId}`,
@@ -55,9 +54,9 @@ export const UpdateSurveyQuestion = async ({
       queryKey: SURVEY_QUESTIONS_QUERY_KEY(surveyId),
     });
     // Invalidate searchlist query if searchListId was updated
-    if (question.searchListId !== undefined && question.searchListId !== null) {
+    if (data.data.searchListId !== undefined && data.data.searchListId !== null) {
       queryClient.invalidateQueries({
-        queryKey: SEARCHLIST_QUERY_KEY(question.searchListId),
+        queryKey: SEARCHLIST_QUERY_KEY(data.data.searchListId),
       });
       // Also invalidate all searchlist values queries to ensure fresh data
       queryClient.invalidateQueries({

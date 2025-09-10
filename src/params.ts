@@ -855,11 +855,6 @@ export interface EventSessionQuestionCreateInputs {
   searchListId?: string | null;
 }
 
-export interface EventSessionQuestionSearchInputs {
-  value: string;
-  top?: boolean;
-}
-
 export interface EventSessionQuestionTranslationUpdateInputs {
   label?: string | null;
   placeholder?: string | null;
@@ -1300,11 +1295,6 @@ export interface EventQuestionCreateInputs {
   featured?: boolean;
   choices?: string[] | null;
   searchListId?: string | null;
-}
-
-export interface EventQuestionSearchInputs {
-  value: string;
-  top?: boolean;
 }
 
 export interface EventQuestionTranslationUpdateInputs {
@@ -2176,11 +2166,6 @@ export interface SurveyQuestionCreateInputs {
   featured?: boolean;
   choices?: string[] | null;
   searchListId?: string | null;
-}
-
-export interface SurveyQuestionSearchInputs {
-  value: string;
-  top?: boolean;
 }
 
 export interface SurveyQuestionTranslationUpdateInputs {

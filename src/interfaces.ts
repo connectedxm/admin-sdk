@@ -1390,7 +1390,6 @@ export interface BaseSearchListValue {
   id: string;
   searchListId: string;
   value: string;
-  top: boolean;
   priority: number | null;
 }
 

@@ -779,7 +779,6 @@ export interface EventSessionUpdateInputs {
 
 export interface EventSessionLocationCreateInputs {
   name: string;
-  googlePlaceId?: string | null;
   description?: string | null;
   imageId?: string | null;
   address1?: string | null;
@@ -797,7 +796,6 @@ export interface EventSessionLocationTranslationUpdateInputs {
 
 export interface EventSessionLocationUpdateInputs {
   name?: string;
-  googlePlaceId?: string | null;
   description?: string | null;
   imageId?: string | null;
   address1?: string | null;

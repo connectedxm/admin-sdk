@@ -2334,7 +2334,6 @@ export interface BaseEventSessionLocation {
 }
 
 export interface EventSessionLocation extends BaseEventSessionLocation {
-  googlePlaceId: string | null;
   description: string | null;
   address1: string | null;
   address2: string | null;

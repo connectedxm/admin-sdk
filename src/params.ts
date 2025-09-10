@@ -1974,13 +1974,11 @@ export interface SearchListUpdateInputs {
 
 export interface SearchListValueCreateInputs {
   value: string;
-  top?: boolean;
   priority?: number | null;
 }
 
 export interface SearchListValueUpdateInputs {
   value?: string;
-  top?: boolean;
   priority?: number | null;
 }
 

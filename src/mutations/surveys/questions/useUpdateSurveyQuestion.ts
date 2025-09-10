@@ -11,7 +11,6 @@ import {
   SET_SURVEY_QUESTION_QUERY_DATA,
   SEARCHLIST_QUERY_KEY,
 } from "@src/queries";
-import { DetachSurveyQuestionSearchList } from "./useDetachSurveyQuestionSearchList";
 
 /**
  * @category Params
@@ -37,25 +36,6 @@ export const UpdateSurveyQuestion = async ({
   ConnectedXMResponse<SurveyQuestion>
 > => {
   if (!questionId) throw new Error("Question ID Undefined");
-
-  if (question.searchListId === null) {
-    const detachResult = await DetachSurveyQuestionSearchList({
-      surveyId,
-      questionId,
-      adminApiParams,
-      queryClient,
-    });
-
-    const questionCopy = { ...question };
-    delete questionCopy.searchListId;
-    const hasOtherUpdates = Object.keys(questionCopy).length > 0;
-
-    if (!hasOtherUpdates) {
-      return detachResult;
-    }
-
-    delete question.searchListId;
-  }
 
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<SurveyQuestion>>(

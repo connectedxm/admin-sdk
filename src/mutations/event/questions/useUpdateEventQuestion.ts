@@ -53,9 +53,9 @@ export const UpdateEventQuestion = async ({
       queryKey: EVENT_QUESTIONS_QUERY_KEY(eventId),
     });
     // Invalidate searchlist query if searchListId was updated
-    if (question.searchListId !== undefined) {
+    if (typeof data.data.searchListId === "string") {
       queryClient.invalidateQueries({
-        queryKey: SEARCHLIST_QUERY_KEY(question.searchListId),
+        queryKey: SEARCHLIST_QUERY_KEY(data.data.searchListId),
       });
       // Also invalidate all searchlist values queries to ensure fresh data
       queryClient.invalidateQueries({

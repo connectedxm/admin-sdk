@@ -1230,6 +1230,8 @@ export interface OrganizationUpdateInputs {
   requirePhone?: boolean;
   requireTitle?: boolean;
   requireCompany?: boolean;
+  requestInternalRefId?: boolean;
+  internalRefIdName?: string | null;
   iosAppLink?: string | null;
   androidAppLink?: string | null;
   appIconId?: string | null;

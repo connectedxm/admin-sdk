@@ -1627,6 +1627,8 @@ export interface Organization extends BaseOrganization {
   requireCompany: boolean;
   requirePhone: boolean;
   requireTitle: boolean;
+  requestInternalRefId: boolean;
+  internalRefIdName: string | null;
   authLayout: AuthLayout;
   defaultAuthAction: DefaultAuthAction;
   userPoolId: string | null;

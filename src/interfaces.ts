@@ -1627,6 +1627,8 @@ export interface Organization extends BaseOrganization {
   requireCompany: boolean;
   requirePhone: boolean;
   requireTitle: boolean;
+  requestInternalRefId: boolean;
+  internalRefIdName: string | null;
   authLayout: AuthLayout;
   defaultAuthAction: DefaultAuthAction;
   userPoolId: string | null;
@@ -2334,7 +2336,6 @@ export interface BaseEventSessionLocation {
 }
 
 export interface EventSessionLocation extends BaseEventSessionLocation {
-  googlePlaceId: string | null;
   description: string | null;
   address1: string | null;
   address2: string | null;

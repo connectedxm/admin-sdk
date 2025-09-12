@@ -37,7 +37,7 @@ export const UpdateEventSpeakerTranslation = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.put(
-    `/events/${eventId}/activations/${speakerId}/translations/${locale}`,
+    `/events/${eventId}/speakers/${speakerId}/translations/${locale}`,
     speakerTranslation
   );
   if (queryClient && data.status === "ok") {

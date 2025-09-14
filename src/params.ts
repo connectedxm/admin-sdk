@@ -492,6 +492,8 @@ export interface EventAddOnCreateInputs {
   supply?: number | string | null;
   sortOrder?: number | string | null;
   imageId?: string | null;
+  taxCode?: string | null;
+  taxIncluded?: boolean;
 }
 
 export interface EventAddOnTranslationUpdateInputs {
@@ -509,6 +511,8 @@ export interface EventAddOnUpdateInputs {
   supply?: number | string | null;
   sortOrder?: number | string | null;
   imageId?: string | null;
+  taxCode?: string | null;
+  taxIncluded?: boolean;
 }
 
 export interface EventBadgeFieldUpdateInputs {
@@ -742,6 +746,8 @@ export interface EventSessionCreateInputs {
   locationId?: string | null;
   roundName?: string | null;
   matchName?: string | null;
+  taxCode?: string | null;
+  taxIncluded?: boolean;
 }
 
 export interface EventSessionAccessUpdateInputs {
@@ -775,6 +781,8 @@ export interface EventSessionUpdateInputs {
   locationId?: string | null;
   roundName?: string | null;
   matchName?: string | null;
+  taxCode?: string | null;
+  taxIncluded?: boolean;
 }
 
 export interface EventSessionLocationCreateInputs {
@@ -1131,7 +1139,6 @@ export interface InvoiceCreateInputs {
   notes?: string | null;
   accountId?: string | null;
   eventId?: string | null;
-  taxable?: boolean;
 }
 
 export interface InvoiceLineItemCreateInputs {
@@ -1139,6 +1146,8 @@ export interface InvoiceLineItemCreateInputs {
   description: string;
   quantity: string | number;
   amount: string;
+  taxCode?: string | null;
+  taxIncluded?: boolean;
 }
 
 export interface InvoiceLineItemUpdateInputs {
@@ -1146,6 +1155,8 @@ export interface InvoiceLineItemUpdateInputs {
   description?: string | null;
   quantity?: string | number | null;
   amount?: number | null;
+  taxCode?: string | null;
+  taxIncluded?: boolean;
 }
 
 export interface InvoiceUpdateInputs {
@@ -1155,7 +1166,6 @@ export interface InvoiceUpdateInputs {
   notes?: string | null;
   accountId?: string | null;
   eventId?: string | null;
-  taxable?: boolean;
 }
 
 export interface LeadCreateInputs {
@@ -1657,6 +1667,8 @@ export interface PassTypeCreateInputs {
   enableCoupons?: boolean;
   overrideStartDate?: string | null;
   requireCoupon?: boolean;
+  taxCode?: string | null;
+  taxIncluded?: boolean;
 }
 
 export interface PassTypeUpdateInputs {
@@ -1681,6 +1693,8 @@ export interface PassTypeUpdateInputs {
   enableCoupons?: boolean;
   overrideStartDate?: string | null;
   requireCoupon?: boolean;
+  taxCode?: string | null;
+  taxIncluded?: boolean;
 }
 
 export interface TierCreateInputs {
@@ -1818,6 +1832,8 @@ export interface EventRoomTypeCreateInputs {
   defaultEnd?: string | null;
   maxEnd?: string | null;
   imageId?: string | null;
+  taxCode?: string | null;
+  taxIncluded?: boolean;
 }
 
 export interface EventRoomTypeUpdateInputs {
@@ -1836,6 +1852,8 @@ export interface EventRoomTypeUpdateInputs {
   defaultEnd?: string | null;
   maxEnd?: string | null;
   imageId?: string | null;
+  taxCode?: string | null;
+  taxIncluded?: boolean;
 }
 
 export interface EventRoomTypeTranslationUpdateInputs {
@@ -2009,6 +2027,8 @@ export interface BookingSpaceCreateInputs {
   visible?: boolean;
   confirmationBody?: string | null;
   confirmationReplyTo?: string | null;
+  taxCode?: string | null;
+  taxIncluded?: boolean;
 }
 
 export interface BookingSpaceUpdateInputs {
@@ -2023,6 +2043,8 @@ export interface BookingSpaceUpdateInputs {
   visible?: boolean;
   confirmationBody?: string | null;
   confirmationReplyTo?: string | null;
+  taxCode?: string | null;
+  taxIncluded?: boolean;
 }
 
 export interface BookingSpaceTranslationUpdateInputs {
@@ -2218,6 +2240,8 @@ export interface EventPackageCreateInputs {
   isActive?: boolean;
   imageId?: string | null;
   sortOrder?: number | string | null;
+  taxCode?: string | null;
+  taxIncluded?: boolean;
 }
 
 export interface EventPackageUpdateInputs {
@@ -2227,6 +2251,8 @@ export interface EventPackageUpdateInputs {
   isActive?: boolean;
   imageId?: string | null;
   sortOrder?: number | string | null;
+  taxCode?: string | null;
+  taxIncluded?: boolean;
 }
 
 export interface EventPackagePassCreateInputs {

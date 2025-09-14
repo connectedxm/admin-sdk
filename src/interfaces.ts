@@ -1773,8 +1773,6 @@ export interface BasePayment {
   stripeId: string | null;
   last4: string | null;
   debugId: string | null;
-  salesTax: number;
-  salesTaxRate: string | null;
   country: string;
   state: string;
   zip: string;

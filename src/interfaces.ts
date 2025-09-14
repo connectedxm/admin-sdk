@@ -830,6 +830,8 @@ export interface BaseEventAddOn {
   imageId: string | null;
   image: BaseImage | null;
   eventId: string | null;
+  taxCode: string | null;
+  taxIncluded: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -1420,6 +1422,8 @@ export interface BaseInvoiceLineItem {
   description: string;
   quantity: number;
   amount: number;
+  taxCode: string | null;
+  taxIncluded: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -1444,7 +1448,6 @@ export interface BaseInvoice {
   status: InvoiceStatus;
   title: string;
   notes: string | null;
-  taxable: boolean;
 }
 
 export interface Invoice extends BaseInvoice {
@@ -1848,8 +1851,9 @@ export interface BasePaymentLineItem {
   refunded: number;
   discount: number;
   deferred: number;
-  taxable: boolean;
   paymentId: number;
+  taxCode: string | null;
+  taxIncluded: boolean;
   // ITEM IDS
   passId: string | null;
   packageId: string | null;
@@ -1872,8 +1876,6 @@ export interface PaymentLineItem extends BasePaymentLineItem {
   subscription: BaseSubscription | null;
   coupon: BaseCoupon | null;
   payment: BasePayment;
-  taxable: boolean;
-  taxCode?: string | null;
 }
 
 export interface PaymentIntegration {
@@ -2304,6 +2306,8 @@ export interface BaseEventSession {
   registrationEnabled: boolean;
   price: number | null;
   limit: number | null;
+  taxCode: string | null;
+  taxIncluded: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -2867,6 +2871,8 @@ export interface BaseEventPassType {
   maxQuantityPerSale: number;
   emailDomains: string | null;
   requireCoupon: boolean;
+  taxCode: string | null;
+  taxIncluded: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -3285,6 +3291,8 @@ export interface BaseEventRoomType {
   image: BaseImage | null;
   passTypes: BaseEventRoomTypePassTypeDetails[];
   addOns: BaseEventRoomTypeAddOnDetails[];
+  taxCode: string | null;
+  taxIncluded: boolean;
 }
 
 export interface EventRoomType extends BaseEventRoomType {
@@ -3474,6 +3482,8 @@ export interface BaseBookingSpace {
   end: string | null;
   sortOrder: number;
   visible: boolean;
+  taxCode: string | null;
+  taxIncluded: boolean;
 }
 
 export interface BookingSpace extends BaseBookingSpace {

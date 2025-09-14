@@ -12,10 +12,9 @@ import { ConnectedXMResponse } from "@src/interfaces";
  * @category Keys
  * @group Tax Integrations
  */
-export const ENTITY_USE_CODES_QUERY_KEY = (type: string, search?: string) => [
+export const ENTITY_USE_CODES_QUERY_KEY = (type: string) => [
   ...TAX_INTEGRATION_QUERY_KEY(type),
   "ENTITY_USE_CODES",
-  search,
 ];
 
 /**
@@ -32,7 +31,6 @@ export const SET_ENTITY_USE_CODES_QUERY_DATA = (
 
 interface GetEntityUseCodesProps extends SingleQueryParams {
   type: string;
-  search?: string;
 }
 
 /**
@@ -41,17 +39,11 @@ interface GetEntityUseCodesProps extends SingleQueryParams {
  */
 export const GetEntityUseCodes = async ({
   type,
-  search,
   adminApiParams,
 }: GetEntityUseCodesProps): Promise<ConnectedXMResponse<any[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get<ConnectedXMResponse<any[]>>(
-    `/organization/tax/${type}/entity-use-codes`,
-    {
-      params: {
-        search,
-      },
-    }
+    `/organization/tax/${type}/entity-use-codes`
   );
   return data;
 };
@@ -62,15 +54,13 @@ export const GetEntityUseCodes = async ({
  */
 export const useGetEntityUseCodes = (
   type: string = "",
-  search?: string,
   options: SingleQueryOptions<ReturnType<typeof GetEntityUseCodes>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetEntityUseCodes>>(
-    ENTITY_USE_CODES_QUERY_KEY(type, search),
+    ENTITY_USE_CODES_QUERY_KEY(type),
     (params: SingleQueryParams) =>
       GetEntityUseCodes({
         type,
-        search,
         ...params,
       }),
     {

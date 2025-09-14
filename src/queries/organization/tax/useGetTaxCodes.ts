@@ -12,10 +12,9 @@ import { ConnectedXMResponse, TaxCode } from "@src/interfaces";
  * @category Keys
  * @group Tax Integrations
  */
-export const TAX_CODES_QUERY_KEY = (type: string, search?: string) => [
+export const TAX_CODES_QUERY_KEY = (type: string) => [
   ...TAX_INTEGRATION_QUERY_KEY(type),
   "TAX_CODES",
-  search,
 ];
 
 /**
@@ -32,7 +31,6 @@ export const SET_TAX_CODES_QUERY_DATA = (
 
 interface GetTaxCodesProps extends SingleQueryParams {
   type: string;
-  search?: string;
 }
 
 /**
@@ -41,17 +39,11 @@ interface GetTaxCodesProps extends SingleQueryParams {
  */
 export const GetTaxCodes = async ({
   type,
-  search,
   adminApiParams,
 }: GetTaxCodesProps): Promise<ConnectedXMResponse<TaxCode[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get<ConnectedXMResponse<TaxCode[]>>(
-    `/organization/tax/${type}/tax-codes`,
-    {
-      params: {
-        search,
-      },
-    }
+    `/organization/tax/${type}/tax-codes`
   );
   return data;
 };
@@ -62,15 +54,13 @@ export const GetTaxCodes = async ({
  */
 export const useGetTaxCodes = (
   type: string = "",
-  search?: string,
   options: SingleQueryOptions<ReturnType<typeof GetTaxCodes>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetTaxCodes>>(
-    TAX_CODES_QUERY_KEY(type, search),
+    TAX_CODES_QUERY_KEY(type),
     (params: SingleQueryParams) =>
       GetTaxCodes({
         type,
-        search,
         ...params,
       }),
     {

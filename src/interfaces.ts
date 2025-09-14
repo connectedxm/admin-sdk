@@ -1851,6 +1851,7 @@ export interface BasePaymentLineItem {
   refunded: number;
   discount: number;
   deferred: number;
+  salesTax: number;
   paymentId: number;
   taxCode: string | null;
   taxIncluded: boolean;

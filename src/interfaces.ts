@@ -203,6 +203,7 @@ export enum RegistrationQuestionType {
   checkbox = "checkbox",
   search = "search",
   file = "file",
+  location = "location",
 }
 
 export enum OrganizationTriggerType {
@@ -2388,6 +2389,7 @@ export enum EventSessionQuestionType {
   search = "search",
   file = "file",
   quantity = "quantity",
+  location = "location",
 }
 
 export interface BaseEventSessionQuestionChoice {
@@ -3774,6 +3776,7 @@ export enum SurveyQuestionType {
   checkbox = "checkbox",
   search = "search",
   file = "file",
+  location = "location",
 }
 
 export interface BaseSurveyQuestionChoice {

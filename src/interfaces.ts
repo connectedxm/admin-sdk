@@ -35,6 +35,12 @@ export enum OrganizationModuleType {
   streams = "streams",
 }
 
+export enum LocationQuestionOption {
+  country = "country",
+  countryState = "countryState",
+  countryStateCity = "countryStateCity",
+}
+
 export interface BaseOrganizationModule {
   id: string;
   moduleType: OrganizationModuleType;
@@ -2048,6 +2054,7 @@ export interface BaseRegistrationQuestion {
   max: string | null;
   validation: string | null;
   validationMessage: string | null;
+  locationQuestionOption: LocationQuestionOption | null;
   sortOrder: number;
   featured: boolean;
   choices: BaseRegistrationQuestionChoice[];
@@ -2493,6 +2500,7 @@ export interface BaseEventSessionQuestion {
   max: string | null;
   validation: string | null;
   validationMessage: string | null;
+  locationQuestionOption: LocationQuestionOption | null;
   sortOrder: number;
   featured: boolean;
   choices: BaseEventSessionQuestionChoice[];
@@ -3878,6 +3886,7 @@ export interface BaseSurveyQuestion {
   max: string | null;
   validation: string | null;
   validationMessage: string | null;
+  locationQuestionOption: LocationQuestionOption | null;
   sortOrder: number;
   featured: boolean;
   choices: BaseSurveyQuestionChoice[];

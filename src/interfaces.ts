@@ -2054,7 +2054,7 @@ export interface BaseRegistrationQuestion {
   max: string | null;
   validation: string | null;
   validationMessage: string | null;
-  locationQuestionOption: LocationQuestionOption | null;
+  locationOption: LocationQuestionOption | null;
   sortOrder: number;
   featured: boolean;
   choices: BaseRegistrationQuestionChoice[];
@@ -2500,7 +2500,7 @@ export interface BaseEventSessionQuestion {
   max: string | null;
   validation: string | null;
   validationMessage: string | null;
-  locationQuestionOption: LocationQuestionOption | null;
+  locationOption: LocationQuestionOption | null;
   sortOrder: number;
   featured: boolean;
   choices: BaseEventSessionQuestionChoice[];
@@ -3886,7 +3886,7 @@ export interface BaseSurveyQuestion {
   max: string | null;
   validation: string | null;
   validationMessage: string | null;
-  locationQuestionOption: LocationQuestionOption | null;
+  locationOption: LocationQuestionOption | null;
   sortOrder: number;
   featured: boolean;
   choices: BaseSurveyQuestionChoice[];

@@ -854,7 +854,7 @@ export interface EventSessionQuestionCreateInputs {
   max?: string | null;
   validation?: string | null;
   validationMessage?: string | null;
-  locationQuestionOption?: LocationQuestionOption | null;
+  locationOption?: LocationQuestionOption | null;
   sortOrder?: number | string | null;
   featured?: boolean;
   choices?: string[] | null;
@@ -883,7 +883,7 @@ export interface EventSessionQuestionUpdateInputs {
   max?: string | null;
   validation?: string | null;
   validationMessage?: string | null;
-  locationQuestionOption?: LocationQuestionOption | null;
+  locationOption?: LocationQuestionOption | null;
   sortOrder?: number | string | null;
   featured?: boolean;
   price?: number | string | null;
@@ -1304,7 +1304,7 @@ export interface EventQuestionCreateInputs {
   max?: string | null;
   validation?: string | null;
   validationMessage?: string | null;
-  locationQuestionOption?: LocationQuestionOption | null;
+  locationOption?: LocationQuestionOption | null;
   sortOrder?: number | string | null;
   featured?: boolean;
   choices?: string[] | null;
@@ -1331,7 +1331,7 @@ export interface EventQuestionUpdateInputs {
   max?: string | null;
   validation?: string | null;
   validationMessage?: string | null;
-  locationQuestionOption?: LocationQuestionOption | null;
+  locationOption?: LocationQuestionOption | null;
   sortOrder?: number | string | null;
   featured?: boolean;
   unique?: boolean;
@@ -2189,7 +2189,7 @@ export interface SurveyQuestionCreateInputs {
   max?: string | null;
   validation?: string | null;
   validationMessage?: string | null;
-  locationQuestionOption?: LocationQuestionOption | null;
+  locationOption?: LocationQuestionOption | null;
   sortOrder?: number | string | null;
   featured?: boolean;
   choices?: string[] | null;
@@ -2216,7 +2216,7 @@ export interface SurveyQuestionUpdateInputs {
   max?: string | null;
   validation?: string | null;
   validationMessage?: string | null;
-  locationQuestionOption?: LocationQuestionOption | null;
+  locationOption?: LocationQuestionOption | null;
   sortOrder?: number | string | null;
   featured?: boolean;
   searchListId?: string | null;

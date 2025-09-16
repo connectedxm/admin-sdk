@@ -1787,6 +1787,9 @@ export interface BasePayment {
   stripeId: string | null;
   last4: string | null;
   debugId: string | null;
+  address1: true;
+  address2: true;
+  city: true;
   country: string;
   state: string;
   zip: string;

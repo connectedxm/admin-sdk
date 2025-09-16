@@ -17,6 +17,11 @@ export enum ImportType {
   accountTiers = "account-tiers",
 }
 
+export enum TaxLocationType {
+  pointOfSale = "pointOfSale",
+  accountAddress = "accountAddress",
+}
+
 export enum OrganizationModuleType {
   activities = "activities",
   events = "events",
@@ -839,6 +844,7 @@ export interface BaseEventAddOn {
   eventId: string | null;
   taxCode: string | null;
   taxIncluded: boolean;
+  taxLocation: TaxLocationType;
   createdAt: string;
   updatedAt: string;
 }
@@ -1431,6 +1437,7 @@ export interface BaseInvoiceLineItem {
   amount: number;
   taxCode: string | null;
   taxIncluded: boolean;
+  taxLocation: TaxLocationType;
   createdAt: string;
   updatedAt: string;
 }
@@ -1807,6 +1814,12 @@ export enum PaymentIntegrationType {
 }
 
 export interface Payment extends BasePayment {
+  locationAddress1: string | null;
+  locationAddress2: string | null;
+  locationCity: string | null;
+  locationState: string | null;
+  locationCountry: string | null;
+  locationZip: string | null;
   account: BaseAccount;
   bypassedId: string | null;
   bypassedBy: BaseUser | null;
@@ -1860,6 +1873,7 @@ export interface BasePaymentLineItem {
   paymentId: number;
   taxCode: string | null;
   taxIncluded: boolean;
+  taxLocation: TaxLocationType;
   // ITEM IDS
   passId: string | null;
   packageId: string | null;
@@ -2315,6 +2329,7 @@ export interface BaseEventSession {
   limit: number | null;
   taxCode: string | null;
   taxIncluded: boolean;
+  taxLocation: TaxLocationType;
   createdAt: string;
   updatedAt: string;
 }
@@ -2882,6 +2897,7 @@ export interface BaseEventPassType {
   requireCoupon: boolean;
   taxCode: string | null;
   taxIncluded: boolean;
+  taxLocation: TaxLocationType;
   createdAt: string;
   updatedAt: string;
 }
@@ -3302,6 +3318,7 @@ export interface BaseEventRoomType {
   addOns: BaseEventRoomTypeAddOnDetails[];
   taxCode: string | null;
   taxIncluded: boolean;
+  taxLocation: TaxLocationType;
 }
 
 export interface EventRoomType extends BaseEventRoomType {
@@ -3493,6 +3510,7 @@ export interface BaseBookingSpace {
   visible: boolean;
   taxCode: string | null;
   taxIncluded: boolean;
+  taxLocation: TaxLocationType;
 }
 
 export interface BookingSpace extends BaseBookingSpace {
@@ -3617,7 +3635,6 @@ export interface Dashboard extends BaseDashboard {
 
 export interface BaseEventPackage {
   id: string;
-
   name: string;
   description: string | null;
   price: number;
@@ -3625,6 +3642,9 @@ export interface BaseEventPackage {
   imageId: string | null;
   image: BaseImage | null;
   sortOrder: number;
+  taxCode: string | null;
+  taxIncluded: boolean;
+  taxLocation: TaxLocationType;
 }
 
 export interface EventPackage extends BaseEventPackage {

@@ -39,6 +39,7 @@ import {
   SessionAccess,
   SupportTicketState,
   EventActivationType,
+  TaxLocationType,
   LocationQuestionOption,
 } from "./interfaces";
 
@@ -495,6 +496,7 @@ export interface EventAddOnCreateInputs {
   imageId?: string | null;
   taxCode?: string | null;
   taxIncluded?: boolean;
+  taxLocation?: keyof typeof TaxLocationType;
 }
 
 export interface EventAddOnTranslationUpdateInputs {
@@ -514,6 +516,7 @@ export interface EventAddOnUpdateInputs {
   imageId?: string | null;
   taxCode?: string | null;
   taxIncluded?: boolean;
+  taxLocation?: keyof typeof TaxLocationType;
 }
 
 export interface EventBadgeFieldUpdateInputs {
@@ -749,6 +752,7 @@ export interface EventSessionCreateInputs {
   matchName?: string | null;
   taxCode?: string | null;
   taxIncluded?: boolean;
+  taxLocation?: keyof typeof TaxLocationType;
 }
 
 export interface EventSessionAccessUpdateInputs {
@@ -784,6 +788,7 @@ export interface EventSessionUpdateInputs {
   matchName?: string | null;
   taxCode?: string | null;
   taxIncluded?: boolean;
+  taxLocation?: keyof typeof TaxLocationType;
 }
 
 export interface EventSessionLocationCreateInputs {
@@ -1151,6 +1156,7 @@ export interface InvoiceLineItemCreateInputs {
   amount: string;
   taxCode?: string | null;
   taxIncluded?: boolean;
+  taxLocation?: keyof typeof TaxLocationType;
 }
 
 export interface InvoiceLineItemUpdateInputs {
@@ -1160,6 +1166,7 @@ export interface InvoiceLineItemUpdateInputs {
   amount?: number | null;
   taxCode?: string | null;
   taxIncluded?: boolean;
+  taxLocation?: keyof typeof TaxLocationType;
 }
 
 export interface InvoiceUpdateInputs {
@@ -1674,6 +1681,7 @@ export interface PassTypeCreateInputs {
   requireCoupon?: boolean;
   taxCode?: string | null;
   taxIncluded?: boolean;
+  taxLocation?: keyof typeof TaxLocationType;
 }
 
 export interface PassTypeUpdateInputs {
@@ -1700,6 +1708,7 @@ export interface PassTypeUpdateInputs {
   requireCoupon?: boolean;
   taxCode?: string | null;
   taxIncluded?: boolean;
+  taxLocation?: keyof typeof TaxLocationType;
 }
 
 export interface TierCreateInputs {
@@ -1839,6 +1848,7 @@ export interface EventRoomTypeCreateInputs {
   imageId?: string | null;
   taxCode?: string | null;
   taxIncluded?: boolean;
+  taxLocation?: keyof typeof TaxLocationType;
 }
 
 export interface EventRoomTypeUpdateInputs {
@@ -1859,6 +1869,7 @@ export interface EventRoomTypeUpdateInputs {
   imageId?: string | null;
   taxCode?: string | null;
   taxIncluded?: boolean;
+  taxLocation?: keyof typeof TaxLocationType;
 }
 
 export interface EventRoomTypeTranslationUpdateInputs {
@@ -2034,6 +2045,7 @@ export interface BookingSpaceCreateInputs {
   confirmationReplyTo?: string | null;
   taxCode?: string | null;
   taxIncluded?: boolean;
+  taxLocation?: keyof typeof TaxLocationType;
 }
 
 export interface BookingSpaceUpdateInputs {
@@ -2050,6 +2062,7 @@ export interface BookingSpaceUpdateInputs {
   confirmationReplyTo?: string | null;
   taxCode?: string | null;
   taxIncluded?: boolean;
+  taxLocation?: keyof typeof TaxLocationType;
 }
 
 export interface BookingSpaceTranslationUpdateInputs {
@@ -2249,6 +2262,7 @@ export interface EventPackageCreateInputs {
   sortOrder?: number | string | null;
   taxCode?: string | null;
   taxIncluded?: boolean;
+  taxLocation?: keyof typeof TaxLocationType;
 }
 
 export interface EventPackageUpdateInputs {
@@ -2260,6 +2274,7 @@ export interface EventPackageUpdateInputs {
   sortOrder?: number | string | null;
   taxCode?: string | null;
   taxIncluded?: boolean;
+  taxLocation?: keyof typeof TaxLocationType;
 }
 
 export interface EventPackagePassCreateInputs {

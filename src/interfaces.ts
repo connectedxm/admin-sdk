@@ -4144,3 +4144,9 @@ export interface TaxCode {
   code: string;
   description: string;
 }
+
+export interface EntityUseCode {
+  code: string;
+  name: string;
+  description: string;
+}

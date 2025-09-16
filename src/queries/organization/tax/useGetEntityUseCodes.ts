@@ -6,7 +6,7 @@ import {
 } from "../../useConnectedSingleQuery";
 import { TAX_INTEGRATION_QUERY_KEY } from "./useGetTaxIntegration";
 import { QueryClient } from "@tanstack/react-query";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, EntityUseCode } from "@src/interfaces";
 
 /**
  * @category Keys
@@ -40,9 +40,9 @@ interface GetEntityUseCodesProps extends SingleQueryParams {
 export const GetEntityUseCodes = async ({
   type,
   adminApiParams,
-}: GetEntityUseCodesProps): Promise<ConnectedXMResponse<any[]>> => {
+}: GetEntityUseCodesProps): Promise<ConnectedXMResponse<EntityUseCode[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get<ConnectedXMResponse<any[]>>(
+  const { data } = await adminApi.get<ConnectedXMResponse<EntityUseCode[]>>(
     `/organization/tax/${type}/entity-use-codes`
   );
   return data;

@@ -3635,7 +3635,6 @@ export interface Dashboard extends BaseDashboard {
 
 export interface BaseEventPackage {
   id: string;
-
   name: string;
   description: string | null;
   price: number;
@@ -3643,6 +3642,9 @@ export interface BaseEventPackage {
   imageId: string | null;
   image: BaseImage | null;
   sortOrder: number;
+  taxCode?: string | null;
+  taxIncluded: boolean;
+  taxLocation: keyof typeof TaxLocationType;
 }
 
 export interface EventPackage extends BaseEventPackage {

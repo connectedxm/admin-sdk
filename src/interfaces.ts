@@ -3642,9 +3642,9 @@ export interface BaseEventPackage {
   imageId: string | null;
   image: BaseImage | null;
   sortOrder: number;
-  taxCode?: string | null;
+  taxCode: string | null;
   taxIncluded: boolean;
-  taxLocation: keyof typeof TaxLocationType;
+  taxLocation: TaxLocationType;
 }
 
 export interface EventPackage extends BaseEventPackage {

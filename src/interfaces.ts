@@ -40,6 +40,12 @@ export enum OrganizationModuleType {
   streams = "streams",
 }
 
+export enum LocationQuestionOption {
+  country = "country",
+  countryState = "countryState",
+  countryStateCity = "countryStateCity",
+}
+
 export interface BaseOrganizationModule {
   id: string;
   moduleType: OrganizationModuleType;
@@ -208,6 +214,7 @@ export enum RegistrationQuestionType {
   checkbox = "checkbox",
   search = "search",
   file = "file",
+  location = "location",
 }
 
 export enum OrganizationTriggerType {
@@ -2055,6 +2062,7 @@ export interface BaseRegistrationQuestion {
   max: string | null;
   validation: string | null;
   validationMessage: string | null;
+  locationOption: LocationQuestionOption | null;
   sortOrder: number;
   featured: boolean;
   choices: BaseRegistrationQuestionChoice[];
@@ -2397,6 +2405,7 @@ export enum EventSessionQuestionType {
   search = "search",
   file = "file",
   quantity = "quantity",
+  location = "location",
 }
 
 export interface BaseEventSessionQuestionChoice {
@@ -2500,6 +2509,7 @@ export interface BaseEventSessionQuestion {
   max: string | null;
   validation: string | null;
   validationMessage: string | null;
+  locationOption: LocationQuestionOption | null;
   sortOrder: number;
   featured: boolean;
   choices: BaseEventSessionQuestionChoice[];
@@ -3786,6 +3796,7 @@ export enum SurveyQuestionType {
   checkbox = "checkbox",
   search = "search",
   file = "file",
+  location = "location",
 }
 
 export interface BaseSurveyQuestionChoice {
@@ -3887,6 +3898,7 @@ export interface BaseSurveyQuestion {
   max: string | null;
   validation: string | null;
   validationMessage: string | null;
+  locationOption: LocationQuestionOption | null;
   sortOrder: number;
   featured: boolean;
   choices: BaseSurveyQuestionChoice[];

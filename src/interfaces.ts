@@ -1814,6 +1814,12 @@ export enum PaymentIntegrationType {
 }
 
 export interface Payment extends BasePayment {
+  locationAddress1: string | null;
+  locationAddress2: string | null;
+  locationCity: string | null;
+  locationState: string | null;
+  locationCountry: string | null;
+  locationZip: string | null;
   account: BaseAccount;
   bypassedId: string | null;
   bypassedBy: BaseUser | null;

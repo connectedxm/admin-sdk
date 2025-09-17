@@ -2224,6 +2224,7 @@ export enum ReportType {
   account = "account",
   revenue = "revenue",
   subscriptionProduct = "subscriptionProduct",
+  series = "series",
 }
 
 export enum EventReportDateType {
@@ -2242,6 +2243,7 @@ export interface ReportFilters {
   surveyId?: string;
   subscriptionProductId?: string;
   sessionId?: string;
+  seriesId?: string;
 }
 
 export interface BaseStandardReport {
@@ -2299,6 +2301,11 @@ export interface BaseSeries {
   slug: string;
   name: string;
   description: string | null;
+  longDescription: string | null;
+  startDate: string;
+  endDate: string;
+  templateId: string;
+  template: BaseEvent;
   imageId: string | null;
   image: BaseImage | null;
 }

@@ -1008,6 +1008,8 @@ export interface BaseEvent {
   registrationEnd: string | null;
   createdAt: string;
   updatedAt: string;
+  seriesId: string | null;
+  series: BaseSeries | null;
 }
 
 export interface Event extends BaseEvent {
@@ -1034,8 +1036,6 @@ export interface Event extends BaseEvent {
   androidAppLink: string | null;
   newActivityCreatorEmailNotification: boolean;
   newActivityCreatorPushNotification: boolean;
-  seriesId: string | null;
-  series: BaseSeries | null;
   streamInputs: BaseStreamInput[];
   streamReplayId: string | null;
   streamReplay: BaseVideo | null;

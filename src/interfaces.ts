@@ -2304,13 +2304,13 @@ export interface BaseSeries {
   longDescription: string | null;
   startDate: string;
   endDate: string;
-  templateId: string;
-  template: BaseEvent;
   imageId: string | null;
   image: BaseImage | null;
 }
 
 export interface Series extends BaseSeries {
+  templateId: string;
+  template: BaseEvent;
   sortOrder: number;
   createdAt: string;
   updatedAt: string;

@@ -2,7 +2,6 @@ export * from "./useGetAccount";
 export * from "./useGetAccountActivities";
 export * from "./useGetAccountAddress";
 export * from "./useGetAccountAddresses";
-export * from "./useGetAccountAuthSessions";
 export * from "./useGetAccountComments";
 export * from "./useGetAccountEmailReceipts";
 export * from "./useGetAccountEvents";

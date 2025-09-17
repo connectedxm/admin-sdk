@@ -352,8 +352,7 @@ export interface APILog extends BaseAPILog {
 export interface AuthSession {
   id: number;
   organizationId: string;
-  accountId: string;
-  account: BaseAccount;
+  login?: BaseLogin;
   createdAt: string;
 }
 

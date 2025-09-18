@@ -168,6 +168,7 @@ export interface ActivityCreateInputs {
   groupId?: string | null;
   contentId?: string | null;
   commentedId?: string | null;
+  createdAt?: string | null;
 }
 
 export interface ActivityUpdateInputs {

@@ -1822,7 +1822,7 @@ export interface Payment extends BasePayment {
   locationState: string | null;
   locationCountry: string | null;
   locationZip: string | null;
-  account: BaseAccount;
+  account: BaseAccount | null;
   bypassedId: string | null;
   bypassedBy: BaseUser | null;
   refunds: BasePayment[];

@@ -1416,7 +1416,7 @@ export interface SeriesUpdateInputs {
   description?: string | null;
   longDescription?: string | null;
   imageId?: string | null;
-  templateId: string;
+  templateId?: string;
   startDate?: string | null;
   endDate?: string | null;
 }

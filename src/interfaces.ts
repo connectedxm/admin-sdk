@@ -1793,7 +1793,7 @@ export interface BasePayment {
   state: string;
   zip: string;
   captured: boolean;
-  accountId: string;
+  accountId: string | null;
   eventId: string | null;
   registrationId: string | null;
   passTypeId: string | null;

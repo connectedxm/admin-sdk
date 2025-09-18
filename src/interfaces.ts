@@ -1008,6 +1008,8 @@ export interface BaseEvent {
   registrationEnd: string | null;
   createdAt: string;
   updatedAt: string;
+  seriesId: string | null;
+  series: BaseSeries | null;
 }
 
 export interface Event extends BaseEvent {
@@ -1034,8 +1036,6 @@ export interface Event extends BaseEvent {
   androidAppLink: string | null;
   newActivityCreatorEmailNotification: boolean;
   newActivityCreatorPushNotification: boolean;
-  seriesId: string | null;
-  series: BaseSeries | null;
   streamInputs: BaseStreamInput[];
   streamReplayId: string | null;
   streamReplay: BaseVideo | null;
@@ -2224,6 +2224,7 @@ export enum ReportType {
   account = "account",
   revenue = "revenue",
   subscriptionProduct = "subscriptionProduct",
+  series = "series",
 }
 
 export enum EventReportDateType {
@@ -2242,6 +2243,7 @@ export interface ReportFilters {
   surveyId?: string;
   subscriptionProductId?: string;
   sessionId?: string;
+  seriesId?: string;
 }
 
 export interface BaseStandardReport {
@@ -2299,11 +2301,16 @@ export interface BaseSeries {
   slug: string;
   name: string;
   description: string | null;
+  longDescription: string | null;
+  startDate: string;
+  endDate: string;
   imageId: string | null;
   image: BaseImage | null;
 }
 
 export interface Series extends BaseSeries {
+  templateId: string;
+  template: BaseEvent;
   sortOrder: number;
   createdAt: string;
   updatedAt: string;

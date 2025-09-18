@@ -1403,16 +1403,22 @@ export interface SeriesCreateInputs {
   name: string;
   slug?: string | null;
   description?: string | null;
+  longDescription?: string | null;
   imageId?: string | null;
-  sortOrder?: number | string | null;
+  templateId: string;
+  startDate: string;
+  endDate: string;
 }
 
 export interface SeriesUpdateInputs {
   name?: string | null;
   slug?: string | null;
   description?: string | null;
+  longDescription?: string | null;
   imageId?: string | null;
-  sortOrder?: number | string | null;
+  templateId: string;
+  startDate?: string | null;
+  endDate?: string | null;
 }
 
 export interface LevelCreateInputs {

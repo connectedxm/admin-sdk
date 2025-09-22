@@ -2302,8 +2302,8 @@ export interface BaseSeries {
   name: string;
   description: string | null;
   longDescription: string | null;
-  startDate: string;
-  endDate: string;
+  startDate: string | null;
+  endDate: string | null;
   imageId: string | null;
   image: BaseImage | null;
 }

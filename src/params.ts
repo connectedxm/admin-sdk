@@ -1407,8 +1407,8 @@ export interface SeriesCreateInputs {
   longDescription?: string | null;
   imageId?: string | null;
   templateId: string;
-  startDate: string;
-  endDate: string;
+  startDate?: string | null;
+  endDate?: string | null;
 }
 
 export interface SeriesUpdateInputs {

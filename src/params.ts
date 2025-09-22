@@ -176,6 +176,7 @@ export interface ActivityUpdateInputs {
   entities?: ActivityEntityInputs[] | null;
   moderation?: keyof typeof ModerationStatus | null;
   featured?: boolean;
+  pinned?: boolean;
   imageId?: string | null;
   videoId?: string | null;
   createdAt?: string | null;

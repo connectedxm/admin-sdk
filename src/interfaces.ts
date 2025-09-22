@@ -442,6 +442,7 @@ export interface BaseActivity {
   id: string;
   message: string;
   featured: boolean;
+  pinned: boolean;
   giphyId: string | null;
   imageId: string | null;
   image: BaseImage | null;

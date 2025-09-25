@@ -83,10 +83,10 @@ export const useConnectedMutation = <
       } as TMutationParams);
     },
     ...options,
-    onError: (error, variables, context, mutation) => {
+    onError: (error, variables, onMutateResult, context) => {
       if (onMutationError) onMutationError(error, variables, context);
       if (options?.onError)
-        options.onError(error, variables, context, mutation);
+        options.onError(error, variables, onMutateResult, context);
     },
   });
 };

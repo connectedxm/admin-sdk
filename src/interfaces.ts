@@ -315,6 +315,7 @@ export interface AccountAddress extends BaseAccountAddress {
 
 export interface BaseAPILog {
   id: string;
+  login: BaseLogin | null;
   account: BaseAccount | null;
   user: BaseUser | null;
   source: "admin" | "client";
@@ -1873,6 +1874,7 @@ export interface BasePaymentLineItem {
   discount: number;
   deferred: number;
   salesTax: number;
+  refundedSalesTax: number;
   paymentId: number;
   taxCode: string | null;
   taxIncluded: boolean;

@@ -129,27 +129,29 @@ export interface ImportCreateInputs {
 }
 
 export interface BaseActivityEntityInput {
-  type: ActivityEntityType;
+  type: keyof typeof ActivityEntityType;
   startIndex: number;
   endIndex: number;
   marks: ("bold" | "italic" | "underline" | "strike")[];
 }
 
 export interface MentionInputs extends BaseActivityEntityInput {
-  type: ActivityEntityType.mention;
-  accountId: string;
-}
-
-export interface LinkInputs extends BaseActivityEntityInput {
-  type: ActivityEntityType.link;
+  type: "mention";
+  username: string;
 }
 
 export interface InterestInputs extends BaseActivityEntityInput {
-  type: ActivityEntityType.interest;
+  type: "interest";
+  interest: string;
+}
+
+export interface LinkInputs extends BaseActivityEntityInput {
+  type: "link";
+  href: string;
 }
 
 export interface SegmentInputs extends BaseActivityEntityInput {
-  type: ActivityEntityType.segment;
+  type: "segment";
 }
 
 type ActivityEntityInputs =
@@ -172,6 +174,7 @@ export interface ActivityCreateInputs {
 }
 
 export interface ActivityUpdateInputs {
+  accountId?: string | null;
   message?: string | null;
   entities?: ActivityEntityInputs[] | null;
   moderation?: keyof typeof ModerationStatus | null;

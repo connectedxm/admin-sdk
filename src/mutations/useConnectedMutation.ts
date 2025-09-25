@@ -1,5 +1,4 @@
 import {
-  MutationFunction,
   QueryClient,
   useMutation,
   UseMutationOptions,
@@ -31,7 +30,7 @@ export const useConnectedMutation = <
   TMutationParams extends MutationParams,
   TResponseData extends ConnectedXMResponse<any>
 >(
-  mutation: MutationFunction<TResponseData, TMutationParams>,
+  mutation: (params: TMutationParams) => Promise<TResponseData>,
   options?: Omit<
     ConnectedXMMutationOptions<
       TResponseData,
@@ -84,9 +83,10 @@ export const useConnectedMutation = <
       } as TMutationParams);
     },
     ...options,
-    onError: (error, variables, context) => {
+    onError: (error, variables, context, mutation) => {
       if (onMutationError) onMutationError(error, variables, context);
-      if (options?.onError) options.onError(error, variables, context);
+      if (options?.onError)
+        options.onError(error, variables, context, mutation);
     },
   });
 };

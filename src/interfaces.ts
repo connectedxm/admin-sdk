@@ -1805,6 +1805,7 @@ export interface BasePayment {
   spaceId: string | null;
   membershipId: string | null;
   couponId: string | null;
+  invoiceId: string | null;
   lineItems: BasePaymentLineItem[];
   createdAt: string;
 }
@@ -1888,7 +1889,6 @@ export interface BasePaymentLineItem {
   accessId: string | null;
   bookingId: string | null;
   subscriptionId: string | null;
-  invoiceId: string | null;
 }
 
 export interface PaymentLineItem extends BasePaymentLineItem {

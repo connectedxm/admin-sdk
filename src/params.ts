@@ -871,6 +871,7 @@ export interface EventSessionQuestionCreateInputs {
   price?: number | string | null;
   supply?: number | string | null;
   searchListId?: string | null;
+  masked?: boolean;
 }
 
 export interface EventSessionQuestionTranslationUpdateInputs {
@@ -1322,6 +1323,7 @@ export interface EventQuestionCreateInputs {
   featured?: boolean;
   choices?: string[] | null;
   searchListId?: string | null;
+  masked?: boolean;
 }
 
 export interface EventQuestionTranslationUpdateInputs {
@@ -2220,6 +2222,7 @@ export interface SurveyQuestionCreateInputs {
   featured?: boolean;
   choices?: string[] | null;
   searchListId?: string | null;
+  masked?: boolean;
 }
 
 export interface SurveyQuestionTranslationUpdateInputs {

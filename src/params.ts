@@ -891,6 +891,7 @@ export interface EventSessionQuestionUpdateInputs {
   mutable?: boolean;
   min?: string | null;
   max?: string | null;
+  masked?: boolean;
   validation?: string | null;
   validationMessage?: string | null;
   locationOption?: LocationQuestionOption | null;
@@ -1341,6 +1342,7 @@ export interface EventQuestionUpdateInputs {
   mutable?: boolean;
   min?: string | null;
   max?: string | null;
+  masked?: boolean;
   validation?: string | null;
   validationMessage?: string | null;
   locationOption?: LocationQuestionOption | null;
@@ -2238,6 +2240,7 @@ export interface SurveyQuestionUpdateInputs {
   mutable?: boolean;
   min?: string | null;
   max?: string | null;
+  masked?: boolean;
   validation?: string | null;
   validationMessage?: string | null;
   locationOption?: LocationQuestionOption | null;

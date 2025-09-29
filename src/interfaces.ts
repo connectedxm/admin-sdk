@@ -1888,6 +1888,7 @@ export interface BasePaymentLineItem {
   accessId: string | null;
   bookingId: string | null;
   subscriptionId: string | null;
+  invoiceId: string | null;
 }
 
 export interface PaymentLineItem extends BasePaymentLineItem {

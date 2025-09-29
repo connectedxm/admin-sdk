@@ -1844,6 +1844,7 @@ export interface Payment extends BasePayment {
   space: BaseBookingSpace | null;
   membership: BaseMembership | null;
   coupon: BaseCoupon | null;
+  invoice: BaseInvoice | null;
   metadata?: any;
   lineItems: Omit<PaymentLineItem, "payment">[];
 }
@@ -1885,7 +1886,6 @@ export interface BasePaymentLineItem {
   passAddOnId: string | null;
   reservationId: string | null;
   accessId: string | null;
-  invoiceId: string | null;
   bookingId: string | null;
   subscriptionId: string | null;
 }
@@ -1896,7 +1896,6 @@ export interface PaymentLineItem extends BasePaymentLineItem {
   passAddOn: BasePassAddOn | null;
   reservation: BaseEventRoomTypeReservation | null;
   access: BaseEventSessionAccess | null;
-  invoice: BaseInvoice | null;
   booking: BaseBooking | null;
   subscription: BaseSubscription | null;
   coupon: BaseCoupon | null;

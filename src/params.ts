@@ -871,6 +871,7 @@ export interface EventSessionQuestionCreateInputs {
   price?: number | string | null;
   supply?: number | string | null;
   searchListId?: string | null;
+  masked?: boolean;
 }
 
 export interface EventSessionQuestionTranslationUpdateInputs {
@@ -891,6 +892,7 @@ export interface EventSessionQuestionUpdateInputs {
   mutable?: boolean;
   min?: string | null;
   max?: string | null;
+  masked?: boolean;
   validation?: string | null;
   validationMessage?: string | null;
   locationOption?: LocationQuestionOption | null;
@@ -1321,6 +1323,7 @@ export interface EventQuestionCreateInputs {
   featured?: boolean;
   choices?: string[] | null;
   searchListId?: string | null;
+  masked?: boolean;
 }
 
 export interface EventQuestionTranslationUpdateInputs {
@@ -1341,6 +1344,7 @@ export interface EventQuestionUpdateInputs {
   mutable?: boolean;
   min?: string | null;
   max?: string | null;
+  masked?: boolean;
   validation?: string | null;
   validationMessage?: string | null;
   locationOption?: LocationQuestionOption | null;
@@ -2218,6 +2222,7 @@ export interface SurveyQuestionCreateInputs {
   featured?: boolean;
   choices?: string[] | null;
   searchListId?: string | null;
+  masked?: boolean;
 }
 
 export interface SurveyQuestionTranslationUpdateInputs {
@@ -2238,6 +2243,7 @@ export interface SurveyQuestionUpdateInputs {
   mutable?: boolean;
   min?: string | null;
   max?: string | null;
+  masked?: boolean;
   validation?: string | null;
   validationMessage?: string | null;
   locationOption?: LocationQuestionOption | null;

@@ -1467,7 +1467,6 @@ export interface BaseInvoice {
 
 export interface Invoice extends BaseInvoice {
   lineItems: BaseInvoiceLineItem;
-  lineItem: PaymentLineItem | null;
   accountId: string | null;
   account: BaseAccount | null;
   eventId: string | null;

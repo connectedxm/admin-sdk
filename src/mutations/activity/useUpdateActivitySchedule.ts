@@ -34,7 +34,7 @@ export const UpdateActivitySchedule = async ({
     schedule
   );
   if (queryClient && data.status === "ok") {
-    SET_ACTIVITY_QUERY_DATA(queryClient, [data?.data.id], data);
+    SET_ACTIVITY_QUERY_DATA(queryClient, [activityId], data);
     queryClient.invalidateQueries({ queryKey: ACTIVITIES_QUERY_KEY() });
   }
   return data;

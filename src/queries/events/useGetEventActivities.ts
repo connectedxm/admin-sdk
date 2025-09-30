@@ -1,4 +1,4 @@
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ActivityStatus, ConnectedXMResponse } from "@src/interfaces";
 
 import { Activity } from "@src/interfaces";
 import {
@@ -16,11 +16,15 @@ import { GetAdminAPI } from "@src/AdminAPI";
  */
 export const EVENT_ACTIVITIES_QUERY_KEY = (
   eventId: string,
-  featured?: true
+  featured?: true,
+  status?: keyof typeof ActivityStatus
 ) => {
   const key = [...EVENT_QUERY_KEY(eventId), "ACTIVITIES"];
   if (featured) {
     key.push("FEATURED");
+  }
+  if (status) {
+    key.push(status);
   }
   return key;
 };
@@ -40,6 +44,7 @@ export const SET_EVENT_ACTIVITIES_QUERY_DATA = (
 interface GetEventActivitiesProps extends InfiniteQueryParams {
   eventId: string;
   featured?: true;
+  status?: keyof typeof ActivityStatus;
 }
 
 /**
@@ -49,6 +54,7 @@ interface GetEventActivitiesProps extends InfiniteQueryParams {
 export const GetEventActivities = async ({
   eventId,
   featured,
+  status,
   pageParam,
   pageSize,
   orderBy,
@@ -63,6 +69,7 @@ export const GetEventActivities = async ({
       orderBy: orderBy || undefined,
       search: search || undefined,
       featured: featured || undefined,
+      status: status || undefined,
     },
   });
   return data;
@@ -75,6 +82,7 @@ export const GetEventActivities = async ({
 export const useGetEventActivities = (
   eventId: string = "",
   featured?: true,
+  status?: keyof typeof ActivityStatus,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -86,11 +94,12 @@ export const useGetEventActivities = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetEventActivities>>
   >(
-    EVENT_ACTIVITIES_QUERY_KEY(eventId, featured),
+    EVENT_ACTIVITIES_QUERY_KEY(eventId, featured, status),
     (params: InfiniteQueryParams) =>
       GetEventActivities({
         eventId,
         featured,
+        status,
         ...params,
       }),
     params,

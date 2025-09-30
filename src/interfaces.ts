@@ -439,9 +439,17 @@ export enum ModerationStatus {
   approved = "approved",
 }
 
+export enum ActivityStatus {
+  draft = "draft",
+  scheduled = "scheduled",
+  published = "published",
+  archived = "archived",
+}
+
 export interface BaseActivity {
   id: string;
   message: string;
+  status: keyof typeof ActivityStatus;
   featured: boolean;
   pinned: boolean;
   giphyId: string | null;
@@ -466,6 +474,7 @@ export interface Activity extends BaseActivity {
   group: BaseGroup | null;
   event: BaseEvent | null;
   content: BaseChannelContent | null;
+  schedule: BaseSchedule | null;
 }
 
 export enum ActivityEntityType {

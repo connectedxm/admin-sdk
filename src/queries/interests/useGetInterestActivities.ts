@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ActivityStatus, ConnectedXMResponse } from "@src/interfaces";
 
 import { Activity } from "@src/interfaces";
 import {
@@ -14,10 +14,16 @@ import { INTEREST_QUERY_KEY } from "./useGetInterest";
  * @category Keys
  * @group Interests
  */
-export const INTEREST_ACTIVITIES_QUERY_KEY = (interestId: string) => [
-  ...INTEREST_QUERY_KEY(interestId),
-  "ACTIVITIES",
-];
+export const INTEREST_ACTIVITIES_QUERY_KEY = (
+  interestId: string,
+  status?: keyof typeof ActivityStatus
+) => {
+  const key = [...INTEREST_QUERY_KEY(interestId), "ACTIVITIES"];
+  if (status) {
+    key.push(status);
+  }
+  return key;
+};
 
 /**
  * @category Setters
@@ -33,6 +39,7 @@ export const SET_INTEREST_ACTIVITIES_QUERY_DATA = (
 
 interface GetInterestActivitiesProps extends InfiniteQueryParams {
   interestId: string;
+  status?: keyof typeof ActivityStatus;
 }
 
 /**
@@ -41,6 +48,7 @@ interface GetInterestActivitiesProps extends InfiniteQueryParams {
  */
 export const GetInterestActivities = async ({
   interestId,
+  status,
   pageParam,
   pageSize,
   orderBy,
@@ -54,6 +62,7 @@ export const GetInterestActivities = async ({
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
+      status: status || undefined,
     },
   });
   return data;
@@ -64,6 +73,7 @@ export const GetInterestActivities = async ({
  */
 export const useGetInterestActivities = (
   interestId: string = "",
+  status?: keyof typeof ActivityStatus,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -75,9 +85,9 @@ export const useGetInterestActivities = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetInterestActivities>>
   >(
-    INTEREST_ACTIVITIES_QUERY_KEY(interestId),
+    INTEREST_ACTIVITIES_QUERY_KEY(interestId, status),
     (params: InfiniteQueryParams) =>
-      GetInterestActivities({ interestId, ...params }),
+      GetInterestActivities({ interestId, status, ...params }),
     params,
     {
       ...options,

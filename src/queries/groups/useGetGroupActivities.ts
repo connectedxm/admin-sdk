@@ -1,4 +1,4 @@
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ActivityStatus, ConnectedXMResponse } from "@src/interfaces";
 
 import { Activity } from "@src/interfaces";
 import {
@@ -16,11 +16,15 @@ import { GetAdminAPI } from "@src/AdminAPI";
  */
 export const GROUP_ACTIVITIES_QUERY_KEY = (
   groupId: string,
-  featured?: true
+  featured?: true,
+  status?: keyof typeof ActivityStatus
 ) => {
   const key = [...GROUP_QUERY_KEY(groupId), "ACTIVITIES"];
   if (featured) {
     key.push("FEATURED");
+  }
+  if (status) {
+    key.push(status);
   }
   return key;
 };
@@ -40,6 +44,7 @@ export const SET_GROUP_ACTIVITIES_QUERY_DATA = (
 interface GetGroupActivitiesProps extends InfiniteQueryParams {
   groupId: string;
   featured?: true;
+  status?: keyof typeof ActivityStatus;
 }
 
 /**
@@ -49,6 +54,7 @@ interface GetGroupActivitiesProps extends InfiniteQueryParams {
 export const GetGroupActivities = async ({
   groupId,
   featured,
+  status,
   pageParam,
   pageSize,
   orderBy,
@@ -63,6 +69,7 @@ export const GetGroupActivities = async ({
       orderBy: orderBy || undefined,
       search: search || undefined,
       featured: featured || undefined,
+      status: status || undefined,
     },
   });
   return data;
@@ -74,6 +81,7 @@ export const GetGroupActivities = async ({
 export const useGetGroupActivities = (
   groupId: string = "",
   featured?: true,
+  status?: keyof typeof ActivityStatus,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -85,11 +93,12 @@ export const useGetGroupActivities = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetGroupActivities>>
   >(
-    GROUP_ACTIVITIES_QUERY_KEY(groupId, featured),
+    GROUP_ACTIVITIES_QUERY_KEY(groupId, featured, status),
     (params: InfiniteQueryParams) =>
       GetGroupActivities({
         groupId,
         featured,
+        status,
         ...params,
       }),
     params,

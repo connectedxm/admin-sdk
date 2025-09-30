@@ -1,4 +1,4 @@
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ActivityStatus, ConnectedXMResponse } from "@src/interfaces";
 
 import { Activity } from "@src/interfaces";
 import {
@@ -14,10 +14,16 @@ import { CHANNEL_QUERY_KEY } from "./useGetChannel";
  * @category Keys
  * @group Channels
  */
-export const CHANNEL_ACTIVITIES_QUERY_KEY = (channelId: string) => [
-  ...CHANNEL_QUERY_KEY(channelId),
-  "ACTIVITIES",
-];
+export const CHANNEL_ACTIVITIES_QUERY_KEY = (
+  channelId: string,
+  status?: keyof typeof ActivityStatus
+) => {
+  const key = [...CHANNEL_QUERY_KEY(channelId), "ACTIVITIES"];
+  if (status) {
+    key.push(status);
+  }
+  return key;
+};
 
 /**
  * @category Setters
@@ -33,6 +39,7 @@ export const SET_CHANNEL_ACTIVITIES_QUERY_DATA = (
 
 interface GetChannelActivitiesProps extends InfiniteQueryParams {
   channelId: string;
+  status?: keyof typeof ActivityStatus;
 }
 
 /**
@@ -41,6 +48,7 @@ interface GetChannelActivitiesProps extends InfiniteQueryParams {
  */
 export const GetChannelActivities = async ({
   channelId: channelId,
+  status,
   pageParam,
   pageSize,
   orderBy,
@@ -54,6 +62,7 @@ export const GetChannelActivities = async ({
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
       search: search || undefined,
+      status: status || undefined,
     },
   });
   return data;
@@ -63,7 +72,8 @@ export const GetChannelActivities = async ({
  * @group Channels
  */
 export const useGetChannelActivities = (
-  groupId: string = "",
+  channelId: string = "",
+  status?: keyof typeof ActivityStatus,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -75,16 +85,17 @@ export const useGetChannelActivities = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetChannelActivities>>
   >(
-    CHANNEL_ACTIVITIES_QUERY_KEY(groupId),
+    CHANNEL_ACTIVITIES_QUERY_KEY(channelId, status),
     (params: InfiniteQueryParams) =>
       GetChannelActivities({
-        channelId: groupId,
+        channelId,
+        status,
         ...params,
       }),
     params,
     {
       ...options,
-      enabled: !!groupId && (options.enabled ?? true),
+      enabled: !!channelId && (options.enabled ?? true),
     },
     "channels"
   );

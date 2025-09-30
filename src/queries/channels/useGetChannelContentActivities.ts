@@ -1,4 +1,4 @@
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ActivityStatus, ConnectedXMResponse } from "@src/interfaces";
 
 import { Activity } from "@src/interfaces";
 import {
@@ -16,8 +16,18 @@ import { GetAdminAPI } from "@src/AdminAPI";
  */
 export const CHANNEL_CONTENT_ACTIVITIES_QUERY_KEY = (
   channelId: string,
-  contentId: string
-) => [...CHANNEL_CONTENT_QUERY_KEY(channelId, contentId), "ACTIVITIES"];
+  contentId: string,
+  status?: keyof typeof ActivityStatus
+) => {
+  const key = [
+    ...CHANNEL_CONTENT_QUERY_KEY(channelId, contentId),
+    "ACTIVITIES",
+  ];
+  if (status) {
+    key.push(status);
+  }
+  return key;
+};
 
 /**
  * @category Setters
@@ -37,6 +47,7 @@ export const SET_CHANNEL_CONTENT_ACTIVITIES_QUERY_DATA = (
 interface GetContentActivitiesProps extends InfiniteQueryParams {
   channelId: string;
   contentId: string;
+  status?: keyof typeof ActivityStatus;
 }
 
 /**
@@ -46,6 +57,7 @@ interface GetContentActivitiesProps extends InfiniteQueryParams {
 export const GetChannelContentActivities = async ({
   channelId,
   contentId,
+  status,
   pageParam,
   pageSize,
   orderBy,
@@ -61,6 +73,7 @@ export const GetChannelContentActivities = async ({
         pageSize: pageSize || undefined,
         orderBy: orderBy || undefined,
         search: search || undefined,
+        status: status || undefined,
       },
     }
   );
@@ -73,6 +86,7 @@ export const GetChannelContentActivities = async ({
 export const useGetChannelContentActivities = (
   channelId: string = "",
   contentId: string = "",
+  status?: keyof typeof ActivityStatus,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -84,11 +98,12 @@ export const useGetChannelContentActivities = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetChannelContentActivities>>
   >(
-    CHANNEL_CONTENT_ACTIVITIES_QUERY_KEY(channelId, contentId),
+    CHANNEL_CONTENT_ACTIVITIES_QUERY_KEY(channelId, contentId, status),
     (params: InfiniteQueryParams) =>
       GetChannelContentActivities({
         channelId,
         contentId,
+        status,
         ...params,
       }),
     params,

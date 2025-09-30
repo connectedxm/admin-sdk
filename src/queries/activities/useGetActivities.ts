@@ -1,4 +1,8 @@
-import { ConnectedXMResponse, ModerationStatus } from "@src/interfaces";
+import {
+  ActivityStatus,
+  ConnectedXMResponse,
+  ModerationStatus,
+} from "@src/interfaces";
 import { Activity } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
@@ -14,7 +18,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  */
 export const ACTIVITIES_QUERY_KEY = (
   moderation?: keyof typeof ModerationStatus,
-  featured?: true
+  featured?: true,
+  status?: keyof typeof ActivityStatus
 ) => {
   const key = ["ACTIVITIES"];
   if (moderation) {
@@ -22,6 +27,9 @@ export const ACTIVITIES_QUERY_KEY = (
   }
   if (featured) {
     key.push("FEATURED");
+  }
+  if (status) {
+    key.push(status);
   }
   return key;
 };
@@ -41,6 +49,7 @@ export const SET_ACTIVITIES_QUERY_DATA = (
 interface GetActivitiesProps extends InfiniteQueryParams {
   moderation?: keyof typeof ModerationStatus;
   featured?: true;
+  status?: keyof typeof ActivityStatus;
 }
 
 /**
@@ -50,6 +59,7 @@ interface GetActivitiesProps extends InfiniteQueryParams {
 export const GetActivities = async ({
   moderation,
   featured,
+  status,
   pageParam,
   pageSize,
   orderBy,
@@ -65,6 +75,7 @@ export const GetActivities = async ({
       search: search || undefined,
       moderation: moderation || undefined,
       featured: featured || undefined,
+      status: status || undefined,
     },
   });
   return data;
@@ -76,6 +87,7 @@ export const GetActivities = async ({
 export const useGetActivities = (
   moderation?: keyof typeof ModerationStatus,
   featured?: true,
+  status?: keyof typeof ActivityStatus,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -83,9 +95,9 @@ export const useGetActivities = (
   options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetActivities>>> = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetActivities>>>(
-    ACTIVITIES_QUERY_KEY(moderation, featured),
+    ACTIVITIES_QUERY_KEY(moderation, featured, status),
     (params: InfiniteQueryParams) =>
-      GetActivities({ ...params, moderation, featured }),
+      GetActivities({ ...params, moderation, featured, status }),
     params,
     options,
     "activities"

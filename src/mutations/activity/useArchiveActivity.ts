@@ -5,7 +5,7 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
-import { SET_ACTIVITY_QUERY_DATA } from "@src/queries";
+import { ACTIVITIES_QUERY_KEY, SET_ACTIVITY_QUERY_DATA } from "@src/queries";
 
 /**
  * @category Params
@@ -29,6 +29,10 @@ export const ArchiveActivity = async ({
     `/activities/${activityId}/archive`
   );
   if (queryClient && data.status === "ok") {
+    queryClient.invalidateQueries({
+      queryKey: ACTIVITIES_QUERY_KEY(),
+      exact: true,
+    });
     SET_ACTIVITY_QUERY_DATA(queryClient, [activityId], {
       ...data,
       data: { ...data.data, status: ActivityStatus.archived },

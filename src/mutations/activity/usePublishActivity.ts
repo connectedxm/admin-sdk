@@ -5,7 +5,7 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ACTIVITIES_QUERY_KEY, SET_ACTIVITY_QUERY_DATA } from "@src/queries";
+import { SET_ACTIVITY_QUERY_DATA } from "@src/queries";
 
 /**
  * @category Params
@@ -29,7 +29,6 @@ export const PublishActivity = async ({
     `/activities/${activityId}/publish`
   );
   if (queryClient && data.status === "ok") {
-    queryClient.invalidateQueries({ queryKey: ACTIVITIES_QUERY_KEY() });
     SET_ACTIVITY_QUERY_DATA(queryClient, [activityId], {
       ...data,
       data: { ...data.data, status: ActivityStatus.published },

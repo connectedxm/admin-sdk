@@ -5,7 +5,7 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ACTIVITIES_QUERY_KEY, ACTIVITY_QUERY_KEY } from "@src/queries";
+import { ACTIVITY_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
@@ -29,7 +29,6 @@ export const ArchiveActivity = async ({
     `/activities/${activityId}/archive`
   );
   if (queryClient && data.status === "ok") {
-    queryClient.invalidateQueries({ queryKey: ACTIVITIES_QUERY_KEY() });
     queryClient.invalidateQueries({
       queryKey: ACTIVITY_QUERY_KEY(activityId),
     });

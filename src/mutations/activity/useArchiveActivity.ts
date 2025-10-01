@@ -1,11 +1,11 @@
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ActivityStatus, ConnectedXMResponse, Activity } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ACTIVITIES_QUERY_KEY, ACTIVITY_QUERY_KEY } from "@src/queries";
+import { ACTIVITIES_QUERY_KEY, SET_ACTIVITY_QUERY_DATA } from "@src/queries";
 
 /**
  * @category Params
@@ -23,15 +23,19 @@ export const ArchiveActivity = async ({
   activityId,
   adminApiParams,
   queryClient,
-}: ArchiveActivityParams): Promise<ConnectedXMResponse<null>> => {
+}: ArchiveActivityParams): Promise<ConnectedXMResponse<Activity>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<null>>(
+  const { data } = await connectedXM.put<ConnectedXMResponse<Activity>>(
     `/activities/${activityId}/archive`
   );
   if (queryClient && data.status === "ok") {
-    queryClient.invalidateQueries({ queryKey: ACTIVITIES_QUERY_KEY() });
     queryClient.invalidateQueries({
-      queryKey: ACTIVITY_QUERY_KEY(activityId),
+      queryKey: ACTIVITIES_QUERY_KEY(),
+      exact: true,
+    });
+    SET_ACTIVITY_QUERY_DATA(queryClient, [activityId], {
+      ...data,
+      data: { ...data.data, status: ActivityStatus.archived },
     });
   }
 

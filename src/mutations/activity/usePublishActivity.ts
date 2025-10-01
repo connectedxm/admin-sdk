@@ -29,7 +29,10 @@ export const PublishActivity = async ({
     `/activities/${activityId}/publish`
   );
   if (queryClient && data.status === "ok") {
-    queryClient.invalidateQueries({ queryKey: ACTIVITIES_QUERY_KEY() });
+    queryClient.invalidateQueries({
+      queryKey: ACTIVITIES_QUERY_KEY(),
+      exact: true,
+    });
     SET_ACTIVITY_QUERY_DATA(queryClient, [activityId], {
       ...data,
       data: { ...data.data, status: ActivityStatus.published },

@@ -1580,6 +1580,7 @@ export interface OrganizationMembership {
   // MODULES
   activities: ModulePermissions;
   events: ModulePermissions;
+  attendees: ModulePermissions;
   groups: ModulePermissions;
   accounts: ModulePermissions;
   channels: ModulePermissions;
@@ -1597,6 +1598,7 @@ export interface OrganizationMembership {
   surveys: ModulePermissions;
   searchlists: ModulePermissions;
   streams: ModulePermissions;
+  payments: ModulePermissions;
 }
 
 export interface BaseOrganization {

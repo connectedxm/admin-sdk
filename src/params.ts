@@ -1082,6 +1082,7 @@ export interface OrganizationMembershipUpdateInputs {
   // MODULES
   activities: Omit<ModulePermissions, "superEnabled" | "enabled">;
   events: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  attendees: Omit<ModulePermissions, "superEnabled" | "enabled">;
   bookings: Omit<ModulePermissions, "superEnabled" | "enabled">;
   groups: Omit<ModulePermissions, "superEnabled" | "enabled">;
   accounts: Omit<ModulePermissions, "superEnabled" | "enabled">;
@@ -1098,6 +1099,7 @@ export interface OrganizationMembershipUpdateInputs {
   announcements: Omit<ModulePermissions, "superEnabled" | "enabled">;
   surveys: Omit<ModulePermissions, "superEnabled" | "enabled">;
   streams: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  payments: Omit<ModulePermissions, "superEnabled" | "enabled">;
 }
 
 export interface GroupTranslationUpdateInputs {

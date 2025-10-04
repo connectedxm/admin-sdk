@@ -95,7 +95,6 @@ export const useGetEventSessionLocationTranslations = (
     {
       ...options,
       enabled: !!eventId && !!locationId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

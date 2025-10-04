@@ -55,8 +55,5 @@ export const useDeleteAdvertisement = (
   return useConnectedMutation<
     DeleteAdvertisementParams,
     Awaited<ReturnType<typeof DeleteAdvertisement>>
-  >(DeleteAdvertisement, options, {
-    domain: "advertisements",
-    type: "del",
-  });
+  >(DeleteAdvertisement, options);
 };

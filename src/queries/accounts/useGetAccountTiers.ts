@@ -91,7 +91,6 @@ export const useGetAccountTiers = (
     {
       ...options,
       enabled: !!accountId && (options.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

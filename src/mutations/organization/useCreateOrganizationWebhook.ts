@@ -56,8 +56,5 @@ export const useCreateOrganizationWebhook = (
   return useConnectedMutation<
     CreateOrganizationWebhookParams,
     Awaited<ReturnType<typeof CreateOrganizationWebhook>>
-  >(CreateOrganizationWebhook, options, {
-    domain: "org",
-    type: "update",
-  });
+  >(CreateOrganizationWebhook, options);
 };

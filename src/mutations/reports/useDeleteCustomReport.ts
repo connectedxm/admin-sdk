@@ -54,8 +54,5 @@ export const useDeleteCustomReport = (
   return useConnectedMutation<
     DeleteCustomReportParams,
     Awaited<ReturnType<typeof DeleteCustomReport>>
-  >(DeleteCustomReport, options, {
-    domain: "reports",
-    type: "del",
-  });
+  >(DeleteCustomReport, options);
 };

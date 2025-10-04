@@ -71,7 +71,6 @@ export const useGetEventActivation = (
     {
       ...options,
       enabled: !!eventId && !!activationId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

@@ -37,8 +37,7 @@ export const SET_EVENT_FOLLOWUP_QUESTIONS_QUERY_DATA = (
     {
       pages: [response],
       pageParams: [null],
-    },
-    "events"
+    }
   );
 };
 
@@ -106,7 +105,6 @@ export const useGetEventFollowupQuestions = (
     {
       ...options,
       enabled: !!eventId && !!followupId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

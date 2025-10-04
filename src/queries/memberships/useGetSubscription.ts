@@ -65,7 +65,6 @@ export const useGetSubscription = (
       refetchOnMount: false,
       refetchOnReconnect: false,
       staleTime: Infinity,
-    },
-    "subscriptions"
+    }
   );
 };

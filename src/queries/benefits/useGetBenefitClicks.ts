@@ -81,7 +81,6 @@ export const useGetBenefitClicks = (
     {
       ...options,
       enabled: !!benefitId && (options.enabled ?? true),
-    },
-    "benefits"
+    }
   );
 };

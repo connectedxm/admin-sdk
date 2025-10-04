@@ -123,7 +123,6 @@ export const useGetEventSessionAccessResponseChanges = (
         !!passId &&
         !!questionId &&
         (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

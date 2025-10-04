@@ -52,8 +52,5 @@ export const useDeleteImage = (
   return useConnectedMutation<
     DeleteImageParams,
     Awaited<ReturnType<typeof DeleteImage>>
-  >(DeleteImage, options, {
-    domain: "storage",
-    type: "del",
-  });
+  >(DeleteImage, options);
 };

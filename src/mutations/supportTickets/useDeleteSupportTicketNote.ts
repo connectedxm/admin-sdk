@@ -54,8 +54,5 @@ export const useDeleteSupportTicketNote = (
   return useConnectedMutation<
     DeleteSupportTicketNoteParams,
     Awaited<ReturnType<typeof DeleteSupportTicketNote>>
-  >(DeleteSupportTicketNote, options, {
-    domain: "support",
-    type: "update",
-  });
+  >(DeleteSupportTicketNote, options);
 };

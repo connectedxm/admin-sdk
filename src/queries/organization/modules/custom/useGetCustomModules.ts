@@ -70,7 +70,6 @@ export const useGetCustomModules = (
     CUSTOM_MODULES_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetCustomModules(params),
     params,
-    options,
-    "org"
+    options
   );
 };

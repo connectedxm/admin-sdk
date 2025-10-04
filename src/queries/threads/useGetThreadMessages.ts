@@ -87,7 +87,6 @@ export const useGetThreadMessages = (
     {
       ...options,
       enabled: !!authenticated && !!threadId && (options?.enabled ?? true),
-    },
-    "threads"
+    }
   );
 };

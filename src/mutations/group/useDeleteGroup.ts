@@ -51,8 +51,5 @@ export const useDeleteGroup = (
   return useConnectedMutation<
     DeleteGroupParams,
     Awaited<ReturnType<typeof DeleteGroup>>
-  >(DeleteGroup, options, {
-    domain: "groups",
-    type: "del",
-  });
+  >(DeleteGroup, options);
 };

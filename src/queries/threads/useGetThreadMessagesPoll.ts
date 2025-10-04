@@ -70,7 +70,6 @@ export const useGetThreadMessagesPoll = (
       // Polling configuration - you can adjust these as needed
       refetchInterval: options.refetchInterval ?? 5000, // Poll every 5 seconds
       refetchIntervalInBackground: options.refetchIntervalInBackground ?? false,
-    },
-    "threads"
+    }
   );
 };

@@ -65,8 +65,5 @@ export const useAddEventPassTypeTier = (
   return useConnectedMutation<
     AddEventPassTypeTierParams,
     Awaited<ReturnType<typeof AddEventPassTypeTier>>
-  >(AddEventPassTypeTier, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventPassTypeTier, options);
 };

@@ -68,8 +68,5 @@ export const useRemoveEventSectionTier = (
   return useConnectedMutation<
     RemoveEventSectionTierParams,
     Awaited<ReturnType<typeof RemoveEventSectionTier>>
-  >(RemoveEventSectionTier, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventSectionTier, options);
 };

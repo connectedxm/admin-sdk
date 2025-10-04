@@ -69,8 +69,5 @@ export const useReorderEventFaqSectionQuestions = (
   return useConnectedMutation<
     ReorderEventFaqSectionQuestionsParams,
     Awaited<ReturnType<typeof ReorderEventFaqSectionQuestions>>
-  >(ReorderEventFaqSectionQuestions, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(ReorderEventFaqSectionQuestions, options);
 };

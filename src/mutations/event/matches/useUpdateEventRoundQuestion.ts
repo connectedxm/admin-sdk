@@ -56,8 +56,5 @@ export const useUpdateEventRoundQuestion = (
   return useConnectedMutation<
     UpdateEventRoundQuestionParams,
     Awaited<ReturnType<typeof UpdateEventRoundQuestion>>
-  >(UpdateEventRoundQuestion, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventRoundQuestion, options);
 };

@@ -85,7 +85,6 @@ export const useGetEventSections = (
     {
       ...options,
       enabled: !!eventId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

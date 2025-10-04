@@ -69,7 +69,6 @@ export const useGetSurveys = (
         ...params,
       }),
     params,
-    options,
-    "surveys"
+    options
   );
 };

@@ -84,7 +84,6 @@ export const useGetEventSponsorAccounts = (
     {
       ...options,
       enabled: !!eventId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

@@ -56,8 +56,5 @@ export const useDeleteThreadMessageImage = (
   return useConnectedMutation<
     DeleteThreadMessageImageParams,
     Awaited<ReturnType<typeof DeleteThreadMessageImage>>
-  >(DeleteThreadMessageImage, options, {
-    domain: "threads",
-    type: "del",
-  });
+  >(DeleteThreadMessageImage, options);
 };

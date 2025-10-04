@@ -77,8 +77,5 @@ export const useReorderEventSessionSectionQuestions = (
   return useConnectedMutation<
     ReorderEventSessionSectionQuestionsParams,
     Awaited<ReturnType<typeof ReorderEventSessionSectionQuestions>>
-  >(ReorderEventSessionSectionQuestions, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(ReorderEventSessionSectionQuestions, options);
 };

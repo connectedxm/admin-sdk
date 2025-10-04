@@ -60,8 +60,5 @@ export const useUpdateTier = (
   return useConnectedMutation<
     UpdateTierParams,
     Awaited<ReturnType<typeof UpdateTier>>
-  >(UpdateTier, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(UpdateTier, options);
 };

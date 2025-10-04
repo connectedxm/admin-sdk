@@ -58,8 +58,5 @@ export const useCreateThreadMessageImage = (
   return useConnectedMutation<
     CreateThreadMessageImageParams,
     Awaited<ReturnType<typeof CreateThreadMessageImage>>
-  >(CreateThreadMessageImage, options, {
-    domain: "threads",
-    type: "update",
-  });
+  >(CreateThreadMessageImage, options);
 };

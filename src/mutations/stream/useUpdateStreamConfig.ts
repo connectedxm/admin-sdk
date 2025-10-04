@@ -58,8 +58,5 @@ export const useUpdateStreamConfig = (
   return useConnectedMutation<
     UpdateStreamConfigParams,
     Awaited<ReturnType<typeof UpdateStreamConfig>>
-  >(UpdateStreamConfig, options, {
-    domain: "streams",
-    type: "update",
-  });
+  >(UpdateStreamConfig, options);
 };

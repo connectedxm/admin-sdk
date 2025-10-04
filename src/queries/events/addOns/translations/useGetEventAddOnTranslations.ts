@@ -95,7 +95,6 @@ export const useGetEventAddOnTranslations = (
     {
       ...options,
       enabled: !!eventId && !!addOnId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

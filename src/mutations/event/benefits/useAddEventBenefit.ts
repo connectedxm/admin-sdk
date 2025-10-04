@@ -54,8 +54,5 @@ export const useAddEventBenefit = (
   return useConnectedMutation<
     AddEventBenefitParams,
     Awaited<ReturnType<typeof AddEventBenefit>>
-  >(AddEventBenefit, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventBenefit, options);
 };

@@ -60,8 +60,5 @@ export const useCreateDashboardWidget = (
   return useConnectedMutation<
     CreateDashboardWidgetParams,
     Awaited<ReturnType<typeof CreateDashboardWidget>>
-  >(CreateDashboardWidget, options, {
-    domain: "org",
-    type: "create",
-  });
+  >(CreateDashboardWidget, options);
 };

@@ -62,8 +62,5 @@ export const useDeleteInvoiceLineItem = (
   return useConnectedMutation<
     DeleteInvoiceLineItemParams,
     Awaited<ReturnType<typeof DeleteInvoiceLineItem>>
-  >(DeleteInvoiceLineItem, options, {
-    domain: "invoices",
-    type: "update",
-  });
+  >(DeleteInvoiceLineItem, options);
 };

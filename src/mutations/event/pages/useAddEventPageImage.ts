@@ -61,8 +61,5 @@ export const useAddEventPageImage = (
   return useConnectedMutation<
     AddEventPageImageParams,
     Awaited<ReturnType<typeof AddEventPageImage>>
-  >(AddEventPageImage, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventPageImage, options);
 };

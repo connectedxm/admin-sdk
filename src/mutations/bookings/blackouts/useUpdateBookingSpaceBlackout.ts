@@ -76,8 +76,5 @@ export const useUpdateBookingSpaceBlackout = (
   return useConnectedMutation<
     UpdateBookingSpaceBlackoutParams,
     Awaited<ReturnType<typeof UpdateBookingSpaceBlackout>>
-  >(UpdateBookingSpaceBlackout, options, {
-    domain: "bookings",
-    type: "update",
-  });
+  >(UpdateBookingSpaceBlackout, options);
 };

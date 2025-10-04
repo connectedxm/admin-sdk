@@ -92,7 +92,6 @@ export const useGetEventRoundMatches = (
     {
       ...options,
       enabled: !!eventId && !!roundId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

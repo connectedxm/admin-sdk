@@ -54,8 +54,5 @@ export const useRemoveCustomReportUser = (
   return useConnectedMutation<
     RemoveCustomReportUserParams,
     Awaited<ReturnType<typeof RemoveCustomReportUser>>
-  >(RemoveCustomReportUser, options, {
-    domain: "reports",
-    type: "del",
-  });
+  >(RemoveCustomReportUser, options);
 };

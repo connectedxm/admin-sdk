@@ -93,7 +93,6 @@ export const useGetEventRoundQuestions = (
     {
       ...options,
       enabled: !!eventId && !!roundId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

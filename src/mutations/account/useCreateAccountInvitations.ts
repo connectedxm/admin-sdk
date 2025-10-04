@@ -53,8 +53,5 @@ export const useCreateAccountInvitations = (
   return useConnectedMutation<
     CreateAccountInvitationsParams,
     Awaited<ReturnType<typeof CreateAccountInvitations>>
-  >(CreateAccountInvitations, options, {
-    domain: "accounts",
-    type: "create",
-  });
+  >(CreateAccountInvitations, options);
 };

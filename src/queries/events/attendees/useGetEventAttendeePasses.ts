@@ -105,7 +105,6 @@ export const useGetEventAttendeePasses = (
     {
       ...options,
       enabled: !!eventId && !!accountId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

@@ -96,7 +96,6 @@ export const useGetChannelActivities = (
     {
       ...options,
       enabled: !!channelId && (options.enabled ?? true),
-    },
-    "channels"
+    }
   );
 };

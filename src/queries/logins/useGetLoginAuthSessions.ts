@@ -85,7 +85,6 @@ export const useGetLoginAuthSessions = (
     {
       ...options,
       enabled: !!username && (options.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

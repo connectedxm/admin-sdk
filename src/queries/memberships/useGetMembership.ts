@@ -61,7 +61,6 @@ export const useGetMembership = (
     {
       ...options,
       enabled: !!membershipId && (options?.enabled ?? true),
-    },
-    "subscriptions"
+    }
   );
 };

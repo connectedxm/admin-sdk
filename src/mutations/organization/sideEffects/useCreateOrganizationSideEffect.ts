@@ -71,8 +71,5 @@ export const useCreateOrganizationSideEffect = (
   return useConnectedMutation<
     CreateOrganizationSideEffectParams,
     Awaited<ReturnType<typeof CreateOrganizationSideEffect>>
-  >(CreateOrganizationSideEffect, options, {
-    domain: "org",
-    type: "create",
-  });
+  >(CreateOrganizationSideEffect, options);
 };

@@ -59,8 +59,5 @@ export const useCreateImport = (
   return useConnectedMutation<
     CreateImportParams,
     Awaited<ReturnType<typeof CreateImport>>
-  >(CreateImport, options, {
-    domain: "org",
-    type: "update",
-  });
+  >(CreateImport, options);
 };

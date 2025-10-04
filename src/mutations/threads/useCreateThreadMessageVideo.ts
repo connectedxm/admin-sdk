@@ -58,8 +58,5 @@ export const useCreateThreadMessageVideo = (
   return useConnectedMutation<
     CreateThreadMessageVideoParams,
     Awaited<ReturnType<typeof CreateThreadMessageVideo>>
-  >(CreateThreadMessageVideo, options, {
-    domain: "threads",
-    type: "update",
-  });
+  >(CreateThreadMessageVideo, options);
 };

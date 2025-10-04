@@ -88,7 +88,6 @@ export const useGetEventPassQuestionFollowups = (
     {
       ...options,
       enabled: !!eventId && !!accountId && !!passId,
-    },
-    "events"
+    }
   );
 };

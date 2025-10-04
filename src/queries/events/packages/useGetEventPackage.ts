@@ -67,7 +67,6 @@ export const useGetEventPackage = (
     {
       ...options,
       enabled: !!eventId && !!packageId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

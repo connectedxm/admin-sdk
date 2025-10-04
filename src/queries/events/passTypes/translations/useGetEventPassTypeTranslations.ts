@@ -95,7 +95,6 @@ export const useGetEventPassTypeTranslations = (
     {
       ...options,
       enabled: !!eventId && !!passTypeId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

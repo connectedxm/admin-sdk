@@ -75,8 +75,5 @@ export const useCreateBookingSpaceTranslation = (
   return useConnectedMutation<
     CreateBookingSpaceTranslationParams,
     Awaited<ReturnType<typeof CreateBookingSpaceTranslation>>
-  >(CreateBookingSpaceTranslation, options, {
-    domain: "bookings",
-    type: "update",
-  });
+  >(CreateBookingSpaceTranslation, options);
 };

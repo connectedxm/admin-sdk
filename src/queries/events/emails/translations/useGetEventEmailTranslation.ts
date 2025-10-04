@@ -79,7 +79,6 @@ export const useGetEventEmailTranslation = (
     {
       ...options,
       enabled: !!eventId && !!type && !!locale && locale !== "en",
-    },
-    "events"
+    }
   );
 };

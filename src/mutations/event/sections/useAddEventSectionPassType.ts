@@ -62,8 +62,5 @@ export const useAddEventSectionPassType = (
   return useConnectedMutation<
     AddEventSectionPassTypeParams,
     Awaited<ReturnType<typeof AddEventSectionPassType>>
-  >(AddEventSectionPassType, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventSectionPassType, options);
 };

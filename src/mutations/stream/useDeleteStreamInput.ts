@@ -51,8 +51,5 @@ export const useDeleteStreamInput = (
   return useConnectedMutation<
     DeleteStreamInputParams,
     Awaited<ReturnType<typeof DeleteStreamInput>>
-  >(DeleteStreamInput, options, {
-    domain: "streams",
-    type: "del",
-  });
+  >(DeleteStreamInput, options);
 };

@@ -90,7 +90,6 @@ export const useGetBookingPlaceTranslations = (
     {
       ...options,
       enabled: !!placeId && (options.enabled ?? true),
-    },
-    "bookings"
+    }
   );
 };

@@ -60,8 +60,5 @@ export const useDeleteGroupTranslation = (
   return useConnectedMutation<
     DeleteGroupTranslationParams,
     Awaited<ReturnType<typeof DeleteGroupTranslation>>
-  >(DeleteGroupTranslation, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(DeleteGroupTranslation, options);
 };

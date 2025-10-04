@@ -64,8 +64,5 @@ export const useUpdateLevel = (
   return useConnectedMutation<
     UpdateLevelParams,
     Awaited<ReturnType<typeof UpdateLevel>>
-  >(UpdateLevel, options, {
-    domain: "sponsors",
-    type: "update",
-  });
+  >(UpdateLevel, options);
 };

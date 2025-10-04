@@ -92,7 +92,6 @@ export const useGetEventSessionSpeakers = (
     {
       ...options,
       enabled: !!eventId && !!sessionId,
-    },
-    "events"
+    }
   );
 };

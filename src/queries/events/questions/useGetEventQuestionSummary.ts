@@ -106,7 +106,6 @@ export const useGetEventQuestionSummary = (
     {
       ...options,
       enabled: !!eventId && !!questionId,
-    },
-    "events"
+    }
   );
 };

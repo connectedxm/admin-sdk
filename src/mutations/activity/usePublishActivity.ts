@@ -58,8 +58,5 @@ export const usePublishActivity = (
   return useConnectedMutation<
     PublishActivityParams,
     Awaited<ReturnType<typeof PublishActivity>>
-  >(PublishActivity, options, {
-    domain: "activities",
-    type: "update",
-  });
+  >(PublishActivity, options);
 };

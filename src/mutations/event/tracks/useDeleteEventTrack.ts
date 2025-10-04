@@ -57,8 +57,5 @@ export const useDeleteEventTrack = (
   return useConnectedMutation<
     DeleteEventTrackParams,
     Awaited<ReturnType<typeof DeleteEventTrack>>
-  >(DeleteEventTrack, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventTrack, options);
 };

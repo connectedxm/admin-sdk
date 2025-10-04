@@ -60,8 +60,5 @@ export const useUpdateAdvertisement = (
   return useConnectedMutation<
     UpdateAdvertisementParams,
     Awaited<ReturnType<typeof UpdateAdvertisement>>
-  >(UpdateAdvertisement, options, {
-    domain: "advertisements",
-    type: "update",
-  });
+  >(UpdateAdvertisement, options);
 };

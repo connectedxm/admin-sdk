@@ -58,8 +58,5 @@ export const useUpdateLoginEmail = (
   return useConnectedMutation<
     UpdateLoginEmailParams,
     Awaited<ReturnType<typeof UpdateLoginEmail>>
-  >(UpdateLoginEmail, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(UpdateLoginEmail, options);
 };

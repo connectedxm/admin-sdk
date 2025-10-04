@@ -57,8 +57,5 @@ export const useCreateThreadCircleAccount = (
   return useConnectedMutation<
     CreateThreadCircleAccountParams,
     Awaited<ReturnType<typeof CreateThreadCircleAccount>>
-  >(CreateThreadCircleAccount, options, {
-    domain: "threads",
-    type: "create",
-  });
+  >(CreateThreadCircleAccount, options);
 };

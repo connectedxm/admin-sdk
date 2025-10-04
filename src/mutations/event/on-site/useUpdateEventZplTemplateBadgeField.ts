@@ -79,8 +79,5 @@ export const useUpdateEventZplTemplateBadgeField = (
   return useConnectedMutation<
     UpdateEventZplTemplateBadgeFieldParams,
     Awaited<ReturnType<typeof UpdateEventZplTemplateBadgeField>>
-  >(UpdateEventZplTemplateBadgeField, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventZplTemplateBadgeField, options);
 };

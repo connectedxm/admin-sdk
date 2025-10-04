@@ -62,8 +62,5 @@ export const useRemoveEventFollowupAddOn = (
   return useConnectedMutation<
     RemoveEventFollowupAddOnParams,
     Awaited<ReturnType<typeof RemoveEventFollowupAddOn>>
-  >(RemoveEventFollowupAddOn, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventFollowupAddOn, options);
 };

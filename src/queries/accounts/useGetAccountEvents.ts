@@ -91,7 +91,6 @@ export const useGetAccountEvents = (
     {
       ...options,
       enabled: !!accountId && (options?.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

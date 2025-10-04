@@ -82,7 +82,6 @@ export const useGetEventRoomTypes = (
     {
       ...options,
       enabled: !!eventId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

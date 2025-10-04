@@ -102,7 +102,6 @@ export const useGetAnnouncementEmailReceipts = (
     {
       ...options,
       enabled: !!announcementId && (options.enabled ?? true),
-    },
-    "announcements"
+    }
   );
 };

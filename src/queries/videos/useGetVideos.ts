@@ -75,7 +75,6 @@ export const useGetVideos = (
     VIDEOS_QUERY_KEY(source || "all"),
     (params: InfiniteQueryParams) => GetVideos({ ...params, source }),
     params,
-    options,
-    "storage"
+    options
   );
 };

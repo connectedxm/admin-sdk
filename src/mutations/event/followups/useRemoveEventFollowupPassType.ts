@@ -62,8 +62,5 @@ export const useRemoveEventFollowupPassType = (
   return useConnectedMutation<
     RemoveEventFollowupPassTypeParams,
     Awaited<ReturnType<typeof RemoveEventFollowupPassType>>
-  >(RemoveEventFollowupPassType, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventFollowupPassType, options);
 };

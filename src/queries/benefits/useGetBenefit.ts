@@ -60,7 +60,6 @@ export const useGetBenefit = (
     {
       ...options,
       enabled: !!benefitId && (options?.enabled ?? true),
-    },
-    "benefits"
+    }
   );
 };

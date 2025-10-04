@@ -58,8 +58,5 @@ export const useCreateGroupInvitations = (
   return useConnectedMutation<
     CreateGroupInvitationsParams,
     Awaited<ReturnType<typeof CreateGroupInvitations>>
-  >(CreateGroupInvitations, options, {
-    domain: "groups",
-    type: "create",
-  });
+  >(CreateGroupInvitations, options);
 };

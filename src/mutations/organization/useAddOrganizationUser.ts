@@ -52,8 +52,5 @@ export const useAddOrganizationUser = (
   return useConnectedMutation<
     AddOrganizationUserParams,
     Awaited<ReturnType<typeof AddOrganizationUser>>
-  >(AddOrganizationUser, options, {
-    domain: "org",
-    type: "update",
-  });
+  >(AddOrganizationUser, options);
 };

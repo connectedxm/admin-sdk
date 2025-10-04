@@ -84,7 +84,6 @@ export const useGetEventAddOnTranslation = (
         !!locale &&
         locale !== "en" &&
         (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

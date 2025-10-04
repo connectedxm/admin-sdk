@@ -59,8 +59,5 @@ export const useRemoveAccountFollower = (
   return useConnectedMutation<
     RemoveAccountFollowerParams,
     Awaited<ReturnType<typeof RemoveAccountFollower>>
-  >(RemoveAccountFollower, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(RemoveAccountFollower, options);
 };

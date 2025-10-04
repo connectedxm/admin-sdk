@@ -55,8 +55,5 @@ export const useUpdateVideo = (
   return useConnectedMutation<
     UpdateVideoParams,
     Awaited<ReturnType<typeof UpdateVideo>>
-  >(UpdateVideo, options, {
-    domain: "storage",
-    type: "update",
-  });
+  >(UpdateVideo, options);
 };

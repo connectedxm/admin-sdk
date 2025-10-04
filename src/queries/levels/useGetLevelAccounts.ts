@@ -83,7 +83,6 @@ export const useGetLevelAccounts = (
     {
       ...options,
       enabled: !!levelId && (options.enabled ?? true),
-    },
-    "sponsors"
+    }
   );
 };

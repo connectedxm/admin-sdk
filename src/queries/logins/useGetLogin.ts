@@ -46,7 +46,6 @@ export const useGetLogin = (
     {
       ...options,
       enabled: !!username && (options?.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

@@ -69,8 +69,5 @@ export const useDeleteEventPassTypeTranslation = (
   return useConnectedMutation<
     DeleteEventPassTypeTranslationParams,
     Awaited<ReturnType<typeof DeleteEventPassTypeTranslation>>
-  >(DeleteEventPassTypeTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventPassTypeTranslation, options);
 };

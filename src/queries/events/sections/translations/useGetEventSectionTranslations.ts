@@ -95,7 +95,6 @@ export const useGetEventSectionTranslations = (
     {
       ...options,
       enabled: !!eventId && !!sectionId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

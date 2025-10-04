@@ -102,7 +102,6 @@ export const useGetBookingSpacePayments = (
     {
       ...options,
       enabled: !!placeId && !!spaceId && (options?.enabled ?? true),
-    },
-    "bookings"
+    }
   );
 };

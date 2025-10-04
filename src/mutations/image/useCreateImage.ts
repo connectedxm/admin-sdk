@@ -54,8 +54,5 @@ export const useCreateImage = (
   return useConnectedMutation<
     CreateImageParams,
     Awaited<ReturnType<typeof CreateImage>>
-  >(CreateImage, options, {
-    domain: "storage",
-    type: "create",
-  });
+  >(CreateImage, options);
 };

@@ -99,7 +99,6 @@ export const useGetActivities = (
     (params: InfiniteQueryParams) =>
       GetActivities({ ...params, moderation, featured, status }),
     params,
-    options,
-    "activities"
+    options
   );
 };

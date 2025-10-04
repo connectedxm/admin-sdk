@@ -62,8 +62,5 @@ export const useUpdateEventAttendee = (
   return useConnectedMutation<
     UpdateEventAttendeeParams,
     Awaited<ReturnType<typeof UpdateEventAttendee>>
-  >(UpdateEventAttendee, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventAttendee, options);
 };

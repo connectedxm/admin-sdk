@@ -95,7 +95,6 @@ export const useGetEventRoomTypeTranslations = (
     {
       ...options,
       enabled: !!eventId && !!roomTypeId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

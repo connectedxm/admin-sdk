@@ -63,8 +63,5 @@ export const useDeleteAnnouncementTranslation = (
   return useConnectedMutation<
     DeleteAnnouncementTranslationParams,
     Awaited<ReturnType<typeof DeleteAnnouncementTranslation>>
-  >(DeleteAnnouncementTranslation, options, {
-    domain: "announcements",
-    type: "update",
-  });
+  >(DeleteAnnouncementTranslation, options);
 };

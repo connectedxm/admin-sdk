@@ -66,8 +66,5 @@ export const useUpdateBenefit = (
   return useConnectedMutation<
     UpdateBenefitParams,
     Awaited<ReturnType<typeof UpdateBenefit>>
-  >(UpdateBenefit, options, {
-    domain: "benefits",
-    type: "update",
-  });
+  >(UpdateBenefit, options);
 };

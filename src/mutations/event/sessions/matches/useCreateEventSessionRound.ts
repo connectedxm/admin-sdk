@@ -56,8 +56,5 @@ export const useCreateEventSessionRound = (
   return useConnectedMutation<
     CreateEventSessionRoundParams,
     Awaited<ReturnType<typeof CreateEventSessionRound>>
-  >(CreateEventSessionRound, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventSessionRound, options);
 };

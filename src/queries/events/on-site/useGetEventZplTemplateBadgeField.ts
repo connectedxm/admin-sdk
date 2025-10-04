@@ -75,7 +75,6 @@ export const useGetEventZplTemplateBadgeField = (
     {
       ...options,
       enabled: !!eventId && !!fieldId,
-    },
-    "events"
+    }
   );
 };

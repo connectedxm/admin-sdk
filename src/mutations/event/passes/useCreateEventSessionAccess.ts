@@ -71,8 +71,5 @@ export const useCreateEventSessionAccess = (
   return useConnectedMutation<
     CreateEventSessionAccessParams,
     Awaited<ReturnType<typeof CreateEventSessionAccess>>
-  >(CreateEventSessionAccess, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventSessionAccess, options);
 };

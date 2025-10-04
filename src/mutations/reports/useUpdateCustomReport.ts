@@ -69,8 +69,5 @@ export const useUpdateCustomReport = (
   return useConnectedMutation<
     UpdateCustomReportParams,
     Awaited<ReturnType<typeof UpdateCustomReport>>
-  >(UpdateCustomReport, options, {
-    domain: "reports",
-    type: "update",
-  });
+  >(UpdateCustomReport, options);
 };

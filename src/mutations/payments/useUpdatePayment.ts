@@ -77,8 +77,5 @@ export const useUpdatePayment = (
   return useConnectedMutation<
     UpdatePaymentParams,
     Awaited<ReturnType<typeof UpdatePayment>>
-  >(UpdatePayment, options, {
-    domain: "org",
-    type: "update",
-  });
+  >(UpdatePayment, options);
 };

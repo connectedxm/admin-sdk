@@ -73,8 +73,5 @@ export const useRemoveEventSessionQuestionChoiceSubQuestion = (
   return useConnectedMutation<
     RemoveEventSessionQuestionChoiceSubQuestionParams,
     Awaited<ReturnType<typeof RemoveEventSessionQuestionChoiceSubQuestion>>
-  >(RemoveEventSessionQuestionChoiceSubQuestion, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventSessionQuestionChoiceSubQuestion, options);
 };

@@ -86,7 +86,6 @@ export const useGetBookingPlacePayments = (
     {
       ...options,
       enabled: !!placeId && (options?.enabled ?? true),
-    },
-    "bookings"
+    }
   );
 };

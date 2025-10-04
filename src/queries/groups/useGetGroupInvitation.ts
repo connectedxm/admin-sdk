@@ -66,7 +66,6 @@ export const useGetGroupInvitation = (
     {
       ...options,
       enabled: !!groupId && !!invitationId && (options?.enabled ?? true),
-    },
-    "groups"
+    }
   );
 };

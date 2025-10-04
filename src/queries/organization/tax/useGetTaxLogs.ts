@@ -88,7 +88,6 @@ export const useGetTaxLogs = (
     {
       ...options,
       enabled: !!type && (options.enabled ?? true),
-    },
-    "org"
+    }
   );
 };

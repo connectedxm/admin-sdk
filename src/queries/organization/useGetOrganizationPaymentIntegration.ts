@@ -71,7 +71,6 @@ export const useGetOrganizationPaymentIntegration = (
       ...options,
       enabled: !!type && (options?.enabled ?? true),
       retry: false,
-    },
-    "org"
+    }
   );
 };

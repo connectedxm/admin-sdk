@@ -82,7 +82,6 @@ export const useGetGroupThreads = (
     {
       ...options,
       enabled: !!groupId && (options.enabled ?? true),
-    },
-    ["groups", "threads"]
+    }
   );
 };

@@ -91,7 +91,6 @@ export const useGetEventPackagePasses = (
     {
       ...options,
       enabled: !!eventId && !!packageId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

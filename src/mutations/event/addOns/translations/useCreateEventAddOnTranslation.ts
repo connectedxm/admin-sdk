@@ -73,8 +73,5 @@ export const useCreateEventAddOnTranslation = (
   return useConnectedMutation<
     CreateEventAddOnTranslationParams,
     Awaited<ReturnType<typeof CreateEventAddOnTranslation>>
-  >(CreateEventAddOnTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventAddOnTranslation, options);
 };

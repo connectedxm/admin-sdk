@@ -95,7 +95,6 @@ export const useGetChannelSubscribers = (
     {
       ...options,
       enabled: !!channelId && (options.enabled ?? true),
-    },
-    "channels"
+    }
   );
 };

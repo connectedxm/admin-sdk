@@ -85,7 +85,6 @@ export const useGetSurveyTranslations = (
     {
       ...options,
       enabled: !!surveyId && (options.enabled ?? true),
-    },
-    "surveys"
+    }
   );
 };

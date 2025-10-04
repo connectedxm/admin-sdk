@@ -67,8 +67,5 @@ export const useCreateOrganizationPaymentIntegration = (
   return useConnectedMutation<
     CreateOrganizationPaymentIntegrationParams,
     Awaited<ReturnType<typeof CreateOrganizationPaymentIntegration>>
-  >(CreateOrganizationPaymentIntegration, options, {
-    domain: "org",
-    type: "update",
-  });
+  >(CreateOrganizationPaymentIntegration, options);
 };

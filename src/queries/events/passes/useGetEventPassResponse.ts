@@ -76,7 +76,6 @@ export const useGetEventPassResponse = (
     {
       ...options,
       enabled: !!eventId && !!questionId && !!passId,
-    },
-    "events"
+    }
   );
 };

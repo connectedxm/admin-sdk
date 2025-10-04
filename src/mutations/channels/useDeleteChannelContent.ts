@@ -61,8 +61,5 @@ export const useDeleteChannelContent = (
   return useConnectedMutation<
     DeleteChannelContentParams,
     Awaited<ReturnType<typeof DeleteChannelContent>>
-  >(DeleteChannelContent, options, {
-    domain: "channels",
-    type: "update",
-  });
+  >(DeleteChannelContent, options);
 };

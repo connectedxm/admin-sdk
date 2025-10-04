@@ -91,7 +91,6 @@ export const useGetEventPassPayments = (
     {
       ...options,
       enabled: !!eventId && !!passId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

@@ -65,8 +65,5 @@ export const useDeleteEventSpeakerTranslation = (
   return useConnectedMutation<
     DeleteEventSpeakerTranslationParams,
     Awaited<ReturnType<typeof DeleteEventSpeakerTranslation>>
-  >(DeleteEventSpeakerTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventSpeakerTranslation, options);
 };

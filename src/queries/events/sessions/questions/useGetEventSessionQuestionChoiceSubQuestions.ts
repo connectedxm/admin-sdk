@@ -129,7 +129,6 @@ export const useGetEventSessionQuestionChoiceSubQuestions = (
         !!questionId &&
         !!choiceId &&
         (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

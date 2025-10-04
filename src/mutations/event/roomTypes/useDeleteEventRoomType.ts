@@ -60,8 +60,5 @@ export const useDeleteEventRoomType = (
   return useConnectedMutation<
     DeleteEventRoomTypeParams,
     Awaited<ReturnType<typeof DeleteEventRoomType>>
-  >(DeleteEventRoomType, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventRoomType, options);
 };

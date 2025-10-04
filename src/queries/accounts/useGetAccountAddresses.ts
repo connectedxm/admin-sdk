@@ -85,7 +85,6 @@ export const useGetAccountAddresses = (
     {
       ...options,
       enabled: !!accountId && (options.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

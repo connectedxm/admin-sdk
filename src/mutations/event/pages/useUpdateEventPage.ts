@@ -65,8 +65,5 @@ export const useUpdateEventPage = (
   return useConnectedMutation<
     UpdateEventPageParams,
     Awaited<ReturnType<typeof UpdateEventPage>>
-  >(UpdateEventPage, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventPage, options);
 };

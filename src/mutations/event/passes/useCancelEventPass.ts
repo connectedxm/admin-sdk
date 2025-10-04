@@ -83,8 +83,5 @@ export const useCancelEventPass = (
   return useConnectedMutation<
     CancelEventPassParams,
     Awaited<ReturnType<typeof CancelEventPass>>
-  >(CancelEventPass, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CancelEventPass, options);
 };

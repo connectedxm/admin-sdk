@@ -67,7 +67,6 @@ export const useGetOrganizationMembership = (
     {
       ...options,
       enabled: !!userId && (options?.enabled ?? true),
-    },
-    "org"
+    }
   );
 };

@@ -70,8 +70,5 @@ export const useDeleteEventFaqSectionQuestion = (
   return useConnectedMutation<
     DeleteEventFaqSectionQuestionParams,
     Awaited<ReturnType<typeof DeleteEventFaqSectionQuestion>>
-  >(DeleteEventFaqSectionQuestion, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventFaqSectionQuestion, options);
 };

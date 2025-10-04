@@ -79,7 +79,6 @@ export const useGetDashboardWidgets = (
     {
       ...options,
       enabled: !!dashboardId && (options.enabled ?? true),
-    },
-    "org"
+    }
   );
 };

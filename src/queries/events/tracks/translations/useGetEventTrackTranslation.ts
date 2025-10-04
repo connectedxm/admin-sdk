@@ -84,7 +84,6 @@ export const useGetEventTrackTranslation = (
         !!locale &&
         locale !== "en" &&
         (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

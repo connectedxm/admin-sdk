@@ -47,8 +47,5 @@ export const useDeleteOrganizationDomain = (
   return useConnectedMutation<
     DeleteOrganizationDomainParams,
     Awaited<ReturnType<typeof DeleteOrganizationDomain>>
-  >(DeleteOrganizationDomain, options, {
-    domain: "org",
-    type: "update",
-  });
+  >(DeleteOrganizationDomain, options);
 };

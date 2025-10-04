@@ -71,8 +71,5 @@ export const useUpdateChannelContentPublishSchedule = (
   return useConnectedMutation<
     UpdateChannelContentPublishScheduleParams,
     Awaited<ReturnType<typeof UpdateChannelContentPublishSchedule>>
-  >(UpdateChannelContentPublishSchedule, options, {
-    domain: "channels",
-    type: "update",
-  });
+  >(UpdateChannelContentPublishSchedule, options);
 };

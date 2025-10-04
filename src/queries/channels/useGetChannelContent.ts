@@ -66,7 +66,6 @@ export const useGetChannelContent = (
     {
       ...options,
       enabled: !!channelId && !!contentId && (options?.enabled ?? true),
-    },
-    "channels"
+    }
   );
 };

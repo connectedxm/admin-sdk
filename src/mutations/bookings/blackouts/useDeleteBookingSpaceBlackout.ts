@@ -63,8 +63,5 @@ export const useDeleteBookingSpaceBlackout = (
   return useConnectedMutation<
     DeleteBookingSpaceBlackoutParams,
     Awaited<ReturnType<typeof DeleteBookingSpaceBlackout>>
-  >(DeleteBookingSpaceBlackout, options, {
-    domain: "bookings",
-    type: "update",
-  });
+  >(DeleteBookingSpaceBlackout, options);
 };

@@ -53,8 +53,5 @@ export const useCreateSeries = (
   return useConnectedMutation<
     CreateSeriesParams,
     Awaited<ReturnType<typeof CreateSeries>>
-  >(CreateSeries, options, {
-    domain: "events",
-    type: "create",
-  });
+  >(CreateSeries, options);
 };

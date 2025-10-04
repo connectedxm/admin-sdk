@@ -85,7 +85,6 @@ export const useGetInterestAccounts = (
     {
       ...options,
       enabled: !!interestId && (options.enabled ?? true),
-    },
-    "interests"
+    }
   );
 };

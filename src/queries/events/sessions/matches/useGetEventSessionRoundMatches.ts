@@ -105,7 +105,6 @@ export const useGetEventSessionRoundMatches = (
       ...options,
       enabled:
         !!eventId && !!sessionId && !!roundId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

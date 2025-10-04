@@ -80,8 +80,5 @@ export const useUpdateEventSessionAccessResponses = (
   return useConnectedMutation<
     UpdateEventSessionAccessResponsesParams,
     Awaited<ReturnType<typeof UpdateEventSessionAccessResponses>>
-  >(UpdateEventSessionAccessResponses, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventSessionAccessResponses, options);
 };

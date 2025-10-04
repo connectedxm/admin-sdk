@@ -78,7 +78,6 @@ export const useGetOrganizationPaymentIntegrations = (
     ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetOrganizationPaymentIntegrations(params),
     params,
-    options,
-    "org"
+    options
   );
 };

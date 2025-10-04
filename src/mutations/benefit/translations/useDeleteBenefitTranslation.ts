@@ -62,8 +62,5 @@ export const useDeleteBenefitTranslation = (
   return useConnectedMutation<
     DeleteBenefitTranslationParams,
     Awaited<ReturnType<typeof DeleteBenefitTranslation>>
-  >(DeleteBenefitTranslation, options, {
-    domain: "benefits",
-    type: "update",
-  });
+  >(DeleteBenefitTranslation, options);
 };

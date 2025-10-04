@@ -62,7 +62,6 @@ export const useGetOrganizationWebhook = (
     {
       ...options,
       enabled: !!webhookId && (options.enabled ?? true),
-    },
-    "org"
+    }
   );
 };

@@ -61,7 +61,6 @@ export const useGetImports = (
     IMPORTS_QUERY_KEY(tierId),
     (params: InfiniteQueryParams) => GetImports({ tierId, ...params }),
     params,
-    options,
-    "org"
+    options
   );
 };

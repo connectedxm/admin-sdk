@@ -55,8 +55,5 @@ export const useRemoveGroupEvent = (
   return useConnectedMutation<
     RemoveGroupEventParams,
     Awaited<ReturnType<typeof RemoveGroupEvent>>
-  >(RemoveGroupEvent, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(RemoveGroupEvent, options);
 };

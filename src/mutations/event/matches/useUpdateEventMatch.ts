@@ -69,8 +69,5 @@ export const useUpdateEventMatch = (
   return useConnectedMutation<
     UpdateEventMatchParams,
     Awaited<ReturnType<typeof UpdateEventMatch>>
-  >(UpdateEventMatch, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventMatch, options);
 };

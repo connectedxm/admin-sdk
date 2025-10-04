@@ -53,8 +53,5 @@ export const useDeleteCustomModule = (
   return useConnectedMutation<
     DeleteCustomModuleParams,
     Awaited<ReturnType<typeof DeleteCustomModule>>
-  >(DeleteCustomModule, options, {
-    domain: "org",
-    type: "del",
-  });
+  >(DeleteCustomModule, options);
 };

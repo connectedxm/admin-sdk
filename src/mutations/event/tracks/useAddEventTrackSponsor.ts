@@ -60,8 +60,5 @@ export const useAddEventTrackSponsor = (
   return useConnectedMutation<
     AddEventTrackSponsorParams,
     Awaited<ReturnType<typeof AddEventTrackSponsor>>
-  >(AddEventTrackSponsor, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventTrackSponsor, options);
 };

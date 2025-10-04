@@ -79,7 +79,6 @@ export const useGetAccountLikes = (
     {
       ...options,
       enabled: !!accountId && (options.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

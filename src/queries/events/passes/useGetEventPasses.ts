@@ -78,7 +78,6 @@ export const useGetEventPasses = (
     {
       ...options,
       enabled: !!eventId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

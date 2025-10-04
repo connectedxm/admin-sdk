@@ -59,7 +59,6 @@ export const useGetBookingPlace = (
     {
       ...options,
       enabled: !!placeId && (options?.enabled ?? true),
-    },
-    "bookings"
+    }
   );
 };

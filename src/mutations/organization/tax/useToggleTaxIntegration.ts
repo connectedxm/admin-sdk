@@ -61,8 +61,5 @@ export const useToggleTaxIntegration = (
   return useConnectedMutation<
     ToggleTaxIntegrationParams,
     Awaited<ReturnType<typeof ToggleTaxIntegration>>
-  >(ToggleTaxIntegration, options, {
-    domain: "org",
-    type: "update",
-  });
+  >(ToggleTaxIntegration, options);
 };

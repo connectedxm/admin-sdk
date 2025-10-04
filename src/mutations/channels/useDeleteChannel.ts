@@ -52,8 +52,5 @@ export const useDeleteChannel = (
   return useConnectedMutation<
     DeleteChannelParams,
     Awaited<ReturnType<typeof DeleteChannel>>
-  >(DeleteChannel, options, {
-    domain: "channels",
-    type: "del",
-  });
+  >(DeleteChannel, options);
 };

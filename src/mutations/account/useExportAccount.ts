@@ -46,8 +46,5 @@ export const useExportAccount = (
   return useConnectedMutation<
     ExportAccountParams,
     Awaited<ReturnType<typeof ExportAccount>>
-  >(ExportAccount, options, {
-    domain: "accounts",
-    type: "read",
-  });
+  >(ExportAccount, options);
 };

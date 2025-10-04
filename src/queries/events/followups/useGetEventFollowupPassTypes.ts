@@ -95,7 +95,6 @@ export const useGetEventFollowupPassTypes = (
     {
       ...options,
       enabled: !!eventId && !!followupId,
-    },
-    "events"
+    }
   );
 };

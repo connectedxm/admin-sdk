@@ -79,7 +79,6 @@ export const useGetImages = (
     IMAGES_QUERY_KEY(type),
     (params: InfiniteQueryParams) => GetImages({ ...params, type }),
     params,
-    options,
-    "storage"
+    options
   );
 };

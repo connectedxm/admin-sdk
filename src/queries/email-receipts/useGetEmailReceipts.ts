@@ -81,7 +81,6 @@ export const useGetEmailReceipts = (
     EMAIL_RECEIPTS_QUERY_KEY(status),
     (params: InfiniteQueryParams) => GetEmailReceipts({ ...params, status }),
     params,
-    options,
-    "org"
+    options
   );
 };

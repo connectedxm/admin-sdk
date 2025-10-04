@@ -59,8 +59,5 @@ export const useCreateAccountAddress = (
   return useConnectedMutation<
     CreateAccountAddressParams,
     Awaited<ReturnType<typeof CreateAccountAddress>>
-  >(CreateAccountAddress, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(CreateAccountAddress, options);
 };

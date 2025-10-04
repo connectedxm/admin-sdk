@@ -85,7 +85,6 @@ export const useGetAccountSubscriptions = (
     {
       ...options,
       enabled: !!accountId && (options?.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

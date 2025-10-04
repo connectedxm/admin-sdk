@@ -62,8 +62,5 @@ export const useAddEventFollowupAddOn = (
   return useConnectedMutation<
     AddEventFollowupAddOnParams,
     Awaited<ReturnType<typeof AddEventFollowupAddOn>>
-  >(AddEventFollowupAddOn, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventFollowupAddOn, options);
 };

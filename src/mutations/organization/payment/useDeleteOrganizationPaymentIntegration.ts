@@ -64,8 +64,5 @@ export const useDeleteOrganizationPaymentIntegration = (
   return useConnectedMutation<
     DeleteOrganizationPaymentIntegrationParams,
     Awaited<ReturnType<typeof DeleteOrganizationPaymentIntegration>>
-  >(DeleteOrganizationPaymentIntegration, options, {
-    domain: "org",
-    type: "update",
-  });
+  >(DeleteOrganizationPaymentIntegration, options);
 };

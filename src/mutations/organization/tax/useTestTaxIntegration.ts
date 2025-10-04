@@ -51,8 +51,5 @@ export const useTestTaxIntegration = (
   return useConnectedMutation<
     TestTaxIntegrationParams,
     Awaited<ReturnType<typeof TestTaxIntegration>>
-  >(TestTaxIntegration, options, {
-    domain: "org",
-    type: "read",
-  });
+  >(TestTaxIntegration, options);
 };

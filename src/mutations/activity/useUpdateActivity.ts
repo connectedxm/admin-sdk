@@ -56,8 +56,5 @@ export const useUpdateActivity = (
   return useConnectedMutation<
     UpdateActivityParams,
     Awaited<ReturnType<typeof UpdateActivity>>
-  >(UpdateActivity, options, {
-    domain: "activities",
-    type: "update",
-  });
+  >(UpdateActivity, options);
 };

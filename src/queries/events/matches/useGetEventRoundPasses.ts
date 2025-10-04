@@ -107,7 +107,6 @@ export const useGetEventRoundPasses = (
         !!eventId &&
         !!roundId &&
         (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

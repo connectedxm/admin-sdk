@@ -67,8 +67,5 @@ export const useAddEventFollowupTier = (
   return useConnectedMutation<
     AddEventFollowupTierParams,
     Awaited<ReturnType<typeof AddEventFollowupTier>>
-  >(AddEventFollowupTier, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventFollowupTier, options);
 };

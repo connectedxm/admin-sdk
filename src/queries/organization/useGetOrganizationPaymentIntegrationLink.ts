@@ -68,7 +68,6 @@ export const useGetOrganizationPaymentLink = (
       ...options,
       enabled: !!type && (options?.enabled ?? true),
       retry: false,
-    },
-    "org"
+    }
   );
 };

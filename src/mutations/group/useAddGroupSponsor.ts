@@ -55,8 +55,5 @@ export const useAddGroupSponsor = (
   return useConnectedMutation<
     AddGroupSponsorParams,
     Awaited<ReturnType<typeof AddGroupSponsor>>
-  >(AddGroupSponsor, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(AddGroupSponsor, options);
 };

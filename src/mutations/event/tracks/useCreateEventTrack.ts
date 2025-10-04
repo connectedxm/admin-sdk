@@ -61,8 +61,5 @@ export const useCreateEventTrack = (
   return useConnectedMutation<
     CreateEventTrackParams,
     Awaited<ReturnType<typeof CreateEventTrack>>
-  >(CreateEventTrack, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventTrack, options);
 };

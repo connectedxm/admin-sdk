@@ -50,8 +50,5 @@ export const useStartEventRoundMatchmaking = (
   return useConnectedMutation<
     StartEventRoundMatchmakingParams,
     Awaited<ReturnType<typeof StartEventRoundMatchmaking>>
-  >(StartEventRoundMatchmaking, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(StartEventRoundMatchmaking, options);
 };

@@ -69,7 +69,6 @@ export const useGetEventRoomType = (
     {
       ...options,
       enabled: !!eventId && !!roomTypeId,
-    },
-    "events"
+    }
   );
 };

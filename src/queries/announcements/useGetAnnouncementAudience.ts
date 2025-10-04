@@ -86,7 +86,6 @@ export const useGetAnnouncementAudience = (
     {
       ...options,
       enabled: !!announcementId && (options.enabled ?? true),
-    },
-    "announcements"
+    }
   );
 };

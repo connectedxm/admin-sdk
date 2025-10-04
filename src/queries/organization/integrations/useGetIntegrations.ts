@@ -69,7 +69,6 @@ export const useGetIntegrations = (
     INTEGRATIONS_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetIntegrations(params),
     params,
-    options,
-    "org"
+    options
   );
 };

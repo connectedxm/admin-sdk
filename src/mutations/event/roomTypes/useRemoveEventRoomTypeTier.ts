@@ -69,8 +69,5 @@ export const useRemoveEventRoomTypeTier = (
   return useConnectedMutation<
     RemoveEventRoomTypeTierParams,
     Awaited<ReturnType<typeof RemoveEventRoomTypeTier>>
-  >(RemoveEventRoomTypeTier, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventRoomTypeTier, options);
 };

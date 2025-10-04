@@ -60,7 +60,6 @@ export const useGetActivity = (
     {
       ...options,
       enabled: !!activityId && (options?.enabled ?? true),
-    },
-    "activities"
+    }
   );
 };

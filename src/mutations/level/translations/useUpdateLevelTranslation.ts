@@ -67,8 +67,5 @@ export const useUpdateLevelTranslation = (
   return useConnectedMutation<
     UpdateLevelTranslationParams,
     Awaited<ReturnType<typeof UpdateLevelTranslation>>
-  >(UpdateLevelTranslation, options, {
-    domain: "sponsors",
-    type: "update",
-  });
+  >(UpdateLevelTranslation, options);
 };

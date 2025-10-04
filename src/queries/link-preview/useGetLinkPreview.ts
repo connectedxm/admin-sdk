@@ -60,7 +60,6 @@ export const useGetLinkPreview = (
     {
       ...options,
       enabled: !!href && (options?.enabled ?? true),
-    },
-    "org"
+    }
   );
 };

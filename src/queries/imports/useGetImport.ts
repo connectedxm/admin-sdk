@@ -60,7 +60,6 @@ export const useGetImport = (
     {
       ...options,
       enabled: !!importId,
-    },
-    "org"
+    }
   );
 };

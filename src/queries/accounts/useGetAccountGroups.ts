@@ -80,7 +80,6 @@ export const useGetAccountGroups = (
     {
       ...options,
       enabled: !!accountId && (options?.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

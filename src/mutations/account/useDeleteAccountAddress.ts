@@ -56,8 +56,5 @@ export const useDeleteAccountAddress = (
   return useConnectedMutation<
     DeleteAccountAddressParams,
     Awaited<ReturnType<typeof DeleteAccountAddress>>
-  >(DeleteAccountAddress, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(DeleteAccountAddress, options);
 };

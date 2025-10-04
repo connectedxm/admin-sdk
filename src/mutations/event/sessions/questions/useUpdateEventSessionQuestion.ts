@@ -91,8 +91,5 @@ export const useUpdateEventSessionQuestion = (
   return useConnectedMutation<
     UpdateEventSessionQuestionParams,
     Awaited<ReturnType<typeof UpdateEventSessionQuestion>>
-  >(UpdateEventSessionQuestion, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventSessionQuestion, options);
 };

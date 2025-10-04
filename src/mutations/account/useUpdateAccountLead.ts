@@ -60,8 +60,5 @@ export const useUpdateAccountLead = (
   return useConnectedMutation<
     UpdateAccountLeadParams,
     Awaited<ReturnType<typeof UpdateAccountLead>>
-  >(UpdateAccountLead, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(UpdateAccountLead, options);
 };

@@ -58,8 +58,5 @@ export const useUpdateLoginPassword = (
   return useConnectedMutation<
     UpdateLoginPasswordParams,
     Awaited<ReturnType<typeof UpdateLoginPassword>>
-  >(UpdateLoginPassword, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(UpdateLoginPassword, options);
 };

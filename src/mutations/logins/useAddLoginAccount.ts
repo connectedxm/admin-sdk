@@ -58,8 +58,5 @@ export const useAddLoginAccount = (
   return useConnectedMutation<
     AddLoginAccountParams,
     Awaited<ReturnType<typeof AddLoginAccount>>
-  >(AddLoginAccount, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(AddLoginAccount, options);
 };

@@ -58,8 +58,5 @@ export const useDeleteChannelTranslation = (
     "mutationFn"
   > = {}
 ) => {
-  return useConnectedMutation(DeleteChannelTranslation, options, {
-    domain: "channels",
-    type: "update",
-  });
+  return useConnectedMutation(DeleteChannelTranslation, options);
 };

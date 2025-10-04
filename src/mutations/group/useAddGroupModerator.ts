@@ -64,8 +64,5 @@ export const useAddGroupModerator = (
   return useConnectedMutation<
     AddGroupModeratorParams,
     Awaited<ReturnType<typeof AddGroupModerator>>
-  >(AddGroupModerator, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(AddGroupModerator, options);
 };

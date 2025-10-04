@@ -52,8 +52,5 @@ export const useVoidInvoice = (
   return useConnectedMutation<
     VoidInvoiceParams,
     Awaited<ReturnType<typeof VoidInvoice>>
-  >(VoidInvoice, options, {
-    domain: "invoices",
-    type: "update",
-  });
+  >(VoidInvoice, options);
 };

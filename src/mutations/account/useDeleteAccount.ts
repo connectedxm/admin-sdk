@@ -52,8 +52,5 @@ export const useDeleteAccount = (
   return useConnectedMutation<
     DeleteAccountParams,
     Awaited<ReturnType<typeof DeleteAccount>>
-  >(DeleteAccount, options, {
-    domain: "accounts",
-    type: "del",
-  });
+  >(DeleteAccount, options);
 };

@@ -78,7 +78,6 @@ export const useGetThreads = (
     THREADS_QUERY_KEY(type),
     (params: InfiniteQueryParams) => GetThreads({ ...params, type }),
     params,
-    options,
-    "threads"
+    options
   );
 };

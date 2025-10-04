@@ -56,8 +56,5 @@ export const useDeleteEventPage = (
   return useConnectedMutation<
     DeleteEventPageParams,
     Awaited<ReturnType<typeof DeleteEventPage>>
-  >(DeleteEventPage, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventPage, options);
 };

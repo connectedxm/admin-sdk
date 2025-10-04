@@ -73,8 +73,5 @@ export const useUpdateEventPassSingleFollowupResponses = (
   return useConnectedMutation<
     UpdateEventPassSingleFollowupResponsesParams,
     Awaited<ReturnType<typeof UpdateEventPassSingleFollowupResponses>>
-  >(UpdateEventPassSingleFollowupResponses, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventPassSingleFollowupResponses, options);
 };

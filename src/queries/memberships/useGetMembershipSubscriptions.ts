@@ -105,7 +105,6 @@ export const useGetMembershipSubscriptions = (
     {
       ...options,
       enabled: !!membershipId && (options.enabled ?? true),
-    },
-    "subscriptions"
+    }
   );
 };

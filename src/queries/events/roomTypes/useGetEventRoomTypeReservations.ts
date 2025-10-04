@@ -94,7 +94,6 @@ export const useGetEventRoomTypeReservations = (
     {
       ...options,
       enabled: !!roomTypeId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

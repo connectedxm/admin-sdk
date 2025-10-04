@@ -69,8 +69,5 @@ export const useCreateGroupTranslation = (
   return useConnectedMutation<
     CreateGroupTranslationParams,
     Awaited<ReturnType<typeof CreateGroupTranslation>>
-  >(CreateGroupTranslation, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(CreateGroupTranslation, options);
 };

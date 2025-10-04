@@ -66,7 +66,6 @@ export const useGetChannels = (
     CHANNELS_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetChannels(params),
     params,
-    options,
-    "channels"
+    options
   );
 };

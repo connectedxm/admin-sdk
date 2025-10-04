@@ -49,7 +49,6 @@ export const useGetOrganization = (
   return useConnectedSingleQuery<ReturnType<typeof GetOrganization>>(
     ORGANIZATION_QUERY_KEY(),
     (params: SingleQueryParams) => GetOrganization(params),
-    options,
-    "org"
+    options
   );
 };

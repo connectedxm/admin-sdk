@@ -81,7 +81,6 @@ export const useSearchOrganization = (
     {
       ...options,
       enabled: !!search && (options.enabled ?? true),
-    },
-    "org"
+    }
   );
 };

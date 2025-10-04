@@ -76,8 +76,5 @@ export const useDeleteChannelContentGuestTranslation = (
   return useConnectedMutation<
     DeleteChannelContentGuestTranslationParams,
     Awaited<ReturnType<typeof DeleteChannelContentGuestTranslation>>
-  >(DeleteChannelContentGuestTranslation, options, {
-    domain: "channels",
-    type: "update",
-  });
+  >(DeleteChannelContentGuestTranslation, options);
 };

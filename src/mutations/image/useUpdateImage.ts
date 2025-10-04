@@ -55,8 +55,5 @@ export const useUpdateImage = (
   return useConnectedMutation<
     UpdateImageParams,
     Awaited<ReturnType<typeof UpdateImage>>
-  >(UpdateImage, options, {
-    domain: "storage",
-    type: "update",
-  });
+  >(UpdateImage, options);
 };

@@ -92,7 +92,6 @@ export const useGetEventTrackSessions = (
     {
       ...options,
       enabled: !!eventId && !!trackId,
-    },
-    "events"
+    }
   );
 };

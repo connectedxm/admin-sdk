@@ -62,8 +62,5 @@ export const useAddEventSectionAddOn = (
   return useConnectedMutation<
     AddEventSectionAddOnParams,
     Awaited<ReturnType<typeof AddEventSectionAddOn>>
-  >(AddEventSectionAddOn, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventSectionAddOn, options);
 };

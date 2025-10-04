@@ -65,8 +65,5 @@ export const useAddEventRoomTypeTier = (
   return useConnectedMutation<
     AddEventRoomTypeTierParams,
     Awaited<ReturnType<typeof AddEventRoomTypeTier>>
-  >(AddEventRoomTypeTier, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventRoomTypeTier, options);
 };

@@ -90,8 +90,5 @@ export const useCreateEventSessionQuestionChoiceTranslation = (
   return useConnectedMutation<
     CreateEventSessionQuestionChoiceTranslationParams,
     Awaited<ReturnType<typeof CreateEventSessionQuestionChoiceTranslation>>
-  >(CreateEventSessionQuestionChoiceTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventSessionQuestionChoiceTranslation, options);
 };

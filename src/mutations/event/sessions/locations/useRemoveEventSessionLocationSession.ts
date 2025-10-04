@@ -70,8 +70,5 @@ export const useRemoveEventSessionLocationSession = (
   return useConnectedMutation<
     RemoveEventSessionLocationSessionParams,
     Awaited<ReturnType<typeof RemoveEventSessionLocationSession>>
-  >(RemoveEventSessionLocationSession, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventSessionLocationSession, options);
 };

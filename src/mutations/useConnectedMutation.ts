@@ -5,14 +5,8 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import {
-  ConnectedXMResponse,
-  PermissionDomain,
-  PermissionType,
-  useConnectedXM,
-} from "..";
+import { ConnectedXMResponse, useConnectedXM } from "..";
 import { AdminApiParams } from "@src/AdminAPI";
-import usePermission from "@src/utilities/usePermission";
 
 export interface MutationParams {
   adminApiParams: AdminApiParams;
@@ -37,20 +31,11 @@ export const useConnectedMutation = <
       Omit<TMutationParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
-  >,
-  permission?: {
-    domain: PermissionDomain | PermissionDomain[];
-    type: PermissionType | PermissionType[];
-  }
+  >
 ) => {
   const { apiUrl, getToken, organizationId, getExecuteAs, onMutationError } =
     useConnectedXM();
   const queryClient = useQueryClient();
-
-  const { allowed, enabled } = usePermission(
-    permission?.domain,
-    permission?.type
-  );
 
   return useMutation<
     TResponseData,
@@ -58,19 +43,6 @@ export const useConnectedMutation = <
     Omit<TMutationParams, "queryClient" | "adminApiParams">
   >({
     mutationFn: (data) => {
-      if (!!permission?.domain && !!permission.type) {
-        if (!enabled) {
-          throw Error(
-            `${capitalize(permission.type.toString())} ${
-              permission.domain
-            } feature not enabled`
-          );
-        } else if (!allowed) {
-          throw Error(
-            `Missing ${permission.type} ${permission.domain} permission`
-          );
-        }
-      }
       return mutation({
         queryClient,
         adminApiParams: {
@@ -90,5 +62,3 @@ export const useConnectedMutation = <
     },
   });
 };
-
-const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);

@@ -73,7 +73,6 @@ export const useGetSurveyQuestionChoice = (
       ...options,
       enabled:
         !!surveyId && !!questionId && !!choiceId && (options?.enabled ?? true),
-    },
-    "surveys"
+    }
   );
 };

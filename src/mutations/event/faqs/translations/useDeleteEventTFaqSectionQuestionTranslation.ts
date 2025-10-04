@@ -79,8 +79,5 @@ export const useDeleteEventFaqSectionQuestionTranslation = (
   return useConnectedMutation<
     DeleteEventFaqSectionQuestionTranslationParams,
     Awaited<ReturnType<typeof DeleteEventFaqSectionQuestionTranslation>>
-  >(DeleteEventFaqSectionQuestionTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventFaqSectionQuestionTranslation, options);
 };

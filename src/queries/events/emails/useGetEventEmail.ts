@@ -63,7 +63,6 @@ export const useGetEventEmail = (
     {
       ...options,
       enabled: !!type && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

@@ -95,7 +95,6 @@ export const useGetEventSpeakerTranslations = (
     {
       ...options,
       enabled: !!eventId && !!speakerId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

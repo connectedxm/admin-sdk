@@ -81,7 +81,6 @@ export const useGetAccountComments = (
     {
       ...options,
       enabled: !!accountId && (options?.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

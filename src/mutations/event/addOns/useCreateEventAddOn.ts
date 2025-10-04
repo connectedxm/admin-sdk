@@ -61,8 +61,5 @@ export const useCreateEventAddOn = (
   return useConnectedMutation<
     CreateEventAddOnParams,
     Awaited<ReturnType<typeof CreateEventAddOn>>
-  >(CreateEventAddOn, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventAddOn, options);
 };

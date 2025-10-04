@@ -53,8 +53,5 @@ export const useCreateInvoice = (
   return useConnectedMutation<
     CreateInvoiceParams,
     Awaited<ReturnType<typeof CreateInvoice>>
-  >(CreateInvoice, options, {
-    domain: "invoices",
-    type: "create",
-  });
+  >(CreateInvoice, options);
 };

@@ -71,8 +71,5 @@ export const useAttachEventQuestionSearchList = (
   return useConnectedMutation<
     AttachEventQuestionSearchListParams,
     Awaited<ReturnType<typeof AttachEventQuestionSearchList>>
-  >(AttachEventQuestionSearchList, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AttachEventQuestionSearchList, options);
 };

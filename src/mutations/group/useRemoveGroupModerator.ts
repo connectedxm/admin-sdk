@@ -66,8 +66,5 @@ export const useRemoveGroupModerator = (
   return useConnectedMutation<
     RemoveGroupModeratorParams,
     Awaited<ReturnType<typeof RemoveGroupModerator>>
-  >(RemoveGroupModerator, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(RemoveGroupModerator, options);
 };

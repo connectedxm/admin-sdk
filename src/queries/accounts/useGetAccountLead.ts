@@ -64,7 +64,6 @@ export const useGetAccountLead = (
     {
       ...options,
       enabled: !!accountId && !!leadId && (options?.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

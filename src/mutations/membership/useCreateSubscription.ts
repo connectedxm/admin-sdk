@@ -50,8 +50,5 @@ export const useCreateSubscription = (
   return useConnectedMutation<
     CreateSubscriptionParams,
     Awaited<ReturnType<typeof CreateSubscription>>
-  >(CreateSubscription, options, {
-    domain: "subscriptions",
-    type: "create",
-  });
+  >(CreateSubscription, options);
 };

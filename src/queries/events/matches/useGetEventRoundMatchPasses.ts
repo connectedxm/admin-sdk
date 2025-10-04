@@ -103,7 +103,6 @@ export const useGetEventRoundMatchPasses = (
       ...options,
       enabled:
         !!eventId && !!roundId && !!matchId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

@@ -104,7 +104,6 @@ export const useGetEventSessionSectionTranslations = (
       ...options,
       enabled:
         !!eventId && !!sessionId && !!sectionId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

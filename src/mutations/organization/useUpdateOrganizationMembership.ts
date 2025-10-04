@@ -62,8 +62,5 @@ export const useUpdateOrganizationMembership = (
   return useConnectedMutation<
     UpdateOrganizationMembershipParams,
     Awaited<ReturnType<typeof UpdateOrganizationMembership>>
-  >(UpdateOrganizationMembership, options, {
-    domain: "org",
-    type: "update",
-  });
+  >(UpdateOrganizationMembership, options);
 };

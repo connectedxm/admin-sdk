@@ -65,8 +65,5 @@ export const useDeleteEventRegistrationBypass = (
   return useConnectedMutation<
     DeleteEventRegistrationBypassParams,
     Awaited<ReturnType<typeof DeleteEventRegistrationBypass>>
-  >(DeleteEventRegistrationBypass, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventRegistrationBypass, options);
 };

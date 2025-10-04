@@ -55,8 +55,5 @@ export const useUpdateAccount = (
   return useConnectedMutation<
     UpdateAccountParams,
     Awaited<ReturnType<typeof UpdateAccount>>
-  >(UpdateAccount, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(UpdateAccount, options);
 };

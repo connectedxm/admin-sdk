@@ -85,7 +85,6 @@ export const useGetEventSponsors = (
     {
       ...options,
       enabled: !!eventId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

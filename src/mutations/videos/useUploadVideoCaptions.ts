@@ -66,8 +66,5 @@ export const useUploadVideoCaptions = (
   return useConnectedMutation<
     UploadVideoCaptionsParams,
     Awaited<ReturnType<typeof UploadVideoCaptions>>
-  >(UploadVideoCaptions, options, {
-    domain: "storage",
-    type: "update",
-  });
+  >(UploadVideoCaptions, options);
 };

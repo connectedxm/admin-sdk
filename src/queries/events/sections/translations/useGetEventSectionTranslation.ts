@@ -81,7 +81,6 @@ export const useGetEventSectionTranslation = (
     {
       ...options,
       enabled: !!eventId && !!sectionId && !!locale && locale !== "en",
-    },
-    "events"
+    }
   );
 };

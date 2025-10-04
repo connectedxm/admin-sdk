@@ -91,7 +91,6 @@ export const useGetEventActivationTranslation = (
         !!locale &&
         locale !== "en" &&
         (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

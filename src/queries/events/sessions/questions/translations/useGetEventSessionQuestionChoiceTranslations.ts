@@ -129,7 +129,6 @@ export const useGetEventSessionQuestionChoiceTranslations = (
         !!questionId &&
         !!choiceId &&
         (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

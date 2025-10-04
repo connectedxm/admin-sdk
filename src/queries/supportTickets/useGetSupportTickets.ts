@@ -87,7 +87,6 @@ export const useGetSupportTickets = (
         ...params,
       }),
     params,
-    options,
-    "support"
+    options
   );
 };

@@ -54,8 +54,5 @@ export const useCreateBenefit = (
   return useConnectedMutation<
     CreateBenefitParams,
     Awaited<ReturnType<typeof CreateBenefit>>
-  >(CreateBenefit, options, {
-    domain: "benefits",
-    type: "create",
-  });
+  >(CreateBenefit, options);
 };

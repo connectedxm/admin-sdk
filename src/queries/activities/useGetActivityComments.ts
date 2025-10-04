@@ -82,7 +82,6 @@ export const useGetActivityComments = (
     {
       ...options,
       enabled: !!activityId,
-    },
-    "activities"
+    }
   );
 };

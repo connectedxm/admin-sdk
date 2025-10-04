@@ -86,7 +86,6 @@ export const useGetBookingSpaceSlots = (
         !!spaceId &&
         !!firstDayOfMonth &&
         (options?.enabled ?? true),
-    },
-    "bookings"
+    }
   );
 };

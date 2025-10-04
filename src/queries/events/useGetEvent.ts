@@ -60,7 +60,6 @@ export const useGetEvent = (
     {
       ...options,
       enabled: !!eventId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

@@ -64,8 +64,5 @@ export const useUpdateChannelContent = (
   return useConnectedMutation<
     UpdateChannelContentParams,
     Awaited<ReturnType<typeof UpdateChannelContent>>
-  >(UpdateChannelContent, options, {
-    domain: "channels",
-    type: "update",
-  });
+  >(UpdateChannelContent, options);
 };

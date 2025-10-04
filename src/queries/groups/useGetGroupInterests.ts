@@ -85,7 +85,6 @@ export const useGetGroupInterests = (
     {
       ...options,
       enabled: !!groupId && (options.enabled ?? true),
-    },
-    "groups"
+    }
   );
 };

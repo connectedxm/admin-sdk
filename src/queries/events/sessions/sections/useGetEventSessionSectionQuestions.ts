@@ -41,8 +41,7 @@ export const SET_EVENT_SESSION_SECTION_QUESTIONS_QUERY_DATA = (
     {
       pages: [response],
       pageParams: [null],
-    },
-    "events"
+    }
   );
 };
 
@@ -114,7 +113,6 @@ export const useGetEventSessionSectionQuestions = (
       ...options,
       enabled:
         !!eventId && !!sessionId && !!sectionId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

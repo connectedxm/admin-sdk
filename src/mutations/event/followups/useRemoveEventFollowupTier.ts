@@ -68,8 +68,5 @@ export const useRemoveEventFollowupTier = (
   return useConnectedMutation<
     RemoveEventFollowupTierParams,
     Awaited<ReturnType<typeof RemoveEventFollowupTier>>
-  >(RemoveEventFollowupTier, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventFollowupTier, options);
 };

@@ -55,8 +55,5 @@ export const useUpdateFile = (
   return useConnectedMutation<
     UpdateFileParams,
     Awaited<ReturnType<typeof UpdateFile>>
-  >(UpdateFile, options, {
-    domain: "storage",
-    type: "update",
-  });
+  >(UpdateFile, options);
 };

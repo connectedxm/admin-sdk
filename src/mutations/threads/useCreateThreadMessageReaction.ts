@@ -64,8 +64,5 @@ export const useCreateThreadMessageReaction = (
   return useConnectedMutation<
     CreateThreadMessageReactionParams,
     Awaited<ReturnType<typeof CreateThreadMessageReaction>>
-  >(CreateThreadMessageReaction, options, {
-    domain: "threads",
-    type: "update",
-  });
+  >(CreateThreadMessageReaction, options);
 };

@@ -61,7 +61,6 @@ export const useGetVideo = (
     {
       ...options,
       enabled: !!videoId && (options?.enabled ?? true),
-    },
-    "storage"
+    }
   );
 };

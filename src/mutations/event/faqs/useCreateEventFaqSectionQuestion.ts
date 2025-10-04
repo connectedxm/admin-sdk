@@ -71,8 +71,5 @@ export const useCreateEventFaqSectionQuestion = (
   return useConnectedMutation<
     CreateEventFaqSectionQuestionParams,
     Awaited<ReturnType<typeof CreateEventFaqSectionQuestion>>
-  >(CreateEventFaqSectionQuestion, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventFaqSectionQuestion, options);
 };

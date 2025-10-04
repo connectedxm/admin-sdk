@@ -88,7 +88,6 @@ export const useGetEventPassQuestionSections = (
     {
       ...options,
       enabled: !!eventId && !!accountId && !!passId,
-    },
-    "events"
+    }
   );
 };

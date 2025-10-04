@@ -53,8 +53,5 @@ export const useCreateTier = (
   return useConnectedMutation<
     CreateTierParams,
     Awaited<ReturnType<typeof CreateTier>>
-  >(CreateTier, options, {
-    domain: "accounts",
-    type: "create",
-  });
+  >(CreateTier, options);
 };

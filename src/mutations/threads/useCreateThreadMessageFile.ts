@@ -58,8 +58,5 @@ export const useCreateThreadMessageFile = (
   return useConnectedMutation<
     CreateThreadMessageFileParams,
     Awaited<ReturnType<typeof CreateThreadMessageFile>>
-  >(CreateThreadMessageFile, options, {
-    domain: "threads",
-    type: "update",
-  });
+  >(CreateThreadMessageFile, options);
 };

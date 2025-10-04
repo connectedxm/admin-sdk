@@ -72,7 +72,6 @@ export const useGetEventTranslation = (
       ...options,
       enabled:
         !!eventId && !!locale && locale !== "en" && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

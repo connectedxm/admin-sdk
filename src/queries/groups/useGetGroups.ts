@@ -88,7 +88,6 @@ export const useGetGroups = (
         featured,
       }),
     params,
-    options,
-    "groups"
+    options
   );
 };

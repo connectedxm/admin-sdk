@@ -88,7 +88,6 @@ export const useGetChannelContentTranslation = (
         !!locale &&
         locale !== "en" &&
         (options.enabled ?? true),
-    },
-    "channels"
+    }
   );
 };

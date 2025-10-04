@@ -51,8 +51,5 @@ export const useDeleteInterest = (
   return useConnectedMutation<
     DeleteInterestParams,
     Awaited<ReturnType<typeof DeleteInterest>>
-  >(DeleteInterest, options, {
-    domain: "interests",
-    type: "del",
-  });
+  >(DeleteInterest, options);
 };

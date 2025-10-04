@@ -62,8 +62,5 @@ export const useUpdateEventTrack = (
   return useConnectedMutation<
     UpdateEventTrackParams,
     Awaited<ReturnType<typeof UpdateEventTrack>>
-  >(UpdateEventTrack, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventTrack, options);
 };

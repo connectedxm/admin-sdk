@@ -69,8 +69,5 @@ export const useRemoveEventPassTypeTier = (
   return useConnectedMutation<
     RemoveEventPassTypeTierParams,
     Awaited<ReturnType<typeof RemoveEventPassTypeTier>>
-  >(RemoveEventPassTypeTier, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventPassTypeTier, options);
 };

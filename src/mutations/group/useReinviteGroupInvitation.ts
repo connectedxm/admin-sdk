@@ -56,10 +56,7 @@ export const useReinviteGroupInvitation = (
   return useConnectedMutation<
     ReinviteGroupInvitationParams,
     Awaited<ReturnType<typeof ReinviteGroupInvitation>>
-  >(ReinviteGroupInvitation, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(ReinviteGroupInvitation, options);
 };
 
 export default useReinviteGroupInvitation;

@@ -50,8 +50,5 @@ export const useUpdateEventCheckinCode = (
   return useConnectedMutation<
     UpdateEventCheckinCodeParams,
     Awaited<ReturnType<typeof UpdateEventCheckinCode>>
-  >(UpdateEventCheckinCode, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventCheckinCode, options);
 };

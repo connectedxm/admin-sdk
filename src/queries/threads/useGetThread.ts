@@ -62,7 +62,6 @@ export const useGetThread = (
     {
       ...options,
       enabled: !!threadId && (options?.enabled ?? true),
-    },
-    "threads"
+    }
   );
 };

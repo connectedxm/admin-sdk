@@ -95,7 +95,6 @@ export const useGetAnnouncements = (
     ANNOUNCEMENTS_QUERY_KEY(filters),
     (params: InfiniteQueryParams) => GetAnnouncements({ filters, ...params }),
     params,
-    options,
-    "announcements"
+    options
   );
 };

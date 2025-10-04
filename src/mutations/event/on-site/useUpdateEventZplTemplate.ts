@@ -59,8 +59,5 @@ export const useUpdateEventZplTemplate = (
   return useConnectedMutation<
     UpdateEventZplTemplateParams,
     Awaited<ReturnType<typeof UpdateEventZplTemplate>>
-  >(UpdateEventZplTemplate, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventZplTemplate, options);
 };

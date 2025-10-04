@@ -55,8 +55,5 @@ export const useAddEventSponsorAccount = (
   return useConnectedMutation<
     AddEventSponsorAccountParams,
     Awaited<ReturnType<typeof AddEventSponsorAccount>>
-  >(AddEventSponsorAccount, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventSponsorAccount, options);
 };

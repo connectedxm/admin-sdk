@@ -57,8 +57,5 @@ export const useDeletePushDevice = (
   return useConnectedMutation<
     DeletePushDeviceParams,
     Awaited<ReturnType<typeof DeletePushDevice>>
-  >(DeletePushDevice, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(DeletePushDevice, options);
 };

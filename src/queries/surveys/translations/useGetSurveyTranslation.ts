@@ -71,7 +71,6 @@ export const useGetSurveyTranslation = (
     {
       ...options,
       enabled: !!surveyId && !!locale && locale !== "en",
-    },
-    "surveys"
+    }
   );
 };

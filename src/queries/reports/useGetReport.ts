@@ -100,7 +100,6 @@ export const useGetReport = (
       refetchOnReconnect: false,
       retry: false,
       staleTime: Infinity,
-    },
-    "reports"
+    }
   );
 };

@@ -90,7 +90,6 @@ export const useGetEventSessionPayments = (
     {
       ...options,
       enabled: !!eventId && !!sessionId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

@@ -65,7 +65,6 @@ export const useGetLevel = (
     {
       ...options,
       enabled: !!sponsorshipLevelId && (options.enabled ?? true),
-    },
-    "sponsors"
+    }
   );
 };

@@ -60,8 +60,5 @@ export const useDeleteEventTranslation = (
   return useConnectedMutation<
     DeleteEventTranslationParams,
     Awaited<ReturnType<typeof DeleteEventTranslation>>
-  >(DeleteEventTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventTranslation, options);
 };

@@ -81,7 +81,6 @@ export const useGetTierSubscribers = (
     {
       ...options,
       enabled: !!tierId && (options.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

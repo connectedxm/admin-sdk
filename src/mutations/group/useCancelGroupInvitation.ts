@@ -56,10 +56,7 @@ export const useCancelGroupInvitation = (
   return useConnectedMutation<
     CancelGroupInvitationParams,
     Awaited<ReturnType<typeof CancelGroupInvitation>>
-  >(CancelGroupInvitation, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(CancelGroupInvitation, options);
 };
 
 export default useCancelGroupInvitation;

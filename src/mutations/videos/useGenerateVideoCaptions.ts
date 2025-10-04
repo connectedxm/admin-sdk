@@ -58,8 +58,5 @@ export const useGenerateVideoCaptions = (
   return useConnectedMutation<
     GenerateVideoCaptionsParams,
     Awaited<ReturnType<typeof GenerateVideoCaptions>>
-  >(GenerateVideoCaptions, options, {
-    domain: "storage",
-    type: "create",
-  });
+  >(GenerateVideoCaptions, options);
 };

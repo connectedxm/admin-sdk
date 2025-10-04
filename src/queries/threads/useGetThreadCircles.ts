@@ -81,7 +81,6 @@ export const useGetThreadCircles = (
     THREAD_CIRCLES_QUERY_KEY(type),
     (params: InfiniteQueryParams) => GetThreadCircles({ type, ...params }),
     params,
-    options,
-    "threads"
+    options
   );
 };

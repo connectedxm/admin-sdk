@@ -90,8 +90,5 @@ export const useUpdateSurveyQuestion = (
   return useConnectedMutation<
     UpdateSurveyQuestionParams,
     Awaited<ReturnType<typeof UpdateSurveyQuestion>>
-  >(UpdateSurveyQuestion, options, {
-    domain: "surveys",
-    type: "update",
-  });
+  >(UpdateSurveyQuestion, options);
 };

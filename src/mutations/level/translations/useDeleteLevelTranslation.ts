@@ -60,8 +60,5 @@ export const useDeleteLevelTranslation = (
   return useConnectedMutation<
     DeleteLevelTranslationParams,
     Awaited<ReturnType<typeof DeleteLevelTranslation>>
-  >(DeleteLevelTranslation, options, {
-    domain: "sponsors",
-    type: "update",
-  });
+  >(DeleteLevelTranslation, options);
 };

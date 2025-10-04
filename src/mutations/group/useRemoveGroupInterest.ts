@@ -55,8 +55,5 @@ export const useRemoveGroupInterest = (
   return useConnectedMutation<
     RemoveGroupInterestParams,
     Awaited<ReturnType<typeof RemoveGroupInterest>>
-  >(RemoveGroupInterest, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(RemoveGroupInterest, options);
 };

@@ -60,8 +60,5 @@ export const useCreateOrganizationTeamMember = (
   return useConnectedMutation<
     CreateOrganizationTeamMemberParams,
     Awaited<ReturnType<typeof CreateOrganizationTeamMember>>
-  >(CreateOrganizationTeamMember, options, {
-    domain: "org",
-    type: "update",
-  });
+  >(CreateOrganizationTeamMember, options);
 };

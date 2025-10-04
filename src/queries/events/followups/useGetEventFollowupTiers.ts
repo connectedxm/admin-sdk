@@ -103,7 +103,6 @@ export const useGetEventFollowupTiers = (
         !!eventId &&
         !!followupId &&
         (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

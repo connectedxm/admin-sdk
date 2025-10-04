@@ -55,8 +55,5 @@ export const useRemoveAccountGroup = (
   return useConnectedMutation<
     RemoveAccountGroupParams,
     Awaited<ReturnType<typeof RemoveAccountGroup>>
-  >(RemoveAccountGroup, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(RemoveAccountGroup, options);
 };

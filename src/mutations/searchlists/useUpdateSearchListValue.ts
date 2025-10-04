@@ -64,8 +64,5 @@ export const useUpdateSearchListValue = (
   return useConnectedMutation<
     UpdateSearchListValueParams,
     Awaited<ReturnType<typeof UpdateSearchListValue>>
-  >(UpdateSearchListValue, options, {
-    domain: "searchlists",
-    type: "update",
-  });
+  >(UpdateSearchListValue, options);
 };

@@ -58,8 +58,5 @@ export const useCreateCustomReport = (
   return useConnectedMutation<
     CreateCustomReportParams,
     Awaited<ReturnType<typeof CreateCustomReport>>
-  >(CreateCustomReport, options, {
-    domain: "reports",
-    type: "create",
-  });
+  >(CreateCustomReport, options);
 };

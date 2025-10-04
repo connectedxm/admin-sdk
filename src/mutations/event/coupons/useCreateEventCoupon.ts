@@ -61,8 +61,5 @@ export const useCreateEventCoupon = (
   return useConnectedMutation<
     CreateEventCouponParams,
     Awaited<ReturnType<typeof CreateEventCoupon>>
-  >(CreateEventCoupon, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventCoupon, options);
 };

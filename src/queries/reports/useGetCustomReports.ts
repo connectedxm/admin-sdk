@@ -81,7 +81,6 @@ export const useGetCustomReports = (
     CUSTOM_REPORTS_QUERY_KEY(filters),
     (params: InfiniteQueryParams) => GetCustomReports({ filters, ...params }),
     params,
-    options,
-    "reports"
+    options
   );
 };

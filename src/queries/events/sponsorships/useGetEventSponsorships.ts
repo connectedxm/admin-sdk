@@ -100,7 +100,6 @@ export const useGetEventSponsorships = (
     {
       ...options,
       enabled: !!eventId && !!levelId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

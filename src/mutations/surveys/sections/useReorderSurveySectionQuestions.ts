@@ -68,8 +68,5 @@ export const useReorderSurveySectionQuestions = (
   return useConnectedMutation<
     ReorderSurveySectionQuestionsParams,
     Awaited<ReturnType<typeof ReorderSurveySectionQuestions>>
-  >(ReorderSurveySectionQuestions, options, {
-    domain: "surveys",
-    type: "update",
-  });
+  >(ReorderSurveySectionQuestions, options);
 };

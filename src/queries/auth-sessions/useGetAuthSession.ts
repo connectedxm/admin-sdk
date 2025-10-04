@@ -62,7 +62,6 @@ export const useGetAuthSession = (
     {
       ...options,
       enabled: !!authSessionId,
-    },
-    "org"
+    }
   );
 };

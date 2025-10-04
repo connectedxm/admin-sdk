@@ -95,7 +95,6 @@ export const useGetBookingSpaceTranslations = (
     {
       ...options,
       enabled: !!placeId && !!spaceId && (options.enabled ?? true),
-    },
-    "bookings"
+    }
   );
 };

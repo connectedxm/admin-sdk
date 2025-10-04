@@ -56,8 +56,5 @@ export const useDeleteLogin = (
   return useConnectedMutation<
     DeleteLoginParams,
     Awaited<ReturnType<typeof DeleteLogin>>
-  >(DeleteLogin, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(DeleteLogin, options);
 };

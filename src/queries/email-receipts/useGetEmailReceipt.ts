@@ -63,7 +63,6 @@ export const useGetEmailReceipt = (
     {
       ...options,
       enabled: !!emailReceiptId,
-    },
-    "org"
+    }
   );
 };

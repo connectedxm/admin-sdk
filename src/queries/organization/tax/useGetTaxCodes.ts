@@ -66,7 +66,6 @@ export const useGetTaxCodes = (
     {
       ...options,
       enabled: !!type && (options.enabled ?? true),
-    },
-    "org"
+    }
   );
 };

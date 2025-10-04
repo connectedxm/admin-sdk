@@ -52,7 +52,6 @@ export const useGetOrganizationDomain = (
   return useConnectedSingleQuery<ReturnType<typeof GetOrganizationDomain>>(
     ORGANIZATION_DOMAIN_QUERY_KEY(),
     (params: SingleQueryParams) => GetOrganizationDomain(params),
-    options,
-    "org"
+    options
   );
 };

@@ -78,7 +78,6 @@ export const useGetOrganizationTeamMembers = (
     ORGANIZATION_TEAM_MEMBERS_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetOrganizationTeamMembers(params),
     params,
-    options,
-    "org"
+    options
   );
 };

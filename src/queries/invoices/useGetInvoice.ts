@@ -60,7 +60,6 @@ export const useGetInvoice = (
     {
       ...options,
       enabled: !!invoiceId,
-    },
-    "invoices"
+    }
   );
 };

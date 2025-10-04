@@ -68,8 +68,5 @@ export const useReorderEventSponsorshipLevels = (
   return useConnectedMutation<
     ReorderEventSponsorshipLevelsParams,
     Awaited<ReturnType<typeof ReorderEventSponsorshipLevels>>
-  >(ReorderEventSponsorshipLevels, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(ReorderEventSponsorshipLevels, options);
 };

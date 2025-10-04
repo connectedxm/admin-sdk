@@ -60,8 +60,5 @@ export const useDeleteSurveySubmission = (
   return useConnectedMutation<
     DeleteSurveySubmissionParams,
     Awaited<ReturnType<typeof DeleteSurveySubmission>>
-  >(DeleteSurveySubmission, options, {
-    domain: "surveys",
-    type: "del",
-  });
+  >(DeleteSurveySubmission, options);
 };

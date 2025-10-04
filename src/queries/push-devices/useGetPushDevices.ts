@@ -82,7 +82,6 @@ export const useGetPushDevices = (
     {
       ...options,
       enabled: options?.enabled ?? true,
-    },
-    "accounts"
+    }
   );
 };

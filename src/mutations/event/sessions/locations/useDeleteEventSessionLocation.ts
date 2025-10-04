@@ -58,8 +58,5 @@ export const useDeleteEventSessionLocation = (
   return useConnectedMutation<
     DeleteEventSessionLocationParams,
     Awaited<ReturnType<typeof DeleteEventSessionLocation>>
-  >(DeleteEventSessionLocation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventSessionLocation, options);
 };

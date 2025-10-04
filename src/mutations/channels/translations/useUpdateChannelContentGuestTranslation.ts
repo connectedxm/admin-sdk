@@ -86,10 +86,7 @@ export const useUpdateChannelContentGuestTranslation = (
   return useConnectedMutation<
     UpdateChannelContentGuestTranslationParams,
     Awaited<ReturnType<typeof UpdateChannelContentGuestTranslation>>
-  >(UpdateChannelContentGuestTranslation, options, {
-    domain: "channels",
-    type: "update",
-  });
+  >(UpdateChannelContentGuestTranslation, options);
 };
 
 export default useUpdateChannelContentGuestTranslation;

@@ -105,7 +105,6 @@ export const useGetEventSponsorshipTranslations = (
       ...options,
       enabled:
         !!eventId && !!levelId && !!sponsorshipId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

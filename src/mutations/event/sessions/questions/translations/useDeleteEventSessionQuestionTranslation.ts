@@ -78,8 +78,5 @@ export const useDeleteEventSessionQuestionTranslation = (
   return useConnectedMutation<
     DeleteEventSessionQuestionTranslationParams,
     Awaited<ReturnType<typeof DeleteEventSessionQuestionTranslation>>
-  >(DeleteEventSessionQuestionTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventSessionQuestionTranslation, options);
 };

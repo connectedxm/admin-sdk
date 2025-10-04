@@ -97,7 +97,6 @@ export const useGetEventSponsorshipLevelTranslations = (
     {
       ...options,
       enabled: !!eventId && !!levelId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

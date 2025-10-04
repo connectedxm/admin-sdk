@@ -73,8 +73,5 @@ export const useUpdateInvoiceLineItem = (
   return useConnectedMutation<
     UpdateInvoiceLineItemParams,
     Awaited<ReturnType<typeof UpdateInvoiceLineItem>>
-  >(UpdateInvoiceLineItem, options, {
-    domain: "invoices",
-    type: "update",
-  });
+  >(UpdateInvoiceLineItem, options);
 };

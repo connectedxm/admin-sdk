@@ -86,7 +86,6 @@ export const useGetEventReservations = (
     {
       ...options,
       enabled: !!eventId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

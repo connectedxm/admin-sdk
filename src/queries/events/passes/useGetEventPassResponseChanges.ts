@@ -102,7 +102,6 @@ export const useGetEventPassResponseChanges = (
       ...options,
       enabled:
         !!eventId && !!questionId && !!passId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

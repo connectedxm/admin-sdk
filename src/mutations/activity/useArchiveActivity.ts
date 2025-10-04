@@ -58,8 +58,5 @@ export const useArchiveActivity = (
   return useConnectedMutation<
     ArchiveActivityParams,
     Awaited<ReturnType<typeof ArchiveActivity>>
-  >(ArchiveActivity, options, {
-    domain: "activities",
-    type: "update",
-  });
+  >(ArchiveActivity, options);
 };

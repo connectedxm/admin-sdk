@@ -70,8 +70,5 @@ export const useUpdateEventEmailTranslation = (
   return useConnectedMutation<
     UpdateEventEmailTranslationParams,
     Awaited<ReturnType<typeof UpdateEventEmailTranslation>>
-  >(UpdateEventEmailTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventEmailTranslation, options);
 };

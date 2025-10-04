@@ -63,8 +63,5 @@ export const useDeleteEventQuestionChoice = (
   return useConnectedMutation<
     DeleteEventQuestionChoiceParams,
     Awaited<ReturnType<typeof DeleteEventQuestionChoice>>
-  >(DeleteEventQuestionChoice, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventQuestionChoice, options);
 };

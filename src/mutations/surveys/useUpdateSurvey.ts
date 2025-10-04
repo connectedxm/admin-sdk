@@ -55,8 +55,5 @@ export const useUpdateSurvey = (
   return useConnectedMutation<
     UpdateSurveyParams,
     Awaited<ReturnType<typeof UpdateSurvey>>
-  >(UpdateSurvey, options, {
-    domain: "surveys",
-    type: "update",
-  });
+  >(UpdateSurvey, options);
 };

@@ -68,8 +68,5 @@ export const useSwitchImage = (
   return useConnectedMutation<
     SwitchImageParams,
     Awaited<ReturnType<typeof SwitchImage>>
-  >(SwitchImage, options, {
-    domain: "storage",
-    type: "update",
-  });
+  >(SwitchImage, options);
 };

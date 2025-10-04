@@ -94,7 +94,6 @@ export const useEventGetPassTypeCoupons = (
     {
       ...options,
       enabled: !!eventId && !!passTypeId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

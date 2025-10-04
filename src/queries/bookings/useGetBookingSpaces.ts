@@ -81,7 +81,6 @@ export const useGetBookingSpaces = (
     {
       ...options,
       enabled: !!placeId && (options?.enabled ?? true),
-    },
-    "bookings"
+    }
   );
 };

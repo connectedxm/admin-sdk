@@ -62,7 +62,6 @@ export const useGetAccount = (
     {
       ...options,
       enabled: !!accountId && (options?.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

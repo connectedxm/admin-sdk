@@ -55,8 +55,5 @@ export const useAddMembershipTier = (
   return useConnectedMutation<
     AddMembershipTierParams,
     Awaited<ReturnType<typeof AddMembershipTier>>
-  >(AddMembershipTier, options, {
-    domain: "subscriptions",
-    type: "update",
-  });
+  >(AddMembershipTier, options);
 };

@@ -54,10 +54,7 @@ export const useAcceptGroupRequest = (
   return useConnectedMutation<
     AcceptGroupRequestParams,
     Awaited<ReturnType<typeof AcceptGroupRequest>>
-  >(AcceptGroupRequest, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(AcceptGroupRequest, options);
 };
 
 export default useAcceptGroupRequest;

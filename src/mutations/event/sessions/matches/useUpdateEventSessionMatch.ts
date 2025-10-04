@@ -75,8 +75,5 @@ export const useUpdateEventSessionMatch = (
   return useConnectedMutation<
     UpdateEventSessionMatchParams,
     Awaited<ReturnType<typeof UpdateEventSessionMatch>>
-  >(UpdateEventSessionMatch, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventSessionMatch, options);
 };

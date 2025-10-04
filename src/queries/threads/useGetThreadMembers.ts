@@ -67,7 +67,6 @@ export const useGetThreadMembers = (
     {
       ...options,
       enabled: !!threadId && (options.enabled ?? true),
-    },
-    "threads"
+    }
   );
 };

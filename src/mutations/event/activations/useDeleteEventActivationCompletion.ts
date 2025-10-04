@@ -72,8 +72,5 @@ export const useDeleteEventActivationCompletion = (
   return useConnectedMutation<
     DeleteEventActivationCompletionParams,
     Awaited<ReturnType<typeof DeleteEventActivationCompletion>>
-  >(DeleteEventActivationCompletion, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventActivationCompletion, options);
 };

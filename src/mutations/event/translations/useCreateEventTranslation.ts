@@ -70,10 +70,7 @@ export const useCreateEventTranslation = (
   return useConnectedMutation<
     CreateEventTranslationParams,
     Awaited<ReturnType<typeof CreateEventTranslation>>
-  >(CreateEventTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventTranslation, options);
 };
 
 export default useCreateEventTranslation;

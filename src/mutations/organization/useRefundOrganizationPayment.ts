@@ -82,8 +82,5 @@ export const useRefundOrganizationPayment = (
   return useConnectedMutation<
     RefundOrganizationPaymentParams,
     Awaited<ReturnType<typeof RefundOrganizationPayment>>
-  >((params) => RefundOrganizationPayment({ ...params, eventId }), options, {
-    domain: "events",
-    type: "update",
-  });
+  >((params) => RefundOrganizationPayment({ ...params, eventId }), options);
 };

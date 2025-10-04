@@ -88,7 +88,6 @@ export const useGetAccountLevels = (
     {
       ...options,
       enabled: !!accountId && (options.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

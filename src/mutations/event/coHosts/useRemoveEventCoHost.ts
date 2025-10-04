@@ -55,8 +55,5 @@ export const useRemoveEventCoHost = (
   return useConnectedMutation<
     RemoveEventCoHostParams,
     Awaited<ReturnType<typeof RemoveEventCoHost>>
-  >(RemoveEventCoHost, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventCoHost, options);
 };

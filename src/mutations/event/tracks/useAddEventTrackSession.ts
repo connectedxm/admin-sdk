@@ -60,8 +60,5 @@ export const useAddEventTrackSession = (
   return useConnectedMutation<
     AddEventTrackSessionParams,
     Awaited<ReturnType<typeof AddEventTrackSession>>
-  >(AddEventTrackSession, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventTrackSession, options);
 };

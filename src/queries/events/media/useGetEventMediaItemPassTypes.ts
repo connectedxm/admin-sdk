@@ -96,7 +96,6 @@ export const useGetEventMediaItemPassTypes = (
     {
       ...options,
       enabled: !!eventId && !!mediaItemId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

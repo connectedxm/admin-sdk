@@ -55,8 +55,5 @@ export const useRemoveGroupSponsor = (
   return useConnectedMutation<
     RemoveGroupSponsorParams,
     Awaited<ReturnType<typeof RemoveGroupSponsor>>
-  >(RemoveGroupSponsor, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(RemoveGroupSponsor, options);
 };

@@ -73,7 +73,6 @@ export const useGetOrganizationWebhooks = (
     ORGANIZATION_WEBHOOKS_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetOrganizationWebhooks(params),
     params,
-    options,
-    "org"
+    options
   );
 };

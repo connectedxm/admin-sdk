@@ -108,7 +108,6 @@ export const useGetChannelContentGuestTranslation = (
         !!guestId &&
         locale !== "en" &&
         (options?.enabled ?? true),
-    },
-    "channels"
+    }
   );
 };

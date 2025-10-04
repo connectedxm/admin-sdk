@@ -95,7 +95,6 @@ export const useGetEventFollowupTranslations = (
     {
       ...options,
       enabled: !!eventId && !!followupId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

@@ -53,8 +53,5 @@ export const useCreateLevel = (
   return useConnectedMutation<
     CreateLevelParams,
     Awaited<ReturnType<typeof CreateLevel>>
-  >(CreateLevel, options, {
-    domain: "sponsors",
-    type: "create",
-  });
+  >(CreateLevel, options);
 };

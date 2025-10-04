@@ -63,8 +63,5 @@ export const useRemoveAccountTier = (
   return useConnectedMutation<
     RemoveAccountTierParams,
     Awaited<ReturnType<typeof RemoveAccountTier>>
-  >(RemoveAccountTier, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(RemoveAccountTier, options);
 };

@@ -104,7 +104,6 @@ export const useGetEventQuestionChoiceTranslations = (
       ...options,
       enabled:
         !!eventId && !!questionId && !!choiceId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

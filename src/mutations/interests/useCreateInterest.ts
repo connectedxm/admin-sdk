@@ -53,8 +53,5 @@ export const useCreateInterest = (
   return useConnectedMutation<
     CreateInterestParams,
     Awaited<ReturnType<typeof CreateInterest>>
-  >(CreateInterest, options, {
-    domain: "interests",
-    type: "create",
-  });
+  >(CreateInterest, options);
 };

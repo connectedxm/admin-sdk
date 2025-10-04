@@ -73,8 +73,5 @@ export const useCreateBookingPlaceTranslation = (
   return useConnectedMutation<
     CreateBookingPlaceTranslationParams,
     Awaited<ReturnType<typeof CreateBookingPlaceTranslation>>
-  >(CreateBookingPlaceTranslation, options, {
-    domain: "bookings",
-    type: "update",
-  });
+  >(CreateBookingPlaceTranslation, options);
 };

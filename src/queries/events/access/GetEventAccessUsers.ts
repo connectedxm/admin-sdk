@@ -68,7 +68,6 @@ export const useGetEventAccessUsers = (
     {
       enabled: !!eventId && (options.enabled ?? true),
       ...options,
-    },
-    "events" // Permission domain
+    }
   );
 };

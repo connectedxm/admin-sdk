@@ -74,7 +74,6 @@ export const useGetAuthSessions = (
         ...params,
       }),
     params,
-    options,
-    "org"
+    options
   );
 };

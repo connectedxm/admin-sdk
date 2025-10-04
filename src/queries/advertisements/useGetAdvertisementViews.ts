@@ -85,7 +85,6 @@ export const useGetAdvertisementViews = (
     {
       ...options,
       enabled: !!advertisementId && (options.enabled ?? true),
-    },
-    "advertisements"
+    }
   );
 };

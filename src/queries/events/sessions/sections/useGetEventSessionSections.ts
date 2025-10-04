@@ -92,7 +92,6 @@ export const useGetEventSessionSections = (
     {
       ...options,
       enabled: !!eventId && !!sessionId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

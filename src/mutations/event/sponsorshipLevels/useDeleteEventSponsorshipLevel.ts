@@ -59,8 +59,5 @@ export const useDeleteEventSponsorshipLevel = (
   return useConnectedMutation<
     DeleteEventSponsorshipLevelParams,
     Awaited<ReturnType<typeof DeleteEventSponsorshipLevel>>
-  >(DeleteEventSponsorshipLevel, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventSponsorshipLevel, options);
 };

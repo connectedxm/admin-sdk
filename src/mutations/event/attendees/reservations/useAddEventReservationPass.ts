@@ -73,8 +73,5 @@ export const useAddEventReservationPass = (
   return useConnectedMutation<
     AddEventReservationPassParams,
     Awaited<ReturnType<typeof AddEventReservationPass>>
-  >(AddEventReservationPass, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventReservationPass, options);
 };

@@ -1,4 +1,4 @@
-import { ConnectedXMResponse, PermissionDomain } from "../interfaces";
+import { ConnectedXMResponse } from "../interfaces";
 import {
   InfiniteData,
   QueryClient,
@@ -9,7 +9,6 @@ import {
 import { useConnectedXM } from "../hooks";
 import { AxiosError } from "axios";
 import { AdminApiParams } from "@src/AdminAPI";
-import usePermission from "@src/utilities/usePermission";
 import { GetBaseInfiniteQueryKeys } from "./useConnectedInfiniteQuery";
 
 export interface CursorQueryParams {
@@ -47,8 +46,7 @@ export const useConnectedCursorQuery = <
   > = {},
   options: CursorQueryOptions<TQueryData> = {
     shouldRedirect: false,
-  },
-  domain?: PermissionDomain | PermissionDomain[]
+  }
 ) => {
   if (typeof params.pageSize === "undefined") params.pageSize = 25;
 
@@ -62,8 +60,6 @@ export const useConnectedCursorQuery = <
     getExecuteAs,
     queryClient,
   } = useConnectedXM();
-
-  const { allowed } = usePermission(domain, domain ? "read" : undefined);
 
   const getNextPageParam = (lastPage: TQueryData): string | number | null => {
     if (lastPage.cursor) {
@@ -120,6 +116,5 @@ export const useConnectedCursorQuery = <
       }),
     initialPageParam: null,
     getNextPageParam,
-    enabled: (!domain || allowed) && options.enabled,
   });
 };

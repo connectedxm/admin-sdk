@@ -104,7 +104,6 @@ export const useGetEventPassTypeTiers = (
         !!eventId &&
         !!passTypeId &&
         (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

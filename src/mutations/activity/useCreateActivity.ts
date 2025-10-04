@@ -58,8 +58,5 @@ export const useCreateActivity = (
   return useConnectedMutation<
     CreateActivityParams,
     Awaited<ReturnType<typeof CreateActivity>>
-  >(CreateActivity, options, {
-    domain: "activities",
-    type: "create",
-  });
+  >(CreateActivity, options);
 };

@@ -55,7 +55,6 @@ export const useGetBooking = (
     {
       ...options,
       enabled: !!bookingId && (options?.enabled ?? true),
-    },
-    "bookings"
+    }
   );
 };

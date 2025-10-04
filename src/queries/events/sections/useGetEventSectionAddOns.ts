@@ -89,7 +89,6 @@ export const useGetEventSectionAddOns = (
     {
       ...options,
       enabled: !!eventId && !!sectionId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

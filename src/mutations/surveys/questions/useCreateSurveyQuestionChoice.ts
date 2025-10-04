@@ -68,8 +68,5 @@ export const useCreateSurveyQuestionChoice = (
   return useConnectedMutation<
     CreateSurveyQuestionChoiceParams,
     Awaited<ReturnType<typeof CreateSurveyQuestionChoice>>
-  >(CreateSurveyQuestionChoice, options, {
-    domain: "surveys",
-    type: "update",
-  });
+  >(CreateSurveyQuestionChoice, options);
 };

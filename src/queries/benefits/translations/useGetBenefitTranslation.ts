@@ -76,7 +76,6 @@ export const useGetBenefitTranslation = (
         !!locale &&
         locale !== "en" &&
         (options?.enabled ?? true),
-    },
-    "benefits"
+    }
   );
 };

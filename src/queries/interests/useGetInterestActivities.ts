@@ -92,7 +92,6 @@ export const useGetInterestActivities = (
     {
       ...options,
       enabled: !!interestId && (options.enabled ?? true),
-    },
-    "interests"
+    }
   );
 };

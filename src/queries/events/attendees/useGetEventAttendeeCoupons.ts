@@ -105,7 +105,6 @@ export const useGetEventAttendeeCoupons = (
     {
       ...options,
       enabled: !!eventId && !!accountId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

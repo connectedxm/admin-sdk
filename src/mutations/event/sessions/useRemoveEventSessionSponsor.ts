@@ -62,8 +62,5 @@ export const useRemoveEventSessionSponsor = (
   return useConnectedMutation<
     RemoveEventSessionSponsorParams,
     Awaited<ReturnType<typeof RemoveEventSessionSponsor>>
-  >(RemoveEventSessionSponsor, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventSessionSponsor, options);
 };

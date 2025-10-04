@@ -63,7 +63,6 @@ export const useGetTierImport = (
     {
       ...options,
       enabled: !!tierId && !!importId && (options.enabled ?? true),
-    },
-    "org"
+    }
   );
 };

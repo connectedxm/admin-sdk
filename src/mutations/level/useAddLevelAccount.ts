@@ -62,8 +62,5 @@ export const useAddLevelAccount = (
   return useConnectedMutation<
     AddLevelAccountParams,
     Awaited<ReturnType<typeof AddLevelAccount>>
-  >(AddLevelAccount, options, {
-    domain: "sponsors",
-    type: "update",
-  });
+  >(AddLevelAccount, options);
 };

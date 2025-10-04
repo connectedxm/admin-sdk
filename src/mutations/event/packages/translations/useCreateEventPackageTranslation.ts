@@ -73,8 +73,5 @@ export const useCreateEventPackageTranslation = (
   return useConnectedMutation<
     CreateEventPackageTranslationParams,
     Awaited<ReturnType<typeof CreateEventPackageTranslation>>
-  >(CreateEventPackageTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventPackageTranslation, options);
 };

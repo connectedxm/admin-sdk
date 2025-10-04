@@ -70,7 +70,6 @@ export const useGetBookingPlaces = (
     BOOKING_PLACES_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetBookingPlaces({ ...params }),
     params,
-    options,
-    "bookings"
+    options
   );
 };

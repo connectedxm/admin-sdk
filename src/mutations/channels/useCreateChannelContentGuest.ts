@@ -67,8 +67,5 @@ export const useCreateChannelContentGuest = (
   return useConnectedMutation<
     CreateChannelContentGuestParams,
     Awaited<ReturnType<typeof CreateChannelContentGuest>>
-  >(CreateChannelContentGuest, options, {
-    domain: "channels",
-    type: "update",
-  });
+  >(CreateChannelContentGuest, options);
 };

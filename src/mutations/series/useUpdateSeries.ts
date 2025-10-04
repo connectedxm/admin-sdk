@@ -61,8 +61,5 @@ export const useUpdateSeries = (
   return useConnectedMutation<
     UpdateSeriesParams,
     Awaited<ReturnType<typeof UpdateSeries>>
-  >(UpdateSeries, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateSeries, options);
 };

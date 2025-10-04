@@ -65,8 +65,5 @@ export const useUpdateEventActivation = (
   return useConnectedMutation<
     UpdateEventActivationParams,
     Awaited<ReturnType<typeof UpdateEventActivation>>
-  >(UpdateEventActivation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventActivation, options);
 };

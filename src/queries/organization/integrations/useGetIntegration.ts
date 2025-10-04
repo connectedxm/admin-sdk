@@ -65,7 +65,6 @@ export const useGetIntegration = (
     {
       ...options,
       enabled: !!integrationId && (options.enabled ?? true),
-    },
-    "org"
+    }
   );
 };

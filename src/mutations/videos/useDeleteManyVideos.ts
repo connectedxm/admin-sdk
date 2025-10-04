@@ -52,8 +52,5 @@ export const useDeleteManyVideos = (
   return useConnectedMutation<
     DeleteManyVideosParams,
     Awaited<ReturnType<typeof DeleteManyVideos>>
-  >(DeleteManyVideos, options, {
-    domain: "storage",
-    type: "del",
-  });
+  >(DeleteManyVideos, options);
 };

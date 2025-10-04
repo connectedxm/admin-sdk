@@ -61,8 +61,5 @@ export const useRemoveEventPageImage = (
   return useConnectedMutation<
     RemoveEventPageImageParams,
     Awaited<ReturnType<typeof RemoveEventPageImage>>
-  >(RemoveEventPageImage, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventPageImage, options);
 };

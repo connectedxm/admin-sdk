@@ -72,8 +72,5 @@ export const useUpdateEventRoomTypeTranslation = (
   return useConnectedMutation<
     UpdateEventRoomTypeTranslationParams,
     Awaited<ReturnType<typeof UpdateEventRoomTypeTranslation>>
-  >(UpdateEventRoomTypeTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventRoomTypeTranslation, options);
 };

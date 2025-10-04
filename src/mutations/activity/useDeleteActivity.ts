@@ -52,8 +52,5 @@ export const useDeleteActivity = (
   return useConnectedMutation<
     DeleteActivityParams,
     Awaited<ReturnType<typeof DeleteActivity>>
-  >(DeleteActivity, options, {
-    domain: "activities",
-    type: "del",
-  });
+  >(DeleteActivity, options);
 };

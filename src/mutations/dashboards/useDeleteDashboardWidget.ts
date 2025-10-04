@@ -57,8 +57,5 @@ export const useDeleteDashboardWidget = (
   return useConnectedMutation<
     DeleteDashboardWidgetParams,
     Awaited<ReturnType<typeof DeleteDashboardWidget>>
-  >(DeleteDashboardWidget, options, {
-    domain: "org",
-    type: "del",
-  });
+  >(DeleteDashboardWidget, options);
 };

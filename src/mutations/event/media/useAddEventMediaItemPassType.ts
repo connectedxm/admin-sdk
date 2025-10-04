@@ -63,8 +63,5 @@ export const useAddEventMediaItemPassType = (
   return useConnectedMutation<
     AddEventMediaItemPassTypeParams,
     Awaited<ReturnType<typeof AddEventMediaItemPassType>>
-  >(AddEventMediaItemPassType, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventMediaItemPassType, options);
 };

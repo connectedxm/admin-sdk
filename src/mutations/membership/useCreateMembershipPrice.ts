@@ -67,8 +67,5 @@ export const useCreateMembershipPrice = (
   return useConnectedMutation<
     CreateMembershipPriceParams,
     Awaited<ReturnType<typeof CreateMembershipPrice>>
-  >(CreateMembershipPrice, options, {
-    domain: "subscriptions",
-    type: "create",
-  });
+  >(CreateMembershipPrice, options);
 };

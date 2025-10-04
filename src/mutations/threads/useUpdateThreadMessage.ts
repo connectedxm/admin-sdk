@@ -58,8 +58,5 @@ export const useUpdateThreadMessage = (
   return useConnectedMutation<
     UpdateThreadMessageParams,
     Awaited<ReturnType<typeof UpdateThreadMessage>>
-  >(UpdateThreadMessage, options, {
-    domain: "threads",
-    type: "update",
-  });
+  >(UpdateThreadMessage, options);
 };

@@ -64,8 +64,5 @@ export const useCreateEventSponsorshipLevel = (
   return useConnectedMutation<
     CreateEventSponsorshipLevelParams,
     Awaited<ReturnType<typeof CreateEventSponsorshipLevel>>
-  >(CreateEventSponsorshipLevel, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventSponsorshipLevel, options);
 };

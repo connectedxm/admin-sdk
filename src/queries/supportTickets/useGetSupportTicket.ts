@@ -61,7 +61,6 @@ export const useGetSupportTicket = (
     {
       ...options,
       enabled: !!supportTicketId && (options?.enabled ?? true),
-    },
-    "support"
+    }
   );
 };

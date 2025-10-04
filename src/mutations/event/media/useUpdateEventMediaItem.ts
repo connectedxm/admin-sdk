@@ -64,8 +64,5 @@ export const useUpdateEventMediaItem = (
   return useConnectedMutation<
     UpdateEventMediaItemParams,
     Awaited<ReturnType<typeof UpdateEventMediaItem>>
-  >(UpdateEventMediaItem, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventMediaItem, options);
 };

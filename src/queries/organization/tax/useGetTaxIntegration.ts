@@ -65,7 +65,6 @@ export const useGetTaxIntegration = (
     {
       ...options,
       enabled: !!type && (options.enabled ?? true),
-    },
-    "org"
+    }
   );
 };

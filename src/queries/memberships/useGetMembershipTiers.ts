@@ -84,7 +84,6 @@ export const useGetMembershipTiers = (
     {
       ...options,
       enabled: !!membershipId && (options.enabled ?? true),
-    },
-    "subscriptions"
+    }
   );
 };

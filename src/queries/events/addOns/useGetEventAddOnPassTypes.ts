@@ -95,7 +95,6 @@ export const useGetEventAddOnPassTypes = (
     {
       ...options,
       enabled: !!eventId && !!addOnId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

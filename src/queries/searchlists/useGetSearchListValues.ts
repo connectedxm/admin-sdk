@@ -82,7 +82,6 @@ export const useGetSearchListValues = (
     {
       ...options,
       enabled: !!searchListId && (options?.enabled ?? true),
-    },
-    "searchlists"
+    }
   );
 };

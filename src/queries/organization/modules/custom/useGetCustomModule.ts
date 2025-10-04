@@ -64,7 +64,6 @@ export const useGetCustomModule = (
     {
       ...options,
       enabled: !!moduleId && (options?.enabled ?? true),
-    },
-    "org"
+    }
   );
 };

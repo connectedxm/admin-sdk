@@ -82,7 +82,6 @@ export const useGetEventQuestionSummaries = (
     {
       ...options,
       enabled: !!eventId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

@@ -60,7 +60,6 @@ export const useGetPushDevice = (
     {
       ...options,
       enabled: !!pushDeviceId && (options?.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

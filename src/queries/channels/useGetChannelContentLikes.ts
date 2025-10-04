@@ -93,7 +93,6 @@ export const useGetChannelContentLikes = (
     {
       ...options,
       enabled: !!channelId && !!contentId && (options.enabled ?? true),
-    },
-    "channels"
+    }
   );
 };

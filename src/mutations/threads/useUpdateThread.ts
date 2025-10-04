@@ -55,8 +55,5 @@ export const useUpdateThread = (
   return useConnectedMutation<
     UpdateThreadParams,
     Awaited<ReturnType<typeof UpdateThread>>
-  >(UpdateThread, options, {
-    domain: "threads",
-    type: "update",
-  });
+  >(UpdateThread, options);
 };

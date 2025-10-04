@@ -58,8 +58,5 @@ export const useDeleteOrganizationSideEffect = (
   return useConnectedMutation<
     DeleteOrganizationSideEffectParams,
     Awaited<ReturnType<typeof DeleteOrganizationSideEffect>>
-  >(DeleteOrganizationSideEffect, options, {
-    domain: "org",
-    type: "update",
-  });
+  >(DeleteOrganizationSideEffect, options);
 };

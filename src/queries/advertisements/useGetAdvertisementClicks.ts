@@ -86,7 +86,6 @@ export const useGetAdvertisementClicks = (
     {
       ...options,
       enabled: !!advertisementId,
-    },
-    "advertisements"
+    }
   );
 };

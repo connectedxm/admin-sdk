@@ -100,7 +100,6 @@ export const useGetEventSessionSectionTranslation = (
     {
       ...options,
       enabled: !!sessionId && !!sectionId && !!locale && locale !== "en",
-    },
-    "events"
+    }
   );
 };

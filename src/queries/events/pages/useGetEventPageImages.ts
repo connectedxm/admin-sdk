@@ -86,7 +86,6 @@ export const useGetEventPageImages = (
     {
       ...options,
       enabled: !!eventId && !!pageId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

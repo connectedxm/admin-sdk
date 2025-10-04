@@ -64,7 +64,6 @@ export const useGetEventAddOn = (
     {
       ...options,
       enabled: !!eventId && !!addOnId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

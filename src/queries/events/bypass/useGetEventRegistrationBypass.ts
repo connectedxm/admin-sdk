@@ -73,7 +73,6 @@ export const useGetEventRegistrationBypass = (
     {
       ...options,
       enabled: !!eventId && !!bypassId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

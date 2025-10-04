@@ -55,8 +55,5 @@ export const useRemoveSeriesEvent = (
   return useConnectedMutation<
     RemoveSeriesEventParams,
     Awaited<ReturnType<typeof RemoveSeriesEvent>>
-  >(RemoveSeriesEvent, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveSeriesEvent, options);
 };

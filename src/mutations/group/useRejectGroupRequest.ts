@@ -54,10 +54,7 @@ export const useRejectGroupRequest = (
   return useConnectedMutation<
     RejectGroupRequestParams,
     Awaited<ReturnType<typeof RejectGroupRequest>>
-  >(RejectGroupRequest, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(RejectGroupRequest, options);
 };
 
 export default useRejectGroupRequest;

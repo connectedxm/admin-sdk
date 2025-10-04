@@ -62,8 +62,5 @@ export const useRemoveEventPassTypeAddOn = (
   return useConnectedMutation<
     RemoveEventPassTypeAddOnParams,
     Awaited<ReturnType<typeof RemoveEventPassTypeAddOn>>
-  >(RemoveEventPassTypeAddOn, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventPassTypeAddOn, options);
 };

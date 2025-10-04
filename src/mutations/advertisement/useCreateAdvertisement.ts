@@ -56,8 +56,5 @@ export const useCreateAdvertisement = (
   return useConnectedMutation<
     CreateAdvertisementParams,
     Awaited<ReturnType<typeof CreateAdvertisement>>
-  >(CreateAdvertisement, options, {
-    domain: "advertisements",
-    type: "create",
-  });
+  >(CreateAdvertisement, options);
 };

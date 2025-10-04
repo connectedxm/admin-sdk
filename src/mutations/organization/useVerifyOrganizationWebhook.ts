@@ -54,8 +54,5 @@ export const useVerifyOrganizationWebhook = (
   return useConnectedMutation<
     VerifyOrganizationWebhookParams,
     Awaited<ReturnType<typeof VerifyOrganizationWebhook>>
-  >(VerifyOrganizationWebhook, options, {
-    domain: "org",
-    type: "update",
-  });
+  >(VerifyOrganizationWebhook, options);
 };

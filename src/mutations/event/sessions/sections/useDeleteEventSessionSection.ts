@@ -62,8 +62,5 @@ export const useDeleteEventSessionSection = (
   return useConnectedMutation<
     DeleteEventSessionSectionParams,
     Awaited<ReturnType<typeof DeleteEventSessionSection>>
-  >(DeleteEventSessionSection, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventSessionSection, options);
 };

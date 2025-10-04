@@ -63,8 +63,5 @@ export const useRemoveEventMediaItemPassType = (
   return useConnectedMutation<
     RemoveEventMediaItemPassTypeParams,
     Awaited<ReturnType<typeof RemoveEventMediaItemPassType>>
-  >(RemoveEventMediaItemPassType, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventMediaItemPassType, options);
 };

@@ -89,7 +89,6 @@ export const useGetEventFollowupAddOns = (
     {
       ...options,
       enabled: !!eventId && !!followupId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

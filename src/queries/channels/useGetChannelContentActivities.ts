@@ -110,7 +110,6 @@ export const useGetChannelContentActivities = (
     {
       ...options,
       enabled: !!channelId && !!contentId && (options.enabled ?? true),
-    },
-    "channels"
+    }
   );
 };

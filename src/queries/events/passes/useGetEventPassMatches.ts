@@ -88,7 +88,6 @@ export const useGetEventPassMatches = (
     {
       ...options,
       enabled: !!eventId && !!passId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

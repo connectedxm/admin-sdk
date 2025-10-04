@@ -78,8 +78,5 @@ export const useCreateEventSectionTranslation = (
   return useConnectedMutation<
     CreateEventSectionTranslationParams,
     Awaited<ReturnType<typeof CreateEventSectionTranslation>>
-  >(CreateEventSectionTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventSectionTranslation, options);
 };

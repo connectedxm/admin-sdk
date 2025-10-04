@@ -48,8 +48,5 @@ export const useImpersonateAccount = (
   return useConnectedMutation<
     ImpersonateAccountParams,
     Awaited<ReturnType<typeof ImpersonateAccount>>
-  >(ImpersonateAccount, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(ImpersonateAccount, options);
 };

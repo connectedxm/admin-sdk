@@ -75,7 +75,6 @@ export const useGetOrganizationUsers = (
     ORGANIZATION_USERS_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetOrganizationUsers(params),
     params,
-    options,
-    "org"
+    options
   );
 };

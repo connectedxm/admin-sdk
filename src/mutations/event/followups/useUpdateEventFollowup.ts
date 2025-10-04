@@ -80,8 +80,5 @@ export const useUpdateEventFollowup = (
   return useConnectedMutation<
     UpdateEventFollowupParams,
     Awaited<ReturnType<typeof UpdateEventFollowup>>
-  >(UpdateEventFollowup, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventFollowup, options);
 };

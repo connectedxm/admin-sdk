@@ -80,8 +80,5 @@ export const useTransferEventPass = (
   return useConnectedMutation<
     TransferEventPassParams,
     Awaited<ReturnType<typeof TransferEventPass>>
-  >(TransferEventPass, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(TransferEventPass, options);
 };

@@ -65,8 +65,5 @@ export const useRemoveGroupMember = (
   return useConnectedMutation<
     RemoveGroupMemberParams,
     Awaited<ReturnType<typeof RemoveGroupMember>>
-  >(RemoveGroupMember, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(RemoveGroupMember, options);
 };

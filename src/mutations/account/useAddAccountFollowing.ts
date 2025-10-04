@@ -59,8 +59,5 @@ export const useAddAccountFollowing = (
   return useConnectedMutation<
     AddAccountFollowingParams,
     Awaited<ReturnType<typeof AddAccountFollowing>>
-  >(AddAccountFollowing, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(AddAccountFollowing, options);
 };

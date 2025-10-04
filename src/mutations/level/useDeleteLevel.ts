@@ -51,8 +51,5 @@ export const useDeleteLevel = (
   return useConnectedMutation<
     DeleteLevelParams,
     Awaited<ReturnType<typeof DeleteLevel>>
-  >(DeleteLevel, options, {
-    domain: "sponsors",
-    type: "del",
-  });
+  >(DeleteLevel, options);
 };

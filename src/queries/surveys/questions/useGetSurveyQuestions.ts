@@ -84,7 +84,6 @@ export const useGetSurveyQuestions = (
     {
       ...options,
       enabled: !!surveyId && (options.enabled ?? true),
-    },
-    "surveys"
+    }
   );
 };

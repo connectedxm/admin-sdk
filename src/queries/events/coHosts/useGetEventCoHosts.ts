@@ -78,7 +78,6 @@ export const useGetEventCoHosts = (
     {
       ...options,
       enabled: !!eventId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

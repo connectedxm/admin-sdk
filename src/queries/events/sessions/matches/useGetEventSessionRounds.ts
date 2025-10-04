@@ -66,7 +66,6 @@ export const useGetEventSessionRounds = (
     {
       ...options,
       enabled: !!eventId && !!sessionId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

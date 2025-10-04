@@ -70,8 +70,5 @@ export const useCreateBenefitTranslation = (
   return useConnectedMutation<
     CreateBenefitTranslationParams,
     Awaited<ReturnType<typeof CreateBenefitTranslation>>
-  >(CreateBenefitTranslation, options, {
-    domain: "benefits",
-    type: "update",
-  });
+  >(CreateBenefitTranslation, options);
 };

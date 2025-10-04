@@ -74,7 +74,6 @@ export const useGetEventSponsorship = (
       ...options,
       enabled:
         !!eventId && !!levelId && !!sponsorshipId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

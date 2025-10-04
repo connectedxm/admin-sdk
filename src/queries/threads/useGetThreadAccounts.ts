@@ -67,7 +67,6 @@ export const useGetThreadAccounts = (
     {
       ...options,
       enabled: !!threadId && (options.enabled ?? true),
-    },
-    "threads"
+    }
   );
 };

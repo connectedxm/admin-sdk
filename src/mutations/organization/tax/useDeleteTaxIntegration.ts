@@ -56,8 +56,5 @@ export const useDeleteTaxIntegration = (
   return useConnectedMutation<
     DeleteTaxIntegrationParams,
     Awaited<ReturnType<typeof DeleteTaxIntegration>>
-  >(DeleteTaxIntegration, options, {
-    domain: "org",
-    type: "del",
-  });
+  >(DeleteTaxIntegration, options);
 };

@@ -51,8 +51,5 @@ export const useDeleteInvoice = (
   return useConnectedMutation<
     DeleteInvoiceParams,
     Awaited<ReturnType<typeof DeleteInvoice>>
-  >(DeleteInvoice, options, {
-    domain: "invoices",
-    type: "del",
-  });
+  >(DeleteInvoice, options);
 };

@@ -83,7 +83,6 @@ export const useGetSurveySections = (
     {
       ...options,
       enabled: !!surveyId && (options.enabled ?? true),
-    },
-    "surveys"
+    }
   );
 };

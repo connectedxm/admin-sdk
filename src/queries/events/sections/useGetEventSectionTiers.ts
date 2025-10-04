@@ -103,7 +103,6 @@ export const useGetEventSectionTiers = (
         !!eventId &&
         !!sectionId &&
         (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

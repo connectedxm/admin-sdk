@@ -58,8 +58,5 @@ export const useRemoveAccountInterest = (
   return useConnectedMutation<
     RemoveAccountInterestParams,
     Awaited<ReturnType<typeof RemoveAccountInterest>>
-  >(RemoveAccountInterest, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(RemoveAccountInterest, options);
 };

@@ -65,7 +65,6 @@ export const useGetSearchLists = (
     SEARCHLISTS_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetSearchLists(params),
     params,
-    options,
-    "searchlists"
+    options
   );
 };

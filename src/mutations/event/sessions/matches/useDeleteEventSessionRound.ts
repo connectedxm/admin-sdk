@@ -58,8 +58,5 @@ export const useDeleteEventSessionRound = (
   return useConnectedMutation<
     DeleteEventSessionRoundParams,
     Awaited<ReturnType<typeof DeleteEventSessionRound>>
-  >(DeleteEventSessionRound, options, {
-    domain: "events",
-    type: "del",
-  });
+  >(DeleteEventSessionRound, options);
 };

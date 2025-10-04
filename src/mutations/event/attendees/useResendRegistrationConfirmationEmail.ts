@@ -57,8 +57,5 @@ export const useResendRegistrationConfirmationEmail = (
   return useConnectedMutation<
     ResendRegistrationConfirmationEmailParams,
     Awaited<ReturnType<typeof ResendRegistrationConfirmationEmail>>
-  >(ResendRegistrationConfirmationEmail, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(ResendRegistrationConfirmationEmail, options);
 };

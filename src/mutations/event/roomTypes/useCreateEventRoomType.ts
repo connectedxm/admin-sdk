@@ -60,8 +60,5 @@ export const useCreateEventRoomType = (
   return useConnectedMutation<
     CreateEventRoomTypeParams,
     Awaited<ReturnType<typeof CreateEventRoomType>>
-  >(CreateEventRoomType, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventRoomType, options);
 };

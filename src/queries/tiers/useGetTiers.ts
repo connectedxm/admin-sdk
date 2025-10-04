@@ -76,7 +76,6 @@ export const useGetTiers = (
     TIERS_QUERY_KEY(type),
     (params: InfiniteQueryParams) => GetTiers({ type, ...params }),
     params,
-    options,
-    "accounts"
+    options
   );
 };

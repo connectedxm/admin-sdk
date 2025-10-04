@@ -64,8 +64,5 @@ export const useDeleteCustomModuleTranslation = (
   return useConnectedMutation<
     DeleteCustomModuleTranslationParams,
     Awaited<ReturnType<typeof DeleteCustomModuleTranslation>>
-  >(DeleteCustomModuleTranslation, options, {
-    domain: "org",
-    type: "del",
-  });
+  >(DeleteCustomModuleTranslation, options);
 };

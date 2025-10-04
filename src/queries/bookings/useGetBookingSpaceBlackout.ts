@@ -78,7 +78,6 @@ export const useGetBookingSpaceBlackout = (
       ...options,
       enabled:
         !!placeId && !!spaceId && !!blackoutId && (options?.enabled ?? true),
-    },
-    "bookings"
+    }
   );
 };

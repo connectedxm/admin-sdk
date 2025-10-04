@@ -84,7 +84,6 @@ export const useGetInterestChannels = (
     {
       ...options,
       enabled: !!interestId && (options.enabled ?? true),
-    },
-    "interests"
+    }
   );
 };

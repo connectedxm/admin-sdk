@@ -63,8 +63,5 @@ export const useUpdateStreamInputOutput = (
   return useConnectedMutation<
     UpdateStreamInputOutputParams,
     Awaited<ReturnType<typeof UpdateStreamInputOutput>>
-  >(UpdateStreamInputOutput, options, {
-    domain: "streams",
-    type: "update",
-  });
+  >(UpdateStreamInputOutput, options);
 };

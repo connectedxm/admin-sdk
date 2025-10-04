@@ -76,7 +76,6 @@ export const useGetBookingPlaceTranslation = (
       ...options,
       enabled:
         !!placeId && !!locale && locale !== "en" && (options?.enabled ?? true),
-    },
-    "bookings"
+    }
   );
 };

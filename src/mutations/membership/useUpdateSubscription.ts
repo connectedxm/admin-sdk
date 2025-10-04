@@ -52,8 +52,5 @@ export const useUpdateSubscription = (
   return useConnectedMutation<
     UpdateSubscriptionParams,
     Awaited<ReturnType<typeof UpdateSubscription>>
-  >(UpdateSubscription, options, {
-    domain: "subscriptions",
-    type: "update",
-  });
+  >(UpdateSubscription, options);
 };

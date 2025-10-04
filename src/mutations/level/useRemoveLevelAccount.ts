@@ -62,8 +62,5 @@ export const useRemoveLevelAccount = (
   return useConnectedMutation<
     RemoveLevelAccountParams,
     Awaited<ReturnType<typeof RemoveLevelAccount>>
-  >(RemoveLevelAccount, options, {
-    domain: "sponsors",
-    type: "update",
-  });
+  >(RemoveLevelAccount, options);
 };

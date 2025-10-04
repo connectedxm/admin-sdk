@@ -101,7 +101,6 @@ export const useGetSurveyQuestionChoiceTranslation = (
       ...options,
       enabled:
         !!surveyId && !!questionId && !!choiceId && !!locale && locale !== "en",
-    },
-    "surveys"
+    }
   );
 };

@@ -91,7 +91,6 @@ export const useGetEventPageTranslations = (
     {
       ...options,
       enabled: !!eventId && !!pageId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

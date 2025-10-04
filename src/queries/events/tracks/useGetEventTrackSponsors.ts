@@ -90,7 +90,6 @@ export const useGetEventTrackSponsors = (
     {
       ...options,
       enabled: !!eventId && !!trackId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

@@ -62,8 +62,5 @@ export const useAddEventSessionAccount = (
   return useConnectedMutation<
     AddEventSessionAccountParams,
     Awaited<ReturnType<typeof AddEventSessionAccount>>
-  >(AddEventSessionAccount, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventSessionAccount, options);
 };

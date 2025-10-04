@@ -52,8 +52,5 @@ export const useAddEventAccessUser = (
   return useConnectedMutation<
     AddEventAccessUserParams,
     Awaited<ReturnType<typeof AddEventAccessUser>>
-  >(AddEventAccessUser, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventAccessUser, options);
 };

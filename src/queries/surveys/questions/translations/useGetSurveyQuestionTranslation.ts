@@ -88,7 +88,6 @@ export const useGetSurveyQuestionTranslation = (
         !!locale &&
         locale !== "en" &&
         (options?.enabled ?? true),
-    },
-    "surveys"
+    }
   );
 };

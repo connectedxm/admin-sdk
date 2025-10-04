@@ -62,7 +62,6 @@ export const useGetAPILog = (
     {
       ...options,
       enabled: !!logId,
-    },
-    "org"
+    }
   );
 };

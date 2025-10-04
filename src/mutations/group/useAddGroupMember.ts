@@ -60,8 +60,5 @@ export const useAddGroupMember = (
   return useConnectedMutation<
     AddGroupMemberParams,
     Awaited<ReturnType<typeof AddGroupMember>>
-  >(AddGroupMember, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(AddGroupMember, options);
 };

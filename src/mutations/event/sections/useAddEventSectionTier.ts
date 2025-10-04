@@ -67,8 +67,5 @@ export const useAddEventSectionTier = (
   return useConnectedMutation<
     AddEventSectionTierParams,
     Awaited<ReturnType<typeof AddEventSectionTier>>
-  >(AddEventSectionTier, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventSectionTier, options);
 };

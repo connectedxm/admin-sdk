@@ -68,8 +68,5 @@ export const useUpdateChannelSubscriber = (
   return useConnectedMutation<
     UpdateChannelSubscriberParams,
     Awaited<ReturnType<typeof UpdateChannelSubscriber>>
-  >(UpdateChannelSubscriber, options, {
-    domain: "channels",
-    type: "update",
-  });
+  >(UpdateChannelSubscriber, options);
 };

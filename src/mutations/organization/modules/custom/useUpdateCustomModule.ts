@@ -56,8 +56,5 @@ export const useUpdateCustomModule = (
   return useConnectedMutation<
     UpdateCustomModuleParams,
     Awaited<ReturnType<typeof UpdateCustomModule>>
-  >(UpdateCustomModule, options, {
-    domain: "org",
-    type: "update",
-  });
+  >(UpdateCustomModule, options);
 };

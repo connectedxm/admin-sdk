@@ -65,7 +65,6 @@ export const useGetEventMediaItem = (
     {
       ...options,
       enabled: !!eventId && !!itemId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

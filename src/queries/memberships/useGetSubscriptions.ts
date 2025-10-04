@@ -89,7 +89,6 @@ export const useGetSubscriptions = (
         ...params,
       }),
     params,
-    options,
-    "subscriptions"
+    options
   );
 };

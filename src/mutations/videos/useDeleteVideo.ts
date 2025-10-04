@@ -51,8 +51,5 @@ export const useDeleteVideo = (
   return useConnectedMutation<
     DeleteVideoParams,
     Awaited<ReturnType<typeof DeleteVideo>>
-  >(DeleteVideo, options, {
-    domain: "storage",
-    type: "del",
-  });
+  >(DeleteVideo, options);
 };

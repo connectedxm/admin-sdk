@@ -107,7 +107,6 @@ export const useGetEventSessionQuestionTranslation = (
         !!locale &&
         locale !== "en" &&
         (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

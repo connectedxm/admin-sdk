@@ -89,7 +89,6 @@ export const useGetInvoices = (
     (params: InfiniteQueryParams) =>
       GetInvoices({ ...params, accountId, eventId, status }),
     params,
-    options,
-    "invoices"
+    options
   );
 };

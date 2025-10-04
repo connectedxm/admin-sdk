@@ -80,7 +80,6 @@ export const useGetEventFaqSectionQuestion = (
       ...options,
       enabled:
         !!eventId && !!sectionId && !!questionId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

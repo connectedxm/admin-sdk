@@ -83,7 +83,6 @@ export const useGetEventSessions = (
     {
       ...options,
       enabled: !!eventId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

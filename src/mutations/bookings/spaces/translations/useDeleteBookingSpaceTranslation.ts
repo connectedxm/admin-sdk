@@ -67,8 +67,5 @@ export const useDeleteBookingSpaceTranslation = (
   return useConnectedMutation<
     DeleteBookingSpaceTranslationParams,
     Awaited<ReturnType<typeof DeleteBookingSpaceTranslation>>
-  >(DeleteBookingSpaceTranslation, options, {
-    domain: "bookings",
-    type: "update",
-  });
+  >(DeleteBookingSpaceTranslation, options);
 };

@@ -50,8 +50,5 @@ export const useCloneEvent = (
   return useConnectedMutation<
     CloneEventParams,
     Awaited<ReturnType<typeof CloneEvent>>
-  >(CloneEvent, options, {
-    domain: "events",
-    type: "create",
-  });
+  >(CloneEvent, options);
 };

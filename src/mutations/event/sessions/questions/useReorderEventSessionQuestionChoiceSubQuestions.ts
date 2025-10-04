@@ -99,8 +99,5 @@ export const useReorderEventSessionQuestionChoiceSubQuestions = (
   return useConnectedMutation<
     ReorderEventSessionQuestionChoiceSubQuestionsParams,
     Awaited<ReturnType<typeof ReorderEventSessionQuestionChoiceSubQuestions>>
-  >(ReorderEventSessionQuestionChoiceSubQuestions, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(ReorderEventSessionQuestionChoiceSubQuestions, options);
 };

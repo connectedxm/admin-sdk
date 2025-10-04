@@ -59,8 +59,5 @@ export const useCreateEventPackage = (
   return useConnectedMutation<
     CreateEventPackageParams,
     Awaited<ReturnType<typeof CreateEventPackage>>
-  >(CreateEventPackage, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventPackage, options);
 };

@@ -85,7 +85,6 @@ export const useGetChannelTranslations = (
     {
       ...options,
       enabled: !!channelId,
-    },
-    "channels"
+    }
   );
 };

@@ -53,8 +53,5 @@ export const useCreateSearchList = (
   return useConnectedMutation<
     CreateSearchListParams,
     Awaited<ReturnType<typeof CreateSearchList>>
-  >(CreateSearchList, options, {
-    domain: "searchlists",
-    type: "create",
-  });
+  >(CreateSearchList, options);
 };

@@ -112,7 +112,6 @@ export const useGetEventSessionQuestionChoices = (
       ...options,
       enabled:
         !!eventId && !!sessionId && !!questionId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

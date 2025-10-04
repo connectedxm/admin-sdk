@@ -54,7 +54,6 @@ export const useGetAccountAddress = (
     {
       ...options,
       enabled: !!accountId && !!addressId && (options?.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

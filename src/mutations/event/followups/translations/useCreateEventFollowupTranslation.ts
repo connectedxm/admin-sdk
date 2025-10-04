@@ -78,8 +78,5 @@ export const useCreateEventFollowupTranslation = (
   return useConnectedMutation<
     CreateEventFollowupTranslationParams,
     Awaited<ReturnType<typeof CreateEventFollowupTranslation>>
-  >(CreateEventFollowupTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventFollowupTranslation, options);
 };

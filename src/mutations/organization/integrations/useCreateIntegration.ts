@@ -56,8 +56,5 @@ export const useCreateIntegration = (
   return useConnectedMutation<
     CreateIntegrationParams,
     Awaited<ReturnType<typeof CreateIntegration>>
-  >(CreateIntegration, options, {
-    domain: "org",
-    type: "create",
-  });
+  >(CreateIntegration, options);
 };

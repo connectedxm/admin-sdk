@@ -77,7 +77,6 @@ export const useGetEventSessionAccess = (
       ...options,
       enabled:
         !!eventId && !!sessionId && !!passId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

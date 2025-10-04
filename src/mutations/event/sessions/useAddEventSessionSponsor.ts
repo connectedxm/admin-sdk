@@ -62,8 +62,5 @@ export const useAddEventSessionSponsor = (
   return useConnectedMutation<
     AddEventSessionSponsorParams,
     Awaited<ReturnType<typeof AddEventSessionSponsor>>
-  >(AddEventSessionSponsor, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventSessionSponsor, options);
 };

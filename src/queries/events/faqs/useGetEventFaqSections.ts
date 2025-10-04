@@ -84,7 +84,6 @@ export const useGetEventFaqSections = (
     {
       ...options,
       enabled: !!eventId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

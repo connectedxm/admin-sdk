@@ -85,7 +85,6 @@ export const useGetGroupTranslations = (
     {
       ...options,
       enabled: !!groupId && (options.enabled ?? true),
-    },
-    "groups"
+    }
   );
 };

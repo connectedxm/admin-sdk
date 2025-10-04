@@ -54,8 +54,5 @@ export const useCancelSubscription = (
   return useConnectedMutation<
     CancelSubscriptionParams,
     Awaited<ReturnType<typeof CancelSubscription>>
-  >(CancelSubscription, options, {
-    domain: "subscriptions",
-    type: "update",
-  });
+  >(CancelSubscription, options);
 };

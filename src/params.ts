@@ -1079,6 +1079,8 @@ export interface OrganizationMembershipUpdateInputs {
   org: Omit<ModulePermissions, "superEnabled" | "enabled">;
   users: Omit<ModulePermissions, "superEnabled" | "enabled">;
   reports: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  dashboards: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  logs: Omit<ModulePermissions, "superEnabled" | "enabled">;
   // MODULES
   activities: Omit<ModulePermissions, "superEnabled" | "enabled">;
   events: Omit<ModulePermissions, "superEnabled" | "enabled">;
@@ -1086,7 +1088,9 @@ export interface OrganizationMembershipUpdateInputs {
   bookings: Omit<ModulePermissions, "superEnabled" | "enabled">;
   groups: Omit<ModulePermissions, "superEnabled" | "enabled">;
   accounts: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  tiers: Omit<ModulePermissions, "superEnabled" | "enabled">;
   channels: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  contents: Omit<ModulePermissions, "superEnabled" | "enabled">;
   threads: Omit<ModulePermissions, "superEnabled" | "enabled">;
   storage: Omit<ModulePermissions, "superEnabled" | "enabled">;
   support: Omit<ModulePermissions, "superEnabled" | "enabled">;

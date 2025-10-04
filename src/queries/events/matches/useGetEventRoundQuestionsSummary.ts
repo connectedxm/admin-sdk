@@ -79,7 +79,6 @@ export const useGetEventRoundQuestionsSummary = (
     {
       ...options,
       enabled: !!eventId && !!roundId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

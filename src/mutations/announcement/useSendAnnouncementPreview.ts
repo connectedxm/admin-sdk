@@ -45,8 +45,5 @@ export const useSendAnnouncementPreview = (
   return useConnectedMutation<
     SendAnnouncementPreviewParams,
     Awaited<ReturnType<typeof SendAnnouncementPreview>>
-  >(SendAnnouncementPreview, options, {
-    domain: "announcements",
-    type: "update",
-  });
+  >(SendAnnouncementPreview, options);
 };

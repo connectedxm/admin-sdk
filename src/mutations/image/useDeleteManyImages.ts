@@ -52,8 +52,5 @@ export const useDeleteManyImages = (
   return useConnectedMutation<
     DeleteManyImagesParams,
     Awaited<ReturnType<typeof DeleteManyImages>>
-  >(DeleteManyImages, options, {
-    domain: "storage",
-    type: "del",
-  });
+  >(DeleteManyImages, options);
 };

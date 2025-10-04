@@ -74,7 +74,6 @@ export const useGetCustomModuleTranslation = (
     {
       ...options,
       enabled: !!moduleId && !!locale && (options?.enabled ?? true),
-    },
-    "org"
+    }
   );
 };

@@ -82,7 +82,6 @@ export const useGetAccountFollowing = (
     {
       ...options,
       enabled: !!accountId && (options?.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

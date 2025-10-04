@@ -56,8 +56,5 @@ export const useDeleteThreadMessageVideo = (
   return useConnectedMutation<
     DeleteThreadMessageVideoParams,
     Awaited<ReturnType<typeof DeleteThreadMessageVideo>>
-  >(DeleteThreadMessageVideo, options, {
-    domain: "threads",
-    type: "del",
-  });
+  >(DeleteThreadMessageVideo, options);
 };

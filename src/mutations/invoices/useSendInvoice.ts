@@ -52,8 +52,5 @@ export const useSendInvoice = (
   return useConnectedMutation<
     SendInvoiceParams,
     Awaited<ReturnType<typeof SendInvoice>>
-  >(SendInvoice, options, {
-    domain: "invoices",
-    type: "update",
-  });
+  >(SendInvoice, options);
 };

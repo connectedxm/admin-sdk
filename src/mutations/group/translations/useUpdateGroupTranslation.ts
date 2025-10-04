@@ -67,8 +67,5 @@ export const useUpdateGroupTranslation = (
   return useConnectedMutation<
     UpdateGroupTranslationParams,
     Awaited<ReturnType<typeof UpdateGroupTranslation>>
-  >(UpdateGroupTranslation, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(UpdateGroupTranslation, options);
 };

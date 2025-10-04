@@ -94,7 +94,6 @@ export const useGetEventSectionPassTypes = (
     {
       ...options,
       enabled: !!eventId && !!sectionId,
-    },
-    "events"
+    }
   );
 };

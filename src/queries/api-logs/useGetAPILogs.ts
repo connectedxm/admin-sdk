@@ -129,7 +129,6 @@ export const useGetAPILogs = (
         accountId,
       }),
     params,
-    options,
-    "org"
+    options
   );
 };

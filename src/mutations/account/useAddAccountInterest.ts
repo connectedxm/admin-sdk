@@ -59,8 +59,5 @@ export const useAddAccountInterest = (
   return useConnectedMutation<
     AddAccountInterestParams,
     Awaited<ReturnType<typeof AddAccountInterest>>
-  >(AddAccountInterest, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(AddAccountInterest, options);
 };

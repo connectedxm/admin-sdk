@@ -66,7 +66,6 @@ export const useGetLogins = (
     {
       ...options,
       enabled: options.enabled ?? true,
-    },
-    "accounts"
+    }
   );
 };

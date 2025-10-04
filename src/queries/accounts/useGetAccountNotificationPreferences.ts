@@ -74,7 +74,6 @@ export const useGetAccountNotificationPreferences = (
     {
       ...options,
       enabled: !!accountId && (options?.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

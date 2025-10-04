@@ -91,7 +91,6 @@ export const useGetAnnouncementTranslations = (
     {
       ...options,
       enabled: !!announcementId && (options.enabled ?? true),
-    },
-    "announcements"
+    }
   );
 };

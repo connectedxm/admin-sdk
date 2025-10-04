@@ -77,8 +77,5 @@ export const useUpdateEventReservation = (
   return useConnectedMutation<
     UpdateEventReservationParams,
     Awaited<ReturnType<typeof UpdateEventReservation>>
-  >(UpdateEventReservation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventReservation, options);
 };

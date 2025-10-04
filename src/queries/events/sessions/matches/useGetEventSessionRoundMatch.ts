@@ -91,7 +91,6 @@ export const useGetEventSessionRoundMatch = (
         !!roundId &&
         !!matchId &&
         (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

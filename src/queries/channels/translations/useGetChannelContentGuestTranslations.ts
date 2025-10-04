@@ -106,7 +106,6 @@ export const useGetChannelContentGuestTranslations = (
       ...options,
       enabled:
         !!contentId && !!channelId && !!guestId && (options?.enabled ?? true),
-    },
-    "channels"
+    }
   );
 };

@@ -96,7 +96,6 @@ export const useGetEventPassTransferLogs = (
     {
       ...options,
       enabled: !!eventId && !!passId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

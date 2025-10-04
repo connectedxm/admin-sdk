@@ -90,7 +90,6 @@ export const useGetEventRoomTypePasses = (
     {
       ...options,
       enabled: !!roomTypeId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

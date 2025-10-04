@@ -82,7 +82,6 @@ export const useGetAccountFollowers = (
     {
       ...options,
       enabled: !!accountId && (options?.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

@@ -83,7 +83,6 @@ export const useGetAccountPayments = (
     {
       ...options,
       enabled: !!accountId && (options?.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

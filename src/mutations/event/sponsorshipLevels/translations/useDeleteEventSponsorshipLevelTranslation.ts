@@ -74,8 +74,5 @@ export const useDeleteEventSponsorshipLevelTranslation = (
   return useConnectedMutation<
     DeleteEventSponsorshipLevelTranslationParams,
     Awaited<ReturnType<typeof DeleteEventSponsorshipLevelTranslation>>
-  >(DeleteEventSponsorshipLevelTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventSponsorshipLevelTranslation, options);
 };

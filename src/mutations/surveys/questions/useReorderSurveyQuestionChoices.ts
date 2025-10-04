@@ -65,8 +65,5 @@ export const useReorderSurveyQuestionChoices = (
   return useConnectedMutation<
     ReorderSurveyQuestionChoicesParams,
     Awaited<ReturnType<typeof ReorderSurveyQuestionChoices>>
-  >(ReorderSurveyQuestionChoices, options, {
-    domain: "surveys",
-    type: "update",
-  });
+  >(ReorderSurveyQuestionChoices, options);
 };

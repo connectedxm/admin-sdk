@@ -88,8 +88,5 @@ export const useCreateEventSponsorshipTranslation = (
   return useConnectedMutation<
     CreateEventSponsorshipTranslationParams,
     Awaited<ReturnType<typeof CreateEventSponsorshipTranslation>>
-  >(CreateEventSponsorshipTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventSponsorshipTranslation, options);
 };

@@ -76,8 +76,5 @@ export const useDeleteEventSessionQuestion = (
     "mutationFn"
   > = {}
 ) => {
-  return useConnectedMutation(DeleteEventSessionQuestion, options, {
-    domain: "events",
-    type: "update",
-  });
+  return useConnectedMutation(DeleteEventSessionQuestion, options);
 };

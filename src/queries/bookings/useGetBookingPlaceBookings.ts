@@ -104,7 +104,6 @@ export const useGetBookingPlaceBookings = (
     {
       ...options,
       enabled: !!placeId && (options?.enabled ?? true),
-    },
-    "bookings"
+    }
   );
 };

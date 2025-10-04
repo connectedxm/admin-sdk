@@ -76,7 +76,6 @@ export const useGetVideoDownloadStatus = (
     {
       ...options,
       enabled: !!videoId && (options?.enabled ?? true),
-    },
-    "storage"
+    }
   );
 };

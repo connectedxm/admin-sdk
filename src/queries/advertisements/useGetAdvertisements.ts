@@ -70,7 +70,6 @@ export const useGetAdvertisements = (
     ADVERTISEMENTS_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetAdvertisements(params),
     params,
-    options,
-    "advertisements"
+    options
   );
 };

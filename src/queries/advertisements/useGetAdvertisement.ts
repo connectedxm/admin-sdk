@@ -61,7 +61,6 @@ export const useGetAdvertisement = (
     {
       ...options,
       enabled: !!advertisementId && (options?.enabled ?? true),
-    },
-    "advertisements"
+    }
   );
 };

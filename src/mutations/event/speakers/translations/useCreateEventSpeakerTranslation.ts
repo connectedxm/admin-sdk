@@ -75,8 +75,5 @@ export const useCreateEventSpeakerTranslation = (
   return useConnectedMutation<
     CreateEventSpeakerTranslationParams,
     Awaited<ReturnType<typeof CreateEventSpeakerTranslation>>
-  >(CreateEventSpeakerTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventSpeakerTranslation, options);
 };

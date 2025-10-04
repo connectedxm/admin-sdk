@@ -55,8 +55,5 @@ export const useRemoveMembershipTier = (
   return useConnectedMutation<
     RemoveMembershipTierParams,
     Awaited<ReturnType<typeof RemoveMembershipTier>>
-  >(RemoveMembershipTier, options, {
-    domain: "subscriptions",
-    type: "update",
-  });
+  >(RemoveMembershipTier, options);
 };

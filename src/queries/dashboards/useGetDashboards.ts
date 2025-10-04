@@ -74,7 +74,6 @@ export const useGetDashboards = (
     DASHBOARDS_QUERY_KEY(eventId),
     (params: InfiniteQueryParams) => GetDashboards({ ...params, eventId }),
     params,
-    options,
-    "org"
+    options
   );
 };

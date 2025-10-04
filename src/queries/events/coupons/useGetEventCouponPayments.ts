@@ -90,7 +90,6 @@ export const useGetEventCouponPayments = (
     {
       ...options,
       enabled: !!eventId && !!couponId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

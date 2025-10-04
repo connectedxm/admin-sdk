@@ -62,8 +62,5 @@ export const useRemoveEventSessionAccount = (
   return useConnectedMutation<
     RemoveEventSessionAccountParams,
     Awaited<ReturnType<typeof RemoveEventSessionAccount>>
-  >(RemoveEventSessionAccount, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventSessionAccount, options);
 };

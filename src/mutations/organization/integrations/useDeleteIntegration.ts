@@ -53,8 +53,5 @@ export const useDeleteIntegration = (
   return useConnectedMutation<
     DeleteIntegrationParams,
     Awaited<ReturnType<typeof DeleteIntegration>>
-  >(DeleteIntegration, options, {
-    domain: "org",
-    type: "del",
-  });
+  >(DeleteIntegration, options);
 };

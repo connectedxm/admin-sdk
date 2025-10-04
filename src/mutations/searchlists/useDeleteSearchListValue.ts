@@ -57,8 +57,5 @@ export const useDeleteSearchListValue = (
   return useConnectedMutation<
     DeleteSearchListValueParams,
     Awaited<ReturnType<typeof DeleteSearchListValue>>
-  >(DeleteSearchListValue, options, {
-    domain: "searchlists",
-    type: "del",
-  });
+  >(DeleteSearchListValue, options);
 };

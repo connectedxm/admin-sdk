@@ -57,8 +57,5 @@ export const useCreateDashboard = (
   return useConnectedMutation<
     CreateDashboardParams,
     Awaited<ReturnType<typeof CreateDashboard>>
-  >(CreateDashboard, options, {
-    domain: "org",
-    type: "create",
-  });
+  >(CreateDashboard, options);
 };

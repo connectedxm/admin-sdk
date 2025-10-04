@@ -54,8 +54,5 @@ export const useRemoveEventBenefit = (
   return useConnectedMutation<
     RemoveEventBenefitParams,
     Awaited<ReturnType<typeof RemoveEventBenefit>>
-  >(RemoveEventBenefit, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventBenefit, options);
 };

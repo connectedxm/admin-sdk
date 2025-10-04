@@ -57,8 +57,5 @@ export const useUpdateDashboard = (
   return useConnectedMutation<
     UpdateDashboardParams,
     Awaited<ReturnType<typeof UpdateDashboard>>
-  >(UpdateDashboard, options, {
-    domain: "org",
-    type: "update",
-  });
+  >(UpdateDashboard, options);
 };

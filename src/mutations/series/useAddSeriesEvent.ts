@@ -55,8 +55,5 @@ export const useAddSeriesEvent = (
   return useConnectedMutation<
     AddSeriesEventParams,
     Awaited<ReturnType<typeof AddSeriesEvent>>
-  >(AddSeriesEvent, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddSeriesEvent, options);
 };

@@ -82,7 +82,6 @@ export const useGetBenefitTranslations = (
     {
       ...options,
       enabled: !!benefitId && (options.enabled ?? true),
-    },
-    "benefits"
+    }
   );
 };

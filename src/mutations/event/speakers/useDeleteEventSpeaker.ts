@@ -60,8 +60,5 @@ export const useDeleteEventSpeaker = (
   return useConnectedMutation<
     DeleteEventSpeakerParams,
     Awaited<ReturnType<typeof DeleteEventSpeaker>>
-  >(DeleteEventSpeaker, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventSpeaker, options);
 };

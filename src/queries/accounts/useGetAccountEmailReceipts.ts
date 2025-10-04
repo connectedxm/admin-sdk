@@ -95,7 +95,6 @@ export const useGetAcccountEmailReceipts = (
     {
       ...options,
       enabled: !!accountId && (options?.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

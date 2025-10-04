@@ -82,7 +82,6 @@ export const useGetActivityLikes = (
     {
       ...options,
       enabled: !!activityId && (options.enabled ?? true),
-    },
-    "activities"
+    }
   );
 };

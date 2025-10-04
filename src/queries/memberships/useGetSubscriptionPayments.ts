@@ -83,7 +83,6 @@ export const useGetSubscriptionPayments = (
     {
       ...options,
       enabled: !!subscriptionId && (options.enabled ?? true),
-    },
-    "subscriptions"
+    }
   );
 };

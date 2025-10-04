@@ -61,8 +61,5 @@ export const useCreateTaxIntegration = (
   return useConnectedMutation<
     CreateTaxIntegrationParams,
     Awaited<ReturnType<typeof CreateTaxIntegration>>
-  >(CreateTaxIntegration, options, {
-    domain: "org",
-    type: "create",
-  });
+  >(CreateTaxIntegration, options);
 };

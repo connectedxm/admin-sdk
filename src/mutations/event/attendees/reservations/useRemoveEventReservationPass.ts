@@ -73,8 +73,5 @@ export const useRemoveEventReservationPass = (
   return useConnectedMutation<
     RemoveEventReservationPassParams,
     Awaited<ReturnType<typeof RemoveEventReservationPass>>
-  >(RemoveEventReservationPass, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventReservationPass, options);
 };

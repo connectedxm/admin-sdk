@@ -68,8 +68,5 @@ export const useUpdateMembershipPrice = (
   return useConnectedMutation<
     UpdateMembershipPriceParams,
     Awaited<ReturnType<typeof UpdateMembershipPrice>>
-  >(UpdateMembershipPrice, options, {
-    domain: "subscriptions",
-    type: "update",
-  });
+  >(UpdateMembershipPrice, options);
 };

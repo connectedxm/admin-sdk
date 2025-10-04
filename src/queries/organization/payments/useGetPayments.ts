@@ -66,7 +66,6 @@ export const useGetPayments = (
     PAYMENTS_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetPayments(params),
     params,
-    options,
-    "org"
+    options
   );
 };

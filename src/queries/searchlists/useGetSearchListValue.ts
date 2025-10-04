@@ -13,10 +13,10 @@ import { QueryClient } from "@tanstack/react-query";
  * @category Keys
  * @group SearchListValues
  */
-export const SEARCHLIST_VALUE_QUERY_KEY = (searchListId: string, valueId: string) => [
-  ...SEARCHLIST_VALUES_QUERY_KEY(searchListId),
-  valueId,
-];
+export const SEARCHLIST_VALUE_QUERY_KEY = (
+  searchListId: string,
+  valueId: string
+) => [...SEARCHLIST_VALUES_QUERY_KEY(searchListId), valueId];
 
 /**
  * @category Setters
@@ -66,7 +66,6 @@ export const useGetSearchListValue = (
     {
       ...options,
       enabled: !!searchListId && !!valueId && (options?.enabled ?? true),
-    },
-    "searchlists"
+    }
   );
 };

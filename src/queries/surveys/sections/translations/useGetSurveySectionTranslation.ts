@@ -83,7 +83,6 @@ export const useGetSurveySectionTranslation = (
     {
       ...options,
       enabled: !!surveyId && !!sectionId && !!locale && locale !== "en",
-    },
-    "surveys"
+    }
   );
 };

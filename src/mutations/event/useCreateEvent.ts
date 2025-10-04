@@ -53,8 +53,5 @@ export const useCreateEvent = (
   return useConnectedMutation<
     CreateEventParams,
     Awaited<ReturnType<typeof CreateEvent>>
-  >(CreateEvent, options, {
-    domain: "events",
-    type: "create",
-  });
+  >(CreateEvent, options);
 };

@@ -69,7 +69,6 @@ export const useGetSeriesList = (
     SERIES_LIST_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetSeriesList({ ...params }),
     params,
-    options,
-    "events"
+    options
   );
 };

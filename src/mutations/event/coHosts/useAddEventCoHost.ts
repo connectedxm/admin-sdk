@@ -55,8 +55,5 @@ export const useAddEventCoHost = (
   return useConnectedMutation<
     AddEventCoHostParams,
     Awaited<ReturnType<typeof AddEventCoHost>>
-  >(AddEventCoHost, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventCoHost, options);
 };

@@ -97,7 +97,6 @@ export const useGetThreadCircleAccounts = (
     {
       ...options,
       enabled: !!circleId && (options.enabled ?? true),
-    },
-    "threads"
+    }
   );
 };

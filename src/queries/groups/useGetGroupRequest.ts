@@ -66,7 +66,6 @@ export const useGetGroupRequest = (
     {
       ...options,
       enabled: !!groupId && !!requestId && (options?.enabled ?? true),
-    },
-    "groups"
+    }
   );
 };

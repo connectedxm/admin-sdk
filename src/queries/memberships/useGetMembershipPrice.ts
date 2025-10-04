@@ -71,7 +71,6 @@ export const useGetMembershipPrice = (
       ...options,
       enabled:
         !!membershipId && !!membershipPriceId && (options?.enabled ?? true),
-    },
-    "subscriptions"
+    }
   );
 };

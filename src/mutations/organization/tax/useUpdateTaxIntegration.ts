@@ -57,8 +57,5 @@ export const useUpdateTaxIntegration = (
   return useConnectedMutation<
     UpdateTaxIntegrationParams,
     Awaited<ReturnType<typeof UpdateTaxIntegration>>
-  >(UpdateTaxIntegration, options, {
-    domain: "org",
-    type: "update",
-  });
+  >(UpdateTaxIntegration, options);
 };

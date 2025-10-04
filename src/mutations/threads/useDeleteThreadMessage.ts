@@ -54,8 +54,5 @@ export const useDeleteThreadMessage = (
   return useConnectedMutation<
     DeleteThreadMessageParams,
     Awaited<ReturnType<typeof DeleteThreadMessage>>
-  >(DeleteThreadMessage, options, {
-    domain: "threads",
-    type: "del",
-  });
+  >(DeleteThreadMessage, options);
 };

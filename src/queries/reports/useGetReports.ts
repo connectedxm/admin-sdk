@@ -63,7 +63,6 @@ export const useGetReports = (
     {
       ...options,
       enabled: !!type && (options.enabled ?? true),
-    },
-    "reports"
+    }
   );
 };

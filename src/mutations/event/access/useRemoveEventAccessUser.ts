@@ -52,8 +52,5 @@ export const useRemoveEventAccessUser = (
   return useConnectedMutation<
     RemoveEventAccessUserParams,
     Awaited<ReturnType<typeof RemoveEventAccessUser>>
-  >(RemoveEventAccessUser, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventAccessUser, options);
 };

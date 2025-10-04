@@ -66,7 +66,6 @@ export const useGetDashboard = (
     {
       ...options,
       enabled: !!dashboardId && (options.enabled ?? true),
-    },
-    "org"
+    }
   );
 };

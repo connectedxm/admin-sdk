@@ -105,7 +105,6 @@ export const useGetGroupActivities = (
     {
       ...options,
       enabled: !!groupId && (options.enabled ?? true),
-    },
-    "groups"
+    }
   );
 };

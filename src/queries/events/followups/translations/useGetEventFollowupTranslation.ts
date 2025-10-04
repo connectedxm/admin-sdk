@@ -84,7 +84,6 @@ export const useGetEventFollowupTranslation = (
     {
       ...options,
       enabled: !!eventId && !!followupId && !!locale && locale !== "en",
-    },
-    "events"
+    }
   );
 };

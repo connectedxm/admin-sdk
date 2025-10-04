@@ -1,4 +1,4 @@
-import { ConnectedXMResponse, PermissionDomain } from "../interfaces";
+import { ConnectedXMResponse } from "../interfaces";
 import {
   InfiniteData,
   QueryClient,
@@ -9,7 +9,6 @@ import {
 import { useConnectedXM } from "../hooks";
 import { AxiosError } from "axios";
 import { AdminApiParams } from "@src/AdminAPI";
-import usePermission from "@src/utilities/usePermission";
 
 export interface InfiniteQueryParams {
   pageParam: number;
@@ -59,8 +58,7 @@ export const useConnectedInfiniteQuery = <
   > = {},
   options: InfiniteQueryOptions<TQueryData> = {
     shouldRedirect: false,
-  },
-  domain?: PermissionDomain | PermissionDomain[]
+  }
 ) => {
   if (typeof params.pageSize === "undefined") params.pageSize = 25;
 
@@ -74,8 +72,6 @@ export const useConnectedInfiniteQuery = <
     getExecuteAs,
     queryClient,
   } = useConnectedXM();
-
-  const { allowed } = usePermission(domain, domain ? "read" : undefined);
 
   const getNextPageParam = (
     lastPage: TQueryData, // Use the PageData interface
@@ -144,6 +140,5 @@ export const useConnectedInfiniteQuery = <
       }),
     initialPageParam: 1,
     getNextPageParam,
-    enabled: (!domain || allowed) && options.enabled,
   });
 };

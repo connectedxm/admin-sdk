@@ -65,7 +65,6 @@ export const useGetLoginDevices = (
     {
       ...options,
       enabled: !!username && (options.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

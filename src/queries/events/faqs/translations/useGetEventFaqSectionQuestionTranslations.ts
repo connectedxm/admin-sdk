@@ -111,7 +111,6 @@ export const useGetEventFaqSectionQuestionTranslations = (
       ...options,
       enabled:
         !!eventId && !!sectionId && !!questionId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

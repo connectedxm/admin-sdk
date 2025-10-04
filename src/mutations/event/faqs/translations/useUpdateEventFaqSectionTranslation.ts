@@ -74,8 +74,5 @@ export const useUpdateEventFaqSectionTranslation = (
   return useConnectedMutation<
     UpdateEventFaqSectionTranslationParams,
     Awaited<ReturnType<typeof UpdateEventFaqSectionTranslation>>
-  >(UpdateEventFaqSectionTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventFaqSectionTranslation, options);
 };

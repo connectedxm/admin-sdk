@@ -81,7 +81,6 @@ export const useGetVideoCaptions = (
     {
       ...options,
       enabled: !!videoId && (options?.enabled ?? true),
-    },
-    "storage"
+    }
   );
 };

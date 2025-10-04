@@ -66,8 +66,5 @@ export const useDeleteSurveyQuestion = (
     "mutationFn"
   > = {}
 ) => {
-  return useConnectedMutation(DeleteSurveyQuestion, options, {
-    domain: "surveys",
-    type: "update",
-  });
+  return useConnectedMutation(DeleteSurveyQuestion, options);
 };

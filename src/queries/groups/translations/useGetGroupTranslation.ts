@@ -72,7 +72,6 @@ export const useGetGroupTranslation = (
       ...options,
       enabled:
         !!groupId && !!locale && locale !== "en" && (options.enabled ?? true),
-    },
-    "groups"
+    }
   );
 };

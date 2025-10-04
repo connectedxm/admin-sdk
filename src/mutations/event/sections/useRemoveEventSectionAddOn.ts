@@ -62,8 +62,5 @@ export const useRemoveEventSectionAddOn = (
   return useConnectedMutation<
     RemoveEventSectionAddOnParams,
     Awaited<ReturnType<typeof RemoveEventSectionAddOn>>
-  >(RemoveEventSectionAddOn, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventSectionAddOn, options);
 };

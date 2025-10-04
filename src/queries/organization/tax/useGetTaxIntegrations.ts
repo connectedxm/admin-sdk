@@ -71,7 +71,6 @@ export const useGetTaxIntegrations = (
     TAX_INTEGRATIONS_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetTaxIntegrations(params),
     params,
-    options,
-    "org"
+    options
   );
 };

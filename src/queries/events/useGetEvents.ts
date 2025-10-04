@@ -90,7 +90,6 @@ export const useGetEvents = (
         past,
       }),
     params,
-    options,
-    "events"
+    options
   );
 };

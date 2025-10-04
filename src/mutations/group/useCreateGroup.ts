@@ -53,10 +53,7 @@ export const useCreateGroup = (
   return useConnectedMutation<
     CreateGroupParams,
     Awaited<ReturnType<typeof CreateGroup>>
-  >(CreateGroup, options, {
-    domain: "groups",
-    type: "create",
-  });
+  >(CreateGroup, options);
 };
 
 export default useCreateGroup;

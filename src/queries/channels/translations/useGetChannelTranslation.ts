@@ -71,7 +71,6 @@ export const useGetChannelTranslation = (
     {
       ...options,
       enabled: !!channelId && !!locale && locale !== "en",
-    },
-    "channels"
+    }
   );
 };

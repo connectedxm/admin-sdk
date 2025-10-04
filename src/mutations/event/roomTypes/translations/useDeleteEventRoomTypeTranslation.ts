@@ -69,10 +69,7 @@ export const useDeleteEventRoomTypeTranslation = (
   return useConnectedMutation<
     DeleteEventRoomTypeTranslationParams,
     Awaited<ReturnType<typeof DeleteEventRoomTypeTranslation>>
-  >(DeleteEventRoomTypeTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventRoomTypeTranslation, options);
 };
 
 export default useDeleteEventRoomTypeTranslation;

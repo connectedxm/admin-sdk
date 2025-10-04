@@ -81,7 +81,6 @@ export const useGetThreadCircleThreads = (
     {
       enabled: !!circleId && (options.enabled ?? true),
       ...options,
-    },
-    "threads"
+    }
   );
 };

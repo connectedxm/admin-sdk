@@ -104,7 +104,6 @@ export const useGetEventAttendeeTransfersLogs = (
     {
       ...options,
       enabled: !!eventId && !!accountId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

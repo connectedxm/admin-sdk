@@ -69,8 +69,5 @@ export const useDetachEventQuestionSearchList = (
   return useConnectedMutation<
     DetachEventQuestionSearchListParams,
     Awaited<ReturnType<typeof DetachEventQuestionSearchList>>
-  >(DetachEventQuestionSearchList, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DetachEventQuestionSearchList, options);
 };

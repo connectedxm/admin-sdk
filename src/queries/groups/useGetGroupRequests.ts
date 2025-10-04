@@ -95,7 +95,6 @@ export const useGetGroupRequests = (
     {
       ...options,
       enabled: !!groupId && (options.enabled ?? true),
-    },
-    "groups"
+    }
   );
 };

@@ -51,8 +51,5 @@ export const useCancelActivitySchedule = (
   return useConnectedMutation<
     CancelActivityScheduleParams,
     Awaited<ReturnType<typeof CancelActivitySchedule>>
-  >(CancelActivitySchedule, options, {
-    domain: "activities",
-    type: "update",
-  });
+  >(CancelActivitySchedule, options);
 };

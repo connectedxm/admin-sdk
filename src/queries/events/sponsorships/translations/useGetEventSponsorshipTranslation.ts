@@ -103,7 +103,6 @@ export const useGetEventSponsorshipTranslation = (
         !!sponsorshipId &&
         !!locale &&
         (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

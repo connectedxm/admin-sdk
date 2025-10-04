@@ -60,8 +60,5 @@ export const useUpdateThreadCircle = (
   return useConnectedMutation<
     UpdateThreadCircleParams,
     Awaited<ReturnType<typeof UpdateThreadCircle>>
-  >(UpdateThreadCircle, options, {
-    domain: "threads",
-    type: "update",
-  });
+  >(UpdateThreadCircle, options);
 };

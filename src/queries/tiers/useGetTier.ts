@@ -61,7 +61,6 @@ export const useGetTier = (
     {
       ...options,
       enabled: !!tierId && (options?.enabled ?? true),
-    },
-    "accounts"
+    }
   );
 };

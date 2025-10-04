@@ -58,8 +58,5 @@ export const useDeleteEventAddOn = (
   return useConnectedMutation<
     DeleteEventAddOnParams,
     Awaited<ReturnType<typeof DeleteEventAddOn>>
-  >(DeleteEventAddOn, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventAddOn, options);
 };

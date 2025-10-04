@@ -64,7 +64,6 @@ export const useGetEventTrack = (
     {
       ...options,
       enabled: !!eventId && !!trackId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

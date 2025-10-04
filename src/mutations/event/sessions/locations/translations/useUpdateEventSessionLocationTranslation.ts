@@ -76,8 +76,5 @@ export const useUpdateEventSessionLocationTranslation = (
   return useConnectedMutation<
     UpdateEventSessionLocationTranslationParams,
     Awaited<ReturnType<typeof UpdateEventSessionLocationTranslation>>
-  >(UpdateEventSessionLocationTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventSessionLocationTranslation, options);
 };

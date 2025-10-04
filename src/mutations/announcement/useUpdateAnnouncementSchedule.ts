@@ -63,8 +63,5 @@ export const useUpdateAnnouncementSchedule = (
   return useConnectedMutation<
     UpdateAnnouncementScheduleParams,
     Awaited<ReturnType<typeof UpdateAnnouncementSchedule>>
-  >(UpdateAnnouncementSchedule, options, {
-    domain: "announcements",
-    type: "update",
-  });
+  >(UpdateAnnouncementSchedule, options);
 };

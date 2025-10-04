@@ -67,8 +67,5 @@ export const useDeleteSurveyQuestionChoice = (
   return useConnectedMutation<
     DeleteSurveyQuestionChoiceParams,
     Awaited<ReturnType<typeof DeleteSurveyQuestionChoice>>
-  >(DeleteSurveyQuestionChoice, options, {
-    domain: "surveys",
-    type: "update",
-  });
+  >(DeleteSurveyQuestionChoice, options);
 };

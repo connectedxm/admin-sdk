@@ -1553,13 +1553,6 @@ export interface Notification extends BaseNotification {
   updatedAt: string;
 }
 
-export type PermissionDomain = keyof Omit<
-  OrganizationMembership,
-  "organizationId" | "userId" | "user"
->;
-
-export type PermissionType = "read" | "create" | "update" | "del";
-
 export interface ModulePermissions {
   superEnabled: boolean;
   enabled: boolean;
@@ -1577,13 +1570,17 @@ export interface OrganizationMembership {
   org: ModulePermissions;
   users: ModulePermissions;
   reports: ModulePermissions;
+  dashboards: ModulePermissions;
+  logs: ModulePermissions;
   // MODULES
   activities: ModulePermissions;
   events: ModulePermissions;
   attendees: ModulePermissions;
   groups: ModulePermissions;
   accounts: ModulePermissions;
+  tiers: ModulePermissions;
   channels: ModulePermissions;
+  contents: ModulePermissions;
   threads: ModulePermissions;
   storage: ModulePermissions;
   support: ModulePermissions;

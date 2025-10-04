@@ -83,7 +83,6 @@ export const useGetGroupModerators = (
     {
       ...options,
       enabled: !!groupId && (options.enabled ?? true),
-    },
-    "groups"
+    }
   );
 };

@@ -65,7 +65,6 @@ export const useGetThreadCircleAccount = (
     THREAD_CIRCLE_ACCOUNT_QUERY_KEY(circleId, accountId),
     (params: SingleQueryParams) =>
       GetThreadCircleAccount({ circleId, accountId, ...params }),
-    options,
-    "threads"
+    options
   );
 };

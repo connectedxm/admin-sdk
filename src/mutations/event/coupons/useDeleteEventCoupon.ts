@@ -58,8 +58,5 @@ export const useDeleteEventCoupon = (
   return useConnectedMutation<
     DeleteEventCouponParams,
     Awaited<ReturnType<typeof DeleteEventCoupon>>
-  >(DeleteEventCoupon, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventCoupon, options);
 };

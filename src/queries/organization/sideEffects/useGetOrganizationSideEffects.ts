@@ -106,7 +106,6 @@ export const useGetOrganizationSideEffects = (
     params,
     {
       ...options,
-    },
-    "org"
+    }
   );
 };

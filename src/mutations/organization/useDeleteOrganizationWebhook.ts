@@ -56,8 +56,5 @@ export const useDeleteOrganizationWebhook = (
   return useConnectedMutation<
     DeleteOrganizationWebhookParams,
     Awaited<ReturnType<typeof DeleteOrganizationWebhook>>
-  >(DeleteOrganizationWebhook, options, {
-    domain: "org",
-    type: "update",
-  });
+  >(DeleteOrganizationWebhook, options);
 };

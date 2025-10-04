@@ -73,7 +73,6 @@ export const useGetEventQuestionChoice = (
       ...options,
       enabled:
         !!eventId && !!questionId && !!choiceId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

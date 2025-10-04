@@ -71,7 +71,6 @@ export const useGetSurveySubmission = (
     {
       ...options,
       enabled: !!surveyId && !!submissionId && (options?.enabled ?? true),
-    },
-    "surveys"
+    }
   );
 };

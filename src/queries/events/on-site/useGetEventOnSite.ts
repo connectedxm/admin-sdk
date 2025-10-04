@@ -61,7 +61,6 @@ export const useGetEventOnSite = (
     {
       ...options,
       enabled: !!eventId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

@@ -55,8 +55,5 @@ export const useAddAccountGroup = (
   return useConnectedMutation<
     AddAccountGroupParams,
     Awaited<ReturnType<typeof AddAccountGroup>>
-  >(AddAccountGroup, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(AddAccountGroup, options);
 };

@@ -96,7 +96,6 @@ export const useGetEventAttendeeReservations = (
     {
       ...options,
       enabled: !!eventId && !!accountId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

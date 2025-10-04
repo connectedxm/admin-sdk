@@ -70,8 +70,5 @@ export const useUpdateEventPageTranslation = (
   return useConnectedMutation<
     UpdateEventPageTranslationParams,
     Awaited<ReturnType<typeof UpdateEventPageTranslation>>
-  >(UpdateEventPageTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventPageTranslation, options);
 };

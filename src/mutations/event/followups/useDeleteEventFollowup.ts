@@ -60,8 +60,5 @@ export const useDeleteEventFollowup = (
   return useConnectedMutation<
     DeleteEventFollowupParams,
     Awaited<ReturnType<typeof DeleteEventFollowup>>
-  >(DeleteEventFollowup, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventFollowup, options);
 };

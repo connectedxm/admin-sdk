@@ -73,8 +73,5 @@ export const useUpdateEventRoomTypeAddOnDetails = (
   return useConnectedMutation<
     UpdateEventRoomTypeAddOnDetailsParams,
     Awaited<ReturnType<typeof UpdateEventRoomTypeAddOnDetails>>
-  >(UpdateEventRoomTypeAddOnDetails, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventRoomTypeAddOnDetails, options);
 };

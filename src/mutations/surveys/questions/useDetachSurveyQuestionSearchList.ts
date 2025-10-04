@@ -69,8 +69,5 @@ export const useDetachSurveyQuestionSearchList = (
   return useConnectedMutation<
     DetachSurveyQuestionSearchListParams,
     Awaited<ReturnType<typeof DetachSurveyQuestionSearchList>>
-  >(DetachSurveyQuestionSearchList, options, {
-    domain: "surveys",
-    type: "update",
-  });
+  >(DetachSurveyQuestionSearchList, options);
 };

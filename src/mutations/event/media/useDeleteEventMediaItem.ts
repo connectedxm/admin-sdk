@@ -59,8 +59,5 @@ export const useDeleteEventMediaItem = (
   return useConnectedMutation<
     DeleteEventMediaItemParams,
     Awaited<ReturnType<typeof DeleteEventMediaItem>>
-  >(DeleteEventMediaItem, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventMediaItem, options);
 };

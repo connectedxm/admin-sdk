@@ -58,8 +58,5 @@ export const useStartEventSessionRoundMatchmaking = (
   return useConnectedMutation<
     StartEventSessionRoundMatchmakingParams,
     Awaited<ReturnType<typeof StartEventSessionRoundMatchmaking>>
-  >(StartEventSessionRoundMatchmaking, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(StartEventSessionRoundMatchmaking, options);
 };

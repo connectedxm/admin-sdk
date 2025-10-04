@@ -72,8 +72,5 @@ export const useCreateCustomModuleTranslation = (
   return useConnectedMutation<
     CreateCustomModuleTranslationParams,
     Awaited<ReturnType<typeof CreateCustomModuleTranslation>>
-  >(CreateCustomModuleTranslation, options, {
-    domain: "org",
-    type: "create",
-  });
+  >(CreateCustomModuleTranslation, options);
 };

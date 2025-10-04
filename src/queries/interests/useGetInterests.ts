@@ -65,7 +65,6 @@ export const useGetInterests = (
     INTERESTS_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetInterests(params),
     params,
-    options,
-    "interests"
+    options
   );
 };

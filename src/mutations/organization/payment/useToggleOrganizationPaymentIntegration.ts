@@ -66,8 +66,5 @@ export const useToggleOrganizationPaymentIntegration = (
   return useConnectedMutation<
     ToggleOrganizationPaymentIntegrationParams,
     Awaited<ReturnType<typeof ToggleOrganizationPaymentIntegration>>
-  >(ToggleOrganizationPaymentIntegration, options, {
-    domain: "org",
-    type: "update",
-  });
+  >(ToggleOrganizationPaymentIntegration, options);
 };

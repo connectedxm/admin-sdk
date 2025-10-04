@@ -59,8 +59,5 @@ export const useDeleteEventPackage = (
   return useConnectedMutation<
     DeleteEventPackageParams,
     Awaited<ReturnType<typeof DeleteEventPackage>>
-  >(DeleteEventPackage, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventPackage, options);
 };

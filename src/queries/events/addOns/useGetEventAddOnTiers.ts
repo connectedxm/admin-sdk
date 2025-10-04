@@ -104,7 +104,6 @@ export const useGetEventAddOnTiers = (
         !!eventId &&
         !!addOnId &&
         (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

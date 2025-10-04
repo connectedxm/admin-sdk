@@ -61,8 +61,5 @@ export const useDeleteEventPackagePass = (
   return useConnectedMutation<
     DeleteEventPackagePassParams,
     Awaited<ReturnType<typeof DeleteEventPackagePass>>
-  >(DeleteEventPackagePass, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventPackagePass, options);
 };

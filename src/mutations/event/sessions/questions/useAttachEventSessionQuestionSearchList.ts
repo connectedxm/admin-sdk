@@ -84,8 +84,5 @@ export const useAttachEventSessionQuestionSearchList = (
   return useConnectedMutation<
     AttachEventSessionQuestionSearchListParams,
     Awaited<ReturnType<typeof AttachEventSessionQuestionSearchList>>
-  >(AttachEventSessionQuestionSearchList, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AttachEventSessionQuestionSearchList, options);
 };

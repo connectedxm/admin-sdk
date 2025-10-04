@@ -80,7 +80,6 @@ export const useGetAnnouncementTranslation = (
         !!locale &&
         locale !== "en" &&
         (options.enabled ?? true),
-    },
-    "announcements"
+    }
   );
 };

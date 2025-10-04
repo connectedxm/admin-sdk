@@ -55,8 +55,5 @@ export const useAddGroupInterest = (
   return useConnectedMutation<
     AddGroupInterestParams,
     Awaited<ReturnType<typeof AddGroupInterest>>
-  >(AddGroupInterest, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(AddGroupInterest, options);
 };

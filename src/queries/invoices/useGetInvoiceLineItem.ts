@@ -66,7 +66,6 @@ export const useGetInvoiceLineItem = (
     {
       ...options,
       enabled: !!invoiceId && !!lineItemId && (options?.enabled ?? true),
-    },
-    "invoices"
+    }
   );
 };

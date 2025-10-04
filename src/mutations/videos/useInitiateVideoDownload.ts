@@ -67,8 +67,5 @@ export const useInitiateVideoDownload = (
   return useConnectedMutation<
     InitiateVideoDownloadParams,
     Awaited<ReturnType<typeof InitiateVideoDownload>>
-  >(InitiateVideoDownload, options, {
-    domain: "storage",
-    type: "update",
-  });
+  >(InitiateVideoDownload, options);
 };

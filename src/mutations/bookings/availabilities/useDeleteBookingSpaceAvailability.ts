@@ -72,8 +72,5 @@ export const useDeleteBookingSpaceAvailability = (
   return useConnectedMutation<
     DeleteBookingSpaceAvailabilityParams,
     Awaited<ReturnType<typeof DeleteBookingSpaceAvailability>>
-  >(DeleteBookingSpaceAvailability, options, {
-    domain: "bookings",
-    type: "update",
-  });
+  >(DeleteBookingSpaceAvailability, options);
 };

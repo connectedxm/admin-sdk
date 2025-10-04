@@ -88,7 +88,6 @@ export const useGetEventRoomTypeTranslation = (
         !!locale &&
         locale !== "en" &&
         (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

@@ -97,7 +97,6 @@ export const useGetContents = (
         ...params,
       }),
     params,
-    options,
-    "channels"
+    options
   );
 };

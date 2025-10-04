@@ -54,8 +54,5 @@ export const useCreateThreadCircle = (
   return useConnectedMutation<
     CreateThreadCircleParams,
     Awaited<ReturnType<typeof CreateThreadCircle>>
-  >(CreateThreadCircle, options, {
-    domain: "threads",
-    type: "create",
-  });
+  >(CreateThreadCircle, options);
 };

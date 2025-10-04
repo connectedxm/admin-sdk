@@ -118,7 +118,6 @@ export const useGetEventSessionRoundPasses = (
         !!sessionId &&
         !!roundId &&
         (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

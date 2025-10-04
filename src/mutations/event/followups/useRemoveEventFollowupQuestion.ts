@@ -62,8 +62,5 @@ export const useRemoveEventFollowupQuestion = (
   return useConnectedMutation<
     RemoveEventFollowupQuestionParams,
     Awaited<ReturnType<typeof RemoveEventFollowupQuestion>>
-  >(RemoveEventFollowupQuestion, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventFollowupQuestion, options);
 };

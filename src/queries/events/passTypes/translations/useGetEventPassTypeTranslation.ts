@@ -83,7 +83,6 @@ export const useGetEventPassTypeTranslation = (
     {
       ...options,
       enabled: !!eventId && !!passTypeId && !!locale && locale !== "en",
-    },
-    "events"
+    }
   );
 };

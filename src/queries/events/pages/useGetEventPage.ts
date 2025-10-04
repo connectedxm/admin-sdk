@@ -63,7 +63,6 @@ export const useGetEventPage = (
     {
       ...options,
       enabled: !!eventId && !!pageId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

@@ -55,8 +55,5 @@ export const useCreateSupportTicketNote = (
   return useConnectedMutation<
     CreateSupportTicketNoteParams,
     Awaited<ReturnType<typeof CreateSupportTicketNote>>
-  >(CreateSupportTicketNote, options, {
-    domain: "support",
-    type: "update",
-  });
+  >(CreateSupportTicketNote, options);
 };

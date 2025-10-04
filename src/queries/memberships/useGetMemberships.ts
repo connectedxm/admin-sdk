@@ -65,7 +65,6 @@ export const useGetMemberships = (
     MEMBERSHIPS_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetMemberships(params),
     params,
-    options,
-    "subscriptions"
+    options
   );
 };

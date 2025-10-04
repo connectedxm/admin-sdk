@@ -34,8 +34,7 @@ export const SET_SURVEY_SECTION_QUESTIONS_QUERY_DATA = (
     {
       pages: [response],
       pageParams: [null],
-    },
-    "surveys"
+    }
   );
 };
 
@@ -102,7 +101,6 @@ export const useGetSurveySectionQuestions = (
     {
       ...options,
       enabled: !!surveyId && !!sectionId && (options.enabled ?? true),
-    },
-    "surveys"
+    }
   );
 };

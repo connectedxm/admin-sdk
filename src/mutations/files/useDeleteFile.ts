@@ -51,8 +51,5 @@ export const useDeleteFile = (
   return useConnectedMutation<
     DeleteFileParams,
     Awaited<ReturnType<typeof DeleteFile>>
-  >(DeleteFile, options, {
-    domain: "storage",
-    type: "del",
-  });
+  >(DeleteFile, options);
 };

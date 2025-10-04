@@ -74,7 +74,6 @@ export const useGetBenefits = (
     BENEFITS_QUERY_KEY(eventId),
     (params: InfiniteQueryParams) => GetBenefits({ ...params, eventId }),
     params,
-    options,
-    "benefits"
+    options
   );
 };

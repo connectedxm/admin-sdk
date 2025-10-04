@@ -57,8 +57,5 @@ export const useDeleteMembershipPrice = (
   return useConnectedMutation<
     DeleteMembershipPriceParams,
     Awaited<ReturnType<typeof DeleteMembershipPrice>>
-  >(DeleteMembershipPrice, options, {
-    domain: "subscriptions",
-    type: "del",
-  });
+  >(DeleteMembershipPrice, options);
 };

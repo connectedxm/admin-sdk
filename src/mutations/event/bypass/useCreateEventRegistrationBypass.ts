@@ -68,8 +68,5 @@ export const useCreateEventRegistrationBypass = (
   return useConnectedMutation<
     CreateEventRegistrationBypassParams,
     Awaited<ReturnType<typeof CreateEventRegistrationBypass>>
-  >(CreateEventRegistrationBypass, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventRegistrationBypass, options);
 };

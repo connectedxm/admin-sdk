@@ -72,8 +72,5 @@ export const useAttachSurveyQuestionSearchList = (
   return useConnectedMutation<
     AttachSurveyQuestionSearchListParams,
     Awaited<ReturnType<typeof AttachSurveyQuestionSearchList>>
-  >(AttachSurveyQuestionSearchList, options, {
-    domain: "surveys",
-    type: "update",
-  });
+  >(AttachSurveyQuestionSearchList, options);
 };

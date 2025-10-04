@@ -74,8 +74,5 @@ export const useUpdateEventRoomTypePassTypeDetails = (
   return useConnectedMutation<
     UpdateEventRoomTypePassTypeDetailsParams,
     Awaited<ReturnType<typeof UpdateEventRoomTypePassTypeDetails>>
-  >(UpdateEventRoomTypePassTypeDetails, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventRoomTypePassTypeDetails, options);
 };

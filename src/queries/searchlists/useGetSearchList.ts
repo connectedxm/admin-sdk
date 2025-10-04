@@ -60,7 +60,6 @@ export const useGetSearchList = (
     {
       ...options,
       enabled: !!searchListId && (options?.enabled ?? true),
-    },
-    "searchlists"
+    }
   );
 };

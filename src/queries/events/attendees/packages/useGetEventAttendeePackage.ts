@@ -77,7 +77,6 @@ export const useGetEventAttendeePackage = (
       ...options,
       enabled:
         !!eventId && !!accountId && !!packageId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

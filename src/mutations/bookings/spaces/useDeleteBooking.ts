@@ -65,8 +65,5 @@ export const useDeleteBooking = (
   return useConnectedMutation<
     DeleteBookingParams,
     Awaited<ReturnType<typeof DeleteBooking>>
-  >(DeleteBooking, options, {
-    domain: "bookings",
-    type: "del",
-  });
+  >(DeleteBooking, options);
 };

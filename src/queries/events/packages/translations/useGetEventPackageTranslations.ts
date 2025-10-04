@@ -96,7 +96,6 @@ export const useGetEventPackageTranslations = (
     {
       ...options,
       enabled: !!eventId && !!packageId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

@@ -61,8 +61,5 @@ export const useCreateEventAttendee = (
   return useConnectedMutation<
     CreateEventAttendeeParams,
     Awaited<ReturnType<typeof CreateEventAttendee>>
-  >(CreateEventAttendee, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventAttendee, options);
 };

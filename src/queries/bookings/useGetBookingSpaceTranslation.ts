@@ -86,7 +86,6 @@ export const useGetBookingSpaceTranslation = (
         !!locale &&
         locale !== "en" &&
         (options?.enabled ?? true),
-    },
-    "bookings"
+    }
   );
 };

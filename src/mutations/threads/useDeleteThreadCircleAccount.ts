@@ -58,8 +58,5 @@ export const useDeleteThreadCircleAccount = (
   return useConnectedMutation<
     DeleteThreadCircleAccountParams,
     Awaited<ReturnType<typeof DeleteThreadCircleAccount>>
-  >(DeleteThreadCircleAccount, options, {
-    domain: "threads",
-    type: "del",
-  });
+  >(DeleteThreadCircleAccount, options);
 };

@@ -54,8 +54,5 @@ export const useCreateCustomModule = (
   return useConnectedMutation<
     CreateCustomModuleParams,
     Awaited<ReturnType<typeof CreateCustomModule>>
-  >(CreateCustomModule, options, {
-    domain: "org",
-    type: "create",
-  });
+  >(CreateCustomModule, options);
 };

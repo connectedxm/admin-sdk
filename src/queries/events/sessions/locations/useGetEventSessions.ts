@@ -95,7 +95,6 @@ export const useGetEventSessionLocationSessions = (
     {
       ...options,
       enabled: !!eventId && !!locationId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

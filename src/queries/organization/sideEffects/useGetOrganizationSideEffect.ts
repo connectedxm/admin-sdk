@@ -67,7 +67,6 @@ export const useGetOrganizationSideEffect = (
     {
       ...options,
       enabled: !!sideEffectId && (options?.enabled ?? true),
-    },
-    "org"
+    }
   );
 };

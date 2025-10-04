@@ -58,7 +58,6 @@ export const useGetThreadMessage = (
       staleTime: Infinity,
       ...options,
       enabled: !!threadId && (options?.enabled ?? true),
-    },
-    "threads"
+    }
   );
 };

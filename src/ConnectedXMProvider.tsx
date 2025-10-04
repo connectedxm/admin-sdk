@@ -1,13 +1,12 @@
 import { AxiosError } from "axios";
 import React from "react";
-import { ConnectedXMResponse, OrganizationMembership } from "./interfaces";
+import { ConnectedXMResponse } from "./interfaces";
 import {
   QueryClient,
   QueryClientProvider,
   QueryKey,
 } from "@tanstack/react-query";
 import { MutationParams } from ".";
-import PermissionsWrapper from "./PermissionsWrapper";
 
 export interface ConnectedXMClientContextState {
   queryClient: QueryClient;
@@ -40,7 +39,6 @@ export interface ConnectedXMClientContextState {
     variables: Omit<MutationParams, "queryClient" | "adminApiParams">,
     context: unknown
   ) => void;
-  permissions?: OrganizationMembership;
 }
 
 export const ConnectedXMClientContext =
@@ -70,9 +68,6 @@ export const ConnectedXMProvider = ({
 }: ConnectedXMProviderProps) => {
   const [authenticated, setAuthenticated] = React.useState<boolean>(false);
   const [ssr, setSSR] = React.useState<boolean>(true);
-  const [permissions, setPermissions] = React.useState<
-    OrganizationMembership | undefined
-  >();
 
   React.useEffect(() => {
     if (!authenticated) {
@@ -98,15 +93,9 @@ export const ConnectedXMProvider = ({
             authenticated,
             setAuthenticated,
             queryClient,
-            permissions,
           }}
         >
-          <PermissionsWrapper
-            authenticated={authenticated}
-            setPermissions={setPermissions}
-          >
-            {children}
-          </PermissionsWrapper>
+          {children}
         </ConnectedXMClientContext.Provider>
       </QueryClientProvider>
     );
@@ -120,15 +109,9 @@ export const ConnectedXMProvider = ({
         authenticated,
         setAuthenticated,
         queryClient,
-        permissions,
       }}
     >
-      <PermissionsWrapper
-        authenticated={authenticated}
-        setPermissions={setPermissions}
-      >
-        {children}
-      </PermissionsWrapper>
+      {children}
     </ConnectedXMClientContext.Provider>
   );
 };

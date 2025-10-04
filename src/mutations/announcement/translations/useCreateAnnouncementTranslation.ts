@@ -72,8 +72,5 @@ export const useCreateAnnouncementTranslation = (
   return useConnectedMutation<
     CreateAnnouncementTranslationParams,
     Awaited<ReturnType<typeof CreateAnnouncementTranslation>>
-  >(CreateAnnouncementTranslation, options, {
-    domain: "announcements",
-    type: "update",
-  });
+  >(CreateAnnouncementTranslation, options);
 };

@@ -65,8 +65,5 @@ export const useDeleteEventSectionTranslation = (
   return useConnectedMutation<
     DeleteEventSectionTranslationParams,
     Awaited<ReturnType<typeof DeleteEventSectionTranslation>>
-  >(DeleteEventSectionTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventSectionTranslation, options);
 };

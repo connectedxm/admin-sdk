@@ -62,8 +62,5 @@ export const useUpdateThreadMember = (
   return useConnectedMutation<
     UpdateThreadMemberParams,
     Awaited<ReturnType<typeof UpdateThreadMember>>
-  >(UpdateThreadMember, options, {
-    domain: "threads",
-    type: "update",
-  });
+  >(UpdateThreadMember, options);
 };

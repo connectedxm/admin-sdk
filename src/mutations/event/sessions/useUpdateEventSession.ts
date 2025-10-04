@@ -77,8 +77,5 @@ export const useUpdateEventSession = (
   return useConnectedMutation<
     UpdateEventSessionParams,
     Awaited<ReturnType<typeof UpdateEventSession>>
-  >(UpdateEventSession, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventSession, options);
 };

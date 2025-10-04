@@ -92,7 +92,6 @@ export const useGetEventActivationCompletion = (
         !!activationId &&
         !!completionId &&
         (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

@@ -51,8 +51,5 @@ export const useDeleteSeries = (
   return useConnectedMutation<
     DeleteSeriesParams,
     Awaited<ReturnType<typeof DeleteSeries>>
-  >(DeleteSeries, options, {
-    domain: "events",
-    type: "del",
-  });
+  >(DeleteSeries, options);
 };

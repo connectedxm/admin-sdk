@@ -93,7 +93,6 @@ export const useGetOrganizationSystemLogs = (
     (params: InfiniteQueryParams) =>
       GetOrganizationSystemLogs({ ...params, status, trigger }),
     params,
-    options,
-    "org"
+    options
   );
 };

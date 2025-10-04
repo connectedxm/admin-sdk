@@ -72,7 +72,6 @@ export const useGetAccountInvitations = (
     ACCOUNT_INVITATIONS_QUERY_KEY(),
     (params: InfiniteQueryParams) => GetAccountInvitations({ ...params }),
     params,
-    options,
-    "accounts"
+    options
   );
 };

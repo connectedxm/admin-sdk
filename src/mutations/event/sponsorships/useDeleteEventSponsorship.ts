@@ -61,8 +61,5 @@ export const useDeleteEventSponsorship = (
   return useConnectedMutation<
     DeleteEventSponsorshipParams,
     Awaited<ReturnType<typeof DeleteEventSponsorship>>
-  >(DeleteEventSponsorship, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventSponsorship, options);
 };

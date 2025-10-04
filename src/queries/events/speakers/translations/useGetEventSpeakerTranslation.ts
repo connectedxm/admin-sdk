@@ -86,7 +86,6 @@ export const useGetEventSpeakerTranslation = (
         !!locale &&
         locale !== "en" &&
         (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

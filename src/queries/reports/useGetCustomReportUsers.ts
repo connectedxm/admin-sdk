@@ -63,7 +63,6 @@ export const useGetCustomReportUsers = (
     {
       ...options,
       enabled: !!reportId && (options?.enabled ?? true),
-    },
-    "reports"
+    }
   );
 };

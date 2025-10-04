@@ -88,7 +88,6 @@ export const useGetEventQuestionTranslation = (
         !!locale &&
         locale !== "en" &&
         (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

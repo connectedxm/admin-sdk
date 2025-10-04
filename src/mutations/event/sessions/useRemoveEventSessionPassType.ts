@@ -59,8 +59,5 @@ export const useRemoveEventSessionPassType = (
   return useConnectedMutation<
     RemoveEventSessionPassTypeParams,
     Awaited<ReturnType<typeof RemoveEventSessionPassType>>
-  >(RemoveEventSessionPassType, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventSessionPassType, options);
 };

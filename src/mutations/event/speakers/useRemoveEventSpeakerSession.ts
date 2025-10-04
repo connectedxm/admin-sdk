@@ -62,8 +62,5 @@ export const useRemoveEventSpeakerSession = (
   return useConnectedMutation<
     RemoveEventSpeakerSessionParams,
     Awaited<ReturnType<typeof RemoveEventSpeakerSession>>
-  >(RemoveEventSpeakerSession, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventSpeakerSession, options);
 };

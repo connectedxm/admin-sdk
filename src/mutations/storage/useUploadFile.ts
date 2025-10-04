@@ -54,8 +54,5 @@ export const useUploadFile = (
   return useConnectedMutation<
     UploadFileParams,
     Awaited<ReturnType<typeof UploadFile>>
-  >(UploadFile, options, {
-    domain: "storage",
-    type: "update",
-  });
+  >(UploadFile, options);
 };

@@ -83,7 +83,6 @@ export const useGetEventThreads = (
     {
       ...options,
       enabled: !!eventId && (options.enabled ?? true),
-    },
-    ["events", "threads"]
+    }
   );
 };

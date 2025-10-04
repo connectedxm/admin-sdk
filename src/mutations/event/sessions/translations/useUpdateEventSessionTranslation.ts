@@ -72,8 +72,5 @@ export const useUpdateEventSessionTranslation = (
   return useConnectedMutation<
     UpdateEventSessionTranslationParams,
     Awaited<ReturnType<typeof UpdateEventSessionTranslation>>
-  >(UpdateEventSessionTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventSessionTranslation, options);
 };

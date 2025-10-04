@@ -63,8 +63,5 @@ export const useCreateEventActivationCompletion = (
   return useConnectedMutation<
     CreateEventActivationCompletionParams,
     Awaited<ReturnType<typeof CreateEventActivationCompletion>>
-  >(CreateEventActivationCompletion, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventActivationCompletion, options);
 };

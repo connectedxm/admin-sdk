@@ -90,7 +90,6 @@ export const useGetEventSessionTracks = (
     {
       ...options,
       enabled: !!eventId && !!sessionId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

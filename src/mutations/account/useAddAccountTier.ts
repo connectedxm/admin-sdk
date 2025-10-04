@@ -62,10 +62,7 @@ export const useAddAccountTier = (
   return useConnectedMutation<
     AddAccountTierParams,
     Awaited<ReturnType<typeof AddAccountTier>>
-  >(AddAccountTier, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(AddAccountTier, options);
 };
 
 export default useAddAccountTier;

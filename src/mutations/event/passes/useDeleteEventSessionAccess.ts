@@ -66,8 +66,5 @@ export const useDeleteEventSessionAccess = (
   return useConnectedMutation<
     DeleteEventSessionAccessParams,
     Awaited<ReturnType<typeof DeleteEventSessionAccess>>
-  >(DeleteEventSessionAccess, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventSessionAccess, options);
 };

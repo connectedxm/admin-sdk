@@ -69,8 +69,5 @@ export const useCreateEventSponsorship = (
   return useConnectedMutation<
     CreateEventSponsorshipParams,
     Awaited<ReturnType<typeof CreateEventSponsorship>>
-  >(CreateEventSponsorship, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventSponsorship, options);
 };

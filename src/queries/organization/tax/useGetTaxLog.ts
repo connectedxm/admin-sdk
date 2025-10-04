@@ -66,7 +66,6 @@ export const useGetTaxLog = (
     {
       ...options,
       enabled: !!type && !!logId && (options.enabled ?? true),
-    },
-    "org"
+    }
   );
 };

@@ -69,8 +69,5 @@ export const useDeleteEventReservation = (
   return useConnectedMutation<
     DeleteEventReservationParams,
     Awaited<ReturnType<typeof DeleteEventReservation>>
-  >(DeleteEventReservation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventReservation, options);
 };

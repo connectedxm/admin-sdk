@@ -60,7 +60,6 @@ export const useGetSeries = (
     {
       ...options,
       enabled: !!seriesId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

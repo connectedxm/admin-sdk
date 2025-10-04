@@ -58,8 +58,5 @@ export const useRemoveLoginAccount = (
   return useConnectedMutation<
     RemoveLoginAccountParams,
     Awaited<ReturnType<typeof RemoveLoginAccount>>
-  >(RemoveLoginAccount, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(RemoveLoginAccount, options);
 };

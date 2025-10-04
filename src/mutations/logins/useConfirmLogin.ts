@@ -56,8 +56,5 @@ export const useConfirmLogin = (
   return useConnectedMutation<
     ConfirmLoginParams,
     Awaited<ReturnType<typeof ConfirmLogin>>
-  >(ConfirmLogin, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(ConfirmLogin, options);
 };

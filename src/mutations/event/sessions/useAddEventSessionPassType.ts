@@ -59,8 +59,5 @@ export const useAddEventSessionPassType = (
   return useConnectedMutation<
     AddEventSessionPassTypeParams,
     Awaited<ReturnType<typeof AddEventSessionPassType>>
-  >(AddEventSessionPassType, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventSessionPassType, options);
 };

@@ -63,8 +63,5 @@ export const useCreateStreamInputOutput = (
   return useConnectedMutation<
     CreateStreamInputOutputParams,
     Awaited<ReturnType<typeof CreateStreamInputOutput>>
-  >(CreateStreamInputOutput, options, {
-    domain: "streams",
-    type: "create",
-  });
+  >(CreateStreamInputOutput, options);
 };

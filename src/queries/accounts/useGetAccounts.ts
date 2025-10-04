@@ -83,7 +83,6 @@ export const useGetAccounts = (
     (params: InfiniteQueryParams) =>
       GetAccounts({ ...params, verified, online }),
     params,
-    options,
-    "accounts"
+    options
   );
 };

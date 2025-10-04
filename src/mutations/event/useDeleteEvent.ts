@@ -51,8 +51,5 @@ export const useDeleteEvent = (
   return useConnectedMutation<
     DeleteEventParams,
     Awaited<ReturnType<typeof DeleteEvent>>
-  >(DeleteEvent, options, {
-    domain: "events",
-    type: "del",
-  });
+  >(DeleteEvent, options);
 };

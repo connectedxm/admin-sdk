@@ -63,7 +63,6 @@ export const useGetOrganizationSystemLog = (
     ORGANIZATION_SYSTEM_LOG_QUERY_KEY(logId),
     (params: SingleQueryParams) =>
       GetOrganizationSystemLog({ ...params, logId }),
-    options,
-    "org"
+    options
   );
 };

@@ -95,7 +95,6 @@ export const useGetEventEmailTranslations = (
     {
       ...options,
       enabled: !!eventId && !!type && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

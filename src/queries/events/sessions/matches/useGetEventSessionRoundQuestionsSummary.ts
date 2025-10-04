@@ -92,7 +92,6 @@ export const useGetEventSessionRoundQuestionsSummary = (
       ...options,
       enabled:
         !!eventId && !!sessionId && !!roundId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

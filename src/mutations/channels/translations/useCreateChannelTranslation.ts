@@ -71,8 +71,5 @@ export const useCreateChannelTranslation = (
   return useConnectedMutation<
     CreateChannelTranslationParams,
     Awaited<ReturnType<typeof CreateChannelTranslation>>
-  >(CreateChannelTranslation, options, {
-    domain: "channels",
-    type: "update",
-  });
+  >(CreateChannelTranslation, options);
 };

@@ -65,7 +65,6 @@ export const useGetEventAttendee = (
     {
       ...options,
       enabled: !!eventId && !!accountId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

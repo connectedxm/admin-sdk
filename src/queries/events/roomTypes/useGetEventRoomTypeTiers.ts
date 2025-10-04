@@ -104,7 +104,6 @@ export const useGetEventRoomTypeTiers = (
         !!eventId &&
         !!roomTypeId &&
         (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

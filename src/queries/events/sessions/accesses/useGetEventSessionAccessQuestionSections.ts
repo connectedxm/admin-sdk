@@ -100,7 +100,6 @@ export const useGetEventSessionAccessQuestionSections = (
       ...options,
       enabled:
         !!eventId && !!sessionId && !!passId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

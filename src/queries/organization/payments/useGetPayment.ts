@@ -66,7 +66,6 @@ export const useGetPayment = (
     {
       ...options,
       enabled: !!paymentId && (options.enabled ?? true),
-    },
-    "org"
+    }
   );
 };

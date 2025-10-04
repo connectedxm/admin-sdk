@@ -61,7 +61,6 @@ export const useGetAnnouncement = (
     {
       ...options,
       enabled: !!announcementId && (options?.enabled ?? true),
-    },
-    "announcements"
+    }
   );
 };

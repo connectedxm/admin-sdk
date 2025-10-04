@@ -64,7 +64,6 @@ export const useGetOrganizationTeamMember = (
     {
       ...options,
       enabled: !!teamMemberId && (options?.enabled ?? true),
-    },
-    "org"
+    }
   );
 };

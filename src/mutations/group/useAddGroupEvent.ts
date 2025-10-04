@@ -55,8 +55,5 @@ export const useAddGroupEvent = (
   return useConnectedMutation<
     AddGroupEventParams,
     Awaited<ReturnType<typeof AddGroupEvent>>
-  >(AddGroupEvent, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(AddGroupEvent, options);
 };

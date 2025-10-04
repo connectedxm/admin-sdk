@@ -75,8 +75,5 @@ export const useCreateEventPassTypeTranslation = (
   return useConnectedMutation<
     CreateEventPassTypeTranslationParams,
     Awaited<ReturnType<typeof CreateEventPassTypeTranslation>>
-  >(CreateEventPassTypeTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(CreateEventPassTypeTranslation, options);
 };

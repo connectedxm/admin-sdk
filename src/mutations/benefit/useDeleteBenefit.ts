@@ -52,8 +52,5 @@ export const useDeleteBenefit = (
   return useConnectedMutation<
     DeleteBenefitParams,
     Awaited<ReturnType<typeof DeleteBenefit>>
-  >(DeleteBenefit, options, {
-    domain: "benefits",
-    type: "del",
-  });
+  >(DeleteBenefit, options);
 };

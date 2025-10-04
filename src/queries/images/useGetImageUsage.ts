@@ -73,7 +73,6 @@ export const useGetImageUsage = (
     {
       ...options,
       enabled: !!imageId && (options?.enabled ?? true),
-    },
-    "storage"
+    }
   );
 };

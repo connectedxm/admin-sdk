@@ -56,8 +56,5 @@ export const useUpdateActivitySchedule = (
   return useConnectedMutation<
     UpdateActivityScheduleParams,
     Awaited<ReturnType<typeof UpdateActivitySchedule>>
-  >(UpdateActivitySchedule, options, {
-    domain: "activities",
-    type: "update",
-  });
+  >(UpdateActivitySchedule, options);
 };

@@ -76,8 +76,5 @@ export const useUpdateEventPackagePass = (
   return useConnectedMutation<
     UpdateEventPackagePassParams,
     Awaited<ReturnType<typeof UpdateEventPackagePass>>
-  >(UpdateEventPackagePass, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventPackagePass, options);
 };

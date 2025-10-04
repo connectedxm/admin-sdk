@@ -59,7 +59,6 @@ export const useGetEventRounds = (
     {
       ...options,
       enabled: !!eventId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

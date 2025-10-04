@@ -95,7 +95,6 @@ export const useGetEventSessionPassTypes = (
     {
       ...options,
       enabled: !!eventId && !!sessionId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

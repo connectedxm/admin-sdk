@@ -56,8 +56,5 @@ export const useDeleteSupportTicket = (
   return useConnectedMutation<
     DeleteSupportTicketParams,
     Awaited<ReturnType<typeof DeleteSupportTicket>>
-  >(DeleteSupportTicket, options, {
-    domain: "support",
-    type: "update",
-  });
+  >(DeleteSupportTicket, options);
 };

@@ -60,8 +60,5 @@ export const useRemoveEventTrackSponsor = (
   return useConnectedMutation<
     RemoveEventTrackSponsorParams,
     Awaited<ReturnType<typeof RemoveEventTrackSponsor>>
-  >(RemoveEventTrackSponsor, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventTrackSponsor, options);
 };

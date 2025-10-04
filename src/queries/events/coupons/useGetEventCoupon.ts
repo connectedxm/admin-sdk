@@ -64,7 +64,6 @@ export const useGetEventCoupon = (
     {
       ...options,
       enabled: !!eventId && !!couponId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

@@ -113,7 +113,6 @@ export const useGetSurveySubmissionResponseChanges = (
         !!questionId &&
         !!submissionId &&
         (options.enabled ?? true),
-    },
-    "surveys"
+    }
   );
 };

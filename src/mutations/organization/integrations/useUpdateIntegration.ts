@@ -60,8 +60,5 @@ export const useUpdateIntegration = (
   return useConnectedMutation<
     UpdateIntegrationParams,
     Awaited<ReturnType<typeof UpdateIntegration>>
-  >(UpdateIntegration, options, {
-    domain: "org",
-    type: "update",
-  });
+  >(UpdateIntegration, options);
 };

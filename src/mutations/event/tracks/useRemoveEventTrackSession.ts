@@ -60,8 +60,5 @@ export const useRemoveEventTrackSession = (
   return useConnectedMutation<
     RemoveEventTrackSessionParams,
     Awaited<ReturnType<typeof RemoveEventTrackSession>>
-  >(RemoveEventTrackSession, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventTrackSession, options);
 };

@@ -1,9 +1,8 @@
 import { QueryKey, useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { useConnectedXM } from "../hooks";
 import { AxiosError } from "axios";
-import { ConnectedXMResponse, PermissionDomain } from "..";
+import { ConnectedXMResponse } from "..";
 import { AdminApiParams } from "@src/AdminAPI";
-import usePermission from "@src/utilities/usePermission";
 
 export interface SingleQueryParams {
   adminApiParams: AdminApiParams;
@@ -25,8 +24,7 @@ export interface SingleQueryOptions<TQueryData = unknown>
 export const useConnectedSingleQuery = <TQueryData = unknown>(
   queryKeys: QueryKey,
   queryFn: (params: SingleQueryParams) => TQueryData,
-  options: SingleQueryOptions<TQueryData> = {},
-  domain?: PermissionDomain | PermissionDomain[]
+  options: SingleQueryOptions<TQueryData> = {}
 ) => {
   const {
     onModuleForbidden,
@@ -37,8 +35,6 @@ export const useConnectedSingleQuery = <TQueryData = unknown>(
     getToken,
     getExecuteAs,
   } = useConnectedXM();
-
-  const { allowed } = usePermission(domain, domain ? "read" : undefined);
 
   // prettier-ignore
   return useQuery<
@@ -84,6 +80,5 @@ export const useConnectedSingleQuery = <TQueryData = unknown>(
           getExecuteAs,
         },
       }),
-    enabled: (!domain || allowed) && options.enabled,
   });
 };

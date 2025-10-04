@@ -88,7 +88,6 @@ export const useGetCustomModuleTranslations = (
     (params: InfiniteQueryParams) =>
       GetCustomModuleTranslations({ moduleId, ...params }),
     params,
-    options,
-    "org"
+    options
   );
 };

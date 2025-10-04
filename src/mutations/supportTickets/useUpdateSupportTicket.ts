@@ -59,8 +59,5 @@ export const useUpdateSupportTicket = (
   return useConnectedMutation<
     UpdateSupportTicketParams,
     Awaited<ReturnType<typeof UpdateSupportTicket>>
-  >(UpdateSupportTicket, options, {
-    domain: "support",
-    type: "update",
-  });
+  >(UpdateSupportTicket, options);
 };

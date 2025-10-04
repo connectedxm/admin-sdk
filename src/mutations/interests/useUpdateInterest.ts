@@ -66,8 +66,5 @@ export const useUpdateInterest = (
   return useConnectedMutation<
     UpdateInterestParams,
     Awaited<ReturnType<typeof UpdateInterest>>
-  >(UpdateInterest, options, {
-    domain: "interests",
-    type: "update",
-  });
+  >(UpdateInterest, options);
 };

@@ -69,8 +69,5 @@ export const useAddEventSessionLocationSession = (
   return useConnectedMutation<
     AddEventSessionLocationSessionParams,
     Awaited<ReturnType<typeof AddEventSessionLocationSession>>
-  >(AddEventSessionLocationSession, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventSessionLocationSession, options);
 };

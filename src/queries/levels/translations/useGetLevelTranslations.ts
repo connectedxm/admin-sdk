@@ -82,7 +82,6 @@ export const useGetLevelTranslations = (
     {
       ...options,
       enabled: !!levelId && (options.enabled ?? true),
-    },
-    "sponsors"
+    }
   );
 };

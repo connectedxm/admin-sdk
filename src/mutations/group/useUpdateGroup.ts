@@ -55,8 +55,5 @@ export const useUpdateGroup = (
   return useConnectedMutation<
     UpdateGroupParams,
     Awaited<ReturnType<typeof UpdateGroup>>
-  >(UpdateGroup, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(UpdateGroup, options);
 };

@@ -51,8 +51,5 @@ export const useDeleteThread = (
   return useConnectedMutation<
     DeleteThreadParams,
     Awaited<ReturnType<typeof DeleteThread>>
-  >(DeleteThread, options, {
-    domain: "threads",
-    type: "del",
-  });
+  >(DeleteThread, options);
 };

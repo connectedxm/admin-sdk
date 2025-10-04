@@ -76,7 +76,6 @@ export const useGetEventPageTranslation = (
     {
       ...options,
       enabled: !!eventId && !!pageId && !!locale && locale !== "en",
-    },
-    "events"
+    }
   );
 };

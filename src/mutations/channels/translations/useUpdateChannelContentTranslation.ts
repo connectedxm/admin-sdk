@@ -73,10 +73,7 @@ export const useUpdateChannelContentTranslation = (
   return useConnectedMutation<
     UpdateChannelContentTranslationParams,
     Awaited<ReturnType<typeof UpdateChannelContentTranslation>>
-  >(UpdateChannelContentTranslation, options, {
-    domain: "channels",
-    type: "update",
-  });
+  >(UpdateChannelContentTranslation, options);
 };
 
 export default useUpdateChannelContentTranslation;

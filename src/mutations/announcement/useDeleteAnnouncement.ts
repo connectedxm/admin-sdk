@@ -53,8 +53,5 @@ export const useDeleteAnnouncement = (
   return useConnectedMutation<
     DeleteAnnouncementParams,
     Awaited<ReturnType<typeof DeleteAnnouncement>>
-  >(DeleteAnnouncement, options, {
-    domain: "announcements",
-    type: "del",
-  });
+  >(DeleteAnnouncement, options);
 };

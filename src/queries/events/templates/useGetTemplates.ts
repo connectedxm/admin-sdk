@@ -65,7 +65,6 @@ export const useGetTemplates = (
     EVENT_TEMPLATES_QUERY_KEY(),
     (queryParams: InfiniteQueryParams) => GetTemplates(queryParams),
     params,
-    options,
-    "events"
+    options
   );
 };

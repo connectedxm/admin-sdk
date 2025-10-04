@@ -51,8 +51,5 @@ export const useDeleteTier = (
   return useConnectedMutation<
     DeleteTierParams,
     Awaited<ReturnType<typeof DeleteTier>>
-  >(DeleteTier, options, {
-    domain: "accounts",
-    type: "del",
-  });
+  >(DeleteTier, options);
 };

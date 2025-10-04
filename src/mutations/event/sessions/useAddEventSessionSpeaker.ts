@@ -62,8 +62,5 @@ export const useAddEventSessionSpeaker = (
   return useConnectedMutation<
     AddEventSessionSpeakerParams,
     Awaited<ReturnType<typeof AddEventSessionSpeaker>>
-  >(AddEventSessionSpeaker, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventSessionSpeaker, options);
 };

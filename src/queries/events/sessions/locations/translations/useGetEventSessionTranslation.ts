@@ -88,7 +88,6 @@ export const useGetEventSessionLocationTranslation = (
     {
       ...options,
       enabled: !!eventId && !!locale && locale !== "en",
-    },
-    "events"
+    }
   );
 };

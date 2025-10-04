@@ -59,8 +59,5 @@ export const useDeleteAccountLead = (
   return useConnectedMutation<
     DeleteAccountLeadParams,
     Awaited<ReturnType<typeof DeleteAccountLead>>
-  >(DeleteAccountLead, options, {
-    domain: "accounts",
-    type: "update",
-  });
+  >(DeleteAccountLead, options);
 };

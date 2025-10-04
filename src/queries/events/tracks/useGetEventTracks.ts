@@ -80,7 +80,6 @@ export const useGetEventTracks = (
     {
       ...options,
       enabled: !!eventId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

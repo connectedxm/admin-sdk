@@ -77,8 +77,5 @@ export const useRemoveEventMatchPass = (
   return useConnectedMutation<
     RemoveEventMatchPassParams,
     Awaited<ReturnType<typeof RemoveEventMatchPass>>
-  >(RemoveEventMatchPass, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(RemoveEventMatchPass, options);
 };

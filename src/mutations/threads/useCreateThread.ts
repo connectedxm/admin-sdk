@@ -81,8 +81,5 @@ export const useCreateThread = (
   return useConnectedMutation<
     CreateThreadParams,
     Awaited<ReturnType<typeof CreateThread>>
-  >(CreateThread, options, {
-    domain: "threads",
-    type: "create",
-  });
+  >(CreateThread, options);
 };

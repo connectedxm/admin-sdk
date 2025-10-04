@@ -53,8 +53,5 @@ export const useDeleteAccountInvitation = (
   return useConnectedMutation<
     DeleteAccountInvitationParams,
     Awaited<ReturnType<typeof DeleteAccountInvitation>>
-  >(DeleteAccountInvitation, options, {
-    domain: "accounts",
-    type: "del",
-  });
+  >(DeleteAccountInvitation, options);
 };

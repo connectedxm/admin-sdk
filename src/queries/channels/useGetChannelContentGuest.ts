@@ -79,7 +79,6 @@ export const useGetChannelContentGuest = (
       ...options,
       enabled:
         !!channelId && !!contentId && !!guestId && (options.enabled ?? true),
-    },
-    "channels"
+    }
   );
 };

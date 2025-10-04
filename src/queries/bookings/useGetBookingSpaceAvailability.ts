@@ -91,7 +91,6 @@ export const useGetBookingSpaceAvailability = (
         !!spaceId &&
         !!availabilityId &&
         (options?.enabled ?? true),
-    },
-    "bookings"
+    }
   );
 };

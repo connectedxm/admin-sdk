@@ -54,10 +54,7 @@ export const useDeleteGroupRequest = (
   return useConnectedMutation<
     DeleteGroupRequestParams,
     Awaited<ReturnType<typeof DeleteGroupRequest>>
-  >(DeleteGroupRequest, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(DeleteGroupRequest, options);
 };
 
 export default useDeleteGroupRequest;

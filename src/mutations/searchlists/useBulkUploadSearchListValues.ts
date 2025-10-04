@@ -34,14 +34,14 @@ export const BulkUploadSearchListValues = async ({
   >(`/searchlists/${searchListId}/values/bulk`, {
     values,
   });
-  
+
   if (queryClient && data.status === "ok") {
     // Invalidate the searchlist values query to refresh the data
     queryClient.invalidateQueries({
       queryKey: SEARCHLIST_VALUES_QUERY_KEY(searchListId),
     });
   }
-  
+
   return data;
 };
 
@@ -61,8 +61,5 @@ export const useBulkUploadSearchListValues = (
   return useConnectedMutation<
     BulkUploadSearchListValuesParams,
     Awaited<ReturnType<typeof BulkUploadSearchListValues>>
-  >(BulkUploadSearchListValues, options, {
-    domain: "events",
-    type: "create",
-  });
+  >(BulkUploadSearchListValues, options);
 };

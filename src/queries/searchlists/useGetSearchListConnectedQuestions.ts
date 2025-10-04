@@ -95,7 +95,6 @@ export const useGetSearchListConnectedQuestions = (
     {
       ...options,
       enabled: !!searchListId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

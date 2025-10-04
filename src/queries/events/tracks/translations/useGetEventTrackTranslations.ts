@@ -95,7 +95,6 @@ export const useGetEventTrackTranslations = (
     {
       ...options,
       enabled: !!eventId && !!trackId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

@@ -91,7 +91,6 @@ export const useGetEventCouponPasses = (
     {
       ...options,
       enabled: !!eventId && !!couponId && (options.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

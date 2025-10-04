@@ -54,10 +54,7 @@ export const useDeleteGroupInvitation = (
   return useConnectedMutation<
     DeleteGroupInvitationParams,
     Awaited<ReturnType<typeof DeleteGroupInvitation>>
-  >(DeleteGroupInvitation, options, {
-    domain: "groups",
-    type: "update",
-  });
+  >(DeleteGroupInvitation, options);
 };
 
 export default useDeleteGroupInvitation;

@@ -40,7 +40,11 @@ export const DeleteEventFollowupTranslation = async ({
       queryKey: EVENT_FOLLOWUP_TRANSLATIONS_QUERY_KEY(eventId, followupId),
     });
     queryClient.invalidateQueries({
-      queryKey: EVENT_FOLLOWUP_TRANSLATION_QUERY_KEY(eventId, followupId, locale),
+      queryKey: EVENT_FOLLOWUP_TRANSLATION_QUERY_KEY(
+        eventId,
+        followupId,
+        locale
+      ),
     });
   }
   return data;
@@ -65,8 +69,5 @@ export const useDeleteEventFollowupTranslation = (
   return useConnectedMutation<
     DeleteEventFollowupTranslationParams,
     Awaited<ReturnType<typeof DeleteEventFollowupTranslation>>
-  >(DeleteEventFollowupTranslation, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(DeleteEventFollowupTranslation, options);
 };

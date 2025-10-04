@@ -61,8 +61,5 @@ export const useUpdateEventEmail = (
   return useConnectedMutation<
     UpdateEventEmailParams,
     Awaited<ReturnType<typeof UpdateEventEmail>>
-  >(UpdateEventEmail, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(UpdateEventEmail, options);
 };

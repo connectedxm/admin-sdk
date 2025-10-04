@@ -82,7 +82,6 @@ export const useGetEventPayments = (
     {
       ...options,
       enabled: !!eventId && (options?.enabled ?? true),
-    },
-    "events"
+    }
   );
 };

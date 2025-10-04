@@ -62,8 +62,5 @@ export const useAddEventFollowupPassType = (
   return useConnectedMutation<
     AddEventFollowupPassTypeParams,
     Awaited<ReturnType<typeof AddEventFollowupPassType>>
-  >(AddEventFollowupPassType, options, {
-    domain: "events",
-    type: "update",
-  });
+  >(AddEventFollowupPassType, options);
 };

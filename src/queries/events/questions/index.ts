@@ -1,4 +1,5 @@
 export * from "./translations";
+export * from "./useGetEventDashboardQuestions";
 export * from "./useGetEventQuestion";
 export * from "./useGetEventQuestionChoice";
 export * from "./useGetEventQuestionChoiceSubQuestions";

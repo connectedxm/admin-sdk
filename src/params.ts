@@ -1703,6 +1703,7 @@ export interface PassTypeCreateInputs {
   taxCode?: string | null;
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
+  requiredTicketId?: string | null;
 }
 
 export interface PassTypeUpdateInputs {
@@ -1730,6 +1731,7 @@ export interface PassTypeUpdateInputs {
   taxCode?: string | null;
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
+  requiredTicketId?: string | null;
 }
 
 export interface TierCreateInputs {

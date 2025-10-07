@@ -2919,6 +2919,8 @@ export interface BaseEventPassType {
   taxCode: string | null;
   taxIncluded: boolean;
   taxLocation: TaxLocationType;
+  requiredTicketId: string | null;
+  prerequisiteTicket: BaseEventPassType | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -2956,8 +2958,10 @@ export interface EventPassType extends BaseEventPassType {
   event: BaseEvent;
   allowedTiers: BaseTier[];
   disallowedTiers: BaseTier[];
+  dependentTickets: BaseEventPassType[];
   _count: {
     purchases: number;
+    dependentTickets: number;
   };
 }
 

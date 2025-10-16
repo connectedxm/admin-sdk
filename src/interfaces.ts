@@ -242,6 +242,35 @@ export enum SessionAccess {
   private = "PRIVATE",
 }
 
+export interface BaseAccountAttribute {
+  id: string;
+  name: string;
+  label: string;
+  type: "text" | "number" | "date" | "boolean";
+  description: string | null;
+  required: boolean;
+  adminOnly: boolean;
+  editable: boolean;
+  sortOrder: number;
+}
+
+export interface AccountAttribute extends BaseAccountAttribute {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseAccountAttributeValue {
+  id: string;
+  attributeId: string;
+  attribute: BaseAccountAttribute;
+  value: string;
+}
+
+export interface AccountAttributeValue extends BaseAccountAttributeValue {
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface BaseAccount {
   organizationId: string;
   id: string;
@@ -265,6 +294,7 @@ export interface BaseAccount {
       tiers: BaseTier[];
     };
   }[];
+  attributes?: AccountAttributeValue[];
   createdAt: string;
 }
 
@@ -286,6 +316,7 @@ export interface Account extends BaseAccount {
   youtube: string | null;
   dietaryRestrictions: string | null;
   taxEntityUseCode: string | null;
+  attributes?: AccountAttributeValue[];
   updatedAt: string;
 }
 

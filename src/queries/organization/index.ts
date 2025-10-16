@@ -4,6 +4,8 @@ export * from "./payments";
 export * from "./sideEffects";
 export * from "./tax";
 export * from "./useGetOrganization";
+export * from "./useGetOrganizationAccountAttribute";
+export * from "./useGetOrganizationAccountAttributes";
 export * from "./useGetOrganizationDomain";
 export * from "./useGetOrganizationMembership";
 export * from "./useGetOrganizationPaymentIntegration";

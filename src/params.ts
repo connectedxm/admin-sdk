@@ -70,6 +70,7 @@ export interface AccountCreateInputs {
   verified?: boolean;
   locale?: string | null;
   taxEntityUseCode?: string | null;
+  attributes?: Record<string, string> | null;
 }
 
 export interface AccountUpdateInputs {
@@ -100,6 +101,7 @@ export interface AccountUpdateInputs {
   verified?: boolean;
   locale?: string | null;
   taxEntityUseCode?: string | null;
+  attributes?: Record<string, string> | null;
 }
 
 export interface AccountAddressCreateInputs {
@@ -2429,6 +2431,26 @@ export interface EventAttendeePackageUpdateInputs {
   packageId?: string;
   status?: PurchaseStatus;
 }
+export interface AccountAttributeCreateInputs {
+  name: string;
+  label: string;
+  type: "text" | "number" | "date" | "boolean";
+  description?: string | null;
+  required?: boolean;
+  adminOnly?: boolean;
+  editable?: boolean;
+  sortOrder?: number | string | null;
+}
+
+export interface AccountAttributeUpdateInputs {
+  label?: string | null;
+  description?: string | null;
+  required?: boolean;
+  adminOnly?: boolean;
+  editable?: boolean;
+  sortOrder?: number | string | null;
+}
+
 export interface WebhookCreateInputs {
   name?: string | null;
   url: string;

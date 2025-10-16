@@ -767,10 +767,12 @@ export interface BaseChannel {
   image: BaseImage;
   bannerId: string | null;
   banner: BaseImage | null;
-  subscriberCount: number;
+  _count: {
+    subscribers: number;
+  };
 }
 
-export interface Channel extends BaseChannel {
+export interface Channel extends Omit<BaseChannel, "_count"> {
   externalUrl: string | null;
   appleUrl: string | null;
   spotifyUrl: string | null;
@@ -781,6 +783,7 @@ export interface Channel extends BaseChannel {
   createdAt: string;
   updatedAt: string;
   _count: {
+    subscribers: number;
     contents: number;
   };
 }

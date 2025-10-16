@@ -1264,7 +1264,7 @@ export interface GroupMembership extends BaseGroupMembership {
   announcementEmailNotification: boolean;
   announcementPushNotification: boolean;
   activityEmailNotification: boolean;
-  activityPushPreference: ActivityPreference;
+  activityPushNotification: ActivityPreference;
   eventEmailNotification: boolean;
   eventPushNotification: boolean;
   updatedAt: string;

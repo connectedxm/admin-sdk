@@ -1254,11 +1254,17 @@ export interface BaseGroupMembership {
   createdAt: string;
 }
 
+export enum ActivityPreference {
+  all = "all",
+  featured = "featured",
+  none = "none",
+}
+
 export interface GroupMembership extends BaseGroupMembership {
   announcementEmailNotification: boolean;
   announcementPushNotification: boolean;
   activityEmailNotification: boolean;
-  activityPushNotification: boolean;
+  activityPushPreference: ActivityPreference;
   eventEmailNotification: boolean;
   eventPushNotification: boolean;
   updatedAt: string;

@@ -41,6 +41,7 @@ import {
   EventActivationType,
   TaxLocationType,
   LocationQuestionOption,
+  ActivityPreference
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -1071,7 +1072,7 @@ export interface GroupMembershipUpdateInputs {
   announcementEmailNotification?: boolean;
   announcementPushNotification?: boolean;
   activityEmailNotification?: boolean;
-  activityPushNotification?: boolean;
+  activityPushPreference?: ActivityPreference;
   eventEmailNotification?: boolean;
   eventPushNotification?: boolean;
   chatPushNotification?: boolean;

@@ -767,10 +767,12 @@ export interface BaseChannel {
   image: BaseImage;
   bannerId: string | null;
   banner: BaseImage | null;
-  subscriberCount: number;
+  _count: {
+    subscribers: number;
+  };
 }
 
-export interface Channel extends BaseChannel {
+export interface Channel extends Omit<BaseChannel, "_count"> {
   externalUrl: string | null;
   appleUrl: string | null;
   spotifyUrl: string | null;
@@ -781,6 +783,7 @@ export interface Channel extends BaseChannel {
   createdAt: string;
   updatedAt: string;
   _count: {
+    subscribers: number;
     contents: number;
   };
 }
@@ -2952,12 +2955,26 @@ export interface BaseEventPassType {
   minQuantityPerSale: number;
   maxQuantityPerSale: number;
   emailDomains: string | null;
+  enableCoupons: boolean;
+  minCouponQuantity: number;
+  maxCouponQuantity: number;
   requireCoupon: boolean;
   taxCode: string | null;
   taxIncluded: boolean;
   taxLocation: TaxLocationType;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface EventPassType extends BaseEventPassType {
+  overrideStartDate: string | null;
+  sortOrder: number;
+  event: BaseEvent;
+  allowedTiers: BaseTier[];
+  disallowedTiers: BaseTier[];
+  _count: {
+    purchases: number;
+  };
 }
 
 export interface BaseEventPassTypePriceSchedule {
@@ -2987,16 +3004,6 @@ export interface BaseEventPassTypeRefundSchedule {
 export interface EventPassTypeRefundSchedule
   extends BaseEventPassTypeRefundSchedule {}
 
-export interface EventPassType extends BaseEventPassType {
-  overrideStartDate: string | null;
-  sortOrder: number;
-  event: BaseEvent;
-  allowedTiers: BaseTier[];
-  disallowedTiers: BaseTier[];
-  _count: {
-    purchases: number;
-  };
-}
 
 export interface EventPassTypeTranslation {
   id: number;

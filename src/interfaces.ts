@@ -2955,12 +2955,26 @@ export interface BaseEventPassType {
   minQuantityPerSale: number;
   maxQuantityPerSale: number;
   emailDomains: string | null;
+  enableCoupons: boolean;
+  minCouponQuantity: number;
+  maxCouponQuantity: number | null;
   requireCoupon: boolean;
   taxCode: string | null;
   taxIncluded: boolean;
   taxLocation: TaxLocationType;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface EventPassType extends BaseEventPassType {
+  overrideStartDate: string | null;
+  sortOrder: number;
+  event: BaseEvent;
+  allowedTiers: BaseTier[];
+  disallowedTiers: BaseTier[];
+  _count: {
+    purchases: number;
+  };
 }
 
 export interface BaseEventPassTypePriceSchedule {
@@ -2989,17 +3003,6 @@ export interface BaseEventPassTypeRefundSchedule {
 
 export interface EventPassTypeRefundSchedule
   extends BaseEventPassTypeRefundSchedule {}
-
-export interface EventPassType extends BaseEventPassType {
-  overrideStartDate: string | null;
-  sortOrder: number;
-  event: BaseEvent;
-  allowedTiers: BaseTier[];
-  disallowedTiers: BaseTier[];
-  _count: {
-    purchases: number;
-  };
-}
 
 export interface EventPassTypeTranslation {
   id: number;

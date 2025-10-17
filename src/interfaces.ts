@@ -2957,7 +2957,7 @@ export interface BaseEventPassType {
   emailDomains: string | null;
   enableCoupons: boolean;
   minCouponQuantity: number;
-  maxCouponQuantity: number;
+  maxCouponQuantity: number | null;
   requireCoupon: boolean;
   taxCode: string | null;
   taxIncluded: boolean;
@@ -3003,7 +3003,6 @@ export interface BaseEventPassTypeRefundSchedule {
 
 export interface EventPassTypeRefundSchedule
   extends BaseEventPassTypeRefundSchedule {}
-
 
 export interface EventPassTypeTranslation {
   id: number;

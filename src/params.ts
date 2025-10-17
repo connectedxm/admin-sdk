@@ -1727,7 +1727,7 @@ export interface PassTypeUpdateInputs {
   emailDomains?: string | null; // Assuming the pattern validation is not directly translatable to TypeScript
   sortOrder?: number | string | null;
   enableCoupons?: boolean;
-  minCouponQuantity?: number | null;
+  minCouponQuantity?: number;
   maxCouponQuantity?: number | null;
   overrideStartDate?: string | null;
   requireCoupon?: boolean;

@@ -2441,6 +2441,7 @@ export interface AccountAttributeCreateInputs {
   required?: boolean;
   adminOnly?: boolean;
   editable?: boolean;
+  includedInDashboards?: boolean;
   sortOrder?: number | string | null;
 }
 
@@ -2450,6 +2451,7 @@ export interface AccountAttributeUpdateInputs {
   required?: boolean;
   adminOnly?: boolean;
   editable?: boolean;
+  includedInDashboards?: boolean;
   sortOrder?: number | string | null;
 }
 

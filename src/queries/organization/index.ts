@@ -19,4 +19,5 @@ export * from "./useGetOrganizationTeamMembers";
 export * from "./useGetOrganizationUsers";
 export * from "./useGetOrganizationWebhook";
 export * from "./useGetOrganizationWebhooks";
+export * from "./useGetRequiredAttributes";
 export * from "./useSearchOrganization";

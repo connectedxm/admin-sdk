@@ -13,6 +13,7 @@ export * from "./useDeleteGroupInvitation";
 export * from "./useDeleteGroupRequest";
 export * from "./useReinviteGroupInvitation";
 export * from "./useRejectGroupRequest";
+export * from "./useRemoveAllGroupMembers";
 export * from "./useRemoveGroupEvent";
 export * from "./useRemoveGroupInterest";
 export * from "./useRemoveGroupMember";

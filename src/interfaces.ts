@@ -251,6 +251,7 @@ export interface BaseAccountAttribute {
   required: boolean;
   adminOnly: boolean;
   editable: boolean;
+  includedInDashboards: boolean;
   sortOrder: number;
 }
 

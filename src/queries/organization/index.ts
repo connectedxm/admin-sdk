@@ -3,6 +3,7 @@ export * from "./modules";
 export * from "./payments";
 export * from "./sideEffects";
 export * from "./tax";
+export * from "./useGetDashboardAttributes";
 export * from "./useGetOrganization";
 export * from "./useGetOrganizationAccountAttribute";
 export * from "./useGetOrganizationAccountAttributes";

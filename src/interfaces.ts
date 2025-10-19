@@ -259,6 +259,9 @@ export interface BaseAccountAttribute {
 export interface AccountAttribute extends BaseAccountAttribute {
   createdAt: string;
   updatedAt: string;
+  _count: {
+    values: number;
+  };
 }
 
 export interface BaseAccountAttributeValue {

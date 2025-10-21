@@ -1259,8 +1259,6 @@ export interface OrganizationUpdateInputs {
   authLayout?: keyof typeof AuthLayout;
   emailAuthEnabled?: boolean;
   requirePhone?: boolean;
-  requireTitle?: boolean;
-  requireCompany?: boolean;
   requestInternalRefId?: boolean;
   internalRefIdName?: string | null;
   iosAppLink?: string | null;

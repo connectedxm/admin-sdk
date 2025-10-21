@@ -1690,9 +1690,7 @@ export interface Organization extends BaseOrganization {
   darkIcon: BaseImage | null;
   darkLogoId: string | null;
   darkLogo: BaseImage | null;
-  requireCompany: boolean;
   requirePhone: boolean;
-  requireTitle: boolean;
   requestInternalRefId: boolean;
   internalRefIdName: string | null;
   authLayout: AuthLayout;

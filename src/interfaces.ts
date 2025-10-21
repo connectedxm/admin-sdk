@@ -1555,10 +1555,8 @@ export interface LinkPreview extends BaseLinkPreview {}
 
 export interface NotificationPreferences {
   newFollowerPush: boolean;
-  newFollowerEmail: boolean;
   likePush: boolean;
   commentPush: boolean;
-  commentEmail: boolean;
   transferPush: boolean;
   transferEmail: boolean;
   supportTicketConfirmationEmail: boolean;

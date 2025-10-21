@@ -3506,8 +3506,6 @@ export interface BaseLead {
   id: string;
   firstName: string | null;
   lastName: string | null;
-  company: string | null;
-  title: string | null;
   shareAccount: {
     id: string;
     image: BaseImage;
@@ -3528,6 +3526,7 @@ export interface Lead extends BaseLead {
   twitter: string | null;
   tikTok: string | null;
   note: string | null;
+  attributes: { name: string; value: string }[];
   updatedAt: string;
 }
 

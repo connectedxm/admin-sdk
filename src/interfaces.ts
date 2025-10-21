@@ -308,8 +308,6 @@ export interface Account extends BaseAccount {
   banner: BaseImage | null;
   phone: string | null;
   interests: BaseInterest[];
-  title: string | null;
-  company: string | null;
   bio: string | null;
   website: string | null;
   facebook: string | null;

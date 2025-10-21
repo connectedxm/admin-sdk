@@ -52,8 +52,6 @@ export interface AccountCreateInputs {
   imageId?: string | null;
   bannerId?: string | null;
   phone?: string | null;
-  title?: string | null;
-  company?: string | null;
   bio?: string | null;
   website?: string | null;
   video?: string | null;
@@ -83,8 +81,6 @@ export interface AccountUpdateInputs {
   username?: string | null;
   email?: string | null;
   phone?: string | null;
-  title?: string | null;
-  company?: string | null;
   bio?: string | null;
   website?: string | null;
   video?: string | null;

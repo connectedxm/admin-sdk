@@ -2963,6 +2963,8 @@ export interface BaseEventPassType {
   taxLocation: TaxLocationType;
   createdAt: string;
   updatedAt: string;
+  requiredPassTypeId: string | null;
+  requiredPassType: BaseEventPassType | null;
 }
 
 export interface EventPassType extends BaseEventPassType {
@@ -2974,6 +2976,7 @@ export interface EventPassType extends BaseEventPassType {
   _count: {
     purchases: number;
   };
+  dependentPassTypes: BaseEventPassType[];
 }
 
 export interface BaseEventPassTypePriceSchedule {

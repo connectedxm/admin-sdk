@@ -1692,6 +1692,7 @@ export interface PassTypeCreateInputs {
   maxQuantityPerSale?: number | string | null;
   limitPerAccount?: number | string | null;
   emailDomains?: string | null; // Assuming the pattern validation is not directly translatable to TypeScript
+  requiredPassTypeId?: string | null;
   sortOrder?: number | string | null;
   enableCoupons?: boolean;
   overrideStartDate?: string | null;
@@ -1719,6 +1720,7 @@ export interface PassTypeUpdateInputs {
   maxQuantityPerSale?: number | string | null;
   limitPerAccount?: number | string | null;
   emailDomains?: string | null; // Assuming the pattern validation is not directly translatable to TypeScript
+  requiredPassTypeId?: string | null;
   sortOrder?: number | string | null;
   enableCoupons?: boolean;
   minCouponQuantity?: number;

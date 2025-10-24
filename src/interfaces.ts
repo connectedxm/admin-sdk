@@ -2964,7 +2964,6 @@ export interface BaseEventPassType {
   createdAt: string;
   updatedAt: string;
   requiredPassTypeId: string | null;
-  requiredPassType: BaseEventPassType | null;
 }
 
 export interface EventPassType extends BaseEventPassType {
@@ -2977,6 +2976,7 @@ export interface EventPassType extends BaseEventPassType {
     purchases: number;
   };
   dependentPassTypes: BaseEventPassType[];
+  requiredPassType: BaseEventPassType | null;
 }
 
 export interface BaseEventPassTypePriceSchedule {

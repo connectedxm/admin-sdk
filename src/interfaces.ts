@@ -308,8 +308,6 @@ export interface Account extends BaseAccount {
   banner: BaseImage | null;
   phone: string | null;
   interests: BaseInterest[];
-  title: string | null;
-  company: string | null;
   bio: string | null;
   website: string | null;
   facebook: string | null;
@@ -1692,9 +1690,7 @@ export interface Organization extends BaseOrganization {
   darkIcon: BaseImage | null;
   darkLogoId: string | null;
   darkLogo: BaseImage | null;
-  requireCompany: boolean;
   requirePhone: boolean;
-  requireTitle: boolean;
   requestInternalRefId: boolean;
   internalRefIdName: string | null;
   authLayout: AuthLayout;
@@ -2967,6 +2963,8 @@ export interface BaseEventPassType {
   taxLocation: TaxLocationType;
   createdAt: string;
   updatedAt: string;
+  requiredPassTypeId: string | null;
+  requiredPassType: BaseEventPassType | null;
 }
 
 export interface EventPassType extends BaseEventPassType {
@@ -2978,6 +2976,7 @@ export interface EventPassType extends BaseEventPassType {
   _count: {
     purchases: number;
   };
+  dependentPassTypes: BaseEventPassType[];
 }
 
 export interface BaseEventPassTypePriceSchedule {

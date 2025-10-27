@@ -2975,7 +2975,6 @@ export interface EventPassType extends BaseEventPassType {
   _count: {
     purchases: number;
   };
-  dependentPassTypes: BaseEventPassType[];
   requiredPassType: BaseEventPassType | null;
 }
 

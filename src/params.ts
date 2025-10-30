@@ -2474,3 +2474,310 @@ export interface RoundEventQuestionUpdataInputs {
 export interface RoundSessionQuestionUpdateInputs {
   type: keyof typeof MatchQuestionType;
 }
+
+// ============================================================================
+// StreamsV2 (Cloudflare Calls) Params
+// ============================================================================
+
+export interface MeetingCreateInputs {
+  title: string | null;
+  preferred_region?: string | null;
+  record_on_start?: boolean | null;
+  live_stream_on_start?: boolean | null;
+  persist_chat?: boolean;
+  summarize_on_end?: boolean;
+
+  // Recording config fields (flattened)
+  recording_max_seconds?: number;
+  recording_file_name_prefix?: string;
+  recording_video_codec?: "H264" | "VP8";
+  recording_video_width?: number;
+  recording_video_height?: number;
+  recording_video_watermark?: object;
+  recording_video_export_file?: boolean;
+  recording_audio_codec?: "MP3" | "AAC";
+  recording_audio_channel?: "mono" | "stereo";
+  recording_audio_export_file?: boolean;
+  storage_type?: "aws" | "azure" | "digitalocean" | "gcs" | "sftp";
+  storage_access_key?: string;
+  storage_secret?: string;
+  storage_bucket?: string;
+  storage_region?: string;
+  storage_path?: string;
+  storage_auth_method?: "KEY" | "PASSWORD";
+  storage_username?: string;
+  storage_password?: string;
+  storage_host?: string;
+  storage_port?: number;
+  storage_private_key?: string;
+
+  // Realtimekit bucket config
+  realtimekit_bucket_enabled?: boolean;
+
+  // Live streaming config
+  rtmp_url?: string;
+
+  // AI config fields (flattened)
+  transcription_keywords?: string[];
+  transcription_language?: string;
+  transcription_profanity_filter?: boolean;
+  summarization_word_limit?: number;
+  summarization_text_format?: "plain_text" | "markdown";
+  summarization_summary_type?: string;
+}
+
+export interface MeetingUpdateInputs {
+  title?: string | null;
+  preferred_region?: string | null;
+  record_on_start?: boolean;
+  live_stream_on_start?: boolean;
+  status?: "ACTIVE" | "INACTIVE";
+  persist_chat?: boolean;
+  summarize_on_end?: boolean;
+
+  // AI config fields (flattened)
+  transcription_keywords?: string[];
+  transcription_language?: string;
+  transcription_profanity_filter?: boolean;
+  summarization_word_limit?: number;
+  summarization_text_format?: "plain_text" | "markdown";
+  summarization_summary_type?: string;
+}
+
+export interface MeetingParticipantCreateInputs {
+  preset_name: string;
+  custom_participant_id: string;
+  name?: string | null;
+  picture?: string | null;
+}
+
+export interface MeetingParticipantUpdateInputs {
+  name?: string | null;
+  picture?: string | null;
+  preset_name?: string | null;
+}
+
+export interface MeetingRecordingCreateInputs {
+  max_seconds?: number;
+  file_name_prefix?: string;
+  allow_multiple_recordings?: boolean;
+
+  // Video config fields (flattened)
+  video_codec?: string;
+  video_width?: number;
+  video_height?: number;
+  video_export_file?: boolean;
+
+  // Watermark fields (flattened)
+  watermark_url?: string;
+  watermark_size_width?: number;
+  watermark_size_height?: number;
+  watermark_position?: string;
+
+  // Audio config fields (flattened)
+  audio_codec?: string;
+  audio_channel?: string;
+  audio_export_file?: boolean;
+
+  // Realtimekit bucket config
+  realtimekit_bucket_enabled?: boolean;
+
+  // Interactive config
+  interactive_type?: string;
+}
+
+export interface MeetingRecordingUpdateInputs {
+  action: "stop" | "pause" | "resume";
+}
+
+export interface MeetingPresetCreateInputs {
+  name: string;
+
+  // Config fields (flattened)
+  view_type?: "GROUP_CALL" | "WEBINAR" | "LIVESTREAM";
+  max_video_streams_mobile?: number;
+  max_video_streams_desktop?: number;
+  max_screenshare_count?: number;
+  audio_enable_stereo?: boolean;
+  audio_enable_high_bitrate?: boolean;
+  video_quality?: "sd" | "hd" | "fhd";
+  video_frame_rate?: number;
+  screenshare_quality?: "sd" | "hd" | "fhd";
+  screenshare_frame_rate?: number;
+
+  // Permissions fields (flattened)
+  accept_waiting_requests?: boolean;
+  can_accept_production_requests?: boolean;
+  can_edit_display_name?: boolean;
+  can_spotlight?: boolean;
+  is_recorder?: boolean;
+  recorder_type?: "NONE" | "BROWSER" | "RTMP";
+  disable_participant_audio?: boolean;
+  disable_participant_screensharing?: boolean;
+  disable_participant_video?: boolean;
+  kick_participant?: boolean;
+  pin_participant?: boolean;
+  can_record?: boolean;
+  can_livestream?: boolean;
+  waiting_room_type?: "SKIP" | "ALWAYS_ACCEPT" | "ACCEPT_WITH_PERMISSION";
+  hidden_participant?: boolean;
+  show_participant_list?: boolean;
+  can_change_participant_permissions?: boolean;
+
+  // Permissions.plugins fields (flattened)
+  plugins_can_close?: boolean;
+  plugins_can_start?: boolean;
+  plugins_can_edit_config?: boolean;
+  plugins_config?: string;
+
+  // Permissions.connected_meetings fields (flattened)
+  can_alter_connected_meetings?: boolean;
+  can_switch_connected_meetings?: boolean;
+  can_switch_to_parent_meeting?: boolean;
+
+  // Permissions.polls fields (flattened)
+  polls_can_create?: boolean;
+  polls_can_vote?: boolean;
+  polls_can_view?: boolean;
+
+  // Permissions.media fields (flattened)
+  media_video_can_produce?: "ALLOWED" | "NOT_ALLOWED" | "ASK_PERMISSION";
+  media_audio_can_produce?: "ALLOWED" | "NOT_ALLOWED" | "ASK_PERMISSION";
+  media_screenshare_can_produce?: "ALLOWED" | "NOT_ALLOWED" | "ASK_PERMISSION";
+
+  // Permissions.chat fields (flattened)
+  chat_public_can_send?: boolean;
+  chat_public_text?: boolean;
+  chat_public_files?: boolean;
+  chat_private_can_send?: boolean;
+  chat_private_can_receive?: boolean;
+  chat_private_text?: boolean;
+  chat_private_files?: boolean;
+
+  // UI fields (flattened)
+  border_radius?: "rounded" | "square" | "pill";
+  border_width?: "thin" | "thick" | "none";
+  spacing_base?: number;
+  theme?: "dark" | "light";
+  logo?: string;
+
+  // UI.colors.brand fields (flattened)
+  brand_300?: string;
+  brand_400?: string;
+  brand_500?: string;
+  brand_600?: string;
+  brand_700?: string;
+
+  // UI.colors.background fields (flattened)
+  background_600?: string;
+  background_700?: string;
+  background_800?: string;
+  background_900?: string;
+  background_1000?: string;
+
+  // UI.colors other fields (flattened)
+  danger?: string;
+  text?: string;
+  text_on_brand?: string;
+  success?: string;
+  video_bg?: string;
+  warning?: string;
+
+  config_diff?: object;
+}
+
+export interface MeetingPresetUpdateInputs {
+  name?: string | null;
+
+  // Config fields (flattened)
+  view_type?: "GROUP_CALL" | "WEBINAR" | "LIVESTREAM";
+  max_video_streams_mobile?: number;
+  max_video_streams_desktop?: number;
+  max_screenshare_count?: number;
+  audio_enable_stereo?: boolean;
+  audio_enable_high_bitrate?: boolean;
+  video_quality?: "sd" | "hd" | "fhd";
+  video_frame_rate?: number;
+  screenshare_quality?: "sd" | "hd" | "fhd";
+  screenshare_frame_rate?: number;
+
+  // Permissions fields (flattened)
+  accept_waiting_requests?: boolean;
+  can_accept_production_requests?: boolean;
+  can_edit_display_name?: boolean;
+  can_spotlight?: boolean;
+  is_recorder?: boolean;
+  recorder_type?: "NONE" | "BROWSER" | "RTMP";
+  disable_participant_audio?: boolean;
+  disable_participant_screensharing?: boolean;
+  disable_participant_video?: boolean;
+  kick_participant?: boolean;
+  pin_participant?: boolean;
+  can_record?: boolean;
+  can_livestream?: boolean;
+  waiting_room_type?: "SKIP" | "ALWAYS_ACCEPT" | "ACCEPT_WITH_PERMISSION";
+  hidden_participant?: boolean;
+  show_participant_list?: boolean;
+  can_change_participant_permissions?: boolean;
+
+  // Permissions.plugins fields (flattened)
+  plugins_can_close?: boolean;
+  plugins_can_start?: boolean;
+  plugins_can_edit_config?: boolean;
+  plugins_config?: string;
+
+  // Permissions.connected_meetings fields (flattened)
+  can_alter_connected_meetings?: boolean;
+  can_switch_connected_meetings?: boolean;
+  can_switch_to_parent_meeting?: boolean;
+
+  // Permissions.polls fields (flattened)
+  polls_can_create?: boolean;
+  polls_can_vote?: boolean;
+  polls_can_view?: boolean;
+
+  // Permissions.media fields (flattened)
+  media_video_can_produce?: "ALLOWED" | "NOT_ALLOWED" | "ASK_PERMISSION";
+  media_audio_can_produce?: "ALLOWED" | "NOT_ALLOWED" | "ASK_PERMISSION";
+  media_screenshare_can_produce?: "ALLOWED" | "NOT_ALLOWED" | "ASK_PERMISSION";
+
+  // Permissions.chat fields (flattened)
+  chat_public_can_send?: boolean;
+  chat_public_text?: boolean;
+  chat_public_files?: boolean;
+  chat_private_can_send?: boolean;
+  chat_private_can_receive?: boolean;
+  chat_private_text?: boolean;
+  chat_private_files?: boolean;
+
+  // UI fields (flattened)
+  border_radius?: "rounded" | "square" | "pill";
+  border_width?: "thin" | "thick" | "none";
+  spacing_base?: number;
+  theme?: "dark" | "light";
+  logo?: string;
+
+  // UI.colors.brand fields (flattened)
+  brand_300?: string;
+  brand_400?: string;
+  brand_500?: string;
+  brand_600?: string;
+  brand_700?: string;
+
+  // UI.colors.background fields (flattened)
+  background_600?: string;
+  background_700?: string;
+  background_800?: string;
+  background_900?: string;
+  background_1000?: string;
+
+  // UI.colors other fields (flattened)
+  danger?: string;
+  text?: string;
+  text_on_brand?: string;
+  success?: string;
+  video_bg?: string;
+  warning?: string;
+
+  config_diff?: object;
+}

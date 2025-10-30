@@ -2382,7 +2382,7 @@ export interface BaseEventSession {
   nonSession: boolean;
   visible: boolean;
   access: SessionAccess;
-  location: BaseEventSession | null;
+  location: BaseEventSessionLocation | null;
   registrationEnabled: boolean;
   price: number | null;
   limit: number | null;
@@ -2418,10 +2418,6 @@ export interface EventSessionTranslation {
 export interface BaseEventSessionLocation {
   id: string;
   name: string;
-}
-
-export interface EventSessionLocation extends BaseEventSessionLocation {
-  description: string | null;
   address1: string | null;
   address2: string | null;
   zip: string | null;
@@ -2429,6 +2425,10 @@ export interface EventSessionLocation extends BaseEventSessionLocation {
   state: string | null;
   country: string | null;
   image: BaseImage | null;
+}
+
+export interface EventSessionLocation extends BaseEventSessionLocation {
+  description: string | null;
   createdAt: string;
   updatedAt: string;
 }

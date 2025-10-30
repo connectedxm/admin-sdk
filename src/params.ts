@@ -421,7 +421,6 @@ export interface ChannelContentTranslationUpdateInputs {
 }
 
 export interface ChannelContentUpdateInputs {
-  published?: string | null;
   channelId?: string | null;
   featured?: boolean;
   title?: string | null;

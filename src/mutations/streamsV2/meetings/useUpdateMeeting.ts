@@ -28,7 +28,7 @@ export const UpdateMeeting = async ({
   queryClient,
 }: UpdateMeetingParams): Promise<ConnectedXMResponse<Meeting>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.patch<ConnectedXMResponse<Meeting>>(
+  const { data } = await connectedXM.put<ConnectedXMResponse<Meeting>>(
     `/streams/v2/meetings/${meetingId}`,
     meeting
   );

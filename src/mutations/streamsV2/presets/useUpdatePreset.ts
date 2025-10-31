@@ -28,7 +28,7 @@ export const UpdatePreset = async ({
   queryClient,
 }: UpdatePresetParams): Promise<ConnectedXMResponse<Preset>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.patch<ConnectedXMResponse<Preset>>(
+  const { data } = await connectedXM.put<ConnectedXMResponse<Preset>>(
     `/streams/v2/presets/${presetId}`,
     preset
   );

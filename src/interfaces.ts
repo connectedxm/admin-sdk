@@ -2835,54 +2835,51 @@ export interface BaseMeeting {
 }
 
 export interface Meeting extends BaseMeeting {
-  recording_config?: {
-    max_seconds?: number;
-    file_name_prefix?: string;
-    video_config?: {
-      codec?: string;
-      width?: number;
-      height?: number;
-      watermark?: object;
-      export_file?: boolean;
-    };
-    audio_config?: {
-      codec?: string;
-      channel?: string;
-      export_file?: boolean;
-    };
-    storage_config?: {
-      type: string;
-      access_key?: string;
-      secret?: string;
-      bucket?: string;
-      region?: string;
-      path?: string;
-      auth_method?: string;
-      username?: string;
-      password?: string;
-      host?: string;
-      port?: number;
-      private_key?: string;
-    } | null;
-    realtimekit_bucket_config?: {
-      enabled: boolean;
-    };
-  };
-  live_streaming_config?: {
-    rtmp_url?: string;
-  };
-  ai_config?: {
-    transcription?: {
-      keywords?: string[];
-      language?: string;
-      profanity_filter?: boolean;
-    };
-    summarization?: {
-      word_limit?: number;
-      text_format?: string;
-      summary_type?: string;
-    };
-  };
+  // recording_config fields (flattened)
+  recording_max_seconds?: number;
+  recording_file_name_prefix?: string;
+
+  // recording_config.video_config
+  recording_video_codec?: string;
+  recording_video_width?: number;
+  recording_video_height?: number;
+  recording_video_watermark?: object;
+  recording_video_export_file?: boolean;
+
+  // recording_config.audio_config
+  recording_audio_codec?: string;
+  recording_audio_channel?: string;
+  recording_audio_export_file?: boolean;
+
+  // recording_config.storage_config
+  storage_type?: string;
+  storage_access_key?: string;
+  storage_secret?: string;
+  storage_bucket?: string;
+  storage_region?: string;
+  storage_path?: string;
+  storage_auth_method?: string;
+  storage_username?: string;
+  storage_password?: string;
+  storage_host?: string;
+  storage_port?: number;
+  storage_private_key?: string;
+
+  // realtimekit_bucket_config
+  realtimekit_bucket_enabled?: boolean;
+
+  // live_streaming_config
+  rtmp_url?: string;
+
+  // ai_config.transcription
+  transcription_keywords?: string[];
+  transcription_language?: string;
+  transcription_profanity_filter?: boolean;
+
+  // ai_config.summarization
+  summarization_word_limit?: number;
+  summarization_text_format?: string;
+  summarization_summary_type?: string;
 }
 
 export interface Participant {
@@ -2946,20 +2943,30 @@ export interface BaseRecording {
 }
 
 export interface Recording extends BaseRecording {
-  storage_config?: {
-    type: string;
-    secret?: string;
-    bucket?: string;
-    region?: string;
-    path?: string;
-    auth_method?: string;
-    username?: string;
-    password?: string;
-    host?: string;
-    port?: number;
-    private_key?: string;
-  } | null;
-  meeting: BaseMeeting;
+  // storage_config fields (flattened)
+  storage_type?: string;
+  storage_secret?: string;
+  storage_bucket?: string;
+  storage_region?: string;
+  storage_path?: string;
+  storage_auth_method?: string;
+  storage_username?: string;
+  storage_password?: string;
+  storage_host?: string;
+  storage_port?: number;
+  storage_private_key?: string;
+
+  // meeting fields (flattened)
+  meeting_id: string;
+  meeting_title: string;
+  meeting_preferred_region?: string | null;
+  meeting_created_at: string;
+  meeting_record_on_start?: boolean;
+  meeting_updated_at: string;
+  meeting_live_stream_on_start?: boolean;
+  meeting_persist_chat?: boolean;
+  meeting_summarize_on_end?: boolean;
+  meeting_status?: string;
 }
 
 export interface BasePreset {
@@ -2970,107 +2977,89 @@ export interface BasePreset {
 }
 
 export interface Preset extends BasePreset {
-  config: {
-    view_type: string;
-    max_video_streams: {
-      mobile: number;
-      desktop: number;
-    };
-    max_screenshare_count: number;
-    media: {
-      audio: {
-        enable_stereo: boolean;
-        enable_high_bitrate: boolean;
-      };
-      video: {
-        quality: string;
-        frame_rate: number;
-      };
-      screenshare: {
-        quality: string;
-        frame_rate: number;
-      };
-    };
-  };
-  permissions: {
-    accept_waiting_requests: boolean;
-    can_accept_production_requests: boolean;
-    can_edit_display_name: boolean;
-    can_spotlight: boolean;
-    is_recorder: boolean;
-    recorder_type: string;
-    disable_participant_audio: boolean;
-    disable_participant_screensharing: boolean;
-    disable_participant_video: boolean;
-    kick_participant: boolean;
-    pin_participant: boolean;
-    can_record: boolean;
-    can_livestream: boolean;
-    waiting_room_type: string;
-    plugins: {
-      can_close: boolean;
-      can_start: boolean;
-      can_edit_config: boolean;
-      config?: string;
-    };
-    connected_meetings: {
-      can_alter_connected_meetings: boolean;
-      can_switch_connected_meetings: boolean;
-      can_switch_to_parent_meeting: boolean;
-    };
-    polls: {
-      can_create: boolean;
-      can_vote: boolean;
-      can_view: boolean;
-    };
-    media: {
-      video: {
-        can_produce: string;
-      };
-      audio: {
-        can_produce: string;
-      };
-      screenshare: {
-        can_produce: string;
-      };
-    };
-    chat: {
-      public: {
-        can_send: boolean;
-        text: boolean;
-        files: boolean;
-      };
-      private: {
-        can_send: boolean;
-        can_receive: boolean;
-        text: boolean;
-        files: boolean;
-      };
-    };
-    hidden_participant: boolean;
-    show_participant_list: boolean;
-    can_change_participant_permissions: boolean;
-  };
-  ui: {
-    design_tokens: {
-      border_radius: string;
-      border_width: string;
-      spacing_base: number;
-      theme: string;
-      colors: {
-        brand: Record<string, string>;
-        background: Record<string, string>;
-        danger: string;
-        text: string;
-        text_on_brand: string;
-        success: string;
-        video_bg: string;
-        warning: string;
-      };
-      logo?: string;
-    };
-    config_diff?: Record<string, any>;
-  };
+  // Config fields (flattened)
+  view_type: "GROUP_CALL" | "WEBINAR" | "AUDIO_ROOM";
+  max_video_streams_mobile: number;
+  max_video_streams_desktop: number;
+  max_screenshare_count: number;
+  video_quality: "hd" | "vga" | "qvga";
+  video_frame_rate: number;
+  screenshare_quality: "hd" | "vga" | "qvga";
+  screenshare_frame_rate: number;
+
+  // Permissions fields (flattened)
+  accept_waiting_requests: boolean;
+  can_accept_production_requests: boolean;
+  can_edit_display_name: boolean;
+  can_spotlight: boolean;
+  is_recorder: boolean;
+  recorder_type: "NONE" | "RECORDER" | "LIVESTREAMER";
+  disable_participant_audio: boolean;
+  disable_participant_screensharing: boolean;
+  disable_participant_video: boolean;
+  kick_participant: boolean;
+  pin_participant: boolean;
+  can_record: boolean;
+  can_livestream: boolean;
+  waiting_room_type: "SKIP" | "ON_PRIVILEGED_USER_ENTRY" | "SKIP_ON_ACCEPT";
+
+  // Permissions.plugins
+  plugins_can_close: boolean;
+  plugins_can_start: boolean;
+  plugins_can_edit_config: boolean;
+
+  // Permissions.connected_meetings
+  can_alter_connected_meetings: boolean;
+  can_switch_connected_meetings: boolean;
+  can_switch_to_parent_meeting: boolean;
+
+  // Permissions.polls
+  polls_can_create: boolean;
+  polls_can_vote: boolean;
+  polls_can_view: boolean;
+
+  // Permissions.media
+  media_video_can_produce: "ALLOWED" | "NOT_ALLOWED" | "CAN_REQUEST";
+  media_audio_can_produce: "ALLOWED" | "NOT_ALLOWED" | "CAN_REQUEST";
+  media_screenshare_can_produce: "ALLOWED" | "NOT_ALLOWED" | "CAN_REQUEST";
+
+  // Permissions.chat
+  chat_public_can_send: boolean;
+  chat_public_text: boolean;
+  chat_public_files: boolean;
+  chat_private_can_send: boolean;
+  chat_private_can_receive: boolean;
+  chat_private_text: boolean;
+  chat_private_files: boolean;
+
+  hidden_participant: boolean;
+  show_participant_list: boolean;
+  can_change_participant_permissions: boolean;
+
+  // UI fields (flattened)
+  border_radius: "rounded";
+  border_width: "thin";
+  spacing_base: number;
+  theme: "dark";
+
+  // UI.colors
+  brand_300: string;
+  brand_400: string;
+  brand_500: string;
+  brand_600: string;
+  brand_700: string;
+  background_600: string;
+  background_700: string;
+  background_800: string;
+  background_900: string;
+  background_1000: string;
+  danger: string;
+  text: string;
+  text_on_brand: string;
+  success: string;
+  video_bg: string;
+  warning: string;
+  logo?: string;
 }
 
 export enum MembershipPriceType {

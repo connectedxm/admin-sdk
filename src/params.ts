@@ -2594,111 +2594,106 @@ export interface MeetingPresetCreateInputs {
   name: string;
 
   // Config fields (flattened)
-  view_type?: "GROUP_CALL" | "WEBINAR" | "LIVESTREAM";
-  max_video_streams_mobile?: number;
-  max_video_streams_desktop?: number;
-  max_screenshare_count?: number;
+  view_type: "GROUP_CALL" | "WEBINAR" | "AUDIO_ROOM";
+  max_video_streams_mobile: number;
+  max_video_streams_desktop: number;
+  max_screenshare_count: number;
   audio_enable_stereo?: boolean;
   audio_enable_high_bitrate?: boolean;
-  video_quality?: "sd" | "hd" | "fhd";
-  video_frame_rate?: number;
-  screenshare_quality?: "sd" | "hd" | "fhd";
-  screenshare_frame_rate?: number;
+  video_quality: "hd" | "vga" | "qvga";
+  video_frame_rate: number;
+  screenshare_quality: "hd" | "vga" | "qvga";
+  screenshare_frame_rate: number;
 
   // Permissions fields (flattened)
-  accept_waiting_requests?: boolean;
-  can_accept_production_requests?: boolean;
-  can_edit_display_name?: boolean;
-  can_spotlight?: boolean;
+  accept_waiting_requests: boolean;
+  can_accept_production_requests: boolean;
+  can_edit_display_name: boolean;
+  can_spotlight: boolean;
   is_recorder?: boolean;
-  recorder_type?: "NONE" | "BROWSER" | "RTMP";
-  disable_participant_audio?: boolean;
-  disable_participant_screensharing?: boolean;
-  disable_participant_video?: boolean;
-  kick_participant?: boolean;
-  pin_participant?: boolean;
-  can_record?: boolean;
-  can_livestream?: boolean;
-  waiting_room_type?: "SKIP" | "ALWAYS_ACCEPT" | "ACCEPT_WITH_PERMISSION";
-  hidden_participant?: boolean;
-  show_participant_list?: boolean;
-  can_change_participant_permissions?: boolean;
+  recorder_type: "NONE" | "RECORDER" | "LIVESTREAMER";
+  disable_participant_audio: boolean;
+  disable_participant_screensharing: boolean;
+  disable_participant_video: boolean;
+  kick_participant: boolean;
+  pin_participant: boolean;
+  can_record: boolean;
+  can_livestream: boolean;
+  waiting_room_type: "SKIP" | "ON_PRIVILEGED_USER_ENTRY" | "SKIP_ON_ACCEPT";
+  hidden_participant: boolean;
+  show_participant_list: boolean;
+  can_change_participant_permissions: boolean;
 
   // Permissions.plugins fields (flattened)
-  plugins_can_close?: boolean;
-  plugins_can_start?: boolean;
-  plugins_can_edit_config?: boolean;
-  plugins_config?: string;
+  plugins_can_close: boolean;
+  plugins_can_start: boolean;
+  plugins_can_edit_config: boolean;
 
   // Permissions.connected_meetings fields (flattened)
-  can_alter_connected_meetings?: boolean;
-  can_switch_connected_meetings?: boolean;
-  can_switch_to_parent_meeting?: boolean;
+  can_alter_connected_meetings: boolean;
+  can_switch_connected_meetings: boolean;
+  can_switch_to_parent_meeting: boolean;
 
   // Permissions.polls fields (flattened)
-  polls_can_create?: boolean;
-  polls_can_vote?: boolean;
-  polls_can_view?: boolean;
+  polls_can_create: boolean;
+  polls_can_vote: boolean;
+  polls_can_view: boolean;
 
   // Permissions.media fields (flattened)
-  media_video_can_produce?: "ALLOWED" | "NOT_ALLOWED" | "ASK_PERMISSION";
-  media_audio_can_produce?: "ALLOWED" | "NOT_ALLOWED" | "ASK_PERMISSION";
-  media_screenshare_can_produce?: "ALLOWED" | "NOT_ALLOWED" | "ASK_PERMISSION";
+  media_video_can_produce: "ALLOWED" | "NOT_ALLOWED" | "CAN_REQUEST";
+  media_audio_can_produce: "ALLOWED" | "NOT_ALLOWED" | "CAN_REQUEST";
+  media_screenshare_can_produce: "ALLOWED" | "NOT_ALLOWED" | "CAN_REQUEST";
 
   // Permissions.chat fields (flattened)
-  chat_public_can_send?: boolean;
-  chat_public_text?: boolean;
-  chat_public_files?: boolean;
-  chat_private_can_send?: boolean;
-  chat_private_can_receive?: boolean;
-  chat_private_text?: boolean;
-  chat_private_files?: boolean;
+  chat_public_can_send: boolean;
+  chat_public_text: boolean;
+  chat_public_files: boolean;
+  chat_private_can_send: boolean;
+  chat_private_can_receive: boolean;
+  chat_private_text: boolean;
+  chat_private_files: boolean;
 
   // UI fields (flattened)
-  border_radius?: "rounded" | "square" | "pill";
-  border_width?: "thin" | "thick" | "none";
-  spacing_base?: number;
-  theme?: "dark" | "light";
-  logo?: string;
+  border_radius: "rounded";
+  border_width: "thin";
+  spacing_base: number;
+  theme: "dark";
+  logo: string;
 
   // UI.colors.brand fields (flattened)
-  brand_300?: string;
-  brand_400?: string;
-  brand_500?: string;
-  brand_600?: string;
-  brand_700?: string;
+  brand_300: string;
+  brand_400: string;
+  brand_500: string;
+  brand_600: string;
+  brand_700: string;
 
   // UI.colors.background fields (flattened)
-  background_600?: string;
-  background_700?: string;
-  background_800?: string;
-  background_900?: string;
-  background_1000?: string;
+  background_600: string;
+  background_700: string;
+  background_800: string;
+  background_900: string;
+  background_1000: string;
 
   // UI.colors other fields (flattened)
-  danger?: string;
-  text?: string;
-  text_on_brand?: string;
-  success?: string;
-  video_bg?: string;
-  warning?: string;
-
-  config_diff?: object;
+  danger: string;
+  text: string;
+  text_on_brand: string;
+  success: string;
+  video_bg: string;
+  warning: string;
 }
 
 export interface MeetingPresetUpdateInputs {
   name?: string | null;
 
   // Config fields (flattened)
-  view_type?: "GROUP_CALL" | "WEBINAR" | "LIVESTREAM";
+  view_type?: "GROUP_CALL" | "WEBINAR" | "AUDIO_ROOM";
   max_video_streams_mobile?: number;
   max_video_streams_desktop?: number;
   max_screenshare_count?: number;
-  audio_enable_stereo?: boolean;
-  audio_enable_high_bitrate?: boolean;
-  video_quality?: "sd" | "hd" | "fhd";
+  video_quality?: "hd" | "vga" | "qvga";
   video_frame_rate?: number;
-  screenshare_quality?: "sd" | "hd" | "fhd";
+  screenshare_quality?: "hd" | "vga" | "qvga";
   screenshare_frame_rate?: number;
 
   // Permissions fields (flattened)
@@ -2707,7 +2702,7 @@ export interface MeetingPresetUpdateInputs {
   can_edit_display_name?: boolean;
   can_spotlight?: boolean;
   is_recorder?: boolean;
-  recorder_type?: "NONE" | "BROWSER" | "RTMP";
+  recorder_type?: "NONE" | "RECORDER" | "LIVESTREAMER";
   disable_participant_audio?: boolean;
   disable_participant_screensharing?: boolean;
   disable_participant_video?: boolean;
@@ -2715,7 +2710,7 @@ export interface MeetingPresetUpdateInputs {
   pin_participant?: boolean;
   can_record?: boolean;
   can_livestream?: boolean;
-  waiting_room_type?: "SKIP" | "ALWAYS_ACCEPT" | "ACCEPT_WITH_PERMISSION";
+  waiting_room_type?: "SKIP" | "ON_PRIVILEGED_USER_ENTRY" | "SKIP_ON_ACCEPT";
   hidden_participant?: boolean;
   show_participant_list?: boolean;
   can_change_participant_permissions?: boolean;
@@ -2737,9 +2732,9 @@ export interface MeetingPresetUpdateInputs {
   polls_can_view?: boolean;
 
   // Permissions.media fields (flattened)
-  media_video_can_produce?: "ALLOWED" | "NOT_ALLOWED" | "ASK_PERMISSION";
-  media_audio_can_produce?: "ALLOWED" | "NOT_ALLOWED" | "ASK_PERMISSION";
-  media_screenshare_can_produce?: "ALLOWED" | "NOT_ALLOWED" | "ASK_PERMISSION";
+  media_video_can_produce?: "ALLOWED" | "NOT_ALLOWED" | "CAN_REQUEST";
+  media_audio_can_produce?: "ALLOWED" | "NOT_ALLOWED" | "CAN_REQUEST";
+  media_screenshare_can_produce?: "ALLOWED" | "NOT_ALLOWED" | "CAN_REQUEST";
 
   // Permissions.chat fields (flattened)
   chat_public_can_send?: boolean;
@@ -2751,10 +2746,10 @@ export interface MeetingPresetUpdateInputs {
   chat_private_files?: boolean;
 
   // UI fields (flattened)
-  border_radius?: "rounded" | "square" | "pill";
-  border_width?: "thin" | "thick" | "none";
+  border_radius?: "rounded";
+  border_width?: "thin";
   spacing_base?: number;
-  theme?: "dark" | "light";
+  theme?: "dark";
   logo?: string;
 
   // UI.colors.brand fields (flattened)
@@ -2778,6 +2773,4 @@ export interface MeetingPresetUpdateInputs {
   success?: string;
   video_bg?: string;
   warning?: string;
-
-  config_diff?: object;
 }

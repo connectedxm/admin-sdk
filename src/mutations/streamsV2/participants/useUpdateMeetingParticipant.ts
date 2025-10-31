@@ -35,7 +35,7 @@ export const UpdateMeetingParticipant = async ({
   ConnectedXMResponse<Participant>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.patch<ConnectedXMResponse<Participant>>(
+  const { data } = await connectedXM.put<ConnectedXMResponse<Participant>>(
     `/streams/v2/meetings/${meetingId}/participants/${participantId}`,
     participant
   );

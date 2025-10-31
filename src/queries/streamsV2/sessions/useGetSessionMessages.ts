@@ -4,18 +4,18 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
-import { ConnectedXMResponse, SessionChatData } from "@src/interfaces";
-import { MEETING_SESSION_QUERY_KEY } from "./useGetMeetingSession";
+import { ConnectedXMResponse, SessionChatDownload } from "@src/interfaces";
+import { SESSION_QUERY_KEY } from "./useGetSession";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
  * @category Keys
  * @group StreamsV2
  */
-export const SESSION_MESSAGES_QUERY_KEY = (
-  meetingId: string,
-  sessionId: string
-) => [...MEETING_SESSION_QUERY_KEY(meetingId, sessionId), "MESSAGES"];
+export const SESSION_MESSAGES_QUERY_KEY = (sessionId: string) => [
+  ...SESSION_QUERY_KEY(sessionId),
+  "MESSAGES",
+];
 
 /**
  * @category Setters
@@ -30,7 +30,6 @@ export const SET_SESSION_MESSAGES_QUERY_DATA = (
 };
 
 interface GetSessionMessagesParams extends SingleQueryParams {
-  meetingId: string;
   sessionId: string;
 }
 
@@ -39,13 +38,14 @@ interface GetSessionMessagesParams extends SingleQueryParams {
  * @group StreamsV2
  */
 export const GetSessionMessages = async ({
-  meetingId,
   sessionId,
   adminApiParams,
-}: GetSessionMessagesParams): Promise<ConnectedXMResponse<SessionChatData>> => {
+}: GetSessionMessagesParams): Promise<
+  ConnectedXMResponse<SessionChatDownload>
+> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/streams/v2/meetings/${meetingId}/sessions/${sessionId}/messages`
+    `/streams/v2/sessions/${sessionId}/messages`
   );
 
   return data;
@@ -56,16 +56,15 @@ export const GetSessionMessages = async ({
  * @group StreamsV2
  */
 export const useGetSessionMessages = (
-  meetingId: string = "",
   sessionId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetSessionMessages>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetSessionMessages>>(
-    SESSION_MESSAGES_QUERY_KEY(meetingId, sessionId),
-    (params) => GetSessionMessages({ meetingId, sessionId, ...params }),
+    SESSION_MESSAGES_QUERY_KEY(sessionId),
+    (params) => GetSessionMessages({ sessionId, ...params }),
     {
       ...options,
-      enabled: !!meetingId && !!sessionId && (options?.enabled ?? true),
+      enabled: !!sessionId && (options?.enabled ?? true),
     }
   );
 };

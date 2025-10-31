@@ -4,18 +4,18 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
-import { ConnectedXMResponse, SessionSummaryData } from "@src/interfaces";
-import { MEETING_SESSION_QUERY_KEY } from "./useGetMeetingSession";
+import { ConnectedXMResponse, SessionSummaryDownload } from "@src/interfaces";
+import { SESSION_QUERY_KEY } from "./useGetSession";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
  * @category Keys
  * @group StreamsV2
  */
-export const SESSION_SUMMARY_QUERY_KEY = (
-  meetingId: string,
-  sessionId: string
-) => [...MEETING_SESSION_QUERY_KEY(meetingId, sessionId), "SUMMARY"];
+export const SESSION_SUMMARY_QUERY_KEY = (sessionId: string) => [
+  ...SESSION_QUERY_KEY(sessionId),
+  "SUMMARY",
+];
 
 /**
  * @category Setters
@@ -30,7 +30,6 @@ export const SET_SESSION_SUMMARY_QUERY_DATA = (
 };
 
 interface GetSessionSummaryParams extends SingleQueryParams {
-  meetingId: string;
   sessionId: string;
 }
 
@@ -39,15 +38,14 @@ interface GetSessionSummaryParams extends SingleQueryParams {
  * @group StreamsV2
  */
 export const GetSessionSummary = async ({
-  meetingId,
   sessionId,
   adminApiParams,
 }: GetSessionSummaryParams): Promise<
-  ConnectedXMResponse<SessionSummaryData>
+  ConnectedXMResponse<SessionSummaryDownload>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/streams/v2/meetings/${meetingId}/sessions/${sessionId}/summary`
+    `/streams/v2/sessions/${sessionId}/summary`
   );
 
   return data;
@@ -58,16 +56,15 @@ export const GetSessionSummary = async ({
  * @group StreamsV2
  */
 export const useGetSessionSummary = (
-  meetingId: string = "",
   sessionId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetSessionSummary>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetSessionSummary>>(
-    SESSION_SUMMARY_QUERY_KEY(meetingId, sessionId),
-    (params) => GetSessionSummary({ meetingId, sessionId, ...params }),
+    SESSION_SUMMARY_QUERY_KEY(sessionId),
+    (params) => GetSessionSummary({ sessionId, ...params }),
     {
       ...options,
-      enabled: !!meetingId && !!sessionId && (options?.enabled ?? true),
+      enabled: !!sessionId && (options?.enabled ?? true),
     }
   );
 };

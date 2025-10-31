@@ -1,10 +1,10 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
-  SingleQueryOptions,
-  SingleQueryParams,
-  useConnectedSingleQuery,
-} from "../../useConnectedSingleQuery";
-import { ConnectedXMResponse, MeetingPreset } from "@src/interfaces";
+  useConnectedInfiniteQuery,
+  InfiniteQueryParams,
+  InfiniteQueryOptions,
+} from "../../useConnectedInfiniteQuery";
+import { ConnectedXMResponse, Preset } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
@@ -27,17 +27,26 @@ export const SET_PRESETS_QUERY_DATA = (
   client.setQueryData(PRESETS_QUERY_KEY(...keyParams), response);
 };
 
-interface GetPresetsParams extends SingleQueryParams {}
+interface GetPresetsParams extends InfiniteQueryParams {}
 
 /**
  * @category Queries
  * @group StreamsV2
  */
 export const GetPresets = async ({
+  pageParam,
+  pageSize,
+  orderBy,
   adminApiParams,
-}: GetPresetsParams): Promise<ConnectedXMResponse<MeetingPreset[]>> => {
+}: GetPresetsParams): Promise<ConnectedXMResponse<Preset[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/streams/v2/presets`);
+  const { data } = await adminApi.get(`/streams/v2/presets`, {
+    params: {
+      page: pageParam || undefined,
+      pageSize: pageSize || undefined,
+      orderBy: orderBy || undefined,
+    },
+  });
 
   return data;
 };
@@ -47,11 +56,16 @@ export const GetPresets = async ({
  * @group StreamsV2
  */
 export const useGetPresets = (
-  options: SingleQueryOptions<ReturnType<typeof GetPresets>> = {}
+  params: Omit<
+    InfiniteQueryParams,
+    "pageParam" | "queryClient" | "adminApiParams"
+  > = {},
+  options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetPresets>>> = {}
 ) => {
-  return useConnectedSingleQuery<ReturnType<typeof GetPresets>>(
+  return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetPresets>>>(
     PRESETS_QUERY_KEY(),
-    (params) => GetPresets(params),
+    (params: InfiniteQueryParams) => GetPresets(params),
+    params,
     options
   );
 };

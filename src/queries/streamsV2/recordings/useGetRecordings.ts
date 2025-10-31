@@ -4,7 +4,7 @@ import {
   InfiniteQueryParams,
   InfiniteQueryOptions,
 } from "../../useConnectedInfiniteQuery";
-import { ConnectedXMResponse, MeetingRecording } from "@src/interfaces";
+import { ConnectedXMResponse, Recording } from "@src/interfaces";
 import { MEETING_QUERY_KEY } from "../meetings/useGetMeeting";
 import { QueryClient } from "@tanstack/react-query";
 
@@ -44,21 +44,17 @@ export const GetMeetingRecordings = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetMeetingRecordingsParams): Promise<
-  ConnectedXMResponse<MeetingRecording[]>
-> => {
+}: GetMeetingRecordingsParams): Promise<ConnectedXMResponse<Recording[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(
-    `/streams/v2/meetings/${meetingId}/recordings`,
-    {
-      params: {
-        page: pageParam || undefined,
-        pageSize: pageSize || undefined,
-        orderBy: orderBy || undefined,
-        search: search || undefined,
-      },
-    }
-  );
+  const { data } = await adminApi.get(`/streams/v2/recordings`, {
+    params: {
+      page: pageParam || undefined,
+      pageSize: pageSize || undefined,
+      orderBy: orderBy || undefined,
+      search: search || undefined,
+      meetingId: meetingId || undefined,
+    },
+  });
 
   return data;
 };

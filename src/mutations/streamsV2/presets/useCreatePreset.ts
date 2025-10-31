@@ -4,7 +4,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../../useConnectedMutation";
-import { MeetingPreset, ConnectedXMResponse } from "@src/interfaces";
+import { Preset, ConnectedXMResponse } from "@src/interfaces";
 import { PRESETS_QUERY_KEY, SET_PRESET_QUERY_DATA } from "@src/queries";
 import { MeetingPresetCreateInputs } from "@src/params";
 
@@ -24,9 +24,9 @@ export const CreatePreset = async ({
   preset,
   adminApiParams,
   queryClient,
-}: CreatePresetParams): Promise<ConnectedXMResponse<MeetingPreset>> => {
+}: CreatePresetParams): Promise<ConnectedXMResponse<Preset>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<MeetingPreset>>(
+  const { data } = await connectedXM.post<ConnectedXMResponse<Preset>>(
     `/streams/v2/presets`,
     preset
   );

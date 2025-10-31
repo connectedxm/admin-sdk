@@ -4,7 +4,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../../useConnectedMutation";
-import { MeetingRecording, ConnectedXMResponse } from "@src/interfaces";
+import { Recording, ConnectedXMResponse } from "@src/interfaces";
 import {
   MEETING_RECORDINGS_QUERY_KEY,
   SET_MEETING_RECORDING_QUERY_DATA,
@@ -31,11 +31,9 @@ export const UpdateMeetingRecording = async ({
   recording,
   adminApiParams,
   queryClient,
-}: UpdateMeetingRecordingParams): Promise<
-  ConnectedXMResponse<MeetingRecording>
-> => {
+}: UpdateMeetingRecordingParams): Promise<ConnectedXMResponse<Recording>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<MeetingRecording>>(
+  const { data } = await connectedXM.put<ConnectedXMResponse<Recording>>(
     `/streams/v2/meetings/${meetingId}/recordings/${recordingId}`,
     recording
   );

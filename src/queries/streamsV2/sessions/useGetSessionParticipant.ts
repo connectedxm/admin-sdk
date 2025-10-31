@@ -4,7 +4,7 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
-import { ConnectedXMResponse, MeetingParticipant } from "@src/interfaces";
+import { ConnectedXMResponse, Participant } from "@src/interfaces";
 import { SESSION_PARTICIPANTS_QUERY_KEY } from "./useGetSessionParticipants";
 import { QueryClient } from "@tanstack/react-query";
 
@@ -13,10 +13,9 @@ import { QueryClient } from "@tanstack/react-query";
  * @group StreamsV2
  */
 export const SESSION_PARTICIPANT_QUERY_KEY = (
-  meetingId: string,
   sessionId: string,
   participantId: string
-) => [...SESSION_PARTICIPANTS_QUERY_KEY(meetingId, sessionId), participantId];
+) => [...SESSION_PARTICIPANTS_QUERY_KEY(sessionId), participantId];
 
 /**
  * @category Setters
@@ -31,7 +30,6 @@ export const SET_SESSION_PARTICIPANT_QUERY_DATA = (
 };
 
 interface GetSessionParticipantParams extends SingleQueryParams {
-  meetingId: string;
   sessionId: string;
   participantId: string;
 }
@@ -41,16 +39,13 @@ interface GetSessionParticipantParams extends SingleQueryParams {
  * @group StreamsV2
  */
 export const GetSessionParticipant = async ({
-  meetingId,
   sessionId,
   participantId,
   adminApiParams,
-}: GetSessionParticipantParams): Promise<
-  ConnectedXMResponse<MeetingParticipant>
-> => {
+}: GetSessionParticipantParams): Promise<ConnectedXMResponse<Participant>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/streams/v2/meetings/${meetingId}/sessions/${sessionId}/participants/${participantId}`
+    `/streams/v2/sessions/${sessionId}/participants/${participantId}`
   );
 
   return data;
@@ -61,22 +56,16 @@ export const GetSessionParticipant = async ({
  * @group StreamsV2
  */
 export const useGetSessionParticipant = (
-  meetingId: string = "",
   sessionId: string = "",
   participantId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetSessionParticipant>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetSessionParticipant>>(
-    SESSION_PARTICIPANT_QUERY_KEY(meetingId, sessionId, participantId),
-    (params) =>
-      GetSessionParticipant({ meetingId, sessionId, participantId, ...params }),
+    SESSION_PARTICIPANT_QUERY_KEY(sessionId, participantId),
+    (params) => GetSessionParticipant({ sessionId, participantId, ...params }),
     {
       ...options,
-      enabled:
-        !!meetingId &&
-        !!sessionId &&
-        !!participantId &&
-        (options?.enabled ?? true),
+      enabled: !!sessionId && !!participantId && (options?.enabled ?? true),
     }
   );
 };

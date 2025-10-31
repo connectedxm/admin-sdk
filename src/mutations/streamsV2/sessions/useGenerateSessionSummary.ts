@@ -12,7 +12,6 @@ import { SESSION_SUMMARY_QUERY_KEY } from "@src/queries";
  * @group StreamsV2
  */
 export interface GenerateSessionSummaryParams extends MutationParams {
-  meetingId: string;
   sessionId: string;
 }
 
@@ -21,18 +20,17 @@ export interface GenerateSessionSummaryParams extends MutationParams {
  * @group StreamsV2
  */
 export const GenerateSessionSummary = async ({
-  meetingId,
   sessionId,
   adminApiParams,
   queryClient,
 }: GenerateSessionSummaryParams): Promise<ConnectedXMResponse<any>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<any>>(
-    `/streams/v2/meetings/${meetingId}/sessions/${sessionId}/summary`
+    `/streams/v2/sessions/${sessionId}/summary`
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: SESSION_SUMMARY_QUERY_KEY(meetingId, sessionId),
+      queryKey: SESSION_SUMMARY_QUERY_KEY(sessionId),
     });
   }
   return data;

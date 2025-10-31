@@ -4,32 +4,32 @@ import {
   InfiniteQueryParams,
   InfiniteQueryOptions,
 } from "../../useConnectedInfiniteQuery";
-import { ConnectedXMResponse, MeetingSession } from "@src/interfaces";
-import { MEETING_QUERY_KEY } from "../meetings/useGetMeeting";
+import { ConnectedXMResponse, Participant } from "@src/interfaces";
+import { MEETING_QUERY_KEY } from "./useGetMeeting";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
  * @category Keys
  * @group StreamsV2
  */
-export const MEETING_SESSIONS_QUERY_KEY = (meetingId: string) => [
+export const MEETING_PARTICIPANTS_QUERY_KEY = (meetingId: string) => [
   ...MEETING_QUERY_KEY(meetingId),
-  "SESSIONS",
+  "PARTICIPANTS",
 ];
 
 /**
  * @category Setters
  * @group StreamsV2
  */
-export const SET_MEETING_SESSIONS_QUERY_DATA = (
+export const SET_MEETING_PARTICIPANTS_QUERY_DATA = (
   client: QueryClient,
-  keyParams: Parameters<typeof MEETING_SESSIONS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetMeetingSessions>>
+  keyParams: Parameters<typeof MEETING_PARTICIPANTS_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetMeetingParticipants>>
 ) => {
-  client.setQueryData(MEETING_SESSIONS_QUERY_KEY(...keyParams), response);
+  client.setQueryData(MEETING_PARTICIPANTS_QUERY_KEY(...keyParams), response);
 };
 
-interface GetMeetingSessionsParams extends InfiniteQueryParams {
+interface GetMeetingParticipantsParams extends InfiniteQueryParams {
   meetingId: string;
 }
 
@@ -37,25 +37,23 @@ interface GetMeetingSessionsParams extends InfiniteQueryParams {
  * @category Queries
  * @group StreamsV2
  */
-export const GetMeetingSessions = async ({
+export const GetMeetingParticipants = async ({
   meetingId,
   pageParam,
   pageSize,
   orderBy,
-  search,
   adminApiParams,
-}: GetMeetingSessionsParams): Promise<
-  ConnectedXMResponse<MeetingSession[]>
+}: GetMeetingParticipantsParams): Promise<
+  ConnectedXMResponse<Participant[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/streams/v2/meetings/${meetingId}/sessions`,
+    `/streams/v2/meetings/${meetingId}/participants`,
     {
       params: {
         page: pageParam || undefined,
         pageSize: pageSize || undefined,
         orderBy: orderBy || undefined,
-        search: search || undefined,
       },
     }
   );
@@ -67,22 +65,22 @@ export const GetMeetingSessions = async ({
  * @category Hooks
  * @group StreamsV2
  */
-export const useGetMeetingSessions = (
+export const useGetMeetingParticipants = (
   meetingId: string = "",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetMeetingSessions>>
+    Awaited<ReturnType<typeof GetMeetingParticipants>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetMeetingSessions>>
+    Awaited<ReturnType<typeof GetMeetingParticipants>>
   >(
-    MEETING_SESSIONS_QUERY_KEY(meetingId),
+    MEETING_PARTICIPANTS_QUERY_KEY(meetingId),
     (params: InfiniteQueryParams) =>
-      GetMeetingSessions({ ...params, meetingId }),
+      GetMeetingParticipants({ ...params, meetingId }),
     params,
     {
       ...options,

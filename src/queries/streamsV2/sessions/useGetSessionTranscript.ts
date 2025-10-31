@@ -4,18 +4,21 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
-import { ConnectedXMResponse, SessionTranscriptData } from "@src/interfaces";
-import { MEETING_SESSION_QUERY_KEY } from "./useGetMeetingSession";
+import {
+  ConnectedXMResponse,
+  SessionTranscriptDownload,
+} from "@src/interfaces";
+import { SESSION_QUERY_KEY } from "./useGetSession";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
  * @category Keys
  * @group StreamsV2
  */
-export const SESSION_TRANSCRIPT_QUERY_KEY = (
-  meetingId: string,
-  sessionId: string
-) => [...MEETING_SESSION_QUERY_KEY(meetingId, sessionId), "TRANSCRIPT"];
+export const SESSION_TRANSCRIPT_QUERY_KEY = (sessionId: string) => [
+  ...SESSION_QUERY_KEY(sessionId),
+  "TRANSCRIPT",
+];
 
 /**
  * @category Setters
@@ -30,7 +33,6 @@ export const SET_SESSION_TRANSCRIPT_QUERY_DATA = (
 };
 
 interface GetSessionTranscriptParams extends SingleQueryParams {
-  meetingId: string;
   sessionId: string;
 }
 
@@ -39,15 +41,14 @@ interface GetSessionTranscriptParams extends SingleQueryParams {
  * @group StreamsV2
  */
 export const GetSessionTranscript = async ({
-  meetingId,
   sessionId,
   adminApiParams,
 }: GetSessionTranscriptParams): Promise<
-  ConnectedXMResponse<SessionTranscriptData>
+  ConnectedXMResponse<SessionTranscriptDownload>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/streams/v2/meetings/${meetingId}/sessions/${sessionId}/transcript`
+    `/streams/v2/sessions/${sessionId}/transcript`
   );
 
   return data;
@@ -58,16 +59,15 @@ export const GetSessionTranscript = async ({
  * @group StreamsV2
  */
 export const useGetSessionTranscript = (
-  meetingId: string = "",
   sessionId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetSessionTranscript>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetSessionTranscript>>(
-    SESSION_TRANSCRIPT_QUERY_KEY(meetingId, sessionId),
-    (params) => GetSessionTranscript({ meetingId, sessionId, ...params }),
+    SESSION_TRANSCRIPT_QUERY_KEY(sessionId),
+    (params) => GetSessionTranscript({ sessionId, ...params }),
     {
       ...options,
-      enabled: !!meetingId && !!sessionId && (options?.enabled ?? true),
+      enabled: !!sessionId && (options?.enabled ?? true),
     }
   );
 };

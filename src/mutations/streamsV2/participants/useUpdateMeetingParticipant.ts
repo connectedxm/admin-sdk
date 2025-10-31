@@ -4,7 +4,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../../useConnectedMutation";
-import { MeetingParticipant, ConnectedXMResponse } from "@src/interfaces";
+import { Participant, ConnectedXMResponse } from "@src/interfaces";
 import {
   MEETING_PARTICIPANTS_QUERY_KEY,
   SET_MEETING_PARTICIPANT_QUERY_DATA,
@@ -32,12 +32,10 @@ export const UpdateMeetingParticipant = async ({
   adminApiParams,
   queryClient,
 }: UpdateMeetingParticipantParams): Promise<
-  ConnectedXMResponse<MeetingParticipant>
+  ConnectedXMResponse<Participant>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.patch<
-    ConnectedXMResponse<MeetingParticipant>
-  >(
+  const { data } = await connectedXM.patch<ConnectedXMResponse<Participant>>(
     `/streams/v2/meetings/${meetingId}/participants/${participantId}`,
     participant
   );

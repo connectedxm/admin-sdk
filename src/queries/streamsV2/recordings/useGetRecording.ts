@@ -4,8 +4,8 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
-import { ConnectedXMResponse, MeetingRecording } from "@src/interfaces";
-import { MEETING_RECORDINGS_QUERY_KEY } from "./useGetMeetingRecordings";
+import { ConnectedXMResponse, Recording } from "@src/interfaces";
+import { MEETING_RECORDINGS_QUERY_KEY } from "./useGetRecordings";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
@@ -42,9 +42,7 @@ export const GetMeetingRecording = async ({
   meetingId,
   recordingId,
   adminApiParams,
-}: GetMeetingRecordingParams): Promise<
-  ConnectedXMResponse<MeetingRecording>
-> => {
+}: GetMeetingRecordingParams): Promise<ConnectedXMResponse<Recording>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
     `/streams/v2/meetings/${meetingId}/recordings/${recordingId}`

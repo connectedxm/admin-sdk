@@ -4,7 +4,7 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
-import { ConnectedXMResponse, MeetingPreset } from "@src/interfaces";
+import { ConnectedXMResponse, Preset } from "@src/interfaces";
 import { PRESETS_QUERY_KEY } from "./useGetPresets";
 import { QueryClient } from "@tanstack/react-query";
 
@@ -40,7 +40,7 @@ interface GetPresetParams extends SingleQueryParams {
 export const GetPreset = async ({
   presetId,
   adminApiParams,
-}: GetPresetParams): Promise<ConnectedXMResponse<MeetingPreset>> => {
+}: GetPresetParams): Promise<ConnectedXMResponse<Preset>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/streams/v2/presets/${presetId}`);
 

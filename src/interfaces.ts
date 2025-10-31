@@ -2816,229 +2816,261 @@ export interface StorageConfig {
   private_key?: string;
 }
 
-export interface MeetingRecordingConfig {
-  max_seconds?: number;
-  file_name_prefix?: string;
-  video_config?: {
-    codec?: "H264" | "VP8";
-    width?: number;
-    height?: number;
-    watermark?: {
-      url?: string;
-      size?: { width?: number; height?: number };
-      position?: string;
-    };
-    export_file?: boolean;
-  };
-  audio_config?: {
-    codec?: "MP3" | "AAC";
-    channel?: "mono" | "stereo";
-    export_file?: boolean;
-  };
-  storage_config?: StorageConfig;
-}
-
-export interface MeetingAIConfig {
-  transcription?: {
-    keywords?: string[];
-    language?: string;
-    profanity_filter?: boolean;
-  };
-  summarization?: {
-    word_limit?: number;
-    text_format?: "plain_text" | "markdown";
-    summary_type?: string;
-  };
-}
-
-export interface MeetingLiveStreamConfig {
-  rtmp_url?: string;
-}
-
-export interface MeetingRealtimekitBucketConfig {
-  enabled?: boolean;
-}
-
-export interface Meeting {
+export interface BaseMeeting {
   id: string;
-  title: string | null;
-  preferred_region: string | null;
+  title: string;
+  preferred_region?:
+    | "ap-south-1"
+    | "ap-southeast-1"
+    | "us-east-1"
+    | "eu-central-1"
+    | null;
   record_on_start: boolean;
   live_stream_on_start: boolean;
   persist_chat: boolean;
   summarize_on_end: boolean;
   status: "ACTIVE" | "INACTIVE";
-  recording_config?: MeetingRecordingConfig;
-  live_streaming_config?: MeetingLiveStreamConfig;
-  realtimekit_bucket_config?: MeetingRealtimekitBucketConfig;
-  ai_config?: MeetingAIConfig;
   created_at: string;
   updated_at: string;
 }
 
-export interface MeetingParticipant {
+export interface Meeting extends BaseMeeting {
+  recording_config?: {
+    max_seconds?: number;
+    file_name_prefix?: string;
+    video_config?: {
+      codec?: string;
+      width?: number;
+      height?: number;
+      watermark?: object;
+      export_file?: boolean;
+    };
+    audio_config?: {
+      codec?: string;
+      channel?: string;
+      export_file?: boolean;
+    };
+    storage_config?: {
+      type: string;
+      access_key?: string;
+      secret?: string;
+      bucket?: string;
+      region?: string;
+      path?: string;
+      auth_method?: string;
+      username?: string;
+      password?: string;
+      host?: string;
+      port?: number;
+      private_key?: string;
+    } | null;
+    realtimekit_bucket_config?: {
+      enabled: boolean;
+    };
+  };
+  live_streaming_config?: {
+    rtmp_url?: string;
+  };
+  ai_config?: {
+    transcription?: {
+      keywords?: string[];
+      language?: string;
+      profanity_filter?: boolean;
+    };
+    summarization?: {
+      word_limit?: number;
+      text_format?: string;
+      summary_type?: string;
+    };
+  };
+}
+
+export interface Participant {
   id: string;
-  peer_id?: string;
+  name: string | null;
+  picture: string | null;
   custom_participant_id: string;
-  name?: string | null;
-  picture?: string | null;
   preset_name: string;
-  token: string;
-  joined_at?: string;
-  left_at?: string | null;
+  created_at: string;
+  updated_at: string;
 }
 
-export interface MeetingSession {
+export interface Session {
   id: string;
-  session_id: string;
-  meeting_id: string;
-  status: string;
+  associated_id: string;
+  meeting_display_name: string;
+  type: "meeting" | "livestream" | "participant";
+  status: "LIVE" | "ENDED";
+  live_participants: number;
+  max_concurrent_participants: number;
+  minutes_consumed: number;
+  organization_id: string;
   started_at: string;
-  ended_at?: string | null;
-  participant_count?: number;
+  created_at: string;
+  updated_at: string;
+  ended_at?: string;
+  meta?: Record<string, any>;
+  breakout_rooms: Session[];
 }
 
-export interface SessionChatData {
+export interface SessionChatDownload {
   chat_download_url: string;
   chat_download_url_expiry: string;
 }
 
-export interface SessionTranscriptData {
+export interface SessionTranscriptDownload {
+  sessionId: string;
   transcript_download_url: string;
   transcript_download_url_expiry: string;
 }
 
-export interface SessionSummaryData {
-  summary_download_url: string;
-  summary_download_url_expiry: string;
+export interface SessionSummaryDownload {
+  sessionId: string;
+  summaryDownloadUrl: string;
+  summaryDownloadUrlExpiry: string;
 }
 
-export interface MeetingRecording {
+export interface BaseRecording {
   id: string;
-  session_id: string;
+  download_url: string | null;
+  download_url_expiry: string | null;
+  audio_download_url: string | null;
+  file_size: number | null;
+  session_id: string | null;
+  output_file_name: string;
   status: string;
-  download_url?: string | null;
-  download_url_expiry?: string | null;
-  audio_download_url?: string | null;
-  file_size?: number | null;
-  output_file_name?: string | null;
-  invoked_time?: string | null;
-  started_time?: string | null;
-  stopped_time?: string | null;
-  recording_duration?: number | null;
-  storage_config?: StorageConfig;
+  invoked_time: string;
+  started_time: string | null;
+  stopped_time: string | null;
+  recording_duration?: number;
 }
 
-export interface MeetingPresetConfig {
-  view_type?: "GROUP_CALL" | "WEBINAR" | "LIVESTREAM";
-  max_video_streams?: {
-    mobile?: number;
-    desktop?: number;
-  };
-  max_screenshare_count?: number;
-  media?: {
-    audio?: {
-      enable_stereo?: boolean;
-      enable_high_bitrate?: boolean;
-    };
-    video?: {
-      quality?: "sd" | "hd" | "fhd";
-      frame_rate?: number;
-    };
-    screenshare?: {
-      quality?: "sd" | "hd" | "fhd";
-      frame_rate?: number;
-    };
-  };
+export interface Recording extends BaseRecording {
+  storage_config?: {
+    type: string;
+    secret?: string;
+    bucket?: string;
+    region?: string;
+    path?: string;
+    auth_method?: string;
+    username?: string;
+    password?: string;
+    host?: string;
+    port?: number;
+    private_key?: string;
+  } | null;
+  meeting: BaseMeeting;
 }
 
-export interface MeetingPresetPermissions {
-  accept_waiting_requests?: boolean;
-  can_accept_production_requests?: boolean;
-  can_edit_display_name?: boolean;
-  can_spotlight?: boolean;
-  is_recorder?: boolean;
-  recorder_type?: "NONE" | "BROWSER" | "RTMP";
-  disable_participant_audio?: boolean;
-  disable_participant_screensharing?: boolean;
-  disable_participant_video?: boolean;
-  kick_participant?: boolean;
-  pin_participant?: boolean;
-  can_record?: boolean;
-  can_livestream?: boolean;
-  waiting_room_type?: "SKIP" | "ALWAYS_ACCEPT" | "ACCEPT_WITH_PERMISSION";
-  hidden_participant?: boolean;
-  show_participant_list?: boolean;
-  can_change_participant_permissions?: boolean;
-  plugins?: {
-    can_close?: boolean;
-    can_start?: boolean;
-    can_edit_config?: boolean;
-    config?: string;
-  };
-  connected_meetings?: {
-    can_alter_connected_meetings?: boolean;
-    can_switch_connected_meetings?: boolean;
-    can_switch_to_parent_meeting?: boolean;
-  };
-  polls?: {
-    can_create?: boolean;
-    can_vote?: boolean;
-    can_view?: boolean;
-  };
-  media?: {
-    video?: {
-      can_produce?: "ALLOWED" | "NOT_ALLOWED" | "ASK_PERMISSION";
-    };
-    audio?: {
-      can_produce?: "ALLOWED" | "NOT_ALLOWED" | "ASK_PERMISSION";
-    };
-    screenshare?: {
-      can_produce?: "ALLOWED" | "NOT_ALLOWED" | "ASK_PERMISSION";
-    };
-  };
-  chat?: {
-    public?: {
-      can_send?: boolean;
-      text?: boolean;
-      files?: boolean;
-    };
-    private?: {
-      can_send?: boolean;
-      can_receive?: boolean;
-      text?: boolean;
-      files?: boolean;
-    };
-  };
-}
-
-export interface MeetingPresetUI {
-  design_tokens?: {
-    border_radius?: "rounded" | "square" | "pill";
-    border_width?: "thin" | "thick" | "none";
-    spacing_base?: number;
-    theme?: "dark" | "light";
-    colors?: {
-      brand?: Record<string, string>;
-      background?: Record<string, string>;
-      danger?: string;
-      text?: string;
-      text_on_brand?: string;
-      success?: string;
-      video_bg?: string;
-      warning?: string;
-    };
-    logo?: string;
-  };
-  config_diff?: Record<string, any>;
-}
-
-export interface MeetingPreset {
+export interface BasePreset {
   id: string;
   name: string;
-  config?: MeetingPresetConfig;
-  permissions?: MeetingPresetPermissions;
-  ui?: MeetingPresetUI;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Preset extends BasePreset {
+  config: {
+    view_type: string;
+    max_video_streams: {
+      mobile: number;
+      desktop: number;
+    };
+    max_screenshare_count: number;
+    media: {
+      audio: {
+        enable_stereo: boolean;
+        enable_high_bitrate: boolean;
+      };
+      video: {
+        quality: string;
+        frame_rate: number;
+      };
+      screenshare: {
+        quality: string;
+        frame_rate: number;
+      };
+    };
+  };
+  permissions: {
+    accept_waiting_requests: boolean;
+    can_accept_production_requests: boolean;
+    can_edit_display_name: boolean;
+    can_spotlight: boolean;
+    is_recorder: boolean;
+    recorder_type: string;
+    disable_participant_audio: boolean;
+    disable_participant_screensharing: boolean;
+    disable_participant_video: boolean;
+    kick_participant: boolean;
+    pin_participant: boolean;
+    can_record: boolean;
+    can_livestream: boolean;
+    waiting_room_type: string;
+    plugins: {
+      can_close: boolean;
+      can_start: boolean;
+      can_edit_config: boolean;
+      config?: string;
+    };
+    connected_meetings: {
+      can_alter_connected_meetings: boolean;
+      can_switch_connected_meetings: boolean;
+      can_switch_to_parent_meeting: boolean;
+    };
+    polls: {
+      can_create: boolean;
+      can_vote: boolean;
+      can_view: boolean;
+    };
+    media: {
+      video: {
+        can_produce: string;
+      };
+      audio: {
+        can_produce: string;
+      };
+      screenshare: {
+        can_produce: string;
+      };
+    };
+    chat: {
+      public: {
+        can_send: boolean;
+        text: boolean;
+        files: boolean;
+      };
+      private: {
+        can_send: boolean;
+        can_receive: boolean;
+        text: boolean;
+        files: boolean;
+      };
+    };
+    hidden_participant: boolean;
+    show_participant_list: boolean;
+    can_change_participant_permissions: boolean;
+  };
+  ui: {
+    design_tokens: {
+      border_radius: string;
+      border_width: string;
+      spacing_base: number;
+      theme: string;
+      colors: {
+        brand: Record<string, string>;
+        background: Record<string, string>;
+        danger: string;
+        text: string;
+        text_on_brand: string;
+        success: string;
+        video_bg: string;
+        warning: string;
+      };
+      logo?: string;
+    };
+    config_diff?: Record<string, any>;
+  };
 }
 
 export enum MembershipPriceType {

@@ -9,6 +9,7 @@ export * from "./useDeleteChannelContent";
 export * from "./useDeleteChannelContentGuest";
 export * from "./useRemoveAllChannelSubscribers";
 export * from "./useRemoveChannelSubscriber";
+export * from "./useRevertChannelContentToDraft";
 export * from "./useUpdateChannel";
 export * from "./useUpdateChannelContent";
 export * from "./useUpdateChannelContentGuest";

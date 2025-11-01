@@ -308,8 +308,6 @@ export interface Account extends BaseAccount {
   banner: BaseImage | null;
   phone: string | null;
   interests: BaseInterest[];
-  title: string | null;
-  company: string | null;
   bio: string | null;
   website: string | null;
   facebook: string | null;
@@ -1692,9 +1690,7 @@ export interface Organization extends BaseOrganization {
   darkIcon: BaseImage | null;
   darkLogoId: string | null;
   darkLogo: BaseImage | null;
-  requireCompany: boolean;
   requirePhone: boolean;
-  requireTitle: boolean;
   requestInternalRefId: boolean;
   internalRefIdName: string | null;
   authLayout: AuthLayout;
@@ -2386,7 +2382,7 @@ export interface BaseEventSession {
   nonSession: boolean;
   visible: boolean;
   access: SessionAccess;
-  location: BaseEventSession | null;
+  location: BaseEventSessionLocation | null;
   registrationEnabled: boolean;
   price: number | null;
   limit: number | null;
@@ -2422,10 +2418,6 @@ export interface EventSessionTranslation {
 export interface BaseEventSessionLocation {
   id: string;
   name: string;
-}
-
-export interface EventSessionLocation extends BaseEventSessionLocation {
-  description: string | null;
   address1: string | null;
   address2: string | null;
   zip: string | null;
@@ -2433,6 +2425,10 @@ export interface EventSessionLocation extends BaseEventSessionLocation {
   state: string | null;
   country: string | null;
   image: BaseImage | null;
+}
+
+export interface EventSessionLocation extends BaseEventSessionLocation {
+  description: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -3234,6 +3230,7 @@ export interface BaseEventPassType {
   taxLocation: TaxLocationType;
   createdAt: string;
   updatedAt: string;
+  requiredPassTypeId: string | null;
 }
 
 export interface EventPassType extends BaseEventPassType {
@@ -3245,6 +3242,7 @@ export interface EventPassType extends BaseEventPassType {
   _count: {
     purchases: number;
   };
+  requiredPassType: BaseEventPassType | null;
 }
 
 export interface BaseEventPassTypePriceSchedule {

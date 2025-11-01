@@ -52,8 +52,6 @@ export interface AccountCreateInputs {
   imageId?: string | null;
   bannerId?: string | null;
   phone?: string | null;
-  title?: string | null;
-  company?: string | null;
   bio?: string | null;
   website?: string | null;
   video?: string | null;
@@ -83,8 +81,6 @@ export interface AccountUpdateInputs {
   username?: string | null;
   email?: string | null;
   phone?: string | null;
-  title?: string | null;
-  company?: string | null;
   bio?: string | null;
   website?: string | null;
   video?: string | null;
@@ -425,7 +421,6 @@ export interface ChannelContentTranslationUpdateInputs {
 }
 
 export interface ChannelContentUpdateInputs {
-  published?: string | null;
   channelId?: string | null;
   featured?: boolean;
   title?: string | null;
@@ -1263,8 +1258,6 @@ export interface OrganizationUpdateInputs {
   authLayout?: keyof typeof AuthLayout;
   emailAuthEnabled?: boolean;
   requirePhone?: boolean;
-  requireTitle?: boolean;
-  requireCompany?: boolean;
   requestInternalRefId?: boolean;
   internalRefIdName?: string | null;
   iosAppLink?: string | null;
@@ -1698,6 +1691,7 @@ export interface PassTypeCreateInputs {
   maxQuantityPerSale?: number | string | null;
   limitPerAccount?: number | string | null;
   emailDomains?: string | null; // Assuming the pattern validation is not directly translatable to TypeScript
+  requiredPassTypeId?: string | null;
   sortOrder?: number | string | null;
   enableCoupons?: boolean;
   overrideStartDate?: string | null;
@@ -1725,6 +1719,7 @@ export interface PassTypeUpdateInputs {
   maxQuantityPerSale?: number | string | null;
   limitPerAccount?: number | string | null;
   emailDomains?: string | null; // Assuming the pattern validation is not directly translatable to TypeScript
+  requiredPassTypeId?: string | null;
   sortOrder?: number | string | null;
   enableCoupons?: boolean;
   minCouponQuantity?: number;

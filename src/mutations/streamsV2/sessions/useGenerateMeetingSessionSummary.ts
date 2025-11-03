@@ -5,13 +5,13 @@ import {
   useConnectedMutation,
 } from "../../useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { SESSION_SUMMARY_QUERY_KEY } from "@src/queries";
+import { MEETING_SESSION_SUMMARY_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
  * @group StreamsV2
  */
-export interface GenerateSessionSummaryParams extends MutationParams {
+export interface GenerateMeetingSessionSummaryParams extends MutationParams {
   sessionId: string;
 }
 
@@ -19,18 +19,18 @@ export interface GenerateSessionSummaryParams extends MutationParams {
  * @category Methods
  * @group StreamsV2
  */
-export const GenerateSessionSummary = async ({
+export const GenerateMeetingSessionSummary = async ({
   sessionId,
   adminApiParams,
   queryClient,
-}: GenerateSessionSummaryParams): Promise<ConnectedXMResponse<any>> => {
+}: GenerateMeetingSessionSummaryParams): Promise<ConnectedXMResponse<any>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<any>>(
     `/streams/v2/sessions/${sessionId}/summary`
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: SESSION_SUMMARY_QUERY_KEY(sessionId),
+      queryKey: MEETING_SESSION_SUMMARY_QUERY_KEY(sessionId),
     });
   }
   return data;
@@ -40,17 +40,20 @@ export const GenerateSessionSummary = async ({
  * @category Mutations
  * @group StreamsV2
  */
-export const useGenerateSessionSummary = (
+export const useGenerateMeetingSessionSummary = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof GenerateSessionSummary>>,
-      Omit<GenerateSessionSummaryParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof GenerateMeetingSessionSummary>>,
+      Omit<
+        GenerateMeetingSessionSummaryParams,
+        "queryClient" | "adminApiParams"
+      >
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    GenerateSessionSummaryParams,
-    Awaited<ReturnType<typeof GenerateSessionSummary>>
-  >(GenerateSessionSummary, options);
+    GenerateMeetingSessionSummaryParams,
+    Awaited<ReturnType<typeof GenerateMeetingSessionSummary>>
+  >(GenerateMeetingSessionSummary, options);
 };

@@ -1,1 +1,1 @@
-export * from "./useGenerateSessionSummary";
+export * from "./useGenerateMeetingSessionSummary";

@@ -1,2 +1,2 @@
-export * from "./useGetRecording";
-export * from "./useGetRecordings";
+export * from "./useGetMeetingRecording";
+export * from "./useGetMeetingRecordings";

@@ -4,7 +4,7 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
-import { ConnectedXMResponse, Recording } from "@src/interfaces";
+import { ConnectedXMResponse, BaseMeetingRecording } from "@src/interfaces";
 import { MEETING_QUERY_KEY } from "./useGetMeeting";
 import { QueryClient } from "@tanstack/react-query";
 
@@ -44,7 +44,7 @@ export const GetMeetingActiveRecording = async ({
   meetingId,
   adminApiParams,
 }: GetMeetingActiveRecordingParams): Promise<
-  ConnectedXMResponse<Recording>
+  ConnectedXMResponse<BaseMeetingRecording>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(

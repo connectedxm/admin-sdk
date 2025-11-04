@@ -4,18 +4,20 @@ import {
   InfiniteQueryParams,
   InfiniteQueryOptions,
 } from "../../useConnectedInfiniteQuery";
-import { ConnectedXMResponse, Recording } from "@src/interfaces";
-import { MEETING_QUERY_KEY } from "../meetings/useGetMeeting";
+import { ConnectedXMResponse, MeetingRecording } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
  * @category Keys
  * @group StreamsV2
  */
-export const MEETING_RECORDINGS_QUERY_KEY = (meetingId: string) => [
-  ...MEETING_QUERY_KEY(meetingId),
-  "RECORDINGS",
-];
+export const MEETING_RECORDINGS_QUERY_KEY = (meetingId?: string) => {
+  const key = ["RECORDINGS"];
+  if (meetingId) {
+    key.push(meetingId);
+  }
+  return key;
+};
 
 /**
  * @category Setters
@@ -44,7 +46,9 @@ export const GetMeetingRecordings = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetMeetingRecordingsParams): Promise<ConnectedXMResponse<Recording[]>> => {
+}: GetMeetingRecordingsParams): Promise<
+  ConnectedXMResponse<MeetingRecording[]>
+> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/streams/v2/recordings`, {
     params: {
@@ -82,7 +86,7 @@ export const useGetMeetingRecordings = (
     params,
     {
       ...options,
-      enabled: !!meetingId && (options?.enabled ?? true),
+      enabled: options?.enabled ?? true,
     }
   );
 };

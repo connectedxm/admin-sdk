@@ -4,18 +4,18 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
-import { ConnectedXMResponse, Recording } from "@src/interfaces";
-import { MEETING_RECORDINGS_QUERY_KEY } from "./useGetRecordings";
+import { ConnectedXMResponse, MeetingRecording } from "@src/interfaces";
+import { MEETING_RECORDINGS_QUERY_KEY } from "./useGetMeetingRecordings";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
  * @category Keys
  * @group StreamsV2
  */
-export const MEETING_RECORDING_QUERY_KEY = (
-  meetingId: string,
-  recordingId: string
-) => [...MEETING_RECORDINGS_QUERY_KEY(meetingId), recordingId];
+export const MEETING_RECORDING_QUERY_KEY = (recordingId: string) => [
+  ...MEETING_RECORDINGS_QUERY_KEY(),
+  recordingId,
+];
 
 /**
  * @category Setters
@@ -30,7 +30,6 @@ export const SET_MEETING_RECORDING_QUERY_DATA = (
 };
 
 interface GetMeetingRecordingParams extends SingleQueryParams {
-  meetingId: string;
   recordingId: string;
 }
 
@@ -39,14 +38,13 @@ interface GetMeetingRecordingParams extends SingleQueryParams {
  * @group StreamsV2
  */
 export const GetMeetingRecording = async ({
-  meetingId,
   recordingId,
   adminApiParams,
-}: GetMeetingRecordingParams): Promise<ConnectedXMResponse<Recording>> => {
+}: GetMeetingRecordingParams): Promise<
+  ConnectedXMResponse<MeetingRecording>
+> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(
-    `/streams/v2/meetings/${meetingId}/recordings/${recordingId}`
-  );
+  const { data } = await adminApi.get(`/streams/v2/recordings/${recordingId}`);
 
   return data;
 };
@@ -56,16 +54,15 @@ export const GetMeetingRecording = async ({
  * @group StreamsV2
  */
 export const useGetMeetingRecording = (
-  meetingId: string = "",
   recordingId: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetMeetingRecording>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetMeetingRecording>>(
-    MEETING_RECORDING_QUERY_KEY(meetingId, recordingId),
-    (params) => GetMeetingRecording({ meetingId, recordingId, ...params }),
+    MEETING_RECORDING_QUERY_KEY(recordingId),
+    (params) => GetMeetingRecording({ recordingId, ...params }),
     {
       ...options,
-      enabled: !!meetingId && !!recordingId && (options?.enabled ?? true),
+      enabled: !!recordingId && (options?.enabled ?? true),
     }
   );
 };

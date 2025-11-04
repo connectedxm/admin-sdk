@@ -2910,11 +2910,11 @@ export interface MeetingSessionSummaryDownload {
   summary_download_url_expiry: string;
 }
 
-export interface BaseRecording {
+export interface BaseMeetingRecording {
   id: string;
+  meeting_id: string;
   download_url: string | null;
   download_url_expiry: string | null;
-  audio_download_url: string | null;
   file_size: number | null;
   session_id: string | null;
   output_file_name: string;
@@ -2922,34 +2922,26 @@ export interface BaseRecording {
   invoked_time: string;
   started_time: string | null;
   stopped_time: string | null;
-  recording_duration?: number;
+  recording_duration: number;
 }
 
-export interface Recording extends BaseRecording {
-  // storage_config fields (flattened)
-  storage_type?: string;
-  storage_secret?: string;
-  storage_bucket?: string;
-  storage_region?: string;
-  storage_path?: string;
-  storage_auth_method?: string;
-  storage_username?: string;
-  storage_password?: string;
-  storage_host?: string;
-  storage_port?: number;
-  storage_private_key?: string;
-
+export interface MeetingRecording extends BaseMeetingRecording {
   // meeting fields (flattened)
-  meeting_id: string;
-  meeting_title: string;
-  meeting_preferred_region?: string | null;
-  meeting_created_at: string;
-  meeting_record_on_start?: boolean;
-  meeting_updated_at: string;
-  meeting_live_stream_on_start?: boolean;
-  meeting_persist_chat?: boolean;
-  meeting_summarize_on_end?: boolean;
-  meeting_status?: string;
+  "meeting.preferred_region": string | null;
+  "meeting.id": string;
+  "meeting.title": string;
+  "meeting.record_on_start": boolean;
+  "meeting.live_stream_on_start": boolean;
+  "meeting.persist_chat": boolean;
+  "meeting.summarize_on_end": boolean;
+  "meeting.is_large": boolean;
+  "meeting.status": string;
+  "meeting.created_at": string;
+  "meeting.updated_at": string;
+  "start_reason.reason": string;
+  "start_reason.caller.type": string;
+  "stop_reason.reason": string;
+  "stop_reason.caller.type": string;
 }
 
 export interface BasePreset {

@@ -3695,6 +3695,7 @@ export interface EventRoomType extends BaseEventRoomType {
   maxEnd: string | null;
   allowedTiers: BaseTier[];
   disallowedTiers: BaseTier[];
+  rooms: Room[];
   createdAt: string;
   updatedAt: string;
   _count: {
@@ -3711,12 +3712,26 @@ export interface EventRoomTypeTranslation {
   updatedAt: string;
 }
 
+export interface BaseRoom {
+  id: string;
+  roomId: string;
+  reservationId: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Room extends BaseRoom {
+  roomTypes: BaseEventRoomType[];
+  reservation: BaseEventRoomTypeReservation;
+}
+
 export interface BaseEventRoomTypeReservation {
   id: string;
   start: string | null;
   end: string | null;
   eventRoomTypeId: string;
   eventRoomType: BaseEventRoomType;
+  roomId: string;
   passes: {
     id: string;
     attendee: {
@@ -3727,6 +3742,7 @@ export interface BaseEventRoomTypeReservation {
 
 export interface EventRoomTypeReservation
   extends Omit<BaseEventRoomTypeReservation, "passes"> {
+  room: BaseRoom;
   passes: {
     id: string;
     status: PurchaseStatus;

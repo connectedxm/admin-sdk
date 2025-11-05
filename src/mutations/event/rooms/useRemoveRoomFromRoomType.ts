@@ -18,7 +18,7 @@ import {
 export interface RemoveRoomFromRoomTypeParams extends MutationParams {
   eventId: string;
   roomTypeId: string;
-  roomId: string;
+  roomName: string;
 }
 
 /**
@@ -28,7 +28,7 @@ export interface RemoveRoomFromRoomTypeParams extends MutationParams {
 export const RemoveRoomFromRoomType = async ({
   eventId,
   roomTypeId,
-  roomId,
+  roomName,
   adminApiParams,
   queryClient,
 }: RemoveRoomFromRoomTypeParams): Promise<
@@ -36,7 +36,7 @@ export const RemoveRoomFromRoomType = async ({
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<EventRoomType>>(
-    `/events/${eventId}/roomTypes/${roomTypeId}/rooms/${roomId}`
+    `/events/${eventId}/roomTypes/${roomTypeId}/rooms/${roomName}`
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

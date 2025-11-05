@@ -36,7 +36,7 @@ export const CreateRoom = async ({
     queryClient.invalidateQueries({
       queryKey: EVENT_ROOMS_QUERY_KEY(eventId),
     });
-    SET_EVENT_ROOM_QUERY_DATA(queryClient, [eventId, data.data.id], data);
+    SET_EVENT_ROOM_QUERY_DATA(queryClient, [eventId, data.data.roomName], data);
   }
   return data;
 };

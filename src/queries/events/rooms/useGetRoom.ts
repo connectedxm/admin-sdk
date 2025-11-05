@@ -12,9 +12,9 @@ import { EVENT_ROOMS_QUERY_KEY } from "./useGetRooms";
  * @category Keys
  * @group Events
  */
-export const EVENT_ROOM_QUERY_KEY = (eventId: string, roomId: string) => [
+export const EVENT_ROOM_QUERY_KEY = (eventId: string, roomName: string) => [
   ...EVENT_ROOMS_QUERY_KEY(eventId),
-  roomId,
+  roomName,
 ];
 
 /**
@@ -31,7 +31,7 @@ export const SET_EVENT_ROOM_QUERY_DATA = (
 
 interface GetRoomProps extends SingleQueryParams {
   eventId: string;
-  roomId: string;
+  roomName: string;
 }
 
 /**
@@ -40,11 +40,11 @@ interface GetRoomProps extends SingleQueryParams {
  */
 export const GetRoom = async ({
   eventId,
-  roomId,
+  roomName,
   adminApiParams,
 }: GetRoomProps): Promise<ConnectedXMResponse<Room>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/events/${eventId}/rooms/${roomId}`);
+  const { data } = await adminApi.get(`/events/${eventId}/rooms/${roomName}`);
   return data;
 };
 /**
@@ -53,20 +53,20 @@ export const GetRoom = async ({
  */
 export const useGetRoom = (
   eventId: string = "",
-  roomId: string = "",
+  roomName: string = "",
   options: SingleQueryOptions<ReturnType<typeof GetRoom>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetRoom>>(
-    EVENT_ROOM_QUERY_KEY(eventId, roomId),
+    EVENT_ROOM_QUERY_KEY(eventId, roomName),
     (params: SingleQueryParams) =>
       GetRoom({
         eventId,
-        roomId: roomId || "unknown",
+        roomName: roomName || "unknown",
         ...params,
       }),
     {
       ...options,
-      enabled: !!eventId && !!roomId && (options?.enabled ?? true),
+      enabled: !!eventId && !!roomName && (options?.enabled ?? true),
     }
   );
 };

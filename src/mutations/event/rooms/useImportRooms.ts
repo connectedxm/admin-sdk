@@ -14,9 +14,9 @@ import {
  * @category Params
  * @group Event-Rooms
  */
-export interface BulkCreateRoomsParams extends MutationParams {
+export interface ImportRoomsParams extends MutationParams {
   eventId: string;
-  roomIds: string[];
+  roomNames: string[];
   roomTypeId?: string;
 }
 
@@ -24,17 +24,17 @@ export interface BulkCreateRoomsParams extends MutationParams {
  * @category Methods
  * @group Event-Rooms
  */
-export const BulkCreateRooms = async ({
+export const ImportRooms = async ({
   eventId,
-  roomIds,
+  roomNames,
   roomTypeId,
   adminApiParams,
   queryClient,
-}: BulkCreateRoomsParams): Promise<ConnectedXMResponse<Room[]>> => {
+}: ImportRoomsParams): Promise<ConnectedXMResponse<Room[]>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<Room[]>>(
-    `/events/${eventId}/rooms/bulk`,
-    { roomIds, ...(roomTypeId && { roomTypeId }) }
+    `/events/${eventId}/rooms/import`,
+    { roomNames, ...(roomTypeId && { roomTypeId }) }
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
@@ -53,17 +53,17 @@ export const BulkCreateRooms = async ({
  * @category Mutations
  * @group Event-Rooms
  */
-export const useBulkCreateRooms = (
+export const useImportRooms = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof BulkCreateRooms>>,
-      Omit<BulkCreateRoomsParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof ImportRooms>>,
+      Omit<ImportRoomsParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    BulkCreateRoomsParams,
-    Awaited<ReturnType<typeof BulkCreateRooms>>
-  >(BulkCreateRooms, options);
+    ImportRoomsParams,
+    Awaited<ReturnType<typeof ImportRooms>>
+  >(ImportRooms, options);
 };

@@ -2868,8 +2868,8 @@ export interface Participant {
   name: string | null;
   picture: string | null;
   custom_participant_id: string;
-  preset_name: string;
   account: BaseAccount | null;
+  preset_name: string;
   token?: string;
   created_at: string;
   updated_at: string;
@@ -2908,6 +2908,31 @@ export interface MeetingSessionSummaryDownload {
   sessionId: string;
   summary_download_url: string;
   summary_download_url_expiry: string;
+}
+
+export interface Livestream {
+  id: string;
+  name: string;
+  status: "LIVE" | "IDLE" | "ERRORED" | "INVOKED";
+  ingest_server: string;
+  stream_key: string;
+  playback_url: string;
+  meeting_id: string;
+  created_at: string;
+  updated_at: string;
+  disabled: boolean;
+}
+
+export interface LivestreamSession {
+  id: string;
+  livestream_id: string;
+  err_message: string;
+  invoked_time: string;
+  started_time: string;
+  stopped_time: string;
+  created_at: string;
+  updated_at: string;
+  ingest_seconds: string;
 }
 
 export interface BaseMeetingRecording {
@@ -2953,7 +2978,7 @@ export interface BasePreset {
 
 export interface Preset extends BasePreset {
   // Config fields (dot notation)
-  "config.view_type": "GROUP_CALL" | "WEBINAR" | "AUDIO_ROOM";
+  "config.view_type": "GROUP_CALL" | "WEBINAR" | "AUDIO_ROOM" | "LIVESTREAM";
   "config.max_video_streams.mobile": number;
   "config.max_video_streams.desktop": number;
   "config.max_screenshare_count": number;

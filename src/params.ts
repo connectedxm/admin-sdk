@@ -2628,7 +2628,7 @@ export interface MeetingPresetCreateInputs {
   name: string;
 
   // Config fields (dot notation)
-  "config.view_type": "GROUP_CALL" | "WEBINAR" | "AUDIO_ROOM";
+  "config.view_type": "GROUP_CALL" | "WEBINAR" | "AUDIO_ROOM" | "LIVESTREAM";
   "config.max_video_streams.mobile": number;
   "config.max_video_streams.desktop": number;
   "config.max_screenshare_count": number;
@@ -2740,7 +2740,7 @@ export interface MeetingPresetUpdateInputs {
   name?: string | null;
 
   // Config fields (dot notation, all optional for updates)
-  "config.view_type"?: "GROUP_CALL" | "WEBINAR" | "AUDIO_ROOM";
+  "config.view_type"?: "GROUP_CALL" | "WEBINAR" | "AUDIO_ROOM" | "LIVESTREAM";
   "config.max_video_streams.mobile"?: number;
   "config.max_video_streams.desktop"?: number;
   "config.max_screenshare_count"?: number;

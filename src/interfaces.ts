@@ -3427,7 +3427,7 @@ export interface BaseRoom {
 
 export interface Room extends BaseRoom {
   roomTypes: BaseEventRoomType[];
-  reservation: BaseEventRoomTypeReservation;
+  reservation: BaseEventRoomTypeReservation | null;
 }
 
 export interface BaseEventRoomTypeReservation {

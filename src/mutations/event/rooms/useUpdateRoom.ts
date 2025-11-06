@@ -44,7 +44,7 @@ export const UpdateRoom = async ({
       queryKey: EVENT_ROOMS_QUERY_KEY(eventId),
     });
     // Update the specific room query if roomName changed
-    const updatedRoomName = data.data.roomName || roomName;
+    const updatedRoomName = data.data.roomName ?? roomName;
     SET_EVENT_ROOM_QUERY_DATA(queryClient, [eventId, updatedRoomName], data);
     // If roomName changed, remove the old query
     if (updatedRoomName !== roomName) {

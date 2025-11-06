@@ -1896,6 +1896,9 @@ export interface RoomCreateInputs {
   roomName: string;
 }
 
+export interface RoomUpdateInputs {
+  roomName?: string | null;
+}
 export interface EventRoomTypeTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;

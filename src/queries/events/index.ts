@@ -16,6 +16,7 @@ export * from "./pages";
 export * from "./passTypes";
 export * from "./passes";
 export * from "./questions";
+export * from "./rooms";
 export * from "./roomTypes";
 export * from "./sections";
 export * from "./sessions";

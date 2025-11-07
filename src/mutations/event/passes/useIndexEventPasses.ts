@@ -25,7 +25,7 @@ export const IndexEventPasses = async ({
   queryClient,
 }: IndexEventPassesParams): Promise<ConnectedXMResponse<EventPass[]>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.get<ConnectedXMResponse<EventPass[]>>(
+  const { data } = await connectedXM.post<ConnectedXMResponse<EventPass[]>>(
     `/events/${eventId}/index-passes`
   );
   if (queryClient && data.status === "ok") {
@@ -54,4 +54,3 @@ export const useIndexEventPasses = (
     Awaited<ReturnType<typeof IndexEventPasses>>
   >(IndexEventPasses, options);
 };
-

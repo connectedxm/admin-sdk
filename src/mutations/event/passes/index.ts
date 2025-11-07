@@ -4,6 +4,7 @@ export * from "./useCreateEventPass";
 export * from "./useCreateEventSessionAccess";
 export * from "./useDeleteEventPass";
 export * from "./useDeleteEventSessionAccess";
+export * from "./useIndexEventPasses";
 export * from "./useRemoveEventPassAddOn";
 export * from "./useTransferEventPass";
 export * from "./useUpdateEventPass";

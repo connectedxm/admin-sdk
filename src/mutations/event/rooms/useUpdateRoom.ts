@@ -19,7 +19,7 @@ import {
  */
 export interface UpdateRoomParams extends MutationParams {
   eventId: string;
-  roomName: string;
+  roomId: string;
   room: RoomUpdateInputs;
 }
 
@@ -29,27 +29,27 @@ export interface UpdateRoomParams extends MutationParams {
  */
 export const UpdateRoom = async ({
   eventId,
-  roomName,
+  roomId,
   room,
   adminApiParams,
   queryClient,
 }: UpdateRoomParams): Promise<ConnectedXMResponse<Room>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<Room>>(
-    `/events/${eventId}/rooms/${roomName}`,
+    `/events/${eventId}/rooms/${roomId}`,
     room
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_ROOMS_QUERY_KEY(eventId),
     });
-    // Update the specific room query if roomName changed
-    const updatedRoomName = data.data.roomName ?? roomName;
-    SET_EVENT_ROOM_QUERY_DATA(queryClient, [eventId, updatedRoomName], data);
-    // If roomName changed, remove the old query
-    if (updatedRoomName !== roomName) {
+    // Update the specific room query
+    const updatedRoomId = data.data.id || roomId;
+    SET_EVENT_ROOM_QUERY_DATA(queryClient, [eventId, updatedRoomId], data);
+    // If roomId changed (shouldn't happen, but handle it), remove the old query
+    if (updatedRoomId !== roomId) {
       queryClient.removeQueries({
-        queryKey: EVENT_ROOM_QUERY_KEY(eventId, roomName),
+        queryKey: EVENT_ROOM_QUERY_KEY(eventId, roomId),
       });
     }
     // Invalidate all room type rooms queries for this event

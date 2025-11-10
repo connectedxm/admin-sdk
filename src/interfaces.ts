@@ -3738,11 +3738,11 @@ export interface BaseEventRoomTypeReservation {
       accountId: string;
     };
   }[];
+  room: BaseRoom;
 }
 
 export interface EventRoomTypeReservation
   extends Omit<BaseEventRoomTypeReservation, "passes"> {
-  room: BaseRoom;
   passes: {
     id: string;
     status: PurchaseStatus;

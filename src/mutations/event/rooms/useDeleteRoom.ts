@@ -17,7 +17,7 @@ import {
  */
 export interface DeleteRoomParams extends MutationParams {
   eventId: string;
-  roomName: string;
+  roomId: string;
 }
 
 /**
@@ -26,20 +26,20 @@ export interface DeleteRoomParams extends MutationParams {
  */
 export const DeleteRoom = async ({
   eventId,
-  roomName,
+  roomId,
   adminApiParams,
   queryClient,
 }: DeleteRoomParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
-    `/events/${eventId}/rooms/${roomName}`
+    `/events/${eventId}/rooms/${roomId}`
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_ROOMS_QUERY_KEY(eventId),
     });
     queryClient.removeQueries({
-      queryKey: EVENT_ROOM_QUERY_KEY(eventId, roomName),
+      queryKey: EVENT_ROOM_QUERY_KEY(eventId, roomId),
     });
     // Invalidate all room type rooms queries for this event
     // This will match all queries that start with EVENT_ROOM_TYPES_QUERY_KEY(eventId)

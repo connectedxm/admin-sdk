@@ -16,7 +16,7 @@ import {
  */
 export interface ImportRoomsParams extends MutationParams {
   eventId: string;
-  roomNames: string[];
+  roomIds: string[];
   roomTypeId?: string;
 }
 
@@ -26,7 +26,7 @@ export interface ImportRoomsParams extends MutationParams {
  */
 export const ImportRooms = async ({
   eventId,
-  roomNames,
+  roomIds,
   roomTypeId,
   adminApiParams,
   queryClient,
@@ -34,7 +34,7 @@ export const ImportRooms = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<Room[]>>(
     `/events/${eventId}/rooms/import`,
-    { roomNames, ...(roomTypeId && { roomTypeId }) }
+    { roomIds, ...(roomTypeId && { roomTypeId }) }
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

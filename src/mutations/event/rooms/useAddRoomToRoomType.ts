@@ -18,7 +18,7 @@ import {
 export interface AddRoomToRoomTypeParams extends MutationParams {
   eventId: string;
   roomTypeId: string;
-  roomName: string;
+  roomId: string;
 }
 
 /**
@@ -28,14 +28,14 @@ export interface AddRoomToRoomTypeParams extends MutationParams {
 export const AddRoomToRoomType = async ({
   eventId,
   roomTypeId,
-  roomName,
+  roomId,
   adminApiParams,
   queryClient,
 }: AddRoomToRoomTypeParams): Promise<ConnectedXMResponse<EventRoomType>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<EventRoomType>>(
     `/events/${eventId}/roomTypes/${roomTypeId}/rooms`,
-    { roomName }
+    { roomId }
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

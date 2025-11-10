@@ -3731,7 +3731,7 @@ export interface BaseEventRoomTypeReservation {
   end: string | null;
   eventRoomTypeId: string;
   eventRoomType: BaseEventRoomType;
-  roomName: string;
+  roomId: string;
   passes: {
     id: string;
     attendee: {

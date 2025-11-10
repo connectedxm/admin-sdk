@@ -1908,7 +1908,7 @@ export interface EventRoomTypeReservationCreateInputs {
   eventRoomTypeId: string;
   passes?: { id: string }[];
   start?: string | null;
-  roomName?: string | null;
+  roomId?: string | null;
   end?: string | null;
 }
 
@@ -1916,7 +1916,7 @@ export interface EventRoomTypeReservationUpdateInputs {
   eventRoomTypeId?: string;
   start?: string | null;
   end?: string | null;
-  roomName?: string | null;
+  roomId?: string | null;
 }
 
 export interface EventRoomTypePassTypeDetailsUpdateInputs {

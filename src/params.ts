@@ -1459,38 +1459,6 @@ export interface LevelUpdateInputs {
   sortOrder?: number | string | null;
 }
 
-export interface StreamInputCreateInputs {
-  name: string;
-  sortOrder?: number | string | null;
-  eventId?: string | null;
-  sessionId?: string | null;
-  groupId?: string | null;
-  details?: object | null;
-  imageId?: string | null;
-  public?: boolean;
-}
-
-export interface StreamInputUpdateInputs {
-  name?: string;
-  sortOrder?: number | string | null;
-  eventId?: string | null;
-  sessionId?: string | null;
-  groupId?: string | null;
-  details?: object | null;
-  connected?: boolean;
-  imageId?: string | null;
-  public?: boolean;
-}
-
-export interface StreamInputOutputCreateInputs {
-  enabled: boolean;
-  url: string;
-  streamKey: string;
-}
-export interface StreamInputOutputUpdateInputs {
-  enabled: boolean;
-}
-
 export interface StreamOutputCreateInputs {
   enabled: boolean;
   streamKey: string;
@@ -1623,7 +1591,6 @@ export interface ThreadCreateInputs {
   groupId?: string;
   circleId?: string;
   eventId?: string;
-  streamId?: string;
 }
 
 export interface ThreadUpdateInputs {
@@ -2477,4 +2444,387 @@ export interface RoundEventQuestionUpdataInputs {
 
 export interface RoundSessionQuestionUpdateInputs {
   type: keyof typeof MatchQuestionType;
+}
+
+// ============================================================================
+// StreamsV2 (Cloudflare Calls) Params
+// ============================================================================
+
+export interface MeetingCreateInputs {
+  host_preset: string;
+  guest_preset: string;
+  public?: boolean;
+  title: string | null;
+  preferred_region:
+    | "ap-south-1"
+    | "ap-southeast-1"
+    | "us-east-1"
+    | "eu-central-1"
+    | null;
+  record_on_start: boolean;
+  live_stream_on_start: boolean;
+  persist_chat: boolean;
+  summarize_on_end: boolean;
+
+  // AI config fields (flattened)
+  "ai_config.transcription.keywords"?: string[];
+  "ai_config.transcription.language"?:
+    | "en-US"
+    | "en-IN"
+    | "multi"
+    | "de"
+    | "hi"
+    | "sv"
+    | "ru"
+    | "pl"
+    | "el"
+    | "fr"
+    | "nl"
+    | "tr"
+    | "es"
+    | "it"
+    | "pt"
+    | "pt-BR"
+    | "ro"
+    | "ko"
+    | "id";
+  "ai_config.transcription.profanity_filter"?: boolean;
+  // Summarization config fields (flattened)
+  "ai_config.summarization.word_limit"?: number;
+  "ai_config.summarization.text_format"?: "plain_text" | "markdown";
+  "ai_config.summarization.summary_type"?:
+    | "general"
+    | "team_meeting"
+    | "sales_call"
+    | "client_check_in"
+    | "interview"
+    | "daily_standup"
+    | "one_on_one_meeting"
+    | "lecture"
+    | "code_review";
+}
+
+export interface MeetingUpdateInputs {
+  host_preset?: string;
+  guest_preset?: string;
+  public?: boolean;
+  title?: string | null;
+  preferred_region?:
+    | "ap-south-1"
+    | "ap-southeast-1"
+    | "us-east-1"
+    | "eu-central-1"
+    | null;
+  record_on_start?: boolean;
+  live_stream_on_start?: boolean;
+  status?: "ACTIVE" | "INACTIVE";
+  persist_chat?: boolean;
+  summarize_on_end?: boolean;
+
+  // AI config fields (flattened)
+  "ai_config.transcription.keywords"?: string[];
+  "ai_config.transcription.language"?:
+    | "en-US"
+    | "en-IN"
+    | "multi"
+    | "de"
+    | "hi"
+    | "sv"
+    | "ru"
+    | "pl"
+    | "el"
+    | "fr"
+    | "nl"
+    | "tr"
+    | "es"
+    | "it"
+    | "pt"
+    | "pt-BR"
+    | "ro"
+    | "ko"
+    | "id";
+  "ai_config.transcription.profanity_filter"?: boolean;
+
+  // Summarization config fields (flattened)
+  "ai_config.summarization.word_limit"?: number;
+  "ai_config.summarization.text_format"?: "plain_text" | "markdown";
+  "ai_config.summarization.summary_type"?:
+    | "general"
+    | "team_meeting"
+    | "sales_call"
+    | "client_check_in"
+    | "interview"
+    | "daily_standup"
+    | "one_on_one_meeting"
+    | "lecture"
+    | "code_review";
+}
+
+export interface MeetingParticipantCreateInputs {
+  custom_participant_id: string;
+  name?: string | null;
+  picture?: string | null;
+}
+
+export interface MeetingParticipantUpdateInputs {
+  name?: string | null;
+  picture?: string | null;
+  preset_name?: string | null;
+}
+
+export interface MeetingRecordingCreateInputs {
+  max_seconds?: number;
+  file_name_prefix?: string;
+  allow_multiple_recordings?: boolean;
+
+  // Video config fields (flattened)
+  video_codec?: string;
+  video_width?: number;
+  video_height?: number;
+  video_export_file?: boolean;
+
+  // Watermark fields (flattened)
+  watermark_url?: string;
+  watermark_size_width?: number;
+  watermark_size_height?: number;
+  watermark_position?: string;
+
+  // Audio config fields (flattened)
+  audio_codec?: string;
+  audio_channel?: string;
+  audio_export_file?: boolean;
+
+  // Realtimekit bucket config
+  realtimekit_bucket_enabled?: boolean;
+
+  // Interactive config
+  interactive_type?: string;
+}
+
+export interface MeetingRecordingUpdateInputs {
+  action: "stop" | "pause" | "resume";
+}
+
+export interface MeetingPresetCreateInputs {
+  name: string;
+
+  // Config fields (dot notation)
+  "config.view_type": "GROUP_CALL" | "WEBINAR" | "AUDIO_ROOM" | "LIVESTREAM";
+  "config.max_video_streams.mobile": number;
+  "config.max_video_streams.desktop": number;
+  "config.max_screenshare_count": number;
+  "config.media.audio.enable_stereo": boolean;
+  "config.media.audio.enable_high_bitrate": boolean;
+  "config.media.video.quality": "hd" | "vga" | "qvga";
+  "config.media.video.frame_rate": number;
+  "config.media.screenshare.quality": "hd" | "vga" | "qvga";
+  "config.media.screenshare.frame_rate": number;
+
+  // Permissions fields (dot notation)
+  "permissions.accept_waiting_requests": boolean;
+  "permissions.transcription_enabled": boolean;
+  "permissions.can_accept_production_requests": boolean;
+  "permissions.can_edit_display_name": boolean;
+  "permissions.can_spotlight": boolean;
+  "permissions.is_recorder": boolean;
+  "permissions.recorder_type": "NONE" | "RECORDER" | "LIVESTREAMER";
+  "permissions.disable_participant_audio": boolean;
+  "permissions.disable_participant_screensharing": boolean;
+  "permissions.disable_participant_video": boolean;
+  "permissions.kick_participant": boolean;
+  "permissions.pin_participant": boolean;
+  "permissions.can_record": boolean;
+  "permissions.can_livestream": boolean;
+  "permissions.waiting_room_type":
+    | "SKIP"
+    | "ON_PRIVILEGED_USER_ENTRY"
+    | "SKIP_ON_ACCEPT";
+  "permissions.hidden_participant": boolean;
+  "permissions.show_participant_list": boolean;
+  "permissions.can_change_participant_permissions": boolean;
+  "permissions.stage_enabled": boolean;
+  "permissions.stage_access": "ALLOWED" | "NOT_ALLOWED" | "CAN_REQUEST";
+
+  // Permissions.plugins fields (dot notation)
+  "permissions.plugins.can_close": boolean;
+  "permissions.plugins.can_start": boolean;
+  "permissions.plugins.can_edit_config": boolean;
+  "permissions.plugins.config": Record<string, any>;
+
+  // Permissions.connected_meetings fields (dot notation)
+  "permissions.connected_meetings.can_alter_connected_meetings": boolean;
+  "permissions.connected_meetings.can_switch_connected_meetings": boolean;
+  "permissions.connected_meetings.can_switch_to_parent_meeting": boolean;
+
+  // Permissions.polls fields (dot notation)
+  "permissions.polls.can_create": boolean;
+  "permissions.polls.can_vote": boolean;
+  "permissions.polls.can_view": boolean;
+
+  // Permissions.media fields (dot notation)
+  "permissions.media.video.can_produce":
+    | "ALLOWED"
+    | "NOT_ALLOWED"
+    | "CAN_REQUEST";
+  "permissions.media.audio.can_produce":
+    | "ALLOWED"
+    | "NOT_ALLOWED"
+    | "CAN_REQUEST";
+  "permissions.media.screenshare.can_produce":
+    | "ALLOWED"
+    | "NOT_ALLOWED"
+    | "CAN_REQUEST";
+
+  // Permissions.chat fields (dot notation)
+  "permissions.chat.public.can_send": boolean;
+  "permissions.chat.public.text": boolean;
+  "permissions.chat.public.files": boolean;
+  "permissions.chat.private.can_send": boolean;
+  "permissions.chat.private.can_receive": boolean;
+  "permissions.chat.private.text": boolean;
+  "permissions.chat.private.files": boolean;
+
+  // UI.design_tokens fields (dot notation)
+  "ui.design_tokens.border_radius": "rounded";
+  "ui.design_tokens.border_width": "thin";
+  "ui.design_tokens.spacing_base": number;
+  "ui.design_tokens.theme": "dark";
+  "ui.design_tokens.logo": string;
+
+  // UI.design_tokens.colors.brand fields (dot notation)
+  "ui.design_tokens.colors.brand.300": string;
+  "ui.design_tokens.colors.brand.400": string;
+  "ui.design_tokens.colors.brand.500": string;
+  "ui.design_tokens.colors.brand.600": string;
+  "ui.design_tokens.colors.brand.700": string;
+
+  // UI.design_tokens.colors.background fields (dot notation)
+  "ui.design_tokens.colors.background.600": string;
+  "ui.design_tokens.colors.background.700": string;
+  "ui.design_tokens.colors.background.800": string;
+  "ui.design_tokens.colors.background.900": string;
+  "ui.design_tokens.colors.background.1000": string;
+
+  // UI.design_tokens.colors other fields (dot notation)
+  "ui.design_tokens.colors.danger": string;
+  "ui.design_tokens.colors.text": string;
+  "ui.design_tokens.colors.text_on_brand": string;
+  "ui.design_tokens.colors.success": string;
+  "ui.design_tokens.colors.video_bg": string;
+  "ui.design_tokens.colors.warning": string;
+
+  // UI.config_diff field (dot notation)
+  "ui.config_diff": Record<string, any>;
+}
+
+export interface MeetingPresetUpdateInputs {
+  name?: string | null;
+
+  // Config fields (dot notation, all optional for updates)
+  "config.view_type"?: "GROUP_CALL" | "WEBINAR" | "AUDIO_ROOM" | "LIVESTREAM";
+  "config.max_video_streams.mobile"?: number;
+  "config.max_video_streams.desktop"?: number;
+  "config.max_screenshare_count"?: number;
+  "config.media.audio.enable_stereo"?: boolean;
+  "config.media.audio.enable_high_bitrate"?: boolean;
+  "config.media.video.quality"?: "hd" | "vga" | "qvga";
+  "config.media.video.frame_rate"?: number;
+  "config.media.screenshare.quality"?: "hd" | "vga" | "qvga";
+  "config.media.screenshare.frame_rate"?: number;
+
+  // Permissions fields (dot notation, all optional for updates)
+  "permissions.accept_waiting_requests"?: boolean;
+  "permissions.transcription_enabled"?: boolean;
+  "permissions.can_accept_production_requests"?: boolean;
+  "permissions.can_edit_display_name"?: boolean;
+  "permissions.can_spotlight"?: boolean;
+  "permissions.is_recorder"?: boolean;
+  "permissions.recorder_type"?: "NONE" | "RECORDER" | "LIVESTREAMER";
+  "permissions.disable_participant_audio"?: boolean;
+  "permissions.disable_participant_screensharing"?: boolean;
+  "permissions.disable_participant_video"?: boolean;
+  "permissions.kick_participant"?: boolean;
+  "permissions.pin_participant"?: boolean;
+  "permissions.can_record"?: boolean;
+  "permissions.can_livestream"?: boolean;
+  "permissions.waiting_room_type"?:
+    | "SKIP"
+    | "ON_PRIVILEGED_USER_ENTRY"
+    | "SKIP_ON_ACCEPT";
+  "permissions.hidden_participant"?: boolean;
+  "permissions.show_participant_list"?: boolean;
+  "permissions.can_change_participant_permissions"?: boolean;
+  "permissions.stage_enabled"?: boolean;
+  "permissions.stage_access"?: "ALLOWED" | "NOT_ALLOWED" | "CAN_REQUEST";
+
+  // Permissions.plugins fields (dot notation, all optional for updates)
+  "permissions.plugins.can_close"?: boolean;
+  "permissions.plugins.can_start"?: boolean;
+  "permissions.plugins.can_edit_config"?: boolean;
+  "permissions.plugins.config"?: Record<string, any>;
+
+  // Permissions.connected_meetings fields (dot notation, all optional for updates)
+  "permissions.connected_meetings.can_alter_connected_meetings"?: boolean;
+  "permissions.connected_meetings.can_switch_connected_meetings"?: boolean;
+  "permissions.connected_meetings.can_switch_to_parent_meeting"?: boolean;
+
+  // Permissions.polls fields (dot notation, all optional for updates)
+  "permissions.polls.can_create"?: boolean;
+  "permissions.polls.can_vote"?: boolean;
+  "permissions.polls.can_view"?: boolean;
+
+  // Permissions.media fields (dot notation, all optional for updates)
+  "permissions.media.video.can_produce"?:
+    | "ALLOWED"
+    | "NOT_ALLOWED"
+    | "CAN_REQUEST";
+  "permissions.media.audio.can_produce"?:
+    | "ALLOWED"
+    | "NOT_ALLOWED"
+    | "CAN_REQUEST";
+  "permissions.media.screenshare.can_produce"?:
+    | "ALLOWED"
+    | "NOT_ALLOWED"
+    | "CAN_REQUEST";
+
+  // Permissions.chat fields (dot notation, all optional for updates)
+  "permissions.chat.public.can_send"?: boolean;
+  "permissions.chat.public.text"?: boolean;
+  "permissions.chat.public.files"?: boolean;
+  "permissions.chat.private.can_send"?: boolean;
+  "permissions.chat.private.can_receive"?: boolean;
+  "permissions.chat.private.text"?: boolean;
+  "permissions.chat.private.files"?: boolean;
+
+  // UI.design_tokens fields (dot notation, all optional for updates)
+  "ui.design_tokens.border_radius"?: "rounded";
+  "ui.design_tokens.border_width"?: "thin";
+  "ui.design_tokens.spacing_base"?: number;
+  "ui.design_tokens.theme"?: "dark";
+  "ui.design_tokens.logo"?: string;
+
+  // UI.design_tokens.colors.brand fields (dot notation, all optional for updates)
+  "ui.design_tokens.colors.brand.300"?: string;
+  "ui.design_tokens.colors.brand.400"?: string;
+  "ui.design_tokens.colors.brand.500"?: string;
+  "ui.design_tokens.colors.brand.600"?: string;
+  "ui.design_tokens.colors.brand.700"?: string;
+
+  // UI.design_tokens.colors.background fields (dot notation, all optional for updates)
+  "ui.design_tokens.colors.background.600"?: string;
+  "ui.design_tokens.colors.background.700"?: string;
+  "ui.design_tokens.colors.background.800"?: string;
+  "ui.design_tokens.colors.background.900"?: string;
+  "ui.design_tokens.colors.background.1000"?: string;
+
+  // UI.design_tokens.colors other fields (dot notation, all optional for updates)
+  "ui.design_tokens.colors.danger"?: string;
+  "ui.design_tokens.colors.text"?: string;
+  "ui.design_tokens.colors.text_on_brand"?: string;
+  "ui.design_tokens.colors.success"?: string;
+  "ui.design_tokens.colors.video_bg"?: string;
+  "ui.design_tokens.colors.warning"?: string;
+
+  // UI.config_diff field (dot notation, all optional for updates)
+  "ui.config_diff"?: Record<string, any>;
 }

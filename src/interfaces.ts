@@ -1084,7 +1084,6 @@ export interface Event extends BaseEvent {
   androidAppLink: string | null;
   newActivityCreatorEmailNotification: boolean;
   newActivityCreatorPushNotification: boolean;
-  streamInputs: BaseStreamInput[];
   streamReplayId: string | null;
   streamReplay: BaseVideo | null;
   groupId: string | null;
@@ -2400,7 +2399,6 @@ export interface EventSession extends BaseEventSession {
   eventId: string;
   event: BaseEvent;
   speakers: BaseEventSpeaker[];
-  streamInput: BaseStreamInput | null;
 }
 
 export interface EventSessionTranslation {
@@ -2715,80 +2713,302 @@ export interface SponsorshipLevelTranslation {
   updatedAt: string;
 }
 
-export interface BaseStreamInput {
-  id: number;
-  name: string;
-  cloudflareId: string | null;
-  connected: boolean;
+// ============================================================================
+// StreamsV2 (Cloudflare Calls) Interfaces
+// ============================================================================
+
+export type RecordingAction = "stop" | "pause" | "resume";
+
+export interface StorageConfig {
+  type: "aws" | "azure" | "digitalocean" | "gcs" | "sftp";
+  access_key?: string;
+  secret?: string;
+  bucket?: string;
+  region?: string;
+  path?: string;
+  auth_method?: "KEY" | "PASSWORD";
+  username?: string;
+  password?: string;
+  host?: string;
+  port?: number;
+  private_key?: string;
+}
+
+export interface BaseMeeting {
+  id: string;
+  title: string;
+  host_preset: string;
+  guest_preset: string;
   public: boolean;
-  sessionId: string | null;
-  eventId: string | null;
-  groupId: string | null;
-  imageId: string | null;
-  image: BaseImage | null;
+  preferred_region?:
+    | "ap-south-1"
+    | "ap-southeast-1"
+    | "us-east-1"
+    | "eu-central-1"
+    | null;
+  record_on_start: boolean;
+  live_stream_on_start: boolean;
+  persist_chat: boolean;
+  summarize_on_end: boolean;
+  status: "ACTIVE" | "INACTIVE";
+  created_at: string;
+  updated_at: string;
 }
 
-export interface StreamInput extends BaseStreamInput {
-  sortOrder: number;
-  event: BaseEvent | null;
-  session: BaseEventSession | null;
-  group: BaseGroup | null;
-  details?: StreamInputDetails;
-  threads: BaseThread[];
-  createdAt: string;
+export interface Meeting extends BaseMeeting {
+  "ai_config.transcription.keywords": string[];
+  "ai_config.transcription.language":
+    | "en-US"
+    | "en-IN"
+    | "multi"
+    | "de"
+    | "hi"
+    | "sv"
+    | "ru"
+    | "pl"
+    | "el"
+    | "fr"
+    | "nl"
+    | "tr"
+    | "es"
+    | "it"
+    | "pt"
+    | "pt-BR"
+    | "ro"
+    | "ko"
+    | "id";
+  "ai_config.transcription.profanity_filter": boolean;
+  "ai_config.summarization.word_limit": number;
+  "ai_config.summarization.text_format": "plain_text" | "markdown";
+  "ai_config.summarization.summary_type":
+    | "general"
+    | "team_meeting"
+    | "sales_call"
+    | "client_check_in"
+    | "interview";
 }
 
-export interface StreamInputOutput {
-  enabled: boolean;
-  url: string;
-  streamKey: string;
-  uid: string;
+export interface Participant {
+  id: string;
+  name: string | null;
+  picture: string | null;
+  custom_participant_id: string;
+  account: BaseAccount | null;
+  preset_name: string;
+  token?: string;
+  created_at: string;
+  updated_at: string;
 }
 
-export interface StreamInputConfig {
-  mode: "automatic" | "off";
-  requireSignedURLs: boolean;
-  allowedOrigins: string[];
-  deleteRecordingAfterDays: null | number;
+export interface MeetingSession {
+  id: string;
+  associated_id: string;
+  meeting_display_name: string;
+  type: "meeting" | "livestream" | "participant";
+  status: "LIVE" | "ENDED";
+  live_participants: number;
+  max_concurrent_participants: number;
+  minutes_consumed: number;
+  organization_id: string;
+  started_at: string;
+  created_at: string;
+  updated_at: string;
+  ended_at?: string;
+  meta?: Record<string, any>;
+  breakout_rooms: MeetingSession[];
 }
 
-export interface StreamInputDetails {
-  uid: string;
-  rtmps: {
-    url: string;
-    streamKey: string;
-  };
-  rtmpsPlayback: {
-    url: string;
-    streamKey: string;
-  };
-  srt: {
-    url: string;
-    streamId: string;
-    passphrase: string;
-  };
-  srtPlayback: {
-    url: string;
-    streamId: string;
-    passphrase: string;
-  };
-  webRTC: {
-    url: string;
-  };
-  webRTCPlayback: {
-    url: string;
-  };
-  created: string;
-  modified: string;
-  meta: Record<string, any>;
-  defaultCreator: string;
-  status: any;
-  recording: {
-    mode: "automatic" | "off";
-    requireSignedURLs: boolean;
-    allowedOrigins: string[];
-  };
-  deleteRecordingAfterDays: null | number;
+export interface MeetingSessionChatDownload {
+  chat_download_url: string;
+  chat_download_url_expiry: string;
+}
+
+export interface MeetingSessionTranscriptDownload {
+  sessionId: string;
+  transcript_download_url: string;
+  transcript_download_url_expiry: string;
+}
+
+export interface MeetingSessionSummaryDownload {
+  sessionId: string;
+  summary_download_url: string;
+  summary_download_url_expiry: string;
+}
+
+export interface Livestream {
+  id: string;
+  name: string;
+  status: "LIVE" | "IDLE" | "ERRORED" | "INVOKED";
+  ingest_server: string;
+  stream_key: string;
+  playback_url: string;
+  meeting_id: string;
+  created_at: string;
+  updated_at: string;
+  disabled: boolean;
+}
+
+export interface LivestreamSession {
+  id: string;
+  livestream_id: string;
+  err_message: string;
+  invoked_time: string;
+  started_time: string;
+  stopped_time: string;
+  created_at: string;
+  updated_at: string;
+  ingest_seconds: string;
+}
+
+export interface BaseMeetingRecording {
+  id: string;
+  meeting_id: string;
+  download_url: string | null;
+  download_url_expiry: string | null;
+  file_size: number | null;
+  session_id: string | null;
+  output_file_name: string;
+  status: string;
+  invoked_time: string;
+  started_time: string | null;
+  stopped_time: string | null;
+  recording_duration: number;
+}
+
+export interface MeetingRecording extends BaseMeetingRecording {
+  // meeting fields (flattened)
+  "meeting.preferred_region": string | null;
+  "meeting.id": string;
+  "meeting.title": string;
+  "meeting.record_on_start": boolean;
+  "meeting.live_stream_on_start": boolean;
+  "meeting.persist_chat": boolean;
+  "meeting.summarize_on_end": boolean;
+  "meeting.is_large": boolean;
+  "meeting.status": string;
+  "meeting.created_at": string;
+  "meeting.updated_at": string;
+  "start_reason.reason": string;
+  "start_reason.caller.type": string;
+  "stop_reason.reason": string;
+  "stop_reason.caller.type": string;
+}
+
+export interface BasePreset {
+  id: string;
+  name: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Preset extends BasePreset {
+  // Config fields (dot notation)
+  "config.view_type": "GROUP_CALL" | "WEBINAR" | "AUDIO_ROOM" | "LIVESTREAM";
+  "config.max_video_streams.mobile": number;
+  "config.max_video_streams.desktop": number;
+  "config.max_screenshare_count": number;
+  "config.media.audio.enable_stereo": boolean;
+  "config.media.audio.enable_high_bitrate": boolean;
+  "config.media.video.quality": "hd" | "vga" | "qvga";
+  "config.media.video.frame_rate": number;
+  "config.media.screenshare.quality": "hd" | "vga" | "qvga";
+  "config.media.screenshare.frame_rate": number;
+
+  // Permissions fields (dot notation)
+  "permissions.accept_waiting_requests": boolean;
+  "permissions.transcription_enabled": boolean;
+  "permissions.can_accept_production_requests": boolean;
+  "permissions.can_edit_display_name": boolean;
+  "permissions.can_spotlight": boolean;
+  "permissions.is_recorder": boolean;
+  "permissions.recorder_type": "NONE" | "RECORDER" | "LIVESTREAMER";
+  "permissions.disable_participant_audio": boolean;
+  "permissions.disable_participant_screensharing": boolean;
+  "permissions.disable_participant_video": boolean;
+  "permissions.kick_participant": boolean;
+  "permissions.pin_participant": boolean;
+  "permissions.can_record": boolean;
+  "permissions.can_livestream": boolean;
+  "permissions.waiting_room_type":
+    | "SKIP"
+    | "ON_PRIVILEGED_USER_ENTRY"
+    | "SKIP_ON_ACCEPT";
+  "permissions.hidden_participant": boolean;
+  "permissions.show_participant_list": boolean;
+  "permissions.can_change_participant_permissions": boolean;
+  "permissions.stage_enabled": boolean;
+  "permissions.stage_access": "ALLOWED" | "NOT_ALLOWED" | "CAN_REQUEST";
+
+  // Permissions.plugins fields (dot notation)
+  "permissions.plugins.can_close": boolean;
+  "permissions.plugins.can_start": boolean;
+  "permissions.plugins.can_edit_config": boolean;
+  "permissions.plugins.config": Record<string, any>;
+
+  // Permissions.connected_meetings fields (dot notation)
+  "permissions.connected_meetings.can_alter_connected_meetings": boolean;
+  "permissions.connected_meetings.can_switch_connected_meetings": boolean;
+  "permissions.connected_meetings.can_switch_to_parent_meeting": boolean;
+
+  // Permissions.polls fields (dot notation)
+  "permissions.polls.can_create": boolean;
+  "permissions.polls.can_vote": boolean;
+  "permissions.polls.can_view": boolean;
+
+  // Permissions.media fields (dot notation)
+  "permissions.media.video.can_produce":
+    | "ALLOWED"
+    | "NOT_ALLOWED"
+    | "CAN_REQUEST";
+  "permissions.media.audio.can_produce":
+    | "ALLOWED"
+    | "NOT_ALLOWED"
+    | "CAN_REQUEST";
+  "permissions.media.screenshare.can_produce":
+    | "ALLOWED"
+    | "NOT_ALLOWED"
+    | "CAN_REQUEST";
+
+  // Permissions.chat fields (dot notation)
+  "permissions.chat.public.can_send": boolean;
+  "permissions.chat.public.text": boolean;
+  "permissions.chat.public.files": boolean;
+  "permissions.chat.private.can_send": boolean;
+  "permissions.chat.private.can_receive": boolean;
+  "permissions.chat.private.text": boolean;
+  "permissions.chat.private.files": boolean;
+
+  // UI.design_tokens fields (dot notation)
+  "ui.design_tokens.border_radius": "rounded";
+  "ui.design_tokens.border_width": "thin";
+  "ui.design_tokens.spacing_base": number;
+  "ui.design_tokens.theme": "dark";
+  "ui.design_tokens.logo": string;
+
+  // UI.design_tokens.colors.brand fields (dot notation)
+  "ui.design_tokens.colors.brand.300": string;
+  "ui.design_tokens.colors.brand.400": string;
+  "ui.design_tokens.colors.brand.500": string;
+  "ui.design_tokens.colors.brand.600": string;
+  "ui.design_tokens.colors.brand.700": string;
+
+  // UI.design_tokens.colors.background fields (dot notation)
+  "ui.design_tokens.colors.background.600": string;
+  "ui.design_tokens.colors.background.700": string;
+  "ui.design_tokens.colors.background.800": string;
+  "ui.design_tokens.colors.background.900": string;
+  "ui.design_tokens.colors.background.1000": string;
+
+  // UI.design_tokens.colors other fields (dot notation)
+  "ui.design_tokens.colors.danger": string;
+  "ui.design_tokens.colors.text": string;
+  "ui.design_tokens.colors.text_on_brand": string;
+  "ui.design_tokens.colors.success": string;
+  "ui.design_tokens.colors.video_bg": string;
+  "ui.design_tokens.colors.warning": string;
+
+  // UI.config_diff field (dot notation)
+  "ui.config_diff": Record<string, any>;
 }
 
 export enum MembershipPriceType {

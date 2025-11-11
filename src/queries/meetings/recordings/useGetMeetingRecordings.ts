@@ -12,11 +12,11 @@ import { QueryClient } from "@tanstack/react-query";
  * @group StreamsV2
  */
 export const MEETING_RECORDINGS_QUERY_KEY = (meetingId?: string) => {
-  const key = ["RECORDINGS"];
   if (meetingId) {
-    key.push(meetingId);
+    return ["MEETING_RECORDINGS", meetingId];
+  } else {
+    return ["RECORDINGS"];
   }
-  return key;
 };
 
 /**

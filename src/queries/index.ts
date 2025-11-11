@@ -19,6 +19,7 @@ export * from "./invoices";
 export * from "./levels";
 export * from "./link-preview";
 export * from "./logins";
+export * from "./meetings";
 export * from "./memberships";
 export * from "./organization";
 export * from "./push-devices";

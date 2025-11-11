@@ -13,7 +13,7 @@ import { LIVESTREAM_QUERY_KEY } from "./useGetLivestream";
  * @group StreamsV2
  */
 export const LIVESTREAM_SESSIONS_QUERY_KEY = (livestreamId?: string) => {
-  const keys = [...LIVESTREAM_QUERY_KEY(livestreamId), "SESSIONS"];
+  const keys = [...LIVESTREAM_QUERY_KEY(livestreamId || ""), "SESSIONS"];
   return keys;
 };
 

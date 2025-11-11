@@ -2561,7 +2561,6 @@ export interface MeetingUpdateInputs {
 }
 
 export interface MeetingParticipantCreateInputs {
-  preset_name: string;
   custom_participant_id: string;
   name?: string | null;
   picture?: string | null;

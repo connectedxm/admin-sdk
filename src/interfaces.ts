@@ -1084,7 +1084,6 @@ export interface Event extends BaseEvent {
   androidAppLink: string | null;
   newActivityCreatorEmailNotification: boolean;
   newActivityCreatorPushNotification: boolean;
-  streamInputs: BaseStreamInput[];
   streamReplayId: string | null;
   streamReplay: BaseVideo | null;
   groupId: string | null;
@@ -2400,7 +2399,6 @@ export interface EventSession extends BaseEventSession {
   eventId: string;
   event: BaseEvent;
   speakers: BaseEventSpeaker[];
-  streamInput: BaseStreamInput | null;
 }
 
 export interface EventSessionTranslation {
@@ -2713,82 +2711,6 @@ export interface SponsorshipLevelTranslation {
   description: string | null;
   createdAt: string;
   updatedAt: string;
-}
-
-export interface BaseStreamInput {
-  id: number;
-  name: string;
-  cloudflareId: string | null;
-  connected: boolean;
-  public: boolean;
-  sessionId: string | null;
-  eventId: string | null;
-  groupId: string | null;
-  imageId: string | null;
-  image: BaseImage | null;
-}
-
-export interface StreamInput extends BaseStreamInput {
-  sortOrder: number;
-  event: BaseEvent | null;
-  session: BaseEventSession | null;
-  group: BaseGroup | null;
-  details?: StreamInputDetails;
-  threads: BaseThread[];
-  createdAt: string;
-}
-
-export interface StreamInputOutput {
-  enabled: boolean;
-  url: string;
-  streamKey: string;
-  uid: string;
-}
-
-export interface StreamInputConfig {
-  mode: "automatic" | "off";
-  requireSignedURLs: boolean;
-  allowedOrigins: string[];
-  deleteRecordingAfterDays: null | number;
-}
-
-export interface StreamInputDetails {
-  uid: string;
-  rtmps: {
-    url: string;
-    streamKey: string;
-  };
-  rtmpsPlayback: {
-    url: string;
-    streamKey: string;
-  };
-  srt: {
-    url: string;
-    streamId: string;
-    passphrase: string;
-  };
-  srtPlayback: {
-    url: string;
-    streamId: string;
-    passphrase: string;
-  };
-  webRTC: {
-    url: string;
-  };
-  webRTCPlayback: {
-    url: string;
-  };
-  created: string;
-  modified: string;
-  meta: Record<string, any>;
-  defaultCreator: string;
-  status: any;
-  recording: {
-    mode: "automatic" | "off";
-    requireSignedURLs: boolean;
-    allowedOrigins: string[];
-  };
-  deleteRecordingAfterDays: null | number;
 }
 
 // ============================================================================

@@ -1459,38 +1459,6 @@ export interface LevelUpdateInputs {
   sortOrder?: number | string | null;
 }
 
-export interface StreamInputCreateInputs {
-  name: string;
-  sortOrder?: number | string | null;
-  eventId?: string | null;
-  sessionId?: string | null;
-  groupId?: string | null;
-  details?: object | null;
-  imageId?: string | null;
-  public?: boolean;
-}
-
-export interface StreamInputUpdateInputs {
-  name?: string;
-  sortOrder?: number | string | null;
-  eventId?: string | null;
-  sessionId?: string | null;
-  groupId?: string | null;
-  details?: object | null;
-  connected?: boolean;
-  imageId?: string | null;
-  public?: boolean;
-}
-
-export interface StreamInputOutputCreateInputs {
-  enabled: boolean;
-  url: string;
-  streamKey: string;
-}
-export interface StreamInputOutputUpdateInputs {
-  enabled: boolean;
-}
-
 export interface StreamOutputCreateInputs {
   enabled: boolean;
   streamKey: string;
@@ -1623,7 +1591,6 @@ export interface ThreadCreateInputs {
   groupId?: string;
   circleId?: string;
   eventId?: string;
-  streamId?: string;
 }
 
 export interface ThreadUpdateInputs {

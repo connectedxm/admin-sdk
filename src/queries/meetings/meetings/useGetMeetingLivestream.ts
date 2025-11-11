@@ -5,7 +5,7 @@ import {
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
 import { ConnectedXMResponse, Livestream } from "@src/interfaces";
-import { MEETINGS_QUERY_KEY } from "./useGetMeetings";
+import { MEETING_QUERY_KEY } from "./useGetMeeting";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
@@ -13,8 +13,7 @@ import { QueryClient } from "@tanstack/react-query";
  * @group StreamsV2
  */
 export const MEETING_LIVESTREAM_QUERY_KEY = (meetingId: string) => [
-  ...MEETINGS_QUERY_KEY(),
-  meetingId,
+  ...MEETING_QUERY_KEY(meetingId),
   "LIVESTREAM",
 ];
 

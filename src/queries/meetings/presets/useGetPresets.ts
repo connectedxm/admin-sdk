@@ -12,7 +12,7 @@ import { QueryClient } from "@tanstack/react-query";
  * @group StreamsV2
  */
 export const PRESETS_QUERY_KEY = () => {
-  return ["STREAMS_V2", "PRESETS"];
+  return ["PRESETS"];
 };
 
 /**

@@ -12,7 +12,7 @@ import { QueryClient } from "@tanstack/react-query";
  * @group StreamsV2
  */
 export const MEETINGS_QUERY_KEY = () => {
-  return ["STREAMS_V2", "MEETINGS"];
+  return ["MEETINGS"];
 };
 
 /**

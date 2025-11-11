@@ -6,16 +6,14 @@ import {
 } from "../../useConnectedInfiniteQuery";
 import { ConnectedXMResponse, LivestreamSession } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
+import { LIVESTREAM_QUERY_KEY } from "./useGetLivestream";
 
 /**
  * @category Keys
  * @group StreamsV2
  */
 export const LIVESTREAM_SESSIONS_QUERY_KEY = (livestreamId?: string) => {
-  const keys = ["STREAMS_V2", "LIVESTREAM_SESSIONS"];
-  if (livestreamId) {
-    keys.push(livestreamId);
-  }
+  const keys = [...LIVESTREAM_QUERY_KEY(livestreamId), "SESSIONS"];
   return keys;
 };
 

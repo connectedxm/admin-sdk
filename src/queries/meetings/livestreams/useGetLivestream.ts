@@ -12,9 +12,9 @@ import { QueryClient } from "@tanstack/react-query";
  * @category Keys
  * @group StreamsV2
  */
-export const LIVESTREAM_QUERY_KEY = (livestreamId: string) => [
+export const LIVESTREAM_QUERY_KEY = (livestreamId?: string) => [
   ...LIVESTREAMS_QUERY_KEY(),
-  livestreamId,
+  livestreamId ?? "",
 ];
 
 /**

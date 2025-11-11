@@ -2451,6 +2451,9 @@ export interface RoundSessionQuestionUpdateInputs {
 // ============================================================================
 
 export interface MeetingCreateInputs {
+  host_preset: string;
+  guest_preset: string;
+  public?: boolean;
   title: string | null;
   preferred_region:
     | "ap-south-1"
@@ -2502,6 +2505,9 @@ export interface MeetingCreateInputs {
 }
 
 export interface MeetingUpdateInputs {
+  host_preset?: string;
+  guest_preset?: string;
+  public?: boolean;
   title?: string | null;
   preferred_region?:
     | "ap-south-1"

@@ -2737,6 +2737,9 @@ export interface StorageConfig {
 export interface BaseMeeting {
   id: string;
   title: string;
+  host_preset: string;
+  guest_preset: string;
+  public: boolean;
   preferred_region?:
     | "ap-south-1"
     | "ap-southeast-1"

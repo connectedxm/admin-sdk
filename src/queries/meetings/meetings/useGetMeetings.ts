@@ -41,7 +41,7 @@ export const GetMeetings = async ({
   adminApiParams,
 }: GetMeetingsParams): Promise<ConnectedXMResponse<Meeting[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/meetings/meetings`, {
+  const { data } = await adminApi.get(`/meetings`, {
     params: {
       page: pageParam || undefined,
       pageSize: pageSize || undefined,

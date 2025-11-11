@@ -2111,6 +2111,7 @@ export interface BaseRegistrationQuestion {
   label: string | null;
   placeholder: string | null;
   default: string | null;
+  dashboardVisibility: boolean;
   searchListId: string | null;
   span: number;
   mutable: boolean;
@@ -2566,6 +2567,7 @@ export interface BaseEventSessionQuestion {
   label: string | null;
   placeholder: string | null;
   default: string | null;
+  dashboardVisibility: boolean;
   searchListId: string | null;
   mutable: boolean;
   min: string | null;
@@ -4200,6 +4202,7 @@ export interface BaseSurveyQuestion {
   label: string | null;
   placeholder: string | null;
   default: string | null;
+  dashboardVisibility: boolean;
   searchListId: string | null;
   mutable: boolean;
   min: string | null;

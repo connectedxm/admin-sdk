@@ -2111,7 +2111,6 @@ export interface BaseRegistrationQuestion {
   label: string | null;
   placeholder: string | null;
   default: string | null;
-  dashboardVisibility: boolean;
   searchListId: string | null;
   span: number;
   mutable: boolean;
@@ -2131,6 +2130,7 @@ export interface RegistrationQuestion extends BaseRegistrationQuestion {
   sections: BaseRegistrationSectionQuestion[];
   followups: BaseRegistrationFollowupQuestion[];
   subQuestionOf: RegistrationQuestionChoiceSubQuestion[];
+  dashboardVisibility: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -2567,7 +2567,6 @@ export interface BaseEventSessionQuestion {
   label: string | null;
   placeholder: string | null;
   default: string | null;
-  dashboardVisibility: boolean;
   searchListId: string | null;
   mutable: boolean;
   min: string | null;
@@ -2586,6 +2585,7 @@ export interface BaseEventSessionQuestion {
 export interface EventSessionQuestion extends BaseEventSessionQuestion {
   sections: BaseEventSessionSectionQuestion[];
   subQuestionOf: EventSessionQuestionChoiceSubQuestion[];
+  dashboardVisibility: boolean;
   createdAt: string;
   updatedAt: string;
   _count: {
@@ -4202,7 +4202,6 @@ export interface BaseSurveyQuestion {
   label: string | null;
   placeholder: string | null;
   default: string | null;
-  dashboardVisibility: boolean;
   searchListId: string | null;
   mutable: boolean;
   min: string | null;
@@ -4219,6 +4218,7 @@ export interface BaseSurveyQuestion {
 export interface SurveyQuestion extends BaseSurveyQuestion {
   sections: BaseSurveySectionQuestion[];
   subQuestionOf: SurveyQuestionChoiceSubQuestion[];
+  dashboardVisibility: boolean;
   createdAt: string;
   updatedAt: string;
   _count: {

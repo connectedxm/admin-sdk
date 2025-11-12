@@ -10,6 +10,7 @@ import {
   EVENT_QUESTIONS_QUERY_KEY,
   SET_EVENT_QUESTION_QUERY_DATA,
   SEARCHLIST_QUERY_KEY,
+  EVENT_DASHBOARD_QUESTIONS_QUERY_KEY,
 } from "@src/queries";
 
 /**
@@ -62,6 +63,12 @@ export const UpdateEventQuestion = async ({
         predicate: (query) => {
           return query.queryKey[0] === "SEARCHLIST_VALUES";
         },
+      });
+    }
+    // Invalidate dashboard questions if dashboardVisibility was updated
+    if (question.dashboardVisibility !== undefined) {
+      queryClient.invalidateQueries({
+        queryKey: EVENT_DASHBOARD_QUESTIONS_QUERY_KEY(eventId),
       });
     }
     SET_EVENT_QUESTION_QUERY_DATA(

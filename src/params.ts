@@ -855,6 +855,7 @@ export interface EventSessionQuestionCreateInputs {
   placeholder?: string | null;
   description?: string | null;
   default?: string | null;
+  dashboardVisibility?: boolean;
   span?: number | string | null;
   mutable?: boolean;
   min?: string | null;
@@ -885,6 +886,7 @@ export interface EventSessionQuestionUpdateInputs {
   placeholder?: string | null;
   description?: string | null;
   default?: string | null;
+  dashboardVisibility?: boolean;
   span?: number | string | null;
   mutable?: boolean;
   min?: string | null;
@@ -1313,6 +1315,7 @@ export interface EventQuestionCreateInputs {
   placeholder?: string | null;
   description?: string | null;
   default?: string | null;
+  dashboardVisibility?: boolean;
   span?: number | string | null;
   mutable?: boolean;
   min?: string | null;
@@ -1341,6 +1344,7 @@ export interface EventQuestionUpdateInputs {
   placeholder?: string | null;
   description?: string | null;
   default?: string | null;
+  dashboardVisibility?: boolean;
   span?: number | string | null;
   mutable?: boolean;
   min?: string | null;
@@ -2192,6 +2196,7 @@ export interface SurveyQuestionCreateInputs {
   placeholder?: string | null;
   description?: string | null;
   default?: string | null;
+  dashboardVisibility?: boolean;
   span?: number | string | null;
   mutable?: boolean;
   min?: string | null;
@@ -2220,6 +2225,7 @@ export interface SurveyQuestionUpdateInputs {
   placeholder?: string | null;
   description?: string | null;
   default?: string | null;
+  dashboardVisibility?: boolean;
   span?: number | string | null;
   mutable?: boolean;
   min?: string | null;

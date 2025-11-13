@@ -3642,7 +3642,6 @@ export interface EventRoomTypeTranslation {
 export interface BaseRoom {
   id: string;
   roomName: string;
-  reservationId: string | null;
   createdAt: string;
   updatedAt: string;
 }

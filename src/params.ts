@@ -574,6 +574,14 @@ export interface EventCouponUpdateInputs {
   applyToReservation?: boolean;
 }
 
+export interface EventVariantCouponCreateInputs {
+  quantity?: number;
+}
+
+export interface EventVariantCouponSyncInputs {
+  fields?: string[];
+}
+
 export interface EventFaqSectionCreateInputs {
   name?: string | null;
   slug?: string | null;

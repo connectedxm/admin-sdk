@@ -2459,7 +2459,6 @@ export interface RoundSessionQuestionUpdateInputs {
 export interface MeetingCreateInputs {
   host_preset: string;
   guest_preset: string;
-  public?: boolean;
   title: string | null;
   preferred_region:
     | "ap-south-1"
@@ -2513,7 +2512,6 @@ export interface MeetingCreateInputs {
 export interface MeetingUpdateInputs {
   host_preset?: string;
   guest_preset?: string;
-  public?: boolean;
   title?: string | null;
   preferred_region?:
     | "ap-south-1"
@@ -2721,6 +2719,14 @@ export interface MeetingPresetCreateInputs {
 
   // UI.config_diff field (dot notation)
   "ui.config_diff": Record<string, any>;
+}
+
+export interface MeetingLinkCreateInputs {
+  preset_name: string;
+}
+
+export interface MeetingLinkUpdateInputs {
+  preset_name: string;
 }
 
 export interface MeetingPresetUpdateInputs {

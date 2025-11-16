@@ -2723,10 +2723,12 @@ export interface MeetingPresetCreateInputs {
 
 export interface MeetingLinkCreateInputs {
   preset_name: string;
+  requireAuth: boolean;
 }
 
 export interface MeetingLinkUpdateInputs {
   preset_name: string;
+  requireAuth: boolean;
 }
 
 export interface MeetingPresetUpdateInputs {

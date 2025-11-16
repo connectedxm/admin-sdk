@@ -3014,14 +3014,15 @@ export interface Preset extends BasePreset {
 
 export interface BaseMeetingLink {
   id: string;
-  meetingId: string;
   passcode: string;
   preset_name: string;
+  requireAuth: boolean;
+}
+
+export interface MeetingLink extends BaseMeetingLink {
   createdAt: string;
   updatedAt: string;
 }
-
-export interface MeetingLink extends BaseMeetingLink {}
 
 export enum MembershipPriceType {
   flat = "flat",

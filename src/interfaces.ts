@@ -2741,7 +2741,6 @@ export interface BaseMeeting {
   title: string;
   host_preset: string;
   guest_preset: string;
-  public: boolean;
   preferred_region?:
     | "ap-south-1"
     | "ap-southeast-1"
@@ -3012,6 +3011,17 @@ export interface Preset extends BasePreset {
   // UI.config_diff field (dot notation)
   "ui.config_diff": Record<string, any>;
 }
+
+export interface BaseMeetingLink {
+  id: string;
+  meetingId: string;
+  passcode: string;
+  preset_name: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface MeetingLink extends BaseMeetingLink {}
 
 export enum MembershipPriceType {
   flat = "flat",

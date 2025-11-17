@@ -14,17 +14,10 @@ import { QueryClient } from "@tanstack/react-query";
  * @category Keys
  * @group Events
  */
-export const EVENT_COUPONS_QUERY_KEY = (
-  eventId: string,
-  prePaid?: boolean,
-  parentCouponId?: string
-) => {
+export const EVENT_COUPONS_QUERY_KEY = (eventId: string, prePaid?: boolean) => {
   const key = [...EVENT_QUERY_KEY(eventId), "COUPONS"];
   if (typeof prePaid === "boolean") {
     key.push(prePaid ? "GROUP" : "STANDARD");
-  }
-  if (parentCouponId) {
-    key.push("VARIANTS", parentCouponId);
   }
   return key;
 };
@@ -44,7 +37,6 @@ export const SET_EVENT_COUPONS_QUERY_DATA = (
 interface GetEventCouponsProps extends InfiniteQueryParams {
   eventId: string;
   prePaid?: boolean;
-  parentCouponId?: string;
 }
 
 /**
@@ -59,7 +51,6 @@ export const GetEventCoupons = async ({
   search,
   adminApiParams,
   prePaid,
-  parentCouponId,
 }: GetEventCouponsProps): Promise<ConnectedXMResponse<Coupon[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/events/${eventId}/coupons`, {
@@ -70,7 +61,6 @@ export const GetEventCoupons = async ({
       search: search || undefined,
       prePaid:
         typeof prePaid === "boolean" ? (prePaid ? "true" : "false") : undefined,
-      parentCouponId: parentCouponId || undefined,
     },
   });
   return data;
@@ -82,7 +72,6 @@ export const GetEventCoupons = async ({
 export const useGetEventCoupons = (
   eventId: string = "",
   prePaid?: boolean,
-  parentCouponId?: string,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -92,13 +81,12 @@ export const useGetEventCoupons = (
   > = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetEventCoupons>>>(
-    EVENT_COUPONS_QUERY_KEY(eventId, prePaid, parentCouponId),
+    EVENT_COUPONS_QUERY_KEY(eventId, prePaid),
     (params: InfiniteQueryParams) =>
       GetEventCoupons({
         ...params,
         eventId,
         prePaid,
-        parentCouponId,
       }),
     params,
     {

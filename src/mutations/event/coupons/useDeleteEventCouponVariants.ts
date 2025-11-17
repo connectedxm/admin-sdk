@@ -1,11 +1,10 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, Coupon } from "@src/interfaces";
+import { ConnectedXMResponse } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EventVariantCouponSyncInputs } from "@src/params";
 import {
   EVENT_COUPONS_QUERY_KEY,
   EVENT_COUPON_VARIANTS_QUERY_KEY,
@@ -15,27 +14,24 @@ import {
  * @category Params
  * @group Event-Coupons
  */
-export interface SyncEventCouponToVariantsParams extends MutationParams {
+export interface DeleteEventCouponVariantsParams extends MutationParams {
   eventId: string;
   couponId: string;
-  fields: EventVariantCouponSyncInputs;
 }
 
 /**
  * @category Methods
  * @group Event-Coupons
  */
-export const SyncEventCouponToVariants = async ({
+export const DeleteEventCouponVariants = async ({
   eventId,
   couponId,
-  fields,
   adminApiParams,
   queryClient,
-}: SyncEventCouponToVariantsParams): Promise<ConnectedXMResponse<Coupon>> => {
+}: DeleteEventCouponVariantsParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put<ConnectedXMResponse<Coupon>>(
-    `/events/${eventId}/coupons/${couponId}/variants`,
-    fields
+  const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
+    `/events/${eventId}/coupons/${couponId}/variants`
   );
 
   if (queryClient && data.status === "ok") {
@@ -53,17 +49,17 @@ export const SyncEventCouponToVariants = async ({
  * @category Mutations
  * @group Event-Coupons
  */
-export const useSyncEventCouponToVariants = (
+export const useDeleteEventCouponVariants = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof SyncEventCouponToVariants>>,
-      Omit<SyncEventCouponToVariantsParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof DeleteEventCouponVariants>>,
+      Omit<DeleteEventCouponVariantsParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    SyncEventCouponToVariantsParams,
-    Awaited<ReturnType<typeof SyncEventCouponToVariants>>
-  >(SyncEventCouponToVariants, options);
+    DeleteEventCouponVariantsParams,
+    Awaited<ReturnType<typeof DeleteEventCouponVariants>>
+  >(DeleteEventCouponVariants, options);
 };

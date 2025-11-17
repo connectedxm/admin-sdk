@@ -2112,6 +2112,7 @@ export interface BaseRegistrationQuestion {
   placeholder: string | null;
   default: string | null;
   searchListId: string | null;
+  searchList: BaseSearchList | null;
   span: number;
   mutable: boolean;
   min: string | null;
@@ -2568,6 +2569,7 @@ export interface BaseEventSessionQuestion {
   placeholder: string | null;
   default: string | null;
   searchListId: string | null;
+  searchList: BaseSearchList | null;
   mutable: boolean;
   min: string | null;
   max: string | null;
@@ -4213,6 +4215,7 @@ export interface BaseSurveyQuestion {
   placeholder: string | null;
   default: string | null;
   searchListId: string | null;
+  searchList: BaseSearchList | null;
   mutable: boolean;
   min: string | null;
   max: string | null;

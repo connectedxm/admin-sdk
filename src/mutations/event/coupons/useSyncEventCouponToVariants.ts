@@ -6,10 +6,7 @@ import {
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
 import { EventVariantCouponSyncInputs } from "@src/params";
-import {
-  EVENT_COUPONS_QUERY_KEY,
-  EVENT_COUPON_VARIANTS_QUERY_KEY,
-} from "@src/queries";
+import { EVENT_COUPONS_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
@@ -41,9 +38,6 @@ export const SyncEventCouponToVariants = async ({
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_COUPONS_QUERY_KEY(eventId),
-    });
-    queryClient.invalidateQueries({
-      queryKey: EVENT_COUPON_VARIANTS_QUERY_KEY(eventId, couponId),
     });
   }
   return data;

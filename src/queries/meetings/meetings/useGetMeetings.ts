@@ -4,7 +4,7 @@ import {
   InfiniteQueryParams,
   InfiniteQueryOptions,
 } from "../../useConnectedInfiniteQuery";
-import { ConnectedXMResponse, Meeting } from "@src/interfaces";
+import { ConnectedXMResponse, BaseMeeting } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
@@ -39,7 +39,7 @@ export const GetMeetings = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetMeetingsParams): Promise<ConnectedXMResponse<Meeting[]>> => {
+}: GetMeetingsParams): Promise<ConnectedXMResponse<BaseMeeting[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/meetings`, {
     params: {

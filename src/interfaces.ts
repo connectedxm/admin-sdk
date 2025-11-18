@@ -2115,6 +2115,7 @@ export interface BaseRegistrationQuestion {
   placeholder: string | null;
   default: string | null;
   searchListId: string | null;
+  searchList: BaseSearchList | null;
   span: number;
   mutable: boolean;
   min: string | null;
@@ -2571,6 +2572,7 @@ export interface BaseEventSessionQuestion {
   placeholder: string | null;
   default: string | null;
   searchListId: string | null;
+  searchList: BaseSearchList | null;
   mutable: boolean;
   min: string | null;
   max: string | null;
@@ -2744,7 +2746,6 @@ export interface BaseMeeting {
   title: string;
   host_preset: string;
   guest_preset: string;
-  public: boolean;
   preferred_region?:
     | "ap-south-1"
     | "ap-southeast-1"
@@ -2761,6 +2762,12 @@ export interface BaseMeeting {
 }
 
 export interface Meeting extends BaseMeeting {
+  eventId?: string;
+  event?: BaseEvent;
+  sessionId?: string;
+  session?: BaseEventSession;
+  groupId?: string;
+  group?: BaseGroup;
   "ai_config.transcription.keywords": string[];
   "ai_config.transcription.language":
     | "en-US"
@@ -3014,6 +3021,19 @@ export interface Preset extends BasePreset {
 
   // UI.config_diff field (dot notation)
   "ui.config_diff": Record<string, any>;
+}
+
+export interface BaseMeetingLink {
+  id: string;
+  name: string;
+  passcode: string;
+  preset_name: string;
+  requireAuth: boolean;
+}
+
+export interface MeetingLink extends BaseMeetingLink {
+  createdAt: string;
+  updatedAt: string;
 }
 
 export enum MembershipPriceType {
@@ -4205,6 +4225,7 @@ export interface BaseSurveyQuestion {
   placeholder: string | null;
   default: string | null;
   searchListId: string | null;
+  searchList: BaseSearchList | null;
   mutable: boolean;
   min: string | null;
   max: string | null;

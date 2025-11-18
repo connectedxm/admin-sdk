@@ -843,11 +843,14 @@ export interface BaseCoupon {
 export interface Coupon extends BaseCoupon {
   registration: BaseEventAttendee | null;
   lineItem: PaymentLineItem | null;
+  parentCouponId: string | null;
+  parentCoupon: BaseCoupon | null;
   createdAt: string;
   updatedAt: string;
   _count: {
     purchases: number;
     payments: number;
+    variants: number;
   };
 }
 

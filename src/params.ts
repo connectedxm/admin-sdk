@@ -2457,6 +2457,9 @@ export interface RoundSessionQuestionUpdateInputs {
 // ============================================================================
 
 export interface MeetingCreateInputs {
+  eventId?: string;
+  sessionId?: string;
+  groupId?: string;
   host_preset: string;
   guest_preset: string;
   title: string | null;
@@ -2510,6 +2513,9 @@ export interface MeetingCreateInputs {
 }
 
 export interface MeetingUpdateInputs {
+  eventId?: string;
+  sessionId?: string;
+  groupId?: string;
   host_preset?: string;
   guest_preset?: string;
   title?: string | null;
@@ -2722,13 +2728,15 @@ export interface MeetingPresetCreateInputs {
 }
 
 export interface MeetingLinkCreateInputs {
+  name: string;
   preset_name: string;
   requireAuth: boolean;
 }
 
 export interface MeetingLinkUpdateInputs {
-  preset_name: string;
-  requireAuth: boolean;
+  name?: string;
+  preset_name?: string;
+  requireAuth?: boolean;
 }
 
 export interface MeetingPresetUpdateInputs {

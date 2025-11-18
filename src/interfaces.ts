@@ -2759,6 +2759,12 @@ export interface BaseMeeting {
 }
 
 export interface Meeting extends BaseMeeting {
+  eventId?: string;
+  event?: BaseEvent;
+  sessionId?: string;
+  session?: BaseEventSession;
+  groupId?: string;
+  group?: BaseGroup;
   "ai_config.transcription.keywords": string[];
   "ai_config.transcription.language":
     | "en-US"
@@ -3016,6 +3022,7 @@ export interface Preset extends BasePreset {
 
 export interface BaseMeetingLink {
   id: string;
+  name: string;
   passcode: string;
   preset_name: string;
   requireAuth: boolean;

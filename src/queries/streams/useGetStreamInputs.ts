@@ -14,11 +14,15 @@ import { QueryClient } from "@tanstack/react-query";
  */
 export const STREAM_INPUTS_QUERY_KEY = (
   eventId?: string,
-  sessionId?: string
+  sessionId?: string,
+  groupId?: string,
+  meetingId?: string
 ) => {
   const key = ["STREAMS"];
   if (eventId) key.push(eventId);
   if (sessionId) key.push(sessionId);
+  if (groupId) key.push(groupId);
+  if (meetingId) key.push(meetingId);
   return key;
 };
 
@@ -37,6 +41,8 @@ export const SET_STREAM_INPUTS_QUERY_DATA = (
 interface GetStreamInputsParams extends InfiniteQueryParams {
   eventId?: string;
   sessionId?: string;
+  groupId?: string;
+  meetingId?: string;
 }
 
 /**
@@ -46,6 +52,8 @@ interface GetStreamInputsParams extends InfiniteQueryParams {
 export const GetStreamInputs = async ({
   eventId,
   sessionId,
+  groupId,
+  meetingId,
   pageParam,
   pageSize,
   orderBy,
@@ -61,6 +69,8 @@ export const GetStreamInputs = async ({
       search: search || undefined,
       eventId: eventId || undefined,
       sessionId: sessionId || undefined,
+      groupId: groupId || undefined,
+      meetingId: meetingId || undefined,
     },
   });
 
@@ -73,6 +83,8 @@ export const GetStreamInputs = async ({
 export const useGetStreamInputs = (
   eventId?: string,
   sessionId?: string,
+  groupId?: string,
+  meetingId?: string,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -82,9 +94,9 @@ export const useGetStreamInputs = (
   > = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetStreamInputs>>>(
-    STREAM_INPUTS_QUERY_KEY(eventId, sessionId),
+    STREAM_INPUTS_QUERY_KEY(eventId, sessionId, groupId, meetingId),
     (params: InfiniteQueryParams) =>
-      GetStreamInputs({ ...params, eventId, sessionId }),
+      GetStreamInputs({ ...params, eventId, sessionId, groupId, meetingId }),
     params,
     options
   );

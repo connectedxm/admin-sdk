@@ -4523,7 +4523,7 @@ export interface StreamInputDetails {
 }
 
 export interface BaseStreamInput {
-  id: number;
+  id: string;
   name: string;
   cloudflareId: string | null;
   connected: boolean;

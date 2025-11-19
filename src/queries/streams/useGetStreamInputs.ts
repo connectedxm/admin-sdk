@@ -94,9 +94,9 @@ export const useGetStreamInputs = (
   > = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetStreamInputs>>>(
-    STREAM_INPUTS_QUERY_KEY(eventId, sessionId, meetingId, groupId),
+    STREAM_INPUTS_QUERY_KEY(eventId, sessionId, groupId, meetingId),
     (params: InfiniteQueryParams) =>
-      GetStreamInputs({ ...params, eventId, sessionId, meetingId, groupId }),
+      GetStreamInputs({ ...params, eventId, sessionId, groupId, meetingId }),
     params,
     options
   );

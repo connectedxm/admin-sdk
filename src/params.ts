@@ -640,6 +640,7 @@ export interface EventCreateInputs {
   activityFeedEnabled?: boolean;
   options?: object | null;
   template?: boolean;
+  meetingId?: string | null;
 }
 
 export interface EventEmailUpdateInputs {
@@ -762,6 +763,7 @@ export interface EventSessionCreateInputs {
   taxCode?: string | null;
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
+  meetingId?: string | null;
 }
 
 export interface EventSessionAccessUpdateInputs {
@@ -798,6 +800,7 @@ export interface EventSessionUpdateInputs {
   taxCode?: string | null;
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
+  meetingId?: string | null;
 }
 
 export interface EventSessionLocationCreateInputs {
@@ -1049,6 +1052,7 @@ export interface EventUpdateInputs {
   roundName?: string | null;
   matchName?: string | null;
   activityFeedEnabled?: boolean;
+  meetingId?: string | null;
   options?: object | null;
 }
 
@@ -1068,6 +1072,7 @@ export interface GroupCreateInputs {
   imageId?: string | null;
   squareImageId?: string | null;
   externalUrl?: string | null;
+  meetingId?: string | null;
 }
 
 export interface GroupMembershipUpdateInputs {
@@ -1127,6 +1132,7 @@ export interface GroupUpdateInputs {
   imageId?: string | null;
   squareImageId?: string | null;
   externalUrl?: string | null;
+  meetingId?: string | null;
 }
 
 export interface ImageCreateInputs {

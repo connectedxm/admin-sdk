@@ -4533,6 +4533,7 @@ export interface BaseStreamInput {
   groupId: string | null;
   imageId: string | null;
   image: BaseImage | null;
+  locale: string;
 }
 
 export interface StreamInput extends BaseStreamInput {

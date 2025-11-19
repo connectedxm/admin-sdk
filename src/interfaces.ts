@@ -1070,7 +1070,6 @@ export interface Event extends BaseEvent {
   passLimitPerAccount: number | null;
   reservationDescription: string | null;
   longDescription: string | null;
-  meetingUrl: string | null;
   creatorId: string | null;
   creator: BaseAccount | null;
   registrationLimit: number | null;
@@ -1095,6 +1094,8 @@ export interface Event extends BaseEvent {
   backgroundImageId: string | null;
   backgroundImage: BaseImage | null;
   activityFeedEnabled: boolean;
+  meetingId: string | null;
+  meeting: BaseMeeting | null;
   options: object | null;
 }
 
@@ -1316,6 +1317,8 @@ export interface BaseGroup {
 
 export interface Group extends BaseGroup {
   externalUrl: string | null;
+  meetingId: string | null;
+  meeting: BaseMeeting | null;
   createdAt: string;
   updatedAt: string;
   _count: {
@@ -2404,6 +2407,8 @@ export interface EventSession extends BaseEventSession {
   eventId: string;
   event: BaseEvent;
   speakers: BaseEventSpeaker[];
+  meetingId: string | null;
+  meeting: BaseMeeting | null;
 }
 
 export interface EventSessionTranslation {
@@ -2746,22 +2751,22 @@ export interface BaseMeeting {
   title: string;
   host_preset: string;
   guest_preset: string;
+}
+
+export interface Meeting extends BaseMeeting {
+  updated_at: string;
+  created_at: string;
   preferred_region?:
     | "ap-south-1"
     | "ap-southeast-1"
     | "us-east-1"
     | "eu-central-1"
     | null;
+  status?: "ACTIVE" | "INACTIVE";
   record_on_start: boolean;
   live_stream_on_start: boolean;
   persist_chat: boolean;
   summarize_on_end: boolean;
-  status: "ACTIVE" | "INACTIVE";
-  created_at: string;
-  updated_at: string;
-}
-
-export interface Meeting extends BaseMeeting {
   eventId?: string;
   event?: BaseEvent;
   sessionId?: string;
@@ -4476,4 +4481,77 @@ export interface EntityUseCode {
   code: string;
   name: string;
   description: string;
+}
+
+export interface StreamInputDetails {
+  uid: string;
+  rtmps: {
+    url: string;
+    streamKey: string;
+  };
+  rtmpsPlayback: {
+    url: string;
+    streamKey: string;
+  };
+  srt: {
+    url: string;
+    streamId: string;
+    passphrase: string;
+  };
+  srtPlayback: {
+    url: string;
+    streamId: string;
+    passphrase: string;
+  };
+  webRTC: {
+    url: string;
+  };
+  webRTCPlayback: {
+    url: string;
+  };
+  created: string;
+  modified: string;
+  meta: Record<string, any>;
+  defaultCreator: string;
+  status: any;
+  recording: {
+    mode: "automatic" | "off";
+    requireSignedURLs: boolean;
+    allowedOrigins: string[];
+  };
+  deleteRecordingAfterDays: null | number;
+}
+
+export interface BaseStreamInput {
+  id: number;
+  name: string;
+  cloudflareId: string | null;
+  connected: boolean;
+  public: boolean;
+  sessionId: string | null;
+  eventId: string | null;
+  groupId: string | null;
+  imageId: string | null;
+  image: BaseImage | null;
+}
+
+export interface StreamInput extends BaseStreamInput {
+  eventId: string | null;
+  event: BaseEvent | null;
+  sessionId: string | null;
+  session: BaseEventSession | null;
+  groupId: string | null;
+  group: BaseGroup | null;
+  meetingId: string | null;
+  meeting: BaseMeeting | null;
+  details?: StreamInputDetails;
+  sortOrder: number;
+  createdAt: string;
+}
+
+export interface StreamInputOutput {
+  enabled: boolean;
+  url: string;
+  streamKey: string;
+  uid: string;
 }

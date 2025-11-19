@@ -614,7 +614,6 @@ export interface EventCreateInputs {
   zip?: string | null;
   creatorId?: string | null;
   seriesId?: string | null;
-  meetingUrl?: string | null;
   registration?: boolean;
   registrationStart?: string | null;
   registrationEnd?: string | null;
@@ -1025,7 +1024,6 @@ export interface EventUpdateInputs {
   zip?: string | null;
   creatorId?: string | null;
   seriesId?: string | null;
-  meetingUrl?: string | null;
   registration?: boolean;
   registrationStart?: string | null;
   registrationEnd?: string | null;
@@ -2857,4 +2855,40 @@ export interface MeetingPresetUpdateInputs {
 
   // UI.config_diff field (dot notation, all optional for updates)
   "ui.config_diff"?: Record<string, any>;
+}
+
+export interface StreamInputCreateInputs {
+  name: string;
+  sortOrder?: number | string | null;
+  eventId?: string | null;
+  sessionId?: string | null;
+  groupId?: string | null;
+  meetingId?: string | null;
+  details?: object | null;
+  imageId?: string | null;
+  public?: boolean;
+  locale?: string | null;
+}
+
+export interface StreamInputUpdateInputs {
+  name?: string;
+  sortOrder?: number | string | null;
+  eventId?: string | null;
+  sessionId?: string | null;
+  groupId?: string | null;
+  meetingId?: string | null;
+  connected?: boolean;
+  imageId?: string | null;
+  public?: boolean;
+  locale?: string | null;
+}
+
+export interface StreamInputOutputCreateInputs {
+  enabled: boolean;
+  url: string;
+  streamKey: string;
+}
+
+export interface StreamInputOutputUpdateInputs {
+  enabled: boolean;
 }

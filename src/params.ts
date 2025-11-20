@@ -41,6 +41,7 @@ import {
   EventActivationType,
   TaxLocationType,
   LocationQuestionOption,
+  MeetingType,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -2469,6 +2470,7 @@ export interface RoundSessionQuestionUpdateInputs {
 // ============================================================================
 
 export interface MeetingCreateInputs {
+  type: keyof typeof MeetingType;
   eventId?: string;
   sessionId?: string;
   groupId?: string;
@@ -2525,6 +2527,7 @@ export interface MeetingCreateInputs {
 }
 
 export interface MeetingUpdateInputs {
+  type: keyof typeof MeetingType;
   eventId?: string;
   sessionId?: string;
   groupId?: string;

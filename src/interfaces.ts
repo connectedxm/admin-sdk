@@ -1093,6 +1093,11 @@ export interface Event extends BaseEvent {
   groupOnly: boolean;
   backgroundImageId: string | null;
   backgroundImage: BaseImage | null;
+  registrationHeaderImageId: string | null;
+  registrationHeaderImage: BaseImage | null;
+  registrationFooterImageId: string | null;
+  registrationFooterImage: BaseImage | null;
+  registrationHideTitle: boolean;
   activityFeedEnabled: boolean;
   meetingId: string | null;
   meeting: BaseMeeting | null;

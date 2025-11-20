@@ -2527,7 +2527,7 @@ export interface MeetingCreateInputs {
 }
 
 export interface MeetingUpdateInputs {
-  type: keyof typeof MeetingType;
+  type?: keyof typeof MeetingType;
   eventId?: string;
   sessionId?: string;
   groupId?: string;

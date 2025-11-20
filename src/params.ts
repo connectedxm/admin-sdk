@@ -618,6 +618,9 @@ export interface EventCreateInputs {
   registration?: boolean;
   registrationStart?: string | null;
   registrationEnd?: string | null;
+  registrationHeaderImageId?: string | null;
+  registrationFooterImageId?: string | null;
+  registrationHideTitle?: boolean;
   registrationLimit?: number | string | null;
   allowMultipleRegistrations?: boolean;
   allowSplitPayment?: boolean;
@@ -1031,6 +1034,9 @@ export interface EventUpdateInputs {
   registration?: boolean;
   registrationStart?: string | null;
   registrationEnd?: string | null;
+  registrationHeaderImageId?: string | null;
+  registrationFooterImageId?: string | null;
+  registrationHideTitle?: boolean;
   registrationLimit?: number | null | string;
   allowMultipleRegistrations?: boolean;
   allowSplitPayment?: boolean;

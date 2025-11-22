@@ -35,7 +35,6 @@ export enum OrganizationModuleType {
   benefits = "benefits",
   interests = "interests",
   advertisements = "advertisements",
-  subscriptions = "subscriptions",
   invoices = "invoices",
   streams = "streams",
 }
@@ -294,11 +293,6 @@ export interface BaseAccount {
   internalRefId: string | null;
   accountTiers: BaseTier[];
   chatConnected: boolean;
-  subscriptions: {
-    subscriptionProduct: {
-      tiers: BaseTier[];
-    };
-  }[];
   attributes?: AccountAttributeValue[];
   createdAt: string;
 }
@@ -1639,7 +1633,6 @@ export interface OrganizationMembership {
   benefits: ModulePermissions;
   interests: ModulePermissions;
   advertisements: ModulePermissions;
-  subscriptions: ModulePermissions;
   invoices: ModulePermissions;
   announcements: ModulePermissions;
   bookings: ModulePermissions;
@@ -1899,7 +1892,6 @@ export interface Payment extends BasePayment {
   session: BaseEventSession | null;
   place: BaseBookingPlace | null;
   space: BaseBookingSpace | null;
-  membership: BaseMembership | null;
   coupon: BaseCoupon | null;
   invoice: BaseInvoice | null;
   metadata?: any;
@@ -1916,7 +1908,6 @@ export enum PaymentLineItemType {
   invoice = "invoice",
   booking = "booking",
   coupon = "coupon",
-  subscription = "subscription",
   refund = "refund",
 }
 
@@ -1944,7 +1935,6 @@ export interface BasePaymentLineItem {
   reservationId: string | null;
   accessId: string | null;
   bookingId: string | null;
-  subscriptionId: string | null;
 }
 
 export interface PaymentLineItem extends BasePaymentLineItem {
@@ -1954,7 +1944,6 @@ export interface PaymentLineItem extends BasePaymentLineItem {
   reservation: BaseEventRoomTypeReservation | null;
   access: BaseEventSessionAccess | null;
   booking: BaseBooking | null;
-  subscription: BaseSubscription | null;
   coupon: BaseCoupon | null;
   payment: BasePayment;
 }
@@ -1997,7 +1986,6 @@ export interface TaxIntegration {
   invoiceTaxCode: string;
   bookingTaxCode: string;
   couponTaxCode: string;
-  subscriptionTaxCode: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -2285,7 +2273,6 @@ export enum ReportType {
   accounts = "accounts",
   account = "account",
   revenue = "revenue",
-  subscriptionProduct = "subscriptionProduct",
   series = "series",
 }
 
@@ -2303,7 +2290,6 @@ export interface ReportFilters {
   channelId?: string;
   accountId?: string;
   surveyId?: string;
-  subscriptionProductId?: string;
   sessionId?: string;
   seriesId?: string;
 }
@@ -3050,91 +3036,6 @@ export interface BaseMeetingLink {
 }
 
 export interface MeetingLink extends BaseMeetingLink {
-  createdAt: string;
-  updatedAt: string;
-}
-
-export enum MembershipPriceType {
-  flat = "flat",
-  payWhatYouWant = "payWhatYouWant",
-}
-
-export enum MembershipPriceInterval {
-  day = "day",
-  week = "week",
-  month = "month",
-  year = "year",
-}
-
-export interface BaseMembershipPrice {
-  id: string;
-  active: boolean;
-  amount: number;
-  currency: string;
-  interval: MembershipPriceInterval;
-  intervalCount: number;
-  minAmount: number;
-  maxAmount: number;
-  type: MembershipPriceType;
-}
-
-export interface MembershipPrice extends BaseMembershipPrice {
-  subscriptionProduct: BaseMembership;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface BaseMembership {
-  id: string;
-  active: boolean;
-  name: string;
-  description: string | null;
-}
-
-export interface Membership extends BaseMembership {
-  prices: BaseMembershipPrice[];
-  statementDescriptor: string | null;
-  features: string[];
-  createdAt: string;
-  updatedAt: string;
-}
-
-export enum SubscriptionStatus {
-  active = "active",
-  canceled = "canceled",
-  paused = "paused",
-  trialing = "trialing",
-  past_due = "past_due",
-  unpaid = "unpaid",
-}
-
-export interface BaseSubscription {
-  id: string;
-  status: SubscriptionStatus;
-  expiresAt: string;
-  cancelAtEnd: boolean;
-  integrationId: string | null;
-  subscriptionProductId: string;
-  subscriptionProduct: BaseMembership;
-}
-
-export interface Subscription extends BaseSubscription {
-  accountId: string;
-  account: BaseAccount;
-  priceId: string;
-  price: BaseMembershipPrice;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface BaseSubscriptionPayment {
-  id: string;
-  amount: number;
-  currency: string;
-}
-
-export interface SubscriptionPayment extends BaseSubscriptionPayment {
-  subscription: BaseSubscription;
   createdAt: string;
   updatedAt: string;
 }

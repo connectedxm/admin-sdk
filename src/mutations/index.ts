@@ -16,7 +16,6 @@ export * from "./invoices";
 export * from "./level";
 export * from "./logins";
 export * from "./meetings";
-export * from "./membership";
 export * from "./organization";
 export * from "./payments";
 export * from "./push-devices";

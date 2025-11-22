@@ -20,7 +20,6 @@ export * from "./levels";
 export * from "./link-preview";
 export * from "./logins";
 export * from "./meetings";
-export * from "./memberships";
 export * from "./organization";
 export * from "./push-devices";
 export * from "./reports";

@@ -7,14 +7,8 @@ import {
   EventType,
   GroupAccess,
   RegistrationQuestionType,
-  MembershipPriceType,
-  MembershipPriceInterval,
   PassTypeVisibility,
   PassTypeAccessLevel,
-  SubscriptionStatus,
-  BaseMembership,
-  BaseAccount,
-  BaseMembershipPrice,
   ImageType,
   FileSource,
   ModulePermissions,
@@ -1115,7 +1109,6 @@ export interface OrganizationMembershipUpdateInputs {
   benefits: Omit<ModulePermissions, "superEnabled" | "enabled">;
   interests: Omit<ModulePermissions, "superEnabled" | "enabled">;
   advertisements: Omit<ModulePermissions, "superEnabled" | "enabled">;
-  subscriptions: Omit<ModulePermissions, "superEnabled" | "enabled">;
   invoices: Omit<ModulePermissions, "superEnabled" | "enabled">;
   announcements: Omit<ModulePermissions, "superEnabled" | "enabled">;
   surveys: Omit<ModulePermissions, "superEnabled" | "enabled">;
@@ -1486,52 +1479,6 @@ export interface StreamOutputCreateInputs {
   enabled: boolean;
   streamKey: string;
   url: string;
-}
-
-export interface MembershipCreateInputs {
-  name: string;
-  active?: boolean;
-  description?: string | null;
-  statementDescriptor?: string | null;
-  features?: string[] | null;
-}
-
-export interface MembershipPriceCreateInputs {
-  active?: boolean;
-  type: keyof typeof MembershipPriceType;
-  amount: string | number; // Assuming REQUIRED_PRICE can be string or number
-  currency: "usd"; // Assuming currency is limited to 'usd'
-  interval: keyof typeof MembershipPriceInterval;
-  intervalCount: string | number;
-}
-
-export interface MembershipPriceUpdateInputs {
-  active?: boolean;
-}
-
-export interface MembershipUpdateInputs {
-  active?: boolean;
-  name?: string | null;
-  description?: string | null;
-  statementDescriptor?: string | null;
-  features?: string[] | null;
-}
-
-export interface SubscriptionCreateInputs {
-  status?: SubscriptionStatus;
-  expiresAt?: string | null;
-  cancelAtEnd?: boolean;
-  integrationId?: string | null;
-  subscriptionProductId?: string | null;
-  subscriptionProduct?: BaseMembership;
-  accountId?: string | null;
-  account?: BaseAccount;
-  priceId?: string | null;
-  price?: BaseMembershipPrice;
-}
-
-export interface SubscriptionUpdateInputs {
-  accountId?: string | null;
 }
 
 export interface SupportTicketCreateInputs {
@@ -1952,7 +1899,6 @@ export interface TaxIntegrationUpdateInputs {
   invoiceTaxCode?: string | null;
   bookingTaxCode?: string | null;
   couponTaxCode?: string | null;
-  subscriptionTaxCode?: string | null;
 }
 
 export interface CloneOptions {

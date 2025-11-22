@@ -10,7 +10,6 @@ export * from "./useGetOrganizationAccountAttributes";
 export * from "./useGetOrganizationDomain";
 export * from "./useGetOrganizationMembership";
 export * from "./useGetOrganizationPaymentIntegration";
-export * from "./useGetOrganizationPaymentIntegrationLink";
 export * from "./useGetOrganizationPaymentIntegrations";
 export * from "./useGetOrganizationSystemLog";
 export * from "./useGetOrganizationSystemLogs";

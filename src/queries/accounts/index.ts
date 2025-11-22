@@ -16,7 +16,6 @@ export * from "./useGetAccountLevels";
 export * from "./useGetAccountLikes";
 export * from "./useGetAccountNotificationPreferences";
 export * from "./useGetAccountPayments";
-export * from "./useGetAccountSubscriptions";
 export * from "./useGetAccountThreads";
 export * from "./useGetAccountTiers";
 export * from "./useGetAccounts";

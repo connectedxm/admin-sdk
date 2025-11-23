@@ -1953,11 +1953,6 @@ export interface PaymentIntegration {
   type: PaymentIntegrationType;
   connectionId: string;
   enabled: boolean;
-  stripe?: any | null;
-  paypal?: any | null;
-  braintree?: any | null;
-  authorizenet?: any | null;
-  manual?: any | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -3498,6 +3493,11 @@ export interface BraintreeActivationFormParams {
 
 export interface AuthorizeNetActivationFormParams {
   clientId: string;
+  clientPublicKey: string;
+  clientSecret: string;
+}
+
+export interface StripeActivationFormParams {
   clientPublicKey: string;
   clientSecret: string;
 }

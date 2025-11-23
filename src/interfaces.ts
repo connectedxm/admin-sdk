@@ -1884,7 +1884,7 @@ export interface Payment extends BasePayment {
   deferredInvoices: BaseInvoice[];
   integration: {
     type: PaymentIntegrationType;
-  };
+  } | null;
   event: BaseEvent | null;
   registration: BaseEventAttendee | null;
   passType: BaseEventPassType | null;

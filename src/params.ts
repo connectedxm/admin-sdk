@@ -1766,6 +1766,7 @@ export interface PassTypeRefundScheduleCreateInputs {
   startDate: string;
   endDate: string;
 }
+
 export interface PassTypeRefundScheduleUpdateInputs {
   percentage?: number;
   startDate?: string;

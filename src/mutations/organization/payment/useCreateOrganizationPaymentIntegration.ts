@@ -17,6 +17,8 @@ export interface CreateOrganizationPaymentIntegrationParams
   clientId?: string;
   clientPublicKey?: string;
   clientSecret?: string;
+  name: string | null;
+  currencyCode: string | null;
 }
 
 /**
@@ -28,6 +30,8 @@ export const CreateOrganizationPaymentIntegration = async ({
   clientId,
   clientPublicKey,
   clientSecret,
+  name,
+  currencyCode,
   adminApiParams,
   queryClient,
 }: CreateOrganizationPaymentIntegrationParams): Promise<
@@ -40,6 +44,8 @@ export const CreateOrganizationPaymentIntegration = async ({
       clientId,
       clientPublicKey,
       clientSecret,
+      name,
+      currencyCode,
     }
   );
   if (queryClient && data.status === "ok") {

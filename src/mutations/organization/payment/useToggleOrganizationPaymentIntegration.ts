@@ -1,9 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import {
-  ConnectedXMResponse,
-  PaymentIntegration,
-  PaymentIntegrationType,
-} from "@src/interfaces";
+import { ConnectedXMResponse, PaymentIntegration } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -20,7 +16,8 @@ import {
  */
 export interface ToggleOrganizationPaymentIntegrationParams
   extends MutationParams {
-  type: keyof typeof PaymentIntegrationType;
+  integrationId: string;
+  enabled: boolean;
 }
 
 /**
@@ -28,7 +25,8 @@ export interface ToggleOrganizationPaymentIntegrationParams
  * @group Organization-Payments
  */
 export const ToggleOrganizationPaymentIntegration = async ({
-  type,
+  integrationId,
+  enabled,
   adminApiParams,
   queryClient,
 }: ToggleOrganizationPaymentIntegrationParams): Promise<
@@ -37,9 +35,13 @@ export const ToggleOrganizationPaymentIntegration = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<
     ConnectedXMResponse<PaymentIntegration>
-  >(`/organization/payment/${type}`);
-  if (queryClient && data.status === "ok") {
-    SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(queryClient, [type], data);
+  >(`/organization/payment/${integrationId}`, { enabled });
+  if (queryClient && data.status === "ok" && data.data) {
+    SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(
+      queryClient,
+      [data.data.type],
+      data
+    );
     queryClient.invalidateQueries({
       queryKey: ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY(),
     });

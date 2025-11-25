@@ -17,7 +17,6 @@ import {
 export interface ToggleOrganizationPaymentIntegrationParams
   extends MutationParams {
   integrationId: string;
-  enabled: boolean;
 }
 
 /**
@@ -26,7 +25,6 @@ export interface ToggleOrganizationPaymentIntegrationParams
  */
 export const ToggleOrganizationPaymentIntegration = async ({
   integrationId,
-  enabled,
   adminApiParams,
   queryClient,
 }: ToggleOrganizationPaymentIntegrationParams): Promise<
@@ -35,7 +33,7 @@ export const ToggleOrganizationPaymentIntegration = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<
     ConnectedXMResponse<PaymentIntegration>
-  >(`/organization/payment/${integrationId}`, { enabled });
+  >(`/organization/payment/${integrationId}/toggle`);
   if (queryClient && data.status === "ok" && data.data) {
     SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(
       queryClient,

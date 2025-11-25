@@ -39,8 +39,9 @@ export const CreateOrganizationPaymentIntegration = async ({
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<any>>(
-    `/organization/payment/${type}`,
+    `/organization/payment`,
     {
+      type,
       clientId,
       clientPublicKey,
       clientSecret,

@@ -1503,6 +1503,14 @@ export interface SupportTicketNoteUpdateInputs {
   // No fields defined in the provided validation object
 }
 
+export interface SupportTicketMessageCreateInputs {
+  message: string;
+}
+
+export interface SupportTicketMessageUpdateInputs {
+  // No fields defined in the provided validation object
+}
+
 export interface TeamCreateInputs {
   name: string;
   email: string;

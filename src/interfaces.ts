@@ -3035,20 +3035,6 @@ export interface MeetingLink extends BaseMeetingLink {
   updatedAt: string;
 }
 
-export interface BaseSupportTicketNote {
-  id: string;
-  userId: string;
-  user: BaseUser;
-  text: string;
-}
-
-export interface SupportTicketNote extends BaseSupportTicketNote {
-  supportTicketId: string;
-  supportTicket: BaseSupportTicket;
-  createdAt: string;
-  updatedAt: string;
-}
-
 export interface BaseSupportTicket {
   id: string;
   type: SupportTicketType;
@@ -3063,6 +3049,36 @@ export interface SupportTicket extends BaseSupportTicket {
   eventId: string | null;
   event: BaseEvent | null;
   notes: BaseSupportTicketNote[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSupportTicketNote {
+  id: string;
+  userId: string;
+  user: BaseUser;
+  text: string;
+}
+
+export interface SupportTicketNote extends BaseSupportTicketNote {
+  supportTicketId: string;
+  supportTicket: BaseSupportTicket;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSupportTicketMessage {
+  id: string;
+  supportTicketId: string;
+  message: string;
+  accountId: string;
+  userId: string;
+}
+
+export interface SupportTicketMessage extends BaseSupportTicketMessage {
+  account: BaseAccount;
+  user: BaseUser;
+  supportTicket: BaseSupportTicket;
   createdAt: string;
   updatedAt: string;
 }

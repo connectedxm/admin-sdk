@@ -1113,6 +1113,7 @@ export interface OrganizationMembershipUpdateInputs {
   announcements: Omit<ModulePermissions, "superEnabled" | "enabled">;
   surveys: Omit<ModulePermissions, "superEnabled" | "enabled">;
   streams: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  meetings: Omit<ModulePermissions, "superEnabled" | "enabled">;
   payments: Omit<ModulePermissions, "superEnabled" | "enabled">;
 }
 
@@ -1283,6 +1284,12 @@ export interface OrganizationUpdateInputs {
   locales?: string[] | null;
   inviteOnly?: boolean;
   googleTagManagerId?: string | null;
+  meetingGroupCallAdminPreset?: string;
+  meetingGroupCallGuestPreset?: string;
+  meetingWebinarAdminPreset?: string;
+  meetingWebinarGuestPreset?: string;
+  meetingLivestreamAdminPreset?: string;
+  meetingLivestreamGuestPreset?: string;
   options?: object | null;
 }
 
@@ -2426,8 +2433,6 @@ export interface MeetingCreateInputs {
   eventId?: string;
   sessionId?: string;
   groupId?: string;
-  host_preset: string;
-  guest_preset: string;
   title: string | null;
   preferred_region:
     | "ap-south-1"
@@ -2483,8 +2488,6 @@ export interface MeetingUpdateInputs {
   eventId?: string;
   sessionId?: string;
   groupId?: string;
-  host_preset?: string;
-  guest_preset?: string;
   title?: string | null;
   preferred_region?:
     | "ap-south-1"

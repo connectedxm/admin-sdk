@@ -37,6 +37,7 @@ export enum OrganizationModuleType {
   advertisements = "advertisements",
   invoices = "invoices",
   streams = "streams",
+  meetings = "meetings",
 }
 
 export enum LocationQuestionOption {
@@ -1639,6 +1640,7 @@ export interface OrganizationMembership {
   surveys: ModulePermissions;
   searchlists: ModulePermissions;
   streams: ModulePermissions;
+  meetings: ModulePermissions;
   payments: ModulePermissions;
 }
 
@@ -1714,6 +1716,12 @@ export interface Organization extends BaseOrganization {
   locales: string[];
   inviteOnly: boolean;
   googleTagManagerId: string | null;
+  meetingGroupCallAdminPreset: string;
+  meetingGroupCallGuestPreset: string;
+  meetingWebinarAdminPreset: string;
+  meetingWebinarGuestPreset: string;
+  meetingLivestreamAdminPreset: string;
+  meetingLivestreamGuestPreset: string;
   options: object | null;
 }
 
@@ -2744,8 +2752,6 @@ export interface BaseMeeting {
   id: string;
   title: string;
   type: MeetingType;
-  host_preset: string;
-  guest_preset: string;
 }
 
 export interface Meeting extends BaseMeeting {

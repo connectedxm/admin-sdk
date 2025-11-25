@@ -2433,8 +2433,6 @@ export interface MeetingCreateInputs {
   eventId?: string;
   sessionId?: string;
   groupId?: string;
-  host_preset: string;
-  guest_preset: string;
   title: string | null;
   preferred_region:
     | "ap-south-1"
@@ -2490,8 +2488,6 @@ export interface MeetingUpdateInputs {
   eventId?: string;
   sessionId?: string;
   groupId?: string;
-  host_preset?: string;
-  guest_preset?: string;
   title?: string | null;
   preferred_region?:
     | "ap-south-1"

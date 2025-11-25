@@ -2751,8 +2751,6 @@ export interface BaseMeeting {
   id: string;
   title: string;
   type: MeetingType;
-  host_preset: string;
-  guest_preset: string;
 }
 
 export interface Meeting extends BaseMeeting {

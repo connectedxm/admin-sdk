@@ -1260,7 +1260,6 @@ export interface OrganizationUpdateInputs {
   darkLogoId?: string | null;
   iconId?: string | null;
   darkIconId?: string | null;
-  currency?: string | null;
   facebook?: string | null;
   twitter?: string | null;
   instagram?: string | null;

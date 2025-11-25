@@ -1652,7 +1652,6 @@ export interface BaseOrganization {
   icon: BaseImage | null;
   domain: string | null;
   locale: string;
-  currency: string;
 }
 
 export interface Organization extends BaseOrganization {

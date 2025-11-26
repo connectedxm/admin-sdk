@@ -4445,8 +4445,7 @@ export interface StreamInputDetails {
 export interface BaseStreamInput {
   id: string;
   name: string;
-  cloudflareId: string | null;
-  connected: boolean;
+  cloudflareId: string;
   public: boolean;
   sessionId: string | null;
   eventId: string | null;

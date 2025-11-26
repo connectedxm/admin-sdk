@@ -1,9 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import {
-  ConnectedXMResponse,
-  PaymentIntegration,
-  PaymentIntegrationType,
-} from "@src/interfaces";
+import { ConnectedXMResponse, PaymentIntegration } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -20,7 +16,6 @@ import {
  */
 export interface UpdateOrganizationPaymentIntegrationParams
   extends MutationParams {
-  type: keyof typeof PaymentIntegrationType;
   clientId?: string;
   clientPublicKey?: string;
   clientSecret?: string;
@@ -34,7 +29,6 @@ export interface UpdateOrganizationPaymentIntegrationParams
  * @group Organization-Payments
  */
 export const UpdateOrganizationPaymentIntegration = async ({
-  type,
   clientId,
   clientPublicKey,
   clientSecret,
@@ -57,7 +51,11 @@ export const UpdateOrganizationPaymentIntegration = async ({
     currencyCode,
   });
   if (queryClient && data.status === "ok") {
-    SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(queryClient, [type], data);
+    SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(
+      queryClient,
+      [integrationId],
+      data
+    );
     queryClient.invalidateQueries({
       queryKey: ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY(),
     });

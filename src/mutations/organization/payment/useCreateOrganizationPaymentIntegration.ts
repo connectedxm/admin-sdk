@@ -49,8 +49,12 @@ export const CreateOrganizationPaymentIntegration = async ({
       currencyCode,
     }
   );
-  if (queryClient && data.status === "ok") {
-    SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(queryClient, [type], data);
+  if (queryClient && data.status === "ok" && data.data?.id) {
+    SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(
+      queryClient,
+      [data.data.id],
+      data
+    );
   }
   return data;
 };

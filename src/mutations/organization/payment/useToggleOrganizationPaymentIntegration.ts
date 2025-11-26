@@ -37,7 +37,7 @@ export const ToggleOrganizationPaymentIntegration = async ({
   if (queryClient && data.status === "ok" && data.data) {
     SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(
       queryClient,
-      [data.data.type],
+      [integrationId],
       data
     );
     queryClient.invalidateQueries({

@@ -17,6 +17,8 @@ export interface CreateOrganizationPaymentIntegrationParams
   clientId?: string;
   clientPublicKey?: string;
   clientSecret?: string;
+  name: string | null;
+  currencyCode: string | null;
 }
 
 /**
@@ -28,6 +30,8 @@ export const CreateOrganizationPaymentIntegration = async ({
   clientId,
   clientPublicKey,
   clientSecret,
+  name,
+  currencyCode,
   adminApiParams,
   queryClient,
 }: CreateOrganizationPaymentIntegrationParams): Promise<
@@ -35,15 +39,22 @@ export const CreateOrganizationPaymentIntegration = async ({
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<any>>(
-    `/organization/payment/${type}`,
+    `/organization/payment`,
     {
+      type,
       clientId,
       clientPublicKey,
       clientSecret,
+      name,
+      currencyCode,
     }
   );
-  if (queryClient && data.status === "ok") {
-    SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(queryClient, [type], data);
+  if (queryClient && data.status === "ok" && data.data?.id) {
+    SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(
+      queryClient,
+      [data.data.id],
+      data
+    );
   }
   return data;
 };

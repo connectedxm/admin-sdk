@@ -1654,7 +1654,6 @@ export interface BaseOrganization {
   icon: BaseImage | null;
   domain: string | null;
   locale: string;
-  currency: string;
 }
 
 export interface Organization extends BaseOrganization {
@@ -1963,6 +1962,8 @@ export interface PaymentIntegration {
   enabled: boolean;
   createdAt: string;
   updatedAt: string;
+  name: string;
+  currency: string;
 }
 
 export enum TaxIntegrationType {
@@ -3489,23 +3490,31 @@ export interface ThreadCircleAccount extends BaseThreadCircleAccount {}
 export interface PaypalActivationFormParams {
   clientId: string;
   clientSecret: string;
+  currencyCode: string;
+  name: string;
 }
 
 export interface BraintreeActivationFormParams {
   clientId: string;
   clientPublicKey: string;
   clientSecret: string;
+  currencyCode: string;
+  name: string;
 }
 
 export interface AuthorizeNetActivationFormParams {
   clientId: string;
   clientPublicKey: string;
   clientSecret: string;
+  currencyCode: string;
+  name: string;
 }
 
 export interface StripeActivationFormParams {
   clientPublicKey: string;
   clientSecret: string;
+  currencyCode: string;
+  name: string;
 }
 
 export interface BaseSchedule {

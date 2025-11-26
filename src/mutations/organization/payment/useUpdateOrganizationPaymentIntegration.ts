@@ -14,27 +14,43 @@ import {
  * @category Params
  * @group Organization-Payments
  */
-export interface ToggleOrganizationPaymentIntegrationParams
+export interface UpdateOrganizationPaymentIntegrationParams
   extends MutationParams {
+  clientId?: string;
+  clientPublicKey?: string;
+  clientSecret?: string;
   integrationId: string;
+  name?: string | null;
+  currencyCode?: string | null;
 }
 
 /**
  * @category Methods
  * @group Organization-Payments
  */
-export const ToggleOrganizationPaymentIntegration = async ({
+export const UpdateOrganizationPaymentIntegration = async ({
+  clientId,
+  clientPublicKey,
+  clientSecret,
+  name,
+  currencyCode,
   integrationId,
   adminApiParams,
   queryClient,
-}: ToggleOrganizationPaymentIntegrationParams): Promise<
+}: UpdateOrganizationPaymentIntegrationParams): Promise<
   ConnectedXMResponse<PaymentIntegration>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<
     ConnectedXMResponse<PaymentIntegration>
-  >(`/organization/payment/${integrationId}/toggle`);
-  if (queryClient && data.status === "ok" && data.data) {
+  >(`/organization/payment/${integrationId}`, {
+    clientId,
+    clientPublicKey,
+    clientSecret,
+    name,
+    currencyCode,
+  });
+  if (queryClient && data.status === "ok") {
     SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(
       queryClient,
       [integrationId],
@@ -51,12 +67,12 @@ export const ToggleOrganizationPaymentIntegration = async ({
  * @category Mutations
  * @group Organization-Payments
  */
-export const useToggleOrganizationPaymentIntegration = (
+export const useUpdateOrganizationPaymentIntegration = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof ToggleOrganizationPaymentIntegration>>,
+      Awaited<ReturnType<typeof UpdateOrganizationPaymentIntegration>>,
       Omit<
-        ToggleOrganizationPaymentIntegrationParams,
+        UpdateOrganizationPaymentIntegrationParams,
         "queryClient" | "adminApiParams"
       >
     >,
@@ -64,7 +80,7 @@ export const useToggleOrganizationPaymentIntegration = (
   > = {}
 ) => {
   return useConnectedMutation<
-    ToggleOrganizationPaymentIntegrationParams,
-    Awaited<ReturnType<typeof ToggleOrganizationPaymentIntegration>>
-  >(ToggleOrganizationPaymentIntegration, options);
+    UpdateOrganizationPaymentIntegrationParams,
+    Awaited<ReturnType<typeof UpdateOrganizationPaymentIntegration>>
+  >(UpdateOrganizationPaymentIntegration, options);
 };

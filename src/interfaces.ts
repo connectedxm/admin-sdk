@@ -1682,6 +1682,7 @@ export interface Organization extends BaseOrganization {
   createdAt: string;
   updatedAt: string;
   integrations: Integration[];
+  paymentIntegrations: BasePaymentIntegration[];
   appName: string | null;
   appIconId: string | null;
   appIcon: BaseImage | null;
@@ -1955,15 +1956,18 @@ export interface PaymentLineItem extends BasePaymentLineItem {
   payment: BasePayment;
 }
 
-export interface PaymentIntegration {
+export interface BasePaymentIntegration {
   id: string;
+  currencyCode: string;
+}
+
+export interface PaymentIntegration extends BasePaymentIntegration {
   type: PaymentIntegrationType;
   connectionId: string;
   enabled: boolean;
   createdAt: string;
   updatedAt: string;
   name: string;
-  currency: string;
 }
 
 export enum TaxIntegrationType {

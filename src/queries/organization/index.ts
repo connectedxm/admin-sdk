@@ -9,7 +9,6 @@ export * from "./useGetOrganizationAccountAttribute";
 export * from "./useGetOrganizationAccountAttributes";
 export * from "./useGetOrganizationDomain";
 export * from "./useGetOrganizationMembership";
-export * from "./useGetOrganizationPaymentCurrency";
 export * from "./useGetOrganizationPaymentIntegration";
 export * from "./useGetOrganizationPaymentIntegrations";
 export * from "./useGetOrganizationSystemLog";

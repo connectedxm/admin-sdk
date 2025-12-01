@@ -36,6 +36,7 @@ import {
   TaxLocationType,
   LocationQuestionOption,
   MeetingType,
+  PaymentIntegrationType,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -2855,4 +2856,17 @@ export interface StreamInputOutputCreateInputs {
 
 export interface StreamInputOutputUpdateInputs {
   enabled: boolean;
+}
+
+export interface OrganizationPaymentIntegrationCreateInputs {
+  type: keyof typeof PaymentIntegrationType;
+  name: string | null;
+  currencyCode: string | null;
+  clientId?: string;
+  clientPublicKey?: string;
+  clientSecret?: string;
+}
+
+export interface OrganizationPaymentIntegrationUpdateInputs {
+  name?: string | null;
 }

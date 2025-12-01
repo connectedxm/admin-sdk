@@ -1,10 +1,11 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, PaymentIntegrationType } from "@src/interfaces";
+import { ConnectedXMResponse, PaymentIntegration } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { OrganizationPaymentIntegrationCreateInputs } from "@src/params";
 import { SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA } from "@src/queries";
 
 /**
@@ -13,12 +14,7 @@ import { SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA } from "@src/queries";
  */
 export interface CreateOrganizationPaymentIntegrationParams
   extends MutationParams {
-  type: keyof typeof PaymentIntegrationType;
-  clientId?: string;
-  clientPublicKey?: string;
-  clientSecret?: string;
-  name: string | null;
-  currencyCode: string | null;
+  integration: OrganizationPaymentIntegrationCreateInputs;
 }
 
 /**
@@ -26,28 +22,16 @@ export interface CreateOrganizationPaymentIntegrationParams
  * @group Organization-Payments
  */
 export const CreateOrganizationPaymentIntegration = async ({
-  type,
-  clientId,
-  clientPublicKey,
-  clientSecret,
-  name,
-  currencyCode,
+  integration,
   adminApiParams,
   queryClient,
 }: CreateOrganizationPaymentIntegrationParams): Promise<
-  ConnectedXMResponse<any>
+  ConnectedXMResponse<PaymentIntegration>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<any>>(
+  const { data } = await connectedXM.post<ConnectedXMResponse<PaymentIntegration>>(
     `/organization/payment`,
-    {
-      type,
-      clientId,
-      clientPublicKey,
-      clientSecret,
-      name,
-      currencyCode,
-    }
+    integration
   );
   if (queryClient && data.status === "ok" && data.data?.id) {
     SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(

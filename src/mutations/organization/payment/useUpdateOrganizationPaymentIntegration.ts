@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { OrganizationPaymentIntegrationUpdateInputs } from "@src/params";
 import {
   SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA,
   ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY,
@@ -16,12 +17,8 @@ import {
  */
 export interface UpdateOrganizationPaymentIntegrationParams
   extends MutationParams {
-  clientId?: string;
-  clientPublicKey?: string;
-  clientSecret?: string;
   integrationId: string;
-  name?: string | null;
-  currencyCode?: string | null;
+  integration: OrganizationPaymentIntegrationUpdateInputs;
 }
 
 /**
@@ -29,11 +26,7 @@ export interface UpdateOrganizationPaymentIntegrationParams
  * @group Organization-Payments
  */
 export const UpdateOrganizationPaymentIntegration = async ({
-  clientId,
-  clientPublicKey,
-  clientSecret,
-  name,
-  currencyCode,
+  integration,
   integrationId,
   adminApiParams,
   queryClient,
@@ -43,13 +36,7 @@ export const UpdateOrganizationPaymentIntegration = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<
     ConnectedXMResponse<PaymentIntegration>
-  >(`/organization/payment/${integrationId}`, {
-    clientId,
-    clientPublicKey,
-    clientSecret,
-    name,
-    currencyCode,
-  });
+  >(`/organization/payment/${integrationId}`, integration);
   if (queryClient && data.status === "ok") {
     SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(
       queryClient,

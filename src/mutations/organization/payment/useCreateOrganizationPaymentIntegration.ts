@@ -6,7 +6,10 @@ import {
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
 import { OrganizationPaymentIntegrationCreateInputs } from "@src/params";
-import { SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA } from "@src/queries";
+import {
+  SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA,
+  ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY,
+} from "@src/queries";
 
 /**
  * @category Params
@@ -29,16 +32,18 @@ export const CreateOrganizationPaymentIntegration = async ({
   ConnectedXMResponse<PaymentIntegration>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<PaymentIntegration>>(
-    `/organization/payment`,
-    integration
-  );
+  const { data } = await connectedXM.post<
+    ConnectedXMResponse<PaymentIntegration>
+  >(`/organization/payment`, integration);
   if (queryClient && data.status === "ok" && data.data?.id) {
     SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(
       queryClient,
       [data.data.id],
       data
     );
+    queryClient.invalidateQueries({
+      queryKey: ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY(),
+    });
   }
   return data;
 };

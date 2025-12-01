@@ -14,7 +14,6 @@ import {
   ModulePermissions,
   AuthLayout,
   DefaultAuthAction,
-  BaseSupportTicketNote,
   SupportTicketType,
   ImportType,
   EventAnnouncementFilters,
@@ -1486,13 +1485,13 @@ export interface SupportTicketCreateInputs {
 }
 
 export interface SupportTicketUpdateInputs {
-  type?: SupportTicketType;
   email?: string;
-  request?: string;
-  accountId?: string | null;
-  eventId?: string | null;
   state?: SupportTicketState;
-  notes?: BaseSupportTicketNote[];
+  accountId?: string | null;
+  type?: SupportTicketType;
+  request?: string;
+  eventId?: string | null;
+  assignedUserId?: string | null;
 }
 
 export interface SupportTicketNoteCreateInputs {

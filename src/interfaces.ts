@@ -3046,9 +3046,15 @@ export interface BaseSupportTicket {
 export interface SupportTicket extends BaseSupportTicket {
   accountId: string | null;
   account: BaseAccount | null;
+  userId: string | null;
+  user: BaseUser | null;
+  assignedUserId: string | null;
+  assignedUser: BaseUser | null;
   eventId: string | null;
   event: BaseEvent | null;
   notes: BaseSupportTicketNote[];
+  messages: BaseSupportTicketMessage[] | null;
+  activityLogs: BaseSupportTicketActivityLog[] | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -3081,6 +3087,27 @@ export interface SupportTicketMessage extends BaseSupportTicketMessage {
   supportTicket: BaseSupportTicket;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface BaseSupportTicketActivityLog {
+  id: string;
+  supportTicketId: string;
+  type: string;
+  accountId: string;
+  account: BaseAccount;
+  userId: string;
+  user: BaseUser;
+  previousState: string;
+  newState: string;
+  previousAssignedUserId: string;
+  newAssignedUserId: string;
+  eventId: string;
+  event: BaseEvent;
+  createdAt: string;
+}
+
+export interface SupportTicketActivityLog extends BaseSupportTicketActivityLog {
+  supportTicket: BaseSupportTicket;
 }
 
 export interface BaseTeamMember {

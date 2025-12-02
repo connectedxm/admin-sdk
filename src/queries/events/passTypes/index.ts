@@ -7,5 +7,6 @@ export * from "./useGetEventPassTypeAddOns";
 export * from "./useGetEventPassTypeCoupons";
 export * from "./useGetEventPassTypePasses";
 export * from "./useGetEventPassTypePayments";
+export * from "./useGetEventPassTypeGroupPassTiers";
 export * from "./useGetEventPassTypeTiers";
 export * from "./useGetEventPassTypes";

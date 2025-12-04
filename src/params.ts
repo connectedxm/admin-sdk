@@ -2860,8 +2860,8 @@ export interface StreamInputOutputUpdateInputs {
 
 export interface OrganizationPaymentIntegrationCreateInputs {
   type: keyof typeof PaymentIntegrationType;
-  name: string | null;
-  currencyCode: string | null;
+  name: string;
+  currencyCode: string;
   clientId?: string;
   clientPublicKey?: string;
   clientSecret?: string;

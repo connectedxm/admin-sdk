@@ -1638,6 +1638,7 @@ export interface PassTypeCreateInputs {
   requiredPassTypeId?: string | null;
   sortOrder?: number | string | null;
   enableCoupons?: boolean;
+  groupPassDescription?: string | null;
   overrideStartDate?: string | null;
   requireCoupon?: boolean;
   taxCode?: string | null;
@@ -1668,6 +1669,7 @@ export interface PassTypeUpdateInputs {
   enableCoupons?: boolean;
   minCouponQuantity?: number;
   maxCouponQuantity?: number | null;
+  groupPassDescription?: string | null;
   overrideStartDate?: string | null;
   requireCoupon?: boolean;
   taxCode?: string | null;

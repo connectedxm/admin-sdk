@@ -1,3 +1,4 @@
 export * from "./useGetSupportTicket";
-export * from "./useGetSupportTickets";
+export * from "./useGetSupportTicketActivity";
 export * from "./useGetSupportTicketMessages";
+export * from "./useGetSupportTickets";

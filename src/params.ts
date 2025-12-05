@@ -1481,17 +1481,23 @@ export interface StreamOutputCreateInputs {
 }
 
 export interface SupportTicketCreateInputs {
-  // No fields defined in the provided validation object
+  type: SupportTicketType;
+  email: string;
+  request: string;
+  state: SupportTicketState;
+  accountId?: string | null;
+  orgMembershipId?: string | null;
+  eventId?: string | null;
 }
 
 export interface SupportTicketUpdateInputs {
+  type?: SupportTicketType;
   email?: string;
+  request?: string;
   state?: SupportTicketState;
   accountId?: string | null;
-  type?: SupportTicketType;
-  request?: string;
+  orgMembershipId?: string | null;
   eventId?: string | null;
-  assignedUserId?: string | null;
 }
 
 export interface SupportTicketNoteCreateInputs {

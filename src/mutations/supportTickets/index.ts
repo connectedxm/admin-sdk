@@ -3,4 +3,5 @@ export * from "./useCreateSupportTicketMessage";
 export * from "./useCreateSupportTicketNote";
 export * from "./useDeleteSupportTicket";
 export * from "./useDeleteSupportTicketNote";
+export * from "./useMarkSupportTicketAsRead";
 export * from "./useUpdateSupportTicket";

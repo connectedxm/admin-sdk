@@ -3142,10 +3142,11 @@ export interface EventPassType extends BaseEventPassType {
   event: BaseEvent;
   allowedTiers: BaseTier[];
   disallowedTiers: BaseTier[];
+  groupPassDescription: string | null;
+  requiredPassType: BaseEventPassType | null;
   _count: {
     purchases: number;
   };
-  requiredPassType: BaseEventPassType | null;
 }
 
 export interface BaseEventPassTypePriceSchedule {

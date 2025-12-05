@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { OrganizationPaymentIntegrationUpdateInputs } from "@src/params";
 import {
   SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA,
   ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY,
@@ -14,27 +15,29 @@ import {
  * @category Params
  * @group Organization-Payments
  */
-export interface ToggleOrganizationPaymentIntegrationParams
+export interface UpdateOrganizationPaymentIntegrationParams
   extends MutationParams {
   integrationId: string;
+  integration: OrganizationPaymentIntegrationUpdateInputs;
 }
 
 /**
  * @category Methods
  * @group Organization-Payments
  */
-export const ToggleOrganizationPaymentIntegration = async ({
+export const UpdateOrganizationPaymentIntegration = async ({
+  integration,
   integrationId,
   adminApiParams,
   queryClient,
-}: ToggleOrganizationPaymentIntegrationParams): Promise<
+}: UpdateOrganizationPaymentIntegrationParams): Promise<
   ConnectedXMResponse<PaymentIntegration>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<
     ConnectedXMResponse<PaymentIntegration>
-  >(`/organization/payment/${integrationId}/toggle`);
-  if (queryClient && data.status === "ok" && data.data) {
+  >(`/organization/payment/${integrationId}`, integration);
+  if (queryClient && data.status === "ok" && data.data?.id) {
     SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(
       queryClient,
       [integrationId],
@@ -51,12 +54,12 @@ export const ToggleOrganizationPaymentIntegration = async ({
  * @category Mutations
  * @group Organization-Payments
  */
-export const useToggleOrganizationPaymentIntegration = (
+export const useUpdateOrganizationPaymentIntegration = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof ToggleOrganizationPaymentIntegration>>,
+      Awaited<ReturnType<typeof UpdateOrganizationPaymentIntegration>>,
       Omit<
-        ToggleOrganizationPaymentIntegrationParams,
+        UpdateOrganizationPaymentIntegrationParams,
         "queryClient" | "adminApiParams"
       >
     >,
@@ -64,7 +67,7 @@ export const useToggleOrganizationPaymentIntegration = (
   > = {}
 ) => {
   return useConnectedMutation<
-    ToggleOrganizationPaymentIntegrationParams,
-    Awaited<ReturnType<typeof ToggleOrganizationPaymentIntegration>>
-  >(ToggleOrganizationPaymentIntegration, options);
+    UpdateOrganizationPaymentIntegrationParams,
+    Awaited<ReturnType<typeof UpdateOrganizationPaymentIntegration>>
+  >(UpdateOrganizationPaymentIntegration, options);
 };

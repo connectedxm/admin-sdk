@@ -36,6 +36,7 @@ import {
   TaxLocationType,
   LocationQuestionOption,
   MeetingType,
+  PaymentIntegrationType,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -1261,7 +1262,6 @@ export interface OrganizationUpdateInputs {
   darkLogoId?: string | null;
   iconId?: string | null;
   darkIconId?: string | null;
-  currency?: string | null;
   facebook?: string | null;
   twitter?: string | null;
   instagram?: string | null;
@@ -1773,6 +1773,7 @@ export interface PassTypeRefundScheduleCreateInputs {
   startDate: string;
   endDate: string;
 }
+
 export interface PassTypeRefundScheduleUpdateInputs {
   percentage?: number;
   startDate?: string;
@@ -2855,4 +2856,17 @@ export interface StreamInputOutputCreateInputs {
 
 export interface StreamInputOutputUpdateInputs {
   enabled: boolean;
+}
+
+export interface OrganizationPaymentIntegrationCreateInputs {
+  type: keyof typeof PaymentIntegrationType;
+  name: string;
+  currencyCode: string;
+  clientId?: string;
+  clientPublicKey?: string;
+  clientSecret?: string;
+}
+
+export interface OrganizationPaymentIntegrationUpdateInputs {
+  name?: string | null;
 }

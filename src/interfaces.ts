@@ -1654,7 +1654,6 @@ export interface BaseOrganization {
   icon: BaseImage | null;
   domain: string | null;
   locale: string;
-  currency: string;
 }
 
 export interface Organization extends BaseOrganization {
@@ -1683,6 +1682,7 @@ export interface Organization extends BaseOrganization {
   createdAt: string;
   updatedAt: string;
   integrations: Integration[];
+  paymentIntegrations: BasePaymentIntegration[];
   appName: string | null;
   appIconId: string | null;
   appIcon: BaseImage | null;
@@ -1956,13 +1956,18 @@ export interface PaymentLineItem extends BasePaymentLineItem {
   payment: BasePayment;
 }
 
-export interface PaymentIntegration {
+export interface BasePaymentIntegration {
   id: string;
+  currencyCode: string;
+}
+
+export interface PaymentIntegration extends BasePaymentIntegration {
   type: PaymentIntegrationType;
   connectionId: string;
   enabled: boolean;
   createdAt: string;
   updatedAt: string;
+  name: string;
 }
 
 export enum TaxIntegrationType {
@@ -3489,23 +3494,31 @@ export interface ThreadCircleAccount extends BaseThreadCircleAccount {}
 export interface PaypalActivationFormParams {
   clientId: string;
   clientSecret: string;
+  currencyCode: string;
+  name: string;
 }
 
 export interface BraintreeActivationFormParams {
   clientId: string;
   clientPublicKey: string;
   clientSecret: string;
+  currencyCode: string;
+  name: string;
 }
 
 export interface AuthorizeNetActivationFormParams {
   clientId: string;
   clientPublicKey: string;
   clientSecret: string;
+  currencyCode: string;
+  name: string;
 }
 
 export interface StripeActivationFormParams {
   clientPublicKey: string;
   clientSecret: string;
+  currencyCode: string;
+  name: string;
 }
 
 export interface BaseSchedule {

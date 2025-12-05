@@ -1,11 +1,15 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, PaymentIntegrationType } from "@src/interfaces";
+import { ConnectedXMResponse, PaymentIntegration } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA } from "@src/queries";
+import { OrganizationPaymentIntegrationCreateInputs } from "@src/params";
+import {
+  SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA,
+  ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY,
+} from "@src/queries";
 
 /**
  * @category Params
@@ -13,10 +17,7 @@ import { SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA } from "@src/queries";
  */
 export interface CreateOrganizationPaymentIntegrationParams
   extends MutationParams {
-  type: keyof typeof PaymentIntegrationType;
-  clientId?: string;
-  clientPublicKey?: string;
-  clientSecret?: string;
+  integration: OrganizationPaymentIntegrationCreateInputs;
 }
 
 /**
@@ -24,26 +25,25 @@ export interface CreateOrganizationPaymentIntegrationParams
  * @group Organization-Payments
  */
 export const CreateOrganizationPaymentIntegration = async ({
-  type,
-  clientId,
-  clientPublicKey,
-  clientSecret,
+  integration,
   adminApiParams,
   queryClient,
 }: CreateOrganizationPaymentIntegrationParams): Promise<
-  ConnectedXMResponse<any>
+  ConnectedXMResponse<PaymentIntegration>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<any>>(
-    `/organization/payment/${type}`,
-    {
-      clientId,
-      clientPublicKey,
-      clientSecret,
-    }
-  );
-  if (queryClient && data.status === "ok") {
-    SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(queryClient, [type], data);
+  const { data } = await connectedXM.post<
+    ConnectedXMResponse<PaymentIntegration>
+  >(`/organization/payment`, integration);
+  if (queryClient && data.status === "ok" && data.data?.id) {
+    SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(
+      queryClient,
+      [data.data.id],
+      data
+    );
+    queryClient.invalidateQueries({
+      queryKey: ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY(),
+    });
   }
   return data;
 };

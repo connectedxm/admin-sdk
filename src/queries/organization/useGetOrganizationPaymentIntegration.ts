@@ -4,7 +4,7 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../useConnectedSingleQuery";
-import { ConnectedXMResponse, PaymentIntegrationType } from "@src/interfaces";
+import { ConnectedXMResponse } from "@src/interfaces";
 import { PaymentIntegration } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import { ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY } from "./useGetOrganizationPaymentIntegrations";
@@ -34,7 +34,7 @@ export const SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA = (
 };
 
 interface GetOrganizationPaymentIntegrationProps extends SingleQueryParams {
-  type: string;
+  integrationId: string;
 }
 
 /**
@@ -42,13 +42,13 @@ interface GetOrganizationPaymentIntegrationProps extends SingleQueryParams {
  * @group Organization
  */
 export const GetOrganizationPaymentIntegration = async ({
-  type,
+  integrationId,
   adminApiParams,
 }: GetOrganizationPaymentIntegrationProps): Promise<
   ConnectedXMResponse<PaymentIntegration>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/organization/payment/${type}`);
+  const { data } = await adminApi.get(`/organization/payment/${integrationId}`);
   return data;
 };
 /**
@@ -56,7 +56,7 @@ export const GetOrganizationPaymentIntegration = async ({
  * @group Organization
  */
 export const useGetOrganizationPaymentIntegration = (
-  type: keyof typeof PaymentIntegrationType,
+  integrationId: string,
   options: SingleQueryOptions<
     ReturnType<typeof GetOrganizationPaymentIntegration>
   > = {}
@@ -64,12 +64,12 @@ export const useGetOrganizationPaymentIntegration = (
   return useConnectedSingleQuery<
     ReturnType<typeof GetOrganizationPaymentIntegration>
   >(
-    ORGANIZATION_PAYMENT_INTEGRATION_QUERY_KEY(type),
+    ORGANIZATION_PAYMENT_INTEGRATION_QUERY_KEY(integrationId),
     (params: SingleQueryParams) =>
-      GetOrganizationPaymentIntegration({ type, ...params }),
+      GetOrganizationPaymentIntegration({ integrationId, ...params }),
     {
       ...options,
-      enabled: !!type && (options?.enabled ?? true),
+      enabled: !!integrationId && (options?.enabled ?? true),
       retry: false,
     }
   );

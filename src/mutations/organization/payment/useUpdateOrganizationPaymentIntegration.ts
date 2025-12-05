@@ -37,7 +37,7 @@ export const UpdateOrganizationPaymentIntegration = async ({
   const { data } = await connectedXM.put<
     ConnectedXMResponse<PaymentIntegration>
   >(`/organization/payment/${integrationId}`, integration);
-  if (queryClient && data.status === "ok") {
+  if (queryClient && data.status === "ok" && data.data?.id) {
     SET_ORGANIZATION_PAYMENT_INTEGRATION_QUERY_DATA(
       queryClient,
       [integrationId],

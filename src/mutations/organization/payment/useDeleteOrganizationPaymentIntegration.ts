@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, PaymentIntegrationType } from "@src/interfaces";
+import { ConnectedXMResponse } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -16,7 +16,7 @@ import {
  */
 export interface DeleteOrganizationPaymentIntegrationParams
   extends MutationParams {
-  type: keyof typeof PaymentIntegrationType;
+  integrationId: string;
 }
 
 /**
@@ -24,7 +24,7 @@ export interface DeleteOrganizationPaymentIntegrationParams
  * @group Organization-Payments
  */
 export const DeleteOrganizationPaymentIntegration = async ({
-  type,
+  integrationId,
   adminApiParams,
   queryClient,
 }: DeleteOrganizationPaymentIntegrationParams): Promise<
@@ -32,14 +32,14 @@ export const DeleteOrganizationPaymentIntegration = async ({
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<any>>(
-    `/organization/payment/${type}`
+    `/organization/payment/${integrationId}`
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: ORGANIZATION_PAYMENT_INTEGRATIONS_QUERY_KEY(),
     });
     queryClient.removeQueries({
-      queryKey: ORGANIZATION_PAYMENT_INTEGRATION_QUERY_KEY(type),
+      queryKey: ORGANIZATION_PAYMENT_INTEGRATION_QUERY_KEY(integrationId),
     });
   }
   return data;

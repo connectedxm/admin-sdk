@@ -638,6 +638,7 @@ export interface EventCreateInputs {
   matchName?: string | null;
   activityFeedEnabled?: boolean;
   options?: object | null;
+  paymentIntegrationId?: string | null;
   template?: boolean;
   meetingId?: string | null;
 }
@@ -1056,6 +1057,7 @@ export interface EventUpdateInputs {
   activityFeedEnabled?: boolean;
   meetingId?: string | null;
   options?: object | null;
+  paymentIntegrationId?: string | null;
 }
 
 export interface FileUpdateInputs {

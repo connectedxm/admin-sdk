@@ -1056,6 +1056,8 @@ export interface BaseEvent {
   updatedAt: string;
   seriesId: string | null;
   series: BaseSeries | null;
+  paymentIntegrationId: string | null;
+  paymentIntegration: PaymentIntegration | null;
 }
 
 export interface Event extends BaseEvent {

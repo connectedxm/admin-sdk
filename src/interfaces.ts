@@ -1057,7 +1057,7 @@ export interface BaseEvent {
   seriesId: string | null;
   series: BaseSeries | null;
   paymentIntegrationId: string | null;
-  paymentIntegration: PaymentIntegration | null;
+  paymentIntegration: BasePaymentIntegration | null;
 }
 
 export interface Event extends BaseEvent {
@@ -1961,15 +1961,15 @@ export interface PaymentLineItem extends BasePaymentLineItem {
 export interface BasePaymentIntegration {
   id: string;
   currencyCode: string;
+  type: PaymentIntegrationType;
+  name: string;
 }
 
 export interface PaymentIntegration extends BasePaymentIntegration {
-  type: PaymentIntegrationType;
   connectionId: string;
   enabled: boolean;
   createdAt: string;
   updatedAt: string;
-  name: string;
 }
 
 export enum TaxIntegrationType {

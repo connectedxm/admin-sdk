@@ -1,0 +1,107 @@
+name: Version Check
+
+permissions:
+  contents: read
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened]
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Checkout main branch
+        run: |
+          git fetch origin main:main
+          git checkout main
+
+      - name: Get version from main branch
+        id: main-version
+        run: |
+          MAIN_VERSION=$(node -p "require('./package.json').version")
+          echo "version=$MAIN_VERSION" >> $GITHUB_OUTPUT
+          echo "Main branch version: $MAIN_VERSION"
+
+      - name: Checkout PR branch again
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          git checkout "$HEAD_REF"
+
+      - name: Get version from PR branch
+        id: pr-version
+        run: |
+          PR_VERSION=$(node -p "require('./package.json').version")
+          echo "version=$PR_VERSION" >> $GITHUB_OUTPUT
+          echo "PR branch version: $PR_VERSION"
+
+      - name: Compare versions
+        env:
+          MAIN_VERSION: ${{ steps.main-version.outputs.version }}
+          PR_VERSION: ${{ steps.pr-version.outputs.version }}
+        run: |
+          echo "Main branch version: $MAIN_VERSION"
+          echo "PR branch version: $PR_VERSION"
+
+          # Compare semantic versions using Node.js
+          # Use environment variables to avoid shell quoting issues
+          COMPARISON=$(node -e "
+            function compareVersions(a, b) {
+              // Trim whitespace from versions
+              a = (a || '').trim();
+              b = (b || '').trim();
+              
+              // Validate version format - only allow x.y.z format (no pre-release tags or build metadata)
+              const versionPattern = /^\d+\.\d+\.\d+$/;
+              
+              if (!a || !b) {
+                throw new Error('Version cannot be empty. PR: \"' + a + '\", Main: \"' + b + '\"');
+              }
+              
+              if (!versionPattern.test(a)) {
+                throw new Error('Invalid PR branch version format: \"' + a + '\". Only semantic versions (x.y.z) are allowed. Pre-release tags and build metadata are not permitted.');
+              }
+              
+              if (!versionPattern.test(b)) {
+                throw new Error('Invalid main branch version format: \"' + b + '\". Only semantic versions (x.y.z) are allowed. Pre-release tags and build metadata are not permitted.');
+              }
+              
+              const aParts = a.split('.').map(Number);
+              const bParts = b.split('.').map(Number);
+              for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+                const aPart = aParts[i] || 0;
+                const bPart = bParts[i] || 0;
+                if (aPart > bPart) return 'greater';
+                if (aPart < bPart) return 'less';
+              }
+              return 'equal';
+            }
+            const pr = process.env.PR_VERSION;
+            const main = process.env.MAIN_VERSION;
+            console.log(compareVersions(pr, main));
+          ")
+
+          if [ "$COMPARISON" = "equal" ]; then
+            echo "❌ Version check failed!"
+            echo "The package version in the PR ($PR_VERSION) matches the version in main ($MAIN_VERSION)."
+            echo "Please increment the version in package.json before merging to main."
+            exit 1
+          elif [ "$COMPARISON" = "less" ]; then
+            echo "❌ Version check failed!"
+            echo "The package version in the PR ($PR_VERSION) is less than the version in main ($MAIN_VERSION)."
+            echo "Please increment the version in package.json before merging to main."
+            exit 1
+          else
+            echo "✅ Version check passed!"
+            echo "Version incremented from $MAIN_VERSION to $PR_VERSION"
+          fi

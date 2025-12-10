@@ -643,6 +643,65 @@ export interface EventCreateInputs {
   meetingId?: string | null;
 }
 
+export interface EventUpdateInputs {
+  featured?: boolean;
+  visible?: boolean;
+  name?: string | null;
+  eventType?: keyof typeof EventType | null;
+  slug?: string | null;
+  internalRefId?: string | null;
+  shortDescription?: string | null;
+  longDescription?: string | null;
+  reservationDescription?: string | null;
+  timezone?: string | null;
+  eventStart?: string | null;
+  eventEnd?: string | null;
+  externalUrl?: string | null;
+  imageId?: string | null;
+  squareImageId?: string | null;
+  backgroundImageId?: string | null;
+  venue?: string | null;
+  address1?: string | null;
+  address2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  country?: string | null;
+  zip?: string | null;
+  creatorId?: string | null;
+  seriesId?: string | null;
+  registration?: boolean;
+  registrationStart?: string | null;
+  registrationEnd?: string | null;
+  registrationHeaderImageId?: string | null;
+  registrationFooterImageId?: string | null;
+  registrationHideTitle?: boolean;
+  registrationLimit?: number | null | string;
+  allowMultipleRegistrations?: boolean;
+  allowSplitPayment?: boolean;
+  splitPaymentPercentage?: number | string;
+  splitPaymentNetDays?: number | string | null;
+  splitPaymentDueDate?: string | null;
+  publicRegistrants?: boolean;
+  sessionsVisibility?: keyof typeof EventAgendaVisibility;
+  speakersVisibility?: keyof typeof EventAgendaVisibility;
+  inviteOnly?: boolean;
+  iosAppLink?: string | null;
+  androidAppLink?: string | null;
+  newActivityCreatorEmailNotification?: boolean;
+  newActivityCreatorPushNotification?: boolean;
+  streamReplayId?: string | null;
+  groupId?: string | null;
+  groupOnly?: boolean;
+  passSupply?: number | string | null;
+  passLimitPerAccount?: string | number | null;
+  roundName?: string | null;
+  matchName?: string | null;
+  activityFeedEnabled?: boolean;
+  options?: object | null;
+  paymentIntegrationId?: string | null;
+  meetingId?: string | null;
+}
+
 export interface EventEmailUpdateInputs {
   body?: string | null;
   replyTo?: string | null;
@@ -999,65 +1058,6 @@ export interface EventTranslationUpdateInputs {
   longDescription?: string | null;
   reservationDescription?: string | null;
   imageId?: string | null;
-}
-
-export interface EventUpdateInputs {
-  featured?: boolean;
-  visible?: boolean;
-  name?: string | null;
-  eventType?: keyof typeof EventType | null;
-  slug?: string | null;
-  internalRefId?: string | null;
-  shortDescription?: string | null;
-  longDescription?: string | null;
-  reservationDescription?: string | null;
-  timezone?: string | null;
-  eventStart?: string | null;
-  eventEnd?: string | null;
-  externalUrl?: string | null;
-  imageId?: string | null;
-  squareImageId?: string | null;
-  backgroundImageId?: string | null;
-  venue?: string | null;
-  address1?: string | null;
-  address2?: string | null;
-  city?: string | null;
-  state?: string | null;
-  country?: string | null;
-  zip?: string | null;
-  creatorId?: string | null;
-  seriesId?: string | null;
-  registration?: boolean;
-  registrationStart?: string | null;
-  registrationEnd?: string | null;
-  registrationHeaderImageId?: string | null;
-  registrationFooterImageId?: string | null;
-  registrationHideTitle?: boolean;
-  registrationLimit?: number | null | string;
-  allowMultipleRegistrations?: boolean;
-  allowSplitPayment?: boolean;
-  splitPaymentPercentage?: number | string;
-  splitPaymentNetDays?: number | string | null;
-  splitPaymentDueDate?: string | null;
-  publicRegistrants?: boolean;
-  sessionsVisibility?: keyof typeof EventAgendaVisibility;
-  speakersVisibility?: keyof typeof EventAgendaVisibility;
-  inviteOnly?: boolean;
-  iosAppLink?: string | null;
-  androidAppLink?: string | null;
-  newActivityCreatorEmailNotification?: boolean;
-  newActivityCreatorPushNotification?: boolean;
-  streamReplayId?: string | null;
-  groupId?: string | null;
-  groupOnly?: boolean;
-  passSupply?: number | string | null;
-  passLimitPerAccount?: string | number | null;
-  roundName?: string | null;
-  matchName?: string | null;
-  activityFeedEnabled?: boolean;
-  meetingId?: string | null;
-  options?: object | null;
-  paymentIntegrationId?: string | null;
 }
 
 export interface FileUpdateInputs {
@@ -1950,21 +1950,6 @@ export interface CloneOptions {
   advancedSettings: boolean;
 }
 
-export interface BookingPlaceCreateInputs {
-  name: string;
-  timezone: string;
-  description?: string | null;
-  imageId?: string | null;
-  address1?: string | null;
-  address2?: string | null;
-  city?: string | null;
-  state?: string | null;
-  country?: string | null;
-  zip?: string | null;
-  sortOrder?: number | string | null;
-  visible?: boolean;
-}
-
 export interface SearchListCreateInputs {
   name: string;
 }
@@ -1987,6 +1972,22 @@ export interface AttachSearchListInputs {
   searchListId: string;
 }
 
+export interface BookingPlaceCreateInputs {
+  name: string;
+  timezone: string;
+  description?: string | null;
+  imageId?: string | null;
+  address1?: string | null;
+  address2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  country?: string | null;
+  zip?: string | null;
+  sortOrder?: number | string | null;
+  visible?: boolean;
+  paymentIntegrationId?: string | null;
+}
+
 export interface BookingPlaceUpdateInputs {
   name?: string;
   timezone?: string;
@@ -2000,6 +2001,7 @@ export interface BookingPlaceUpdateInputs {
   zip?: string | null;
   sortOrder?: number | string | null;
   visible?: boolean;
+  paymentIntegrationId?: string | null;
 }
 
 export interface BookingPlaceTranslationUpdateInputs {

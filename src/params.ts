@@ -1175,6 +1175,17 @@ export interface InvoiceCreateInputs {
   notes?: string | null;
   accountId?: string | null;
   eventId?: string | null;
+  paymentIntegrationId?: string | null;
+}
+
+export interface InvoiceUpdateInputs {
+  title?: string | null;
+  description?: string | null;
+  dueDate?: string | null;
+  notes?: string | null;
+  accountId?: string | null;
+  eventId?: string | null;
+  paymentIntegrationId?: string | null;
 }
 
 export interface InvoiceLineItemCreateInputs {
@@ -1195,15 +1206,6 @@ export interface InvoiceLineItemUpdateInputs {
   taxCode?: string | null;
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
-}
-
-export interface InvoiceUpdateInputs {
-  title?: string | null;
-  description?: string | null;
-  dueDate?: string | null;
-  notes?: string | null;
-  accountId?: string | null;
-  eventId?: string | null;
 }
 
 export interface LeadCreateInputs {

@@ -1522,6 +1522,8 @@ export interface BaseInvoice {
   status: InvoiceStatus;
   title: string;
   notes: string | null;
+  paymentIntegrationId: string | null;
+  paymentIntegration: BasePaymentIntegration | null;
 }
 
 export interface Invoice extends BaseInvoice {
@@ -3748,6 +3750,8 @@ export interface BaseBookingPlace {
   image: BaseImage | null;
   sortOrder: number;
   visible: boolean;
+  paymentIntegrationId: string | null;
+  paymentIntegration: BasePaymentIntegration | null;
 }
 
 export interface BookingPlace extends BaseBookingPlace {

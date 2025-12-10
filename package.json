@@ -1,12 +1,12 @@
 {
   "name": "@connectedxm/admin",
-  "version": "6.1.5",
+  "version": "6.1.7",
   "description": "Admin API javascript SDK",
   "author": "ConnectedXM Inc.",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/connectedxm/admin-sdk.git"
+    "url": "git+https://github.com/connectedxm/admin-sdk.git"
   },
   "license": "MIT",
   "main": "dist/index.js",

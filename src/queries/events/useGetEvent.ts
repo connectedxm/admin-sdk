@@ -57,7 +57,7 @@ export const useGetEvent = (
   return useConnectedSingleQuery<ReturnType<typeof GetEvent>>(
     EVENT_QUERY_KEY(eventId),
     (params: SingleQueryParams) => GetEvent({ eventId, ...params }),
-    {
+  {
       ...options,
       enabled: !!eventId && (options?.enabled ?? true),
     }

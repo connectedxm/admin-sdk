@@ -18,7 +18,11 @@ const ZERO_DECIMAL_CURRENCIES = [
   "XPF", // CFP Franc
 ];
 
-export const TransformPrice = (value: number, currency: string, freeText?: string) => {
+export const TransformPrice = (
+  value: number,
+  currency: string,
+  freeText?: string
+) => {
   if (typeof value !== "number") return undefined;
 
   const isZeroDecimal = ZERO_DECIMAL_CURRENCIES.includes(

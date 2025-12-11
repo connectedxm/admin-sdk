@@ -1,5 +1,5 @@
 // Zero-decimal currencies (currencies that don't use decimal places)
-const ZERO_DECIMAL_CURRENCIES = [
+export const ZERO_DECIMAL_CURRENCIES = [
   "BIF", // Burundian Franc
   "CLP", // Chilean Peso
   "DJF", // Djiboutian Franc
@@ -18,6 +18,33 @@ const ZERO_DECIMAL_CURRENCIES = [
   "XPF", // CFP Franc
 ];
 
+/**
+ * Checks if a currency code uses zero decimal places
+ */
+export const isZeroDecimalCurrency = (currencyCode: string): boolean => {
+  return ZERO_DECIMAL_CURRENCIES.includes(currencyCode.toUpperCase());
+};
+
+/**
+ * Gets the currency symbol for a given currency code
+ */
+export const getCurrencySymbol = (currencyCode: string): string => {
+  try {
+    const formatter = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: currencyCode,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
+    const parts = formatter.formatToParts(0);
+    const symbolPart = parts.find((part) => part.type === "currency");
+    return symbolPart?.value || currencyCode;
+  } catch {
+    // Fallback to currency code if Intl API fails
+    return currencyCode;
+  }
+};
+
 export const TransformPrice = (
   value: number,
   currency: string,
@@ -25,14 +52,10 @@ export const TransformPrice = (
 ) => {
   if (typeof value !== "number") return undefined;
 
-  const isZeroDecimal = ZERO_DECIMAL_CURRENCIES.includes(
-    currency.toUpperCase()
-  );
-
   const formatter = new Intl.NumberFormat(undefined, {
     style: "currency",
     currency: currency,
-    minimumFractionDigits: isZeroDecimal ? 0 : 2,
+    minimumFractionDigits: isZeroDecimalCurrency(currency) ? 0 : 2,
     maximumFractionDigits: 2,
   });
 

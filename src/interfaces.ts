@@ -2814,16 +2814,104 @@ export interface Meeting extends BaseMeeting {
     | "interview";
 }
 
-export interface Participant {
+export interface MeetingParticipant {
   id: string;
   name: string | null;
-  picture: string | null;
   custom_participant_id: string;
-  account: BaseAccount | null;
   preset_name: string;
-  token?: string;
   created_at: string;
   updated_at: string;
+  account: BaseAccount | null;
+}
+
+export interface BaseMeetingSessionParticipant {
+  id: string;
+  user_id: string | null;
+  custom_participant_id: string;
+  display_name: string | null;
+  session_id: string;
+  joined_at: string;
+  left_at: string | null;
+  duration: number | null;
+  created_at: string;
+  updated_at: string;
+  role: string;
+  preset_name: string;
+  account: BaseAccount | null;
+}
+
+export interface MeetingSessionParticipant
+  extends BaseMeetingSessionParticipant {
+  peer_stats?: {
+    config?: string;
+    status?: string;
+    device_info?: {
+      browser?: string;
+      browser_version?: string;
+      cpus?: number;
+      engine?: string;
+      is_mobile?: boolean;
+      memory?: number;
+      os?: string;
+      os_version?: string;
+      sdk_name?: string;
+      sdk_version?: string;
+      user_agent?: string;
+      webgl_support?: string;
+    };
+    events?: Array<{
+      timestamp: string;
+      type: string;
+    }>;
+    ip_information?: {
+      city?: string;
+      country?: string;
+      ip_location?: string;
+      ipv4?: string;
+      org?: string;
+      portal?: string;
+      region?: string;
+      timezone?: string;
+    };
+    precall_network_information?: {
+      backend_rtt?: number;
+      turn_connectivity?: boolean;
+      effective_networktype?: string;
+      throughtput?: number;
+      jitter?: number;
+      rtt?: number;
+      reflexive_connectivity?: boolean;
+      relay_connectivity?: boolean;
+      fractional_loss?: number;
+    };
+  };
+  quality_stats?: Array<{
+    peer_id: string;
+    audio_bandwidth?: number;
+    video_bandwidth?: number;
+    average_quality?: number;
+    start?: string;
+    end?: string;
+    audio_packet_loss?: number;
+    video_packet_loss?: number;
+    audio_stats?: Array<{
+      timestamp: string;
+      concealment_events?: number;
+      packets_lost?: number;
+      jitter?: number;
+      quality?: number;
+    }>;
+    video_stats?: Array<{
+      timestamp: string;
+      frame_width?: number;
+      frame_height?: number;
+      frames_dropped?: number;
+      frames_per_second?: number;
+      packets_lost?: number;
+      jitter?: number;
+      quality?: number;
+    }>;
+  }>;
 }
 
 export interface MeetingSession {

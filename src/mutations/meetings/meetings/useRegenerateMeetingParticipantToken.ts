@@ -4,7 +4,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "../../useConnectedMutation";
-import { Participant, ConnectedXMResponse } from "@src/interfaces";
+import { MeetingParticipant, ConnectedXMResponse } from "@src/interfaces";
 import {
   MEETING_PARTICIPANTS_QUERY_KEY,
   SET_MEETING_PARTICIPANT_QUERY_DATA,
@@ -30,12 +30,12 @@ export const RegenerateMeetingParticipantToken = async ({
   adminApiParams,
   queryClient,
 }: RegenerateMeetingParticipantTokenParams): Promise<
-  ConnectedXMResponse<Participant>
+  ConnectedXMResponse<MeetingParticipant & { token: string }>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<Participant>>(
-    `/meetings/${meetingId}/participants/${participantId}/regenerate`
-  );
+  const { data } = await connectedXM.post<
+    ConnectedXMResponse<MeetingParticipant & { token: string }>
+  >(`/meetings/${meetingId}/participants/${participantId}/regenerate`);
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: MEETING_PARTICIPANTS_QUERY_KEY(meetingId),

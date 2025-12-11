@@ -3,6 +3,8 @@ import {
   useConnectedInfiniteQuery,
   InfiniteQueryParams,
   InfiniteQueryOptions,
+  GetBaseInfiniteQueryKeys,
+  setFirstPageData,
 } from "../../useConnectedInfiniteQuery";
 import {
   ConnectedXMResponse,
@@ -27,11 +29,15 @@ export const MEETING_SESSION_PARTICIPANTS_QUERY_KEY = (sessionId: string) => [
 export const SET_MEETING_SESSION_PARTICIPANTS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof MEETING_SESSION_PARTICIPANTS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetMeetingSessionParticipants>>
+  response: Awaited<ReturnType<typeof GetMeetingSessionParticipants>>,
+  baseKeys: Parameters<typeof GetBaseInfiniteQueryKeys> = [""]
 ) => {
   client.setQueryData(
-    MEETING_SESSION_PARTICIPANTS_QUERY_KEY(...keyParams),
-    response
+    [
+      ...MEETING_SESSION_PARTICIPANTS_QUERY_KEY(...keyParams),
+      ...GetBaseInfiniteQueryKeys(...baseKeys),
+    ],
+    setFirstPageData(response)
   );
 };
 

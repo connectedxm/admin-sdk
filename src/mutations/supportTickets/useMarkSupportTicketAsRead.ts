@@ -8,6 +8,7 @@ import { ConnectedXMResponse, SupportTicket } from "@src/interfaces";
 import {
   SUPPORT_TICKETS_QUERY_KEY,
   SET_SUPPORT_TICKET_QUERY_DATA,
+  SUPPORT_TICKET_VIEWER_QUERY_KEY,
 } from "@src/queries";
 
 /**
@@ -36,6 +37,9 @@ export const MarkSupportTicketAsRead = async ({
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: SUPPORT_TICKETS_QUERY_KEY() });
     SET_SUPPORT_TICKET_QUERY_DATA(queryClient, [supportTicketId], data);
+    queryClient.invalidateQueries({
+      queryKey: SUPPORT_TICKET_VIEWER_QUERY_KEY(supportTicketId),
+    });
   }
   return data;
 };

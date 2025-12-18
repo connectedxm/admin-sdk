@@ -14,7 +14,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  */
 export const SUPPORT_TICKET_ACTIVITY_QUERY_KEY = (supportTicketId: string) => [
   ...SUPPORT_TICKET_QUERY_KEY(supportTicketId),
-  "ACTIVITY_LOGS",
+  "ACTIVITY_LOG",
 ];
 
 /**
@@ -34,6 +34,8 @@ export const SET_SUPPORT_TICKET_ACTIVITY_QUERY_DATA = (
 
 interface GetSupportTicketActivityProps extends InfiniteQueryParams {
   supportTicketId: string;
+  source?: string;
+  include?: string;
 }
 
 /**
@@ -45,7 +47,8 @@ export const GetSupportTicketActivity = async ({
   pageParam,
   pageSize,
   orderBy,
-  search,
+  source,
+  include,
   adminApiParams,
 }: GetSupportTicketActivityProps): Promise<
   ConnectedXMResponse<SupportTicketActivityLog[]>
@@ -58,7 +61,8 @@ export const GetSupportTicketActivity = async ({
         page: pageParam || undefined,
         pageSize: pageSize || undefined,
         orderBy: orderBy || undefined,
-        search: search || undefined,
+        source: source || undefined,
+        include: include || undefined,
       },
     }
   );
@@ -74,7 +78,10 @@ export const useGetSupportTicketActivity = (
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
-  > = {},
+  > & {
+    source?: string;
+    include?: string;
+  } = {},
   options: InfiniteQueryOptions<
     Awaited<ReturnType<typeof GetSupportTicketActivity>>
   > = {}
@@ -83,8 +90,13 @@ export const useGetSupportTicketActivity = (
     Awaited<ReturnType<typeof GetSupportTicketActivity>>
   >(
     SUPPORT_TICKET_ACTIVITY_QUERY_KEY(supportTicketId),
-    (params: InfiniteQueryParams) =>
-      GetSupportTicketActivity({ supportTicketId, ...params }),
+    (queryParams: InfiniteQueryParams) =>
+      GetSupportTicketActivity({
+        supportTicketId,
+        source: params.source,
+        include: params.include,
+        ...queryParams,
+      }),
     params,
     {
       ...options,

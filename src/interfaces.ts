@@ -207,12 +207,12 @@ export enum SupportTicketActivityType {
 export enum SupportTicketActivitySource {
   SYSTEM = "SYSTEM",
   ACCOUNT = "ACCOUNT",
-  OGM_MEMBER = "ORG_MEMBER:",
+  ORG_MEMBER = "ORG_MEMBER",
 }
 
 export enum SupportTicketMessageSource {
   ACCOUNT = "ACCOUNT",
-  OGM_MEMBER = "ORG_MEMBER:",
+  ORG_MEMBER = "ORG_MEMBER",
   SYSTEM = "SYSTEM",
 }
 
@@ -1616,10 +1616,11 @@ export interface BaseNotification {
   receiver: BaseAccount;
   senderId: string | null;
   sender: BaseAccount | null;
+  orgMembershipId: string | null;
+  orgMembership: OrganizationMembership | null;
 }
 
 export interface Notification extends BaseNotification {
-  transfer: BaseTransfer | null;
   like: BaseLike | null;
   activity: BaseActivity | null;
   event: BaseEvent | null;
@@ -1695,10 +1696,6 @@ export interface OrganizationMembership {
   searchlists: ModulePermissions;
   streams: ModulePermissions;
   payments: ModulePermissions;
-  // NOTIFICATIONS
-  adminActions: AdminNotification[];
-  adminNotifications: AdminNotification[];
-  actions: Notification[];
   // PREFERENCES
   supportTicketMessagePush: boolean;
   supportTicketMessageEmail: boolean;
@@ -3117,6 +3114,7 @@ export interface SupportTicket extends BaseSupportTicket {
   eventId: string | null;
   event: BaseEvent | null;
   activityLogs: BaseSupportTicketActivityLog[] | null;
+  viewer: SupportTicketViewer | null;
   lastAccountReadAt: string | null;
   lastMessageAt: string | null;
   createdAt: string;

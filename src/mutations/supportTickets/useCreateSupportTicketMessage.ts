@@ -5,7 +5,11 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { ConnectedXMResponse, SupportTicketMessage } from "@src/interfaces";
-import { SUPPORT_TICKET_MESSAGES_QUERY_KEY } from "@src/queries";
+import {
+  SUPPORT_TICKET_MESSAGES_QUERY_KEY,
+  SUPPORT_TICKET_QUERY_KEY,
+  SUPPORT_TICKET_VIEWER_QUERY_KEY,
+} from "@src/queries";
 import { SupportTicketMessageCreateInputs } from "@src/params";
 import { AppendInfiniteQuery } from "@src/utilities";
 
@@ -33,9 +37,7 @@ export const CreateSupportTicketMessage = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<
     ConnectedXMResponse<SupportTicketMessage>
-  >(`/supportTickets/${supportTicketId}/messages`, {
-    message,
-  });
+  >(`/supportTickets/${supportTicketId}/messages`, message);
 
   if (queryClient && data.status === "ok") {
     AppendInfiniteQuery<SupportTicketMessage>(
@@ -43,6 +45,14 @@ export const CreateSupportTicketMessage = async ({
       SUPPORT_TICKET_MESSAGES_QUERY_KEY(supportTicketId),
       data.data
     );
+    // Invalidate support ticket query to update lastMessageAt
+    queryClient.invalidateQueries({
+      queryKey: SUPPORT_TICKET_QUERY_KEY(supportTicketId),
+    });
+    // Invalidate viewer queries to update lastReadAt
+    queryClient.invalidateQueries({
+      queryKey: SUPPORT_TICKET_VIEWER_QUERY_KEY(supportTicketId),
+    });
   }
   return data;
 };

@@ -3,6 +3,8 @@ import { SupportTicket, ConnectedXMResponse } from "@src/interfaces";
 import {
   SUPPORT_TICKETS_QUERY_KEY,
   SET_SUPPORT_TICKET_QUERY_DATA,
+  SUPPORT_TICKET_ACTIVITY_QUERY_KEY,
+  SUPPORT_TICKET_QUERY_KEY,
 } from "@src/queries";
 import {
   ConnectedXMMutationOptions,
@@ -31,7 +33,6 @@ export const UpdateSupportTicket = async ({
   queryClient,
 }: UpdateSupportTicketParams): Promise<ConnectedXMResponse<SupportTicket>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-
   const { data } = await connectedXM.put<ConnectedXMResponse<SupportTicket>>(
     `/supportTickets/${supportTicketId}`,
     supportTicket
@@ -39,6 +40,12 @@ export const UpdateSupportTicket = async ({
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: SUPPORT_TICKETS_QUERY_KEY() });
     SET_SUPPORT_TICKET_QUERY_DATA(queryClient, [supportTicketId], data);
+    queryClient.invalidateQueries({
+      queryKey: SUPPORT_TICKET_QUERY_KEY(supportTicketId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: SUPPORT_TICKET_ACTIVITY_QUERY_KEY(supportTicketId),
+    });
   }
   return data;
 };

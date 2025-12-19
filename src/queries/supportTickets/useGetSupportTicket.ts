@@ -5,7 +5,6 @@ import {
 } from "../useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { SupportTicket } from "@src/interfaces";
-import { SUPPORT_TICKETS_QUERY_KEY } from "./useGetSupportTickets";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
 
@@ -14,7 +13,7 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @group Support Tickets
  */
 export const SUPPORT_TICKET_QUERY_KEY = (supportTicketId: string) => [
-  ...SUPPORT_TICKETS_QUERY_KEY(),
+  "SUPPORT_TICKETS",
   supportTicketId,
 ];
 

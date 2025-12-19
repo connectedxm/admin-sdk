@@ -8,6 +8,7 @@ import { SupportTicket, ConnectedXMResponse } from "@src/interfaces";
 import {
   SUPPORT_TICKETS_QUERY_KEY,
   SET_SUPPORT_TICKET_QUERY_DATA,
+  SUPPORT_TICKET_ACTIVITY_QUERY_KEY,
 } from "@src/queries";
 import { SupportTicketCreateInputs } from "@src/params";
 
@@ -36,6 +37,11 @@ export const CreateSupportTicket = async ({
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: SUPPORT_TICKETS_QUERY_KEY() });
     SET_SUPPORT_TICKET_QUERY_DATA(queryClient, [data?.data?.id], data);
+    if (data?.data?.id) {
+      queryClient.invalidateQueries({
+        queryKey: SUPPORT_TICKET_ACTIVITY_QUERY_KEY(data.data.id),
+      });
+    }
   }
   return data;
 };

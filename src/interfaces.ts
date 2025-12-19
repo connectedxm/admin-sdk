@@ -1629,8 +1629,6 @@ export interface Notification extends BaseNotification {
   updatedAt: string;
 }
 
-export interface AdminNotificationPreferences {}
-
 export interface BaseAdminNotification {
   id: string;
   supportTicketId: string | null;
@@ -1702,7 +1700,7 @@ export interface OrganizationMembership {
   supportTicketAssignedPush: boolean;
   supportTicketAssignedEmail: boolean;
   supportTicketCreatedPush: boolean;
-  supportTicketNeCreatedEmail: boolean;
+  supportTicketCreatedEmail: boolean;
 }
 
 export interface BaseOrganization {
@@ -3139,13 +3137,13 @@ export interface BaseSupportTicketMessage {
   supportTicketId: string;
   source: string;
   message: string;
-  accountId: string;
-  orgMembershipId: string;
+  accountId?: string;
+  orgMembershipId?: string;
 }
 
 export interface SupportTicketMessage extends BaseSupportTicketMessage {
-  account: BaseAccount;
-  orgMembership: OrganizationMembership;
+  account?: BaseAccount;
+  orgMembership?: OrganizationMembership;
   createdAt: string;
   updatedAt: string;
 }

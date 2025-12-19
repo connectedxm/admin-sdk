@@ -1115,6 +1115,15 @@ export interface OrganizationMembershipUpdateInputs {
   payments: Omit<ModulePermissions, "superEnabled" | "enabled">;
 }
 
+export interface AdminNotificationPreferencesUpdateInputs {
+  supportTicketMessagePush?: boolean;
+  supportTicketMessageEmail?: boolean;
+  supportTicketAssignedPush?: boolean;
+  supportTicketAssignedEmail?: boolean;
+  supportTicketCreatedPush?: boolean;
+  supportTicketCreatedEmail?: boolean;
+}
+
 export interface GroupTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;

@@ -1608,6 +1608,15 @@ export interface NotificationPreferences {
   groupRequestAcceptedPush: boolean;
 }
 
+export interface AdminNotificationPreferences {
+  supportTicketMessagePush: boolean;
+  supportTicketMessageEmail: boolean;
+  supportTicketAssignedPush: boolean;
+  supportTicketAssignedEmail: boolean;
+  supportTicketCreatedPush: boolean;
+  supportTicketCreatedEmail: boolean;
+}
+
 export interface BaseNotification {
   id: string;
   type: NotificationType;

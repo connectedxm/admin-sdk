@@ -2875,3 +2875,13 @@ export interface StreamInputOutputCreateInputs {
 export interface StreamInputOutputUpdateInputs {
   enabled: boolean;
 }
+
+export interface NotificationFilters {
+  supportTicketCreated?: boolean;
+  supportTicketAssigned?: boolean;
+  supportTicketMessage?: boolean;
+}
+
+export interface MarkNotificationsReadInputs {
+  notificationIds: string[];
+}

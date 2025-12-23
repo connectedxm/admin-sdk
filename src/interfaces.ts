@@ -165,7 +165,7 @@ export enum AdminNotificationType {
 
 export enum AdminNotificationSource {
   SYSTEM = "SYSTEM",
-  OGM_MEMBER = "ORG_MEMBER:",
+  ORG_MEMBER = "ORG_MEMBER",
   ACCOUNT = "ACCOUNT",
 }
 

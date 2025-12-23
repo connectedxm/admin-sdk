@@ -3111,6 +3111,7 @@ export interface BaseSupportTicket {
   email: string;
   request: string;
   state: SupportTicketState;
+  message: BaseSupportTicketMessage | null;
 }
 
 export interface SupportTicket extends BaseSupportTicket {
@@ -3146,13 +3147,13 @@ export interface BaseSupportTicketMessage {
   supportTicketId: string;
   source: string;
   message: string;
-  accountId?: string;
-  orgMembershipId?: string;
+  accountId: string | null;
+  account: BaseAccount | null;
+  orgMembershipId: string | null;
+  orgMembership: OrganizationMembership | null;
 }
 
 export interface SupportTicketMessage extends BaseSupportTicketMessage {
-  account?: BaseAccount;
-  orgMembership?: OrganizationMembership;
   createdAt: string;
   updatedAt: string;
 }

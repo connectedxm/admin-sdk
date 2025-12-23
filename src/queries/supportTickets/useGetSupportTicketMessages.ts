@@ -7,9 +7,7 @@ import {
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { SUPPORT_TICKET_QUERY_KEY } from "./useGetSupportTicket";
-import { SUPPORT_TICKET_VIEWER_QUERY_KEY } from "./useGetSupportTicketViewer";
 import { QueryClient } from "@tanstack/react-query";
-import { useConnectedXM } from "@src/hooks";
 
 /**
  * @category Keys
@@ -81,28 +79,15 @@ export const useGetSupportTicketMessages = (
     Awaited<ReturnType<typeof GetSupportTicketMessages>>
   > = {}
 ) => {
-  const { queryClient } = useConnectedXM();
-
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetSupportTicketMessages>>
   >(
     SUPPORT_TICKET_MESSAGES_QUERY_KEY(supportTicketId),
-    async (params: InfiniteQueryParams) => {
-      const data = await GetSupportTicketMessages({
+    (params: InfiniteQueryParams) =>
+      GetSupportTicketMessages({
         supportTicketId,
         ...params,
-      });
-
-      // Invalidate queries to update lastReadAt
-      queryClient.invalidateQueries({
-        queryKey: SUPPORT_TICKET_VIEWER_QUERY_KEY(supportTicketId),
-      });
-      queryClient.invalidateQueries({
-        queryKey: SUPPORT_TICKET_QUERY_KEY(supportTicketId),
-      });
-
-      return data;
-    },
+      }),
     params,
     {
       ...options,

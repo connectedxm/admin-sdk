@@ -8,10 +8,8 @@ import { ConnectedXMResponse, SupportTicketMessage } from "@src/interfaces";
 import {
   SUPPORT_TICKET_MESSAGES_QUERY_KEY,
   SUPPORT_TICKET_QUERY_KEY,
-  SUPPORT_TICKET_VIEWER_QUERY_KEY,
 } from "@src/queries";
 import { SupportTicketMessageCreateInputs } from "@src/params";
-import { AppendInfiniteQuery } from "@src/utilities";
 
 /**
  * @category Params
@@ -40,18 +38,17 @@ export const CreateSupportTicketMessage = async ({
   >(`/supportTickets/${supportTicketId}/messages`, message);
 
   if (queryClient && data.status === "ok") {
-    AppendInfiniteQuery<SupportTicketMessage>(
-      queryClient,
-      SUPPORT_TICKET_MESSAGES_QUERY_KEY(supportTicketId),
-      data.data
-    );
+    // Refetch messages query to get new message from database
+    queryClient.refetchQueries({
+      queryKey: SUPPORT_TICKET_MESSAGES_QUERY_KEY(supportTicketId),
+    });
     // Invalidate support ticket query to update lastMessageAt
     queryClient.invalidateQueries({
       queryKey: SUPPORT_TICKET_QUERY_KEY(supportTicketId),
     });
-    // Invalidate viewer queries to update lastReadAt
+    // Invalidate support tickets list to update unread indicators
     queryClient.invalidateQueries({
-      queryKey: SUPPORT_TICKET_VIEWER_QUERY_KEY(supportTicketId),
+      queryKey: ["SUPPORT_TICKETS"],
     });
   }
   return data;

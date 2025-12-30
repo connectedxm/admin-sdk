@@ -35,7 +35,7 @@ export const CreateSupportTicketNote = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<SupportTicket>>(
     `/supportTickets/${supportTicketId}/notes`,
-    text.text
+    text
   );
   if (queryClient && data.status === "ok") {
     SET_SUPPORT_TICKET_QUERY_DATA(queryClient, [supportTicketId], data);

@@ -4583,3 +4583,48 @@ export interface StreamInputOutput {
   streamKey: string;
   uid: string;
 }
+
+export interface BaseStreamSession {
+  id: string;
+  organizationId: string;
+  streamId: string;
+  status: string;
+  startedAt: string | null;
+  endedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface StreamSession extends BaseStreamSession {
+  stream: BaseStreamInput;
+  organization: BaseOrganization;
+  _count: {
+    connections: number;
+  };
+}
+
+export interface BaseWebSocketConnection {
+  id: string;
+  organizationId: string;
+  account: BaseAccount;
+  active: boolean;
+  connectedAt: string;
+  disconnectedAt: string | null;
+  streamId: string;
+  streamSessionId: string;
+}
+
+export interface WebSocketConnection extends BaseWebSocketConnection {
+  streamSession: BaseStreamSession;
+}
+
+export interface StreamSessionChatMessage {
+  messageId: string;
+  streamId: string;
+  sessionId: string;
+  accountId: string | null;
+  name: string;
+  connectionId: string;
+  message: string;
+  timestamp: number;
+}

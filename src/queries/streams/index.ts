@@ -2,4 +2,8 @@ export * from "./useGetStreamInput";
 export * from "./useGetStreamInputOutput";
 export * from "./useGetStreamInputOutputs";
 export * from "./useGetStreamInputs";
+export * from "./useGetStreamSession";
+export * from "./useGetStreamSessionChat";
+export * from "./useGetStreamSessionConnections";
+export * from "./useGetStreamSessions";
 export * from "./useGetStreamVideos";

@@ -2832,6 +2832,7 @@ export interface MeetingPresetUpdateInputs {
 
 export interface StreamInputCreateInputs {
   name: string;
+  displayName?: string | null;
   sortOrder?: number | string | null;
   eventId?: string | null;
   sessionId?: string | null;
@@ -2845,6 +2846,7 @@ export interface StreamInputCreateInputs {
 
 export interface StreamInputUpdateInputs {
   name?: string;
+  displayName?: string | null;
   sortOrder?: number | string | null;
   eventId?: string | null;
   sessionId?: string | null;

@@ -95,6 +95,7 @@ src/
 **Purpose**: Centralized TypeScript interfaces and enums that define all API response types, domain models, and constants used throughout the SDK.
 
 **Key Contents**:
+
 - `ConnectedXMResponse<T>` - Wrapper interface for all API responses
 - Domain models: `Account`, `Event`, `Group`, `Channel`, etc.
 - Enums: `EventType`, `AccountAccess`, `PassTypeVisibility`, etc.
@@ -116,16 +117,17 @@ export interface ConnectedXMResponse<TData> {
 
 ```typescript
 // Response type for a single account
-ConnectedXMResponse<Account>
+ConnectedXMResponse<Account>;
 
 // Response type for a list of accounts
-ConnectedXMResponse<Account[]>
+ConnectedXMResponse<Account[]>;
 
 // Response type with cursor for pagination
-ConnectedXMResponse<Account[]> // cursor field included
+ConnectedXMResponse<Account[]>; // cursor field included
 ```
 
 **Conventions**:
+
 - All domain models are PascalCase (e.g., `Account`, `EventSession`)
 - Enums use PascalCase for the enum name and SCREAMING_SNAKE_CASE for values
 - Nested interfaces follow the pattern `ParentChild` (e.g., `EventSession`, `AccountAddress`)
@@ -135,6 +137,7 @@ ConnectedXMResponse<Account[]> // cursor field included
 **Purpose**: Input parameter interfaces for all mutations. These define the shape of data sent to the API when creating or updating resources.
 
 **Pattern**: All mutation inputs follow naming conventions:
+
 - `*CreateInputs` - For creating new resources (e.g., `AccountCreateInputs`)
 - `*UpdateInputs` - For updating existing resources (e.g., `AccountUpdateInputs`)
 - `*TranslationUpdateInputs` - For updating translated fields (e.g., `EventTranslationUpdateInputs`)
@@ -160,6 +163,7 @@ export interface AccountUpdateInputs {
 ```
 
 **Key Patterns**:
+
 - Create inputs typically have required fields (e.g., `email: string`)
 - Update inputs make most fields optional (e.g., `firstName?: string | null`)
 - Fields can be `null` to explicitly clear values
@@ -178,9 +182,10 @@ export interface AccountUpdateInputs {
 
 ```typescript
 export interface AdminApiParams {
-  apiUrl: "https://admin-api.connected.dev" 
-      | "https://staging-admin-api.connected.dev" 
-      | "http://localhost:4001";
+  apiUrl:
+    | "https://admin-api.connected.dev"
+    | "https://staging-admin-api.connected.dev"
+    | "http://localhost:4001";
   organizationId: string;
   getToken?: () => Promise<string | undefined> | string | undefined;
   apiKey?: string;
@@ -189,6 +194,7 @@ export interface AdminApiParams {
 ```
 
 **Parameters**:
+
 - `apiUrl`: The base URL for the API (production, staging, or local)
 - `organizationId`: Required organization identifier
 - `getToken`: Optional function to retrieve authentication token
@@ -279,11 +285,11 @@ onMutationError?: (
     getToken={getToken}
     onNotAuthorized={(error) => {
       // Handle 401 errors
-      router.push('/login');
+      router.push("/login");
     }}
     onModuleForbidden={(error) => {
       // Handle 403/460/461 errors
-      showError('You do not have permission');
+      showError("You do not have permission");
     }}
   >
     {children}
@@ -314,6 +320,7 @@ const { data: account, isLoading } = useGetAccount(accountId);
 ```
 
 **Characteristics**:
+
 - Returns a single resource
 - Automatically handles 404 errors
 - 60-second stale time
@@ -330,18 +337,18 @@ const { data: account, isLoading } = useGetAccount(accountId);
 **Example**:
 
 ```typescript
-const {
-  data,
-  fetchNextPage,
-  hasNextPage,
-  isFetchingNextPage
-} = useGetAccounts(verified, online, {
-  pageSize: 25,
-  search: "john"
-});
+const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useGetAccounts(
+  verified,
+  online,
+  {
+    pageSize: 25,
+    search: "john",
+  }
+);
 ```
 
 **Characteristics**:
+
 - Uses `pageParam` (number) for pagination
 - Default page size: 25
 - Automatically determines next page based on response length
@@ -370,16 +377,13 @@ const getNextPageParam = (lastPage, allPages) => {
 **Example**:
 
 ```typescript
-const {
-  data,
-  fetchNextPage,
-  hasNextPage
-} = useGetSomeCursorBasedList({
-  pageSize: 50
+const { data, fetchNextPage, hasNextPage } = useGetSomeCursorBasedList({
+  pageSize: 50,
 });
 ```
 
 **Characteristics**:
+
 - Uses `cursor` (string | number | null) for pagination
 - Initial cursor is `null`
 - Next cursor comes from `response.cursor`
@@ -416,6 +420,7 @@ export const ACCOUNT_QUERY_KEY = (accountId: string) => [
 ```
 
 **Conventions**:
+
 - Named: `*_QUERY_KEY`
 - Returns an array (React Query key format)
 - Can accept parameters for filtering/variants
@@ -440,6 +445,7 @@ export const SET_ACCOUNT_QUERY_DATA = (
 ```
 
 **Conventions**:
+
 - Named: `SET_*_QUERY_DATA`
 - Takes QueryClient, key parameters, and response data
 - Used in mutations to optimistically update cache
@@ -464,6 +470,7 @@ export const GetAccount = async ({
 ```
 
 **Conventions**:
+
 - Named: `Get*` (PascalCase)
 - Accepts `adminApiParams` (and other params)
 - Returns `Promise<ConnectedXMResponse<T>>`
@@ -495,6 +502,7 @@ export const useGetAccount = (
 ```
 
 **Conventions**:
+
 - Named: `useGet*` (camelCase with "use" prefix)
 - Wraps the query function with `useConnectedSingleQuery` or similar
 - Accepts options that extend base query options
@@ -507,55 +515,62 @@ Query keys follow a hierarchical structure that enables efficient cache manageme
 #### Structure Pattern
 
 ```typescript
-["RESOURCE_TYPE", ...filters, ...identifiers]
+["RESOURCE_TYPE", ...filters, ...identifiers];
 ```
 
 #### Examples
 
 **Base List Query**:
+
 ```typescript
-ACCOUNTS_QUERY_KEY() 
+ACCOUNTS_QUERY_KEY();
 // Returns: ["ACCOUNTS"]
 ```
 
 **Filtered List Query**:
+
 ```typescript
-ACCOUNTS_QUERY_KEY(true, false) // verified=true, online=false
+ACCOUNTS_QUERY_KEY(true, false); // verified=true, online=false
 // Returns: ["ACCOUNTS", "VERIFIED", "OFFLINE"]
 ```
 
 **Single Resource Query**:
+
 ```typescript
-ACCOUNT_QUERY_KEY("account-123")
+ACCOUNT_QUERY_KEY("account-123");
 // Returns: ["ACCOUNTS", "account-123"]
 // Note: Spreads parent key for hierarchy
 ```
 
 **Nested Resource Query**:
+
 ```typescript
-EVENT_SESSION_QUERY_KEY("event-123", "session-456")
+EVENT_SESSION_QUERY_KEY("event-123", "session-456");
 // Returns: ["EVENTS", "event-123", "SESSIONS", "session-456"]
 ```
 
 #### Key Design Principles
 
 1. **Hierarchical Inheritance**: Child keys include parent keys
+
    ```typescript
    export const ACCOUNT_QUERY_KEY = (accountId: string) => [
-     ...ACCOUNTS_QUERY_KEY(),  // Includes parent
+     ...ACCOUNTS_QUERY_KEY(), // Includes parent
      accountId,
    ];
    ```
 
 2. **Filter Representation**: Filters are included as string constants
+
    ```typescript
    if (typeof verified !== "undefined")
      keys.push(verified ? "VERIFIED" : "UNVERIFIED");
    ```
 
 3. **Identifier Last**: Resource IDs come after filters
+
    ```typescript
-   ["EVENTS", "PAST", "FEATURED", "event-123"]
+   ["EVENTS", "PAST", "FEATURED", "event-123"];
    ```
 
 4. **Consistent Naming**: Use SCREAMING_SNAKE_CASE for constants
@@ -590,6 +605,7 @@ export interface CreateAccountParams extends MutationParams {
 ```
 
 **Conventions**:
+
 - Extends `MutationParams` (includes `adminApiParams` and `queryClient`)
 - Named: `*Params` (e.g., `CreateAccountParams`, `UpdateAccountParams`)
 - Includes domain-specific parameters
@@ -613,17 +629,18 @@ export const CreateAccount = async ({
     `/accounts`,
     account
   );
-  
+
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: ACCOUNTS_QUERY_KEY() });
     SET_ACCOUNT_QUERY_DATA(queryClient, [data?.data.id], data);
   }
-  
+
   return data;
 };
 ```
 
 **Conventions**:
+
 - Named: `Create*`, `Update*`, `Delete*` (PascalCase)
 - Accepts params including `adminApiParams` and `queryClient`
 - Returns `Promise<ConnectedXMResponse<T>>`
@@ -655,6 +672,7 @@ export const useCreateAccount = (
 ```
 
 **Conventions**:
+
 - Named: `useCreate*`, `useUpdate*`, `useDelete*`
 - Wraps mutation function with `useConnectedMutation`
 - Options exclude `queryClient` and `adminApiParams` (injected automatically)
@@ -675,16 +693,19 @@ if (queryClient && data.status === "ok") {
 ```
 
 **When to Use**:
+
 - After creating new resources (adds to list)
 - After deleting resources (removes from list)
 - When you want fresh data from the server
 
 **Benefits**:
+
 - Ensures data consistency
 - Handles edge cases automatically
 - Simple to implement
 
 **Drawbacks**:
+
 - Causes network request
 - May cause loading states
 
@@ -696,29 +717,33 @@ Directly update the cache with known data.
 if (queryClient && data.status === "ok") {
   // Invalidate list to show new item
   queryClient.invalidateQueries({ queryKey: ACCOUNTS_QUERY_KEY() });
-  
+
   // Optimistically update single item cache
   SET_ACCOUNT_QUERY_DATA(queryClient, [data?.data.id], data);
 }
 ```
 
 **When to Use**:
+
 - After updating existing resources
 - When you have the complete updated data
 - To provide instant UI feedback
 
 **Benefits**:
+
 - Instant UI updates
 - Better user experience
 - Reduces unnecessary requests
 
 **Drawbacks**:
+
 - Must ensure data consistency
 - More complex implementation
 
 #### Common Patterns
 
 **Create Pattern**:
+
 ```typescript
 // 1. Invalidate list (to show new item)
 queryClient.invalidateQueries({ queryKey: ACCOUNTS_QUERY_KEY() });
@@ -728,6 +753,7 @@ SET_ACCOUNT_QUERY_DATA(queryClient, [data?.data.id], data);
 ```
 
 **Update Pattern**:
+
 ```typescript
 // 1. Invalidate list (in case item appears in filtered views)
 queryClient.invalidateQueries({ queryKey: ACCOUNTS_QUERY_KEY() });
@@ -737,6 +763,7 @@ SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], data);
 ```
 
 **Delete Pattern**:
+
 ```typescript
 // 1. Invalidate list (to remove item)
 queryClient.invalidateQueries({ queryKey: ACCOUNTS_QUERY_KEY() });
@@ -746,6 +773,7 @@ queryClient.removeQueries({ queryKey: ACCOUNT_QUERY_KEY(accountId) });
 ```
 
 **Complex Invalidation**:
+
 ```typescript
 // Invalidate multiple related queries
 queryClient.invalidateQueries({ queryKey: ACCOUNTS_QUERY_KEY() });
@@ -822,6 +850,7 @@ queries/
 #### Domain Organization
 
 Each domain folder contains:
+
 - **Multiple query files**: One per endpoint/resource
 - **index.ts**: Barrel export file that re-exports all queries from the domain
 
@@ -838,11 +867,13 @@ export * from "./useGetAccountEvents";
 #### Base Utilities
 
 The root `queries/` directory contains reusable query hooks:
+
 - `useConnectedSingleQuery.ts` - Wrapper for single resource queries
 - `useConnectedInfiniteQuery.ts` - Wrapper for paginated list queries
 - `useConnectedCursorQuery.ts` - Wrapper for cursor-based queries
 
 These provide:
+
 - Consistent error handling
 - Automatic retry logic
 - Standardized query options
@@ -877,6 +908,7 @@ mutations/
 #### Domain Organization
 
 Similar to queries:
+
 - **Multiple mutation files**: One per operation (Create, Update, Delete, etc.)
 - **index.ts**: Barrel export file
 - **translations/**: Subfolder for translation-specific mutations (when applicable)
@@ -884,6 +916,7 @@ Similar to queries:
 #### Base Utility
 
 `useConnectedMutation.ts` provides:
+
 - Automatic `adminApiParams` injection
 - Error handling integration
 - QueryClient access
@@ -896,19 +929,23 @@ Utility functions used across queries and mutations.
 #### Available Utilities
 
 **Cache Management**:
+
 - `CacheIndividualQueries.ts` - Caches individual items from list responses
 - Used in queries to populate single-item caches from list responses
 
 **Data Transformation**:
+
 - `TransformPrice.ts` - Formats price values
 - `GetImageVariant.ts` - Generates image URLs with variants
 - `CalculateDuration.ts` - Calculates time durations
 
 **Query Helpers**:
+
 - `MergeInfinitePages.ts` - Flattens infinite query pages into single array
 - `AppendInfiniteQuery.ts` - Appends new page to infinite query cache
 
 **Type Utilities**:
+
 - `IsUUID.ts` - Validates UUID format
 - `GetErrorMessage.ts` - Extracts error messages from responses
 
@@ -933,46 +970,56 @@ The SDK implements standardized error handling across all queries and mutations.
 All query hooks handle these status codes consistently:
 
 **401 - Unauthorized**:
+
 ```typescript
 if (error.response?.status === 401) {
   if (onNotAuthorized) onNotAuthorized(error, queryKeys, shouldRedirect);
   return false; // Don't retry
 }
 ```
+
 - Triggers `onNotAuthorized` callback
 - Typically indicates expired token
 - No automatic retry
 
 **403/460/461 - Forbidden**:
+
 ```typescript
-if (error.response?.status === 403 ||
-    error.response?.status === 460 ||
-    error.response?.status === 461) {
+if (
+  error.response?.status === 403 ||
+  error.response?.status === 460 ||
+  error.response?.status === 461
+) {
   if (onModuleForbidden) onModuleForbidden(error, queryKeys, shouldRedirect);
   return false; // Don't retry
 }
 ```
+
 - Triggers `onModuleForbidden` callback
 - Indicates user lacks permission
 - No automatic retry
 
 **404 - Not Found**:
+
 ```typescript
 if (error.response?.status === 404) {
   if (onNotFound) onNotFound(error, queryKeys, shouldRedirect);
   return false; // Don't retry
 }
 ```
+
 - Triggers `onNotFound` callback
 - Resource doesn't exist
 - No automatic retry
 
 **Other Errors**:
+
 ```typescript
 // Default retry logic
 if (failureCount < 3) return true;
 return false;
 ```
+
 - Retries up to 3 times
 - For network errors, timeouts, etc.
 
@@ -985,6 +1032,7 @@ return false;
 #### Error Callbacks
 
 All error callbacks receive:
+
 1. **Error object**: Axios error with response data
 2. **Query key**: The React Query key that failed
 3. **Should redirect flag**: Whether redirect should occur
@@ -1118,6 +1166,7 @@ Caches individual items from a list response into their respective single-item q
 **Purpose**: When fetching a list, also populate individual item caches for instant access.
 
 **Signature**:
+
 ```typescript
 export const CacheIndividualQueries = <TData extends ItemWithId>(
   page: ConnectedXMResponse<TData[]>,
@@ -1128,22 +1177,21 @@ export const CacheIndividualQueries = <TData extends ItemWithId>(
 ```
 
 **Usage Example**:
+
 ```typescript
-const { data } = await adminApi.get('/accounts');
-CacheIndividualQueries(
-  data,
-  queryClient,
-  (id) => ACCOUNT_QUERY_KEY(id)
-);
+const { data } = await adminApi.get("/accounts");
+CacheIndividualQueries(data, queryClient, (id) => ACCOUNT_QUERY_KEY(id));
 ```
 
 **Features**:
+
 - Caches by `id`
 - Also caches by `slug`, `username`, `name`, `code`, `alternateId` if available
 - Sets cache timestamp to 1 minute ago (allows refetch if needed)
 - Optional `itemMap` for data transformation
 
 **When to Use**:
+
 - In list queries to populate individual caches
 - After fetching paginated lists
 - To enable instant navigation to detail pages
@@ -1155,11 +1203,13 @@ Direct cache update helpers for each resource type.
 **Purpose**: Update cache with known data (optimistic updates).
 
 **Pattern**:
+
 ```typescript
 SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], response);
 ```
 
 **Usage**:
+
 - After mutations to update cache immediately
 - For optimistic UI updates
 - When you have complete data
@@ -1171,13 +1221,15 @@ SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], response);
 Flattens infinite query pages into a single array.
 
 **Signature**:
+
 ```typescript
 export function MergeInfinitePages<TData>(
   data: InfiniteData<ConnectedXMResponse<TData[]>>
-): TData[]
+): TData[];
 ```
 
 **Usage Example**:
+
 ```typescript
 const { data } = useGetAccounts();
 const allAccounts = MergeInfinitePages(data);
@@ -1185,6 +1237,7 @@ const allAccounts = MergeInfinitePages(data);
 ```
 
 **When to Use**:
+
 - Displaying all items from infinite query
 - Filtering/searching across all pages
 - Calculating totals across pages
@@ -1305,6 +1358,7 @@ export const useGet[Resource] = (
 #### Step 6: Export from Index
 
 Add to `src/queries/[domain]/index.ts`:
+
 ```typescript
 export * from "./useGet[Resource]";
 ```
@@ -1418,12 +1472,12 @@ export const Create[Resource] = async ({
     `/[endpoint]`,
     [resource]
   );
-  
+
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: [RESOURCES]_QUERY_KEY() });
     SET_[RESOURCE]_QUERY_DATA(queryClient, [data?.data.id], data);
   }
-  
+
   return data;
 };
 ```
@@ -1454,6 +1508,7 @@ export const useCreate[Resource] = (
 #### Step 5: Export from Index
 
 Add to `src/mutations/[domain]/index.ts`:
+
 ```typescript
 export * from "./useCreate[Resource]";
 ```
@@ -1533,19 +1588,19 @@ export const useCreateGroup = (
 
 ```typescript
 // Simple list
-ACCOUNTS_QUERY_KEY() 
+ACCOUNTS_QUERY_KEY();
 // ["ACCOUNTS"]
 
 // Filtered list
-ACCOUNTS_QUERY_KEY(true, false)
+ACCOUNTS_QUERY_KEY(true, false);
 // ["ACCOUNTS", "VERIFIED", "OFFLINE"]
 
 // Single item (inherits parent)
-ACCOUNT_QUERY_KEY("123")
+ACCOUNT_QUERY_KEY("123");
 // ["ACCOUNTS", "123"]
 
 // Nested resource
-EVENT_SESSION_QUERY_KEY("event-123", "session-456")
+EVENT_SESSION_QUERY_KEY("event-123", "session-456");
 // ["EVENTS", "event-123", "SESSIONS", "session-456"]
 ```
 
@@ -1553,14 +1608,14 @@ EVENT_SESSION_QUERY_KEY("event-123", "session-456")
 
 ```typescript
 // ❌ Don't use IDs in base list keys
-ACCOUNTS_QUERY_KEY("account-123") // Wrong!
+ACCOUNTS_QUERY_KEY("account-123"); // Wrong!
 
 // ❌ Don't forget to inherit parent
-ACCOUNT_QUERY_KEY("123") 
+ACCOUNT_QUERY_KEY("123");
 // Should be: [...ACCOUNTS_QUERY_KEY(), "123"]
 
 // ❌ Don't use inconsistent naming
-accounts_query_key() // Should be ACCOUNTS_QUERY_KEY
+accounts_query_key(); // Should be ACCOUNTS_QUERY_KEY
 ```
 
 ### 8.4 Cache Management
@@ -1568,11 +1623,13 @@ accounts_query_key() // Should be ACCOUNTS_QUERY_KEY
 #### When to Invalidate
 
 **Always Invalidate**:
+
 - After creating new resources
 - After deleting resources
 - When data might be stale
 
 **Example**:
+
 ```typescript
 // After create
 queryClient.invalidateQueries({ queryKey: ACCOUNTS_QUERY_KEY() });
@@ -1581,11 +1638,13 @@ queryClient.invalidateQueries({ queryKey: ACCOUNTS_QUERY_KEY() });
 #### When to Update Directly
 
 **Update Directly**:
+
 - After updating existing resources (you have the new data)
 - For optimistic updates
 - When you want instant UI feedback
 
 **Example**:
+
 ```typescript
 // After update
 SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], updatedData);
@@ -1594,18 +1653,21 @@ SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], updatedData);
 #### Best Practices
 
 1. **Combine Both**: Invalidate lists, update individual items
+
    ```typescript
    queryClient.invalidateQueries({ queryKey: ACCOUNTS_QUERY_KEY() });
    SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], data);
    ```
 
 2. **Invalidate Related Queries**: If an account update affects events, invalidate both
+
    ```typescript
    queryClient.invalidateQueries({ queryKey: ACCOUNTS_QUERY_KEY() });
    queryClient.invalidateQueries({ queryKey: EVENTS_QUERY_KEY() });
    ```
 
 3. **Use Hierarchical Keys**: Invalidating parent invalidates children
+
    ```typescript
    // This invalidates all account queries
    queryClient.invalidateQueries({ queryKey: ACCOUNTS_QUERY_KEY() });
@@ -1627,10 +1689,10 @@ SET_ACCOUNT_QUERY_DATA(queryClient, [accountId], updatedData);
 #### Mocking AdminAPI
 
 ```typescript
-import { vi } from 'vitest';
-import { GetAdminAPI } from '@src/AdminAPI';
+import { vi } from "vitest";
+import { GetAdminAPI } from "@src/AdminAPI";
 
-vi.mock('@src/AdminAPI', () => ({
+vi.mock("@src/AdminAPI", () => ({
   GetAdminAPI: vi.fn(),
 }));
 ```
@@ -1638,22 +1700,22 @@ vi.mock('@src/AdminAPI', () => ({
 #### Testing Query Hooks
 
 ```typescript
-import { renderHook, waitFor } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useGetAccount } from '@src/queries';
+import { renderHook, waitFor } from "@testing-library/react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useGetAccount } from "@src/queries";
 
-test('fetches account data', async () => {
+test("fetches account data", async () => {
   const queryClient = new QueryClient();
   const wrapper = ({ children }) => (
-    <QueryClientProvider client={queryClient}>
-      {children}
-    </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 
-  const { result } = renderHook(() => useGetAccount('account-123'), { wrapper });
+  const { result } = renderHook(() => useGetAccount("account-123"), {
+    wrapper,
+  });
 
   await waitFor(() => expect(result.current.isSuccess).toBe(true));
-  expect(result.current.data?.data.id).toBe('account-123');
+  expect(result.current.data?.data.id).toBe("account-123");
 });
 ```
 
@@ -1662,14 +1724,14 @@ test('fetches account data', async () => {
 #### Testing Mutation Hooks
 
 ```typescript
-import { renderHook, waitFor } from '@testing-library/react';
-import { useCreateAccount } from '@src/mutations';
+import { renderHook, waitFor } from "@testing-library/react";
+import { useCreateAccount } from "@src/mutations";
 
-test('creates account and updates cache', async () => {
+test("creates account and updates cache", async () => {
   const { result } = renderHook(() => useCreateAccount());
 
   result.current.mutate({
-    account: { email: 'test@example.com' }
+    account: { email: "test@example.com" },
   });
 
   await waitFor(() => expect(result.current.isSuccess).toBe(true));
@@ -1682,17 +1744,17 @@ test('creates account and updates cache', async () => {
 
 ```typescript
 const mockAccountResponse = {
-  status: 'ok',
-  message: 'Success',
+  status: "ok",
+  message: "Success",
   data: {
-    id: 'account-123',
-    email: 'test@example.com',
+    id: "account-123",
+    email: "test@example.com",
     // ... other fields
-  }
+  },
 };
 
 (GetAdminAPI as any).mockResolvedValue({
-  get: vi.fn().mockResolvedValue({ data: mockAccountResponse })
+  get: vi.fn().mockResolvedValue({ data: mockAccountResponse }),
 });
 ```
 
@@ -1713,6 +1775,7 @@ The SDK uses `tsup` for building:
 ```
 
 **Output**:
+
 - CommonJS: `dist/index.cjs`
 - ES Modules: `dist/index.js`
 - Type Definitions: `dist/index.d.ts`
@@ -1769,18 +1832,21 @@ dist/
 ### Common Patterns Quick Reference
 
 **Query Pattern**:
+
 ```typescript
 QUERY_KEY → SETTER → QUERY_FUNCTION → REACT_HOOK
 ```
 
 **Mutation Pattern**:
+
 ```typescript
 PARAMS_INTERFACE → MUTATION_FUNCTION → REACT_HOOK
 ```
 
 **Cache Update Pattern**:
+
 ```typescript
-invalidateQueries() + SET_*_QUERY_DATA()
+invalidateQueries() + SET_ * _QUERY_DATA();
 ```
 
 ---
@@ -1788,5 +1854,3 @@ invalidateQueries() + SET_*_QUERY_DATA()
 ## Questions or Issues?
 
 For questions about this SDK or to report issues, please contact the ConnectedXM development team or refer to the main repository documentation.
-
-

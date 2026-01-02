@@ -5,7 +5,11 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { ConnectedXMResponse, SupportTicket } from "@src/interfaces";
-import { SET_SUPPORT_TICKET_QUERY_DATA } from "@src/queries";
+import {
+  SET_SUPPORT_TICKET_QUERY_DATA,
+  SUPPORT_TICKET_NOTES_QUERY_KEY,
+} from "@src/queries";
+import { SupportTicketNoteCreateInputs } from "@src/params";
 
 /**
  * @category Params
@@ -13,7 +17,7 @@ import { SET_SUPPORT_TICKET_QUERY_DATA } from "@src/queries";
  */
 export interface CreateSupportTicketNoteParams extends MutationParams {
   supportTicketId: string;
-  text: string;
+  text: SupportTicketNoteCreateInputs;
 }
 
 /**
@@ -31,10 +35,13 @@ export const CreateSupportTicketNote = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<SupportTicket>>(
     `/supportTickets/${supportTicketId}/notes`,
-    { text }
+    text
   );
   if (queryClient && data.status === "ok") {
     SET_SUPPORT_TICKET_QUERY_DATA(queryClient, [supportTicketId], data);
+    queryClient.invalidateQueries({
+      queryKey: SUPPORT_TICKET_NOTES_QUERY_KEY(supportTicketId),
+    });
   }
   return data;
 };

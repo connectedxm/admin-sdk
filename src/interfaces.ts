@@ -3266,24 +3266,24 @@ export interface BaseSupportTicketActivityLog {
   supportTicketId: string;
   type: string;
   source: string;
-  accountId: string;
-  orgMembershipId: string;
-  orgMembership: OrganizationMembership;
-  previousState: SupportTicketState;
-  newState: SupportTicketState;
-  previousType: SupportTicketType;
-  newType: SupportTicketType;
-  previousAssignedId: string;
-  previousAssigned: BaseUser;
-  newAssignedId: string;
-  newAssigned: BaseUser;
-  eventId: string;
+  accountId: string | null;
+  orgMembershipId: string | null;
+  orgMembership: OrganizationMembership | null;
+  previousState: SupportTicketState | null;
+  newState: SupportTicketState | null;
+  previousType: SupportTicketType | null;
+  newType: SupportTicketType | null;
+  previousAssignedId: string | null;
+  previousAssigned: BaseUser | null;
+  newAssignedId: string | null;
+  newAssigned: BaseUser | null;
+  eventId: string | null;
   createdAt: string;
 }
 
 export interface SupportTicketActivityLog extends BaseSupportTicketActivityLog {
-  account: BaseAccount;
-  event: BaseEvent;
+  account: BaseAccount | null;
+  event: BaseEvent | null;
 }
 
 export interface BaseSupportTicketViewer {

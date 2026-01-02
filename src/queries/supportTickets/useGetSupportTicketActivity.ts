@@ -12,10 +12,16 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @category Keys
  * @group Support Tickets
  */
-export const SUPPORT_TICKET_ACTIVITY_QUERY_KEY = (supportTicketId: string) => [
-  ...SUPPORT_TICKET_QUERY_KEY(supportTicketId),
-  "ACTIVITY_LOG",
-];
+export const SUPPORT_TICKET_ACTIVITY_QUERY_KEY = (
+  supportTicketId: string,
+  source?: string,
+  include?: string
+) => {
+  const keys = [...SUPPORT_TICKET_QUERY_KEY(supportTicketId), "ACTIVITY_LOG"];
+  if (source) keys.push(source);
+  if (include) keys.push(include);
+  return keys;
+};
 
 /**
  * @category Setters
@@ -89,7 +95,11 @@ export const useGetSupportTicketActivity = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetSupportTicketActivity>>
   >(
-    SUPPORT_TICKET_ACTIVITY_QUERY_KEY(supportTicketId),
+    SUPPORT_TICKET_ACTIVITY_QUERY_KEY(
+      supportTicketId,
+      params.source,
+      params.include
+    ),
     (queryParams: InfiniteQueryParams) =>
       GetSupportTicketActivity({
         supportTicketId,

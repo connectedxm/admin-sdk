@@ -5,7 +5,10 @@ import {
   useConnectedMutation,
 } from "../useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { SUPPORT_TICKET_QUERY_KEY } from "@src/queries";
+import {
+  SUPPORT_TICKET_QUERY_KEY,
+  SUPPORT_TICKET_NOTES_QUERY_KEY,
+} from "@src/queries";
 
 /**
  * @category Params
@@ -33,6 +36,9 @@ export const DeleteSupportTicketNote = async ({
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: SUPPORT_TICKET_QUERY_KEY(supportTicketId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: SUPPORT_TICKET_NOTES_QUERY_KEY(supportTicketId),
     });
   }
   return data;

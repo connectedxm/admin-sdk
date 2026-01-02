@@ -152,6 +152,22 @@ export enum NotificationType {
   COMMENT = "COMMENT",
   EVENT = "EVENT",
   ACTIVITY = "ACTIVITY",
+  GROUP_INVITATION = "GROUP_INVITATION",
+  GROUP_REQUEST_ACCEPTED = "GROUP_REQUEST_ACCEPTED",
+  CONTENT = "CONTENT",
+  SUPPORT_TICKET_MESSAGE = "SUPPORT_TICKET_MESSAGE",
+}
+
+export enum AdminNotificationType {
+  SUPPORT_TICKET_CREATED = "SUPPORT_TICKET_CREATED",
+  SUPPORT_TICKET_ASSIGNED = "SUPPORT_TICKET_ASSIGNED",
+  SUPPORT_TICKET_MESSAGE = "SUPPORT_TICKET_MESSAGE",
+}
+
+export enum AdminNotificationSource {
+  SYSTEM = "SYSTEM",
+  ORG_MEMBER = "ORG_MEMBER",
+  ACCOUNT = "ACCOUNT",
 }
 
 export enum AdvertisementType {
@@ -176,10 +192,29 @@ export enum SupportTicketType {
 
 export enum SupportTicketState {
   new = "new",
-  awaitingAdmin = "awaitingAdmin",
-  awaitingClient = "awaitingClient",
+  inProgress = "inProgress",
   resolved = "resolved",
   spam = "spam",
+}
+
+export enum SupportTicketActivityType {
+  created = "created",
+  statusChanged = "statusChanged",
+  typeChanged = "typeChanged",
+  assignedUserChanged = "assignedUserChanged",
+  eventLinked = "eventLinked",
+}
+
+export enum SupportTicketActivitySource {
+  SYSTEM = "SYSTEM",
+  ACCOUNT = "ACCOUNT",
+  ORG_MEMBER = "ORG_MEMBER",
+}
+
+export enum SupportTicketMessageSource {
+  ACCOUNT = "ACCOUNT",
+  ORG_MEMBER = "ORG_MEMBER",
+  SYSTEM = "SYSTEM",
 }
 
 export enum ChannelFormat {
@@ -1566,21 +1601,25 @@ export interface NotificationPreferences {
   commentPush: boolean;
   transferPush: boolean;
   transferEmail: boolean;
-  supportTicketConfirmationEmail: boolean;
   eventReminderEmail: boolean;
-  eventAnnouncementEmail: boolean;
-  eventAnnouncementPush: boolean;
   chatPush: boolean;
   chatUnreadEmail: boolean;
   chatUnreadPush: boolean;
   organizationAnnouncementEmail: boolean;
   organizationAnnouncementPush: boolean;
-  groupAnnouncementEmail: boolean;
-  groupAnnouncementPush: boolean;
   groupInvitationEmail: boolean;
   groupInvitationPush: boolean;
   groupRequestAcceptedEmail: boolean;
   groupRequestAcceptedPush: boolean;
+}
+
+export interface AdminNotificationPreferences {
+  supportTicketMessagePush: boolean;
+  supportTicketMessageEmail: boolean;
+  supportTicketAssignedPush: boolean;
+  supportTicketAssignedEmail: boolean;
+  supportTicketCreatedPush: boolean;
+  supportTicketCreatedEmail: boolean;
 }
 
 export interface BaseNotification {
@@ -1591,14 +1630,37 @@ export interface BaseNotification {
   receiver: BaseAccount;
   senderId: string | null;
   sender: BaseAccount | null;
+  orgMembershipId: string | null;
+  orgMembership: OrganizationMembership | null;
 }
 
 export interface Notification extends BaseNotification {
-  transfer: BaseTransfer | null;
   like: BaseLike | null;
   activity: BaseActivity | null;
   event: BaseEvent | null;
   announcement: BaseAnnouncement | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseAdminNotification {
+  id: string;
+  supportTicketId: string | null;
+  type: AdminNotificationType;
+  source: string | null;
+  read: boolean;
+  orgMembershipId: string | null;
+  orgMembership: OrganizationMembership | null;
+  senderAccountId: string | null;
+  senderAccount: BaseAccount | null;
+  senderOrgMembershipId: string | null;
+  senderOrgMembership: OrganizationMembership | null;
+}
+
+export interface AdminNotification extends BaseAdminNotification {
+  id: string;
+  supportTicket: BaseSupportTicket | null;
+  externalUrl: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -1613,6 +1675,7 @@ export interface ModulePermissions {
 }
 
 export interface OrganizationMembership {
+  id: string;
   organizationId: string;
   userId: string;
   user: BaseUser;
@@ -1646,6 +1709,13 @@ export interface OrganizationMembership {
   streams: ModulePermissions;
   meetings: ModulePermissions;
   payments: ModulePermissions;
+  // PREFERENCES
+  supportTicketMessagePush: boolean;
+  supportTicketMessageEmail: boolean;
+  supportTicketAssignedPush: boolean;
+  supportTicketAssignedEmail: boolean;
+  supportTicketCreatedPush: boolean;
+  supportTicketCreatedEmail: boolean;
 }
 
 export interface BaseOrganization {
@@ -3138,37 +3208,95 @@ export interface MeetingLink extends BaseMeetingLink {
   updatedAt: string;
 }
 
-export interface BaseSupportTicketNote {
-  id: string;
-  userId: string;
-  user: BaseUser;
-  text: string;
-}
-
-export interface SupportTicketNote extends BaseSupportTicketNote {
-  supportTicketId: string;
-  supportTicket: BaseSupportTicket;
-  createdAt: string;
-  updatedAt: string;
-}
-
 export interface BaseSupportTicket {
   id: string;
   type: SupportTicketType;
   email: string;
   request: string;
   state: SupportTicketState;
+  message: BaseSupportTicketMessage | null;
 }
 
 export interface SupportTicket extends BaseSupportTicket {
   accountId: string | null;
   account: BaseAccount | null;
+  orgMembershipId: string | null;
+  orgMembership: OrganizationMembership | null;
   eventId: string | null;
   event: BaseEvent | null;
-  notes: BaseSupportTicketNote[];
+  activityLogs: BaseSupportTicketActivityLog[] | null;
+  viewer: SupportTicketViewer | null;
+  lastAccountReadAt: string | null;
+  lastMessageAt: string | null;
   createdAt: string;
   updatedAt: string;
 }
+
+export interface BaseSupportTicketNote {
+  id: string;
+  text: string;
+  orgMembershipId: string;
+  orgMembership: OrganizationMembership;
+}
+
+export interface SupportTicketNote extends BaseSupportTicketNote {
+  supportTicketId: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSupportTicketMessage {
+  id: string;
+  supportTicketId: string;
+  source: string;
+  message: string;
+  accountId: string | null;
+  account: BaseAccount | null;
+  orgMembershipId: string | null;
+  orgMembership: OrganizationMembership | null;
+}
+
+export interface SupportTicketMessage extends BaseSupportTicketMessage {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSupportTicketActivityLog {
+  id: string;
+  supportTicketId: string;
+  type: string;
+  source: string;
+  accountId: string | null;
+  orgMembershipId: string | null;
+  orgMembership: OrganizationMembership | null;
+  previousState: SupportTicketState | null;
+  newState: SupportTicketState | null;
+  previousType: SupportTicketType | null;
+  newType: SupportTicketType | null;
+  previousAssignedId: string | null;
+  previousAssigned: BaseUser | null;
+  newAssignedId: string | null;
+  newAssigned: BaseUser | null;
+  eventId: string | null;
+  createdAt: string;
+}
+
+export interface SupportTicketActivityLog extends BaseSupportTicketActivityLog {
+  account: BaseAccount | null;
+  event: BaseEvent | null;
+}
+
+export interface BaseSupportTicketViewer {
+  id: string;
+  supportTicketId: string;
+  orgMembershipId: string;
+  orgMembership: OrganizationMembership;
+  lastReadAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SupportTicketViewer extends BaseSupportTicketViewer {}
 
 export interface BaseTeamMember {
   id: string;

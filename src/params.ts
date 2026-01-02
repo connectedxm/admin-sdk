@@ -14,7 +14,6 @@ import {
   ModulePermissions,
   AuthLayout,
   DefaultAuthAction,
-  BaseSupportTicketNote,
   SupportTicketType,
   ImportType,
   EventAnnouncementFilters,
@@ -1120,6 +1119,15 @@ export interface OrganizationMembershipUpdateInputs {
   payments: Omit<ModulePermissions, "superEnabled" | "enabled">;
 }
 
+export interface AdminNotificationPreferencesUpdateInputs {
+  supportTicketMessagePush?: boolean;
+  supportTicketMessageEmail?: boolean;
+  supportTicketAssignedPush?: boolean;
+  supportTicketAssignedEmail?: boolean;
+  supportTicketCreatedPush?: boolean;
+  supportTicketCreatedEmail?: boolean;
+}
+
 export interface GroupTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;
@@ -1493,17 +1501,23 @@ export interface StreamOutputCreateInputs {
 }
 
 export interface SupportTicketCreateInputs {
-  // No fields defined in the provided validation object
+  type: SupportTicketType;
+  email: string;
+  request: string;
+  state: SupportTicketState;
+  accountId?: string | null;
+  orgMembershipId?: string | null;
+  eventId?: string | null;
 }
 
 export interface SupportTicketUpdateInputs {
   type?: SupportTicketType;
   email?: string;
   request?: string;
-  accountId?: string | null;
-  eventId?: string | null;
   state?: SupportTicketState;
-  notes?: BaseSupportTicketNote[];
+  accountId?: string | null;
+  orgMembershipId?: string | null;
+  eventId?: string | null;
 }
 
 export interface SupportTicketNoteCreateInputs {
@@ -1511,6 +1525,14 @@ export interface SupportTicketNoteCreateInputs {
 }
 
 export interface SupportTicketNoteUpdateInputs {
+  // No fields defined in the provided validation object
+}
+
+export interface SupportTicketMessageCreateInputs {
+  message: string;
+}
+
+export interface SupportTicketMessageUpdateInputs {
   // No fields defined in the provided validation object
 }
 
@@ -2879,4 +2901,14 @@ export interface OrganizationPaymentIntegrationCreateInputs {
 
 export interface OrganizationPaymentIntegrationUpdateInputs {
   name?: string | null;
+}
+
+export interface NotificationFilters {
+  supportTicketCreated?: boolean;
+  supportTicketAssigned?: boolean;
+  supportTicketMessage?: boolean;
+}
+
+export interface MarkNotificationsReadInputs {
+  notificationIds: string[];
 }

@@ -35,6 +35,7 @@ import {
   TaxLocationType,
   LocationQuestionOption,
   MeetingType,
+  PaymentIntegrationType,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -636,7 +637,67 @@ export interface EventCreateInputs {
   matchName?: string | null;
   activityFeedEnabled?: boolean;
   options?: object | null;
+  paymentIntegrationId?: string | null;
   template?: boolean;
+  meetingId?: string | null;
+}
+
+export interface EventUpdateInputs {
+  featured?: boolean;
+  visible?: boolean;
+  name?: string | null;
+  eventType?: keyof typeof EventType | null;
+  slug?: string | null;
+  internalRefId?: string | null;
+  shortDescription?: string | null;
+  longDescription?: string | null;
+  reservationDescription?: string | null;
+  timezone?: string | null;
+  eventStart?: string | null;
+  eventEnd?: string | null;
+  externalUrl?: string | null;
+  imageId?: string | null;
+  squareImageId?: string | null;
+  backgroundImageId?: string | null;
+  venue?: string | null;
+  address1?: string | null;
+  address2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  country?: string | null;
+  zip?: string | null;
+  creatorId?: string | null;
+  seriesId?: string | null;
+  registration?: boolean;
+  registrationStart?: string | null;
+  registrationEnd?: string | null;
+  registrationHeaderImageId?: string | null;
+  registrationFooterImageId?: string | null;
+  registrationHideTitle?: boolean;
+  registrationLimit?: number | null | string;
+  allowMultipleRegistrations?: boolean;
+  allowSplitPayment?: boolean;
+  splitPaymentPercentage?: number | string;
+  splitPaymentNetDays?: number | string | null;
+  splitPaymentDueDate?: string | null;
+  publicRegistrants?: boolean;
+  sessionsVisibility?: keyof typeof EventAgendaVisibility;
+  speakersVisibility?: keyof typeof EventAgendaVisibility;
+  inviteOnly?: boolean;
+  iosAppLink?: string | null;
+  androidAppLink?: string | null;
+  newActivityCreatorEmailNotification?: boolean;
+  newActivityCreatorPushNotification?: boolean;
+  streamReplayId?: string | null;
+  groupId?: string | null;
+  groupOnly?: boolean;
+  passSupply?: number | string | null;
+  passLimitPerAccount?: string | number | null;
+  roundName?: string | null;
+  matchName?: string | null;
+  activityFeedEnabled?: boolean;
+  options?: object | null;
+  paymentIntegrationId?: string | null;
   meetingId?: string | null;
 }
 
@@ -998,64 +1059,6 @@ export interface EventTranslationUpdateInputs {
   imageId?: string | null;
 }
 
-export interface EventUpdateInputs {
-  featured?: boolean;
-  visible?: boolean;
-  name?: string | null;
-  eventType?: keyof typeof EventType | null;
-  slug?: string | null;
-  internalRefId?: string | null;
-  shortDescription?: string | null;
-  longDescription?: string | null;
-  reservationDescription?: string | null;
-  timezone?: string | null;
-  eventStart?: string | null;
-  eventEnd?: string | null;
-  externalUrl?: string | null;
-  imageId?: string | null;
-  squareImageId?: string | null;
-  backgroundImageId?: string | null;
-  venue?: string | null;
-  address1?: string | null;
-  address2?: string | null;
-  city?: string | null;
-  state?: string | null;
-  country?: string | null;
-  zip?: string | null;
-  creatorId?: string | null;
-  seriesId?: string | null;
-  registration?: boolean;
-  registrationStart?: string | null;
-  registrationEnd?: string | null;
-  registrationHeaderImageId?: string | null;
-  registrationFooterImageId?: string | null;
-  registrationHideTitle?: boolean;
-  registrationLimit?: number | null | string;
-  allowMultipleRegistrations?: boolean;
-  allowSplitPayment?: boolean;
-  splitPaymentPercentage?: number | string;
-  splitPaymentNetDays?: number | string | null;
-  splitPaymentDueDate?: string | null;
-  publicRegistrants?: boolean;
-  sessionsVisibility?: keyof typeof EventAgendaVisibility;
-  speakersVisibility?: keyof typeof EventAgendaVisibility;
-  inviteOnly?: boolean;
-  iosAppLink?: string | null;
-  androidAppLink?: string | null;
-  newActivityCreatorEmailNotification?: boolean;
-  newActivityCreatorPushNotification?: boolean;
-  streamReplayId?: string | null;
-  groupId?: string | null;
-  groupOnly?: boolean;
-  passSupply?: number | string | null;
-  passLimitPerAccount?: string | number | null;
-  roundName?: string | null;
-  matchName?: string | null;
-  activityFeedEnabled?: boolean;
-  meetingId?: string | null;
-  options?: object | null;
-}
-
 export interface FileUpdateInputs {
   name?: string;
   source?: FileSource;
@@ -1112,6 +1115,7 @@ export interface OrganizationMembershipUpdateInputs {
   announcements: Omit<ModulePermissions, "superEnabled" | "enabled">;
   surveys: Omit<ModulePermissions, "superEnabled" | "enabled">;
   streams: Omit<ModulePermissions, "superEnabled" | "enabled">;
+  meetings: Omit<ModulePermissions, "superEnabled" | "enabled">;
   payments: Omit<ModulePermissions, "superEnabled" | "enabled">;
 }
 
@@ -1179,6 +1183,17 @@ export interface InvoiceCreateInputs {
   notes?: string | null;
   accountId?: string | null;
   eventId?: string | null;
+  paymentIntegrationId?: string | null;
+}
+
+export interface InvoiceUpdateInputs {
+  title?: string | null;
+  description?: string | null;
+  dueDate?: string | null;
+  notes?: string | null;
+  accountId?: string | null;
+  eventId?: string | null;
+  paymentIntegrationId?: string | null;
 }
 
 export interface InvoiceLineItemCreateInputs {
@@ -1199,15 +1214,6 @@ export interface InvoiceLineItemUpdateInputs {
   taxCode?: string | null;
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
-}
-
-export interface InvoiceUpdateInputs {
-  title?: string | null;
-  description?: string | null;
-  dueDate?: string | null;
-  notes?: string | null;
-  accountId?: string | null;
-  eventId?: string | null;
 }
 
 export interface LeadCreateInputs {
@@ -1268,7 +1274,6 @@ export interface OrganizationUpdateInputs {
   darkLogoId?: string | null;
   iconId?: string | null;
   darkIconId?: string | null;
-  currency?: string | null;
   facebook?: string | null;
   twitter?: string | null;
   instagram?: string | null;
@@ -1292,6 +1297,12 @@ export interface OrganizationUpdateInputs {
   locales?: string[] | null;
   inviteOnly?: boolean;
   googleTagManagerId?: string | null;
+  meetingGroupCallAdminPreset?: string;
+  meetingGroupCallGuestPreset?: string;
+  meetingWebinarAdminPreset?: string;
+  meetingWebinarGuestPreset?: string;
+  meetingLivestreamAdminPreset?: string;
+  meetingLivestreamGuestPreset?: string;
   options?: object | null;
 }
 
@@ -1653,6 +1664,7 @@ export interface PassTypeCreateInputs {
   requiredPassTypeId?: string | null;
   sortOrder?: number | string | null;
   enableCoupons?: boolean;
+  groupPassDescription?: string | null;
   overrideStartDate?: string | null;
   requireCoupon?: boolean;
   taxCode?: string | null;
@@ -1683,6 +1695,7 @@ export interface PassTypeUpdateInputs {
   enableCoupons?: boolean;
   minCouponQuantity?: number;
   maxCouponQuantity?: number | null;
+  groupPassDescription?: string | null;
   overrideStartDate?: string | null;
   requireCoupon?: boolean;
   taxCode?: string | null;
@@ -1788,6 +1801,7 @@ export interface PassTypeRefundScheduleCreateInputs {
   startDate: string;
   endDate: string;
 }
+
 export interface PassTypeRefundScheduleUpdateInputs {
   percentage?: number;
   startDate?: string;
@@ -1960,21 +1974,6 @@ export interface CloneOptions {
   advancedSettings: boolean;
 }
 
-export interface BookingPlaceCreateInputs {
-  name: string;
-  timezone: string;
-  description?: string | null;
-  imageId?: string | null;
-  address1?: string | null;
-  address2?: string | null;
-  city?: string | null;
-  state?: string | null;
-  country?: string | null;
-  zip?: string | null;
-  sortOrder?: number | string | null;
-  visible?: boolean;
-}
-
 export interface SearchListCreateInputs {
   name: string;
 }
@@ -1997,6 +1996,22 @@ export interface AttachSearchListInputs {
   searchListId: string;
 }
 
+export interface BookingPlaceCreateInputs {
+  name: string;
+  timezone: string;
+  description?: string | null;
+  imageId?: string | null;
+  address1?: string | null;
+  address2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  country?: string | null;
+  zip?: string | null;
+  sortOrder?: number | string | null;
+  visible?: boolean;
+  paymentIntegrationId?: string | null;
+}
+
 export interface BookingPlaceUpdateInputs {
   name?: string;
   timezone?: string;
@@ -2010,6 +2025,7 @@ export interface BookingPlaceUpdateInputs {
   zip?: string | null;
   sortOrder?: number | string | null;
   visible?: boolean;
+  paymentIntegrationId?: string | null;
 }
 
 export interface BookingPlaceTranslationUpdateInputs {
@@ -2448,8 +2464,6 @@ export interface MeetingCreateInputs {
   eventId?: string;
   sessionId?: string;
   groupId?: string;
-  host_preset: string;
-  guest_preset: string;
   title: string | null;
   preferred_region:
     | "ap-south-1"
@@ -2505,8 +2519,6 @@ export interface MeetingUpdateInputs {
   eventId?: string;
   sessionId?: string;
   groupId?: string;
-  host_preset?: string;
-  guest_preset?: string;
   title?: string | null;
   preferred_region?:
     | "ap-south-1"
@@ -2842,6 +2854,7 @@ export interface MeetingPresetUpdateInputs {
 
 export interface StreamInputCreateInputs {
   name: string;
+  displayName?: string | null;
   sortOrder?: number | string | null;
   eventId?: string | null;
   sessionId?: string | null;
@@ -2855,6 +2868,7 @@ export interface StreamInputCreateInputs {
 
 export interface StreamInputUpdateInputs {
   name?: string;
+  displayName?: string | null;
   sortOrder?: number | string | null;
   eventId?: string | null;
   sessionId?: string | null;
@@ -2874,6 +2888,19 @@ export interface StreamInputOutputCreateInputs {
 
 export interface StreamInputOutputUpdateInputs {
   enabled: boolean;
+}
+
+export interface OrganizationPaymentIntegrationCreateInputs {
+  type: keyof typeof PaymentIntegrationType;
+  name: string;
+  currencyCode: string;
+  clientId?: string;
+  clientPublicKey?: string;
+  clientSecret?: string;
+}
+
+export interface OrganizationPaymentIntegrationUpdateInputs {
+  name?: string | null;
 }
 
 export interface NotificationFilters {

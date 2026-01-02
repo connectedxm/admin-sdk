@@ -37,6 +37,7 @@ export enum OrganizationModuleType {
   advertisements = "advertisements",
   invoices = "invoices",
   streams = "streams",
+  meetings = "meetings",
 }
 
 export enum LocationQuestionOption {
@@ -1090,6 +1091,8 @@ export interface BaseEvent {
   updatedAt: string;
   seriesId: string | null;
   series: BaseSeries | null;
+  paymentIntegrationId: string | null;
+  paymentIntegration: BasePaymentIntegration | null;
 }
 
 export interface Event extends BaseEvent {
@@ -1554,6 +1557,8 @@ export interface BaseInvoice {
   status: InvoiceStatus;
   title: string;
   notes: string | null;
+  paymentIntegrationId: string | null;
+  paymentIntegration: BasePaymentIntegration | null;
 }
 
 export interface Invoice extends BaseInvoice {
@@ -1702,6 +1707,7 @@ export interface OrganizationMembership {
   surveys: ModulePermissions;
   searchlists: ModulePermissions;
   streams: ModulePermissions;
+  meetings: ModulePermissions;
   payments: ModulePermissions;
   // PREFERENCES
   supportTicketMessagePush: boolean;
@@ -1722,7 +1728,6 @@ export interface BaseOrganization {
   icon: BaseImage | null;
   domain: string | null;
   locale: string;
-  currency: string;
 }
 
 export interface Organization extends BaseOrganization {
@@ -1751,6 +1756,7 @@ export interface Organization extends BaseOrganization {
   createdAt: string;
   updatedAt: string;
   integrations: Integration[];
+  paymentIntegrations: BasePaymentIntegration[];
   appName: string | null;
   appIconId: string | null;
   appIcon: BaseImage | null;
@@ -1785,6 +1791,12 @@ export interface Organization extends BaseOrganization {
   locales: string[];
   inviteOnly: boolean;
   googleTagManagerId: string | null;
+  meetingGroupCallAdminPreset: string;
+  meetingGroupCallGuestPreset: string;
+  meetingWebinarAdminPreset: string;
+  meetingWebinarGuestPreset: string;
+  meetingLivestreamAdminPreset: string;
+  meetingLivestreamGuestPreset: string;
   options: object | null;
 }
 
@@ -2018,9 +2030,14 @@ export interface PaymentLineItem extends BasePaymentLineItem {
   payment: BasePayment;
 }
 
-export interface PaymentIntegration {
+export interface BasePaymentIntegration {
   id: string;
+  currencyCode: string;
   type: PaymentIntegrationType;
+  name: string;
+}
+
+export interface PaymentIntegration extends BasePaymentIntegration {
   connectionId: string;
   enabled: boolean;
   createdAt: string;
@@ -2813,8 +2830,6 @@ export interface BaseMeeting {
   id: string;
   title: string;
   type: MeetingType;
-  host_preset: string;
-  guest_preset: string;
 }
 
 export interface Meeting extends BaseMeeting {
@@ -2869,16 +2884,104 @@ export interface Meeting extends BaseMeeting {
     | "interview";
 }
 
-export interface Participant {
+export interface MeetingParticipant {
   id: string;
   name: string | null;
-  picture: string | null;
   custom_participant_id: string;
-  account: BaseAccount | null;
   preset_name: string;
-  token?: string;
   created_at: string;
   updated_at: string;
+  account: BaseAccount | null;
+}
+
+export interface BaseMeetingSessionParticipant {
+  id: string;
+  user_id: string | null;
+  custom_participant_id: string;
+  display_name: string | null;
+  session_id: string;
+  joined_at: string;
+  left_at: string | null;
+  duration: number | null;
+  created_at: string;
+  updated_at: string;
+  role: string;
+  preset_name: string;
+  account: BaseAccount | null;
+}
+
+export interface MeetingSessionParticipant
+  extends BaseMeetingSessionParticipant {
+  peer_stats?: {
+    config?: string;
+    status?: string;
+    device_info?: {
+      browser?: string;
+      browser_version?: string;
+      cpus?: number;
+      engine?: string;
+      is_mobile?: boolean;
+      memory?: number;
+      os?: string;
+      os_version?: string;
+      sdk_name?: string;
+      sdk_version?: string;
+      user_agent?: string;
+      webgl_support?: string;
+    };
+    events?: Array<{
+      timestamp: string;
+      type: string;
+    }>;
+    ip_information?: {
+      city?: string;
+      country?: string;
+      ip_location?: string;
+      ipv4?: string;
+      org?: string;
+      portal?: string;
+      region?: string;
+      timezone?: string;
+    };
+    precall_network_information?: {
+      backend_rtt?: number;
+      turn_connectivity?: boolean;
+      effective_networktype?: string;
+      throughtput?: number;
+      jitter?: number;
+      rtt?: number;
+      reflexive_connectivity?: boolean;
+      relay_connectivity?: boolean;
+      fractional_loss?: number;
+    };
+  };
+  quality_stats?: Array<{
+    peer_id: string;
+    audio_bandwidth?: number;
+    video_bandwidth?: number;
+    average_quality?: number;
+    start?: string;
+    end?: string;
+    audio_packet_loss?: number;
+    video_packet_loss?: number;
+    audio_stats?: Array<{
+      timestamp: string;
+      concealment_events?: number;
+      packets_lost?: number;
+      jitter?: number;
+      quality?: number;
+    }>;
+    video_stats?: Array<{
+      timestamp: string;
+      frame_width?: number;
+      frame_height?: number;
+      frames_dropped?: number;
+      frames_per_second?: number;
+      packets_lost?: number;
+      jitter?: number;
+      quality?: number;
+    }>;
+  }>;
 }
 
 export interface MeetingSession {
@@ -3259,10 +3362,11 @@ export interface EventPassType extends BaseEventPassType {
   event: BaseEvent;
   allowedTiers: BaseTier[];
   disallowedTiers: BaseTier[];
+  groupPassDescription: string | null;
+  requiredPassType: BaseEventPassType | null;
   _count: {
     purchases: number;
   };
-  requiredPassType: BaseEventPassType | null;
 }
 
 export interface BaseEventPassTypePriceSchedule {
@@ -3611,23 +3715,31 @@ export interface ThreadCircleAccount extends BaseThreadCircleAccount {}
 export interface PaypalActivationFormParams {
   clientId: string;
   clientSecret: string;
+  currencyCode: string;
+  name: string;
 }
 
 export interface BraintreeActivationFormParams {
   clientId: string;
   clientPublicKey: string;
   clientSecret: string;
+  currencyCode: string;
+  name: string;
 }
 
 export interface AuthorizeNetActivationFormParams {
   clientId: string;
   clientPublicKey: string;
   clientSecret: string;
+  currencyCode: string;
+  name: string;
 }
 
 export interface StripeActivationFormParams {
   clientPublicKey: string;
   clientSecret: string;
+  currencyCode: string;
+  name: string;
 }
 
 export interface BaseSchedule {
@@ -3854,6 +3966,8 @@ export interface BaseBookingPlace {
   image: BaseImage | null;
   sortOrder: number;
   visible: boolean;
+  paymentIntegrationId: string | null;
+  paymentIntegration: BasePaymentIntegration | null;
 }
 
 export interface BookingPlace extends BaseBookingPlace {
@@ -4567,8 +4681,7 @@ export interface StreamInputDetails {
 export interface BaseStreamInput {
   id: string;
   name: string;
-  cloudflareId: string | null;
-  connected: boolean;
+  cloudflareId: string;
   public: boolean;
   sessionId: string | null;
   eventId: string | null;
@@ -4597,4 +4710,49 @@ export interface StreamInputOutput {
   url: string;
   streamKey: string;
   uid: string;
+}
+
+export interface BaseStreamSession {
+  id: string;
+  organizationId: string;
+  streamId: string;
+  status: string;
+  startedAt: string | null;
+  endedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface StreamSession extends BaseStreamSession {
+  stream: BaseStreamInput;
+  organization: BaseOrganization;
+  _count: {
+    connections: number;
+  };
+}
+
+export interface BaseWebSocketConnection {
+  id: string;
+  organizationId: string;
+  account: BaseAccount;
+  active: boolean;
+  connectedAt: string;
+  disconnectedAt: string | null;
+  streamId: string;
+  streamSessionId: string;
+}
+
+export interface WebSocketConnection extends BaseWebSocketConnection {
+  streamSession: BaseStreamSession;
+}
+
+export interface StreamSessionChatMessage {
+  messageId: string;
+  streamId: string;
+  sessionId: string;
+  accountId: string | null;
+  name: string;
+  connectionId: string;
+  message: string;
+  timestamp: number;
 }

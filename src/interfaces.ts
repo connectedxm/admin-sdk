@@ -1616,7 +1616,7 @@ export interface NotificationPreferences {
 export interface AdminNotificationPreferences {
   supportTicketMessageAdmin: boolean;
   supportTicketMessageEmail: boolean;
-  supportTicketAssignedPush: boolean;
+  supportTicketAssignedAdmin: boolean;
   supportTicketAssignedEmail: boolean;
   supportTicketCreatedAdmin: boolean;
   supportTicketCreatedEmail: boolean;
@@ -1712,7 +1712,7 @@ export interface OrganizationMembership {
   // PREFERENCES
   supportTicketMessageAdmin: boolean;
   supportTicketMessageEmail: boolean;
-  supportTicketAssignedPush: boolean;
+  supportTicketAssignedAdmin: boolean;
   supportTicketAssignedEmail: boolean;
   supportTicketCreatedAdmin: boolean;
   supportTicketCreatedEmail: boolean;

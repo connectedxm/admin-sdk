@@ -1122,7 +1122,7 @@ export interface OrganizationMembershipUpdateInputs {
 export interface AdminNotificationPreferencesUpdateInputs {
   supportTicketMessageAdmin?: boolean;
   supportTicketMessageEmail?: boolean;
-  supportTicketAssignedPush?: boolean;
+  supportTicketAssignedAdmin?: boolean;
   supportTicketAssignedEmail?: boolean;
   supportTicketCreatedAdmin?: boolean;
   supportTicketCreatedEmail?: boolean;

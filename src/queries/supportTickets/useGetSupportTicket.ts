@@ -1,19 +1,19 @@
+import { GetAdminAPI } from "@src/AdminAPI";
+import { ConnectedXMResponse } from "@src/interfaces";
+import { SupportTicket } from "@src/interfaces";
 import {
   SingleQueryOptions,
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../useConnectedSingleQuery";
-import { ConnectedXMResponse } from "@src/interfaces";
-import { SupportTicket } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
-import { GetAdminAPI } from "@src/AdminAPI";
 
 /**
  * @category Keys
  * @group Support Tickets
  */
 export const SUPPORT_TICKET_QUERY_KEY = (supportTicketId: string) => [
-  "SUPPORT_TICKETS",
+  "SUPPORT_TICKET",
   supportTicketId,
 ];
 
@@ -56,7 +56,10 @@ export const useGetSupportTicket = (
   return useConnectedSingleQuery<ReturnType<typeof GetSupportTicket>>(
     SUPPORT_TICKET_QUERY_KEY(supportTicketId),
     (params: SingleQueryParams) =>
-      GetSupportTicket({ supportTicketId, ...params }),
+      GetSupportTicket({
+        supportTicketId,
+        ...params,
+      }),
     {
       ...options,
       enabled: !!supportTicketId && (options?.enabled ?? true),

@@ -1120,11 +1120,11 @@ export interface OrganizationMembershipUpdateInputs {
 }
 
 export interface AdminNotificationPreferencesUpdateInputs {
-  supportTicketMessagePush?: boolean;
+  supportTicketMessageAdmin?: boolean;
   supportTicketMessageEmail?: boolean;
-  supportTicketAssignedPush?: boolean;
+  supportTicketAssignedAdmin?: boolean;
   supportTicketAssignedEmail?: boolean;
-  supportTicketCreatedPush?: boolean;
+  supportTicketCreatedAdmin?: boolean;
   supportTicketCreatedEmail?: boolean;
 }
 
@@ -1502,17 +1502,15 @@ export interface StreamOutputCreateInputs {
 
 export interface SupportTicketCreateInputs {
   type: SupportTicketType;
-  email: string;
-  request: string;
-  state: SupportTicketState;
-  accountId?: string | null;
-  orgMembershipId?: string | null;
+  subject: string;
+  request?: string;
   eventId?: string | null;
+  accountId?: string | null;
 }
 
 export interface SupportTicketUpdateInputs {
   type?: SupportTicketType;
-  email?: string;
+  subject?: string;
   request?: string;
   state?: SupportTicketState;
   accountId?: string | null;

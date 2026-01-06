@@ -12,8 +12,13 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @category Keys
  * @group Support Tickets
  */
-export const SUPPORT_TICKET_ACTIVITY_QUERY_KEY = (supportTicketId: string) => {
-  return [...SUPPORT_TICKET_QUERY_KEY(supportTicketId), "ACTIVITY_LOG"];
+export const SUPPORT_TICKET_ACTIVITY_QUERY_KEY = (
+  supportTicketId: string,
+  orderBy?: string
+) => {
+  const keys = [...SUPPORT_TICKET_QUERY_KEY(supportTicketId), "ACTIVITY_LOG"];
+  if (orderBy) keys.push(orderBy);
+  return keys;
 };
 
 /**
@@ -69,7 +74,7 @@ export const useGetSupportTicketActivity = (
   options: SingleQueryOptions<ReturnType<typeof GetSupportTicketActivity>> = {}
 ) => {
   return useConnectedSingleQuery<ReturnType<typeof GetSupportTicketActivity>>(
-    SUPPORT_TICKET_ACTIVITY_QUERY_KEY(supportTicketId),
+    SUPPORT_TICKET_ACTIVITY_QUERY_KEY(supportTicketId, orderBy),
     (params: SingleQueryParams) =>
       GetSupportTicketActivity({
         supportTicketId,

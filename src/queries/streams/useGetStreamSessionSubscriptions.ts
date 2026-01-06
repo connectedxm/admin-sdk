@@ -1,6 +1,8 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
-import { WebSocketConnection } from "@src/interfaces";
+import {
+  ConnectedXMResponse,
+  StreamSessionSubscription,
+} from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -13,7 +15,7 @@ import { QueryClient } from "@tanstack/react-query";
  * @category Keys
  * @group Streams
  */
-export const STREAM_SESSION_CONNECTIONS_QUERY_KEY = (
+export const STREAM_SESSION_SUBSCRIPTIONS_QUERY_KEY = (
   streamId: string,
   sessionId: string,
   active?: boolean
@@ -31,16 +33,16 @@ export const STREAM_SESSION_CONNECTIONS_QUERY_KEY = (
  */
 export const SET_STREAM_SESSION_CONNECTIONS_QUERY_DATA = (
   client: QueryClient,
-  keyParams: Parameters<typeof STREAM_SESSION_CONNECTIONS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetStreamSessionConnections>>
+  keyParams: Parameters<typeof STREAM_SESSION_SUBSCRIPTIONS_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetStreamSessionSubscriptions>>
 ) => {
   client.setQueryData(
-    STREAM_SESSION_CONNECTIONS_QUERY_KEY(...keyParams),
+    STREAM_SESSION_SUBSCRIPTIONS_QUERY_KEY(...keyParams),
     response
   );
 };
 
-interface GetStreamSessionConnectionsParams extends InfiniteQueryParams {
+interface GetStreamSessionSubscriptionsParams extends InfiniteQueryParams {
   streamId: string;
   sessionId: string;
   active?: boolean;
@@ -50,7 +52,7 @@ interface GetStreamSessionConnectionsParams extends InfiniteQueryParams {
  * @category Queries
  * @group Streams
  */
-export const GetStreamSessionConnections = async ({
+export const GetStreamSessionSubscriptions = async ({
   streamId,
   sessionId,
   active,
@@ -58,12 +60,12 @@ export const GetStreamSessionConnections = async ({
   pageSize,
   orderBy,
   adminApiParams,
-}: GetStreamSessionConnectionsParams): Promise<
-  ConnectedXMResponse<WebSocketConnection[]>
+}: GetStreamSessionSubscriptionsParams): Promise<
+  ConnectedXMResponse<StreamSessionSubscription[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/streams/${streamId}/sessions/${sessionId}/connections`,
+    `/streams/${streamId}/sessions/${sessionId}/subscriptions`,
     {
       params: {
         page: pageParam || undefined,
@@ -80,7 +82,7 @@ export const GetStreamSessionConnections = async ({
  * @category Hooks
  * @group Streams
  */
-export const useGetStreamSessionConnections = (
+export const useGetStreamSessionSubscriptions = (
   streamId: string = "",
   sessionId: string = "",
   active?: boolean,
@@ -89,15 +91,15 @@ export const useGetStreamSessionConnections = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetStreamSessionConnections>>
+    Awaited<ReturnType<typeof GetStreamSessionSubscriptions>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetStreamSessionConnections>>
+    Awaited<ReturnType<typeof GetStreamSessionSubscriptions>>
   >(
-    STREAM_SESSION_CONNECTIONS_QUERY_KEY(streamId, sessionId, active),
+    STREAM_SESSION_SUBSCRIPTIONS_QUERY_KEY(streamId, sessionId, active),
     (params: InfiniteQueryParams) =>
-      GetStreamSessionConnections({
+      GetStreamSessionSubscriptions({
         ...params,
         streamId,
         sessionId,

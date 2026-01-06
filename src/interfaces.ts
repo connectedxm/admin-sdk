@@ -4727,7 +4727,7 @@ export interface StreamSession extends BaseStreamSession {
   stream: BaseStreamInput;
   organization: BaseOrganization;
   _count: {
-    connections: number;
+    subscriptions: number;
   };
 }
 
@@ -4742,7 +4742,21 @@ export interface BaseWebSocketConnection {
   streamSessionId: string;
 }
 
-export interface WebSocketConnection extends BaseWebSocketConnection {
+export interface WebSocketConnection extends BaseWebSocketConnection {}
+
+export interface BaseStreamSessionSubscription {
+  id: string;
+  organizationId: string;
+  streamId: string;
+  streamSessionId: string;
+  connectionId: string;
+  connectedAt: string;
+  disconnectedAt: string | null;
+}
+
+export interface StreamSessionSubscription
+  extends BaseStreamSessionSubscription {
+  connection: BaseWebSocketConnection;
   streamSession: BaseStreamSession;
 }
 

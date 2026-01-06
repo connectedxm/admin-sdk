@@ -1,8 +1,8 @@
 import {
-  useConnectedInfiniteQuery,
-  InfiniteQueryOptions,
-  InfiniteQueryParams,
-} from "../useConnectedInfiniteQuery";
+  SingleQueryOptions,
+  SingleQueryParams,
+  useConnectedSingleQuery,
+} from "../useConnectedSingleQuery";
 import { ConnectedXMResponse, SupportTicketActivityLog } from "@src/interfaces";
 import { SUPPORT_TICKET_QUERY_KEY } from "./useGetSupportTicket";
 import { QueryClient } from "@tanstack/react-query";
@@ -12,15 +12,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
  * @category Keys
  * @group Support Tickets
  */
-export const SUPPORT_TICKET_ACTIVITY_QUERY_KEY = (
-  supportTicketId: string,
-  source?: string,
-  include?: string
-) => {
-  const keys = [...SUPPORT_TICKET_QUERY_KEY(supportTicketId), "ACTIVITY_LOG"];
-  if (source) keys.push(source);
-  if (include) keys.push(include);
-  return keys;
+export const SUPPORT_TICKET_ACTIVITY_QUERY_KEY = (supportTicketId: string) => {
+  return [...SUPPORT_TICKET_QUERY_KEY(supportTicketId), "ACTIVITY_LOG"];
 };
 
 /**
@@ -38,10 +31,9 @@ export const SET_SUPPORT_TICKET_ACTIVITY_QUERY_DATA = (
   );
 };
 
-interface GetSupportTicketActivityProps extends InfiniteQueryParams {
+interface GetSupportTicketActivityProps extends SingleQueryParams {
   supportTicketId: string;
-  source?: string;
-  include?: string;
+  orderBy?: string;
 }
 
 /**
@@ -50,11 +42,7 @@ interface GetSupportTicketActivityProps extends InfiniteQueryParams {
  */
 export const GetSupportTicketActivity = async ({
   supportTicketId,
-  pageParam,
-  pageSize,
   orderBy,
-  source,
-  include,
   adminApiParams,
 }: GetSupportTicketActivityProps): Promise<
   ConnectedXMResponse<SupportTicketActivityLog[]>
@@ -64,11 +52,7 @@ export const GetSupportTicketActivity = async ({
     `/supportTickets/${supportTicketId}/activityLog`,
     {
       params: {
-        page: pageParam || undefined,
-        pageSize: pageSize || undefined,
         orderBy: orderBy || undefined,
-        source: source || undefined,
-        include: include || undefined,
       },
     }
   );
@@ -81,33 +65,17 @@ export const GetSupportTicketActivity = async ({
  */
 export const useGetSupportTicketActivity = (
   supportTicketId: string = "",
-  params: Omit<
-    InfiniteQueryParams,
-    "pageParam" | "queryClient" | "adminApiParams"
-  > & {
-    source?: string;
-    include?: string;
-  } = {},
-  options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetSupportTicketActivity>>
-  > = {}
+  orderBy?: string,
+  options: SingleQueryOptions<ReturnType<typeof GetSupportTicketActivity>> = {}
 ) => {
-  return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetSupportTicketActivity>>
-  >(
-    SUPPORT_TICKET_ACTIVITY_QUERY_KEY(
-      supportTicketId,
-      params.source,
-      params.include
-    ),
-    (queryParams: InfiniteQueryParams) =>
+  return useConnectedSingleQuery<ReturnType<typeof GetSupportTicketActivity>>(
+    SUPPORT_TICKET_ACTIVITY_QUERY_KEY(supportTicketId),
+    (params: SingleQueryParams) =>
       GetSupportTicketActivity({
         supportTicketId,
-        source: params.source,
-        include: params.include,
-        ...queryParams,
+        orderBy,
+        ...params,
       }),
-    params,
     {
       ...options,
       enabled: !!supportTicketId && (options?.enabled ?? true),

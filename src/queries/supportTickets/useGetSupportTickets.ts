@@ -12,11 +12,12 @@ import { QueryClient } from "@tanstack/react-query";
  * @category Keys
  * @group Support Tickets
  */
-export const SUPPORT_TICKETS_QUERY_KEY = (type?: string, state?: string) => [
-  "SUPPORT_TICKETS",
-  type,
-  state,
-];
+export const SUPPORT_TICKETS_QUERY_KEY = (type?: string, state?: string) => {
+  const keys = ["SUPPORT_TICKETS"];
+  if (type) keys.push(type);
+  if (state) keys.push(state);
+  return keys;
+};
 
 /**
  * @category Setters
@@ -31,8 +32,8 @@ export const SET_SUPPORT_TICKETS_QUERY_DATA = (
 };
 
 interface GetSupportTicketsProps extends InfiniteQueryParams {
-  type: string;
-  state: string;
+  type?: string;
+  state?: string;
 }
 
 /**
@@ -66,8 +67,8 @@ export const GetSupportTickets = async ({
  * @group Support Tickets
  */
 export const useGetSupportTickets = (
-  type: string,
-  state: string,
+  type?: string,
+  state?: string,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"

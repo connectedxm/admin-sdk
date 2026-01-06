@@ -1614,11 +1614,11 @@ export interface NotificationPreferences {
 }
 
 export interface AdminNotificationPreferences {
-  supportTicketMessagePush: boolean;
+  supportTicketMessageAdmin: boolean;
   supportTicketMessageEmail: boolean;
   supportTicketAssignedPush: boolean;
   supportTicketAssignedEmail: boolean;
-  supportTicketCreatedPush: boolean;
+  supportTicketCreatedAdmin: boolean;
   supportTicketCreatedEmail: boolean;
 }
 
@@ -1710,11 +1710,11 @@ export interface OrganizationMembership {
   meetings: ModulePermissions;
   payments: ModulePermissions;
   // PREFERENCES
-  supportTicketMessagePush: boolean;
+  supportTicketMessageAdmin: boolean;
   supportTicketMessageEmail: boolean;
   supportTicketAssignedPush: boolean;
   supportTicketAssignedEmail: boolean;
-  supportTicketCreatedPush: boolean;
+  supportTicketCreatedAdmin: boolean;
   supportTicketCreatedEmail: boolean;
 }
 
@@ -3274,9 +3274,9 @@ export interface BaseSupportTicketActivityLog {
   previousType: SupportTicketType | null;
   newType: SupportTicketType | null;
   previousAssignedId: string | null;
-  previousAssigned: BaseUser | null;
+  previousAssigned: OrganizationMembership | null;
   newAssignedId: string | null;
-  newAssigned: BaseUser | null;
+  newAssigned: OrganizationMembership | null;
   eventId: string | null;
   createdAt: string;
 }

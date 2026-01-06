@@ -20,7 +20,10 @@ export const STREAM_SESSION_SUBSCRIPTIONS_QUERY_KEY = (
   sessionId: string,
   active?: boolean
 ) => {
-  const key = [...STREAM_SESSION_QUERY_KEY(streamId, sessionId), "CONNECTIONS"];
+  const key = [
+    ...STREAM_SESSION_QUERY_KEY(streamId, sessionId),
+    "SUBSCRIPTIONS",
+  ];
   if (active !== undefined) {
     key.push(active.toString());
   }
@@ -31,7 +34,7 @@ export const STREAM_SESSION_SUBSCRIPTIONS_QUERY_KEY = (
  * @category Setters
  * @group Streams
  */
-export const SET_STREAM_SESSION_CONNECTIONS_QUERY_DATA = (
+export const SET_STREAM_SESSION_SUBSCRIPTIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof STREAM_SESSION_SUBSCRIPTIONS_QUERY_KEY>,
   response: Awaited<ReturnType<typeof GetStreamSessionSubscriptions>>

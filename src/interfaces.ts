@@ -4726,9 +4726,6 @@ export interface BaseStreamSession {
 export interface StreamSession extends BaseStreamSession {
   stream: BaseStreamInput;
   organization: BaseOrganization;
-  _count: {
-    subscriptions: number;
-  };
 }
 
 export interface BaseWebSocketConnection {

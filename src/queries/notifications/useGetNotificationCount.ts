@@ -47,7 +47,14 @@ export const GetNotificationCount = async ({
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/notifications/count`, {
     params: {
-      filters: filters ? JSON.stringify(filters) : undefined,
+      read:
+        typeof filters?.read !== "undefined"
+          ? filters.read
+            ? "true"
+            : "false"
+          : undefined,
+      source: filters?.source || undefined,
+      type: filters?.type || undefined,
     },
   });
   return data;

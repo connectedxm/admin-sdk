@@ -241,7 +241,6 @@ export enum RegistrationQuestionType {
   text = "text",
   textarea = "textarea",
   number = "number",
-  time = "time",
   date = "date",
   toggle = "toggle",
   select = "select",
@@ -2544,7 +2543,6 @@ export enum EventSessionQuestionType {
   text = "text",
   textarea = "textarea",
   number = "number",
-  time = "time",
   date = "date",
   toggle = "toggle",
   select = "select",
@@ -2824,7 +2822,7 @@ export interface StorageConfig {
 export enum MeetingType {
   GROUP_CALL = "GROUP_CALL",
   WEBINAR = "WEBINAR",
-  AUDIO_ROOM = "AUDIO_ROOM",
+  // AUDIO_ROOM = "AUDIO_ROOM",
   LIVESTREAM = "LIVESTREAM",
 }
 
@@ -4283,7 +4281,6 @@ export enum SurveyQuestionType {
   text = "text",
   textarea = "textarea",
   number = "number",
-  time = "time",
   date = "date",
   toggle = "toggle",
   select = "select",

@@ -2325,12 +2325,14 @@ export interface BaseEventAttendee {
 }
 
 export interface EventAttendee extends BaseEventAttendee {
-  payments: BasePayment[];
   passes: BaseEventPass[];
   packages: BaseAttendeePackage[];
-  coupons: BaseCoupon[];
   createdAt: string;
   updatedAt: string;
+  _count: {
+    payments: number;
+    coupons: number;
+  };
 }
 
 export enum ReportType {

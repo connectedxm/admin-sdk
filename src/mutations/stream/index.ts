@@ -1,3 +1,4 @@
+export * from "./useCloseStreamSession";
 export * from "./useCreateStreamInput";
 export * from "./useCreateStreamInputOutput";
 export * from "./useDeleteStreamInput";

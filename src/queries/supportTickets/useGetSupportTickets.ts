@@ -15,8 +15,8 @@ import { QueryClient } from "@tanstack/react-query";
 export const SUPPORT_TICKETS_QUERY_KEY = (
   type?: string,
   state?: string,
-  assignedToMe?: boolean
-) => ["SUPPORT_TICKETS", type, state, assignedToMe];
+  assignment?: "me" | "unassigned"
+) => ["SUPPORT_TICKETS", type, state, assignment];
 
 /**
  * @category Setters
@@ -33,7 +33,7 @@ export const SET_SUPPORT_TICKETS_QUERY_DATA = (
 interface GetSupportTicketsProps extends InfiniteQueryParams {
   type?: string;
   state?: string;
-  assignedToMe?: boolean;
+  assignment?: "me" | "unassigned";
 }
 
 /**
@@ -47,7 +47,7 @@ export const GetSupportTickets = async ({
   search,
   type,
   state,
-  assignedToMe,
+  assignment,
   adminApiParams,
 }: GetSupportTicketsProps): Promise<ConnectedXMResponse<SupportTicket[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
@@ -58,12 +58,7 @@ export const GetSupportTickets = async ({
       orderBy: orderBy || undefined,
       type: type || undefined,
       state: state || undefined,
-      assignedToMe:
-        typeof assignedToMe !== "undefined"
-          ? assignedToMe
-            ? "true"
-            : "false"
-          : undefined,
+      assignment: assignment || undefined,
       search: search || undefined,
     },
   });
@@ -76,29 +71,27 @@ export const GetSupportTickets = async ({
 export const useGetSupportTickets = (
   type?: string,
   state?: string,
+  assignment?: "me" | "unassigned",
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
-  > & {
-    assignedToMe?: boolean;
-  } = {},
+  > = {},
   options: InfiniteQueryOptions<
     Awaited<ReturnType<typeof GetSupportTickets>>
   > = {}
 ) => {
-  const { assignedToMe, ...restParams } = params;
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetSupportTickets>>
   >(
-    SUPPORT_TICKETS_QUERY_KEY(type, state, assignedToMe),
+    SUPPORT_TICKETS_QUERY_KEY(type, state, assignment),
     (params: InfiniteQueryParams) =>
       GetSupportTickets({
         type,
         state,
-        assignedToMe,
+        assignment,
         ...params,
       }),
-    restParams,
+    params,
     options
   );
 };

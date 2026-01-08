@@ -54,7 +54,14 @@ export const GetNotifications = async ({
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
-      filters: filters ? JSON.stringify(filters) : undefined,
+      read:
+        typeof filters?.read !== "undefined"
+          ? filters.read
+            ? "true"
+            : "false"
+          : undefined,
+      source: filters?.source || undefined,
+      type: filters?.type || undefined,
       search: search || undefined,
     },
   });

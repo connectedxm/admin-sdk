@@ -1646,7 +1646,7 @@ export interface BaseAdminNotification {
   id: string;
   supportTicketId: string | null;
   type: AdminNotificationType;
-  source: string | null;
+  source: AdminNotificationSource | null;
   read: boolean;
   orgMembershipId: string | null;
   orgMembership: OrganizationMembership | null;
@@ -1662,6 +1662,13 @@ export interface AdminNotification extends BaseAdminNotification {
   externalUrl: string | null;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface NotificationStats {
+  total: number;
+  unread: number;
+  byType: Record<AdminNotificationType, { total: number; unread: number }>;
+  bySource: Record<AdminNotificationSource, { total: number; unread: number }>;
 }
 
 export interface ModulePermissions {

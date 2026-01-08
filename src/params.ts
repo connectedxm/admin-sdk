@@ -1,41 +1,43 @@
 import {
+  AccountAccess,
+  ActivityEntityType,
+  AdminNotificationSource,
+  AdminNotificationType,
   AdvertisementType,
+  AuthLayout,
   BadgeFieldTransformation,
   BadgeFieldType,
   ContentGuestType,
-  EventAgendaVisibility,
-  EventType,
-  GroupAccess,
-  RegistrationQuestionType,
-  PassTypeVisibility,
-  PassTypeAccessLevel,
-  ImageType,
-  FileSource,
-  ModulePermissions,
-  AuthLayout,
+  CustomModulePosition,
   DefaultAuthAction,
-  SupportTicketType,
-  ImportType,
+  EventActivationType,
+  EventAgendaVisibility,
   EventAnnouncementFilters,
-  PurchaseStatus,
+  EventSessionQuestionType,
+  EventType,
+  FileSource,
+  GroupAccess,
+  ImageType,
+  ImportType,
   IntegrationType,
   LeadStatus,
-  SurveyQuestionType,
-  ReportFilters,
-  CustomModulePosition,
+  LocationQuestionOption,
   MatchQuestionType,
-  EventSessionQuestionType,
+  MeetingType,
   ModerationStatus,
-  ActivityEntityType,
-  ThreadCircleAccountRole,
-  AccountAccess,
+  ModulePermissions,
+  PassTypeAccessLevel,
+  PassTypeVisibility,
+  PaymentIntegrationType,
+  PurchaseStatus,
+  RegistrationQuestionType,
+  ReportFilters,
   SessionAccess,
   SupportTicketState,
-  EventActivationType,
+  SupportTicketType,
+  SurveyQuestionType,
   TaxLocationType,
-  LocationQuestionOption,
-  MeetingType,
-  PaymentIntegrationType,
+  ThreadCircleAccountRole,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -2902,9 +2904,9 @@ export interface OrganizationPaymentIntegrationUpdateInputs {
 }
 
 export interface NotificationFilters {
-  supportTicketCreated?: boolean;
-  supportTicketAssigned?: boolean;
-  supportTicketMessage?: boolean;
+  read?: boolean;
+  source?: AdminNotificationSource;
+  type?: AdminNotificationType;
 }
 
 export interface MarkNotificationsReadInputs {

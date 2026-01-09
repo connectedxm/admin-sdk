@@ -7,15 +7,16 @@ import {
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 import { GetAdminAPI } from "@src/AdminAPI";
+import { INVOICE_QUERY_KEY } from "./useGetInvoice";
 
 /**
  * @category Keys
  * @group Invoices
  */
-export const INVOICE_PAYMENTS_QUERY_KEY = (invoiceId: string) => {
-  const key = ["INVOICE_PAYMENTS", invoiceId];
-  return key;
-};
+export const INVOICE_PAYMENTS_QUERY_KEY = (invoiceId: string) => [
+  ...INVOICE_QUERY_KEY(invoiceId),
+  "PAYMENTS",
+];
 
 /**
  * @category Setters

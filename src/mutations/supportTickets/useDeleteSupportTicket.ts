@@ -32,7 +32,9 @@ export const DeleteSupportTicket = async ({
     `/supportTickets/${supportTicketId}`
   );
   if (queryClient && data.status === "ok") {
-    queryClient.invalidateQueries({ queryKey: SUPPORT_TICKETS_QUERY_KEY() });
+    queryClient.invalidateQueries({
+      queryKey: [SUPPORT_TICKETS_QUERY_KEY()[0]],
+    });
     queryClient.removeQueries({
       queryKey: SUPPORT_TICKET_QUERY_KEY(supportTicketId),
     });

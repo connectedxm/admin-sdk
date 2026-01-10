@@ -37,7 +37,9 @@ export const UpdateSupportTicket = async ({
     supportTicket
   );
   if (queryClient && data.status === "ok") {
-    queryClient.invalidateQueries({ queryKey: SUPPORT_TICKETS_QUERY_KEY() });
+    queryClient.invalidateQueries({
+      queryKey: [SUPPORT_TICKETS_QUERY_KEY()[0]],
+    });
     SET_SUPPORT_TICKET_QUERY_DATA(queryClient, [supportTicketId], data);
     queryClient.invalidateQueries({
       queryKey: SUPPORT_TICKET_ACTIVITY_QUERY_KEY(supportTicketId),

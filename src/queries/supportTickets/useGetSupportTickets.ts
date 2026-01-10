@@ -16,7 +16,7 @@ export const SUPPORT_TICKETS_QUERY_KEY = (
   type?: string,
   state?: string,
   assignment?: "me" | "unassigned"
-) => ["SUPPORT_TICKETS", type, state, assignment];
+) => ["SUPPORT_TICKETS", type ?? "all", state ?? "all", assignment ?? "all"];
 
 /**
  * @category Setters

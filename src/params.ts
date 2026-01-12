@@ -1504,15 +1504,14 @@ export interface StreamOutputCreateInputs {
 
 export interface SupportTicketCreateInputs {
   type: SupportTicketType;
-  subject: string;
   request?: string;
   eventId?: string | null;
   accountId?: string | null;
+  firstMessage?: string | null;
 }
 
 export interface SupportTicketUpdateInputs {
   type?: SupportTicketType;
-  subject?: string;
   request?: string;
   state?: SupportTicketState;
   accountId?: string | null;

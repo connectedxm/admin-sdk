@@ -2045,6 +2045,7 @@ export interface BasePaymentIntegration {
 
 export interface PaymentIntegration extends BasePaymentIntegration {
   connectionId: string;
+  merchantAccountId: string | null;
   enabled: boolean;
   createdAt: string;
   updatedAt: string;

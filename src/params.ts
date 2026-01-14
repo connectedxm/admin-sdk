@@ -2894,6 +2894,7 @@ export interface OrganizationPaymentIntegrationCreateInputs {
   name: string;
   currencyCode: string;
   clientId?: string;
+  merchantAccountId?: string;
   clientPublicKey?: string;
   clientSecret?: string;
 }

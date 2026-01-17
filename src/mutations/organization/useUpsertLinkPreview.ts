@@ -25,10 +25,9 @@ export const UpsertLinkPreview = async ({
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.put<ConnectedXMResponse<LinkPreview>>(
     `/organization/link-preview`,
-    undefined,
     {
-      params: { href },
-    }
+      href,
+    },
   );
   return data;
 };

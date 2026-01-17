@@ -17,7 +17,6 @@ export * from "./imports";
 export * from "./interests";
 export * from "./invoices";
 export * from "./levels";
-export * from "./link-preview";
 export * from "./logins";
 export * from "./meetings";
 export * from "./notifications";

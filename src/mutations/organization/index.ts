@@ -20,4 +20,5 @@ export * from "./useUpdateOrganizationIntegrations";
 export * from "./useUpdateOrganizationMembership";
 export * from "./useUpdateOrganizationTeamMember";
 export * from "./useUpdateOrganizationWebhook";
+export * from "./useUpsertLinkPreview";
 export * from "./useVerifyOrganizationWebhook";

@@ -1168,8 +1168,6 @@ export interface ImageUpdateInputs {
 
 export interface InterestCreateInputs {
   name: string;
-  imageId?: string | null;
-  featured?: boolean;
 }
 
 export interface InterestUpdateInputs {

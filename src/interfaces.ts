@@ -1804,6 +1804,8 @@ export interface Organization extends BaseOrganization {
   meetingLivestreamAdminPreset: string;
   meetingLivestreamGuestPreset: string;
   options: object | null;
+  autoResolveSupportTickets: boolean;
+  autoResolveSupportTicketMessage: string | null;
 }
 
 export interface OrganizationTrigger {

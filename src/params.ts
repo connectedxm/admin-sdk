@@ -1304,6 +1304,8 @@ export interface OrganizationUpdateInputs {
   meetingLivestreamAdminPreset?: string;
   meetingLivestreamGuestPreset?: string;
   options?: object | null;
+  autoResolveSupportTickets?: boolean;
+  autoResolveSupportTicketMessage?: string | null;
 }
 
 export interface PaymentIntentPurchaseMetadataInputs {}

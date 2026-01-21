@@ -165,6 +165,7 @@ export interface ActivityCreateInputs {
   groupId?: string | null;
   contentId?: string | null;
   commentedId?: string | null;
+  meetingId?: string | null;
   createdAt?: string | null;
 }
 
@@ -177,6 +178,7 @@ export interface ActivityUpdateInputs {
   pinned?: boolean;
   imageId?: string | null;
   videoId?: string | null;
+  meetingId?: string | null;
   createdAt?: string | null;
 }
 
@@ -1304,6 +1306,8 @@ export interface OrganizationUpdateInputs {
   meetingLivestreamAdminPreset?: string;
   meetingLivestreamGuestPreset?: string;
   options?: object | null;
+  autoResolveSupportTickets?: boolean;
+  autoResolveSupportTicketMessage?: string | null;
 }
 
 export interface PaymentIntentPurchaseMetadataInputs {}
@@ -2461,6 +2465,7 @@ export interface MeetingCreateInputs {
   eventId?: string;
   sessionId?: string;
   groupId?: string;
+  activityId?: string;
   title: string | null;
   preferred_region:
     | "ap-south-1"
@@ -2516,6 +2521,7 @@ export interface MeetingUpdateInputs {
   eventId?: string;
   sessionId?: string;
   groupId?: string;
+  activityId?: string;
   title?: string | null;
   preferred_region?:
     | "ap-south-1"

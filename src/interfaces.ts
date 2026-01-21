@@ -517,10 +517,11 @@ export interface BaseActivity {
   pinned: boolean;
   giphyId: string | null;
   imageId: string | null;
-  image: BaseImage | null;
+  videoId: string | null;
   account: BaseAccount;
   entities: BaseActivityEntity[];
   moderation: keyof typeof ModerationStatus | null;
+  meetingId: string | null;
   eventId: string | null;
   groupId: string | null;
   contentId: string | null;
@@ -533,7 +534,9 @@ export interface BaseActivity {
 }
 
 export interface Activity extends BaseActivity {
+  image: BaseImage | null;
   video: BaseVideo | null;
+  meeting: BaseMeeting | null;
   group: BaseGroup | null;
   event: BaseEvent | null;
   content: BaseChannelContent | null;
@@ -1804,6 +1807,8 @@ export interface Organization extends BaseOrganization {
   meetingLivestreamAdminPreset: string;
   meetingLivestreamGuestPreset: string;
   options: object | null;
+  autoResolveSupportTickets: boolean;
+  autoResolveSupportTicketMessage: string | null;
 }
 
 export interface OrganizationTrigger {
@@ -2841,6 +2846,10 @@ export interface BaseMeeting {
 }
 
 export interface Meeting extends BaseMeeting {
+  event?: BaseEvent;
+  session?: BaseEventSession;
+  group?: BaseGroup;
+  activity?: BaseActivity;
   updated_at: string;
   created_at: string;
   preferred_region?:
@@ -2854,12 +2863,6 @@ export interface Meeting extends BaseMeeting {
   live_stream_on_start: boolean;
   persist_chat: boolean;
   summarize_on_end: boolean;
-  eventId?: string;
-  event?: BaseEvent;
-  sessionId?: string;
-  session?: BaseEventSession;
-  groupId?: string;
-  group?: BaseGroup;
   "ai_config.transcription.keywords": string[];
   "ai_config.transcription.language":
     | "en-US"

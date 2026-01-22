@@ -4699,6 +4699,7 @@ export interface BaseStreamInput {
   imageId: string | null;
   image: BaseImage | null;
   locale: string;
+  webRTC: boolean;
 }
 
 export interface StreamInput extends BaseStreamInput {

@@ -2867,6 +2867,7 @@ export interface StreamInputCreateInputs {
   imageId?: string | null;
   public?: boolean;
   locale?: string | null;
+  webRTC?: boolean;
 }
 
 export interface StreamInputUpdateInputs {
@@ -2881,6 +2882,7 @@ export interface StreamInputUpdateInputs {
   imageId?: string | null;
   public?: boolean;
   locale?: string | null;
+  webRTC?: boolean;
 }
 
 export interface StreamInputOutputCreateInputs {

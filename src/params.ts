@@ -2863,6 +2863,7 @@ export interface StreamInputCreateInputs {
   sessionId?: string | null;
   groupId?: string | null;
   meetingId?: string | null;
+  streamInputId?: string | null;
   details?: object | null;
   imageId?: string | null;
   public?: boolean;
@@ -2878,6 +2879,7 @@ export interface StreamInputUpdateInputs {
   sessionId?: string | null;
   groupId?: string | null;
   meetingId?: string | null;
+  streamInputId?: string | null;
   connected?: boolean;
   imageId?: string | null;
   public?: boolean;

@@ -4711,6 +4711,8 @@ export interface StreamInput extends BaseStreamInput {
   group: BaseGroup | null;
   meetingId: string | null;
   meeting: BaseMeeting | null;
+  streamInputId: string | null;
+  streamInput: BaseStreamInput | null;
   details?: StreamInputDetails;
   sortOrder: number;
   createdAt: string;

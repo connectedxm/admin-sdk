@@ -2879,7 +2879,7 @@ export interface StreamInputUpdateInputs {
   sessionId?: string | null;
   groupId?: string | null;
   meetingId?: string | null;
-  activ?: string | null;
+  activityId?: string | null;
   connected?: boolean;
   imageId?: string | null;
   public?: boolean;

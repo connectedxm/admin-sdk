@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, Payment } from "@src/interfaces";
+import { ConnectedXMResponse, Payment, RefundLineItem } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -10,11 +10,6 @@ import {
   PAYMENT_QUERY_KEY,
   PAYMENTS_QUERY_KEY,
 } from "@src/queries";
-
-export interface RefundLineItem {
-  id: string;
-  amount: number;
-}
 
 /**
  * @category Params

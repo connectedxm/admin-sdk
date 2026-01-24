@@ -4,51 +4,9 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../../useConnectedSingleQuery";
-import { ConnectedXMResponse } from "@src/interfaces";
-import { RegistrationQuestion } from "@src/interfaces";
+import { ConnectedXMResponse, SummaryData } from "@src/interfaces";
 import { EVENT_QUESTION_SUMMARIES_QUERY_KEY } from "./useGetEventQuestionSummaries";
 import { QueryClient } from "@tanstack/react-query";
-
-export interface BarChartSummaryData {
-  type: "bar";
-  data: {
-    label: string;
-    value: number;
-  }[];
-  count: number;
-  question?: RegistrationQuestion;
-}
-
-export interface LineChartSummaryData {
-  type: "line";
-  data: {
-    label: string;
-    value: number;
-  }[];
-  count: number;
-  question?: RegistrationQuestion;
-}
-
-export interface TableChartSummaryData {
-  type: "table";
-  data: {
-    value: number;
-  }[];
-  count: number;
-  question?: RegistrationQuestion;
-}
-export interface CountChartSummaryData {
-  type: "count";
-  data: null;
-  count: number;
-  question?: RegistrationQuestion;
-}
-
-export type SummaryData =
-  | BarChartSummaryData
-  | LineChartSummaryData
-  | TableChartSummaryData
-  | CountChartSummaryData;
 
 /**
  * @category Keys

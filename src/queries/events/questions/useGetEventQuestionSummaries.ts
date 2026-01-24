@@ -1,7 +1,6 @@
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, SummaryData } from "@src/interfaces";
 import { EVENT_QUERY_KEY } from "../useGetEvent";
 import { QueryClient } from "@tanstack/react-query";
-import { SummaryData } from "./useGetEventQuestionSummary";
 import { GetAdminAPI } from "@src/AdminAPI";
 import {
   InfiniteQueryOptions,

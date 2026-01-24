@@ -1,6 +1,9 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
-import { Image, ImageType } from "@src/interfaces";
+import {
+  ConnectedXMResponse,
+  ImageType,
+  ImageWCopyUri,
+} from "@src/interfaces";
 import {
   InfiniteQueryParams,
   InfiniteQueryOptions,
@@ -29,10 +32,6 @@ export const SET_IMAGES_QUERY_DATA = (
 ) => {
   client.setQueryData(IMAGES_QUERY_KEY(...keyParams), response);
 };
-
-export interface ImageWCopyUri extends Image {
-  copyUri: string;
-}
 
 interface GetImagePrams extends InfiniteQueryParams {
   type?: ImageType;

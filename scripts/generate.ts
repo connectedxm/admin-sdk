@@ -31,6 +31,7 @@ function parseSchemas(sourceFile: ts.SourceFile): Record<string, any> {
       }
       const name = node.name.text;
       const properties: Record<string, any> = {};
+      const required: string[] = [];
 
       node.members.forEach((member) => {
         if (
@@ -41,14 +42,24 @@ function parseSchemas(sourceFile: ts.SourceFile): Record<string, any> {
           const propName = member.name.text;
           const propSchema = parseType(member.type, sourceFile);
           properties[propName] = propSchema;
+          
+          // If the property doesn't have a question mark, it's required
+          if (!member.questionToken) {
+            required.push(propName);
+          }
         }
       });
 
       if (name !== "ConnectedXMResponse") {
-        schemas[name] = {
+        const schema: any = {
           type: "object",
           properties,
         };
+        // Only add required array if there are required properties
+        if (required.length > 0) {
+          schema.required = required;
+        }
+        schemas[name] = schema;
       }
     }
 

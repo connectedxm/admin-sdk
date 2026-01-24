@@ -69706,7 +69706,15 @@
           "editable": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "id",
+          "moduleType",
+          "superEnabled",
+          "requireAuth",
+          "enabled",
+          "editable"
+        ]
       },
       "OrganizationModule": {
         "type": "object",
@@ -69733,7 +69741,14 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "enabledTiers",
+          "editableTiers",
+          "options",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "Currency": {
         "type": "string",
@@ -70072,7 +70087,20 @@
           "sortOrder": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "label",
+          "type",
+          "description",
+          "required",
+          "adminOnly",
+          "editable",
+          "public",
+          "includedInDashboards",
+          "sortOrder"
+        ]
       },
       "AccountAttribute": {
         "type": "object",
@@ -70086,7 +70114,12 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt",
+          "_count"
+        ]
       },
       "BaseAccountAttributeValue": {
         "type": "object",
@@ -70103,7 +70136,13 @@
           "value": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "attributeId",
+          "attribute",
+          "value"
+        ]
       },
       "AccountAttributeValue": {
         "type": "object",
@@ -70114,7 +70153,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseAccount": {
         "type": "object",
@@ -70187,7 +70230,27 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "organizationId",
+          "id",
+          "accountAccess",
+          "firstName",
+          "lastName",
+          "email",
+          "verified",
+          "username",
+          "imageId",
+          "image",
+          "featured",
+          "timezone",
+          "locale",
+          "country",
+          "internalRefId",
+          "accountTiers",
+          "chatConnected",
+          "createdAt"
+        ]
       },
       "Account": {
         "type": "object",
@@ -70267,7 +70330,25 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "bannerId",
+          "banner",
+          "phone",
+          "interests",
+          "bio",
+          "website",
+          "facebook",
+          "twitter",
+          "instagram",
+          "linkedIn",
+          "tikTok",
+          "video",
+          "youtube",
+          "dietaryRestrictions",
+          "taxEntityUseCode",
+          "updatedAt"
+        ]
       },
       "BaseAccountInvitation": {
         "type": "object",
@@ -70278,7 +70359,11 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "email",
+          "createdAt"
+        ]
       },
       "AccountInvitation": {
         "type": "object",
@@ -70314,7 +70399,18 @@
           "zip": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "primary",
+          "name",
+          "address1",
+          "address2",
+          "city",
+          "state",
+          "country",
+          "zip"
+        ]
       },
       "AccountAddress": {
         "type": "object",
@@ -70325,7 +70421,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseAPILog": {
         "type": "object",
@@ -70411,7 +70511,23 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "login",
+          "account",
+          "user",
+          "source",
+          "status",
+          "statusCode",
+          "response",
+          "path",
+          "method",
+          "deviceType",
+          "ipaddress",
+          "country",
+          "createdAt"
+        ]
       },
       "APILog": {
         "type": "object",
@@ -70471,7 +70587,23 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "headers",
+          "params",
+          "query",
+          "body",
+          "updatedAt",
+          "architecture",
+          "browser",
+          "browserVersion",
+          "deviceModel",
+          "deviceVendor",
+          "engine",
+          "engineVersion",
+          "osName",
+          "osVersion"
+        ]
       },
       "AuthSession": {
         "type": "object",
@@ -70488,7 +70620,12 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "organizationId",
+          "createdAt"
+        ]
       },
       "BaseTier": {
         "type": "object",
@@ -70527,7 +70664,18 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "priority",
+          "name",
+          "iconName",
+          "color",
+          "internal",
+          "imageId",
+          "image"
+        ]
       },
       "Tier": {
         "type": "object",
@@ -70549,7 +70697,14 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "description",
+          "exclusionGroup",
+          "createdAt",
+          "updatedAt",
+          "_count"
+        ]
       },
       "BaseActivationCompletion": {
         "type": "object",
@@ -70572,7 +70727,15 @@
           "passId": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "eventId",
+          "eventActivationId",
+          "eventActivation",
+          "earnedPoints",
+          "passId"
+        ]
       },
       "ActivationCompletion": {
         "type": "object",
@@ -70586,7 +70749,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "pass",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventActivationType": {
         "type": "string",
@@ -70627,7 +70795,18 @@
           "accessLevel": {
             "$ref": "#/components/schemas/PassTypeAccessLevel"
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "visible",
+          "name",
+          "shortDescription",
+          "maxPoints",
+          "startAfter",
+          "type",
+          "accessLevel"
+        ]
       },
       "EventActivation": {
         "type": "object",
@@ -70664,7 +70843,17 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "eventId",
+          "event",
+          "imageId",
+          "image",
+          "protectionCode",
+          "longDescription",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "ActivationTranslation": {
         "type": "object",
@@ -70691,7 +70880,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "shortDescription",
+          "longDescription",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "ModerationStatus": {
         "type": "string",
@@ -70782,7 +70980,27 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "id",
+          "message",
+          "status",
+          "featured",
+          "pinned",
+          "giphyId",
+          "imageId",
+          "videoId",
+          "account",
+          "entities",
+          "moderation",
+          "meetingId",
+          "eventId",
+          "groupId",
+          "contentId",
+          "createdAt",
+          "updatedAt",
+          "_count"
+        ]
       },
       "Activity": {
         "type": "object",
@@ -70843,7 +71061,16 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "image",
+          "video",
+          "meeting",
+          "group",
+          "event",
+          "content",
+          "schedule"
+        ]
       },
       "ActivityEntityType": {
         "type": "string",
@@ -70890,7 +71117,19 @@
           "linkPreview": {
             "$ref": "#/components/schemas/BaseLinkPreview"
           }
-        }
+        },
+        "required": [
+          "type",
+          "startIndex",
+          "endIndex",
+          "marks",
+          "accountId",
+          "account",
+          "interestId",
+          "interest",
+          "linkPreviewId",
+          "linkPreview"
+        ]
       },
       "ActivityEntity": {
         "type": "object",
@@ -70929,7 +71168,17 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "organizationId",
+          "advertisementId",
+          "advertisement",
+          "accountId",
+          "account",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseAdvertisement": {
         "type": "object",
@@ -70983,7 +71232,22 @@
           "enabled": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "id",
+          "type",
+          "link",
+          "title",
+          "description",
+          "imageId",
+          "image",
+          "startDate",
+          "endDate",
+          "weight",
+          "accountId",
+          "eventId",
+          "enabled"
+        ]
       },
       "Advertisement": {
         "type": "object",
@@ -71016,7 +71280,15 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "account",
+          "event",
+          "eventOnly",
+          "createdAt",
+          "updatedAt",
+          "_count"
+        ]
       },
       "AdvertisementView": {
         "type": "object",
@@ -71051,7 +71323,17 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "organizationId",
+          "advertisementId",
+          "advertisement",
+          "accountId",
+          "account",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseAnnouncement": {
         "type": "object",
@@ -71120,7 +71402,27 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "title",
+          "html",
+          "email",
+          "push",
+          "sms",
+          "includePasses",
+          "accountId",
+          "creatorId",
+          "eventId",
+          "groupId",
+          "tierId",
+          "channelId",
+          "ticketId",
+          "userId",
+          "schedule",
+          "createdAt"
+        ]
       },
       "EventAnnouncementFilters": {
         "type": "object",
@@ -71145,7 +71447,10 @@
           "addOnId": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "type"
+        ]
       },
       "Announcement": {
         "type": "object",
@@ -71247,7 +71552,24 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "_count",
+          "verifiedAccounts",
+          "account",
+          "creator",
+          "event",
+          "group",
+          "tier",
+          "channel",
+          "sponsorshipLevelId",
+          "sponsorshipLevel",
+          "ticket",
+          "user",
+          "message",
+          "filters",
+          "updatedAt"
+        ]
       },
       "AnnouncementTranslation": {
         "type": "object",
@@ -71276,7 +71598,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "title",
+          "html",
+          "message",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BenefitClick": {
         "type": "object",
@@ -71308,7 +71639,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "benefitId",
+          "benefit",
+          "accountId",
+          "account",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseBenefit": {
         "type": "object",
@@ -71351,7 +71691,19 @@
           "priority": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "link",
+          "imageId",
+          "image",
+          "title",
+          "description",
+          "startDate",
+          "endDate",
+          "priority"
+        ]
       },
       "Benefit": {
         "type": "object",
@@ -71392,7 +71744,17 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "managerId",
+          "manager",
+          "eventId",
+          "event",
+          "eventOnly",
+          "createdAt",
+          "updatedAt",
+          "_count"
+        ]
       },
       "BenefitTranslation": {
         "type": "object",
@@ -71416,7 +71778,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "title",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseChannelContent": {
         "type": "object",
@@ -71515,7 +71885,29 @@
           "push": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "id",
+          "featured",
+          "slug",
+          "title",
+          "description",
+          "imageId",
+          "image",
+          "squareImageId",
+          "squareImage",
+          "imageUrl",
+          "audioId",
+          "audio",
+          "videoId",
+          "video",
+          "channelId",
+          "channel",
+          "duration",
+          "published",
+          "email",
+          "push"
+        ]
       },
       "ChannelContent": {
         "type": "object",
@@ -71567,7 +71959,20 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "body",
+          "externalUrl",
+          "appleUrl",
+          "spotifyUrl",
+          "googleUrl",
+          "youtubeUrl",
+          "guests",
+          "publishSchedule",
+          "createdAt",
+          "updatedAt",
+          "_count"
+        ]
       },
       "BaseChannelContentLike": {
         "type": "object",
@@ -71581,7 +71986,12 @@
           "contentId": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "accountId",
+          "channelId",
+          "contentId"
+        ]
       },
       "ChannelContentLike": {
         "type": "object",
@@ -71595,7 +72005,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "account",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "ChannelContentTranslation": {
         "type": "object",
@@ -71659,7 +72074,22 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "title",
+          "description",
+          "body",
+          "imageId",
+          "image",
+          "audioId",
+          "audio",
+          "videoId",
+          "video",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseChannel": {
         "type": "object",
@@ -71710,7 +72140,22 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "featured",
+          "name",
+          "description",
+          "priority",
+          "visible",
+          "private",
+          "imageId",
+          "image",
+          "bannerId",
+          "banner",
+          "_count"
+        ]
       },
       "Channel": {
         "type": "object",
@@ -71756,7 +72201,19 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "externalUrl",
+          "appleUrl",
+          "spotifyUrl",
+          "googleUrl",
+          "youtubeUrl",
+          "creatorId",
+          "creator",
+          "createdAt",
+          "updatedAt",
+          "_count"
+        ]
       },
       "BaseChannelSubscriber": {
         "type": "object",
@@ -71791,7 +72248,18 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "organizationId",
+          "channelId",
+          "channel",
+          "accountId",
+          "account",
+          "contentEmailNotification",
+          "contentPushNotification",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "ChannelTranslation": {
         "type": "object",
@@ -71815,7 +72283,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseCoupon": {
         "type": "object",
@@ -71905,7 +72381,32 @@
             "type": "object",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "eventId",
+          "id",
+          "prePaid",
+          "code",
+          "description",
+          "active",
+          "startDate",
+          "endDate",
+          "discountAmount",
+          "discountPercent",
+          "quantityMin",
+          "quantityMax",
+          "useLimit",
+          "limitPerAccount",
+          "purchaseLimit",
+          "emailDomains",
+          "ticketId",
+          "ticket",
+          "applyToPassType",
+          "applyToAddOns",
+          "applyToReservation",
+          "registrationId",
+          "registration"
+        ]
       },
       "Coupon": {
         "type": "object",
@@ -71947,7 +72448,16 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "registration",
+          "lineItem",
+          "parentCouponId",
+          "parentCoupon",
+          "createdAt",
+          "updatedAt",
+          "_count"
+        ]
       },
       "EmailReceiptStatus": {
         "type": "string",
@@ -71999,7 +72509,19 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "status",
+          "from",
+          "to",
+          "replyTo",
+          "subject",
+          "accountId",
+          "account",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EmailReceipt": {
         "type": "object",
@@ -72014,7 +72536,12 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "html",
+          "text",
+          "debug"
+        ]
       },
       "BaseEventAddOn": {
         "type": "object",
@@ -72073,7 +72600,24 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "shortDescription",
+          "supply",
+          "price",
+          "pricePerNight",
+          "sortOrder",
+          "imageId",
+          "image",
+          "eventId",
+          "taxCode",
+          "taxIncluded",
+          "taxLocation",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventAddOn": {
         "type": "object",
@@ -72111,7 +72655,15 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "longDescription",
+          "event",
+          "allowedTickets",
+          "allowedTiers",
+          "disallowedTiers",
+          "_count"
+        ]
       },
       "EventAddOnTranslation": {
         "type": "object",
@@ -72134,7 +72686,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "shortDescription",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventActivationTranslation": {
         "type": "object",
@@ -72152,7 +72712,13 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "locale",
+          "name",
+          "shortDescription",
+          "longDescription"
+        ]
       },
       "EventEmailType": {
         "type": "string",
@@ -72185,7 +72751,15 @@
           "calendarFile": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "type",
+          "eventId",
+          "body",
+          "replyTo",
+          "enabled",
+          "calendarFile"
+        ]
       },
       "EventEmail": {
         "type": "object",
@@ -72196,7 +72770,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventEmailTranslation": {
         "type": "object",
@@ -72217,7 +72795,14 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "body",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventListing": {
         "type": "object",
@@ -72294,7 +72879,22 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "eventId",
+          "name",
+          "type",
+          "lookup",
+          "maxLength",
+          "defaultValue",
+          "transformation",
+          "iconData",
+          "sessionId",
+          "sortOrder",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventOnSiteBadgeField": {
         "type": "object",
@@ -72302,7 +72902,10 @@
           "onSite": {
             "$ref": "#/components/schemas/EventOnSite"
           }
-        }
+        },
+        "required": [
+          "onSite"
+        ]
       },
       "BaseEventOnSite": {
         "type": "object",
@@ -72323,7 +72926,14 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "eventId",
+          "authenticationCode",
+          "zplTemplate",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventOnSite": {
         "type": "object",
@@ -72334,7 +72944,10 @@
               "$ref": "#/components/schemas/BaseEventOnSiteBadgeField"
             }
           }
-        }
+        },
+        "required": [
+          "badgeFields"
+        ]
       },
       "BaseEventPage": {
         "type": "object",
@@ -72358,7 +72971,15 @@
           "sortOrder": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "title",
+          "active",
+          "subtitle",
+          "sortOrder"
+        ]
       },
       "EventPage": {
         "type": "object",
@@ -72373,7 +72994,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "html",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventPageTranslation": {
         "type": "object",
@@ -72402,7 +73028,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "title",
+          "subtitle",
+          "html",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseEvent": {
         "type": "object",
@@ -72544,7 +73179,43 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "internalRefId",
+          "featured",
+          "visible",
+          "template",
+          "source",
+          "eventType",
+          "name",
+          "shortDescription",
+          "eventStart",
+          "eventEnd",
+          "timezone",
+          "externalUrl",
+          "venue",
+          "address1",
+          "address2",
+          "city",
+          "state",
+          "country",
+          "zip",
+          "imageId",
+          "image",
+          "squareImageId",
+          "squareImage",
+          "registration",
+          "registrationStart",
+          "registrationEnd",
+          "createdAt",
+          "updatedAt",
+          "seriesId",
+          "series",
+          "paymentIntegrationId",
+          "paymentIntegration"
+        ]
       },
       "Event": {
         "type": "object",
@@ -72718,7 +73389,47 @@
             "type": "object",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "roundName",
+          "matchName",
+          "passSupply",
+          "passLimitPerAccount",
+          "reservationDescription",
+          "longDescription",
+          "creatorId",
+          "creator",
+          "registrationLimit",
+          "allowMultipleRegistrations",
+          "allowSplitPayment",
+          "splitPaymentPercentage",
+          "splitPaymentNetDays",
+          "splitPaymentDueDate",
+          "publicRegistrants",
+          "sessionsVisibility",
+          "speakersVisibility",
+          "checkinCode",
+          "iosAppLink",
+          "androidAppLink",
+          "newActivityCreatorEmailNotification",
+          "newActivityCreatorPushNotification",
+          "streamReplayId",
+          "streamReplay",
+          "groupId",
+          "group",
+          "groupOnly",
+          "backgroundImageId",
+          "backgroundImage",
+          "registrationHeaderImageId",
+          "registrationHeaderImage",
+          "registrationFooterImageId",
+          "registrationFooterImage",
+          "registrationHideTitle",
+          "activityFeedEnabled",
+          "meetingId",
+          "meeting",
+          "options"
+        ]
       },
       "EventTranslation": {
         "type": "object",
@@ -72761,7 +73472,19 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "shortDescription",
+          "longDescription",
+          "reservationDescription",
+          "imageId",
+          "image",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseFaqSection": {
         "type": "object",
@@ -72778,7 +73501,13 @@
           "priority": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "priority"
+        ]
       },
       "FaqSection": {
         "type": "object",
@@ -72801,7 +73530,14 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "faqs",
+          "eventId",
+          "event",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "FaqSectionTranslation": {
         "type": "object",
@@ -72821,7 +73557,14 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseFaq": {
         "type": "object",
@@ -72841,7 +73584,13 @@
           "answer": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "visible",
+          "question"
+        ]
       },
       "Faq": {
         "type": "object",
@@ -72867,7 +73616,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "priority",
+          "organizationId",
+          "eventId",
+          "sectionId",
+          "section",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "FaqTranslation": {
         "type": "object",
@@ -72890,7 +73648,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "question",
+          "answer",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "SupportedLocale": {
         "type": "string",
@@ -72988,7 +73754,13 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "status",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "GroupInvitation": {
         "type": "object",
@@ -73011,7 +73783,15 @@
           "inviter": {
             "$ref": "#/components/schemas/BaseAccount"
           }
-        }
+        },
+        "required": [
+          "group",
+          "groupId",
+          "accountId",
+          "account",
+          "inviterId",
+          "inviter"
+        ]
       },
       "BaseGroupMembership": {
         "type": "object",
@@ -73034,7 +73814,15 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "accountId",
+          "account",
+          "groupId",
+          "group",
+          "role",
+          "createdAt"
+        ]
       },
       "ActivityPreference": {
         "type": "string",
@@ -73068,7 +73856,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "announcementEmailNotification",
+          "announcementPushNotification",
+          "activityEmailNotification",
+          "activityPushNotification",
+          "eventEmailNotification",
+          "eventPushNotification",
+          "updatedAt"
+        ]
       },
       "GroupRequestStatus": {
         "type": "string",
@@ -73092,7 +73889,13 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "status",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "GroupRequest": {
         "type": "object",
@@ -73109,7 +73912,13 @@
           "account": {
             "$ref": "#/components/schemas/BaseAccount"
           }
-        }
+        },
+        "required": [
+          "groupId",
+          "group",
+          "accountId",
+          "account"
+        ]
       },
       "BaseGroup": {
         "type": "object",
@@ -73162,7 +73971,21 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "active",
+          "access",
+          "description",
+          "featured",
+          "imageId",
+          "image",
+          "squareImageId",
+          "squareImage",
+          "_count"
+        ]
       },
       "Group": {
         "type": "object",
@@ -73192,7 +74015,15 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "externalUrl",
+          "meetingId",
+          "meeting",
+          "createdAt",
+          "updatedAt",
+          "_count"
+        ]
       },
       "GroupTranslation": {
         "type": "object",
@@ -73227,7 +74058,17 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "description",
+          "imageId",
+          "image",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseImage": {
         "type": "object",
@@ -73251,7 +74092,15 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "uri",
+          "width",
+          "height",
+          "createdAt"
+        ]
       },
       "Image": {
         "type": "object",
@@ -73269,7 +74118,13 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "type",
+          "description",
+          "moderation",
+          "updatedAt"
+        ]
       },
       "ExportStatus": {
         "type": "string",
@@ -73316,7 +74171,17 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "importId",
+          "values",
+          "status",
+          "message",
+          "debug",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "ImportItem": {
         "type": "object",
@@ -73324,7 +74189,10 @@
           "import": {
             "$ref": "#/components/schemas/BaseImport"
           }
-        }
+        },
+        "required": [
+          "import"
+        ]
       },
       "BaseImport": {
         "type": "object",
@@ -73348,7 +74216,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "type",
+          "overwrite",
+          "userId",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "Import": {
         "type": "object",
@@ -73362,7 +74238,12 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "user",
+          "tier",
+          "_count"
+        ]
       },
       "IntegrationType": {
         "type": "string",
@@ -73388,7 +74269,14 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "type",
+          "enabled",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "Integration": {
         "type": "object",
@@ -73408,7 +74296,13 @@
           "details": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "publicUrl",
+          "publicKey",
+          "secretKey",
+          "details"
+        ]
       },
       "BaseInterest": {
         "type": "object",
@@ -73434,7 +74328,14 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "featured",
+          "name",
+          "imageId",
+          "image"
+        ]
       },
       "Interest": {
         "type": "object",
@@ -73448,7 +74349,12 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt",
+          "_count"
+        ]
       },
       "BaseSearchList": {
         "type": "object",
@@ -73462,7 +74368,12 @@
           "name": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "organizationId",
+          "name"
+        ]
       },
       "SearchList": {
         "type": "object",
@@ -73476,7 +74387,12 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt",
+          "_count"
+        ]
       },
       "BaseSearchListValue": {
         "type": "object",
@@ -73494,7 +74410,13 @@
             "type": "number",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "searchListId",
+          "value",
+          "priority"
+        ]
       },
       "SearchListValue": {
         "type": "object",
@@ -73508,7 +74430,12 @@
           "searchList": {
             "$ref": "#/components/schemas/SearchList"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt",
+          "searchList"
+        ]
       },
       "SearchListConnectedQuestion": {
         "type": "object",
@@ -73566,7 +74493,19 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "label",
+          "type",
+          "required",
+          "questionType",
+          "parentName",
+          "parentId",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseInvoiceLineItem": {
         "type": "object",
@@ -73602,7 +74541,19 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "quantity",
+          "amount",
+          "taxCode",
+          "taxIncluded",
+          "taxLocation",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "InvoiceLineItem": {
         "type": "object",
@@ -73613,7 +74564,11 @@
           "invoice": {
             "$ref": "#/components/schemas/BaseInvoice"
           }
-        }
+        },
+        "required": [
+          "invoiceId",
+          "invoice"
+        ]
       },
       "InvoiceStatus": {
         "type": "string",
@@ -73662,7 +74617,18 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "alternateId",
+          "dueDate",
+          "sentDate",
+          "status",
+          "title",
+          "notes",
+          "paymentIntegrationId",
+          "paymentIntegration"
+        ]
       },
       "Invoice": {
         "type": "object",
@@ -73700,7 +74666,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "lineItems",
+          "accountId",
+          "account",
+          "eventId",
+          "event",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseLike": {
         "type": "object",
@@ -73711,7 +74686,11 @@
           "account": {
             "$ref": "#/components/schemas/BaseAccount"
           }
-        }
+        },
+        "required": [
+          "activity",
+          "account"
+        ]
       },
       "Like": {
         "type": "object",
@@ -73722,7 +74701,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseLinkPreview": {
         "type": "object",
@@ -73762,7 +74745,18 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "url",
+          "siteName",
+          "title",
+          "description",
+          "image",
+          "imageWidth",
+          "imageHeight",
+          "imageType",
+          "favicon"
+        ]
       },
       "LinkPreview": {
         "type": "object",
@@ -73816,7 +74810,24 @@
           "groupRequestAcceptedPush": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "newFollowerPush",
+          "likePush",
+          "commentPush",
+          "transferPush",
+          "transferEmail",
+          "eventReminderEmail",
+          "chatPush",
+          "chatUnreadEmail",
+          "chatUnreadPush",
+          "organizationAnnouncementEmail",
+          "organizationAnnouncementPush",
+          "groupInvitationEmail",
+          "groupInvitationPush",
+          "groupRequestAcceptedEmail",
+          "groupRequestAcceptedPush"
+        ]
       },
       "AdminNotificationPreferences": {
         "type": "object",
@@ -73839,7 +74850,15 @@
           "supportTicketCreatedEmail": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "supportTicketMessageAdmin",
+          "supportTicketMessageEmail",
+          "supportTicketAssignedAdmin",
+          "supportTicketAssignedEmail",
+          "supportTicketCreatedAdmin",
+          "supportTicketCreatedEmail"
+        ]
       },
       "BaseNotification": {
         "type": "object",
@@ -73883,7 +74902,18 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "type",
+          "read",
+          "receiverId",
+          "receiver",
+          "senderId",
+          "sender",
+          "orgMembershipId",
+          "orgMembership"
+        ]
       },
       "Notification": {
         "type": "object",
@@ -73926,7 +74956,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "like",
+          "activity",
+          "event",
+          "announcement",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseAdminNotification": {
         "type": "object",
@@ -73988,7 +75026,20 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "supportTicketId",
+          "type",
+          "source",
+          "read",
+          "orgMembershipId",
+          "orgMembership",
+          "senderAccountId",
+          "senderAccount",
+          "senderOrgMembershipId",
+          "senderOrgMembership"
+        ]
       },
       "AdminNotification": {
         "type": "object",
@@ -74014,7 +75065,14 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "supportTicket",
+          "externalUrl",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "NotificationStats": {
         "type": "object",
@@ -74031,7 +75089,13 @@
           "bySource": {
             "$ref": "#/components/schemas/Record"
           }
-        }
+        },
+        "required": [
+          "total",
+          "unread",
+          "byType",
+          "bySource"
+        ]
       },
       "ModulePermissions": {
         "type": "object",
@@ -74054,7 +75118,15 @@
           "del": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "superEnabled",
+          "enabled",
+          "read",
+          "create",
+          "update",
+          "del"
+        ]
       },
       "OrganizationMembership": {
         "type": "object",
@@ -74173,7 +75245,47 @@
           "supportTicketCreatedEmail": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "id",
+          "organizationId",
+          "userId",
+          "user",
+          "org",
+          "users",
+          "reports",
+          "dashboards",
+          "logs",
+          "activities",
+          "events",
+          "attendees",
+          "groups",
+          "accounts",
+          "tiers",
+          "channels",
+          "contents",
+          "threads",
+          "storage",
+          "support",
+          "sponsors",
+          "benefits",
+          "interests",
+          "advertisements",
+          "invoices",
+          "announcements",
+          "bookings",
+          "surveys",
+          "searchlists",
+          "streams",
+          "meetings",
+          "payments",
+          "supportTicketMessageAdmin",
+          "supportTicketMessageEmail",
+          "supportTicketAssignedAdmin",
+          "supportTicketAssignedEmail",
+          "supportTicketCreatedAdmin",
+          "supportTicketCreatedEmail"
+        ]
       },
       "BaseOrganization": {
         "type": "object",
@@ -74218,7 +75330,18 @@
           "locale": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "logoId",
+          "logo",
+          "iconId",
+          "icon",
+          "domain",
+          "locale"
+        ]
       },
       "Organization": {
         "type": "object",
@@ -74509,7 +75632,78 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "email",
+          "description",
+          "phone",
+          "address1",
+          "address2",
+          "city",
+          "state",
+          "country",
+          "zip",
+          "primaryColor",
+          "secondaryColor",
+          "clientTheme",
+          "facebook",
+          "twitter",
+          "instagram",
+          "linkedIn",
+          "tikTok",
+          "youtube",
+          "discord",
+          "timezone",
+          "iosAppLink",
+          "androidAppLink",
+          "createdAt",
+          "updatedAt",
+          "integrations",
+          "paymentIntegrations",
+          "appName",
+          "appIconId",
+          "appIcon",
+          "appAdaptiveIconId",
+          "appAdaptiveIcon",
+          "appSplashScreenId",
+          "appSplashScreen",
+          "appSplashScreenColor",
+          "darkIconId",
+          "darkIcon",
+          "darkLogoId",
+          "darkLogo",
+          "requirePhone",
+          "requestInternalRefId",
+          "internalRefIdName",
+          "authLayout",
+          "defaultAuthAction",
+          "userPoolId",
+          "userPoolClientId",
+          "userPoolHostedUrl",
+          "appBundleIdentifier",
+          "expoProjectId",
+          "expoSlug",
+          "emailAuthEnabled",
+          "appleAuthEnabled",
+          "facebookAuthEnabled",
+          "googleAuthEnabled",
+          "oAuth",
+          "maxFileGbs",
+          "maxImageCount",
+          "maxVideoMins",
+          "locales",
+          "inviteOnly",
+          "googleTagManagerId",
+          "meetingGroupCallAdminPreset",
+          "meetingGroupCallGuestPreset",
+          "meetingWebinarAdminPreset",
+          "meetingWebinarGuestPreset",
+          "meetingLivestreamAdminPreset",
+          "meetingLivestreamGuestPreset",
+          "options",
+          "autoResolveSupportTickets",
+          "autoResolveSupportTicketMessage"
+        ]
       },
       "OrganizationTrigger": {
         "type": "object",
@@ -74532,7 +75726,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "code",
+          "type",
+          "enabled",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "PurchaseStatus": {
         "type": "string",
@@ -74635,7 +75837,30 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "eventId",
+          "attendeeId",
+          "attendee",
+          "alternateId",
+          "ticketId",
+          "ticket",
+          "location",
+          "usedAt",
+          "transfer",
+          "responses",
+          "status",
+          "reservationId",
+          "reservation",
+          "matches",
+          "couponId",
+          "coupon",
+          "packageId",
+          "package",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventPass": {
         "type": "object",
@@ -74672,7 +75897,15 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "passAddOns",
+          "attendeeId",
+          "attendee",
+          "lineItem",
+          "payerId",
+          "payer"
+        ]
       },
       "BasePassAddOn": {
         "type": "object",
@@ -74689,7 +75922,13 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "addOnId",
+          "addOn",
+          "pass",
+          "createdAt"
+        ]
       },
       "PassAddOn": {
         "type": "object",
@@ -74700,7 +75939,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "pass",
+          "updatedAt"
+        ]
       },
       "BasePushDevice": {
         "type": "object",
@@ -74756,7 +75999,23 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "model",
+          "brand",
+          "osName",
+          "osVersion",
+          "deviceYearClass",
+          "manufacturer",
+          "supportedCpuArchitectures",
+          "totalMemory",
+          "pushService",
+          "login",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "PushDevice": {
         "type": "object",
@@ -74789,7 +76048,17 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "closed",
+          "preRegister",
+          "postRegister",
+          "accountId",
+          "account",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "RegistrationBypass": {
         "type": "object",
@@ -74918,7 +76187,37 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "type",
+          "currency",
+          "ticketId",
+          "ticket",
+          "stripeId",
+          "last4",
+          "debugId",
+          "address1",
+          "address2",
+          "city",
+          "country",
+          "state",
+          "zip",
+          "captured",
+          "accountId",
+          "eventId",
+          "registrationId",
+          "passTypeId",
+          "passId",
+          "sessionId",
+          "placeId",
+          "spaceId",
+          "membershipId",
+          "couponId",
+          "invoiceId",
+          "lineItems",
+          "createdAt"
+        ]
       },
       "PaymentIntegrationType": {
         "type": "string",
@@ -75090,7 +76389,34 @@
               "$ref": "#/components/schemas/Omit"
             }
           }
-        }
+        },
+        "required": [
+          "locationAddress1",
+          "locationAddress2",
+          "locationCity",
+          "locationState",
+          "locationCountry",
+          "locationZip",
+          "account",
+          "bypassedId",
+          "bypassedBy",
+          "refunds",
+          "refunded",
+          "deferredAmount",
+          "deferredDueDate",
+          "deferredInvoices",
+          "integration",
+          "event",
+          "registration",
+          "passType",
+          "pass",
+          "session",
+          "place",
+          "space",
+          "coupon",
+          "invoice",
+          "lineItems"
+        ]
       },
       "PaymentLineItemType": {
         "type": "string",
@@ -75184,7 +76510,31 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "type",
+          "parent",
+          "name",
+          "quantity",
+          "amount",
+          "paid",
+          "refunded",
+          "discount",
+          "deferred",
+          "salesTax",
+          "refundedSalesTax",
+          "paymentId",
+          "taxCode",
+          "taxIncluded",
+          "taxLocation",
+          "passId",
+          "packageId",
+          "passAddOnId",
+          "reservationId",
+          "accessId",
+          "bookingId"
+        ]
       },
       "PaymentLineItem": {
         "type": "object",
@@ -75248,7 +76598,17 @@
           "payment": {
             "$ref": "#/components/schemas/BasePayment"
           }
-        }
+        },
+        "required": [
+          "pass",
+          "package",
+          "passAddOn",
+          "reservation",
+          "access",
+          "booking",
+          "coupon",
+          "payment"
+        ]
       },
       "BasePaymentIntegration": {
         "type": "object",
@@ -75265,7 +76625,13 @@
           "name": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "currencyCode",
+          "type",
+          "name"
+        ]
       },
       "PaymentIntegration": {
         "type": "object",
@@ -75286,7 +76652,14 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "connectionId",
+          "merchantAccountId",
+          "enabled",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "TaxIntegrationType": {
         "type": "string",
@@ -75354,7 +76727,27 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "type",
+          "connectionId",
+          "sandbox",
+          "enabled",
+          "companyCode",
+          "commit",
+          "logging",
+          "passTaxCode",
+          "packageTaxCode",
+          "reservationTaxCode",
+          "addOnTaxCode",
+          "accessTaxCode",
+          "invoiceTaxCode",
+          "bookingTaxCode",
+          "couponTaxCode",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseTaxIntegrationLog": {
         "type": "object",
@@ -75377,7 +76770,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "type",
+          "success",
+          "duration",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "TaxIntegrationLog": {
         "type": "object",
@@ -75388,7 +76789,11 @@
           "response": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "request",
+          "response"
+        ]
       },
       "BaseRegistrationQuestionChoice": {
         "type": "object",
@@ -75436,7 +76841,17 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "id",
+          "value",
+          "text",
+          "description",
+          "supply",
+          "sortOrder",
+          "question",
+          "_count"
+        ]
       },
       "Question": {
         "type": "object",
@@ -75447,7 +76862,11 @@
           "value": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "value"
+        ]
       },
       "RegistrationQuestionChoice": {
         "type": "object",
@@ -75470,7 +76889,14 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "questionId",
+          "question",
+          "subQuestions",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseRegistrationQuestionChoiceSubQuestion": {
         "type": "object",
@@ -75487,7 +76913,13 @@
           "question": {
             "$ref": "#/components/schemas/BaseRegistrationQuestion"
           }
-        }
+        },
+        "required": [
+          "choiceId",
+          "choice",
+          "questionId",
+          "question"
+        ]
       },
       "RegistrationQuestionChoiceSubQuestion": {
         "type": "object",
@@ -75501,7 +76933,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "sortOrder",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "RegistrationQuestionChoiceTranslation": {
         "type": "object",
@@ -75529,7 +76966,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "value",
+          "text",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseRegistrationQuestionResponseChange": {
         "type": "object",
@@ -75559,7 +77005,17 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "newValue",
+          "oldValue",
+          "eventId",
+          "questionId",
+          "responseId",
+          "userId",
+          "createdAt"
+        ]
       },
       "RegistrationQuestionResponseChange": {
         "type": "object",
@@ -75575,7 +77031,11 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "response",
+          "user"
+        ]
       },
       "BaseRegistrationQuestionResponse": {
         "type": "object",
@@ -75592,7 +77052,13 @@
           "question": {
             "$ref": "#/components/schemas/BaseRegistrationQuestion"
           }
-        }
+        },
+        "required": [
+          "id",
+          "value",
+          "questionId",
+          "question"
+        ]
       },
       "RegistrationQuestionResponse": {
         "type": "object",
@@ -75609,7 +77075,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "changeLogs",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseRegistrationQuestion": {
         "type": "object",
@@ -75705,7 +77176,32 @@
           "unique": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "id",
+          "eventId",
+          "type",
+          "name",
+          "required",
+          "description",
+          "label",
+          "placeholder",
+          "default",
+          "searchListId",
+          "searchList",
+          "span",
+          "mutable",
+          "min",
+          "max",
+          "masked",
+          "validation",
+          "validationMessage",
+          "locationOption",
+          "sortOrder",
+          "featured",
+          "choices",
+          "unique"
+        ]
       },
       "RegistrationQuestion": {
         "type": "object",
@@ -75737,7 +77233,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "sections",
+          "followups",
+          "subQuestionOf",
+          "dashboardVisibility",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "RegistrationQuestionTranslation": {
         "type": "object",
@@ -75766,7 +77270,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "label",
+          "placeholder",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseRegistrationSectionQuestion": {
         "type": "object",
@@ -75786,7 +77299,14 @@
           "sortOrder": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "sectionId",
+          "section",
+          "questionId",
+          "question",
+          "sortOrder"
+        ]
       },
       "RegistrationSectionQuestion": {
         "type": "object",
@@ -75797,7 +77317,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseRegistrationFollowupQuestion": {
         "type": "object",
@@ -75817,7 +77341,14 @@
           "sortOrder": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "followupId",
+          "followup",
+          "questionId",
+          "question",
+          "sortOrder"
+        ]
       },
       "RegistrationFollowupQuestion": {
         "type": "object",
@@ -75828,7 +77359,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseRegistrationSection": {
         "type": "object",
@@ -75852,7 +77387,15 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "id",
+          "eventId",
+          "name",
+          "description",
+          "sortOrder",
+          "_count"
+        ]
       },
       "RegistrationSection": {
         "type": "object",
@@ -75893,7 +77436,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "questions",
+          "eventTickets",
+          "eventAddOns",
+          "accountTiers",
+          "disallowedTiers",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseRegistrationFollowup": {
         "type": "object",
@@ -75917,7 +77469,15 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "id",
+          "eventId",
+          "name",
+          "description",
+          "sortOrder",
+          "_count"
+        ]
       },
       "RegistrationFollowup": {
         "type": "object",
@@ -75958,7 +77518,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "questions",
+          "passTypes",
+          "eventAddOns",
+          "accountTiers",
+          "disallowedTiers",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "RegistrationSectionTranslation": {
         "type": "object",
@@ -75982,7 +77551,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "RegistrationFollowupTranslation": {
         "type": "object",
@@ -76006,7 +77583,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseEventAttendee": {
         "type": "object",
@@ -76029,7 +77614,15 @@
           "event": {
             "$ref": "#/components/schemas/BaseEvent"
           }
-        }
+        },
+        "required": [
+          "id",
+          "alternateId",
+          "accountId",
+          "account",
+          "eventId",
+          "event"
+        ]
       },
       "EventAttendee": {
         "type": "object",
@@ -76055,7 +77648,14 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "passes",
+          "packages",
+          "createdAt",
+          "updatedAt",
+          "_count"
+        ]
       },
       "ReportType": {
         "type": "string",
@@ -76149,7 +77749,16 @@
           "rowLink": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "type",
+          "category",
+          "name",
+          "description",
+          "dateType",
+          "favorite"
+        ]
       },
       "StandardReport": {
         "type": "object",
@@ -76170,7 +77779,12 @@
             "type": "number",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "rowData",
+          "colDefs",
+          "nextCursor"
+        ]
       },
       "CustomReport": {
         "type": "object",
@@ -76231,7 +77845,23 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "gridState",
+          "columns",
+          "filters",
+          "charts",
+          "advancedFilter",
+          "standard",
+          "user",
+          "shared",
+          "sharedUsers",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "SearchField": {
         "type": "object",
@@ -76276,7 +77906,20 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "subtext",
+          "search",
+          "accountId",
+          "eventId",
+          "groupId",
+          "contentId",
+          "channelId",
+          "threadId",
+          "updatedAt"
+        ]
       },
       "Self": {
         "type": "object",
@@ -76322,7 +77965,18 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "description",
+          "longDescription",
+          "startDate",
+          "endDate",
+          "imageId",
+          "image"
+        ]
       },
       "Series": {
         "type": "object",
@@ -76342,7 +77996,14 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "templateId",
+          "template",
+          "sortOrder",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseEventSession": {
         "type": "object",
@@ -76438,7 +78099,32 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "description",
+          "longDescription",
+          "imageId",
+          "image",
+          "startTime",
+          "endTime",
+          "allowQuickRegister",
+          "tracks",
+          "nonSession",
+          "visible",
+          "access",
+          "location",
+          "registrationEnabled",
+          "price",
+          "limit",
+          "taxCode",
+          "taxIncluded",
+          "taxLocation",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventSession": {
         "type": "object",
@@ -76478,7 +78164,17 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "roundName",
+          "matchName",
+          "sortOrder",
+          "eventId",
+          "event",
+          "speakers",
+          "meetingId",
+          "meeting"
+        ]
       },
       "EventSessionTranslation": {
         "type": "object",
@@ -76518,7 +78214,18 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "description",
+          "longDescription",
+          "imageId",
+          "image",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseEventSessionLocation": {
         "type": "object",
@@ -76561,7 +78268,18 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "address1",
+          "address2",
+          "zip",
+          "city",
+          "state",
+          "country",
+          "image"
+        ]
       },
       "EventSessionLocation": {
         "type": "object",
@@ -76576,7 +78294,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventSessionLocationTranslation": {
         "type": "object",
@@ -76602,7 +78325,15 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseEventSessionAccess": {
         "type": "object",
@@ -76628,7 +78359,15 @@
               "$ref": "#/components/schemas/BaseEventSessionQuestionResponse"
             }
           }
-        }
+        },
+        "required": [
+          "id",
+          "session",
+          "passId",
+          "pass",
+          "status",
+          "responses"
+        ]
       },
       "EventSessionAccess": {
         "type": "object",
@@ -76647,7 +78386,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "lineItem",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventSessionQuestionType": {
         "type": "string",
@@ -76712,7 +78456,17 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "id",
+          "value",
+          "text",
+          "description",
+          "supply",
+          "sortOrder",
+          "question",
+          "_count"
+        ]
       },
       "EventSessionQuestionChoice": {
         "type": "object",
@@ -76735,7 +78489,14 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "questionId",
+          "question",
+          "subQuestions",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseEventSessionQuestionChoiceSubQuestion": {
         "type": "object",
@@ -76752,7 +78513,13 @@
           "question": {
             "$ref": "#/components/schemas/BaseEventSessionQuestion"
           }
-        }
+        },
+        "required": [
+          "choiceId",
+          "choice",
+          "questionId",
+          "question"
+        ]
       },
       "EventSessionQuestionChoiceSubQuestion": {
         "type": "object",
@@ -76766,7 +78533,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "sortOrder",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventSessionQuestionChoiceTranslation": {
         "type": "object",
@@ -76794,7 +78566,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "value",
+          "text",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseEventSessionQuestionResponseChange": {
         "type": "object",
@@ -76824,7 +78605,17 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "newValue",
+          "oldValue",
+          "eventId",
+          "questionId",
+          "responseId",
+          "userId",
+          "createdAt"
+        ]
       },
       "EventSessionQuestionResponseChange": {
         "type": "object",
@@ -76835,7 +78626,11 @@
           "user": {
             "$ref": "#/components/schemas/BaseUser"
           }
-        }
+        },
+        "required": [
+          "response",
+          "user"
+        ]
       },
       "BaseEventSessionQuestionResponse": {
         "type": "object",
@@ -76852,7 +78647,13 @@
           "question": {
             "$ref": "#/components/schemas/BaseEventSessionQuestion"
           }
-        }
+        },
+        "required": [
+          "id",
+          "value",
+          "questionId",
+          "question"
+        ]
       },
       "EventSessionQuestionResponse": {
         "type": "object",
@@ -76869,7 +78670,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "changeLogs",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseEventSessionQuestion": {
         "type": "object",
@@ -76967,7 +78773,32 @@
             "type": "number",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "eventId",
+          "type",
+          "name",
+          "required",
+          "description",
+          "label",
+          "placeholder",
+          "default",
+          "searchListId",
+          "searchList",
+          "mutable",
+          "min",
+          "max",
+          "masked",
+          "validation",
+          "validationMessage",
+          "locationOption",
+          "sortOrder",
+          "featured",
+          "choices",
+          "price",
+          "supply"
+        ]
       },
       "EventSessionQuestion": {
         "type": "object",
@@ -76996,7 +78827,15 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "sections",
+          "subQuestionOf",
+          "dashboardVisibility",
+          "createdAt",
+          "updatedAt",
+          "_count"
+        ]
       },
       "EventSessionQuestionTranslation": {
         "type": "object",
@@ -77025,7 +78864,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "label",
+          "placeholder",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseEventSessionSectionQuestion": {
         "type": "object",
@@ -77045,7 +78893,14 @@
           "sortOrder": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "sectionId",
+          "section",
+          "questionId",
+          "question",
+          "sortOrder"
+        ]
       },
       "EventSessionSectionQuestion": {
         "type": "object",
@@ -77056,7 +78911,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseEventSessionSection": {
         "type": "object",
@@ -77080,7 +78939,15 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "id",
+          "eventId",
+          "name",
+          "description",
+          "sortOrder",
+          "_count"
+        ]
       },
       "EventSessionSection": {
         "type": "object",
@@ -77097,7 +78964,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "questions",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventSessionSectionTranslation": {
         "type": "object",
@@ -77121,7 +78993,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseEventSpeaker": {
         "type": "object",
@@ -77178,7 +79058,22 @@
           "visible": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "firstName",
+          "lastName",
+          "fullName",
+          "bio",
+          "title",
+          "company",
+          "companyBio",
+          "label",
+          "imageId",
+          "image",
+          "visible"
+        ]
       },
       "EventSpeaker": {
         "type": "object",
@@ -77231,7 +79126,22 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "sessions",
+          "eventId",
+          "event",
+          "isHost",
+          "priority",
+          "website",
+          "facebook",
+          "twitter",
+          "instagram",
+          "linkedIn",
+          "tikTok",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventSpeakerTranslation": {
         "type": "object",
@@ -77256,7 +79166,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "title",
+          "bio",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseLevel": {
         "type": "object",
@@ -77296,7 +79214,18 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "subtitle",
+          "description",
+          "color",
+          "scale",
+          "imageId",
+          "image"
+        ]
       },
       "Level": {
         "type": "object",
@@ -77313,7 +79242,13 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "sortOrder",
+          "createdAt",
+          "updatedAt",
+          "_count"
+        ]
       },
       "SponsorshipLevelTranslation": {
         "type": "object",
@@ -77341,7 +79276,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "subtitle",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "RecordingAction": {
         "oneOf": [
@@ -77438,7 +79382,10 @@
           "private_key": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "type"
+        ]
       },
       "MeetingType": {
         "type": "string",
@@ -77460,7 +79407,12 @@
           "type": {
             "$ref": "#/components/schemas/MeetingType"
           }
-        }
+        },
+        "required": [
+          "id",
+          "title",
+          "type"
+        ]
       },
       "Meeting": {
         "type": "object",
@@ -77538,7 +79490,15 @@
           "summarize_on_end": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "updated_at",
+          "created_at",
+          "record_on_start",
+          "live_stream_on_start",
+          "persist_chat",
+          "summarize_on_end"
+        ]
       },
       "MeetingParticipant": {
         "type": "object",
@@ -77570,7 +79530,16 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "custom_participant_id",
+          "preset_name",
+          "created_at",
+          "updated_at",
+          "account"
+        ]
       },
       "BaseMeetingSessionParticipant": {
         "type": "object",
@@ -77623,7 +79592,22 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "user_id",
+          "custom_participant_id",
+          "display_name",
+          "session_id",
+          "joined_at",
+          "left_at",
+          "duration",
+          "created_at",
+          "updated_at",
+          "role",
+          "preset_name",
+          "account"
+        ]
       },
       "MeetingSessionParticipant": {
         "type": "object",
@@ -77714,7 +79698,22 @@
               "$ref": "#/components/schemas/MeetingSession"
             }
           }
-        }
+        },
+        "required": [
+          "id",
+          "associated_id",
+          "meeting_display_name",
+          "type",
+          "status",
+          "live_participants",
+          "max_concurrent_participants",
+          "minutes_consumed",
+          "organization_id",
+          "started_at",
+          "created_at",
+          "updated_at",
+          "breakout_rooms"
+        ]
       },
       "MeetingSessionChatDownload": {
         "type": "object",
@@ -77725,7 +79724,11 @@
           "chat_download_url_expiry": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "chat_download_url",
+          "chat_download_url_expiry"
+        ]
       },
       "MeetingSessionTranscriptDownload": {
         "type": "object",
@@ -77739,7 +79742,12 @@
           "transcript_download_url_expiry": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "sessionId",
+          "transcript_download_url",
+          "transcript_download_url_expiry"
+        ]
       },
       "MeetingSessionSummaryDownload": {
         "type": "object",
@@ -77753,7 +79761,12 @@
           "summary_download_url_expiry": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "sessionId",
+          "summary_download_url",
+          "summary_download_url_expiry"
+        ]
       },
       "Livestream": {
         "type": "object",
@@ -77809,7 +79822,19 @@
           "disabled": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "status",
+          "ingest_server",
+          "stream_key",
+          "playback_url",
+          "meeting_id",
+          "created_at",
+          "updated_at",
+          "disabled"
+        ]
       },
       "LivestreamSession": {
         "type": "object",
@@ -77841,7 +79866,18 @@
           "ingest_seconds": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "livestream_id",
+          "err_message",
+          "invoked_time",
+          "started_time",
+          "stopped_time",
+          "created_at",
+          "updated_at",
+          "ingest_seconds"
+        ]
       },
       "BaseMeetingRecording": {
         "type": "object",
@@ -77888,7 +79924,21 @@
           "recording_duration": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "id",
+          "meeting_id",
+          "download_url",
+          "download_url_expiry",
+          "file_size",
+          "session_id",
+          "output_file_name",
+          "status",
+          "invoked_time",
+          "started_time",
+          "stopped_time",
+          "recording_duration"
+        ]
       },
       "MeetingRecording": {
         "type": "object",
@@ -77909,7 +79959,13 @@
           "updated_at": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "created_at",
+          "updated_at"
+        ]
       },
       "Preset": {
         "type": "object",
@@ -77933,7 +79989,14 @@
           "requireAuth": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "passcode",
+          "preset_name",
+          "requireAuth"
+        ]
       },
       "MeetingLink": {
         "type": "object",
@@ -77944,7 +80007,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseSupportTicket": {
         "type": "object",
@@ -77972,7 +80039,15 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "type",
+          "email",
+          "request",
+          "state",
+          "message"
+        ]
       },
       "SupportTicket": {
         "type": "object",
@@ -78042,7 +80117,21 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "accountId",
+          "account",
+          "orgMembershipId",
+          "orgMembership",
+          "eventId",
+          "event",
+          "activityLogs",
+          "viewer",
+          "lastAccountReadAt",
+          "lastMessageAt",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseSupportTicketNote": {
         "type": "object",
@@ -78059,7 +80148,13 @@
           "orgMembership": {
             "$ref": "#/components/schemas/OrganizationMembership"
           }
-        }
+        },
+        "required": [
+          "id",
+          "text",
+          "orgMembershipId",
+          "orgMembership"
+        ]
       },
       "SupportTicketNote": {
         "type": "object",
@@ -78073,7 +80168,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "supportTicketId",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseSupportTicketMessage": {
         "type": "object",
@@ -78114,7 +80214,17 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "supportTicketId",
+          "source",
+          "message",
+          "accountId",
+          "account",
+          "orgMembershipId",
+          "orgMembership"
+        ]
       },
       "SupportTicketMessage": {
         "type": "object",
@@ -78125,7 +80235,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseSupportTicketActivityLog": {
         "type": "object",
@@ -78221,7 +80335,26 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "supportTicketId",
+          "type",
+          "source",
+          "accountId",
+          "orgMembershipId",
+          "orgMembership",
+          "previousState",
+          "newState",
+          "previousType",
+          "newType",
+          "previousAssignedId",
+          "previousAssigned",
+          "newAssignedId",
+          "newAssigned",
+          "eventId",
+          "createdAt"
+        ]
       },
       "SupportTicketActivityLog": {
         "type": "object",
@@ -78242,7 +80375,11 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "account",
+          "event"
+        ]
       },
       "BaseSupportTicketViewer": {
         "type": "object",
@@ -78269,7 +80406,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "supportTicketId",
+          "orgMembershipId",
+          "orgMembership",
+          "lastReadAt",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "SupportTicketViewer": {
         "type": "object",
@@ -78319,7 +80465,19 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "priority",
+          "firstName",
+          "lastName",
+          "nickName",
+          "title",
+          "startDate",
+          "imageId",
+          "image"
+        ]
       },
       "TeamMember": {
         "type": "object",
@@ -78366,7 +80524,20 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "email",
+          "phone",
+          "bio",
+          "linkedIn",
+          "facebook",
+          "instagram",
+          "twitter",
+          "tikTok",
+          "discord",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseEventPassType": {
         "type": "object",
@@ -78467,7 +80638,37 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "active",
+          "cancelable",
+          "transferable",
+          "featured",
+          "visibility",
+          "name",
+          "shortDescription",
+          "longDescription",
+          "price",
+          "accessLevel",
+          "featuredImageId",
+          "featuredImage",
+          "supply",
+          "minQuantityPerSale",
+          "maxQuantityPerSale",
+          "emailDomains",
+          "enableCoupons",
+          "minCouponQuantity",
+          "maxCouponQuantity",
+          "requireCoupon",
+          "taxCode",
+          "taxIncluded",
+          "taxLocation",
+          "createdAt",
+          "updatedAt",
+          "requiredPassTypeId"
+        ]
       },
       "EventPassType": {
         "type": "object",
@@ -78509,7 +80710,17 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "overrideStartDate",
+          "sortOrder",
+          "event",
+          "allowedTiers",
+          "disallowedTiers",
+          "groupPassDescription",
+          "requiredPassType",
+          "_count"
+        ]
       },
       "BaseEventPassTypePriceSchedule": {
         "type": "object",
@@ -78539,7 +80750,17 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "ticketId",
+          "price",
+          "name",
+          "startDate",
+          "endDate",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventPassTypePriceSchedule": {
         "type": "object",
@@ -78569,7 +80790,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "passTypeId",
+          "percentage",
+          "startDate",
+          "endDate",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventPassTypeRefundSchedule": {
         "type": "object",
@@ -78600,7 +80830,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "shortDescription",
+          "longDescription",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseEventTrack": {
         "type": "object",
@@ -78621,7 +80860,14 @@
           "color": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "description",
+          "color"
+        ]
       },
       "EventTrack": {
         "type": "object",
@@ -78635,7 +80881,12 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt",
+          "_count"
+        ]
       },
       "EventTrackTranslation": {
         "type": "object",
@@ -78659,7 +80910,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseTransferLog": {
         "type": "object",
@@ -78679,7 +80938,14 @@
           "toRegistration": {
             "$ref": "#/components/schemas/BaseEventAttendee"
           }
-        }
+        },
+        "required": [
+          "id",
+          "fromRegistrationId",
+          "fromRegistration",
+          "toRegistrationId",
+          "toRegistration"
+        ]
       },
       "TransferLog": {
         "type": "object",
@@ -78705,7 +80971,14 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "purchaseId",
+          "purchase",
+          "userId",
+          "user",
+          "createdAt"
+        ]
       },
       "BaseTransfer": {
         "type": "object",
@@ -78722,7 +80995,13 @@
           "purchase": {
             "$ref": "#/components/schemas/BaseEventPass"
           }
-        }
+        },
+        "required": [
+          "id",
+          "email",
+          "purchaseId",
+          "purchase"
+        ]
       },
       "Transfer": {
         "type": "object",
@@ -78733,7 +81012,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseUser": {
         "type": "object",
@@ -78761,7 +81044,16 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "email",
+          "firstName",
+          "lastName",
+          "title",
+          "imageUrl",
+          "termsAccepted"
+        ]
       },
       "User": {
         "type": "object",
@@ -78776,7 +81068,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "phone",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "UserApiKey": {
         "type": "object",
@@ -78811,7 +81108,17 @@
           "lastUsedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "publicPart",
+          "key",
+          "name",
+          "startDate",
+          "endDate",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "VideoSource": {
         "type": "string",
@@ -78860,7 +81167,20 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "status",
+          "source",
+          "width",
+          "height",
+          "thumbnailUrl",
+          "previewUrl",
+          "readyToStream",
+          "duration",
+          "createdAt"
+        ]
       },
       "Video": {
         "type": "object",
@@ -78881,7 +81201,13 @@
             "type": "number",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "downloadUrl",
+          "hlsUrl",
+          "dashUrl",
+          "thumbnailPct"
+        ]
       },
       "BaseChannelContentGuest": {
         "type": "object",
@@ -78983,7 +81309,33 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "contentId",
+          "accountId",
+          "account",
+          "type",
+          "name",
+          "title",
+          "bio",
+          "company",
+          "companyLink",
+          "companyBio",
+          "imageId",
+          "image",
+          "website",
+          "facebook",
+          "twitter",
+          "instagram",
+          "linkedIn",
+          "tikTok",
+          "youtube",
+          "discord",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "ChannelContentGuest": {
         "type": "object",
@@ -79016,7 +81368,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "title",
+          "bio",
+          "companyBio",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseFile": {
         "type": "object",
@@ -79048,7 +81409,17 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "r2Path",
+          "source",
+          "kilobytes",
+          "public",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "File": {
         "type": "object",
@@ -79100,7 +81471,21 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "organizationId",
+          "threadId",
+          "thread",
+          "status",
+          "role",
+          "invitedById",
+          "invitedBy",
+          "invitedId",
+          "invited",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "ThreadType": {
         "type": "string",
@@ -79146,7 +81531,17 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "subject",
+          "imageId",
+          "image",
+          "type",
+          "lastMessageAt",
+          "lastMessage",
+          "createdAt"
+        ]
       },
       "Thread": {
         "type": "object",
@@ -79182,7 +81577,13 @@
           "emojiName": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "messageId",
+          "accountId",
+          "emojiName"
+        ]
       },
       "ThreadMessageReaction": {
         "type": "object",
@@ -79205,7 +81606,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "organizationId",
+          "threadId",
+          "message",
+          "account",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseThreadMessage": {
         "type": "object",
@@ -79238,7 +81647,16 @@
           "sentAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "body",
+          "accountId",
+          "viewer",
+          "createdAt",
+          "editedAt",
+          "sentAt"
+        ]
       },
       "ThreadMessage": {
         "type": "object",
@@ -79288,7 +81706,17 @@
               "$ref": "#/components/schemas/BaseVideo"
             }
           }
-        }
+        },
+        "required": [
+          "type",
+          "reactions",
+          "entities",
+          "replyToId",
+          "replyTo",
+          "files",
+          "images",
+          "videos"
+        ]
       },
       "BaseThreadMessageEntity": {
         "type": "object",
@@ -79320,7 +81748,13 @@
           "linkPreview": {
             "$ref": "#/components/schemas/BaseLinkPreview"
           }
-        }
+        },
+        "required": [
+          "type",
+          "startIndex",
+          "endIndex",
+          "marks"
+        ]
       },
       "ThreadMessageEntity": {
         "type": "object",
@@ -79348,7 +81782,15 @@
           "blocked": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "id",
+          "accountId",
+          "lastReadAt",
+          "notifications",
+          "account",
+          "blocked"
+        ]
       },
       "ThreadMember": {
         "type": "object",
@@ -79359,7 +81801,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "ThreadCircleAccountRole": {
         "type": "string",
@@ -79394,7 +81840,14 @@
           "type": {
             "$ref": "#/components/schemas/ThreadCircleType"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "createdAt",
+          "updatedAt",
+          "type"
+        ]
       },
       "ThreadCircle": {
         "type": "object",
@@ -79412,7 +81865,12 @@
           "account": {
             "$ref": "#/components/schemas/BaseAccount"
           }
-        }
+        },
+        "required": [
+          "accountId",
+          "role",
+          "account"
+        ]
       },
       "ThreadCircleAccount": {
         "type": "object",
@@ -79433,7 +81891,13 @@
           "name": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "clientId",
+          "clientSecret",
+          "currencyCode",
+          "name"
+        ]
       },
       "BraintreeActivationFormParams": {
         "type": "object",
@@ -79453,7 +81917,14 @@
           "name": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "clientId",
+          "clientPublicKey",
+          "clientSecret",
+          "currencyCode",
+          "name"
+        ]
       },
       "AuthorizeNetActivationFormParams": {
         "type": "object",
@@ -79473,7 +81944,14 @@
           "name": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "clientId",
+          "clientPublicKey",
+          "clientSecret",
+          "currencyCode",
+          "name"
+        ]
       },
       "StripeActivationFormParams": {
         "type": "object",
@@ -79490,7 +81968,13 @@
           "name": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "clientPublicKey",
+          "clientSecret",
+          "currencyCode",
+          "name"
+        ]
       },
       "BaseSchedule": {
         "type": "object",
@@ -79507,7 +81991,13 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "name",
+          "date",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "Schedule": {
         "type": "object",
@@ -79555,7 +82045,21 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "sub",
+          "userPoolId",
+          "username",
+          "email",
+          "status",
+          "enabled",
+          "verified",
+          "firstName",
+          "lastName",
+          "internalRefId",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "Login": {
         "type": "object",
@@ -79563,7 +82067,10 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "_count"
+        ]
       },
       "DomainDetails": {
         "type": "object",
@@ -79571,7 +82078,10 @@
           "name": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "BaseEventRoomType": {
         "type": "object",
@@ -79618,7 +82128,19 @@
           "taxLocation": {
             "$ref": "#/components/schemas/TaxLocationType"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "price",
+          "pricePerNight",
+          "image",
+          "passTypes",
+          "addOns",
+          "taxCode",
+          "taxIncluded",
+          "taxLocation"
+        ]
       },
       "EventRoomType": {
         "type": "object",
@@ -79693,7 +82215,26 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "sortOrder",
+          "description",
+          "supply",
+          "minPasses",
+          "maxPasses",
+          "minStart",
+          "defaultStart",
+          "maxStart",
+          "minEnd",
+          "defaultEnd",
+          "maxEnd",
+          "allowedTiers",
+          "disallowedTiers",
+          "rooms",
+          "createdAt",
+          "updatedAt",
+          "_count"
+        ]
       },
       "EventRoomTypeTranslation": {
         "type": "object",
@@ -79716,7 +82257,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseRoom": {
         "type": "object",
@@ -79733,7 +82282,13 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "roomName",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "Room": {
         "type": "object",
@@ -79752,7 +82307,11 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "roomTypes",
+          "reservation"
+        ]
       },
       "BaseEventRoomTypeReservation": {
         "type": "object",
@@ -79786,7 +82345,17 @@
           "room": {
             "$ref": "#/components/schemas/BaseRoom"
           }
-        }
+        },
+        "required": [
+          "id",
+          "start",
+          "end",
+          "eventRoomTypeId",
+          "eventRoomType",
+          "roomId",
+          "passes",
+          "room"
+        ]
       },
       "EventRoomTypeReservation": {
         "type": "object",
@@ -79811,7 +82380,13 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "passes",
+          "lineItem",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseEventRoomTypePassTypeDetails": {
         "type": "object",
@@ -79864,7 +82439,22 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "passTypeId",
+          "enabled",
+          "premium",
+          "includedNights",
+          "minPasses",
+          "maxPasses",
+          "minStart",
+          "defaultStart",
+          "maxStart",
+          "minEnd",
+          "defaultEnd",
+          "maxEnd"
+        ]
       },
       "EventRoomTypePassTypeDetails": {
         "type": "object",
@@ -79875,7 +82465,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseEventRoomTypeAddOnDetails": {
         "type": "object",
@@ -79910,7 +82504,17 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "addOnId",
+          "minStart",
+          "defaultStart",
+          "maxStart",
+          "minEnd",
+          "defaultEnd",
+          "maxEnd"
+        ]
       },
       "EventRoomTypeAddOnDetails": {
         "type": "object",
@@ -79921,7 +82525,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "LeadStatus": {
         "type": "string",
@@ -79955,7 +82563,15 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "firstName",
+          "lastName",
+          "shareAccount",
+          "status",
+          "createdAt"
+        ]
       },
       "Lead": {
         "type": "object",
@@ -80017,7 +82633,22 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "eventId",
+          "event",
+          "email",
+          "phone",
+          "website",
+          "facebook",
+          "instagram",
+          "linkedIn",
+          "twitter",
+          "tikTok",
+          "note",
+          "attributes",
+          "updatedAt"
+        ]
       },
       "DayOfWeek": {
         "type": "string",
@@ -80076,7 +82707,19 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "timezone",
+          "description",
+          "image",
+          "sortOrder",
+          "visible",
+          "paymentIntegrationId",
+          "paymentIntegration"
+        ]
       },
       "BookingPlace": {
         "type": "object",
@@ -80107,7 +82750,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "address1",
+          "address2",
+          "city",
+          "state",
+          "zip",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseBookingSpace": {
         "type": "object",
@@ -80166,7 +82818,24 @@
           "taxLocation": {
             "$ref": "#/components/schemas/TaxLocationType"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "supply",
+          "slotDuration",
+          "price",
+          "description",
+          "image",
+          "start",
+          "end",
+          "sortOrder",
+          "visible",
+          "taxCode",
+          "taxIncluded",
+          "taxLocation"
+        ]
       },
       "BookingSpace": {
         "type": "object",
@@ -80185,7 +82854,13 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "confirmationBody",
+          "confirmationReplyTo",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BookingPlaceTranslation": {
         "type": "object",
@@ -80210,7 +82885,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BookingSpaceTranslation": {
         "type": "object",
@@ -80235,7 +82918,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseBookingSpaceAvailability": {
         "type": "object",
@@ -80252,7 +82943,13 @@
           "endTime": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "dayOfWeek",
+          "startTime",
+          "endTime"
+        ]
       },
       "BookingSpaceAvailability": {
         "type": "object",
@@ -80263,7 +82960,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseBookingSpaceBlackout": {
         "type": "object",
@@ -80277,7 +82978,12 @@
           "end": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "start",
+          "end"
+        ]
       },
       "BookingSpaceBlackout": {
         "type": "object",
@@ -80288,7 +82994,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseBooking": {
         "type": "object",
@@ -80320,7 +83030,18 @@
           "space": {
             "$ref": "#/components/schemas/BaseBookingSpace"
           }
-        }
+        },
+        "required": [
+          "id",
+          "alternateId",
+          "placeId",
+          "day",
+          "time",
+          "duration",
+          "status",
+          "account",
+          "space"
+        ]
       },
       "Booking": {
         "type": "object",
@@ -80339,7 +83060,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "lineItem",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BookingSlot": {
         "type": "object",
@@ -80351,7 +83077,11 @@
             "type": "number",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "time",
+          "supply"
+        ]
       },
       "WidgetCategory": {
         "type": "string",
@@ -80392,7 +83122,15 @@
           "defaultSize": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "name",
+          "description",
+          "type",
+          "endpoint",
+          "requiresDateRange",
+          "category"
+        ]
       },
       "BaseDashboardWidget": {
         "type": "object",
@@ -80415,7 +83153,15 @@
           "h": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "id",
+          "endpoint",
+          "x",
+          "y",
+          "w",
+          "h"
+        ]
       },
       "DashboardWidget": {
         "type": "object",
@@ -80446,7 +83192,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "organizationId",
+          "eventId",
+          "userId",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "Dashboard": {
         "type": "object",
@@ -80457,7 +83212,10 @@
               "$ref": "#/components/schemas/BaseDashboardWidget"
             }
           }
-        }
+        },
+        "required": [
+          "widgets"
+        ]
       },
       "BaseEventPackage": {
         "type": "object",
@@ -80503,7 +83261,20 @@
           "taxLocation": {
             "$ref": "#/components/schemas/TaxLocationType"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "price",
+          "isActive",
+          "imageId",
+          "image",
+          "sortOrder",
+          "taxCode",
+          "taxIncluded",
+          "taxLocation"
+        ]
       },
       "EventPackage": {
         "type": "object",
@@ -80520,7 +83291,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "passes",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventPackageTranslation": {
         "type": "object",
@@ -80539,7 +83315,13 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "description"
+        ]
       },
       "BaseEventPackagePass": {
         "type": "object",
@@ -80556,7 +83338,13 @@
           "quantity": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "id",
+          "passTypeId",
+          "passType",
+          "quantity"
+        ]
       },
       "EventPackagePass": {
         "type": "object",
@@ -80567,7 +83355,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseAttendeePackage": {
         "type": "object",
@@ -80590,7 +83382,15 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "attendeeId",
+          "packageId",
+          "package",
+          "status",
+          "createdAt"
+        ]
       },
       "AttendeePackage": {
         "type": "object",
@@ -80612,7 +83412,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "passes",
+          "lineItem",
+          "updatedAt"
+        ]
       },
       "BaseEventMediaItem": {
         "type": "object",
@@ -80667,7 +83472,19 @@
           "sortOrder": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "imageId",
+          "image",
+          "videoId",
+          "video",
+          "fileId",
+          "file",
+          "sortOrder"
+        ]
       },
       "EventMediaItem": {
         "type": "object",
@@ -80684,7 +83501,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "allowedPassTypes",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseEventSponsorshipLevel": {
         "type": "object",
@@ -80705,7 +83527,14 @@
           "sponsorsPerRow": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "description",
+          "sponsorsPerRow"
+        ]
       },
       "EventSponsorshipLevel": {
         "type": "object",
@@ -80725,7 +83554,13 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "sortOrder",
+          "sponsors",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventSponsorshipLevelTranslation": {
         "type": "object",
@@ -80750,7 +83585,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseEventSponsorship": {
         "type": "object",
@@ -80788,7 +83631,16 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "description",
+          "url",
+          "account",
+          "image"
+        ]
       },
       "EventSponsorship": {
         "type": "object",
@@ -80799,7 +83651,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "EventSponsorshipTranslation": {
         "type": "object",
@@ -80824,7 +83680,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseSurvey": {
         "type": "object",
@@ -80851,7 +83715,16 @@
           "submissionsPerAccount": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "description",
+          "image",
+          "requireAuth",
+          "submissionsPerAccount"
+        ]
       },
       "Survey": {
         "type": "object",
@@ -80870,7 +83743,13 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "replyTo",
+          "emailBody",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "SurveyTranslation": {
         "type": "object",
@@ -80894,7 +83773,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseSurveySubmission": {
         "type": "object",
@@ -80919,7 +83806,13 @@
               "$ref": "#/components/schemas/BaseSurveyQuestionResponse"
             }
           }
-        }
+        },
+        "required": [
+          "id",
+          "account",
+          "status",
+          "responses"
+        ]
       },
       "SurveySubmission": {
         "type": "object",
@@ -80930,7 +83823,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "SurveyQuestionType": {
         "type": "string",
@@ -80994,7 +83891,17 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "id",
+          "value",
+          "text",
+          "description",
+          "supply",
+          "sortOrder",
+          "question",
+          "_count"
+        ]
       },
       "SurveyQuestionChoice": {
         "type": "object",
@@ -81017,7 +83924,14 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "questionId",
+          "question",
+          "subQuestions",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseSurveyQuestionChoiceSubQuestion": {
         "type": "object",
@@ -81034,7 +83948,13 @@
           "question": {
             "$ref": "#/components/schemas/BaseSurveyQuestion"
           }
-        }
+        },
+        "required": [
+          "choiceId",
+          "choice",
+          "questionId",
+          "question"
+        ]
       },
       "SurveyQuestionChoiceSubQuestion": {
         "type": "object",
@@ -81048,7 +83968,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "sortOrder",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "SurveyQuestionChoiceTranslation": {
         "type": "object",
@@ -81076,7 +84001,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "value",
+          "text",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseSurveyQuestionResponseChange": {
         "type": "object",
@@ -81106,7 +84040,17 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "newValue",
+          "oldValue",
+          "eventId",
+          "questionId",
+          "responseId",
+          "userId",
+          "createdAt"
+        ]
       },
       "SurveyQuestionResponseChange": {
         "type": "object",
@@ -81117,7 +84061,11 @@
           "user": {
             "$ref": "#/components/schemas/BaseUser"
           }
-        }
+        },
+        "required": [
+          "response",
+          "user"
+        ]
       },
       "BaseSurveyQuestionResponse": {
         "type": "object",
@@ -81134,7 +84082,13 @@
           "question": {
             "$ref": "#/components/schemas/BaseSurveyQuestion"
           }
-        }
+        },
+        "required": [
+          "id",
+          "value",
+          "questionId",
+          "question"
+        ]
       },
       "SurveyQuestionResponse": {
         "type": "object",
@@ -81151,7 +84105,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "changeLogs",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseSurveyQuestion": {
         "type": "object",
@@ -81241,7 +84200,30 @@
               "$ref": "#/components/schemas/BaseSurveyQuestionChoice"
             }
           }
-        }
+        },
+        "required": [
+          "id",
+          "eventId",
+          "type",
+          "name",
+          "required",
+          "description",
+          "label",
+          "placeholder",
+          "default",
+          "searchListId",
+          "searchList",
+          "mutable",
+          "min",
+          "max",
+          "masked",
+          "validation",
+          "validationMessage",
+          "locationOption",
+          "sortOrder",
+          "featured",
+          "choices"
+        ]
       },
       "SurveyQuestion": {
         "type": "object",
@@ -81270,7 +84252,15 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "sections",
+          "subQuestionOf",
+          "dashboardVisibility",
+          "createdAt",
+          "updatedAt",
+          "_count"
+        ]
       },
       "SurveyQuestionTranslation": {
         "type": "object",
@@ -81299,7 +84289,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "label",
+          "placeholder",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseSurveySectionQuestion": {
         "type": "object",
@@ -81319,7 +84318,14 @@
           "sortOrder": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "sectionId",
+          "section",
+          "questionId",
+          "question",
+          "sortOrder"
+        ]
       },
       "SurveySectionQuestion": {
         "type": "object",
@@ -81330,7 +84336,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseSurveySection": {
         "type": "object",
@@ -81354,7 +84364,15 @@
           "_count": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "id",
+          "eventId",
+          "name",
+          "description",
+          "sortOrder",
+          "_count"
+        ]
       },
       "SurveySection": {
         "type": "object",
@@ -81371,7 +84389,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "questions",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "SurveySectionTranslation": {
         "type": "object",
@@ -81395,7 +84418,15 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "CustomModulePosition": {
         "type": "string",
@@ -81432,7 +84463,17 @@
           "position": {
             "$ref": "#/components/schemas/CustomModulePosition"
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "url",
+          "iconName",
+          "color",
+          "description",
+          "enabled",
+          "position"
+        ]
       },
       "CustomModuleTranslation": {
         "type": "object",
@@ -81453,7 +84494,14 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "moduleId",
+          "locale",
+          "name",
+          "description"
+        ]
       },
       "MatchQuestionType": {
         "type": "string",
@@ -81480,7 +84528,13 @@
           "number": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "id",
+          "event",
+          "session",
+          "number"
+        ]
       },
       "Round": {
         "type": "object",
@@ -81497,7 +84551,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "matches",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "RoundEventQuestion": {
         "type": "object",
@@ -81524,7 +84583,10 @@
           "roundQuestionId": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "matchType"
+        ]
       },
       "RoundSessionQuestion": {
         "type": "object",
@@ -81551,7 +84613,10 @@
           "roundQuestionId": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "matchType"
+        ]
       },
       "BaseMatchPass": {
         "type": "object",
@@ -81580,7 +84645,13 @@
               "type": "object"
             }
           }
-        }
+        },
+        "required": [
+          "id",
+          "alternateId",
+          "ticket",
+          "attendee"
+        ]
       },
       "BaseMatch": {
         "type": "object",
@@ -81602,7 +84673,14 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "round",
+          "number",
+          "title",
+          "description"
+        ]
       },
       "Match": {
         "type": "object",
@@ -81619,7 +84697,12 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "passes",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "SideEffectTriggerType": {
         "type": "string",
@@ -81682,7 +84765,19 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "newPassOfPassTypeId",
+          "checkedInPassEventId",
+          "newAccountTierId",
+          "removedAccountTierId",
+          "joinGroupId",
+          "leaveGroupId",
+          "addToTierId",
+          "subscribeToChannelId",
+          "sendWebhookId"
+        ]
       },
       "SideEffect": {
         "type": "object",
@@ -81771,7 +84866,22 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "organizationId",
+          "newPassOfPassType",
+          "checkedInPassEvent",
+          "newAccountTier",
+          "removedAccountTier",
+          "joinGroup",
+          "leaveGroup",
+          "addToTier",
+          "subscribeToChannel",
+          "sendWebhook",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "SystemEventLogStatus": {
         "type": "string",
@@ -81804,7 +84914,16 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "organizationId",
+          "status",
+          "trigger",
+          "progress",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "BaseWebhook": {
         "type": "object",
@@ -81821,7 +84940,13 @@
           "verified": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "id",
+          "url",
+          "name",
+          "verified"
+        ]
       },
       "Webhook": {
         "type": "object",
@@ -81832,7 +84957,11 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "VideoCaption": {
         "type": "object",
@@ -81865,7 +84994,13 @@
               }
             ]
           }
-        }
+        },
+        "required": [
+          "language",
+          "label",
+          "generated",
+          "status"
+        ]
       },
       "TaxCode": {
         "type": "object",
@@ -81876,7 +85011,11 @@
           "description": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "code",
+          "description"
+        ]
       },
       "EntityUseCode": {
         "type": "object",
@@ -81890,7 +85029,12 @@
           "description": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "code",
+          "name",
+          "description"
+        ]
       },
       "StreamInputDetails": {
         "type": "object",
@@ -81938,7 +85082,23 @@
             "type": "number",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "uid",
+          "rtmps",
+          "rtmpsPlayback",
+          "srt",
+          "srtPlayback",
+          "webRTC",
+          "webRTCPlayback",
+          "created",
+          "modified",
+          "meta",
+          "defaultCreator",
+          "status",
+          "recording",
+          "deleteRecordingAfterDays"
+        ]
       },
       "BaseStreamInput": {
         "type": "object",
@@ -81989,7 +85149,21 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "name",
+          "cloudflareId",
+          "public",
+          "sessionId",
+          "eventId",
+          "groupId",
+          "imageId",
+          "image",
+          "locale",
+          "webRTC",
+          "webRTCPlaybackUrl"
+        ]
       },
       "StreamInput": {
         "type": "object",
@@ -82063,7 +85237,21 @@
           "createdAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "eventId",
+          "event",
+          "sessionId",
+          "session",
+          "groupId",
+          "group",
+          "meetingId",
+          "meeting",
+          "streamInputId",
+          "streamInput",
+          "sortOrder",
+          "createdAt"
+        ]
       },
       "StreamInputOutput": {
         "type": "object",
@@ -82080,7 +85268,13 @@
           "uid": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "enabled",
+          "url",
+          "streamKey",
+          "uid"
+        ]
       },
       "BaseStreamSession": {
         "type": "object",
@@ -82111,7 +85305,17 @@
           "updatedAt": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "organizationId",
+          "streamId",
+          "status",
+          "startedAt",
+          "endedAt",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "StreamSession": {
         "type": "object",
@@ -82122,7 +85326,11 @@
           "organization": {
             "$ref": "#/components/schemas/BaseOrganization"
           }
-        }
+        },
+        "required": [
+          "stream",
+          "organization"
+        ]
       },
       "BaseWebSocketConnection": {
         "type": "object",
@@ -82152,7 +85360,17 @@
           "streamSessionId": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "id",
+          "organizationId",
+          "account",
+          "active",
+          "connectedAt",
+          "disconnectedAt",
+          "streamId",
+          "streamSessionId"
+        ]
       },
       "WebSocketConnection": {
         "type": "object",
@@ -82183,7 +85401,16 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "organizationId",
+          "streamId",
+          "streamSessionId",
+          "connectionId",
+          "connectedAt",
+          "disconnectedAt"
+        ]
       },
       "StreamSessionSubscription": {
         "type": "object",
@@ -82194,7 +85421,11 @@
           "streamSession": {
             "$ref": "#/components/schemas/BaseStreamSession"
           }
-        }
+        },
+        "required": [
+          "connection",
+          "streamSession"
+        ]
       },
       "StreamSessionChatMessage": {
         "type": "object",
@@ -82224,7 +85455,17 @@
           "timestamp": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "messageId",
+          "streamId",
+          "sessionId",
+          "accountId",
+          "name",
+          "connectionId",
+          "message",
+          "timestamp"
+        ]
       },
       "AccountCreateInputs": {
         "type": "object",
@@ -82330,7 +85571,10 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "email"
+        ]
       },
       "AccountUpdateInputs": {
         "type": "object",
@@ -82471,7 +85715,14 @@
           "zip": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "address1",
+          "city",
+          "state",
+          "country",
+          "zip"
+        ]
       },
       "AccountAddressUpdateInputs": {
         "type": "object",
@@ -82540,7 +85791,13 @@
               "type": "object"
             }
           }
-        }
+        },
+        "required": [
+          "type",
+          "startIndex",
+          "endIndex",
+          "marks"
+        ]
       },
       "MentionInputs": {
         "type": "object",
@@ -82553,7 +85810,11 @@
           "username": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "type",
+          "username"
+        ]
       },
       "InterestInputs": {
         "type": "object",
@@ -82566,7 +85827,11 @@
           "interest": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "type",
+          "interest"
+        ]
       },
       "LinkInputs": {
         "type": "object",
@@ -82579,7 +85844,11 @@
           "href": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "type",
+          "href"
+        ]
       },
       "SegmentInputs": {
         "type": "object",
@@ -82589,7 +85858,10 @@
               "segment"
             ]
           }
-        }
+        },
+        "required": [
+          "type"
+        ]
       },
       "ActivityCreateInputs": {
         "type": "object",
@@ -82639,7 +85911,10 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "message"
+        ]
       },
       "ActivityUpdateInputs": {
         "type": "object",
@@ -82747,7 +86022,13 @@
           "enabled": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "type",
+          "link",
+          "title",
+          "startDate"
+        ]
       },
       "AdvertisementUpdateInputs": {
         "type": "object",
@@ -82879,7 +86160,10 @@
           "includePasses": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "title"
+        ]
       },
       "AnnouncementUpdateInputs": {
         "type": "object",
@@ -82982,7 +86266,12 @@
           "eventOnly": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "link",
+          "title",
+          "startDate"
+        ]
       },
       "BenefitTranslationUpdateInputs": {
         "type": "object",
@@ -83066,7 +86355,10 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "ChannelCollectionTranslationUpdateInputs": {
         "type": "object",
@@ -83167,7 +86459,11 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "name",
+          "imageId"
+        ]
       },
       "ChannelSubscriberUpdateInputs": {
         "type": "object",
@@ -83343,7 +86639,10 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "title"
+        ]
       },
       "ChannelContentGuestCreateInputs": {
         "type": "object",
@@ -83423,7 +86722,11 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "name",
+          "type"
+        ]
       },
       "ChannelContentGuestTranslationUpdateInputs": {
         "type": "object",
@@ -83700,7 +87003,11 @@
           "accessLevel": {
             "$ref": "#/components/schemas/PassTypeAccessLevel"
           }
-        }
+        },
+        "required": [
+          "name",
+          "shortDescription"
+        ]
       },
       "EventActivationTranslationUpdateInputs": {
         "type": "object",
@@ -83808,7 +87115,11 @@
               }
             ]
           }
-        }
+        },
+        "required": [
+          "passId",
+          "earnedPoints"
+        ]
       },
       "EventActivationCompletionUpdateInputs": {
         "type": "object",
@@ -83828,7 +87139,10 @@
               }
             ]
           }
-        }
+        },
+        "required": [
+          "earnedPoints"
+        ]
       },
       "EventAddOnCreateInputs": {
         "type": "object",
@@ -83905,7 +87219,12 @@
           "taxLocation": {
             "$ref": "#/components/schemas/TaxLocationType"
           }
-        }
+        },
+        "required": [
+          "name",
+          "shortDescription",
+          "price"
+        ]
       },
       "EventAddOnTranslationUpdateInputs": {
         "type": "object",
@@ -84217,7 +87536,10 @@
           "applyToReservation": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "code"
+        ]
       },
       "EventCouponUpdateInputs": {
         "type": "object",
@@ -84673,7 +87995,15 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "eventType",
+          "name",
+          "shortDescription",
+          "timezone",
+          "eventStart",
+          "eventEnd"
+        ]
       },
       "EventUpdateInputs": {
         "type": "object",
@@ -85003,7 +88333,10 @@
           "visible": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "question"
+        ]
       },
       "EventFaqSectionQuestionTranslationUpdateInputs": {
         "type": "object",
@@ -85126,7 +88459,10 @@
               }
             ]
           }
-        }
+        },
+        "required": [
+          "title"
+        ]
       },
       "EventPageTranslationUpdateInputs": {
         "type": "object",
@@ -85257,7 +88593,10 @@
           "postRegister": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "accountId"
+        ]
       },
       "EventRegistrationBypassUpdateInputs": {
         "type": "object",
@@ -85395,7 +88734,12 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "name",
+          "startTime",
+          "endTime"
+        ]
       },
       "EventSessionAccessUpdateInputs": {
         "type": "object",
@@ -85587,7 +88931,10 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "EventSessionLocationTranslationUpdateInputs": {
         "type": "object",
@@ -85686,7 +89033,10 @@
               }
             ]
           }
-        }
+        },
+        "required": [
+          "value"
+        ]
       },
       "EventSessionQuestionChoiceTranslationUpdateInputs": {
         "type": "object",
@@ -85901,7 +89251,11 @@
           "masked": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "name",
+          "type"
+        ]
       },
       "EventSessionQuestionTranslationUpdateInputs": {
         "type": "object",
@@ -86081,7 +89435,10 @@
               }
             ]
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "EventSessionSectionTranslationUpdateInputs": {
         "type": "object",
@@ -86223,7 +89580,10 @@
           "visible": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "firstName"
+        ]
       },
       "EventSpeakerTranslationUpdateInputs": {
         "type": "object",
@@ -86444,7 +89804,11 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "name",
+          "description"
+        ]
       },
       "GroupMembershipUpdateInputs": {
         "type": "object",
@@ -86556,7 +89920,36 @@
           "payments": {
             "$ref": "#/components/schemas/Omit"
           }
-        }
+        },
+        "required": [
+          "org",
+          "users",
+          "reports",
+          "dashboards",
+          "logs",
+          "activities",
+          "events",
+          "attendees",
+          "bookings",
+          "groups",
+          "accounts",
+          "tiers",
+          "channels",
+          "contents",
+          "threads",
+          "storage",
+          "support",
+          "sponsors",
+          "benefits",
+          "interests",
+          "advertisements",
+          "invoices",
+          "announcements",
+          "surveys",
+          "streams",
+          "meetings",
+          "payments"
+        ]
       },
       "AdminNotificationPreferencesUpdateInputs": {
         "type": "object",
@@ -86661,7 +90054,12 @@
           "type": {
             "$ref": "#/components/schemas/ImageType"
           }
-        }
+        },
+        "required": [
+          "imageDataUri",
+          "name",
+          "type"
+        ]
       },
       "UserImageUpdateInputs": {
         "type": "object",
@@ -86710,7 +90108,10 @@
           "name": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "InterestUpdateInputs": {
         "type": "object",
@@ -86757,7 +90158,11 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "title",
+          "dueDate"
+        ]
       },
       "InvoiceUpdateInputs": {
         "type": "object",
@@ -86824,7 +90229,13 @@
           "taxLocation": {
             "$ref": "#/components/schemas/TaxLocationType"
           }
-        }
+        },
+        "required": [
+          "name",
+          "description",
+          "quantity",
+          "amount"
+        ]
       },
       "InvoiceLineItemUpdateInputs": {
         "type": "object",
@@ -86914,7 +90325,10 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "title"
+        ]
       },
       "OrganizationPageTranslationUpdateInputs": {
         "type": "object",
@@ -87213,7 +90627,10 @@
               }
             ]
           }
-        }
+        },
+        "required": [
+          "value"
+        ]
       },
       "EventQuestionChoiceTranslationUpdateInputs": {
         "type": "object",
@@ -87401,7 +90818,11 @@
           "masked": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "name",
+          "type"
+        ]
       },
       "EventQuestionTranslationUpdateInputs": {
         "type": "object",
@@ -87546,7 +90967,10 @@
           "shared": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "CustomReportUpdateInputs": {
         "type": "object",
@@ -87597,7 +91021,10 @@
               }
             ]
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "EventSectionTranslationUpdateInputs": {
         "type": "object",
@@ -87677,7 +91104,10 @@
               }
             ]
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "EventFollowupTranslationUpdateInputs": {
         "type": "object",
@@ -87761,7 +91191,11 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "name",
+          "templateId"
+        ]
       },
       "SeriesUpdateInputs": {
         "type": "object",
@@ -87855,7 +91289,10 @@
               }
             ]
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "LevelTranslationUpdateInputs": {
         "type": "object",
@@ -87945,7 +91382,12 @@
           "url": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "enabled",
+          "streamKey",
+          "url"
+        ]
       },
       "SupportTicketCreateInputs": {
         "type": "object",
@@ -87968,7 +91410,10 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "type"
+        ]
       },
       "SupportTicketUpdateInputs": {
         "type": "object",
@@ -88002,7 +91447,10 @@
           "text": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "text"
+        ]
       },
       "SupportTicketNoteUpdateInputs": {
         "type": "object",
@@ -88014,7 +91462,10 @@
           "message": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "message"
+        ]
       },
       "SupportTicketMessageUpdateInputs": {
         "type": "object",
@@ -88033,7 +91484,11 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "name",
+          "email"
+        ]
       },
       "OrganizationTeamMemberCreateInputs": {
         "type": "object",
@@ -88270,7 +91725,12 @@
               "type": "object"
             }
           }
-        }
+        },
+        "required": [
+          "accountId",
+          "body",
+          "entities"
+        ]
       },
       "ThreadMessageUpdateInputs": {
         "type": "object",
@@ -88284,7 +91744,11 @@
               "type": "object"
             }
           }
-        }
+        },
+        "required": [
+          "body",
+          "entities"
+        ]
       },
       "ThreadMemberCreateInputs": {
         "type": "object",
@@ -88304,7 +91768,10 @@
           "name": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "ThreadCircleUpdateInputs": {
         "type": "object",
@@ -88324,7 +91791,11 @@
           "role": {
             "$ref": "#/components/schemas/ThreadCircleAccountRole"
           }
-        }
+        },
+        "required": [
+          "accountId",
+          "role"
+        ]
       },
       "ThreadCircleAccountUpdateInputs": {
         "type": "object",
@@ -88345,7 +91816,10 @@
           "emojiName": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "emojiName"
+        ]
       },
       "ThreadMessageReactionUpdateInputs": {
         "type": "object",
@@ -88521,7 +91995,12 @@
           "taxLocation": {
             "$ref": "#/components/schemas/TaxLocationType"
           }
-        }
+        },
+        "required": [
+          "name",
+          "shortDescription",
+          "price"
+        ]
       },
       "PassTypeUpdateInputs": {
         "type": "object",
@@ -88753,7 +92232,10 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "TierUpdateInputs": {
         "type": "object",
@@ -88824,7 +92306,10 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "EventTrackUpdateInputs": {
         "type": "object",
@@ -88856,7 +92341,10 @@
           "enabled": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "code"
+        ]
       },
       "TriggerUpdateInputs": {
         "type": "object",
@@ -88908,7 +92396,11 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "name",
+          "startDate"
+        ]
       },
       "VideoUpdateInputs": {
         "type": "object",
@@ -89002,7 +92494,12 @@
           "endDate": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "percentage",
+          "startDate",
+          "endDate"
+        ]
       },
       "PassTypeRefundScheduleUpdateInputs": {
         "type": "object",
@@ -89036,7 +92533,10 @@
           "secretKey": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "type"
+        ]
       },
       "IntegrationUpdateInputs": {
         "type": "object",
@@ -89174,7 +92674,11 @@
           "taxLocation": {
             "$ref": "#/components/schemas/TaxLocationType"
           }
-        }
+        },
+        "required": [
+          "name",
+          "price"
+        ]
       },
       "EventRoomTypeUpdateInputs": {
         "type": "object",
@@ -89300,7 +92804,10 @@
           "roomName": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "roomName"
+        ]
       },
       "RoomUpdateInputs": {
         "type": "object",
@@ -89348,7 +92855,10 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "eventRoomTypeId"
+        ]
       },
       "EventRoomTypeReservationUpdateInputs": {
         "type": "object",
@@ -89645,7 +93155,38 @@
           "advancedSettings": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "name",
+          "eventStart",
+          "passTypes",
+          "packages",
+          "addOns",
+          "roomTypes",
+          "questions",
+          "bypassList",
+          "coupons",
+          "followups",
+          "coHosts",
+          "emails",
+          "faqSections",
+          "pages",
+          "benefits",
+          "interests",
+          "announcements",
+          "media",
+          "activations",
+          "onSite",
+          "tracks",
+          "speakers",
+          "sponsors",
+          "sponsorshipLevels",
+          "locations",
+          "sessions",
+          "rounds",
+          "sideEffects",
+          "advancedSettings"
+        ]
       },
       "SearchListCreateInputs": {
         "type": "object",
@@ -89653,7 +93194,10 @@
           "name": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "SearchListUpdateInputs": {
         "type": "object",
@@ -89673,7 +93217,10 @@
             "type": "number",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "value"
+        ]
       },
       "SearchListValueUpdateInputs": {
         "type": "object",
@@ -89693,7 +93240,10 @@
           "searchListId": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "searchListId"
+        ]
       },
       "BookingPlaceCreateInputs": {
         "type": "object",
@@ -89758,7 +93308,11 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "name",
+          "timezone"
+        ]
       },
       "BookingPlaceUpdateInputs": {
         "type": "object",
@@ -89926,7 +93480,12 @@
           "taxLocation": {
             "$ref": "#/components/schemas/TaxLocationType"
           }
-        }
+        },
+        "required": [
+          "name",
+          "supply",
+          "slotDuration"
+        ]
       },
       "BookingSpaceUpdateInputs": {
         "type": "object",
@@ -90033,7 +93592,12 @@
           "endTime": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "dayOfWeek",
+          "startTime",
+          "endTime"
+        ]
       },
       "BookingSpaceAvailabilityUpdateInputs": {
         "type": "object",
@@ -90058,7 +93622,11 @@
           "end": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "start",
+          "end"
+        ]
       },
       "BookingSpaceBlackoutUpdateInputs": {
         "type": "object",
@@ -90086,7 +93654,12 @@
           "status": {
             "$ref": "#/components/schemas/PurchaseStatus"
           }
-        }
+        },
+        "required": [
+          "accountId",
+          "day",
+          "time"
+        ]
       },
       "BookingUpdateInputs": {
         "type": "object",
@@ -90108,7 +93681,10 @@
           "value": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "value"
+        ]
       },
       "DashboardCreateInputs": {
         "type": "object",
@@ -90119,7 +93695,10 @@
           "eventId": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "DashboardUpdateInputs": {
         "type": "object",
@@ -90144,7 +93723,13 @@
           "h": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "x",
+          "y",
+          "w",
+          "h"
+        ]
       },
       "DashboardWidgetUpdateInputs": {
         "type": "object",
@@ -90201,7 +93786,10 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "SurveyUpdateInputs": {
         "type": "object",
@@ -90312,7 +93900,10 @@
               }
             ]
           }
-        }
+        },
+        "required": [
+          "value"
+        ]
       },
       "SurveyQuestionChoiceTranslationUpdateInputs": {
         "type": "object",
@@ -90497,7 +94088,11 @@
           "masked": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "name",
+          "type"
+        ]
       },
       "SurveyQuestionTranslationUpdateInputs": {
         "type": "object",
@@ -90647,7 +94242,10 @@
               }
             ]
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "SurveySectionTranslationUpdateInputs": {
         "type": "object",
@@ -90743,7 +94341,11 @@
           "taxLocation": {
             "$ref": "#/components/schemas/TaxLocationType"
           }
-        }
+        },
+        "required": [
+          "name",
+          "price"
+        ]
       },
       "EventPackageUpdateInputs": {
         "type": "object",
@@ -90801,7 +94403,11 @@
           "quantity": {
             "type": "number"
           }
-        }
+        },
+        "required": [
+          "passTypeId",
+          "quantity"
+        ]
       },
       "EventPackagePassUpdateInputs": {
         "type": "object",
@@ -90823,7 +94429,11 @@
           "attendeeId": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "packageId",
+          "attendeeId"
+        ]
       },
       "AttendeeEventPackageUpdateInputs": {
         "type": "object",
@@ -90951,7 +94561,10 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "EventSponsorshipLevelUpdateInputs": {
         "type": "object",
@@ -91036,7 +94649,10 @@
               }
             ]
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "EventSponsorshipUpdateInputs": {
         "type": "object",
@@ -91127,7 +94743,13 @@
               }
             ]
           }
-        }
+        },
+        "required": [
+          "name",
+          "url",
+          "iconName",
+          "color"
+        ]
       },
       "CustomModuleUpdateInputs": {
         "type": "object",
@@ -91212,7 +94834,10 @@
           "status": {
             "$ref": "#/components/schemas/PurchaseStatus"
           }
-        }
+        },
+        "required": [
+          "packageId"
+        ]
       },
       "EventAttendeePackageUpdateInputs": {
         "type": "object",
@@ -91292,7 +94917,12 @@
               }
             ]
           }
-        }
+        },
+        "required": [
+          "name",
+          "label",
+          "type"
+        ]
       },
       "AccountAttributeUpdateInputs": {
         "type": "object",
@@ -91350,7 +94980,11 @@
           "secret": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "url",
+          "secret"
+        ]
       },
       "WebhookUpdateInputs": {
         "type": "object",
@@ -91367,7 +95001,10 @@
           "type": {
             "$ref": "#/components/schemas/MatchQuestionType"
           }
-        }
+        },
+        "required": [
+          "type"
+        ]
       },
       "RoundSessionQuestionUpdateInputs": {
         "type": "object",
@@ -91375,7 +95012,10 @@
           "type": {
             "$ref": "#/components/schemas/MatchQuestionType"
           }
-        }
+        },
+        "required": [
+          "type"
+        ]
       },
       "MeetingCreateInputs": {
         "type": "object",
@@ -91440,7 +95080,16 @@
           "summarize_on_end": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "type",
+          "title",
+          "preferred_region",
+          "record_on_start",
+          "live_stream_on_start",
+          "persist_chat",
+          "summarize_on_end"
+        ]
       },
       "MeetingUpdateInputs": {
         "type": "object",
@@ -91535,7 +95184,10 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "required": [
+          "custom_participant_id"
+        ]
       },
       "MeetingParticipantUpdateInputs": {
         "type": "object",
@@ -91629,7 +95281,10 @@
               }
             ]
           }
-        }
+        },
+        "required": [
+          "action"
+        ]
       },
       "MeetingPresetCreateInputs": {
         "type": "object",
@@ -91637,7 +95292,10 @@
           "name": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "MeetingLinkCreateInputs": {
         "type": "object",
@@ -91651,7 +95309,12 @@
           "requireAuth": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "name",
+          "preset_name",
+          "requireAuth"
+        ]
       },
       "MeetingLinkUpdateInputs": {
         "type": "object",
@@ -91739,7 +95402,10 @@
           "webRTC": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "name"
+        ]
       },
       "StreamInputUpdateInputs": {
         "type": "object",
@@ -91817,7 +95483,12 @@
           "streamKey": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "enabled",
+          "url",
+          "streamKey"
+        ]
       },
       "StreamInputOutputUpdateInputs": {
         "type": "object",
@@ -91825,7 +95496,10 @@
           "enabled": {
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "enabled"
+        ]
       },
       "OrganizationPaymentIntegrationCreateInputs": {
         "type": "object",
@@ -91851,7 +95525,12 @@
           "clientSecret": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "type",
+          "name",
+          "currencyCode"
+        ]
       },
       "OrganizationPaymentIntegrationUpdateInputs": {
         "type": "object",
@@ -91885,7 +95564,10 @@
               "type": "string"
             }
           }
-        }
+        },
+        "required": [
+          "notificationIds"
+        ]
       }
     }
   },

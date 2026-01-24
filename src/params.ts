@@ -149,7 +149,7 @@ export interface SegmentInputs extends BaseActivityEntityInput {
   type: "segment";
 }
 
-type ActivityEntityInputs =
+export type ActivityEntityInputs =
   | MentionInputs
   | LinkInputs
   | InterestInputs

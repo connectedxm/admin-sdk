@@ -42,7 +42,7 @@ function parseSchemas(sourceFile: ts.SourceFile): Record<string, any> {
           const propName = member.name.text;
           const propSchema = parseType(member.type, sourceFile);
           properties[propName] = propSchema;
-          
+
           // If the property doesn't have a question mark, it's required
           if (!member.questionToken) {
             required.push(propName);
@@ -146,6 +146,23 @@ function parseType(typeNode: ts.TypeNode, sourceFile: ts.SourceFile): any {
     const nonNullTypes = typeNode.types.filter(
       (t) => t.getText(sourceFile).trim() !== "null"
     );
+
+    // Check if all non-null types are string literals -> convert to enum
+    const allStringLiterals = nonNullTypes.every(
+      (t) => ts.isLiteralTypeNode(t) && ts.isStringLiteral(t.literal)
+    );
+    if (allStringLiterals && nonNullTypes.length > 0) {
+      const enumValues = nonNullTypes.map((t) => {
+        const literal = (t as ts.LiteralTypeNode).literal as ts.StringLiteral;
+        return literal.text;
+      });
+      const schema: any = { type: "string", enum: enumValues };
+      if (isNullable) {
+        schema.nullable = true;
+      }
+      return schema;
+    }
+
     if (nonNullTypes.length === 1 && isNullable && nonNullTypes[0]) {
       const schema = parseType(nonNullTypes[0], sourceFile);
       if (schema.$ref) {
@@ -159,6 +176,16 @@ function parseType(typeNode: ts.TypeNode, sourceFile: ts.SourceFile): any {
         nullable: true,
       };
     }
+
+    // Filter out null from oneOf and add nullable instead
+    if (isNullable) {
+      const schemas = nonNullTypes.map((t) => parseType(t, sourceFile));
+      if (schemas.length === 1) {
+        return { ...schemas[0], nullable: true };
+      }
+      return { oneOf: schemas, nullable: true };
+    }
+
     return { oneOf: typeNode.types.map((t) => parseType(t, sourceFile)) };
   }
 
@@ -170,6 +197,49 @@ function parseType(typeNode: ts.TypeNode, sourceFile: ts.SourceFile): any {
 
   if (ts.isTypeReferenceNode(typeNode)) {
     const typeName = typeNode.typeName.getText(sourceFile);
+
+    // Handle TypeScript utility types
+    if (typeName === "Record") {
+      // Record<string, T> -> object with additionalProperties
+      return { type: "object", additionalProperties: true };
+    }
+    if (
+      typeName === "Omit" ||
+      typeName === "Pick" ||
+      typeName === "Partial" ||
+      typeName === "Required"
+    ) {
+      // These utility types are complex - just treat as object
+      return { type: "object" };
+    }
+    if (typeName === "Array") {
+      // Array<T> -> array
+      if (typeNode.typeArguments && typeNode.typeArguments.length > 0) {
+        return {
+          type: "array",
+          items: parseType(typeNode.typeArguments[0]!, sourceFile),
+        };
+      }
+      return { type: "array" };
+    }
+    if (typeName === "Promise") {
+      // Unwrap Promise<T>
+      if (typeNode.typeArguments && typeNode.typeArguments.length > 0) {
+        return parseType(typeNode.typeArguments[0]!, sourceFile);
+      }
+      return { type: "object" };
+    }
+    if (
+      typeName === "void" ||
+      typeName === "never" ||
+      typeName === "undefined"
+    ) {
+      return { type: "object" };
+    }
+    if (typeName === "true" || typeName === "false") {
+      return { type: "boolean", enum: [typeName === "true"] };
+    }
+
     return { $ref: `#/components/schemas/${typeName}` };
   }
 
@@ -181,8 +251,52 @@ function parseType(typeNode: ts.TypeNode, sourceFile: ts.SourceFile): any {
   }
 
   if (ts.isLiteralTypeNode(typeNode)) {
+    const literalText = typeNode.literal.getText(sourceFile);
+    // Handle boolean literals
+    if (literalText === "true" || literalText === "false") {
+      return { type: "boolean", enum: [literalText === "true"] };
+    }
+    // Handle numeric literals
+    if (/^\d+$/.test(literalText)) {
+      return { type: "integer", enum: [parseInt(literalText, 10)] };
+    }
     return {
-      enum: [typeNode.literal.getText(sourceFile).replace(/"/g, "")],
+      type: "string",
+      enum: [literalText.replace(/"/g, "").replace(/'/g, "")],
+    };
+  }
+
+  // Handle inline object types like { questionId: string; value: string }
+  if (ts.isTypeLiteralNode(typeNode)) {
+    const properties: Record<string, any> = {};
+    const required: string[] = [];
+
+    typeNode.members.forEach((member) => {
+      if (ts.isPropertySignature(member) && member.type && member.name) {
+        const propName = member.name.getText(sourceFile);
+        properties[propName] = parseType(member.type, sourceFile);
+        if (!member.questionToken) {
+          required.push(propName);
+        }
+      }
+    });
+
+    const schema: any = { type: "object", properties };
+    if (required.length > 0) {
+      schema.required = required;
+    }
+    return schema;
+  }
+
+  // Handle parenthesized types
+  if (ts.isParenthesizedTypeNode(typeNode)) {
+    return parseType(typeNode.type, sourceFile);
+  }
+
+  // Handle intersection types (A & B)
+  if (ts.isIntersectionTypeNode(typeNode)) {
+    return {
+      allOf: typeNode.types.map((t) => parseType(t, sourceFile)),
     };
   }
 
@@ -214,17 +328,51 @@ const GetTypeSchema = (responseType: string): any => {
   if (responseType === "boolean") {
     return { type: "boolean" };
   }
-  if (responseType === "any") {
+  if (responseType === "any" || responseType === "object") {
+    return { type: "object" };
+  }
+  if (
+    responseType === "void" ||
+    responseType === "never" ||
+    responseType === "undefined"
+  ) {
     return { type: "object" };
   }
 
-  // Handle union types (e.g., "string | null")
-  const unionTypes = responseType.split("|").map((t) => t.trim());
-  if (unionTypes.includes("null")) {
-    return {
-      type: unionTypes.find((t) => t !== "null") || "object",
-      nullable: true,
-    };
+  // Handle union types (e.g., "string | null" or "\"public\" | \"private\"")
+  if (responseType.includes("|")) {
+    const unionTypes = responseType.split("|").map((t) => t.trim());
+    const isNullable = unionTypes.includes("null");
+    const nonNullTypes = unionTypes.filter((t) => t !== "null");
+
+    // Check if all non-null types are string literals (quoted strings)
+    const allStringLiterals = nonNullTypes.every(
+      (t) =>
+        (t.startsWith('"') && t.endsWith('"')) ||
+        (t.startsWith("'") && t.endsWith("'"))
+    );
+
+    if (allStringLiterals && nonNullTypes.length > 0) {
+      const enumValues = nonNullTypes.map((t) => t.replace(/^["']|["']$/g, ""));
+      const schema: any = { type: "string", enum: enumValues };
+      if (isNullable) {
+        schema.nullable = true;
+      }
+      return schema;
+    }
+
+    // Simple nullable type
+    if (isNullable && nonNullTypes.length === 1) {
+      const baseSchema = GetTypeSchema(nonNullTypes[0]!);
+      // If it's a $ref, we need to wrap in allOf to add nullable
+      if (baseSchema.$ref) {
+        return { allOf: [baseSchema], nullable: true };
+      }
+      return { ...baseSchema, nullable: true };
+    }
+
+    // Multiple types - use oneOf
+    return { oneOf: nonNullTypes.map((t) => GetTypeSchema(t)) };
   }
 
   if (responseType.endsWith("[]")) {
@@ -232,6 +380,27 @@ const GetTypeSchema = (responseType: string): any => {
       type: "array",
       items: GetTypeSchema(responseType.replace("[]", "")),
     };
+  }
+
+  // Handle quoted string literal (single value enum)
+  if (
+    (responseType.startsWith('"') && responseType.endsWith('"')) ||
+    (responseType.startsWith("'") && responseType.endsWith("'"))
+  ) {
+    return { type: "string", enum: [responseType.replace(/^["']|["']$/g, "")] };
+  }
+
+  // If the type looks like raw TypeScript code or contains special characters,
+  // just return a generic object type to avoid invalid refs
+  if (
+    responseType.includes("{") ||
+    responseType.includes(";") ||
+    responseType.includes(":") ||
+    responseType === "true" ||
+    responseType === "false" ||
+    responseType === "null"
+  ) {
+    return { type: "object" };
   }
 
   return { $ref: `#/components/schemas/${responseType}` };
@@ -256,6 +425,9 @@ if (!paramsFile) {
 const paramsSchemas = parseSchemas(paramsFile);
 
 // OpenAPI Spec Structure – assign the parsed schemas directly.
+// Track all unique tags for root-level tags array
+const usedTags = new Set<string>();
+
 const openApiSpec: any = {
   openapi: "3.0.1",
   info: {
@@ -274,6 +446,7 @@ const openApiSpec: any = {
       description: "Staging server",
     },
   ],
+  tags: [], // Will be populated after processing all files
   paths: {},
   components: {
     securitySchemes: {
@@ -313,6 +486,71 @@ function functionNameToSummary(name: string): string {
 }
 
 /**
+ * Normalize a tag to consistent plural lowercase form.
+ * Handles common singular/plural variations.
+ */
+function normalizeTag(tag: string): string {
+  // Convert to lowercase
+  let normalized = tag.toLowerCase();
+
+  // Handle hyphenated tags - convert to camelCase
+  if (normalized.includes("-")) {
+    normalized = normalized
+      .split("-")
+      .map((part, i) =>
+        i === 0 ? part : part.charAt(0).toUpperCase() + part.slice(1)
+      )
+      .join("");
+  }
+
+  // Common singular -> plural mappings
+  const singularToPlural: Record<string, string> = {
+    account: "accounts",
+    activity: "activities",
+    advertisement: "advertisements",
+    announcement: "announcements",
+    benefit: "benefits",
+    booking: "bookings",
+    channel: "channels",
+    dashboard: "dashboards",
+    event: "events",
+    file: "files",
+    group: "groups",
+    image: "images",
+    import: "imports",
+    interest: "interests",
+    invoice: "invoices",
+    level: "levels",
+    login: "logins",
+    meeting: "meetings",
+    notification: "notifications",
+    organization: "organizations",
+    payment: "payments",
+    preference: "preferences",
+    report: "reports",
+    series: "series",
+    storage: "storage",
+    stream: "streams",
+    subscription: "subscriptions",
+    supportticket: "supportTickets",
+    survey: "surveys",
+    tier: "tiers",
+    thread: "threads",
+    transfer: "transfers",
+    user: "users",
+    video: "videos",
+  };
+
+  // Check if it's a known singular form
+  if (singularToPlural[normalized]) {
+    normalized = singularToPlural[normalized] ?? normalized;
+  }
+
+  // Capitalize first letter for OpenAPI tag
+  return normalized.charAt(0).toUpperCase() + normalized.slice(1);
+}
+
+/**
  * Extract tag from file path - uses the parent directory name.
  * e.g., "src/queries/accounts/useGetAccount.ts" -> "Accounts"
  */
@@ -324,8 +562,8 @@ function extractTagFromPath(filePath: string): string {
   if (!parentPath) {
     return "General";
   }
-  // Capitalize first letter
-  return parentPath.charAt(0).toUpperCase() + parentPath.slice(1);
+  // Normalize to consistent plural form
+  return normalizeTag(parentPath);
 }
 
 /**
@@ -424,7 +662,10 @@ function extractApiDetailsFromAST(filePath: string): FunctionInfo | null {
             continue;
           }
           // Skip utility functions
-          if (funcName.startsWith("GetBase") || funcName === "setFirstPageData") {
+          if (
+            funcName.startsWith("GetBase") ||
+            funcName === "setFirstPageData"
+          ) {
             continue;
           }
 
@@ -437,7 +678,8 @@ function extractApiDetailsFromAST(filePath: string): FunctionInfo | null {
             const param = arrowFunc.parameters[0];
             if (param && param.type) {
               const paramTypeText = param.type.getText(sourceFile);
-              result.paramsInterfaceName = paramTypeText.split("<")[0]?.trim() || null;
+              result.paramsInterfaceName =
+                paramTypeText.split("<")[0]?.trim() || null;
 
               // Check what the interface extends
               if (result.paramsInterfaceName) {
@@ -464,7 +706,9 @@ function extractApiDetailsFromAST(filePath: string): FunctionInfo | null {
           if (arrowFunc.type) {
             const returnTypeText = arrowFunc.type.getText(sourceFile);
             // Extract the type from Promise<ConnectedXMResponse<Type>>
-            const match = returnTypeText.match(/Promise<ConnectedXMResponse<(.+)>>/);
+            const match = returnTypeText.match(
+              /Promise<ConnectedXMResponse<(.+)>>/
+            );
             if (match && match[1]) {
               result.responseType = match[1];
             }
@@ -476,7 +720,9 @@ function extractApiDetailsFromAST(filePath: string): FunctionInfo | null {
               const callExpr = node.expression;
               if (ts.isPropertyAccessExpression(callExpr)) {
                 const methodName = callExpr.name.text;
-                if (["get", "post", "put", "delete", "patch"].includes(methodName)) {
+                if (
+                  ["get", "post", "put", "delete", "patch"].includes(methodName)
+                ) {
                   result.httpMethod = methodName;
 
                   // Get the first argument (URL template)
@@ -494,8 +740,13 @@ function extractApiDetailsFromAST(filePath: string): FunctionInfo | null {
                         urlPath += span.literal.text;
                       }
                       result.apiPath = urlPath;
-                      result.pathParams = extractPathParams(urlArg.getText(sourceFile));
-                    } else if (urlArg && ts.isNoSubstitutionTemplateLiteral(urlArg)) {
+                      result.pathParams = extractPathParams(
+                        urlArg.getText(sourceFile)
+                      );
+                    } else if (
+                      urlArg &&
+                      ts.isNoSubstitutionTemplateLiteral(urlArg)
+                    ) {
                       // Simple template literal without expressions
                       result.apiPath = urlArg.text;
                     } else if (urlArg && ts.isStringLiteral(urlArg)) {
@@ -506,7 +757,9 @@ function extractApiDetailsFromAST(filePath: string): FunctionInfo | null {
 
                   // For POST/PUT, get the second argument (request body)
                   if (
-                    (methodName === "post" || methodName === "put" || methodName === "patch") &&
+                    (methodName === "post" ||
+                      methodName === "put" ||
+                      methodName === "patch") &&
                     node.arguments.length > 1
                   ) {
                     const bodyArg = node.arguments[1];
@@ -685,7 +938,9 @@ function extractApiDetails(filePath: string) {
     properties: {
       status: { type: "string", enum: ["ok"] },
       message: { type: "string", example: "Success message." },
-      data: info.responseType ? GetTypeSchema(info.responseType) : { type: "object" },
+      data: info.responseType
+        ? GetTypeSchema(info.responseType)
+        : { type: "object" },
     },
     required: ["status", "message", "data"],
   };
@@ -727,6 +982,9 @@ function extractApiDetails(filePath: string) {
       tags: [tag],
     },
   };
+
+  // Track the tag for root-level tags array
+  usedTags.add(tag);
 }
 
 // Use glob to get all relevant query files from queries and mutations.
@@ -747,6 +1005,56 @@ console.log(`📂 Found ${queries.length} files`);
 queries.reverse().forEach((filePath) => {
   extractApiDetails(filePath);
 });
+
+// Populate root-level tags array with descriptions
+const tagDescriptions: Record<string, string> = {
+  Accounts: "Operations for managing user accounts",
+  Activities: "Operations for managing activities and activity feeds",
+  Advertisements: "Operations for managing advertisements",
+  Announcements: "Operations for managing announcements",
+  ApiLogs: "Operations for viewing API logs",
+  AuthSessions: "Operations for managing authentication sessions",
+  Benefits: "Operations for managing membership benefits",
+  Bookings: "Operations for managing bookings",
+  Channels: "Operations for managing communication channels",
+  Dashboards: "Operations for dashboard data",
+  EmailReceipts: "Operations for managing email receipts",
+  Events: "Operations for managing events",
+  Files: "Operations for managing files",
+  Groups: "Operations for managing groups",
+  Images: "Operations for managing images",
+  Imports: "Operations for data imports",
+  Interests: "Operations for managing interests",
+  Invoices: "Operations for managing invoices",
+  Levels: "Operations for managing membership levels",
+  Logins: "Operations for managing login records",
+  Meetings: "Operations for managing meetings",
+  Notifications: "Operations for managing notifications",
+  Organizations: "Operations for managing organizations",
+  Payments: "Operations for managing payments",
+  Preferences: "Operations for managing preferences",
+  PushDevices: "Operations for managing push notification devices",
+  Reports: "Operations for generating reports",
+  Searchlists: "Operations for managing search lists",
+  Self: "Operations for the authenticated user",
+  Series: "Operations for managing event series",
+  Storage: "Operations for storage management",
+  Streams: "Operations for managing streams",
+  SupportTickets: "Operations for managing support tickets",
+  Surveys: "Operations for managing surveys",
+  Threads: "Operations for managing discussion threads",
+  Tiers: "Operations for managing membership tiers",
+  Videos: "Operations for managing videos",
+};
+
+openApiSpec.tags = Array.from(usedTags)
+  .sort()
+  .map((tag) => ({
+    name: tag,
+    description: tagDescriptions[tag] || `Operations for ${tag.toLowerCase()}`,
+  }));
+
+console.log(`🏷️  Generated ${openApiSpec.tags.length} tags`);
 
 // Save OpenAPI spec to a JSON file.
 const outputPath = path.join(__dirname, "../openapi.json");

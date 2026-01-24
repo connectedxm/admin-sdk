@@ -19,6 +19,7 @@
     "local": "npm run release && npm pack",
     "exports": "tsx scripts/exports.ts",
     "generate": "tsx scripts/generate.ts",
+    "generate:sdks": "tsx scripts/generate-sdks.ts",
     "upgrade": "ncu -i --format group"
   },
   "dependencies": {

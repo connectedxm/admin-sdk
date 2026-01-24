@@ -15,6 +15,156 @@
       "description": "Staging server"
     }
   ],
+  "tags": [
+    {
+      "name": "Accounts",
+      "description": "Operations for managing user accounts"
+    },
+    {
+      "name": "Activities",
+      "description": "Operations for managing activities and activity feeds"
+    },
+    {
+      "name": "Advertisements",
+      "description": "Operations for managing advertisements"
+    },
+    {
+      "name": "Announcements",
+      "description": "Operations for managing announcements"
+    },
+    {
+      "name": "ApiLogs",
+      "description": "Operations for viewing API logs"
+    },
+    {
+      "name": "AuthSessions",
+      "description": "Operations for managing authentication sessions"
+    },
+    {
+      "name": "Benefits",
+      "description": "Operations for managing membership benefits"
+    },
+    {
+      "name": "Bookings",
+      "description": "Operations for managing bookings"
+    },
+    {
+      "name": "Channels",
+      "description": "Operations for managing communication channels"
+    },
+    {
+      "name": "Dashboards",
+      "description": "Operations for dashboard data"
+    },
+    {
+      "name": "EmailReceipts",
+      "description": "Operations for managing email receipts"
+    },
+    {
+      "name": "Events",
+      "description": "Operations for managing events"
+    },
+    {
+      "name": "Files",
+      "description": "Operations for managing files"
+    },
+    {
+      "name": "Groups",
+      "description": "Operations for managing groups"
+    },
+    {
+      "name": "Images",
+      "description": "Operations for managing images"
+    },
+    {
+      "name": "Imports",
+      "description": "Operations for data imports"
+    },
+    {
+      "name": "Interests",
+      "description": "Operations for managing interests"
+    },
+    {
+      "name": "Invoices",
+      "description": "Operations for managing invoices"
+    },
+    {
+      "name": "Levels",
+      "description": "Operations for managing membership levels"
+    },
+    {
+      "name": "Logins",
+      "description": "Operations for managing login records"
+    },
+    {
+      "name": "Meetings",
+      "description": "Operations for managing meetings"
+    },
+    {
+      "name": "Notifications",
+      "description": "Operations for managing notifications"
+    },
+    {
+      "name": "Organizations",
+      "description": "Operations for managing organizations"
+    },
+    {
+      "name": "Payments",
+      "description": "Operations for managing payments"
+    },
+    {
+      "name": "Preferences",
+      "description": "Operations for managing preferences"
+    },
+    {
+      "name": "PushDevices",
+      "description": "Operations for managing push notification devices"
+    },
+    {
+      "name": "Reports",
+      "description": "Operations for generating reports"
+    },
+    {
+      "name": "Searchlists",
+      "description": "Operations for managing search lists"
+    },
+    {
+      "name": "Self",
+      "description": "Operations for the authenticated user"
+    },
+    {
+      "name": "Series",
+      "description": "Operations for managing event series"
+    },
+    {
+      "name": "Storage",
+      "description": "Operations for storage management"
+    },
+    {
+      "name": "Streams",
+      "description": "Operations for managing streams"
+    },
+    {
+      "name": "Supporttickets",
+      "description": "Operations for supporttickets"
+    },
+    {
+      "name": "Surveys",
+      "description": "Operations for managing surveys"
+    },
+    {
+      "name": "Threads",
+      "description": "Operations for managing discussion threads"
+    },
+    {
+      "name": "Tiers",
+      "description": "Operations for managing membership tiers"
+    },
+    {
+      "name": "Videos",
+      "description": "Operations for managing videos"
+    }
+  ],
   "paths": {
     "/accounts/{accountId}/followers/{followerId}": {
       "post": {
@@ -74,7 +224,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       },
       "delete": {
@@ -134,7 +284,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       }
     },
@@ -196,7 +346,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       },
       "delete": {
@@ -256,7 +406,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       }
     },
@@ -318,7 +468,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       },
       "delete": {
@@ -378,7 +528,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       }
     },
@@ -440,7 +590,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       },
       "delete": {
@@ -500,7 +650,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       }
     },
@@ -562,7 +712,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       },
       "delete": {
@@ -622,7 +772,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       }
     },
@@ -674,7 +824,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       },
       "get": {
@@ -845,7 +995,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       },
       "get": {
@@ -996,7 +1146,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       },
       "get": {
@@ -1136,7 +1286,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       },
       "put": {
@@ -1197,7 +1347,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       },
       "get": {
@@ -1310,7 +1460,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       },
       "put": {
@@ -1380,7 +1530,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       },
       "get": {
@@ -1493,7 +1643,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       }
     },
@@ -1555,7 +1705,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       },
       "put": {
@@ -1625,7 +1775,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       },
       "get": {
@@ -1738,7 +1888,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       }
     },
@@ -1800,7 +1950,7 @@
           }
         },
         "tags": [
-          "Account"
+          "Accounts"
         ]
       }
     },
@@ -1853,7 +2003,7 @@
           }
         },
         "tags": [
-          "Activity"
+          "Activities"
         ]
       }
     },
@@ -1906,7 +2056,7 @@
           }
         },
         "tags": [
-          "Activity"
+          "Activities"
         ]
       },
       "put": {
@@ -1929,7 +2079,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/{\n    date: string;\n  }"
+                "type": "object"
               }
             }
           }
@@ -1967,7 +2117,7 @@
           }
         },
         "tags": [
-          "Activity"
+          "Activities"
         ]
       }
     },
@@ -2038,7 +2188,7 @@
           }
         },
         "tags": [
-          "Activity"
+          "Activities"
         ]
       },
       "get": {
@@ -2059,7 +2209,7 @@
             "in": "query",
             "name": "featured",
             "schema": {
-              "$ref": "#/components/schemas/true"
+              "type": "object"
             },
             "description": "Filter by featured",
             "required": false
@@ -2208,7 +2358,7 @@
           }
         },
         "tags": [
-          "Activity"
+          "Activities"
         ]
       },
       "put": {
@@ -2269,7 +2419,7 @@
           }
         },
         "tags": [
-          "Activity"
+          "Activities"
         ]
       },
       "get": {
@@ -2373,7 +2523,7 @@
           }
         },
         "tags": [
-          "Activity"
+          "Activities"
         ]
       }
     },
@@ -2425,7 +2575,7 @@
           }
         },
         "tags": [
-          "Advertisement"
+          "Advertisements"
         ]
       },
       "get": {
@@ -2568,7 +2718,7 @@
           }
         },
         "tags": [
-          "Advertisement"
+          "Advertisements"
         ]
       },
       "put": {
@@ -2629,7 +2779,7 @@
           }
         },
         "tags": [
-          "Advertisement"
+          "Advertisements"
         ]
       },
       "get": {
@@ -2733,7 +2883,7 @@
           }
         },
         "tags": [
-          "Announcement"
+          "Announcements"
         ]
       },
       "put": {
@@ -2756,7 +2906,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/{\n    date: string;\n    email?: boolean;\n    push?: boolean;\n  }"
+                "type": "object"
               }
             }
           }
@@ -2794,7 +2944,7 @@
           }
         },
         "tags": [
-          "Announcement"
+          "Announcements"
         ]
       }
     },
@@ -2846,7 +2996,7 @@
           }
         },
         "tags": [
-          "Announcement"
+          "Announcements"
         ]
       },
       "get": {
@@ -2998,7 +3148,7 @@
           }
         },
         "tags": [
-          "Announcement"
+          "Announcements"
         ]
       },
       "put": {
@@ -3059,7 +3209,7 @@
           }
         },
         "tags": [
-          "Announcement"
+          "Announcements"
         ]
       },
       "get": {
@@ -3163,7 +3313,7 @@
           }
         },
         "tags": [
-          "Announcement"
+          "Announcements"
         ]
       }
     },
@@ -3215,7 +3365,7 @@
           }
         },
         "tags": [
-          "Benefit"
+          "Benefits"
         ]
       },
       "get": {
@@ -3367,7 +3517,7 @@
           }
         },
         "tags": [
-          "Benefit"
+          "Benefits"
         ]
       },
       "put": {
@@ -3427,7 +3577,7 @@
           }
         },
         "tags": [
-          "Benefit"
+          "Benefits"
         ]
       },
       "get": {
@@ -5482,7 +5632,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/{\n    date: string;\n    email: boolean;\n    push: boolean;\n  }"
+                "type": "object"
               }
             }
           }
@@ -7428,7 +7578,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -7589,7 +7739,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -7652,7 +7802,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -7820,7 +7970,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -7987,7 +8137,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -8057,7 +8207,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -8188,7 +8338,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -8267,7 +8417,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -8407,7 +8557,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -8476,7 +8626,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -8556,7 +8706,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -8634,7 +8784,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -8697,7 +8847,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -8858,7 +9008,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -8927,7 +9077,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -9058,7 +9208,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -9229,7 +9379,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "$ref": "#/components/schemas/void"
+                      "type": "object"
                     }
                   },
                   "required": [
@@ -9243,7 +9393,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -9321,7 +9471,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -9470,7 +9620,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -9548,7 +9698,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -9620,7 +9770,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -9787,7 +9937,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -9866,7 +10016,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -9988,7 +10138,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -10158,7 +10308,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -10228,7 +10378,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -10350,7 +10500,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -10412,7 +10562,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -10472,7 +10622,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -10535,7 +10685,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -10693,7 +10843,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -10762,7 +10912,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -10884,7 +11034,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -10944,7 +11094,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -11007,7 +11157,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -11187,7 +11337,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -11247,7 +11397,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -11317,7 +11467,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -11379,7 +11529,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -11449,7 +11599,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -11581,7 +11731,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -11704,7 +11854,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -11875,7 +12025,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -12045,7 +12195,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -12114,7 +12264,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -12245,7 +12395,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -12323,7 +12473,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -12466,7 +12616,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -12537,7 +12687,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -12606,7 +12756,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -12677,7 +12827,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -12746,7 +12896,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -12817,7 +12967,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -12886,7 +13036,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -12964,7 +13114,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -13044,7 +13194,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -13122,7 +13272,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -13185,7 +13335,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -13343,7 +13493,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -13412,7 +13562,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -13546,7 +13696,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -13626,7 +13776,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -13704,7 +13854,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -13766,7 +13916,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -13927,7 +14077,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -14052,7 +14202,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -14131,7 +14281,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -14262,7 +14412,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -14333,7 +14483,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -14414,7 +14564,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -14485,7 +14635,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -14554,7 +14704,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -14617,7 +14767,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -14638,7 +14788,12 @@
             "in": "query",
             "name": "type",
             "schema": {
-              "$ref": "#/components/schemas/\"image\" | \"video\" | \"file\""
+              "type": "string",
+              "enum": [
+                "image",
+                "video",
+                "file"
+              ]
             },
             "description": "Filter by type",
             "required": false
@@ -14787,7 +14942,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -14857,7 +15012,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -14910,7 +15065,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -14947,7 +15102,11 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "EventOnSite",
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/EventOnSite"
+                        }
+                      ],
                       "nullable": true
                     }
                   },
@@ -15024,7 +15183,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -15095,7 +15254,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -15227,7 +15386,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -15403,7 +15562,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -15481,7 +15640,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -15612,7 +15771,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -15773,7 +15932,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -15842,7 +16001,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -15973,7 +16132,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -16042,7 +16201,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -16105,7 +16264,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -16266,7 +16425,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -16335,7 +16494,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -16467,7 +16626,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -16643,7 +16802,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -16722,7 +16881,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -16863,7 +17022,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -17039,7 +17198,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -17118,7 +17277,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -17258,7 +17417,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -17327,7 +17486,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -17398,7 +17557,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -17467,7 +17626,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -17547,7 +17706,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -17625,7 +17784,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -17688,7 +17847,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -17849,7 +18008,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -17918,7 +18077,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -18049,7 +18208,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -18118,7 +18277,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -18189,7 +18348,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -18261,7 +18420,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -18449,7 +18608,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -18518,7 +18677,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -18597,7 +18756,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -18737,7 +18896,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -18807,7 +18966,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -18923,7 +19082,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -19003,7 +19162,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -19086,7 +19245,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -19281,7 +19440,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -19433,7 +19592,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -19525,7 +19684,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -19570,7 +19729,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/{ questionId: string; value: string }"
+                  "type": "object"
                 }
               }
             }
@@ -19609,7 +19768,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -19689,7 +19848,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -19767,7 +19926,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -19854,7 +20013,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -19926,7 +20085,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -19986,7 +20145,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -20049,7 +20208,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -20217,7 +20376,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -20402,7 +20561,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -20471,7 +20630,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -20602,7 +20761,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -20680,7 +20839,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -20832,7 +20991,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -20906,7 +21065,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -20986,7 +21145,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -21064,7 +21223,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -21127,7 +21286,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -21288,7 +21447,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -21357,7 +21516,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -21498,7 +21657,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -21579,7 +21738,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -21650,7 +21809,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -21821,7 +21980,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -21982,7 +22141,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -22052,7 +22211,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -22189,7 +22348,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -22260,7 +22419,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -22331,7 +22490,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -22400,7 +22559,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -22471,7 +22630,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -22540,7 +22699,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -22611,7 +22770,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -22680,7 +22839,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -22758,7 +22917,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -22838,7 +22997,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -22916,7 +23075,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -22979,7 +23138,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -23137,7 +23296,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -23206,7 +23365,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -23340,7 +23499,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -23411,7 +23570,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -23480,7 +23639,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -23543,7 +23702,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -23701,7 +23860,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -23770,7 +23929,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -23919,7 +24078,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -24006,7 +24165,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -24077,7 +24236,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -24256,7 +24415,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -24399,7 +24558,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -24487,7 +24646,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -24636,7 +24795,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -24716,7 +24875,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -24806,7 +24965,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -24895,7 +25054,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -24982,7 +25141,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -25078,7 +25237,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -25159,7 +25318,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -25228,7 +25387,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -25300,7 +25459,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -25486,7 +25645,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -25680,7 +25839,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -25758,7 +25917,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -25907,7 +26066,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -25994,7 +26153,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -26164,7 +26323,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -26247,7 +26406,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -26327,7 +26486,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -26405,7 +26564,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -26492,7 +26651,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -26564,7 +26723,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -26740,7 +26899,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -26818,7 +26977,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -26970,7 +27129,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -27041,7 +27200,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -27110,7 +27269,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -27181,7 +27340,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -27250,7 +27409,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -27321,7 +27480,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -27390,7 +27549,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -27461,7 +27620,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -27530,7 +27689,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -27601,7 +27760,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -27670,7 +27829,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -27733,7 +27892,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -27894,7 +28053,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -27963,7 +28122,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -28094,7 +28253,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -28163,7 +28322,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -28226,7 +28385,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -28387,7 +28546,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -28456,7 +28615,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -28578,7 +28737,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -28638,7 +28797,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -28701,7 +28860,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -28859,7 +29018,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -28928,7 +29087,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -29053,7 +29212,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -29125,7 +29284,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -29301,7 +29460,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -29379,7 +29538,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -29522,7 +29681,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -29593,7 +29752,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -29662,7 +29821,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -29733,7 +29892,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "delete": {
@@ -29802,7 +29961,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -29865,7 +30024,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -30026,7 +30185,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -30096,7 +30255,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -30219,7 +30378,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       }
     },
@@ -30271,7 +30430,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -30432,7 +30591,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "put": {
@@ -30493,7 +30652,7 @@
           }
         },
         "tags": [
-          "Event"
+          "Events"
         ]
       },
       "get": {
@@ -30771,7 +30930,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       }
     },
@@ -30833,7 +30992,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       },
       "delete": {
@@ -30893,7 +31052,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       }
     },
@@ -30955,7 +31114,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       }
     },
@@ -31017,7 +31176,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       },
       "delete": {
@@ -31077,7 +31236,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       }
     },
@@ -31139,7 +31298,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       },
       "delete": {
@@ -31199,7 +31358,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       }
     },
@@ -31261,7 +31420,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       },
       "delete": {
@@ -31321,7 +31480,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       }
     },
@@ -31383,7 +31542,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       }
     },
@@ -31435,7 +31594,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       },
       "get": {
@@ -31447,7 +31606,11 @@
             "in": "query",
             "name": "access",
             "schema": {
-              "$ref": "#/components/schemas/\"public\" | \"private\""
+              "type": "string",
+              "enum": [
+                "public",
+                "private"
+              ]
             },
             "description": "Filter by access",
             "required": false
@@ -31617,7 +31780,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       },
       "get": {
@@ -31775,7 +31938,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       },
       "put": {
@@ -31836,7 +31999,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       },
       "get": {
@@ -31949,7 +32112,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       },
       "get": {
@@ -32071,7 +32234,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       },
       "get": {
@@ -32193,7 +32356,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       }
     },
@@ -32255,7 +32418,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       }
     },
@@ -32308,7 +32471,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       },
       "get": {
@@ -32469,7 +32632,7 @@
           }
         },
         "tags": [
-          "Group"
+          "Groups"
         ]
       }
     },
@@ -32521,7 +32684,7 @@
           }
         },
         "tags": [
-          "Image"
+          "Images"
         ]
       },
       "get": {
@@ -32673,7 +32836,7 @@
           }
         },
         "tags": [
-          "Image"
+          "Images"
         ]
       },
       "put": {
@@ -32734,7 +32897,7 @@
           }
         },
         "tags": [
-          "Image"
+          "Images"
         ]
       },
       "get": {
@@ -32841,7 +33004,7 @@
           }
         },
         "tags": [
-          "Image"
+          "Images"
         ]
       }
     },
@@ -32903,7 +33066,7 @@
           }
         },
         "tags": [
-          "Image"
+          "Images"
         ]
       }
     },
@@ -32935,7 +33098,14 @@
             "in": "query",
             "name": "messageData",
             "schema": {
-              "$ref": "#/components/schemas/{\n    tierId?: string | null;\n  }"
+              "oneOf": [
+                {
+                  "type": "object"
+                },
+                {
+                  "type": "object"
+                }
+              ]
             },
             "description": "Filter by messageData",
             "required": false
@@ -34131,7 +34301,7 @@
           }
         },
         "tags": [
-          "Level"
+          "Levels"
         ]
       },
       "delete": {
@@ -34191,7 +34361,7 @@
           }
         },
         "tags": [
-          "Level"
+          "Levels"
         ]
       }
     },
@@ -34243,7 +34413,7 @@
           }
         },
         "tags": [
-          "Level"
+          "Levels"
         ]
       },
       "get": {
@@ -34386,7 +34556,7 @@
           }
         },
         "tags": [
-          "Level"
+          "Levels"
         ]
       },
       "put": {
@@ -34446,7 +34616,7 @@
           }
         },
         "tags": [
-          "Level"
+          "Levels"
         ]
       }
     },
@@ -36707,7 +36877,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "put": {
@@ -36785,7 +36955,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -36875,7 +37045,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -36928,7 +37098,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "put": {
@@ -36989,7 +37159,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -37040,7 +37210,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -37092,7 +37262,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -37182,7 +37352,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -37235,7 +37405,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "put": {
@@ -37296,7 +37466,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -37347,7 +37517,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -37409,7 +37579,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "delete": {
@@ -37469,7 +37639,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -37531,7 +37701,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "delete": {
@@ -37591,7 +37761,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -37654,7 +37824,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -37705,7 +37875,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -37757,7 +37927,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -37844,7 +38014,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -37897,7 +38067,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "put": {
@@ -37958,7 +38128,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -38009,7 +38179,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -38062,7 +38232,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -38142,7 +38312,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -38247,7 +38417,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -38300,7 +38470,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -38351,7 +38521,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -38414,7 +38584,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "delete": {
@@ -38465,7 +38635,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "put": {
@@ -38526,7 +38696,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -38577,7 +38747,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -38630,7 +38800,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -38683,7 +38853,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -38736,7 +38906,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -38823,7 +38993,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -38875,7 +39045,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -38962,7 +39132,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -39014,7 +39184,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -39101,7 +39271,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -39153,7 +39323,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -39243,7 +39413,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -39296,7 +39466,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "put": {
@@ -39357,7 +39527,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -39408,7 +39578,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -39450,7 +39620,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "put": {
@@ -39501,7 +39671,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -39541,7 +39711,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -39594,7 +39764,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "put": {
@@ -39654,7 +39824,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -39705,7 +39875,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -39758,7 +39928,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "put": {
@@ -39819,7 +39989,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -39870,7 +40040,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -39923,7 +40093,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "put": {
@@ -39984,7 +40154,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -40035,7 +40205,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -40110,7 +40280,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -40162,7 +40332,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       },
       "get": {
@@ -40202,7 +40372,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -40255,7 +40425,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -40308,7 +40478,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -40422,7 +40592,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -40567,7 +40737,7 @@
           }
         },
         "tags": [
-          "Push-devices"
+          "PushDevices"
         ]
       },
       "get": {
@@ -40618,7 +40788,7 @@
           }
         },
         "tags": [
-          "Push-devices"
+          "PushDevices"
         ]
       }
     },
@@ -42740,7 +42910,11 @@
             "in": "query",
             "name": "source",
             "schema": {
-              "$ref": "#/components/schemas/\"admin\" | \"response\""
+              "type": "string",
+              "enum": [
+                "admin",
+                "response"
+              ]
             },
             "description": "Filter by source",
             "required": true
@@ -42949,7 +43123,7 @@
           }
         },
         "tags": [
-          "Stream"
+          "Streams"
         ]
       }
     },
@@ -43001,7 +43175,7 @@
           }
         },
         "tags": [
-          "Stream"
+          "Streams"
         ]
       },
       "get": {
@@ -43190,7 +43364,7 @@
           }
         },
         "tags": [
-          "Stream"
+          "Streams"
         ]
       },
       "get": {
@@ -43339,7 +43513,7 @@
           }
         },
         "tags": [
-          "Stream"
+          "Streams"
         ]
       },
       "put": {
@@ -43399,7 +43573,7 @@
           }
         },
         "tags": [
-          "Stream"
+          "Streams"
         ]
       },
       "get": {
@@ -43512,7 +43686,7 @@
           }
         },
         "tags": [
-          "Stream"
+          "Streams"
         ]
       },
       "put": {
@@ -43581,7 +43755,7 @@
           }
         },
         "tags": [
-          "Stream"
+          "Streams"
         ]
       }
     },
@@ -43643,7 +43817,7 @@
           }
         },
         "tags": [
-          "Stream"
+          "Streams"
         ]
       }
     },
@@ -43706,7 +43880,7 @@
           }
         },
         "tags": [
-          "Stream"
+          "Streams"
         ]
       }
     },
@@ -43758,7 +43932,7 @@
           }
         },
         "tags": [
-          "SupportTickets"
+          "Supporttickets"
         ]
       },
       "get": {
@@ -43788,7 +43962,11 @@
             "in": "query",
             "name": "assignment",
             "schema": {
-              "$ref": "#/components/schemas/\"me\" | \"unassigned\""
+              "type": "string",
+              "enum": [
+                "me",
+                "unassigned"
+              ]
             },
             "description": "Filter by assignment",
             "required": false
@@ -43875,7 +44053,7 @@
           }
         },
         "tags": [
-          "SupportTickets"
+          "Supporttickets"
         ]
       }
     },
@@ -43938,7 +44116,7 @@
           }
         },
         "tags": [
-          "SupportTickets"
+          "Supporttickets"
         ]
       },
       "get": {
@@ -44034,7 +44212,7 @@
           }
         },
         "tags": [
-          "SupportTickets"
+          "Supporttickets"
         ]
       }
     },
@@ -44097,7 +44275,7 @@
           }
         },
         "tags": [
-          "SupportTickets"
+          "Supporttickets"
         ]
       },
       "get": {
@@ -44193,7 +44371,7 @@
           }
         },
         "tags": [
-          "SupportTickets"
+          "Supporttickets"
         ]
       }
     },
@@ -44246,7 +44424,7 @@
           }
         },
         "tags": [
-          "SupportTickets"
+          "Supporttickets"
         ]
       },
       "put": {
@@ -44307,7 +44485,7 @@
           }
         },
         "tags": [
-          "SupportTickets"
+          "Supporttickets"
         ]
       },
       "get": {
@@ -44358,7 +44536,7 @@
           }
         },
         "tags": [
-          "SupportTickets"
+          "Supporttickets"
         ]
       }
     },
@@ -44420,7 +44598,7 @@
           }
         },
         "tags": [
-          "SupportTickets"
+          "Supporttickets"
         ]
       }
     },
@@ -46584,7 +46762,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/{ questionId: string; value: string }"
+                  "type": "object"
                 }
               }
             }
@@ -48986,7 +49164,7 @@
           }
         },
         "tags": [
-          "Tier"
+          "Tiers"
         ]
       },
       "get": {
@@ -48998,7 +49176,11 @@
             "in": "query",
             "name": "type",
             "schema": {
-              "$ref": "#/components/schemas/\"external\" | \"internal\""
+              "type": "string",
+              "enum": [
+                "external",
+                "internal"
+              ]
             },
             "description": "Filter by type",
             "required": false
@@ -49138,7 +49320,7 @@
           }
         },
         "tags": [
-          "Tier"
+          "Tiers"
         ]
       },
       "put": {
@@ -49199,7 +49381,7 @@
           }
         },
         "tags": [
-          "Tier"
+          "Tiers"
         ]
       },
       "get": {
@@ -49303,7 +49485,7 @@
           }
         },
         "tags": [
-          "Tier"
+          "Tiers"
         ]
       },
       "get": {
@@ -51422,7 +51604,11 @@
             "in": "query",
             "name": "type",
             "schema": {
-              "$ref": "#/components/schemas/\"external\" | \"internal\""
+              "type": "string",
+              "enum": [
+                "external",
+                "internal"
+              ]
             },
             "description": "Filter by type",
             "required": false
@@ -52165,7 +52351,7 @@
           }
         },
         "tags": [
-          "Api-logs"
+          "ApiLogs"
         ]
       }
     },
@@ -52206,7 +52392,11 @@
             "in": "query",
             "name": "status",
             "schema": {
-              "$ref": "#/components/schemas/\"success\" | \"failed\""
+              "type": "string",
+              "enum": [
+                "success",
+                "failed"
+              ]
             },
             "description": "Filter by status",
             "required": false
@@ -52320,7 +52510,7 @@
           }
         },
         "tags": [
-          "Api-logs"
+          "ApiLogs"
         ]
       }
     },
@@ -52373,7 +52563,7 @@
           }
         },
         "tags": [
-          "Auth-sessions"
+          "AuthSessions"
         ]
       }
     },
@@ -52465,7 +52655,7 @@
           }
         },
         "tags": [
-          "Auth-sessions"
+          "AuthSessions"
         ]
       }
     },
@@ -53468,7 +53658,12 @@
             "in": "query",
             "name": "type",
             "schema": {
-              "$ref": "#/components/schemas/\"video\" | \"audio\" | \"article\""
+              "type": "string",
+              "enum": [
+                "video",
+                "audio",
+                "article"
+              ]
             },
             "description": "Filter by type",
             "required": false
@@ -53771,7 +53966,7 @@
           }
         },
         "tags": [
-          "Email-receipts"
+          "EmailReceipts"
         ]
       }
     },
@@ -53869,7 +54064,7 @@
           }
         },
         "tags": [
-          "Email-receipts"
+          "EmailReceipts"
         ]
       }
     },
@@ -61988,7 +62183,7 @@
             "in": "query",
             "name": "featured",
             "schema": {
-              "$ref": "#/components/schemas/true"
+              "type": "object"
             },
             "description": "Filter by featured",
             "required": false
@@ -62365,7 +62560,7 @@
             "in": "query",
             "name": "featured",
             "schema": {
-              "$ref": "#/components/schemas/true"
+              "type": "object"
             },
             "description": "Filter by featured",
             "required": false
@@ -65763,7 +65958,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -65861,7 +66056,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -65950,7 +66145,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -66042,7 +66237,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -66098,7 +66293,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -66154,7 +66349,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -66246,7 +66441,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -66308,7 +66503,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -66409,7 +66604,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -66451,7 +66646,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -66504,7 +66699,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -66611,7 +66806,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -66653,7 +66848,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -66709,7 +66904,7 @@
           }
         },
         "tags": [
-          "Organization"
+          "Organizations"
         ]
       }
     },
@@ -66810,7 +67005,7 @@
           }
         },
         "tags": [
-          "Push-devices"
+          "PushDevices"
         ]
       }
     },
@@ -67821,7 +68016,7 @@
           }
         },
         "tags": [
-          "SupportTickets"
+          "Supporttickets"
         ]
       }
     },
@@ -67928,7 +68123,7 @@
           }
         },
         "tags": [
-          "SupportTickets"
+          "Supporttickets"
         ]
       }
     },
@@ -70042,27 +70237,12 @@
             "type": "string"
           },
           "type": {
-            "oneOf": [
-              {
-                "enum": [
-                  "text"
-                ]
-              },
-              {
-                "enum": [
-                  "number"
-                ]
-              },
-              {
-                "enum": [
-                  "date"
-                ]
-              },
-              {
-                "enum": [
-                  "boolean"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "text",
+              "number",
+              "date",
+              "boolean"
             ]
           },
           "description": {
@@ -70112,7 +70292,15 @@
             "type": "string"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "values": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "values"
+            ]
           }
         },
         "required": [
@@ -70458,31 +70646,17 @@
             "nullable": true
           },
           "source": {
-            "oneOf": [
-              {
-                "enum": [
-                  "admin"
-                ]
-              },
-              {
-                "enum": [
-                  "client"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "admin",
+              "client"
             ]
           },
           "status": {
-            "oneOf": [
-              {
-                "enum": [
-                  "success"
-                ]
-              },
-              {
-                "enum": [
-                  "failure"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "success",
+              "failure"
             ]
           },
           "statusCode": {
@@ -70695,7 +70869,15 @@
             "type": "string"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "accounts": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "accounts"
+            ]
           }
         },
         "required": [
@@ -70978,7 +71160,19 @@
             "type": "string"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "likes": {
+                "type": "number"
+              },
+              "comments": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "likes",
+              "comments"
+            ]
           }
         },
         "required": [
@@ -71278,7 +71472,19 @@
             "type": "string"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "views": {
+                "type": "number"
+              },
+              "clicks": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "views",
+              "clicks"
+            ]
           }
         },
         "required": [
@@ -71428,6 +71634,7 @@
         "type": "object",
         "properties": {
           "type": {
+            "type": "string",
             "enum": [
               "event"
             ]
@@ -71456,7 +71663,19 @@
         "type": "object",
         "properties": {
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "notifications": {
+                "type": "number"
+              },
+              "emailReceipt": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "notifications",
+              "emailReceipt"
+            ]
           },
           "verifiedAccounts": {
             "type": "boolean"
@@ -71742,7 +71961,15 @@
             "type": "string"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "clicks": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "clicks"
+            ]
           }
         },
         "required": [
@@ -71957,7 +72184,19 @@
             "type": "string"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "likes": {
+                "type": "number"
+              },
+              "activities": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "likes",
+              "activities"
+            ]
           }
         },
         "required": [
@@ -72138,7 +72377,15 @@
             "nullable": true
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "subscribers": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "subscribers"
+            ]
           }
         },
         "required": [
@@ -72199,7 +72446,19 @@
             "type": "string"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "subscribers": {
+                "type": "number"
+              },
+              "contents": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "subscribers",
+              "contents"
+            ]
           }
         },
         "required": [
@@ -72379,6 +72638,14 @@
           },
           "registration": {
             "type": "object",
+            "properties": {
+              "accountId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "accountId"
+            ],
             "nullable": true
           }
         },
@@ -72446,7 +72713,23 @@
             "type": "string"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "purchases": {
+                "type": "number"
+              },
+              "payments": {
+                "type": "number"
+              },
+              "variants": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "purchases",
+              "payments",
+              "variants"
+            ]
           }
         },
         "required": [
@@ -72653,7 +72936,15 @@
             }
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "passes": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "passes"
+            ]
           }
         },
         "required": [
@@ -73969,7 +74260,15 @@
             "nullable": true
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "members": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "members"
+            ]
           }
         },
         "required": [
@@ -74013,7 +74312,23 @@
             "type": "string"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "members": {
+                "type": "number"
+              },
+              "interests": {
+                "type": "number"
+              },
+              "events": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "members",
+              "interests",
+              "events"
+            ]
           }
         },
         "required": [
@@ -74068,6 +74383,13 @@
           "image",
           "createdAt",
           "updatedAt"
+        ]
+      },
+      "ImageModerationLevel": {
+        "type": "string",
+        "enum": [
+          "safe",
+          "warning"
         ]
       },
       "BaseImage": {
@@ -74236,7 +74558,15 @@
             "$ref": "#/components/schemas/BaseTier"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "items"
+            ]
           }
         },
         "required": [
@@ -74294,7 +74624,27 @@
             "nullable": true
           },
           "details": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/components/schemas/IntegrationType"
+              },
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "logo": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "name",
+              "description",
+              "logo"
+            ]
           }
         },
         "required": [
@@ -74347,7 +74697,19 @@
             "type": "string"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "accounts": {
+                "type": "number"
+              },
+              "groups": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "accounts",
+              "groups"
+            ]
           }
         },
         "required": [
@@ -74385,7 +74747,15 @@
             "type": "string"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "values": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "values"
+            ]
           }
         },
         "required": [
@@ -74457,22 +74827,11 @@
             "type": "boolean"
           },
           "questionType": {
-            "oneOf": [
-              {
-                "enum": [
-                  "registration"
-                ]
-              },
-              {
-                "enum": [
-                  "session"
-                ]
-              },
-              {
-                "enum": [
-                  "survey"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "registration",
+              "session",
+              "survey"
             ]
           },
           "parentName": {
@@ -75084,10 +75443,12 @@
             "type": "number"
           },
           "byType": {
-            "$ref": "#/components/schemas/Record"
+            "type": "object",
+            "additionalProperties": true
           },
           "bySource": {
-            "$ref": "#/components/schemas/Record"
+            "type": "object",
+            "additionalProperties": true
           }
         },
         "required": [
@@ -75575,7 +75936,15 @@
           "oAuth": {
             "type": "array",
             "items": {
-              "type": "object"
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id"
+              ]
             }
           },
           "maxFileGbs": {
@@ -75758,7 +76127,37 @@
             "type": "string"
           },
           "attendee": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "account": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "firstName",
+                  "lastName",
+                  "email"
+                ]
+              }
+            },
+            "required": [
+              "account"
+            ]
           },
           "alternateId": {
             "type": "number"
@@ -75778,7 +76177,23 @@
             "nullable": true
           },
           "transfer": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "email",
+              "createdAt"
+            ]
           },
           "responses": {
             "type": "array",
@@ -75917,7 +76332,27 @@
             "$ref": "#/components/schemas/BaseEventAddOn"
           },
           "pass": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "attendee": {
+                "type": "object",
+                "properties": {
+                  "accountId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "accountId"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "attendee"
+            ]
           },
           "createdAt": {
             "type": "string"
@@ -76108,18 +76543,21 @@
             "nullable": true
           },
           "address1": {
+            "type": "boolean",
             "enum": [
-              "true"
+              true
             ]
           },
           "address2": {
+            "type": "boolean",
             "enum": [
-              "true"
+              true
             ]
           },
           "city": {
+            "type": "boolean",
             "enum": [
-              "true"
+              true
             ]
           },
           "country": {
@@ -76283,11 +76721,7 @@
             }
           },
           "refunded": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Omit"
-              }
-            ],
+            "type": "object",
             "nullable": true
           },
           "deferredAmount": {
@@ -76306,6 +76740,14 @@
           },
           "integration": {
             "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/components/schemas/PaymentIntegrationType"
+              }
+            },
+            "required": [
+              "type"
+            ],
             "nullable": true
           },
           "event": {
@@ -76386,7 +76828,7 @@
           "lineItems": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Omit"
+              "type": "object"
             }
           }
         },
@@ -76749,6 +77191,14 @@
           "updatedAt"
         ]
       },
+      "TaxIntegrationLogType": {
+        "type": "string",
+        "enum": [
+          "quote",
+          "record",
+          "refund"
+        ]
+      },
       "BaseTaxIntegrationLog": {
         "type": "object",
         "properties": {
@@ -76830,16 +77280,44 @@
               {
                 "type": "array",
                 "items": {
-                  "type": "object"
+                  "type": "object",
+                  "properties": {
+                    "questionId": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "questionId"
+                  ]
                 }
               }
             ]
           },
           "question": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ]
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "subQuestions": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "subQuestions"
+            ]
           }
         },
         "required": [
@@ -77385,7 +77863,15 @@
             "type": "number"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "questions": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "questions"
+            ]
           }
         },
         "required": [
@@ -77467,7 +77953,15 @@
             "type": "number"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "questions": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "questions"
+            ]
           }
         },
         "required": [
@@ -77646,7 +78140,19 @@
             "type": "string"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "payments": {
+                "type": "number"
+              },
+              "coupons": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "payments",
+              "coupons"
+            ]
           }
         },
         "required": [
@@ -78445,16 +78951,44 @@
               {
                 "type": "array",
                 "items": {
-                  "type": "object"
+                  "type": "object",
+                  "properties": {
+                    "questionId": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "questionId"
+                  ]
                 }
               }
             ]
           },
           "question": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ]
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "subQuestions": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "subQuestions"
+            ]
           }
         },
         "required": [
@@ -78825,7 +79359,15 @@
             "type": "string"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "responses": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "responses"
+            ]
           }
         },
         "required": [
@@ -78937,7 +79479,15 @@
             "type": "number"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "questions": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "questions"
+            ]
           }
         },
         "required": [
@@ -79240,7 +79790,15 @@
             "type": "string"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "accounts": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "accounts"
+            ]
           }
         },
         "required": [
@@ -79288,54 +79846,24 @@
         ]
       },
       "RecordingAction": {
-        "oneOf": [
-          {
-            "enum": [
-              "stop"
-            ]
-          },
-          {
-            "enum": [
-              "pause"
-            ]
-          },
-          {
-            "enum": [
-              "resume"
-            ]
-          }
+        "type": "string",
+        "enum": [
+          "stop",
+          "pause",
+          "resume"
         ]
       },
       "StorageConfig": {
         "type": "object",
         "properties": {
           "type": {
-            "oneOf": [
-              {
-                "enum": [
-                  "aws"
-                ]
-              },
-              {
-                "enum": [
-                  "azure"
-                ]
-              },
-              {
-                "enum": [
-                  "digitalocean"
-                ]
-              },
-              {
-                "enum": [
-                  "gcs"
-                ]
-              },
-              {
-                "enum": [
-                  "sftp"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "aws",
+              "azure",
+              "digitalocean",
+              "gcs",
+              "sftp"
             ]
           },
           "access_key": {
@@ -79354,17 +79882,10 @@
             "type": "string"
           },
           "auth_method": {
-            "oneOf": [
-              {
-                "enum": [
-                  "KEY"
-                ]
-              },
-              {
-                "enum": [
-                  "PASSWORD"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "KEY",
+              "PASSWORD"
             ]
           },
           "username": {
@@ -79436,46 +79957,20 @@
             "type": "string"
           },
           "preferred_region": {
-            "oneOf": [
-              {
-                "enum": [
-                  "ap-south-1"
-                ]
-              },
-              {
-                "enum": [
-                  "ap-southeast-1"
-                ]
-              },
-              {
-                "enum": [
-                  "us-east-1"
-                ]
-              },
-              {
-                "enum": [
-                  "eu-central-1"
-                ]
-              },
-              {
-                "enum": [
-                  "null"
-                ]
-              }
-            ]
+            "type": "string",
+            "enum": [
+              "ap-south-1",
+              "ap-southeast-1",
+              "us-east-1",
+              "eu-central-1"
+            ],
+            "nullable": true
           },
           "status": {
-            "oneOf": [
-              {
-                "enum": [
-                  "ACTIVE"
-                ]
-              },
-              {
-                "enum": [
-                  "INACTIVE"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
             ]
           },
           "record_on_start": {
@@ -79613,10 +80108,231 @@
         "type": "object",
         "properties": {
           "peer_stats": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "config": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "device_info": {
+                "type": "object",
+                "properties": {
+                  "browser": {
+                    "type": "string"
+                  },
+                  "browser_version": {
+                    "type": "string"
+                  },
+                  "cpus": {
+                    "type": "number"
+                  },
+                  "engine": {
+                    "type": "string"
+                  },
+                  "is_mobile": {
+                    "type": "boolean"
+                  },
+                  "memory": {
+                    "type": "number"
+                  },
+                  "os": {
+                    "type": "string"
+                  },
+                  "os_version": {
+                    "type": "string"
+                  },
+                  "sdk_name": {
+                    "type": "string"
+                  },
+                  "sdk_version": {
+                    "type": "string"
+                  },
+                  "user_agent": {
+                    "type": "string"
+                  },
+                  "webgl_support": {
+                    "type": "string"
+                  }
+                }
+              },
+              "events": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "timestamp": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "timestamp",
+                    "type"
+                  ]
+                }
+              },
+              "ip_information": {
+                "type": "object",
+                "properties": {
+                  "city": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "ip_location": {
+                    "type": "string"
+                  },
+                  "ipv4": {
+                    "type": "string"
+                  },
+                  "org": {
+                    "type": "string"
+                  },
+                  "portal": {
+                    "type": "string"
+                  },
+                  "region": {
+                    "type": "string"
+                  },
+                  "timezone": {
+                    "type": "string"
+                  }
+                }
+              },
+              "precall_network_information": {
+                "type": "object",
+                "properties": {
+                  "backend_rtt": {
+                    "type": "number"
+                  },
+                  "turn_connectivity": {
+                    "type": "boolean"
+                  },
+                  "effective_networktype": {
+                    "type": "string"
+                  },
+                  "throughtput": {
+                    "type": "number"
+                  },
+                  "jitter": {
+                    "type": "number"
+                  },
+                  "rtt": {
+                    "type": "number"
+                  },
+                  "reflexive_connectivity": {
+                    "type": "boolean"
+                  },
+                  "relay_connectivity": {
+                    "type": "boolean"
+                  },
+                  "fractional_loss": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
           },
           "quality_stats": {
-            "$ref": "#/components/schemas/Array"
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "peer_id": {
+                  "type": "string"
+                },
+                "audio_bandwidth": {
+                  "type": "number"
+                },
+                "video_bandwidth": {
+                  "type": "number"
+                },
+                "average_quality": {
+                  "type": "number"
+                },
+                "start": {
+                  "type": "string"
+                },
+                "end": {
+                  "type": "string"
+                },
+                "audio_packet_loss": {
+                  "type": "number"
+                },
+                "video_packet_loss": {
+                  "type": "number"
+                },
+                "audio_stats": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "string"
+                      },
+                      "concealment_events": {
+                        "type": "number"
+                      },
+                      "packets_lost": {
+                        "type": "number"
+                      },
+                      "jitter": {
+                        "type": "number"
+                      },
+                      "quality": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "timestamp"
+                    ]
+                  }
+                },
+                "video_stats": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "string"
+                      },
+                      "frame_width": {
+                        "type": "number"
+                      },
+                      "frame_height": {
+                        "type": "number"
+                      },
+                      "frames_dropped": {
+                        "type": "number"
+                      },
+                      "frames_per_second": {
+                        "type": "number"
+                      },
+                      "packets_lost": {
+                        "type": "number"
+                      },
+                      "jitter": {
+                        "type": "number"
+                      },
+                      "quality": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "timestamp"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "peer_id"
+              ]
+            }
           }
         }
       },
@@ -79633,36 +80349,18 @@
             "type": "string"
           },
           "type": {
-            "oneOf": [
-              {
-                "enum": [
-                  "meeting"
-                ]
-              },
-              {
-                "enum": [
-                  "livestream"
-                ]
-              },
-              {
-                "enum": [
-                  "participant"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "meeting",
+              "livestream",
+              "participant"
             ]
           },
           "status": {
-            "oneOf": [
-              {
-                "enum": [
-                  "LIVE"
-                ]
-              },
-              {
-                "enum": [
-                  "ENDED"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "LIVE",
+              "ENDED"
             ]
           },
           "live_participants": {
@@ -79690,7 +80388,8 @@
             "type": "string"
           },
           "meta": {
-            "$ref": "#/components/schemas/Record"
+            "type": "object",
+            "additionalProperties": true
           },
           "breakout_rooms": {
             "type": "array",
@@ -79778,27 +80477,12 @@
             "type": "string"
           },
           "status": {
-            "oneOf": [
-              {
-                "enum": [
-                  "LIVE"
-                ]
-              },
-              {
-                "enum": [
-                  "IDLE"
-                ]
-              },
-              {
-                "enum": [
-                  "ERRORED"
-                ]
-              },
-              {
-                "enum": [
-                  "INVOKED"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "LIVE",
+              "IDLE",
+              "ERRORED",
+              "INVOKED"
             ]
           },
           "ingest_server": {
@@ -80708,7 +81392,15 @@
             "nullable": true
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "purchases": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "purchases"
+            ]
           }
         },
         "required": [
@@ -80879,7 +81571,15 @@
             "type": "string"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "sessions": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "sessions"
+            ]
           }
         },
         "required": [
@@ -82065,7 +82765,19 @@
         "type": "object",
         "properties": {
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "accounts": {
+                "type": "number"
+              },
+              "devices": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "accounts",
+              "devices"
+            ]
           }
         },
         "required": [
@@ -82213,7 +82925,15 @@
             "type": "string"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "reservations": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "reservations"
+            ]
           }
         },
         "required": [
@@ -82339,7 +83059,27 @@
           "passes": {
             "type": "array",
             "items": {
-              "type": "object"
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "attendee": {
+                  "type": "object",
+                  "properties": {
+                    "accountId": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "accountId"
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "attendee"
+              ]
             }
           },
           "room": {
@@ -82363,7 +83103,72 @@
           "passes": {
             "type": "array",
             "items": {
-              "type": "object"
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "status": {
+                  "$ref": "#/components/schemas/PurchaseStatus"
+                },
+                "ticket": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name"
+                  ]
+                },
+                "attendee": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "account": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "firstName": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "lastName": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "email": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "firstName",
+                        "lastName",
+                        "email"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "account"
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "status",
+                "attendee"
+              ]
             }
           },
           "lineItem": {
@@ -82555,7 +83360,19 @@
             "nullable": true
           },
           "shareAccount": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "image": {
+                "$ref": "#/components/schemas/BaseImage"
+              }
+            },
+            "required": [
+              "id",
+              "image"
+            ]
           },
           "status": {
             "$ref": "#/components/schemas/LeadStatus"
@@ -82627,7 +83444,19 @@
           "attributes": {
             "type": "array",
             "items": {
-              "type": "object"
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "value"
+              ]
             }
           },
           "updatedAt": {
@@ -83120,7 +83949,19 @@
             "$ref": "#/components/schemas/WidgetCategory"
           },
           "defaultSize": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "w": {
+                "type": "number"
+              },
+              "h": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "w",
+              "h"
+            ]
           }
         },
         "required": [
@@ -83880,16 +84721,44 @@
               {
                 "type": "array",
                 "items": {
-                  "type": "object"
+                  "type": "object",
+                  "properties": {
+                    "questionId": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "questionId"
+                  ]
                 }
               }
             ]
           },
           "question": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ]
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "subQuestions": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "subQuestions"
+            ]
           }
         },
         "required": [
@@ -84250,7 +85119,15 @@
             "type": "string"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "responses": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "responses"
+            ]
           }
         },
         "required": [
@@ -84362,7 +85239,15 @@
             "type": "number"
           },
           "_count": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "questions": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "questions"
+            ]
           }
         },
         "required": [
@@ -84519,10 +85404,46 @@
           },
           "event": {
             "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "roundName": {
+                "type": "string",
+                "nullable": true
+              },
+              "matchName": {
+                "type": "string",
+                "nullable": true
+              }
+            },
+            "required": [
+              "id",
+              "roundName",
+              "matchName"
+            ],
             "nullable": true
           },
           "session": {
             "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "roundName": {
+                "type": "string",
+                "nullable": true
+              },
+              "matchName": {
+                "type": "string",
+                "nullable": true
+              }
+            },
+            "required": [
+              "id",
+              "roundName",
+              "matchName"
+            ],
             "nullable": true
           },
           "number": {
@@ -84542,7 +85463,24 @@
           "matches": {
             "type": "array",
             "items": {
-              "type": "object"
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "title": {
+                  "type": "string",
+                  "nullable": true
+                }
+              },
+              "required": [
+                "id",
+                "number",
+                "title"
+              ]
             }
           },
           "createdAt": {
@@ -84562,22 +85500,11 @@
         "type": "object",
         "properties": {
           "matchType": {
-            "oneOf": [
-              {
-                "enum": [
-                  "include"
-                ]
-              },
-              {
-                "enum": [
-                  "split"
-                ]
-              },
-              {
-                "enum": [
-                  "exclude"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "include",
+              "split",
+              "exclude"
             ]
           },
           "roundQuestionId": {
@@ -84592,22 +85519,11 @@
         "type": "object",
         "properties": {
           "matchType": {
-            "oneOf": [
-              {
-                "enum": [
-                  "include"
-                ]
-              },
-              {
-                "enum": [
-                  "split"
-                ]
-              },
-              {
-                "enum": [
-                  "exclude"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "include",
+              "split",
+              "exclude"
             ]
           },
           "roundQuestionId": {
@@ -84642,7 +85558,18 @@
           "accesses": {
             "type": "array",
             "items": {
-              "type": "object"
+              "type": "object",
+              "properties": {
+                "responses": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BaseEventSessionQuestionResponse"
+                  }
+                }
+              },
+              "required": [
+                "responses"
+              ]
             }
           }
         },
@@ -84906,7 +85833,8 @@
             "type": "string"
           },
           "progress": {
-            "$ref": "#/components/schemas/Record"
+            "type": "object",
+            "additionalProperties": true
           },
           "createdAt": {
             "type": "string"
@@ -84976,22 +85904,11 @@
             "type": "boolean"
           },
           "status": {
-            "oneOf": [
-              {
-                "enum": [
-                  "inprogress"
-                ]
-              },
-              {
-                "enum": [
-                  "ready"
-                ]
-              },
-              {
-                "enum": [
-                  "error"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "inprogress",
+              "ready",
+              "error"
             ]
           }
         },
@@ -85043,22 +85960,94 @@
             "type": "string"
           },
           "rtmps": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "streamKey": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "url",
+              "streamKey"
+            ]
           },
           "rtmpsPlayback": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "streamKey": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "url",
+              "streamKey"
+            ]
           },
           "srt": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "streamId": {
+                "type": "string"
+              },
+              "passphrase": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "url",
+              "streamId",
+              "passphrase"
+            ]
           },
           "srtPlayback": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "streamId": {
+                "type": "string"
+              },
+              "passphrase": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "url",
+              "streamId",
+              "passphrase"
+            ]
           },
           "webRTC": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "url"
+            ]
           },
           "webRTCPlayback": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "url"
+            ]
           },
           "created": {
             "type": "string"
@@ -85067,7 +86056,8 @@
             "type": "string"
           },
           "meta": {
-            "$ref": "#/components/schemas/Record"
+            "type": "object",
+            "additionalProperties": true
           },
           "defaultCreator": {
             "type": "string"
@@ -85076,7 +86066,30 @@
             "type": "object"
           },
           "recording": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "automatic",
+                  "off"
+                ]
+              },
+              "requireSignedURLs": {
+                "type": "boolean"
+              },
+              "allowedOrigins": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "mode",
+              "requireSignedURLs",
+              "allowedOrigins"
+            ]
           },
           "deleteRecordingAfterDays": {
             "type": "number",
@@ -85467,6 +86480,284 @@
           "timestamp"
         ]
       },
+      "AnnouncementFilters": {
+        "type": "object",
+        "properties": {
+          "verifiedAccounts": {
+            "type": "boolean"
+          },
+          "eventId": {
+            "type": "string"
+          },
+          "groupId": {
+            "type": "string"
+          },
+          "tierId": {
+            "type": "string"
+          },
+          "channelId": {
+            "type": "string"
+          },
+          "accountId": {
+            "type": "string"
+          },
+          "sponsorshipLevelId": {
+            "type": "string"
+          }
+        }
+      },
+      "ImageUsage": {
+        "type": "object",
+        "properties": {
+          "_count": {
+            "type": "object",
+            "properties": {
+              "accounts": {
+                "type": "number"
+              },
+              "events": {
+                "type": "number"
+              },
+              "sessions": {
+                "type": "number"
+              },
+              "groups": {
+                "type": "number"
+              },
+              "usage": {
+                "type": "number"
+              },
+              "speakers": {
+                "type": "number"
+              },
+              "tickets": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "accounts",
+              "events",
+              "sessions",
+              "groups",
+              "usage",
+              "speakers",
+              "tickets"
+            ]
+          }
+        },
+        "required": [
+          "_count"
+        ]
+      },
+      "SearchOrganizationFilters": {
+        "type": "object",
+        "properties": {
+          "accounts": {
+            "type": "boolean"
+          },
+          "events": {
+            "type": "boolean"
+          },
+          "groups": {
+            "type": "boolean"
+          },
+          "channels": {
+            "type": "boolean"
+          },
+          "contents": {
+            "type": "boolean"
+          },
+          "threads": {
+            "type": "boolean"
+          }
+        }
+      },
+      "RefundLineItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "amount"
+        ]
+      },
+      "ImageWCopyUri": {
+        "type": "object",
+        "properties": {
+          "copyUri": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "copyUri"
+        ]
+      },
+      "BarChartSummaryData": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "bar"
+            ]
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "label",
+                "value"
+              ]
+            }
+          },
+          "count": {
+            "type": "number"
+          },
+          "question": {
+            "$ref": "#/components/schemas/RegistrationQuestion"
+          }
+        },
+        "required": [
+          "type",
+          "data",
+          "count"
+        ]
+      },
+      "LineChartSummaryData": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "line"
+            ]
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "label",
+                "value"
+              ]
+            }
+          },
+          "count": {
+            "type": "number"
+          },
+          "question": {
+            "$ref": "#/components/schemas/RegistrationQuestion"
+          }
+        },
+        "required": [
+          "type",
+          "data",
+          "count"
+        ]
+      },
+      "TableChartSummaryData": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "table"
+            ]
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "value"
+              ]
+            }
+          },
+          "count": {
+            "type": "number"
+          },
+          "question": {
+            "$ref": "#/components/schemas/RegistrationQuestion"
+          }
+        },
+        "required": [
+          "type",
+          "data",
+          "count"
+        ]
+      },
+      "CountChartSummaryData": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "count"
+            ]
+          },
+          "data": {
+            "type": "string",
+            "enum": [
+              "null"
+            ]
+          },
+          "count": {
+            "type": "number"
+          },
+          "question": {
+            "$ref": "#/components/schemas/RegistrationQuestion"
+          }
+        },
+        "required": [
+          "type",
+          "data",
+          "count"
+        ]
+      },
+      "SummaryData": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/BarChartSummaryData"
+          },
+          {
+            "$ref": "#/components/schemas/LineChartSummaryData"
+          },
+          {
+            "$ref": "#/components/schemas/TableChartSummaryData"
+          },
+          {
+            "$ref": "#/components/schemas/CountChartSummaryData"
+          }
+        ]
+      },
       "AccountCreateInputs": {
         "type": "object",
         "properties": {
@@ -85564,11 +86855,8 @@
             "nullable": true
           },
           "attributes": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Record"
-              }
-            ],
+            "type": "object",
+            "additionalProperties": true,
             "nullable": true
           }
         },
@@ -85682,11 +86970,8 @@
             "nullable": true
           },
           "attributes": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Record"
-              }
-            ],
+            "type": "object",
+            "additionalProperties": true,
             "nullable": true
           }
         }
@@ -85759,7 +87044,15 @@
           "values": {
             "type": "array",
             "items": {
-              "type": "object"
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "email"
+              ]
             },
             "nullable": true
           },
@@ -85788,7 +87081,13 @@
           "marks": {
             "type": "array",
             "items": {
-              "type": "object"
+              "type": "string",
+              "enum": [
+                "bold",
+                "italic",
+                "underline",
+                "strike"
+              ]
             }
           }
         },
@@ -85803,6 +87102,7 @@
         "type": "object",
         "properties": {
           "type": {
+            "type": "string",
             "enum": [
               "mention"
             ]
@@ -85820,6 +87120,7 @@
         "type": "object",
         "properties": {
           "type": {
+            "type": "string",
             "enum": [
               "interest"
             ]
@@ -85837,6 +87138,7 @@
         "type": "object",
         "properties": {
           "type": {
+            "type": "string",
             "enum": [
               "link"
             ]
@@ -85854,6 +87156,7 @@
         "type": "object",
         "properties": {
           "type": {
+            "type": "string",
             "enum": [
               "segment"
             ]
@@ -85861,6 +87164,22 @@
         },
         "required": [
           "type"
+        ]
+      },
+      "ActivityEntityInputs": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/MentionInputs"
+          },
+          {
+            "$ref": "#/components/schemas/LinkInputs"
+          },
+          {
+            "$ref": "#/components/schemas/InterestInputs"
+          },
+          {
+            "$ref": "#/components/schemas/SegmentInputs"
+          }
         ]
       },
       "ActivityCreateInputs": {
@@ -86000,13 +87319,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "accountId": {
             "type": "string",
@@ -86072,13 +87387,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "accountId": {
             "type": "string",
@@ -86247,13 +87558,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "managerId": {
             "type": "string",
@@ -86324,13 +87631,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "managerId": {
             "type": "string",
@@ -86417,13 +87720,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "visible": {
             "type": "boolean"
@@ -86522,13 +87821,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "visible": {
             "type": "boolean"
@@ -86964,13 +88259,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "startAfter": {
             "type": "string",
@@ -86986,13 +88277,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "email": {
             "type": "boolean"
@@ -87059,13 +88346,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "startAfter": {
             "type": "string",
@@ -87081,13 +88364,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "accessLevel": {
             "$ref": "#/components/schemas/PassTypeAccessLevel"
@@ -87107,13 +88386,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -87131,13 +88406,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -87164,13 +88435,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "pricePerNight": {
             "type": "boolean"
@@ -87182,13 +88449,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "sortOrder": {
             "oneOf": [
@@ -87197,13 +88460,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "imageId": {
             "type": "string",
@@ -87265,13 +88524,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "pricePerNight": {
             "type": "boolean"
@@ -87283,13 +88538,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "sortOrder": {
             "oneOf": [
@@ -87298,13 +88549,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "imageId": {
             "type": "string",
@@ -87344,13 +88591,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "defaultValue": {
             "type": "string",
@@ -87371,13 +88614,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "iconData": {
             "type": "string",
@@ -87417,13 +88656,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "discountPercent": {
             "oneOf": [
@@ -87432,13 +88667,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "quantityMin": {
             "oneOf": [
@@ -87447,13 +88678,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "quantityMax": {
             "oneOf": [
@@ -87462,13 +88689,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "amountMin": {
             "oneOf": [
@@ -87477,13 +88700,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "amountMax": {
             "oneOf": [
@@ -87492,13 +88711,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "useLimit": {
             "oneOf": [
@@ -87507,13 +88722,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "emailDomains": {
             "type": "string",
@@ -87570,13 +88781,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "discountPercent": {
             "oneOf": [
@@ -87585,13 +88792,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "quantityMin": {
             "oneOf": [
@@ -87600,13 +88803,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "quantityMax": {
             "oneOf": [
@@ -87615,13 +88814,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "useLimit": {
             "oneOf": [
@@ -87630,13 +88825,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "limitPerAccount": {
             "oneOf": [
@@ -87645,13 +88836,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "purchaseLimit": {
             "oneOf": [
@@ -87660,13 +88847,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "emailDomains": {
             "type": "string",
@@ -87728,13 +88911,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         }
       },
@@ -87862,13 +89041,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "allowMultipleRegistrations": {
             "type": "boolean"
@@ -87893,13 +89068,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "splitPaymentDueDate": {
             "type": "string",
@@ -87946,13 +89117,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "passLimitPerAccount": {
             "oneOf": [
@@ -87961,13 +89128,9 @@
               },
               {
                 "type": "number"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "roundName": {
             "type": "string",
@@ -88138,14 +89301,10 @@
                 "type": "number"
               },
               {
-                "enum": [
-                  "null"
-                ]
-              },
-              {
                 "type": "string"
               }
-            ]
+            ],
+            "nullable": true
           },
           "allowMultipleRegistrations": {
             "type": "boolean"
@@ -88170,13 +89329,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "splitPaymentDueDate": {
             "type": "string",
@@ -88226,13 +89381,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "passLimitPerAccount": {
             "oneOf": [
@@ -88241,13 +89392,9 @@
               },
               {
                 "type": "number"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "roundName": {
             "type": "string",
@@ -88322,13 +89469,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "visible": {
             "type": "boolean"
@@ -88373,13 +89516,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "visible": {
             "type": "boolean"
@@ -88413,13 +89552,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         }
       },
@@ -88451,13 +89586,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -88510,13 +89641,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         }
       },
@@ -88664,13 +89791,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "registrationEnabled": {
             "type": "boolean"
@@ -88685,13 +89808,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "price": {
             "oneOf": [
@@ -88700,13 +89819,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "locationId": {
             "type": "string",
@@ -88821,13 +89936,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "registrationEnabled": {
             "type": "boolean"
@@ -88842,13 +89953,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "price": {
             "oneOf": [
@@ -88857,13 +89964,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "locationId": {
             "type": "string",
@@ -89006,13 +90109,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "description": {
             "type": "string",
@@ -89025,13 +90124,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -89073,13 +90168,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "description": {
             "type": "string",
@@ -89092,13 +90183,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         }
       },
@@ -89154,13 +90241,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "mutable": {
             "type": "boolean"
@@ -89196,13 +90279,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "featured": {
             "type": "boolean"
@@ -89221,13 +90300,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "supply": {
             "oneOf": [
@@ -89236,13 +90311,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "searchListId": {
             "type": "string",
@@ -89318,13 +90389,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "mutable": {
             "type": "boolean"
@@ -89363,13 +90430,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "featured": {
             "type": "boolean"
@@ -89381,13 +90444,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "supply": {
             "oneOf": [
@@ -89396,13 +90455,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "searchListId": {
             "type": "string",
@@ -89427,13 +90482,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -89479,13 +90530,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         }
       },
@@ -89569,13 +90616,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "visible": {
             "type": "boolean"
@@ -89679,13 +90722,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "visible": {
             "type": "boolean"
@@ -89840,85 +90879,85 @@
         "type": "object",
         "properties": {
           "org": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "users": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "reports": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "dashboards": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "logs": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "activities": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "events": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "attendees": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "bookings": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "groups": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "accounts": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "tiers": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "channels": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "contents": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "threads": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "storage": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "support": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "sponsors": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "benefits": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "interests": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "advertisements": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "invoices": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "announcements": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "surveys": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "streams": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "meetings": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           },
           "payments": {
-            "$ref": "#/components/schemas/Omit"
+            "type": "object"
           }
         },
         "required": [
@@ -90255,13 +91294,9 @@
               },
               {
                 "type": "number"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "amount": {
             "type": "number",
@@ -90600,13 +91635,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "description": {
             "type": "string",
@@ -90619,13 +91650,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -90667,13 +91694,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "description": {
             "type": "string",
@@ -90686,13 +91709,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         }
       },
@@ -90751,13 +91770,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "mutable": {
             "type": "boolean"
@@ -90793,13 +91808,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "featured": {
             "type": "boolean"
@@ -90885,13 +91896,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "mutable": {
             "type": "boolean"
@@ -90930,13 +91937,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "featured": {
             "type": "boolean"
@@ -91013,13 +92016,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -91065,13 +92064,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         }
       },
@@ -91096,13 +92091,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -91148,13 +92139,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         }
       },
@@ -91262,13 +92249,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "imageId": {
             "type": "string",
@@ -91281,13 +92264,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -91341,13 +92320,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "imageId": {
             "type": "string",
@@ -91360,13 +92335,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         }
       },
@@ -91560,13 +92531,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "startDate": {
             "type": "string",
@@ -91644,13 +92611,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "startDate": {
             "type": "string",
@@ -91895,13 +92858,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "minQuantityPerSale": {
             "oneOf": [
@@ -91910,13 +92869,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "maxQuantityPerSale": {
             "oneOf": [
@@ -91925,13 +92880,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "limitPerAccount": {
             "oneOf": [
@@ -91940,13 +92891,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "emailDomains": {
             "type": "string",
@@ -91963,13 +92910,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "enableCoupons": {
             "type": "boolean"
@@ -92048,13 +92991,9 @@
               },
               {
                 "type": "number"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "accessLevel": {
             "allOf": [
@@ -92075,13 +93014,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "minQuantityPerSale": {
             "oneOf": [
@@ -92090,13 +93025,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "maxQuantityPerSale": {
             "oneOf": [
@@ -92105,13 +93036,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "limitPerAccount": {
             "oneOf": [
@@ -92120,13 +93047,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "emailDomains": {
             "type": "string",
@@ -92143,13 +93066,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "enableCoupons": {
             "type": "boolean"
@@ -92205,13 +93124,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "description": {
             "type": "string",
@@ -92259,13 +93174,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "description": {
             "type": "string",
@@ -92598,13 +93509,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "minPasses": {
             "oneOf": [
@@ -92613,13 +93520,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "maxPasses": {
             "oneOf": [
@@ -92628,13 +93531,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "minStart": {
             "type": "string",
@@ -92720,13 +93619,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "minPasses": {
             "oneOf": [
@@ -92735,13 +93630,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "maxPasses": {
             "oneOf": [
@@ -92750,13 +93641,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "minStart": {
             "type": "string",
@@ -92840,7 +93727,15 @@
           "passes": {
             "type": "array",
             "items": {
-              "type": "object"
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id"
+              ]
             }
           },
           "start": {
@@ -92893,13 +93788,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "includedNights": {
             "oneOf": [
@@ -92908,13 +93799,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "minPasses": {
             "oneOf": [
@@ -92923,13 +93810,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "maxPasses": {
             "oneOf": [
@@ -92938,13 +93821,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "minStart": {
             "type": "string",
@@ -93293,13 +94172,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "visible": {
             "type": "boolean"
@@ -93362,13 +94237,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "visible": {
             "type": "boolean"
@@ -93451,13 +94322,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "visible": {
             "type": "boolean"
@@ -93536,13 +94403,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "visible": {
             "type": "boolean"
@@ -93873,13 +94736,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "description": {
             "type": "string",
@@ -93892,13 +94751,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -93940,13 +94795,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "description": {
             "type": "string",
@@ -93959,13 +94810,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         }
       },
@@ -94021,13 +94868,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "mutable": {
             "type": "boolean"
@@ -94063,13 +94906,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "featured": {
             "type": "boolean"
@@ -94155,13 +94994,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "mutable": {
             "type": "boolean"
@@ -94200,13 +95035,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "featured": {
             "type": "boolean"
@@ -94234,13 +95065,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -94286,13 +95113,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         }
       },
@@ -94323,13 +95146,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "taxCode": {
             "type": "string",
@@ -94374,13 +95193,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "taxCode": {
             "type": "string",
@@ -94477,13 +95292,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "imageId": {
             "type": "string",
@@ -94517,13 +95328,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         }
       },
@@ -94735,13 +95542,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -94789,13 +95592,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         }
       },
@@ -94860,27 +95659,12 @@
             "type": "string"
           },
           "type": {
-            "oneOf": [
-              {
-                "enum": [
-                  "text"
-                ]
-              },
-              {
-                "enum": [
-                  "number"
-                ]
-              },
-              {
-                "enum": [
-                  "date"
-                ]
-              },
-              {
-                "enum": [
-                  "boolean"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "text",
+              "number",
+              "date",
+              "boolean"
             ]
           },
           "description": {
@@ -94909,13 +95693,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -94957,13 +95737,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           }
         }
       },
@@ -95040,33 +95816,14 @@
             "nullable": true
           },
           "preferred_region": {
-            "oneOf": [
-              {
-                "enum": [
-                  "ap-south-1"
-                ]
-              },
-              {
-                "enum": [
-                  "ap-southeast-1"
-                ]
-              },
-              {
-                "enum": [
-                  "us-east-1"
-                ]
-              },
-              {
-                "enum": [
-                  "eu-central-1"
-                ]
-              },
-              {
-                "enum": [
-                  "null"
-                ]
-              }
-            ]
+            "type": "string",
+            "enum": [
+              "ap-south-1",
+              "ap-southeast-1",
+              "us-east-1",
+              "eu-central-1"
+            ],
+            "nullable": true
           },
           "record_on_start": {
             "type": "boolean"
@@ -95114,33 +95871,14 @@
             "nullable": true
           },
           "preferred_region": {
-            "oneOf": [
-              {
-                "enum": [
-                  "ap-south-1"
-                ]
-              },
-              {
-                "enum": [
-                  "ap-southeast-1"
-                ]
-              },
-              {
-                "enum": [
-                  "us-east-1"
-                ]
-              },
-              {
-                "enum": [
-                  "eu-central-1"
-                ]
-              },
-              {
-                "enum": [
-                  "null"
-                ]
-              }
-            ]
+            "type": "string",
+            "enum": [
+              "ap-south-1",
+              "ap-southeast-1",
+              "us-east-1",
+              "eu-central-1"
+            ],
+            "nullable": true
           },
           "record_on_start": {
             "type": "boolean"
@@ -95149,17 +95887,10 @@
             "type": "boolean"
           },
           "status": {
-            "oneOf": [
-              {
-                "enum": [
-                  "ACTIVE"
-                ]
-              },
-              {
-                "enum": [
-                  "INACTIVE"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE"
             ]
           },
           "persist_chat": {
@@ -95263,22 +95994,11 @@
         "type": "object",
         "properties": {
           "action": {
-            "oneOf": [
-              {
-                "enum": [
-                  "stop"
-                ]
-              },
-              {
-                "enum": [
-                  "pause"
-                ]
-              },
-              {
-                "enum": [
-                  "resume"
-                ]
-              }
+            "type": "string",
+            "enum": [
+              "stop",
+              "pause",
+              "resume"
             ]
           }
         },
@@ -95356,13 +96076,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "eventId": {
             "type": "string",
@@ -95424,13 +96140,9 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "enum": [
-                  "null"
-                ]
               }
-            ]
+            ],
+            "nullable": true
           },
           "eventId": {
             "type": "string",

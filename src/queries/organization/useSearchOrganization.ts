@@ -4,7 +4,11 @@ import {
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "../useConnectedSingleQuery";
-import { ConnectedXMResponse, SearchField } from "@src/interfaces";
+import {
+  ConnectedXMResponse,
+  SearchField,
+  SearchOrganizationFilters,
+} from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 
 /**
@@ -31,15 +35,6 @@ export const SET_SEARCH_ORGANIZATION_QUERY_DATA = (
 ) => {
   client.setQueryData(SEARCH_ORGANIZATION_QUERY_KEY(...keyParams), response);
 };
-
-export interface SearchOrganizationFilters {
-  accounts?: boolean;
-  events?: boolean;
-  groups?: boolean;
-  channels?: boolean;
-  contents?: boolean;
-  threads?: boolean;
-}
 
 interface SearchOrganizationProps extends SingleQueryParams {
   search?: string;

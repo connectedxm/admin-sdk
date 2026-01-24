@@ -1378,7 +1378,7 @@ export interface GroupTranslation {
   updatedAt: string;
 }
 
-enum ImageModerationLevel {
+export enum ImageModerationLevel {
   safe = "safe",
   warning = "warning",
 }
@@ -2084,7 +2084,7 @@ export interface TaxIntegration {
   updatedAt: string;
 }
 
-enum TaxIntegrationLogType {
+export enum TaxIntegrationLogType {
   quote = "quote",
   record = "record",
   refund = "refund",
@@ -4781,3 +4781,85 @@ export interface StreamSessionChatMessage {
   message: string;
   timestamp: number;
 }
+
+export interface AnnouncementFilters {
+  verifiedAccounts?: boolean;
+  eventId?: string;
+  groupId?: string;
+  tierId?: string;
+  channelId?: string;
+  accountId?: string;
+  sponsorshipLevelId?: string;
+}
+
+export interface ImageUsage extends Image {
+  _count: {
+    accounts: number;
+    events: number;
+    sessions: number;
+    groups: number;
+    usage: number;
+    speakers: number;
+    tickets: number;
+  };
+}
+
+export interface SearchOrganizationFilters {
+  accounts?: boolean;
+  events?: boolean;
+  groups?: boolean;
+  channels?: boolean;
+  contents?: boolean;
+  threads?: boolean;
+}
+
+export interface RefundLineItem {
+  id: string;
+  amount: number;
+}
+
+export interface ImageWCopyUri extends Image {
+  copyUri: string;
+}
+
+export interface BarChartSummaryData {
+  type: "bar";
+  data: {
+    label: string;
+    value: number;
+  }[];
+  count: number;
+  question?: RegistrationQuestion;
+}
+
+export interface LineChartSummaryData {
+  type: "line";
+  data: {
+    label: string;
+    value: number;
+  }[];
+  count: number;
+  question?: RegistrationQuestion;
+}
+
+export interface TableChartSummaryData {
+  type: "table";
+  data: {
+    value: number;
+  }[];
+  count: number;
+  question?: RegistrationQuestion;
+}
+
+export interface CountChartSummaryData {
+  type: "count";
+  data: null;
+  count: number;
+  question?: RegistrationQuestion;
+}
+
+export type SummaryData =
+  | BarChartSummaryData
+  | LineChartSummaryData
+  | TableChartSummaryData
+  | CountChartSummaryData;

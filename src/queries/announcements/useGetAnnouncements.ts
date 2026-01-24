@@ -1,23 +1,15 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
-
-import { Announcement } from "@src/interfaces";
+import {
+  ConnectedXMResponse,
+  Announcement,
+  AnnouncementFilters,
+} from "@src/interfaces";
 import {
   InfiniteQueryParams,
   InfiniteQueryOptions,
   useConnectedInfiniteQuery,
 } from "../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
-
-interface AnnouncementFilters {
-  verifiedAccounts?: boolean;
-  eventId?: string;
-  groupId?: string;
-  tierId?: string;
-  channelId?: string;
-  accountId?: string;
-  sponsorshipLevelId?: string;
-}
 
 /**
  * @category Keys

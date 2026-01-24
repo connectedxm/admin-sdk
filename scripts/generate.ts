@@ -506,29 +506,46 @@ function normalizeTag(tag: string): string {
   // Common singular -> plural mappings
   const singularToPlural: Record<string, string> = {
     account: "accounts",
+    activation: "activations",
     activity: "activities",
     advertisement: "advertisements",
     announcement: "announcements",
+    attendee: "attendees",
     benefit: "benefits",
     booking: "bookings",
     channel: "channels",
+    cohost: "coHosts",
     dashboard: "dashboards",
+    email: "emails",
     event: "events",
     file: "files",
+    followup: "followups",
     group: "groups",
     image: "images",
     import: "imports",
+    integration: "integrations",
     interest: "interests",
     invoice: "invoices",
     level: "levels",
     login: "logins",
     meeting: "meetings",
+    module: "modules",
     notification: "notifications",
     organization: "organizations",
+    package: "packages",
+    pass: "passes",
     payment: "payments",
     preference: "preferences",
+    question: "questions",
+    registration: "registrations",
     report: "reports",
+    reservation: "reservations",
+    section: "sections",
     series: "series",
+    session: "sessions",
+    sideeffect: "sideEffects",
+    speaker: "speakers",
+    sponsorshiplevel: "sponsorshipLevels",
     storage: "storage",
     stream: "streams",
     subscription: "subscriptions",
@@ -536,6 +553,8 @@ function normalizeTag(tag: string): string {
     survey: "surveys",
     tier: "tiers",
     thread: "threads",
+    ticket: "tickets",
+    translation: "translations",
     transfer: "transfers",
     user: "users",
     video: "videos",
@@ -551,19 +570,31 @@ function normalizeTag(tag: string): string {
 }
 
 /**
- * Extract tag from file path - uses the parent directory name.
+ * Extract hierarchical tag from file path using :: separator.
+ * e.g., "src/queries/events/passes/useGetEventPasses.ts" -> "Events::Passes"
  * e.g., "src/queries/accounts/useGetAccount.ts" -> "Accounts"
  */
 function extractTagFromPath(filePath: string): string {
-  let parentPath = filePath.split("queries")[1]?.split("/")[1];
-  if (!parentPath) {
-    parentPath = filePath.split("mutations")[1]?.split("/")[1];
+  let pathAfterType = filePath.split("queries")[1];
+  if (!pathAfterType) {
+    pathAfterType = filePath.split("mutations")[1];
   }
-  if (!parentPath) {
+  if (!pathAfterType) {
     return "General";
   }
-  // Normalize to consistent plural form
-  return normalizeTag(parentPath);
+
+  // Split into parts: ["", "events", "passes", "useGetEventPasses.ts"]
+  const parts = pathAfterType.split("/").filter((p) => p && !p.endsWith(".ts"));
+  
+  if (parts.length === 0) {
+    return "General";
+  }
+
+  // Build hierarchical tag: normalize each part and join with ::
+  const tagParts = parts.map((part) => normalizeTag(part));
+  
+  // Return hierarchical tag (e.g., "Events::Passes" or just "Accounts")
+  return tagParts.join("::");
 }
 
 /**

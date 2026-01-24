@@ -1,6 +1,6 @@
 {
   "name": "@connectedxm/admin",
-  "version": "6.5.18",
+  "version": "6.6.0",
   "description": "Admin API javascript SDK",
   "author": "ConnectedXM Inc.",
   "type": "module",
@@ -20,6 +20,7 @@
     "exports": "tsx scripts/exports.ts",
     "generate": "tsx scripts/generate.ts",
     "generate:sdks": "tsx scripts/generate-sdks.ts",
+    "publish:sdk": "tsx scripts/publish-sdk.ts",
     "upgrade": "ncu -i --format group"
   },
   "dependencies": {

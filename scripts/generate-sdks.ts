@@ -15,62 +15,65 @@ const SDKS_DIR = path.join(__dirname, "../sdks");
 const SDK_CONFIGS = [
   {
     name: "typescript",
-    generator: "typescript-axios",
+    generator: "typescript-fetch",
     outputDir: "typescript",
     additionalProperties: [
       "npmName=@connectedxm/admin-sdk",
       "supportsES6=true",
-      "withInterfaces=true",
+      "typescriptThreePlus=true",
+      "useSingleRequestParameter=true",
+      "stringEnums=true",
+      "withoutRuntimeChecks=true",
     ],
   },
-  {
-    name: "python",
-    generator: "python",
-    outputDir: "python",
-    additionalProperties: [
-      "packageName=connectedxm-admin-sdk",
-      "projectName=connectedxm-admin-sdk",
-    ],
-  },
-  {
-    name: "go",
-    generator: "go",
-    outputDir: "go",
-    additionalProperties: [
-      "packageName=connectedxm-admin-sdk",
-      "moduleName=github.com/connectedxm/admin-sdk-go",
-    ],
-  },
-  {
-    name: "java",
-    generator: "java",
-    outputDir: "java",
-    additionalProperties: [
-      "groupId=com.connectedxm",
-      "artifactId=admin-sdk",
-      "invokerPackage=com.connectedxm.admin-sdk",
-      "apiPackage=com.connectedxm.admin-sdk.api",
-      "modelPackage=com.connectedxm.admin-sdk.model",
-    ],
-  },
-  {
-    name: "csharp",
-    generator: "csharp",
-    outputDir: "csharp",
-    additionalProperties: [
-      "packageName=ConnectedXM.AdminSdk",
-      "targetFramework=net8.0",
-    ],
-  },
-  {
-    name: "ruby",
-    generator: "ruby",
-    outputDir: "ruby",
-    additionalProperties: [
-      "gemName=connectedxm-admin-sdk",
-      "moduleName=ConnectedXMAdminSdk",
-    ],
-  },
+  // {
+  //   name: "python",
+  //   generator: "python",
+  //   outputDir: "python",
+  //   additionalProperties: [
+  //     "packageName=connectedxm-admin-sdk",
+  //     "projectName=connectedxm-admin-sdk",
+  //   ],
+  // },
+  // {
+  //   name: "go",
+  //   generator: "go",
+  //   outputDir: "go",
+  //   additionalProperties: [
+  //     "packageName=connectedxm-admin-sdk",
+  //     "moduleName=github.com/connectedxm/admin-sdk-go",
+  //   ],
+  // },
+  // {
+  //   name: "java",
+  //   generator: "java",
+  //   outputDir: "java",
+  //   additionalProperties: [
+  //     "groupId=com.connectedxm",
+  //     "artifactId=admin-sdk",
+  //     "invokerPackage=com.connectedxm.admin-sdk",
+  //     "apiPackage=com.connectedxm.admin-sdk.api",
+  //     "modelPackage=com.connectedxm.admin-sdk.model",
+  //   ],
+  // },
+  // {
+  //   name: "csharp",
+  //   generator: "csharp",
+  //   outputDir: "csharp",
+  //   additionalProperties: [
+  //     "packageName=ConnectedXM.AdminSdk",
+  //     "targetFramework=net8.0",
+  //   ],
+  // },
+  // {
+  //   name: "ruby",
+  //   generator: "ruby",
+  //   outputDir: "ruby",
+  //   additionalProperties: [
+  //     "gemName=connectedxm-admin-sdk",
+  //     "moduleName=ConnectedXMAdminSdk",
+  //   ],
+  // },
 ];
 
 function ensureOpenApiGeneratorInstalled(): boolean {
@@ -184,22 +187,39 @@ function toSnakeCase(str: string): string {
  * Extract API classes from TypeScript api.ts file
  */
 function extractApiClasses(outputPath: string): ApiClassInfo[] {
+  // typescript-fetch puts APIs in src/apis/ folder
+  const apisDir = path.join(outputPath, "src", "apis");
+  if (fs.existsSync(apisDir)) {
+    const apiFiles = fs
+      .readdirSync(apisDir)
+      .filter((f) => f.endsWith("Api.ts"));
+    return apiFiles.map((f) => {
+      const className = f.replace(".ts", "");
+      const baseName = className.replace(/Api$/, "");
+      const propertyName = baseName.charAt(0).toLowerCase() + baseName.slice(1);
+      const snakeName = toSnakeCase(baseName);
+      return { className, propertyName, snakeName };
+    });
+  }
+
+  // typescript-axios puts all APIs in api.ts
   const apiFilePath = path.join(outputPath, "api.ts");
   if (!fs.existsSync(apiFilePath)) {
-    // Try alternative locations for other languages
     return [];
   }
 
   const apiContent = fs.readFileSync(apiFilePath, "utf-8");
   const apiClassMatches = apiContent.match(
-    /export class (\w+Api) extends BaseAPI/g
+    /export class (\w+Api)(?:\s+extends\s+\w+)?/g
   );
+
   if (!apiClassMatches) return [];
 
   return apiClassMatches.map((match) => {
     const className = match
       .replace("export class ", "")
-      .replace(" extends BaseAPI", "");
+      .replace(/\s+extends\s+\w+/, "")
+      .trim();
     const baseName = className.replace(/Api$/, "");
     const propertyName = baseName.charAt(0).toLowerCase() + baseName.slice(1);
     const snakeName = toSnakeCase(baseName);
@@ -208,7 +228,43 @@ function extractApiClasses(outputPath: string): ApiClassInfo[] {
 }
 
 /**
- * Generate TypeScript AdminApi wrapper
+ * Build nested API structure from hierarchical class names
+ * E.g., EventsPassesApi -> { events: { passes: EventsPassesApi } }
+ */
+function buildNestedApiStructure(apiClasses: ApiClassInfo[]): {
+  topLevel: string[];
+  nested: Map<string, string[]>;
+} {
+  const topLevel = new Set<string>();
+  const nested = new Map<string, string[]>();
+
+  for (const apiClass of apiClasses) {
+    const className = apiClass.className;
+    
+    // Check if this is a nested API (e.g., EventsPassesApi, EventsAttendeesReservationsApi)
+    // Pattern: {Parent}{Child}Api or {Parent}{Child}{SubChild}Api
+    const match = className.match(/^([A-Z][a-z]+?)([A-Z][a-z]+.*?)Api$/);
+    
+    if (match && match[1] && match[2]) {
+      const parent = match[1].toLowerCase();
+      topLevel.add(parent);
+      
+      if (!nested.has(parent)) {
+        nested.set(parent, []);
+      }
+      nested.get(parent)!.push(className);
+    } else {
+      // Top-level API (e.g., AccountsApi, EventsApi)
+      const baseName = className.replace(/Api$/, "");
+      topLevel.add(baseName.toLowerCase());
+    }
+  }
+
+  return { topLevel: Array.from(topLevel), nested };
+}
+
+/**
+ * Generate TypeScript AdminApi wrapper with nested structure
  */
 function generateTypeScriptWrapper(outputPath: string): void {
   const apiClasses = extractApiClasses(outputPath);
@@ -217,6 +273,9 @@ function generateTypeScriptWrapper(outputPath: string): void {
     return;
   }
 
+  // For now, keep flat structure - hierarchical wrapper is complex
+  // We'll generate nested namespace classes in a future iteration
+  
   const wrapperContent = `/* tslint:disable */
 /* eslint-disable */
 /**
@@ -224,22 +283,19 @@ function generateTypeScriptWrapper(outputPath: string): void {
  * 
  * Usage:
  *   const adminApi = new AdminApi({
- *     basePath: "https://admin-api.connected.dev",
  *     apiKey: "your-api-key",
  *     organizationId: "your-org-id",
  *   });
  *   const accounts = await adminApi.accounts.getAccounts();
- *   const events = await adminApi.events.getEvents();
+ *   const eventsPasses = await adminApi.eventsPasses.getEventPasses();
  */
 
-import { Configuration, ConfigurationParameters } from "./configuration";
+import { Configuration } from "./runtime";
 import {
 ${apiClasses.map((c) => `  ${c.className},`).join("\n")}
-} from "./api";
+} from "./apis";
 
 export interface AdminApiConfig {
-  /** The API base URL (e.g., "https://admin-api.connected.dev") */
-  basePath: string;
   /** Your API key for authentication */
   apiKey: string;
   /** Your organization ID */
@@ -255,12 +311,10 @@ ${apiClasses
 
   constructor(config: AdminApiConfig) {
     this.config = new Configuration({
-      basePath: config.basePath,
-      baseOptions: {
-        headers: {
-          "api-key": config.apiKey,
-          "organization": config.organizationId,
-        },
+      basePath: "https://admin-api.connected.dev",
+      headers: {
+        "api-key": config.apiKey,
+        "organization": config.organizationId,
       },
     });
 
@@ -273,8 +327,8 @@ ${apiClasses
    * Update the API key
    */
   setApiKey(apiKey: string): void {
-    if (this.config.baseOptions?.headers) {
-      this.config.baseOptions.headers["api-key"] = apiKey;
+    if (this.config.headers) {
+      this.config.headers["api-key"] = apiKey;
     }
   }
 
@@ -282,8 +336,8 @@ ${apiClasses
    * Update the organization ID
    */
   setOrganizationId(organizationId: string): void {
-    if (this.config.baseOptions?.headers) {
-      this.config.baseOptions.headers["organization"] = organizationId;
+    if (this.config.headers) {
+      this.config.headers["organization"] = organizationId;
     }
   }
 }
@@ -291,17 +345,36 @@ ${apiClasses
 export default AdminApi;
 `;
 
-  fs.writeFileSync(path.join(outputPath, "admin-api.ts"), wrapperContent);
+  // Write to src/ for typescript-fetch, or root for typescript-axios
+  const srcDir = path.join(outputPath, "src");
+  const wrapperPath = fs.existsSync(srcDir)
+    ? path.join(srcDir, "AdminApi.ts")
+    : path.join(outputPath, "admin-api.ts");
 
-  // Update index.ts
-  const indexPath = path.join(outputPath, "index.ts");
-  let indexContent = fs.readFileSync(indexPath, "utf-8");
-  if (!indexContent.includes("admin-api")) {
-    indexContent =
-      indexContent.trimEnd() +
-      '\nexport * from "./admin-api";\nexport { AdminApi as default } from "./admin-api";\n';
-    fs.writeFileSync(indexPath, indexContent);
-  }
+  fs.writeFileSync(wrapperPath, wrapperContent);
+
+  // Replace index.ts to only export AdminApi and types
+  const indexPath = fs.existsSync(srcDir)
+    ? path.join(srcDir, "index.ts")
+    : path.join(outputPath, "index.ts");
+
+  const cleanIndexContent = `/* tslint:disable */
+/* eslint-disable */
+/**
+ * Connected Admin SDK
+ * 
+ * A unified SDK for the Connected Admin API
+ */
+
+// Export the main AdminApi class
+export { AdminApi, AdminApiConfig } from "./AdminApi";
+export { AdminApi as default } from "./AdminApi";
+
+// Export all model types
+export * from "./models";
+export * from "./apis";
+`;
+  fs.writeFileSync(indexPath, cleanIndexContent);
 
   console.log("   ✨ Added AdminApi wrapper class");
 }
@@ -353,7 +426,6 @@ Usage:
     from ${packageImportName} import AdminApi
     
     api = AdminApi(
-        base_url="https://admin-api.connected.dev",
         api_key="your-api-key",
         organization_id="your-org-id",
     )
@@ -375,7 +447,6 @@ class AdminApi:
 
     def __init__(
         self,
-        base_url: str,
         api_key: str,
         organization_id: str,
     ):
@@ -383,12 +454,11 @@ class AdminApi:
         Initialize the AdminApi client.
 
         Args:
-            base_url: The API base URL (e.g., "https://admin-api.connected.dev")
             api_key: Your API key for authentication
             organization_id: Your organization ID
         """
         self._configuration = Configuration()
-        self._configuration.host = base_url
+        self._configuration.host = "https://admin-api.connected.dev"
         
         self._api_client = ApiClient(self._configuration)
         self._api_client.default_headers["api-key"] = api_key
@@ -453,7 +523,7 @@ AdminApi - Unified API client wrapper
 
 Usage:
 
-    api := connectedxm.NewAdminApi("https://admin-api.connected.dev", "your-api-key", "your-org-id")
+    api := connectedxm.NewAdminApi("your-api-key", "your-org-id")
     accounts, _, err := api.Accounts.GetAccounts(context.Background()).Execute()
     events, _, err := api.Events.GetEvents(context.Background()).Execute()
 */
@@ -470,13 +540,12 @@ ${apiClasses.map((c) => `\t${c.fieldName} *${c.apiName}`).join("\n")}
 }
 
 // NewAdminApi creates a new AdminApi client
-// basePath: The API base URL (e.g., "https://admin-api.connected.dev")
 // apiKey: Your API key for authentication
 // organizationId: Your organization ID
-func NewAdminApi(basePath string, apiKey string, organizationId string) *AdminApi {
+func NewAdminApi(apiKey string, organizationId string) *AdminApi {
 \tcfg := NewConfiguration()
 \tcfg.Servers = ServerConfigurations{
-\t\t{URL: basePath},
+\t\t{URL: "https://admin-api.connected.dev"},
 \t}
 \tcfg.AddDefaultHeader("api-key", apiKey)
 \tcfg.AddDefaultHeader("organization", organizationId)
@@ -576,7 +645,7 @@ ${apiClasses.map((c) => `import ${packageName}.api.${c.className};`).join("\n")}
  * <p>
  * Usage:
  * <pre>
- * AdminApi api = new AdminApi("https://admin-api.connected.dev", "your-api-key", "your-org-id");
+ * AdminApi api = new AdminApi("your-api-key", "your-org-id");
  * List&lt;Account&gt; accounts = api.accounts().getAccounts();
  * List&lt;Event&gt; events = api.events().getEvents();
  * </pre>
@@ -590,13 +659,12 @@ ${apiClasses
     /**
      * Create a new AdminApi client.
      *
-     * @param basePath The API base URL (e.g., "https://admin-api.connected.dev")
      * @param apiKey Your API key for authentication
      * @param organizationId Your organization ID
      */
-    public AdminApi(String basePath, String apiKey, String organizationId) {
+    public AdminApi(String apiKey, String organizationId) {
         this.apiClient = new ApiClient();
-        this.apiClient.setBasePath(basePath);
+        this.apiClient.setBasePath("https://admin-api.connected.dev");
         this.apiClient.addDefaultHeader("api-key", apiKey);
         this.apiClient.addDefaultHeader("organization", organizationId);
 
@@ -696,7 +764,7 @@ namespace ConnectedXM.AdminSdk.Api
     /// </summary>
     /// <example>
     /// <code>
-    /// var api = new AdminApi("https://admin-api.connected.dev", "your-api-key", "your-org-id");
+    /// var api = new AdminApi("your-api-key", "your-org-id");
     /// var accounts = await api.Accounts.GetAccountsAsync();
     /// var events = await api.Events.GetEventsAsync();
     /// </code>
@@ -715,14 +783,13 @@ ${apiClasses
         /// <summary>
         /// Create a new AdminApi client.
         /// </summary>
-        /// <param name="basePath">The API base URL (e.g., "https://admin-api.connected.dev")</param>
         /// <param name="apiKey">Your API key for authentication</param>
         /// <param name="organizationId">Your organization ID</param>
-        public AdminApi(string basePath, string apiKey, string organizationId)
+        public AdminApi(string apiKey, string organizationId)
         {
             _configuration = new Configuration
             {
-                BasePath = basePath,
+                BasePath = "https://admin-api.connected.dev",
                 DefaultHeaders = new Dictionary<string, string>
                 {
                     { "api-key", apiKey },
@@ -806,7 +873,6 @@ function generateRubyWrapper(outputPath: string): void {
 #
 # Usage:
 #   api = ConnectedXMAdminSdk::AdminApi.new(
-#     base_url: "https://admin-api.connected.dev",
 #     api_key: "your-api-key",
 #     organization_id: "your-org-id"
 #   )
@@ -824,12 +890,11 @@ ${apiClasses
 
     # Create a new AdminApi client.
     #
-    # @param base_url [String] The API base URL (e.g., "https://admin-api.connected.dev")
     # @param api_key [String] Your API key for authentication
     # @param organization_id [String] Your organization ID
-    def initialize(base_url:, api_key:, organization_id:)
+    def initialize(api_key:, organization_id:)
       @config = Configuration.new
-      @config.host = base_url
+      @config.host = "https://admin-api.connected.dev"
       @api_client = ApiClient.new(@config)
       @api_client.default_headers["api-key"] = api_key
       @api_client.default_headers["organization"] = organization_id
@@ -893,13 +958,53 @@ async function main() {
     process.exit(1);
   }
 
-  // Generate SDKs
+  // Generate only TypeScript SDK for now (others are commented out)
   const results: { name: string; success: boolean }[] = [];
 
-  for (const config of SDK_CONFIGS) {
-    const success = generateSdk(config);
-    results.push({ name: config.name, success });
+  // Only generate TypeScript SDK
+  const tsConfig = SDK_CONFIGS.find((c) => c.name === "typescript");
+  if (tsConfig) {
+    const success = generateSdk(tsConfig);
+    results.push({ name: tsConfig.name, success });
+
+    // Auto-build and relink TypeScript SDK after generation
+    if (success) {
+      console.log("\n🔨 Building TypeScript SDK...");
+      const tsPath = path.join(SDKS_DIR, tsConfig.outputDir);
+      try {
+        execSync("npm install && npm run build", {
+          cwd: tsPath,
+          stdio: "inherit",
+        });
+        console.log("✅ TypeScript SDK built successfully");
+
+        // Automatically relink the package
+        try {
+          execSync("npm link", {
+            cwd: tsPath,
+            stdio: "pipe",
+          });
+          console.log("🔗 TypeScript SDK linked globally");
+          console.log("\n💡 In your consuming project, run:");
+          console.log("   npm link @connectedxm/admin-sdk");
+        } catch {
+          console.log("\n💡 To use locally, run:");
+          console.log(`   cd ${tsPath} && npm link`);
+          console.log("   cd /path/to/your-project && npm link @connectedxm/admin-sdk");
+        }
+      } catch {
+        console.error("❌ Failed to build TypeScript SDK");
+      }
+    }
   }
+
+  // TODO: Re-enable other SDKs after testing TypeScript
+  // for (const config of SDK_CONFIGS) {
+  //   if (config.name !== "typescript") {
+  //     const success = generateSdk(config);
+  //     results.push({ name: config.name, success });
+  //   }
+  // }
 
   // Summary
   console.log("\n📊 Generation Summary:");

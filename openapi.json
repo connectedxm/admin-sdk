@@ -18,59 +18,59 @@
   "tags": [
     {
       "name": "Accounts",
-      "description": "Operations for managing user accounts"
+      "description": "The command center for managing client profiles, tracking community data, and monitoring all member interactions"
     },
     {
       "name": "Accounts::Addresses",
-      "description": "Operations for accounts::addresses"
+      "description": "Store and manage physical addresses associated with accounts for shipping, billing, or location purposes"
     },
     {
       "name": "Accounts::Followers",
-      "description": "Operations for accounts::followers"
+      "description": "Track and manage accounts who follow a specific account, enabling social connections and activity feed customization"
     },
     {
       "name": "Accounts::Following",
-      "description": "Operations for accounts::following"
+      "description": "Manage which accounts an account chooses to follow, allowing users to curate their activity feed and stay connected with relevant content"
     },
     {
       "name": "Accounts::Groups",
-      "description": "Operations for accounts::groups"
+      "description": "View and manage group memberships for accounts, showing which groups an account belongs to and enabling group-based permissions"
     },
     {
       "name": "Accounts::Interests",
-      "description": "Operations for accounts::interests"
+      "description": "Associate hashtag-like interests with accounts to categorize content, enable discovery, and personalize the user experience"
     },
     {
       "name": "Accounts::Invitations",
-      "description": "Operations for accounts::invitations"
+      "description": "Create an email allowlist that controls who can sign up and join your private community, restricting access to authorized email addresses"
     },
     {
       "name": "Accounts::Leads",
-      "description": "Operations for accounts::leads"
+      "description": "Track and manage lead information associated with accounts for sales and marketing purposes"
     },
     {
       "name": "Accounts::Tiers",
-      "description": "Operations for accounts::tiers"
+      "description": "Associate accounts with membership tiers and segments to grant access to exclusive content, pricing, and features"
     },
     {
       "name": "Activities",
-      "description": "Operations for managing activities and activity feeds"
+      "description": "Keep your community active with engagement in the Activity Feed"
     },
     {
       "name": "Activities::Schedule",
-      "description": "Operations for activities::schedule"
+      "description": "Schedule activities to be published at specific times, allowing for planned content releases and coordinated community engagement"
     },
     {
       "name": "Advertisements",
-      "description": "Operations for managing advertisements"
+      "description": "Drive revenue, boost sponsor brand visibility, and engage directly with your community using advertisements"
     },
     {
       "name": "Announcements",
-      "description": "Operations for managing announcements"
+      "description": "Keep your community in the loop with important updates, news, and highlights directly to your audience"
     },
     {
       "name": "Announcements::Schedule",
-      "description": "Operations for announcements::schedule"
+      "description": "Schedule announcements to go live at the most impactful times, ensuring important messages reach your audience when they're most likely to see them"
     },
     {
       "name": "ApiLogs",
@@ -82,31 +82,31 @@
     },
     {
       "name": "Benefits",
-      "description": "Operations for managing membership benefits"
+      "description": "Create and manage exclusive offers or discounts provided to accounts in the community"
     },
     {
       "name": "Bookings",
-      "description": "Operations for managing bookings"
+      "description": "Attendees can book specific time-slots for event experiences with bookings"
     },
     {
       "name": "Bookings::Availabilities",
-      "description": "Operations for bookings::availabilities"
+      "description": "Define available time slots for bookable spaces, allowing attendees to reserve specific times for activities like meetings or photo sessions"
     },
     {
       "name": "Bookings::Blackouts",
-      "description": "Operations for bookings::blackouts"
+      "description": "Set blackout periods when bookings are unavailable, preventing reservations during maintenance, holidays, or other restricted times"
     },
     {
       "name": "Bookings::Places",
-      "description": "Operations for bookings::places"
+      "description": "Define top-level venues that contain bookable spaces, such as hotels, conference centers, or virtual platforms, providing context for all reservable areas"
     },
     {
       "name": "Bookings::Spaces",
-      "description": "Operations for bookings::spaces"
+      "description": "Create specific, individual areas within a larger place that attendees can reserve for time-slots, such as meeting rooms, booths, or photo-op locations"
     },
     {
       "name": "Channels",
-      "description": "Operations for managing communication channels"
+      "description": "Channels combines versatile video hosting with written updates to help you effectively reach, inform, and entertain your community"
     },
     {
       "name": "Dashboards",
@@ -114,7 +114,7 @@
     },
     {
       "name": "Dashboards::Widgets",
-      "description": "Operations for dashboards::widgets"
+      "description": "Configure and customize dashboard widgets to display key metrics, KPIs, and visualizations for monitoring community activity and performance"
     },
     {
       "name": "EmailReceipts",
@@ -122,163 +122,163 @@
     },
     {
       "name": "Events",
-      "description": "Operations for managing events"
+      "description": "Organize and manage events effortlessly with seamless registration, detailed scheduling, and real-time updates"
     },
     {
       "name": "Events::Access",
-      "description": "Operations for events::access"
+      "description": "Configure access controls for events, determining who can view, register for, or participate in event content and activities"
     },
     {
       "name": "Events::Activations",
-      "description": "Operations for events::activations"
+      "description": "Manage on-site check-ins, control access activations for special zones or sessions, and set permissions for scanning devices and staff"
     },
     {
       "name": "Events::Addons",
-      "description": "Operations for events::addons"
+      "description": "Offer supplementary items or services like exclusive workshops, networking upgrades, merchandise, or special amenities that enhance the attendee experience"
     },
     {
       "name": "Events::Attendees",
-      "description": "Operations for events::attendees"
+      "description": "Track accounts that have started or completed registration for an event, monitor registration status, and manage attendee information"
     },
     {
       "name": "Events::Attendees::Packages",
-      "description": "Operations for events::attendees::packages"
+      "description": "View and manage packages purchased by event attendees, tracking bundled pass combinations and package-specific benefits"
     },
     {
       "name": "Events::Attendees::Reservations",
-      "description": "Operations for events::attendees::reservations"
+      "description": "Manage lodging and accommodation reservations made by event attendees, including room assignments and reservation details"
     },
     {
       "name": "Events::Benefits",
-      "description": "Operations for events::benefits"
+      "description": "Associate exclusive offers or discounts with events, providing special perks to attendees or members"
     },
     {
       "name": "Events::Bypass",
-      "description": "Operations for events::bypass"
+      "description": "Bypass standard registration requirements to grant direct access to events or passes, useful for comps, sponsors, or special circumstances"
     },
     {
       "name": "Events::Cohosts",
-      "description": "Operations for events::cohosts"
+      "description": "Assign co-hosts to events who can help manage and moderate event activities, content, and attendee interactions"
     },
     {
       "name": "Events::Coupons",
-      "description": "Operations for events::coupons"
+      "description": "Create and manage promotional discount codes that attendees can apply at checkout to reduce pass prices and drive registrations"
     },
     {
       "name": "Events::Emails",
-      "description": "Operations for events::emails"
+      "description": "Send and manage event-related email communications to attendees, including confirmations, updates, and promotional messages"
     },
     {
       "name": "Events::Faqs",
-      "description": "Operations for events::faqs"
+      "description": "Create and manage frequently asked questions for events, providing attendees with answers to common inquiries about registration, logistics, and event details"
     },
     {
       "name": "Events::Followups",
-      "description": "Operations for events::followups"
+      "description": "Send follow-up communications to event attendees after the event concludes, including surveys, thank you messages, and next steps"
     },
     {
       "name": "Events::Matches",
-      "description": "Operations for events::matches"
+      "description": "Create customizable pairings to group attendees together for activities like golf foursomes, table assignments, or networking sessions"
     },
     {
       "name": "Events::Media",
-      "description": "Operations for events::media"
+      "description": "Upload, organize, and manage media files associated with events, including images, videos, and documents for event pages and content"
     },
     {
       "name": "Events::OnSite",
-      "description": "Operations for events::onsite"
+      "description": "Configure on-site check-in processes, manage access activations, and set scan permissions to ensure smooth and secure attendee access throughout the event"
     },
     {
       "name": "Events::Packages",
-      "description": "Operations for events::packages"
+      "description": "Create bundled pass offerings that combine multiple pass types into a single purchase, often at a discounted rate, simplifying registration for families or groups"
     },
     {
       "name": "Events::Packages::Passes",
-      "description": "Operations for events::packages::passes"
+      "description": "Configure which pass types are included in event packages and set quantity limits for each pass type within the package"
     },
     {
       "name": "Events::Pages",
-      "description": "Operations for events::pages"
+      "description": "Customize event page content, including descriptions, images, FAQs, sponsor information, and other details that appear on the public event page"
     },
     {
       "name": "Events::Passes",
-      "description": "Operations for events::passes"
+      "description": "Manage individual passes purchased by attendees, tracking pass status, check-ins, and access permissions for event registration"
     },
     {
       "name": "Events::Passtypes",
-      "description": "Operations for events::passtypes"
+      "description": "Create and configure pass types with unique names, descriptions, prices, access levels, and rules that define what each pass enables"
     },
     {
       "name": "Events::Passtypes::Priceschedules",
-      "description": "Operations for events::passtypes::priceschedules"
+      "description": "Set dynamic pricing that automatically changes on specific dates, allowing for early bird pricing, regular pricing, and late registration fees"
     },
     {
       "name": "Events::Passtypes::Refundschedules",
-      "description": "Operations for events::passtypes::refundschedules"
+      "description": "Define refund policies that specify how much money attendees receive if they cancel their pass, based on cancellation timing and pass type"
     },
     {
       "name": "Events::Questions",
-      "description": "Operations for events::questions"
+      "description": "Create custom registration questions to collect essential attendee information, enabling better event planning and personalized experiences"
     },
     {
       "name": "Events::Rooms",
-      "description": "Operations for events::rooms"
+      "description": "Manage specific room assignments and room numbers for event accommodations, allowing attendees to select or be assigned particular rooms"
     },
     {
       "name": "Events::Roomtypes",
-      "description": "Operations for events::roomtypes"
+      "description": "Define room categories for event accommodations, such as single, double, or suite, with pricing, capacity, and availability settings"
     },
     {
       "name": "Events::Sections",
-      "description": "Operations for events::sections"
+      "description": "Organize event content into sections for better navigation and structure, grouping related information or activities together"
     },
     {
       "name": "Events::Sessions",
-      "description": "Operations for events::sessions"
+      "description": "Create, schedule, and configure individual sessions within your event agenda, including details, speakers, locations, and registration requirements"
     },
     {
       "name": "Events::Sessions::Accesses",
-      "description": "Operations for events::sessions::accesses"
+      "description": "Control who can access specific sessions, setting restrictions based on pass types, capacity limits, or registration requirements"
     },
     {
       "name": "Events::Sessions::Locations",
-      "description": "Operations for events::sessions::locations"
+      "description": "Define physical venues, rooms, or virtual spaces where sessions occur, providing clear navigational information for attendees"
     },
     {
       "name": "Events::Sessions::Matches",
-      "description": "Operations for events::sessions::matches"
+      "description": "Create matchmaking pairings for session-specific activities, grouping attendees together for networking or collaborative sessions"
     },
     {
       "name": "Events::Sessions::Questions",
-      "description": "Operations for events::sessions::questions"
+      "description": "Add custom questions to session registration, collecting additional information from attendees who register for specific sessions"
     },
     {
       "name": "Events::Sessions::Sections",
-      "description": "Operations for events::sessions::sections"
+      "description": "Organize session content into sections, grouping related sessions or activities for better agenda navigation"
     },
     {
       "name": "Events::Speakers",
-      "description": "Operations for events::speakers"
+      "description": "Create detailed speaker profiles with biographies, photos, company information, and social media links to showcase event presenters"
     },
     {
       "name": "Events::Sponsors",
-      "description": "Operations for events::sponsors"
+      "description": "Create and display sponsor profiles on the event page, recognizing supporters with logos, descriptions, and website links"
     },
     {
       "name": "Events::Sponsorshiplevels",
-      "description": "Operations for events::sponsorshiplevels"
+      "description": "Create sponsorship level categories like Platinum, Gold, or Silver to organize sponsors by contribution level and display them accordingly"
     },
     {
       "name": "Events::Sponsorships",
-      "description": "Operations for events::sponsorships"
+      "description": "Manage sponsorship relationships and benefits, tracking sponsor contributions and associated perks or visibility"
     },
     {
       "name": "Events::Templates",
-      "description": "Operations for events::templates"
+      "description": "Save event configurations as templates to quickly create new events with similar settings, streamlining event setup and ensuring consistency"
     },
     {
       "name": "Events::Tracks",
-      "description": "Operations for events::tracks"
+      "description": "Categorize sessions into thematic tracks with color coding, helping attendees filter complex schedules and find content aligned with their interests"
     },
     {
       "name": "Files",
@@ -286,35 +286,35 @@
     },
     {
       "name": "Groups",
-      "description": "Operations for managing groups"
+      "description": "Create and manage dedicated groups within your community to foster collaboration and connection"
     },
     {
       "name": "Groups::Events",
-      "description": "Operations for groups::events"
+      "description": "Associate events with groups, allowing group members to discover and register for group-specific events or activities"
     },
     {
       "name": "Groups::Interests",
-      "description": "Operations for groups::interests"
+      "description": "Tag groups with interests to help members discover relevant groups and enable interest-based filtering and recommendations"
     },
     {
       "name": "Groups::Invitations",
-      "description": "Operations for groups::invitations"
+      "description": "Send direct invitations to specific users to join private groups, tracking invitation status and proactively growing group membership"
     },
     {
       "name": "Groups::Members",
-      "description": "Operations for groups::members"
+      "description": "View the complete roster of group members, add or remove members, and adjust roles to maintain a well-organized community"
     },
     {
       "name": "Groups::Moderators",
-      "description": "Operations for groups::moderators"
+      "description": "Assign elevated privileges to trusted group members, enabling them to help moderate content, manage members, and maintain community standards"
     },
     {
       "name": "Groups::Requests",
-      "description": "Operations for groups::requests"
+      "description": "Review membership requests for private groups, approving or denying access to ensure appropriate membership and maintain group exclusivity"
     },
     {
       "name": "Groups::Sponsors",
-      "description": "Operations for groups::sponsors"
+      "description": "Associate sponsors with groups, recognizing supporting organizations or individuals within group contexts"
     },
     {
       "name": "Images",
@@ -326,15 +326,15 @@
     },
     {
       "name": "Interests",
-      "description": "Operations for managing interests"
+      "description": "A community-wide tagging system that acts like hashtags and allows users to share trending topics"
     },
     {
       "name": "Invoices",
-      "description": "Operations for managing invoices"
+      "description": "Streamline your event invoicing and gain complete financial oversight with instant differentiation between paid and outstanding invoices"
     },
     {
       "name": "Invoices::Lineitems",
-      "description": "Operations for invoices::lineitems"
+      "description": "View and manage individual line items on invoices, tracking specific charges, quantities, and prices for detailed financial records"
     },
     {
       "name": "Levels",
@@ -342,7 +342,7 @@
     },
     {
       "name": "Levels::Accounts",
-      "description": "Operations for levels::accounts"
+      "description": "Associate accounts with membership levels to grant tier-based access, pricing, and benefits based on membership status"
     },
     {
       "name": "Logins",
@@ -350,95 +350,95 @@
     },
     {
       "name": "Logins::Accounts",
-      "description": "Operations for logins::accounts"
+      "description": "Link login credentials to accounts, enabling the flexible system where one login can access multiple accounts or one account can be accessed by multiple logins"
     },
     {
       "name": "Meetings",
-      "description": "Operations for managing meetings"
+      "description": "A scalable solution for virtual events, featuring structured sessions, efficient presets, and integrated recordings for lasting engagement"
     },
     {
       "name": "Meetings::Links",
-      "description": "Operations for meetings::links"
+      "description": "Generate and manage meeting links for virtual sessions, providing secure access URLs for participants to join meetings"
     },
     {
       "name": "Meetings::Livestreams",
-      "description": "Operations for meetings::livestreams"
+      "description": "Configure and manage livestream settings for meetings, enabling real-time video broadcasting to larger audiences"
     },
     {
       "name": "Meetings::Participants",
-      "description": "Operations for meetings::participants"
+      "description": "Manage meeting participants, including adding attendees, tracking attendance, and controlling participant permissions"
     },
     {
       "name": "Meetings::Presets",
-      "description": "Operations for meetings::presets"
+      "description": "Create reusable meeting configuration presets to reduce setup time and ensure consistent settings across similar meeting types"
     },
     {
       "name": "Meetings::Recordings",
-      "description": "Operations for meetings::recordings"
+      "description": "Access and manage meeting recordings, enabling content curation and sharing value long after meetings conclude"
     },
     {
       "name": "Meetings::Sessions",
-      "description": "Operations for meetings::sessions"
+      "description": "Structure complex meetings into multiple sessions, organizing content and activities within a single meeting event"
     },
     {
       "name": "Notifications",
       "description": "Operations for managing notifications"
     },
     {
-      "name": "Organizations",
-      "description": "Operations for managing organizations"
+      "name": "Organization",
+      "description": "Ensure that your community runs according to your liking by using the Control Center feature for centralized command center adjustments"
     },
     {
-      "name": "Organizations::Attributes",
-      "description": "Operations for organizations::attributes"
+      "name": "Organization::Attributes",
+      "description": "Create custom account fields with specific rules to capture essential user data beyond default profile fields, building richer profiles and enabling better segmentation"
     },
     {
-      "name": "Organizations::Domains",
-      "description": "Operations for organizations::domains"
+      "name": "Organization::Domains",
+      "description": "Configure allowed email domains for organization accounts, controlling who can register and join the community"
     },
     {
-      "name": "Organizations::Integrations",
-      "description": "Operations for organizations::integrations"
+      "name": "Organization::Integrations",
+      "description": "Connect third-party software and services to extend platform capabilities, automate workflows, and sync data between systems"
     },
     {
-      "name": "Organizations::Modules",
-      "description": "Operations for organizations::modules"
+      "name": "Organization::Modules",
+      "description": "Enable or disable platform modules and features, customizing which capabilities are available to your organization"
     },
     {
-      "name": "Organizations::Modules::Custom",
-      "description": "Operations for organizations::modules::custom"
+      "name": "Organization::Modules::Custom",
+      "description": "Configure custom modules and features specific to your organization's needs and requirements"
     },
     {
-      "name": "Organizations::Modules::Tiers",
-      "description": "Operations for organizations::modules::tiers"
+      "name": "Organization::Modules::Tiers",
+      "description": "Set tier-based module access, determining which features are available to different membership levels"
     },
     {
-      "name": "Organizations::Payments",
-      "description": "Operations for organizations::payments"
+      "name": "Organization::Payments",
+      "description": "Configure payment integrations and settings, including payment processors, tax handling, and transaction management"
     },
     {
-      "name": "Organizations::Sideeffects",
-      "description": "Operations for organizations::sideeffects"
+      "name": "Organization::Sideeffects",
+      "description": "Configure automated actions that occur when specific events happen, such as granting access or sending notifications based on triggers"
     },
     {
-      "name": "Organizations::Tax",
-      "description": "Operations for organizations::tax"
+      "name": "Organization::Tax",
+      "description": "Set up tax calculation and collection settings, including tax codes, rates, and integration with tax services like Avalara"
     },
     {
-      "name": "Organizations::Teammembers",
-      "description": "Operations for organizations::teammembers"
+      "name": "Organization::Teammembers",
+      "description": "Manage team members and administrators for the organization, assigning roles and permissions for platform access"
     },
     {
-      "name": "Organizations::Users",
-      "description": "Operations for organizations::users"
+      "name": "Organization::Users",
+      "description": "Manage user accounts and access for the organization, controlling who can use the platform and what permissions they have"
     },
     {
-      "name": "Organizations::Webhooks",
-      "description": "Operations for organizations::webhooks"
+      "name": "Organization::Webhooks",
+      "description": "Configure webhook endpoints to receive real-time notifications about platform events, enabling integration with external systems and automation"
     },
     {
       "name": "Payments",
-      "description": "Operations for managing payments"
+      "description": "View a comprehensive record of all past transactions and payment activities"
     },
     {
       "name": "Preferences",
@@ -450,11 +450,11 @@
     },
     {
       "name": "Reports",
-      "description": "Operations for generating reports"
+      "description": "Easily review and gain data-driven insights for community management"
     },
     {
       "name": "Reports::Users",
-      "description": "Operations for reports::users"
+      "description": "Generate detailed reports about user activity, behavior, and engagement to gain insights into community participation and trends"
     },
     {
       "name": "Searchlists",
@@ -462,7 +462,7 @@
     },
     {
       "name": "Searchlists::Values",
-      "description": "Operations for searchlists::values"
+      "description": "Manage predefined values for search lists used in registration questions and forms, providing dropdown options and controlled input choices"
     },
     {
       "name": "Self",
@@ -470,11 +470,11 @@
     },
     {
       "name": "Self::Apikeys",
-      "description": "Operations for self::apikeys"
+      "description": "Generate and manage API keys for the authenticated user, enabling programmatic access to platform features and data"
     },
     {
       "name": "Self::Images",
-      "description": "Operations for self::images"
+      "description": "Upload and manage profile images and photos for the authenticated user's account"
     },
     {
       "name": "Series",
@@ -482,7 +482,7 @@
     },
     {
       "name": "Storage",
-      "description": "Operations for storage management"
+      "description": "Seamless and secure media storage for video, image, and file storage related to live events"
     },
     {
       "name": "Streams",
@@ -490,23 +490,23 @@
     },
     {
       "name": "Streams::Outputs",
-      "description": "Operations for streams::outputs"
+      "description": "Configure stream output destinations and settings, controlling where and how video streams are broadcast or recorded"
     },
     {
       "name": "Streams::Sessions",
-      "description": "Operations for streams::sessions"
+      "description": "Manage streaming sessions, including starting, stopping, and monitoring live video streams for events or content delivery"
     },
     {
       "name": "Support",
-      "description": "Operations for support"
+      "description": "Monitor and support areas within the community that require attention to ensure consistent care and engagement"
     },
     {
       "name": "Support::Messages",
-      "description": "Operations for support::messages"
+      "description": "Send and receive support messages with users, enabling direct communication to resolve issues and provide assistance"
     },
     {
       "name": "Support::Notes",
-      "description": "Operations for support::notes"
+      "description": "Add internal notes to support tickets for team collaboration, tracking resolution steps, and maintaining support history"
     },
     {
       "name": "Supporttickets",
@@ -514,63 +514,63 @@
     },
     {
       "name": "Supporttickets::Messages",
-      "description": "Operations for supporttickets::messages"
+      "description": "Exchange messages within support tickets, facilitating communication between support staff and users to resolve issues"
     },
     {
       "name": "Supporttickets::Notes",
-      "description": "Operations for supporttickets::notes"
+      "description": "Add administrative notes to support tickets for internal tracking, documenting resolution steps, and team coordination"
     },
     {
       "name": "Surveys",
-      "description": "Operations for managing surveys"
+      "description": "Easily gather insights and feedback by using surveys"
     },
     {
       "name": "Surveys::Questions",
-      "description": "Operations for surveys::questions"
+      "description": "Create and configure survey questions to gather feedback, opinions, and insights from your community"
     },
     {
       "name": "Surveys::Sections",
-      "description": "Operations for surveys::sections"
+      "description": "Organize survey questions into logical sections, improving survey structure and user experience"
     },
     {
       "name": "Surveys::Submissions",
-      "description": "Operations for surveys::submissions"
+      "description": "View and analyze survey responses submitted by participants, extracting insights and feedback data"
     },
     {
       "name": "Threads",
-      "description": "Operations for managing discussion threads"
+      "description": "A collection of messages around a specific topic for seamless, real-time collaboration"
     },
     {
       "name": "Threads::Circles",
-      "description": "Operations for threads::circles"
+      "description": "Create circles that bring together sets of accounts around specific goals, teams, or purposes, enabling focused group communication"
     },
     {
       "name": "Threads::Circles::Accounts",
-      "description": "Operations for threads::circles::accounts"
+      "description": "Manage which accounts belong to thread circles, adding or removing members to control circle membership and access"
     },
     {
       "name": "Threads::Members",
-      "description": "Operations for threads::members"
+      "description": "Manage thread membership, controlling who can participate in specific thread conversations"
     },
     {
       "name": "Threads::Messages",
-      "description": "Operations for threads::messages"
+      "description": "Send and manage messages within threads, enabling real-time collaboration and discussion around specific topics"
     },
     {
       "name": "Threads::Messages::Files",
-      "description": "Operations for threads::messages::files"
+      "description": "Attach and manage files within thread messages, sharing documents and resources in conversation context"
     },
     {
       "name": "Threads::Messages::Images",
-      "description": "Operations for threads::messages::images"
+      "description": "Attach and manage images within thread messages, enabling visual communication and content sharing"
     },
     {
       "name": "Threads::Messages::Reactions",
-      "description": "Operations for threads::messages::reactions"
+      "description": "Add reactions to thread messages, enabling quick feedback and engagement without requiring full replies"
     },
     {
       "name": "Threads::Messages::Videos",
-      "description": "Operations for threads::messages::videos"
+      "description": "Attach and manage videos within thread messages, sharing video content in conversation threads"
     },
     {
       "name": "Tiers",
@@ -582,7 +582,7 @@
     },
     {
       "name": "Videos::Captions",
-      "description": "Operations for videos::captions"
+      "description": "Upload, manage, and configure closed captions and subtitles for videos, improving accessibility and multilingual support"
     }
   ],
   "paths": {
@@ -53148,7 +53148,7 @@
           }
         },
         "tags": [
-          "Organizations"
+          "Organization"
         ]
       },
       "put": {
@@ -53198,7 +53198,7 @@
           }
         },
         "tags": [
-          "Organizations"
+          "Organization"
         ]
       }
     },
@@ -53287,7 +53287,7 @@
           }
         },
         "tags": [
-          "Organizations::Attributes"
+          "Organization::Attributes"
         ]
       },
       "post": {
@@ -53337,7 +53337,7 @@
           }
         },
         "tags": [
-          "Organizations::Attributes"
+          "Organization::Attributes"
         ]
       }
     },
@@ -53379,7 +53379,7 @@
           }
         },
         "tags": [
-          "Organizations::Attributes"
+          "Organization::Attributes"
         ]
       }
     },
@@ -53421,7 +53421,7 @@
           }
         },
         "tags": [
-          "Organizations::Attributes"
+          "Organization::Attributes"
         ]
       }
     },
@@ -53474,7 +53474,7 @@
           }
         },
         "tags": [
-          "Organizations::Attributes"
+          "Organization::Attributes"
         ]
       },
       "put": {
@@ -53535,7 +53535,7 @@
           }
         },
         "tags": [
-          "Organizations::Attributes"
+          "Organization::Attributes"
         ]
       },
       "delete": {
@@ -53586,7 +53586,7 @@
           }
         },
         "tags": [
-          "Organizations::Attributes"
+          "Organization::Attributes"
         ]
       }
     },
@@ -53628,7 +53628,7 @@
           }
         },
         "tags": [
-          "Organizations::Domains"
+          "Organization::Domains"
         ]
       },
       "put": {
@@ -53679,7 +53679,7 @@
           }
         },
         "tags": [
-          "Organizations::Domains"
+          "Organization::Domains"
         ]
       },
       "delete": {
@@ -53719,7 +53719,7 @@
           }
         },
         "tags": [
-          "Organizations::Domains"
+          "Organization::Domains"
         ]
       }
     },
@@ -53811,7 +53811,7 @@
           }
         },
         "tags": [
-          "Organizations::Integrations"
+          "Organization::Integrations"
         ]
       },
       "post": {
@@ -53861,7 +53861,7 @@
           }
         },
         "tags": [
-          "Organizations::Integrations"
+          "Organization::Integrations"
         ]
       },
       "put": {
@@ -53939,7 +53939,7 @@
           }
         },
         "tags": [
-          "Organizations"
+          "Organization"
         ]
       }
     },
@@ -53992,7 +53992,7 @@
           }
         },
         "tags": [
-          "Organizations::Integrations"
+          "Organization::Integrations"
         ]
       },
       "put": {
@@ -54053,7 +54053,7 @@
           }
         },
         "tags": [
-          "Organizations::Integrations"
+          "Organization::Integrations"
         ]
       },
       "delete": {
@@ -54104,7 +54104,7 @@
           }
         },
         "tags": [
-          "Organizations::Integrations"
+          "Organization::Integrations"
         ]
       }
     },
@@ -54157,7 +54157,7 @@
           }
         },
         "tags": [
-          "Organizations"
+          "Organization"
         ]
       }
     },
@@ -54246,7 +54246,7 @@
           }
         },
         "tags": [
-          "Organizations::Modules"
+          "Organization::Modules"
         ]
       }
     },
@@ -54338,7 +54338,7 @@
           }
         },
         "tags": [
-          "Organizations::Modules::Custom"
+          "Organization::Modules::Custom"
         ]
       },
       "post": {
@@ -54388,7 +54388,7 @@
           }
         },
         "tags": [
-          "Organizations::Modules::Custom"
+          "Organization::Modules::Custom"
         ]
       }
     },
@@ -54441,7 +54441,7 @@
           }
         },
         "tags": [
-          "Organizations::Modules::Custom"
+          "Organization::Modules::Custom"
         ]
       },
       "put": {
@@ -54502,7 +54502,7 @@
           }
         },
         "tags": [
-          "Organizations::Modules::Custom"
+          "Organization::Modules::Custom"
         ]
       },
       "delete": {
@@ -54553,7 +54553,7 @@
           }
         },
         "tags": [
-          "Organizations::Modules::Custom"
+          "Organization::Modules::Custom"
         ]
       }
     },
@@ -54606,7 +54606,7 @@
           }
         },
         "tags": [
-          "Organizations::Modules"
+          "Organization::Modules"
         ]
       },
       "put": {
@@ -54667,7 +54667,7 @@
           }
         },
         "tags": [
-          "Organizations::Modules"
+          "Organization::Modules"
         ]
       }
     },
@@ -54765,7 +54765,7 @@
           }
         },
         "tags": [
-          "Organizations::Modules::Tiers"
+          "Organization::Modules::Tiers"
         ]
       }
     },
@@ -54827,7 +54827,7 @@
           }
         },
         "tags": [
-          "Organizations::Modules::Tiers"
+          "Organization::Modules::Tiers"
         ]
       },
       "delete": {
@@ -54887,7 +54887,7 @@
           }
         },
         "tags": [
-          "Organizations::Modules::Tiers"
+          "Organization::Modules::Tiers"
         ]
       }
     },
@@ -54985,7 +54985,7 @@
           }
         },
         "tags": [
-          "Organizations::Modules::Tiers"
+          "Organization::Modules::Tiers"
         ]
       }
     },
@@ -55047,7 +55047,7 @@
           }
         },
         "tags": [
-          "Organizations::Modules::Tiers"
+          "Organization::Modules::Tiers"
         ]
       },
       "delete": {
@@ -55107,7 +55107,7 @@
           }
         },
         "tags": [
-          "Organizations::Modules::Tiers"
+          "Organization::Modules::Tiers"
         ]
       }
     },
@@ -55196,7 +55196,7 @@
           }
         },
         "tags": [
-          "Organizations::Payments"
+          "Organization::Payments"
         ]
       },
       "post": {
@@ -55246,7 +55246,7 @@
           }
         },
         "tags": [
-          "Organizations::Payments"
+          "Organization::Payments"
         ]
       }
     },
@@ -55299,7 +55299,7 @@
           }
         },
         "tags": [
-          "Organizations::Payments"
+          "Organization::Payments"
         ]
       },
       "put": {
@@ -55360,7 +55360,7 @@
           }
         },
         "tags": [
-          "Organizations::Payments"
+          "Organization::Payments"
         ]
       },
       "delete": {
@@ -55411,7 +55411,7 @@
           }
         },
         "tags": [
-          "Organizations::Payments"
+          "Organization::Payments"
         ]
       }
     },
@@ -55464,7 +55464,7 @@
           }
         },
         "tags": [
-          "Organizations::Payments"
+          "Organization::Payments"
         ]
       }
     },
@@ -55520,7 +55520,7 @@
           }
         },
         "tags": [
-          "Organizations"
+          "Organization"
         ]
       }
     },
@@ -55627,7 +55627,7 @@
           }
         },
         "tags": [
-          "Organizations::Sideeffects"
+          "Organization::Sideeffects"
         ]
       },
       "post": {
@@ -55705,7 +55705,7 @@
           }
         },
         "tags": [
-          "Organizations::Sideeffects"
+          "Organization::Sideeffects"
         ]
       }
     },
@@ -55758,7 +55758,7 @@
           }
         },
         "tags": [
-          "Organizations::Sideeffects"
+          "Organization::Sideeffects"
         ]
       },
       "delete": {
@@ -55809,7 +55809,7 @@
           }
         },
         "tags": [
-          "Organizations::Sideeffects"
+          "Organization::Sideeffects"
         ]
       }
     },
@@ -55916,7 +55916,7 @@
           }
         },
         "tags": [
-          "Organizations"
+          "Organization"
         ]
       }
     },
@@ -55969,7 +55969,7 @@
           }
         },
         "tags": [
-          "Organizations"
+          "Organization"
         ]
       }
     },
@@ -56061,7 +56061,7 @@
           }
         },
         "tags": [
-          "Organizations::Tax"
+          "Organization::Tax"
         ]
       }
     },
@@ -56114,7 +56114,7 @@
           }
         },
         "tags": [
-          "Organizations::Tax"
+          "Organization::Tax"
         ]
       },
       "post": {
@@ -56175,7 +56175,7 @@
           }
         },
         "tags": [
-          "Organizations::Tax"
+          "Organization::Tax"
         ]
       },
       "put": {
@@ -56236,7 +56236,7 @@
           }
         },
         "tags": [
-          "Organizations::Tax"
+          "Organization::Tax"
         ]
       },
       "delete": {
@@ -56287,7 +56287,7 @@
           }
         },
         "tags": [
-          "Organizations::Tax"
+          "Organization::Tax"
         ]
       }
     },
@@ -56343,7 +56343,7 @@
           }
         },
         "tags": [
-          "Organizations::Tax"
+          "Organization::Tax"
         ]
       }
     },
@@ -56444,7 +56444,7 @@
           }
         },
         "tags": [
-          "Organizations::Tax"
+          "Organization::Tax"
         ]
       }
     },
@@ -56506,7 +56506,7 @@
           }
         },
         "tags": [
-          "Organizations::Tax"
+          "Organization::Tax"
         ]
       }
     },
@@ -56562,7 +56562,7 @@
           }
         },
         "tags": [
-          "Organizations::Tax"
+          "Organization::Tax"
         ]
       }
     },
@@ -56615,7 +56615,7 @@
           }
         },
         "tags": [
-          "Organizations::Tax"
+          "Organization::Tax"
         ]
       }
     },
@@ -56668,7 +56668,7 @@
           }
         },
         "tags": [
-          "Organizations::Tax"
+          "Organization::Tax"
         ]
       }
     },
@@ -56757,7 +56757,7 @@
           }
         },
         "tags": [
-          "Organizations::Teammembers"
+          "Organization::Teammembers"
         ]
       },
       "post": {
@@ -56807,7 +56807,7 @@
           }
         },
         "tags": [
-          "Organizations::Teammembers"
+          "Organization::Teammembers"
         ]
       }
     },
@@ -56860,7 +56860,7 @@
           }
         },
         "tags": [
-          "Organizations::Teammembers"
+          "Organization::Teammembers"
         ]
       },
       "put": {
@@ -56920,7 +56920,7 @@
           }
         },
         "tags": [
-          "Organizations::Teammembers"
+          "Organization::Teammembers"
         ]
       },
       "delete": {
@@ -56971,7 +56971,7 @@
           }
         },
         "tags": [
-          "Organizations::Teammembers"
+          "Organization::Teammembers"
         ]
       }
     },
@@ -57060,7 +57060,7 @@
           }
         },
         "tags": [
-          "Organizations::Users"
+          "Organization::Users"
         ]
       },
       "post": {
@@ -57111,7 +57111,7 @@
           }
         },
         "tags": [
-          "Organizations::Users"
+          "Organization::Users"
         ]
       }
     },
@@ -57164,7 +57164,7 @@
           }
         },
         "tags": [
-          "Organizations"
+          "Organization"
         ]
       },
       "put": {
@@ -57225,7 +57225,7 @@
           }
         },
         "tags": [
-          "Organizations"
+          "Organization"
         ]
       },
       "delete": {
@@ -57276,7 +57276,7 @@
           }
         },
         "tags": [
-          "Organizations::Users"
+          "Organization::Users"
         ]
       }
     },
@@ -57368,7 +57368,7 @@
           }
         },
         "tags": [
-          "Organizations::Webhooks"
+          "Organization::Webhooks"
         ]
       },
       "post": {
@@ -57418,7 +57418,7 @@
           }
         },
         "tags": [
-          "Organizations::Webhooks"
+          "Organization::Webhooks"
         ]
       }
     },
@@ -57471,7 +57471,7 @@
           }
         },
         "tags": [
-          "Organizations::Webhooks"
+          "Organization::Webhooks"
         ]
       },
       "put": {
@@ -57532,7 +57532,7 @@
           }
         },
         "tags": [
-          "Organizations::Webhooks"
+          "Organization::Webhooks"
         ]
       },
       "delete": {
@@ -57583,7 +57583,7 @@
           }
         },
         "tags": [
-          "Organizations::Webhooks"
+          "Organization::Webhooks"
         ]
       }
     },
@@ -57636,7 +57636,7 @@
           }
         },
         "tags": [
-          "Organizations::Webhooks"
+          "Organization::Webhooks"
         ]
       }
     },
@@ -57728,7 +57728,7 @@
           }
         },
         "tags": [
-          "Organizations::Payments"
+          "Organization::Payments"
         ]
       }
     },
@@ -57781,7 +57781,7 @@
           }
         },
         "tags": [
-          "Organizations::Payments"
+          "Organization::Payments"
         ]
       },
       "put": {
@@ -57917,7 +57917,7 @@
           }
         },
         "tags": [
-          "Organizations::Payments"
+          "Organization::Payments"
         ]
       }
     },

@@ -1,4 +1,15 @@
 /* eslint-disable no-undef */
+/**
+ * SDK Generation Script
+ * 
+ * Generates client SDKs from the OpenAPI specification using OpenAPI Generator.
+ * 
+ * TypeScript SDK:
+ * - Uses typescript-axios generator (Axios-based HTTP client)
+ * - Generates a unified AdminApi wrapper class
+ * - Supports useSingleRequestParameter for cleaner API calls
+ */
+
 import { execSync } from "child_process";
 import * as fs from "fs";
 import * as path from "path";
@@ -15,7 +26,7 @@ const SDKS_DIR = path.join(__dirname, "../sdks");
 const SDK_CONFIGS = [
   {
     name: "typescript",
-    generator: "typescript-fetch",
+    generator: "typescript-axios", // Using Axios-based generator
     outputDir: "typescript",
     additionalProperties: [
       "npmName=@connectedxm/admin-sdk",
@@ -184,10 +195,11 @@ function toSnakeCase(str: string): string {
 }
 
 /**
- * Extract API classes from TypeScript api.ts file
+ * Extract API classes from generated TypeScript files
+ * Supports both typescript-fetch and typescript-axios generators
  */
 function extractApiClasses(outputPath: string): ApiClassInfo[] {
-  // typescript-fetch puts APIs in src/apis/ folder
+  // typescript-fetch puts APIs in src/apis/ folder (legacy support)
   const apisDir = path.join(outputPath, "src", "apis");
   if (fs.existsSync(apisDir)) {
     const apiFiles = fs
@@ -202,7 +214,7 @@ function extractApiClasses(outputPath: string): ApiClassInfo[] {
     });
   }
 
-  // typescript-axios puts all APIs in api.ts
+  // typescript-axios (current) puts all APIs in api.ts at root
   const apiFilePath = path.join(outputPath, "api.ts");
   if (!fs.existsSync(apiFilePath)) {
     return [];
@@ -228,42 +240,6 @@ function extractApiClasses(outputPath: string): ApiClassInfo[] {
 }
 
 /**
- * Build nested API structure from hierarchical class names
- * E.g., EventsPassesApi -> { events: { passes: EventsPassesApi } }
- */
-function buildNestedApiStructure(apiClasses: ApiClassInfo[]): {
-  topLevel: string[];
-  nested: Map<string, string[]>;
-} {
-  const topLevel = new Set<string>();
-  const nested = new Map<string, string[]>();
-
-  for (const apiClass of apiClasses) {
-    const className = apiClass.className;
-    
-    // Check if this is a nested API (e.g., EventsPassesApi, EventsAttendeesReservationsApi)
-    // Pattern: {Parent}{Child}Api or {Parent}{Child}{SubChild}Api
-    const match = className.match(/^([A-Z][a-z]+?)([A-Z][a-z]+.*?)Api$/);
-    
-    if (match && match[1] && match[2]) {
-      const parent = match[1].toLowerCase();
-      topLevel.add(parent);
-      
-      if (!nested.has(parent)) {
-        nested.set(parent, []);
-      }
-      nested.get(parent)!.push(className);
-    } else {
-      // Top-level API (e.g., AccountsApi, EventsApi)
-      const baseName = className.replace(/Api$/, "");
-      topLevel.add(baseName.toLowerCase());
-    }
-  }
-
-  return { topLevel: Array.from(topLevel), nested };
-}
-
-/**
  * Generate TypeScript AdminApi wrapper with nested structure
  */
 function generateTypeScriptWrapper(outputPath: string): void {
@@ -275,6 +251,14 @@ function generateTypeScriptWrapper(outputPath: string): void {
 
   // For now, keep flat structure - hierarchical wrapper is complex
   // We'll generate nested namespace classes in a future iteration
+  
+  // Determine import paths based on generator type
+  // typescript-fetch (legacy): src/apis, ./runtime
+  // typescript-axios (current): api.ts (root), ./configuration
+  const srcDir = path.join(outputPath, "src");
+  const hasSrcDir = fs.existsSync(srcDir);
+  const apiImportPath = hasSrcDir ? "./apis" : "./api";
+  const configImportPath = hasSrcDir ? "./runtime" : "./configuration";
   
   const wrapperContent = `/* tslint:disable */
 /* eslint-disable */
@@ -290,10 +274,10 @@ function generateTypeScriptWrapper(outputPath: string): void {
  *   const eventsPasses = await adminApi.eventsPasses.getEventPasses();
  */
 
-import { Configuration } from "./runtime";
+import { Configuration } from "${configImportPath}";
 import {
 ${apiClasses.map((c) => `  ${c.className},`).join("\n")}
-} from "./apis";
+} from "${apiImportPath}";
 
 export interface AdminApiConfig {
   /** Your API key for authentication */
@@ -312,9 +296,11 @@ ${apiClasses
   constructor(config: AdminApiConfig) {
     this.config = new Configuration({
       basePath: "https://admin-api.connected.dev",
-      headers: {
-        "api-key": config.apiKey,
-        "organization": config.organizationId,
+      baseOptions: {
+        headers: {
+          "api-key": config.apiKey,
+          "organization": config.organizationId,
+        },
       },
     });
 
@@ -327,8 +313,8 @@ ${apiClasses
    * Update the API key
    */
   setApiKey(apiKey: string): void {
-    if (this.config.headers) {
-      this.config.headers["api-key"] = apiKey;
+    if (this.config.baseOptions?.headers) {
+      (this.config.baseOptions.headers as Record<string, string>)["api-key"] = apiKey;
     }
   }
 
@@ -336,8 +322,8 @@ ${apiClasses
    * Update the organization ID
    */
   setOrganizationId(organizationId: string): void {
-    if (this.config.headers) {
-      this.config.headers["organization"] = organizationId;
+    if (this.config.baseOptions?.headers) {
+      (this.config.baseOptions.headers as Record<string, string>)["organization"] = organizationId;
     }
   }
 }
@@ -345,19 +331,35 @@ ${apiClasses
 export default AdminApi;
 `;
 
-  // Write to src/ for typescript-fetch, or root for typescript-axios
-  const srcDir = path.join(outputPath, "src");
-  const wrapperPath = fs.existsSync(srcDir)
+  // Write to src/ for typescript-fetch (legacy), or root for typescript-axios (current)
+  const wrapperPath = hasSrcDir
     ? path.join(srcDir, "AdminApi.ts")
-    : path.join(outputPath, "admin-api.ts");
+    : path.join(outputPath, "AdminApi.ts");
 
   fs.writeFileSync(wrapperPath, wrapperContent);
 
   // Replace index.ts to only export AdminApi and types
-  const indexPath = fs.existsSync(srcDir)
+  const indexPath = hasSrcDir
     ? path.join(srcDir, "index.ts")
     : path.join(outputPath, "index.ts");
 
+  const exportPath = hasSrcDir ? "./apis" : "./api";
+  
+  // Check where models are located (typescript-fetch: src/models, typescript-axios: varies by version)
+  let modelsExport = "";
+  const possibleModelPaths = [
+    { abs: path.join(outputPath, "src", "models"), rel: "./models" },
+    { abs: path.join(outputPath, "models"), rel: "./models" },
+    { abs: path.join(outputPath, "base"), rel: "./base" },
+  ];
+  
+  for (const modelPath of possibleModelPaths) {
+    if (fs.existsSync(modelPath.abs)) {
+      modelsExport = `export * from "${modelPath.rel}";\n`;
+      break;
+    }
+  }
+  
   const cleanIndexContent = `/* tslint:disable */
 /* eslint-disable */
 /**
@@ -370,9 +372,8 @@ export default AdminApi;
 export { AdminApi, AdminApiConfig } from "./AdminApi";
 export { AdminApi as default } from "./AdminApi";
 
-// Export all model types
-export * from "./models";
-export * from "./apis";
+${modelsExport ? `// Export all model types\n${modelsExport}` : "// Models are exported from API classes\n"}// Export API classes
+export * from "${exportPath}";
 `;
   fs.writeFileSync(indexPath, cleanIndexContent);
 

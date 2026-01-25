@@ -136,6 +136,11 @@ function generateSdk(config: (typeof SDK_CONFIGS)[0]): boolean {
     // Add AdminApi wrapper based on language
     generateAdminApiWrapperForLanguage(config.name, outputPath);
 
+    // Post-process package.json for TypeScript SDK to make it public
+    if (config.name === "typescript") {
+      postProcessPackageJson(outputPath);
+    }
+
     return true;
   } catch (error) {
     console.error(`❌ Failed to generate ${config.name} SDK`);
@@ -378,6 +383,31 @@ export * from "${exportPath}";
   fs.writeFileSync(indexPath, cleanIndexContent);
 
   console.log("   ✨ Added AdminApi wrapper class");
+}
+
+/**
+ * Post-process package.json to add publishConfig for public scoped packages
+ */
+function postProcessPackageJson(outputPath: string): void {
+  const packageJsonPath = path.join(outputPath, "package.json");
+  if (!fs.existsSync(packageJsonPath)) {
+    return;
+  }
+
+  try {
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
+    
+    // Add publishConfig to make scoped package public
+    if (!packageJson.publishConfig) {
+      packageJson.publishConfig = {
+        access: "public"
+      };
+      fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+      console.log("   ✨ Added publishConfig to package.json");
+    }
+  } catch (error) {
+    console.warn(`⚠️  Could not update package.json: ${error}`);
+  }
 }
 
 /**

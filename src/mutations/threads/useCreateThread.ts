@@ -7,7 +7,7 @@ import {
 import { ConnectedXMResponse, Thread } from "@src/interfaces";
 import { ThreadCreateInputs } from "@src/params";
 import { EVENT_THREADS_QUERY_KEY, GROUP_THREADS_QUERY_KEY } from "@src/queries";
-import { THREAD_CIRCLE_THREADS_QUERY_KEY } from "@src/queries/threads/useGetThreadCircleThreads";
+import { THREAD_CIRCLE_THREADS_QUERY_KEY } from "@src/queries/threads/circles/useGetThreadCircleThreads";
 
 /**
  * @category Params

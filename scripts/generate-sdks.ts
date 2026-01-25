@@ -397,13 +397,31 @@ function postProcessPackageJson(outputPath: string): void {
   try {
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
     
+    // Read the version from the main admin package
+    const adminPackageJsonPath = path.join(__dirname, "../package.json");
+    const adminPackageJson = JSON.parse(fs.readFileSync(adminPackageJsonPath, "utf-8"));
+    const adminVersion = adminPackageJson.version;
+    
+    let updated = false;
+    
+    // Sync version with admin package
+    if (packageJson.version !== adminVersion) {
+      packageJson.version = adminVersion;
+      updated = true;
+      console.log(`   ✨ Synced version to ${adminVersion} (from @connectedxm/admin)`);
+    }
+    
     // Add publishConfig to make scoped package public
     if (!packageJson.publishConfig) {
       packageJson.publishConfig = {
         access: "public"
       };
-      fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+      updated = true;
       console.log("   ✨ Added publishConfig to package.json");
+    }
+    
+    if (updated) {
+      fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
     }
   } catch (error) {
     console.warn(`⚠️  Could not update package.json: ${error}`);

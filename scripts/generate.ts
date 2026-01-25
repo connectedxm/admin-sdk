@@ -19,6 +19,82 @@ const __dirname = path.dirname(__filename);
  */
 function parseSchemas(sourceFile: ts.SourceFile): Record<string, any> {
   const schemas: Record<string, any> = {};
+  
+  // First pass: collect all interfaces for reference
+  const interfaces: Map<string, ts.InterfaceDeclaration> = new Map();
+  
+  function collectInterfaces(node: ts.Node) {
+    if (ts.isInterfaceDeclaration(node)) {
+      if (
+        node.modifiers &&
+        node.modifiers.some((m) => m.kind === ts.SyntaxKind.ExportKeyword)
+      ) {
+        interfaces.set(node.name.text, node);
+      }
+    }
+    ts.forEachChild(node, collectInterfaces);
+  }
+  ts.forEachChild(sourceFile, collectInterfaces);
+  
+  /**
+   * Get all properties from an interface, including inherited ones
+   */
+  function getInterfaceProperties(
+    interfaceName: string,
+    omitProps: Set<string> = new Set()
+  ): { properties: Record<string, any>; required: string[] } {
+    const iface = interfaces.get(interfaceName);
+    if (!iface) {
+      return { properties: {}, required: [] };
+    }
+    
+    const properties: Record<string, any> = {};
+    const required: string[] = [];
+    
+    // First, get properties from base interfaces
+    if (iface.heritageClauses) {
+      for (const heritage of iface.heritageClauses) {
+        if (heritage.token === ts.SyntaxKind.ExtendsKeyword) {
+          for (const type of heritage.types) {
+            const baseName = type.expression.getText(sourceFile);
+            const baseProps = getInterfaceProperties(baseName, omitProps);
+            Object.assign(properties, baseProps.properties);
+            required.push(...baseProps.required);
+          }
+        }
+      }
+    }
+    
+    // Then add/override with this interface's own properties
+    iface.members.forEach((member) => {
+      if (
+        ts.isPropertySignature(member) &&
+        member.type &&
+        ts.isIdentifier(member.name)
+      ) {
+        const propName = member.name.text;
+        
+        // Skip omitted properties
+        if (omitProps.has(propName)) {
+          return;
+        }
+        
+        const propSchema = parseType(member.type, sourceFile);
+        properties[propName] = propSchema;
+        
+        // Update required array
+        const reqIndex = required.indexOf(propName);
+        if (reqIndex !== -1) {
+          required.splice(reqIndex, 1);
+        }
+        if (!member.questionToken) {
+          required.push(propName);
+        }
+      }
+    });
+    
+    return { properties, required };
+  }
 
   function visit(node: ts.Node) {
     // Handle exported interfaces.
@@ -30,36 +106,136 @@ function parseSchemas(sourceFile: ts.SourceFile): Record<string, any> {
         return;
       }
       const name = node.name.text;
-      const properties: Record<string, any> = {};
-      const required: string[] = [];
-
-      node.members.forEach((member) => {
-        if (
-          ts.isPropertySignature(member) &&
-          member.type &&
-          ts.isIdentifier(member.name)
-        ) {
-          const propName = member.name.text;
-          const propSchema = parseType(member.type, sourceFile);
-          properties[propName] = propSchema;
-
-          // If the property doesn't have a question mark, it's required
-          if (!member.questionToken) {
-            required.push(propName);
+      
+      if (name !== "ConnectedXMResponse") {
+        // Check for utility type extensions like Omit<BaseX, "prop">
+        let hasUtilityTypeExtension = false;
+        let utilityBaseType: string | null = null;
+        let omittedProps: Set<string> = new Set();
+        
+        if (node.heritageClauses) {
+          for (const heritage of node.heritageClauses) {
+            if (heritage.token === ts.SyntaxKind.ExtendsKeyword) {
+              for (const type of heritage.types) {
+                const baseName = type.expression.getText(sourceFile);
+                
+                // Check if this is a utility type
+                if (baseName === "Omit" && type.typeArguments && type.typeArguments.length >= 2) {
+                  hasUtilityTypeExtension = true;
+                  // First type argument is the base type
+                  utilityBaseType = type.typeArguments[0]!.getText(sourceFile);
+                  // Second type argument is the omitted properties (can be a union)
+                  const omitArg = type.typeArguments[1]!.getText(sourceFile);
+                  // Parse omitted properties (remove quotes and split by |)
+                  omitArg.split("|").forEach(prop => {
+                    const cleaned = prop.trim().replace(/^["']|["']$/g, "");
+                    omittedProps.add(cleaned);
+                  });
+                }
+                // TODO: Handle Pick, Partial, etc. if needed
+              }
+            }
           }
         }
-      });
-
-      if (name !== "ConnectedXMResponse") {
-        const schema: any = {
-          type: "object",
-          properties,
-        };
-        // Only add required array if there are required properties
-        if (required.length > 0) {
-          schema.required = required;
+        
+        if (hasUtilityTypeExtension && utilityBaseType) {
+          // Resolve the utility type by getting base properties and omitting specified ones
+          const baseProps = getInterfaceProperties(utilityBaseType, omittedProps);
+          
+          // Add/override with current interface's own properties
+          node.members.forEach((member) => {
+            if (
+              ts.isPropertySignature(member) &&
+              member.type &&
+              ts.isIdentifier(member.name)
+            ) {
+              const propName = member.name.text;
+              const propSchema = parseType(member.type, sourceFile);
+              baseProps.properties[propName] = propSchema;
+              
+              // Update required array
+              const reqIndex = baseProps.required.indexOf(propName);
+              if (reqIndex !== -1) {
+                baseProps.required.splice(reqIndex, 1);
+              }
+              if (!member.questionToken) {
+                baseProps.required.push(propName);
+              }
+            }
+          });
+          
+          const schema: any = {
+            type: "object",
+            properties: baseProps.properties,
+          };
+          if (baseProps.required.length > 0) {
+            schema.required = baseProps.required;
+          }
+          schemas[name] = schema;
+        } else {
+          // Handle normal interface extension
+          const baseInterfaces: string[] = [];
+          const properties: Record<string, any> = {};
+          const required: string[] = [];
+          
+          node.members.forEach((member) => {
+            if (
+              ts.isPropertySignature(member) &&
+              member.type &&
+              ts.isIdentifier(member.name)
+            ) {
+              const propName = member.name.text;
+              const propSchema = parseType(member.type, sourceFile);
+              properties[propName] = propSchema;
+              
+              if (!member.questionToken) {
+                required.push(propName);
+              }
+            }
+          });
+          
+          if (node.heritageClauses) {
+            for (const heritage of node.heritageClauses) {
+              if (heritage.token === ts.SyntaxKind.ExtendsKeyword) {
+                for (const type of heritage.types) {
+                  const baseName = type.expression.getText(sourceFile);
+                  baseInterfaces.push(baseName);
+                }
+              }
+            }
+          }
+          
+          // If the interface extends other interfaces, use allOf to compose them
+          if (baseInterfaces.length > 0) {
+            const allOfSchemas = baseInterfaces.map((baseName) => ({
+              $ref: `#/components/schemas/${baseName}`,
+            }));
+            
+            // Only add the current interface's properties if it has any
+            if (Object.keys(properties).length > 0) {
+              const ownSchema: any = {
+                type: "object",
+                properties,
+              };
+              if (required.length > 0) {
+                ownSchema.required = required;
+              }
+              allOfSchemas.push(ownSchema);
+            }
+            
+            schemas[name] = { allOf: allOfSchemas };
+          } else {
+            // No inheritance, just use the properties directly
+            const schema: any = {
+              type: "object",
+              properties,
+            };
+            if (required.length > 0) {
+              schema.required = required;
+            }
+            schemas[name] = schema;
+          }
         }
-        schemas[name] = schema;
       }
     }
 

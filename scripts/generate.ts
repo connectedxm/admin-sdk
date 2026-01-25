@@ -1087,6 +1087,51 @@ openApiSpec.tags = Array.from(usedTags)
 
 console.log(`🏷️  Generated ${openApiSpec.tags.length} tags`);
 
+/**
+ * Sort HTTP methods within each path by CRUD order:
+ * GET (Read) -> POST (Create) -> PUT (Update) -> PATCH (Update) -> DELETE (Delete)
+ */
+function sortPathsByCRUD(paths: Record<string, any>): Record<string, any> {
+  const crudOrder: Record<string, number> = {
+    get: 1,
+    post: 2,
+    put: 3,
+    patch: 4,
+    delete: 5,
+  };
+
+  const sortedPaths: Record<string, any> = {};
+
+  // Sort paths alphabetically for consistency
+  const sortedPathKeys = Object.keys(paths).sort();
+
+  for (const pathKey of sortedPathKeys) {
+    const pathMethods = paths[pathKey];
+    const sortedMethods: Record<string, any> = {};
+
+    // Get all method keys and sort them by CRUD order
+    const methodKeys = Object.keys(pathMethods).sort((a, b) => {
+      const orderA = crudOrder[a.toLowerCase()] || 99;
+      const orderB = crudOrder[b.toLowerCase()] || 99;
+      return orderA - orderB;
+    });
+
+    // Rebuild the path object with sorted methods
+    for (const method of methodKeys) {
+      sortedMethods[method] = pathMethods[method];
+    }
+
+    sortedPaths[pathKey] = sortedMethods;
+  }
+
+  return sortedPaths;
+}
+
+// Sort paths by CRUD operations
+openApiSpec.paths = sortPathsByCRUD(openApiSpec.paths);
+
+console.log(`📋 Sorted ${Object.keys(openApiSpec.paths).length} paths by CRUD operations`);
+
 // Save OpenAPI spec to a JSON file.
 const outputPath = path.join(__dirname, "../openapi.json");
 fs.writeFileSync(outputPath, JSON.stringify(openApiSpec, null, 2));

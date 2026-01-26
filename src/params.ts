@@ -1299,15 +1299,7 @@ export interface OrganizationUpdateInputs {
   locales?: string[] | null;
   inviteOnly?: boolean;
   googleTagManagerId?: string | null;
-  meetingGroupCallAdminPreset?: string;
-  meetingGroupCallGuestPreset?: string;
-  meetingWebinarAdminPreset?: string;
-  meetingWebinarGuestPreset?: string;
-  meetingLivestreamAdminPreset?: string;
-  meetingLivestreamGuestPreset?: string;
   options?: object | null;
-  autoResolveSupportTickets?: boolean;
-  autoResolveSupportTicketMessage?: string | null;
 }
 
 export interface OrganizationModuleSettingsUpdateInputs {

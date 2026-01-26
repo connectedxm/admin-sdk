@@ -1310,6 +1310,21 @@ export interface OrganizationUpdateInputs {
   autoResolveSupportTicketMessage?: string | null;
 }
 
+export interface OrganizationModuleSettingsUpdateInputs {
+  meetingGroupCallAdminPreset?: string;
+  meetingGroupCallGuestPreset?: string;
+  meetingWebinarAdminPreset?: string;
+  meetingWebinarGuestPreset?: string;
+  meetingLivestreamAdminPreset?: string;
+  meetingLivestreamGuestPreset?: string;
+  supportAutoResolve?: boolean;
+  supportAutoResolveMessage?: string;
+}
+
+export interface OrganizationModuleSettingsTranslationUpdateInputs {
+  supportAutoResolveMessage?: string;
+}
+
 export interface PaymentIntentPurchaseMetadataInputs {}
 
 export interface PushDeviceCreateInputs {}

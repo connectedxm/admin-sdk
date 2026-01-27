@@ -409,6 +409,10 @@
       "description": "Configure custom modules and features specific to your organization's needs and requirements"
     },
     {
+      "name": "Organization::Modules::Settings",
+      "description": "Operations for organization::modules::settings"
+    },
+    {
       "name": "Organization::Modules::Tiers",
       "description": "Set tier-based module access, determining which features are available to different membership levels"
     },
@@ -54171,6 +54175,98 @@
         ]
       }
     },
+    "/organization/module-settings": {
+      "get": {
+        "operationId": "GetOrganizationModuleSettings",
+        "summary": "Get Organization Module Settings",
+        "description": "Get Organization Module Settings endpoint",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Organization::Modules::Settings"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateOrganizationModuleSettings",
+        "summary": "Update Organization Module Settings",
+        "description": "Update Organization Module Settings endpoint",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrganizationModuleSettingsUpdateInputs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Organization::Modules::Settings"
+        ]
+      }
+    },
     "/organization/modules": {
       "get": {
         "operationId": "GetOrganizationModules",
@@ -76758,33 +76854,8 @@
                 "type": "string",
                 "nullable": true
               },
-              "meetingGroupCallAdminPreset": {
-                "type": "string"
-              },
-              "meetingGroupCallGuestPreset": {
-                "type": "string"
-              },
-              "meetingWebinarAdminPreset": {
-                "type": "string"
-              },
-              "meetingWebinarGuestPreset": {
-                "type": "string"
-              },
-              "meetingLivestreamAdminPreset": {
-                "type": "string"
-              },
-              "meetingLivestreamGuestPreset": {
-                "type": "string"
-              },
               "options": {
                 "type": "object",
-                "nullable": true
-              },
-              "autoResolveSupportTickets": {
-                "type": "boolean"
-              },
-              "autoResolveSupportTicketMessage": {
-                "type": "string",
                 "nullable": true
               }
             },
@@ -76849,15 +76920,7 @@
               "locales",
               "inviteOnly",
               "googleTagManagerId",
-              "meetingGroupCallAdminPreset",
-              "meetingGroupCallGuestPreset",
-              "meetingWebinarAdminPreset",
-              "meetingWebinarGuestPreset",
-              "meetingLivestreamAdminPreset",
-              "meetingLivestreamGuestPreset",
-              "options",
-              "autoResolveSupportTickets",
-              "autoResolveSupportTicketMessage"
+              "options"
             ]
           }
         ]
@@ -76891,6 +76954,92 @@
           "enabled",
           "createdAt",
           "updatedAt"
+        ]
+      },
+      "BaseOrganizationModuleSettings": {
+        "type": "object",
+        "properties": {
+          "organizationId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "organizationId"
+        ]
+      },
+      "OrganizationModuleSettings": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseOrganizationModuleSettings"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "meetingGroupCallAdminPreset": {
+                "type": "string"
+              },
+              "meetingGroupCallGuestPreset": {
+                "type": "string"
+              },
+              "meetingWebinarAdminPreset": {
+                "type": "string"
+              },
+              "meetingWebinarGuestPreset": {
+                "type": "string"
+              },
+              "meetingLivestreamAdminPreset": {
+                "type": "string"
+              },
+              "meetingLivestreamGuestPreset": {
+                "type": "string"
+              },
+              "supportAutoResolve": {
+                "type": "boolean"
+              },
+              "supportAutoResolveMessage": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "meetingGroupCallAdminPreset",
+              "meetingGroupCallGuestPreset",
+              "meetingWebinarAdminPreset",
+              "meetingWebinarGuestPreset",
+              "meetingLivestreamAdminPreset",
+              "meetingLivestreamGuestPreset",
+              "supportAutoResolve"
+            ]
+          }
+        ]
+      },
+      "BaseOrganizationModuleSettingsTranslation": {
+        "type": "object",
+        "properties": {
+          "organizationId": {
+            "type": "string"
+          },
+          "locale": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "organizationId",
+          "locale"
+        ]
+      },
+      "OrganizationModuleSettingsTranslation": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseOrganizationModuleSettingsTranslation"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "supportAutoResolveMessage": {
+                "type": "string"
+              }
+            }
+          }
         ]
       },
       "PurchaseStatus": {
@@ -93083,6 +93232,15 @@
             "type": "string",
             "nullable": true
           },
+          "options": {
+            "type": "object",
+            "nullable": true
+          }
+        }
+      },
+      "OrganizationModuleSettingsUpdateInputs": {
+        "type": "object",
+        "properties": {
           "meetingGroupCallAdminPreset": {
             "type": "string"
           },
@@ -93101,16 +93259,19 @@
           "meetingLivestreamGuestPreset": {
             "type": "string"
           },
-          "options": {
-            "type": "object",
-            "nullable": true
-          },
-          "autoResolveSupportTickets": {
+          "supportAutoResolve": {
             "type": "boolean"
           },
-          "autoResolveSupportTicketMessage": {
-            "type": "string",
-            "nullable": true
+          "supportAutoResolveMessage": {
+            "type": "string"
+          }
+        }
+      },
+      "OrganizationModuleSettingsTranslationUpdateInputs": {
+        "type": "object",
+        "properties": {
+          "supportAutoResolveMessage": {
+            "type": "string"
           }
         }
       },

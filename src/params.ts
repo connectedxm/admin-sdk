@@ -1303,15 +1303,22 @@ export interface OrganizationUpdateInputs {
   locales?: string[] | null;
   inviteOnly?: boolean;
   googleTagManagerId?: string | null;
+  options?: object | null;
+}
+
+export interface OrganizationModuleSettingsUpdateInputs {
   meetingGroupCallAdminPreset?: string;
   meetingGroupCallGuestPreset?: string;
   meetingWebinarAdminPreset?: string;
   meetingWebinarGuestPreset?: string;
   meetingLivestreamAdminPreset?: string;
   meetingLivestreamGuestPreset?: string;
-  options?: object | null;
-  autoResolveSupportTickets?: boolean;
-  autoResolveSupportTicketMessage?: string | null;
+  supportAutoResolve?: boolean;
+  supportAutoResolveMessage?: string;
+}
+
+export interface OrganizationModuleSettingsTranslationUpdateInputs {
+  supportAutoResolveMessage?: string;
 }
 
 export interface PaymentIntentPurchaseMetadataInputs {}

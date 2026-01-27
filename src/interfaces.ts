@@ -1800,15 +1800,7 @@ export interface Organization extends BaseOrganization {
   locales: string[];
   inviteOnly: boolean;
   googleTagManagerId: string | null;
-  meetingGroupCallAdminPreset: string;
-  meetingGroupCallGuestPreset: string;
-  meetingWebinarAdminPreset: string;
-  meetingWebinarGuestPreset: string;
-  meetingLivestreamAdminPreset: string;
-  meetingLivestreamGuestPreset: string;
   options: object | null;
-  autoResolveSupportTickets: boolean;
-  autoResolveSupportTicketMessage: string | null;
 }
 
 export interface OrganizationTrigger {
@@ -1818,6 +1810,32 @@ export interface OrganizationTrigger {
   enabled: boolean;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface BaseOrganizationModuleSettings {
+  organizationId: string;
+}
+
+export interface OrganizationModuleSettings
+  extends BaseOrganizationModuleSettings {
+  meetingGroupCallAdminPreset: string;
+  meetingGroupCallGuestPreset: string;
+  meetingWebinarAdminPreset: string;
+  meetingWebinarGuestPreset: string;
+  meetingLivestreamAdminPreset: string;
+  meetingLivestreamGuestPreset: string;
+  supportAutoResolve: boolean;
+  supportAutoResolveMessage?: string;
+}
+
+export interface BaseOrganizationModuleSettingsTranslation {
+  organizationId: string;
+  locale: string;
+}
+
+export interface OrganizationModuleSettingsTranslation
+  extends BaseOrganizationModuleSettingsTranslation {
+  supportAutoResolveMessage?: string;
 }
 
 export enum PurchaseStatus {

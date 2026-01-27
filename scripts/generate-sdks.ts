@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 /**
  * SDK Generation Script
- * 
+ *
  * Generates client SDKs from the OpenAPI specification using OpenAPI Generator.
- * 
+ *
  * TypeScript SDK:
  * - Uses typescript-axios generator (Axios-based HTTP client)
  * - Generates a unified AdminApi wrapper class
@@ -256,7 +256,7 @@ function generateTypeScriptWrapper(outputPath: string): void {
 
   // For now, keep flat structure - hierarchical wrapper is complex
   // We'll generate nested namespace classes in a future iteration
-  
+
   // Determine import paths based on generator type
   // typescript-fetch (legacy): src/apis, ./runtime
   // typescript-axios (current): api.ts (root), ./configuration
@@ -264,7 +264,7 @@ function generateTypeScriptWrapper(outputPath: string): void {
   const hasSrcDir = fs.existsSync(srcDir);
   const apiImportPath = hasSrcDir ? "./apis" : "./api";
   const configImportPath = hasSrcDir ? "./runtime" : "./configuration";
-  
+
   const wrapperContent = `/* tslint:disable */
 /* eslint-disable */
 /**
@@ -349,7 +349,7 @@ export default AdminApi;
     : path.join(outputPath, "index.ts");
 
   const exportPath = hasSrcDir ? "./apis" : "./api";
-  
+
   // Check where models are located (typescript-fetch: src/models, typescript-axios: varies by version)
   let modelsExport = "";
   const possibleModelPaths = [
@@ -357,14 +357,14 @@ export default AdminApi;
     { abs: path.join(outputPath, "models"), rel: "./models" },
     { abs: path.join(outputPath, "base"), rel: "./base" },
   ];
-  
+
   for (const modelPath of possibleModelPaths) {
     if (fs.existsSync(modelPath.abs)) {
       modelsExport = `export * from "${modelPath.rel}";\n`;
       break;
     }
   }
-  
+
   const cleanIndexContent = `/* tslint:disable */
 /* eslint-disable */
 /**
@@ -377,7 +377,11 @@ export default AdminApi;
 export { AdminApi, AdminApiConfig } from "./AdminApi";
 export { AdminApi as default } from "./AdminApi";
 
-${modelsExport ? `// Export all model types\n${modelsExport}` : "// Models are exported from API classes\n"}// Export API classes
+${
+  modelsExport
+    ? `// Export all model types\n${modelsExport}`
+    : "// Models are exported from API classes\n"
+}// Export API classes
 export * from "${exportPath}";
 `;
   fs.writeFileSync(indexPath, cleanIndexContent);
@@ -396,30 +400,34 @@ function postProcessPackageJson(outputPath: string): void {
 
   try {
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
-    
+
     // Read the version from the main admin package
     const adminPackageJsonPath = path.join(__dirname, "../package.json");
-    const adminPackageJson = JSON.parse(fs.readFileSync(adminPackageJsonPath, "utf-8"));
+    const adminPackageJson = JSON.parse(
+      fs.readFileSync(adminPackageJsonPath, "utf-8")
+    );
     const adminVersion = adminPackageJson.version;
-    
+
     let updated = false;
-    
+
     // Sync version with admin package
     if (packageJson.version !== adminVersion) {
       packageJson.version = adminVersion;
       updated = true;
-      console.log(`   ✨ Synced version to ${adminVersion} (from @connectedxm/admin)`);
+      console.log(
+        `   ✨ Synced version to ${adminVersion} (from @connectedxm/admin)`
+      );
     }
-    
+
     // Add publishConfig to make scoped package public
     if (!packageJson.publishConfig) {
       packageJson.publishConfig = {
-        access: "public"
+        access: "public",
       };
       updated = true;
       console.log("   ✨ Added publishConfig to package.json");
     }
-    
+
     if (updated) {
       fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
     }
@@ -1039,7 +1047,9 @@ async function main() {
         } catch {
           console.log("\n💡 To use locally, run:");
           console.log(`   cd ${tsPath} && npm link`);
-          console.log("   cd /path/to/your-project && npm link @connectedxm/admin-sdk");
+          console.log(
+            "   cd /path/to/your-project && npm link @connectedxm/admin-sdk"
+          );
         }
       } catch {
         console.error("❌ Failed to build TypeScript SDK");

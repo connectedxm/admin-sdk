@@ -3931,6 +3931,15 @@
           },
           {
             "in": "query",
+            "name": "global",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Filter by global",
+            "required": false
+          },
+          {
+            "in": "query",
             "name": "page",
             "schema": {
               "type": "integer",
@@ -13991,17 +14000,18 @@
             },
             "description": "The event identifier",
             "required": true
-          },
-          {
-            "in": "query",
-            "name": "accountId",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Filter by accountId",
-            "required": true
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventAttendeeCreateInputs"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful response",
@@ -91187,6 +91197,17 @@
             "nullable": true
           }
         }
+      },
+      "EventAttendeeCreateInputs": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "accountId"
+        ]
       },
       "EventAttendeeUpdateInputs": {
         "type": "object",

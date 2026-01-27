@@ -5,6 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { EventAttendeeCreateInputs } from "@src/params";
 import {
   EVENT_ATTENDEES_QUERY_KEY,
   SET_EVENT_ATTENDEE_QUERY_DATA,
@@ -16,7 +17,7 @@ import {
  */
 export interface CreateEventAttendeeParams extends MutationParams {
   eventId: string;
-  accountId: string;
+  attendee: EventAttendeeCreateInputs;
 }
 
 /**
@@ -25,22 +26,24 @@ export interface CreateEventAttendeeParams extends MutationParams {
  */
 export const CreateEventAttendee = async ({
   eventId,
-  accountId,
+  attendee,
   adminApiParams,
   queryClient,
 }: CreateEventAttendeeParams): Promise<ConnectedXMResponse<EventAttendee>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<EventAttendee>>(
     `/events/${eventId}/attendees`,
-    {
-      accountId,
-    }
+    attendee
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_ATTENDEES_QUERY_KEY(eventId),
     });
-    SET_EVENT_ATTENDEE_QUERY_DATA(queryClient, [eventId, accountId], data);
+    SET_EVENT_ATTENDEE_QUERY_DATA(
+      queryClient,
+      [eventId, attendee.accountId],
+      data
+    );
   }
   return data;
 };

@@ -19,7 +19,8 @@ import { GetAdminAPI } from "@src/AdminAPI";
 export const ACTIVITIES_QUERY_KEY = (
   moderation?: keyof typeof ModerationStatus,
   featured?: true,
-  status?: keyof typeof ActivityStatus
+  status?: keyof typeof ActivityStatus,
+  global?: boolean
 ) => {
   const key = ["ACTIVITIES"];
   if (moderation) {
@@ -30,6 +31,9 @@ export const ACTIVITIES_QUERY_KEY = (
   }
   if (status) {
     key.push(status);
+  }
+  if (global) {
+    key.push("GLOBAL");
   }
   return key;
 };
@@ -50,6 +54,7 @@ interface GetActivitiesProps extends InfiniteQueryParams {
   moderation?: keyof typeof ModerationStatus;
   featured?: true;
   status?: keyof typeof ActivityStatus;
+  global?: boolean;
 }
 
 /**
@@ -65,6 +70,7 @@ export const GetActivities = async ({
   orderBy,
   search,
   adminApiParams,
+  global,
 }: GetActivitiesProps): Promise<ConnectedXMResponse<Activity[]>> => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(`/activities`, {
@@ -76,6 +82,7 @@ export const GetActivities = async ({
       moderation: moderation || undefined,
       featured: featured || undefined,
       status: status || undefined,
+      global: global || undefined,
     },
   });
   return data;
@@ -88,6 +95,7 @@ export const useGetActivities = (
   moderation?: keyof typeof ModerationStatus,
   featured?: true,
   status?: keyof typeof ActivityStatus,
+  global: boolean = false,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -95,9 +103,9 @@ export const useGetActivities = (
   options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetActivities>>> = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetActivities>>>(
-    ACTIVITIES_QUERY_KEY(moderation, featured, status),
+    ACTIVITIES_QUERY_KEY(moderation, featured, status, global),
     (params: InfiniteQueryParams) =>
-      GetActivities({ ...params, moderation, featured, status }),
+      GetActivities({ ...params, moderation, featured, status, global }),
     params,
     options
   );

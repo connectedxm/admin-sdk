@@ -786,6 +786,10 @@ export interface EventPassUpdateInputs {
   usedAt?: string | null;
 }
 
+export interface EventAttendeeCreateInputs {
+  accountId: string;
+}
+
 export interface EventAttendeeUpdateInputs {}
 
 export interface EventRegistrationBypassCreateInputs {

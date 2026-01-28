@@ -70651,7 +70651,8 @@
           "new",
           "inProgress",
           "resolved",
-          "spam"
+          "spam",
+          "archived"
         ]
       },
       "SupportTicketActivityType": {

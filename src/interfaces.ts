@@ -195,6 +195,7 @@ export enum SupportTicketState {
   inProgress = "inProgress",
   resolved = "resolved",
   spam = "spam",
+  archived = "archived",
 }
 
 export enum SupportTicketActivityType {

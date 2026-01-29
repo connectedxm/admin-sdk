@@ -14,5 +14,6 @@ export * from "./useGetAccountEvents";
 export * from "./useGetAccountLikes";
 export * from "./useGetAccountNotificationPreferences";
 export * from "./useGetAccountPayments";
+export * from "./useGetAccountRegistrations";
 export * from "./useGetAccountThreads";
 export * from "./useGetAccounts";

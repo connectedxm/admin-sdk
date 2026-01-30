@@ -28,7 +28,7 @@ export * from "./searchlists";
 export * from "./self";
 export * from "./series";
 export * from "./streams";
-export * from "./supportTickets";
+export * from "./support";
 export * from "./surveys";
 export * from "./threads";
 export * from "./tiers";

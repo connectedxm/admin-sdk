@@ -61341,7 +61341,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "$ref": "#/components/schemas/StreamInput"
+                      "type": "object"
                     }
                   },
                   "required": [

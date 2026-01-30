@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { Invoice, ConnectedXMResponse } from "@src/interfaces";
 import { SET_INVOICE_QUERY_DATA, INVOICES_QUERY_KEY } from "@src/queries";
 import { InvoiceCreateInputs } from "@src/params";

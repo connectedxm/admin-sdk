@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
 import { CustomModuleCreateInputs } from "@src/params";
 import { CUSTOM_MODULES_QUERY_KEY } from "../../../../queries/organization/modules/custom/useGetCustomModules";

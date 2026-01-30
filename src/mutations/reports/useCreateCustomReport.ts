@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { CustomReport, ConnectedXMResponse } from "@src/interfaces";
 import {
   CUSTOM_REPORTS_QUERY_KEY,

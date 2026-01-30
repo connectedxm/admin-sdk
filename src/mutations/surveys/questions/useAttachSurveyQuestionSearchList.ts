@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { SurveyQuestion, ConnectedXMResponse } from "@src/interfaces";
 import { SURVEY_QUESTION_QUERY_KEY, SEARCHLIST_QUERY_KEY } from "@src/queries";
 import { AttachSearchListInputs } from "@src/params";

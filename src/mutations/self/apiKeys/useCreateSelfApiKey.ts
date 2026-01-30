@@ -5,7 +5,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { UserApiKey, ConnectedXMResponse } from "@src/interfaces";
 import {
   SELF_API_KEYS_QUERY_KEY,

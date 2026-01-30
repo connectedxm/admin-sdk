@@ -317,10 +317,6 @@
       "description": "Associate sponsors with groups, recognizing supporting organizations or individuals within group contexts"
     },
     {
-      "name": "Images",
-      "description": "Operations for managing images"
-    },
-    {
       "name": "Imports",
       "description": "Operations for data imports"
     },
@@ -335,14 +331,6 @@
     {
       "name": "Invoices::Lineitems",
       "description": "View and manage individual line items on invoices, tracking specific charges, quantities, and prices for detailed financial records"
-    },
-    {
-      "name": "Levels",
-      "description": "Operations for managing membership levels"
-    },
-    {
-      "name": "Levels::Accounts",
-      "description": "Associate accounts with membership levels to grant tier-based access, pricing, and benefits based on membership status"
     },
     {
       "name": "Logins",
@@ -485,8 +473,28 @@
       "description": "Operations for managing event series"
     },
     {
-      "name": "Storage",
-      "description": "Seamless and secure media storage for video, image, and file storage related to live events"
+      "name": "Sponsors",
+      "description": "Operations for sponsors"
+    },
+    {
+      "name": "Sponsors::Accounts",
+      "description": "Operations for sponsors::accounts"
+    },
+    {
+      "name": "Storage::Files",
+      "description": "Operations for storage::files"
+    },
+    {
+      "name": "Storage::Images",
+      "description": "Operations for storage::images"
+    },
+    {
+      "name": "Storage::Videos",
+      "description": "Operations for storage::videos"
+    },
+    {
+      "name": "Storage::Videos::Captions",
+      "description": "Operations for storage::videos::captions"
     },
     {
       "name": "Streams",
@@ -511,18 +519,6 @@
     {
       "name": "Support::Notes",
       "description": "Add internal notes to support tickets for team collaboration, tracking resolution steps, and maintaining support history"
-    },
-    {
-      "name": "Supporttickets",
-      "description": "Operations for supporttickets"
-    },
-    {
-      "name": "Supporttickets::Messages",
-      "description": "Exchange messages within support tickets, facilitating communication between support staff and users to resolve issues"
-    },
-    {
-      "name": "Supporttickets::Notes",
-      "description": "Add administrative notes to support tickets for internal tracking, documenting resolution steps, and team coordination"
     },
     {
       "name": "Surveys",
@@ -579,14 +575,6 @@
     {
       "name": "Tiers",
       "description": "Operations for managing membership tiers"
-    },
-    {
-      "name": "Videos",
-      "description": "Operations for managing videos"
-    },
-    {
-      "name": "Videos::Captions",
-      "description": "Upload, manage, and configure closed captions and subtitles for videos, improving accessibility and multilingual support"
     }
   ],
   "paths": {
@@ -43192,7 +43180,7 @@
           }
         },
         "tags": [
-          "Files"
+          "Storage::Files"
         ]
       },
       "post": {
@@ -43265,7 +43253,7 @@
           }
         },
         "tags": [
-          "Storage"
+          "Storage::Files"
         ]
       }
     },
@@ -43318,7 +43306,7 @@
           }
         },
         "tags": [
-          "Files"
+          "Storage::Files"
         ]
       },
       "put": {
@@ -46035,7 +46023,7 @@
           }
         },
         "tags": [
-          "Images"
+          "Storage::Images"
         ]
       },
       "post": {
@@ -46085,7 +46073,7 @@
           }
         },
         "tags": [
-          "Images"
+          "Storage::Images"
         ]
       }
     },
@@ -46094,20 +46082,16 @@
         "operationId": "DeleteManyImages",
         "summary": "Delete Many Images",
         "description": "Delete Many Images endpoint",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "imageIds",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteManyImagesInput"
               }
-            },
-            "description": "Filter by imageIds",
-            "required": true
+            }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "Successful response",
@@ -46141,7 +46125,7 @@
           }
         },
         "tags": [
-          "Images"
+          "Storage::Images"
         ]
       }
     },
@@ -46194,7 +46178,7 @@
           }
         },
         "tags": [
-          "Images"
+          "Storage::Images"
         ]
       },
       "put": {
@@ -46255,7 +46239,7 @@
           }
         },
         "tags": [
-          "Images"
+          "Storage::Images"
         ]
       },
       "delete": {
@@ -46306,7 +46290,7 @@
           }
         },
         "tags": [
-          "Images"
+          "Storage::Images"
         ]
       }
     },
@@ -46368,7 +46352,7 @@
           }
         },
         "tags": [
-          "Images"
+          "Storage::Images"
         ]
       }
     },
@@ -46421,7 +46405,7 @@
           }
         },
         "tags": [
-          "Images"
+          "Storage::Images"
         ]
       }
     },
@@ -48654,7 +48638,7 @@
           }
         },
         "tags": [
-          "Levels"
+          "Sponsors"
         ]
       },
       "post": {
@@ -48704,7 +48688,7 @@
           }
         },
         "tags": [
-          "Levels"
+          "Sponsors"
         ]
       }
     },
@@ -48766,7 +48750,7 @@
           }
         },
         "tags": [
-          "Levels"
+          "Sponsors"
         ]
       },
       "delete": {
@@ -48817,7 +48801,7 @@
           }
         },
         "tags": [
-          "Levels"
+          "Sponsors"
         ]
       }
     },
@@ -48918,7 +48902,7 @@
           }
         },
         "tags": [
-          "Levels::Accounts"
+          "Sponsors::Accounts"
         ]
       }
     },
@@ -48980,7 +48964,7 @@
           }
         },
         "tags": [
-          "Levels::Accounts"
+          "Sponsors::Accounts"
         ]
       },
       "delete": {
@@ -49040,7 +49024,7 @@
           }
         },
         "tags": [
-          "Levels::Accounts"
+          "Sponsors::Accounts"
         ]
       }
     },
@@ -49093,7 +49077,7 @@
           }
         },
         "tags": [
-          "Levels"
+          "Sponsors"
         ]
       }
     },
@@ -61353,7 +61337,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "$ref": "#/components/schemas/StreamInput"
+                      "type": "object"
                     }
                   },
                   "required": [
@@ -62417,7 +62401,7 @@
           }
         },
         "tags": [
-          "Supporttickets"
+          "Support"
         ]
       },
       "post": {
@@ -62520,7 +62504,7 @@
           }
         },
         "tags": [
-          "Supporttickets"
+          "Support"
         ]
       },
       "put": {
@@ -62685,7 +62669,7 @@
           }
         },
         "tags": [
-          "Supporttickets"
+          "Support"
         ]
       }
     },
@@ -62783,7 +62767,7 @@
           }
         },
         "tags": [
-          "Supporttickets::Messages"
+          "Support::Messages"
         ]
       },
       "post": {
@@ -62942,7 +62926,7 @@
           }
         },
         "tags": [
-          "Supporttickets::Notes"
+          "Support::Notes"
         ]
       },
       "post": {
@@ -63172,7 +63156,7 @@
           }
         },
         "tags": [
-          "Supporttickets"
+          "Support"
         ]
       }
     },
@@ -69743,7 +69727,7 @@
           }
         },
         "tags": [
-          "Videos"
+          "Storage::Videos"
         ]
       }
     },
@@ -69752,20 +69736,16 @@
         "operationId": "DeleteManyVideos",
         "summary": "Delete Many Videos",
         "description": "Delete Many Videos endpoint",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "videoIds",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteManyVideosInput"
               }
-            },
-            "description": "Filter by videoIds",
-            "required": true
+            }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "Successful response",
@@ -69799,7 +69779,7 @@
           }
         },
         "tags": [
-          "Videos"
+          "Storage::Videos"
         ]
       }
     },
@@ -69852,7 +69832,7 @@
           }
         },
         "tags": [
-          "Videos"
+          "Storage::Videos"
         ]
       },
       "put": {
@@ -69913,7 +69893,7 @@
           }
         },
         "tags": [
-          "Videos"
+          "Storage::Videos"
         ]
       },
       "delete": {
@@ -69964,7 +69944,7 @@
           }
         },
         "tags": [
-          "Videos"
+          "Storage::Videos"
         ]
       }
     },
@@ -70065,7 +70045,7 @@
           }
         },
         "tags": [
-          "Videos::Captions"
+          "Storage::Videos::Captions"
         ]
       }
     },
@@ -70145,7 +70125,7 @@
           }
         },
         "tags": [
-          "Videos::Captions"
+          "Storage::Videos::Captions"
         ]
       },
       "delete": {
@@ -70205,7 +70185,7 @@
           }
         },
         "tags": [
-          "Videos::Captions"
+          "Storage::Videos::Captions"
         ]
       }
     },
@@ -70267,7 +70247,7 @@
           }
         },
         "tags": [
-          "Videos::Captions"
+          "Storage::Videos::Captions"
         ]
       }
     },
@@ -70329,7 +70309,7 @@
           }
         },
         "tags": [
-          "Videos::Captions"
+          "Storage::Videos::Captions"
         ]
       }
     },
@@ -70382,7 +70362,7 @@
           }
         },
         "tags": [
-          "Videos"
+          "Storage::Videos"
         ]
       },
       "post": {
@@ -70433,7 +70413,7 @@
           }
         },
         "tags": [
-          "Videos"
+          "Storage::Videos"
         ]
       }
     }
@@ -98054,6 +98034,34 @@
         },
         "required": [
           "notificationIds"
+        ]
+      },
+      "DeleteManyImagesInput": {
+        "type": "object",
+        "properties": {
+          "imageIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "imageIds"
+        ]
+      },
+      "DeleteManyVideosInput": {
+        "type": "object",
+        "properties": {
+          "videoIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "videoIds"
         ]
       }
     }

@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { SET_ORGANIZATION_DOMAIN_QUERY_DATA } from "@src/queries/organization/domains/useGetOrganizationDomain";
 

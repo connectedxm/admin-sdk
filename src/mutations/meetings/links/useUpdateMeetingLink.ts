@@ -3,9 +3,12 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { MeetingLink, ConnectedXMResponse } from "@src/interfaces";
-import { MEETING_LINKS_QUERY_KEY, SET_MEETING_LINK_QUERY_DATA } from "@src/queries";
+import {
+  MEETING_LINKS_QUERY_KEY,
+  SET_MEETING_LINK_QUERY_DATA,
+} from "@src/queries";
 import { MeetingLinkUpdateInputs } from "@src/params";
 
 /**
@@ -35,7 +38,9 @@ export const UpdateMeetingLink = async ({
     link
   );
   if (queryClient && data.status === "ok") {
-    queryClient.invalidateQueries({ queryKey: MEETING_LINKS_QUERY_KEY(meetingId) });
+    queryClient.invalidateQueries({
+      queryKey: MEETING_LINKS_QUERY_KEY(meetingId),
+    });
     SET_MEETING_LINK_QUERY_DATA(queryClient, [meetingId, linkId], data);
   }
   return data;
@@ -59,4 +64,3 @@ export const useUpdateMeetingLink = (
     Awaited<ReturnType<typeof UpdateMeetingLink>>
   >(UpdateMeetingLink, options);
 };
-

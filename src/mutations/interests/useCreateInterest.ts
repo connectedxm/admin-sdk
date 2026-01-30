@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { Interest, ConnectedXMResponse } from "@src/interfaces";
 import { INTERESTS_QUERY_KEY, SET_INTEREST_QUERY_DATA } from "@src/queries";
 import { InterestCreateInputs } from "@src/params";

@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse, SupportTicket } from "@src/interfaces";
 import {
   SET_SUPPORT_TICKET_QUERY_DATA,

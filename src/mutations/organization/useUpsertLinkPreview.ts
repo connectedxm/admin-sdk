@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { LinkPreview, ConnectedXMResponse } from "@src/interfaces";
 
 /**
@@ -27,7 +27,7 @@ export const UpsertLinkPreview = async ({
     `/organization/link-preview`,
     {
       href,
-    },
+    }
   );
   return data;
 };

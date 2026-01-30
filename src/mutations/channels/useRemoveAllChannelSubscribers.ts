@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse, Channel } from "@src/interfaces";
 import {
   SET_CHANNEL_QUERY_DATA,
@@ -60,4 +60,3 @@ export const useRemoveAllChannelSubscribers = (
     Awaited<ReturnType<typeof RemoveAllChannelSubscribers>>
   >(RemoveAllChannelSubscribers, options);
 };
-

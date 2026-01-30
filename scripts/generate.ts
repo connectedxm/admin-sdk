@@ -1257,7 +1257,6 @@ const tagDescriptions: Record<string, string> = {
     "A community-wide tagging system that acts like hashtags and allows users to share trending topics",
   Invoices:
     "Streamline your event invoicing and gain complete financial oversight with instant differentiation between paid and outstanding invoices",
-  Levels: "Operations for managing membership levels",
   Logins: "Operations for managing login records",
   Meetings:
     "A scalable solution for virtual events, featuring structured sessions, efficient presets, and integrated recordings for lasting engagement",
@@ -1273,6 +1272,7 @@ const tagDescriptions: Record<string, string> = {
   Searchlists: "Operations for managing search lists",
   Self: "Operations for the authenticated user",
   Series: "Operations for managing event series",
+  Sponsors: "Operations for managing sponsorship levels",
   Storage:
     "Seamless and secure media storage for video, image, and file storage related to live events",
   Streams: "Operations for managing streams",
@@ -1426,7 +1426,7 @@ const tagDescriptions: Record<string, string> = {
     "View and manage individual line items on invoices, tracking specific charges, quantities, and prices for detailed financial records",
 
   // Nested tags - Levels
-  "Levels::Accounts":
+  "Sponsors::Accounts":
     "Associate accounts with membership levels to grant tier-based access, pricing, and benefits based on membership status",
 
   // Nested tags - Logins

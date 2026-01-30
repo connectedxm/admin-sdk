@@ -2931,3 +2931,11 @@ export interface NotificationFilters {
 export interface MarkNotificationsReadInputs {
   notificationIds: string[];
 }
+
+export interface DeleteManyImagesInput {
+  imageIds: string[];
+}
+
+export interface DeleteManyVideosInput {
+  videoIds: string[];
+}

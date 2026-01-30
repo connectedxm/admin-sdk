@@ -46082,20 +46082,16 @@
         "operationId": "DeleteManyImages",
         "summary": "Delete Many Images",
         "description": "Delete Many Images endpoint",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "imageIds",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteManyImagesInput"
               }
-            },
-            "description": "Filter by imageIds",
-            "required": true
+            }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "Successful response",
@@ -69740,20 +69736,16 @@
         "operationId": "DeleteManyVideos",
         "summary": "Delete Many Videos",
         "description": "Delete Many Videos endpoint",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "videoIds",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteManyVideosInput"
               }
-            },
-            "description": "Filter by videoIds",
-            "required": true
+            }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "Successful response",
@@ -98042,6 +98034,34 @@
         },
         "required": [
           "notificationIds"
+        ]
+      },
+      "DeleteManyImagesInput": {
+        "type": "object",
+        "properties": {
+          "imageIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "imageIds"
+        ]
+      },
+      "DeleteManyVideosInput": {
+        "type": "object",
+        "properties": {
+          "videoIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "videoIds"
         ]
       }
     }

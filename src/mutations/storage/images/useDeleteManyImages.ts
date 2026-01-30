@@ -6,13 +6,14 @@ import {
 } from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { IMAGES_QUERY_KEY } from "@src/queries";
+import { DeleteManyImagesInput } from "@src/params";
 
 /**
  * @category Params
  * @group Images
  */
 export interface DeleteManyImagesParams extends MutationParams {
-  imageIds: string[];
+  images: DeleteManyImagesInput;
 }
 
 /**
@@ -20,7 +21,7 @@ export interface DeleteManyImagesParams extends MutationParams {
  * @group Images
  */
 export const DeleteManyImages = async ({
-  imageIds,
+  images,
   adminApiParams,
   queryClient,
 }: DeleteManyImagesParams): Promise<ConnectedXMResponse<null>> => {
@@ -28,7 +29,7 @@ export const DeleteManyImages = async ({
 
   const { data } = await connectedXM.post<ConnectedXMResponse<null>>(
     `/images/delete`,
-    { imageIds }
+    images
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: IMAGES_QUERY_KEY() });

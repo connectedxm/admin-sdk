@@ -6,13 +6,14 @@ import {
 } from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { VIDEOS_QUERY_KEY } from "@src/queries";
+import { DeleteManyVideosInput } from "@src/params";
 
 /**
  * @category Params
  * @group Videos
  */
 export interface DeleteManyVideosParams extends MutationParams {
-  videoIds: string[];
+  videos: DeleteManyVideosInput;
 }
 
 /**
@@ -20,7 +21,7 @@ export interface DeleteManyVideosParams extends MutationParams {
  * @group Videos
  */
 export const DeleteManyVideos = async ({
-  videoIds,
+  videos,
   adminApiParams,
   queryClient,
 }: DeleteManyVideosParams): Promise<ConnectedXMResponse<null>> => {
@@ -28,7 +29,7 @@ export const DeleteManyVideos = async ({
 
   const { data } = await connectedXM.post<ConnectedXMResponse<null>>(
     `/videos/delete`,
-    { videoIds }
+    videos
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({ queryKey: VIDEOS_QUERY_KEY("") });

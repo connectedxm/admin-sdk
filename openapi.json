@@ -317,10 +317,6 @@
       "description": "Associate sponsors with groups, recognizing supporting organizations or individuals within group contexts"
     },
     {
-      "name": "Images",
-      "description": "Operations for managing images"
-    },
-    {
       "name": "Imports",
       "description": "Operations for data imports"
     },
@@ -335,14 +331,6 @@
     {
       "name": "Invoices::Lineitems",
       "description": "View and manage individual line items on invoices, tracking specific charges, quantities, and prices for detailed financial records"
-    },
-    {
-      "name": "Levels",
-      "description": "Operations for managing membership levels"
-    },
-    {
-      "name": "Levels::Accounts",
-      "description": "Associate accounts with membership levels to grant tier-based access, pricing, and benefits based on membership status"
     },
     {
       "name": "Logins",
@@ -485,8 +473,28 @@
       "description": "Operations for managing event series"
     },
     {
-      "name": "Storage",
-      "description": "Seamless and secure media storage for video, image, and file storage related to live events"
+      "name": "Sponsors",
+      "description": "Operations for sponsors"
+    },
+    {
+      "name": "Sponsors::Accounts",
+      "description": "Operations for sponsors::accounts"
+    },
+    {
+      "name": "Storage::Files",
+      "description": "Operations for storage::files"
+    },
+    {
+      "name": "Storage::Images",
+      "description": "Operations for storage::images"
+    },
+    {
+      "name": "Storage::Videos",
+      "description": "Operations for storage::videos"
+    },
+    {
+      "name": "Storage::Videos::Captions",
+      "description": "Operations for storage::videos::captions"
     },
     {
       "name": "Streams",
@@ -567,14 +575,6 @@
     {
       "name": "Tiers",
       "description": "Operations for managing membership tiers"
-    },
-    {
-      "name": "Videos",
-      "description": "Operations for managing videos"
-    },
-    {
-      "name": "Videos::Captions",
-      "description": "Upload, manage, and configure closed captions and subtitles for videos, improving accessibility and multilingual support"
     }
   ],
   "paths": {
@@ -43180,7 +43180,7 @@
           }
         },
         "tags": [
-          "Files"
+          "Storage::Files"
         ]
       },
       "post": {
@@ -43253,7 +43253,7 @@
           }
         },
         "tags": [
-          "Storage"
+          "Storage::Files"
         ]
       }
     },
@@ -43306,7 +43306,7 @@
           }
         },
         "tags": [
-          "Files"
+          "Storage::Files"
         ]
       },
       "put": {
@@ -46023,7 +46023,7 @@
           }
         },
         "tags": [
-          "Images"
+          "Storage::Images"
         ]
       },
       "post": {
@@ -46073,7 +46073,7 @@
           }
         },
         "tags": [
-          "Images"
+          "Storage::Images"
         ]
       }
     },
@@ -46129,7 +46129,7 @@
           }
         },
         "tags": [
-          "Images"
+          "Storage::Images"
         ]
       }
     },
@@ -46182,7 +46182,7 @@
           }
         },
         "tags": [
-          "Images"
+          "Storage::Images"
         ]
       },
       "put": {
@@ -46243,7 +46243,7 @@
           }
         },
         "tags": [
-          "Images"
+          "Storage::Images"
         ]
       },
       "delete": {
@@ -46294,7 +46294,7 @@
           }
         },
         "tags": [
-          "Images"
+          "Storage::Images"
         ]
       }
     },
@@ -46356,7 +46356,7 @@
           }
         },
         "tags": [
-          "Images"
+          "Storage::Images"
         ]
       }
     },
@@ -46409,7 +46409,7 @@
           }
         },
         "tags": [
-          "Images"
+          "Storage::Images"
         ]
       }
     },
@@ -48642,7 +48642,7 @@
           }
         },
         "tags": [
-          "Levels"
+          "Sponsors"
         ]
       },
       "post": {
@@ -48692,7 +48692,7 @@
           }
         },
         "tags": [
-          "Levels"
+          "Sponsors"
         ]
       }
     },
@@ -48754,7 +48754,7 @@
           }
         },
         "tags": [
-          "Levels"
+          "Sponsors"
         ]
       },
       "delete": {
@@ -48805,7 +48805,7 @@
           }
         },
         "tags": [
-          "Levels"
+          "Sponsors"
         ]
       }
     },
@@ -48906,7 +48906,7 @@
           }
         },
         "tags": [
-          "Levels::Accounts"
+          "Sponsors::Accounts"
         ]
       }
     },
@@ -48968,7 +48968,7 @@
           }
         },
         "tags": [
-          "Levels::Accounts"
+          "Sponsors::Accounts"
         ]
       },
       "delete": {
@@ -49028,7 +49028,7 @@
           }
         },
         "tags": [
-          "Levels::Accounts"
+          "Sponsors::Accounts"
         ]
       }
     },
@@ -49081,7 +49081,7 @@
           }
         },
         "tags": [
-          "Levels"
+          "Sponsors"
         ]
       }
     },
@@ -69731,7 +69731,7 @@
           }
         },
         "tags": [
-          "Videos"
+          "Storage::Videos"
         ]
       }
     },
@@ -69787,7 +69787,7 @@
           }
         },
         "tags": [
-          "Videos"
+          "Storage::Videos"
         ]
       }
     },
@@ -69840,7 +69840,7 @@
           }
         },
         "tags": [
-          "Videos"
+          "Storage::Videos"
         ]
       },
       "put": {
@@ -69901,7 +69901,7 @@
           }
         },
         "tags": [
-          "Videos"
+          "Storage::Videos"
         ]
       },
       "delete": {
@@ -69952,7 +69952,7 @@
           }
         },
         "tags": [
-          "Videos"
+          "Storage::Videos"
         ]
       }
     },
@@ -70053,7 +70053,7 @@
           }
         },
         "tags": [
-          "Videos::Captions"
+          "Storage::Videos::Captions"
         ]
       }
     },
@@ -70133,7 +70133,7 @@
           }
         },
         "tags": [
-          "Videos::Captions"
+          "Storage::Videos::Captions"
         ]
       },
       "delete": {
@@ -70193,7 +70193,7 @@
           }
         },
         "tags": [
-          "Videos::Captions"
+          "Storage::Videos::Captions"
         ]
       }
     },
@@ -70255,7 +70255,7 @@
           }
         },
         "tags": [
-          "Videos::Captions"
+          "Storage::Videos::Captions"
         ]
       }
     },
@@ -70317,7 +70317,7 @@
           }
         },
         "tags": [
-          "Videos::Captions"
+          "Storage::Videos::Captions"
         ]
       }
     },
@@ -70370,7 +70370,7 @@
           }
         },
         "tags": [
-          "Videos"
+          "Storage::Videos"
         ]
       },
       "post": {
@@ -70421,7 +70421,7 @@
           }
         },
         "tags": [
-          "Videos"
+          "Storage::Videos"
         ]
       }
     }

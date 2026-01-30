@@ -8,7 +8,7 @@ import {
   MutationParams,
   ConnectedXMMutationOptions,
   useConnectedMutation,
-} from "../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 
 /**
  * @category Params

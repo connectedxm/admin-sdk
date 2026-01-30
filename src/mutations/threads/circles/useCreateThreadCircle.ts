@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse, ThreadCircle } from "@src/interfaces";
 import { ThreadCircleCreateInputs } from "@src/params";
 import { THREAD_CIRCLES_QUERY_KEY } from "@src/queries/threads/circles/useGetThreadCircles";

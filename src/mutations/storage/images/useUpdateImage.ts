@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse, Image } from "@src/interfaces";
 import { IMAGES_QUERY_KEY, SET_IMAGE_QUERY_DATA } from "@src/queries";
 import { ImageUpdateInputs } from "@src/params";

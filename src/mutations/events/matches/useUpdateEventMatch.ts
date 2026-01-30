@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse, Match } from "@src/interfaces";
 import { MatchUpdateInputs } from "@src/params";
 import {

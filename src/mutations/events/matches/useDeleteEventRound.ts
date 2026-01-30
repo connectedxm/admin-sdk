@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { EVENT_ROUNDS_QUERY_KEY } from "@src/queries";
 

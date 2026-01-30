@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { Webhook, ConnectedXMResponse } from "@src/interfaces";
 import { ORGANIZATION_WEBHOOKS_QUERY_KEY } from "@src/queries/organization/webhooks/useGetOrganizationWebhooks";
 import { SET_ORGANIZATION_WEBHOOK_QUERY_DATA } from "@src/queries/organization/webhooks/useGetOrganizationWebhook";

@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { DashboardWidget, ConnectedXMResponse } from "@src/interfaces";
 import { DashboardWidgetUpdateInputs } from "@src/params";
 import { DASHBOARD_QUERY_KEY } from "@src/queries";

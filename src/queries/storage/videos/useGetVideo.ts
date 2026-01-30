@@ -2,7 +2,7 @@ import {
   SingleQueryOptions,
   SingleQueryParams,
   useConnectedSingleQuery,
-} from "../useConnectedSingleQuery";
+} from "@src/queries/useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Video } from "@src/interfaces";
 import { VIDEOS_QUERY_KEY } from "./useGetVideos";

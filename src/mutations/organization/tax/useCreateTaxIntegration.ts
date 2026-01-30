@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse, TaxIntegration } from "@src/interfaces";
 import {
   TAX_INTEGRATIONS_QUERY_KEY,

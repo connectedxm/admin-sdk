@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
 
 /**
@@ -47,4 +47,3 @@ export const useJoinMeeting = (
     Awaited<ReturnType<typeof JoinMeeting>>
   >(JoinMeeting, options);
 };
-

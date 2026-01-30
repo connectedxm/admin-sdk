@@ -3,7 +3,7 @@ import {
   SingleQueryOptions,
   SingleQueryParams,
   useConnectedSingleQuery,
-} from "../useConnectedSingleQuery";
+} from "@src/queries/useConnectedSingleQuery";
 import { ConnectedXMResponse, ImageUsage } from "@src/interfaces";
 import { IMAGE_QUERY_KEY } from "./useGetImage";
 import { QueryClient } from "@tanstack/react-query";

@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { User, ConnectedXMResponse } from "@src/interfaces";
 import { SET_SELF_QUERY_DATA } from "@src/queries";
 import { UserUpdateInputs } from "@src/params";

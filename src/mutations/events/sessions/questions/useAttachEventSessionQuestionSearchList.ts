@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { EventSessionQuestion, ConnectedXMResponse } from "@src/interfaces";
 import {
   EVENT_SESSION_QUESTION_QUERY_KEY,

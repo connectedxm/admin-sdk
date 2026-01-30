@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { MutationParams } from "../../useConnectedMutation";
+import { MutationParams } from "@src/mutations/useConnectedMutation";
 import { useMutation, UseMutationOptions } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useConnectedXM } from "@src/hooks/useConnectedXM";

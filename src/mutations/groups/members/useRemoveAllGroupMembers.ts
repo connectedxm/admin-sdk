@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse, Group } from "@src/interfaces";
 import {
   SET_GROUP_QUERY_DATA,
@@ -62,4 +62,3 @@ export const useRemoveAllGroupMembers = (
     Awaited<ReturnType<typeof RemoveAllGroupMembers>>
   >(RemoveAllGroupMembers, options);
 };
-

@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse, SurveySubmission } from "@src/interfaces";
 import { SurveySubmissionUpdateInputs } from "@src/params";
 import {

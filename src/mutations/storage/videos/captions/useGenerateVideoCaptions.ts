@@ -3,9 +3,9 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { VIDEO_CAPTIONS_QUERY_KEY } from "@src/queries/videos/captions/useGetVideoCaptions";
+import { VIDEO_CAPTIONS_QUERY_KEY } from "@src/queries/storage/videos/captions/useGetVideoCaptions";
 import { VideoCaption } from "@src/interfaces";
 
 /**

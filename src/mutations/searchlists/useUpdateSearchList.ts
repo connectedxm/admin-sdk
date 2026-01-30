@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { SearchList, ConnectedXMResponse } from "@src/interfaces";
 import { SEARCHLISTS_QUERY_KEY, SET_SEARCHLIST_QUERY_DATA } from "@src/queries";
 import { SearchListUpdateInputs } from "@src/params";

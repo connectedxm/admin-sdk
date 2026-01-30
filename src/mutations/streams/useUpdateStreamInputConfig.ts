@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse, StreamInput } from "@src/interfaces";
 import {
   STREAM_INPUTS_QUERY_KEY,
@@ -29,7 +29,9 @@ export const UpdateStreamInputConfig = async ({
   details,
   adminApiParams,
   queryClient,
-}: UpdateStreamInputConfigParams): Promise<ConnectedXMResponse<StreamInput>> => {
+}: UpdateStreamInputConfigParams): Promise<
+  ConnectedXMResponse<StreamInput>
+> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<StreamInput>>(
     `/streams/${streamId}/config`,

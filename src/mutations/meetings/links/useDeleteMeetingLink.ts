@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { MEETING_LINKS_QUERY_KEY, MEETING_LINK_QUERY_KEY } from "@src/queries";
 
@@ -31,8 +31,12 @@ export const DeleteMeetingLink = async ({
     `/meetings/${meetingId}/links/${linkId}`
   );
   if (queryClient && data.status === "ok") {
-    queryClient.invalidateQueries({ queryKey: MEETING_LINKS_QUERY_KEY(meetingId) });
-    queryClient.removeQueries({ queryKey: MEETING_LINK_QUERY_KEY(meetingId, linkId) });
+    queryClient.invalidateQueries({
+      queryKey: MEETING_LINKS_QUERY_KEY(meetingId),
+    });
+    queryClient.removeQueries({
+      queryKey: MEETING_LINK_QUERY_KEY(meetingId, linkId),
+    });
   }
   return data;
 };
@@ -55,4 +59,3 @@ export const useDeleteMeetingLink = (
     Awaited<ReturnType<typeof DeleteMeetingLink>>
   >(DeleteMeetingLink, options);
 };
-

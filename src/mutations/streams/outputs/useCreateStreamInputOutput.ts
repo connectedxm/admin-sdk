@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { StreamInputOutput, ConnectedXMResponse } from "@src/interfaces";
 import {
   STREAM_INPUTS_QUERY_KEY,

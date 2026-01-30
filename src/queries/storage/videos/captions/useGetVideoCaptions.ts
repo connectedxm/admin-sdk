@@ -2,7 +2,7 @@ import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
-} from "../../useConnectedInfiniteQuery";
+} from "@src/queries/useConnectedInfiniteQuery";
 import { ConnectedXMResponse, VideoCaption } from "@src/interfaces";
 import { VIDEO_QUERY_KEY } from "../useGetVideo";
 import { QueryClient } from "@tanstack/react-query";

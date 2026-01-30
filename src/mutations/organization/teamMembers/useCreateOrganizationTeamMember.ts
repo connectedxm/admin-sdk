@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { TeamMember, ConnectedXMResponse } from "@src/interfaces";
 import {
   ORGANIZATION_TEAM_MEMBERS_QUERY_KEY,

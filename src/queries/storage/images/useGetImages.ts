@@ -1,14 +1,10 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import {
-  ConnectedXMResponse,
-  ImageType,
-  ImageWCopyUri,
-} from "@src/interfaces";
+import { ConnectedXMResponse, ImageType, ImageWCopyUri } from "@src/interfaces";
 import {
   InfiniteQueryParams,
   InfiniteQueryOptions,
   useConnectedInfiniteQuery,
-} from "../useConnectedInfiniteQuery";
+} from "@src/queries/useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
 
 /**

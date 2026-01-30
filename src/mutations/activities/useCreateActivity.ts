@@ -2,7 +2,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
 import { Activity, ConnectedXMResponse } from "@interfaces";
 import { ACTIVITIES_QUERY_KEY } from "@src/queries";

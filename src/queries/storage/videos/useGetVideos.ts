@@ -6,7 +6,7 @@ import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
-} from "../useConnectedInfiniteQuery";
+} from "@src/queries/useConnectedInfiniteQuery";
 
 /**
  * @category Keys

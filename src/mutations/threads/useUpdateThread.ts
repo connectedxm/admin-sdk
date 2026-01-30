@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { Thread, ConnectedXMResponse } from "@src/interfaces";
 import { SET_THREAD_QUERY_DATA } from "@src/queries";
 import { ThreadUpdateInputs } from "@src/params";

@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ACCOUNT_ADDRESSES_QUERY_KEY } from "@src/queries";
 import { AccountAddressUpdateInputs } from "@src/params";

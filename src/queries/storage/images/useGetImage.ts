@@ -2,7 +2,7 @@ import {
   SingleQueryOptions,
   SingleQueryParams,
   useConnectedSingleQuery,
-} from "../useConnectedSingleQuery";
+} from "@src/queries/useConnectedSingleQuery";
 import { ConnectedXMResponse } from "@src/interfaces";
 import { Image } from "@src/interfaces";
 import { IMAGES_QUERY_KEY } from "./useGetImages";

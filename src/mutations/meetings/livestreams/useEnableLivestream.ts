@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse, Livestream } from "@src/interfaces";
 import { LIVESTREAMS_QUERY_KEY, SET_LIVESTREAM_QUERY_DATA } from "@src/queries";
 

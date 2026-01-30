@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { Preset, ConnectedXMResponse } from "@src/interfaces";
 import { PRESETS_QUERY_KEY, SET_PRESET_QUERY_DATA } from "@src/queries";
 import { MeetingPresetCreateInputs } from "@src/params";

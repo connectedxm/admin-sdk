@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import {
   ACCOUNT_FOLLOWERS_QUERY_KEY,
   SET_ACCOUNT_QUERY_DATA,

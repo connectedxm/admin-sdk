@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { Tier, ConnectedXMResponse } from "@src/interfaces";
 import { TIERS_QUERY_KEY, SET_TIER_QUERY_DATA } from "@src/queries";
 import { TierCreateInputs } from "@src/params";

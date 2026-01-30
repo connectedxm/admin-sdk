@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { Level, ConnectedXMResponse } from "@src/interfaces";
 import { LEVELS_QUERY_KEY, SET_LEVEL_QUERY_DATA } from "@src/queries";
 import { LevelCreateInputs } from "@src/params";

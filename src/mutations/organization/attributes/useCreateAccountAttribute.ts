@@ -3,7 +3,7 @@ import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
-} from "../../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { AccountAttribute, ConnectedXMResponse } from "@src/interfaces";
 import { ORGANIZATION_ACCOUNT_ATTRIBUTES_QUERY_KEY } from "@src/queries/organization/attributes/useGetOrganizationAccountAttributes";
 import { SET_ORGANIZATION_ACCOUNT_ATTRIBUTE_QUERY_DATA } from "@src/queries/organization/attributes/useGetOrganizationAccountAttribute";

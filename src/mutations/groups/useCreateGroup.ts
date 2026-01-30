@@ -5,7 +5,7 @@ import {
   MutationParams,
   ConnectedXMMutationOptions,
   useConnectedMutation,
-} from "../useConnectedMutation";
+} from "@src/mutations/useConnectedMutation";
 import { GroupCreateInputs } from "@src/params";
 
 /**

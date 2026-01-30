@@ -513,18 +513,6 @@
       "description": "Add internal notes to support tickets for team collaboration, tracking resolution steps, and maintaining support history"
     },
     {
-      "name": "Supporttickets",
-      "description": "Operations for supporttickets"
-    },
-    {
-      "name": "Supporttickets::Messages",
-      "description": "Exchange messages within support tickets, facilitating communication between support staff and users to resolve issues"
-    },
-    {
-      "name": "Supporttickets::Notes",
-      "description": "Add administrative notes to support tickets for internal tracking, documenting resolution steps, and team coordination"
-    },
-    {
       "name": "Surveys",
       "description": "Easily gather insights and feedback by using surveys"
     },
@@ -62417,7 +62405,7 @@
           }
         },
         "tags": [
-          "Supporttickets"
+          "Support"
         ]
       },
       "post": {
@@ -62520,7 +62508,7 @@
           }
         },
         "tags": [
-          "Supporttickets"
+          "Support"
         ]
       },
       "put": {
@@ -62685,7 +62673,7 @@
           }
         },
         "tags": [
-          "Supporttickets"
+          "Support"
         ]
       }
     },
@@ -62783,7 +62771,7 @@
           }
         },
         "tags": [
-          "Supporttickets::Messages"
+          "Support::Messages"
         ]
       },
       "post": {
@@ -62942,7 +62930,7 @@
           }
         },
         "tags": [
-          "Supporttickets::Notes"
+          "Support::Notes"
         ]
       },
       "post": {
@@ -63172,7 +63160,7 @@
           }
         },
         "tags": [
-          "Supporttickets"
+          "Support"
         ]
       }
     },

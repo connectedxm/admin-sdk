@@ -1,5 +1,6 @@
 export * from "./useAddEventPassAddOn";
 export * from "./useCancelEventPass";
+export * from "./useCheckinEventPass";
 export * from "./useCreateEventPass";
 export * from "./useCreateEventSessionAccess";
 export * from "./useDeleteEventPass";
@@ -7,6 +8,7 @@ export * from "./useDeleteEventSessionAccess";
 export * from "./useIndexEventPasses";
 export * from "./useRemoveEventPassAddOn";
 export * from "./useTransferEventPass";
+export * from "./useUndoCheckinEventPass";
 export * from "./useUpdateEventPass";
 export * from "./useUpdateEventPassFollowupResponses";
 export * from "./useUpdateEventPassResponse";

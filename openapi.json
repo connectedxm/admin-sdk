@@ -474,11 +474,11 @@
     },
     {
       "name": "Sponsors",
-      "description": "Operations for sponsors"
+      "description": "Operations for managing sponsorship levels"
     },
     {
       "name": "Sponsors::Accounts",
-      "description": "Operations for sponsors::accounts"
+      "description": "Associate accounts with membership levels to grant tier-based access, pricing, and benefits based on membership status"
     },
     {
       "name": "Storage::Files",
@@ -25335,6 +25335,130 @@
             },
             "description": "Filter by sendEmail",
             "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/EventPass"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Passes"
+        ]
+      }
+    },
+    "/events/{eventId}/passes/{passId}/checkin": {
+      "post": {
+        "operationId": "CheckinEventPass",
+        "summary": "Checkin Event Pass",
+        "description": "Checkin Event Pass endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "passId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The pass identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/EventPass"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Passes"
+        ]
+      }
+    },
+    "/events/{eventId}/passes/{passId}/checkin/undo": {
+      "post": {
+        "operationId": "UndoCheckinEventPass",
+        "summary": "Undo Checkin Event Pass",
+        "description": "Undo Checkin Event Pass endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "passId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The pass identifier",
+            "required": true
           }
         ],
         "responses": {

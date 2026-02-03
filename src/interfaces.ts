@@ -2763,10 +2763,15 @@ export interface EventSessionSectionTranslation {
 export interface BaseEventSessionBlock {
   id: string;
   eventId: string;
-  event: BaseEvent;
-  sessions: BaseEventSession[];
   name: string;
   limit: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventSessionBlock extends BaseEventSessionBlock {
+  event: BaseEvent;
+  sessions: BaseEventSession[];
   createdAt: string;
   updatedAt: string;
 }

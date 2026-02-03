@@ -644,6 +644,7 @@ export interface EventCreateInputs {
   paymentIntegrationId?: string | null;
   template?: boolean;
   meetingId?: string | null;
+  sessionBlockId?: string | null;
 }
 
 export interface EventUpdateInputs {
@@ -703,6 +704,7 @@ export interface EventUpdateInputs {
   options?: object | null;
   paymentIntegrationId?: string | null;
   meetingId?: string | null;
+  sessionBlockId?: string | null;
 }
 
 export interface EventEmailUpdateInputs {
@@ -830,6 +832,7 @@ export interface EventSessionCreateInputs {
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
   meetingId?: string | null;
+  blockId?: string | null;
 }
 
 export interface EventSessionAccessUpdateInputs {
@@ -867,6 +870,7 @@ export interface EventSessionUpdateInputs {
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
   meetingId?: string | null;
+  blockId?: string | null;
 }
 
 export interface EventSessionLocationCreateInputs {
@@ -995,6 +999,19 @@ export interface EventSessionSectionUpdateInputs {
   description?: string | null;
   guestDescription?: string | null;
   sortOrder?: number | string | null;
+}
+
+export interface EventSessionBlockCreateInputs {
+  name: string;
+  limit?: number | null;
+  eventId: string;
+  sessions?: string[] | null;
+}
+
+export interface EventSessionBlockUpdateInputs {
+  name?: string | null;
+  limit?: number | null;
+  sessions?: string[] | null;
 }
 
 export interface EventSpeakerCreateInputs {

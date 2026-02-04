@@ -1,19 +1,19 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { EVENT_SESSIONS_QUERY_KEY } from "../useGetEventSessions";
+import { ConnectedXMResponse } from "@src/interfaces";
+import { EventSessionBlock } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "@src/queries/useConnectedInfiniteQuery";
-import { ConnectedXMResponse } from "@src/interfaces";
-import { EventSessionBlock } from "@src/interfaces";
+import { EVENT_QUERY_KEY } from "../../useGetEvent";
 
 /**
  * @category Keys
  * @group Events
  */
 export const EVENT_SESSION_BLOCKS_QUERY_KEY = (eventId: string) => [
-  ...EVENT_SESSIONS_QUERY_KEY(eventId),
+  ...EVENT_QUERY_KEY(eventId),
   "BLOCKS",
 ];
 

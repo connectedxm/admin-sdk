@@ -34,18 +34,11 @@ export const UpdateEventSessionBlock = async ({
 }: UpdateEventSessionBlockParams): Promise<
   ConnectedXMResponse<EventSessionBlock>
 > => {
+  if (!blockId) throw new Error("Block ID Undefined");
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<
     ConnectedXMResponse<EventSessionBlock>
-  >(`/events/${eventId}/blocks/${blockId}`, {
-    ...block,
-    id: undefined,
-    eventId: undefined,
-    event: undefined,
-    sessions: undefined,
-    createdAt: undefined,
-    updatedAt: undefined,
-  });
+  >(`/events/${eventId}/blocks/${blockId}`, block);
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_SESSION_BLOCKS_QUERY_KEY(eventId),

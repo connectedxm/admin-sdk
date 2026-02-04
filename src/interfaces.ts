@@ -2765,8 +2765,6 @@ export interface BaseEventSessionBlock {
   eventId: string;
   name: string;
   limit: number;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface EventSessionBlock extends BaseEventSessionBlock {

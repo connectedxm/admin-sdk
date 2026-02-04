@@ -1,12 +1,12 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { EVENT_SESSIONS_QUERY_KEY } from "../useGetEventSessions";
-import { ConnectedXMResponse } from "@src/interfaces";
-import { EventSessionBlock } from "@src/interfaces";
 import {
   SingleQueryOptions,
   SingleQueryParams,
   useConnectedSingleQuery,
 } from "@src/queries/useConnectedSingleQuery";
+import { ConnectedXMResponse } from "@src/interfaces";
+import { EventSessionBlock } from "@src/interfaces";
+import { EVENT_SESSION_BLOCKS_QUERY_KEY } from "./useGetEventSessionBlocks";
 
 /**
  * @category Keys
@@ -15,7 +15,7 @@ import {
 export const EVENT_SESSION_BLOCK_QUERY_KEY = (
   eventId: string,
   blockId: string
-) => [...EVENT_SESSIONS_QUERY_KEY(eventId), blockId];
+) => [...EVENT_SESSION_BLOCKS_QUERY_KEY(eventId), blockId];
 
 /**
  * @category Queries

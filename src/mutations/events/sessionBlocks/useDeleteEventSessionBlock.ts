@@ -12,7 +12,7 @@ import {
 
 /**
  * @category Params
- * @group Event-Sessions
+ * @group Event
  */
 export interface DeleteEventSessionBlockParams extends MutationParams {
   eventId: string;
@@ -21,7 +21,7 @@ export interface DeleteEventSessionBlockParams extends MutationParams {
 
 /**
  * @category Methods
- * @group Event-Sessions
+ * @group Event
  */
 export const DeleteEventSessionBlock = async ({
   eventId,
@@ -46,7 +46,7 @@ export const DeleteEventSessionBlock = async ({
 
 /**
  * @category Mutations
- * @group Event-Sessions
+ * @group Event
  */
 export const useDeleteEventSessionBlock = (
   options: Omit<

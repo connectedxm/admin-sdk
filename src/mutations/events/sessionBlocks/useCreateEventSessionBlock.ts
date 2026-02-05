@@ -14,7 +14,7 @@ import {
 
 /**
  * @category Params
- * @group Event-Sessions
+ * @group Event
  */
 export interface CreateEventSessionBlockParams extends MutationParams {
   eventId: string;
@@ -23,7 +23,7 @@ export interface CreateEventSessionBlockParams extends MutationParams {
 
 /**
  * @category Methods
- * @group Event-Sessions
+ * @group Event
  */
 export const CreateEventSessionBlock = async ({
   eventId,
@@ -52,7 +52,7 @@ export const CreateEventSessionBlock = async ({
 
 /**
  * @category Mutations
- * @group Event-Sessions
+ * @group Event
  */
 export const useCreateEventSessionBlock = (
   options: Omit<

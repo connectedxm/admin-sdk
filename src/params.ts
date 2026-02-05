@@ -830,7 +830,6 @@ export interface EventSessionCreateInputs {
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
   meetingId?: string | null;
-  blockId?: string | null;
 }
 
 export interface EventSessionAccessUpdateInputs {

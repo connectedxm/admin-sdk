@@ -48,7 +48,7 @@ export const GetEventSessionBlocks = async ({
   ConnectedXMResponse<EventSessionBlock[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/events/${eventId}/blocks`, {
+  const { data } = await adminApi.get(`/events/${eventId}/session-blocks`, {
     params: {
       page: pageParam || undefined,
       pageSize: pageSize || undefined,

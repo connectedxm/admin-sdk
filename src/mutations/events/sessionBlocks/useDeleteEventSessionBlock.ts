@@ -31,7 +31,7 @@ export const DeleteEventSessionBlock = async ({
 }: DeleteEventSessionBlockParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.delete<ConnectedXMResponse<null>>(
-    `/events/${eventId}/blocks/${blockId}`
+    `/events/${eventId}/session-blocks/${blockId}`
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

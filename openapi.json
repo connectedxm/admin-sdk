@@ -16780,6 +16780,15 @@
           },
           {
             "in": "query",
+            "name": "includeVariants",
+            "schema": {
+              "type": "object"
+            },
+            "description": "Filter by includeVariants",
+            "required": false
+          },
+          {
+            "in": "query",
             "name": "page",
             "schema": {
               "type": "integer",

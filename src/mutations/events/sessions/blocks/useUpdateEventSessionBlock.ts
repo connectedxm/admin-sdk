@@ -1,12 +1,11 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
-import { EventSessionBlock } from "@src/interfaces";
+import { EventSessionBlockUpdateInputs } from "@src/params";
 import {
-  ConnectedXMMutationOptions,
   MutationParams,
+  ConnectedXMMutationOptions,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import { EventSessionBlockCreateInputs } from "@src/params";
+import { ConnectedXMResponse, EventSessionBlock } from "@src/interfaces";
 import {
   EVENT_SESSION_BLOCKS_QUERY_KEY,
   SET_EVENT_SESSION_BLOCK_QUERY_DATA,
@@ -16,34 +15,37 @@ import {
  * @category Params
  * @group Event
  */
-export interface CreateEventSessionBlockParams extends MutationParams {
+export interface UpdateEventSessionBlockParams extends MutationParams {
   eventId: string;
-  block: EventSessionBlockCreateInputs;
+  blockId: string;
+  block: EventSessionBlockUpdateInputs;
 }
 
 /**
  * @category Methods
  * @group Event
  */
-export const CreateEventSessionBlock = async ({
+export const UpdateEventSessionBlock = async ({
   eventId,
+  blockId,
   block,
   adminApiParams,
   queryClient,
-}: CreateEventSessionBlockParams): Promise<
+}: UpdateEventSessionBlockParams): Promise<
   ConnectedXMResponse<EventSessionBlock>
 > => {
+  if (!blockId) throw new Error("Block ID Undefined");
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<
+  const { data } = await connectedXM.put<
     ConnectedXMResponse<EventSessionBlock>
-  >(`/events/${eventId}/session-blocks`, block);
+  >(`/events/${eventId}/blocks/${blockId}`, block);
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_SESSION_BLOCKS_QUERY_KEY(eventId),
     });
     SET_EVENT_SESSION_BLOCK_QUERY_DATA(
       queryClient,
-      [eventId, data.data.id],
+      [eventId, blockId || data.data?.id],
       data
     );
   }
@@ -54,17 +56,17 @@ export const CreateEventSessionBlock = async ({
  * @category Mutations
  * @group Event
  */
-export const useCreateEventSessionBlock = (
+export const useUpdateEventSessionBlock = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof CreateEventSessionBlock>>,
-      Omit<CreateEventSessionBlockParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof UpdateEventSessionBlock>>,
+      Omit<UpdateEventSessionBlockParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    CreateEventSessionBlockParams,
-    Awaited<ReturnType<typeof CreateEventSessionBlock>>
-  >(CreateEventSessionBlock, options);
+    UpdateEventSessionBlockParams,
+    Awaited<ReturnType<typeof UpdateEventSessionBlock>>
+  >(UpdateEventSessionBlock, options);
 };

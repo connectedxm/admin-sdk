@@ -46,9 +46,7 @@ export const GetEventSessionBlock = async ({
   ConnectedXMResponse<EventSessionBlock>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(
-    `/events/${eventId}/session-blocks/${blockId}`
-  );
+  const { data } = await adminApi.get(`/events/${eventId}/blocks/${blockId}`);
   return data;
 };
 /**

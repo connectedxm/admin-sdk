@@ -6,7 +6,7 @@ import {
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "@src/queries/useConnectedInfiniteQuery";
-import { EVENT_QUERY_KEY } from "../useGetEvent";
+import { EVENT_QUERY_KEY } from "../../useGetEvent";
 
 /**
  * @category Keys
@@ -48,7 +48,7 @@ export const GetEventSessionBlocks = async ({
   ConnectedXMResponse<EventSessionBlock[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
-  const { data } = await adminApi.get(`/events/${eventId}/session-blocks`, {
+  const { data } = await adminApi.get(`/events/${eventId}/blocks`, {
     params: {
       page: pageParam || undefined,
       pageSize: pageSize || undefined,

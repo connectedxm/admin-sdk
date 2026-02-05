@@ -2,7 +2,6 @@ export * from "./access";
 export * from "./activations";
 export * from "./addOns";
 export * from "./attendees";
-export * from "./sessionBlocks";
 export * from "./bypass";
 export * from "./coHosts";
 export * from "./coupons";

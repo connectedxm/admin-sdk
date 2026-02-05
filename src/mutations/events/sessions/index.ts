@@ -1,4 +1,4 @@
-export * from "./blocks";
+export * from "../sessionBlocks";
 export * from "./locations";
 export * from "./matches";
 export * from "./questions";

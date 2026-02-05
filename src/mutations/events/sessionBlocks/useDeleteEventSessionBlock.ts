@@ -5,8 +5,10 @@ import {
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse } from "@src/interfaces";
-import { EVENT_SESSION_BLOCKS_QUERY_KEY } from "@src/queries";
-import { EVENT_SESSION_BLOCK_QUERY_KEY } from "@src/queries/events/sessions/blocks/useGetEventSessionBlock";
+import {
+  EVENT_SESSION_BLOCKS_QUERY_KEY,
+  EVENT_SESSION_BLOCK_QUERY_KEY,
+} from "@src/queries";
 
 /**
  * @category Params

@@ -6,7 +6,7 @@ import {
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "@src/queries/useConnectedInfiniteQuery";
-import { EVENT_QUERY_KEY } from "../../useGetEvent";
+import { EVENT_QUERY_KEY } from "../useGetEvent";
 
 /**
  * @category Keys

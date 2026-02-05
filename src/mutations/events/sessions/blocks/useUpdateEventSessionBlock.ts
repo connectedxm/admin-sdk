@@ -38,7 +38,7 @@ export const UpdateEventSessionBlock = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<
     ConnectedXMResponse<EventSessionBlock>
-  >(`/events/${eventId}/blocks/${blockId}`, block);
+  >(`/events/${eventId}/sessions/blocks/${blockId}`, block);
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_SESSION_BLOCKS_QUERY_KEY(eventId),

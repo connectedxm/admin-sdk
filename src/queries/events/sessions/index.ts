@@ -1,5 +1,4 @@
 export * from "./accesses";
-export * from "./blocks";
 export * from "./locations";
 export * from "./matches";
 export * from "./questions";

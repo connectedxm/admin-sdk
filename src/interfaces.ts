@@ -1136,6 +1136,7 @@ export interface Event extends BaseEvent {
   activityFeedEnabled: boolean;
   meetingId: string | null;
   meeting: BaseMeeting | null;
+  sessionBlocks: BaseEventSessionBlock[] | null;
   options: object | null;
 }
 
@@ -2515,6 +2516,7 @@ export interface EventSession extends BaseEventSession {
   speakers: BaseEventSpeaker[];
   meetingId: string | null;
   meeting: BaseMeeting | null;
+  blocks: BaseEventSessionBlock[] | null;
 }
 
 export interface EventSessionTranslation {
@@ -2754,6 +2756,20 @@ export interface EventSessionSectionTranslation {
   locale: string;
   name: string;
   description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseEventSessionBlock {
+  id: string;
+  eventId: string;
+  name: string;
+  limit: number;
+}
+
+export interface EventSessionBlock extends BaseEventSessionBlock {
+  event: BaseEvent;
+  sessions: BaseEventSession[];
   createdAt: string;
   updatedAt: string;
 }

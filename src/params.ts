@@ -997,6 +997,16 @@ export interface EventSessionSectionUpdateInputs {
   sortOrder?: number | string | null;
 }
 
+export interface EventBlockCreateInputs {
+  name: string;
+  limit?: number;
+}
+
+export interface EventBlockUpdateInputs {
+  name?: string;
+  limit?: number;
+}
+
 export interface EventSpeakerCreateInputs {
   firstName: string;
   lastName?: string | null;

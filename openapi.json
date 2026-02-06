@@ -153,6 +153,10 @@
       "description": "Associate exclusive offers or discounts with events, providing special perks to attendees or members"
     },
     {
+      "name": "Events::Blocks",
+      "description": "Operations for events::blocks"
+    },
+    {
       "name": "Events::Bypass",
       "description": "Bypass standard registration requirements to grant direct access to events or passes, useful for comps, sponsors, or special circumstances"
     },
@@ -239,10 +243,6 @@
     {
       "name": "Events::Sessions::Accesses",
       "description": "Control who can access specific sessions, setting restrictions based on pass types, capacity limits, or registration requirements"
-    },
-    {
-      "name": "Events::Sessions::Blocks",
-      "description": "Operations for events::sessions::blocks"
     },
     {
       "name": "Events::Sessions::Locations",
@@ -16119,6 +16119,607 @@
         },
         "tags": [
           "Events::Benefits"
+        ]
+      }
+    },
+    "/events/{eventId}/blocks": {
+      "get": {
+        "operationId": "GetEventBlocks",
+        "summary": "Get Event Blocks",
+        "description": "Get Event Blocks endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "description": "Page number",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            },
+            "description": "Number of items per page",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field to order by",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventBlock"
+                      }
+                    },
+                    "count": {
+                      "type": "integer",
+                      "example": 100
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Blocks"
+        ]
+      },
+      "post": {
+        "operationId": "CreateEventBlock",
+        "summary": "Create Event Block",
+        "description": "Create Event Block endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventBlockCreateInputs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/EventBlock"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Blocks"
+        ]
+      }
+    },
+    "/events/{eventId}/blocks/{blockId}": {
+      "get": {
+        "operationId": "GetEventBlock",
+        "summary": "Get Event Block",
+        "description": "Get Event Block endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "blockId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The block identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/EventBlock"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Blocks"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateEventBlock",
+        "summary": "Update Event Block",
+        "description": "Update Event Block endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "blockId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The block identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventBlockUpdateInputs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/EventBlock"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Blocks"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteEventBlock",
+        "summary": "Delete Event Block",
+        "description": "Delete Event Block endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "blockId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The block identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Blocks"
+        ]
+      }
+    },
+    "/events/{eventId}/blocks/{blockId}/sessions": {
+      "get": {
+        "operationId": "GetEventBlockSessions",
+        "summary": "Get Event Block Sessions",
+        "description": "Get Event Block Sessions endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "blockId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The block identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "description": "Page number",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            },
+            "description": "Number of items per page",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field to order by",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    },
+                    "count": {
+                      "type": "integer",
+                      "example": 100
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Blocks"
+        ]
+      }
+    },
+    "/events/{eventId}/blocks/{blockId}/sessions/{sessionId}": {
+      "post": {
+        "operationId": "AddEventBlockSession",
+        "summary": "Add Event Block Session",
+        "description": "Add Event Block Session endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "blockId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The block identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "sessionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The session identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/EventBlock"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Blocks"
+        ]
+      },
+      "delete": {
+        "operationId": "RemoveEventBlockSession",
+        "summary": "Remove Event Block Session",
+        "description": "Remove Event Block Session endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "blockId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The block identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "sessionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The session identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/EventBlock"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Blocks"
         ]
       }
     },
@@ -33905,357 +34506,6 @@
         ]
       }
     },
-    "/events/{eventId}/sessions/blocks": {
-      "get": {
-        "operationId": "GetEventSessionBlocks",
-        "summary": "Get Event Session Blocks",
-        "description": "Get Event Session Blocks endpoint",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "eventId",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The event identifier",
-            "required": true
-          },
-          {
-            "in": "query",
-            "name": "page",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "default": 1
-            },
-            "description": "Page number",
-            "required": false
-          },
-          {
-            "in": "query",
-            "name": "pageSize",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100,
-              "default": 25
-            },
-            "description": "Number of items per page",
-            "required": false
-          },
-          {
-            "in": "query",
-            "name": "orderBy",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Field to order by",
-            "required": false
-          },
-          {
-            "in": "query",
-            "name": "search",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Search query",
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "ok"
-                      ]
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Success message."
-                    },
-                    "data": {
-                      "type": "object"
-                    },
-                    "count": {
-                      "type": "integer",
-                      "example": 100
-                    }
-                  },
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Events::Sessions::Blocks"
-        ]
-      },
-      "post": {
-        "operationId": "CreateEventSessionBlock",
-        "summary": "Create Event Session Block",
-        "description": "Create Event Session Block endpoint",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "eventId",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The event identifier",
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EventSessionBlockCreateInputs"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "ok"
-                      ]
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Success message."
-                    },
-                    "data": {
-                      "type": "object"
-                    }
-                  },
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Events::Sessions::Blocks"
-        ]
-      }
-    },
-    "/events/{eventId}/sessions/blocks/{blockId}": {
-      "get": {
-        "operationId": "GetEventSessionBlock",
-        "summary": "Get Event Session Block",
-        "description": "Get Event Session Block endpoint",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "eventId",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The event identifier",
-            "required": true
-          },
-          {
-            "in": "path",
-            "name": "blockId",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The block identifier",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "ok"
-                      ]
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Success message."
-                    },
-                    "data": {
-                      "type": "object"
-                    }
-                  },
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Events::Sessions::Blocks"
-        ]
-      },
-      "put": {
-        "operationId": "UpdateEventSessionBlock",
-        "summary": "Update Event Session Block",
-        "description": "Update Event Session Block endpoint",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "eventId",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The event identifier",
-            "required": true
-          },
-          {
-            "in": "path",
-            "name": "blockId",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The block identifier",
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EventSessionBlockUpdateInputs"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "ok"
-                      ]
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Success message."
-                    },
-                    "data": {
-                      "type": "object"
-                    }
-                  },
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Events::Sessions::Blocks"
-        ]
-      },
-      "delete": {
-        "operationId": "DeleteEventSessionBlock",
-        "summary": "Delete Event Session Block",
-        "description": "Delete Event Session Block endpoint",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "eventId",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The event identifier",
-            "required": true
-          },
-          {
-            "in": "path",
-            "name": "blockId",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The block identifier",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "ok"
-                      ]
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Success message."
-                    },
-                    "data": {
-                      "nullable": true
-                    }
-                  },
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Events::Sessions::Blocks"
-        ]
-      }
-    },
     "/events/{eventId}/sessions/{sessionId}": {
       "get": {
         "operationId": "GetEventSession",
@@ -34773,6 +35023,256 @@
               "type": "string"
             },
             "description": "The account identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Sessions"
+        ]
+      }
+    },
+    "/events/{eventId}/sessions/{sessionId}/blocks": {
+      "get": {
+        "operationId": "GetEventSessionBlocks",
+        "summary": "Get Event Session Blocks",
+        "description": "Get Event Session Blocks endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "sessionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The session identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "description": "Page number",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            },
+            "description": "Number of items per page",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field to order by",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventBlock"
+                      }
+                    },
+                    "count": {
+                      "type": "integer",
+                      "example": 100
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Sessions"
+        ]
+      }
+    },
+    "/events/{eventId}/sessions/{sessionId}/blocks/{blockId}": {
+      "post": {
+        "operationId": "AddEventSessionBlock",
+        "summary": "Add Event Session Block",
+        "description": "Add Event Session Block endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "sessionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The session identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "blockId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The block identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/EventSession"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Sessions"
+        ]
+      },
+      "delete": {
+        "operationId": "RemoveEventSessionBlock",
+        "summary": "Remove Event Session Block",
+        "description": "Remove Event Session Block endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "sessionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The session identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "blockId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The block identifier",
             "required": true
           }
         ],
@@ -74989,10 +75489,10 @@
                 ],
                 "nullable": true
               },
-              "sessionBlocks": {
+              "blocks": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/BaseEventSessionBlock"
+                  "$ref": "#/components/schemas/BaseEventBlock"
                 },
                 "nullable": true
               },
@@ -75039,7 +75539,7 @@
               "activityFeedEnabled",
               "meetingId",
               "meeting",
-              "sessionBlocks",
+              "blocks",
               "options"
             ]
           }
@@ -80330,7 +80830,7 @@
               "blocks": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/BaseEventSessionBlock"
+                  "$ref": "#/components/schemas/BaseEventBlock"
                 },
                 "nullable": true
               }
@@ -81283,13 +81783,10 @@
           "updatedAt"
         ]
       },
-      "BaseEventSessionBlock": {
+      "BaseEventBlock": {
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
-          },
-          "eventId": {
             "type": "string"
           },
           "name": {
@@ -81301,15 +81798,14 @@
         },
         "required": [
           "id",
-          "eventId",
           "name",
           "limit"
         ]
       },
-      "EventSessionBlock": {
+      "EventBlock": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/BaseEventSessionBlock"
+            "$ref": "#/components/schemas/BaseEventBlock"
           },
           {
             "type": "object",
@@ -92832,7 +93328,7 @@
           }
         }
       },
-      "EventSessionBlockCreateInputs": {
+      "EventBlockCreateInputs": {
         "type": "object",
         "properties": {
           "name": {
@@ -92846,7 +93342,7 @@
           "name"
         ]
       },
-      "EventSessionBlockUpdateInputs": {
+      "EventBlockUpdateInputs": {
         "type": "object",
         "properties": {
           "name": {

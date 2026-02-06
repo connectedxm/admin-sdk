@@ -92843,8 +92843,7 @@
           }
         },
         "required": [
-          "name",
-          "limit"
+          "name"
         ]
       },
       "EventSessionBlockUpdateInputs": {

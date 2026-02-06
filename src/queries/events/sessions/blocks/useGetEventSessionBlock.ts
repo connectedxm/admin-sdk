@@ -63,6 +63,6 @@ export const useGetEventSessionBlock = (
   return useConnectedSingleQuery<ReturnType<typeof GetEventSessionBlock>>(
     EVENT_SESSION_BLOCK_QUERY_KEY(eventId, blockId),
     (params) => GetEventSessionBlock({ eventId, blockId, ...params }),
-    { ...options, enabled: !!eventId && !!blockId }
+    { ...options, enabled: !!eventId && !!blockId && (options?.enabled ?? true) }
   );
 };

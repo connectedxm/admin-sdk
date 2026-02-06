@@ -999,7 +999,7 @@ export interface EventSessionSectionUpdateInputs {
 
 export interface EventSessionBlockCreateInputs {
   name: string;
-  limit: number;
+  limit?: number;
 }
 
 export interface EventSessionBlockUpdateInputs {

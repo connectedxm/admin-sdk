@@ -997,12 +997,12 @@ export interface EventSessionSectionUpdateInputs {
   sortOrder?: number | string | null;
 }
 
-export interface EventSessionBlockCreateInputs {
+export interface EventBlockCreateInputs {
   name: string;
   limit?: number;
 }
 
-export interface EventSessionBlockUpdateInputs {
+export interface EventBlockUpdateInputs {
   name?: string;
   limit?: number;
 }

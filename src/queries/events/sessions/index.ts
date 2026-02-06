@@ -1,5 +1,4 @@
 export * from "./accesses";
-export * from "./blocks";
 export * from "./locations";
 export * from "./matches";
 export * from "./questions";
@@ -8,6 +7,7 @@ export * from "./translations";
 export * from "./useGetEventSession";
 export * from "./useGetEventSessionAccesses";
 export * from "./useGetEventSessionAccounts";
+export * from "./useGetEventSessionBlocks";
 export * from "./useGetEventSessionPassTypes";
 export * from "./useGetEventSessionPayments";
 export * from "./useGetEventSessionSpeakers";

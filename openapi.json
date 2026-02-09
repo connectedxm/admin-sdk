@@ -75489,13 +75489,6 @@
                 ],
                 "nullable": true
               },
-              "blocks": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/BaseEventBlock"
-                },
-                "nullable": true
-              },
               "options": {
                 "type": "object",
                 "nullable": true
@@ -75539,7 +75532,6 @@
               "activityFeedEnabled",
               "meetingId",
               "meeting",
-              "blocks",
               "options"
             ]
           }

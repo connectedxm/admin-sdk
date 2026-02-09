@@ -1136,7 +1136,6 @@ export interface Event extends BaseEvent {
   activityFeedEnabled: boolean;
   meetingId: string | null;
   meeting: BaseMeeting | null;
-  blocks: BaseEventBlock[] | null;
   options: object | null;
 }
 

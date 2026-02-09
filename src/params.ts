@@ -2165,6 +2165,8 @@ export interface SurveyCreateInputs {
   submissionsPerAccount?: string | number;
   replyTo?: string | null;
   emailBody?: string | null;
+  eventId?: string | null;
+  sessionId?: string | null;
 }
 
 export interface SurveyUpdateInputs {
@@ -2176,6 +2178,8 @@ export interface SurveyUpdateInputs {
   submissionsPerAccount?: string | number;
   replyTo?: string | null;
   emailBody?: string | null;
+  eventId?: string | null;
+  sessionId?: string | null;
 }
 
 export interface SurveyTranslationUpdateInputs {

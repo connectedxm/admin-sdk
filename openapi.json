@@ -64156,6 +64156,24 @@
         "parameters": [
           {
             "in": "query",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by eventId",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "sessionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by sessionId",
+            "required": false
+          },
+          {
+            "in": "query",
             "name": "page",
             "schema": {
               "type": "integer",
@@ -87190,13 +87208,41 @@
               },
               "updatedAt": {
                 "type": "string"
+              },
+              "eventId": {
+                "type": "string",
+                "nullable": true
+              },
+              "event": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BaseEvent"
+                  }
+                ],
+                "nullable": true
+              },
+              "sessionId": {
+                "type": "string",
+                "nullable": true
+              },
+              "session": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BaseEventSession"
+                  }
+                ],
+                "nullable": true
               }
             },
             "required": [
               "replyTo",
               "emailBody",
               "createdAt",
-              "updatedAt"
+              "updatedAt",
+              "eventId",
+              "event",
+              "sessionId",
+              "session"
             ]
           }
         ]
@@ -97476,6 +97522,14 @@
           "emailBody": {
             "type": "string",
             "nullable": true
+          },
+          "eventId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sessionId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "required": [
@@ -97517,6 +97571,14 @@
             "nullable": true
           },
           "emailBody": {
+            "type": "string",
+            "nullable": true
+          },
+          "eventId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sessionId": {
             "type": "string",
             "nullable": true
           }

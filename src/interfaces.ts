@@ -4298,6 +4298,10 @@ export interface Survey extends BaseSurvey {
   emailBody: string | null;
   createdAt: string;
   updatedAt: string;
+  eventId: string | null;
+  event: BaseEvent | null;
+  sessionId: string | null;
+  session: BaseEventSession | null;
 }
 
 export interface SurveyTranslation {

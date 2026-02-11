@@ -2159,6 +2159,7 @@ export interface DashboardWidgetUpdateInputs {
 export interface SurveyCreateInputs {
   name: string;
   slug?: string;
+  active?: boolean;
   description?: string | null;
   imageId?: string | null;
   requireAuth?: boolean;
@@ -2172,6 +2173,7 @@ export interface SurveyCreateInputs {
 
 export interface SurveyUpdateInputs {
   name?: string;
+  active?: boolean;
   slug?: string;
   description?: string | null;
   imageId?: string | null;

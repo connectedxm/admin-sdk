@@ -4287,6 +4287,7 @@ export interface BaseSurvey {
   id: string;
   slug: string;
   name: string;
+  active: boolean;
   description: string | null;
   image: BaseImage;
   requireAuth: boolean;

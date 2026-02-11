@@ -474,6 +474,7 @@ export interface BaseEventActivation {
   startAfter: string | null;
   type: keyof typeof EventActivationType;
   accessLevel: keyof typeof PassTypeAccessLevel;
+  survey: BaseSurvey | null;
 }
 
 export interface EventActivation extends BaseEventActivation {

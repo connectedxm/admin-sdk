@@ -39,7 +39,6 @@ export const SET_SURVEYS_QUERY_DATA = (
 interface GetSurveysProps extends InfiniteQueryParams {
   eventId?: string;
   sessionId?: string;
-  activationId?: string;
 }
 
 /**
@@ -49,7 +48,6 @@ interface GetSurveysProps extends InfiniteQueryParams {
 export const GetSurveys = async ({
   eventId,
   sessionId,
-  activationId,
   pageParam,
   pageSize,
   orderBy,
@@ -65,7 +63,6 @@ export const GetSurveys = async ({
       search: search || undefined,
       eventId: eventId || undefined,
       sessionId: sessionId || undefined,
-      activationId: activationId || undefined,
     },
   });
 
@@ -78,7 +75,6 @@ export const GetSurveys = async ({
 export const useGetSurveys = (
   eventId?: string,
   sessionId?: string,
-  activationId?: string,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -86,13 +82,12 @@ export const useGetSurveys = (
   options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetSurveys>>> = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetSurveys>>>(
-    SURVEYS_QUERY_KEY(eventId, sessionId, activationId),
+    SURVEYS_QUERY_KEY(eventId, sessionId),
     (params: InfiniteQueryParams) =>
       GetSurveys({
         ...params,
         eventId,
         sessionId,
-        activationId,
       }),
     params,
     options

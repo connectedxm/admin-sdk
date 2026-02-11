@@ -64174,15 +64174,6 @@
           },
           {
             "in": "query",
-            "name": "activationId",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Filter by activationId",
-            "required": false
-          },
-          {
-            "in": "query",
             "name": "page",
             "schema": {
               "type": "integer",
@@ -72655,6 +72646,14 @@
           },
           "accessLevel": {
             "$ref": "#/components/schemas/PassTypeAccessLevel"
+          },
+          "survey": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseSurvey"
+              }
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -72666,7 +72665,8 @@
           "maxPoints",
           "startAfter",
           "type",
-          "accessLevel"
+          "accessLevel",
+          "survey"
         ]
       },
       "EventActivation": {

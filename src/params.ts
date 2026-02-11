@@ -2194,6 +2194,8 @@ export interface SurveyTranslationUpdateInputs {
 
 export interface SurveySubmissionUpdateInputs {
   status?: keyof typeof PurchaseStatus;
+  accountId?: string | null;
+  passId?: string | null;
 }
 
 export interface SurveyQuestionChoiceCreateInputs {

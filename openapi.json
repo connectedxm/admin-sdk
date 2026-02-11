@@ -87323,6 +87323,18 @@
             ],
             "nullable": true
           },
+          "passId": {
+            "type": "string",
+            "nullable": true
+          },
+          "pass": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseEventPass"
+              }
+            ],
+            "nullable": true
+          },
           "status": {
             "$ref": "#/components/schemas/PurchaseStatus"
           },
@@ -87337,6 +87349,8 @@
           "id",
           "accountId",
           "account",
+          "passId",
+          "pass",
           "status",
           "responses"
         ]
@@ -97651,6 +97665,14 @@
         "properties": {
           "status": {
             "$ref": "#/components/schemas/PurchaseStatus"
+          },
+          "accountId": {
+            "type": "string",
+            "nullable": true
+          },
+          "passId": {
+            "type": "string",
+            "nullable": true
           }
         }
       },

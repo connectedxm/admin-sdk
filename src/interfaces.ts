@@ -4321,6 +4321,8 @@ export interface BaseSurveySubmission {
   id: string;
   accountId: string | null;
   account: BaseAccount | null;
+  passId: string | null;
+  pass: BaseEventPass | null;
   status: PurchaseStatus;
   responses: BaseSurveyQuestionResponse[];
 }

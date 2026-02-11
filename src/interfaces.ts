@@ -4302,6 +4302,10 @@ export interface Survey extends BaseSurvey {
   event: BaseEvent | null;
   sessionId: string | null;
   session: BaseEventSession | null;
+  activationId: string | null;
+  activation: BaseEventActivation | null;
+  passTypeId: string | null;
+  passType: BaseEventPassType | null;
 }
 
 export interface SurveyTranslation {

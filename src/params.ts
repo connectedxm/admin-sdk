@@ -2167,6 +2167,8 @@ export interface SurveyCreateInputs {
   emailBody?: string | null;
   eventId?: string | null;
   sessionId?: string | null;
+  activationId?: string | null;
+  passTypeId?: string | null;
 }
 
 export interface SurveyUpdateInputs {
@@ -2180,6 +2182,8 @@ export interface SurveyUpdateInputs {
   emailBody?: string | null;
   eventId?: string | null;
   sessionId?: string | null;
+  activationId?: string | null;
+  passTypeId?: string | null;
 }
 
 export interface SurveyTranslationUpdateInputs {

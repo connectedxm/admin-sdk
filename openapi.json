@@ -64174,6 +64174,15 @@
           },
           {
             "in": "query",
+            "name": "activationId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by activationId",
+            "required": false
+          },
+          {
+            "in": "query",
             "name": "page",
             "schema": {
               "type": "integer",
@@ -87255,6 +87264,17 @@
                   "$ref": "#/components/schemas/BaseEventPassType"
                 },
                 "nullable": true
+              },
+              "_count": {
+                "type": "object",
+                "properties": {
+                  "submissions": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "submissions"
+                ]
               }
             },
             "required": [
@@ -87268,7 +87288,8 @@
               "session",
               "activationId",
               "activation",
-              "passTypes"
+              "passTypes",
+              "_count"
             ]
           }
         ]

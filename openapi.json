@@ -87163,6 +87163,9 @@
           "name": {
             "type": "string"
           },
+          "active": {
+            "type": "boolean"
+          },
           "description": {
             "type": "string",
             "nullable": true
@@ -87181,6 +87184,7 @@
           "id",
           "slug",
           "name",
+          "active",
           "description",
           "image",
           "requireAuth",
@@ -87232,6 +87236,25 @@
                   }
                 ],
                 "nullable": true
+              },
+              "activationId": {
+                "type": "string",
+                "nullable": true
+              },
+              "activation": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BaseEventActivation"
+                  }
+                ],
+                "nullable": true
+              },
+              "passTypes": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BaseEventPassType"
+                },
+                "nullable": true
               }
             },
             "required": [
@@ -87242,7 +87265,10 @@
               "eventId",
               "event",
               "sessionId",
-              "session"
+              "session",
+              "activationId",
+              "activation",
+              "passTypes"
             ]
           }
         ]
@@ -87285,6 +87311,10 @@
           "id": {
             "type": "string"
           },
+          "accountId": {
+            "type": "string",
+            "nullable": true
+          },
           "account": {
             "allOf": [
               {
@@ -87305,6 +87335,7 @@
         },
         "required": [
           "id",
+          "accountId",
           "account",
           "status",
           "responses"
@@ -97494,6 +97525,9 @@
           "slug": {
             "type": "string"
           },
+          "active": {
+            "type": "boolean"
+          },
           "description": {
             "type": "string",
             "nullable": true
@@ -97530,6 +97564,10 @@
           "sessionId": {
             "type": "string",
             "nullable": true
+          },
+          "activationId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "required": [
@@ -97541,6 +97579,9 @@
         "properties": {
           "name": {
             "type": "string"
+          },
+          "active": {
+            "type": "boolean"
           },
           "slug": {
             "type": "string"
@@ -97579,6 +97620,10 @@
             "nullable": true
           },
           "sessionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "activationId": {
             "type": "string",
             "nullable": true
           }

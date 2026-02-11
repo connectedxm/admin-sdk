@@ -2159,6 +2159,7 @@ export interface DashboardWidgetUpdateInputs {
 export interface SurveyCreateInputs {
   name: string;
   slug?: string;
+  active?: boolean;
   description?: string | null;
   imageId?: string | null;
   requireAuth?: boolean;
@@ -2167,10 +2168,12 @@ export interface SurveyCreateInputs {
   emailBody?: string | null;
   eventId?: string | null;
   sessionId?: string | null;
+  activationId?: string | null;
 }
 
 export interface SurveyUpdateInputs {
   name?: string;
+  active?: boolean;
   slug?: string;
   description?: string | null;
   imageId?: string | null;
@@ -2180,6 +2183,7 @@ export interface SurveyUpdateInputs {
   emailBody?: string | null;
   eventId?: string | null;
   sessionId?: string | null;
+  activationId?: string | null;
 }
 
 export interface SurveyTranslationUpdateInputs {

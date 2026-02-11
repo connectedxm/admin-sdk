@@ -4287,6 +4287,7 @@ export interface BaseSurvey {
   id: string;
   slug: string;
   name: string;
+  active: boolean;
   description: string | null;
   image: BaseImage;
   requireAuth: boolean;
@@ -4302,6 +4303,9 @@ export interface Survey extends BaseSurvey {
   event: BaseEvent | null;
   sessionId: string | null;
   session: BaseEventSession | null;
+  activationId: string | null;
+  activation: BaseEventActivation | null;
+  passTypes: BaseEventPassType[] | null;
 }
 
 export interface SurveyTranslation {
@@ -4315,6 +4319,7 @@ export interface SurveyTranslation {
 
 export interface BaseSurveySubmission {
   id: string;
+  accountId: string | null;
   account: BaseAccount | null;
   status: PurchaseStatus;
   responses: BaseSurveyQuestionResponse[];

@@ -41,16 +41,18 @@ export const UpdateSurvey = async ({
     queryClient.invalidateQueries({ queryKey: SURVEYS_QUERY_KEY() });
     SET_SURVEY_QUERY_DATA(queryClient, [data.data?.id], data);
 
-    if (survey.eventId && data.data.activationId) {
+    if (survey.eventId && survey.activationId !== undefined) {
       queryClient.invalidateQueries({
         queryKey: EVENT_ACTIVATIONS_QUERY_KEY(survey.eventId),
       });
-      queryClient.invalidateQueries({
-        queryKey: EVENT_ACTIVATION_QUERY_KEY(
-          survey.eventId,
-          data.data.activationId
-        ),
-      });
+      if (data.data.activationId) {
+        queryClient.invalidateQueries({
+          queryKey: EVENT_ACTIVATION_QUERY_KEY(
+            survey.eventId,
+            data.data.activationId
+          ),
+        });
+      }
     }
   }
   return data;

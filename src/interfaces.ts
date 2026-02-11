@@ -4306,6 +4306,9 @@ export interface Survey extends BaseSurvey {
   activationId: string | null;
   activation: BaseEventActivation | null;
   passTypes: BaseEventPassType[] | null;
+  _count: {
+    submissions: number;
+  };
 }
 
 export interface SurveyTranslation {

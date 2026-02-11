@@ -87245,16 +87245,11 @@
                 ],
                 "nullable": true
               },
-              "passTypeId": {
-                "type": "string",
-                "nullable": true
-              },
-              "passType": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/BaseEventPassType"
-                  }
-                ],
+              "passTypes": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BaseEventPassType"
+                },
                 "nullable": true
               }
             },
@@ -87269,8 +87264,7 @@
               "session",
               "activationId",
               "activation",
-              "passTypeId",
-              "passType"
+              "passTypes"
             ]
           }
         ]
@@ -87313,6 +87307,10 @@
           "id": {
             "type": "string"
           },
+          "accountId": {
+            "type": "string",
+            "nullable": true
+          },
           "account": {
             "allOf": [
               {
@@ -87333,6 +87331,7 @@
         },
         "required": [
           "id",
+          "accountId",
           "account",
           "status",
           "responses"
@@ -97562,10 +97561,6 @@
           "activationId": {
             "type": "string",
             "nullable": true
-          },
-          "passTypeId": {
-            "type": "string",
-            "nullable": true
           }
         },
         "required": [
@@ -97619,10 +97614,6 @@
             "nullable": true
           },
           "activationId": {
-            "type": "string",
-            "nullable": true
-          },
-          "passTypeId": {
             "type": "string",
             "nullable": true
           }

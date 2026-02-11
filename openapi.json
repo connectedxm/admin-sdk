@@ -87163,6 +87163,9 @@
           "name": {
             "type": "string"
           },
+          "active": {
+            "type": "boolean"
+          },
           "description": {
             "type": "string",
             "nullable": true
@@ -87181,6 +87184,7 @@
           "id",
           "slug",
           "name",
+          "active",
           "description",
           "image",
           "requireAuth",
@@ -97521,6 +97525,9 @@
           "slug": {
             "type": "string"
           },
+          "active": {
+            "type": "boolean"
+          },
           "description": {
             "type": "string",
             "nullable": true
@@ -97572,6 +97579,9 @@
         "properties": {
           "name": {
             "type": "string"
+          },
+          "active": {
+            "type": "boolean"
           },
           "slug": {
             "type": "string"

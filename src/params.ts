@@ -1001,12 +1001,14 @@ export interface EventSessionSectionUpdateInputs {
 
 export interface EventBlockCreateInputs {
   name: string;
+  description?: string;
   limit?: number;
   grouped?: boolean;
 }
 
 export interface EventBlockUpdateInputs {
   name?: string;
+  description?: string | null;
   limit?: number;
   grouped?: boolean;
 }

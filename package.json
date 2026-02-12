@@ -1,6 +1,6 @@
 {
   "name": "@connectedxm/admin",
-  "version": "6.8.8",
+  "version": "6.8.9",
   "description": "Admin API javascript SDK",
   "author": "ConnectedXM Inc.",
   "type": "module",

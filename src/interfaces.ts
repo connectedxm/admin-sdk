@@ -2763,6 +2763,7 @@ export interface EventSessionSectionTranslation {
 export interface BaseEventBlock {
   id: string;
   name: string;
+  description: string | null;
   limit: number;
   grouped: boolean;
 }

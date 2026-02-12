@@ -2764,6 +2764,7 @@ export interface BaseEventBlock {
   id: string;
   name: string;
   limit: number;
+  grouped: boolean;
 }
 
 export interface EventBlock extends BaseEventBlock {

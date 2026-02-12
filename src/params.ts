@@ -66,6 +66,7 @@ export interface AccountCreateInputs {
   locale?: string | null;
   taxEntityUseCode?: string | null;
   attributes?: Record<string, string> | null;
+  confirmationEmailCount?: number;
 }
 
 export interface AccountUpdateInputs {
@@ -95,6 +96,7 @@ export interface AccountUpdateInputs {
   locale?: string | null;
   taxEntityUseCode?: string | null;
   attributes?: Record<string, string> | null;
+  confirmationEmailCount?: number;
 }
 
 export interface AccountAddressCreateInputs {
@@ -999,12 +1001,14 @@ export interface EventSessionSectionUpdateInputs {
 
 export interface EventBlockCreateInputs {
   name: string;
+  description?: string;
   limit?: number;
   grouped?: boolean;
 }
 
 export interface EventBlockUpdateInputs {
   name?: string;
+  description?: string | null;
   limit?: number;
   grouped?: boolean;
 }

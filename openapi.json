@@ -81811,6 +81811,10 @@
           "name": {
             "type": "string"
           },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
           "limit": {
             "type": "number"
           },
@@ -81821,6 +81825,7 @@
         "required": [
           "id",
           "name",
+          "description",
           "limit",
           "grouped"
         ]
@@ -89719,6 +89724,9 @@
             "type": "object",
             "additionalProperties": true,
             "nullable": true
+          },
+          "confirmationEmailCount": {
+            "type": "number"
           }
         },
         "required": [
@@ -89834,6 +89842,9 @@
             "type": "object",
             "additionalProperties": true,
             "nullable": true
+          },
+          "confirmationEmailCount": {
+            "type": "number"
           }
         }
       },
@@ -93442,6 +93453,9 @@
           "name": {
             "type": "string"
           },
+          "description": {
+            "type": "string"
+          },
           "limit": {
             "type": "number"
           },
@@ -93458,6 +93472,10 @@
         "properties": {
           "name": {
             "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
           },
           "limit": {
             "type": "number"

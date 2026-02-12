@@ -89719,6 +89719,9 @@
             "type": "object",
             "additionalProperties": true,
             "nullable": true
+          },
+          "confirmationEmailCount": {
+            "type": "number"
           }
         },
         "required": [
@@ -89834,6 +89837,9 @@
             "type": "object",
             "additionalProperties": true,
             "nullable": true
+          },
+          "confirmationEmailCount": {
+            "type": "number"
           }
         }
       },

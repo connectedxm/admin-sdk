@@ -81813,12 +81813,16 @@
           },
           "limit": {
             "type": "number"
+          },
+          "grouped": {
+            "type": "boolean"
           }
         },
         "required": [
           "id",
           "name",
-          "limit"
+          "limit",
+          "grouped"
         ]
       },
       "EventBlock": {
@@ -93440,6 +93444,9 @@
           },
           "limit": {
             "type": "number"
+          },
+          "grouped": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -93454,6 +93461,9 @@
           },
           "limit": {
             "type": "number"
+          },
+          "grouped": {
+            "type": "boolean"
           }
         }
       },

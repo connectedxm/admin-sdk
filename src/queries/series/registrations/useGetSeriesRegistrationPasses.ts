@@ -11,15 +11,12 @@ import { SERIES_REGISTRATION_QUERY_KEY } from "./useGetSeriesRegistration";
  * @category Keys
  * @group Series
  */
-export const SERIES_REGISTRATION_REGISTRATIONS_QUERY_KEY = (
+export const SERIES_REGISTRATION_PASSES_QUERY_KEY = (
   seriesId: string,
   registrationId: string
-) => [
-  ...SERIES_REGISTRATION_QUERY_KEY(seriesId, registrationId),
-  "REGISTRATIONS",
-];
+) => [...SERIES_REGISTRATION_QUERY_KEY(seriesId, registrationId), "PASSES"];
 
-interface GetSeriesRegistrationRegistrationsProps extends InfiniteQueryParams {
+interface GetSeriesRegistrationPassesProps extends InfiniteQueryParams {
   seriesId: string;
   registrationId: string;
 }
@@ -28,7 +25,7 @@ interface GetSeriesRegistrationRegistrationsProps extends InfiniteQueryParams {
  * @category Queries
  * @group Series
  */
-export const GetSeriesRegistrationRegistrations = async ({
+export const GetSeriesRegistrationPasses = async ({
   seriesId,
   registrationId,
   pageParam,
@@ -36,12 +33,12 @@ export const GetSeriesRegistrationRegistrations = async ({
   orderBy,
   search,
   adminApiParams,
-}: GetSeriesRegistrationRegistrationsProps): Promise<
+}: GetSeriesRegistrationPassesProps): Promise<
   ConnectedXMResponse<EventAttendee[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(
-    `/series/${seriesId}/registrations/${registrationId}/registrations`,
+    `/series/${seriesId}/registrations/${registrationId}/passes`,
     {
       params: {
         page: pageParam || undefined,
@@ -58,7 +55,7 @@ export const GetSeriesRegistrationRegistrations = async ({
  * @category Hooks
  * @group Series
  */
-export const useGetSeriesRegistrationRegistrations = (
+export const useGetSeriesRegistrationPasses = (
   seriesId: string = "",
   registrationId: string = "",
   params: Omit<
@@ -66,15 +63,15 @@ export const useGetSeriesRegistrationRegistrations = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetSeriesRegistrationRegistrations>>
+    Awaited<ReturnType<typeof GetSeriesRegistrationPasses>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetSeriesRegistrationRegistrations>>
+    Awaited<ReturnType<typeof GetSeriesRegistrationPasses>>
   >(
-    SERIES_REGISTRATION_REGISTRATIONS_QUERY_KEY(seriesId, registrationId),
+    SERIES_REGISTRATION_PASSES_QUERY_KEY(seriesId, registrationId),
     (params: InfiniteQueryParams) =>
-      GetSeriesRegistrationRegistrations({
+      GetSeriesRegistrationPasses({
         ...params,
         seriesId,
         registrationId,

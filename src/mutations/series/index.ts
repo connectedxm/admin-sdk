@@ -1,3 +1,4 @@
+export * from "./registrations";
 export * from "./useAddSeriesEvent";
 export * from "./useCreateSeries";
 export * from "./useDeleteSeries";

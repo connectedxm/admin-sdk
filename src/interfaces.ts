@@ -2476,6 +2476,25 @@ export interface Series extends BaseSeries {
   templateId: string;
   template: BaseEvent;
   sortOrder: number;
+  price: number | null;
+  taxCode: string | null;
+  taxIncluded: boolean;
+  taxLocation: TaxLocationType;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSeriesRegistration {
+  id: string;
+  organizationId: string;
+  seriesId: string;
+  series: BaseSeries;
+  accountId: string;
+  account: BaseAccount;
+  status: PurchaseStatus;
+}
+
+export interface SeriesRegistration extends BaseSeriesRegistration {
   createdAt: string;
   updatedAt: string;
 }

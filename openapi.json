@@ -62302,68 +62302,6 @@
         ]
       }
     },
-    "/series/{seriesId}/registrations/{registrationId}/cancel": {
-      "put": {
-        "operationId": "CancelSeriesRegistration",
-        "summary": "Cancel Series Registration",
-        "description": "Cancel Series Registration endpoint",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "seriesId",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The series identifier",
-            "required": true
-          },
-          {
-            "in": "path",
-            "name": "registrationId",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The registration identifier",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "ok"
-                      ]
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Success message."
-                    },
-                    "data": {
-                      "type": "object"
-                    }
-                  },
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Series::Registrations"
-        ]
-      }
-    },
     "/series/{seriesId}/registrations/{registrationId}/passes": {
       "get": {
         "operationId": "GetSeriesRegistrationPasses",

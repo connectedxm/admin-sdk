@@ -477,6 +477,10 @@
       "description": "Operations for managing event series"
     },
     {
+      "name": "Series::Registrations",
+      "description": "Manage account registrations for event series"
+    },
+    {
       "name": "Sponsors",
       "description": "Operations for managing sponsorship levels"
     },
@@ -61938,6 +61942,428 @@
         ]
       }
     },
+    "/series/{seriesId}/registrations": {
+      "get": {
+        "operationId": "GetSeriesRegistrations",
+        "summary": "Get Series Registrations",
+        "description": "Get Series Registrations endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "$ref": "#/components/schemas/PurchaseStatus"
+            },
+            "description": "Filter by status",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "description": "Page number",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            },
+            "description": "Number of items per page",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field to order by",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    },
+                    "count": {
+                      "type": "integer",
+                      "example": 100
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Registrations"
+        ]
+      },
+      "post": {
+        "operationId": "CreateSeriesRegistration",
+        "summary": "Create Series Registration",
+        "description": "Create Series Registration endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SeriesRegistrationCreateInputs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Registrations"
+        ]
+      }
+    },
+    "/series/{seriesId}/registrations/{registrationId}": {
+      "get": {
+        "operationId": "GetSeriesRegistration",
+        "summary": "Get Series Registration",
+        "description": "Get Series Registration endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "registrationId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The registration identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Registrations"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateSeriesRegistration",
+        "summary": "Update Series Registration",
+        "description": "Update Series Registration endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "registrationId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The registration identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SeriesRegistrationUpdateInputs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Registrations"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteSeriesRegistration",
+        "summary": "Delete Series Registration",
+        "description": "Delete Series Registration endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "registrationId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The registration identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Registrations"
+        ]
+      }
+    },
+    "/series/{seriesId}/registrations/{registrationId}/passes": {
+      "get": {
+        "operationId": "GetSeriesRegistrationPasses",
+        "summary": "Get Series Registration Passes",
+        "description": "Get Series Registration Passes endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "registrationId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The registration identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Registrations"
+        ]
+      }
+    },
     "/streams": {
       "get": {
         "operationId": "GetStreamInputs",
@@ -80665,6 +81091,20 @@
               "sortOrder": {
                 "type": "number"
               },
+              "price": {
+                "type": "number",
+                "nullable": true
+              },
+              "taxCode": {
+                "type": "string",
+                "nullable": true
+              },
+              "taxIncluded": {
+                "type": "boolean"
+              },
+              "taxLocation": {
+                "$ref": "#/components/schemas/TaxLocationType"
+              },
               "createdAt": {
                 "type": "string"
               },
@@ -80676,6 +81116,67 @@
               "templateId",
               "template",
               "sortOrder",
+              "price",
+              "taxCode",
+              "taxIncluded",
+              "taxLocation",
+              "createdAt",
+              "updatedAt"
+            ]
+          }
+        ]
+      },
+      "BaseSeriesRegistration": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "organizationId": {
+            "type": "string"
+          },
+          "seriesId": {
+            "type": "string"
+          },
+          "series": {
+            "$ref": "#/components/schemas/BaseSeries"
+          },
+          "accountId": {
+            "type": "string"
+          },
+          "account": {
+            "$ref": "#/components/schemas/BaseAccount"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PurchaseStatus"
+          }
+        },
+        "required": [
+          "id",
+          "organizationId",
+          "seriesId",
+          "series",
+          "accountId",
+          "account",
+          "status"
+        ]
+      },
+      "SeriesRegistration": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSeriesRegistration"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "createdAt": {
+                "type": "string"
+              },
+              "updatedAt": {
+                "type": "string"
+              }
+            },
+            "required": [
               "createdAt",
               "updatedAt"
             ]
@@ -92636,6 +93137,25 @@
           "accountId"
         ]
       },
+      "SeriesRegistrationCreateInputs": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "accountId"
+        ]
+      },
+      "SeriesRegistrationUpdateInputs": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/PurchaseStatus"
+          }
+        }
+      },
       "EventRegistrationBypassUpdateInputs": {
         "type": "object",
         "properties": {
@@ -95145,6 +95665,22 @@
           "endDate": {
             "type": "string",
             "nullable": true
+          },
+          "registration": {
+            "type": "boolean"
+          },
+          "price": {
+            "type": "number"
+          },
+          "taxCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "taxIncluded": {
+            "type": "boolean"
+          },
+          "taxLocation": {
+            "$ref": "#/components/schemas/TaxLocationType"
           }
         },
         "required": [
@@ -95185,6 +95721,22 @@
           "endDate": {
             "type": "string",
             "nullable": true
+          },
+          "registration": {
+            "type": "boolean"
+          },
+          "price": {
+            "type": "number"
+          },
+          "taxCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "taxIncluded": {
+            "type": "boolean"
+          },
+          "taxLocation": {
+            "$ref": "#/components/schemas/TaxLocationType"
           }
         }
       },

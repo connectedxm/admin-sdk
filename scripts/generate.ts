@@ -1272,6 +1272,8 @@ const tagDescriptions: Record<string, string> = {
   Searchlists: "Operations for managing search lists",
   Self: "Operations for the authenticated user",
   Series: "Operations for managing event series",
+  "Series::Registrations":
+    "Manage account registrations for event series",
   Sponsors: "Operations for managing sponsorship levels",
   Storage:
     "Seamless and secure media storage for video, image, and file storage related to live events",

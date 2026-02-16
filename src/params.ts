@@ -801,6 +801,14 @@ export interface EventRegistrationBypassCreateInputs {
   postRegister?: boolean;
 }
 
+export interface SeriesRegistrationCreateInputs {
+  accountId: string;
+}
+
+export interface SeriesRegistrationUpdateInputs {
+  status?: PurchaseStatus;
+}
+
 export interface EventRegistrationBypassUpdateInputs {
   accountId?: string | null;
   closed?: boolean;
@@ -1484,6 +1492,11 @@ export interface SeriesCreateInputs {
   templateId: string;
   startDate?: string | null;
   endDate?: string | null;
+  registration?: boolean;
+  price?: number;
+  taxCode?: string | null;
+  taxIncluded?: boolean;
+  taxLocation?: keyof typeof TaxLocationType;
 }
 
 export interface SeriesUpdateInputs {
@@ -1495,6 +1508,11 @@ export interface SeriesUpdateInputs {
   templateId?: string;
   startDate?: string | null;
   endDate?: string | null;
+  registration?: boolean;
+  price?: number;
+  taxCode?: string | null;
+  taxIncluded?: boolean;
+  taxLocation?: keyof typeof TaxLocationType;
 }
 
 export interface LevelCreateInputs {

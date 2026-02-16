@@ -1874,6 +1874,7 @@ export interface BaseEventPass {
   coupon: BaseCoupon | null;
   packageId: string | null;
   package: BaseAttendeePackage | null;
+  seriesRegistrationId: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -1885,6 +1886,7 @@ export interface EventPass extends BaseEventPass {
   lineItem: PaymentLineItem | null;
   payerId: string | null;
   payer: BaseAccount | null;
+  seriesRegistration: BaseSeriesRegistration | null;
 }
 
 export interface BasePassAddOn {
@@ -2359,9 +2361,6 @@ export interface BaseEventAttendee {
 export interface EventAttendee extends BaseEventAttendee {
   passes: BaseEventPass[];
   packages: BaseAttendeePackage[];
-  seriesId: string | null;
-  seriesRegistrationId: string | null;
-  seriesRegistration: BaseSeriesRegistration | null;
   createdAt: string;
   updatedAt: string;
   _count: {

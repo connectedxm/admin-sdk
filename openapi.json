@@ -62374,11 +62374,11 @@
         ]
       }
     },
-    "/series/{seriesId}/registrations/{registrationId}/registrations": {
+    "/series/{seriesId}/registrations/{registrationId}/passes": {
       "get": {
-        "operationId": "GetSeriesRegistrationRegistrations",
-        "summary": "Get Series Registration Registrations",
-        "description": "Get Series Registration Registrations endpoint",
+        "operationId": "GetSeriesRegistrationPasses",
+        "summary": "Get Series Registration Passes",
+        "description": "Get Series Registration Passes endpoint",
         "parameters": [
           {
             "in": "path",
@@ -78820,6 +78820,10 @@
             ],
             "nullable": true
           },
+          "seriesRegistrationId": {
+            "type": "string",
+            "nullable": true
+          },
           "createdAt": {
             "type": "string"
           },
@@ -78847,6 +78851,7 @@
           "coupon",
           "packageId",
           "package",
+          "seriesRegistrationId",
           "createdAt",
           "updatedAt"
         ]
@@ -78890,6 +78895,14 @@
                   }
                 ],
                 "nullable": true
+              },
+              "seriesRegistration": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BaseSeriesRegistration"
+                  }
+                ],
+                "nullable": true
               }
             },
             "required": [
@@ -78898,7 +78911,8 @@
               "attendee",
               "lineItem",
               "payerId",
-              "payer"
+              "payer",
+              "seriesRegistration"
             ]
           }
         ]
@@ -80828,22 +80842,6 @@
                   "$ref": "#/components/schemas/BaseAttendeePackage"
                 }
               },
-              "seriesId": {
-                "type": "string",
-                "nullable": true
-              },
-              "seriesRegistrationId": {
-                "type": "string",
-                "nullable": true
-              },
-              "seriesRegistration": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/BaseSeriesRegistration"
-                  }
-                ],
-                "nullable": true
-              },
               "createdAt": {
                 "type": "string"
               },
@@ -80869,9 +80867,6 @@
             "required": [
               "passes",
               "packages",
-              "seriesId",
-              "seriesRegistrationId",
-              "seriesRegistration",
               "createdAt",
               "updatedAt",
               "_count"

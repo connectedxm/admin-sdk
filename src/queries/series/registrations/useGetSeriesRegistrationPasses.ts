@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, EventAttendee } from "@src/interfaces";
+import { ConnectedXMResponse, EventPass } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
@@ -34,7 +34,7 @@ export const GetSeriesRegistrationPasses = async ({
   search,
   adminApiParams,
 }: GetSeriesRegistrationPassesProps): Promise<
-  ConnectedXMResponse<EventAttendee[]>
+  ConnectedXMResponse<EventPass[]>
 > => {
   const adminApi = await GetAdminAPI(adminApiParams);
   const { data } = await adminApi.get(

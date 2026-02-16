@@ -35317,6 +35317,78 @@
         ]
       }
     },
+    "/events/{eventId}/sessions/{sessionId}/clone": {
+      "post": {
+        "operationId": "CloneEventSession",
+        "summary": "Clone Event Session",
+        "description": "Clone Event Session endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "sessionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The session identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventSessionCloneOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/EventSession"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Sessions"
+        ]
+      }
+    },
     "/events/{eventId}/sessions/{sessionId}/passTypes": {
       "get": {
         "operationId": "GetEventSessionPassTypes",
@@ -93313,6 +93385,20 @@
           "imageId": {
             "type": "string",
             "nullable": true
+          }
+        }
+      },
+      "EventSessionCloneOptions": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "startTime": {
+            "type": "string"
+          },
+          "endTime": {
+            "type": "string"
           }
         }
       },

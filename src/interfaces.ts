@@ -2359,6 +2359,9 @@ export interface BaseEventAttendee {
 export interface EventAttendee extends BaseEventAttendee {
   passes: BaseEventPass[];
   packages: BaseAttendeePackage[];
+  seriesId: string | null;
+  seriesRegistrationId: string | null;
+  seriesRegistration: BaseSeriesRegistration | null;
   createdAt: string;
   updatedAt: string;
   _count: {

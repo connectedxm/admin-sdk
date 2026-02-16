@@ -9,6 +9,7 @@ export * from "./useAddEventSessionPassType";
 export * from "./useAddEventSessionSpeaker";
 export * from "./useAddEventSessionSponsor";
 export * from "./useAddEventSessionTrack";
+export * from "./useCloneEventSession";
 export * from "./useCreateEventSession";
 export * from "./useDeleteEventSession";
 export * from "./useRemoveEventSessionAccount";

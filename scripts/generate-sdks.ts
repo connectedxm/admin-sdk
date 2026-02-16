@@ -289,6 +289,8 @@ export interface AdminApiConfig {
   apiKey: string;
   /** Your organization ID */
   organizationId: string;
+  /** Optional base URL (defaults to production). Use "https://staging-admin-api.connected.dev" for staging. */
+  basePath?: "https://admin-api.connected.dev" | "https://staging-admin-api.connected.dev";
 }
 
 export class AdminApi {
@@ -300,7 +302,7 @@ ${apiClasses
 
   constructor(config: AdminApiConfig) {
     this.config = new Configuration({
-      basePath: "https://admin-api.connected.dev",
+      basePath: config.basePath ?? "https://admin-api.connected.dev",
       baseOptions: {
         headers: {
           "api-key": config.apiKey,

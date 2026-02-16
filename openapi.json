@@ -35317,6 +35317,78 @@
         ]
       }
     },
+    "/events/{eventId}/sessions/{sessionId}/clone": {
+      "post": {
+        "operationId": "CloneEventSession",
+        "summary": "Clone Event Session",
+        "description": "Clone Event Session endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "sessionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The session identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventSessionCloneOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/EventSession"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Sessions"
+        ]
+      }
+    },
     "/events/{eventId}/sessions/{sessionId}/passTypes": {
       "get": {
         "operationId": "GetEventSessionPassTypes",
@@ -62302,11 +62374,11 @@
         ]
       }
     },
-    "/series/{seriesId}/registrations/{registrationId}/passes": {
+    "/series/{seriesId}/registrations/{registrationId}/registrations": {
       "get": {
-        "operationId": "GetSeriesRegistrationPasses",
-        "summary": "Get Series Registration Passes",
-        "description": "Get Series Registration Passes endpoint",
+        "operationId": "GetSeriesRegistrationRegistrations",
+        "summary": "Get Series Registration Registrations",
+        "description": "Get Series Registration Registrations endpoint",
         "parameters": [
           {
             "in": "path",
@@ -62325,6 +62397,47 @@
             },
             "description": "The registration identifier",
             "required": true
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "description": "Page number",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            },
+            "description": "Number of items per page",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field to order by",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query",
+            "required": false
           }
         ],
         "responses": {
@@ -62347,6 +62460,10 @@
                     },
                     "data": {
                       "type": "object"
+                    },
+                    "count": {
+                      "type": "integer",
+                      "example": 100
                     }
                   },
                   "required": [
@@ -80711,6 +80828,22 @@
                   "$ref": "#/components/schemas/BaseAttendeePackage"
                 }
               },
+              "seriesId": {
+                "type": "string",
+                "nullable": true
+              },
+              "seriesRegistrationId": {
+                "type": "string",
+                "nullable": true
+              },
+              "seriesRegistration": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BaseSeriesRegistration"
+                  }
+                ],
+                "nullable": true
+              },
               "createdAt": {
                 "type": "string"
               },
@@ -80736,6 +80869,9 @@
             "required": [
               "passes",
               "packages",
+              "seriesId",
+              "seriesRegistrationId",
+              "seriesRegistration",
               "createdAt",
               "updatedAt",
               "_count"
@@ -93313,6 +93449,17 @@
           "imageId": {
             "type": "string",
             "nullable": true
+          }
+        }
+      },
+      "EventSessionCloneOptions": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "startTime": {
+            "type": "string"
           }
         }
       },

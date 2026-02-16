@@ -853,6 +853,12 @@ export interface EventSessionTranslationUpdateInputs {
   imageId?: string | null;
 }
 
+export interface EventSessionCloneOptions {
+  name?: string;
+  startTime?: string;
+  endTime?: string;
+}
+
 export interface EventSessionUpdateInputs {
   name?: string | null;
   startTime?: string | null;

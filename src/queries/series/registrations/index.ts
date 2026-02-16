@@ -1,3 +1,3 @@
 export * from "./useGetSeriesRegistration";
-export * from "./useGetSeriesRegistrationPasses";
+export * from "./useGetSeriesRegistrationRegistrations";
 export * from "./useGetSeriesRegistrations";

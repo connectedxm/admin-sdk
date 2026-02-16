@@ -93396,9 +93396,6 @@
           },
           "startTime": {
             "type": "string"
-          },
-          "endTime": {
-            "type": "string"
           }
         }
       },

@@ -856,7 +856,6 @@ export interface EventSessionTranslationUpdateInputs {
 export interface EventSessionCloneOptions {
   name?: string;
   startTime?: string;
-  endTime?: string;
 }
 
 export interface EventSessionUpdateInputs {

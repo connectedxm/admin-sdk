@@ -1970,6 +1970,7 @@ export interface BasePayment {
   membershipId: string | null;
   couponId: string | null;
   invoiceId: string | null;
+  seriesId: string | null;
   lineItems: BasePaymentLineItem[];
   createdAt: string;
 }
@@ -2009,6 +2010,7 @@ export interface Payment extends BasePayment {
   space: BaseBookingSpace | null;
   coupon: BaseCoupon | null;
   invoice: BaseInvoice | null;
+  series: BaseSeries | null;
   metadata?: any;
   lineItems: Omit<PaymentLineItem, "payment">[];
 }
@@ -2023,6 +2025,7 @@ export enum PaymentLineItemType {
   invoice = "invoice",
   booking = "booking",
   coupon = "coupon",
+  series = "series",
   refund = "refund",
 }
 
@@ -2060,6 +2063,7 @@ export interface PaymentLineItem extends BasePaymentLineItem {
   access: BaseEventSessionAccess | null;
   booking: BaseBooking | null;
   coupon: BaseCoupon | null;
+  seriesRegistration: BaseSeriesRegistration | null;
   payment: BasePayment;
 }
 
@@ -2499,6 +2503,9 @@ export interface BaseSeriesRegistration {
 export interface SeriesRegistration extends BaseSeriesRegistration {
   createdAt: string;
   updatedAt: string;
+  _count: {
+    passes: number;
+  };
 }
 
 export interface BaseEventSession {

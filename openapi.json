@@ -62047,7 +62047,7 @@
               "type": "integer",
               "minimum": 1,
               "maximum": 100,
-              "default": 10
+              "default": 25
             },
             "description": "Number of items per page",
             "required": false
@@ -81406,11 +81406,23 @@
               },
               "updatedAt": {
                 "type": "string"
+              },
+              "_count": {
+                "type": "object",
+                "properties": {
+                  "passes": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "passes"
+                ]
               }
             },
             "required": [
               "createdAt",
-              "updatedAt"
+              "updatedAt",
+              "_count"
             ]
           }
         ]

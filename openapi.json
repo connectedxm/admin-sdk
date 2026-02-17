@@ -79437,6 +79437,10 @@
             "type": "string",
             "nullable": true
           },
+          "seriesId": {
+            "type": "string",
+            "nullable": true
+          },
           "lineItems": {
             "type": "array",
             "items": {
@@ -79474,6 +79478,7 @@
           "membershipId",
           "couponId",
           "invoiceId",
+          "seriesId",
           "lineItems",
           "createdAt"
         ]
@@ -79648,6 +79653,14 @@
                 ],
                 "nullable": true
               },
+              "series": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BaseSeries"
+                  }
+                ],
+                "nullable": true
+              },
               "metadata": {
                 "type": "object"
               },
@@ -79683,6 +79696,7 @@
               "space",
               "coupon",
               "invoice",
+              "series",
               "lineItems"
             ]
           }

@@ -2023,6 +2023,7 @@ export enum PaymentLineItemType {
   invoice = "invoice",
   booking = "booking",
   coupon = "coupon",
+  series = "series",
   refund = "refund",
 }
 

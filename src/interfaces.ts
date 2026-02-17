@@ -2499,6 +2499,9 @@ export interface BaseSeriesRegistration {
 export interface SeriesRegistration extends BaseSeriesRegistration {
   createdAt: string;
   updatedAt: string;
+  _count: {
+    passes: number;
+  };
 }
 
 export interface BaseEventSession {

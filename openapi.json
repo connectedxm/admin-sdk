@@ -79871,6 +79871,14 @@
                 ],
                 "nullable": true
               },
+              "seriesRegistration": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BaseSeriesRegistration"
+                  }
+                ],
+                "nullable": true
+              },
               "payment": {
                 "$ref": "#/components/schemas/BasePayment"
               }
@@ -79883,6 +79891,7 @@
               "access",
               "booking",
               "coupon",
+              "seriesRegistration",
               "payment"
             ]
           }

@@ -1970,6 +1970,7 @@ export interface BasePayment {
   membershipId: string | null;
   couponId: string | null;
   invoiceId: string | null;
+  seriesId: string | null;
   lineItems: BasePaymentLineItem[];
   createdAt: string;
 }
@@ -2009,6 +2010,7 @@ export interface Payment extends BasePayment {
   space: BaseBookingSpace | null;
   coupon: BaseCoupon | null;
   invoice: BaseInvoice | null;
+  series: BaseSeries | null;
   metadata?: any;
   lineItems: Omit<PaymentLineItem, "payment">[];
 }

@@ -79700,6 +79700,7 @@
           "invoice",
           "booking",
           "coupon",
+          "series",
           "refund"
         ]
       },

@@ -2061,6 +2061,7 @@ export interface PaymentLineItem extends BasePaymentLineItem {
   access: BaseEventSessionAccess | null;
   booking: BaseBooking | null;
   coupon: BaseCoupon | null;
+  seriesRegistration: BaseSeriesRegistration | null;
   payment: BasePayment;
 }
 

@@ -1,15 +1,12 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { EventSession, ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
 import { EventSessionCloneOptions } from "@src/params";
-import {
-  EVENT_SESSIONS_QUERY_KEY,
-  SET_EVENT_SESSION_QUERY_DATA,
-} from "@src/queries";
+import { EVENT_SESSIONS_QUERY_KEY } from "@src/queries";
 
 /**
  * @category Params
@@ -31,17 +28,17 @@ export const CloneEventSession = async ({
   options = {},
   adminApiParams,
   queryClient,
-}: CloneEventSessionParams): Promise<ConnectedXMResponse<EventSession>> => {
+}: CloneEventSessionParams): Promise<
+  ConnectedXMResponse<{ id: string; slug: string }>
+> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<EventSession>>(
-    `/events/${eventId}/sessions/${sessionId}/clone`,
-    options
-  );
+  const { data } = await connectedXM.post<
+    ConnectedXMResponse<{ id: string; slug: string }>
+  >(`/events/${eventId}/sessions/${sessionId}/clone`, options);
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: EVENT_SESSIONS_QUERY_KEY(eventId),
     });
-    SET_EVENT_SESSION_QUERY_DATA(queryClient, [eventId, data.data.id], data);
   }
   return data;
 };

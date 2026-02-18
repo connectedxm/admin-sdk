@@ -81524,16 +81524,16 @@
             "type": "string",
             "nullable": true
           },
-          "imageId": {
+          "subject": {
             "type": "string",
             "nullable": true
           },
-          "image": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BaseImage"
-              }
-            ],
+          "replyTo": {
+            "type": "string",
+            "nullable": true
+          },
+          "body": {
+            "type": "string",
             "nullable": true
           },
           "createdAt": {
@@ -81549,8 +81549,9 @@
           "name",
           "description",
           "longDescription",
-          "imageId",
-          "image",
+          "subject",
+          "replyTo",
+          "body",
           "createdAt",
           "updatedAt"
         ]

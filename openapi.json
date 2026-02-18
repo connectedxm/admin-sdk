@@ -35371,7 +35371,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "$ref": "#/components/schemas/EventSession"
+                      "type": "object"
                     }
                   },
                   "required": [

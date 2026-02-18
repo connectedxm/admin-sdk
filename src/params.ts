@@ -1,5 +1,6 @@
 import {
   AccountAccess,
+  AccountAttributeType,
   ActivityEntityType,
   AdminNotificationSource,
   AdminNotificationType,
@@ -2491,7 +2492,7 @@ export interface EventAttendeePackageUpdateInputs {
 export interface AccountAttributeCreateInputs {
   name: string;
   label: string;
-  type: "text" | "number" | "date" | "boolean";
+  type: keyof typeof AccountAttributeType;
   description?: string | null;
   required?: boolean;
   adminOnly?: boolean;
@@ -2499,6 +2500,8 @@ export interface AccountAttributeCreateInputs {
   public?: boolean;
   includedInDashboards?: boolean;
   sortOrder?: number | string | null;
+  searchListId?: string | null;
+  options?: string[] | null;
 }
 
 export interface AccountAttributeUpdateInputs {
@@ -2510,6 +2513,8 @@ export interface AccountAttributeUpdateInputs {
   public?: boolean;
   includedInDashboards?: boolean;
   sortOrder?: number | string | null;
+  searchListId?: string | null;
+  options?: string[] | null;
 }
 
 export interface WebhookCreateInputs {

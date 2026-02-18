@@ -277,11 +277,21 @@ export enum SessionAccess {
   private = "PRIVATE",
 }
 
+export enum AccountAttributeType {
+  text = "text",
+  number = "number",
+  date = "date",
+  boolean = "boolean",
+  search = "search",
+  select = "select",
+  location = "location",
+}
+
 export interface BaseAccountAttribute {
   id: string;
   name: string;
   label: string;
-  type: "text" | "number" | "date" | "boolean";
+  type: keyof typeof AccountAttributeType;
   description: string | null;
   required: boolean;
   adminOnly: boolean;

@@ -72641,6 +72641,9 @@
           },
           "sortOrder": {
             "type": "number"
+          },
+          "locationOption": {
+            "$ref": "#/components/schemas/LocationQuestionOption"
           }
         },
         "required": [
@@ -72654,7 +72657,8 @@
           "editable",
           "public",
           "includedInDashboards",
-          "sortOrder"
+          "sortOrder",
+          "locationOption"
         ]
       },
       "AccountAttribute": {
@@ -99767,6 +99771,9 @@
               "type": "string"
             },
             "nullable": true
+          },
+          "locationOption": {
+            "$ref": "#/components/schemas/LocationQuestionOption"
           }
         },
         "required": [
@@ -99822,6 +99829,9 @@
               "type": "string"
             },
             "nullable": true
+          },
+          "locationOption": {
+            "$ref": "#/components/schemas/LocationQuestionOption"
           }
         }
       },

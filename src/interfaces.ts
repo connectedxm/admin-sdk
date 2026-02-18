@@ -299,6 +299,7 @@ export interface BaseAccountAttribute {
   public: boolean;
   includedInDashboards: boolean;
   sortOrder: number;
+  locationOption: keyof typeof LocationQuestionOption;
 }
 
 export interface AccountAttribute extends BaseAccountAttribute {

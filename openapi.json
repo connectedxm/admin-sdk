@@ -72593,6 +72593,18 @@
           "PRIVATE"
         ]
       },
+      "AccountAttributeType": {
+        "type": "string",
+        "enum": [
+          "text",
+          "number",
+          "date",
+          "boolean",
+          "search",
+          "select",
+          "location"
+        ]
+      },
       "BaseAccountAttribute": {
         "type": "object",
         "properties": {
@@ -72606,13 +72618,7 @@
             "type": "string"
           },
           "type": {
-            "type": "string",
-            "enum": [
-              "text",
-              "number",
-              "date",
-              "boolean"
-            ]
+            "$ref": "#/components/schemas/AccountAttributeType"
           },
           "description": {
             "type": "string",
@@ -99719,13 +99725,7 @@
             "type": "string"
           },
           "type": {
-            "type": "string",
-            "enum": [
-              "text",
-              "number",
-              "date",
-              "boolean"
-            ]
+            "$ref": "#/components/schemas/AccountAttributeType"
           },
           "description": {
             "type": "string",
@@ -99755,6 +99755,17 @@
                 "type": "string"
               }
             ],
+            "nullable": true
+          },
+          "searchListId": {
+            "type": "string",
+            "nullable": true
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           }
         },
@@ -99799,6 +99810,17 @@
                 "type": "string"
               }
             ],
+            "nullable": true
+          },
+          "searchListId": {
+            "type": "string",
+            "nullable": true
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           }
         }

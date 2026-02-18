@@ -81468,6 +81468,18 @@
               "taxLocation": {
                 "$ref": "#/components/schemas/TaxLocationType"
               },
+              "subject": {
+                "type": "string",
+                "nullable": true
+              },
+              "replyTo": {
+                "type": "string",
+                "nullable": true
+              },
+              "body": {
+                "type": "string",
+                "nullable": true
+              },
               "createdAt": {
                 "type": "string"
               },
@@ -81483,10 +81495,64 @@
               "taxCode",
               "taxIncluded",
               "taxLocation",
+              "subject",
+              "replyTo",
+              "body",
               "createdAt",
               "updatedAt"
             ]
           }
+        ]
+      },
+      "SeriesTranslation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "locale": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "longDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageId": {
+            "type": "string",
+            "nullable": true
+          },
+          "image": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseImage"
+              }
+            ],
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "description",
+          "longDescription",
+          "imageId",
+          "image",
+          "createdAt",
+          "updatedAt"
         ]
       },
       "BaseSeriesRegistration": {
@@ -96067,6 +96133,18 @@
           },
           "taxLocation": {
             "$ref": "#/components/schemas/TaxLocationType"
+          },
+          "subject": {
+            "type": "string",
+            "nullable": true
+          },
+          "replyTo": {
+            "type": "string",
+            "nullable": true
+          },
+          "body": {
+            "type": "string",
+            "nullable": true
           }
         },
         "required": [
@@ -96123,6 +96201,43 @@
           },
           "taxLocation": {
             "$ref": "#/components/schemas/TaxLocationType"
+          },
+          "subject": {
+            "type": "string",
+            "nullable": true
+          },
+          "replyTo": {
+            "type": "string",
+            "nullable": true
+          },
+          "body": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "SeriesTranslationUpdateInputs": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "longDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "subject": {
+            "type": "string",
+            "nullable": true
+          },
+          "body": {
+            "type": "string",
+            "nullable": true
           }
         }
       },

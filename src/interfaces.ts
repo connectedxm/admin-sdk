@@ -2486,6 +2486,22 @@ export interface Series extends BaseSeries {
   taxCode: string | null;
   taxIncluded: boolean;
   taxLocation: TaxLocationType;
+  subject: string | null;
+  replyTo: string | null;
+  body: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SeriesTranslation {
+  id: number;
+  locale: string;
+  name: string;
+  description: string | null;
+  longDescription: string | null;
+  subject: string | null;
+  replyTo: string | null;
+  body: string | null;
   createdAt: string;
   updatedAt: string;
 }

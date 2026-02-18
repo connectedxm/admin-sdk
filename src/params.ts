@@ -2502,6 +2502,7 @@ export interface AccountAttributeCreateInputs {
   sortOrder?: number | string | null;
   searchListId?: string | null;
   options?: string[] | null;
+  locationOption?: keyof typeof LocationQuestionOption;
 }
 
 export interface AccountAttributeUpdateInputs {
@@ -2515,6 +2516,7 @@ export interface AccountAttributeUpdateInputs {
   sortOrder?: number | string | null;
   searchListId?: string | null;
   options?: string[] | null;
+  locationOption?: keyof typeof LocationQuestionOption;
 }
 
 export interface WebhookCreateInputs {

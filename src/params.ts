@@ -1502,6 +1502,9 @@ export interface SeriesCreateInputs {
   taxCode?: string | null;
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
+  subject?: string | null;
+  replyTo?: string | null;
+  body?: string | null;
 }
 
 export interface SeriesUpdateInputs {
@@ -1518,6 +1521,17 @@ export interface SeriesUpdateInputs {
   taxCode?: string | null;
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
+  subject?: string | null;
+  replyTo?: string | null;
+  body?: string | null;
+}
+
+export interface SeriesTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+  longDescription?: string | null;
+  subject?: string | null;
+  body?: string | null;
 }
 
 export interface LevelCreateInputs {

@@ -2499,8 +2499,9 @@ export interface SeriesTranslation {
   name: string;
   description: string | null;
   longDescription: string | null;
-  imageId: string | null;
-  image: BaseImage | null;
+  subject: string | null;
+  replyTo: string | null;
+  body: string | null;
   createdAt: string;
   updatedAt: string;
 }

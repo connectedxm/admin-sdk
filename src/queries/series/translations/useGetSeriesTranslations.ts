@@ -41,6 +41,7 @@ export const GetSeriesTranslations = async ({
   pageParam,
   pageSize,
   orderBy,
+  search,
   seriesId,
   adminApiParams,
 }: GetSeriesTranslationsProps): Promise<
@@ -52,6 +53,7 @@ export const GetSeriesTranslations = async ({
       page: pageParam || undefined,
       pageSize: pageSize || undefined,
       orderBy: orderBy || undefined,
+      search: search || undefined,
     },
   });
   return data;

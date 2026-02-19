@@ -82773,6 +82773,9 @@
           },
           "grouped": {
             "type": "boolean"
+          },
+          "collapsed": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -82780,7 +82783,8 @@
           "name",
           "description",
           "limit",
-          "grouped"
+          "grouped",
+          "collapsed"
         ]
       },
       "EventBlock": {
@@ -94444,6 +94448,9 @@
           },
           "grouped": {
             "type": "boolean"
+          },
+          "collapsed": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -94464,6 +94471,9 @@
             "type": "number"
           },
           "grouped": {
+            "type": "boolean"
+          },
+          "collapsed": {
             "type": "boolean"
           }
         }

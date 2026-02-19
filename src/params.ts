@@ -841,6 +841,7 @@ export interface EventSessionCreateInputs {
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
   meetingId?: string | null;
+  activationId?: string | null;
 }
 
 export interface EventSessionAccessUpdateInputs {
@@ -883,6 +884,7 @@ export interface EventSessionUpdateInputs {
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
   meetingId?: string | null;
+  activationId?: string | null;
 }
 
 export interface EventSessionLocationCreateInputs {

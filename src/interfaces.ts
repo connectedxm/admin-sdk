@@ -486,6 +486,7 @@ export interface BaseEventActivation {
   type: keyof typeof EventActivationType;
   accessLevel: keyof typeof PassTypeAccessLevel;
   survey: BaseSurvey | null;
+  session: BaseEventSession | null;
 }
 
 export interface EventActivation extends BaseEventActivation {
@@ -2572,6 +2573,8 @@ export interface EventSession extends BaseEventSession {
   meetingId: string | null;
   meeting: BaseMeeting | null;
   blocks: BaseEventBlock[] | null;
+  activationId: string | null;
+  activation: BaseEventActivation | null;
 }
 
 export interface EventSessionTranslation {

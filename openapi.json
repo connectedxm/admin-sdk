@@ -73415,6 +73415,14 @@
               }
             ],
             "nullable": true
+          },
+          "session": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseEventSession"
+              }
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -73427,7 +73435,8 @@
           "startAfter",
           "type",
           "accessLevel",
-          "survey"
+          "survey",
+          "session"
         ]
       },
       "EventActivation": {
@@ -81805,6 +81814,18 @@
                   "$ref": "#/components/schemas/BaseEventBlock"
                 },
                 "nullable": true
+              },
+              "activationId": {
+                "type": "string",
+                "nullable": true
+              },
+              "activation": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BaseEventActivation"
+                  }
+                ],
+                "nullable": true
               }
             },
             "required": [
@@ -81816,7 +81837,9 @@
               "speakers",
               "meetingId",
               "meeting",
-              "blocks"
+              "blocks",
+              "activationId",
+              "activation"
             ]
           }
         ]
@@ -93735,6 +93758,10 @@
           "meetingId": {
             "type": "string",
             "nullable": true
+          },
+          "activationId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "required": [
@@ -93889,6 +93916,10 @@
             "$ref": "#/components/schemas/TaxLocationType"
           },
           "meetingId": {
+            "type": "string",
+            "nullable": true
+          },
+          "activationId": {
             "type": "string",
             "nullable": true
           }

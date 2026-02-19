@@ -72836,13 +72836,6 @@
           "content"
         ]
       },
-      "SessionAccess": {
-        "type": "string",
-        "enum": [
-          "PUBLIC",
-          "PRIVATE"
-        ]
-      },
       "AccountAttributeType": {
         "type": "string",
         "enum": [
@@ -81894,6 +81887,15 @@
           }
         ]
       },
+      "EventSessionVisibility": {
+        "type": "string",
+        "enum": [
+          "PUBLIC",
+          "RESTRICTED",
+          "REGISTERED",
+          "HIDDEN"
+        ]
+      },
       "BaseEventSession": {
         "type": "object",
         "properties": {
@@ -81947,11 +81949,8 @@
           "nonSession": {
             "type": "boolean"
           },
-          "visible": {
-            "type": "boolean"
-          },
-          "access": {
-            "$ref": "#/components/schemas/SessionAccess"
+          "visibility": {
+            "$ref": "#/components/schemas/EventSessionVisibility"
           },
           "location": {
             "allOf": [
@@ -82002,8 +82001,7 @@
           "allowQuickRegister",
           "tracks",
           "nonSession",
-          "visible",
-          "access",
+          "visibility",
           "location",
           "registrationEnabled",
           "price",
@@ -93938,11 +93936,8 @@
             "type": "string",
             "nullable": true
           },
-          "visible": {
-            "type": "boolean"
-          },
-          "access": {
-            "$ref": "#/components/schemas/SessionAccess"
+          "visibility": {
+            "$ref": "#/components/schemas/EventSessionVisibility"
           },
           "sortOrder": {
             "oneOf": [
@@ -94098,11 +94093,8 @@
             "type": "string",
             "nullable": true
           },
-          "visible": {
-            "type": "boolean"
-          },
-          "access": {
-            "$ref": "#/components/schemas/SessionAccess"
+          "visibility": {
+            "$ref": "#/components/schemas/EventSessionVisibility"
           },
           "sortOrder": {
             "oneOf": [

@@ -1,0 +1,5 @@
+---
+alwaysApply: true
+---
+
+Don't directly update the index.ts files. Instead, use the exports script to update the index.ts file.

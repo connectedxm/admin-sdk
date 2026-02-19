@@ -12,5 +12,6 @@ export * from "./useGetEventSessionPassTypes";
 export * from "./useGetEventSessionPayments";
 export * from "./useGetEventSessionSpeakers";
 export * from "./useGetEventSessionSponsors";
+export * from "./useGetEventSessionTiers";
 export * from "./useGetEventSessionTracks";
 export * from "./useGetEventSessions";

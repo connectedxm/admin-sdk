@@ -2821,6 +2821,7 @@ export interface BaseEventBlock {
   description: string | null;
   limit: number;
   grouped: boolean;
+  collapsed: boolean;
 }
 
 export interface EventBlock extends BaseEventBlock {

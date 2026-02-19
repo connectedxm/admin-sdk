@@ -1018,6 +1018,7 @@ export interface EventBlockCreateInputs {
   description?: string;
   limit?: number;
   grouped?: boolean;
+  collapsed?: boolean;
 }
 
 export interface EventBlockUpdateInputs {
@@ -1025,6 +1026,7 @@ export interface EventBlockUpdateInputs {
   description?: string | null;
   limit?: number;
   grouped?: boolean;
+  collapsed?: boolean;
 }
 
 export interface EventSpeakerCreateInputs {

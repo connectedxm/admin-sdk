@@ -15,6 +15,7 @@ import {
   EventAgendaVisibility,
   EventAnnouncementFilters,
   EventSessionQuestionType,
+  EventSessionVisibility,
   EventType,
   FileSource,
   GroupAccess,
@@ -33,7 +34,6 @@ import {
   PurchaseStatus,
   RegistrationQuestionType,
   ReportFilters,
-  SessionAccess,
   SupportTicketState,
   SupportTicketType,
   SurveyQuestionType,
@@ -827,8 +827,7 @@ export interface EventSessionCreateInputs {
   longDescription?: string | null;
   nonSession?: boolean;
   imageId?: string | null;
-  visible?: boolean;
-  access?: keyof typeof SessionAccess;
+  visibility?: keyof typeof EventSessionVisibility;
   sortOrder?: number | string | null;
   registrationEnabled?: boolean;
   allowQuickRegister?: boolean;
@@ -870,8 +869,7 @@ export interface EventSessionUpdateInputs {
   longDescription?: string | null;
   nonSession?: boolean;
   imageId?: string | null;
-  visible?: boolean;
-  access?: keyof typeof SessionAccess;
+  visibility?: keyof typeof EventSessionVisibility;
   sortOrder?: number | string | null;
   registrationEnabled?: boolean;
   allowQuickRegister?: boolean;

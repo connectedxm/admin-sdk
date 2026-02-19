@@ -272,11 +272,6 @@ export enum FileSource {
   content = "content",
 }
 
-export enum SessionAccess {
-  public = "PUBLIC",
-  private = "PRIVATE",
-}
-
 export enum AccountAttributeType {
   text = "text",
   number = "number",
@@ -2536,6 +2531,13 @@ export interface SeriesRegistration extends BaseSeriesRegistration {
   };
 }
 
+export enum EventSessionVisibility {
+  PUBLIC = "PUBLIC",
+  RESTRICTED = "RESTRICTED",
+  REGISTERED = "REGISTERED",
+  HIDDEN = "HIDDEN",
+}
+
 export interface BaseEventSession {
   id: string;
   slug: string;
@@ -2550,8 +2552,7 @@ export interface BaseEventSession {
   allowQuickRegister: boolean;
   tracks: BaseEventTrack[];
   nonSession: boolean;
-  visible: boolean;
-  access: SessionAccess;
+  visibility: EventSessionVisibility;
   location: BaseEventSessionLocation | null;
   registrationEnabled: boolean;
   price: number | null;

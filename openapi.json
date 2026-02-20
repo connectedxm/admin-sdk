@@ -98340,6 +98340,9 @@
           "sessions": {
             "type": "boolean"
           },
+          "blocks": {
+            "type": "boolean"
+          },
           "rounds": {
             "type": "boolean"
           },
@@ -98377,6 +98380,7 @@
           "sponsorshipLevels",
           "locations",
           "sessions",
+          "blocks",
           "rounds",
           "sideEffects",
           "advancedSettings"

@@ -2036,6 +2036,7 @@ export interface CloneOptions {
   sponsorshipLevels: boolean;
   locations: boolean; // locations
   sessions: boolean;
+  blocks: boolean;
   rounds: boolean;
   // SETTINGS
   sideEffects: boolean;

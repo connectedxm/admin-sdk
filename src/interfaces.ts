@@ -2580,9 +2580,6 @@ export interface BaseSeries {
   endDate: string | null;
   imageId: string | null;
   image: BaseImage | null;
-  _count?: {
-    questions?: number;
-  };
 }
 
 export interface Series extends BaseSeries {

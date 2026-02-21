@@ -62900,6 +62900,80 @@
         ]
       }
     },
+    "/series/{seriesId}/questions/{questionId}/choices/reorder": {
+      "put": {
+        "operationId": "ReorderSeriesQuestionChoices",
+        "summary": "Reorder Series Question Choices",
+        "description": "Reorder Series Question Choices endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "choicesIds",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Filter by choicesIds",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Questions::Choices"
+        ]
+      }
+    },
     "/series/{seriesId}/questions/{questionId}/choices/{choiceId}": {
       "get": {
         "operationId": "GetSeriesQuestionChoice",

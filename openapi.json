@@ -477,6 +477,14 @@
       "description": "Operations for managing event series"
     },
     {
+      "name": "Series::Questions",
+      "description": "Operations for series::questions"
+    },
+    {
+      "name": "Series::Questions::Choices",
+      "description": "Operations for series::questions::choices"
+    },
+    {
       "name": "Series::Registrations",
       "description": "Manage account registrations for event series"
     },
@@ -62365,6 +62373,825 @@
         ]
       }
     },
+    "/series/{seriesId}/questions": {
+      "get": {
+        "operationId": "GetSeriesQuestions",
+        "summary": "Get Series Questions",
+        "description": "Get Series Questions endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "description": "Page number",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            },
+            "description": "Number of items per page",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field to order by",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    },
+                    "count": {
+                      "type": "integer",
+                      "example": 100
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Questions"
+        ]
+      },
+      "post": {
+        "operationId": "CreateSeriesQuestion",
+        "summary": "Create Series Question",
+        "description": "Create Series Question endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SeriesQuestionCreateInputs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Questions"
+        ]
+      }
+    },
+    "/series/{seriesId}/questions/{questionId}": {
+      "get": {
+        "operationId": "GetSeriesQuestion",
+        "summary": "Get Series Question",
+        "description": "Get Series Question endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Questions"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateSeriesQuestion",
+        "summary": "Update Series Question",
+        "description": "Update Series Question endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "question",
+            "schema": {
+              "$ref": "#/components/schemas/SeriesQuestionUpdateInputs"
+            },
+            "description": "Filter by question",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Questions"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteSeriesQuestion",
+        "summary": "Delete Series Question",
+        "description": "Delete Series Question endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Questions"
+        ]
+      }
+    },
+    "/series/{seriesId}/questions/{questionId}/choices": {
+      "get": {
+        "operationId": "GetSeriesQuestionChoices",
+        "summary": "Get Series Question Choices",
+        "description": "Get Series Question Choices endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "description": "Page number",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            },
+            "description": "Number of items per page",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field to order by",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    },
+                    "count": {
+                      "type": "integer",
+                      "example": 100
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Questions"
+        ]
+      },
+      "post": {
+        "operationId": "CreateSeriesQuestionChoice",
+        "summary": "Create Series Question Choice",
+        "description": "Create Series Question Choice endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SeriesQuestionChoiceCreateInputs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Questions::Choices"
+        ]
+      }
+    },
+    "/series/{seriesId}/questions/{questionId}/choices/reorder": {
+      "put": {
+        "operationId": "ReorderSeriesQuestionChoices",
+        "summary": "Reorder Series Question Choices",
+        "description": "Reorder Series Question Choices endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "choicesIds",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Filter by choicesIds",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Questions::Choices"
+        ]
+      }
+    },
+    "/series/{seriesId}/questions/{questionId}/choices/{choiceId}": {
+      "get": {
+        "operationId": "GetSeriesQuestionChoice",
+        "summary": "Get Series Question Choice",
+        "description": "Get Series Question Choice endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "choiceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The choice identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Questions"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateSeriesQuestionChoice",
+        "summary": "Update Series Question Choice",
+        "description": "Update Series Question Choice endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "choiceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The choice identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "choice",
+            "schema": {
+              "$ref": "#/components/schemas/SeriesQuestionChoiceUpdateInputs"
+            },
+            "description": "Filter by choice",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Questions::Choices"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteSeriesQuestionChoice",
+        "summary": "Delete Series Question Choice",
+        "description": "Delete Series Question Choice endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "choiceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The choice identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Questions::Choices"
+        ]
+      }
+    },
     "/series/{seriesId}/registrations": {
       "get": {
         "operationId": "GetSeriesRegistrations",
@@ -62922,6 +63749,137 @@
                     "count": {
                       "type": "integer",
                       "example": 100
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Registrations"
+        ]
+      }
+    },
+    "/series/{seriesId}/registrations/{registrationId}/responses": {
+      "get": {
+        "operationId": "GetSeriesRegistrationResponses",
+        "summary": "Get Series Registration Responses",
+        "description": "Get Series Registration Responses endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "registrationId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The registration identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Series::Registrations"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateSeriesRegistrationResponses",
+        "summary": "Update Series Registration Responses",
+        "description": "Update Series Registration Responses endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "seriesId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The series identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "registrationId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The registration identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "responses",
+            "schema": {
+              "$ref": "#/components/schemas/SeriesRegistrationResponsesUpdateInputs[\"responses\"]"
+            },
+            "description": "Filter by responses",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -81646,6 +82604,366 @@
           }
         ]
       },
+      "SeriesQuestionType": {
+        "type": "string",
+        "enum": [
+          "text",
+          "textarea",
+          "number",
+          "time",
+          "date",
+          "toggle",
+          "select",
+          "radio",
+          "checkbox",
+          "search",
+          "file",
+          "location"
+        ]
+      },
+      "BaseSeriesQuestionChoice": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "supply": {
+            "type": "number",
+            "nullable": true
+          },
+          "sortOrder": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "value",
+          "text",
+          "description",
+          "supply",
+          "sortOrder"
+        ]
+      },
+      "SeriesQuestionChoice": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSeriesQuestionChoice"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "questionId": {
+                "type": "string"
+              },
+              "question": {
+                "$ref": "#/components/schemas/BaseSeriesQuestion"
+              },
+              "createdAt": {
+                "type": "string"
+              },
+              "updatedAt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "questionId",
+              "question",
+              "createdAt",
+              "updatedAt"
+            ]
+          }
+        ]
+      },
+      "SeriesQuestionChoiceTranslation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "locale": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "locale",
+          "value",
+          "text",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "BaseSeriesQuestion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "seriesId": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/SeriesQuestionType"
+          },
+          "name": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "placeholder": {
+            "type": "string",
+            "nullable": true
+          },
+          "default": {
+            "type": "string",
+            "nullable": true
+          },
+          "searchListId": {
+            "type": "string",
+            "nullable": true
+          },
+          "searchList": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseSearchList"
+              }
+            ],
+            "nullable": true
+          },
+          "mutable": {
+            "type": "boolean"
+          },
+          "min": {
+            "type": "string",
+            "nullable": true
+          },
+          "max": {
+            "type": "string",
+            "nullable": true
+          },
+          "masked": {
+            "type": "boolean"
+          },
+          "validation": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationOption": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LocationQuestionOption"
+              }
+            ],
+            "nullable": true
+          },
+          "sortOrder": {
+            "type": "number"
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "choices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BaseSeriesQuestionChoice"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "seriesId",
+          "type",
+          "name",
+          "required",
+          "description",
+          "label",
+          "placeholder",
+          "default",
+          "searchListId",
+          "searchList",
+          "mutable",
+          "min",
+          "max",
+          "masked",
+          "validation",
+          "validationMessage",
+          "locationOption",
+          "sortOrder",
+          "featured",
+          "choices"
+        ]
+      },
+      "SeriesQuestion": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSeriesQuestion"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dashboardVisibility": {
+                "type": "boolean"
+              },
+              "createdAt": {
+                "type": "string"
+              },
+              "updatedAt": {
+                "type": "string"
+              },
+              "translations": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SeriesQuestionTranslation"
+                }
+              }
+            },
+            "required": [
+              "dashboardVisibility",
+              "createdAt",
+              "updatedAt"
+            ]
+          }
+        ]
+      },
+      "SeriesQuestionTranslation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "locale": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "placeholder": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "locale",
+          "label",
+          "placeholder",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "BaseSeriesRegistrationQuestionResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "questionId": {
+            "type": "string"
+          },
+          "question": {
+            "$ref": "#/components/schemas/BaseSeriesQuestion"
+          },
+          "fileId": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "value",
+          "questionId",
+          "question",
+          "fileId"
+        ]
+      },
+      "SeriesRegistrationQuestionResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseSeriesRegistrationQuestionResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "file": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BaseFile"
+                  }
+                ],
+                "nullable": true
+              },
+              "createdAt": {
+                "type": "string"
+              },
+              "updatedAt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "file",
+              "createdAt",
+              "updatedAt"
+            ]
+          }
+        ]
+      },
       "BaseSeries": {
         "type": "object",
         "properties": {
@@ -81685,6 +83003,14 @@
               }
             ],
             "nullable": true
+          },
+          "_count": {
+            "type": "object",
+            "properties": {
+              "questions": {
+                "type": "number"
+              }
+            }
           }
         },
         "required": [
@@ -81841,6 +83167,12 @@
           },
           "status": {
             "$ref": "#/components/schemas/PurchaseStatus"
+          },
+          "responses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BaseSeriesRegistrationQuestionResponse"
+            }
           }
         },
         "required": [
@@ -93880,6 +95212,309 @@
         "properties": {
           "status": {
             "$ref": "#/components/schemas/PurchaseStatus"
+          }
+        }
+      },
+      "SeriesRegistrationResponsesUpdateInputs": {
+        "type": "object",
+        "properties": {
+          "responses": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "questionId": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "questionId",
+                "value"
+              ]
+            }
+          }
+        },
+        "required": [
+          "responses"
+        ]
+      },
+      "SeriesQuestionCreateInputs": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/SeriesQuestionType"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "placeholder": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "default": {
+            "type": "string",
+            "nullable": true
+          },
+          "dashboardVisibility": {
+            "type": "boolean"
+          },
+          "mutable": {
+            "type": "boolean"
+          },
+          "min": {
+            "type": "string",
+            "nullable": true
+          },
+          "max": {
+            "type": "string",
+            "nullable": true
+          },
+          "masked": {
+            "type": "boolean"
+          },
+          "validation": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationOption": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LocationQuestionOption"
+              }
+            ],
+            "nullable": true
+          },
+          "sortOrder": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "searchListId": {
+            "type": "string",
+            "nullable": true
+          },
+          "choices": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ]
+      },
+      "SeriesQuestionUpdateInputs": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SeriesQuestionType"
+              }
+            ],
+            "nullable": true
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "placeholder": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "default": {
+            "type": "string",
+            "nullable": true
+          },
+          "dashboardVisibility": {
+            "type": "boolean"
+          },
+          "mutable": {
+            "type": "boolean"
+          },
+          "min": {
+            "type": "string",
+            "nullable": true
+          },
+          "max": {
+            "type": "string",
+            "nullable": true
+          },
+          "masked": {
+            "type": "boolean"
+          },
+          "validation": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationOption": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LocationQuestionOption"
+              }
+            ],
+            "nullable": true
+          },
+          "sortOrder": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "searchListId": {
+            "type": "string",
+            "nullable": true
+          },
+          "choices": {
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BaseSeriesQuestionChoice"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "SeriesQuestionChoiceCreateInputs": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "supply": {
+            "type": "number",
+            "nullable": true
+          },
+          "sortOrder": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "required": [
+          "value"
+        ]
+      },
+      "SeriesQuestionChoiceUpdateInputs": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "nullable": true
+          },
+          "text": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "supply": {
+            "type": "number",
+            "nullable": true
+          },
+          "sortOrder": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true
+          }
+        }
+      },
+      "SeriesQuestionTranslationUpdateInputs": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "placeholder": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
           }
         }
       },

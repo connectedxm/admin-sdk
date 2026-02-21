@@ -2473,6 +2473,103 @@ export interface SearchField {
 
 export interface Self extends User {}
 
+export enum SeriesQuestionType {
+  text = "text",
+  textarea = "textarea",
+  number = "number",
+  time = "time",
+  date = "date",
+  toggle = "toggle",
+  select = "select",
+  radio = "radio",
+  checkbox = "checkbox",
+  search = "search",
+  file = "file",
+  location = "location",
+}
+
+export interface BaseSeriesQuestionChoice {
+  id: string;
+  value: string;
+  text: string | null;
+  description: string | null;
+  supply: number | null;
+  sortOrder: number;
+}
+
+export interface SeriesQuestionChoice extends BaseSeriesQuestionChoice {
+  questionId: string;
+  question: BaseSeriesQuestion;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SeriesQuestionChoiceTranslation {
+  id: string;
+  locale: string;
+  value: string;
+  text: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSeriesQuestion {
+  id: string;
+  seriesId: string;
+  type: SeriesQuestionType;
+  name: string;
+  required: boolean;
+  description: string | null;
+  label: string | null;
+  placeholder: string | null;
+  default: string | null;
+  searchListId: string | null;
+  searchList: BaseSearchList | null;
+  mutable: boolean;
+  min: string | null;
+  max: string | null;
+  masked: boolean;
+  validation: string | null;
+  validationMessage: string | null;
+  locationOption: LocationQuestionOption | null;
+  sortOrder: number;
+  featured: boolean;
+  choices: BaseSeriesQuestionChoice[];
+}
+
+export interface SeriesQuestion extends BaseSeriesQuestion {
+  dashboardVisibility: boolean;
+  createdAt: string;
+  updatedAt: string;
+  translations?: SeriesQuestionTranslation[];
+}
+
+export interface SeriesQuestionTranslation {
+  id: string;
+  locale: string;
+  label: string | null;
+  placeholder: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseSeriesRegistrationQuestionResponse {
+  id: string;
+  value: string;
+  questionId: string;
+  question: BaseSeriesQuestion;
+  fileId: number | null;
+}
+
+export interface SeriesRegistrationQuestionResponse
+  extends BaseSeriesRegistrationQuestionResponse {
+  file: BaseFile | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface BaseSeries {
   id: string;
   slug: string;
@@ -2483,6 +2580,9 @@ export interface BaseSeries {
   endDate: string | null;
   imageId: string | null;
   image: BaseImage | null;
+  _count?: {
+    questions?: number;
+  };
 }
 
 export interface Series extends BaseSeries {
@@ -2521,6 +2621,7 @@ export interface BaseSeriesRegistration {
   accountId: string;
   account: BaseAccount;
   status: PurchaseStatus;
+  responses?: BaseSeriesRegistrationQuestionResponse[];
 }
 
 export interface SeriesRegistration extends BaseSeriesRegistration {

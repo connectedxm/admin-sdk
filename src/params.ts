@@ -31,9 +31,11 @@ import {
   PassTypeAccessLevel,
   PassTypeVisibility,
   PaymentIntegrationType,
+  BaseSeriesQuestionChoice,
   PurchaseStatus,
   RegistrationQuestionType,
   ReportFilters,
+  SeriesQuestionType,
   SupportTicketState,
   SupportTicketType,
   SurveyQuestionType,
@@ -808,6 +810,77 @@ export interface SeriesRegistrationCreateInputs {
 
 export interface SeriesRegistrationUpdateInputs {
   status?: PurchaseStatus;
+}
+
+export interface SeriesRegistrationResponsesUpdateInputs {
+  responses: { questionId: string; value: string }[];
+}
+
+export interface SeriesQuestionCreateInputs {
+  name: string;
+  type: keyof typeof SeriesQuestionType;
+  required?: boolean;
+  label?: string | null;
+  placeholder?: string | null;
+  description?: string | null;
+  default?: string | null;
+  dashboardVisibility?: boolean;
+  mutable?: boolean;
+  min?: string | null;
+  max?: string | null;
+  masked?: boolean;
+  validation?: string | null;
+  validationMessage?: string | null;
+  locationOption?: keyof typeof LocationQuestionOption | null;
+  sortOrder?: number | string | null;
+  featured?: boolean;
+  searchListId?: string | null;
+  choices?: string[];
+}
+
+export interface SeriesQuestionUpdateInputs {
+  name?: string | null;
+  type?: keyof typeof SeriesQuestionType | null;
+  required?: boolean;
+  label?: string | null;
+  placeholder?: string | null;
+  description?: string | null;
+  default?: string | null;
+  dashboardVisibility?: boolean;
+  mutable?: boolean;
+  min?: string | null;
+  max?: string | null;
+  masked?: boolean;
+  validation?: string | null;
+  validationMessage?: string | null;
+  locationOption?: keyof typeof LocationQuestionOption | null;
+  sortOrder?: number | string | null;
+  featured?: boolean;
+  searchListId?: string | null;
+  /** Create: choice values as strings. GET response: full choice objects (not sent on update). */
+  choices?: string[] | BaseSeriesQuestionChoice[];
+}
+
+export interface SeriesQuestionChoiceCreateInputs {
+  value: string;
+  text?: string | null;
+  description?: string | null;
+  supply?: number | null;
+  sortOrder?: number | string | null;
+}
+
+export interface SeriesQuestionChoiceUpdateInputs {
+  value?: string | null;
+  text?: string | null;
+  description?: string | null;
+  supply?: number | null;
+  sortOrder?: number | string | null;
+}
+
+export interface SeriesQuestionTranslationUpdateInputs {
+  label?: string | null;
+  placeholder?: string | null;
+  description?: string | null;
 }
 
 export interface EventRegistrationBypassUpdateInputs {

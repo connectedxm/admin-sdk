@@ -2560,11 +2560,11 @@ export interface BaseSeriesRegistrationQuestionResponse {
   value: string;
   questionId: string;
   question: BaseSeriesQuestion;
-  fileId: number | null;
 }
 
 export interface SeriesRegistrationQuestionResponse
   extends BaseSeriesRegistrationQuestionResponse {
+  fileId: number | null;
   file: BaseFile | null;
   createdAt: string;
   updatedAt: string;

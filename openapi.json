@@ -82919,18 +82919,13 @@
           },
           "question": {
             "$ref": "#/components/schemas/BaseSeriesQuestion"
-          },
-          "fileId": {
-            "type": "number",
-            "nullable": true
           }
         },
         "required": [
           "id",
           "value",
           "questionId",
-          "question",
-          "fileId"
+          "question"
         ]
       },
       "SeriesRegistrationQuestionResponse": {
@@ -82941,6 +82936,10 @@
           {
             "type": "object",
             "properties": {
+              "fileId": {
+                "type": "number",
+                "nullable": true
+              },
               "file": {
                 "allOf": [
                   {
@@ -82957,6 +82956,7 @@
               }
             },
             "required": [
+              "fileId",
               "file",
               "createdAt",
               "updatedAt"

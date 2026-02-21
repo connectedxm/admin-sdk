@@ -83003,14 +83003,6 @@
               }
             ],
             "nullable": true
-          },
-          "_count": {
-            "type": "object",
-            "properties": {
-              "questions": {
-                "type": "number"
-              }
-            }
           }
         },
         "required": [

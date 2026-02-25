@@ -491,6 +491,7 @@ export interface EventActivation extends BaseEventActivation {
   image: BaseImage | null;
   protectionCode: number | null;
   longDescription: string | null;
+  continuousScanning: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -960,6 +961,29 @@ export interface EventAddOnTranslation {
   updatedAt: string;
 }
 
+export interface BaseEventAttribute {
+  id: string;
+  name: string;
+}
+
+export interface EventAttribute extends BaseEventAttribute {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BasePassAttribute {
+  id: string;
+  attributeId: string;
+  attribute: { id: string; name: string };
+  value: string;
+}
+
+export interface PassAttribute extends BasePassAttribute {
+  attribute: BaseEventAttribute;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface EventActivationTranslation {
   locale: string;
   name: string;
@@ -1144,6 +1168,7 @@ export interface Event extends BaseEvent {
   activityFeedEnabled: boolean;
   meetingId: string | null;
   meeting: BaseMeeting | null;
+  continuousScanning: boolean;
   options: object | null;
 }
 
@@ -1894,6 +1919,8 @@ export interface EventPass extends BaseEventPass {
   payerId: string | null;
   payer: BaseAccount | null;
   seriesRegistration: BaseSeriesRegistration | null;
+  attributes: BasePassAttribute[];
+  badgeColor: string | null;
 }
 
 export interface BasePassAddOn {
@@ -2674,6 +2701,8 @@ export interface EventSession extends BaseEventSession {
   blocks: BaseEventBlock[] | null;
   activationId: string | null;
   activation: BaseEventActivation | null;
+  allowedTiers: BaseTier[];
+  continuousScanning: boolean;
 }
 
 export interface EventSessionTranslation {
@@ -3569,6 +3598,8 @@ export interface EventPassType extends BaseEventPassType {
   disallowedTiers: BaseTier[];
   groupPassDescription: string | null;
   requiredPassType: BaseEventPassType | null;
+  printable: boolean;
+  badgeColor: string | null;
   _count: {
     purchases: number;
   };

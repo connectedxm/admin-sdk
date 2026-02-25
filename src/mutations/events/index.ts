@@ -2,6 +2,7 @@ export * from "./access";
 export * from "./activations";
 export * from "./addOns";
 export * from "./attendees";
+export * from "./attributes";
 export * from "./benefits";
 export * from "./blocks";
 export * from "./bypass";

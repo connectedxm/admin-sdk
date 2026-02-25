@@ -1,3 +1,4 @@
+export * from "./attributes";
 export * from "./useAddEventPassAddOn";
 export * from "./useCancelEventPass";
 export * from "./useCheckinEventPass";

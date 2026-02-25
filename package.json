@@ -1,6 +1,6 @@
 {
   "name": "@connectedxm/admin",
-  "version": "6.11.2",
+  "version": "6.12.0",
   "description": "Admin API javascript SDK",
   "author": "ConnectedXM Inc.",
   "type": "module",
@@ -24,7 +24,7 @@
     "upgrade": "ncu -i --format group"
   },
   "dependencies": {
-    "axios": "^1.13.4",
+    "axios": "^1.13.5",
     "immer": "^10.1.1"
   },
   "peerDependencies": {
@@ -33,14 +33,14 @@
   },
   "devDependencies": {
     "tsx": "^4.21.0",
-    "@babel/parser": "^7.28.6",
-    "@swc/core": "^1.15.11",
-    "@tanstack/react-query": "^5.90.20",
+    "@babel/parser": "^7.29.0",
+    "@swc/core": "^1.15.13",
+    "@tanstack/react-query": "^5.90.21",
     "@types/glob": "^8.1.0",
     "@types/node": "^22.15.3",
-    "@types/react": "^19.2.10",
-    "@typescript-eslint/eslint-plugin": "^8.54.0",
-    "@typescript-eslint/parser": "^8.54.0",
+    "@types/react": "^19.2.14",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
     "comment-parser": "^1.4.5",
     "eslint": "^9.39.2",
     "eslint-plugin-react": "^7.37.5",
@@ -50,9 +50,9 @@
     "recast": "^0.23.11",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3",
-    "vitest": "^3.2.3"
+    "vitest": "^4.0.18"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.57.1"
+    "@rollup/rollup-linux-x64-gnu": "4.59.0"
   }
 }

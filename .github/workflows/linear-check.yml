@@ -1,0 +1,26 @@
+name: Linear Ticket Check
+
+permissions:
+  contents: read
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  linear-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for Linear ticket
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.pull_request?.body || '';
+            const hasTicket = /ENG-\d+/.test(body);
+            if (!hasTicket) {
+              core.setFailed('No valid Linear ticket (ENG-[number]) found in PR description. Please add a Linear ticket reference, e.g. ENG-123');
+            } else {
+              console.log('✅ Linear ticket found in PR description');
+            }

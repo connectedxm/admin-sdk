@@ -460,6 +460,7 @@ export interface EventActivationCreateInputs {
   email?: boolean;
   push?: boolean;
   accessLevel?: keyof typeof PassTypeAccessLevel;
+  continuousScanning?: boolean;
 }
 
 export interface EventActivationTranslationUpdateInputs {
@@ -480,6 +481,7 @@ export interface EventActivationUpdateInputs {
   type?: keyof typeof EventActivationType;
   protectionCode?: number | string | null;
   accessLevel?: keyof typeof PassTypeAccessLevel;
+  continuousScanning?: boolean;
 }
 
 export interface EventActivationCompletionCreateInputs {
@@ -523,6 +525,18 @@ export interface EventAddOnUpdateInputs {
   taxCode?: string | null;
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
+}
+
+export interface EventAttributeCreateInputs {
+  name: string;
+}
+
+export interface EventAttributeUpdateInputs {
+  name?: string | null;
+}
+
+export interface PassAttributesUpdateInputs {
+  values: { attributeId: string; value: string }[];
 }
 
 export interface EventBadgeFieldUpdateInputs {
@@ -649,6 +663,7 @@ export interface EventCreateInputs {
   paymentIntegrationId?: string | null;
   template?: boolean;
   meetingId?: string | null;
+  continuousScanning?: boolean;
 }
 
 export interface EventUpdateInputs {
@@ -708,6 +723,7 @@ export interface EventUpdateInputs {
   options?: object | null;
   paymentIntegrationId?: string | null;
   meetingId?: string | null;
+  continuousScanning?: boolean;
 }
 
 export interface EventEmailUpdateInputs {
@@ -781,6 +797,7 @@ export interface EventPassCreateInputs {
   location?: string | null;
   ticketId?: string | null;
   usedAt?: string | null;
+  badgeColor?: string | null;
 }
 
 export interface EventPassUpdateInputs {
@@ -789,6 +806,7 @@ export interface EventPassUpdateInputs {
   ticketId?: string | null;
   couponId?: string | null;
   usedAt?: string | null;
+  badgeColor?: string | null;
 }
 
 export interface EventAttendeeCreateInputs {
@@ -914,6 +932,7 @@ export interface EventSessionCreateInputs {
   taxLocation?: keyof typeof TaxLocationType;
   meetingId?: string | null;
   activationId?: string | null;
+  continuousScanning?: boolean;
 }
 
 export interface EventSessionAccessUpdateInputs {
@@ -956,6 +975,7 @@ export interface EventSessionUpdateInputs {
   taxLocation?: keyof typeof TaxLocationType;
   meetingId?: string | null;
   activationId?: string | null;
+  continuousScanning?: boolean;
 }
 
 export interface EventSessionLocationCreateInputs {
@@ -1811,6 +1831,8 @@ export interface PassTypeCreateInputs {
   taxCode?: string | null;
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
+  printable?: boolean;
+  badgeColor?: string | null;
 }
 
 export interface PassTypeUpdateInputs {
@@ -1842,6 +1864,8 @@ export interface PassTypeUpdateInputs {
   taxCode?: string | null;
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
+  printable?: boolean;
+  badgeColor?: string | null;
 }
 
 export interface TierCreateInputs {

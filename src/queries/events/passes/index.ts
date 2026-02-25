@@ -1,3 +1,4 @@
+export * from "./attributes";
 export * from "./useGetEventPass";
 export * from "./useGetEventPassAccesses";
 export * from "./useGetEventPassAddOns";

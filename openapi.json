@@ -149,6 +149,10 @@
       "description": "Manage lodging and accommodation reservations made by event attendees, including room assignments and reservation details"
     },
     {
+      "name": "Events::Attributes",
+      "description": "Operations for events::attributes"
+    },
+    {
       "name": "Events::Benefits",
       "description": "Associate exclusive offers or discounts with events, providing special perks to attendees or members"
     },
@@ -207,6 +211,10 @@
     {
       "name": "Events::Passes",
       "description": "Manage individual passes purchased by attendees, tracking pass status, check-ins, and access permissions for event registration"
+    },
+    {
+      "name": "Events::Passes::Attributes",
+      "description": "Operations for events::passes::attributes"
     },
     {
       "name": "Events::Passtypes",
@@ -16012,6 +16020,357 @@
         ]
       }
     },
+    "/events/{eventId}/attributes": {
+      "get": {
+        "operationId": "GetEventAttributes",
+        "summary": "Get Event Attributes",
+        "description": "Get Event Attributes endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "description": "Page number",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            },
+            "description": "Number of items per page",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field to order by",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    },
+                    "count": {
+                      "type": "integer",
+                      "example": 100
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Attributes"
+        ]
+      },
+      "post": {
+        "operationId": "CreateEventAttribute",
+        "summary": "Create Event Attribute",
+        "description": "Create Event Attribute endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventAttributeCreateInputs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Attributes"
+        ]
+      }
+    },
+    "/events/{eventId}/attributes/{attributeId}": {
+      "get": {
+        "operationId": "GetEventAttribute",
+        "summary": "Get Event Attribute",
+        "description": "Get Event Attribute endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "attributeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The attribute identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Attributes"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateEventAttribute",
+        "summary": "Update Event Attribute",
+        "description": "Update Event Attribute endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "attributeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The attribute identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventAttributeUpdateInputs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Attributes"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteEventAttribute",
+        "summary": "Delete Event Attribute",
+        "description": "Delete Event Attribute endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "attributeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The attribute identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Attributes"
+        ]
+      }
+    },
     "/events/{eventId}/benefits/{benefitId}": {
       "post": {
         "operationId": "AddEventBenefit",
@@ -25926,6 +26285,257 @@
         },
         "tags": [
           "Events::Attendees"
+        ]
+      }
+    },
+    "/events/{eventId}/passes/{passId}/attributes": {
+      "get": {
+        "operationId": "GetEventPassAttributes",
+        "summary": "Get Event Pass Attributes",
+        "description": "Get Event Pass Attributes endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "passId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The pass identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "description": "Page number",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            },
+            "description": "Number of items per page",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field to order by",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    },
+                    "count": {
+                      "type": "integer",
+                      "example": 100
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Passes::Attributes"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateEventPassAttributes",
+        "summary": "Update Event Pass Attributes",
+        "description": "Update Event Pass Attributes endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "passId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The pass identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PassAttributesUpdateInputs"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Passes::Attributes"
+        ]
+      }
+    },
+    "/events/{eventId}/passes/{passId}/attributes/{attributeId}": {
+      "delete": {
+        "operationId": "RemoveEventPassAttribute",
+        "summary": "Remove Event Pass Attribute",
+        "description": "Remove Event Pass Attribute endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "passId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The pass identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "attributeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The attribute identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Passes::Attributes"
         ]
       }
     },
@@ -74674,6 +75284,9 @@
                 "type": "string",
                 "nullable": true
               },
+              "continuousScanning": {
+                "type": "boolean"
+              },
               "createdAt": {
                 "type": "string"
               },
@@ -74688,6 +75301,7 @@
               "image",
               "protectionCode",
               "longDescription",
+              "continuousScanning",
               "createdAt",
               "updatedAt"
             ]
@@ -76765,6 +77379,104 @@
           "updatedAt"
         ]
       },
+      "BaseEventAttribute": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "EventAttribute": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseEventAttribute"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "createdAt": {
+                "type": "string"
+              },
+              "updatedAt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "createdAt",
+              "updatedAt"
+            ]
+          }
+        ]
+      },
+      "BasePassAttribute": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "attributeId": {
+            "type": "string"
+          },
+          "attribute": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ]
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "attributeId",
+          "attribute",
+          "value"
+        ]
+      },
+      "PassAttribute": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BasePassAttribute"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "attribute": {
+                "$ref": "#/components/schemas/BaseEventAttribute"
+              },
+              "createdAt": {
+                "type": "string"
+              },
+              "updatedAt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "attribute",
+              "createdAt",
+              "updatedAt"
+            ]
+          }
+        ]
+      },
       "EventActivationTranslation": {
         "type": "object",
         "properties": {
@@ -77487,6 +78199,9 @@
                 ],
                 "nullable": true
               },
+              "continuousScanning": {
+                "type": "boolean"
+              },
               "options": {
                 "type": "object",
                 "nullable": true
@@ -77530,6 +78245,7 @@
               "activityFeedEnabled",
               "meetingId",
               "meeting",
+              "continuousScanning",
               "options"
             ]
           }
@@ -80331,6 +81047,16 @@
                   }
                 ],
                 "nullable": true
+              },
+              "attributes": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BasePassAttribute"
+                }
+              },
+              "badgeColor": {
+                "type": "string",
+                "nullable": true
               }
             },
             "required": [
@@ -80340,7 +81066,9 @@
               "lineItem",
               "payerId",
               "payer",
-              "seriesRegistration"
+              "seriesRegistration",
+              "attributes",
+              "badgeColor"
             ]
           }
         ]
@@ -83398,6 +84126,15 @@
                   }
                 ],
                 "nullable": true
+              },
+              "allowedTiers": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BaseTier"
+                }
+              },
+              "continuousScanning": {
+                "type": "boolean"
               }
             },
             "required": [
@@ -83411,7 +84148,9 @@
               "meeting",
               "blocks",
               "activationId",
-              "activation"
+              "activation",
+              "allowedTiers",
+              "continuousScanning"
             ]
           }
         ]
@@ -86337,6 +87076,13 @@
                 ],
                 "nullable": true
               },
+              "printable": {
+                "type": "boolean"
+              },
+              "badgeColor": {
+                "type": "string",
+                "nullable": true
+              },
               "_count": {
                 "type": "object",
                 "properties": {
@@ -86357,6 +87103,8 @@
               "disallowedTiers",
               "groupPassDescription",
               "requiredPassType",
+              "printable",
+              "badgeColor",
               "_count"
             ]
           }
@@ -93741,6 +94489,9 @@
           },
           "accessLevel": {
             "$ref": "#/components/schemas/PassTypeAccessLevel"
+          },
+          "continuousScanning": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -93822,6 +94573,9 @@
           },
           "accessLevel": {
             "$ref": "#/components/schemas/PassTypeAccessLevel"
+          },
+          "continuousScanning": {
+            "type": "boolean"
           }
         }
       },
@@ -94020,6 +94774,52 @@
             "$ref": "#/components/schemas/TaxLocationType"
           }
         }
+      },
+      "EventAttributeCreateInputs": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "EventAttributeUpdateInputs": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "PassAttributesUpdateInputs": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "attributeId": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "attributeId",
+                "value"
+              ]
+            }
+          }
+        },
+        "required": [
+          "values"
+        ]
       },
       "EventBadgeFieldUpdateInputs": {
         "type": "object",
@@ -94609,6 +95409,9 @@
           "meetingId": {
             "type": "string",
             "nullable": true
+          },
+          "continuousScanning": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -94870,6 +95673,9 @@
           "meetingId": {
             "type": "string",
             "nullable": true
+          },
+          "continuousScanning": {
+            "type": "boolean"
           }
         }
       },
@@ -95121,6 +95927,10 @@
           "usedAt": {
             "type": "string",
             "nullable": true
+          },
+          "badgeColor": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -95148,6 +95958,10 @@
             "nullable": true
           },
           "usedAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "badgeColor": {
             "type": "string",
             "nullable": true
           }
@@ -95634,6 +96448,9 @@
           "activationId": {
             "type": "string",
             "nullable": true
+          },
+          "continuousScanning": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -95791,6 +96608,9 @@
           "activationId": {
             "type": "string",
             "nullable": true
+          },
+          "continuousScanning": {
+            "type": "boolean"
           }
         }
       },
@@ -98879,6 +99699,13 @@
           },
           "taxLocation": {
             "$ref": "#/components/schemas/TaxLocationType"
+          },
+          "printable": {
+            "type": "boolean"
+          },
+          "badgeColor": {
+            "type": "string",
+            "nullable": true
           }
         },
         "required": [
@@ -99042,6 +99869,13 @@
           },
           "taxLocation": {
             "$ref": "#/components/schemas/TaxLocationType"
+          },
+          "printable": {
+            "type": "boolean"
+          },
+          "badgeColor": {
+            "type": "string",
+            "nullable": true
           }
         }
       },

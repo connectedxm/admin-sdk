@@ -26423,10 +26423,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PassAttributesUpdateInputs"
-                }
+                "$ref": "#/components/schemas/PassAttributesUpdateInputs"
               }
             }
           }

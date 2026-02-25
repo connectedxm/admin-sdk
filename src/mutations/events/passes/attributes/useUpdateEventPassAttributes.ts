@@ -15,7 +15,7 @@ import { EVENT_PASS_ATTRIBUTES_QUERY_KEY } from "@src/queries";
 export interface UpdateEventPassAttributesParams extends MutationParams {
   eventId: string;
   passId: string;
-  values: PassAttributesUpdateInputs[];
+  values: PassAttributesUpdateInputs;
 }
 
 /**

@@ -91758,7 +91758,8 @@
           "LEAVE_GROUP",
           "ADD_TO_TIER",
           "SUBSCRIBE_TO_CHANNEL",
-          "SEND_WEBHOOK"
+          "SEND_WEBHOOK",
+          "COMPLETE_ACTIVATION"
         ]
       },
       "BaseSideEffect": {
@@ -91802,6 +91803,10 @@
           "sendWebhookId": {
             "type": "string",
             "nullable": true
+          },
+          "completeActivationId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "required": [
@@ -91814,7 +91819,8 @@
           "leaveGroupId",
           "addToTierId",
           "subscribeToChannelId",
-          "sendWebhookId"
+          "sendWebhookId",
+          "completeActivationId"
         ]
       },
       "SideEffect": {
@@ -91903,6 +91909,14 @@
                 ],
                 "nullable": true
               },
+              "completeActivation": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BaseEventActivation"
+                  }
+                ],
+                "nullable": true
+              },
               "createdAt": {
                 "type": "string"
               },
@@ -91922,6 +91936,7 @@
               "addToTier",
               "subscribeToChannel",
               "sendWebhook",
+              "completeActivation",
               "createdAt",
               "updatedAt"
             ]

@@ -4807,6 +4807,7 @@ export enum SideEffectActionType {
   ADD_TO_TIER = "ADD_TO_TIER",
   SUBSCRIBE_TO_CHANNEL = "SUBSCRIBE_TO_CHANNEL",
   SEND_WEBHOOK = "SEND_WEBHOOK",
+  COMPLETE_ACTIVATION = "COMPLETE_ACTIVATION",
 }
 
 export interface BaseSideEffect {
@@ -4822,6 +4823,7 @@ export interface BaseSideEffect {
   addToTierId: string | null;
   subscribeToChannelId: string | null;
   sendWebhookId: string | null;
+  completeActivationId: string | null;
 }
 
 export interface SideEffect extends BaseSideEffect {
@@ -4838,6 +4840,7 @@ export interface SideEffect extends BaseSideEffect {
   addToTier: BaseTier | null;
   subscribeToChannel: BaseChannel | null;
   sendWebhook: BaseWebhook | null;
+  completeActivation: BaseEventActivation | null;
   // Timestamps
   createdAt: string;
   updatedAt: string;

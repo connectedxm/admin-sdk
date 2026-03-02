@@ -1,2 +1,2 @@
+export * from "./useUpdateEventBadgeTemplate";
 export * from "./useUpdateEventCheckinCode";
-export * from "./useUpdateEventZplTemplate";

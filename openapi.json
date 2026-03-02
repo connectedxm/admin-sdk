@@ -43713,6 +43713,69 @@
         ]
       }
     },
+    "/events/{eventId}/template": {
+      "put": {
+        "operationId": "UpdateEventBadgeTemplate",
+        "summary": "Update Event Badge Template",
+        "description": "Update Event Badge Template endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::OnSite"
+        ]
+      }
+    },
     "/events/{eventId}/threads": {
       "get": {
         "operationId": "GetEventThreads",
@@ -44718,68 +44781,6 @@
         },
         "tags": [
           "Events::Tracks"
-        ]
-      }
-    },
-    "/events/{eventId}/zpl-template": {
-      "put": {
-        "operationId": "UpdateEventZplTemplate",
-        "summary": "Update Event Zpl Template",
-        "description": "Update Event Zpl Template endpoint",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "eventId",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The event identifier",
-            "required": true
-          },
-          {
-            "in": "query",
-            "name": "zplTemplate",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Filter by zplTemplate",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "ok"
-                      ]
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Success message."
-                    },
-                    "data": {
-                      "$ref": "#/components/schemas/EventOnSite"
-                    }
-                  },
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Events::OnSite"
         ]
       }
     },

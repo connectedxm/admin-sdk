@@ -4,3 +4,4 @@ export * from "./submissions";
 export * from "./translations";
 export * from "./useGetSurvey";
 export * from "./useGetSurveys";
+export * from "./useGetSurveySessions";

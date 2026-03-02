@@ -2311,7 +2311,6 @@ export interface SurveyCreateInputs {
   replyTo?: string | null;
   emailBody?: string | null;
   eventId?: string | null;
-  sessions?: string[] | null;
   activationId?: string | null;
 }
 
@@ -2326,7 +2325,6 @@ export interface SurveyUpdateInputs {
   replyTo?: string | null;
   emailBody?: string | null;
   eventId?: string | null;
-  sessions?: string[] | null;
   activationId?: string | null;
 }
 

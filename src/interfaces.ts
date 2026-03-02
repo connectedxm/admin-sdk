@@ -481,7 +481,9 @@ export interface BaseEventActivation {
   type: keyof typeof EventActivationType;
   accessLevel: keyof typeof PassTypeAccessLevel;
   survey: BaseSurvey | null;
-  sessions: BaseEventSession[] | null;
+  _count: {
+    sessions: number;
+  };
 }
 
 export interface EventActivation extends BaseEventActivation {
@@ -4502,7 +4504,6 @@ export interface Survey extends BaseSurvey {
   updatedAt: string;
   eventId: string | null;
   event: BaseEvent | null;
-  sessions: BaseEventSession[] | null;
   activationId: string | null;
   activation: BaseEventActivation | null;
   passTypes: BaseEventPassType[] | null;

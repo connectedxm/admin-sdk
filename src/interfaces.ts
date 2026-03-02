@@ -481,7 +481,7 @@ export interface BaseEventActivation {
   type: keyof typeof EventActivationType;
   accessLevel: keyof typeof PassTypeAccessLevel;
   survey: BaseSurvey | null;
-  session: BaseEventSession | null;
+  sessions: BaseEventSession[] | null;
 }
 
 export interface EventActivation extends BaseEventActivation {
@@ -4427,6 +4427,15 @@ export interface EventMediaItem extends BaseEventMediaItem {
   updatedAt: string;
 }
 
+export interface EventMediaItemTranslation {
+  id: string;
+  locale: string;
+  name: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface BaseEventSponsorshipLevel {
   id: string;
   slug: string;
@@ -4493,8 +4502,7 @@ export interface Survey extends BaseSurvey {
   updatedAt: string;
   eventId: string | null;
   event: BaseEvent | null;
-  sessionId: string | null;
-  session: BaseEventSession | null;
+  sessions: BaseEventSession[] | null;
   activationId: string | null;
   activation: BaseEventActivation | null;
   passTypes: BaseEventPassType[] | null;

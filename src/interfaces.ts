@@ -1021,41 +1021,6 @@ export interface EventEmailTranslation {
 
 export interface EventListing {}
 
-export enum BadgeFieldType {
-  attribute = "attribute",
-  question = "question",
-  tier = "tier",
-  ticket = "ticket",
-  pass = "pass",
-  session = "session",
-  session_question = "session_question",
-}
-
-export enum BadgeFieldTransformation {
-  uppercase = "uppercase",
-  lowercase = "lowercase",
-}
-
-export interface BaseEventOnSiteBadgeField {
-  id: number;
-  eventId: string;
-  name: string;
-  type: BadgeFieldType;
-  lookup: string | null;
-  maxLength: number | null;
-  defaultValue: string | null;
-  transformation: BadgeFieldTransformation | null;
-  iconData: string | null;
-  sessionId: string | null;
-  sortOrder: number;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface EventOnSiteBadgeField extends BaseEventOnSiteBadgeField {
-  onSite: EventOnSite;
-}
-
 export interface BaseEventOnSite {
   eventId: string;
   authenticationCode: number;

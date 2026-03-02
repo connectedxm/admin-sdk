@@ -5,10 +5,7 @@ import {
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
-import {
-  EVENT_ZPL_TEMPLATE_BADGE_FIELDS_QUERY_KEY,
-  SET_EVENT_ON_SITE_QUERY_DATA,
-} from "@src/queries";
+import { SET_EVENT_ON_SITE_QUERY_DATA } from "@src/queries";
 
 /**
  * @category Params
@@ -36,9 +33,6 @@ export const UpdateEventZplTemplate = async ({
 
   if (queryClient && data.status === "ok") {
     SET_EVENT_ON_SITE_QUERY_DATA(queryClient, [eventId], data);
-    queryClient.invalidateQueries({
-      queryKey: EVENT_ZPL_TEMPLATE_BADGE_FIELDS_QUERY_KEY(eventId),
-    });
   }
   return data;
 };

@@ -6,8 +6,6 @@ import {
   AdminNotificationType,
   AdvertisementType,
   AuthLayout,
-  BadgeFieldTransformation,
-  BadgeFieldType,
   ContentGuestType,
   CustomModulePosition,
   DefaultAuthAction,
@@ -537,17 +535,6 @@ export interface EventAttributeUpdateInputs {
 
 export interface PassAttributesUpdateInputs {
   values: { attributeId: string; value: string }[];
-}
-
-export interface EventBadgeFieldUpdateInputs {
-  type?: keyof typeof BadgeFieldType | null;
-  lookup?: string | null;
-  maxLength?: number | string | null;
-  defaultValue?: string | null;
-  transformation?: keyof typeof BadgeFieldTransformation | null;
-  sortOrder?: number | string | null;
-  iconData?: string | null;
-  sessionId?: string | null;
 }
 
 export interface EventCouponCreateInputs {

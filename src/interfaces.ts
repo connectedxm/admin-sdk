@@ -1061,14 +1061,12 @@ export interface EventOnSiteBadgeField extends BaseEventOnSiteBadgeField {
 export interface BaseEventOnSite {
   eventId: string;
   authenticationCode: number;
-  zplTemplate: string | null;
+  badgeTemplate: string | null;
   createdAt: string;
   updatedAt: string;
 }
 
-export interface EventOnSite extends BaseEventOnSite {
-  badgeFields: BaseEventOnSiteBadgeField[];
-}
+export interface EventOnSite extends BaseEventOnSite {}
 
 export interface BaseEventPage {
   id: string;

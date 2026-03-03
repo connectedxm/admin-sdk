@@ -15,7 +15,7 @@ import {
  */
 export interface DeleteEventMediaItemTranslationParams extends MutationParams {
   eventId: string;
-  mediaId: string;
+  mediaItemId: string;
   locale: string;
 }
 
@@ -25,7 +25,7 @@ export interface DeleteEventMediaItemTranslationParams extends MutationParams {
  */
 export const DeleteEventMediaItemTranslation = async ({
   eventId,
-  mediaId,
+  mediaItemId,
   locale,
   adminApiParams,
   queryClient,
@@ -33,17 +33,17 @@ export const DeleteEventMediaItemTranslation = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
 
   const { data } = await connectedXM.delete(
-    `/events/${eventId}/media/${mediaId}/translations/${locale}`
+    `/events/${eventId}/media/${mediaItemId}/translations/${locale}`
   );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_MEDIA_ITEM_TRANSLATIONS_QUERY_KEY(eventId, mediaId),
+      queryKey: EVENT_MEDIA_ITEM_TRANSLATIONS_QUERY_KEY(eventId, mediaItemId),
     });
     queryClient.invalidateQueries({
       queryKey: EVENT_MEDIA_ITEM_TRANSLATION_QUERY_KEY(
         eventId,
-        mediaId,
+        mediaItemId,
         locale
       ),
     });

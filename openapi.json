@@ -133,6 +133,10 @@
       "description": "Manage on-site check-ins, control access activations for special zones or sessions, and set permissions for scanning devices and staff"
     },
     {
+      "name": "Events::Activations::Sessions",
+      "description": "Operations for events::activations::sessions"
+    },
+    {
       "name": "Events::Addons",
       "description": "Offer supplementary items or services like exclusive workshops, networking upgrades, merchandise, or special amenities that enhance the attendee experience"
     },
@@ -555,6 +559,10 @@
     {
       "name": "Surveys::Sections",
       "description": "Organize survey questions into logical sections, improving survey structure and user experience"
+    },
+    {
+      "name": "Surveys::Sessions",
+      "description": "Operations for surveys::sessions"
     },
     {
       "name": "Surveys::Submissions",
@@ -12830,6 +12838,253 @@
         },
         "tags": [
           "Events::Activations"
+        ]
+      }
+    },
+    "/events/{eventId}/activations/{activationId}/sessions": {
+      "get": {
+        "operationId": "GetEventActivationSessions",
+        "summary": "Get Event Activation Sessions",
+        "description": "Get Event Activation Sessions endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "activationId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The activation identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "description": "Page number",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            },
+            "description": "Number of items per page",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field to order by",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    },
+                    "count": {
+                      "type": "integer",
+                      "example": 100
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Activations"
+        ]
+      }
+    },
+    "/events/{eventId}/activations/{activationId}/sessions/{sessionId}": {
+      "post": {
+        "operationId": "AddEventActivationSession",
+        "summary": "Add Event Activation Session",
+        "description": "Add Event Activation Session endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "activationId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The activation identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "sessionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The session identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Activations::Sessions"
+        ]
+      },
+      "delete": {
+        "operationId": "RemoveEventActivationSession",
+        "summary": "Remove Event Activation Session",
+        "description": "Remove Event Activation Session endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "activationId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The activation identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "sessionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The session identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Activations::Sessions"
         ]
       }
     },
@@ -69077,6 +69332,229 @@
         ]
       }
     },
+    "/surveys/{surveyId}/sessions": {
+      "get": {
+        "operationId": "GetSurveySessions",
+        "summary": "Get Survey Sessions",
+        "description": "Get Survey Sessions endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "surveyId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The survey identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "description": "Page number",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            },
+            "description": "Number of items per page",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field to order by",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSession"
+                      }
+                    },
+                    "count": {
+                      "type": "integer",
+                      "example": 100
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Surveys"
+        ]
+      }
+    },
+    "/surveys/{surveyId}/sessions/{sessionId}": {
+      "post": {
+        "operationId": "AddSurveySession",
+        "summary": "Add Survey Session",
+        "description": "Add Survey Session endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "surveyId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The survey identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "sessionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The session identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Survey"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Surveys::Sessions"
+        ]
+      },
+      "delete": {
+        "operationId": "RemoveSurveySession",
+        "summary": "Remove Survey Session",
+        "description": "Remove Survey Session endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "surveyId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The survey identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "sessionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The session identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Survey"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Surveys::Sessions"
+        ]
+      }
+    },
     "/surveys/{surveyId}/submissions": {
       "get": {
         "operationId": "GetSurveySubmissions",
@@ -73828,6 +74306,14 @@
           "countryStateCity"
         ]
       },
+      "OnSiteScanType": {
+        "type": "string",
+        "enum": [
+          "both",
+          "qr",
+          "code128"
+        ]
+      },
       "BaseOrganizationModule": {
         "type": "object",
         "properties": {
@@ -74996,13 +75482,16 @@
             ],
             "nullable": true
           },
-          "session": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BaseEventSession"
+          "_count": {
+            "type": "object",
+            "properties": {
+              "sessions": {
+                "type": "number"
               }
-            ],
-            "nullable": true
+            },
+            "required": [
+              "sessions"
+            ]
           }
         },
         "required": [
@@ -75016,7 +75505,7 @@
           "type",
           "accessLevel",
           "survey",
-          "session"
+          "_count"
         ]
       },
       "EventActivation": {
@@ -75056,6 +75545,9 @@
               "continuousScanning": {
                 "type": "boolean"
               },
+              "scanType": {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              },
               "createdAt": {
                 "type": "string"
               },
@@ -75071,6 +75563,7 @@
               "protectionCode",
               "longDescription",
               "continuousScanning",
+              "scanType",
               "createdAt",
               "updatedAt"
             ]
@@ -77851,6 +78344,9 @@
               "continuousScanning": {
                 "type": "boolean"
               },
+              "scanType": {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              },
               "options": {
                 "type": "object",
                 "nullable": true
@@ -77895,6 +78391,7 @@
               "meetingId",
               "meeting",
               "continuousScanning",
+              "scanType",
               "options"
             ]
           }
@@ -83784,6 +84281,9 @@
               },
               "continuousScanning": {
                 "type": "boolean"
+              },
+              "scanType": {
+                "$ref": "#/components/schemas/OnSiteScanType"
               }
             },
             "required": [
@@ -83799,7 +84299,8 @@
               "activationId",
               "activation",
               "allowedTiers",
-              "continuousScanning"
+              "continuousScanning",
+              "scanType"
             ]
           }
         ]
@@ -89922,6 +90423,39 @@
           }
         ]
       },
+      "EventMediaItemTranslation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "locale": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "locale",
+          "name",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
       "BaseEventSponsorshipLevel": {
         "type": "object",
         "properties": {
@@ -90192,18 +90726,6 @@
                 ],
                 "nullable": true
               },
-              "sessionId": {
-                "type": "string",
-                "nullable": true
-              },
-              "session": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/BaseEventSession"
-                  }
-                ],
-                "nullable": true
-              },
               "activationId": {
                 "type": "string",
                 "nullable": true
@@ -90242,8 +90764,6 @@
               "updatedAt",
               "eventId",
               "event",
-              "sessionId",
-              "session",
               "activationId",
               "activation",
               "passTypes",
@@ -94156,6 +94676,14 @@
           },
           "continuousScanning": {
             "type": "boolean"
+          },
+          "scanType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -94240,6 +94768,14 @@
           },
           "continuousScanning": {
             "type": "boolean"
+          },
+          "scanType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
           }
         }
       },
@@ -95017,6 +95553,14 @@
           },
           "continuousScanning": {
             "type": "boolean"
+          },
+          "scanType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -95281,6 +95825,14 @@
           },
           "continuousScanning": {
             "type": "boolean"
+          },
+          "scanType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
           }
         }
       },
@@ -96056,6 +96608,14 @@
           },
           "continuousScanning": {
             "type": "boolean"
+          },
+          "scanType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -96216,6 +96776,14 @@
           },
           "continuousScanning": {
             "type": "boolean"
+          },
+          "scanType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
           }
         }
       },
@@ -101041,10 +101609,6 @@
             "type": "string",
             "nullable": true
           },
-          "sessionId": {
-            "type": "string",
-            "nullable": true
-          },
           "activationId": {
             "type": "string",
             "nullable": true
@@ -101096,10 +101660,6 @@
             "nullable": true
           },
           "eventId": {
-            "type": "string",
-            "nullable": true
-          },
-          "sessionId": {
             "type": "string",
             "nullable": true
           },
@@ -101753,6 +102313,19 @@
                 "type": "string"
               }
             ],
+            "nullable": true
+          }
+        }
+      },
+      "EventMediaItemTranslationUpdateInputs": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
             "nullable": true
           }
         }

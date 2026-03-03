@@ -39,6 +39,7 @@ import {
   SurveyQuestionType,
   TaxLocationType,
   ThreadCircleAccountRole,
+  OnSiteScanType,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -459,6 +460,7 @@ export interface EventActivationCreateInputs {
   push?: boolean;
   accessLevel?: keyof typeof PassTypeAccessLevel;
   continuousScanning?: boolean;
+  scanType?: keyof typeof OnSiteScanType | null;
 }
 
 export interface EventActivationTranslationUpdateInputs {
@@ -480,6 +482,7 @@ export interface EventActivationUpdateInputs {
   protectionCode?: number | string | null;
   accessLevel?: keyof typeof PassTypeAccessLevel;
   continuousScanning?: boolean;
+  scanType?: keyof typeof OnSiteScanType | null;
 }
 
 export interface EventActivationCompletionCreateInputs {
@@ -651,6 +654,7 @@ export interface EventCreateInputs {
   template?: boolean;
   meetingId?: string | null;
   continuousScanning?: boolean;
+  scanType?: keyof typeof OnSiteScanType | null;
 }
 
 export interface EventUpdateInputs {
@@ -711,6 +715,7 @@ export interface EventUpdateInputs {
   paymentIntegrationId?: string | null;
   meetingId?: string | null;
   continuousScanning?: boolean;
+  scanType?: keyof typeof OnSiteScanType | null;
 }
 
 export interface EventEmailUpdateInputs {
@@ -920,6 +925,7 @@ export interface EventSessionCreateInputs {
   meetingId?: string | null;
   activationId?: string | null;
   continuousScanning?: boolean;
+  scanType?: keyof typeof OnSiteScanType | null;
 }
 
 export interface EventSessionAccessUpdateInputs {
@@ -963,6 +969,7 @@ export interface EventSessionUpdateInputs {
   meetingId?: string | null;
   activationId?: string | null;
   continuousScanning?: boolean;
+  scanType?: keyof typeof OnSiteScanType | null;
 }
 
 export interface EventSessionLocationCreateInputs {
@@ -2298,7 +2305,6 @@ export interface SurveyCreateInputs {
   replyTo?: string | null;
   emailBody?: string | null;
   eventId?: string | null;
-  sessionId?: string | null;
   activationId?: string | null;
 }
 
@@ -2313,7 +2319,6 @@ export interface SurveyUpdateInputs {
   replyTo?: string | null;
   emailBody?: string | null;
   eventId?: string | null;
-  sessionId?: string | null;
   activationId?: string | null;
 }
 
@@ -2485,6 +2490,11 @@ export interface EventMediaItemUpdateInputs {
   name?: string | null;
   description?: string | null;
   sortOrder?: number | string | null;
+}
+
+export interface EventMediaItemTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
 }
 
 export interface EventSponsorshipLevelCreateInputs {

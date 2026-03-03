@@ -11,25 +11,28 @@ import { SET_EVENT_ON_SITE_QUERY_DATA } from "@src/queries";
  * @category Params
  * @group Event-OnSite
  */
-export interface UpdateEventZplTemplateParams extends MutationParams {
+export interface UpdateEventBadgeTemplateParams extends MutationParams {
   eventId: string;
-  zplTemplate: string;
+  badgeTemplate: object;
 }
 
 /**
  * @category Methods
  * @group Event-OnSite
  */
-export const UpdateEventZplTemplate = async ({
+export const UpdateEventBadgeTemplate = async ({
   eventId,
-  zplTemplate,
+  badgeTemplate,
   adminApiParams,
   queryClient,
-}: UpdateEventZplTemplateParams): Promise<ConnectedXMResponse<EventOnSite>> => {
+}: UpdateEventBadgeTemplateParams): Promise<
+  ConnectedXMResponse<EventOnSite>
+> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.put(`/events/${eventId}/zpl-template`, {
-    zplTemplate,
-  });
+  const { data } = await connectedXM.put(
+    `/events/${eventId}/template`,
+    badgeTemplate
+  );
 
   if (queryClient && data.status === "ok") {
     SET_EVENT_ON_SITE_QUERY_DATA(queryClient, [eventId], data);
@@ -41,17 +44,17 @@ export const UpdateEventZplTemplate = async ({
  * @category Mutations
  * @group Event-OnSite
  */
-export const useUpdateEventZplTemplate = (
+export const useUpdateEventBadgeTemplate = (
   options: Omit<
     ConnectedXMMutationOptions<
-      Awaited<ReturnType<typeof UpdateEventZplTemplate>>,
-      Omit<UpdateEventZplTemplateParams, "queryClient" | "adminApiParams">
+      Awaited<ReturnType<typeof UpdateEventBadgeTemplate>>,
+      Omit<UpdateEventBadgeTemplateParams, "queryClient" | "adminApiParams">
     >,
     "mutationFn"
   > = {}
 ) => {
   return useConnectedMutation<
-    UpdateEventZplTemplateParams,
-    Awaited<ReturnType<typeof UpdateEventZplTemplate>>
-  >(UpdateEventZplTemplate, options);
+    UpdateEventBadgeTemplateParams,
+    Awaited<ReturnType<typeof UpdateEventBadgeTemplate>>
+  >(UpdateEventBadgeTemplate, options);
 };

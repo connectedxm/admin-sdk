@@ -43713,6 +43713,69 @@
         ]
       }
     },
+    "/events/{eventId}/template": {
+      "put": {
+        "operationId": "UpdateEventBadgeTemplate",
+        "summary": "Update Event Badge Template",
+        "description": "Update Event Badge Template endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::OnSite"
+        ]
+      }
+    },
     "/events/{eventId}/threads": {
       "get": {
         "operationId": "GetEventThreads",
@@ -44718,68 +44781,6 @@
         },
         "tags": [
           "Events::Tracks"
-        ]
-      }
-    },
-    "/events/{eventId}/zpl-template": {
-      "put": {
-        "operationId": "UpdateEventZplTemplate",
-        "summary": "Update Event Zpl Template",
-        "description": "Update Event Zpl Template endpoint",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "eventId",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The event identifier",
-            "required": true
-          },
-          {
-            "in": "query",
-            "name": "zplTemplate",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Filter by zplTemplate",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "ok"
-                      ]
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Success message."
-                    },
-                    "data": {
-                      "$ref": "#/components/schemas/EventOnSite"
-                    }
-                  },
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Events::OnSite"
         ]
       }
     },
@@ -73827,6 +73828,14 @@
           "countryStateCity"
         ]
       },
+      "OnSiteScanType": {
+        "type": "string",
+        "enum": [
+          "both",
+          "qr",
+          "code128"
+        ]
+      },
       "BaseOrganizationModule": {
         "type": "object",
         "properties": {
@@ -75055,6 +75064,9 @@
               "continuousScanning": {
                 "type": "boolean"
               },
+              "scanType": {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              },
               "createdAt": {
                 "type": "string"
               },
@@ -75070,6 +75082,7 @@
               "protectionCode",
               "longDescription",
               "continuousScanning",
+              "scanType",
               "createdAt",
               "updatedAt"
             ]
@@ -77364,112 +77377,6 @@
         "type": "object",
         "properties": {}
       },
-      "BadgeFieldType": {
-        "type": "string",
-        "enum": [
-          "attribute",
-          "question",
-          "tier",
-          "ticket",
-          "pass",
-          "session",
-          "session_question"
-        ]
-      },
-      "BadgeFieldTransformation": {
-        "type": "string",
-        "enum": [
-          "uppercase",
-          "lowercase"
-        ]
-      },
-      "BaseEventOnSiteBadgeField": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number"
-          },
-          "eventId": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "type": {
-            "$ref": "#/components/schemas/BadgeFieldType"
-          },
-          "lookup": {
-            "type": "string",
-            "nullable": true
-          },
-          "maxLength": {
-            "type": "number",
-            "nullable": true
-          },
-          "defaultValue": {
-            "type": "string",
-            "nullable": true
-          },
-          "transformation": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BadgeFieldTransformation"
-              }
-            ],
-            "nullable": true
-          },
-          "iconData": {
-            "type": "string",
-            "nullable": true
-          },
-          "sessionId": {
-            "type": "string",
-            "nullable": true
-          },
-          "sortOrder": {
-            "type": "number"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "eventId",
-          "name",
-          "type",
-          "lookup",
-          "maxLength",
-          "defaultValue",
-          "transformation",
-          "iconData",
-          "sessionId",
-          "sortOrder",
-          "createdAt",
-          "updatedAt"
-        ]
-      },
-      "EventOnSiteBadgeField": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/BaseEventOnSiteBadgeField"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "onSite": {
-                "$ref": "#/components/schemas/EventOnSite"
-              }
-            },
-            "required": [
-              "onSite"
-            ]
-          }
-        ]
-      },
       "BaseEventOnSite": {
         "type": "object",
         "properties": {
@@ -77956,6 +77863,9 @@
               "continuousScanning": {
                 "type": "boolean"
               },
+              "scanType": {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              },
               "options": {
                 "type": "object",
                 "nullable": true
@@ -78000,6 +77910,7 @@
               "meetingId",
               "meeting",
               "continuousScanning",
+              "scanType",
               "options"
             ]
           }
@@ -83889,6 +83800,9 @@
               },
               "continuousScanning": {
                 "type": "boolean"
+              },
+              "scanType": {
+                "$ref": "#/components/schemas/OnSiteScanType"
               }
             },
             "required": [
@@ -83904,7 +83818,8 @@
               "activationId",
               "activation",
               "allowedTiers",
-              "continuousScanning"
+              "continuousScanning",
+              "scanType"
             ]
           }
         ]
@@ -94261,6 +94176,14 @@
           },
           "continuousScanning": {
             "type": "boolean"
+          },
+          "scanType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -94345,6 +94268,14 @@
           },
           "continuousScanning": {
             "type": "boolean"
+          },
+          "scanType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
           }
         }
       },
@@ -94589,65 +94520,6 @@
         "required": [
           "values"
         ]
-      },
-      "EventBadgeFieldUpdateInputs": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BadgeFieldType"
-              }
-            ],
-            "nullable": true
-          },
-          "lookup": {
-            "type": "string",
-            "nullable": true
-          },
-          "maxLength": {
-            "oneOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "nullable": true
-          },
-          "defaultValue": {
-            "type": "string",
-            "nullable": true
-          },
-          "transformation": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BadgeFieldTransformation"
-              }
-            ],
-            "nullable": true
-          },
-          "sortOrder": {
-            "oneOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "nullable": true
-          },
-          "iconData": {
-            "type": "string",
-            "nullable": true
-          },
-          "sessionId": {
-            "type": "string",
-            "nullable": true
-          }
-        }
       },
       "EventCouponCreateInputs": {
         "type": "object",
@@ -95181,6 +95053,14 @@
           },
           "continuousScanning": {
             "type": "boolean"
+          },
+          "scanType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -95445,6 +95325,14 @@
           },
           "continuousScanning": {
             "type": "boolean"
+          },
+          "scanType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
           }
         }
       },
@@ -96220,6 +96108,14 @@
           },
           "continuousScanning": {
             "type": "boolean"
+          },
+          "scanType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -96380,6 +96276,14 @@
           },
           "continuousScanning": {
             "type": "boolean"
+          },
+          "scanType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
           }
         }
       },

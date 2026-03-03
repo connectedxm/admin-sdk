@@ -21,7 +21,7 @@ import {
  */
 export interface UpdateEventMediaItemTranslationParams extends MutationParams {
   eventId: string;
-  mediaId: string;
+  mediaItemId: string;
   locale: ISupportedLocale;
   eventMediaItemTranslation: EventMediaItemTranslationUpdateInputs;
 }
@@ -32,7 +32,7 @@ export interface UpdateEventMediaItemTranslationParams extends MutationParams {
  */
 export const UpdateEventMediaItemTranslation = async ({
   eventId,
-  mediaId,
+  mediaItemId,
   eventMediaItemTranslation,
   locale,
   adminApiParams,
@@ -45,17 +45,17 @@ export const UpdateEventMediaItemTranslation = async ({
   const { data } = await connectedXM.put<
     ConnectedXMResponse<EventMediaItemTranslation>
   >(
-    `/events/${eventId}/media/${mediaId}/translations/${locale}`,
+    `/events/${eventId}/media/${mediaItemId}/translations/${locale}`,
     eventMediaItemTranslation
   );
 
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
-      queryKey: EVENT_MEDIA_ITEM_TRANSLATIONS_QUERY_KEY(eventId, mediaId),
+      queryKey: EVENT_MEDIA_ITEM_TRANSLATIONS_QUERY_KEY(eventId, mediaItemId),
     });
     SET_EVENT_MEDIA_ITEM_TRANSLATION_QUERY_DATA(
       queryClient,
-      [eventId, mediaId, data.data?.locale],
+      [eventId, mediaItemId, data.data?.locale],
       data
     );
   }

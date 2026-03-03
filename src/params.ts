@@ -2305,7 +2305,6 @@ export interface SurveyCreateInputs {
   replyTo?: string | null;
   emailBody?: string | null;
   eventId?: string | null;
-  sessionId?: string | null;
   activationId?: string | null;
 }
 
@@ -2320,7 +2319,6 @@ export interface SurveyUpdateInputs {
   replyTo?: string | null;
   emailBody?: string | null;
   eventId?: string | null;
-  sessionId?: string | null;
   activationId?: string | null;
 }
 
@@ -2492,6 +2490,11 @@ export interface EventMediaItemUpdateInputs {
   name?: string | null;
   description?: string | null;
   sortOrder?: number | string | null;
+}
+
+export interface EventMediaItemTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
 }
 
 export interface EventSponsorshipLevelCreateInputs {

@@ -73828,6 +73828,14 @@
           "countryStateCity"
         ]
       },
+      "OnSiteScanType": {
+        "type": "string",
+        "enum": [
+          "both",
+          "qr",
+          "code128"
+        ]
+      },
       "BaseOrganizationModule": {
         "type": "object",
         "properties": {
@@ -75056,6 +75064,9 @@
               "continuousScanning": {
                 "type": "boolean"
               },
+              "scanType": {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              },
               "createdAt": {
                 "type": "string"
               },
@@ -75071,6 +75082,7 @@
               "protectionCode",
               "longDescription",
               "continuousScanning",
+              "scanType",
               "createdAt",
               "updatedAt"
             ]
@@ -77851,6 +77863,9 @@
               "continuousScanning": {
                 "type": "boolean"
               },
+              "scanType": {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              },
               "options": {
                 "type": "object",
                 "nullable": true
@@ -77895,6 +77910,7 @@
               "meetingId",
               "meeting",
               "continuousScanning",
+              "scanType",
               "options"
             ]
           }
@@ -83784,6 +83800,9 @@
               },
               "continuousScanning": {
                 "type": "boolean"
+              },
+              "scanType": {
+                "$ref": "#/components/schemas/OnSiteScanType"
               }
             },
             "required": [
@@ -83799,7 +83818,8 @@
               "activationId",
               "activation",
               "allowedTiers",
-              "continuousScanning"
+              "continuousScanning",
+              "scanType"
             ]
           }
         ]
@@ -94156,6 +94176,14 @@
           },
           "continuousScanning": {
             "type": "boolean"
+          },
+          "scanType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -94240,6 +94268,14 @@
           },
           "continuousScanning": {
             "type": "boolean"
+          },
+          "scanType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
           }
         }
       },
@@ -95017,6 +95053,14 @@
           },
           "continuousScanning": {
             "type": "boolean"
+          },
+          "scanType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -95281,6 +95325,14 @@
           },
           "continuousScanning": {
             "type": "boolean"
+          },
+          "scanType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
           }
         }
       },
@@ -96056,6 +96108,14 @@
           },
           "continuousScanning": {
             "type": "boolean"
+          },
+          "scanType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -96216,6 +96276,14 @@
           },
           "continuousScanning": {
             "type": "boolean"
+          },
+          "scanType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
           }
         }
       },

@@ -64483,17 +64483,18 @@
             },
             "description": "The registration identifier",
             "required": true
-          },
-          {
-            "in": "query",
-            "name": "responses",
-            "schema": {
-              "$ref": "#/components/schemas/SeriesRegistrationResponsesUpdateInputs[\"responses\"]"
-            },
-            "description": "Filter by responses",
-            "required": true
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SeriesRegistrationResponsesUpdateInputs"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful response",
@@ -64513,7 +64514,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "nullable": true
+                      "type": "object"
                     }
                   },
                   "required": [

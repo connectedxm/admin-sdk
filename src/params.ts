@@ -1186,6 +1186,7 @@ export interface EventTranslationUpdateInputs {
   longDescription?: string | null;
   reservationDescription?: string | null;
   imageId?: string | null;
+  activationsDescription?: string | null;
 }
 
 export interface FileUpdateInputs {

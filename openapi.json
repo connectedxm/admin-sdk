@@ -97637,6 +97637,10 @@
           "imageId": {
             "type": "string",
             "nullable": true
+          },
+          "activationsDescription": {
+            "type": "string",
+            "nullable": true
           }
         }
       },

@@ -64483,17 +64483,18 @@
             },
             "description": "The registration identifier",
             "required": true
-          },
-          {
-            "in": "query",
-            "name": "responses",
-            "schema": {
-              "$ref": "#/components/schemas/SeriesRegistrationResponsesUpdateInputs[\"responses\"]"
-            },
-            "description": "Filter by responses",
-            "required": true
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SeriesRegistrationResponsesUpdateInputs"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful response",
@@ -64513,7 +64514,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "nullable": true
+                      "type": "object"
                     }
                   },
                   "required": [
@@ -78347,6 +78348,10 @@
               "scanType": {
                 "$ref": "#/components/schemas/OnSiteScanType"
               },
+              "activationsDescription": {
+                "type": "string",
+                "nullable": true
+              },
               "options": {
                 "type": "object",
                 "nullable": true
@@ -78392,6 +78397,7 @@
               "meeting",
               "continuousScanning",
               "scanType",
+              "activationsDescription",
               "options"
             ]
           }
@@ -78432,6 +78438,10 @@
             ],
             "nullable": true
           },
+          "activationsDescription": {
+            "type": "string",
+            "nullable": true
+          },
           "createdAt": {
             "type": "string"
           },
@@ -78448,6 +78458,7 @@
           "reservationDescription",
           "imageId",
           "image",
+          "activationsDescription",
           "createdAt",
           "updatedAt"
         ]
@@ -95561,6 +95572,10 @@
               }
             ],
             "nullable": true
+          },
+          "activationsDescription": {
+            "type": "string",
+            "nullable": true
           }
         },
         "required": [
@@ -95832,6 +95847,10 @@
                 "$ref": "#/components/schemas/OnSiteScanType"
               }
             ],
+            "nullable": true
+          },
+          "activationsDescription": {
+            "type": "string",
             "nullable": true
           }
         }
@@ -97616,6 +97635,10 @@
             "nullable": true
           },
           "imageId": {
+            "type": "string",
+            "nullable": true
+          },
+          "activationsDescription": {
             "type": "string",
             "nullable": true
           }

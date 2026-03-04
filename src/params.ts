@@ -655,6 +655,7 @@ export interface EventCreateInputs {
   meetingId?: string | null;
   continuousScanning?: boolean;
   scanType?: keyof typeof OnSiteScanType | null;
+  activationsDescription?: string | null;
 }
 
 export interface EventUpdateInputs {
@@ -716,6 +717,7 @@ export interface EventUpdateInputs {
   meetingId?: string | null;
   continuousScanning?: boolean;
   scanType?: keyof typeof OnSiteScanType | null;
+  activationsDescription?: string | null;
 }
 
 export interface EventEmailUpdateInputs {
@@ -1184,6 +1186,7 @@ export interface EventTranslationUpdateInputs {
   longDescription?: string | null;
   reservationDescription?: string | null;
   imageId?: string | null;
+  activationsDescription?: string | null;
 }
 
 export interface FileUpdateInputs {

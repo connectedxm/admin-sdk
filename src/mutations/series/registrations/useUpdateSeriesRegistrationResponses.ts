@@ -18,7 +18,7 @@ import {
 export interface UpdateSeriesRegistrationResponsesParams extends MutationParams {
   seriesId: string;
   registrationId: string;
-  responses: SeriesRegistrationResponsesUpdateInputs["responses"];
+  responses: SeriesRegistrationResponsesUpdateInputs;
 }
 
 /**
@@ -31,11 +31,13 @@ export const UpdateSeriesRegistrationResponses = async ({
   responses,
   adminApiParams,
   queryClient,
-}: UpdateSeriesRegistrationResponsesParams): Promise<ConnectedXMResponse<null>> => {
+}: UpdateSeriesRegistrationResponsesParams): Promise<
+  ConnectedXMResponse<null>
+> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put(
     `/series/${seriesId}/registrations/${registrationId}/responses`,
-    { responses }
+    responses,
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
@@ -44,7 +46,7 @@ export const UpdateSeriesRegistrationResponses = async ({
     queryClient.invalidateQueries({
       queryKey: SERIES_REGISTRATION_RESPONSES_QUERY_KEY(
         seriesId,
-        registrationId
+        registrationId,
       ),
     });
   }
@@ -65,7 +67,7 @@ export const useUpdateSeriesRegistrationResponses = (
       >
     >,
     "mutationFn"
-  > = {}
+  > = {},
 ) => {
   return useConnectedMutation<
     UpdateSeriesRegistrationResponsesParams,

@@ -1142,6 +1142,7 @@ export interface Event extends BaseEvent {
   meeting: BaseMeeting | null;
   continuousScanning: boolean;
   scanType: OnSiteScanType;
+  activationsDescription: string | null;
   options: object | null;
 }
 
@@ -1154,6 +1155,7 @@ export interface EventTranslation {
   reservationDescription: string | null;
   imageId: string | null;
   image: BaseImage | null;
+  activationsDescription: string | null;
   createdAt: string;
   updatedAt: string;
 }

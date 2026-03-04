@@ -78348,6 +78348,10 @@
               "scanType": {
                 "$ref": "#/components/schemas/OnSiteScanType"
               },
+              "activationsDescription": {
+                "type": "string",
+                "nullable": true
+              },
               "options": {
                 "type": "object",
                 "nullable": true
@@ -78393,6 +78397,7 @@
               "meeting",
               "continuousScanning",
               "scanType",
+              "activationsDescription",
               "options"
             ]
           }
@@ -78433,6 +78438,10 @@
             ],
             "nullable": true
           },
+          "activationsDescription": {
+            "type": "string",
+            "nullable": true
+          },
           "createdAt": {
             "type": "string"
           },
@@ -78449,6 +78458,7 @@
           "reservationDescription",
           "imageId",
           "image",
+          "activationsDescription",
           "createdAt",
           "updatedAt"
         ]
@@ -95562,6 +95572,10 @@
               }
             ],
             "nullable": true
+          },
+          "activationsDescription": {
+            "type": "string",
+            "nullable": true
           }
         },
         "required": [
@@ -95833,6 +95847,10 @@
                 "$ref": "#/components/schemas/OnSiteScanType"
               }
             ],
+            "nullable": true
+          },
+          "activationsDescription": {
+            "type": "string",
             "nullable": true
           }
         }

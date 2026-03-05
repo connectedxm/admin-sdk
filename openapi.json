@@ -75475,6 +75475,9 @@
           "accessLevel": {
             "$ref": "#/components/schemas/PassTypeAccessLevel"
           },
+          "sortOrder": {
+            "type": "number"
+          },
           "survey": {
             "allOf": [
               {
@@ -75505,6 +75508,7 @@
           "startAfter",
           "type",
           "accessLevel",
+          "sortOrder",
           "survey",
           "_count"
         ]
@@ -94695,6 +94699,17 @@
               }
             ],
             "nullable": true
+          },
+          "sortOrder": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -94784,6 +94799,17 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/OnSiteScanType"
+              }
+            ],
+            "nullable": true
+          },
+          "sortOrder": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
               }
             ],
             "nullable": true

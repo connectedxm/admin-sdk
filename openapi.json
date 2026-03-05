@@ -90741,6 +90741,9 @@
                 ],
                 "nullable": true
               },
+              "requireCheckIn": {
+                "type": "boolean"
+              },
               "activationId": {
                 "type": "string",
                 "nullable": true
@@ -90779,6 +90782,7 @@
               "updatedAt",
               "eventId",
               "event",
+              "requireCheckIn",
               "activationId",
               "activation",
               "passTypes",
@@ -101636,6 +101640,9 @@
           "requireAuth": {
             "type": "boolean"
           },
+          "requireCheckIn": {
+            "type": "boolean"
+          },
           "submissionsPerAccount": {
             "oneOf": [
               {
@@ -101688,6 +101695,9 @@
             "nullable": true
           },
           "requireAuth": {
+            "type": "boolean"
+          },
+          "requireCheckIn": {
             "type": "boolean"
           },
           "submissionsPerAccount": {

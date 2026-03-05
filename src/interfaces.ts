@@ -4462,6 +4462,7 @@ export interface Survey extends BaseSurvey {
   updatedAt: string;
   eventId: string | null;
   event: BaseEvent | null;
+  requireCheckIn: boolean;
   activationId: string | null;
   activation: BaseEventActivation | null;
   passTypes: BaseEventPassType[] | null;

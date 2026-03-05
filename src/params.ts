@@ -2306,6 +2306,7 @@ export interface SurveyCreateInputs {
   description?: string | null;
   imageId?: string | null;
   requireAuth?: boolean;
+  requireCheckIn?: boolean;
   submissionsPerAccount?: string | number;
   replyTo?: string | null;
   emailBody?: string | null;
@@ -2320,6 +2321,7 @@ export interface SurveyUpdateInputs {
   description?: string | null;
   imageId?: string | null;
   requireAuth?: boolean;
+  requireCheckIn?: boolean;
   submissionsPerAccount?: string | number;
   replyTo?: string | null;
   emailBody?: string | null;

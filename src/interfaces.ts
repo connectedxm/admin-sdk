@@ -486,6 +486,7 @@ export interface BaseEventActivation {
   startAfter: string | null;
   type: keyof typeof EventActivationType;
   accessLevel: keyof typeof PassTypeAccessLevel;
+  sortOrder: number;
   survey: BaseSurvey | null;
   _count: {
     sessions: number;

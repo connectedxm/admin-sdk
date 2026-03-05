@@ -461,6 +461,7 @@ export interface EventActivationCreateInputs {
   accessLevel?: keyof typeof PassTypeAccessLevel;
   continuousScanning?: boolean;
   scanType?: keyof typeof OnSiteScanType | null;
+  sortOrder?: number | string | null;
 }
 
 export interface EventActivationTranslationUpdateInputs {
@@ -483,6 +484,7 @@ export interface EventActivationUpdateInputs {
   accessLevel?: keyof typeof PassTypeAccessLevel;
   continuousScanning?: boolean;
   scanType?: keyof typeof OnSiteScanType | null;
+  sortOrder?: number | string | null;
 }
 
 export interface EventActivationCompletionCreateInputs {

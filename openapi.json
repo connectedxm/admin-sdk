@@ -770,6 +770,59 @@
         ]
       }
     },
+    "/accounts/internal-ref-id/{internalRefId}": {
+      "get": {
+        "operationId": "GetAccountsByInternalRefId",
+        "summary": "Get Accounts By Internal Ref Id",
+        "description": "Get Accounts By Internal Ref Id endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "internalRefId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The internalRef identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Accounts"
+        ]
+      }
+    },
     "/accounts/invitations": {
       "get": {
         "operationId": "GetAccountInvitations",

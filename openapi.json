@@ -770,6 +770,62 @@
         ]
       }
     },
+    "/accounts/internal-ref-id/{internalRefId}": {
+      "get": {
+        "operationId": "GetAccountsByInternalRefId",
+        "summary": "Get Accounts By Internal Ref Id",
+        "description": "Get Accounts By Internal Ref Id endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "internalRefId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The internalRef identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Account"
+                      }
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Accounts"
+        ]
+      }
+    },
     "/accounts/invitations": {
       "get": {
         "operationId": "GetAccountInvitations",
@@ -837,7 +893,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AccountInvitation"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -1316,7 +1375,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AccountAddress"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -1381,7 +1443,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/AccountAddress"
                     }
                   },
                   "required": [
@@ -1513,7 +1575,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/AccountAddress"
                     }
                   },
                   "required": [
@@ -1777,7 +1839,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EmailReceipt"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -3464,7 +3529,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/NotificationPreferences"
                     }
                   },
                   "required": [
@@ -3659,7 +3724,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventAttendee"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -5185,7 +5253,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AdvertisementClick"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -5283,7 +5354,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AdvertisementView"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -5697,7 +5771,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BaseAccount"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -5804,7 +5881,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EmailReceipt"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -5924,7 +6004,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/Announcement"
                     }
                   },
                   "required": [
@@ -5975,7 +6055,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/Announcement"
                     }
                   },
                   "required": [
@@ -7332,7 +7412,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BookingSpaceAvailability"
+                      }
                     }
                   },
                   "required": [
@@ -7402,7 +7485,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/BookingSpaceAvailability"
                     }
                   },
                   "required": [
@@ -7482,7 +7565,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/BookingSpaceAvailability"
                     }
                   },
                   "required": [
@@ -7551,7 +7634,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -7663,7 +7746,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BookingSpaceBlackout"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -7737,7 +7823,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/BookingSpaceBlackout"
                     }
                   },
                   "required": [
@@ -7808,7 +7894,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/BookingSpaceAvailability"
                     }
                   },
                   "required": [
@@ -7879,7 +7965,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/BookingSpaceBlackout"
                     }
                   },
                   "required": [
@@ -7957,7 +8043,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/BookingSpaceBlackout"
                     }
                   },
                   "required": [
@@ -8573,7 +8659,13 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object"
+                        }
+                      }
                     }
                   },
                   "required": [
@@ -9305,7 +9397,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ChannelContent"
                     }
                   },
                   "required": [
@@ -9437,7 +9529,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ChannelContent"
                     }
                   },
                   "required": [
@@ -9728,7 +9820,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ChannelContentGuest"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -9801,7 +9896,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ChannelContentGuest"
                     }
                   },
                   "required": [
@@ -9881,7 +9976,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ChannelContentGuest"
                     }
                   },
                   "required": [
@@ -9959,7 +10054,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ChannelContentGuest"
                     }
                   },
                   "required": [
@@ -10028,7 +10123,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ChannelContent"
                     }
                   },
                   "required": [
@@ -10131,7 +10226,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ChannelContentLike"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -10197,7 +10295,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ChannelContent"
                     }
                   },
                   "required": [
@@ -10269,7 +10367,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ChannelContent"
                     }
                   },
                   "required": [
@@ -10329,7 +10427,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ChannelContent"
                     }
                   },
                   "required": [
@@ -10432,7 +10530,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BaseChannelSubscriber"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -10496,7 +10597,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/BaseChannelSubscriber"
                     }
                   },
                   "required": [
@@ -10547,7 +10648,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/Channel"
                     }
                   },
                   "required": [
@@ -10609,7 +10710,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/BaseChannelSubscriber"
                     }
                   },
                   "required": [
@@ -10679,7 +10780,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/BaseChannelSubscriber"
                     }
                   },
                   "required": [
@@ -10739,7 +10840,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/BaseChannelSubscriber"
                     }
                   },
                   "required": [
@@ -10925,7 +11026,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/DashboardWidget"
+                      }
                     }
                   },
                   "required": [
@@ -11304,7 +11408,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/DashboardWidget"
                     }
                   },
                   "required": [
@@ -11376,7 +11480,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/DashboardWidget"
                     }
                   },
                   "required": [
@@ -12170,7 +12274,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventActivation"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -12235,7 +12342,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventActivation"
                     }
                   },
                   "required": [
@@ -12367,7 +12474,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventActivation"
                     }
                   },
                   "required": [
@@ -12530,7 +12637,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ActivationCompletion"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -12604,7 +12714,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ActivationCompletion"
                     }
                   },
                   "required": [
@@ -12675,7 +12785,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ActivationCompletion"
                     }
                   },
                   "required": [
@@ -12754,7 +12864,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ActivationCompletion"
                     }
                   },
                   "required": [
@@ -12823,7 +12933,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -12926,7 +13036,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSession"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -13001,7 +13114,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventActivation"
                     }
                   },
                   "required": [
@@ -13070,7 +13183,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventActivation"
                     }
                   },
                   "required": [
@@ -13645,7 +13758,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventPassType"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -13789,7 +13905,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventAddOn"
                     }
                   },
                   "required": [
@@ -14229,7 +14345,13 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object"
+                        }
+                      }
                     }
                   },
                   "required": [
@@ -14823,7 +14945,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AttendeePackage"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -14896,7 +15021,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/AttendeePackage"
                     }
                   },
                   "required": [
@@ -14967,7 +15092,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/AttendeePackage"
                     }
                   },
                   "required": [
@@ -15045,7 +15170,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/AttendeePackage"
                     }
                   },
                   "required": [
@@ -15415,7 +15540,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RegistrationFollowup"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -15500,7 +15628,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -15592,7 +15720,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -15787,7 +15915,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RegistrationSection"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -16043,7 +16174,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -16146,7 +16277,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventRoomTypeReservation"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -16253,7 +16387,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TransferLog"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -16351,7 +16488,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventAttribute"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -16416,7 +16556,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventAttribute"
                     }
                   },
                   "required": [
@@ -16478,7 +16618,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventAttribute"
                     }
                   },
                   "required": [
@@ -16548,7 +16688,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventAttribute"
                     }
                   },
                   "required": [
@@ -17187,7 +17327,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSession"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -17425,7 +17568,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RegistrationBypass"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -17490,7 +17636,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationBypass"
                     }
                   },
                   "required": [
@@ -17552,7 +17698,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationBypass"
                     }
                   },
                   "required": [
@@ -17621,7 +17767,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationBypass"
                     }
                   },
                   "required": [
@@ -19610,7 +19756,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Faq"
+                      }
                     }
                   },
                   "required": [
@@ -19922,7 +20071,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RegistrationFollowup"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -19987,7 +20139,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationFollowup"
                     }
                   },
                   "required": [
@@ -20049,7 +20201,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationFollowup"
                     }
                   },
                   "required": [
@@ -20118,7 +20270,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationFollowup"
                     }
                   },
                   "required": [
@@ -20359,7 +20511,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationFollowup"
                     }
                   },
                   "required": [
@@ -20428,7 +20580,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationFollowup"
                     }
                   },
                   "required": [
@@ -20531,7 +20683,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventPassType"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -20606,7 +20761,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationFollowup"
                     }
                   },
                   "required": [
@@ -20675,7 +20830,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationFollowup"
                     }
                   },
                   "required": [
@@ -20778,7 +20933,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RegistrationFollowupQuestion"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -20856,7 +21014,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RegistrationFollowupQuestion"
+                      }
                     }
                   },
                   "required": [
@@ -20927,7 +21088,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationFollowup"
                     }
                   },
                   "required": [
@@ -21005,7 +21166,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationFollowup"
                     }
                   },
                   "required": [
@@ -21074,7 +21235,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationFollowup"
                     }
                   },
                   "required": [
@@ -21273,7 +21434,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationFollowup"
                     }
                   },
                   "required": [
@@ -21351,7 +21512,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationFollowup"
                     }
                   },
                   "required": [
@@ -21583,7 +21744,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventMediaItem"
                     }
                   },
                   "required": [
@@ -21717,7 +21878,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventMediaItem"
                     }
                   },
                   "required": [
@@ -21880,7 +22041,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventPassType"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -21955,7 +22119,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventMediaItem"
                     }
                   },
                   "required": [
@@ -22024,7 +22188,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventMediaItem"
                     }
                   },
                   "required": [
@@ -22588,7 +22752,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventPackagePass"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -22662,7 +22829,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventPackagePass"
                     }
                   },
                   "required": [
@@ -22733,7 +22900,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventPackagePass"
                     }
                   },
                   "required": [
@@ -22811,7 +22978,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventPackagePass"
                     }
                   },
                   "required": [
@@ -24017,7 +24184,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventPassType"
                     }
                   },
                   "required": [
@@ -24086,7 +24253,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventPassType"
                     }
                   },
                   "required": [
@@ -24299,7 +24466,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Tier"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -24374,7 +24544,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventPassType"
                     }
                   },
                   "required": [
@@ -24443,7 +24613,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventPassType"
                     }
                   },
                   "required": [
@@ -24775,7 +24945,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventPassTypePriceSchedule"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -24849,7 +25022,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventPassType"
                     }
                   },
                   "required": [
@@ -24920,7 +25093,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventPassTypePriceSchedule"
                     }
                   },
                   "required": [
@@ -25171,7 +25344,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventPassTypeRefundSchedule"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -25245,7 +25421,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventPassType"
                     }
                   },
                   "required": [
@@ -25316,7 +25492,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventPassTypeRefundSchedule"
                     }
                   },
                   "required": [
@@ -25741,7 +25917,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventPassType"
                     }
                   },
                   "required": [
@@ -26155,7 +26331,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSessionAccess"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -26521,7 +26700,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventPass"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -26628,7 +26810,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PassAttribute"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -26702,7 +26887,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PassAttribute"
+                      }
                     }
                   },
                   "required": [
@@ -26773,7 +26961,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/PassAttribute"
                     }
                   },
                   "required": [
@@ -27264,7 +27452,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RegistrationQuestionResponse"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -27339,7 +27530,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationQuestionResponse"
                     }
                   },
                   "required": [
@@ -27418,7 +27609,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationQuestionResponse"
                     }
                   },
                   "required": [
@@ -27530,7 +27721,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RegistrationQuestionResponseChange"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -27637,7 +27831,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TransferLog"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -27836,7 +28033,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RegistrationQuestion"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -27901,7 +28101,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationQuestion"
                     }
                   },
                   "required": [
@@ -27954,7 +28154,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BaseRegistrationQuestion"
+                      }
                     }
                   },
                   "required": [
@@ -28048,7 +28251,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SummaryData"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -28114,7 +28320,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationQuestion"
                     }
                   },
                   "required": [
@@ -28183,7 +28389,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationQuestion"
                     }
                   },
                   "required": [
@@ -28364,7 +28570,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RegistrationQuestionChoice"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -28438,7 +28647,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationQuestionChoice"
                     }
                   },
                   "required": [
@@ -28512,7 +28721,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RegistrationQuestionChoice"
+                      }
                     }
                   },
                   "required": [
@@ -28583,7 +28795,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationQuestionChoice"
                     }
                   },
                   "required": [
@@ -28842,7 +29054,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RegistrationQuestionChoiceSubQuestion"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -28929,7 +29144,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RegistrationQuestionChoiceSubQuestion"
+                      }
                     }
                   },
                   "required": [
@@ -29009,7 +29227,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationQuestionChoice"
                     }
                   },
                   "required": [
@@ -29096,7 +29314,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationQuestionChoice"
                     }
                   },
                   "required": [
@@ -29174,7 +29392,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -29277,7 +29495,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RegistrationQuestionResponse"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -29353,7 +29574,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationQuestion"
                     }
                   },
                   "required": [
@@ -29413,7 +29634,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationQuestion"
                     }
                   },
                   "required": [
@@ -29569,7 +29790,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventRoomTypeReservation"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -29643,7 +29867,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventRoomTypeReservation"
                     }
                   },
                   "required": [
@@ -29705,7 +29929,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventRoomTypeReservation"
                     }
                   },
                   "required": [
@@ -29784,7 +30008,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventRoomTypeReservation"
                     }
                   },
                   "required": [
@@ -29956,7 +30180,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventPass"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -30040,7 +30267,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventRoomTypeReservation"
                     }
                   },
                   "required": [
@@ -30118,7 +30345,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventRoomTypeReservation"
                     }
                   },
                   "required": [
@@ -30552,7 +30779,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventRoomType"
                     }
                   },
                   "required": [
@@ -30633,7 +30860,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventRoomType"
                     }
                   },
                   "required": [
@@ -30846,7 +31073,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventRoomTypeReservation"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -31100,7 +31330,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventRoomType"
                     }
                   },
                   "required": [
@@ -31377,7 +31607,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventRoomType"
                     }
                   },
                   "required": [
@@ -32478,7 +32708,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventPass"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -32862,7 +33095,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RoundEventQuestion"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -32928,7 +33164,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "object",
+                      "additionalProperties": {
+                        "$ref": "#/components/schemas/MatchQuestionType"
+                      }
                     }
                   },
                   "required": [
@@ -33009,7 +33248,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RoundEventQuestion"
                     }
                   },
                   "required": [
@@ -33174,7 +33413,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RegistrationSection"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -33239,7 +33481,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationSection"
                     }
                   },
                   "required": [
@@ -33370,7 +33612,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationSection"
                     }
                   },
                   "required": [
@@ -33611,7 +33853,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationSection"
                     }
                   },
                   "required": [
@@ -33680,7 +33922,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationSection"
                     }
                   },
                   "required": [
@@ -33783,7 +34025,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventPassType"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -33858,7 +34103,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationSection"
                     }
                   },
                   "required": [
@@ -33927,7 +34172,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationSection"
                     }
                   },
                   "required": [
@@ -34030,7 +34275,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RegistrationSectionQuestion"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -34108,7 +34356,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RegistrationSectionQuestion"
+                      }
                     }
                   },
                   "required": [
@@ -34179,7 +34430,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationSection"
                     }
                   },
                   "required": [
@@ -34257,7 +34508,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationSection"
                     }
                   },
                   "required": [
@@ -34326,7 +34577,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationSection"
                     }
                   },
                   "required": [
@@ -34525,7 +34776,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationSection"
                     }
                   },
                   "required": [
@@ -34603,7 +34854,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RegistrationSection"
                     }
                   },
                   "required": [
@@ -34697,7 +34948,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSessionLocation"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -34762,7 +35016,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionLocation"
                     }
                   },
                   "required": [
@@ -34824,7 +35078,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionLocation"
                     }
                   },
                   "required": [
@@ -34893,7 +35147,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionLocation"
                     }
                   },
                   "required": [
@@ -35056,7 +35310,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSession"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -35131,7 +35388,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionLocation"
                     }
                   },
                   "required": [
@@ -35200,7 +35457,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionLocation"
                     }
                   },
                   "required": [
@@ -35665,7 +35922,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSessionAccess"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -35850,7 +36110,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSession"
                     }
                   },
                   "required": [
@@ -35919,7 +36179,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSession"
                     }
                   },
                   "required": [
@@ -36169,7 +36429,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSession"
                     }
                   },
                   "required": [
@@ -36344,7 +36604,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventPassType"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -36419,7 +36682,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSession"
                     }
                   },
                   "required": [
@@ -36488,7 +36751,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSession"
                     }
                   },
                   "required": [
@@ -36559,7 +36822,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionAccess"
                     }
                   },
                   "required": [
@@ -36628,7 +36891,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionAccess"
                     }
                   },
                   "required": [
@@ -36707,7 +36970,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionAccess"
                     }
                   },
                   "required": [
@@ -36860,7 +37123,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -36981,7 +37244,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSessionQuestionResponseChange"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -37097,7 +37363,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSessionSection"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -37314,7 +37583,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSessionQuestion"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -37388,7 +37660,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionQuestion"
                     }
                   },
                   "required": [
@@ -37459,7 +37731,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionQuestion"
                     }
                   },
                   "required": [
@@ -37537,7 +37809,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionQuestion"
                     }
                   },
                   "required": [
@@ -37727,7 +37999,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSessionQuestionChoice"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -37810,7 +38085,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionQuestionChoice"
                     }
                   },
                   "required": [
@@ -37893,7 +38168,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSessionQuestionChoice"
+                      }
                     }
                   },
                   "required": [
@@ -37973,7 +38251,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionQuestionChoice"
                     }
                   },
                   "required": [
@@ -38138,7 +38416,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -38259,7 +38537,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSessionQuestionChoiceSubQuestion"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -38355,7 +38636,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSessionQuestionChoiceSubQuestion"
+                      }
                     }
                   },
                   "required": [
@@ -38444,7 +38728,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionQuestionChoice"
                     }
                   },
                   "required": [
@@ -38540,7 +38824,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionQuestionChoice"
                     }
                   },
                   "required": [
@@ -38627,7 +38911,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -38739,7 +39023,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSessionQuestionResponse"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -38824,7 +39111,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionQuestion"
                     }
                   },
                   "required": [
@@ -38893,7 +39180,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionQuestion"
                     }
                   },
                   "required": [
@@ -39644,7 +39931,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventPass"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -39945,7 +40235,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventPass"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -40061,7 +40354,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RoundSessionQuestion"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -40136,7 +40432,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "object",
+                      "additionalProperties": {
+                        "$ref": "#/components/schemas/MatchQuestionType"
+                      }
                     }
                   },
                   "required": [
@@ -40226,7 +40525,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/RoundSessionQuestion"
                     }
                   },
                   "required": [
@@ -40306,7 +40605,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -40409,7 +40708,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSessionSection"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -40483,7 +40785,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionSection"
                     }
                   },
                   "required": [
@@ -40554,7 +40856,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionSection"
                     }
                   },
                   "required": [
@@ -40632,7 +40934,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionSection"
                     }
                   },
                   "required": [
@@ -40813,7 +41115,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSessionSectionQuestion"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -40900,7 +41205,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSessionSectionQuestion"
+                      }
                     }
                   },
                   "required": [
@@ -40980,7 +41288,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionSection"
                     }
                   },
                   "required": [
@@ -41067,7 +41375,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionSection"
                     }
                   },
                   "required": [
@@ -41145,7 +41453,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSessionSection"
                     }
                   },
                   "required": [
@@ -41248,7 +41556,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSpeaker"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -41323,7 +41634,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSession"
                     }
                   },
                   "required": [
@@ -41392,7 +41703,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSession"
                     }
                   },
                   "required": [
@@ -41573,7 +41884,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSession"
                     }
                   },
                   "required": [
@@ -41642,7 +41953,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSession"
                     }
                   },
                   "required": [
@@ -41892,7 +42203,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSession"
                     }
                   },
                   "required": [
@@ -42142,7 +42453,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSession"
                     }
                   },
                   "required": [
@@ -42598,7 +42909,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSession"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -42673,7 +42987,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSpeaker"
                     }
                   },
                   "required": [
@@ -42742,7 +43056,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSpeaker"
                     }
                   },
                   "required": [
@@ -43160,7 +43474,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSponsorshipLevel"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -43225,7 +43542,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSponsorshipLevel"
                     }
                   },
                   "required": [
@@ -43290,7 +43607,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSponsorshipLevel"
+                      }
                     }
                   },
                   "required": [
@@ -43352,7 +43672,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSponsorshipLevel"
                     }
                   },
                   "required": [
@@ -43421,7 +43741,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSponsorshipLevel"
                     }
                   },
                   "required": [
@@ -43584,7 +43904,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSponsorship"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -43658,7 +43981,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSponsorship"
                     }
                   },
                   "required": [
@@ -43732,7 +44055,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSponsorship"
+                      }
                     }
                   },
                   "required": [
@@ -43803,7 +44129,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSponsorship"
                     }
                   },
                   "required": [
@@ -43881,7 +44207,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventSponsorship"
                     }
                   },
                   "required": [
@@ -44013,7 +44339,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/EventOnSite"
                     }
                   },
                   "required": [
@@ -44627,7 +44953,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventSession"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -46368,7 +46697,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/GroupInvitation"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -46444,7 +46776,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/GroupInvitation"
+                      }
                     }
                   },
                   "required": [
@@ -46628,7 +46963,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/GroupInvitation"
                     }
                   },
                   "required": [
@@ -46690,7 +47025,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/GroupInvitation"
                     }
                   },
                   "required": [
@@ -47058,7 +47393,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/GroupMembership"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -47184,7 +47522,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/GroupMembership"
                     }
                   },
                   "required": [
@@ -49392,7 +49730,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ChannelContent"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -50025,7 +50366,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/InvoiceLineItem"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -50090,7 +50434,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/InvoiceLineItem"
                     }
                   },
                   "required": [
@@ -50221,7 +50565,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/InvoiceLineItem"
                     }
                   },
                   "required": [
@@ -52277,7 +52621,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BaseEmailReceipt"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -52780,7 +53127,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/Livestream"
                     }
                   },
                   "required": [
@@ -52874,7 +53221,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/LivestreamSession"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -53279,7 +53629,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/MeetingRecording"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -53336,7 +53689,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/MeetingRecording"
                     }
                   },
                   "required": [
@@ -53430,7 +53783,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/MeetingSession"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -53540,7 +53896,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/MeetingSessionChatDownload"
                     }
                   },
                   "required": [
@@ -53634,7 +53990,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BaseMeetingSessionParticipant"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -53700,7 +54059,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/MeetingSessionParticipant"
                     }
                   },
                   "required": [
@@ -53753,7 +54112,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/MeetingSessionSummaryDownload"
                     }
                   },
                   "required": [
@@ -53857,7 +54216,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/MeetingSessionTranscriptDownload"
                     }
                   },
                   "required": [
@@ -54576,7 +54935,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/MeetingParticipant"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -54703,7 +55065,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/MeetingParticipant"
                     }
                   },
                   "required": [
@@ -54773,7 +55135,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/MeetingParticipant"
                     }
                   },
                   "required": [
@@ -54989,7 +55351,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AdminNotification"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -55144,7 +55509,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/NotificationStats"
                     }
                   },
                   "required": [
@@ -55321,7 +55686,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AccountAttribute"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -55375,7 +55743,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/AccountAttribute"
                     }
                   },
                   "required": [
@@ -55417,7 +55785,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AccountAttribute"
+                      }
                     }
                   },
                   "required": [
@@ -55459,7 +55830,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AccountAttribute"
+                      }
                     }
                   },
                   "required": [
@@ -55512,7 +55886,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/AccountAttribute"
                     }
                   },
                   "required": [
@@ -55573,7 +55947,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/AccountAttribute"
                     }
                   },
                   "required": [
@@ -55666,7 +56040,12 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/DomainDetails"
+                        }
+                      ],
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -55717,7 +56096,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/DomainDetails"
                     }
                   },
                   "required": [
@@ -55977,7 +56356,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -56237,7 +56616,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/OrganizationModuleSettings"
                     }
                   },
                   "required": [
@@ -56287,7 +56666,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/OrganizationModuleSettings"
                     }
                   },
                   "required": [
@@ -56372,7 +56751,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/OrganizationModule"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -56736,7 +57118,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/OrganizationModule"
                     }
                   },
                   "required": [
@@ -56797,7 +57179,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/OrganizationModule"
                     }
                   },
                   "required": [
@@ -56891,7 +57273,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Tier"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -56957,7 +57342,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/OrganizationModule"
                     }
                   },
                   "required": [
@@ -57017,7 +57402,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/OrganizationModule"
                     }
                   },
                   "required": [
@@ -57111,7 +57496,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Tier"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -57177,7 +57565,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/OrganizationModule"
                     }
                   },
                   "required": [
@@ -57237,7 +57625,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/OrganizationModule"
                     }
                   },
                   "required": [
@@ -57322,7 +57710,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PaymentIntegration"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -57376,7 +57767,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/PaymentIntegration"
                     }
                   },
                   "required": [
@@ -57429,7 +57820,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/PaymentIntegration"
                     }
                   },
                   "required": [
@@ -57490,7 +57881,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/PaymentIntegration"
                     }
                   },
                   "required": [
@@ -57594,7 +57985,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/PaymentIntegration"
                     }
                   },
                   "required": [
@@ -57753,7 +58144,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SideEffect"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -57835,7 +58229,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SideEffect"
                     }
                   },
                   "required": [
@@ -57888,7 +58282,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SideEffect"
                     }
                   },
                   "required": [
@@ -57939,7 +58333,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SideEffect"
                     }
                   },
                   "required": [
@@ -58042,7 +58436,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SystemEventLog"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -58099,7 +58496,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SystemEventLog"
                     }
                   },
                   "required": [
@@ -58305,7 +58702,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/TaxIntegration"
                     }
                   },
                   "required": [
@@ -58366,7 +58763,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/TaxIntegration"
                     }
                   },
                   "required": [
@@ -58798,7 +59195,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/TaxIntegration"
                     }
                   },
                   "required": [
@@ -58883,7 +59280,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TeamMember"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -58937,7 +59337,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/TeamMember"
                     }
                   },
                   "required": [
@@ -59050,7 +59450,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/TeamMember"
                     }
                   },
                   "required": [
@@ -59186,7 +59586,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/OrganizationMembership"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -59241,7 +59644,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/OrganizationMembership"
                     }
                   },
                   "required": [
@@ -59294,7 +59697,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/OrganizationMembership"
                     }
                   },
                   "required": [
@@ -59355,7 +59758,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/OrganizationMembership"
                     }
                   },
                   "required": [
@@ -60089,7 +60492,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/AdminNotificationPreferences"
                     }
                   },
                   "required": [
@@ -60139,7 +60542,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/AdminNotificationPreferences"
                     }
                   },
                   "required": [
@@ -61326,7 +61729,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SearchListConnectedQuestion"
+                      }
                     }
                   },
                   "required": [
@@ -61420,7 +61826,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SearchListValue"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -61485,7 +61894,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SearchListValue"
                     }
                   },
                   "required": [
@@ -61550,7 +61959,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SearchListValue"
+                      }
                     }
                   },
                   "required": [
@@ -61682,7 +62094,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SearchListValue"
                     }
                   },
                   "required": [
@@ -62214,7 +62626,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/OrganizationMembership"
                     }
                   },
                   "required": [
@@ -63083,7 +63495,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SeriesQuestion"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -63148,7 +63563,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SeriesQuestion"
                     }
                   },
                   "required": [
@@ -63210,7 +63625,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SeriesQuestion"
                     }
                   },
                   "required": [
@@ -63279,7 +63694,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SeriesQuestion"
                     }
                   },
                   "required": [
@@ -63442,7 +63857,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SeriesQuestionChoice"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -63516,7 +63934,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SeriesQuestionChoice"
                     }
                   },
                   "required": [
@@ -63590,7 +64008,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SeriesQuestionChoice"
+                      }
                     }
                   },
                   "required": [
@@ -63661,7 +64082,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SeriesQuestionChoice"
                     }
                   },
                   "required": [
@@ -63739,7 +64160,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SeriesQuestionChoice"
                     }
                   },
                   "required": [
@@ -63911,7 +64332,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SeriesRegistration"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -63976,7 +64400,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SeriesRegistration"
                     }
                   },
                   "required": [
@@ -64038,7 +64462,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SeriesRegistration"
                     }
                   },
                   "required": [
@@ -64108,7 +64532,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SeriesRegistration"
                     }
                   },
                   "required": [
@@ -64271,7 +64695,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventPass"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -64378,7 +64805,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Payment"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -64444,7 +64874,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SeriesRegistrationQuestionResponse"
+                      }
                     }
                   },
                   "required": [
@@ -64514,7 +64947,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -64919,7 +65352,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/StreamInput"
                     }
                   },
                   "required": [
@@ -65013,7 +65446,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/StreamInputOutput"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -65078,7 +65514,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/StreamInputOutput"
                     }
                   },
                   "required": [
@@ -65149,7 +65585,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/StreamInputOutput"
                     }
                   },
                   "required": [
@@ -65271,7 +65707,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/StreamInputOutput"
                     }
                   },
                   "required": [
@@ -65505,7 +65941,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/StreamSessionChatMessage"
+                      }
                     }
                   },
                   "required": [
@@ -65741,7 +66180,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/StreamSessionSubscription"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -66237,7 +66679,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SupportTicketActivityLog"
+                      }
                     }
                   },
                   "required": [
@@ -66331,7 +66776,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SupportTicketMessage"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -66396,7 +66844,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SupportTicketMessage"
                     }
                   },
                   "required": [
@@ -66490,7 +66938,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SupportTicketNote"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -66555,7 +67006,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SupportTicket"
                     }
                   },
                   "required": [
@@ -66720,7 +67171,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SupportTicketViewer"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -67211,7 +67665,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SurveyQuestion"
                     }
                   },
                   "required": [
@@ -67342,7 +67796,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SurveyQuestion"
                     }
                   },
                   "required": [
@@ -67514,7 +67968,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SurveyQuestionChoice"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -67588,7 +68045,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SurveyQuestionChoice"
                     }
                   },
                   "required": [
@@ -67662,7 +68119,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SurveyQuestionChoice"
+                      }
                     }
                   },
                   "required": [
@@ -67733,7 +68193,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SurveyQuestionChoice"
                     }
                   },
                   "required": [
@@ -67992,7 +68452,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SurveyQuestionChoiceSubQuestion"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -68079,7 +68542,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SurveyQuestionChoiceSubQuestion"
+                      }
                     }
                   },
                   "required": [
@@ -68159,7 +68625,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SurveyQuestionChoice"
                     }
                   },
                   "required": [
@@ -68246,7 +68712,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SurveyQuestionChoice"
                     }
                   },
                   "required": [
@@ -68324,7 +68790,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -68427,7 +68893,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SurveyQuestionResponse"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -68503,7 +68972,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SurveyQuestion"
                     }
                   },
                   "required": [
@@ -68563,7 +69032,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SurveyQuestion"
                     }
                   },
                   "required": [
@@ -69019,7 +69488,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SurveySectionQuestion"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -69097,7 +69569,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SurveySectionQuestion"
+                      }
                     }
                   },
                   "required": [
@@ -69168,7 +69643,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SurveySection"
                     }
                   },
                   "required": [
@@ -69246,7 +69721,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SurveySection"
                     }
                   },
                   "required": [
@@ -69315,7 +69790,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SurveySection"
                     }
                   },
                   "required": [
@@ -69632,7 +70107,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SurveySubmission"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -69698,7 +70176,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SurveySubmission"
                     }
                   },
                   "required": [
@@ -69768,7 +70246,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/SurveySubmission"
                     }
                   },
                   "required": [
@@ -69903,7 +70381,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -70015,7 +70493,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SurveyQuestionResponseChange"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -70122,7 +70603,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SurveySection"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -70696,7 +71180,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ThreadCircleAccount"
+                      }
                     },
                     "count": {
                       "type": "integer",
@@ -70761,7 +71248,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ThreadCircleAccount"
                     }
                   },
                   "required": [
@@ -70823,7 +71310,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ThreadCircleAccount"
                     }
                   },
                   "required": [
@@ -70893,7 +71380,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ThreadCircleAccount"
                     }
                   },
                   "required": [
@@ -71672,7 +72159,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ThreadMessage"
+                      }
                     }
                   },
                   "required": [
@@ -72000,7 +72490,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ThreadMessage"
                     }
                   },
                   "required": [
@@ -72205,7 +72695,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ThreadMessage"
                     }
                   },
                   "required": [
@@ -72336,7 +72826,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ThreadMessageReaction"
+                      }
                     }
                   },
                   "required": [
@@ -72414,7 +72907,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ThreadMessageReaction"
                     }
                   },
                   "required": [
@@ -72621,7 +73114,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "object"
+                      "$ref": "#/components/schemas/ThreadMessage"
                     }
                   },
                   "required": [

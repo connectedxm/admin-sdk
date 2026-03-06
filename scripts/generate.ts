@@ -925,9 +925,11 @@ function extractApiDetailsFromAST(filePath: string): FunctionInfo | null {
           // Extract return type (response type)
           if (arrowFunc.type) {
             const returnTypeText = arrowFunc.type.getText(sourceFile);
+            // Normalize whitespace so multiline generic return types still match.
+            const compactReturnTypeText = returnTypeText.replace(/\s+/g, "");
             // Extract the type from Promise<ConnectedXMResponse<Type>>
-            const match = returnTypeText.match(
-              /Promise<ConnectedXMResponse<(.+)>>/
+            const match = compactReturnTypeText.match(
+              /^Promise<ConnectedXMResponse<(.+)>>$/
             );
             if (match && match[1]) {
               result.responseType = match[1];

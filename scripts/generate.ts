@@ -495,6 +495,8 @@ function parseType(typeNode: ts.TypeNode, sourceFile: ts.SourceFile): any {
 }
 
 const GetTypeSchema = (responseType: string): any => {
+  responseType = responseType.trim();
+
   if (responseType.startsWith("keyof typeof")) {
     responseType = responseType.replace("keyof typeof ", "");
   }
@@ -565,6 +567,15 @@ const GetTypeSchema = (responseType: string): any => {
     };
   }
 
+  // Handle Record<K, V> as an object with typed additionalProperties
+  const recordMatch = responseType.match(/^Record<\s*[^,]+,\s*(.+)\s*>$/);
+  if (recordMatch && recordMatch[1]) {
+    return {
+      type: "object",
+      additionalProperties: GetTypeSchema(recordMatch[1].trim()),
+    };
+  }
+
   // Handle quoted string literal (single value enum)
   if (
     (responseType.startsWith('"') && responseType.endsWith('"')) ||
@@ -586,7 +597,12 @@ const GetTypeSchema = (responseType: string): any => {
     return { type: "object" };
   }
 
-  return { $ref: `#/components/schemas/${responseType}` };
+  // Only emit refs for known schemas; fallback avoids broken OpenAPI refs for
+  // file-local response interfaces that are not part of components/schemas.
+  if (openApiSpec?.components?.schemas?.[responseType]) {
+    return { $ref: `#/components/schemas/${responseType}` };
+  }
+  return { type: "object" };
 };
 
 // LOAD INTERFACES
@@ -925,14 +941,13 @@ function extractApiDetailsFromAST(filePath: string): FunctionInfo | null {
           // Extract return type (response type)
           if (arrowFunc.type) {
             const returnTypeText = arrowFunc.type.getText(sourceFile);
-            // Normalize whitespace so multiline generic return types still match.
-            const compactReturnTypeText = returnTypeText.replace(/\s+/g, "");
             // Extract the type from Promise<ConnectedXMResponse<Type>>
-            const match = compactReturnTypeText.match(
-              /^Promise<ConnectedXMResponse<(.+)>>$/
+            const match = returnTypeText.match(
+              /^Promise\s*<\s*ConnectedXMResponse\s*<\s*([\s\S]+?)\s*>\s*>\s*$/
             );
             if (match && match[1]) {
-              result.responseType = match[1];
+              // Normalize multiline spacing but preserve token boundaries.
+              result.responseType = match[1].replace(/\s+/g, " ").trim();
             }
           }
 

@@ -33164,7 +33164,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "$ref": "#/components/schemas/Record<string,keyoftypeofMatchQuestionType>"
+                      "type": "object",
+                      "additionalProperties": {
+                        "$ref": "#/components/schemas/MatchQuestionType"
+                      }
                     }
                   },
                   "required": [
@@ -40429,7 +40432,10 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "$ref": "#/components/schemas/Record<string,keyoftypeofMatchQuestionType>"
+                      "type": "object",
+                      "additionalProperties": {
+                        "$ref": "#/components/schemas/MatchQuestionType"
+                      }
                     }
                   },
                   "required": [
@@ -74658,7 +74664,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "$ref": "#/components/schemas/VideoDownloadStatus"
+                      "type": "object"
                     }
                   },
                   "required": [
@@ -74709,7 +74715,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "$ref": "#/components/schemas/VideoDownloadResult"
+                      "type": "object"
                     }
                   },
                   "required": [

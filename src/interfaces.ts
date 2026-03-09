@@ -4217,6 +4217,8 @@ export interface BookingSpaceTranslation {
   locale: string;
   name: string | null;
   description: string | null;
+  confirmationBody: string | null;
+  cancellationBody: string | null;
   createdAt: string;
   updatedAt: string;
 }

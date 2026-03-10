@@ -90198,6 +90198,14 @@
                 "type": "string",
                 "nullable": true
               },
+              "cancellationBody": {
+                "type": "string",
+                "nullable": true
+              },
+              "cancellationReplyTo": {
+                "type": "string",
+                "nullable": true
+              },
               "createdAt": {
                 "type": "string"
               },
@@ -90208,6 +90216,8 @@
             "required": [
               "confirmationBody",
               "confirmationReplyTo",
+              "cancellationBody",
+              "cancellationReplyTo",
               "createdAt",
               "updatedAt"
             ]
@@ -90264,6 +90274,14 @@
             "type": "string",
             "nullable": true
           },
+          "confirmationBody": {
+            "type": "string",
+            "nullable": true
+          },
+          "cancellationBody": {
+            "type": "string",
+            "nullable": true
+          },
           "createdAt": {
             "type": "string"
           },
@@ -90276,6 +90294,8 @@
           "locale",
           "name",
           "description",
+          "confirmationBody",
+          "cancellationBody",
           "createdAt",
           "updatedAt"
         ]
@@ -101836,6 +101856,14 @@
             "type": "string",
             "nullable": true
           },
+          "cancellationBody": {
+            "type": "string",
+            "nullable": true
+          },
+          "cancellationReplyTo": {
+            "type": "string",
+            "nullable": true
+          },
           "taxCode": {
             "type": "string",
             "nullable": true
@@ -101917,6 +101945,14 @@
             "type": "string",
             "nullable": true
           },
+          "cancellationBody": {
+            "type": "string",
+            "nullable": true
+          },
+          "cancellationReplyTo": {
+            "type": "string",
+            "nullable": true
+          },
           "taxCode": {
             "type": "string",
             "nullable": true
@@ -101937,6 +101973,14 @@
             "nullable": true
           },
           "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "confirmationBody": {
+            "type": "string",
+            "nullable": true
+          },
+          "cancellationBody": {
             "type": "string",
             "nullable": true
           }

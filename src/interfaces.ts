@@ -4197,6 +4197,8 @@ export interface BaseBookingSpace {
 export interface BookingSpace extends BaseBookingSpace {
   confirmationBody: string | null;
   confirmationReplyTo: string | null;
+  cancellationBody: string | null;
+  cancellationReplyTo: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -4215,6 +4217,8 @@ export interface BookingSpaceTranslation {
   locale: string;
   name: string | null;
   description: string | null;
+  confirmationBody: string | null;
+  cancellationBody: string | null;
   createdAt: string;
   updatedAt: string;
 }

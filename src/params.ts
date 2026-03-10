@@ -2211,6 +2211,8 @@ export interface BookingSpaceCreateInputs {
   visible?: boolean;
   confirmationBody?: string | null;
   confirmationReplyTo?: string | null;
+  cancellationBody?: string | null;
+  cancellationReplyTo?: string | null;
   taxCode?: string | null;
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
@@ -2228,6 +2230,8 @@ export interface BookingSpaceUpdateInputs {
   visible?: boolean;
   confirmationBody?: string | null;
   confirmationReplyTo?: string | null;
+  cancellationBody?: string | null;
+  cancellationReplyTo?: string | null;
   taxCode?: string | null;
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
@@ -2236,6 +2240,8 @@ export interface BookingSpaceUpdateInputs {
 export interface BookingSpaceTranslationUpdateInputs {
   name?: string | null;
   description?: string | null;
+  confirmationBody?: string | null;
+  cancellationBody?: string | null;
 }
 
 export interface BookingSpaceAvailabilityCreateInputs {

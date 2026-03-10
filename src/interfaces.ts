@@ -4448,11 +4448,17 @@ export interface EventSponsorshipTranslation {
   updatedAt: string;
 }
 
+export enum SurveyStatus {
+  draft = "draft",
+  published = "published",
+  archived = "archived",
+}
+
 export interface BaseSurvey {
   id: string;
   slug: string;
   name: string;
-  active: boolean;
+  status: SurveyStatus;
   description: string | null;
   image: BaseImage;
   requireAuth: boolean;

@@ -40,6 +40,7 @@ import {
   TaxLocationType,
   ThreadCircleAccountRole,
   OnSiteScanType,
+  SurveySubmissionStatus,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -2342,7 +2343,7 @@ export interface SurveyTranslationUpdateInputs {
 }
 
 export interface SurveySubmissionUpdateInputs {
-  status?: keyof typeof PurchaseStatus;
+  status?: keyof typeof SurveySubmissionStatus;
   accountId?: string | null;
   passId?: string | null;
 }

@@ -8478,6 +8478,77 @@
         ]
       }
     },
+    "/bookings/places/{placeId}/spaces/{spaceId}/bookings/{bookingId}/cancel": {
+      "put": {
+        "operationId": "CancelBooking",
+        "summary": "Cancel Booking",
+        "description": "Cancel Booking endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "bookingId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The booking identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Booking"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings"
+        ]
+      }
+    },
     "/bookings/places/{placeId}/spaces/{spaceId}/payments": {
       "get": {
         "operationId": "GetBookingSpacePayments",

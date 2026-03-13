@@ -92520,10 +92520,10 @@
       "SideEffectTriggerType": {
         "type": "string",
         "enum": [
-          "NEW_PASS_OF_PASS_TYPE",
           "CHECKED_IN_EVENT_PASS",
           "NEW_ACCOUNT_TIER",
           "REMOVED_ACCOUNT_TIER",
+          "NEW_PASS_OF_PASS_TYPE",
           "PASS_WITH_QUESTION_CHOICE"
         ]
       },
@@ -92535,7 +92535,8 @@
           "ADD_TO_TIER",
           "SUBSCRIBE_TO_CHANNEL",
           "SEND_WEBHOOK",
-          "COMPLETE_ACTIVATION"
+          "COMPLETE_ACTIVATION",
+          "REGISTER_FOR_SESSION"
         ]
       },
       "BaseSideEffect": {
@@ -92587,6 +92588,10 @@
           "completeActivationId": {
             "type": "string",
             "nullable": true
+          },
+          "registerForSessionId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "required": [
@@ -92601,7 +92606,8 @@
           "addToTierId",
           "subscribeToChannelId",
           "sendWebhookId",
-          "completeActivationId"
+          "completeActivationId",
+          "registerForSessionId"
         ]
       },
       "SideEffect": {
@@ -92706,6 +92712,14 @@
                 ],
                 "nullable": true
               },
+              "registerForSession": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BaseEventSession"
+                  }
+                ],
+                "nullable": true
+              },
               "createdAt": {
                 "type": "string"
               },
@@ -92727,6 +92741,7 @@
               "subscribeToChannel",
               "sendWebhook",
               "completeActivation",
+              "registerForSession",
               "createdAt",
               "updatedAt"
             ]

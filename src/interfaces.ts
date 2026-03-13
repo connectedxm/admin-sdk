@@ -4769,6 +4769,7 @@ export enum SideEffectTriggerType {
   CHECKED_IN_EVENT_PASS = "CHECKED_IN_EVENT_PASS",
   NEW_ACCOUNT_TIER = "NEW_ACCOUNT_TIER",
   REMOVED_ACCOUNT_TIER = "REMOVED_ACCOUNT_TIER",
+  PASS_WITH_QUESTION_CHOICE = "PASS_WITH_QUESTION_CHOICE",
 }
 
 export enum SideEffectActionType {
@@ -4787,6 +4788,7 @@ export interface BaseSideEffect {
   checkedInPassEventId: string | null;
   newAccountTierId: string | null;
   removedAccountTierId: string | null;
+  passWithQuestionChoiceId: string | null;
   // ACTIONS
   joinGroupId: string | null;
   leaveGroupId: string | null;
@@ -4804,6 +4806,7 @@ export interface SideEffect extends BaseSideEffect {
   checkedInPassEvent: BaseEvent | null;
   newAccountTier: BaseTier | null;
   removedAccountTier: BaseTier | null;
+  passWithQuestionChoice: BaseRegistrationQuestionChoice | null;
   // Effects
   joinGroup: BaseGroup | null;
   leaveGroup: BaseGroup | null;

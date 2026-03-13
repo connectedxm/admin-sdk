@@ -4765,10 +4765,11 @@ export interface Match extends BaseMatch {
 }
 
 export enum SideEffectTriggerType {
-  NEW_PASS_OF_PASS_TYPE = "NEW_PASS_OF_PASS_TYPE",
   CHECKED_IN_EVENT_PASS = "CHECKED_IN_EVENT_PASS",
   NEW_ACCOUNT_TIER = "NEW_ACCOUNT_TIER",
   REMOVED_ACCOUNT_TIER = "REMOVED_ACCOUNT_TIER",
+  // PASS TRIGGERS
+  NEW_PASS_OF_PASS_TYPE = "NEW_PASS_OF_PASS_TYPE",
   PASS_WITH_QUESTION_CHOICE = "PASS_WITH_QUESTION_CHOICE",
 }
 
@@ -4778,7 +4779,9 @@ export enum SideEffectActionType {
   ADD_TO_TIER = "ADD_TO_TIER",
   SUBSCRIBE_TO_CHANNEL = "SUBSCRIBE_TO_CHANNEL",
   SEND_WEBHOOK = "SEND_WEBHOOK",
+  // PASS ACTIONS
   COMPLETE_ACTIVATION = "COMPLETE_ACTIVATION",
+  REGISTER_FOR_SESSION = "REGISTER_FOR_SESSION",
 }
 
 export interface BaseSideEffect {
@@ -4796,6 +4799,7 @@ export interface BaseSideEffect {
   subscribeToChannelId: string | null;
   sendWebhookId: string | null;
   completeActivationId: string | null;
+  registerForSessionId: string | null;
 }
 
 export interface SideEffect extends BaseSideEffect {
@@ -4814,6 +4818,7 @@ export interface SideEffect extends BaseSideEffect {
   subscribeToChannel: BaseChannel | null;
   sendWebhook: BaseWebhook | null;
   completeActivation: BaseEventActivation | null;
+  registerForSession: BaseEventSession | null;
   // Timestamps
   createdAt: string;
   updatedAt: string;

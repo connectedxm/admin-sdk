@@ -92523,7 +92523,8 @@
           "NEW_PASS_OF_PASS_TYPE",
           "CHECKED_IN_EVENT_PASS",
           "NEW_ACCOUNT_TIER",
-          "REMOVED_ACCOUNT_TIER"
+          "REMOVED_ACCOUNT_TIER",
+          "PASS_WITH_QUESTION_CHOICE"
         ]
       },
       "SideEffectActionType": {
@@ -92559,6 +92560,10 @@
             "type": "string",
             "nullable": true
           },
+          "passWithQuestionChoiceId": {
+            "type": "string",
+            "nullable": true
+          },
           "joinGroupId": {
             "type": "string",
             "nullable": true
@@ -92590,6 +92595,7 @@
           "checkedInPassEventId",
           "newAccountTierId",
           "removedAccountTierId",
+          "passWithQuestionChoiceId",
           "joinGroupId",
           "leaveGroupId",
           "addToTierId",
@@ -92640,6 +92646,14 @@
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/BaseTier"
+                  }
+                ],
+                "nullable": true
+              },
+              "passWithQuestionChoice": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BaseRegistrationQuestionChoice"
                   }
                 ],
                 "nullable": true
@@ -92706,6 +92720,7 @@
               "checkedInPassEvent",
               "newAccountTier",
               "removedAccountTier",
+              "passWithQuestionChoice",
               "joinGroup",
               "leaveGroup",
               "addToTier",

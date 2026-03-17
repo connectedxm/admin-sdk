@@ -2177,6 +2177,7 @@ export interface BookingPlaceCreateInputs {
   zip?: string | null;
   sortOrder?: number | string | null;
   visible?: boolean;
+  meetingId?: string | null;
   paymentIntegrationId?: string | null;
 }
 
@@ -2193,6 +2194,7 @@ export interface BookingPlaceUpdateInputs {
   zip?: string | null;
   sortOrder?: number | string | null;
   visible?: boolean;
+  meetingId?: string | null;
   paymentIntegrationId?: string | null;
 }
 
@@ -2664,6 +2666,7 @@ export interface MeetingCreateInputs {
   sessionId?: string;
   groupId?: string;
   activityId?: string;
+  bookingPlaceId?: string;
   title: string | null;
   preferred_region:
     | "ap-south-1"
@@ -2720,6 +2723,7 @@ export interface MeetingUpdateInputs {
   sessionId?: string;
   groupId?: string;
   activityId?: string;
+  bookingPlaceId?: string;
   title?: string | null;
   preferred_region?:
     | "ap-south-1"

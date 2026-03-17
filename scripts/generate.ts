@@ -1233,7 +1233,6 @@ const queries = glob.sync(path.join(dir, "{queries,mutations}/**/*.ts"), {
     path.join(dir, "queries/useConnectedSingleQuery.ts"),
     path.join(dir, "queries/useConnectedCursorQuery.ts"),
     path.join(dir, "mutations/useConnectedMutation.ts"),
-    path.join(dir, "**/*Translation*.ts"),
   ],
 });
 

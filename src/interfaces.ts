@@ -1229,7 +1229,6 @@ export enum SupportedLocale {
   cs = "cs",
   da = "da",
   nl = "nl",
-  en = "en",
   et = "et",
   fi = "fi",
   fr = "fr",

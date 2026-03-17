@@ -83362,6 +83362,15 @@
           },
           {
             "in": "query",
+            "name": "status",
+            "schema": {
+              "$ref": "#/components/schemas/PurchaseStatus"
+            },
+            "description": "Filter by status",
+            "required": false
+          },
+          {
+            "in": "query",
             "name": "page",
             "schema": {
               "type": "integer",

@@ -217,8 +217,24 @@
       "description": "Manage individual passes purchased by attendees, tracking pass status, check-ins, and access permissions for event registration"
     },
     {
+      "name": "Events::Passes::Accesses",
+      "description": "Operations for events::passes::accesses"
+    },
+    {
+      "name": "Events::Passes::Addons",
+      "description": "Operations for events::passes::addons"
+    },
+    {
       "name": "Events::Passes::Attributes",
       "description": "Operations for events::passes::attributes"
+    },
+    {
+      "name": "Events::Passes::Followups",
+      "description": "Operations for events::passes::followups"
+    },
+    {
+      "name": "Events::Passes::Responses",
+      "description": "Operations for events::passes::responses"
     },
     {
       "name": "Events::Passtypes",
@@ -15632,7 +15648,7 @@
           }
         },
         "tags": [
-          "Events::Passes"
+          "Events::Passes::Followups"
         ]
       },
       "put": {
@@ -15713,7 +15729,7 @@
           }
         },
         "tags": [
-          "Events::Passes"
+          "Events::Passes::Followups"
         ]
       }
     },
@@ -15805,7 +15821,7 @@
           }
         },
         "tags": [
-          "Events::Passes"
+          "Events::Passes::Followups"
         ]
       }
     },
@@ -15841,20 +15857,18 @@
             },
             "description": "The pass identifier",
             "required": true
-          },
-          {
-            "in": "query",
-            "name": "questions",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/Question"
-              }
-            },
-            "description": "Filter by questions",
-            "required": true
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEventPassResponsesInputs"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful response",
@@ -15888,7 +15902,7 @@
           }
         },
         "tags": [
-          "Events::Passes"
+          "Events::Passes::Responses"
         ]
       }
     },
@@ -16007,7 +16021,7 @@
           }
         },
         "tags": [
-          "Events::Passes"
+          "Events::Passes::Followups"
         ]
       }
     },
@@ -26423,7 +26437,7 @@
           }
         },
         "tags": [
-          "Events::Passes"
+          "Events::Passes::Accesses"
         ]
       }
     },
@@ -26533,7 +26547,7 @@
           }
         },
         "tags": [
-          "Events::Passes"
+          "Events::Passes::Addons"
         ]
       }
     },
@@ -26604,7 +26618,7 @@
           }
         },
         "tags": [
-          "Events::Passes"
+          "Events::Passes::Addons"
         ]
       },
       "delete": {
@@ -26673,7 +26687,7 @@
           }
         },
         "tags": [
-          "Events::Passes"
+          "Events::Passes::Addons"
         ]
       }
     },
@@ -27544,7 +27558,7 @@
           }
         },
         "tags": [
-          "Events::Passes"
+          "Events::Passes::Responses"
         ]
       }
     },
@@ -27615,7 +27629,7 @@
           }
         },
         "tags": [
-          "Events::Passes"
+          "Events::Passes::Responses"
         ]
       },
       "put": {
@@ -27694,7 +27708,7 @@
           }
         },
         "tags": [
-          "Events::Passes"
+          "Events::Passes::Responses"
         ]
       }
     },
@@ -27813,7 +27827,7 @@
           }
         },
         "tags": [
-          "Events::Passes"
+          "Events::Passes::Responses"
         ]
       }
     },
@@ -36976,7 +36990,7 @@
           }
         },
         "tags": [
-          "Events::Passes"
+          "Events::Passes::Accesses"
         ]
       },
       "put": {
@@ -37055,7 +37069,7 @@
           }
         },
         "tags": [
-          "Events::Passes"
+          "Events::Passes::Accesses"
         ]
       },
       "delete": {
@@ -37124,7 +37138,7 @@
           }
         },
         "tags": [
-          "Events::Passes"
+          "Events::Passes::Accesses"
         ]
       }
     },
@@ -37208,7 +37222,7 @@
           }
         },
         "tags": [
-          "Events::Passes"
+          "Events::Passes::Accesses"
         ]
       }
     },
@@ -102191,6 +102205,20 @@
         },
         "required": [
           "value"
+        ]
+      },
+      "UpdateEventPassResponsesInputs": {
+        "type": "object",
+        "properties": {
+          "questions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Question"
+            }
+          }
+        },
+        "required": [
+          "questions"
         ]
       },
       "DashboardCreateInputs": {

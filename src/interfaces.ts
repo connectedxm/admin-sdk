@@ -4163,6 +4163,8 @@ export interface BaseBookingPlace {
   image: BaseImage | null;
   sortOrder: number;
   visible: boolean;
+  paymentIntegrationId: string | null;
+  paymentIntegration: BasePaymentIntegration | null;
 }
 
 export interface BookingPlace extends BaseBookingPlace {
@@ -4171,8 +4173,6 @@ export interface BookingPlace extends BaseBookingPlace {
   city: string | null;
   state: string | null;
   zip: string | null;
-  paymentIntegrationId: string | null;
-  paymentIntegration: BasePaymentIntegration | null;
   meetingId: string | null;
   meeting: BaseMeeting | null;
   createdAt: string;

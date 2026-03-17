@@ -6,7 +6,7 @@ import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
-} from "../../useConnectedInfiniteQuery";
+} from "../../../useConnectedInfiniteQuery";
 import { EVENT_PASS_RESPONSE_QUERY_KEY } from "./useGetEventPassResponse";
 
 /**

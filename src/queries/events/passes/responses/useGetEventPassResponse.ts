@@ -3,7 +3,7 @@ import {
   SingleQueryOptions,
   SingleQueryParams,
   useConnectedSingleQuery,
-} from "../../useConnectedSingleQuery";
+} from "../../../useConnectedSingleQuery";
 import { RegistrationQuestionResponse } from "@src/interfaces";
 import { EVENT_PASS_RESPONSES_QUERY_KEY } from "./useGetEventPassResponses";
 import { GetAdminAPI } from "@src/AdminAPI";

@@ -40,6 +40,7 @@ import {
   TaxLocationType,
   ThreadCircleAccountRole,
   OnSiteScanType,
+  Question,
   SurveyStatus,
 } from "./interfaces";
 
@@ -613,6 +614,7 @@ export interface EventCreateInputs {
   longDescription?: string | null;
   reservationDescription?: string | null;
   externalUrl?: string | null;
+  externalMeetingUrl?: string | null;
   imageId?: string | null;
   squareImageId?: string | null;
   backgroundImageId?: string | null;
@@ -675,6 +677,7 @@ export interface EventUpdateInputs {
   eventStart?: string | null;
   eventEnd?: string | null;
   externalUrl?: string | null;
+  externalMeetingUrl?: string | null;
   imageId?: string | null;
   squareImageId?: string | null;
   backgroundImageId?: string | null;
@@ -2281,6 +2284,10 @@ export interface BookingUpdateInputs {
 }
 export interface UpdateEventPassResponseInputs {
   value: string;
+}
+
+export interface UpdateEventPassResponsesInputs {
+  questions: Question[];
 }
 
 export interface DashboardCreateInputs {

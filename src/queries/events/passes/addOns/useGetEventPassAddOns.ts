@@ -5,9 +5,9 @@ import {
   useConnectedInfiniteQuery,
   InfiniteQueryOptions,
   InfiniteQueryParams,
-} from "../../useConnectedInfiniteQuery";
+} from "../../../useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
-import { EVENT_PASS_QUERY_KEY } from "./useGetEventPass";
+import { EVENT_PASS_QUERY_KEY } from "../useGetEventPass";
 
 /**
  * @category Keys

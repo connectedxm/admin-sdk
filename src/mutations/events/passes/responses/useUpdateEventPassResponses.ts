@@ -1,10 +1,11 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, Question } from "@src/interfaces";
+import { ConnectedXMResponse } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
   useConnectedMutation,
 } from "@src/mutations/useConnectedMutation";
+import { UpdateEventPassResponsesInputs } from "@src/params";
 import {
   EVENT_PASS_QUESTION_SECTIONS_QUERY_KEY,
   EVENT_PASS_RESPONSES_QUERY_KEY,
@@ -18,8 +19,7 @@ export interface UpdateEventPassResponsesParams extends MutationParams {
   eventId: string;
   passId: string;
   accountId: string;
-  //TODO: missing interface and validation
-  questions: Question[];
+  questions: UpdateEventPassResponsesInputs;
 }
 
 /**
@@ -37,7 +37,7 @@ export const UpdateEventPassResponses = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put(
     `/events/${eventId}/attendees/${accountId}/passes/${passId}/responses`,
-    { questions }
+    questions
   );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({

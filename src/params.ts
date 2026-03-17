@@ -613,6 +613,7 @@ export interface EventCreateInputs {
   longDescription?: string | null;
   reservationDescription?: string | null;
   externalUrl?: string | null;
+  externalMeetingUrl?: string | null;
   imageId?: string | null;
   squareImageId?: string | null;
   backgroundImageId?: string | null;
@@ -675,6 +676,7 @@ export interface EventUpdateInputs {
   eventStart?: string | null;
   eventEnd?: string | null;
   externalUrl?: string | null;
+  externalMeetingUrl?: string | null;
   imageId?: string | null;
   squareImageId?: string | null;
   backgroundImageId?: string | null;

@@ -2177,7 +2177,6 @@ export interface BookingPlaceCreateInputs {
   zip?: string | null;
   sortOrder?: number | string | null;
   visible?: boolean;
-  meetingId?: string | null;
   paymentIntegrationId?: string | null;
 }
 
@@ -2194,7 +2193,6 @@ export interface BookingPlaceUpdateInputs {
   zip?: string | null;
   sortOrder?: number | string | null;
   visible?: boolean;
-  meetingId?: string | null;
   paymentIntegrationId?: string | null;
 }
 
@@ -2221,6 +2219,7 @@ export interface BookingSpaceCreateInputs {
   taxCode?: string | null;
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
+  meetingId?: string | null;
 }
 
 export interface BookingSpaceUpdateInputs {
@@ -2240,6 +2239,7 @@ export interface BookingSpaceUpdateInputs {
   taxCode?: string | null;
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
+  meetingId?: string | null;
 }
 
 export interface BookingSpaceTranslationUpdateInputs {

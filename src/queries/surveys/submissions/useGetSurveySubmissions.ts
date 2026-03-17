@@ -65,12 +65,11 @@ export const GetSurveySubmissions = async ({
  */
 export const useGetSurveySubmissions = (
   surveyId: string = "",
+  status?: PurchaseStatus,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
-  > & {
-    status?: PurchaseStatus;
-  } = {},
+  > = {},
   options: InfiniteQueryOptions<
     Awaited<ReturnType<typeof GetSurveySubmissions>>
   > = {}
@@ -78,11 +77,12 @@ export const useGetSurveySubmissions = (
   return useConnectedInfiniteQuery<
     Awaited<ReturnType<typeof GetSurveySubmissions>>
   >(
-    SURVEY_SUBMISSIONS_QUERY_KEY(surveyId, params.status),
+    SURVEY_SUBMISSIONS_QUERY_KEY(surveyId, status),
     (params: InfiniteQueryParams) =>
       GetSurveySubmissions({
         ...params,
         surveyId,
+        status,
       }),
     params,
     {

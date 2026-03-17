@@ -40,6 +40,7 @@ import {
   TaxLocationType,
   ThreadCircleAccountRole,
   OnSiteScanType,
+  Question,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -2280,6 +2281,10 @@ export interface BookingUpdateInputs {
 }
 export interface UpdateEventPassResponseInputs {
   value: string;
+}
+
+export interface UpdateEventPassResponsesInputs {
+  questions: Question[];
 }
 
 export interface DashboardCreateInputs {

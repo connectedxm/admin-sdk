@@ -9,7 +9,7 @@ import {
   EVENT_SESSION_ACCESSES_QUERY_KEY,
   SET_EVENT_SESSION_ACCESS_QUERY_DATA,
 } from "@src/queries";
-import { EVENT_PASS_ACCESSES_QUERY_KEY } from "@src/queries/events/passes/useGetEventPassAccesses";
+import { EVENT_PASS_ACCESSES_QUERY_KEY } from "@src/queries/events/passes/accesses/useGetEventPassAccesses";
 
 /**
  * @category Params

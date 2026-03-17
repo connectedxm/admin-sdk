@@ -1,38 +1,38 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, RegistrationFollowup } from "@src/interfaces";
+import { ConnectedXMResponse, RegistrationSection } from "@src/interfaces";
 import {
   InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
 } from "@src/queries/useConnectedInfiniteQuery";
 import { QueryClient } from "@tanstack/react-query";
-import { EVENT_PASS_QUERY_KEY } from "./useGetEventPass";
+import { EVENT_PASS_QUERY_KEY } from "../useGetEventPass";
 
 /**
  * @category Keys
  * @group Events
  */
-export const EVENT_PASS_QUESTION_FOLLOWUPS_QUERY_KEY = (
+export const EVENT_PASS_QUESTION_SECTIONS_QUERY_KEY = (
   eventId: string,
   passId: string
-) => [...EVENT_PASS_QUERY_KEY(eventId, passId), "FOLLOWUPS"];
+) => [...EVENT_PASS_QUERY_KEY(eventId, passId), "SECTIONS"];
 
 /**
  * @category Setters
  * @group Events
  */
-export const SET_EVENT_PASS_QUESTION_FOLLOWUPS_QUERY_DATA = (
+export const SET_EVENT_PASS_QUESTION_SECTIONS_QUERY_DATA = (
   client: QueryClient,
-  keyParams: Parameters<typeof EVENT_PASS_QUESTION_FOLLOWUPS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetEventPassQuestionFollowups>>
+  keyParams: Parameters<typeof EVENT_PASS_QUESTION_SECTIONS_QUERY_KEY>,
+  response: Awaited<ReturnType<typeof GetEventPassQuestionSections>>
 ) => {
   client.setQueryData(
-    EVENT_PASS_QUESTION_FOLLOWUPS_QUERY_KEY(...keyParams),
+    EVENT_PASS_QUESTION_SECTIONS_QUERY_KEY(...keyParams),
     response
   );
 };
 
-interface GetEventPassQuestionFollowupsProps extends InfiniteQueryParams {
+interface GetEventPassQuestionSectionsProps extends InfiniteQueryParams {
   eventId: string;
   accountId: string;
   passId: string;
@@ -42,18 +42,18 @@ interface GetEventPassQuestionFollowupsProps extends InfiniteQueryParams {
  * @category Queries
  * @group Events
  */
-export const GetEventPassQuestionFollowups = async ({
+export const GetEventPassQuestionSections = async ({
   eventId,
   accountId,
   passId,
   adminApiParams,
-}: GetEventPassQuestionFollowupsProps): Promise<
-  ConnectedXMResponse<RegistrationFollowup[]>
+}: GetEventPassQuestionSectionsProps): Promise<
+  ConnectedXMResponse<RegistrationSection[]>
 > => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.get<
-    ConnectedXMResponse<RegistrationFollowup[]>
-  >(`/events/${eventId}/attendees/${accountId}/passes/${passId}/followups`);
+    ConnectedXMResponse<RegistrationSection[]>
+  >(`/events/${eventId}/attendees/${accountId}/passes/${passId}/sections`);
   return data;
 };
 
@@ -61,7 +61,7 @@ export const GetEventPassQuestionFollowups = async ({
  * @category Hooks
  * @group Events
  */
-export const useGetEventPassQuestionFollowups = (
+export const useGetEventPassQuestionSections = (
   eventId: string = "",
   accountId: string = "",
   passId: string = "",
@@ -70,15 +70,15 @@ export const useGetEventPassQuestionFollowups = (
     "pageParam" | "queryClient" | "adminApiParams"
   > = {},
   options: InfiniteQueryOptions<
-    Awaited<ReturnType<typeof GetEventPassQuestionFollowups>>
+    Awaited<ReturnType<typeof GetEventPassQuestionSections>>
   > = {}
 ) => {
   return useConnectedInfiniteQuery<
-    Awaited<ReturnType<typeof GetEventPassQuestionFollowups>>
+    Awaited<ReturnType<typeof GetEventPassQuestionSections>>
   >(
-    EVENT_PASS_QUESTION_FOLLOWUPS_QUERY_KEY(eventId, passId),
+    EVENT_PASS_QUESTION_SECTIONS_QUERY_KEY(eventId, passId),
     (params: InfiniteQueryParams) =>
-      GetEventPassQuestionFollowups({
+      GetEventPassQuestionSections({
         ...params,
         eventId,
         accountId,

@@ -1144,6 +1144,7 @@ export interface Event extends BaseEvent {
   continuousScanning: boolean;
   scanType: OnSiteScanType;
   activationsDescription: string | null;
+  externalMeetingUrl: string | null;
   options: object | null;
 }
 

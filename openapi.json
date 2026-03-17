@@ -78934,6 +78934,10 @@
                 "type": "string",
                 "nullable": true
               },
+              "externalMeetingUrl": {
+                "type": "string",
+                "nullable": true
+              },
               "options": {
                 "type": "object",
                 "nullable": true
@@ -78980,6 +78984,7 @@
               "continuousScanning",
               "scanType",
               "activationsDescription",
+              "externalMeetingUrl",
               "options"
             ]
           }
@@ -96026,6 +96031,10 @@
             "type": "string",
             "nullable": true
           },
+          "externalMeetingUrl": {
+            "type": "string",
+            "nullable": true
+          },
           "imageId": {
             "type": "string",
             "nullable": true
@@ -96299,6 +96308,10 @@
             "nullable": true
           },
           "externalUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "externalMeetingUrl": {
             "type": "string",
             "nullable": true
           },

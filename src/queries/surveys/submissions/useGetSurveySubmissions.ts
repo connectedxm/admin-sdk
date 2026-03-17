@@ -18,7 +18,13 @@ import { SURVEY_QUERY_KEY } from "../useGetSurvey";
 export const SURVEY_SUBMISSIONS_QUERY_KEY = (
   surveyId: string,
   status?: PurchaseStatus
-) => [...SURVEY_QUERY_KEY(surveyId), "SUBMISSIONS", status || "ALL"];
+) => {
+  const key = [...SURVEY_QUERY_KEY(surveyId), "SUBMISSIONS"];
+  if (status) {
+    key.push(status);
+  }
+  return key;
+};
 
 interface GetSurveySubmissionsProps extends InfiniteQueryParams {
   surveyId: string;

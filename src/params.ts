@@ -2666,6 +2666,7 @@ export interface MeetingCreateInputs {
   sessionId?: string;
   groupId?: string;
   activityId?: string;
+  bookingPlaceId?: string;
   bookingSpaceId?: string;
   title: string | null;
   preferred_region:
@@ -2723,6 +2724,7 @@ export interface MeetingUpdateInputs {
   sessionId?: string;
   groupId?: string;
   activityId?: string;
+  bookingPlaceId?: string;
   bookingSpaceId?: string;
   title?: string | null;
   preferred_region?:

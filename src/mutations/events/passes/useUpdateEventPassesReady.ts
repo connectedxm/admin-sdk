@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse, EventPass } from "@src/interfaces";
+import { ConnectedXMResponse } from "@src/interfaces";
 import {
   ConnectedXMMutationOptions,
   MutationParams,
@@ -23,9 +23,9 @@ export const UpdateEventPassesReady = async ({
   eventId,
   adminApiParams,
   queryClient,
-}: UpdateEventPassesReadyParams): Promise<ConnectedXMResponse<EventPass[]>> => {
+}: UpdateEventPassesReadyParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
-  const { data } = await connectedXM.post<ConnectedXMResponse<EventPass[]>>(
+  const { data } = await connectedXM.post<ConnectedXMResponse<null>>(
     `/events/${eventId}/passes/ready`
   );
   if (queryClient && data.status === "ok") {

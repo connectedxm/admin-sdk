@@ -11,3 +11,4 @@ export * from "./useIndexEventPasses";
 export * from "./useTransferEventPass";
 export * from "./useUndoCheckinEventPass";
 export * from "./useUpdateEventPass";
+export * from "./useUpdateEventPassesReady";

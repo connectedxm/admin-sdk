@@ -31873,6 +31873,59 @@
         ]
       }
     },
+    "/events/{eventId}/passes/ready": {
+      "post": {
+        "operationId": "UpdateEventPassesReady",
+        "summary": "Update Event Passes Ready",
+        "description": "Update Event Passes Ready endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Passes"
+        ]
+      }
+    },
     "/events/{eventId}/passes/{passId}": {
       "get": {
         "operationId": "GetEventPass",

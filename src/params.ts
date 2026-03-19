@@ -41,6 +41,7 @@ import {
   ThreadCircleAccountRole,
   OnSiteScanType,
   Question,
+  SurveyStatus,
 } from "./interfaces";
 
 export interface AccountCreateInputs {
@@ -2315,7 +2316,7 @@ export interface DashboardWidgetUpdateInputs {
 export interface SurveyCreateInputs {
   name: string;
   slug?: string;
-  active?: boolean;
+  status?: SurveyStatus;
   description?: string | null;
   imageId?: string | null;
   requireAuth?: boolean;
@@ -2329,7 +2330,7 @@ export interface SurveyCreateInputs {
 
 export interface SurveyUpdateInputs {
   name?: string;
-  active?: boolean;
+  status?: SurveyStatus;
   slug?: string;
   description?: string | null;
   imageId?: string | null;

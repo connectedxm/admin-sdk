@@ -79542,11 +79542,11 @@
           },
           {
             "in": "query",
-            "name": "sessionId",
+            "name": "status",
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/SurveyStatus"
             },
-            "description": "Filter by sessionId",
+            "description": "Filter by status",
             "required": false
           },
           {
@@ -104858,6 +104858,14 @@
           "updatedAt"
         ]
       },
+      "SurveyStatus": {
+        "type": "string",
+        "enum": [
+          "draft",
+          "published",
+          "archived"
+        ]
+      },
       "BaseSurvey": {
         "type": "object",
         "properties": {
@@ -104870,8 +104878,8 @@
           "name": {
             "type": "string"
           },
-          "active": {
-            "type": "boolean"
+          "status": {
+            "$ref": "#/components/schemas/SurveyStatus"
           },
           "description": {
             "type": "string",
@@ -104891,7 +104899,7 @@
           "id",
           "slug",
           "name",
-          "active",
+          "status",
           "description",
           "image",
           "requireAuth",
@@ -115893,8 +115901,8 @@
           "slug": {
             "type": "string"
           },
-          "active": {
-            "type": "boolean"
+          "status": {
+            "$ref": "#/components/schemas/SurveyStatus"
           },
           "description": {
             "type": "string",
@@ -115947,8 +115955,8 @@
           "name": {
             "type": "string"
           },
-          "active": {
-            "type": "boolean"
+          "status": {
+            "$ref": "#/components/schemas/SurveyStatus"
           },
           "slug": {
             "type": "string"

@@ -79542,6 +79542,15 @@
           },
           {
             "in": "query",
+            "name": "sessionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by sessionId",
+            "required": false
+          },
+          {
+            "in": "query",
             "name": "status",
             "schema": {
               "$ref": "#/components/schemas/SurveyStatus"

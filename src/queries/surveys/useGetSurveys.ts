@@ -12,9 +12,14 @@ import {
  * @category Keys
  * @group Surveys
  */
-export const SURVEYS_QUERY_KEY = (eventId?: string, status?: SurveyStatus) => {
+export const SURVEYS_QUERY_KEY = (
+  eventId?: string,
+  sessionId?: string,
+  status?: SurveyStatus
+) => {
   const keys = ["SURVEYS"];
   if (eventId) keys.push(eventId);
+  if (sessionId) keys.push(sessionId);
   if (status) keys.push(status);
   return keys;
 };
@@ -33,6 +38,7 @@ export const SET_SURVEYS_QUERY_DATA = (
 
 interface GetSurveysProps extends InfiniteQueryParams {
   eventId?: string;
+  sessionId?: string;
   status?: SurveyStatus;
 }
 
@@ -42,6 +48,7 @@ interface GetSurveysProps extends InfiniteQueryParams {
  */
 export const GetSurveys = async ({
   eventId,
+  sessionId,
   status,
   pageParam,
   pageSize,
@@ -57,6 +64,7 @@ export const GetSurveys = async ({
       orderBy: orderBy || undefined,
       search: search || undefined,
       eventId: eventId || undefined,
+      sessionId: sessionId || undefined,
       status: status || undefined,
     },
   });
@@ -69,6 +77,7 @@ export const GetSurveys = async ({
  */
 export const useGetSurveys = (
   eventId?: string,
+  sessionId?: string,
   status?: SurveyStatus,
   params: Omit<
     InfiniteQueryParams,
@@ -77,11 +86,12 @@ export const useGetSurveys = (
   options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetSurveys>>> = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetSurveys>>>(
-    SURVEYS_QUERY_KEY(eventId, status),
+    SURVEYS_QUERY_KEY(eventId, sessionId, status),
     (params: InfiniteQueryParams) =>
       GetSurveys({
         ...params,
         eventId,
+        sessionId,
         status,
       }),
     params,

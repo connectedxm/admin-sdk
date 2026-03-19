@@ -31908,10 +31908,7 @@
                       "example": "Success message."
                     },
                     "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/EventPass"
-                      }
+                      "nullable": true
                     }
                   },
                   "required": [

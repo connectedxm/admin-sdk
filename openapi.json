@@ -102863,11 +102863,9 @@
             "type": "string",
             "nullable": true
           },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
+          "lastLoginAt": {
+            "type": "string",
+            "nullable": true
           }
         },
         "required": [
@@ -102881,8 +102879,7 @@
           "firstName",
           "lastName",
           "internalRefId",
-          "createdAt",
-          "updatedAt"
+          "lastLoginAt"
         ]
       },
       "Login": {
@@ -102893,6 +102890,12 @@
           {
             "type": "object",
             "properties": {
+              "createdAt": {
+                "type": "string"
+              },
+              "updatedAt": {
+                "type": "string"
+              },
               "_count": {
                 "type": "object",
                 "properties": {
@@ -102910,6 +102913,8 @@
               }
             },
             "required": [
+              "createdAt",
+              "updatedAt",
               "_count"
             ]
           }

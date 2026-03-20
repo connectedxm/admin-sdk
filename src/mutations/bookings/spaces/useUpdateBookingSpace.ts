@@ -40,6 +40,7 @@ export const UpdateBookingSpace = async ({
       ...bookingSpace,
       id: undefined,
       image: undefined,
+      meeting: undefined,
       createdAt: undefined,
       updatedAt: undefined,
     }

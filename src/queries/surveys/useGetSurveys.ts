@@ -1,5 +1,5 @@
 import { GetAdminAPI } from "@src/AdminAPI";
-import { ConnectedXMResponse } from "@src/interfaces";
+import { ConnectedXMResponse, SurveyStatus } from "@src/interfaces";
 import { Survey } from "@src/interfaces";
 import { QueryClient } from "@tanstack/react-query";
 import {
@@ -15,12 +15,12 @@ import {
 export const SURVEYS_QUERY_KEY = (
   eventId?: string,
   sessionId?: string,
-  activationId?: string
+  status?: SurveyStatus
 ) => {
   const keys = ["SURVEYS"];
   if (eventId) keys.push(eventId);
   if (sessionId) keys.push(sessionId);
-  if (activationId) keys.push(activationId);
+  if (status) keys.push(status);
   return keys;
 };
 
@@ -39,6 +39,7 @@ export const SET_SURVEYS_QUERY_DATA = (
 interface GetSurveysProps extends InfiniteQueryParams {
   eventId?: string;
   sessionId?: string;
+  status?: SurveyStatus;
 }
 
 /**
@@ -48,6 +49,7 @@ interface GetSurveysProps extends InfiniteQueryParams {
 export const GetSurveys = async ({
   eventId,
   sessionId,
+  status,
   pageParam,
   pageSize,
   orderBy,
@@ -63,6 +65,7 @@ export const GetSurveys = async ({
       search: search || undefined,
       eventId: eventId || undefined,
       sessionId: sessionId || undefined,
+      status: status || undefined,
     },
   });
 
@@ -75,6 +78,7 @@ export const GetSurveys = async ({
 export const useGetSurveys = (
   eventId?: string,
   sessionId?: string,
+  status?: SurveyStatus,
   params: Omit<
     InfiniteQueryParams,
     "pageParam" | "queryClient" | "adminApiParams"
@@ -82,12 +86,13 @@ export const useGetSurveys = (
   options: InfiniteQueryOptions<Awaited<ReturnType<typeof GetSurveys>>> = {}
 ) => {
   return useConnectedInfiniteQuery<Awaited<ReturnType<typeof GetSurveys>>>(
-    SURVEYS_QUERY_KEY(eventId, sessionId),
+    SURVEYS_QUERY_KEY(eventId, sessionId, status),
     (params: InfiniteQueryParams) =>
       GetSurveys({
         ...params,
         eventId,
         sessionId,
+        status,
       }),
     params,
     options

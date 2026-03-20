@@ -31873,6 +31873,59 @@
         ]
       }
     },
+    "/events/{eventId}/passes/ready": {
+      "post": {
+        "operationId": "UpdateEventPassesReady",
+        "summary": "Update Event Passes Ready",
+        "description": "Update Event Passes Ready endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Passes"
+        ]
+      }
+    },
     "/events/{eventId}/passes/{passId}": {
       "get": {
         "operationId": "GetEventPass",
@@ -79498,6 +79551,15 @@
           },
           {
             "in": "query",
+            "name": "status",
+            "schema": {
+              "$ref": "#/components/schemas/SurveyStatus"
+            },
+            "description": "Filter by status",
+            "required": false
+          },
+          {
+            "in": "query",
             "name": "page",
             "schema": {
               "type": "integer",
@@ -104805,6 +104867,14 @@
           "updatedAt"
         ]
       },
+      "SurveyStatus": {
+        "type": "string",
+        "enum": [
+          "draft",
+          "published",
+          "archived"
+        ]
+      },
       "BaseSurvey": {
         "type": "object",
         "properties": {
@@ -104817,8 +104887,8 @@
           "name": {
             "type": "string"
           },
-          "active": {
-            "type": "boolean"
+          "status": {
+            "$ref": "#/components/schemas/SurveyStatus"
           },
           "description": {
             "type": "string",
@@ -104838,7 +104908,7 @@
           "id",
           "slug",
           "name",
-          "active",
+          "status",
           "description",
           "image",
           "requireAuth",
@@ -115840,8 +115910,8 @@
           "slug": {
             "type": "string"
           },
-          "active": {
-            "type": "boolean"
+          "status": {
+            "$ref": "#/components/schemas/SurveyStatus"
           },
           "description": {
             "type": "string",
@@ -115894,8 +115964,8 @@
           "name": {
             "type": "string"
           },
-          "active": {
-            "type": "boolean"
+          "status": {
+            "$ref": "#/components/schemas/SurveyStatus"
           },
           "slug": {
             "type": "string"

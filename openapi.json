@@ -106347,12 +106347,6 @@
           },
           "space": {
             "$ref": "#/components/schemas/BaseBookingSpace"
-          },
-          "responses": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BaseBookingQuestionResponse"
-            }
           }
         },
         "required": [
@@ -106392,7 +106386,7 @@
               "responses": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/BookingQuestionResponse"
+                  "$ref": "#/components/schemas/BaseBookingQuestionResponse"
                 }
               }
             },

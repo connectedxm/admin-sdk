@@ -99915,6 +99915,9 @@
               "activity": {
                 "$ref": "#/components/schemas/BaseActivity"
               },
+              "bookingSpace": {
+                "$ref": "#/components/schemas/BaseBookingSpace"
+              },
               "updated_at": {
                 "type": "string"
               },
@@ -103898,6 +103901,18 @@
                 "type": "string",
                 "nullable": true
               },
+              "meetingId": {
+                "type": "string",
+                "nullable": true
+              },
+              "meeting": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BaseMeeting"
+                  }
+                ],
+                "nullable": true
+              },
               "createdAt": {
                 "type": "string"
               },
@@ -103910,6 +103925,8 @@
               "confirmationReplyTo",
               "cancellationBody",
               "cancellationReplyTo",
+              "meetingId",
+              "meeting",
               "createdAt",
               "updatedAt"
             ]
@@ -115611,6 +115628,10 @@
           },
           "taxLocation": {
             "$ref": "#/components/schemas/TaxLocationType"
+          },
+          "meetingId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "required": [
@@ -115700,6 +115721,10 @@
           },
           "taxLocation": {
             "$ref": "#/components/schemas/TaxLocationType"
+          },
+          "meetingId": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -117177,6 +117202,12 @@
           "activityId": {
             "type": "string"
           },
+          "bookingPlaceId": {
+            "type": "string"
+          },
+          "bookingSpaceId": {
+            "type": "string"
+          },
           "title": {
             "type": "string",
             "nullable": true
@@ -117230,6 +117261,12 @@
             "type": "string"
           },
           "activityId": {
+            "type": "string"
+          },
+          "bookingPlaceId": {
+            "type": "string"
+          },
+          "bookingSpaceId": {
             "type": "string"
           },
           "title": {

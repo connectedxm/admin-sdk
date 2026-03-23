@@ -34,6 +34,8 @@ import {
   RegistrationQuestionType,
   ReportFilters,
   SeriesQuestionType,
+  BookingSpaceQuestionType,
+  BaseBookingSpaceQuestionChoice,
   SupportTicketState,
   SupportTicketType,
   SurveyQuestionType,
@@ -2272,6 +2274,78 @@ export interface BookingSpaceBlackoutCreateInputs {
 export interface BookingSpaceBlackoutUpdateInputs {
   start?: string;
   end?: string;
+}
+
+export interface BookingSpaceQuestionCreateInputs {
+  name: string;
+  type: keyof typeof BookingSpaceQuestionType;
+  required?: boolean;
+  label?: string | null;
+  placeholder?: string | null;
+  description?: string | null;
+  default?: string | null;
+  dashboardVisibility?: boolean;
+  mutable?: boolean;
+  min?: string | null;
+  max?: string | null;
+  masked?: boolean;
+  validation?: string | null;
+  validationMessage?: string | null;
+  locationOption?: keyof typeof LocationQuestionOption | null;
+  sortOrder?: number | string | null;
+  featured?: boolean;
+  searchListId?: string | null;
+  choices?: string[];
+}
+
+export interface BookingSpaceQuestionUpdateInputs {
+  name?: string | null;
+  type?: keyof typeof BookingSpaceQuestionType | null;
+  required?: boolean;
+  label?: string | null;
+  placeholder?: string | null;
+  description?: string | null;
+  default?: string | null;
+  dashboardVisibility?: boolean;
+  mutable?: boolean;
+  min?: string | null;
+  max?: string | null;
+  masked?: boolean;
+  validation?: string | null;
+  validationMessage?: string | null;
+  locationOption?: keyof typeof LocationQuestionOption | null;
+  sortOrder?: number | string | null;
+  featured?: boolean;
+  searchListId?: string | null;
+  choices?: string[] | BaseBookingSpaceQuestionChoice[];
+}
+
+export interface BookingSpaceQuestionChoiceCreateInputs {
+  value: string;
+  text?: string | null;
+  description?: string | null;
+  supply?: number | null;
+  sortOrder?: number | string | null;
+}
+
+export interface BookingSpaceQuestionChoiceUpdateInputs {
+  value?: string | null;
+  text?: string | null;
+  description?: string | null;
+  supply?: number | null;
+  sortOrder?: number | string | null;
+}
+
+export interface BookingSpaceQuestionTranslationUpdateInputs {
+  label?: string | null;
+  placeholder?: string | null;
+  description?: string | null;
+}
+
+export interface BookingSpaceQuestionChoiceTranslationUpdateInputs {
+  value?: string | null;
+  text?: string | null;
+  description?: string | null;
 }
 
 export interface BookingCreateInputs {

@@ -102842,6 +102842,9 @@
           "username": {
             "type": "string"
           },
+          "provider": {
+            "type": "string"
+          },
           "email": {
             "type": "string"
           },
@@ -102875,6 +102878,7 @@
           "sub",
           "userPoolId",
           "username",
+          "provider",
           "email",
           "status",
           "enabled",

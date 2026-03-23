@@ -9803,17 +9803,18 @@
             },
             "description": "The question identifier",
             "required": true
-          },
-          {
-            "in": "query",
-            "name": "question",
-            "schema": {
-              "$ref": "#/components/schemas/BookingSpaceQuestionUpdateInputs"
-            },
-            "description": "Filter by question",
-            "required": true
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BookingSpaceQuestionUpdateInputs"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful response",
@@ -10720,7 +10721,7 @@
           }
         },
         "tags": [
-          "Bookings::Questions::Translations"
+          "Bookings::Questions::Choices::Translations"
         ]
       },
       "delete": {
@@ -10807,7 +10808,7 @@
           }
         },
         "tags": [
-          "Bookings::Questions::Translations"
+          "Bookings::Questions::Choices::Translations"
         ]
       }
     },

@@ -6,6 +6,7 @@ export * from "./useGetBookingPlacePayments";
 export * from "./useGetBookingPlaceTranslation";
 export * from "./useGetBookingPlaceTranslations";
 export * from "./useGetBookingPlaces";
+export * from "./useGetBookingResponses";
 export * from "./useGetBookingSpace";
 export * from "./useGetBookingSpaceAvailabilities";
 export * from "./useGetBookingSpaceAvailability";

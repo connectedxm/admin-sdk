@@ -3952,6 +3952,7 @@ export interface BaseLogin {
   sub: string;
   userPoolId: string;
   username: string;
+  provider: string;
   email: string;
   status: string;
   enabled: boolean;

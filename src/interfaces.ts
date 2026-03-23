@@ -4395,14 +4395,13 @@ export interface BaseBooking {
   status: PurchaseStatus;
   account: BaseAccount;
   space: BaseBookingSpace;
-  responses?: BaseBookingQuestionResponse[];
 }
 
 export interface Booking extends BaseBooking {
   lineItem: PaymentLineItem | null;
   createdAt: string;
   updatedAt: string;
-  responses?: BookingQuestionResponse[];
+  responses?: BaseBookingQuestionResponse[];
 }
 
 export interface BookingSlot {

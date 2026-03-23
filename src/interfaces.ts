@@ -4203,6 +4203,7 @@ export interface BookingSpace extends BaseBookingSpace {
   cancellationReplyTo: string | null;
   meetingId: string | null;
   meeting: BaseMeeting | null;
+  joinBeforeTime: number | null;
   createdAt: string;
   updatedAt: string;
 }

@@ -2221,6 +2221,7 @@ export interface BookingSpaceCreateInputs {
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
   meetingId?: string | null;
+  joinBeforeTime?: number | null;
 }
 
 export interface BookingSpaceUpdateInputs {
@@ -2241,6 +2242,7 @@ export interface BookingSpaceUpdateInputs {
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
   meetingId?: string | null;
+  joinBeforeTime?: number | null;
 }
 
 export interface BookingSpaceTranslationUpdateInputs {

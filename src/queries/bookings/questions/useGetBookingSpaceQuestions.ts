@@ -1,6 +1,7 @@
 import { GetAdminAPI } from "@src/AdminAPI";
 import { ConnectedXMResponse, BookingSpaceQuestion } from "@src/interfaces";
 import {
+  GetBaseInfiniteQueryKeys,
   InfiniteQueryOptions,
   InfiniteQueryParams,
   useConnectedInfiniteQuery,
@@ -24,11 +25,18 @@ export const BOOKING_SPACE_QUESTIONS_QUERY_KEY = (
 export const SET_BOOKING_SPACE_QUESTIONS_QUERY_DATA = (
   client: QueryClient,
   keyParams: Parameters<typeof BOOKING_SPACE_QUESTIONS_QUERY_KEY>,
-  response: Awaited<ReturnType<typeof GetBookingSpaceQuestions>>
+  response: Awaited<ReturnType<typeof GetBookingSpaceQuestions>>,
+  search: string = ""
 ) => {
   client.setQueryData(
-    BOOKING_SPACE_QUESTIONS_QUERY_KEY(...keyParams),
-    response
+    [
+      ...BOOKING_SPACE_QUESTIONS_QUERY_KEY(...keyParams),
+      ...GetBaseInfiniteQueryKeys(search),
+    ],
+    {
+      pages: [response],
+      pageParams: [null],
+    }
   );
 };
 

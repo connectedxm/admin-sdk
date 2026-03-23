@@ -3036,6 +3036,7 @@ export interface Meeting extends BaseMeeting {
   session?: BaseEventSession;
   group?: BaseGroup;
   activity?: BaseActivity;
+  bookingSpace?: BaseBookingSpace;
   updated_at: string;
   created_at: string;
   preferred_region?:
@@ -4200,6 +4201,8 @@ export interface BookingSpace extends BaseBookingSpace {
   confirmationReplyTo: string | null;
   cancellationBody: string | null;
   cancellationReplyTo: string | null;
+  meetingId: string | null;
+  meeting: BaseMeeting | null;
   createdAt: string;
   updatedAt: string;
 }

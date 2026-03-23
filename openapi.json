@@ -12049,6 +12049,62 @@
         ]
       }
     },
+    "/bookings/{bookingId}/responses": {
+      "get": {
+        "operationId": "GetBookingResponses",
+        "summary": "Get Booking Responses",
+        "description": "Get Booking Responses endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "bookingId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The booking identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BaseBookingQuestionResponse"
+                      }
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings"
+        ]
+      }
+    },
     "/channels": {
       "get": {
         "operationId": "GetChannels",

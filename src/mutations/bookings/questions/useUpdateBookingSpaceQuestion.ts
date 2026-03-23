@@ -40,13 +40,10 @@ export const UpdateBookingSpaceQuestion = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<
     ConnectedXMResponse<BookingSpaceQuestion>
-  >(`/bookings/places/${placeId}/spaces/${spaceId}/questions/${questionId}`, {
-    ...question,
-    id: undefined,
-    choices: undefined,
-    createdAt: undefined,
-    updatedAt: undefined,
-  });
+  >(
+    `/bookings/places/${placeId}/spaces/${spaceId}/questions/${questionId}`,
+    question
+  );
   if (queryClient && data.status === "ok") {
     queryClient.invalidateQueries({
       queryKey: BOOKING_SPACE_QUESTIONS_QUERY_KEY(placeId, spaceId),

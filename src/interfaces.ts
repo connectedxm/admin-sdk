@@ -3959,11 +3959,12 @@ export interface BaseLogin {
   firstName: string | null;
   lastName: string | null;
   internalRefId: string | null;
-  createdAt: string;
-  updatedAt: string;
+  lastLoginAt: string | null;
 }
 
 export interface Login extends BaseLogin {
+  createdAt: string;
+  updatedAt: string;
   _count: {
     accounts: number;
     devices: number;

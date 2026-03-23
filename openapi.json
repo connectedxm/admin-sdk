@@ -113,6 +113,22 @@
       "description": "Operations for bookings::places::translations"
     },
     {
+      "name": "Bookings::Questions",
+      "description": "Operations for bookings::questions"
+    },
+    {
+      "name": "Bookings::Questions::Choices",
+      "description": "Operations for bookings::questions::choices"
+    },
+    {
+      "name": "Bookings::Questions::Choices::Translations",
+      "description": "Operations for bookings::questions::choices::translations"
+    },
+    {
+      "name": "Bookings::Questions::Translations",
+      "description": "Operations for bookings::questions::translations"
+    },
+    {
       "name": "Bookings::Spaces",
       "description": "Create specific, individual areas within a larger place that attendees can reserve for time-slots, such as meeting rooms, booths, or photo-op locations"
     },
@@ -9426,6 +9442,1847 @@
         },
         "tags": [
           "Bookings"
+        ]
+      }
+    },
+    "/bookings/places/{placeId}/spaces/{spaceId}/questions": {
+      "get": {
+        "operationId": "GetBookingSpaceQuestions",
+        "summary": "Get Booking Space Questions",
+        "description": "Get Booking Space Questions endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "description": "Page number",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            },
+            "description": "Number of items per page",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field to order by",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BookingSpaceQuestion"
+                      }
+                    },
+                    "count": {
+                      "type": "integer",
+                      "example": 100
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions"
+        ]
+      },
+      "post": {
+        "operationId": "CreateBookingSpaceQuestion",
+        "summary": "Create Booking Space Question",
+        "description": "Create Booking Space Question endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BookingSpaceQuestionCreateInputs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/BookingSpaceQuestion"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions"
+        ]
+      }
+    },
+    "/bookings/places/{placeId}/spaces/{spaceId}/questions/reorder": {
+      "put": {
+        "operationId": "ReorderBookingSpaceQuestions",
+        "summary": "Reorder Booking Space Questions",
+        "description": "Reorder Booking Space Questions endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "questionsIds",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Filter by questionsIds",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BookingSpaceQuestion"
+                      }
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions"
+        ]
+      }
+    },
+    "/bookings/places/{placeId}/spaces/{spaceId}/questions/{questionId}": {
+      "get": {
+        "operationId": "GetBookingSpaceQuestion",
+        "summary": "Get Booking Space Question",
+        "description": "Get Booking Space Question endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/BookingSpaceQuestion"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateBookingSpaceQuestion",
+        "summary": "Update Booking Space Question",
+        "description": "Update Booking Space Question endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "question",
+            "schema": {
+              "$ref": "#/components/schemas/BookingSpaceQuestionUpdateInputs"
+            },
+            "description": "Filter by question",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/BookingSpaceQuestion"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteBookingSpaceQuestion",
+        "summary": "Delete Booking Space Question",
+        "description": "Delete Booking Space Question endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions"
+        ]
+      }
+    },
+    "/bookings/places/{placeId}/spaces/{spaceId}/questions/{questionId}/choices": {
+      "get": {
+        "operationId": "GetBookingSpaceQuestionChoices",
+        "summary": "Get Booking Space Question Choices",
+        "description": "Get Booking Space Question Choices endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "description": "Page number",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            },
+            "description": "Number of items per page",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field to order by",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BookingSpaceQuestionChoice"
+                      }
+                    },
+                    "count": {
+                      "type": "integer",
+                      "example": 100
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions::Choices"
+        ]
+      },
+      "post": {
+        "operationId": "CreateBookingSpaceQuestionChoice",
+        "summary": "Create Booking Space Question Choice",
+        "description": "Create Booking Space Question Choice endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BookingSpaceQuestionChoiceCreateInputs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/BookingSpaceQuestionChoice"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions::Choices"
+        ]
+      }
+    },
+    "/bookings/places/{placeId}/spaces/{spaceId}/questions/{questionId}/choices/reorder": {
+      "put": {
+        "operationId": "ReorderBookingSpaceQuestionChoices",
+        "summary": "Reorder Booking Space Question Choices",
+        "description": "Reorder Booking Space Question Choices endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "choicesIds",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Filter by choicesIds",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BookingSpaceQuestionChoice"
+                      }
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions::Choices"
+        ]
+      }
+    },
+    "/bookings/places/{placeId}/spaces/{spaceId}/questions/{questionId}/choices/{choiceId}": {
+      "get": {
+        "operationId": "GetBookingSpaceQuestionChoice",
+        "summary": "Get Booking Space Question Choice",
+        "description": "Get Booking Space Question Choice endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "choiceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The choice identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/BookingSpaceQuestionChoice"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions::Choices"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateBookingSpaceQuestionChoice",
+        "summary": "Update Booking Space Question Choice",
+        "description": "Update Booking Space Question Choice endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "choiceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The choice identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BookingSpaceQuestionChoiceUpdateInputs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/BookingSpaceQuestionChoice"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions::Choices"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteBookingSpaceQuestionChoice",
+        "summary": "Delete Booking Space Question Choice",
+        "description": "Delete Booking Space Question Choice endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "choiceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The choice identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions::Choices"
+        ]
+      }
+    },
+    "/bookings/places/{placeId}/spaces/{spaceId}/questions/{questionId}/choices/{choiceId}/translations": {
+      "get": {
+        "operationId": "GetBookingSpaceQuestionChoiceTranslations",
+        "summary": "Get Booking Space Question Choice Translations",
+        "description": "Get Booking Space Question Choice Translations endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "choiceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The choice identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BookingSpaceQuestionChoiceTranslation"
+                      }
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions::Choices::Translations"
+        ]
+      }
+    },
+    "/bookings/places/{placeId}/spaces/{spaceId}/questions/{questionId}/choices/{choiceId}/translations/{locale}": {
+      "get": {
+        "operationId": "GetBookingSpaceQuestionChoiceTranslation",
+        "summary": "Get Booking Space Question Choice Translation",
+        "description": "Get Booking Space Question Choice Translation endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "choiceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The choice identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "locale",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The locale identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/BookingSpaceQuestionChoiceTranslation"
+                        }
+                      ],
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions::Choices::Translations"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateBookingSpaceQuestionChoiceTranslation",
+        "summary": "Update Booking Space Question Choice Translation",
+        "description": "Update Booking Space Question Choice Translation endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "choiceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The choice identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "locale",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The locale identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BookingSpaceQuestionChoiceTranslationUpdateInputs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/BookingSpaceQuestionChoiceTranslation"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions::Translations"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteBookingSpaceQuestionChoiceTranslation",
+        "summary": "Delete Booking Space Question Choice Translation",
+        "description": "Delete Booking Space Question Choice Translation endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "choiceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The choice identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "locale",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The locale identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions::Translations"
+        ]
+      }
+    },
+    "/bookings/places/{placeId}/spaces/{spaceId}/questions/{questionId}/searchlist": {
+      "put": {
+        "operationId": "AttachBookingSpaceQuestionSearchList",
+        "summary": "Attach Booking Space Question Search List",
+        "description": "Attach Booking Space Question Search List endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AttachSearchListInputs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/BookingSpaceQuestion"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions"
+        ]
+      },
+      "delete": {
+        "operationId": "DetachBookingSpaceQuestionSearchList",
+        "summary": "Detach Booking Space Question Search List",
+        "description": "Detach Booking Space Question Search List endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/BookingSpaceQuestion"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions"
+        ]
+      }
+    },
+    "/bookings/places/{placeId}/spaces/{spaceId}/questions/{questionId}/translations": {
+      "get": {
+        "operationId": "GetBookingSpaceQuestionTranslations",
+        "summary": "Get Booking Space Question Translations",
+        "description": "Get Booking Space Question Translations endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BookingSpaceQuestionTranslation"
+                      }
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions::Translations"
+        ]
+      }
+    },
+    "/bookings/places/{placeId}/spaces/{spaceId}/questions/{questionId}/translations/{locale}": {
+      "get": {
+        "operationId": "GetBookingSpaceQuestionTranslation",
+        "summary": "Get Booking Space Question Translation",
+        "description": "Get Booking Space Question Translation endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "locale",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The locale identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/BookingSpaceQuestionTranslation"
+                        }
+                      ],
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions::Translations"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateBookingSpaceQuestionTranslation",
+        "summary": "Update Booking Space Question Translation",
+        "description": "Update Booking Space Question Translation endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "locale",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The locale identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BookingSpaceQuestionTranslationUpdateInputs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/BookingSpaceQuestionTranslation"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions::Translations"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteBookingSpaceQuestionTranslation",
+        "summary": "Delete Booking Space Question Translation",
+        "description": "Delete Booking Space Question Translation endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "placeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The place identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "spaceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The space identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "questionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The question identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "locale",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The locale identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bookings::Questions::Translations"
         ]
       }
     },
@@ -104104,6 +105961,362 @@
           }
         ]
       },
+      "BookingSpaceQuestionType": {
+        "type": "string",
+        "enum": [
+          "text",
+          "textarea",
+          "number",
+          "time",
+          "date",
+          "toggle",
+          "select",
+          "radio",
+          "checkbox",
+          "search",
+          "file",
+          "location"
+        ]
+      },
+      "BaseBookingSpaceQuestionChoice": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "supply": {
+            "type": "number",
+            "nullable": true
+          },
+          "sortOrder": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "value",
+          "text",
+          "description",
+          "supply",
+          "sortOrder"
+        ]
+      },
+      "BookingSpaceQuestionChoice": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseBookingSpaceQuestionChoice"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "questionId": {
+                "type": "string"
+              },
+              "question": {
+                "$ref": "#/components/schemas/BaseBookingSpaceQuestion"
+              },
+              "createdAt": {
+                "type": "string"
+              },
+              "updatedAt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "questionId",
+              "question",
+              "createdAt",
+              "updatedAt"
+            ]
+          }
+        ]
+      },
+      "BookingSpaceQuestionChoiceTranslation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "locale": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "locale",
+          "value",
+          "text",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "BaseBookingSpaceQuestion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/BookingSpaceQuestionType"
+          },
+          "name": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "placeholder": {
+            "type": "string",
+            "nullable": true
+          },
+          "default": {
+            "type": "string",
+            "nullable": true
+          },
+          "searchListId": {
+            "type": "string",
+            "nullable": true
+          },
+          "searchList": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseSearchList"
+              }
+            ],
+            "nullable": true
+          },
+          "mutable": {
+            "type": "boolean"
+          },
+          "min": {
+            "type": "string",
+            "nullable": true
+          },
+          "max": {
+            "type": "string",
+            "nullable": true
+          },
+          "masked": {
+            "type": "boolean"
+          },
+          "validation": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationOption": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LocationQuestionOption"
+              }
+            ],
+            "nullable": true
+          },
+          "sortOrder": {
+            "type": "number"
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "choices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BaseBookingSpaceQuestionChoice"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "name",
+          "required",
+          "description",
+          "label",
+          "placeholder",
+          "default",
+          "searchListId",
+          "searchList",
+          "mutable",
+          "min",
+          "max",
+          "masked",
+          "validation",
+          "validationMessage",
+          "locationOption",
+          "sortOrder",
+          "featured",
+          "choices"
+        ]
+      },
+      "BookingSpaceQuestion": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseBookingSpaceQuestion"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dashboardVisibility": {
+                "type": "boolean"
+              },
+              "createdAt": {
+                "type": "string"
+              },
+              "updatedAt": {
+                "type": "string"
+              },
+              "translations": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BookingSpaceQuestionTranslation"
+                }
+              }
+            },
+            "required": [
+              "dashboardVisibility",
+              "createdAt",
+              "updatedAt"
+            ]
+          }
+        ]
+      },
+      "BookingSpaceQuestionTranslation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "locale": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "placeholder": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "locale",
+          "label",
+          "placeholder",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "BaseBookingQuestionResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "questionId": {
+            "type": "string"
+          },
+          "question": {
+            "$ref": "#/components/schemas/BaseBookingSpaceQuestion"
+          }
+        },
+        "required": [
+          "id",
+          "value",
+          "questionId",
+          "question"
+        ]
+      },
+      "BookingQuestionResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseBookingQuestionResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "fileId": {
+                "type": "number",
+                "nullable": true
+              },
+              "file": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BaseFile"
+                  }
+                ],
+                "nullable": true
+              },
+              "createdAt": {
+                "type": "string"
+              },
+              "updatedAt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "fileId",
+              "file",
+              "createdAt",
+              "updatedAt"
+            ]
+          }
+        ]
+      },
       "BaseBooking": {
         "type": "object",
         "properties": {
@@ -104133,6 +106346,12 @@
           },
           "space": {
             "$ref": "#/components/schemas/BaseBookingSpace"
+          },
+          "responses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BaseBookingQuestionResponse"
+            }
           }
         },
         "required": [
@@ -104168,6 +106387,12 @@
               },
               "updatedAt": {
                 "type": "string"
+              },
+              "responses": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BookingQuestionResponse"
+                }
               }
             },
             "required": [
@@ -115822,6 +118047,300 @@
           },
           "end": {
             "type": "string"
+          }
+        }
+      },
+      "BookingSpaceQuestionCreateInputs": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/BookingSpaceQuestionType"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "placeholder": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "default": {
+            "type": "string",
+            "nullable": true
+          },
+          "dashboardVisibility": {
+            "type": "boolean"
+          },
+          "mutable": {
+            "type": "boolean"
+          },
+          "min": {
+            "type": "string",
+            "nullable": true
+          },
+          "max": {
+            "type": "string",
+            "nullable": true
+          },
+          "masked": {
+            "type": "boolean"
+          },
+          "validation": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationOption": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LocationQuestionOption"
+              }
+            ],
+            "nullable": true
+          },
+          "sortOrder": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "searchListId": {
+            "type": "string",
+            "nullable": true
+          },
+          "choices": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ]
+      },
+      "BookingSpaceQuestionUpdateInputs": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BookingSpaceQuestionType"
+              }
+            ],
+            "nullable": true
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "placeholder": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "default": {
+            "type": "string",
+            "nullable": true
+          },
+          "dashboardVisibility": {
+            "type": "boolean"
+          },
+          "mutable": {
+            "type": "boolean"
+          },
+          "min": {
+            "type": "string",
+            "nullable": true
+          },
+          "max": {
+            "type": "string",
+            "nullable": true
+          },
+          "masked": {
+            "type": "boolean"
+          },
+          "validation": {
+            "type": "string",
+            "nullable": true
+          },
+          "validationMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationOption": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LocationQuestionOption"
+              }
+            ],
+            "nullable": true
+          },
+          "sortOrder": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "searchListId": {
+            "type": "string",
+            "nullable": true
+          },
+          "choices": {
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BaseBookingSpaceQuestionChoice"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "BookingSpaceQuestionChoiceCreateInputs": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "supply": {
+            "type": "number",
+            "nullable": true
+          },
+          "sortOrder": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "required": [
+          "value"
+        ]
+      },
+      "BookingSpaceQuestionChoiceUpdateInputs": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "nullable": true
+          },
+          "text": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "supply": {
+            "type": "number",
+            "nullable": true
+          },
+          "sortOrder": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true
+          }
+        }
+      },
+      "BookingSpaceQuestionTranslationUpdateInputs": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "placeholder": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "BookingSpaceQuestionChoiceTranslationUpdateInputs": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "nullable": true
+          },
+          "text": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
           }
         }
       },

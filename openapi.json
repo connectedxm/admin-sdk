@@ -103913,6 +103913,10 @@
                 ],
                 "nullable": true
               },
+              "joinBeforeTime": {
+                "type": "number",
+                "nullable": true
+              },
               "createdAt": {
                 "type": "string"
               },
@@ -103927,6 +103931,7 @@
               "cancellationReplyTo",
               "meetingId",
               "meeting",
+              "joinBeforeTime",
               "createdAt",
               "updatedAt"
             ]
@@ -115632,6 +115637,10 @@
           "meetingId": {
             "type": "string",
             "nullable": true
+          },
+          "joinBeforeTime": {
+            "type": "number",
+            "nullable": true
           }
         },
         "required": [
@@ -115724,6 +115733,10 @@
           },
           "meetingId": {
             "type": "string",
+            "nullable": true
+          },
+          "joinBeforeTime": {
+            "type": "number",
             "nullable": true
           }
         }

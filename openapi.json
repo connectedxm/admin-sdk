@@ -99915,6 +99915,9 @@
               "activity": {
                 "$ref": "#/components/schemas/BaseActivity"
               },
+              "bookingSpace": {
+                "$ref": "#/components/schemas/BaseBookingSpace"
+              },
               "updated_at": {
                 "type": "string"
               },
@@ -102839,6 +102842,9 @@
           "username": {
             "type": "string"
           },
+          "provider": {
+            "type": "string"
+          },
           "email": {
             "type": "string"
           },
@@ -102872,6 +102878,7 @@
           "sub",
           "userPoolId",
           "username",
+          "provider",
           "email",
           "status",
           "enabled",
@@ -103898,6 +103905,22 @@
                 "type": "string",
                 "nullable": true
               },
+              "meetingId": {
+                "type": "string",
+                "nullable": true
+              },
+              "meeting": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BaseMeeting"
+                  }
+                ],
+                "nullable": true
+              },
+              "joinBeforeTime": {
+                "type": "number",
+                "nullable": true
+              },
               "createdAt": {
                 "type": "string"
               },
@@ -103910,6 +103933,9 @@
               "confirmationReplyTo",
               "cancellationBody",
               "cancellationReplyTo",
+              "meetingId",
+              "meeting",
+              "joinBeforeTime",
               "createdAt",
               "updatedAt"
             ]
@@ -115611,6 +115637,14 @@
           },
           "taxLocation": {
             "$ref": "#/components/schemas/TaxLocationType"
+          },
+          "meetingId": {
+            "type": "string",
+            "nullable": true
+          },
+          "joinBeforeTime": {
+            "type": "number",
+            "nullable": true
           }
         },
         "required": [
@@ -115700,6 +115734,14 @@
           },
           "taxLocation": {
             "$ref": "#/components/schemas/TaxLocationType"
+          },
+          "meetingId": {
+            "type": "string",
+            "nullable": true
+          },
+          "joinBeforeTime": {
+            "type": "number",
+            "nullable": true
           }
         }
       },
@@ -117177,6 +117219,12 @@
           "activityId": {
             "type": "string"
           },
+          "bookingPlaceId": {
+            "type": "string"
+          },
+          "bookingSpaceId": {
+            "type": "string"
+          },
           "title": {
             "type": "string",
             "nullable": true
@@ -117230,6 +117278,12 @@
             "type": "string"
           },
           "activityId": {
+            "type": "string"
+          },
+          "bookingPlaceId": {
+            "type": "string"
+          },
+          "bookingSpaceId": {
             "type": "string"
           },
           "title": {

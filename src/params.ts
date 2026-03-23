@@ -2220,6 +2220,8 @@ export interface BookingSpaceCreateInputs {
   taxCode?: string | null;
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
+  meetingId?: string | null;
+  joinBeforeTime?: number | null;
 }
 
 export interface BookingSpaceUpdateInputs {
@@ -2239,6 +2241,8 @@ export interface BookingSpaceUpdateInputs {
   taxCode?: string | null;
   taxIncluded?: boolean;
   taxLocation?: keyof typeof TaxLocationType;
+  meetingId?: string | null;
+  joinBeforeTime?: number | null;
 }
 
 export interface BookingSpaceTranslationUpdateInputs {
@@ -2665,6 +2669,8 @@ export interface MeetingCreateInputs {
   sessionId?: string;
   groupId?: string;
   activityId?: string;
+  bookingPlaceId?: string;
+  bookingSpaceId?: string;
   title: string | null;
   preferred_region:
     | "ap-south-1"
@@ -2721,6 +2727,8 @@ export interface MeetingUpdateInputs {
   sessionId?: string;
   groupId?: string;
   activityId?: string;
+  bookingPlaceId?: string;
+  bookingSpaceId?: string;
   title?: string | null;
   preferred_region?:
     | "ap-south-1"

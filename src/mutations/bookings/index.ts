@@ -1,6 +1,7 @@
 export * from "./availabilities";
 export * from "./blackouts";
 export * from "./places";
+export * from "./questions";
 export * from "./spaces";
 export * from "./useCancelBooking";
 export * from "./useCreateBooking";

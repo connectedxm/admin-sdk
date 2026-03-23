@@ -1826,7 +1826,8 @@ export interface BaseOrganizationModuleSettings {
   organizationId: string;
 }
 
-export interface OrganizationModuleSettings extends BaseOrganizationModuleSettings {
+export interface OrganizationModuleSettings
+  extends BaseOrganizationModuleSettings {
   meetingGroupCallAdminPreset: string;
   meetingGroupCallGuestPreset: string;
   meetingWebinarAdminPreset: string;
@@ -1842,7 +1843,8 @@ export interface BaseOrganizationModuleSettingsTranslation {
   locale: string;
 }
 
-export interface OrganizationModuleSettingsTranslation extends BaseOrganizationModuleSettingsTranslation {
+export interface OrganizationModuleSettingsTranslation
+  extends BaseOrganizationModuleSettingsTranslation {
   supportAutoResolveMessage?: string;
 }
 
@@ -2164,7 +2166,8 @@ export interface Question {
   value: string;
 }
 
-export interface RegistrationQuestionChoice extends BaseRegistrationQuestionChoice {
+export interface RegistrationQuestionChoice
+  extends BaseRegistrationQuestionChoice {
   questionId: string;
   question: BaseRegistrationQuestion;
   subQuestions: BaseRegistrationQuestionChoiceSubQuestion[];
@@ -2179,7 +2182,8 @@ export interface BaseRegistrationQuestionChoiceSubQuestion {
   question: BaseRegistrationQuestion;
 }
 
-export interface RegistrationQuestionChoiceSubQuestion extends BaseRegistrationQuestionChoiceSubQuestion {
+export interface RegistrationQuestionChoiceSubQuestion
+  extends BaseRegistrationQuestionChoiceSubQuestion {
   sortOrder: number;
   createdAt: string;
   updatedAt: string;
@@ -2206,7 +2210,8 @@ export interface BaseRegistrationQuestionResponseChange {
   createdAt: string;
 }
 
-export interface RegistrationQuestionResponseChange extends BaseRegistrationQuestionResponseChange {
+export interface RegistrationQuestionResponseChange
+  extends BaseRegistrationQuestionResponseChange {
   response: BaseRegistrationQuestionResponse;
   user: BaseUser | null;
 }
@@ -2218,7 +2223,8 @@ export interface BaseRegistrationQuestionResponse {
   question: BaseRegistrationQuestion;
 }
 
-export interface RegistrationQuestionResponse extends BaseRegistrationQuestionResponse {
+export interface RegistrationQuestionResponse
+  extends BaseRegistrationQuestionResponse {
   changeLogs: BaseRegistrationQuestionResponseChange[];
   createdAt: string;
   updatedAt: string;
@@ -2277,7 +2283,8 @@ export interface BaseRegistrationSectionQuestion {
   sortOrder: number;
 }
 
-export interface RegistrationSectionQuestion extends BaseRegistrationSectionQuestion {
+export interface RegistrationSectionQuestion
+  extends BaseRegistrationSectionQuestion {
   createdAt: string;
   updatedAt: string;
 }
@@ -2290,7 +2297,8 @@ export interface BaseRegistrationFollowupQuestion {
   sortOrder: number;
 }
 
-export interface RegistrationFollowupQuestion extends BaseRegistrationFollowupQuestion {
+export interface RegistrationFollowupQuestion
+  extends BaseRegistrationFollowupQuestion {
   createdAt: string;
   updatedAt: string;
 }
@@ -2557,7 +2565,8 @@ export interface BaseSeriesRegistrationQuestionResponse {
   question: BaseSeriesQuestion;
 }
 
-export interface SeriesRegistrationQuestionResponse extends BaseSeriesRegistrationQuestionResponse {
+export interface SeriesRegistrationQuestionResponse
+  extends BaseSeriesRegistrationQuestionResponse {
   fileId: number | null;
   file: BaseFile | null;
   createdAt: string;
@@ -2763,7 +2772,8 @@ export interface BaseEventSessionQuestionChoice {
   };
 }
 
-export interface EventSessionQuestionChoice extends BaseEventSessionQuestionChoice {
+export interface EventSessionQuestionChoice
+  extends BaseEventSessionQuestionChoice {
   questionId: string;
   question: BaseEventSessionQuestion;
   subQuestions: BaseEventSessionQuestionChoiceSubQuestion[];
@@ -2778,7 +2788,8 @@ export interface BaseEventSessionQuestionChoiceSubQuestion {
   question: BaseEventSessionQuestion;
 }
 
-export interface EventSessionQuestionChoiceSubQuestion extends BaseEventSessionQuestionChoiceSubQuestion {
+export interface EventSessionQuestionChoiceSubQuestion
+  extends BaseEventSessionQuestionChoiceSubQuestion {
   sortOrder: number;
   createdAt: string;
   updatedAt: string;
@@ -2805,7 +2816,8 @@ export interface BaseEventSessionQuestionResponseChange {
   createdAt: string;
 }
 
-export interface EventSessionQuestionResponseChange extends BaseEventSessionQuestionResponseChange {
+export interface EventSessionQuestionResponseChange
+  extends BaseEventSessionQuestionResponseChange {
   response: BaseEventSessionQuestionResponse;
   user: BaseUser;
 }
@@ -2817,7 +2829,8 @@ export interface BaseEventSessionQuestionResponse {
   question: BaseEventSessionQuestion;
 }
 
-export interface EventSessionQuestionResponse extends BaseEventSessionQuestionResponse {
+export interface EventSessionQuestionResponse
+  extends BaseEventSessionQuestionResponse {
   changeLogs: BaseEventSessionQuestionResponseChange[];
   createdAt: string;
   updatedAt: string;
@@ -2878,7 +2891,8 @@ export interface BaseEventSessionSectionQuestion {
   sortOrder: number;
 }
 
-export interface EventSessionSectionQuestion extends BaseEventSessionSectionQuestion {
+export interface EventSessionSectionQuestion
+  extends BaseEventSessionSectionQuestion {
   createdAt: string;
   updatedAt: string;
 }
@@ -3108,7 +3122,8 @@ export interface BaseMeetingSessionParticipant {
   account: BaseAccount | null;
 }
 
-export interface MeetingSessionParticipant extends BaseMeetingSessionParticipant {
+export interface MeetingSessionParticipant
+  extends BaseMeetingSessionParticipant {
   peer_stats?: {
     config?: string;
     status?: string;
@@ -3579,7 +3594,8 @@ export interface BaseEventPassTypePriceSchedule {
   updatedAt: string;
 }
 
-export interface EventPassTypePriceSchedule extends BaseEventPassTypePriceSchedule {}
+export interface EventPassTypePriceSchedule
+  extends BaseEventPassTypePriceSchedule {}
 
 export interface BaseEventPassTypeRefundSchedule {
   id: string;
@@ -3591,7 +3607,8 @@ export interface BaseEventPassTypeRefundSchedule {
   updatedAt: string;
 }
 
-export interface EventPassTypeRefundSchedule extends BaseEventPassTypeRefundSchedule {}
+export interface EventPassTypeRefundSchedule
+  extends BaseEventPassTypeRefundSchedule {}
 
 export interface EventPassTypeTranslation {
   id: number;
@@ -4048,10 +4065,8 @@ export interface BaseEventRoomTypeReservation {
   room: BaseRoom;
 }
 
-export interface EventRoomTypeReservation extends Omit<
-  BaseEventRoomTypeReservation,
-  "passes"
-> {
+export interface EventRoomTypeReservation
+  extends Omit<BaseEventRoomTypeReservation, "passes"> {
   passes: {
     id: string;
     status: PurchaseStatus;
@@ -4090,7 +4105,8 @@ export interface BaseEventRoomTypePassTypeDetails {
   maxEnd: string | null;
 }
 
-export interface EventRoomTypePassTypeDetails extends BaseEventRoomTypePassTypeDetails {
+export interface EventRoomTypePassTypeDetails
+  extends BaseEventRoomTypePassTypeDetails {
   createdAt: string;
   updatedAt: string;
 }
@@ -4106,7 +4122,8 @@ export interface BaseEventRoomTypeAddOnDetails {
   maxEnd: string | null;
 }
 
-export interface EventRoomTypeAddOnDetails extends BaseEventRoomTypeAddOnDetails {
+export interface EventRoomTypeAddOnDetails
+  extends BaseEventRoomTypeAddOnDetails {
   createdAt: string;
   updatedAt: string;
 }
@@ -4252,6 +4269,102 @@ export interface BookingSpaceBlackout extends BaseBookingSpaceBlackout {
   updatedAt: string;
 }
 
+export enum BookingSpaceQuestionType {
+  text = "text",
+  textarea = "textarea",
+  number = "number",
+  time = "time",
+  date = "date",
+  toggle = "toggle",
+  select = "select",
+  radio = "radio",
+  checkbox = "checkbox",
+  search = "search",
+  file = "file",
+  location = "location",
+}
+
+export interface BaseBookingSpaceQuestionChoice {
+  id: string;
+  value: string;
+  text: string | null;
+  description: string | null;
+  supply: number | null;
+  sortOrder: number;
+}
+
+export interface BookingSpaceQuestionChoice
+  extends BaseBookingSpaceQuestionChoice {
+  questionId: string;
+  question: BaseBookingSpaceQuestion;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BookingSpaceQuestionChoiceTranslation {
+  id: string;
+  locale: string;
+  value: string;
+  text: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseBookingSpaceQuestion {
+  id: string;
+  type: BookingSpaceQuestionType;
+  name: string;
+  required: boolean;
+  description: string | null;
+  label: string | null;
+  placeholder: string | null;
+  default: string | null;
+  searchListId: string | null;
+  searchList: BaseSearchList | null;
+  mutable: boolean;
+  min: string | null;
+  max: string | null;
+  masked: boolean;
+  validation: string | null;
+  validationMessage: string | null;
+  locationOption: LocationQuestionOption | null;
+  sortOrder: number;
+  featured: boolean;
+  choices: BaseBookingSpaceQuestionChoice[];
+}
+
+export interface BookingSpaceQuestion extends BaseBookingSpaceQuestion {
+  dashboardVisibility: boolean;
+  createdAt: string;
+  updatedAt: string;
+  translations?: BookingSpaceQuestionTranslation[];
+}
+
+export interface BookingSpaceQuestionTranslation {
+  id: string;
+  locale: string;
+  label: string | null;
+  placeholder: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BaseBookingQuestionResponse {
+  id: string;
+  value: string;
+  questionId: string;
+  question: BaseBookingSpaceQuestion;
+}
+
+export interface BookingQuestionResponse extends BaseBookingQuestionResponse {
+  fileId: number | null;
+  file: BaseFile | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface BaseBooking {
   id: string;
   alternateId: string;
@@ -4262,12 +4375,14 @@ export interface BaseBooking {
   status: PurchaseStatus;
   account: BaseAccount;
   space: BaseBookingSpace;
+  responses?: BaseBookingQuestionResponse[];
 }
 
 export interface Booking extends BaseBooking {
   lineItem: PaymentLineItem | null;
   createdAt: string;
   updatedAt: string;
+  responses?: BookingQuestionResponse[];
 }
 
 export interface BookingSlot {
@@ -4561,7 +4676,8 @@ export interface BaseSurveyQuestionChoiceSubQuestion {
   question: BaseSurveyQuestion;
 }
 
-export interface SurveyQuestionChoiceSubQuestion extends BaseSurveyQuestionChoiceSubQuestion {
+export interface SurveyQuestionChoiceSubQuestion
+  extends BaseSurveyQuestionChoiceSubQuestion {
   sortOrder: number;
   createdAt: string;
   updatedAt: string;
@@ -4588,7 +4704,8 @@ export interface BaseSurveyQuestionResponseChange {
   createdAt: string;
 }
 
-export interface SurveyQuestionResponseChange extends BaseSurveyQuestionResponseChange {
+export interface SurveyQuestionResponseChange
+  extends BaseSurveyQuestionResponseChange {
   response: BaseSurveyQuestionResponse;
   user: BaseUser;
 }
@@ -4997,7 +5114,8 @@ export interface BaseStreamSessionSubscription {
   disconnectedAt: string | null;
 }
 
-export interface StreamSessionSubscription extends BaseStreamSessionSubscription {
+export interface StreamSessionSubscription
+  extends BaseStreamSessionSubscription {
   connection: BaseWebSocketConnection;
   streamSession: BaseStreamSession;
 }

@@ -2924,6 +2924,26 @@ export interface EventSessionSectionTranslation {
   updatedAt: string;
 }
 
+export interface EventSessionTimeTranslation {
+  id: string;
+  locale: string;
+  name: string | null;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventSessionTime {
+  id: string;
+  name: string;
+  description: string | null;
+  startTime: string;
+  speakers: BaseEventSpeaker[];
+  translations: EventSessionTimeTranslation[];
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface BaseEventBlock {
   id: string;
   name: string;

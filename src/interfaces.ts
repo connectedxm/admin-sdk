@@ -1851,6 +1851,7 @@ export interface OrganizationModuleSettingsTranslation
 export enum PurchaseStatus {
   draft = "draft",
   canceled = "canceled",
+  pending = "pending",
   needsInfo = "needsInfo",
   ready = "ready",
 }
@@ -3586,6 +3587,7 @@ export interface BaseEventPassType {
   createdAt: string;
   updatedAt: string;
   requiredPassTypeId: string | null;
+  requiresApproval: boolean;
 }
 
 export interface EventPassType extends BaseEventPassType {

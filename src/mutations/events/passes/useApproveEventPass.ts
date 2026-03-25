@@ -10,6 +10,7 @@ import {
   EVENT_ATTENDEE_QUERY_KEY,
   EVENT_PASSES_QUERY_KEY,
   EVENT_PASS_TYPE_PASSES_QUERY_KEY,
+  EVENT_PENDING_PASSES_QUERY_KEY,
   SET_EVENT_PASS_QUERY_DATA,
 } from "@src/queries";
 
@@ -61,6 +62,9 @@ export const ApproveEventPass = async ({
     }
     queryClient.invalidateQueries({
       queryKey: EVENT_PASSES_QUERY_KEY(eventId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: EVENT_PENDING_PASSES_QUERY_KEY(eventId),
     });
     SET_EVENT_PASS_QUERY_DATA(queryClient, [eventId, passId], data);
   }

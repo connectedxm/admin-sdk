@@ -2663,7 +2663,6 @@ export interface EventSession extends BaseEventSession {
   eventId: string;
   event: BaseEvent;
   speakers: BaseEventSpeaker[];
-  times: EventSessionTime[];
   meetingId: string | null;
   meeting: BaseMeeting | null;
   blocks: BaseEventBlock[] | null;

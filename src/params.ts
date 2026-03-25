@@ -1108,6 +1108,23 @@ export interface EventSessionSectionUpdateInputs {
   sortOrder?: number | string | null;
 }
 
+export interface EventSessionTimeCreateInputs {
+  name: string;
+  description?: string | null;
+  startTime: string;
+}
+
+export interface EventSessionTimeUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+  startTime?: string | null;
+}
+
+export interface EventSessionTimeTranslationUpdateInputs {
+  name?: string | null;
+  description?: string | null;
+}
+
 export interface EventBlockCreateInputs {
   name: string;
   description?: string;

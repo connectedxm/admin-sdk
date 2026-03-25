@@ -8,3 +8,4 @@ export * from "./useGetEventPassMatches";
 export * from "./useGetEventPassPayments";
 export * from "./useGetEventPassTransferLogs";
 export * from "./useGetEventPasses";
+export * from "./useGetEventPendingPasses";

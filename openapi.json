@@ -33787,6 +33787,107 @@
         ]
       }
     },
+    "/events/{eventId}/passes/pending": {
+      "get": {
+        "operationId": "GetEventPendingPasses",
+        "summary": "Get Event Pending Passes",
+        "description": "Get Event Pending Passes endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "description": "Page number",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            },
+            "description": "Number of items per page",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field to order by",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/EventPass"
+                      }
+                    },
+                    "count": {
+                      "type": "integer",
+                      "example": 100
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Passes"
+        ]
+      }
+    },
     "/events/{eventId}/passes/ready": {
       "post": {
         "operationId": "UpdateEventPassesReady",
@@ -34401,6 +34502,77 @@
         ]
       }
     },
+    "/events/{eventId}/passes/{passId}/approve": {
+      "put": {
+        "operationId": "ApproveEventPass",
+        "summary": "Approve Event Pass",
+        "description": "Approve Event Pass endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "passId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The pass identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "sendEmail",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Filter by sendEmail",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/EventPass"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Passes"
+        ]
+      }
+    },
     "/events/{eventId}/passes/{passId}/attendee/passes": {
       "get": {
         "operationId": "GetEventPassAttendeePasses",
@@ -34930,6 +35102,86 @@
             },
             "description": "The pass identifier",
             "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/EventPass"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Passes"
+        ]
+      }
+    },
+    "/events/{eventId}/passes/{passId}/deny": {
+      "put": {
+        "operationId": "DenyEventPass",
+        "summary": "Deny Event Pass",
+        "description": "Deny Event Pass endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "passId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The pass identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "sendEmail",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Filter by sendEmail",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "refund",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Filter by refund",
+            "required": false
           }
         ],
         "responses": {
@@ -97083,6 +97335,7 @@
         "enum": [
           "draft",
           "canceled",
+          "pending",
           "needsInfo",
           "ready"
         ]
@@ -103263,6 +103516,9 @@
           "requiredPassTypeId": {
             "type": "string",
             "nullable": true
+          },
+          "requiresApproval": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -103293,7 +103549,8 @@
           "taxLocation",
           "createdAt",
           "updatedAt",
-          "requiredPassTypeId"
+          "requiredPassTypeId",
+          "requiresApproval"
         ]
       },
       "EventPassType": {
@@ -116485,6 +116742,9 @@
           "badgeColor": {
             "type": "string",
             "nullable": true
+          },
+          "requiresApproval": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -116654,6 +116914,10 @@
           },
           "badgeColor": {
             "type": "string",
+            "nullable": true
+          },
+          "requiresApproval": {
+            "type": "boolean",
             "nullable": true
           }
         }

@@ -1838,6 +1838,7 @@ export interface PassTypeCreateInputs {
   taxLocation?: keyof typeof TaxLocationType;
   printable?: boolean;
   badgeColor?: string | null;
+  requiresApproval?: boolean;
 }
 
 export interface PassTypeUpdateInputs {
@@ -1871,6 +1872,7 @@ export interface PassTypeUpdateInputs {
   taxLocation?: keyof typeof TaxLocationType;
   printable?: boolean;
   badgeColor?: string | null;
+  requiresApproval?: boolean | null;
 }
 
 export interface TierCreateInputs {

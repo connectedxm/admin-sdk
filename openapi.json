@@ -33804,15 +33804,6 @@
           },
           {
             "in": "query",
-            "name": "checkedIn",
-            "schema": {
-              "type": "boolean"
-            },
-            "description": "Filter by checkedIn",
-            "required": false
-          },
-          {
-            "in": "query",
             "name": "page",
             "schema": {
               "type": "integer",

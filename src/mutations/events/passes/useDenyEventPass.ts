@@ -22,6 +22,7 @@ export interface DenyEventPassParams extends MutationParams {
   eventId: string;
   passId: string;
   sendEmail?: boolean;
+  refund?: boolean;
 }
 
 /**
@@ -32,13 +33,14 @@ export const DenyEventPass = async ({
   eventId,
   passId,
   sendEmail,
+  refund,
   adminApiParams,
   queryClient,
 }: DenyEventPassParams): Promise<ConnectedXMResponse<EventPass>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.put<ConnectedXMResponse<EventPass>>(
     `/events/${eventId}/passes/${passId}/deny`,
-    { sendEmail }
+    { sendEmail, refund }
   );
   if (queryClient && data.status === "ok") {
     if (data.data.ticketId) {

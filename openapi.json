@@ -35173,6 +35173,15 @@
             },
             "description": "Filter by sendEmail",
             "required": false
+          },
+          {
+            "in": "query",
+            "name": "refund",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Filter by refund",
+            "required": false
           }
         ],
         "responses": {

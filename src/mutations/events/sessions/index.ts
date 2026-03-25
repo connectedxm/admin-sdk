@@ -2,6 +2,7 @@ export * from "./locations";
 export * from "./matches";
 export * from "./questions";
 export * from "./sections";
+export * from "./times";
 export * from "./translations";
 export * from "./useAddEventSessionAccount";
 export * from "./useAddEventSessionBlock";

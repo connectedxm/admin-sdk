@@ -1005,6 +1005,8 @@ export enum EventEmailType {
   confirmation = "confirmation",
   cancellation = "cancellation",
   reminder = "reminder",
+  approval = "approval",
+  denial = "denial",
 }
 
 export interface BaseEventEmail {

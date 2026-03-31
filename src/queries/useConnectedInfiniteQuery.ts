@@ -20,22 +20,22 @@ export interface InfiniteQueryParams {
 }
 
 export interface InfiniteQueryOptions<
-  TQueryData extends ConnectedXMResponse<any> = ConnectedXMResponse<unknown>
+  TQueryData extends ConnectedXMResponse<any> = ConnectedXMResponse<unknown>,
 > extends Omit<
-    UseInfiniteQueryOptions<
-      TQueryData,
-      AxiosError<ConnectedXMResponse<null>>,
-      InfiniteData<TQueryData, number>,
-      QueryKey,
-      number
-    >,
-    "queryKey" | "queryFn" | "getNextPageParam" | "initialPageParam"
-  > {
+  UseInfiniteQueryOptions<
+    TQueryData,
+    AxiosError<ConnectedXMResponse<null>>,
+    InfiniteData<TQueryData, number>,
+    QueryKey,
+    number
+  >,
+  "queryKey" | "queryFn" | "getNextPageParam" | "initialPageParam"
+> {
   shouldRedirect?: boolean;
 }
 
 export const GetBaseInfiniteQueryKeys = (search: string = "") => {
-  return [search];
+  return [`SEARCH`, search];
 };
 
 export const setFirstPageData = <TData>(
@@ -48,7 +48,7 @@ export const setFirstPageData = <TData>(
 };
 
 export const useConnectedInfiniteQuery = <
-  TQueryData extends ConnectedXMResponse<any> = ConnectedXMResponse<unknown>
+  TQueryData extends ConnectedXMResponse<any> = ConnectedXMResponse<unknown>,
 >(
   queryKeys: QueryKey,
   queryFn: (params: InfiniteQueryParams) => Promise<TQueryData>,
@@ -78,7 +78,7 @@ export const useConnectedInfiniteQuery = <
     allPages: TQueryData[] // Array of PageData
   ) => {
     // Assuming lastPage.data is an array and you're checking its length
-    if (lastPage.data.length === params.pageSize) {
+    if (lastPage.data?.length === params.pageSize) {
       return allPages.length + 1;
     }
 

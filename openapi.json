@@ -95169,7 +95169,9 @@
         "enum": [
           "confirmation",
           "cancellation",
-          "reminder"
+          "reminder",
+          "approval",
+          "denial"
         ]
       },
       "BaseEventEmail": {

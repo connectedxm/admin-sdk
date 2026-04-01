@@ -1,5 +1,7 @@
 name: Publish Packages
 
+# Both jobs require the NPM_TOKEN repository secret for npmjs.org publish auth.
+
 permissions:
   actions: none
   checks: none
@@ -21,7 +23,7 @@ on:
       - main
 
 jobs:
-  publish-npm:
+  publish-admin:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -47,4 +49,32 @@ jobs:
         run: npm run build
 
       - name: Publish package
+        run: npm publish
+
+  publish-typescript-sdk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+          registry-url: https://registry.npmjs.org/
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Update npm
+        run: npm install -g npm@latest
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate and build TypeScript SDK
+        run: npm run generate:sdks
+
+      - name: Publish @connectedxm/admin-sdk
+        working-directory: sdks/typescript
         run: npm publish

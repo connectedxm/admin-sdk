@@ -1042,7 +1042,9 @@ async function main() {
       console.log("\n🔨 Building TypeScript SDK...");
       const tsPath = path.join(SDKS_DIR, tsConfig.outputDir);
       try {
-        execSync("npm install && npm run build", {
+        // Install without lifecycle scripts, then build once. (Otherwise `prepare`
+        // runs `npm run build` on install and we duplicate `tsc` + `tsc -p tsconfig.esm.json`.)
+        execSync("npm install --ignore-scripts && npm run build", {
           cwd: tsPath,
           stdio: "inherit",
         });

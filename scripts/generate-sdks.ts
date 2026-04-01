@@ -409,6 +409,7 @@ function postProcessPackageJson(outputPath: string): void {
       fs.readFileSync(adminPackageJsonPath, "utf-8")
     );
     const adminVersion = adminPackageJson.version;
+    const adminRepository = adminPackageJson.repository;
 
     let updated = false;
 
@@ -419,6 +420,16 @@ function postProcessPackageJson(outputPath: string): void {
       console.log(
         `   ✨ Synced version to ${adminVersion} (from @connectedxm/admin)`
       );
+    }
+
+    // Replace OpenAPI Generator placeholders so npm provenance matches the repo
+    if (
+      adminRepository &&
+      JSON.stringify(packageJson.repository) !== JSON.stringify(adminRepository)
+    ) {
+      packageJson.repository = adminRepository;
+      updated = true;
+      console.log("   ✨ Synced repository URL (from @connectedxm/admin)");
     }
 
     // Add publishConfig to make scoped package public

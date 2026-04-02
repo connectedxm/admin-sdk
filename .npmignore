@@ -12,3 +12,4 @@ scripts
 .nvmrc
 typedoc.config.cjs
 .cursor
+.openapi-generator

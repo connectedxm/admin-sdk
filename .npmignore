@@ -11,3 +11,4 @@ scripts
 .vscode
 .nvmrc
 typedoc.config.cjs
+.cursor

@@ -11,3 +11,5 @@ scripts
 .vscode
 .nvmrc
 typedoc.config.cjs
+.cursor
+.openapi-generator

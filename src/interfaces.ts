@@ -1103,6 +1103,7 @@ export interface BaseEvent {
   series: BaseSeries | null;
   paymentIntegrationId: string | null;
   paymentIntegration: BasePaymentIntegration | null;
+  archived: boolean;
 }
 
 export interface Event extends BaseEvent {

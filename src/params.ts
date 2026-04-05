@@ -611,6 +611,7 @@ export interface EventCreateInputs {
   eventEnd: string;
   featured?: boolean;
   visible?: boolean;
+  archived?: boolean;
   slug?: string | null;
   internalRefId?: string | null;
   longDescription?: string | null;
@@ -668,6 +669,7 @@ export interface EventCreateInputs {
 export interface EventUpdateInputs {
   featured?: boolean;
   visible?: boolean;
+  archived?: boolean;
   name?: string | null;
   eventType?: keyof typeof EventType | null;
   slug?: string | null;

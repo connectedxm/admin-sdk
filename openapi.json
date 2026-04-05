@@ -76182,6 +76182,59 @@
         ]
       }
     },
+    "/reports/custom/{reportId}/export": {
+      "post": {
+        "operationId": "ExportCustomReport",
+        "summary": "Export Custom Report",
+        "description": "Export Custom Report endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reportId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The report identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reports"
+        ]
+      }
+    },
     "/reports/custom/{reportId}/users": {
       "get": {
         "operationId": "GetCustomReportUsers",

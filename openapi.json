@@ -95532,6 +95532,9 @@
               }
             ],
             "nullable": true
+          },
+          "archived": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -95568,7 +95571,8 @@
           "seriesId",
           "series",
           "paymentIntegrationId",
-          "paymentIntegration"
+          "paymentIntegration",
+          "archived"
         ]
       },
       "Event": {
@@ -113314,6 +113318,9 @@
           "visible": {
             "type": "boolean"
           },
+          "archived": {
+            "type": "boolean"
+          },
           "slug": {
             "type": "string",
             "nullable": true
@@ -113564,6 +113571,9 @@
             "type": "boolean"
           },
           "visible": {
+            "type": "boolean"
+          },
+          "archived": {
             "type": "boolean"
           },
           "name": {

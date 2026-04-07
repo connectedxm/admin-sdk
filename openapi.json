@@ -76196,6 +76196,15 @@
             },
             "description": "The report identifier",
             "required": true
+          },
+          {
+            "in": "query",
+            "name": "email",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by email",
+            "required": true
           }
         ],
         "responses": {

@@ -1561,6 +1561,10 @@ export interface CustomReportCreateInputs extends ReportFilters {
   shared?: boolean;
 }
 
+export interface CustomReportExportInputs {
+  email: string;
+}
+
 export interface CustomReportUpdateInputs {
   name?: string | null;
   description?: string | null;

@@ -12,6 +12,7 @@ import { ConnectedXMResponse } from "@src/interfaces";
  */
 export interface ExportCustomReportParams extends MutationParams {
   reportId: number;
+  email: string;
 }
 
 /**
@@ -20,11 +21,13 @@ export interface ExportCustomReportParams extends MutationParams {
  */
 export const ExportCustomReport = async ({
   reportId,
+  email,
   adminApiParams,
 }: ExportCustomReportParams): Promise<ConnectedXMResponse<null>> => {
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<ConnectedXMResponse<null>>(
-    `/reports/custom/${reportId}/export`
+    `/reports/custom/${reportId}/export`,
+    { email }
   );
   return data;
 };

@@ -101343,6 +101343,12 @@
             "type": "string",
             "nullable": true
           },
+          "registration": {
+            "type": "boolean"
+          },
+          "featured": {
+            "type": "boolean"
+          },
           "startDate": {
             "type": "string",
             "nullable": true
@@ -101370,6 +101376,8 @@
           "name",
           "description",
           "longDescription",
+          "registration",
+          "featured",
           "startDate",
           "endDate",
           "imageId",
@@ -117165,6 +117173,20 @@
           "registration": {
             "type": "boolean"
           },
+          "featured": {
+            "type": "boolean"
+          },
+          "sortOrder": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true
+          },
           "price": {
             "type": "number"
           },
@@ -117232,6 +117254,20 @@
           },
           "registration": {
             "type": "boolean"
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "sortOrder": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true
           },
           "price": {
             "type": "number"

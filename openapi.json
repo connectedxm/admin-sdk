@@ -76198,6 +76198,16 @@
             "required": true
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomReportExportInputs"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful response",
@@ -116936,6 +116946,17 @@
               "name"
             ]
           }
+        ]
+      },
+      "CustomReportExportInputs": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
         ]
       },
       "CustomReportUpdateInputs": {

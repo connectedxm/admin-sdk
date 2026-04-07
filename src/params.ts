@@ -1622,6 +1622,8 @@ export interface SeriesCreateInputs {
   startDate?: string | null;
   endDate?: string | null;
   registration?: boolean;
+  featured?: boolean;
+  sortOrder?: number | string | null;
   price?: number;
   taxCode?: string | null;
   taxIncluded?: boolean;
@@ -1641,6 +1643,8 @@ export interface SeriesUpdateInputs {
   startDate?: string | null;
   endDate?: string | null;
   registration?: boolean;
+  featured?: boolean;
+  sortOrder?: number | string | null;
   price?: number;
   taxCode?: string | null;
   taxIncluded?: boolean;

@@ -2723,6 +2723,7 @@ export interface AccountAttributeCreateInputs {
   adminOnly?: boolean;
   editable?: boolean;
   public?: boolean;
+  subline?: boolean;
   includedInDashboards?: boolean;
   sortOrder?: number | string | null;
   searchListId?: string | null;
@@ -2737,6 +2738,7 @@ export interface AccountAttributeUpdateInputs {
   adminOnly?: boolean;
   editable?: boolean;
   public?: boolean;
+  subline?: boolean;
   includedInDashboards?: boolean;
   sortOrder?: number | string | null;
   searchListId?: string | null;

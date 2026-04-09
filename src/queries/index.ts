@@ -1,6 +1,7 @@
 export * from "./accounts";
 export * from "./activities";
 export * from "./advertisements";
+export * from "./analytics";
 export * from "./announcements";
 export * from "./api-logs";
 export * from "./auth-sessions";

@@ -92162,6 +92162,9 @@
           "public": {
             "type": "boolean"
           },
+          "subline": {
+            "type": "boolean"
+          },
           "includedInDashboards": {
             "type": "boolean"
           },
@@ -92182,6 +92185,7 @@
           "adminOnly",
           "editable",
           "public",
+          "subline",
           "includedInDashboards",
           "sortOrder",
           "locationOption"
@@ -121200,6 +121204,9 @@
           "public": {
             "type": "boolean"
           },
+          "subline": {
+            "type": "boolean"
+          },
           "includedInDashboards": {
             "type": "boolean"
           },
@@ -121256,6 +121263,9 @@
             "type": "boolean"
           },
           "public": {
+            "type": "boolean"
+          },
+          "subline": {
             "type": "boolean"
           },
           "includedInDashboards": {

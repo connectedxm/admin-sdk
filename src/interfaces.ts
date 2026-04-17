@@ -2457,6 +2457,12 @@ export interface CustomReport {
   updatedAt: string;
 }
 
+export interface CustomReportSchedule {
+  scheduleExpression: string | null;
+  scheduleTimezone: string | null;
+  scheduleEmails: string[] | null;
+}
+
 export interface SearchField {
   id: string;
   name: string;

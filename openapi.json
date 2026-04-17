@@ -76245,6 +76245,181 @@
         ]
       }
     },
+    "/reports/custom/{reportId}/schedule": {
+      "get": {
+        "operationId": "GetCustomReportSchedule",
+        "summary": "Get Custom Report Schedule",
+        "description": "Get Custom Report Schedule endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reportId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The report identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/CustomReportSchedule"
+                        }
+                      ],
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reports"
+        ]
+      },
+      "post": {
+        "operationId": "UpsertCustomReportSchedule",
+        "summary": "Upsert Custom Report Schedule",
+        "description": "Upsert Custom Report Schedule endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reportId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The report identifier",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomReportScheduleInputs"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/CustomReportSchedule"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reports"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteCustomReportSchedule",
+        "summary": "Delete Custom Report Schedule",
+        "description": "Delete Custom Report Schedule endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reportId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The report identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/CustomReportSchedule"
+                        }
+                      ],
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reports"
+        ]
+      }
+    },
     "/reports/custom/{reportId}/users": {
       "get": {
         "operationId": "GetCustomReportUsers",
@@ -100902,6 +101077,31 @@
           "updatedAt"
         ]
       },
+      "CustomReportSchedule": {
+        "type": "object",
+        "properties": {
+          "scheduleExpression": {
+            "type": "string",
+            "nullable": true
+          },
+          "scheduleTimezone": {
+            "type": "string",
+            "nullable": true
+          },
+          "scheduleEmails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "required": [
+          "scheduleExpression",
+          "scheduleTimezone",
+          "scheduleEmails"
+        ]
+      },
       "SearchField": {
         "type": "object",
         "properties": {
@@ -116988,6 +117188,26 @@
           },
           "shared": {
             "type": "boolean"
+          }
+        }
+      },
+      "CustomReportScheduleInputs": {
+        "type": "object",
+        "properties": {
+          "scheduleExpression": {
+            "type": "string",
+            "nullable": true
+          },
+          "scheduleTimezone": {
+            "type": "string",
+            "nullable": true
+          },
+          "scheduleEmails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
           }
         }
       },

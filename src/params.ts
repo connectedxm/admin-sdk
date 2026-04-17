@@ -1572,6 +1572,12 @@ export interface CustomReportUpdateInputs {
   shared?: boolean;
 }
 
+export interface CustomReportScheduleInputs {
+  scheduleExpression?: string | null;
+  scheduleTimezone?: string | null;
+  scheduleEmails?: string[] | null;
+}
+
 export interface EventSectionCreateInputs {
   name: string;
   description?: string | null;

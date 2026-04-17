@@ -6,6 +6,7 @@ import {
 } from "@src/mutations/useConnectedMutation";
 import { ConnectedXMResponse, CustomReportSchedule } from "@src/interfaces";
 import { SET_CUSTOM_REPORT_SCHEDULE_QUERY_DATA } from "@src/queries";
+import { CustomReportScheduleInputs } from "@src/params";
 
 /**
  * @category Params
@@ -13,9 +14,7 @@ import { SET_CUSTOM_REPORT_SCHEDULE_QUERY_DATA } from "@src/queries";
  */
 export interface UpsertCustomReportScheduleParams extends MutationParams {
   reportId: number;
-  scheduleExpression?: string | null;
-  scheduleTimezone?: string | null;
-  scheduleEmails?: string[] | null;
+  schedule: CustomReportScheduleInputs;
 }
 
 /**
@@ -24,9 +23,7 @@ export interface UpsertCustomReportScheduleParams extends MutationParams {
  */
 export const UpsertCustomReportSchedule = async ({
   reportId,
-  scheduleExpression,
-  scheduleTimezone,
-  scheduleEmails,
+  schedule,
   adminApiParams,
   queryClient,
 }: UpsertCustomReportScheduleParams): Promise<
@@ -35,11 +32,7 @@ export const UpsertCustomReportSchedule = async ({
   const connectedXM = await GetAdminAPI(adminApiParams);
   const { data } = await connectedXM.post<
     ConnectedXMResponse<CustomReportSchedule>
-  >(`/reports/custom/${reportId}/schedule`, {
-    scheduleExpression,
-    scheduleTimezone,
-    scheduleEmails,
-  });
+  >(`/reports/custom/${reportId}/schedule`, schedule);
   if (queryClient && data.status === "ok") {
     SET_CUSTOM_REPORT_SCHEDULE_QUERY_DATA(queryClient, [reportId], data);
   }

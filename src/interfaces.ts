@@ -2638,6 +2638,7 @@ export interface SeriesRegistration extends BaseSeriesRegistration {
 
 export enum EventSessionVisibility {
   PUBLIC = "PUBLIC",
+  ADAPTIVE = "ADAPTIVE",
   RESTRICTED = "RESTRICTED",
   REGISTERED = "REGISTERED",
   HIDDEN = "HIDDEN",

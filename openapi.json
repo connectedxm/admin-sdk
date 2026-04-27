@@ -102286,7 +102286,7 @@
         "type": "string",
         "enum": [
           "PUBLIC",
-          "ADAPTIVE",
+          "PREVIEW",
           "RESTRICTED",
           "REGISTERED",
           "HIDDEN"

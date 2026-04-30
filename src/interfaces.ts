@@ -2655,6 +2655,7 @@ export interface BaseEventSession {
   startTime: string;
   endTime: string;
   registrationEnd?: string;
+  onsiteRegistration: boolean;
   allowQuickRegister: boolean;
   tracks: BaseEventTrack[];
   nonSession: boolean;

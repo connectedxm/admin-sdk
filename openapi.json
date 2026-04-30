@@ -102333,6 +102333,9 @@
           "registrationEnd": {
             "type": "string"
           },
+          "onsiteRegistration": {
+            "type": "boolean"
+          },
           "allowQuickRegister": {
             "type": "boolean"
           },
@@ -102394,6 +102397,7 @@
           "image",
           "startTime",
           "endTime",
+          "onsiteRegistration",
           "allowQuickRegister",
           "tracks",
           "nonSession",
@@ -115330,6 +115334,9 @@
           "registrationEnabled": {
             "type": "boolean"
           },
+          "onsiteRegistration": {
+            "type": "boolean"
+          },
           "allowQuickRegister": {
             "type": "boolean"
           },
@@ -115496,6 +115503,9 @@
             "nullable": true
           },
           "registrationEnabled": {
+            "type": "boolean"
+          },
+          "onsiteRegistration": {
             "type": "boolean"
           },
           "allowQuickRegister": {

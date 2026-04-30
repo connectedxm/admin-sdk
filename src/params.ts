@@ -925,6 +925,7 @@ export interface EventSessionCreateInputs {
   visibility?: keyof typeof EventSessionVisibility;
   sortOrder?: number | string | null;
   registrationEnabled?: boolean;
+  onsiteRegistration?: boolean;
   allowQuickRegister?: boolean;
   limit?: number | string | null;
   price?: number | string | null;
@@ -969,6 +970,7 @@ export interface EventSessionUpdateInputs {
   visibility?: keyof typeof EventSessionVisibility;
   sortOrder?: number | string | null;
   registrationEnabled?: boolean;
+  onsiteRegistration?: boolean;
   allowQuickRegister?: boolean;
   limit?: number | string | null;
   price?: number | string | null;

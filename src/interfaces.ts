@@ -2636,6 +2636,12 @@ export interface SeriesRegistration extends BaseSeriesRegistration {
   };
 }
 
+export interface EventSessionPrice {
+  id: string;
+  passTypeId: string;
+  price: number;
+}
+
 export enum EventSessionVisibility {
   PUBLIC = "PUBLIC",
   PREVIEW = "PREVIEW",
@@ -2663,6 +2669,7 @@ export interface BaseEventSession {
   location: BaseEventSessionLocation | null;
   registrationEnabled: boolean;
   price: number | null;
+  prices: EventSessionPrice[];
   limit: number | null;
   taxCode: string | null;
   taxIncluded: boolean;

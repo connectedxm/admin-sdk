@@ -1,5 +1,6 @@
 export * from "./locations";
 export * from "./matches";
+export * from "./prices";
 export * from "./questions";
 export * from "./sections";
 export * from "./times";

@@ -369,6 +369,10 @@
       "description": "Create matchmaking pairings for session-specific activities, grouping attendees together for networking or collaborative sessions"
     },
     {
+      "name": "Events::Sessions::Prices",
+      "description": "Operations for events::sessions::prices"
+    },
+    {
       "name": "Events::Sessions::Questions",
       "description": "Add custom questions to session registration, collecting additional information from attendees who register for specific sessions"
     },
@@ -47256,6 +47260,244 @@
         },
         "tags": [
           "Events::Sessions"
+        ]
+      }
+    },
+    "/events/{eventId}/sessions/{sessionId}/prices": {
+      "post": {
+        "operationId": "CreateEventSessionPrice",
+        "summary": "Create Event Session Price",
+        "description": "Create Event Session Price endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "sessionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The session identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "passTypeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by passTypeId",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "price",
+            "schema": {
+              "type": "number"
+            },
+            "description": "Filter by price",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/EventSession"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Sessions::Prices"
+        ]
+      }
+    },
+    "/events/{eventId}/sessions/{sessionId}/prices/{priceId}": {
+      "put": {
+        "operationId": "UpdateEventSessionPrice",
+        "summary": "Update Event Session Price",
+        "description": "Update Event Session Price endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "sessionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The session identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "priceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The price identifier",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "passTypeId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by passTypeId",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "price",
+            "schema": {
+              "type": "number"
+            },
+            "description": "Filter by price",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/EventSession"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Sessions::Prices"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteEventSessionPrice",
+        "summary": "Delete Event Session Price",
+        "description": "Delete Event Session Price endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The event identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "sessionId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The session identifier",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "priceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The price identifier",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success message."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/EventSession"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events::Sessions::Prices"
         ]
       }
     },
@@ -102282,6 +102524,25 @@
           }
         ]
       },
+      "EventSessionPrice": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "passTypeId": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "passTypeId",
+          "price"
+        ]
+      },
       "EventSessionVisibility": {
         "type": "string",
         "enum": [
@@ -102366,6 +102627,12 @@
             "type": "number",
             "nullable": true
           },
+          "prices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventSessionPrice"
+            }
+          },
           "limit": {
             "type": "number",
             "nullable": true
@@ -102405,6 +102672,7 @@
           "location",
           "registrationEnabled",
           "price",
+          "prices",
           "limit",
           "taxCode",
           "taxIncluded",

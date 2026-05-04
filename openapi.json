@@ -102637,6 +102637,13 @@
             "type": "number",
             "nullable": true
           },
+          "autoRefundEnabled": {
+            "type": "boolean"
+          },
+          "autoRefundPercentage": {
+            "type": "number",
+            "nullable": true
+          },
           "taxCode": {
             "type": "string",
             "nullable": true
@@ -102674,6 +102681,8 @@
           "price",
           "prices",
           "limit",
+          "autoRefundEnabled",
+          "autoRefundPercentage",
           "taxCode",
           "taxIncluded",
           "taxLocation",
@@ -115630,6 +115639,13 @@
             ],
             "nullable": true
           },
+          "autoRefundEnabled": {
+            "type": "boolean"
+          },
+          "autoRefundPercentage": {
+            "type": "number",
+            "nullable": true
+          },
           "locationId": {
             "type": "string",
             "nullable": true
@@ -115799,6 +115815,13 @@
                 "type": "string"
               }
             ],
+            "nullable": true
+          },
+          "autoRefundEnabled": {
+            "type": "boolean"
+          },
+          "autoRefundPercentage": {
+            "type": "number",
             "nullable": true
           },
           "locationId": {

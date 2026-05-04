@@ -2671,6 +2671,8 @@ export interface BaseEventSession {
   price: number | null;
   prices: EventSessionPrice[];
   limit: number | null;
+  autoRefundEnabled: boolean;
+  autoRefundPercentage: number | null;
   taxCode: string | null;
   taxIncluded: boolean;
   taxLocation: TaxLocationType;

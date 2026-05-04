@@ -929,6 +929,8 @@ export interface EventSessionCreateInputs {
   allowQuickRegister?: boolean;
   limit?: number | string | null;
   price?: number | string | null;
+  autoRefundEnabled?: boolean;
+  autoRefundPercentage?: number | null;
   locationId?: string | null;
   roundName?: string | null;
   matchName?: string | null;
@@ -974,6 +976,8 @@ export interface EventSessionUpdateInputs {
   allowQuickRegister?: boolean;
   limit?: number | string | null;
   price?: number | string | null;
+  autoRefundEnabled?: boolean;
+  autoRefundPercentage?: number | null;
   locationId?: string | null;
   roundName?: string | null;
   matchName?: string | null;

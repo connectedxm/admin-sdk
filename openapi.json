@@ -102637,13 +102637,6 @@
             "type": "number",
             "nullable": true
           },
-          "autoRefundEnabled": {
-            "type": "boolean"
-          },
-          "autoRefundPercentage": {
-            "type": "number",
-            "nullable": true
-          },
           "taxCode": {
             "type": "string",
             "nullable": true
@@ -102681,8 +102674,6 @@
           "price",
           "prices",
           "limit",
-          "autoRefundEnabled",
-          "autoRefundPercentage",
           "taxCode",
           "taxIncluded",
           "taxLocation",
@@ -102723,6 +102714,13 @@
               },
               "meetingId": {
                 "type": "string",
+                "nullable": true
+              },
+              "autoRefundEnabled": {
+                "type": "boolean"
+              },
+              "autoRefundPercentage": {
+                "type": "number",
                 "nullable": true
               },
               "meeting": {
@@ -102773,6 +102771,8 @@
               "event",
               "speakers",
               "meetingId",
+              "autoRefundEnabled",
+              "autoRefundPercentage",
               "meeting",
               "blocks",
               "activationId",

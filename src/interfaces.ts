@@ -2686,6 +2686,8 @@ export interface EventSession extends BaseEventSession {
   event: BaseEvent;
   speakers: BaseEventSpeaker[];
   meetingId: string | null;
+  autoRefundEnabled: boolean;
+  autoRefundPercentage: number | null;
   meeting: BaseMeeting | null;
   blocks: BaseEventBlock[] | null;
   activationId: string | null;

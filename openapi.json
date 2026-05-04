@@ -102716,6 +102716,13 @@
                 "type": "string",
                 "nullable": true
               },
+              "autoRefundEnabled": {
+                "type": "boolean"
+              },
+              "autoRefundPercentage": {
+                "type": "number",
+                "nullable": true
+              },
               "meeting": {
                 "allOf": [
                   {
@@ -102764,6 +102771,8 @@
               "event",
               "speakers",
               "meetingId",
+              "autoRefundEnabled",
+              "autoRefundPercentage",
               "meeting",
               "blocks",
               "activationId",
@@ -115630,6 +115639,13 @@
             ],
             "nullable": true
           },
+          "autoRefundEnabled": {
+            "type": "boolean"
+          },
+          "autoRefundPercentage": {
+            "type": "number",
+            "nullable": true
+          },
           "locationId": {
             "type": "string",
             "nullable": true
@@ -115799,6 +115815,13 @@
                 "type": "string"
               }
             ],
+            "nullable": true
+          },
+          "autoRefundEnabled": {
+            "type": "boolean"
+          },
+          "autoRefundPercentage": {
+            "type": "number",
             "nullable": true
           },
           "locationId": {

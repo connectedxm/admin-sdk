@@ -506,6 +506,7 @@ export interface EventAddOnCreateInputs {
   longDescription?: string | null;
   price: number | string | null;
   pricePerNight?: boolean;
+  includedNights?: number;
   supply?: number | string | null;
   sortOrder?: number | string | null;
   imageId?: string | null;
@@ -526,6 +527,7 @@ export interface EventAddOnUpdateInputs {
   longDescription?: string | null;
   price?: number | string | null; // Assuming OPTIONAL_PRICE is similar to OPTIONAL_NUMBER
   pricePerNight?: boolean;
+  includedNights?: number;
   supply?: number | string | null;
   sortOrder?: number | string | null;
   imageId?: string | null;

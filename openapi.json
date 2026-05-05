@@ -113891,15 +113891,7 @@
             "type": "boolean"
           },
           "includedNights": {
-            "oneOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "nullable": true
+            "type": "number"
           },
           "supply": {
             "oneOf": [
@@ -113991,15 +113983,7 @@
             "type": "boolean"
           },
           "includedNights": {
-            "oneOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "nullable": true
+            "type": "number"
           },
           "supply": {
             "oneOf": [

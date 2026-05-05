@@ -95880,6 +95880,9 @@
           "pricePerNight": {
             "type": "boolean"
           },
+          "includedNights": {
+            "type": "number"
+          },
           "sortOrder": {
             "type": "number"
           },
@@ -95923,6 +95926,7 @@
           "supply",
           "price",
           "pricePerNight",
+          "includedNights",
           "sortOrder",
           "imageId",
           "image",
@@ -113886,6 +113890,17 @@
           "pricePerNight": {
             "type": "boolean"
           },
+          "includedNights": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true
+          },
           "supply": {
             "oneOf": [
               {
@@ -113974,6 +113989,17 @@
           },
           "pricePerNight": {
             "type": "boolean"
+          },
+          "includedNights": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "nullable": true
           },
           "supply": {
             "oneOf": [

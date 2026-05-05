@@ -941,6 +941,7 @@ export interface BaseEventAddOn {
   supply: number | null;
   price: number;
   pricePerNight: boolean;
+  includedNights: number;
   sortOrder: number;
   imageId: string | null;
   image: BaseImage | null;

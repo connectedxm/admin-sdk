@@ -567,6 +567,7 @@ export interface EventCouponCreateInputs {
   applyToPassType?: boolean;
   applyToAddOns?: boolean;
   applyToReservation?: boolean;
+  applyToSessions?: boolean;
 }
 
 export interface EventCouponUpdateInputs {
@@ -588,6 +589,7 @@ export interface EventCouponUpdateInputs {
   applyToPassType?: boolean;
   applyToAddOns?: boolean;
   applyToReservation?: boolean;
+  applyToSessions?: boolean;
 }
 
 export interface EventVariantCouponCreateInputs {

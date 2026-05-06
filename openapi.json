@@ -95650,6 +95650,9 @@
           "applyToReservation": {
             "type": "boolean"
           },
+          "applyToSessions": {
+            "type": "boolean"
+          },
           "registrationId": {
             "type": "string",
             "nullable": true
@@ -95689,6 +95692,7 @@
           "applyToPassType",
           "applyToAddOns",
           "applyToReservation",
+          "applyToSessions",
           "registrationId",
           "registration"
         ]
@@ -114187,6 +114191,9 @@
           },
           "applyToReservation": {
             "type": "boolean"
+          },
+          "applyToSessions": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -114311,6 +114318,9 @@
             "type": "boolean"
           },
           "applyToReservation": {
+            "type": "boolean"
+          },
+          "applyToSessions": {
             "type": "boolean"
           }
         }
